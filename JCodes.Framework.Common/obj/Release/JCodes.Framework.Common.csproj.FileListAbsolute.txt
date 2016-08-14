@@ -1,0 +1,6 @@
+E:\hseap\1\C#框架\JCodes.Framework.Common\bin\Release\JCodes.Framework.Common.dll
+E:\hseap\1\C#框架\JCodes.Framework.Common\bin\Release\JCodes.Framework.Common.pdb
+E:\hseap\1\C#框架\JCodes.Framework.Common\bin\Release\JCodes.Framework.Data.Model.dll
+E:\hseap\1\C#框架\JCodes.Framework.Common\bin\Release\JCodes.Framework.Data.Model.pdb
+E:\hseap\1\C#框架\JCodes.Framework.Common\obj\Release\JCodes.Framework.Common.dll
+E:\hseap\1\C#框架\JCodes.Framework.Common\obj\Release\JCodes.Framework.Common.pdb

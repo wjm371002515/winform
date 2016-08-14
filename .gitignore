@@ -1,0 +1,7 @@
+# git 过滤掉不要上传的文件
+*.suo
+JCodes.Framework.WinFormUI/Properties/licenses.licx
+
+# 过滤掉不上传的文件夹
+JCodes.Framework.WinFormUI/obj/
+JCodes.Framework.WinFormUI/bin/

@@ -1,0 +1,67 @@
+﻿<div style="padding: 15px; overflow: hidden">
+    <form id="ui_daily_dailyeditform" method="post" action="">
+    <table class="tableForm" width="100%">
+        <tr>
+            <th>
+                店铺名：
+            </th>
+            <td>
+                <input type="hidden" name="Id" id="Id" />
+                <input type="text" name="ui_daily_shopname_edit" id="ui_daily_shopname_edit" autocomplete="off" />
+            </td>
+        </tr>
+        <tr>
+            <th>
+                阿里旺旺：
+            </th>
+            <td>
+                <input type="text" name="ui_daily_aliwangwang_edit" id="ui_daily_aliwangwang_edit" autocomplete="off" />
+            </td>
+        </tr>
+        <tr>
+            <th>
+                处理内容：
+            </th>
+            <td>
+                 <textarea rows="3" cols="30" name="ui_daily_dosolve_edit" id="ui_daily_dosolve_edit"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                提交人：
+            </th>
+            <td>
+                <input type="text" name="ui_daily_username_edit" id="ui_daily_username_edit" readonly="readonly" />
+            </td>
+        </tr>
+        <tr>
+            <th>
+                是否解决：
+            </th>
+            <td>
+                <select name="ui_daily_isSolve_edit" id="ui_daily_isSolve_edit">
+                            <option value="">请选择</option>
+                            <option value="0">否</option>
+                            <option value="1">是</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                解决人：
+            </th>
+            <td>
+                <input type="text" name="ui_daily_solvename_edit" id="ui_daily_solvename_edit" />
+            </td>
+        </tr>
+        <tr>
+            <th>
+                备注：
+            </th>
+            <td>
+                <textarea rows="3" cols="30" name="ui_daily_remark_edit" id="ui_daily_remark_edit"></textarea>
+            </td>
+        </tr>
+    </table>
+    </form>
+</div>

@@ -1,0 +1,7 @@
+E:\SVN\hseap\1\C#框架\JCodes.Framework.Entity\bin\Debug\JCodes.Framework.Entity.dll
+E:\SVN\hseap\1\C#框架\JCodes.Framework.Entity\bin\Debug\JCodes.Framework.Entity.pdb
+E:\SVN\hseap\1\C#框架\JCodes.Framework.Entity\bin\Debug\JCodes.Framework.Enum.dll
+E:\SVN\hseap\1\C#框架\JCodes.Framework.Entity\bin\Debug\JCodes.Framework.Enum.pdb
+E:\SVN\hseap\1\C#框架\JCodes.Framework.Entity\obj\Debug\JCodes.Framework.Entity.csprojResolveAssemblyReference.cache
+E:\SVN\hseap\1\C#框架\JCodes.Framework.Entity\obj\Debug\JCodes.Framework.Entity.dll
+E:\SVN\hseap\1\C#框架\JCodes.Framework.Entity\obj\Debug\JCodes.Framework.Entity.pdb

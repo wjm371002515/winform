@@ -1,0 +1,7 @@
+E:\SVN\hseap\1\C#框架\JCodes.Framework.CommonControl\bin\Debug\JCodes.Framework.CommonControl.dll
+E:\SVN\hseap\1\C#框架\JCodes.Framework.CommonControl\bin\Debug\JCodes.Framework.CommonControl.pdb
+E:\SVN\hseap\1\C#框架\JCodes.Framework.CommonControl\obj\Debug\JCodes.Framework.CommonControl.ShowDialog.resources
+E:\SVN\hseap\1\C#框架\JCodes.Framework.CommonControl\obj\Debug\JCodes.Framework.CommonControl.csproj.GenerateResource.Cache
+E:\SVN\hseap\1\C#框架\JCodes.Framework.CommonControl\obj\Debug\JCodes.Framework.CommonControl.dll
+E:\SVN\hseap\1\C#框架\JCodes.Framework.CommonControl\obj\Debug\JCodes.Framework.CommonControl.pdb
+E:\SVN\hseap\1\C#框架\JCodes.Framework.CommonControl\obj\Debug\JCodes.Framework.CommonControl.csprojResolveAssemblyReference.cache

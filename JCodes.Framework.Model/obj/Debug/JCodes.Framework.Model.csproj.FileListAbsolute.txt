@@ -1,0 +1,13 @@
+D:\webs\jcodes.framework\1\C#框架\JCodes.Framework.Model\bin\Debug\JCodes.Framework.Data.Model.dll
+D:\webs\jcodes.framework\1\C#框架\JCodes.Framework.Model\bin\Debug\JCodes.Framework.Data.Model.pdb
+D:\webs\jcodes.framework\1\C#框架\JCodes.Framework.Model\obj\Debug\JCodes.Framework.Data.Model.dll
+D:\webs\jcodes.framework\1\C#框架\JCodes.Framework.Model\obj\Debug\JCodes.Framework.Data.Model.pdb
+E:\hseap\1\C#框架\JCodes.Framework.Model\bin\Debug\JCodes.Framework.Data.Model.dll
+E:\hseap\1\C#框架\JCodes.Framework.Model\bin\Debug\JCodes.Framework.Data.Model.pdb
+E:\hseap\1\C#框架\JCodes.Framework.Model\obj\Debug\JCodes.Framework.Data.Model.dll
+E:\hseap\1\C#框架\JCodes.Framework.Model\obj\Debug\JCodes.Framework.Data.Model.pdb
+E:\hseap\1\C#框架\JCodes.Framework.Model\obj\Debug\JCodes.Framework.Model.csprojResolveAssemblyReference.cache
+E:\SVN\hseap\1\C#框架\JCodes.Framework.Model\bin\Debug\JCodes.Framework.Data.Model.dll
+E:\SVN\hseap\1\C#框架\JCodes.Framework.Model\bin\Debug\JCodes.Framework.Data.Model.pdb
+E:\SVN\hseap\1\C#框架\JCodes.Framework.Model\obj\Debug\JCodes.Framework.Data.Model.dll
+E:\SVN\hseap\1\C#框架\JCodes.Framework.Model\obj\Debug\JCodes.Framework.Data.Model.pdb

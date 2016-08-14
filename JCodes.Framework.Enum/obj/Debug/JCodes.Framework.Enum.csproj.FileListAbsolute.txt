@@ -1,0 +1,4 @@
+E:\SVN\hseap\1\C#框架\JCodes.Framework.Enum\bin\Debug\JCodes.Framework.Enum.dll
+E:\SVN\hseap\1\C#框架\JCodes.Framework.Enum\bin\Debug\JCodes.Framework.Enum.pdb
+E:\SVN\hseap\1\C#框架\JCodes.Framework.Enum\obj\Debug\JCodes.Framework.Enum.dll
+E:\SVN\hseap\1\C#框架\JCodes.Framework.Enum\obj\Debug\JCodes.Framework.Enum.pdb

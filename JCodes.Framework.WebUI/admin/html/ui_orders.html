@@ -1,0 +1,405 @@
+﻿<script type="text/javascript">
+    $(function () {
+        $.ajax({
+//请求当前用户可以操作的按钮
+            url: "ashx/bg_orders.ashx?menucode=orders&pagename=ui_orders",
+            type: "post",
+            data: { "action": "getorders" },
+            dataType: "json",
+            timeout: 5000,
+            success: function(data) {
+                if (data.success) {
+                    var toolbar = getToolBar(data); //common.js
+
+                    if (data.browser) { //判断是否有浏览权限
+                        $("#ui_order_dg").datagrid({
+//初始化datagrid
+                            url: "ashx/bg_orders.ashx?action=search",
+                            striped: true,
+                            rownumbers: true,
+                            pagination: true,
+                            pageSize: 20,
+                            singleSelect: true,
+                            sqlWhere: ' and 1 = 1',
+                            idField: 'in_orderid',
+                            sortName: 'create_time',
+                            sortOrder: 'desc',
+                            pageList: [20, 40, 60, 80, 100],
+                            frozenColumns: [[
+                                { field: 'create_time', title: '日期', sortable: true, width: 70 },
+                                {
+                                    field: 'type',
+                                    title: '退货/换货',
+                                    sortable: true,
+                                    width: 60,
+                                    formatter: function(value, row, index) {
+                                        return value == '0' ? '退货' : '换货'; // 0 表示退货 1表示换货
+                                    }
+                                },
+                                { field: 'shopname', title: '店铺名', sortable: true, width: 100 },
+                                { field: 'aliwangwang', title: '阿里旺旺', sortable: true, width: 70 }
+                            ]],
+                            columns: [[
+                                { field: 'in_company', title: '快递公司', sortable: true, width: 80 },
+                                { field: 'in_orderid', title: '退回快递单号', sortable: true, width: 90 },
+                                { field: 'id', title: '退回货号', sortable: true, width: 70 },
+                                { field: 'in_color', title: '颜色', sortable: true, width: 40 },
+                                { field: 'in_size', title: '尺码', sortable: true, width: 40 },
+                                { field: 'in_num', title: '数量', sortable: true, width: 40 },
+                                { field: 'out_company', title: '换出快递公司', sortable: true, width: 90 },
+                                { field: 'out_orderid', title: '换出快递单号', sortable: true, width: 90 },
+                                { field: 'out_id', title: '换出货号', sortable: true, width: 70 },
+                                { field: 'out_color', title: '颜色', sortable: true, width: 40 },
+                                { field: 'out_size', title: '尺码', sortable: true, width: 40 },
+                                { field: 'out_num', title: '数量', sortable: true, width: 40 },
+                                { field: 'username', title: '创建用户', sortable: true, width: 80 },
+                                {
+                                    field: 'remark',
+                                    title: '备注',
+                                    sortable: true,
+                                    width: 130,
+                                    formatter: function(value, row, index) {
+                                        return value.length > 20 ? '<span title="' + value + '">' + value + '</span>' : value;
+                                    }
+                                }
+                            ]],
+                            toolbar: toolbar.length == 0 ? null : toolbar,   //请求回来的当前用户可以操作的按钮
+                            onDblClickRow: function(rowIndex, rowData) { //双击行弹框编辑
+                                ui_orders_edit();
+                            }
+                        });
+                    } else {
+                        $.show_warning("提示", "无权限，请联系管理员！");
+                    }
+                } else {
+                    $.show_warning("错误", data.result);
+                }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                if (textStatus == "timeout") {
+                    $.show_warning("提示", "请求超时，请刷新当前页重试！");
+                } else {
+                    $.show_warning("错误", textStatus + "：" + errorThrown);
+                }
+            }
+        });
+    });
+
+    // 批量增加
+    function ui_orders_batchoperate() {
+        $("<div/>").dialog({
+            id: "ui_orderbatch_add_dialog",
+            href: "html/ui_orderbatch_add.html",
+            title: "批量增加订单（默认为退货）",
+            height: 350,
+            width: 460,
+            modal: true,
+            buttons: [{
+                id: "ui_orderbatch_add_btn",
+                text: '批注添加',
+                handler: function () {
+                    $("#ui_orderbatch_orderaddform").form("submit", {
+                        url: "ashx/bg_orders.ashx",
+                        onSubmit: function (param) {
+                            $('#ui_orderbatch_add_btn').linkbutton('disable');    //点击就禁用按钮，防止连击
+                            param.action = 'batch';
+                            if ($(this).form('validate'))
+                                return true;
+                            else {
+                                $('#ui_orderbatch_add_btn').linkbutton('enable');   //恢复按钮
+                                return false;
+                            }
+                        },
+                        success: function (data) {
+                            var dataJson = eval('(' + data + ')');    //转成json格式
+                            if (dataJson.success) {
+                                $("#ui_orderbatch_add_dialog").dialog('destroy');  //销毁dialog对象
+                                $.show_warning("提示", dataJson.msg);
+                                $("#ui_order_dg").datagrid("reload");
+                            } else {
+                                $('#ui_orderbatch_add_btn').linkbutton('enable');   //恢复按钮
+                                $.show_warning("提示", dataJson.msg);
+                            }
+                        }
+                    });
+                }
+            }],
+            onLoad: function () {
+                
+            },
+            onClose: function () {
+                $("#ui_orderbatch_add_dialog").dialog('destroy');  //销毁dialog对象
+            }
+        });
+    }
+
+    function ui_orders_add() {
+        $("<div/>").dialog({
+            id: "ui_order_add_dialog",
+            href: "html/ui_order_add.html",
+            title: "添加订单",
+            height: 350,
+            width: 460,
+            modal: true,
+            buttons: [{
+                id: "ui_order_add_btn",
+                text: '添 加',
+                handler: function () {
+                    $("#ui_order_orderaddform").form("submit", {
+                        url: "ashx/bg_orders.ashx",
+                        onSubmit: function (param) {
+                            $('#ui_order_add_btn').linkbutton('disable');    //点击就禁用按钮，防止连击
+                            param.action = 'addorder';
+                            if ($(this).form('validate'))
+                                return true;
+                            else {
+                                $('#ui_order_add_btn').linkbutton('enable');   //恢复按钮
+                                return false;
+                            }
+                        },
+                        success: function (data) {
+                            var dataJson = eval('(' + data + ')');    //转成json格式
+                            if (dataJson.success) {
+                                $("#ui_order_add_dialog").dialog('destroy');  //销毁dialog对象
+                                $.show_warning("提示", dataJson.msg);
+                                $("#ui_order_dg").datagrid("reload");
+                            } else {
+                                $('#ui_order_add_btn').linkbutton('enable');   //恢复按钮
+                                $.show_warning("提示", dataJson.msg);
+                            }
+                        }
+                    });
+                }
+            }],
+            onLoad: function () {
+                $("#ui_order_type_add").focus();
+            },
+            onClose: function () {
+                $("#ui_order_add_dialog").dialog('destroy');  //销毁dialog对象
+            }
+        });
+    }
+
+    function ui_orders_edit() {
+        var row = $("#ui_order_dg").datagrid("getSelected");
+        if (!row) {
+            $.show_warning("提示", "请先选择要修改的订单号");
+            return;
+        }
+        $("<div/>").dialog({
+            id: "ui_order_edit_dialog",
+            href: "html/ui_order_edit.html",
+            title: "修改订单",
+            height: 350,
+            width: 460,
+            modal: true,
+            buttons: [{
+                id: "ui_order_edit_btn",
+                text: '修 改',
+                handler: function () {
+                    $("#ui_order_ordereditform").form("submit", {
+                        url: "ashx/bg_orders.ashx",
+                        onSubmit: function (param) {
+                            $('#ui_order_edit_btn').linkbutton('disable');   //点击就禁用按钮，防止连击
+                            param.action = 'editorder';
+                            if ($(this).form('validate'))
+                                return true;
+                            else {
+                                $('#ui_order_edit_btn').linkbutton('enable');   //恢复按钮
+                                return false;
+                            }
+                        },
+                        success: function (data) {
+                            var dataJson = eval('(' + data + ')');    //转成json格式
+                            if (dataJson.success) {
+                                $("#ui_order_edit_dialog").dialog('destroy');  //销毁dialog对象
+                                $.show_warning("提示", dataJson.msg);
+                                $("#ui_order_dg").datagrid("reload");
+                            } else {
+                                $('#ui_order_edit_dialog').linkbutton('enable');    //恢复按钮
+                                $.show_warning("提示", dataJson.msg);
+                            }
+                        }
+                    });
+                }
+            }],
+            onLoad: function () {
+                $("#ui_order_type_edit").val(row.type);
+                $("#ui_order_shopname_edit").val(row.shopname);
+                $("#ui_order_aliwangwang_edit").val(row.aliwangwang);
+                $("#ui_order_in_company_edit").val(row.in_company);
+                $("#ui_order_in_orderid_edit").val(row.in_orderid);
+                $("#ui_order_id_edit").val(row.id);
+                $("#ui_order_in_color_edit").val(row.in_color);
+                $("#ui_order_in_size_edit").val(row.in_size);
+                $("#ui_order_in_num_edit").val(row.in_num);
+                $("#ui_order_out_company_edit").val(row.out_company);
+                $("#ui_order_out_orderid_edit").val(row.out_orderid);
+                $("#ui_order_out_id_edit").val(row.out_id);
+                $("#ui_order_out_color_edit").val(row.out_color);
+                $("#ui_order_out_size_edit").val(row.out_size);
+                $("#ui_order_out_num_edit").val(row.out_num);
+                $("#ui_order_remark_edit").val(row.remark);
+            },
+            onClose: function () {
+                $("#ui_order_edit_dialog").dialog('destroy');  //销毁dialog对象
+            }
+        });
+    }
+
+    function ui_orders_delete() {
+        var rows = $("#ui_order_dg").datagrid("getSelected");
+        if (rows.length < 1) {
+            $.show_warning("提示", "请先勾选要删除的订单");
+            return;
+        }
+        $.messager.confirm('提示', '确定删除快递单号' + rows.in_orderid + '订单？', function (r) {
+            if (r) {
+                para = {};
+                para.action = "delorder";
+                para.timespan = new Date().getTime();
+                para.in_orderid = rows.in_orderid;
+                $.ajax({
+                    url: "ashx/bg_orders.ashx",
+                    data: para,
+                    type: "POST",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.success) {
+                            $.show_warning("提示", data.msg);
+                            $("#ui_order_dg").datagrid("reload");
+                        } else {
+                            $.show_warning("提示", data.msg);
+                        }
+                    }
+                });
+            }
+        });
+    }
+    
+    function ui_orders_setsearch() {
+        $("<div/>").dialog({
+            id: "ui_order_search_dialog",
+            href: "html/ui_order_search.html",
+            title: "查找订单",
+            height: 350,
+            width: 460,
+            modal: true,
+            buttons: [{
+                id: "ui_order_search_btn",
+                text: '查 找',
+                handler: function () {
+                    $("#ui_order_ordersearchform").form("submit", {
+                        url: "ashx/bg_orders.ashx",
+                        onSubmit: function (param) {
+                            $('#ui_order_search_btn').linkbutton('disable');    //点击就禁用按钮，防止连击
+                            param.action = 'setsearch';
+                            if ($(this).form('validate'))
+                                return true;
+                            else {
+                                $('#ui_order_search_btn').linkbutton('enable');   //恢复按钮
+                                return false;
+                            }
+                        },
+                        success: function (data) {
+                            var dataJson = eval('(' + data + ')');    //转成json格式
+                            if (dataJson.success) {
+                                $("#ui_order_search_dialog").dialog('destroy');  //销毁dialog对象
+
+                                $.ajax({     //请求当前用户可以操作的按钮
+                                    url: "ashx/bg_orders.ashx?menucode=orders&pagename=ui_orders",
+                                    type: "post",
+                                    data: { "action": "getorders" },
+                                    dataType: "json",
+                                    timeout: 5000,
+                                    success: function (data2) { // start success
+                                        if (data2.success) {
+                                            var toolbar = getToolBar(data2);      //common.js
+                                            if (data2.browser) {     //判断是否有浏览权限
+                                                $("#ui_order_dg").datagrid({       //初始化datagrid
+                                                    url: "ashx/bg_orders.ashx?action=search&sqlWhere="+dataJson.msg,
+                                                    striped: true, rownumbers: true, pagination: true, pageSize: 20, singleSelect: true,
+                                                    idField: 'Id',
+                                                    sortName: 'id',
+                                                    sortOrder: 'asc',
+                                                    pageList: [20, 40, 60, 80, 100],
+                                                    frozenColumns: [[
+                                                        { field: 'type', title: '退货/换货', sortable: true, width: 60,
+                                                            formatter: function (value, row, index) {
+                                                                return value == '0' ? '退货' : '换货'; // 0 表示退货 1表示换货
+                                                            }
+                                                        },
+                                                        { field: 'shopname', title: '店铺名', sortable: true, width: 100 },
+                                                        { field: 'aliwangwang', title: '阿里旺旺', sortable: true, width: 70 }
+                                                    ]],
+                                                    columns: [[
+                                                       { field: 'create_time', title: '日期', sortable: true, width: 70 },
+                                                       { field: 'in_company', title: '快递公司', sortable: true, width: 80 },
+                                                       { field: 'in_orderid', title: '退回快递单号', sortable: true, width: 90 },
+                                                       { field: 'id', title: '退回货号', sortable: true, width: 70 },
+                                                       { field: 'in_color', title: '颜色', sortable: true, width: 40 },
+                                                       { field: 'in_size', title: '尺码', sortable: true, width: 40 },
+                                                       { field: 'in_num', title: '数量', sortable: true, width: 40 },
+                                                       { field: 'out_company', title: '换出快递公司', sortable: true, width: 90 },
+                                                       { field: 'out_orderid', title: '换出快递单号', sortable: true, width: 90 },
+                                                       { field: 'out_id', title: '换出货号', sortable: true, width: 70 },
+                                                       { field: 'out_color', title: '颜色', sortable: true, width: 40 },
+                                                       { field: 'out_size', title: '尺码', sortable: true, width: 40 },
+                                                       { field: 'out_num', title: '数量', sortable: true, width: 40 },
+                                                       { field: 'username', title: '创建用户', sortable: true, width: 80 },
+                                                       { field: 'remark', title: '备注', sortable: true, width: 130,
+                                                           formatter: function (value, row, index) {
+                                                               return value.length > 20 ? '<span title="' + value + '">' + value + '</span>' : value;
+                                                           }
+                                                       }
+                                                    ]],
+                                                    toolbar: toolbar.length == 0 ? null : toolbar,   //请求回来的当前用户可以操作的按钮
+                                                    onDblClickRow: function (rowIndex, rowData) {     //双击行弹框编辑
+                                                        ui_button_edit();
+                                                    }
+                                                });
+                                            } //end 判断是否有浏览权限
+                                            else {
+                                                $.show_warning("提示", "无权限，请联系管理员！");
+                                            }
+
+                                            //                                                }
+
+                                        } else {
+                                            $.show_warning("错误", data.result);
+                                        }
+                                    }, // end success
+                                    error: function (XMLHttpRequest, textStatus, errorThrown) { // start error
+                                        if (textStatus == "timeout") {
+                                            $.show_warning("提示", "请求超时，请刷新当前页重试！");
+                                        }
+                                        else {
+                                            $.show_warning("错误", textStatus + "：" + errorThrown);
+                                        }
+                                    } // start error
+                                }); // end ajax{}
+
+                            } //end if (dataJson.success)
+                        }
+                    });
+                }
+            }],
+            onLoad: function () {
+                $("#ui_order_type_add").focus();
+            },
+            onClose: function () {
+                $("#ui_order_search_dialog").dialog('destroy');  //销毁dialog对象
+            }
+        });
+    }
+
+    function ui_orders_export() {
+        $.show_warning("提示", "导出功能尽情期待");
+    }
+</script>
+<div id="ui_order_layout" class="easyui-layout" data-options="fit:true,border:false">
+    <div data-options="region:'center',border:false">
+        <table id="ui_order_dg" data-options="fit:true,border:false">
+        </table>
+    </div>
+</div>

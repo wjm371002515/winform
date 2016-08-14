@@ -1,0 +1,12 @@
+E:\hseap\1\C#框架\JCodes.Framework.SQLServerDAL\bin\Release\JCodes.Framework.Data.SQLServerDAL.dll
+E:\hseap\1\C#框架\JCodes.Framework.SQLServerDAL\bin\Release\JCodes.Framework.Data.SQLServerDAL.pdb
+E:\hseap\1\C#框架\JCodes.Framework.SQLServerDAL\bin\Release\JCodes.Framework.Common.dll
+E:\hseap\1\C#框架\JCodes.Framework.SQLServerDAL\bin\Release\JCodes.Framework.Data.IDAL.dll
+E:\hseap\1\C#框架\JCodes.Framework.SQLServerDAL\bin\Release\JCodes.Framework.Data.Model.dll
+E:\hseap\1\C#框架\JCodes.Framework.SQLServerDAL\bin\Release\log4net.dll
+E:\hseap\1\C#框架\JCodes.Framework.SQLServerDAL\bin\Release\JCodes.Framework.Common.pdb
+E:\hseap\1\C#框架\JCodes.Framework.SQLServerDAL\bin\Release\JCodes.Framework.Data.IDAL.pdb
+E:\hseap\1\C#框架\JCodes.Framework.SQLServerDAL\bin\Release\JCodes.Framework.Data.Model.pdb
+E:\hseap\1\C#框架\JCodes.Framework.SQLServerDAL\obj\Release\JCodes.Framework.SQLServerDAL.csprojResolveAssemblyReference.cache
+E:\hseap\1\C#框架\JCodes.Framework.SQLServerDAL\obj\Release\JCodes.Framework.Data.SQLServerDAL.dll
+E:\hseap\1\C#框架\JCodes.Framework.SQLServerDAL\obj\Release\JCodes.Framework.Data.SQLServerDAL.pdb

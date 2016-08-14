@@ -1,0 +1,1 @@
+echo [%date%] %1 >> runlog.log
