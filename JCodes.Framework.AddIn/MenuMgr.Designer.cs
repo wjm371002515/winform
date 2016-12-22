@@ -58,34 +58,38 @@
             this.plbottom.Controls.Add(this.btnexportsql);
             this.plbottom.Controls.Add(this.btnImport);
             this.plbottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.plbottom.Location = new System.Drawing.Point(0, 426);
+            this.plbottom.Location = new System.Drawing.Point(0, 669);
+            this.plbottom.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.plbottom.Name = "plbottom";
-            this.plbottom.Size = new System.Drawing.Size(990, 49);
+            this.plbottom.Size = new System.Drawing.Size(1414, 77);
             this.plbottom.TabIndex = 0;
             // 
             // btnExportxls
             // 
-            this.btnExportxls.Location = new System.Drawing.Point(223, 14);
+            this.btnExportxls.Location = new System.Drawing.Point(319, 22);
+            this.btnExportxls.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnExportxls.Name = "btnExportxls";
-            this.btnExportxls.Size = new System.Drawing.Size(75, 23);
+            this.btnExportxls.Size = new System.Drawing.Size(107, 36);
             this.btnExportxls.TabIndex = 2;
             this.btnExportxls.Text = "导出xls";
             this.btnExportxls.Click += new System.EventHandler(this.btnExportxls_Click);
             // 
             // btnexportsql
             // 
-            this.btnexportsql.Location = new System.Drawing.Point(122, 14);
+            this.btnexportsql.Location = new System.Drawing.Point(174, 22);
+            this.btnexportsql.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnexportsql.Name = "btnexportsql";
-            this.btnexportsql.Size = new System.Drawing.Size(75, 23);
+            this.btnexportsql.Size = new System.Drawing.Size(107, 36);
             this.btnexportsql.TabIndex = 1;
             this.btnexportsql.Text = "导出sql";
             this.btnexportsql.Click += new System.EventHandler(this.btnexportsql_Click);
             // 
             // btnImport
             // 
-            this.btnImport.Location = new System.Drawing.Point(23, 14);
+            this.btnImport.Location = new System.Drawing.Point(33, 22);
+            this.btnImport.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(75, 23);
+            this.btnImport.Size = new System.Drawing.Size(107, 36);
             this.btnImport.TabIndex = 0;
             this.btnImport.Text = "导入数据";
             this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
@@ -95,8 +99,9 @@
             this.pltop.Controls.Add(this.tlstMenus);
             this.pltop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pltop.Location = new System.Drawing.Point(0, 0);
+            this.pltop.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pltop.Name = "pltop";
-            this.pltop.Size = new System.Drawing.Size(990, 426);
+            this.pltop.Size = new System.Drawing.Size(1414, 669);
             this.pltop.TabIndex = 1;
             // 
             // tlstMenus
@@ -115,11 +120,11 @@
             this.tlcolstatus});
             this.tlstMenus.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlstMenus.Location = new System.Drawing.Point(0, 0);
+            this.tlstMenus.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tlstMenus.Name = "tlstMenus";
-            this.tlstMenus.OptionsPrint.UsePrintStyles = true;
             this.tlstMenus.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemTextEdit1});
-            this.tlstMenus.Size = new System.Drawing.Size(990, 426);
+            this.tlstMenus.Size = new System.Drawing.Size(1414, 669);
             this.tlstMenus.TabIndex = 0;
             // 
             // tlcolid
@@ -217,11 +222,12 @@
             // 
             // MenuMgr
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(990, 475);
+            this.ClientSize = new System.Drawing.Size(1414, 746);
             this.Controls.Add(this.pltop);
             this.Controls.Add(this.plbottom);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "MenuMgr";
             this.Text = "菜单管理界面";
             this.plbottom.ResumeLayout(false);

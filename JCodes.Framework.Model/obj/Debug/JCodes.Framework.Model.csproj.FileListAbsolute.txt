@@ -11,3 +11,7 @@ E:\SVN\hseap\1\C#框架\JCodes.Framework.Model\bin\Debug\JCodes.Framework.Data.M
 E:\SVN\hseap\1\C#框架\JCodes.Framework.Model\bin\Debug\JCodes.Framework.Data.Model.pdb
 E:\SVN\hseap\1\C#框架\JCodes.Framework.Model\obj\Debug\JCodes.Framework.Data.Model.dll
 E:\SVN\hseap\1\C#框架\JCodes.Framework.Model\obj\Debug\JCodes.Framework.Data.Model.pdb
+G:\github_winform\winform\JCodes.Framework.Model\bin\Debug\JCodes.Framework.Data.Model.dll
+G:\github_winform\winform\JCodes.Framework.Model\bin\Debug\JCodes.Framework.Data.Model.pdb
+G:\github_winform\winform\JCodes.Framework.Model\obj\Debug\JCodes.Framework.Data.Model.dll
+G:\github_winform\winform\JCodes.Framework.Model\obj\Debug\JCodes.Framework.Data.Model.pdb

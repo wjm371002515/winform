@@ -38,3 +38,17 @@ E:\SVN\hseap\1\C#框架\JCodes.Framework.BLL\obj\Debug\JCodes.Framework.BLL.cspr
 E:\SVN\hseap\1\C#框架\JCodes.Framework.BLL\obj\Debug\JCodes.Framework.BLL.dll
 E:\SVN\hseap\1\C#框架\JCodes.Framework.BLL\obj\Debug\JCodes.Framework.BLL.pdb
 E:\SVN\hseap\1\C#框架\JCodes.Framework.BLL\bin\Debug\log4net.dll
+G:\github_winform\winform\JCodes.Framework.BLL\bin\Debug\JCodes.Framework.BLL.dll
+G:\github_winform\winform\JCodes.Framework.BLL\bin\Debug\JCodes.Framework.BLL.pdb
+G:\github_winform\winform\JCodes.Framework.BLL\bin\Debug\JCodes.Framework.Common.dll
+G:\github_winform\winform\JCodes.Framework.BLL\bin\Debug\JCodes.Framework.Data.DALFactory.dll
+G:\github_winform\winform\JCodes.Framework.BLL\bin\Debug\JCodes.Framework.Data.IDAL.dll
+G:\github_winform\winform\JCodes.Framework.BLL\bin\Debug\JCodes.Framework.Data.Model.dll
+G:\github_winform\winform\JCodes.Framework.BLL\bin\Debug\log4net.dll
+G:\github_winform\winform\JCodes.Framework.BLL\bin\Debug\JCodes.Framework.Common.pdb
+G:\github_winform\winform\JCodes.Framework.BLL\bin\Debug\JCodes.Framework.Data.DALFactory.pdb
+G:\github_winform\winform\JCodes.Framework.BLL\bin\Debug\JCodes.Framework.Data.IDAL.pdb
+G:\github_winform\winform\JCodes.Framework.BLL\bin\Debug\JCodes.Framework.Data.Model.pdb
+G:\github_winform\winform\JCodes.Framework.BLL\obj\Debug\JCodes.Framework.BLL.csprojResolveAssemblyReference.cache
+G:\github_winform\winform\JCodes.Framework.BLL\obj\Debug\JCodes.Framework.BLL.dll
+G:\github_winform\winform\JCodes.Framework.BLL\obj\Debug\JCodes.Framework.BLL.pdb

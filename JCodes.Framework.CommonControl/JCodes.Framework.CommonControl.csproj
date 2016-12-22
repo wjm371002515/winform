@@ -48,17 +48,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShowDialog.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ShowDialog.Designer.cs">
-      <DependentUpon>ShowDialog.cs</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="ShowDialog.resx">
-      <DependentUpon>ShowDialog.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

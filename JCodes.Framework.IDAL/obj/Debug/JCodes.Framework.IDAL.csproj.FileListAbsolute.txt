@@ -19,3 +19,10 @@ E:\SVN\hseap\1\C#框架\JCodes.Framework.IDAL\bin\Debug\JCodes.Framework.Data.Mo
 E:\SVN\hseap\1\C#框架\JCodes.Framework.IDAL\obj\Debug\JCodes.Framework.Data.IDAL.dll
 E:\SVN\hseap\1\C#框架\JCodes.Framework.IDAL\obj\Debug\JCodes.Framework.Data.IDAL.pdb
 E:\SVN\hseap\1\C#框架\JCodes.Framework.IDAL\obj\Debug\JCodes.Framework.IDAL.csprojResolveAssemblyReference.cache
+G:\github_winform\winform\JCodes.Framework.IDAL\bin\Debug\JCodes.Framework.Data.IDAL.dll
+G:\github_winform\winform\JCodes.Framework.IDAL\bin\Debug\JCodes.Framework.Data.IDAL.pdb
+G:\github_winform\winform\JCodes.Framework.IDAL\bin\Debug\JCodes.Framework.Data.Model.dll
+G:\github_winform\winform\JCodes.Framework.IDAL\bin\Debug\JCodes.Framework.Data.Model.pdb
+G:\github_winform\winform\JCodes.Framework.IDAL\obj\Debug\JCodes.Framework.IDAL.csprojResolveAssemblyReference.cache
+G:\github_winform\winform\JCodes.Framework.IDAL\obj\Debug\JCodes.Framework.Data.IDAL.dll
+G:\github_winform\winform\JCodes.Framework.IDAL\obj\Debug\JCodes.Framework.Data.IDAL.pdb

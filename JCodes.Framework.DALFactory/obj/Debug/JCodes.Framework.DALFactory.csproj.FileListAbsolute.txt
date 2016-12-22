@@ -25,3 +25,12 @@ E:\SVN\hseap\1\C#框架\JCodes.Framework.DALFactory\bin\Debug\JCodes.Framework.D
 E:\SVN\hseap\1\C#框架\JCodes.Framework.DALFactory\obj\Debug\JCodes.Framework.DALFactory.csprojResolveAssemblyReference.cache
 E:\SVN\hseap\1\C#框架\JCodes.Framework.DALFactory\obj\Debug\JCodes.Framework.Data.DALFactory.dll
 E:\SVN\hseap\1\C#框架\JCodes.Framework.DALFactory\obj\Debug\JCodes.Framework.Data.DALFactory.pdb
+G:\github_winform\winform\JCodes.Framework.DALFactory\bin\Debug\JCodes.Framework.Data.DALFactory.dll
+G:\github_winform\winform\JCodes.Framework.DALFactory\bin\Debug\JCodes.Framework.Data.DALFactory.pdb
+G:\github_winform\winform\JCodes.Framework.DALFactory\bin\Debug\JCodes.Framework.Data.IDAL.dll
+G:\github_winform\winform\JCodes.Framework.DALFactory\bin\Debug\JCodes.Framework.Data.Model.dll
+G:\github_winform\winform\JCodes.Framework.DALFactory\bin\Debug\JCodes.Framework.Data.IDAL.pdb
+G:\github_winform\winform\JCodes.Framework.DALFactory\bin\Debug\JCodes.Framework.Data.Model.pdb
+G:\github_winform\winform\JCodes.Framework.DALFactory\obj\Debug\JCodes.Framework.DALFactory.csprojResolveAssemblyReference.cache
+G:\github_winform\winform\JCodes.Framework.DALFactory\obj\Debug\JCodes.Framework.Data.DALFactory.dll
+G:\github_winform\winform\JCodes.Framework.DALFactory\obj\Debug\JCodes.Framework.Data.DALFactory.pdb

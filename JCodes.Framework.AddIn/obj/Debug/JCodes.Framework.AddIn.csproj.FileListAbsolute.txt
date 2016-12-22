@@ -20,3 +20,11 @@ E:\SVN\hseap\1\WinForm\AddIn\JCodes.Framework.AddIn.dll
 E:\SVN\hseap\1\WinForm\AddIn\JCodes.Framework.AddIn.pdb
 E:\SVN\hseap\1\C#框架\JCodes.Framework.AddIn\obj\Debug\JCodes.Framework.AddIn.MenuMgr.resources
 E:\SVN\hseap\1\C#框架\JCodes.Framework.AddIn\obj\Debug\JCodes.Framework.AddIn.dll.licenses
+G:\github_winform\winform\JCodes.Framework.AddIn\obj\Debug\JCodes.Framework.AddIn.csprojResolveAssemblyReference.cache
+G:\github_winform\winform\JCodes.Framework.AddIn\obj\Debug\JCodes.Framework.AddIn.AddParamLog.resources
+G:\github_winform\winform\JCodes.Framework.AddIn\obj\Debug\JCodes.Framework.AddIn.MenuMgr.resources
+G:\github_winform\winform\JCodes.Framework.AddIn\obj\Debug\JCodes.Framework.AddIn.csproj.GenerateResource.Cache
+G:\github_winform\winform\JCodes.Framework.AddIn\obj\Debug\JCodes.Framework.AddIn.dll
+G:\github_winform\winform\JCodes.Framework.AddIn\obj\Debug\JCodes.Framework.AddIn.pdb
+G:\github_winform\WinForm\AddIn\JCodes.Framework.AddIn.dll
+G:\github_winform\WinForm\AddIn\JCodes.Framework.AddIn.pdb

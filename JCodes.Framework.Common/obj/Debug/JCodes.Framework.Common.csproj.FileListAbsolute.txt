@@ -20,3 +20,11 @@ E:\SVN\hseap\1\C#框架\JCodes.Framework.Common\obj\Debug\JCodes.Framework.Commo
 E:\SVN\hseap\1\C#框架\JCodes.Framework.Common\obj\Debug\JCodes.Framework.Common.dll
 E:\SVN\hseap\1\C#框架\JCodes.Framework.Common\obj\Debug\JCodes.Framework.Common.pdb
 E:\SVN\hseap\1\C#框架\JCodes.Framework.Common\bin\Debug\log4net.dll
+G:\github_winform\winform\JCodes.Framework.Common\bin\Debug\JCodes.Framework.Common.dll
+G:\github_winform\winform\JCodes.Framework.Common\bin\Debug\JCodes.Framework.Common.pdb
+G:\github_winform\winform\JCodes.Framework.Common\bin\Debug\JCodes.Framework.Data.Model.dll
+G:\github_winform\winform\JCodes.Framework.Common\bin\Debug\log4net.dll
+G:\github_winform\winform\JCodes.Framework.Common\bin\Debug\JCodes.Framework.Data.Model.pdb
+G:\github_winform\winform\JCodes.Framework.Common\obj\Debug\JCodes.Framework.Common.csprojResolveAssemblyReference.cache
+G:\github_winform\winform\JCodes.Framework.Common\obj\Debug\JCodes.Framework.Common.dll
+G:\github_winform\winform\JCodes.Framework.Common\obj\Debug\JCodes.Framework.Common.pdb

@@ -2,3 +2,7 @@ E:\SVN\hseap\1\C#框架\JCodes.Framework.Enum\bin\Debug\JCodes.Framework.Enum.dl
 E:\SVN\hseap\1\C#框架\JCodes.Framework.Enum\bin\Debug\JCodes.Framework.Enum.pdb
 E:\SVN\hseap\1\C#框架\JCodes.Framework.Enum\obj\Debug\JCodes.Framework.Enum.dll
 E:\SVN\hseap\1\C#框架\JCodes.Framework.Enum\obj\Debug\JCodes.Framework.Enum.pdb
+G:\github_winform\winform\JCodes.Framework.Enum\bin\Debug\JCodes.Framework.Enum.dll
+G:\github_winform\winform\JCodes.Framework.Enum\bin\Debug\JCodes.Framework.Enum.pdb
+G:\github_winform\winform\JCodes.Framework.Enum\obj\Debug\JCodes.Framework.Enum.dll
+G:\github_winform\winform\JCodes.Framework.Enum\obj\Debug\JCodes.Framework.Enum.pdb

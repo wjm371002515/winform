@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01-JCodes.Framework.UserInterface", "01-JCodes.Framework.UserInterface", "{5D315992-9220-472E-92B2-D6CEE8C6B1A5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02-JCodes.Framework.BusinessLogicLayer", "02-JCodes.Framework.BusinessLogicLayer", "{B3836A3D-DB43-4A38-9FEB-A78420EBC11B}"
@@ -10,6 +12,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05-JCodes.Framework.Infrastructure", "05-JCodes.Framework.Infrastructure", "{E55CD18E-7574-4CEC-A0DA-B75094DE0DB4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04-JCodes.Framework.Domain", "04-JCodes.Framework.Domain", "{0662DD00-A313-4BAC-A8AD-7AD355A4655B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "06-JCodes.Framework.libs", "06-JCodes.Framework.libs", "{3A319E56-4A33-4799-AF8C-F4E33712A5A5}"
+	ProjectSection(SolutionItems) = preProject
+		C:\Users\wujm09397\AppData\Local\Temp\log4net-1.2.15-bin-newkey.zip = C:\Users\wujm09397\AppData\Local\Temp\log4net-1.2.15-bin-newkey.zip
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JCodes.Framework.AddIn", "JCodes.Framework.AddIn\JCodes.Framework.AddIn.csproj", "{B2C03C8B-B0C2-4DA0-9A85-BDC8BF8DCEBF}"
 EndProject
@@ -22,11 +29,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JCodes.Framework.IDAL", "JCodes.Framework.IDAL\JCodes.Framework.IDAL.csproj", "{A7F8FAE9-0036-45CE-97B6-F21E144807C8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JCodes.Framework.SQLServerDAL", "JCodes.Framework.SQLServerDAL\JCodes.Framework.SQLServerDAL.csproj", "{B10441F3-9C12-46EC-BDB7-768AEF8EC863}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "06-JCodes.Framework.libs", "06-JCodes.Framework.libs", "{3A319E56-4A33-4799-AF8C-F4E33712A5A5}"
-	ProjectSection(SolutionItems) = preProject
-		C:\Users\wujm09397\AppData\Local\Temp\log4net-1.2.15-bin-newkey.zip = C:\Users\wujm09397\AppData\Local\Temp\log4net-1.2.15-bin-newkey.zip
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JCodes.Framework.BLL", "JCodes.Framework.BLL\JCodes.Framework.BLL.csproj", "{2EC4520F-5197-4E3F-B689-7023A98623E0}"
 EndProject
