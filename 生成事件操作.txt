@@ -1,0 +1,25 @@
+1. 项目-》属性-》生成事件-》后期生成事件命令行
+输入如下内容：
+
+echo “拷贝Spire文件”
+xcopy /Y "$(TargetDir)Spire*.dll" "$(TargetDir)Spire\"
+xcopy /Y "$(TargetDir)Spire*.xml" "$(TargetDir)Spire\"
+
+echo "删除不要的文件"
+IF EXIST $(TargetDir)*.pdb DEL $(TargetDir)*.pdb
+IF EXIST $(ProjectName)*.vshost* DEL $(ProjectName)*.vshost*
+
+echo "删除Spire文件"
+DEL $(TargetDir)Spire*.dll
+DEL $(TargetDir)Spire*.xml
+
+2. 项目-》属性-》调试
+去掉启动Visual Studio承载进程
+
+3. 修改app.config 配置新增如下内容
+<runtime>
+	<gcConcurrent enabled="true" />
+		<assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+        <probing privatePath="Dev;Spire" />
+	</assemblyBinding>
+</runtime>

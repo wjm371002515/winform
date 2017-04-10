@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\AddIn\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CryptographyHelper.cs" />
+    <Compile Include="DbHelper.cs" />
     <Compile Include="FileHelper.cs" />
     <Compile Include="JsonHelper.cs" />
     <Compile Include="LogHelper.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="SqlPagerHelper.cs" />
     <Compile Include="ToolbarHelper.cs" />
     <Compile Include="UserHelper.cs" />
+    <Compile Include="Web\URL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JCodes.Framework.Model\JCodes.Framework.Model.csproj">

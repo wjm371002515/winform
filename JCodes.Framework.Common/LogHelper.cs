@@ -5,7 +5,7 @@ using System.Text;
 using System.Configuration;
 
 [assembly: log4net.Config.XmlConfigurator(Watch = true)]
-namespace JCodes.Framework.WinFormUI
+namespace JCodes.Framework.Common
 {
     public class LogHelper
     {

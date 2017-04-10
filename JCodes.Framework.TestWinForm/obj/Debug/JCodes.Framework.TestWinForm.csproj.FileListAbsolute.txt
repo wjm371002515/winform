@@ -1,0 +1,8 @@
+G:\github_winform\winform\AddIn\JCodes.Framework.TestWinForm.exe.config
+G:\github_winform\winform\AddIn\JCodes.Framework.TestWinForm.exe
+G:\github_winform\winform\AddIn\JCodes.Framework.TestWinForm.pdb
+G:\github_winform\winform\JCodes.Framework.TestWinForm\obj\Debug\JCodes.Framework.TestWinForm.csprojResolveAssemblyReference.cache
+G:\github_winform\winform\JCodes.Framework.TestWinForm\obj\Debug\JCodes.Framework.TestWinForm.Properties.Resources.resources
+G:\github_winform\winform\JCodes.Framework.TestWinForm\obj\Debug\JCodes.Framework.TestWinForm.csproj.GenerateResource.Cache
+G:\github_winform\winform\JCodes.Framework.TestWinForm\obj\Debug\JCodes.Framework.TestWinForm.exe
+G:\github_winform\winform\JCodes.Framework.TestWinForm\obj\Debug\JCodes.Framework.TestWinForm.pdb
