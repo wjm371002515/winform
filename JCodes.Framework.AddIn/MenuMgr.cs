@@ -12,9 +12,9 @@ using System.IO;
 using System.Text.RegularExpressions;
 using JCodes.Framework.Entity;
 using JCodes.Framework.Enum;
-using JCodes.Framework.WinFormUI;
 using System.Reflection;
 using DevExpress.XtraBars.Alerter;
+using JCodes.Framework.Common;
 
 namespace JCodes.Framework.AddIn
 {

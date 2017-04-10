@@ -1,4 +1,0 @@
-E:\hseap\1\C#框架\JCodes.Framework.AddIn\bin\Release\JCodes.Framework.AddIn.dll
-E:\hseap\1\C#框架\JCodes.Framework.AddIn\bin\Release\JCodes.Framework.AddIn.pdb
-E:\hseap\1\C#框架\JCodes.Framework.AddIn\obj\Release\JCodes.Framework.AddIn.dll
-E:\hseap\1\C#框架\JCodes.Framework.AddIn\obj\Release\JCodes.Framework.AddIn.pdb

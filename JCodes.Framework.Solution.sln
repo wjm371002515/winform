@@ -16,6 +16,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "06-JCodes.Framework.libs", "06-JCodes.Framework.libs", "{3A319E56-4A33-4799-AF8C-F4E33712A5A5}"
 	ProjectSection(SolutionItems) = preProject
 		C:\Users\wujm09397\AppData\Local\Temp\log4net-1.2.15-bin-newkey.zip = C:\Users\wujm09397\AppData\Local\Temp\log4net-1.2.15-bin-newkey.zip
+		删除obj处理.bat = 删除obj处理.bat
 		生成事件操作.txt = 生成事件操作.txt
 	EndProjectSection
 EndProject

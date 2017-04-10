@@ -12,6 +12,7 @@ using DevExpress.XtraSplashScreen;
 using DevExpress.Utils;
 using System.Diagnostics;
 using DevExpress.XtraEditors;
+using JCodes.Framework.Common;
 
 namespace JCodes.Framework.WinFormUI
 {

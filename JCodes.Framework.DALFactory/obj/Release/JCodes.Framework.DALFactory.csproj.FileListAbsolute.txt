@@ -1,9 +1,0 @@
-E:\hseap\1\C#框架\JCodes.Framework.DALFactory\bin\Release\JCodes.Framework.Data.DALFactory.dll
-E:\hseap\1\C#框架\JCodes.Framework.DALFactory\bin\Release\JCodes.Framework.Data.DALFactory.pdb
-E:\hseap\1\C#框架\JCodes.Framework.DALFactory\bin\Release\JCodes.Framework.Data.IDAL.dll
-E:\hseap\1\C#框架\JCodes.Framework.DALFactory\bin\Release\JCodes.Framework.Data.Model.dll
-E:\hseap\1\C#框架\JCodes.Framework.DALFactory\bin\Release\JCodes.Framework.Data.IDAL.pdb
-E:\hseap\1\C#框架\JCodes.Framework.DALFactory\bin\Release\JCodes.Framework.Data.Model.pdb
-E:\hseap\1\C#框架\JCodes.Framework.DALFactory\obj\Release\JCodes.Framework.DALFactory.csprojResolveAssemblyReference.cache
-E:\hseap\1\C#框架\JCodes.Framework.DALFactory\obj\Release\JCodes.Framework.Data.DALFactory.dll
-E:\hseap\1\C#框架\JCodes.Framework.DALFactory\obj\Release\JCodes.Framework.Data.DALFactory.pdb

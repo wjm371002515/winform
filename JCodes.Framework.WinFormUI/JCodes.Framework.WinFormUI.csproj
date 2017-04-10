@@ -36,11 +36,12 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\WinForm\</OutputPath>
+    <OutputPath>..\jCodes\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -202,6 +203,10 @@
     <Content Include="images\yezi3.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\JCodes.Framework.AddIn\JCodes.Framework.AddIn.csproj">
+      <Project>{b2c03c8b-b0c2-4da0-9a85-bdc8bf8dcebf}</Project>
+      <Name>JCodes.Framework.AddIn</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JCodes.Framework.Common\JCodes.Framework.Common.csproj">
       <Project>{0DC2C51C-4601-4045-A412-BED930658C2C}</Project>
       <Name>JCodes.Framework.Common</Name>
@@ -212,7 +217,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>echo "编译已完成，开始执行编译后事件"
+    <PostBuildEvent>echo "编译后处理的事情 JCodes.Framework.WinFormUI"
 
 echo "新建一个images文件夹"
 mkdir images
@@ -222,7 +227,62 @@ mkdir Screen
 call "$(ProjectDir)writelog.bat"
 
 echo xcopy  /s /y "$(SolutionDir)images\*" "$(TargetDir)images"
-xcopy  /s /y "$(ProjectDir)images\*" "$(TargetDir)images"</PostBuildEvent>
+xcopy  /s /y "$(ProjectDir)images\*" "$(TargetDir)images"
+
+echo "Dev文件夹"
+mkdir Dev
+xcopy /Y "$(TargetDir)DevExpress*.dll" "$(TargetDir)Dev\"
+
+echo "拷贝到Framework文件夹下"
+xcopy /Y "$(TargetDir)JCodes.Framework.BLL.dll" "$(TargetDir)Framework\"
+xcopy /Y "$(TargetDir)JCodes.Framework.Common.dll" "$(TargetDir)Framework\"
+xcopy /Y "$(TargetDir)JCodes.Framework.CommonControl.dll" "$(TargetDir)Framework\"
+xcopy /Y "$(TargetDir)JCodes.Framework.Data.DALFactory.dll" "$(TargetDir)Framework\"
+xcopy /Y "$(TargetDir)JCodes.Framework.Data.IDAL.dll" "$(TargetDir)Framework\"
+xcopy /Y "$(TargetDir)JCodes.Framework.Data.Model.dll" "$(TargetDir)Framework\"
+xcopy /Y "$(TargetDir)JCodes.Framework.Data.SQLServerDAL.dll" "$(TargetDir)Framework\"
+xcopy /Y "$(TargetDir)JCodes.Framework.Entity.dll" "$(TargetDir)Framework\"
+xcopy /Y "$(TargetDir)JCodes.Framework.Enum.dll" "$(TargetDir)Framework\"
+xcopy /Y "$(TargetDir)log4net.dll" "$(TargetDir)Framework\"
+
+echo "拷贝到"
+xcopy /Y "$(TargetDir)JCodes.Framework.AddIn.dll" "$(TargetDir)AddIn\"
+xcopy /Y "$(TargetDir)JCodes.Framework.Common" "$(TargetDir)AddIn\"
+xcopy /Y "$(TargetDir)JCodes.Framework.Data.Model" "$(TargetDir)AddIn\"
+xcopy /Y "$(TargetDir)JCodes.Framework.Entity" "$(TargetDir)AddIn\"
+xcopy /Y "$(TargetDir)JCodes.Framework.Enum" "$(TargetDir)AddIn\"
+xcopy /Y "$(TargetDir)log4net" "$(TargetDir)AddIn\"
+
+echo "删除不要的文件"
+IF EXIST $(TargetDir)DevExpress*.dll DEL $(TargetDir)DevExpress*.dll
+
+echo "删除pdb vshost"
+IF EXIST $(TargetDir)*.pdb DEL $(TargetDir)*.pdb
+IF EXIST $(ProjectName)*.vshost* DEL $(ProjectName)*.vshost*
+IF EXIST $(TargetDir)Framework\*.pdb DEL $(TargetDir)Framework\*.pdb
+IF EXIST $(TargetDir)AddIn\*.pdb DEL $(TargetDir)AddIn\*.pdb
+
+echo "删除Framework 文件夹对应的dll"
+IF EXIST $(TargetDir)JCodes.Framework.BLL.dll DEL $(TargetDir)JCodes.Framework.BLL.dll
+IF EXIST $(TargetDir)JCodes.Framework.Common.dll DEL $(TargetDir)JCodes.Framework.Common.dll
+IF EXIST $(TargetDir)JCodes.Framework.CommonControl.dll DEL $(TargetDir)JCodes.Framework.CommonControl.dll
+IF EXIST $(TargetDir)JCodes.Framework.Data.DALFactory.dll DEL $(TargetDir)JCodes.Framework.Data.DALFactory.dll
+IF EXIST $(TargetDir)JCodes.Framework.Data.IDAL.dll DEL $(TargetDir)JCodes.Framework.Data.IDAL.dll
+IF EXIST $(TargetDir)JCodes.Framework.Data.Model.dll DEL $(TargetDir)JCodes.Framework.Data.Model.dll
+IF EXIST $(TargetDir)JCodes.Framework.Data.SQLServerDAL.dll DEL $(TargetDir)JCodes.Framework.Data.SQLServerDAL.dll
+IF EXIST $(TargetDir)JCodes.Framework.Entity.dll DEL $(TargetDir)JCodes.Framework.Entity.dll
+IF EXIST $(TargetDir)JCodes.Framework.Enum.dll DEL $(TargetDir)JCodes.Framework.Enum.dll
+IF EXIST $(TargetDir)log4net.dll DEL $(TargetDir)log4net.dll
+
+echo "删除AddIn 文件夹对应的dll"
+IF EXIST $(TargetDir)JCodes.Framework.AddIn.dll DEL $(TargetDir)JCodes.Framework.AddIn.dll
+IF EXIST $(TargetDir)JCodes.Framework.Common.dll DEL $(TargetDir)JCodes.Framework.Common.dll
+IF EXIST $(TargetDir)JCodes.Framework.Data.Model.dll DEL $(TargetDir)JCodes.Framework.Data.Model.dll
+IF EXIST $(TargetDir)JCodes.Framework.Entity.dll DEL $(TargetDir)JCodes.Framework.Entity.dll
+IF EXIST $(TargetDir)JCodes.Framework.Enum.dll DEL $(TargetDir)JCodes.Framework.Enum.dll
+IF EXIST $(TargetDir)log4net.dll DEL $(TargetDir)log4net.dll
+
+echo "生成成功"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,7 +1,0 @@
-E:\hseap\1\C#框架\JCodes.Framework.IDAL\bin\Release\JCodes.Framework.Data.IDAL.dll
-E:\hseap\1\C#框架\JCodes.Framework.IDAL\bin\Release\JCodes.Framework.Data.IDAL.pdb
-E:\hseap\1\C#框架\JCodes.Framework.IDAL\bin\Release\JCodes.Framework.Data.Model.dll
-E:\hseap\1\C#框架\JCodes.Framework.IDAL\bin\Release\JCodes.Framework.Data.Model.pdb
-E:\hseap\1\C#框架\JCodes.Framework.IDAL\obj\Release\JCodes.Framework.IDAL.csprojResolveAssemblyReference.cache
-E:\hseap\1\C#框架\JCodes.Framework.IDAL\obj\Release\JCodes.Framework.Data.IDAL.dll
-E:\hseap\1\C#框架\JCodes.Framework.IDAL\obj\Release\JCodes.Framework.Data.IDAL.pdb

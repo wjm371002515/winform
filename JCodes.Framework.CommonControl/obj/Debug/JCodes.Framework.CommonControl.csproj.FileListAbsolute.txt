@@ -1,4 +1,0 @@
-G:\github_winform\winform\JCodes.Framework.CommonControl\bin\Debug\JCodes.Framework.CommonControl.dll
-G:\github_winform\winform\JCodes.Framework.CommonControl\bin\Debug\JCodes.Framework.CommonControl.pdb
-G:\github_winform\winform\JCodes.Framework.CommonControl\obj\Debug\JCodes.Framework.CommonControl.dll
-G:\github_winform\winform\JCodes.Framework.CommonControl\obj\Debug\JCodes.Framework.CommonControl.pdb
