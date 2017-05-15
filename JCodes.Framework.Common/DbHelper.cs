@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JCodes.Framework.jCodesenum.BaseEnum;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
@@ -199,23 +200,7 @@ namespace JCodes.Framework.Common
             return command;
         }
     }
-    /// <summary>  
-    /// 数据库类型枚举  
-    /// </summary>  
-    public enum DbProviderType : byte
-    {
-        SqlServer,
-        MySql,
-        SQLite,
-        Oracle,
-        ODBC,
-        OleDb,
-        Firebird,
-        PostgreSql,
-        DB2,
-        Informix,
-        SqlServerCe
-    }
+    
     /// <summary>  
     /// DbProviderFactory工厂类  
     /// </summary>  

@@ -47,6 +47,14 @@ JCodes.Framework.WebControls/obj/
 JCodes.Framework.WebControls/bin/
 JCodes.Framework.WebUI/obj/
 JCodes.Framework.WebUI/bin/
+JCodes.Framework.AccessDAL/obj/
+JCodes.Framework.AccessDAL/bin/
+JCodes.Framework.MySqlDAL/obj/
+JCodes.Framework.MySqlDAL/bin/
+JCodes.Framework.OracleDAL/obj/
+JCodes.Framework.OracleDAL/bin/
+JCodes.Framework.SQLiteDAL/obj/
+JCodes.Framework.SQLiteDAL/bin/
 Bin/
 jCodes/
 

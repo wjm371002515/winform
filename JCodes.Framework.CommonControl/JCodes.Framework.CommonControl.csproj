@@ -32,23 +32,997 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Data.v12.1, Version=12.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Printing.v12.1.Core, Version=12.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Utils.v12.1, Version=12.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraBars.v12.1, Version=12.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraEditors.v12.1, Version=12.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="Accessibility" />
+    <Reference Include="Aspose.Cells">
+      <HintPath>..\JCodes.Framework.libs\Aspose\Aspose.Cells.dll</HintPath>
+    </Reference>
+    <Reference Include="Aspose.Words">
+      <HintPath>..\JCodes.Framework.libs\Aspose\Aspose.Words.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.BonusSkins.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Office.v14.1.Core, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Pdf.v14.1.Core, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v14.1.Core, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Spreadsheet.v14.1.Core, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraNavBar.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPdfViewer.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraRichEdit.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraSpreadsheet.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeList.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\JCodes.Framework.libs\Others\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="KP-ImageViewerV2">
+      <HintPath>..\JCodes.Framework.libs\Others\KP-ImageViewerV2.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\JCodes.Framework.libs\Microsoft.Practices\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\JCodes.Framework.libs\Microsoft.Practices\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ObjectBuilder, Version=1.0.51206.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\JCodes.Framework.libs\Microsoft.Practices\Microsoft.Practices.ObjectBuilder.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\JCodes.Framework.libs\ReportViewer\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\JCodes.Framework.libs\ReportViewer\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdvanceSearch\FrmAdvanceSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdvanceSearch\FrmAdvanceSearch.Designer.cs">
+      <DependentUpon>FrmAdvanceSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdvanceSearch\FrmQueryBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdvanceSearch\FrmQueryBase.Designer.cs">
+      <DependentUpon>FrmQueryBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdvanceSearch\FrmQueryDateEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdvanceSearch\FrmQueryDateEdit.Designer.cs">
+      <DependentUpon>FrmQueryDateEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdvanceSearch\FrmQueryDropdown.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdvanceSearch\FrmQueryDropdown.Designer.cs">
+      <DependentUpon>FrmQueryDropdown.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdvanceSearch\FrmQueryNumericEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdvanceSearch\FrmQueryNumericEdit.Designer.cs">
+      <DependentUpon>FrmQueryNumericEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdvanceSearch\FrmQueryTextEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdvanceSearch\FrmQueryTextEdit.Designer.cs">
+      <DependentUpon>FrmQueryTextEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Attachment\Controls\AttachmentControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Attachment\Controls\AttachmentControl.Designer.cs">
+      <DependentUpon>AttachmentControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Attachment\Controls\BizAttachment.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Attachment\Controls\BizAttachment.Designer.cs">
+      <DependentUpon>BizAttachment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Attachment\FrmAttachment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Attachment\FrmAttachment.Designer.cs">
+      <DependentUpon>FrmAttachment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Attachment\FrmAttachmentGroupView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Attachment\FrmAttachmentGroupView.Designer.cs">
+      <DependentUpon>FrmAttachmentGroupView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Attachment\FrmPicturePreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Attachment\FrmPicturePreview.designer.cs">
+      <DependentUpon>FrmPicturePreview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Attachment\FrmUploadFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Attachment\FrmUploadFile.designer.cs">
+      <DependentUpon>FrmUploadFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaseUI\BaseDock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseUI\BaseDock.designer.cs">
+      <DependentUpon>BaseDock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaseUI\BaseEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseUI\BaseEditForm.designer.cs">
+      <DependentUpon>BaseEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaseUI\BaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseUI\BaseForm.designer.cs">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaseUI\BaseUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaseUI\BaseUserControl.Designer.cs">
+      <DependentUpon>BaseUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaseUI\DataNavigator.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaseUI\DataNavigator.designer.cs">
+      <DependentUpon>DataNavigator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaseUI\FrmImportExcelData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseUI\FrmImportExcelData.designer.cs">
+      <DependentUpon>FrmImportExcelData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BizControls\CompanyControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BizControls\CompanyControl.Designer.cs">
+      <DependentUpon>CompanyControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BizControls\CustomGridControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BizControls\CustomGridLookUpEdit.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BizControls\DeptControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BizControls\DeptControl.Designer.cs">
+      <DependentUpon>DeptControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BizControls\FunctionControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BizControls\FunctionControl.Designer.cs">
+      <DependentUpon>FunctionControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BizControls\GlassButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BizControls\GlassButton.designer.cs">
+      <DependentUpon>GlassButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BizControls\MenuControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BizControls\MenuControl.Designer.cs">
+      <DependentUpon>MenuControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BizControls\NameControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BizControls\NameControl.designer.cs">
+      <DependentUpon>NameControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BizControls\PrintableListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BizControls\RowMergeGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BizControls\RowMergeGridView.designer.cs">
+      <DependentUpon>RowMergeGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BizControls\SortableListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BizControls\UserNameControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BizControls\UserNameControl.designer.cs">
+      <DependentUpon>UserNameControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BizControls\VistaButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Device\Camera.cs" />
+    <Compile Include="Device\CameraDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Device\CameraDialog.designer.cs">
+      <DependentUpon>CameraDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Device\CardReader.cs" />
+    <Compile Include="Device\COMScanner.cs" />
+    <Compile Include="Device\DeviceReaderDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Device\DeviceReaderDialog.designer.cs">
+      <DependentUpon>DeviceReaderDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Device\FrmPosPrintPreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Device\FrmPosPrintPreview.designer.cs">
+      <DependentUpon>FrmPosPrintPreview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Device\FrmSetPrinterName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Device\FrmSetPrinterName.designer.cs">
+      <DependentUpon>FrmSetPrinterName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Device\PortraitControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Device\PortraitControl.designer.cs">
+      <DependentUpon>PortraitControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Device\USBScanner.cs" />
+    <Compile Include="Dic\FrmBatchAddDictData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dic\FrmBatchAddDictData.Designer.cs">
+      <DependentUpon>FrmBatchAddDictData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dic\FrmBatchAddDistrict.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dic\FrmBatchAddDistrict.Designer.cs">
+      <DependentUpon>FrmBatchAddDistrict.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dic\FrmCityDistrict.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dic\FrmCityDistrict.Designer.cs">
+      <DependentUpon>FrmCityDistrict.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dic\FrmDictionary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dic\FrmDictionary.designer.cs">
+      <DependentUpon>FrmDictionary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dic\FrmEditCity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dic\FrmEditCity.Designer.cs">
+      <DependentUpon>FrmEditCity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dic\FrmEditDictData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dic\FrmEditDictData.designer.cs">
+      <DependentUpon>FrmEditDictData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dic\FrmEditDictType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dic\FrmEditDictType.designer.cs">
+      <DependentUpon>FrmEditDictType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dic\FrmEditDistrict.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dic\FrmEditDistrict.Designer.cs">
+      <DependentUpon>FrmEditDistrict.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DocViewer\FrmExcelView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DocViewer\FrmExcelView.designer.cs">
+      <DependentUpon>FrmExcelView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DocViewer\FrmImageView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DocViewer\FrmImageView.designer.cs">
+      <DependentUpon>FrmImageView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DocViewer\FrmPDFView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DocViewer\FrmPDFView.designer.cs">
+      <DependentUpon>FrmPDFView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DocViewer\FrmWordView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DocViewer\FrmWordView.designer.cs">
+      <DependentUpon>FrmWordView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Framework\AboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Framework\AboutBox.Designer.cs">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Framework\DatabaseStorage.cs" />
+    <Compile Include="Framework\EmailParameter.cs" />
+    <Compile Include="Framework\FrmFeeBack.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Framework\FrmFeeBack.designer.cs">
+      <DependentUpon>FrmFeeBack.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Framework\FrmModifyPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Framework\FrmModifyPassword.designer.cs">
+      <DependentUpon>FrmModifyPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Framework\FrmSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Framework\FrmSettings.designer.cs">
+      <DependentUpon>FrmSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Framework\frmSplash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Framework\frmSplash.designer.cs">
+      <DependentUpon>frmSplash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Framework\ISettingsStorage.cs" />
+    <Compile Include="Framework\ISplashForm.cs" />
+    <Compile Include="Framework\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Framework\Login.designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Framework\Logon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Framework\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Framework\MainForm.designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Framework\PageEmail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Framework\PageEmail.designer.cs">
+      <DependentUpon>PageEmail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Framework\PageReport.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Framework\PageReport.designer.cs">
+      <DependentUpon>PageReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Framework\RegDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportParameter.cs" />
+    <Compile Include="Framework\SettingsProviderNet.cs" />
+    <Compile Include="Framework\Splasher.cs" />
+    <Compile Include="LocalReport\FileManagerWrapper.cs" />
+    <Compile Include="LocalReport\LocalReportPrinter.cs" />
+    <Compile Include="LocalReport\ProcessingThread.cs" />
+    <Compile Include="LocalReport\ReportHelper.cs" />
+    <Compile Include="LocalReport\ReportViewerDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LocalReport\ReportViewerDialog.designer.cs">
+      <DependentUpon>ReportViewerDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Other\ExtensionMethod.cs" />
+    <Compile Include="Other\GenerateUpdateConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Other\GenerateUpdateConfig.Designer.cs">
+      <DependentUpon>GenerateUpdateConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Other\MessageDxUtil.cs" />
+    <Compile Include="Other\Portal.cs" />
+    <Compile Include="Other\QueryInputDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Other\QueryInputDialog.designer.cs">
+      <DependentUpon>QueryInputDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Other\RibbonPageHelper.cs" />
+    <Compile Include="Pager.WinControlDx\CoolPrintPreviewControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pager.WinControlDx\CoolPrintPreviewDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pager.WinControlDx\CoolPrintPreviewDialog.designer.cs">
+      <DependentUpon>CoolPrintPreviewDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pager.WinControlDx\FrmSelectColumnDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pager.WinControlDx\FrmSelectColumnDisplay.Designer.cs">
+      <DependentUpon>FrmSelectColumnDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pager.WinControlDx\GridCheckMarksSelection.cs" />
+    <Compile Include="Pager.WinControlDx\MyConstants.cs" />
+    <Compile Include="Pager.WinControlDx\Others\AppConfig.cs" />
+    <Compile Include="Pager.WinControlDx\Others\CallCtrlSafety.cs" />
+    <Compile Include="Pager.WinControlDx\Others\DevControlHelper.cs" />
+    <Compile Include="Pager.WinControlDx\Others\PageHelper.cs" />
+    <Compile Include="Pager.WinControlDx\Others\PrintDGV.cs" />
+    <Compile Include="Pager.WinControlDx\Others\ReflectionUtil.cs" />
+    <Compile Include="Pager.WinControlDx\Others\RegistryHelper.cs" />
+    <Compile Include="Pager.WinControlDx\Others\SortableBindingList.cs" />
+    <Compile Include="Pager.WinControlDx\Others\StringExtensionMethod.cs" />
+    <Compile Include="Pager.WinControlDx\Pager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pager.WinControlDx\PrintOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pager.WinControlDx\PrintOptions.designer.cs">
+      <DependentUpon>PrintOptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pager.WinControlDx\WinGridView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pager.WinControlDx\WinGridView.Designer.cs">
+      <DependentUpon>WinGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pager.WinControlDx\WinGridViewPager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pager.WinControlDx\WinGridViewPager.Designer.cs">
+      <DependentUpon>WinGridViewPager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pager.WinControlDx\WinListViewPager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pager.WinControlDx\WinListViewPager.Designer.cs">
+      <DependentUpon>WinListViewPager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PlugInInterface\AppInfo.cs" />
+    <Compile Include="PlugInInterface\IFunction.cs" />
+    <Compile Include="PlugInInterface\LoginUserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="RSARegistryTool\FrmKeyPair.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RSARegistryTool\FrmKeyPair.Designer.cs">
+      <DependentUpon>FrmKeyPair.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RSARegistryTool\FrmRegeditTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Security\FrmAddMoreFunction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Security\FrmAddMoreFunction.Designer.cs">
+      <DependentUpon>FrmAddMoreFunction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Security\FrmBlackIP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Security\FrmBlackIP.Designer.cs">
+      <DependentUpon>FrmBlackIP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Security\FrmEditBlackIP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Security\FrmEditBlackIP.designer.cs">
+      <DependentUpon>FrmEditBlackIP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Security\FrmEditMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Security\FrmEditMenu.Designer.cs">
+      <DependentUpon>FrmEditMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Security\FrmEditOperationLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Security\FrmEditOperationLog.designer.cs">
+      <DependentUpon>FrmEditOperationLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Security\FrmEditOperationLogSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Security\FrmEditOperationLogSetting.designer.cs">
+      <DependentUpon>FrmEditOperationLogSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Security\FrmEditRoleOU.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Security\FrmEditRoleOU.Designer.cs">
+      <DependentUpon>FrmEditRoleOU.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Security\FrmEditSystemType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Security\FrmEditSystemType.designer.cs">
+      <DependentUpon>FrmEditSystemType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Security\FrmEditTree.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Security\FrmEditTree.designer.cs">
+      <DependentUpon>FrmEditTree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Security\FrmEditUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Security\FrmEditUser.designer.cs">
+      <DependentUpon>FrmEditUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Security\FrmFunction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Security\FrmFunction.designer.cs">
+      <DependentUpon>FrmFunction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Security\FrmLoginLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Security\FrmLoginLog.designer.cs">
+      <DependentUpon>FrmLoginLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Security\FrmMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Security\FrmMenu.designer.cs">
+      <DependentUpon>FrmMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Security\FrmOperationLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Security\FrmOperationLog.designer.cs">
+      <DependentUpon>FrmOperationLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Security\FrmOperationLogSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Security\FrmOperationLogSetting.Designer.cs">
+      <DependentUpon>FrmOperationLogSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Security\FrmOU.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Security\FrmOU.designer.cs">
+      <DependentUpon>FrmOU.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Security\FrmRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Security\FrmRole.designer.cs">
+      <DependentUpon>FrmRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Security\FrmSelectUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Security\FrmSelectUser.designer.cs">
+      <DependentUpon>FrmSelectUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Security\FrmSystemType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Security\FrmSystemType.designer.cs">
+      <DependentUpon>FrmSystemType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Security\FrmUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Security\FrmUser.Designer.cs">
+      <DependentUpon>FrmUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\EtchedLine.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Settings\FirefoxDialog.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Settings\FirefoxDialog.designer.cs">
+      <DependentUpon>FirefoxDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\MozBar\ImageListPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Settings\MozBar\ImageMapEditor.cs" />
+    <Compile Include="Settings\MozBar\MozItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Settings\MozBar\MozPane.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Settings\MozBar\ScrollableControlWithScrollEvents.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Settings\MozBar\ThemeManager.cs" />
+    <Compile Include="Settings\PageProp.cs" />
+    <Compile Include="Settings\PropertyPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Framework\splashbg.jpg" />
+    <Content Include="Pager.WinControlDx\Icon\Add.ico" />
+    <Content Include="Pager.WinControlDx\Icon\copy.ico" />
+    <Content Include="Pager.WinControlDx\Icon\Delete.ico" />
+    <Content Include="Pager.WinControlDx\Icon\Edit.ico" />
+    <Content Include="Pager.WinControlDx\Icon\excel.ico" />
+    <Content Include="Pager.WinControlDx\Icon\filter.ico" />
+    <Content Include="Pager.WinControlDx\Icon\ico_have2.gif" />
+    <Content Include="Pager.WinControlDx\Icon\ico_nohave2.gif" />
+    <Content Include="Pager.WinControlDx\Icon\print.ico" />
+    <Content Include="Pager.WinControlDx\Icon\Refresh.ico" />
+    <Content Include="Pager.WinControlDx\Resources\check.ico" />
+    <Content Include="Resources\CabrioletRed.png" />
+    <None Include="Resources\menuIcon.ico" />
+    <Content Include="Settings\MozBar\MozItem.bmp" />
+    <Content Include="Settings\MozBar\MozPane.bmp" />
+    <None Include="Resources\%2813,41%291.png" />
+    <None Include="Resources\%2812,41%291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AdvanceSearch\FrmAdvanceSearch.resx">
+      <DependentUpon>FrmAdvanceSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdvanceSearch\FrmQueryBase.resx">
+      <DependentUpon>FrmQueryBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdvanceSearch\FrmQueryDateEdit.resx">
+      <DependentUpon>FrmQueryDateEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdvanceSearch\FrmQueryDropdown.resx">
+      <DependentUpon>FrmQueryDropdown.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdvanceSearch\FrmQueryNumericEdit.resx">
+      <DependentUpon>FrmQueryNumericEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdvanceSearch\FrmQueryTextEdit.resx">
+      <DependentUpon>FrmQueryTextEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Attachment\Controls\AttachmentControl.resx">
+      <DependentUpon>AttachmentControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Attachment\Controls\BizAttachment.resx">
+      <DependentUpon>BizAttachment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Attachment\FrmAttachment.resx">
+      <DependentUpon>FrmAttachment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Attachment\FrmAttachmentGroupView.resx">
+      <DependentUpon>FrmAttachmentGroupView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Attachment\FrmPicturePreview.resx">
+      <DependentUpon>FrmPicturePreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Attachment\FrmUploadFile.resx">
+      <DependentUpon>FrmUploadFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaseUI\BaseDock.resx">
+      <DependentUpon>BaseDock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaseUI\BaseEditForm.resx">
+      <DependentUpon>BaseEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaseUI\BaseForm.resx">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaseUI\DataNavigator.resx">
+      <DependentUpon>DataNavigator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaseUI\FrmImportExcelData.resx">
+      <DependentUpon>FrmImportExcelData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BizControls\CompanyControl.resx">
+      <DependentUpon>CompanyControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BizControls\DeptControl.resx">
+      <DependentUpon>DeptControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BizControls\FunctionControl.resx">
+      <DependentUpon>FunctionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BizControls\MenuControl.resx">
+      <DependentUpon>MenuControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BizControls\NameControl.resx">
+      <DependentUpon>NameControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BizControls\RowMergeGridView.resx">
+      <DependentUpon>RowMergeGridView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BizControls\UserNameControl.resx">
+      <DependentUpon>UserNameControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BizControls\VistaButton.resx">
+      <DependentUpon>VistaButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Device\CameraDialog.resx">
+      <DependentUpon>CameraDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Device\DeviceReaderDialog.resx">
+      <DependentUpon>DeviceReaderDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Device\FrmPosPrintPreview.resx">
+      <DependentUpon>FrmPosPrintPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Device\FrmSetPrinterName.resx">
+      <DependentUpon>FrmSetPrinterName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Device\PortraitControl.resx">
+      <DependentUpon>PortraitControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dic\FrmBatchAddDictData.resx">
+      <DependentUpon>FrmBatchAddDictData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dic\FrmBatchAddDistrict.resx">
+      <DependentUpon>FrmBatchAddDistrict.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dic\FrmCityDistrict.resx">
+      <DependentUpon>FrmCityDistrict.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dic\FrmDictionary.resx">
+      <DependentUpon>FrmDictionary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dic\FrmEditCity.resx">
+      <DependentUpon>FrmEditCity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dic\FrmEditDictData.resx">
+      <DependentUpon>FrmEditDictData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dic\FrmEditDictType.resx">
+      <DependentUpon>FrmEditDictType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dic\FrmEditDistrict.resx">
+      <DependentUpon>FrmEditDistrict.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DocViewer\FrmExcelView.resx">
+      <DependentUpon>FrmExcelView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DocViewer\FrmImageView.resx">
+      <DependentUpon>FrmImageView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DocViewer\FrmPDFView.resx">
+      <DependentUpon>FrmPDFView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DocViewer\FrmWordView.resx">
+      <DependentUpon>FrmWordView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Framework\AboutBox.resx">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Framework\FrmFeeBack.resx">
+      <DependentUpon>FrmFeeBack.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Framework\FrmModifyPassword.resx">
+      <DependentUpon>FrmModifyPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Framework\FrmSettings.resx">
+      <DependentUpon>FrmSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Framework\frmSplash.resx">
+      <DependentUpon>frmSplash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Framework\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Framework\Logon.resx">
+      <DependentUpon>Logon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Framework\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Framework\PageEmail.resx">
+      <DependentUpon>PageEmail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Framework\PageReport.resx">
+      <DependentUpon>PageReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Framework\RegDlg.resx">
+      <DependentUpon>RegDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LocalReport\ReportViewerDialog.resx">
+      <DependentUpon>ReportViewerDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Other\GenerateUpdateConfig.resx">
+      <DependentUpon>GenerateUpdateConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Other\QueryInputDialog.resx">
+      <DependentUpon>QueryInputDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pager.WinControlDx\CoolPrintPreviewDialog.resx">
+      <DependentUpon>CoolPrintPreviewDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pager.WinControlDx\FrmSelectColumnDisplay.resx">
+      <DependentUpon>FrmSelectColumnDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pager.WinControlDx\Pager.resx">
+      <DependentUpon>Pager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pager.WinControlDx\PrintOptions.resx">
+      <DependentUpon>PrintOptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pager.WinControlDx\WinGridView.resx">
+      <DependentUpon>WinGridView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pager.WinControlDx\WinGridViewPager.resx">
+      <DependentUpon>WinGridViewPager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pager.WinControlDx\WinListViewPager.resx">
+      <DependentUpon>WinListViewPager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RSARegistryTool\FrmKeyPair.resx">
+      <DependentUpon>FrmKeyPair.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RSARegistryTool\FrmRegeditTool.resx">
+      <DependentUpon>FrmRegeditTool.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Security\FrmAddMoreFunction.resx">
+      <DependentUpon>FrmAddMoreFunction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Security\FrmBlackIP.resx">
+      <DependentUpon>FrmBlackIP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Security\FrmEditBlackIP.resx">
+      <DependentUpon>FrmEditBlackIP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Security\FrmEditMenu.resx">
+      <DependentUpon>FrmEditMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Security\FrmEditOperationLog.resx">
+      <DependentUpon>FrmEditOperationLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Security\FrmEditOperationLogSetting.resx">
+      <DependentUpon>FrmEditOperationLogSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Security\FrmEditRoleOU.resx">
+      <DependentUpon>FrmEditRoleOU.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Security\FrmEditSystemType.resx">
+      <DependentUpon>FrmEditSystemType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Security\FrmEditTree.resx">
+      <DependentUpon>FrmEditTree.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Security\FrmEditUser.resx">
+      <DependentUpon>FrmEditUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Security\FrmFunction.resx">
+      <DependentUpon>FrmFunction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Security\FrmLoginLog.resx">
+      <DependentUpon>FrmLoginLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Security\FrmMenu.resx">
+      <DependentUpon>FrmMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Security\FrmOperationLog.resx">
+      <DependentUpon>FrmOperationLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Security\FrmOperationLogSetting.resx">
+      <DependentUpon>FrmOperationLogSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Security\FrmOU.resx">
+      <DependentUpon>FrmOU.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Security\FrmRole.resx">
+      <DependentUpon>FrmRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Security\FrmSelectUser.resx">
+      <DependentUpon>FrmSelectUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Security\FrmSystemType.resx">
+      <DependentUpon>FrmSystemType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Security\FrmUser.resx">
+      <DependentUpon>FrmUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Settings\EtchedLine.resx">
+      <DependentUpon>EtchedLine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Settings\FirefoxDialog.resx">
+      <DependentUpon>FirefoxDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Settings\MozBar\ImageListPanel.resx">
+      <DependentUpon>ImageListPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Settings\MozBar\MozItem.resx">
+      <DependentUpon>MozItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Settings\MozBar\MozPane.resx">
+      <DependentUpon>MozPane.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Settings\MozBar\ScrollableControlWithScrollEvents.resx">
+      <DependentUpon>ScrollableControlWithScrollEvents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Settings\PropertyPage.resx">
+      <DependentUpon>PropertyPage.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JCodes.Framework.BLL\JCodes.Framework.BLL.csproj">
+      <Project>{2ec4520f-5197-4e3f-b689-7023a98623e0}</Project>
+      <Name>JCodes.Framework.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JCodes.Framework.Common\JCodes.Framework.Common.csproj">
+      <Project>{0dc2c51c-4601-4045-a412-bed930658c2c}</Project>
+      <Name>JCodes.Framework.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JCodes.Framework.Entity\JCodes.Framework.Entity.csproj">
+      <Project>{22d7993c-a8c8-4306-90a4-96ff76a12c0a}</Project>
+      <Name>JCodes.Framework.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JCodes.Framework.Enum\JCodes.Framework.jCodesenum.csproj">
+      <Project>{bd86470b-26c1-4b51-b6a8-3f11cebb4950}</Project>
+      <Name>JCodes.Framework.jCodesenum</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controls\" />
+    <Folder Include="DocViewer\AdvanceSearch\" />
+    <Folder Include="DocViewer\BaseUI\" />
+    <Folder Include="DocViewer\Control\" />
+    <Folder Include="DocViewer\Device\" />
+    <Folder Include="NewFolder1\" />
+    <Folder Include="Other\AdvanceSearch\" />
+    <Folder Include="Other\BaseUI\" />
+    <Folder Include="Other\Control\" />
+    <Folder Include="Other\Device\" />
+    <Folder Include="Other\DocViewer\AdvanceSearch\" />
+    <Folder Include="Other\DocViewer\BaseUI\" />
+    <Folder Include="Other\DocViewer\Control\" />
+    <Folder Include="Other\DocViewer\Device\" />
+    <Folder Include="Other\LocalReport\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

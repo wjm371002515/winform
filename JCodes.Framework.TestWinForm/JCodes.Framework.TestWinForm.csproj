@@ -33,29 +33,228 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Aspose.Cells">
+      <HintPath>..\JCodes.Framework.libs\Aspose\Aspose.Cells.dll</HintPath>
+    </Reference>
+    <Reference Include="Aspose.Words">
+      <HintPath>..\JCodes.Framework.libs\Aspose\Aspose.Words.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.BonusSkins.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Office.v14.1.Core, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v14.1.Core, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.RichEdit.v14.1.Core, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraRichEdit.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
+      <HintPath>..\JCodes.Framework.libs\Microsoft.Practices\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data">
+      <HintPath>..\JCodes.Framework.libs\Microsoft.Practices\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ObjectBuilder">
+      <HintPath>..\JCodes.Framework.libs\Microsoft.Practices\Microsoft.Practices.ObjectBuilder.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI">
+      <HintPath>..\JCodes.Framework.libs\NPOI\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="org.in2bits.MyXls">
+      <HintPath>..\JCodes.Framework.libs\org.in2bits\org.in2bits.MyXls.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attachment.Test\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Attachment.Test\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common.Test\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common.Test\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common.Test\FrmAnimator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common.Test\FrmAnimator.Designer.cs">
+      <DependentUpon>FrmAnimator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common.Test\FrmIconReader.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common.Test\FrmIconReader.Designer.cs">
+      <DependentUpon>FrmIconReader.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common.Test\FrmImageHelper.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common.Test\FrmImageHelper.Designer.cs">
+      <DependentUpon>FrmImageHelper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common.Test\FrmTestRTF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common.Test\FrmTestRTF.Designer.cs">
+      <DependentUpon>FrmTestRTF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common.Test\FrmWebPreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common.Test\FrmWebPreview.Designer.cs">
+      <DependentUpon>FrmWebPreview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common.Test\TestSingletonClass.cs" />
+    <Compile Include="CommonUtil.Test\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CommonUtil.Test\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommonUtil.Test\FrmADSLDialer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CommonUtil.Test\FrmADSLDialer.Designer.cs">
+      <DependentUpon>FrmADSLDialer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommonUtil.Test\FrmZipUtil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CommonUtil.Test\FrmZipUtil.Designer.cs">
+      <DependentUpon>FrmZipUtil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommonUtil.Test\Office\FrmAsposeCell.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CommonUtil.Test\Office\FrmAsposeCell.Designer.cs">
+      <DependentUpon>FrmAsposeCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommonUtil.Test\Office\FrmAsposeWords.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CommonUtil.Test\Office\FrmAsposeWords.Designer.cs">
+      <DependentUpon>FrmAsposeWords.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommonUtil.Test\Office\FrmMyXls.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CommonUtil.Test\Office\FrmMyXls.Designer.cs">
+      <DependentUpon>FrmMyXls.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommonUtil.Test\Office\FrmNPOI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CommonUtil.Test\Office\FrmNPOI.Designer.cs">
+      <DependentUpon>FrmNPOI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dic.Test\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dic.Test\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Page.Test\FrmCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Page.Test\FrmCustomer.designer.cs">
+      <DependentUpon>FrmCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Page.Test\FrmCustomerPager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Page.Test\FrmCustomerPager.Designer.cs">
+      <DependentUpon>FrmCustomerPager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Page.Test\FrmEditCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Page.Test\FrmEditCustomer.designer.cs">
+      <DependentUpon>FrmEditCustomer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Quanxian\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Quanxian\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Attachment.Test\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common.Test\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common.Test\FrmAnimator.resx">
+      <DependentUpon>FrmAnimator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common.Test\FrmIconReader.resx">
+      <DependentUpon>FrmIconReader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common.Test\FrmImageHelper.resx">
+      <DependentUpon>FrmImageHelper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common.Test\FrmTestRTF.resx">
+      <DependentUpon>FrmTestRTF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common.Test\FrmWebPreview.resx">
+      <DependentUpon>FrmWebPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommonUtil.Test\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommonUtil.Test\FrmADSLDialer.resx">
+      <DependentUpon>FrmADSLDialer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommonUtil.Test\FrmZipUtil.resx">
+      <DependentUpon>FrmZipUtil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommonUtil.Test\Office\FrmAsposeCell.resx">
+      <DependentUpon>FrmAsposeCell.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommonUtil.Test\Office\FrmAsposeWords.resx">
+      <DependentUpon>FrmAsposeWords.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommonUtil.Test\Office\FrmMyXls.resx">
+      <DependentUpon>FrmMyXls.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommonUtil.Test\Office\FrmNPOI.resx">
+      <DependentUpon>FrmNPOI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dic.Test\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Page.Test\FrmCustomer.resx">
+      <DependentUpon>FrmCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Page.Test\FrmCustomerPager.resx">
+      <DependentUpon>FrmCustomerPager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Page.Test\FrmEditCustomer.resx">
+      <DependentUpon>FrmEditCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -65,6 +264,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Quanxian\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="CommonUtil.Test\Templates\Advice.doc" />
+    <None Include="CommonUtil.Test\Templates\Advice.xls" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -76,14 +280,33 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\JCodes.Framework.BLL\JCodes.Framework.BLL.csproj">
+      <Project>{2ec4520f-5197-4e3f-b689-7023a98623e0}</Project>
+      <Name>JCodes.Framework.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JCodes.Framework.CommonControl\JCodes.Framework.CommonControl.csproj">
+      <Project>{64cfe6d2-0684-4d68-bfa0-ec7effdf4623}</Project>
+      <Name>JCodes.Framework.CommonControl</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JCodes.Framework.Common\JCodes.Framework.Common.csproj">
       <Project>{0dc2c51c-4601-4045-a412-bed930658c2c}</Project>
       <Name>JCodes.Framework.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JCodes.Framework.Entity\JCodes.Framework.Entity.csproj">
+      <Project>{22d7993c-a8c8-4306-90a4-96ff76a12c0a}</Project>
+      <Name>JCodes.Framework.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JCodes.Framework.Enum\JCodes.Framework.jCodesenum.csproj">
+      <Project>{bd86470b-26c1-4b51-b6a8-3f11cebb4950}</Project>
+      <Name>JCodes.Framework.jCodesenum</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>echo "编译后处理的事情 JCodes.Framework.TestWinForm"</PostBuildEvent>

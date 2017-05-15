@@ -53,42 +53,14 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.BonusSkins.v12.1, Version=12.1.5.0, Culture=neutral, PublicKeyToken=95fc6c5621878f0a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Dev\DevExpress.BonusSkins.v12.1.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Data.v12.1, Version=12.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Dev\DevExpress.Data.v12.1.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Printing.v12.1.Core, Version=12.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Dev\DevExpress.Printing.v12.1.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Utils.v12.1, Version=12.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Dev\DevExpress.Utils.v12.1.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.XtraBars.v12.1, Version=12.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Dev\DevExpress.XtraBars.v12.1.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.XtraEditors.v12.1, Version=12.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Dev\DevExpress.XtraEditors.v12.1.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.XtraGrid.v12.1, Version=12.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Dev\DevExpress.XtraGrid.v12.1.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.XtraLayout.v12.1, Version=12.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Dev\DevExpress.XtraLayout.v12.1.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.XtraNavBar.v12.1, Version=12.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Dev\DevExpress.XtraNavBar.v12.1.dll</HintPath>
-    </Reference>
+    <Reference Include="DevExpress.BonusSkins.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraBars.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGrid.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraNavBar.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="LayeredSkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=afd022ec866c66cc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>dll\LayeredSkin.dll</HintPath>
@@ -141,7 +113,11 @@
     <EmbeddedResource Include="FormMain\frmSettings.resx">
       <DependentUpon>frmSettings.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="rdlc\WHC.Member.ConsumptionReport.rdlc" />
+    <EmbeddedResource Include="rdlc\WHC.WareHouseMis.PurchaseReport.rdlc" />
+    <EmbeddedResource Include="rdlc\WHC.WareHouseMis.TakeOutReport.rdlc" />
     <None Include="app.config" />
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -181,23 +157,32 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Dev\DevExpress.Data.v12.1.dll" />
-    <Content Include="Dev\DevExpress.Printing.v12.1.Core.dll" />
-    <Content Include="Dev\DevExpress.Utils.v12.1.dll" />
-    <Content Include="Dev\DevExpress.XtraBars.v12.1.dll" />
-    <Content Include="Dev\DevExpress.XtraEditors.v12.1.dll" />
-    <Content Include="Dev\DevExpress.XtraGrid.v12.1.dll" />
-    <Content Include="Dev\DevExpress.XtraLayout.v12.1.dll" />
-    <Content Include="Dev\DevExpress.XtraNavBar.v12.1.dll" />
-    <Content Include="Dev\DevExpress.BonusSkins.v12.1.dll" />
     <Content Include="dll\LayeredSkin.dll" />
     <Content Include="dll\log4net.dll" />
     <Content Include="images\close0.png" />
     <Content Include="images\close1.png" />
     <Content Include="images\cloud.png" />
     <Content Include="images\loginbody.png" />
+    <Content Include="images\MenuIcon\101.ico" />
+    <Content Include="images\MenuIcon\102.ico" />
+    <Content Include="images\MenuIcon\103.ICO" />
+    <Content Include="images\MenuIcon\104.ico" />
+    <Content Include="images\MenuIcon\105.ico" />
+    <Content Include="images\MenuIcon\106.ICO" />
+    <Content Include="images\MenuIcon\107.ico" />
+    <Content Include="images\MenuIcon\201.ico" />
+    <Content Include="images\MenuIcon\202.ico" />
+    <Content Include="images\MenuIcon\203.ico" />
+    <Content Include="images\MenuIcon\204.ICO" />
+    <Content Include="images\MenuIcon\205.ico" />
+    <Content Include="images\MenuIcon\206.ico" />
+    <Content Include="images\MenuIcon\207.ICO" />
+    <Content Include="images\MenuIcon\301.ico" />
+    <Content Include="images\MenuIcon\302.ico" />
+    <Content Include="images\MenuIcon\303.ico" />
     <Content Include="images\mini0.png" />
     <Content Include="images\mini1.png" />
+    <Content Include="images\startScreen.png" />
     <Content Include="images\sun2.png" />
     <Content Include="images\yezi2.png" />
     <Content Include="images\yezi3.png" />
@@ -207,12 +192,25 @@
       <Project>{b2c03c8b-b0c2-4da0-9a85-bdc8bf8dcebf}</Project>
       <Name>JCodes.Framework.AddIn</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JCodes.Framework.CommonControl\JCodes.Framework.CommonControl.csproj">
+      <Project>{64cfe6d2-0684-4d68-bfa0-ec7effdf4623}</Project>
+      <Name>JCodes.Framework.CommonControl</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JCodes.Framework.Common\JCodes.Framework.Common.csproj">
       <Project>{0DC2C51C-4601-4045-A412-BED930658C2C}</Project>
       <Name>JCodes.Framework.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JCodes.Framework.Entity\JCodes.Framework.Entity.csproj">
+      <Project>{22d7993c-a8c8-4306-90a4-96ff76a12c0a}</Project>
+      <Name>JCodes.Framework.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JCodes.Framework.Enum\JCodes.Framework.jCodesenum.csproj">
+      <Project>{bd86470b-26c1-4b51-b6a8-3f11cebb4950}</Project>
+      <Name>JCodes.Framework.jCodesenum</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Dev\" />
     <Folder Include="SysClass\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

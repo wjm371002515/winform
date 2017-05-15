@@ -22,6 +22,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,43 +33,374 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+    <Reference Include="Aspose.Cells, Version=7.7.2.0, Culture=neutral, PublicKeyToken=00725b1ceb58d0a9, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>dll\log4net.dll</HintPath>
+      <HintPath>..\JCodes.Framework.libs\Aspose\Aspose.Cells.dll</HintPath>
+    </Reference>
+    <Reference Include="Aspose.Words, Version=14.2.0.0, Culture=neutral, PublicKeyToken=00725b1ceb58d0a9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\JCodes.Framework.libs\Aspose\Aspose.Words.dll</HintPath>
+    </Reference>
+    <Reference Include="DotRas">
+      <HintPath>..\JCodes.Framework.libs\DotRas\DotRas.dll</HintPath>
+    </Reference>
+    <Reference Include="EntLibContrib.Data.MySql">
+      <HintPath>..\JCodes.Framework.libs\EntLibContrib.Data\EntLibContrib.Data.MySql.dll</HintPath>
+    </Reference>
+    <Reference Include="EntLibContrib.Data.SQLite">
+      <HintPath>..\JCodes.Framework.libs\EntLibContrib.Data\EntLibContrib.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\JCodes.Framework.libs\Others\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\JCodes.Framework.libs\Others\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\JCodes.Framework.libs\log4net\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
+      <HintPath>..\JCodes.Framework.libs\Microsoft.Practices\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data">
+      <HintPath>..\JCodes.Framework.libs\Microsoft.Practices\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ObjectBuilder">
+      <HintPath>..\JCodes.Framework.libs\Microsoft.Practices\Microsoft.Practices.ObjectBuilder.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="MySql.Data">
+      <HintPath>..\JCodes.Framework.libs\MySql.Data\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\JCodes.Framework.libs\Newtonsoft.Json\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI">
+      <HintPath>..\JCodes.Framework.libs\NPOI\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NVelocity">
+      <HintPath>..\JCodes.Framework.libs\NVelocity\NVelocity.dll</HintPath>
+    </Reference>
+    <Reference Include="org.in2bits.MyXls">
+      <HintPath>..\JCodes.Framework.libs\org.in2bits\org.in2bits.MyXls.dll</HintPath>
+    </Reference>
+    <Reference Include="stdole, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
-    <Reference Include="System.Core" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Data.SQLite">
+      <HintPath>..\JCodes.Framework.libs\SQLite\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Collections\CollectionHelper.cs" />
+    <Compile Include="Collections\Dictionary.cs" />
+    <Compile Include="Collections\Fifo.cs" />
+    <Compile Include="Collections\ICloneable.cs" />
+    <Compile Include="Collections\List.cs" />
+    <Compile Include="Collections\OrderedDictionary.cs" />
+    <Compile Include="Collections\OrderedDictionaryEnumerator.cs" />
+    <Compile Include="Collections\SortHelper.cs" />
+    <Compile Include="Collections\SyncDictionary.cs" />
+    <Compile Include="Collections\SyncList.cs" />
+    <Compile Include="Collections\SyncOrderedDictionary.cs" />
+    <Compile Include="Collections\ThreadSafeDictionary.cs" />
+    <Compile Include="Collections\ThreadSafeSortedList.cs" />
+    <Compile Include="Const\JCodes.Framework.Common.Const.cs" />
     <Compile Include="CryptographyHelper.cs" />
+    <Compile Include="Database\DataTableHelper.cs" />
+    <Compile Include="Database\JetAccessUtil.cs" />
+    <Compile Include="Database\OleDbHelper.cs" />
+    <Compile Include="Database\PageHelper.cs" />
+    <Compile Include="Database\SearchCondition.cs" />
+    <Compile Include="Database\SearchInfo.cs" />
+    <Compile Include="Database\SmartDataReader.cs" />
+    <Compile Include="Database\SQLInjectionHelper.cs" />
+    <Compile Include="Database\SqlScriptHelper.cs" />
+    <Compile Include="Data\JCodes.Framework.Common.Data.cs" />
     <Compile Include="DbHelper.cs" />
+    <Compile Include="Device\AudioHelper.cs" />
+    <Compile Include="Device\Camera.cs" />
+    <Compile Include="Device\FingerprintHelper.cs" />
+    <Compile Include="Device\HardwareInfoHelper.cs" />
+    <Compile Include="Device\KeyboardHelper.cs" />
+    <Compile Include="Device\KeyboardHook.cs" />
+    <Compile Include="Device\MouseHelper.cs" />
+    <Compile Include="Device\MouseHook.cs" />
+    <Compile Include="Device\SoundPlayerHelper.cs" />
+    <Compile Include="Encrypt\Base64Util.cs" />
+    <Compile Include="Encrypt\EncodeHelper.cs" />
+    <Compile Include="Encrypt\MD5Util.cs" />
+    <Compile Include="Encrypt\QQEncryptUtil.cs" />
+    <Compile Include="Encrypt\RSASecurityHelper.cs" />
+    <Compile Include="Entity\CListItem.cs" />
+    <Compile Include="Entity\CommonResult.cs" />
+    <Compile Include="Entity\NotifyContactInfo.cs" />
+    <Compile Include="Extension\ControlExtensions.cs" />
+    <Compile Include="Extension\ExtensionMethod.cs" />
+    <Compile Include="Extension\StringExtensionMethod.cs" />
     <Compile Include="FileHelper.cs" />
-    <Compile Include="JsonHelper.cs" />
+    <Compile Include="File\AppConfig.cs" />
+    <Compile Include="File\ConfigurationUtil.cs" />
+    <Compile Include="File\CSVHelper.cs" />
+    <Compile Include="File\DatabaseInfo.cs" />
+    <Compile Include="File\DirectoryUtil.cs" />
+    <Compile Include="File\ExcelHelper.cs" />
+    <Compile Include="File\ExtensionAttachUtil.cs" />
+    <Compile Include="File\FileAssociationsHelper.cs" />
+    <Compile Include="File\FileDialogHelper.cs" />
+    <Compile Include="File\FileUtil.cs" />
+    <Compile Include="File\INIFileUtil.cs" />
+    <Compile Include="File\IsolatedStorageHelper.cs" />
+    <Compile Include="File\LogTextHelper.cs" />
+    <Compile Include="File\MyFileSystemWatcher.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="File\Serializer.cs" />
+    <Compile Include="File\SpecialDirectories.cs" />
+    <Compile Include="File\XmlConvertor.cs" />
+    <Compile Include="File\XmlHelper.cs" />
+    <Compile Include="Format\ArgumentValidation.cs" />
+    <Compile Include="Format\ByteImageConvertor.cs" />
+    <Compile Include="Format\BytesTools.cs" />
+    <Compile Include="Format\ConvertHelper.cs" />
+    <Compile Include="Format\CRCUtils.cs" />
+    <Compile Include="Format\DateTimeHelper.cs" />
+    <Compile Include="Format\EnumHelper.cs" />
+    <Compile Include="Format\IDCardHelper.cs" />
+    <Compile Include="Format\IdentifyEncoding.cs" />
+    <Compile Include="Format\JsonHelper.cs" />
+    <Compile Include="Format\MyColors.cs" />
+    <Compile Include="Format\Pinyin.cs" />
+    <Compile Include="Format\PinyinCode.cs" />
+    <Compile Include="Format\PinyinHash.cs" />
+    <Compile Include="Format\PinYinUtil.cs" />
+    <Compile Include="Format\RandomChinese.cs" />
+    <Compile Include="Format\RMBUtil.cs" />
+    <Compile Include="Format\StringUtil.cs" />
+    <Compile Include="Format\Util.cs" />
+    <Compile Include="Format\ValidateUtil.cs" />
+    <Compile Include="Framework\AbstractBaseDAL.cs" />
+    <Compile Include="Framework\BaseBLL.cs" />
+    <Compile Include="Framework\BaseDAL\BaseDALAccess.cs" />
+    <Compile Include="Framework\BaseDAL\BaseDALMySql.cs" />
+    <Compile Include="Framework\BaseDAL\BaseDALOracle.cs" />
+    <Compile Include="Framework\BaseDAL\BaseDALSQLServer.cs" />
+    <Compile Include="Framework\BaseDAL\BaseDALSQLite.cs" />
+    <Compile Include="Framework\BLLFactory.cs" />
+    <Compile Include="Framework\Facade\BaseLocalService.cs" />
+    <Compile Include="Framework\Facade\BaseWCFService.cs" />
+    <Compile Include="Framework\Facade\CallerFactory.cs" />
+    <Compile Include="Framework\Facade\CustomClientChannel.cs" />
+    <Compile Include="Framework\Facade\IBaseService.cs" />
+    <Compile Include="Framework\IBaseDAL.cs" />
+    <Compile Include="Image\CheckCode.cs" />
+    <Compile Include="Image\IconReaderHelper.cs" />
+    <Compile Include="Image\ImageFormatHandler.cs" />
+    <Compile Include="Image\ImageHelper.cs" />
+    <Compile Include="Image\ImagePrintHelper.cs" />
+    <Compile Include="Image\MyScreenCapture.cs" />
+    <Compile Include="Image\PrintFormHelper.cs" />
+    <Compile Include="Image\ResourceHelper.cs" />
+    <Compile Include="Image\ScreenCapture.cs" />
+    <Compile Include="Image\ScreenCaptureWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Image\UnCodebase.cs" />
+    <Compile Include="Image\ValidateImgHelper.cs" />
+    <Compile Include="Image\WebPageCapture.cs" />
+    <Compile Include="Image\WebPreview.cs" />
     <Compile Include="LogHelper.cs" />
+    <Compile Include="Network\ADSLDialerUtil.cs" />
+    <Compile Include="Network\CookieManger.cs" />
+    <Compile Include="Network\EmailHelper.cs" />
+    <Compile Include="Network\FTPHelper.cs" />
+    <Compile Include="Network\HttpHelper.cs" />
+    <Compile Include="Network\HttpWebRequestHelper.cs" />
+    <Compile Include="Network\NetworkUtil.cs" />
+    <Compile Include="Network\NewtonsoftJsonHelper.cs" />
+    <Compile Include="Network\ProxyHelper.cs" />
+    <Compile Include="Network\SmtpServerHelper.cs" />
+    <Compile Include="Network\WcfExtensions.cs" />
+    <Compile Include="Office\AsposeExcelTools.cs" />
+    <Compile Include="Office\AsposeWordTools.cs" />
+    <Compile Include="Office\MyXlsHelper.cs" />
+    <Compile Include="Office\NPOIHelper.cs" />
+    <Compile Include="Office\NPOIUtils.cs" />
+    <Compile Include="Others\ADHelper.cs" />
+    <Compile Include="Others\ArgsParser.cs" />
+    <Compile Include="Others\Cache.cs" />
+    <Compile Include="Others\CCalendar.cs" />
+    <Compile Include="Others\ChineseCalendar.cs" />
+    <Compile Include="Others\CommandLine.cs" />
+    <Compile Include="Others\ContactExtractHelper.cs" />
+    <Compile Include="Others\CRegex.cs" />
+    <Compile Include="Others\CSocket.cs" />
+    <Compile Include="Others\CString.cs" />
+    <Compile Include="Others\CText.cs" />
+    <Compile Include="Others\CultureInfoUtil.cs" />
+    <Compile Include="Others\DistanceHelper.cs" />
+    <Compile Include="Others\GZipUtil.cs" />
+    <Compile Include="Others\MemoryCacheHelper.cs" />
+    <Compile Include="Others\Option.cs" />
+    <Compile Include="Others\ParamParser.cs" />
+    <Compile Include="Others\Reflect.cs" />
+    <Compile Include="Others\ReflectionUtil.cs" />
+    <Compile Include="Others\RegistryHelper.cs" />
+    <Compile Include="Others\Singleton.cs" />
+    <Compile Include="Others\StreamUtils.cs" />
+    <Compile Include="Others\UIConstants.cs" />
+    <Compile Include="Others\UnicodeHelper.cs" />
+    <Compile Include="Others\ZipUtility.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlHelper.cs" />
     <Compile Include="SqlInjection.cs" />
     <Compile Include="SqlPagerHelper.cs" />
+    <Compile Include="Threading\AbortableThreadPool.cs" />
+    <Compile Include="Threading\DelegateHelper.cs" />
+    <Compile Include="Threading\DisposableObject.cs" />
+    <Compile Include="Threading\QueueServer.cs" />
+    <Compile Include="Threading\ThreadHelper.cs" />
+    <Compile Include="Threading\ThreadPoolHelper.cs" />
+    <Compile Include="Threading\Timer.cs" />
+    <Compile Include="Threading\TimerHelper.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Threading\WorkItem.cs" />
     <Compile Include="ToolbarHelper.cs" />
-    <Compile Include="UserHelper.cs" />
+    <Compile Include="Web\CookieHelper.cs" />
+    <Compile Include="Web\FileManage.cs" />
+    <Compile Include="Web\FileServerManage.cs" />
+    <Compile Include="Web\GridViewHelper.cs" />
+    <Compile Include="Web\JavascriptHelper.cs" />
+    <Compile Include="Web\PopupMessageHelper.cs" />
     <Compile Include="Web\URL.cs" />
+    <Compile Include="Web\UrlHelper.cs" />
+    <Compile Include="Web\ValidateImgPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Winform\CallCtrlWithThreadSafety.cs" />
+    <Compile Include="Winform\CheckBoxListUtil.cs" />
+    <Compile Include="Winform\ChildWinManagement.cs" />
+    <Compile Include="Winform\CoolPrintPreviewControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Winform\CoolPrintPreviewDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Winform\CoolPrintPreviewDialog.designer.cs">
+      <DependentUpon>CoolPrintPreviewDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Winform\DGVPrinter.cs" />
+    <Compile Include="Winform\DosHelper.cs" />
+    <Compile Include="Winform\DragAndDropListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Winform\DragDropTreeView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Winform\ExRichTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Winform\ExRichTextBoxPrintHelper.cs" />
+    <Compile Include="Winform\FormAnimator.cs" />
+    <Compile Include="Winform\FreezeWindowUtil.cs" />
+    <Compile Include="Winform\FullScreenHelper.cs" />
+    <Compile Include="Winform\GDI.cs" />
+    <Compile Include="Winform\ImeHelper.cs" />
+    <Compile Include="Winform\MessageUtil.cs" />
+    <Compile Include="Winform\MultipadPrintDocument.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Winform\NativeMethods.cs" />
+    <Compile Include="Winform\NotifyIconHelper.cs" />
+    <Compile Include="Winform\POSPrinter.cs" />
+    <Compile Include="Winform\PrintDGV.cs" />
+    <Compile Include="Winform\PrintOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Winform\PrintOptions.designer.cs">
+      <DependentUpon>PrintOptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Winform\QueryInputDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Winform\QueryInputDialog.designer.cs">
+      <DependentUpon>QueryInputDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Winform\RegisterHotKeyHelper.cs" />
+    <Compile Include="Winform\RTFUtility.cs" />
+    <Compile Include="Winform\SafeNativeMethods.cs" />
+    <Compile Include="Winform\SafeStatusStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Winform\SafeToolStripLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Winform\SerialPortUtil.cs" />
+    <Compile Include="Winform\SortableListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Winform\StartupHelper.cs" />
+    <Compile Include="Winform\SysTray.cs" />
+    <Compile Include="Winform\TreeViewDrager.cs" />
+    <Compile Include="Winform\Win32Window.cs" />
+    <Compile Include="Winform\WindowsExitHelper.cs" />
+    <Compile Include="Winform\WinServiceHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\JCodes.Framework.Entity\JCodes.Framework.Entity.csproj">
+      <Project>{22d7993c-a8c8-4306-90a4-96ff76a12c0a}</Project>
+      <Name>JCodes.Framework.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JCodes.Framework.Enum\JCodes.Framework.jCodesenum.csproj">
+      <Project>{bd86470b-26c1-4b51-b6a8-3f11cebb4950}</Project>
+      <Name>JCodes.Framework.jCodesenum</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JCodes.Framework.Model\JCodes.Framework.Model.csproj">
       <Project>{F31B2A29-7F65-4019-B015-44A9FF67F33A}</Project>
       <Name>JCodes.Framework.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="dll\log4net.dll" />
+    <EmbeddedResource Include="Others\CCalendarData.xml">
+      <CustomToolNamespace>JCodes.Framework.Common.Others</CustomToolNamespace>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Winform\CoolPrintPreviewDialog.resx">
+      <DependentUpon>CoolPrintPreviewDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Winform\DragAndDropListView.resx">
+      <DependentUpon>DragAndDropListView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Winform\PrintOptions.resx">
+      <DependentUpon>PrintOptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Winform\QueryInputDialog.resx">
+      <DependentUpon>QueryInputDialog.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -33,21 +33,53 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attachment\FileUploadInfo.cs" />
+    <Compile Include="BaseEntity\BaseEntity.cs" />
+    <Compile Include="Dic\CityInfo.cs" />
+    <Compile Include="Dic\DictDataInfo.cs" />
+    <Compile Include="Dic\DictTypeInfo.cs" />
+    <Compile Include="Dic\DictTypeNodeInfo.cs" />
+    <Compile Include="Dic\DistrictInfo.cs" />
+    <Compile Include="Dic\ProvinceInfo.cs" />
+    <Compile Include="Dic\UserParameterInfo.cs" />
+    <Compile Include="Pager.Entity\PagerInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TMenu.cs" />
+    <Compile Include="Security\BlackIPInfo.cs" />
+    <Compile Include="Security\CategoryEnum.cs" />
+    <Compile Include="Security\FunctionInfo.cs" />
+    <Compile Include="Security\LoginLogInfo.cs" />
+    <Compile Include="Security\LoginResult.cs" />
+    <Compile Include="Security\MenuInfo.cs" />
+    <Compile Include="Security\OperationLogInfo.cs" />
+    <Compile Include="Security\OperationLogSettingInfo.cs" />
+    <Compile Include="Security\OUInfo.cs" />
+    <Compile Include="Security\RoleDataInfo.cs" />
+    <Compile Include="Security\RoleInfo.cs" />
+    <Compile Include="Security\SimpleUserInfo.cs" />
+    <Compile Include="Security\SystemTypeInfo.cs" />
+    <Compile Include="Security\UserInfo.cs" />
+    <Compile Include="WareHouseMis\EnumClass.cs" />
+    <Compile Include="WareHouseMis\ItemDetailInfo.cs" />
+    <Compile Include="WareHouseMis\PurchaseDetailInfo.cs" />
+    <Compile Include="WareHouseMis\PurchaseHeaderInfo.cs" />
+    <Compile Include="WareHouseMis\ReportAnnualCostDetailInfo.cs" />
+    <Compile Include="WareHouseMis\ReportAnnualCostHeaderInfo.cs" />
+    <Compile Include="WareHouseMis\ReportMonthlyCostDetailInfo.cs" />
+    <Compile Include="WareHouseMis\ReportMonthlyDetailInfo.cs" />
+    <Compile Include="WareHouseMis\ReportMonthlyHeaderInfo.cs" />
+    <Compile Include="WareHouseMis\StockInfo.cs" />
+    <Compile Include="WareHouseMis\WareHouseInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JCodes.Framework.Enum\JCodes.Framework.Enum.csproj">
+    <ProjectReference Include="..\JCodes.Framework.Enum\JCodes.Framework.jCodesenum.csproj">
       <Project>{BD86470B-26C1-4B51-B6A8-3F11CEBB4950}</Project>
-      <Name>JCodes.Framework.Enum</Name>
+      <Name>JCodes.Framework.jCodesenum</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

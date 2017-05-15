@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -12,6 +12,7 @@
     <AssemblyName>JCodes.Framework.AddIn</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,6 +23,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,17 +32,33 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Data.v13.1, Version=13.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Printing.v13.1.Core, Version=13.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Utils.v13.1, Version=13.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraBars.v13.1, Version=13.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraEditors.v13.1, Version=13.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraTreeList.v13.1, Version=13.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="Aspose.Cells, Version=7.7.2.0, Culture=neutral, PublicKeyToken=00725b1ceb58d0a9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\JCodes.Framework.libs\Aspose\Aspose.Cells.dll</HintPath>
+    </Reference>
+    <Reference Include="Aspose.Words, Version=14.2.0.0, Culture=neutral, PublicKeyToken=00725b1ceb58d0a9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\JCodes.Framework.libs\Aspose\Aspose.Words.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Charts.v14.1.Core, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v14.1.Core, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v14.1.UI, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraNavBar.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -49,36 +67,226 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddParamLog.cs">
+    <Compile Include="Controls\ManagerSelectControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ManagerSelectControl.designer.cs">
+      <DependentUpon>ManagerSelectControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Other\ExtensionMethod.cs" />
+    <Compile Include="Other\SecurityHelper.cs" />
+    <Compile Include="Other\WareHouseHelper.cs" />
+    <Compile Include="Other\WareHouse\FrmAnnualSummary.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddParamLog.Designer.cs">
-      <DependentUpon>AddParamLog.cs</DependentUpon>
+    <Compile Include="Other\WareHouse\FrmAnnualSummary.Designer.cs">
+      <DependentUpon>FrmAnnualSummary.cs</DependentUpon>
     </Compile>
-    <Compile Include="ARESMgr.cs">
+    <Compile Include="Other\WareHouse\FrmClearAll.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ARESMgr.Designer.cs">
-      <DependentUpon>ARESMgr.cs</DependentUpon>
+    <Compile Include="Other\WareHouse\FrmClearAll.Designer.cs">
+      <DependentUpon>FrmClearAll.cs</DependentUpon>
     </Compile>
-    <Compile Include="FileType.cs" />
-    <Compile Include="MenuMgr.cs">
+    <Compile Include="Other\WareHouse\FrmMonthlyStatistic.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MenuMgr.Designer.cs">
-      <DependentUpon>MenuMgr.cs</DependentUpon>
+    <Compile Include="Other\WareHouse\FrmMonthlyStatistic.Designer.cs">
+      <DependentUpon>FrmMonthlyStatistic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Other\WareHouse\FrmSystemMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Other\WareHouse\FrmSystemMessage.Designer.cs">
+      <DependentUpon>FrmSystemMessage.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Report\WareHouse\FrmCategoryReport.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Report\WareHouse\FrmCategoryReport.designer.cs">
+      <DependentUpon>FrmCategoryReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\WareHouse\FrmLineHistoryReport.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Report\WareHouse\FrmLineHistoryReport.designer.cs">
+      <DependentUpon>FrmLineHistoryReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\WareHouse\FrmMultiItemReport.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Report\WareHouse\FrmMultiItemReport.designer.cs">
+      <DependentUpon>FrmMultiItemReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\WareHouse\FrmStatisticReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\WareHouse\FrmStatisticReport.designer.cs">
+      <DependentUpon>FrmStatisticReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\WareHouse\FrmStockReport.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Report\WareHouse\FrmStockReport.designer.cs">
+      <DependentUpon>FrmStockReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Common\FrmAnnualSummary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Common\FrmAnnualSummary.designer.cs">
+      <DependentUpon>FrmAnnualSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Common\FrmClearAll.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Common\FrmClearAll.designer.cs">
+      <DependentUpon>FrmClearAll.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Common\FrmMonthlyStatistic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Common\FrmMonthlyStatistic.designer.cs">
+      <DependentUpon>FrmMonthlyStatistic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Common\FrmSystemMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Common\FrmSystemMessage.designer.cs">
+      <DependentUpon>FrmSystemMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\System\Frm_Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\System\Frm_Login.Designer.cs">
+      <DependentUpon>Frm_Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Test\Test.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Test\Test.Designer.cs">
+      <DependentUpon>Test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WareHouse\FrmAddPurchaseItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\WareHouse\FrmAddPurchaseItem.designer.cs">
+      <DependentUpon>FrmAddPurchaseItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WareHouse\FrmEditItemDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\WareHouse\FrmEditItemDetail.Designer.cs">
+      <DependentUpon>FrmEditItemDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WareHouse\FrmEditStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\WareHouse\FrmEditStock.designer.cs">
+      <DependentUpon>FrmEditStock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WareHouse\FrmEditWareHouse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\WareHouse\FrmEditWareHouse.designer.cs">
+      <DependentUpon>FrmEditWareHouse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WareHouse\FrmImportItemStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\WareHouse\FrmImportItemStock.designer.cs">
+      <DependentUpon>FrmImportItemStock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WareHouse\FrmItemDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\WareHouse\FrmItemDetail.designer.cs">
+      <DependentUpon>FrmItemDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WareHouse\FrmMonthReportSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\WareHouse\FrmMonthReportSearch.Designer.cs">
+      <DependentUpon>FrmMonthReportSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WareHouse\FrmPurchase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\WareHouse\FrmPurchase.designer.cs">
+      <DependentUpon>FrmPurchase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WareHouse\FrmReports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\WareHouse\FrmReports.designer.cs">
+      <DependentUpon>FrmReports.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WareHouse\FrmSetPurchaseQuantity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\WareHouse\FrmSetPurchaseQuantity.Designer.cs">
+      <DependentUpon>FrmSetPurchaseQuantity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WareHouse\FrmSetStoragePos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\WareHouse\FrmSetStoragePos.Designer.cs">
+      <DependentUpon>FrmSetStoragePos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WareHouse\FrmStockAlert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\WareHouse\FrmStockAlert.designer.cs">
+      <DependentUpon>FrmStockAlert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WareHouse\FrmStockSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\WareHouse\FrmStockSearch.designer.cs">
+      <DependentUpon>FrmStockSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WareHouse\FrmTakeOut.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\WareHouse\FrmTakeOut.designer.cs">
+      <DependentUpon>FrmTakeOut.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WareHouse\FrmWareHouse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\WareHouse\FrmWareHouse.designer.cs">
+      <DependentUpon>FrmWareHouse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WareHouse\FrmYearReportSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\WareHouse\FrmYearReportSearch.Designer.cs">
+      <DependentUpon>FrmYearReportSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WareHouse\NotifyWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\WareHouse\SetWareHouseAlias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\WareHouse\SetWareHouseAlias.designer.cs">
+      <DependentUpon>SetWareHouseAlias.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AddParamLog.resx">
-      <DependentUpon>AddParamLog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MenuMgr.resx">
-      <DependentUpon>MenuMgr.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\JCodes.Framework.BLL\JCodes.Framework.BLL.csproj">
+      <Project>{2ec4520f-5197-4e3f-b689-7023a98623e0}</Project>
+      <Name>JCodes.Framework.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JCodes.Framework.CommonControl\JCodes.Framework.CommonControl.csproj">
+      <Project>{64cfe6d2-0684-4d68-bfa0-ec7effdf4623}</Project>
+      <Name>JCodes.Framework.CommonControl</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JCodes.Framework.Common\JCodes.Framework.Common.csproj">
       <Project>{0DC2C51C-4601-4045-A412-BED930658C2C}</Project>
       <Name>JCodes.Framework.Common</Name>
@@ -87,10 +295,132 @@
       <Project>{22D7993C-A8C8-4306-90A4-96FF76A12C0A}</Project>
       <Name>JCodes.Framework.Entity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JCodes.Framework.Enum\JCodes.Framework.Enum.csproj">
+    <ProjectReference Include="..\JCodes.Framework.Enum\JCodes.Framework.jCodesenum.csproj">
       <Project>{BD86470B-26C1-4B51-B6A8-3F11CEBB4950}</Project>
-      <Name>JCodes.Framework.Enum</Name>
+      <Name>JCodes.Framework.jCodesenum</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo_banner.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\ManagerSelectControl.resx">
+      <DependentUpon>ManagerSelectControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Other\WareHouse\FrmAnnualSummary.resx">
+      <DependentUpon>FrmAnnualSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Other\WareHouse\FrmClearAll.resx">
+      <DependentUpon>FrmClearAll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Other\WareHouse\FrmMonthlyStatistic.resx">
+      <DependentUpon>FrmMonthlyStatistic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Other\WareHouse\FrmSystemMessage.resx">
+      <DependentUpon>FrmSystemMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\WareHouse\FrmCategoryReport.resx">
+      <DependentUpon>FrmCategoryReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\WareHouse\FrmLineHistoryReport.resx">
+      <DependentUpon>FrmLineHistoryReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\WareHouse\FrmMultiItemReport.resx">
+      <DependentUpon>FrmMultiItemReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\WareHouse\FrmStatisticReport.resx">
+      <DependentUpon>FrmStatisticReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\WareHouse\FrmStockReport.resx">
+      <DependentUpon>FrmStockReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Common\FrmAnnualSummary.resx">
+      <DependentUpon>FrmAnnualSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Common\FrmClearAll.resx">
+      <DependentUpon>FrmClearAll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Common\FrmMonthlyStatistic.resx">
+      <DependentUpon>FrmMonthlyStatistic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Common\FrmSystemMessage.resx">
+      <DependentUpon>FrmSystemMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\System\Frm_Login.resx">
+      <DependentUpon>Frm_Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Test\Test.resx">
+      <DependentUpon>Test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\WareHouse\FrmAddPurchaseItem.resx">
+      <DependentUpon>FrmAddPurchaseItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\WareHouse\FrmEditItemDetail.resx">
+      <DependentUpon>FrmEditItemDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\WareHouse\FrmEditStock.resx">
+      <DependentUpon>FrmEditStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\WareHouse\FrmEditWareHouse.resx">
+      <DependentUpon>FrmEditWareHouse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\WareHouse\FrmImportItemStock.resx">
+      <DependentUpon>FrmImportItemStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\WareHouse\FrmItemDetail.resx">
+      <DependentUpon>FrmItemDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\WareHouse\FrmMonthReportSearch.resx">
+      <DependentUpon>FrmMonthReportSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\WareHouse\FrmPurchase.resx">
+      <DependentUpon>FrmPurchase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\WareHouse\FrmReports.resx">
+      <DependentUpon>FrmReports.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\WareHouse\FrmSetPurchaseQuantity.resx">
+      <DependentUpon>FrmSetPurchaseQuantity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\WareHouse\FrmSetStoragePos.resx">
+      <DependentUpon>FrmSetStoragePos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\WareHouse\FrmStockAlert.resx">
+      <DependentUpon>FrmStockAlert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\WareHouse\FrmStockSearch.resx">
+      <DependentUpon>FrmStockSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\WareHouse\FrmTakeOut.resx">
+      <DependentUpon>FrmTakeOut.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\WareHouse\FrmWareHouse.resx">
+      <DependentUpon>FrmWareHouse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\WareHouse\FrmYearReportSearch.resx">
+      <DependentUpon>FrmYearReportSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\WareHouse\NotifyWindow.resx">
+      <DependentUpon>NotifyWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\WareHouse\SetWareHouseAlias.resx">
+      <DependentUpon>SetWareHouseAlias.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\%2812,41%29.png" />
+    <Content Include="Resources\%2813,41%29.png" />
+    <Content Include="Resources\deletefile.png" />
+    <Content Include="Resources\Product.png" />
+    <Content Include="Resources\Quit.ico" />
+    <Content Include="Resources\Stock2.ICO" />
+    <Content Include="Resources\Toolbar.gif" />
+    <Content Include="Resources\Toolbar.ico" />
+    <Content Include="Resources\undo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

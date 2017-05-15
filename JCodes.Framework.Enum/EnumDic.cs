@@ -1,7 +1,6 @@
 ﻿using System;
 
-
-namespace JCodes.Framework.Enum
+namespace JCodes.Framework.jCodesenum
 {
     /// <summary>
     /// 数据字典 000000

@@ -1,0 +1,3245 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>org.in2bits.MyXls</name>
+    </assembly>
+    <members>
+        <member name="T:org.in2bits.MyXls.WorksheetTypes">
+            <summary>
+            Excel Worksheet Types
+            </summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.WorksheetTypes.Default">
+            <summary>Default (Worksheet)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.WorksheetTypes.Worksheet">
+            <summary>Worksheet (Default)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.WorksheetTypes.Chart">
+            <summary>Chart Worksheet</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.WorksheetTypes.VBModule">
+            <summary>VB Module Worksheet</summary>
+        </member>
+        <member name="T:org.in2bits.MyOle2.Msat">
+            <summary>
+            Represents the MSAT (Master Sector Allocation Table) for an OLE2 Document.
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyOle2.Msat.#ctor(org.in2bits.MyOle2.Ole2Document)">
+            <summary>
+            Initializes a new instance of the Msat class for the given Doc object.
+            </summary>
+            <param name="doc">The parent Doc object for the new Msat object.</param>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Msat.SectorCount">
+            <summary>
+            Gets the count of MSAT sectors used by this MSAT.  This value is zero if
+            the MSAT contains &lt;= 109 SIDs, which will be contained in the Header sector.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Msat.SID0">
+            <summary>
+            Gets the SID0, or SID of the first sector, of the MSAT.  If SectorCount
+            is 0 (zero), the SID0 will return -2.  Currently, 0 is the only value 
+            other than -2 returned, as the current MyOle2 implementation always
+            places any MSAT sectors as the first sectors in the document.
+            </summary>
+        </member>
+        <member name="T:org.in2bits.MyOle2.Header">
+            <summary>
+            Contains properties and information about the Header of an OLE2 document.
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyOle2.Header.#ctor(org.in2bits.MyOle2.Ole2Document)">
+            <summary>
+            Initializes a new instance of the Header class for the given Document object.
+            </summary>
+            <param name="doc">The parent OleDocument object for this Header object.</param>
+        </member>
+        <member name="T:org.in2bits.MyXls.CellCoordinate">
+            <summary>
+            Holds the Row and Column indices for a Cell's Coordinate value.
+            </summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.CellCoordinate.Row">
+            <summary>
+            Row index (1-based).
+            </summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.CellCoordinate.Column">
+            <summary>
+            Column index (1-based).
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyXls.CellCoordinate.#ctor(System.UInt16,System.UInt16)">
+            <summary>
+            Initializes a new instance of the CellCoordinate struct with the given values.
+            </summary>
+            <param name="row">Row index (1-based).</param>
+            <param name="column">Column index (1-based).</param>
+        </member>
+        <member name="T:org.in2bits.MyXls.ByteUtil.Bytes">
+            <summary>
+            A helper class to manage byte arrays, allowing subdividing and combining
+            arrays without incurring the cost of copying the bytes from one array to
+            another.
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyXls.ByteUtil.Bytes.#ctor">
+            <summary>
+            Initializes a new, empty, instance of the Bytes class.
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyXls.ByteUtil.Bytes.#ctor(System.Byte)">
+            <summary>
+            Initializes a new instance of the Bytes class containing the provided byte.
+            </summary>
+            <param name="b">byte with which to initialize this Bytes instance.</param>
+        </member>
+        <member name="M:org.in2bits.MyXls.ByteUtil.Bytes.#ctor(System.Byte[])">
+            <summary>
+            Initializes a new instance of the Bytes class containing the provided byte
+            array.
+            </summary>
+            <param name="byteArray">Array of bytes to initialize this Bytes instance.</param>
+        </member>
+        <member name="M:org.in2bits.MyXls.ByteUtil.Bytes.#ctor(org.in2bits.MyXls.ByteUtil.Bytes)">
+            <summary>
+            Initializes a new instance of the Bytes class containing the same bytes as the
+            provided Bytes object.
+            </summary>
+            <param name="bytes">Bytes class to initialize this Bytes instance.</param>
+        </member>
+        <member name="M:org.in2bits.MyXls.ByteUtil.Bytes.Append(System.Byte[])">
+            <summary>
+            Appends the provided byte array at the end of the existing bytes in this
+            Bytes object.
+            </summary>
+            <param name="byteArray">The byte array to append at the end of this Bytes
+            object.</param>
+        </member>
+        <member name="M:org.in2bits.MyXls.ByteUtil.Bytes.Append(System.Byte)">
+            <summary>
+            Appends a single byte to the end of this Bytes object.
+            </summary>
+            <param name="b">They byte to append to the end of this object.</param>
+        </member>
+        <member name="M:org.in2bits.MyXls.ByteUtil.Bytes.Append(org.in2bits.MyXls.ByteUtil.Bytes)">
+            <summary>
+            Appends the contents of the provided Bytes object to the end of this
+            Bytes object.
+            </summary>
+            <param name="bytes">The Bytes object whose contents are to be appended
+            at the end of this Bytes object.</param>
+        </member>
+        <member name="M:org.in2bits.MyXls.ByteUtil.Bytes.Prepend(System.Byte[])">
+            <summary>
+            Prepends the provided byte array at the beginning of the existing bytes in this
+            Bytes object.
+            </summary>
+            <param name="byteArray">The byte array to prepend at the beginning of this Bytes
+            object.</param>
+        </member>
+        <member name="M:org.in2bits.MyXls.ByteUtil.Bytes.Prepend(org.in2bits.MyXls.ByteUtil.Bytes)">
+            <summary>
+            Prepends the contents of the provided Bytes object to the beginning of this
+            Bytes object.
+            </summary>
+            <param name="bytes">The Bytes object whose contents are to be prepended
+            at the beginning of this Bytes object.</param>
+        </member>
+        <member name="M:org.in2bits.MyXls.ByteUtil.Bytes.Get(System.Int32)">
+            <summary>
+            Gets a Bytes object containing the first intLength bytes in this Bytes object.
+            </summary>
+            <param name="getLength">The number of bytes to return from the beginning of
+            this Bytes object in a new Bytes object.</param>
+            <returns>A Bytes object containing the provided number of bytes from the beginning
+            of this Bytes object.</returns>
+        </member>
+        <member name="M:org.in2bits.MyXls.ByteUtil.Bytes.Get(System.Int32,System.Int32)">
+            <summary>
+            Gets a Bytes object containing intLength bytes in this Bytes object,
+            beginning at offset.
+            </summary>
+            <param name="offset">The index at which the sub-array of bytes is to be returned
+            from this Bytes object in a new Bytes object.</param>
+            <param name="getLength">The number of bytes to return from this Bytes object 
+            in a new Bytes object.</param>
+            <returns>A Bytes object containing the provided number of bytes from this Bytes 
+            object, beginning at the provided offset.</returns>
+        </member>
+        <member name="M:org.in2bits.MyXls.ByteUtil.Bytes.AreEqual(System.Byte[],System.Byte[])">
+            <summary>
+            Determines whether the two provided byte arrays are equal by byte-values.
+            </summary>
+            <param name="a">The first byte array to compare.</param>
+            <param name="b">The second byte array to copare.</param>
+            <returns>true if a and b are byte-equal, false otherwise</returns>
+        </member>
+        <member name="M:org.in2bits.MyXls.ByteUtil.Bytes.GetBits">
+            <summary>
+            Gets a Bits object representing the Bits comprising these Bytes.
+            </summary>
+            <returns>A Bits object representing the Bits comprising these Bytes.</returns>
+        </member>
+        <member name="P:org.in2bits.MyXls.ByteUtil.Bytes.Length">
+            <summary>
+            Gets the length or number of bytes in this Bytes object.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.ByteUtil.Bytes.ByteArray">
+            <summary>
+            Gets a byte array containing all bytes in this Bytes object.
+            </summary>
+        </member>
+        <member name="T:org.in2bits.MyXls.ByteUtil.Bytes.Bits">
+            <summary>
+            A helper class to manage bit (bool) arrays and lists, encapsulating helper
+            methods for subdividing and converting to/from bytes.
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyXls.ByteUtil.Bytes.Bits.#ctor(org.in2bits.MyXls.ByteUtil.Bytes)">
+            <summary>
+            Initializes a new instance of the Bits class from the given Bytes.
+            </summary>
+            <param name="bytes">The Bytes whose bits this Bits object will represent.</param>
+        </member>
+        <member name="M:org.in2bits.MyXls.ByteUtil.Bytes.Bits.#ctor(System.Boolean[])">
+            <summary>
+            Initializes a new instance of the Bits class from the given byte array.
+            </summary>
+            <param name="bits">The bytes whose bits this Bits object will represent.</param>
+        </member>
+        <member name="M:org.in2bits.MyXls.ByteUtil.Bytes.Bits.Prepend(System.Boolean)">
+            <summary>
+            Prepends the specified bit to the beginning of this Bits collection.
+            </summary>
+            <param name="bit">The bit to prepend.</param>
+        </member>
+        <member name="M:org.in2bits.MyXls.ByteUtil.Bytes.Bits.Get(System.Int32)">
+            <summary>
+            Gets a new Bits object containing the first getLength bits in this Bits object.
+            </summary>
+            <param name="getLength">The number of bits to return from the beginning of
+            this Bits object in a new Bits object.</param>
+            <returns>A new Bits object containing the provided number of bits from the beginning
+            of this Bits object.</returns>
+        </member>
+        <member name="M:org.in2bits.MyXls.ByteUtil.Bytes.Bits.Get(System.Int32,System.Int32)">
+            <summary>
+            Gets a new Bits object containing intLength bits in this Bits object,
+            beginning at offset.
+            </summary>
+            <param name="offset">The start index from which the new Bits object is to be returned
+            from this Bits object.</param>
+            <param name="getLength">The number of bits to return from this Bits object 
+            in a new Bits object.</param>
+            <returns>A new Bits object containing the provided number of bits from this Bits 
+            object, beginning at the provided offset.</returns>
+        </member>
+        <member name="M:org.in2bits.MyXls.ByteUtil.Bytes.Bits.ToUInt32">
+            <summary>
+            Calculates and returns the uint which these bits represnt.
+            </summary>
+            <returns>The uint value represented by these bits.</returns>
+        </member>
+        <member name="M:org.in2bits.MyXls.ByteUtil.Bytes.Bits.ToInt32">
+            <summary>
+            Calculates and returns the int which these bits represent.
+            </summary>
+            <returns>The int value represented by these bits.</returns>
+        </member>
+        <member name="M:org.in2bits.MyXls.ByteUtil.Bytes.Bits.ToUInt16">
+            <summary>
+            Calculates and returns the ushort which these bits represent.
+            </summary>
+            <returns>The ushort value represented by these bits.</returns>
+        </member>
+        <member name="M:org.in2bits.MyXls.ByteUtil.Bytes.Bits.ToUInt64">
+            <summary>
+            Calculates and returns the ulong which these bits represent.
+            </summary>
+            <returns>The ulong value represented by these bits.</returns>
+        </member>
+        <member name="M:org.in2bits.MyXls.ByteUtil.Bytes.Bits.GetBytes">
+            <summary>
+            Calculates and returns a Bytes object containing the bytes which these bits represent.
+            </summary>
+            <returns>A Bytes object containing the bytes represented by these bits.</returns>
+        </member>
+        <member name="M:org.in2bits.MyXls.ByteUtil.Bytes.Bits.ToDouble">
+            <summary>
+            Calculates and returns the double precision floating-point value which these bits represent.
+            </summary>
+            <returns>The double precision floating-point value represented by these bits.</returns>
+        </member>
+        <member name="P:org.in2bits.MyXls.ByteUtil.Bytes.Bits.Length">
+            <summary>
+            Gets the length or number of bits in this Bits object.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.ByteUtil.Bytes.Bits.Values">
+            <summary>
+            Gets a bool[] representing the bits in this Bits object.
+            </summary>
+        </member>
+        <member name="T:org.in2bits.MyXls.TextRotations">
+            <summary>
+            Indicates text rotation.
+            </summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.TextRotations.Default">
+            <summary>Default TextRotations value (0 degrees).</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.TextRotations.Stacked">
+            <summary>Letters are stacked top-to-bottom, but not rotated</summary>
+        </member>
+        <member name="T:org.in2bits.MyXls.FontFamilies">
+            <summary>
+            The Font Families available for formatting in Excel.
+            </summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.FontFamilies.Default">
+            <summary>Default Font Family : None (unknown or don't care)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.FontFamilies.None">
+            <summary>None (unknown or don't care)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.FontFamilies.Roman">
+            <summary>Roman (variable width, serifed)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.FontFamilies.Swiss">
+            <summary>Swiss (variable width, sans-serifed)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.FontFamilies.Modern">
+            <summary>Modern (fixed width, serifed or sans-serifed)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.FontFamilies.Script">
+            <summary>Script (cursive)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.FontFamilies.Decorative">
+            <summary>Decorative (specialised, for example Old English, Fraktur)</summary>
+        </member>
+        <member name="T:org.in2bits.MyOle2.Metadata.Property">
+            <summary>
+            Represents a OLE2 Summary Information stream property.
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyOle2.Metadata.Property.#ctor(System.UInt32,org.in2bits.MyOle2.Metadata.Property.Types,System.Object)">
+            <summary>
+            Initializes a new instance of the Property class with the given id, type and value.
+            </summary>
+            <param name="id">The id for the new Property.</param>
+            <param name="type">The type of the new Property.</param>
+            <param name="value">The value of the new Property.</param>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.Property.Type">
+            <summary>
+            Gets the Types value of this Property.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.Property.Id">
+            <summary>
+            Gets the Id of this Property.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.Property.Value">
+            <summary>
+            Gets or sets the Value of this Property.
+            </summary>
+        </member>
+        <member name="T:org.in2bits.MyOle2.Metadata.Property.Types">
+            <summary>
+            The different OLE2 Summary Information stream property types.
+            </summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_EMPTY">
+            <summary>nothing</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_NULL">
+            <summary>SQL style Null</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_I2">
+            <summary>2 byte signed int</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_I4">
+            <summary>4 byte signed int</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_R4">
+            <summary>4 byte real</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_R8">
+            <summary>8 byte real</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_CY">
+            <summary>Currency</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_DATE">
+            <summary>Date</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_BSTR">
+            <summary>OLE Automation string</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_DISPATCH">
+            <summary>*IDispatch</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_ERROR">
+            <summary>SCODE</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_BOOL">
+            <summary>Boolean (true=-1; false=0)</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_VARIANT">
+            <summary>Variant*</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_UNKNOWN">
+            <summary>IUnknown*</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_DECIMAL">
+            <summary>16 byte fixed point</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_I1">
+            <summary>signed char</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_UI1">
+            <summary>unsigned char</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_UI2">
+            <summary>unsigned short</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_UI4">
+            <summary>unsigned short</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_I8">
+            <summary>signed 64-bit int</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_UI8">
+            <summary>unsigned 64-bit int</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_INT">
+            <summary>signed machine int</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_UINT">
+            <summary>unsigned machine int</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_VOID">
+            <summary>C style void</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_HRESULT">
+            <summary>Standard return type</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_PTR">
+            <summary>pointer type</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_SAFEARRAY">
+            <summary>(use VT_ARRAY in VARIANT)</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_CARRAY">
+            <summary>C style array</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_USERDEFINED">
+            <summary>user defined type</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_LPSTR">
+            <summary>null terminated string</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_LPWSTR">
+            <summary>wide null terminated string</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_FILETIME">
+            <summary>FILETIME</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_BLOB">
+            <summary>length prefixed bytes</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_STREAM">
+            <summary>Name of the stream follows</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_STORAGE">
+            <summary>Name of the storage follows</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_STREAMED_OBJECT">
+            <summary>Stream contains an object</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_STORED_OBJECT">
+            <summary>Storage contains an object</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_BLOB_OBJECT">
+            <summary>Blob contains an object</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_CF">
+            <summary>Clipboard format</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_CLSID">
+            <summary>A Class ID</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_VECTOR">
+            <summary>simple counted array</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_ARRAY">
+            <summary>SAFEARRAY*</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_BYREF">
+            <summary>void* for local use</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_RESERVED">
+            <summary></summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_ILLEGAL">
+            <summary></summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_ILLEGALMASKED">
+            <summary></summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.Property.Types.VT_TYPEMASK">
+            <summary></summary>
+        </member>
+        <member name="T:org.in2bits.MyXls.StandardFormats">
+            <summary>
+            The standard (built-in) Excel Format strings.
+            NOTE: Currency_1 thru Currency_8 differ from the excelfileformat.pdf doc 
+            by the added \'s (backslashes)
+            </summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.StandardFormats.General">
+            <summary>General: General</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.StandardFormats.Decimal_1">
+            <summary>Decimal 1: 0</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.StandardFormats.Decimal_2">
+            <summary>Decimal 2: 0.00</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.StandardFormats.Decimal_3">
+            <summary>Decimal 3: #,##0</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.StandardFormats.Decimal_4">
+            <summary>Decimal 4: #,##0.00</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.StandardFormats.Currency_1">
+            <summary>Currency 1: "$"#,##0_);("$"#,##0)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.StandardFormats.Currency_2">
+            <summary>Currency 2: "$"#,##0_);[Red]("$"#,##0)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.StandardFormats.Currency_3">
+            <summary>Currency 3: "$"#,##0.00_);("$"#,##0.00)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.StandardFormats.Currency_4">
+            <summary>Currency 4: "$"#,##0.00_);[Red]("$"#,##0.00)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.StandardFormats.Percent_1">
+            <summary>Percent 1: 0%</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.StandardFormats.Percent_2">
+            <summary>Percent 2: 0.00%</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.StandardFormats.Scientific_1">
+            <summary>Scientific 1: 0.00E+00</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.StandardFormats.Fraction_1">
+            <summary>Fraction 1: # ?/?</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.StandardFormats.Fraction_2">
+            <summary>Fraction 2: # ??/??</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.StandardFormats.Date_1">
+            <summary>Date 1: M/D/YY</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.StandardFormats.Date_2">
+            <summary>Date 2: D-MMM-YY</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.StandardFormats.Date_3">
+            <summary>Date 3: D-MMM</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.StandardFormats.Date_4">
+            <summary>Date 4: MMM-YY</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.StandardFormats.Time_1">
+            <summary>Time 1: h:mm AM/PM</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.StandardFormats.Time_2">
+            <summary>Time 2: h:mm:ss AM/PM</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.StandardFormats.Time_3">
+            <summary>Time 3: h:mm</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.StandardFormats.Time_4">
+            <summary>Time 4: h:mm:ss</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.StandardFormats.Date_Time">
+            <summary>Date/Time: M/D/YY h:mm</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.StandardFormats.Accounting_1">
+            <summary>Accounting 1: _(#,##0_);(#,##0)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.StandardFormats.Accounting_2">
+            <summary>Accounting 2: _(#,##0_);[Red](#,##0)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.StandardFormats.Accounting_3">
+            <summary>Accounting 3: _(#,##0.00_);(#,##0.00)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.StandardFormats.Accounting_4">
+            <summary>Accounting 4: _(#,##0.00_);[Red](#,##0.00)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.StandardFormats.Currency_5">
+            <summary>Currency 5: _("$"* #,##0_);_("$"* (#,##0);_("$"* "-"_);_(@_)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.StandardFormats.Currency_6">
+            <summary>Currency 6: _(* #,##0_);_(* (#,##0);_(* "-"_);_(@_)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.StandardFormats.Currency_7">
+            <summary>Currency 7: _("$"* #,##0.00_);_("$"* (#,##0.00);_("$"* "-"??_);_(@_)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.StandardFormats.Currency_8">
+            <summary>Currency 8: _(* #,##0.00_);_(* (#,##0.00);_(* "-"??_);_(@_)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.StandardFormats.Time_5">
+            <summary>Time 5: mm:ss</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.StandardFormats.Time_6">
+            <summary>Time 6: [h]:mm:ss</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.StandardFormats.Time_7">
+            <summary>Time 7: mm:ss.0</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.StandardFormats.Scientific_2">
+            <summary>Scientific 2: ##0.0E+0</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.StandardFormats.Text">
+            <summary>Text: @</summary>
+        </member>
+        <member name="T:org.in2bits.MyXls.LineStyle">
+            <summary>
+            Line Styles
+            </summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.LineStyle.None">
+            <summary>No Style</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.LineStyle.Thin">
+            <summary>Thin</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.LineStyle.Medium">
+            <summary>Medium</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.LineStyle.Dashed">
+            <summary>Dashed</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.LineStyle.Dotted">
+            <summary>Dotted</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.LineStyle.Thick">
+            <summary>Thick</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.LineStyle.Double">
+            <summary>Double</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.LineStyle.Hair">
+            <summary>Hair</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.LineStyle.MediumDashed">
+            <summary>Medium dashed</summary>
+            <remarks>BIFF8 Only</remarks>
+        </member>
+        <member name="F:org.in2bits.MyXls.LineStyle.DashDot">
+            <summary>Dash-dot</summary>
+            <remarks>BIFF8 Only</remarks>
+        </member>
+        <member name="F:org.in2bits.MyXls.LineStyle.MediumDashDot">
+            <summary>Medium dash-dot</summary>
+            <remarks>BIFF8 Only</remarks>
+        </member>
+        <member name="F:org.in2bits.MyXls.LineStyle.DashDotDot">
+            <summary>Dash-dot-dot</summary>
+            <remarks>BIFF8 Only</remarks>
+        </member>
+        <member name="F:org.in2bits.MyXls.LineStyle.MediumDashDotDot">
+            <summary>Medium dash-dot-dot</summary>
+            <remarks>BIFF8 Only</remarks>
+        </member>
+        <member name="F:org.in2bits.MyXls.LineStyle.SlantedDashDot">
+            <summary>Slanted dash-dot</summary>
+            <remarks>BIFF8 Only</remarks>
+        </member>
+        <member name="T:org.in2bits.MyXls.BIFF8">
+            <summary>
+            Contains constant values pertaining to the BIFF8 format for use in MyXLS.
+            </summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.BIFF8.MaxRows">
+            <summary>
+            The maximum rows a BIFF8 document may contain.
+            </summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.BIFF8.MaxCols">
+            <summary>
+            The maximum columns a BIFF8 document may contain.
+            </summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.BIFF8.MaxBytesPerRecord">
+            <summary>
+            The maximum number of bytes in a BIFF8 record (minus 4 bytes for 
+            the Record ID and the data size, leaves 8224 bytes for data).
+            </summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.BIFF8.MaxDataBytesPerRecord">
+            <summary>
+            The maximum number of bytes available for data in a BIFF8 record
+            (plus 4 bytes for the Record ID and the data size, gives 8228 total
+            bytes).
+            </summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.BIFF8.MaxCharactersPerCell">
+            <summary>
+            The Maximum number of characters that can be written to or read
+            from a Cell in Excel.  I'm guessing it is short.MaxValue instead 
+            of ushort.MaxValue to allow for double-byte chars (Unicode).
+            </summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.BIFF8.NameWorkbook">
+            <summary>
+            The name of the Workbook stream in an OLE2 Document.
+            </summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.BIFF8.NameSummaryInformation">
+            <summary>
+            The name of the SummaryInformation stream in an OLE2 Document.
+            </summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.BIFF8.NameDocumentSummaryInformation">
+            <summary>
+            The name of the DocumentSummaryInformation stream in an OLE2 Document.
+            </summary>
+        </member>
+        <member name="T:org.in2bits.MyOle2.Metadata.OriginOperatingSystems">
+            <summary>
+             Origin Operating System choices in OLE2 SummaryInformation streams.
+            </summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.OriginOperatingSystems.Win16">
+            <summary>16-bit Windows</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.OriginOperatingSystems.Macintosh">
+            <summary>Macintosh</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.OriginOperatingSystems.Win32">
+            <summary>32-bit Windows</summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.OriginOperatingSystems.Default">
+            <summary>Default - 32-bit Windows</summary>
+        </member>
+        <member name="T:org.in2bits.MyXls.Style">
+            <summary>
+            Represents a Style in Excel.
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyXls.Style.Equals(org.in2bits.MyXls.Style)">
+            <summary>
+            Returns whether a given Style object is value-equal to this Style object.
+            </summary>
+            <param name="that">Another Style object to compare to this Style object.</param>
+            <returns>true if that Style object is value-equal to this Style object,
+            false otherwise.</returns>
+        </member>
+        <member name="M:org.in2bits.MyXls.Style.Clone">
+            <summary>
+            Returns a new Style object which is value-equal to this Style object.
+            </summary>
+            <returns>A new Style object which is value-equal to this Style object.</returns>
+        </member>
+        <member name="P:org.in2bits.MyXls.Style.ID">
+            <summary>
+            Gets the ID value of this Style object.
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyXls.Record.GetAll(org.in2bits.MyXls.ByteUtil.Bytes)">
+            <summary>
+            
+            </summary>
+            <param name="stream"></param>
+            <returns></returns>
+        </member>
+        <member name="T:org.in2bits.MyOle2.Ssat">
+            <summary>
+            Represents the SSAT (Short Sector Allocation Table) of an OLE2 Document.
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyOle2.Ssat.#ctor(org.in2bits.MyOle2.Ole2Document)">
+            <summary>
+            Initializes a new instance of the Ssat class for the provided Doc object.
+            </summary>
+            <param name="doc">The parent Doc object for this new Ssat object.</param>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Ssat.SectorCount">
+            <summary>
+            Gets a count of the sectors required for this Ssat in the Doc.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Ssat.SID0">
+            <summary>
+            Gets the SID0, or SID of the first sector, of this Ssat.
+            </summary>
+        </member>
+        <member name="T:org.in2bits.MyXls.ColumnInfo">
+            <summary>
+            Describes a range of columns and properties to set on those columns (column width, etc.).
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyXls.ColumnInfo.#ctor(org.in2bits.MyXls.XlsDocument,org.in2bits.MyXls.Worksheet)">
+            <summary>
+            Initializes a new instance of the ColumnInfo class for the given Doc
+            and Worksheet.
+            </summary>
+            <param name="doc">The parent MyXls.Doc object for the new ColumnInfo object.</param>
+            <param name="worksheet">The parent MyXls.Worksheet object for the new ColumnInfo object.</param>
+        </member>
+        <member name="P:org.in2bits.MyXls.ColumnInfo.ColumnIndexStart">
+            <summary>
+            Gets or sets index to first column in the range.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.ColumnInfo.ColumnIndexEnd">
+            <summary>
+            Gets or set index to last column in the range.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.ColumnInfo.Width">
+            <summary>
+            Gets or sets width of the columns in 1/256 of the width of the zero character, using default font (first FONT record in the file).
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.ColumnInfo.ExtendedFormat">
+            <summary>
+            Gets or sets XF record (➜5.114) for default column formatting
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.ColumnInfo.Hidden">
+            <summary>
+            Gets or sets whether the columns included in this ColumnInfo definition are hidden.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.ColumnInfo.Collapsed">
+            <summary>
+            Gets or sets whether the columns included in this ColumnInfo definition are collapsed.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.ColumnInfo.OutlineLevel">
+            <summary>
+            Gets or sets the outline level of the columns (0 = no outline).
+            </summary>
+        </member>
+        <member name="T:org.in2bits.MyXls.XlsDocument">
+            <summary>
+            The root class of MyXls, containing general configuration properties and references to
+            the Workbook as well as the MyOle2 Document which will contain and format the workbook
+            when Sending or Saving.
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyXls.XlsDocument.#ctor">
+            <summary>
+            Initializes a new instance of the XlsDocument class.
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyXls.XlsDocument.#ctor(System.String)">
+            <summary>
+            Initializes a new XlsDocument from the provided file, reading in as much information
+            from the file as possible and representing it appropriately with MyXls objects
+            (Workbook, Worksheets, Cells, etc.).
+            </summary>
+            <param name="fileName">The name of the file to read into this XlsDocument.</param>
+        </member>
+        <member name="M:org.in2bits.MyXls.XlsDocument.#ctor(System.IO.Stream)">
+            <summary>
+            Initializes a new XlsDocument from the provided stream, reading in as much information
+            from the file as possible and representing it appropriately with MyXls objects
+            (Workbook, Worksheets, Cells, etc.).
+            </summary>
+            <param name="stream">The stream to read into this XlsDocument.</param>
+        </member>
+        <member name="M:org.in2bits.MyXls.XlsDocument.#ctor(System.Data.DataSet)">
+            <summary>
+            Initializes a new XlsDocument from the provided DataSet.  Each Table in the
+            DataSet will be written to a separate Worksheet.  The data for each table will
+            be written starting at A1 on each sheet, with a Header Row (A1 will be the
+            name of the first Column, A2 will be the first value).
+            </summary>
+            <param name="dataSet">The DataSet to write to this XlsDocument.</param>
+        </member>
+        <member name="M:org.in2bits.MyXls.XlsDocument.Send">
+            <summary>
+            Valid in an ASP.NET context only.  Sends this XlsDocument to the client with the 
+            given FileName as an attachment file, via the HttpResponse object.  Clears
+            the Response before sending and ends the Response after sending.
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyXls.XlsDocument.Send(org.in2bits.MyXls.XlsDocument.SendMethods)">
+            <summary>
+            Valid in an ASP.NET context only.  Sends this XlsDocument to the client with the 
+            given FileName as an attached or inline file, via the HttpResponse object.  Clears
+            the Response before sending and ends the Response after sending.
+            </summary>
+            <param name="sendMethod">Method to use to send document.</param>
+        </member>
+        <member name="M:org.in2bits.MyXls.XlsDocument.Save(System.Boolean)">
+            <summary>
+            Save this XlsDocument to the Current Directory. The FileName property will be used for
+            the FileName.
+            </summary>
+            <param name="overwrite">Whether to overwrite if the specified file already exists.</param>
+        </member>
+        <member name="M:org.in2bits.MyXls.XlsDocument.Save">
+            <summary>
+            Save this XlsDocument to the Current Directory.  The FileName property will be used
+            for the FileName.  Will not overwrite.
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyXls.XlsDocument.Save(System.String)">
+            <summary>
+            Save this XlsDocument to the given path.  The FileName property will be used for the
+            FileName.  Will not overwrite.
+            </summary>
+            <param name="path">The Path to which to save this XlsDocument.</param>
+        </member>
+        <member name="M:org.in2bits.MyXls.XlsDocument.Save(System.String,System.Boolean)">
+            <summary>
+            Save this XlsDocument to the given path.  The FileName property will be used for the
+            FileName.
+            </summary>
+            <param name="path">The Path to which to save this XlsDocument.</param>
+            <param name="overwrite">Whether to overwrite if the specified file already exists.</param>
+        </member>
+        <member name="M:org.in2bits.MyXls.XlsDocument.Save(System.IO.Stream)">
+            <summary>
+            Saves the XlsDocument to the given stream
+            </summary>
+            <param name="outStream"></param>
+        </member>
+        <member name="M:org.in2bits.MyXls.XlsDocument.NewXF">
+            <summary>
+            Gets a new XF (Formatting) object for use on this document.
+            </summary>
+            <returns>New XF formatting object.</returns>
+        </member>
+        <member name="P:org.in2bits.MyXls.XlsDocument.FileName">
+            <summary>
+            Gets or sets the FileName (no path) for this XlsDocument (effective when sending
+            to a Web client via the Send method).
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XlsDocument.OLEDoc">
+            <summary>
+            Gets this org.in2bits.MyXls XlsDocument's OLE2 Document.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XlsDocument.Workbook">
+            <summary>
+            Gets this org.in2bits.MyXls XlsDocument's Workbook.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XlsDocument.Bytes">
+            <summary>
+            Gets a Bytes object containing all the bytes of this OleDocument's stream.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XlsDocument.SummaryInformation">
+            <summary>
+            Gets the SummaryInformationSection for this XlsDocument.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XlsDocument.DocumentSummaryInformation">
+            <summary>
+            Gets the DocumentSummaryInformationSection for this XlsDocument.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XlsDocument.IsLittleEndian">
+            <summary>
+            Gets whether this XlsDocument is Little Endian.  In the current implementation of
+            MyXLS, this is always true.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XlsDocument.ForceStandardOle2Stream">
+            <summary>
+            Gets or sets whether to force the XlsDocument data to be padded to the length
+            of a Standard Stream in its MyOle2 document container, if it is less than 
+            standard length without padding.
+            </summary>
+        </member>
+        <member name="T:org.in2bits.MyXls.XlsDocument.SendMethods">
+            <summary>
+            Methods available to send XlsDocument to HTTP Client (Content-disposition header setting)
+            </summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.XlsDocument.SendMethods.Inline">
+            <summary>The client browser should try to open the file within browser window.</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.XlsDocument.SendMethods.Attachment">
+            <summary>The client browser should prompt to Save or Open the file.</summary>
+        </member>
+        <member name="T:org.in2bits.MyOle2.Metadata.MetadataStream">
+            <summary>
+            Provides base functionality to aid in representint an OLE2 Metadata Stream, 
+            such as the SummaryInformation or DocumentSummaryInformation streams.  Implementation
+            requirements were obtained from http://www.rainer-klute.de/~klute/Software/poibrowser/doc/HPSF-Description.html.
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyOle2.Metadata.MetadataStream.#ctor(org.in2bits.MyOle2.Ole2Document)">
+            <summary>
+            Initializes a new instance of the MetadataStream class for the given parent
+            Ole2Document.
+            </summary>
+            <param name="parentDocument">The parent Ole2Document for which to initialize
+            this MetadataStream.</param>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.MetadataStream.Sections">
+            <summary>
+            Gets the SectionList of this Metadata object.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.MetadataStream.Bytes">
+            <summary>
+            Gets a Bytes object containing all the bytes in this Metadata stream.
+            </summary>
+        </member>
+        <member name="T:org.in2bits.MyOle2.Metadata.MetadataStream.Header">
+            <summary>
+            Represents and provides functionality for managing an OLE2 Metadata Stream's Header.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.MetadataStream.Header.OriginOperatingSystem">
+            <summary>
+            Gets or sets the operating system on which this document was created.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.MetadataStream.Header.OriginOperatingSystemVersion">
+            <summary>
+            Gets or sets the version of the operating system on which this document was created.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.MetadataStream.Header.ClassID">
+            <summary>
+            Gets or sets the ClassID related to this document.
+            </summary>
+        </member>
+        <member name="T:org.in2bits.MyOle2.Metadata.MetadataStream.Section">
+            <summary>
+            Represents a Section of a SummaryInformation stream.
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyOle2.Metadata.MetadataStream.Section.SetProperty(System.UInt32,org.in2bits.MyOle2.Metadata.Property.Types,System.Object)">
+            <summary>
+            Sets the Property of the specified id and type to the supplied value.
+            </summary>
+            <param name="id">The id of the Property whose value is to be set.</param>
+            <param name="type">The type of the Property whose value is to be set.</param>
+            <param name="value">The value to which the specified Property is to be set.</param>
+        </member>
+        <member name="M:org.in2bits.MyOle2.Metadata.MetadataStream.Section.GetProperty(System.UInt32)">
+            <summary>
+            Gets the value of the Property with the specified id.
+            </summary>
+            <param name="id">The id of the Property whose value is to be returned.</param>
+            <returns>The value of the specified Property.</returns>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.MetadataStream.Section.FormatId">
+            <summary>
+            Gets or sets the Format ID of this MetadataStream Section.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.MetadataStream.Section.Properties">
+            <summary>
+            Gets the PropertyList of this Section.
+            </summary>
+        </member>
+        <member name="T:org.in2bits.MyOle2.Metadata.MetadataStream.SectionList">
+            <summary>
+            Manages the list of Sections for a SummaryInformation object.
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyOle2.Metadata.MetadataStream.SectionList.Add(org.in2bits.MyOle2.Metadata.MetadataStream.Section)">
+            <summary>
+            Adds a Section to this MetadataStream's Sections collection.
+            </summary>
+            <param name="section"><see crefk="Section" /> to add.</param>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.MetadataStream.SectionList.Count">
+            <summary>
+            Gets the number of Section objects in this SectionList.
+            </summary>
+        </member>
+        <member name="T:org.in2bits.MyXls.FontWeight">
+            <summary>Relative Weight of a font.</summary>
+            <remarks>Based on the <a href="http://www.microsoft.com/typography/otspec/otff.htm">OpenType</a> specification.</remarks>
+        </member>
+        <member name="F:org.in2bits.MyXls.FontWeight.Thin">
+            <summary>Thin (100) font weight.</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.FontWeight.ExtraLight">
+            <summary>Extra light (200) font weight.</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.FontWeight.Light">
+            <summary>Light (300) font weight.</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.FontWeight.Normal">
+            <summary>Normal (400) font weight.</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.FontWeight.Medium">
+            <summary>Medium (500) font weight.</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.FontWeight.SemiBold">
+            <summary>Semi-Bold (600) font weight.</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.FontWeight.Bold">
+            <summary>Bold (700) font weight.</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.FontWeight.ExtraBold">
+            <summary>Extra bold (800) font weight.</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.FontWeight.Heavy">
+            <summary>Heavy (900) font weight.</summary>
+        </member>
+        <member name="T:org.in2bits.MyXls.FontWeightConverter">
+            <summary>Conversions for FontWeight.</summary>
+        </member>
+        <member name="M:org.in2bits.MyXls.FontWeightConverter.Convert(System.UInt16)">
+            <summary>Convert from a ushort to a FontWeight value.</summary>
+            <param name="weight">Font weight value</param>
+            <returns>FontWeight</returns>
+        </member>
+        <member name="T:org.in2bits.MyXls.XlsText">
+            <summary>
+            This is not done by any stretch of the imagination.  What a can of worms!
+            </summary>
+        </member>
+        <member name="T:org.in2bits.MyXls.Colors">
+            <summary>
+             Provides named references to all colors in the standard (BIFF8) Excel
+             color palette.
+            </summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.EgaBlack">
+            <summary>EGA Black (use Black instead)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.EgaWhite">
+            <summary>EGA White (use White instead)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.EgaRed">
+            <summary>EGA Red (use Red instead)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.EgaGreen">
+            <summary>EGA Green (use Green instead)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.EgaBlue">
+            <summary>EGA Blue (use Blue instead)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.EgaYellow">
+            <summary>EGA Yellow (use Yellow instead)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.EgaMagenta">
+            <summary>EGA Magenta (use Magenta instead)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.EgaCyan">
+            <summary>EGA Cyan (use Cyan instead)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default08">
+            <summary>Default Palette Color Index 0x08 (#000000)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default09">
+            <summary>Default Palette Color Index 0x09 (#FFFFFF)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default0A">
+            <summary>Default Palette Color Index 0x0A (#FF0000)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default0B">
+            <summary>Default Palette Color Index 0x0B (#00FF00)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default0C">
+            <summary>Default Palette Color Index 0x0C (#0000FF)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default0D">
+            <summary>Default Palette Color Index 0x0D (#FFFF00)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default0E">
+            <summary>Default Palette Color Index 0x0E (#FF00FF)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default0F">
+            <summary>Default Palette Color Index 0x0F (#00FFFF)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default10">
+            <summary>Default Palette Color Index 0x10 (#800000)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default11">
+            <summary>Default Palette Color Index 0x11 (#008000)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default12">
+            <summary>Default Palette Color Index 0x12 (#000080)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default13">
+            <summary>Default Palette Color Index 0x13 (#808000)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default14">
+            <summary>Default Palette Color Index 0x14 (#800080)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default15">
+            <summary>Default Palette Color Index 0x15 (#008080)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default16">
+            <summary>Default Palette Color Index 0x16 (#C0C0C0)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default17">
+            <summary>Default Palette Color Index 0x17 (#808080)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default18">
+            <summary>Default Palette Color Index 0x18 (#9999FF)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default19">
+            <summary>Default Palette Color Index 0x19 (#993366)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default1A">
+            <summary>Default Palette Color Index 0x1A (#FFFFCC)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default1B">
+            <summary>Default Palette Color Index 0x1B (#CCFFFF)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default1C">
+            <summary>Default Palette Color Index 0x1C (#660066)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default1D">
+            <summary>Default Palette Color Index 0x1D (#FF8080)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default1E">
+            <summary>Default Palette Color Index 0x1E (#0066CC)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default1F">
+            <summary>Default Palette Color Index 0x1F (#CCCCFF)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default20">
+            <summary>Default Palette Color Index 0x20 (#000080)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default21">
+            <summary>Default Palette Color Index 0x21 (#FF00FF)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default22">
+            <summary>Default Palette Color Index 0x22 (#FFFF00)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default23">
+            <summary>Default Palette Color Index 0x23 (#00FFFF)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default24">
+            <summary>Default Palette Color Index 0x24 (#800080)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default25">
+            <summary>Default Palette Color Index 0x25 (#800000)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default26">
+            <summary>Default Palette Color Index 0x26 (#008080)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default27">
+            <summary>Default Palette Color Index 0x27 (#0000FF)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default28">
+            <summary>Default Palette Color Index 0x28 (#00CCFF)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default29">
+            <summary>Default Palette Color Index 0x29 (#CCFFFF)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default2A">
+            <summary>Default Palette Color Index 0x2A (#CCFFCC)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default2B">
+            <summary>Default Palette Color Index 0x2B (#FFFF99)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default2C">
+            <summary>Default Palette Color Index 0x2C (#99CCFF)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default2D">
+            <summary>Default Palette Color Index 0x2D (#FF99CC)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default2E">
+            <summary>Default Palette Color Index 0x2E (#CC99FF)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default2F">
+            <summary>Default Palette Color Index 0x2F (#FFCC99)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default30">
+            <summary>Default Palette Color Index 0x30 (#3366FF)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default31">
+            <summary>Default Palette Color Index 0x31 (#33CCCC)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default32">
+            <summary>Default Palette Color Index 0x32 (#99CC00)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default33">
+            <summary>Default Palette Color Index 0x33 (#FFCC00)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default34">
+            <summary>Default Palette Color Index 0x34 (#FF9900)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default35">
+            <summary>Default Palette Color Index 0x35 (#FF6600)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default36">
+            <summary>Default Palette Color Index 0x36 (#666699)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default37">
+            <summary>Default Palette Color Index 0x37 (#969696)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default38">
+            <summary>Default Palette Color Index 0x38 (#003366)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default39">
+            <summary>Default Palette Color Index 0x39 (#339966)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default3A">
+            <summary>Default Palette Color Index 0x3A (#003300)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default3B">
+            <summary>Default Palette Color Index 0x3B (#333300)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default3C">
+            <summary>Default Palette Color Index 0x3C (#993300)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default3D">
+            <summary>Default Palette Color Index 0x3D (#993366)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default3E">
+            <summary>Default Palette Color Index 0x3E (#333399)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Default3F">
+            <summary>Default Palette Color Index 0x3F (#333333)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Black">
+            <summary>Black - Alias for Default08</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.White">
+            <summary>White - Alias for Default09</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Red">
+            <summary>Red - Alias for Default0A</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Green">
+            <summary>Green - Alias for Default0B</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Blue">
+            <summary>Blue - Alias for Default0C</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Yellow">
+            <summary>Yellow - Alias for Default0D</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Magenta">
+            <summary>Magenta - Alias for Default0E</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Cyan">
+            <summary>Cyan - Alias for Default0F</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.DarkRed">
+            <summary>DarkRed - Alias for Default10</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.DarkGreen">
+            <summary>DarkGreen - Alias for Default11</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.DarkBlue">
+            <summary>DarkBlue - Alias for Default12</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Olive">
+            <summary>Olive - Alias for Default13</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Purple">
+            <summary>Purple - Alias for Default14</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Teal">
+            <summary>Teal - Alias for Default15</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Silver">
+            <summary>Silver - Alias for Default16</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.Grey">
+            <summary>Grey - Alias for Default17</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.SystemWindowTextColorForBorderLines">
+            <summary>System window text colour for border lines (used in records XF, CF, and WINDOW2 (BIFF8 only))</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.SystemWindowBackgroundColorForPatternBackground">
+            <summary>System window background colour for pattern background (used in records XF, and CF)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.SystemFaceColor">
+            <summary>System face colour (dialogue background colour)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.SystemWindowTextColorForChartBorderLines">
+            <summary>System window text colour for chart border lines</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.SystemWindowBackgroundColorForChartAreas">
+            <summary>System window background colour for chart areas</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.SystemAutomaticColorForChartBorderLines">
+            <summary>Automatic colour for chart border lines (seems to be always Black)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.SystemToolTipBackgroundColor">
+            <summary>System tool tip background colour (used in note objects)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.SystemToolTipTextColor">
+            <summary>System tool tip text colour (used in note objects)</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.Colors.DefaultLineColor">
+            <summary>System window text colour for fonts (used in records FONT, EFONT, and CF)</summary>
+        </member>
+        <member name="T:org.in2bits.MyOle2.Metadata.PropertyList">
+            <summary>
+            Represents a list of OLE2 Metadata Stream Properties.
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyOle2.Metadata.PropertyList.Add(org.in2bits.MyOle2.Metadata.Property,System.Boolean)">
+            <summary>
+            Adds a Property to this Collection, optionally overwriting any previously
+            existent Property with the same id.
+            </summary>
+            <param name="property">The Property to add to this collection.</param>
+            <param name="overwrite">true to allow overwriting any existing Property with the
+            same id, false otherwise.</param>
+        </member>
+        <member name="M:org.in2bits.MyOle2.Metadata.PropertyList.ContainsKey(System.UInt32)">
+            <summary>
+            Determines whether the PropertyList contains the specified key.
+            </summary>
+            <param name="id">The id of the Property to check for.</param>
+            <returns>true if this PropertyList contains the key id, false otherwise.</returns>
+        </member>
+        <member name="M:org.in2bits.MyOle2.Metadata.PropertyList.Remove(System.UInt32)">
+            <summary>
+            Removes the specified key from the PropertyList.
+            </summary>
+            <param name="id">The id of the Propert to remove.</param>
+            <returns>true if the Property with the specified id was removed, false otherwise.</returns>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.PropertyList.Item(System.UInt32)">
+            <summary>
+            Gets or sets the Property in this collection with the specified id.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.PropertyList.Count">
+            <summary>
+            Gets the number of Properties contained in this collection.
+            </summary>
+        </member>
+        <member name="T:org.in2bits.MyXls.SharedStringTable">
+            <summary>
+            NOTE: This seems kludgy and wrong, but it was the easiest way
+            I could think to allow for > int.MaxValue unique shared string 
+            values.  (The index into the SST is a uint, so the max possible 
+            unique BIFF8 allows for is uint.MaxValue.)
+            </summary>
+        </member>
+        <member name="T:org.in2bits.MyXls.Workbook">
+            <summary>
+            Another main class in an XlsDocument.  The Workbook holds all Worksheets, and properties
+            or settings global to all Worksheets.  It also holds the Fonts, Formats, Styles and XFs
+            collections.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Workbook.Worksheets">
+            <summary>
+            Gets the Worksheets collection for this Workbook.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Workbook.Fonts">
+            <summary>
+            Gets the Fonts collection for this Workbook.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Workbook.Formats">
+            <summary>
+            Gets the Formats collection for this Workbook.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Workbook.Styles">
+            <summary>
+            Gets the Styles collection for this workbook.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Workbook.ProtectContents">
+            <summary>
+            Gets or sets whether the contents of this Workbook's Worksheets
+            are protected (Adding/Removing/Reordering Worksheets, etc.).
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Workbook.ProtectWindowSettings">
+            <summary>
+            Gets or sets whether this Workbook's Window settings are protected
+            (Un/Freezing panes, etc.).
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Workbook.ShareStrings">
+            <summary>
+            Gets or sets whether this Workbook will optimize for smaller file 
+            size by utilizing a SharedStringTable for text values.
+            </summary>
+        </member>
+        <member name="T:org.in2bits.MyXls.VerticalAlignments">
+            <summary>
+            Vertical alignments available in an Excel document.
+            </summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.VerticalAlignments.Default">
+            <summary>Default - Bottom</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.VerticalAlignments.Top">
+            <summary>Top</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.VerticalAlignments.Centered">
+            <summary>Centered</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.VerticalAlignments.Bottom">
+            <summary>Bottom</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.VerticalAlignments.Justified">
+            <summary>Justified</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.VerticalAlignments.Distributed">
+            <summary>Distributed</summary>
+        </member>
+        <member name="T:org.in2bits.MyXls.UnderlineTypes">
+            <summary>
+            Underline types available in an Excel document.
+            </summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.UnderlineTypes.Default">
+            <summary>Default - None</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.UnderlineTypes.None">
+            <summary>None</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.UnderlineTypes.Single">
+            <summary>Single</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.UnderlineTypes.Double">
+            <summary>Double</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.UnderlineTypes.SingleAccounting">
+            <summary>Single Accounting</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.UnderlineTypes.DoubleAccounting">
+            <summary>Double Accounting</summary>
+        </member>
+        <member name="T:org.in2bits.MyXls.TextDirections">
+            <summary>
+            Indicates local culture's text direction (left-to-right or right-to-left).
+            </summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.TextDirections.Default">
+            <summary>Default - By Context</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.TextDirections.ByContext">
+            <summary>By Context</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.TextDirections.LeftToRight">
+            <summary>Left to Right</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.TextDirections.RightToLeft">
+            <summary>Right to Left</summary>
+        </member>
+        <member name="T:org.in2bits.MyOle2.Metadata.DocumentSummaryInformationSection">
+            <summary>
+            Represents and presents functionality for managing an OLE2 DocumentSummaryInformation
+            Metadata Stream.
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyOle2.Metadata.DocumentSummaryInformationSection.#ctor">
+            <summary>
+            Initializes a new instance of the DocumentSummaryInformation class.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.DocumentSummaryInformationSection.CodePage">
+            <summary>
+            Gets or sets the CodePage of this DocumentSummaryInformation Section.  Setting to null removes the property.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.DocumentSummaryInformationSection.Category">
+            <summary>
+            Gets or sets the Category of this DocumentSummaryInformation Section.  Setting to null removes the property.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.DocumentSummaryInformationSection.PresentationTarget">
+            <summary>
+            Gets or sets the PresentationTarget of this DocumentSummaryInformation Section.  Setting to null removes the property.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.DocumentSummaryInformationSection.BytesProperty">
+            <summary>
+            Gets or sets the Bytes Property of this DocumentSummaryInformation Section.  Setting to null removes the property.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.DocumentSummaryInformationSection.Lines">
+            <summary>
+            Gets or sets the Lines of this DocumentSummaryInformation Section.  Setting to null removes the property.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.DocumentSummaryInformationSection.Paragraphs">
+            <summary>
+            Gets or sets the Paragraphs of this DocumentSummaryInformation Section.  Setting to null removes the property.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.DocumentSummaryInformationSection.Slides">
+            <summary>
+            Gets or sets the Slides of ths DocumentSummaryInformation Section.  Setting to null removes the property.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.DocumentSummaryInformationSection.Notes">
+            <summary>
+            Gets or sets the Notes of this DocumentSummaryInformation Section.  Setting to null removes the property.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.DocumentSummaryInformationSection.HiddenSlides">
+            <summary>
+            Gets or sets the HiddenSlides of this DocumentSummaryInformation Section.  Setting to null removes property.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.DocumentSummaryInformationSection.MmClips">
+            <summary>
+            Gets or sets the MM Clips of this DocumentSummaryInformation Section.  Setting to null removes property.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.DocumentSummaryInformationSection.Manager">
+            <summary>
+            Gets or sets the Manager of this DocumentSummaryInformation Section.  Setting to null removes the property.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.DocumentSummaryInformationSection.Company">
+            <summary>
+            Gets or sets the Company of this DocumentSummaryInformation Section.  Setting to null removes the property.
+            </summary>
+        </member>
+        <member name="T:org.in2bits.MyXls.Color">
+            <summary>
+            Represents an RGB color value.  Use the values in Colors.  Custom colors are not yet supported.
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyXls.Color.Equals(System.Object)">
+            <summary>
+            Determines whether this Color is equal to the specifed Color.
+            </summary>
+            <param name="obj">The Color to compare to this Color.</param>
+            <returns>true if this Color is Equal to that Color, false otherwise.</returns>
+        </member>
+        <member name="M:org.in2bits.MyXls.Color.Clone">
+            <summary>
+            Returns a new Color instance Equal to this Color.
+            </summary>
+            <returns>A new Color instance Equal to this Color.</returns>
+        </member>
+        <member name="T:org.in2bits.MyXls.Row">
+            <summary>
+            Represents a single row in a Worksheet.
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyXls.Row.#ctor">
+            <summary>
+            Initializes a new instance of the Row class.
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyXls.Row.CellExists(System.UInt16)">
+            <summary>
+            Returns whether a Cell exists on this Row at the specified Column.  A
+            Cell will exist if a value or property has been specified for it.
+            </summary>
+            <param name="atCol">Column at which to check for a Cell in this Row.</param>
+            <returns>true if a Cell exists on this Row at the specified Column, false otherwise</returns>
+        </member>
+        <member name="M:org.in2bits.MyXls.Row.AddCell(org.in2bits.MyXls.Cell)">
+            <summary>
+            Adds a Cell to this Row.
+            </summary>
+            <param name="cell">The Cell to add to this Row</param>
+        </member>
+        <member name="M:org.in2bits.MyXls.Row.CellAtCol(System.UInt16)">
+            <summary>
+            Returns the Cell at the specified column on this Row.
+            </summary>
+            <param name="col">The column from which to return the Cell.</param>
+            <returns>The Cell from the specified column on this Row.</returns>
+        </member>
+        <member name="M:org.in2bits.MyXls.Row.GetCell(System.UInt16)">
+            <summary>
+            Returns the Cell with the specified index from the existing Cells on this Row.
+            (i.e. if there are three cells at columns 1, 3, and 5, specifying 2 will return
+            the Cell from column 3).
+            </summary>
+            <param name="cellIdx">1-based index of Cell to return from existing Cells on this Row.</param>
+            <returns>The Cell from this Row with the specified index among the existing Cells.</returns>
+        </member>
+        <member name="P:org.in2bits.MyXls.Row.RowIndex">
+            <summary>
+            Gets the row index of this Row object.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Row.CellCount">
+            <summary>
+            Gets the count of Cells that exists on this Row.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Row.MinCellCol">
+            <summary>
+            Gets the first column at which a Cell exists on this Row.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Row.MaxCellCol">
+            <summary>
+            Gets the last column at which a Cell exists on this Row.
+            </summary>
+        </member>
+        <member name="T:org.in2bits.MyXls.Cell">
+            <summary>
+            A single cell on or to be added to a worksheet.
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyXls.Cell.UpdateId(org.in2bits.MyXls.XF)">
+            <summary>
+             (For internal use only) - Updates this Cell's XF id from the provided XF.
+            </summary>
+            <param name="fromXF">The XF from which to calculate this Cell's XF id.</param>
+        </member>
+        <member name="P:org.in2bits.MyXls.Cell.Coordinate">
+            <summary>
+            Gets or sets the CellCoordinate of this Cell object.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Cell.Row">
+            <summary>
+            Gets the Row value of this Cell (1-based).
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Cell.Column">
+            <summary>
+            Gets the Column value of this Cell (1-based).
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Cell.Type">
+            <summary>
+            Gets the type of this Cell.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Cell.Value">
+            <summary>
+            Gets or sets the Value in this Cell.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Cell.Font">
+            <summary>
+            Gets or sets the Font for this Cell.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Cell.Format">
+            <summary>
+            Gets or sets the Format for this Cell.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Cell.Style">
+            <summary>
+            Gets or sets the Parent Style XF (absent on Style XF's).
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Cell.HorizontalAlignment">
+            <summary>
+            Gets or sets the HorizontalAlignments value for this Cell.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Cell.TextWrapRight">
+            <summary>
+            Gets or sets whether Text is wrapped at right border.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Cell.VerticalAlignment">
+            <summary>
+            Gets or sets the VerticalAlignments value for this Cell.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Cell.Rotation">
+            <summary>
+            Gets or sets the Text rotation angle for this Cell (-360 or 0?) to 360.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Cell.IndentLevel">
+            <summary>
+            Gets or sets the IndentLevel for this Cell.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Cell.ShrinkToCell">
+            <summary>
+            Gets or sets whether to Shrink content to fit into cell for this Cell.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Cell.TextDirection">
+            <summary>
+            Gets or sets the TextDirections value for this Cell (BIFF8X only).
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Cell.Locked">
+            <summary>
+            Gets or sets whether this Cell is locked.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Cell.FormulaHidden">
+            <summary>
+            Gets or sets whether this Cell's Formula is hidden
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Cell.UseNumber">
+            <summary>
+            Gets or sets Flag for number format.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Cell.UseFont">
+            <summary>
+            Gets or sets Flag for font.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Cell.UseMisc">
+            <summary>
+            Gets or sets Flag for horizontal and vertical alignment, text wrap, indentation, 
+            orientation, rotation, and text direction.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Cell.UseBorder">
+            <summary>
+            Gets or sets Flag for border lines.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Cell.UseBackground">
+            <summary>
+            Gets or sets Flag for background area style.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Cell.UseProtection">
+            <summary>
+            Gets or sets Flag for protection (cell locked and formula hidden).
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Cell.LeftLineStyle">
+            <summary>
+            Gets or sets Left line style.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Cell.RightLineStyle">
+            <summary>
+            Gets or sets Right line style.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Cell.TopLineStyle">
+            <summary>
+            Gets or sets Top line style.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Cell.BottomLineStyle">
+            <summary>
+            Gets or sets Bottom line style.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Cell.LeftLineColor">
+            <summary>
+            Gets or sets Colour for left line.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Cell.RightLineColor">
+            <summary>
+            Gets or sets Colour for right line.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Cell.DiagonalDescending">
+            <summary>
+            Gets or sets Diagonal line from top left to right bottom.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Cell.DiagonalAscending">
+            <summary>
+            Gets or sets Diagonal line from bottom left to top right.  Lines won't show up unless
+            DiagonalLineStyle (and color - defaults to black, though) is set.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Cell.TopLineColor">
+            <summary>
+            Gets or sets Colour for top line.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Cell.BottomLineColor">
+            <summary>
+            Gets or sets Colour for bottom line.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Cell.DiagonalLineColor">
+            <summary>
+            Gets or sets Colour for diagonal line.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Cell.DiagonalLineStyle">
+            <summary>
+            Gets or sets Diagonal line style.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Cell.Pattern">
+            <summary>
+            Gets or sets Fill pattern.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Cell.PatternColor">
+            <summary>
+            Gets or sets Colour for pattern.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Cell.PatternBackgroundColor">
+            <summary>
+            Gets or sets Colour for pattern background.
+            </summary>
+        </member>
+        <member name="T:org.in2bits.MyXls.Worksheet">
+            <summary>
+            A main class for an XlsDocument, representing one Worksheet in the Workbook.  The 
+            Worksheet holds the Cells in its Rows.
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyXls.Worksheet.AddColumnInfo(org.in2bits.MyXls.ColumnInfo)">
+            <summary>
+            Adds a Column Info record to this Worksheet.
+            </summary>
+            <param name="columnInfo">The ColumnInfo object to add to this Worksheet.</param>
+        </member>
+        <member name="M:org.in2bits.MyXls.Worksheet.AddMergeArea(org.in2bits.MyXls.MergeArea)">
+            <summary>
+            Adds a MergeArea to this Worksheet.  The mergeArea is verified not to
+            overlap with any previously defined area.  NOTE Values and formatting
+            in all cells other than the first in mergeArea (scanning left to right,
+            top to bottom) will be lost.
+            </summary>
+            <param name="mergeArea">The MergeArea to add to this Worksheet.</param>
+        </member>
+        <member name="M:org.in2bits.MyXls.Worksheet.Write(System.Data.DataTable,System.Int32,System.Int32)">
+            <summary>
+            Writes a DataTable to this Worksheet, beginning at the provided Row
+            and Column indices.  A Header Row will be written.
+            </summary>
+            <param name="table">The DataTable to write to this Worksheet.</param>
+            <param name="startRow">The Row at which to start writing the DataTable
+            to this Worksheet (1-based).</param>
+            <param name="startCol">The Column at which to start writing the DataTable
+            to this Worksheet (1-based).</param>
+        </member>
+        <member name="P:org.in2bits.MyXls.Worksheet.Name">
+            <summary>
+            Gets or sets the Name of this Worksheet.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Worksheet.Visibility">
+            <summary>
+            Gets or sets the Visibility of this Worksheet.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Worksheet.SheetType">
+            <summary>
+            Gets or sets the Worksheet Type of this Worksheet.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Worksheet.Cells">
+            <summary>
+            Gets the Cells collection of this Worksheet.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Worksheet.Rows">
+            <summary>
+            Gets the Rows collection of this Worksheet.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Worksheet.Protected">
+            <summary>
+            Gets or sets whether this Worksheet is Protected (the Locked/Hidden status 
+            of objects such as cells is enforced by Excel).
+            </summary>
+        </member>
+        <member name="T:org.in2bits.MyXls.Worksheets">
+            <summary>
+            Manages the collection of Worksheets for a Workbook.
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyXls.Worksheets.Add(System.String)">
+            <summary>
+            Adds a Worksheet with the given name to this collection.
+            </summary>
+            <param name="name">The name of the new worksheet.</param>
+            <returns>The new Worksheet with the given name in this collection.</returns>
+        </member>
+        <member name="M:org.in2bits.MyXls.Worksheets.AddNamed(System.String)">
+            <summary>
+            OBSOLETE - Use Add(string) instead.  Adds a Worksheet with the given 
+            name to this collection.
+            </summary>
+            <param name="name">The name of the new worksheet.</param>
+            <returns>The new Worksheet with the given name in this collection.</returns>
+        </member>
+        <member name="M:org.in2bits.MyXls.Worksheets.GetIndex(System.String)">
+            <summary>
+            Gets the index of the Workseet in this collection by the given name.
+            </summary>
+            <param name="sheetName">The name of the Worksheet for which to return the index.</param>
+            <returns>The index of the Worksheet by the given name.</returns>
+        </member>
+        <member name="M:org.in2bits.MyXls.Worksheets.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection of Worksheets.
+            </summary>
+            <returns>
+            A <see cref="T:System.Collections.Generic.IEnumerator`1" /> that can be used to iterate through the collection of worksheets.
+            </returns>
+            <filterpriority>1</filterpriority>
+        </member>
+        <member name="M:org.in2bits.MyXls.Worksheets.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through a collection.
+            </summary>
+            <returns>
+            An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection of worksheets.
+            </returns>
+            <filterpriority>2</filterpriority>
+        </member>
+        <member name="P:org.in2bits.MyXls.Worksheets.Count">
+            <summary>
+            Gets the count of Worksheet objects in this collection.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Worksheets.Item(System.Int32)">
+            <summary>
+            Gets the Worksheet from this collection with the given index.
+            </summary>
+            <param name="index">The index of the Worksheet in this collection to get.</param>
+            <returns>The Worksheet from this collection with the given index.</returns>
+        </member>
+        <member name="P:org.in2bits.MyXls.Worksheets.Item(System.String)">
+            <summary>
+            Gets the Worksheet from this collection with the given name.
+            </summary>
+            <param name="name">The name of the Worksheet in this collection to get.</param>
+            <returns>The Worksheet from this collection with the given name.</returns>
+        </member>
+        <member name="T:org.in2bits.MyXls.Worksheets.WorksheetEnumerator">
+            <summary>
+             Enumerator for the Workseets collection.
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyXls.Worksheets.WorksheetEnumerator.#ctor(org.in2bits.MyXls.Worksheets)">
+            <summary>
+             Creates and initializes a new instance of the WorksheetEnumerator class for the given Worksheets collection instance.
+            </summary>
+            <param name="worksheets">The Worksheets object for which to initialize this WorksheetEnumerator object.</param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:org.in2bits.MyXls.Worksheets.WorksheetEnumerator.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+            <filterpriority>2</filterpriority>
+        </member>
+        <member name="M:org.in2bits.MyXls.Worksheets.WorksheetEnumerator.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            true if the enumerator was successfully advanced to the next element; false if the enumerator has passed the end of the collection.
+            </returns>
+            <exception cref="T:System.InvalidOperationException">The collection was modified after the enumerator was created. </exception><filterpriority>2</filterpriority>
+        </member>
+        <member name="M:org.in2bits.MyXls.Worksheets.WorksheetEnumerator.Reset">
+            <summary>
+            Sets the enumerator to its initial position, which is before the first element in the collection.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">The collection was modified after the enumerator was created. </exception><filterpriority>2</filterpriority>
+        </member>
+        <member name="P:org.in2bits.MyXls.Worksheets.WorksheetEnumerator.Current">
+            <summary>
+            Gets the element in the collection at the current position of the enumerator.
+            </summary>
+            <returns>
+            The element in the collection at the current position of the enumerator.
+            </returns>
+        </member>
+        <member name="P:org.in2bits.MyXls.Worksheets.WorksheetEnumerator.System#Collections#IEnumerator#Current">
+            <summary>
+            Gets the current element in the collection.
+            </summary>
+            <returns>
+            The current element in the collection.
+            </returns>
+            <exception cref="T:System.InvalidOperationException">The enumerator is positioned before the first element of the collection or after the last element.-or- The collection was modified after the enumerator was created.</exception><filterpriority>2</filterpriority>
+        </member>
+        <member name="T:org.in2bits.MyXls.HorizontalAlignments">
+            <summary>
+            The different horizontal alignments available in Excel.
+            </summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.HorizontalAlignments.Default">
+            <summary>Default - General</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.HorizontalAlignments.General">
+            <summary>General</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.HorizontalAlignments.Left">
+            <summary>Left</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.HorizontalAlignments.Centered">
+            <summary>Centered</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.HorizontalAlignments.Right">
+            <summary>Right</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.HorizontalAlignments.Filled">
+            <summary>Filled</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.HorizontalAlignments.Justified">
+            <summary>Justified</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.HorizontalAlignments.CenteredAcrossSelection">
+            <summary>Centered Across the Selection</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.HorizontalAlignments.Distributed">
+            <summary>Distributed</summary>
+        </member>
+        <member name="T:org.in2bits.MyXls.Fonts">
+            <summary>
+            A collection of Font objects.
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyXls.Fonts.#ctor(org.in2bits.MyXls.XlsDocument)">
+            <summary>
+            Initializes a new instance of the Fonts collection for the given XlsDocument.
+            </summary>
+            <param name="doc">The parent XlsDocument object for the new Fonts collection.</param>
+        </member>
+        <member name="M:org.in2bits.MyXls.Fonts.Add(org.in2bits.MyXls.Font)">
+            <summary>
+            Adds a new Font object to this collection.
+            </summary>
+            <param name="font">The Font object to add to this collection.</param>
+            <returns>The id of the Font within this collection.</returns>
+        </member>
+        <member name="M:org.in2bits.MyXls.Fonts.GetId(org.in2bits.MyXls.Font)">
+            <summary>
+            Gets the id of the specified Font in this collection.
+            </summary>
+            <param name="font">The Font for which to return an id.</param>
+            <returns>the ushort id of the Font if it exists in this collection, 
+            null otherwise</returns>
+        </member>
+        <member name="T:org.in2bits.MyOle2.Streams">
+            <summary>
+            Represents and manages the collection of Streams for a given OLE2 Document.
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyOle2.Streams.#ctor(org.in2bits.MyOle2.Ole2Document)">
+            <summary>
+            Initializes a new instance of the Streams class for the given Doc object.
+            </summary>
+            <param name="doc">The parent Doc object for this new Streams object.</param>
+        </member>
+        <member name="M:org.in2bits.MyOle2.Streams.AddNamed(System.Byte[],System.Byte[])">
+            <summary>
+            Adds a new Stream with the given name and containing the given bytes 
+            to this Streams collection.  If a stream by the name exists, an exception
+            will be thrown.
+            </summary>
+            <param name="bytes">The byte[] to be contained by the new Stream.</param>
+            <param name="name">The byte[] of the new Stream's name.</param>
+            <returns>The new Stream object in this Streams collection with the given
+            name and bytes.</returns>
+        </member>
+        <member name="M:org.in2bits.MyOle2.Streams.AddNamed(org.in2bits.MyXls.ByteUtil.Bytes,System.Byte[])">
+            <summary>
+            Adds a new Stream with the given name and containing the given bytes
+            to this Streams collection.  If a stream by the name already exists,
+            an exception will be thrown.
+            </summary>
+            <param name="bytes">A Bytes object containing the bytes for the new
+            Stream.</param>
+            <param name="name">A Bytes object containing the bytes for the name
+            of the new Stream.</param>
+            <returns>The new Stream object in this Streams collection with the given
+            name and bytes.</returns>
+        </member>
+        <member name="M:org.in2bits.MyOle2.Streams.AddNamed(org.in2bits.MyXls.ByteUtil.Bytes,System.Byte[],System.Boolean)">
+            <summary>
+            Adds a new Stream with the given name and containing the given bytes
+            to this Streams collection.  If a stream by the name already exists,
+            an exception will be thrown or the stream's bytes will be overwritten,
+            depending on the value in the overwrite parameter.
+            </summary>
+            <param name="bytes">A Bytes object containing the bytes for the new
+            Stream.</param>
+            <param name="name">A Bytes object containing the bytes for the name
+            of the new Stream.</param>
+            <param name="overwrite">Determines the behaviour (overwriting the bytes
+            or throwing an exception) if a stream by the provided name already
+            exists.</param>
+            <returns>The new Stream object in this Streams collection with the given
+            name and bytes.</returns>
+        </member>
+        <member name="M:org.in2bits.MyOle2.Streams.GetIndex(System.Byte[])">
+            <summary>
+            Gets the int index of the Stream with the provided name.
+            </summary>
+            <param name="streamName">The byte[] name of the Stream to get the index of.</param>
+            <returns>The int index of the Stream with the given byte[] name; else -1.</returns>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Streams.Count">
+            <summary>
+            Gets a count of the number of streams included in or managed by this Streams
+            collection (or the number of streams in this Doc).
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Streams.SectorCount">
+            <summary>
+            Gets a count of the sectors required by all the streams in this Streams collection
+            (or in this Doc).
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Streams.ShortSectorStorage">
+            <summary>
+            Gets the Short Sector Storage stream for this Doc.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Streams.Item(System.Object)">
+            <summary>
+            Gets the Stream with the given index.
+            </summary>
+            <param name="idx">The int index or byte[] name of the Stream to get.</param>
+            <returns>The Stream object of the given int index or byte[] name.</returns>
+        </member>
+        <member name="T:org.in2bits.MyOle2.Sat">
+            <summary>
+            Represents the SAT (Sector Allocation Table) for an OLE2 Document.
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyOle2.Sat.#ctor(org.in2bits.MyOle2.Ole2Document)">
+            <summary>
+            Initializes a new instance of the Sat class for the provided Doc object.
+            </summary>
+            <param name="doc">The parent Doc object for this new Sat object.</param>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Sat.SectorCount">
+            <summary>
+            Gets a count of the sectors required by the body of this Sat.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Sat.SID0">
+            <summary>
+            Gets the SID0, or SID of the first sector, of this Sat.
+            </summary>
+        </member>
+        <member name="T:org.in2bits.MyXls.XF">
+            <summary>
+            The XF (eXtended Format) contains formatting information for cells, rows, columns or styles.
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyXls.XF.Clone">
+            <summary>
+            Creates a duplicate instance of this XF objet.
+            </summary>
+            <returns>A duplicate instance of this XF object.</returns>
+        </member>
+        <member name="P:org.in2bits.MyXls.XF.Font">
+            <summary>
+            Gets or sets the Font for this XF.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XF.Format">
+            <summary>
+            Gets or sets the Format for this XF.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XF.Style">
+            <summary>
+            Gets or sets the Parent Style XF (absent on Style XF's).
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XF.HorizontalAlignment">
+            <summary>
+            Gets or sets the HorizontalAlignments value for this XF.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XF.TextWrapRight">
+            <summary>
+            Gets or sets whether Text is wrapped at right border.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XF.VerticalAlignment">
+            <summary>
+            Gets or sets the VerticalAlignments value for this XF.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XF.Rotation">
+            <summary>
+            Gets or sets the Text rotation angle for this XF (-360 or 0?) to 360.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XF.IndentLevel">
+            <summary>
+            Gets or sets the IndentLevel for this XF.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XF.ShrinkToCell">
+            <summary>
+            Gets or sets whether to Shrink content to fit into cell for this XF.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XF.TextDirection">
+            <summary>
+            Gets or sets the TextDirections value for this XF (BIFF8X only).
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XF.CellLocked">
+            <summary>
+            Gets or sets whether this XF's Cells are locked.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XF.FormulaHidden">
+            <summary>
+            Gets or sets whether this XF's Formulas are hidden
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XF.IsStyleXF">
+            <summary>
+            Gets or sets whether this XF is a Style XF.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XF.UseNumber">
+            <summary>
+            Gets or sets Flag for number format.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XF.UseFont">
+            <summary>
+            Gets or sets Flag for font.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XF.UseMisc">
+            <summary>
+            Gets or sets Flag for horizontal and vertical alignment, text wrap, indentation, 
+            orientation, rotation, and text direction.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XF.UseBorder">
+            <summary>
+            Gets or sets Flag for border lines.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XF.UseBackground">
+            <summary>
+            Gets or sets Flag for background area style.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XF.UseProtection">
+            <summary>
+            Gets or sets Flag for cell protection (cell locked and formula hidden).
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XF.LeftLineStyle">
+            <summary>
+            Gets or sets Left line style.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XF.RightLineStyle">
+            <summary>
+            Gets or sets Right line style.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XF.TopLineStyle">
+            <summary>
+            Gets or sets Top line style.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XF.BottomLineStyle">
+            <summary>
+            Gets or sets Bottom line style.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XF.LeftLineColor">
+            <summary>
+            Gets or sets Colour for left line.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XF.RightLineColor">
+            <summary>
+            Gets or sets Colour for right line.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XF.DiagonalDescending">
+            <summary>
+            Gets or sets Diagonal line from top left to right bottom.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XF.DiagonalAscending">
+            <summary>
+            Gets or sets Diagonal line from bottom left to top right.  Lines won't show up unless
+            DiagonalLineStyle (and color - defaults to black, though) is set.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XF.TopLineColor">
+            <summary>
+            Gets or sets Colour for top line.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XF.BottomLineColor">
+            <summary>
+            Gets or sets Colour for bottom line.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XF.DiagonalLineColor">
+            <summary>
+            Gets or sets Colour for diagonal line.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XF.DiagonalLineStyle">
+            <summary>
+            Gets or sets Diagonal line style.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XF.Pattern">
+            <summary>
+            Gets or sets Fill pattern.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XF.PatternColor">
+            <summary>
+            Gets or sets Colour for pattern colour.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XF.PatternBackgroundColor">
+            <summary>
+            Gets or sets Colour for pattern background.
+            </summary>
+        </member>
+        <member name="T:org.in2bits.MyXls.Font">
+            <summary>
+            Describes appearance of text in cells.
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyXls.Font.Equals(org.in2bits.MyXls.Font)">
+            <summary>
+            Calculates whether a given Font object is value-equal to this
+            Font object.
+            </summary>
+            <param name="that">A Font object to compare to this Font.</param>
+            <returns>true if equal, false otherwise</returns>
+        </member>
+        <member name="M:org.in2bits.MyXls.Font.Clone">
+            <summary>
+            Creates and returns a new Font object value-equal to this Font object.
+            </summary>
+            <returns>A new Font object value-equal to this Font object.</returns>
+        </member>
+        <member name="P:org.in2bits.MyXls.Font.Height">
+            <summary>
+            Gets or sets the Height of Font (in twips = 1/20 of a point).
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Font.Italic">
+            <summary>
+            Gets or sets whether Characters are italic.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Font.StruckOut">
+            <summary>
+            Gets or sets whether Characters are struck out.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Font.ColorIndex">
+            <summary>
+            Gets or sets Color index of this Font.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Font.Bold">
+            <summary>
+            Gets or sets whether this Font is Bold.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Font.Weight">
+            <summary>Gets or sets Font weight. </summary>
+             <remarks>This replaces the Bold property.</remarks>
+        </member>
+        <member name="P:org.in2bits.MyXls.Font.Escapement">
+            <summary>
+            Gets or sets the EscapementTypes value of this Font.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Font.Underline">
+            <summary>
+            Gets or sets UnderlineTypes for this Font.  This replaces the 'Underlined' property.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Font.FontFamily">
+            <summary>
+            /Gets or sets Font Family.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Font.CharacterSet">
+            <summary>
+            Gets or sets Character Set.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Font.FontName">
+            <summary>
+            Gets or sets Font Name (255 characters max)
+            </summary>
+        </member>
+        <member name="T:org.in2bits.MyOle2.Metadata.OriginOperatingSystemVersions">
+            <summary>
+            Versions available to describe the specified Operating System.
+            </summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Metadata.OriginOperatingSystemVersions.Default">
+            <summary>Default - this is the only known available value.</summary>
+        </member>
+        <member name="T:org.in2bits.MyXls.CellTypes">
+            <summary>
+            The different types of Cell values.
+            </summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.CellTypes.Error">
+            <summary>Error</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.CellTypes.Null">
+            <summary>Null</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.CellTypes.Integer">
+            <summary>Integer</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.CellTypes.Text">
+            <summary>Text</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.CellTypes.Float">
+            <summary>Floating Point Number</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.CellTypes.Formula">
+            <summary>Formula</summary>
+        </member>
+        <member name="T:org.in2bits.MyXls.Rows">
+            <summary>
+            Represents and manages a collection of Row objects for a Worksheet.
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyXls.Rows.#ctor">
+            <summary>
+            Initializes a new instance of the Rows object.
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyXls.Rows.RowExists(System.UInt16)">
+            <summary>
+            Returns whether a Row exists at the specified index in this Collection.
+            </summary>
+            <param name="rowIdx">1-based index of Row to return from this collection.</param>
+            <returns>The Row with the specified index from this collection.</returns>
+        </member>
+        <member name="M:org.in2bits.MyXls.Rows.AddRow(System.UInt16)">
+            <summary>
+            Adds a Row at the specified row number.
+            </summary>
+            <param name="rowNum">1-based index of Row to add.</param>
+            <returns>The Row added at the specified row number.</returns>
+        </member>
+        <member name="M:org.in2bits.MyXls.Rows.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the Rows collection
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Rows.Count">
+            <summary>
+            Gets the count of Rows in this collection.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Rows.Item(System.UInt16)">
+            <summary>
+            Gets the Row from this collection with the specified row number.
+            </summary>
+            <param name="rowNumber">1-based row number to get.</param>
+            <returns>Row at specified row number</returns>
+        </member>
+        <member name="P:org.in2bits.MyXls.Rows.MinRow">
+            <summary>
+            Gets the smallest row number populated in this collection.  A Row is populated if it has any Cells,
+            formatting or has been explicitly added.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Rows.MaxRow">
+            <summary>
+            Gets the largest row number populated in this collection.  A Row is populated if it has any Cells,
+            formatting or has been explicitly added.
+            </summary>
+        </member>
+        <member name="T:org.in2bits.MyOle2.Metadata.SummaryInformationSection">
+            <summary>
+            Represents a SummaryInformation stream in an Ole2 Document.
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyOle2.Metadata.SummaryInformationSection.#ctor">
+            <summary>
+            Initializes a new instance of the SummaryInformationSection class.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.SummaryInformationSection.CodePage">
+            <summary>
+            Gets or sets the CodePage of this SummaryInformation Section.  Setting to null removes the property.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.SummaryInformationSection.Title">
+            <summary>
+            Gets or sets the Title of this SummaryInformation Section.  Setting to null removes the property.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.SummaryInformationSection.Subject">
+            <summary>
+            Gets or sets the Subject of this SummaryInformation Section.  Setting to null removes the property.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.SummaryInformationSection.Author">
+            <summary>
+            Gets or sets the Author of this SummaryInformation Section.  Setting to null removes the property.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.SummaryInformationSection.Keywords">
+            <summary>
+            Gets or sets the Keywords of this SummaryInformation Section.  Setting to null removes the property.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.SummaryInformationSection.Comments">
+            <summary>
+            Gets or sets the Comments of this SummaryInformation Section.  Setting to null removes the property.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.SummaryInformationSection.Template">
+            <summary>
+            Gets or sets the Template of this SummaryInformation Section.  Setting to null removes the property.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.SummaryInformationSection.LastSavedBy">
+            <summary>
+            Gets or sets the LastSavedBy of this SummaryInformation Section.  Setting to null removes the property.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.SummaryInformationSection.RevisionNumber">
+            <summary>
+            Gets or sets the RevisionNumber of this SummaryInformation Section.  Setting to null removes the property.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.SummaryInformationSection.TotalEditingTime">
+            <summary>
+            Gets or sets the TotalEditingTime of this SummaryInformation Section.  Setting to null removes the property.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.SummaryInformationSection.LastPrinted">
+            <summary>
+            Gets or sets the LastPrinted Date/Time of this SummaryInformation Section.  Setting to null removes the property.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.SummaryInformationSection.CreateTimeDate">
+            <summary>
+            Gets or sets the CreateDateTime of this SummaryInformation Section.  Setting to null removes the property.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.SummaryInformationSection.LastSavedTimeDate">
+            <summary>
+            Gets or sets the LastSavedDateTime of this SummaryInformation Section.  Setting to null removes the property.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.SummaryInformationSection.NumberOfPages">
+            <summary>
+            Gets or sets the NumberOfPages of this SummaryInformation Section.  Setting to null removes the property.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.SummaryInformationSection.NumberOfWords">
+            <summary>
+            Gets or sets the NumberOfWords of this SummaryInformation Section.  Setting to null removes the property.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.SummaryInformationSection.NumberOfCharacters">
+            <summary>
+            Gets or sets the NumberOfCharacters of this SummaryInformation Section.  Setting to null removes the property.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.SummaryInformationSection.NameOfCreatingApplication">
+            <summary>
+            Gets or sets the NameOfCreatingApplication of this SummaryInformation Section.  Setting to null removes the property.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Metadata.SummaryInformationSection.Security">
+            <summary>
+            Gets or sets the Security of this SummaryInformation Section.  Setting to null removes the property.
+            </summary>
+        </member>
+        <member name="T:org.in2bits.MyXls.WorksheetVisibilities">
+            <summary>
+            Worksheet Visibility values available in Excel (whether the Worksheet will be visible to the user).
+            </summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.WorksheetVisibilities.Default">
+            <summary>Default - Visible</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.WorksheetVisibilities.Visible">
+            <summary>Visible</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.WorksheetVisibilities.Hidden">
+            <summary>Hidden</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.WorksheetVisibilities.StrongHidden">
+            <summary>Strong Hidden (used for VBA modules)</summary>
+        </member>
+        <member name="T:org.in2bits.MyXls.Styles">
+            <summary>
+            Represents and manages a collection of Style objects for a Workbook.
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyXls.Styles.#ctor(org.in2bits.MyXls.XlsDocument)">
+            <summary>
+            Initializes a new instance of the Styles object for the give XlsDocument.
+            </summary>
+            <param name="doc">The parent XlsDocument object for the new Styles object.</param>
+        </member>
+        <member name="M:org.in2bits.MyXls.Styles.Add(org.in2bits.MyXls.Style)">
+            <summary>
+            Adds a Style object to this collection and returns the Style object's
+            id value.
+            </summary>
+            <param name="style">The Style object to add to this collection.</param>
+            <returns>The id value of the given Style object which has been added
+            to this collection.</returns>
+        </member>
+        <member name="M:org.in2bits.MyXls.Styles.IsWritten(org.in2bits.MyXls.Style)">
+            <summary>
+            Gets whether the given Style object exists in this collection and so will be
+            written to the XlsDocument.
+            </summary>
+            <param name="style">The Style object which is to be checked whether it exists
+            in this collection.</param>
+            <returns>true if the given Style object exists in this collection, false otherwise.</returns>
+        </member>
+        <member name="M:org.in2bits.MyXls.Styles.GetID(org.in2bits.MyXls.Style)">
+            <summary>
+            Returns the ID of a given Style object in this collection.
+            </summary>
+            <param name="style">The Style object whose ID is to be returned.</param>
+            <returns>The ID of the given Style object in this collection.</returns>
+        </member>
+        <member name="P:org.in2bits.MyXls.Styles.Count">
+            <summary>
+            Gets a count of the Style objects currently in this collection.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.Styles.Item(System.Int32)">
+            <summary>
+            Gets the Style object from this collection at the specified index.
+            </summary>
+            <param name="index">The index in this collection from which to get a Style object.</param>
+            <returns>The Style object from this collection at the specified index.</returns>
+        </member>
+        <member name="T:org.in2bits.MyOle2.Ole2Document">
+            <summary>
+            Represents an OLE2 Compound Document format Document.
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyOle2.Ole2Document.#ctor">
+            <summary>
+            Initializes a new, blank, Ole2Document object.
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyOle2.Ole2Document.Load(System.IO.Stream)">
+            <summary>
+            Loads this Ole2Document object from the provided stream (e.g. a FileStream to load
+            from a File).  This is only preliminarily supported and tested for Excel
+            files.
+            </summary>
+            <param name="stream">Stream to load the document from.</param>
+        </member>
+        <member name="M:org.in2bits.MyOle2.Ole2Document.ReadWholeArray(System.IO.Stream,System.Byte[])">
+            <summary>
+            Reads data into a complete array, throwing an EndOfStreamException
+            if the stream runs out of data first, or if an IOException
+            naturally occurs.
+            http://www.yoda.arachsys.com/csharp/readbinary.html
+            </summary>
+            <param name="stream">The stream to read data from</param>
+            <param name="data">The array to read bytes into. The array
+            will be completely filled from the stream, so an appropriate
+            size must be given.</param>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Ole2Document.Header">
+            <summary>
+            Gets this Ole2Document's Header object.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Ole2Document.MSAT">
+            <summary>
+            Gets this Ole2Document's MSAT (Main Sector Allocation Table) object.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Ole2Document.Directory">
+            <summary>
+            Gets this Ole2Document's Directory object.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Ole2Document.Streams">
+            <summary>
+            Gets this Ole2Document's Streams collection.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Ole2Document.SSAT">
+            <summary>
+            Gets this Ole2Document's SSAT (Short Sector Allocation Table) object.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Ole2Document.SAT">
+            <summary>
+            Gets this Ole2Document's SAT (Sector Allocation Table) object.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Ole2Document.BytesPerShortSector">
+            <summary>
+            Gets the number of bytes per Short Sector in this Ole2Document (set with ShortSectorSize).
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Ole2Document.BytesPerSector">
+            <summary>
+            Gets the number of bytes per Sector in this Ole2Document (set with SectorSize).
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Ole2Document.StandardStreamMinBytes">
+            <summary>
+            Gets or sets the number of bytes per Standard (not short) Stream in this Ole2Document.
+            This is not normally changed from its default.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Ole2Document.DocFileID">
+            <summary>
+            Gets or sets the Ole2Document FileID of this Ole2Document.
+            This is not normally changed from its default.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Ole2Document.DocUID">
+            <summary>
+            Gets or sets the Ole2Document UID of this Ole2Document.
+            This is not normally changed from its default.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Ole2Document.FileFormatRevision">
+            <summary>
+            Gets or sets the FileFormatRevision of this Ole2Document.
+            This is not normally changed from its default.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Ole2Document.FileFormatVersion">
+            <summary>
+            Gets or sets the FileFormatVersion of this Ole2Document.
+            This is not normally changed from its default.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Ole2Document.IsLittleEndian">
+            <summary>
+            Gets whether this Ole2Document should be encoded in Little Endian (or
+            Big Endian) format.  Currently only Little Endian is supported.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Ole2Document.SectorSize">
+            <summary>
+            Gets or sets the Sector Size of this Ole2Document.  This is the number of bytes
+            per standard sector as a power of 2 (e.g. setting this to 9 sets the
+            BytesPerSector to 2 ^ 9 or 512).  This is not normally changed from its
+            default of 9.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Ole2Document.ShortSectorSize">
+            <summary>
+            Gets or sets the Short Sector Size of this Ole2Document.  This is the number of 
+            bytes per short sector as a power of 2 (e.g. setting this to 6 sets the
+            BytesPerShortSector to 2 ^ 6 or 128).  This is not normally changed from
+            its default of 6.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Ole2Document.Bytes">
+            <summary>
+            Gets a Bytes object containing all the bytes of this Ole2Document.  This Bytes object's
+            ByteArray is what should be saved to disk to persist this Ole2Document as a file on disk.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Ole2Document.Blank1">
+            <summary>
+            Gets a blank array of bytes.  Included as documented filler field.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Ole2Document.Blank2">
+            <summary>
+            Gets a blank array of bytes.  Included as documented filler field.
+            </summary>
+        </member>
+        <member name="T:org.in2bits.MyXls.CharacterSets">
+            <summary>
+            Different Character Sets supported by Excel.
+            </summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.CharacterSets.Default">
+            <summary>Default - ANSI Latin</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.CharacterSets.ANSILatin">
+            <summary>ANSI Latin</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.CharacterSets.SystemDefault">
+            <summary>System Default</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.CharacterSets.Symbol">
+            <summary>Symbol</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.CharacterSets.AppleRoman">
+            <summary>Apple Roman</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.CharacterSets.ANSIJapaneseShiftJIS">
+            <summary>ANSI Japanese Shift JIS</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.CharacterSets.ANSIKoreanHangul">
+            <summary>ANSI Korean Hangul</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.CharacterSets.ANSIKoreanJohab">
+            <summary>ANSI Korean Johab</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.CharacterSets.ANSIChineseSimplifiedJBK">
+            <summary>ANSI Chinese Simplified JBK</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.CharacterSets.ANSIChineseTraditionalBIG5">
+            <summary>ANSI Chinese Traditional BIG5</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.CharacterSets.ANSIGreek">
+            <summary>ANSI Greek</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.CharacterSets.ANSITurkish">
+            <summary>ANSI Turkish</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.CharacterSets.ANSIVietnamese">
+            <summary>ANSI Vietnamese</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.CharacterSets.ANSIHebrew">
+            <summary>ANSI Hebrew</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.CharacterSets.ANSIArabic">
+            <summary>ANSI Arabic</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.CharacterSets.ANSIBaltic">
+            <summary>ANSI Baltic</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.CharacterSets.ANSICyrillic">
+            <summary>ANSI Cyrillic</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.CharacterSets.ANSIThai">
+            <summary>ANSI Thai</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.CharacterSets.ANSILatinIICentralEuropean">
+            <summary>ANSI Latin II Central European</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.CharacterSets.OEMLatinI">
+            <summary>OEM Latin I</summary>
+        </member>
+        <member name="T:org.in2bits.MyXls.Cells">
+            <summary>
+            Represents and manages a collection of Cells for a Worksheet.
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyXls.Cells.#ctor(org.in2bits.MyXls.Worksheet)">
+            <summary>
+            Initializes a new instance of the Cells collection class for the given Worksheet.
+            </summary>
+            <param name="worksheet">The parent Worksheet object for this new Cells collection.</param>
+        </member>
+        <member name="M:org.in2bits.MyXls.Cells.Add(System.Int32,System.Int32,System.Object)">
+            <summary>
+            Adds a new Cell to the Cells collection with the given Row, Column and
+            Value.  If a Cell already exists with the given row and column, it is
+            overwritten.
+            </summary>
+            <param name="cellRow">1-based Row index for the new Cell.</param>
+            <param name="cellColumn">1-based Column index for the new Cell.</param>
+            <param name="cellValue">Value for the new Cell.</param>
+            <returns>The newly added Cell with the given Row, Column and Value.</returns>
+        </member>
+        <member name="M:org.in2bits.MyXls.Cells.AddValueCell(System.Int32,System.Int32,System.Object)">
+            <summary>
+            OBSOLETE - Use Add(int, int, object) instead.  Adds a new Cell to the 
+            Cells collection with the given Row, Column and Value.  If a Cell 
+            already exists with the given row and column, it is overwritten.
+            </summary>
+            <param name="cellRow">1-based Row index for the new Cell.</param>
+            <param name="cellColumn">1-based Column index for the new Cell.</param>
+            <param name="cellValue">Value for the new Cell.</param>
+            <returns>The newly added Cell with the given Row, Column and Value.</returns>
+        </member>
+        <member name="M:org.in2bits.MyXls.Cells.Add(System.UInt16,System.UInt16,System.Object)">
+            <summary>
+            Adds a new Cell to the Cells collection with the given Row, Column and
+            Value.  If a Cell already exists with the given row and column, it is
+            overwritten.
+            </summary>
+            <param name="cellRow">1-based Row index for the new Cell.</param>
+            <param name="cellColumn">1-based Column index for the new Cell.</param>
+            <param name="cellValue">Value for the new Cell.</param>
+            <returns>The newly added Cell with the given Row, Column and Value.</returns>
+        </member>
+        <member name="M:org.in2bits.MyXls.Cells.AddValueCell(System.UInt16,System.UInt16,System.Object)">
+            <summary>
+            OBSOLETE - Use Add(ushort, ushort, object) instead.  Adds a new Cell to 
+            the Cells collection with the given Row, Column and Value.  If a Cell 
+            already exists with the given row and column, it is overwritten.
+            </summary>
+            <param name="cellRow">1-based Row index for the new Cell.</param>
+            <param name="cellColumn">1-based Column index for the new Cell.</param>
+            <param name="cellValue">Value for the new Cell.</param>
+            <returns>The newly added Cell with the given Row, Column and Value.</returns>
+        </member>
+        <member name="M:org.in2bits.MyXls.Cells.Add(System.Int32,System.Int32,System.Object,org.in2bits.MyXls.XF)">
+            <summary>
+            Adds a new Cell to the Cells collection with the given Row, Column, Value
+            and XF (style).  If a Cell already exists with the given row and column,
+            it is overwritten.
+            </summary>
+            <param name="cellRow">1-based Row of new Cell.</param>
+            <param name="cellColumn">1-based Column of new Cell.</param>
+            <param name="cellValue">Value of new Cell.</param>
+            <param name="xf">An Xf object describing the style of the cell.</param>
+            <returns>The newly added Cell with the given Row, Column, Value and Style.</returns>
+        </member>
+        <member name="M:org.in2bits.MyXls.Cells.AddValueCellXF(System.Int32,System.Int32,System.Object,org.in2bits.MyXls.XF)">
+            <summary>
+            OBSOLETE - Use Add(int, int, object, XF) instead.  Adds a new Cell to the 
+            Cells collection with the given Row, Column, Value and XF (style).  If a 
+            Cell already exists with the given row and column, it is overwritten.
+            </summary>
+            <param name="cellRow">1-based Row of new Cell.</param>
+            <param name="cellColumn">1-based Column of new Cell.</param>
+            <param name="cellValue">Value of new Cell.</param>
+            <param name="xf">An Xf object describing the style of the cell.</param>
+            <returns>The newly added Cell with the given Row, Column, Value and Style.</returns>
+        </member>
+        <member name="M:org.in2bits.MyXls.Cells.Add(System.UInt16,System.UInt16,System.Object,org.in2bits.MyXls.XF)">
+            <summary>
+            Adds a new Cell to the Cells collection with the given Row, Column, Value
+            and XF (style).  If a Cell already exists with the given row and column,
+            it is overwritten.
+            </summary>
+            <param name="cellRow">1-based Row of new Cell.</param>
+            <param name="cellColumn">1-based Column of new Cell.</param>
+            <param name="cellValue">Value of new Cell.</param>
+            <param name="xf">An Xf object describing the style of the cell.</param>
+            <returns>The newly added Cell with the given Row, Column, Value and Style.</returns>
+        </member>
+        <member name="M:org.in2bits.MyXls.Cells.AddValueCellXF(System.UInt16,System.UInt16,System.Object,org.in2bits.MyXls.XF)">
+            <summary>
+            OBSOLETE - Use Add(ushort, ushort, object, XF) instead.  Adds a new Cell 
+            to the Cells collection with the given Row, Column, Value and XF (style).  
+            If a Cell already exists with the given row and column, it is overwritten.
+            </summary>
+            <param name="cellRow">1-based Row of new Cell.</param>
+            <param name="cellColumn">1-based Column of new Cell.</param>
+            <param name="cellValue">Value of new Cell.</param>
+            <param name="xf">An Xf object describing the style of the cell.</param>
+            <returns>The newly added Cell with the given Row, Column, Value and Style.</returns>
+        </member>
+        <member name="M:org.in2bits.MyXls.Cells.Merge(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Merges cells within the defined range of Rows and Columns.  The ranges are
+            verified not to overlap with any previously defined Merge areas.  NOTE 
+            Values and formatting in all cells other than the first in the range 
+            (scanning left to right, top to bottom) will be lost.
+            </summary>
+            <param name="rowMin">The first index in the range of Rows to merge.</param>
+            <param name="rowMax">The last index in the range of Rows to merge.</param>
+            <param name="colMin">The first index in the range of Columns to merge.</param>
+            <param name="colMax">The last index in the range of Columns to merge.</param>
+        </member>
+        <member name="P:org.in2bits.MyXls.Cells.Count">
+            <summary>
+            Gets the count of cells in this collection (only counts cells with assigned
+            values, styles or properties - not blank/unused cells).
+            </summary>
+        </member>
+        <member name="T:org.in2bits.MyXls.XFs">
+            <summary>
+            Manages the collection of XF objects for a Workbook.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyXls.XFs.Count">
+            <summary>
+            Gets the number of XF objects in this XFs collection.
+            </summary>
+        </member>
+        <member name="T:org.in2bits.MyXls.Formats">
+            <summary>
+            A collection class to manage Formats for an XlsDocument.
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyXls.Formats.Add(System.String)">
+            <summary>
+            Adds a new Format object to this collection and returns its id.
+            </summary>
+            <param name="format">The Format sting to add to this collection.</param>
+            <returns>The id of the added Format string.</returns>
+        </member>
+        <member name="M:org.in2bits.MyXls.Formats.ContainsKey(System.UInt16)">
+            <summary>
+            Determines whether this Formats collection contains a value with the given index.
+            </summary>
+            <param name="index">The index at which to check for a value.</param>
+            <returns>true if a value exists at the specified index, false otherwise</returns>
+        </member>
+        <member name="P:org.in2bits.MyXls.Formats.Count">
+            <summary>
+            Gets the number of Formats currently contained in this Formats collection.
+            </summary>
+        </member>
+        <member name="T:org.in2bits.MyXls.EscapementTypes">
+            <summary>
+            Text cell escapement (sub/super-script, etc.) types.
+            </summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.EscapementTypes.Default">
+            <summary>Default - None</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.EscapementTypes.None">
+            <summary>None</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.EscapementTypes.Superscript">
+            <summary>Superscript</summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.EscapementTypes.Subscript">
+            <summary>Subscript</summary>
+        </member>
+        <member name="T:org.in2bits.MyOle2.Stream">
+            <summary>
+            Represents a Stream (either standard or short) within an OLE2 Document.  This is the basic
+            unit of storage within the OLE2 Compound Document format.
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyOle2.Stream.#ctor(org.in2bits.MyOle2.Ole2Document)">
+            <summary>
+            Initializes a new instance of the Stream class for the provided Doc object.
+            </summary>
+            <param name="doc">The parent Doc object for this new Stream object.</param>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Stream.IsShort">
+            <summary>
+            Gets whether this Stream is a short stream (is less than Doc.StandardStreamMinBytes
+            in length) or a standard stream.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Stream.Bytes">
+            <summary>
+            Gets a Bytes object containing all the bytes of this Stream (not padded to standard or
+            sector length).
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Stream.Name">
+            <summary>
+            Gets or sets the byte[] representing the Name of this Stream.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Stream.ByteCount">
+            <summary>
+            Gets a count of the bytes contained in this Stream.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Stream.SectorCount">
+            <summary>
+            Gets a count of the sectors (standard only) required by this stream.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Stream.ShortSectorCount">
+            <summary>
+            Gets a count of the sectors (short only) required by this stream.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Stream.SID0">
+            <summary>
+            Gets the SID0, or SID of the first sector, of this Stream.
+            </summary>
+        </member>
+        <member name="T:org.in2bits.MyOle2.Directory">
+            <summary>
+            Represents the Directory stream of an OLE2 Document.
+            </summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Directory.RootName">
+            <summary>
+            The name of the Root entry of an OLE2 Directory.
+            </summary>
+        </member>
+        <member name="F:org.in2bits.MyOle2.Directory.Biff8Workbook">
+            <summary>
+            The name of a BIFF8 Workbook Stream.
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyOle2.Directory.#ctor(org.in2bits.MyOle2.Ole2Document)">
+            <summary>
+            Initializes a new instance of the Directory class for the provided Doc object.
+            </summary>
+            <param name="doc">The Doc object to which this new Directory is to belong.</param>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Directory.EntryCount">
+            <summary>
+            Gets the number of entries in this Directory object (not including blank/filler entries).
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Directory.SectorCount">
+            <summary>
+            Gets the number of Sectors required by this Directory.
+            </summary>
+        </member>
+        <member name="P:org.in2bits.MyOle2.Directory.SID0">
+            <summary>
+            Gets the first SID of this Directory's stream.
+            </summary>
+        </member>
+        <member name="T:org.in2bits.MyXls.MergeArea">
+            <summary>
+            Defines a contiguous group of Merged Cells on a Worksheet.
+            </summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.MergeArea.RowMin">
+            <summary>
+            The first Row in this group of Merged Cells (1-based).
+            </summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.MergeArea.RowMax">
+            <summary>
+            The last Row in this group of Merged Cells (1-based).
+            </summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.MergeArea.ColMin">
+            <summary>
+            The first Column in this group of Merged Cells (1-based).
+            </summary>
+        </member>
+        <member name="F:org.in2bits.MyXls.MergeArea.ColMax">
+            <summary>
+            The last Column in this group of Merged Cells (1-based).
+            </summary>
+        </member>
+        <member name="M:org.in2bits.MyXls.MergeArea.#ctor(System.UInt16,System.UInt16,System.UInt16,System.UInt16)">
+            <summary>
+            Initializes a new MergeArea with the provided values.
+            </summary>
+            <param name="rowMin">The first Row in this group of Merged Cells (1-based).</param>
+            <param name="rowMax">The last Row in this group of Merged Cells (1-based).</param>
+            <param name="colMin">The first Column in this group of Merged Cells (1-based).</param>
+            <param name="colMax">The last Column in this group of Merged Cells (1-based).</param>
+        </member>
+        <member name="M:org.in2bits.MyXls.MergeArea.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Initializes a new MergeArea with the provided values.
+            </summary>
+            <param name="rowMin">The first Row in this group of Merged Cells (1-based).</param>
+            <param name="rowMax">The last Row in this group of Merged Cells (1-based).</param>
+            <param name="colMin">The first Column in this group of Merged Cells (1-based).</param>
+            <param name="colMax">The last Column in this group of Merged Cells (1-based).</param>
+        </member>
+    </members>
+</doc>

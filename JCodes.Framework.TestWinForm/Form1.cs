@@ -1,5 +1,4 @@
-﻿using JCodes.Framework.Common.WEB;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,13 +21,13 @@ namespace JCodes.Framework.Test
         private void btnURL_Click(object sender, EventArgs e)
         {
             string url = txtURL.Text.Trim();
-            rtbLog.Text = rtbLog.Text + URL.URLDeConvert(url) + "\r\n";
+            //rtbLog.Text = rtbLog.Text + URL.URLDeConvert(url) + "\r\n";
         }
 
         private void btnDeURL_Click(object sender, EventArgs e)
         {
             string url = txtURL.Text.Trim();
-            rtbLog.Text = rtbLog.Text + URL.URLEnConvert(url) + "\r\n";
+            //rtbLog.Text = rtbLog.Text + URL.URLEnConvert(url) + "\r\n";
         }
     }
 }

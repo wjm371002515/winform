@@ -13,6 +13,7 @@ using DevExpress.Utils;
 using System.Diagnostics;
 using DevExpress.XtraEditors;
 using JCodes.Framework.Common;
+using JCodes.Framework.jCodesenum.BaseEnum;
 
 namespace JCodes.Framework.WinFormUI
 {
@@ -346,7 +347,7 @@ namespace JCodes.Framework.WinFormUI
 
             // 加载窗体到tabbedView 界面中
             tabbedView1.BeginUpdate();
-            tabbedView1.Controller.AddDocument(form);
+            //tabbedView1.Controller.AddDocument(form);
             tabbedView1.EndUpdate();
         }
 

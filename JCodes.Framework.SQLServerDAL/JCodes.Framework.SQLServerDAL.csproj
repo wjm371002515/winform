@@ -8,8 +8,8 @@
     <ProjectGuid>{B10441F3-9C12-46EC-BDB7-768AEF8EC863}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JCodes.Framework.Data.SQLServerDAL</RootNamespace>
-    <AssemblyName>JCodes.Framework.Data.SQLServerDAL</AssemblyName>
+    <RootNamespace>JCodes.Framework.SQLServerDAL</RootNamespace>
+    <AssemblyName>JCodes.Framework.SQLServerDAL</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,77 +32,73 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net">
-      <HintPath>..\JCodes.Framework.libs\log4net.dll</HintPath>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\JCodes.Framework.libs\Microsoft.Practices\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\JCodes.Framework.libs\Microsoft.Practices\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ObjectBuilder, Version=1.0.51206.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\JCodes.Framework.libs\Microsoft.Practices\Microsoft.Practices.ObjectBuilder.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Authority.cs" />
-    <Compile Include="Bug.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Button.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Daily.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Department.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LoginLog.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Menu.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MenuButton.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Order.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Attachment\FileUpload.cs" />
+    <Compile Include="Dic\City.cs" />
+    <Compile Include="Dic\DictData.cs" />
+    <Compile Include="Dic\DictType.cs" />
+    <Compile Include="Dic\District.cs" />
+    <Compile Include="Dic\Province.cs" />
+    <Compile Include="Dic\UserParameter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Role.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="RoleMenuButton.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="User.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="UserDepartment.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="UserOperateLog.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="UserRole.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Security\BlackIP.cs" />
+    <Compile Include="Security\Function.cs" />
+    <Compile Include="Security\LoginLog.cs" />
+    <Compile Include="Security\Menu.cs" />
+    <Compile Include="Security\OperationLog.cs" />
+    <Compile Include="Security\OperationLogSetting.cs" />
+    <Compile Include="Security\OU.cs" />
+    <Compile Include="Security\Role.cs" />
+    <Compile Include="Security\RoleData.cs" />
+    <Compile Include="Security\SystemType.cs" />
+    <Compile Include="Security\User.cs" />
+    <Compile Include="WareHouseMis\ItemDetail.cs" />
+    <Compile Include="WareHouseMis\PurchaseDetail.cs" />
+    <Compile Include="WareHouseMis\PurchaseHeader.cs" />
+    <Compile Include="WareHouseMis\ReportAnnualCostDetail.cs" />
+    <Compile Include="WareHouseMis\ReportAnnualCostHeader.cs" />
+    <Compile Include="WareHouseMis\ReportMonthlyCostDetail.cs" />
+    <Compile Include="WareHouseMis\ReportMonthlyDetail.cs" />
+    <Compile Include="WareHouseMis\ReportMonthlyHeader.cs" />
+    <Compile Include="WareHouseMis\Stock.cs" />
+    <Compile Include="WareHouseMis\WareHouse.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JCodes.Framework.Common\JCodes.Framework.Common.csproj">
       <Project>{0DC2C51C-4601-4045-A412-BED930658C2C}</Project>
       <Name>JCodes.Framework.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JCodes.Framework.Entity\JCodes.Framework.Entity.csproj">
+      <Project>{22d7993c-a8c8-4306-90a4-96ff76a12c0a}</Project>
+      <Name>JCodes.Framework.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JCodes.Framework.Enum\JCodes.Framework.jCodesenum.csproj">
+      <Project>{bd86470b-26c1-4b51-b6a8-3f11cebb4950}</Project>
+      <Name>JCodes.Framework.jCodesenum</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JCodes.Framework.IDAL\JCodes.Framework.IDAL.csproj">
       <Project>{A7F8FAE9-0036-45CE-97B6-F21E144807C8}</Project>
       <Name>JCodes.Framework.IDAL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JCodes.Framework.Model\JCodes.Framework.Model.csproj">
-      <Project>{F31B2A29-7F65-4019-B015-44A9FF67F33A}</Project>
-      <Name>JCodes.Framework.Model</Name>
-    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>echo "编译后处理的事情 JCodes.Framework.SQLServerDAL"</PostBuildEvent>

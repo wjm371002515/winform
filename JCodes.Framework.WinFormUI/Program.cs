@@ -9,16 +9,21 @@ using System.Drawing.Imaging;
 using System.Threading;
 using System.Diagnostics;
 using JCodes.Framework.Common;
+using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.CommonControl.Framework;
+using JCodes.Framework.CommonControl;
 
 namespace JCodes.Framework.WinFormUI
 {
     static class Program
     {
+        public static GlobalControl gc = new GlobalControl();
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
             // 20150918 wujm09397 捕捉系统框架的异常
             Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
@@ -43,8 +48,27 @@ namespace JCodes.Framework.WinFormUI
             }
             else
             {
-                Application.Run(new frmLogin());
+                LoginNormal(args);
+                //Application.Run(new frmLogin());
             }
+        }
+
+        private static void LoginNormal(string[] args)
+        {
+
+            Login dlg = new Login();
+            dlg.StartPosition = FormStartPosition.CenterScreen;
+            if (DialogResult.OK == dlg.ShowDialog())
+            {
+                if (dlg.bLogin)
+                {
+                    MainForm MainDialog = new MainForm();
+                    Portal.gc.MainDialog = MainDialog;
+
+                    MainDialog.ShowDialog();
+                }
+            }
+            dlg.Dispose();
         }
 
         /// <summary>

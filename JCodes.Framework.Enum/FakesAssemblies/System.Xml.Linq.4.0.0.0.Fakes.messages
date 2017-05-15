@@ -1,0 +1,30 @@
+G:\github_winform\winform\JCodes.Framework.Enum\Fakes\System.Xml.Linq.fakes : warning : 无法为 System.Xml.Linq.XName 生成存根: 类型已密封。
+G:\github_winform\winform\JCodes.Framework.Enum\Fakes\System.Xml.Linq.fakes : warning : 无法为 System.Xml.Linq.XNamespace 生成存根: 类型已密封。
+G:\github_winform\winform\JCodes.Framework.Enum\Fakes\System.Xml.Linq.fakes : warning : 无法为 System.Xml.Linq.XObject 生成存根: 类型没有系列可见的构造函数。
+G:\github_winform\winform\JCodes.Framework.Enum\Fakes\System.Xml.Linq.fakes : warning : 无法为 System.Xml.Linq.XObjectChange 生成存根: 类型是一个值类型。
+G:\github_winform\winform\JCodes.Framework.Enum\Fakes\System.Xml.Linq.fakes : warning : 无法为 System.Xml.Linq.XNode 生成存根: 类型没有系列可见的构造函数。
+G:\github_winform\winform\JCodes.Framework.Enum\Fakes\System.Xml.Linq.fakes : warning : 无法为 System.Xml.Linq.XNodeDocumentOrderComparer 生成存根: 类型已密封。
+G:\github_winform\winform\JCodes.Framework.Enum\Fakes\System.Xml.Linq.fakes : warning : 无法为 System.Xml.Linq.XNodeEqualityComparer 生成存根: 类型已密封。
+G:\github_winform\winform\JCodes.Framework.Enum\Fakes\System.Xml.Linq.fakes : warning : 无法为 System.Xml.Linq.XContainer 生成存根: 类型没有系列可见的构造函数。
+G:\github_winform\winform\JCodes.Framework.Enum\Fakes\System.Xml.Linq.fakes : warning : 无法为 System.Xml.Linq.LoadOptions 生成存根: 类型是一个值类型。
+G:\github_winform\winform\JCodes.Framework.Enum\Fakes\System.Xml.Linq.fakes : warning : 无法为 System.Xml.Linq.SaveOptions 生成存根: 类型是一个值类型。
+G:\github_winform\winform\JCodes.Framework.Enum\Fakes\System.Xml.Linq.fakes : warning : 无法为 System.Xml.Linq.ReaderOptions 生成存根: 类型是一个值类型。
+G:\github_winform\winform\JCodes.Framework.Enum\Fakes\System.Xml.Linq.fakes : warning : 无法为 System.Xml.Linq.Extensions 生成存根: 类型已密封。
+G:\github_winform\winform\JCodes.Framework.Enum\Fakes\System.Xml.Linq.fakes : warning : 无法为 System.Xml.XPath.Extensions 生成存根: 类型已密封。
+G:\github_winform\winform\JCodes.Framework.Enum\Fakes\System.Xml.Linq.fakes : warning : 无法为 System.Xml.Schema.Extensions 生成存根: 类型已密封。
+G:\github_winform\winform\JCodes.Framework.Enum\Fakes\System.Xml.Linq.fakes : warning : 无法为 MS.Internal.Xml.Linq.ComponentModel.XTypeDescriptionProvider`1 生成存根: 类型对 exported or assembly(System.Xml.Linq.4.0.0.0.Fakes) 不可见。
+G:\github_winform\winform\JCodes.Framework.Enum\Fakes\System.Xml.Linq.fakes : warning : 无法为 System.Xml.Linq.NameSerializer 生成存根: 类型已密封。
+G:\github_winform\winform\JCodes.Framework.Enum\Fakes\System.Xml.Linq.fakes : warning : 无法为 FXAssembly 生成存根: 类型已密封。
+G:\github_winform\winform\JCodes.Framework.Enum\Fakes\System.Xml.Linq.fakes : warning : 无法为 ThisAssembly 生成存根: 类型已密封。
+G:\github_winform\winform\JCodes.Framework.Enum\Fakes\System.Xml.Linq.fakes : warning : 无法为 AssemblyRef 生成存根: 类型已密封。
+G:\github_winform\winform\JCodes.Framework.Enum\Fakes\System.Xml.Linq.fakes : warning : 无法为 <PrivateImplementationDetails>{DCA98F07-D191-4730-A70A-A34D421FD7EE} 生成存根: 类型不受支持，因为存在内部限制。
+G:\github_winform\winform\JCodes.Framework.Enum\Fakes\System.Xml.Linq.fakes : warning : 无法为 System.Xml.Linq.XObjectChange 生成填充码: 类型是一个枚举。
+G:\github_winform\winform\JCodes.Framework.Enum\Fakes\System.Xml.Linq.fakes : warning : 无法为 System.Xml.Linq.LoadOptions 生成填充码: 类型是一个枚举。
+G:\github_winform\winform\JCodes.Framework.Enum\Fakes\System.Xml.Linq.fakes : warning : 无法为 System.Xml.Linq.SaveOptions 生成填充码: 类型是一个枚举。
+G:\github_winform\winform\JCodes.Framework.Enum\Fakes\System.Xml.Linq.fakes : warning : 无法为 System.Xml.Linq.ReaderOptions 生成填充码: 类型是一个枚举。
+G:\github_winform\winform\JCodes.Framework.Enum\Fakes\System.Xml.Linq.fakes : warning : 无法为 MS.Internal.Xml.Linq.ComponentModel.XTypeDescriptionProvider`1 生成填充码: 类型对 exported or assembly(System.Xml.Linq.4.0.0.0.Fakes) 不可见。
+G:\github_winform\winform\JCodes.Framework.Enum\Fakes\System.Xml.Linq.fakes : warning : 无法为 System.Xml.Linq.NameSerializer 生成填充码: 类型对 exported or assembly(System.Xml.Linq.4.0.0.0.Fakes) 不可见。
+G:\github_winform\winform\JCodes.Framework.Enum\Fakes\System.Xml.Linq.fakes : warning : 无法为 FXAssembly 生成填充码: 类型对 exported or assembly(System.Xml.Linq.4.0.0.0.Fakes) 不可见。
+G:\github_winform\winform\JCodes.Framework.Enum\Fakes\System.Xml.Linq.fakes : warning : 无法为 ThisAssembly 生成填充码: 类型对 exported or assembly(System.Xml.Linq.4.0.0.0.Fakes) 不可见。
+G:\github_winform\winform\JCodes.Framework.Enum\Fakes\System.Xml.Linq.fakes : warning : 无法为 AssemblyRef 生成填充码: 类型对 exported or assembly(System.Xml.Linq.4.0.0.0.Fakes) 不可见。
+G:\github_winform\winform\JCodes.Framework.Enum\Fakes\System.Xml.Linq.fakes : warning : 无法为 <PrivateImplementationDetails>{DCA98F07-D191-4730-A70A-A34D421FD7EE} 生成填充码: 类型不受支持，因为存在内部限制。

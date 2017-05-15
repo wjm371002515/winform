@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FDF63C08-46C6-423C-919B-846AC161AD83}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JCodes.Framework.SQLiteDAL</RootNamespace>
+    <AssemblyName>JCodes.Framework.SQLiteDAL</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\jCodes\Framework\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\JCodes.Framework.libs\Microsoft.Practices\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\JCodes.Framework.libs\Microsoft.Practices\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ObjectBuilder, Version=1.0.51206.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\JCodes.Framework.libs\Microsoft.Practices\Microsoft.Practices.ObjectBuilder.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Attachment\FileUpload.cs" />
+    <Compile Include="Dic\City.cs" />
+    <Compile Include="Dic\DictData.cs" />
+    <Compile Include="Dic\DictType.cs" />
+    <Compile Include="Dic\District.cs" />
+    <Compile Include="Dic\Province.cs" />
+    <Compile Include="Dic\UserParameter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\BlackIP.cs" />
+    <Compile Include="Security\Function.cs" />
+    <Compile Include="Security\LoginLog.cs" />
+    <Compile Include="Security\Menu.cs" />
+    <Compile Include="Security\OperationLog.cs" />
+    <Compile Include="Security\OperationLogSetting.cs" />
+    <Compile Include="Security\OU.cs" />
+    <Compile Include="Security\Role.cs" />
+    <Compile Include="Security\RoleData.cs" />
+    <Compile Include="Security\SystemType.cs" />
+    <Compile Include="Security\User.cs" />
+    <Compile Include="WareHouseMis\ItemDetail.cs" />
+    <Compile Include="WareHouseMis\PurchaseDetail.cs" />
+    <Compile Include="WareHouseMis\PurchaseHeader.cs" />
+    <Compile Include="WareHouseMis\ReportAnnualCostDetail.cs" />
+    <Compile Include="WareHouseMis\ReportAnnualCostHeader.cs" />
+    <Compile Include="WareHouseMis\ReportMonthlyCostDetail.cs" />
+    <Compile Include="WareHouseMis\ReportMonthlyDetail.cs" />
+    <Compile Include="WareHouseMis\ReportMonthlyHeader.cs" />
+    <Compile Include="WareHouseMis\Stock.cs" />
+    <Compile Include="WareHouseMis\WareHouse.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\JCodes.Framework.Common\JCodes.Framework.Common.csproj">
+      <Project>{0dc2c51c-4601-4045-a412-bed930658c2c}</Project>
+      <Name>JCodes.Framework.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JCodes.Framework.Entity\JCodes.Framework.Entity.csproj">
+      <Project>{22d7993c-a8c8-4306-90a4-96ff76a12c0a}</Project>
+      <Name>JCodes.Framework.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JCodes.Framework.Enum\JCodes.Framework.jCodesenum.csproj">
+      <Project>{bd86470b-26c1-4b51-b6a8-3f11cebb4950}</Project>
+      <Name>JCodes.Framework.jCodesenum</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JCodes.Framework.IDAL\JCodes.Framework.IDAL.csproj">
+      <Project>{a7f8fae9-0036-45ce-97b6-f21e144807c8}</Project>
+      <Name>JCodes.Framework.IDAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>echo "编译后处理的事情 JCodes.Framework.SQLiteDAL"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

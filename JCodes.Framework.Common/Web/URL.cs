@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JCodes.Framework.Common.WEB
+namespace JCodes.Framework.Common.Web
 {
     /// <summary>
     /// URL 操作类

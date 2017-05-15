@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BD86470B-26C1-4B51-B6A8-3F11CEBB4950}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JCodes.Framework.jCodesenum</RootNamespace>
+    <AssemblyName>JCodes.Framework.jCodesenum</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\jCodes\Framework\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseEnum\ABEdge.cs" />
+    <Compile Include="BaseEnum\ABMsg.cs" />
+    <Compile Include="BaseEnum\ABState.cs" />
+    <Compile Include="BaseEnum\Alignment.cs" />
+    <Compile Include="BaseEnum\AnimationDirection.cs" />
+    <Compile Include="BaseEnum\AnimationMethod.cs" />
+    <Compile Include="BaseEnum\AudioPlayMode.cs" />
+    <Compile Include="BaseEnum\CameraState.cs" />
+    <Compile Include="BaseEnum\CaptureType.cs" />
+    <Compile Include="BaseEnum\ClassStyles.cs" />
+    <Compile Include="BaseEnum\CompareResult.cs" />
+    <Compile Include="BaseEnum\DatabaseType.cs" />
+    <Compile Include="BaseEnum\DbProviderType.cs" />
+    <Compile Include="BaseEnum\DeviceType.cs" />
+    <Compile Include="BaseEnum\Direction.cs" />
+    <Compile Include="BaseEnum\DisposeState.cs" />
+    <Compile Include="BaseEnum\DragCursorType.cs" />
+    <Compile Include="BaseEnum\DwmNCRenderingPolicy.cs" />
+    <Compile Include="BaseEnum\DwmWindowAttribute.cs" />
+    <Compile Include="BaseEnum\DWM_BB.cs" />
+    <Compile Include="BaseEnum\EmfToWmfBitsFlags.cs" />
+    <Compile Include="BaseEnum\ExcelType.cs" />
+    <Compile Include="BaseEnum\FieldType.cs" />
+    <Compile Include="BaseEnum\FileManagerStatus.cs" />
+    <Compile Include="BaseEnum\FolderType.cs" />
+    <Compile Include="BaseEnum\GetWindowConstants.cs" />
+    <Compile Include="BaseEnum\HookType.cs" />
+    <Compile Include="BaseEnum\IconSize.cs" />
+    <Compile Include="BaseEnum\ImageFormatTypes.cs" />
+    <Compile Include="BaseEnum\IMEXType.cs" />
+    <Compile Include="BaseEnum\InternetConnectionStatesType.cs" />
+    <Compile Include="BaseEnum\Location.cs" />
+    <Compile Include="BaseEnum\LogLevel.cs" />
+    <Compile Include="BaseEnum\MailFormat.cs" />
+    <Compile Include="BaseEnum\MailPriority.cs" />
+    <Compile Include="BaseEnum\MODKEY.cs" />
+    <Compile Include="BaseEnum\MouseEventFlag.cs" />
+    <Compile Include="BaseEnum\MozItemColor.cs" />
+    <Compile Include="BaseEnum\MozItemState.cs" />
+    <Compile Include="BaseEnum\MozItemStyle.cs" />
+    <Compile Include="BaseEnum\MozPaneStyle.cs" />
+    <Compile Include="BaseEnum\MozSelectButton.cs" />
+    <Compile Include="BaseEnum\MozTextAlign.cs" />
+    <Compile Include="BaseEnum\OSPlatformID.cs" />
+    <Compile Include="BaseEnum\OSProductType.cs" />
+    <Compile Include="BaseEnum\OSSuiteMask.cs" />
+    <Compile Include="BaseEnum\PageType.cs" />
+    <Compile Include="BaseEnum\PRF.cs" />
+    <Compile Include="BaseEnum\RegionType.cs" />
+    <Compile Include="BaseEnum\RowHeightSetting.cs" />
+    <Compile Include="BaseEnum\RtfColor.cs" />
+    <Compile Include="BaseEnum\ScaleMode.cs" />
+    <Compile Include="BaseEnum\SerialPortBaudRates.cs" />
+    <Compile Include="BaseEnum\SerialPortDatabits.cs" />
+    <Compile Include="BaseEnum\SHOWWINDOW.cs" />
+    <Compile Include="BaseEnum\SpecialSymbols.cs" />
+    <Compile Include="BaseEnum\SqlOperator.cs" />
+    <Compile Include="BaseEnum\State.cs" />
+    <Compile Include="BaseEnum\Status.cs" />
+    <Compile Include="BaseEnum\Style.cs" />
+    <Compile Include="BaseEnum\TaskBarEdge.cs" />
+    <Compile Include="BaseEnum\TernaryRasterOperations.cs" />
+    <Compile Include="BaseEnum\ThreadAccess.cs" />
+    <Compile Include="BaseEnum\TimerState.cs" />
+    <Compile Include="BaseEnum\WatermarkPosition.cs" />
+    <Compile Include="BaseEnum\WindowShowStyle.cs" />
+    <Compile Include="BaseEnum\WindowStyles.cs" />
+    <Compile Include="BaseEnum\WM.cs" />
+    <Compile Include="BaseEnum\WorkItemStatus.cs" />
+    <Compile Include="BaseEnum\ZoomMode.cs" />
+    <Compile Include="EnumDic.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>echo "编译后处理的事情 JCodes.Framework.Enum"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

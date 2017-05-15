@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WHC.OrderWater.UI;
 
 namespace JCodes.Framework.TestWinForm
 {
@@ -15,9 +16,27 @@ namespace JCodes.Framework.TestWinForm
         [STAThread]
         static void Main()
         {
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("zh-CN");
+
+            DevExpress.UserSkins.BonusSkins.Register();
+            DevExpress.Skins.SkinManager.EnableFormSkins();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+
+            // 分页控件
+            //Application.Run(new TestDictionary.Form1());
+            
+            // 测试公共类
+            // Application.Run(new TestCommons.Form1());
+
+            //Application.Run(new TestControlUtil.Form1());
+
+            // 附件测试
+            //Application.Run(new TestAttachmentDx.Form1());
+
+            // 权限管理系统
+            //Application.Run(new TestSecurityMix_WCF_WIN.Form1());
         }
     }
 }

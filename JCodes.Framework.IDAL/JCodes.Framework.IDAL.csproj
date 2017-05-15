@@ -41,28 +41,51 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IAuthority.cs" />
-    <Compile Include="IBug.cs" />
-    <Compile Include="IButton.cs" />
-    <Compile Include="IDaily.cs" />
-    <Compile Include="IDepartment.cs" />
-    <Compile Include="ILoginLog.cs" />
-    <Compile Include="IMenu.cs" />
-    <Compile Include="IOrder.cs" />
-    <Compile Include="IRole.cs" />
-    <Compile Include="IRoleMenuButton.cs" />
-    <Compile Include="IUser.cs" />
-    <Compile Include="IUserDepartment.cs" />
-    <Compile Include="IUserOperateLog.cs" />
-    <Compile Include="IUserRole.cs" />
+    <Compile Include="Attachment\IFileUpload.cs" />
+    <Compile Include="Dic\ICity.cs" />
+    <Compile Include="Dic\IDictData.cs" />
+    <Compile Include="Dic\IDictType.cs" />
+    <Compile Include="Dic\IDistrict.cs" />
+    <Compile Include="Dic\IProvince.cs" />
+    <Compile Include="Dic\IUserParameter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\IBlackIP.cs" />
+    <Compile Include="Security\IFunction.cs" />
+    <Compile Include="Security\ILoginLog.cs" />
+    <Compile Include="Security\IMenu.cs" />
+    <Compile Include="Security\IOperationLog.cs" />
+    <Compile Include="Security\IOperationLogSetting.cs" />
+    <Compile Include="Security\IOU.cs" />
+    <Compile Include="Security\IRole.cs" />
+    <Compile Include="Security\IRoleData.cs" />
+    <Compile Include="Security\ISystemType.cs" />
+    <Compile Include="Security\IUser.cs" />
+    <Compile Include="WareHouseMis\IItemDetail.cs" />
+    <Compile Include="WareHouseMis\IPurchaseDetail.cs" />
+    <Compile Include="WareHouseMis\IPurchaseHeader.cs" />
+    <Compile Include="WareHouseMis\IReportAnnualCostDetail.cs" />
+    <Compile Include="WareHouseMis\IReportAnnualCostHeader.cs" />
+    <Compile Include="WareHouseMis\IReportMonthlyCostDetail.cs" />
+    <Compile Include="WareHouseMis\IReportMonthlyDetail.cs" />
+    <Compile Include="WareHouseMis\IReportMonthlyHeader.cs" />
+    <Compile Include="WareHouseMis\IStock.cs" />
+    <Compile Include="WareHouseMis\IWareHouse.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\JCodes.Framework.Common\JCodes.Framework.Common.csproj">
+      <Project>{0dc2c51c-4601-4045-a412-bed930658c2c}</Project>
+      <Name>JCodes.Framework.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JCodes.Framework.Entity\JCodes.Framework.Entity.csproj">
+      <Project>{22d7993c-a8c8-4306-90a4-96ff76a12c0a}</Project>
+      <Name>JCodes.Framework.Entity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JCodes.Framework.Model\JCodes.Framework.Model.csproj">
       <Project>{F31B2A29-7F65-4019-B015-44A9FF67F33A}</Project>
       <Name>JCodes.Framework.Model</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>echo "编译后处理的事情 JCodes.Framework.IDAL"</PostBuildEvent>
