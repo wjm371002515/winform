@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Format
 {
     #region Public Structs
 

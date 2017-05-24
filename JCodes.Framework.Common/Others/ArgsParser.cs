@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Office
 {
     /// <summary>
     /// 分析应用程序的args变量，即分析参数。

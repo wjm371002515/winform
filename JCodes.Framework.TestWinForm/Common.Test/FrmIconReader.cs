@@ -9,6 +9,10 @@ using System.Windows.Forms;
 using System.IO;
 using JCodes.Framework.Common;
 using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.CommonControl;
+using JCodes.Framework.Common.Files;
+using JCodes.Framework.Common.Images;
+using JCodes.Framework.CommonControl.Pager.Others;
 
 namespace TestCommons
 {

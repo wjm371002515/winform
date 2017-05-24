@@ -260,9 +260,10 @@ namespace JCodes.Framework.Common
                 //从全局程序集中查找  
                 factory = DbProviderFactories.GetFactory(providerName);
             }
-            catch (ArgumentException e)
+            catch (ArgumentException ex)
             {
                 factory = null;
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(ProviderFactory));
             }
             return factory;
         }

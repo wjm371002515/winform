@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Encrypt
 {
     /// <summary>
     /// 基于Base64的加密编码辅助类，

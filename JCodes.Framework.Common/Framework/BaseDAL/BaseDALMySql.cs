@@ -10,8 +10,9 @@ using MySql.Data.MySqlClient;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using JCodes.Framework.Entity;
 using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.Common.Databases;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Framework.BaseDAL
 {
     /// <summary>
     /// MySql数据访问层的基类

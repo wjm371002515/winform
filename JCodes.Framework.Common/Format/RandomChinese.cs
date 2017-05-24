@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Globalization;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Format
 {
     /// <summary>
     /// 随机汉字辅助类

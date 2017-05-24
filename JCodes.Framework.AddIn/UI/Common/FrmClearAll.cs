@@ -1,6 +1,10 @@
 ﻿using JCodes.Framework.BLL;
 using JCodes.Framework.Common;
+using JCodes.Framework.Common.Framework;
 using JCodes.Framework.CommonControl;
+using JCodes.Framework.CommonControl.BaseUI;
+using JCodes.Framework.CommonControl.Other;
+using JCodes.Framework.jCodesenum.BaseEnum;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -35,15 +39,14 @@ namespace JCodes.Framework.AddIn.UI.Common
                     BLLFactory<ReportMonthlyDetail>.Instance.DeleteByCondition(condition);
                     BLLFactory<ReportMonthlyCostDetail>.Instance.DeleteByCondition(condition);
                     BLLFactory<Stock>.Instance.DeleteByCondition(condition);
-                    //BLLFactory<WareHouse>.Instance.DeleteByCondition(condition);
-
+                   
                     MessageDxUtil.ShowTips("基础业务数据已经清除，不过保留字典及库房信息。\r\n如需删除字典及库房资料，请进入相应的界面进行删除即可。");
 
                 }
                 catch (Exception ex)
                 {
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmClearAll));
                     MessageDxUtil.ShowError(ex.Message);
-                    LogTextHelper.Error(ex);
                 }
             }
         }

@@ -1,8 +1,9 @@
-﻿using System;
+﻿using JCodes.Framework.jCodesenum.BaseEnum;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Device
 {
     /// <summary>
     /// 提供用户硬件唯一信息的辅助类
@@ -43,8 +44,9 @@ namespace JCodes.Framework.Common
                             result = mo[wmiProperty].ToString();
                             break;
                         }
-                        catch
+                        catch (Exception ex)
                         {
+                            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FingerprintHelper));
                         }
                     }
 
@@ -71,8 +73,9 @@ namespace JCodes.Framework.Common
                         result = mo[wmiProperty].ToString();
                         break;
                     }
-                    catch
+                    catch (Exception ex)
                     {
+                        LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FingerprintHelper));
                     }
                 }
 

@@ -14,6 +14,11 @@ using JCodes.Framework.Entity;
 using JCodes.Framework.Common;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.BLL;
+using JCodes.Framework.CommonControl.BaseUI;
+using JCodes.Framework.Common.Framework;
+using JCodes.Framework.Common.Databases;
+using JCodes.Framework.Common.Files;
+using JCodes.Framework.CommonControl.Other;
 
 namespace JCodes.Framework.AddIn.UI.WareHouse
 {
@@ -72,7 +77,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             if (ReportType == MonthlyReportType.库房部门结存)
             {
                 #region MyRegion
-                DataTable dt = BLLFactory<BLL.WareHouse>.Instance.SqlTable(sql);
+                DataTable dt = BLLFactory<WareHouses>.Instance.SqlTable(sql);
                 dt.TableName = "BigType";
                 if (dt.Rows.Count == 0)
                     return;
@@ -87,7 +92,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             else if (ReportType == MonthlyReportType.库房结存)
             {
                 #region MyRegion
-                DataTable dt = BLLFactory<BLL.WareHouse>.Instance.SqlTable(sql);
+                DataTable dt = BLLFactory<WareHouses>.Instance.SqlTable(sql);
                 dt.TableName = "BigType";
                 if (dt.Rows.Count == 0)
                     return;
@@ -102,12 +107,12 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             else if (ReportType == MonthlyReportType.所有库房结存)
             {
                 #region MyRegion
-                DataTable dtBigType = BLLFactory<BLL.WareHouse>.Instance.SqlTable(sql + " AND ReportCode ='ItemBigType'");
+                DataTable dtBigType = BLLFactory<WareHouses>.Instance.SqlTable(sql + " AND ReportCode ='ItemBigType'");
                 dtBigType.TableName = "BigType";
                 if (dtBigType.Rows.Count == 0)
                     return;
 
-                DataTable dtItemType = BLLFactory<BLL.WareHouse>.Instance.SqlTable(sql + " AND ReportCode ='ItemType'");
+                DataTable dtItemType = BLLFactory<WareHouses>.Instance.SqlTable(sql + " AND ReportCode ='ItemType'");
                 dtItemType.TableName = "ItemType";
 
                 string path = System.IO.Path.Combine(Application.StartupPath, "Report2-1.xls");
@@ -121,7 +126,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             else if (ReportType == MonthlyReportType.车间成本月报表)
             {
                 sql = string.Format(@"Select [DeptName], [ItemType], [TotalMoney] from WM_ReportMonthlyCostDetail WHERE Header_ID={0} ", headerId);
-                DataTable dt = BLLFactory<BLL.WareHouse>.Instance.SqlTable(sql);
+                DataTable dt = BLLFactory<WareHouses>.Instance.SqlTable(sql);
                 if (dt.Rows.Count == 0)
                     return;
 

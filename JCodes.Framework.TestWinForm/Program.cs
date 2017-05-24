@@ -1,7 +1,9 @@
-﻿using JCodes.Framework.Test;
+﻿using DevExpress.Utils;
+using JCodes.Framework.Test;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WHC.OrderWater.UI;
@@ -22,13 +24,21 @@ namespace JCodes.Framework.TestWinForm
             DevExpress.Skins.SkinManager.EnableFormSkins();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+
+            WaitDialogForm WaitBeforeLogin = null;
+            new Thread((ThreadStart)delegate
+            {
+                WaitBeforeLogin = new DevExpress.Utils.WaitDialogForm("请稍候...", "正在加载应用系统");
+                Application.Run(new TestCommons.Form1(WaitBeforeLogin));
+            }).Start();
+
+            //Application.Run(new Form1());
 
             // 分页控件
             //Application.Run(new TestDictionary.Form1());
             
             // 测试公共类
-            // Application.Run(new TestCommons.Form1());
+            //Application.Run(new TestCommons.Form1());
 
             //Application.Run(new TestControlUtil.Form1());
 

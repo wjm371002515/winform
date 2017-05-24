@@ -8,6 +8,11 @@ using System.Windows.Forms;
 using JCodes.Framework.CommonControl;
 using JCodes.Framework.Entity;
 using JCodes.Framework.Common;
+using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.CommonControl.BaseUI;
+using JCodes.Framework.CommonControl.Other;
+using JCodes.Framework.Common.Framework;
+using JCodes.Framework.BLL;
 
 namespace JCodes.Framework.AddIn.UI.WareHouse
 {
@@ -51,14 +56,14 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             
             if (!string.IsNullOrEmpty(ID))
             {
-                WareHouseInfo info = BLLFactory<BLL.WareHouse>.Instance.FindByID(ID);
+                WareHouseInfo info = BLLFactory<WareHouses>.Instance.FindByID(ID);
                 if (info != null)
                 {
                     SetInfo(info);
 
                     try
                     {
-                        bool succeed = BLLFactory<BLL.WareHouse>.Instance.Update(info, info.ID.ToString());
+                        bool succeed = BLLFactory<WareHouses>.Instance.Update(info, info.ID.ToString());
                         if (succeed)
                         {
                             MessageDxUtil.ShowTips("保存成功");
@@ -67,7 +72,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
                     }
                     catch (Exception ex)
                     {
-                        LogTextHelper.Error(ex);
+                        LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmEditWareHouse));
                         MessageDxUtil.ShowError(ex.Message);
                     }
                 }
@@ -79,7 +84,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
 
                 try
                 {
-                    bool succeed = BLLFactory<BLL.WareHouse>.Instance.Insert(info);
+                    bool succeed = BLLFactory<WareHouses>.Instance.Insert(info);
                     if (succeed)
                     {
                         MessageDxUtil.ShowTips("保存成功");
@@ -88,7 +93,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
                 }
                 catch (Exception ex)
                 {
-                    LogTextHelper.Error(ex);
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmEditWareHouse));
                     MessageDxUtil.ShowError(ex.Message);
                 }
             }
@@ -100,7 +105,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             if (!string.IsNullOrEmpty(ID))
             {
                 this.Text = "编辑 " + this.Text;
-                WareHouseInfo info = BLLFactory<BLL.WareHouse>.Instance.FindByID(ID);
+                WareHouseInfo info = BLLFactory<WareHouses>.Instance.FindByID(ID);
                 if (info != null)
                 {
                     txtName.Text = info.Name;

@@ -11,6 +11,13 @@ using JCodes.Framework.Common;
 using JCodes.Framework.BLL;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.Entity;
+using JCodes.Framework.CommonControl.BaseUI;
+using JCodes.Framework.CommonControl.Other;
+using JCodes.Framework.Common.Framework;
+using JCodes.Framework.Common.Databases;
+using JCodes.Framework.CommonControl.AdvanceSearch;
+using JCodes.Framework.AddIn.Other;
+using JCodes.Framework.Common.Extension;
 
 namespace JCodes.Framework.AddIn.UI.WareHouse
 {
@@ -151,7 +158,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             this.txtDept.BindDictItems("部门");
 
             this.txtWareHouse.Properties.Items.Clear();
-            this.txtWareHouse.Properties.Items.AddRange(BLLFactory<BLL.WareHouse>.Instance.GetAllWareHouse().ToArray());
+            this.txtWareHouse.Properties.Items.AddRange(BLLFactory<WareHouses>.Instance.GetAllWareHouse().ToArray());
         }
 
         private void winGridViewPager1_OnRefresh(object sender, EventArgs e)
@@ -350,7 +357,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
                 dlg.AddColumnListItem("Specification", BLLFactory<ItemDetail>.Instance.GetFieldList("Specification"));
                 dlg.AddColumnListItem("Unit", BLLFactory<ItemDetail>.Instance.GetFieldList("Unit"));
 
-                List<CListItem> wareList = BLLFactory<BLL.WareHouse>.Instance.GetAllWareHouse();
+                List<CListItem> wareList = BLLFactory<WareHouses>.Instance.GetAllWareHouse();
                 dlg.AddColumnListItem("WareHouse", wareList);
 
                 //dlg.AddColumnListItem("Sex", "男,女");

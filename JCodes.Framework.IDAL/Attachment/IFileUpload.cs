@@ -5,13 +5,14 @@ using System.Data.Common;
 using System.Collections.Generic;
 using JCodes.Framework.Common;
 using JCodes.Framework.Entity;
+using JCodes.Framework.Common.Framework;
 
 namespace JCodes.Framework.IDAL
 {
     /// <summary>
     /// 上传文件操作
     /// </summary>
-	public interface IFileUpload : IBaseDAL<FileUploadInfo>
+	public interface IFileUploads : IBaseDAL<FileUploadInfo>
 	{
         /// <summary>
         /// 获取指定用户的上传信息

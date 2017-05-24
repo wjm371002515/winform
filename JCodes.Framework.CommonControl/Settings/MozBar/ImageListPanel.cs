@@ -5,6 +5,9 @@ using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using System.ComponentModel;
 using System.Diagnostics;
+using JCodes.Framework.Common;
+using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.CommonControl.Other;
 
 namespace JCodes.Framework.CommonControl.Settings
 {	
@@ -236,9 +239,10 @@ namespace JCodes.Framework.CommonControl.Settings
 						{
 							DragDropEffects dde = DoDragDrop(data, DragDropEffects.Copy | DragDropEffects.Move);
 						}
-						catch
+						catch (Exception ex)
 						{
-
+                            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(ImageListPanel));
+                            MessageDxUtil.ShowError(ex.Message); 
 						}
 						_bIsMouseDown = false;
 					}

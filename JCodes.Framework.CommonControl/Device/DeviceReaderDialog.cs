@@ -1,4 +1,5 @@
-﻿using JCodes.Framework.jCodesenum.BaseEnum;
+﻿using JCodes.Framework.CommonControl.BaseUI;
+using JCodes.Framework.jCodesenum.BaseEnum;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace JCodes.Framework.CommonControl
+namespace JCodes.Framework.CommonControl.Device
 {
     /// <summary>
     /// 读卡器、USB条码扫描器、串口条码扫描器数据读取及显示窗体

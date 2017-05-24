@@ -7,6 +7,9 @@ using Microsoft.Practices.EnterpriseLibrary.Data;
 using JCodes.Framework.Common;
 using JCodes.Framework.Entity;
 using JCodes.Framework.IDAL;
+using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.Common.Framework.BaseDAL;
+using JCodes.Framework.Common.Databases;
 
 namespace JCodes.Framework.SQLServerDAL
 {
@@ -25,7 +28,7 @@ namespace JCodes.Framework.SQLServerDAL
             }
         }
         public User()
-            : base("T_ACL_User", "ID")
+            : base(SQLServerPortal.gc._securityTablePre + "User", "ID")
         {
             this.sortField = "SortCode";
             this.isDescending = false;
@@ -252,7 +255,7 @@ namespace JCodes.Framework.SQLServerDAL
         {
             if (HasInjectionData(condition))
             {
-                LogTextHelper.Error(string.Format("检测出SQL注入的恶意数据, {0}", condition));
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_ERR, string.Format("检测出SQL注入的恶意数据, {0}", condition), typeof(User));
                 throw new Exception("检测出SQL注入的恶意数据");
             }
 

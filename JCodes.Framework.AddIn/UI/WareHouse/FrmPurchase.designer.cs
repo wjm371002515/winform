@@ -86,9 +86,9 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.winGridView1 = new WinGridView();
+            this.winGridView1 = new JCodes.Framework.CommonControl.Pager.WinGridView();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.winGridView2 = new WinGridView();
+            this.winGridView2 = new JCodes.Framework.CommonControl.Pager.WinGridView();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip();
@@ -1080,9 +1080,9 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
         private DevExpress.XtraEditors.SimpleButton btnOK;
         private DevExpress.XtraEditors.SimpleButton btnSearch;
         private System.Windows.Forms.GroupBox groupBox3;
-        private WinGridView winGridView1;
+        private JCodes.Framework.CommonControl.Pager.WinGridView winGridView1;
         private System.Windows.Forms.GroupBox groupBox4;
-        private WinGridView winGridView2;
+        private JCodes.Framework.CommonControl.Pager.WinGridView winGridView2;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem menu_InRefresh;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;

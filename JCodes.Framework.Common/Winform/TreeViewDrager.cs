@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Winform
 {
     /// <summary>
     /// TreeView的包装类，实现树的DragDrop拖拉的操作的辅助类。

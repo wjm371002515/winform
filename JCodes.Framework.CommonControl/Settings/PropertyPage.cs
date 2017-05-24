@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Data;
 using System.Windows.Forms;
+using JCodes.Framework.CommonControl.BaseUI;
 
 namespace JCodes.Framework.CommonControl.Settings
 {

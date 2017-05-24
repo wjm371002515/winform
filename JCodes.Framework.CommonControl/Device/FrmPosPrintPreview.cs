@@ -8,8 +8,13 @@ using System.Windows.Forms;
 using System.Drawing.Printing;
 
 using JCodes.Framework.Common;
+using JCodes.Framework.CommonControl.BaseUI;
+using JCodes.Framework.CommonControl.Other;
+using JCodes.Framework.Common.Winform;
+using JCodes.Framework.Common.Files;
+using JCodes.Framework.jCodesenum.BaseEnum;
 
-namespace JCodes.Framework.CommonControl
+namespace JCodes.Framework.CommonControl.Device
 {
     /// <summary>
     /// POS小票打印的打印预览管理界面
@@ -128,6 +133,7 @@ namespace JCodes.Framework.CommonControl
             }
             catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmPosPrintPreview));
                 MessageDxUtil.ShowError(ex.Message);
             }
         }
@@ -144,6 +150,7 @@ namespace JCodes.Framework.CommonControl
             }
             catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmPosPrintPreview));
                 MessageDxUtil.ShowError(ex.Message);
             }
         }
@@ -163,6 +170,7 @@ namespace JCodes.Framework.CommonControl
             }
             catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmPosPrintPreview));
                 MessageDxUtil.ShowError(ex.Message);
             }
         }

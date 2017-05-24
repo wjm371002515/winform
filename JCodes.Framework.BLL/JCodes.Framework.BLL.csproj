@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\jCodes\Framework\</OutputPath>
+    <OutputPath>..\jCodes\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -72,9 +72,13 @@
     <Compile Include="WareHouseMis\ReportMonthlyDetail.cs" />
     <Compile Include="WareHouseMis\ReportMonthlyHeader.cs" />
     <Compile Include="WareHouseMis\Stock.cs" />
-    <Compile Include="WareHouseMis\WareHouse.cs" />
+    <Compile Include="WareHouseMis\WareHouses.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\JCodes.Framework.CommonControl\JCodes.Framework.CommonControl.csproj">
+      <Project>{64cfe6d2-0684-4d68-bfa0-ec7effdf4623}</Project>
+      <Name>JCodes.Framework.CommonControl</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JCodes.Framework.Common\JCodes.Framework.Common.csproj">
       <Project>{0DC2C51C-4601-4045-A412-BED930658C2C}</Project>
       <Name>JCodes.Framework.Common</Name>

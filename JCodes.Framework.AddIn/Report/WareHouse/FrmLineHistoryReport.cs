@@ -17,8 +17,13 @@ using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.Common;
 using JCodes.Framework.BLL;
 using JCodes.Framework.CommonControl;
+using JCodes.Framework.Common.Framework;
+using JCodes.Framework.Common.Format;
+using JCodes.Framework.Common.Files;
+using JCodes.Framework.CommonControl.Other;
+using JCodes.Framework.Common.Databases;
 
-namespace JCodes.Framework.AddIn
+namespace JCodes.Framework.AddIn.Report.WareHouse
 {
     public partial class FrmLineHistoryReport : DevExpress.XtraEditors.XtraUserControl
     {        
@@ -391,7 +396,7 @@ namespace JCodes.Framework.AddIn
                     }
 
                     workbook.Save(saveDocFile);
-                    if (MessageUtil.ShowYesNoAndTips("保存成功，是否打开文件？") == System.Windows.Forms.DialogResult.Yes)
+                    if (MessageDxUtil.ShowYesNoAndTips("保存成功，是否打开文件？") == System.Windows.Forms.DialogResult.Yes)
                     {
                         System.Diagnostics.Process.Start(saveDocFile);
                     }
@@ -399,8 +404,8 @@ namespace JCodes.Framework.AddIn
             }
             catch (Exception ex)
             {
-                LogTextHelper.Error(ex);
-                MessageUtil.ShowError(ex.Message);
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmLineHistoryReport));
+                MessageDxUtil.ShowError(ex.Message);
                 return;
             }
         }

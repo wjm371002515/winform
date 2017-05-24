@@ -5,7 +5,7 @@ using System.Collections;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Winform
 {
     /// <summary>
     /// RTF字符格式辅助类

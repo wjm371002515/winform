@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Globalization;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Office
 {
     /// <summary>
     /// 中国农历年处理类

@@ -8,7 +8,7 @@ using System.Collections;
 using System.Text;
 using System.Reflection;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Format
 {
     /// <summary>
     /// Json字符串处理辅助类

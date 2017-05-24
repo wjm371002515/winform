@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Collections
 {
     /// <summary>
     /// 各种常用数组排序操作辅助类

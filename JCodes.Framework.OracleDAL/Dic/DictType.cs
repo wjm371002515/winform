@@ -7,6 +7,8 @@ using JCodes.Framework.Common;
 using JCodes.Framework.Entity;
 using JCodes.Framework.IDAL;
 using Microsoft.Practices.EnterpriseLibrary.Data;
+using JCodes.Framework.Common.Framework.BaseDAL;
+using JCodes.Framework.Common.Databases;
 
 namespace JCodes.Framework.OracleDAL
 {

@@ -4,8 +4,9 @@ using System.Text;
 using System.Windows.Forms;
 using System.Data;
 using System.Text.RegularExpressions;
+using JCodes.Framework.jCodesenum.BaseEnum;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Format
 {
     /// <summary>
     /// 身份证操作辅助类
@@ -87,8 +88,9 @@ namespace JCodes.Framework.Common
             {
                 DateTime.Parse(idcard.Substring(6, 4) + "-" + idcard.Substring(10, 2) + "-" + idcard.Substring(12, 2));
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(IDCardHelper));
                 return "非法生日";
             }
             return string.Empty;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JCodes.Framework.jCodesenum.BaseEnum;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
@@ -140,8 +141,9 @@ namespace JCodes.Framework.Common.Threading
                 {
                     this.OnProcessItem(item);
                 }
-                catch
+                catch (Exception ex)
                 {
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(QueueServer<T>));
                 }
             }
         }

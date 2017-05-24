@@ -7,6 +7,8 @@ using JCodes.Framework.Common;
 using JCodes.Framework.Entity;
 using JCodes.Framework.IDAL;
 using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.Common.Framework;
+using JCodes.Framework.Common.Databases;
 
 namespace JCodes.Framework.BLL
 {
@@ -52,7 +54,7 @@ namespace JCodes.Framework.BLL
             }
             catch (Exception ex)
             {
-                LogTextHelper.Error(ex);
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(LoginLog));
             }
             #endregion
         }

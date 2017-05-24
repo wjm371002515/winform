@@ -5,8 +5,9 @@ using System.Net;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.IO;
+using JCodes.Framework.jCodesenum.BaseEnum;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Network
 {
     /// <summary>
     /// Cookie操作辅助类
@@ -158,7 +159,9 @@ namespace JCodes.Framework.Common
                 Uri u = new Uri(url);
                 domain = u.Host;
             }
-            catch { }
+            catch (Exception ex) {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(CookieManger));
+            }
             string[] cks = GetCKS(ck);
             for (int i = 0; i < cks.Length; i++)
             {
@@ -174,7 +177,9 @@ namespace JCodes.Framework.Common
                         c.Domain = domain;
                         cc.Add(c);
                     }
-                    catch { }
+                    catch (Exception ex) {
+                        LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(CookieManger));
+                    }
                 }
             }
             return cc;
@@ -192,7 +197,9 @@ namespace JCodes.Framework.Common
             {
                 url = url.Remove(url.IndexOf("?"));
             }
-            catch { }
+            catch (Exception ex){
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(CookieManger));
+            }
             try
             {
                 Uri uri = new Uri(url);
@@ -203,7 +210,9 @@ namespace JCodes.Framework.Common
                     res.Add(baseDomain);
                 }
             }
-            catch { }
+            catch (Exception ex){
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(CookieManger));
+            }
             return res;
         }
 
@@ -300,8 +309,9 @@ namespace JCodes.Framework.Common
                 {
                     file.Delete();
                 }
-                catch
+                catch (Exception ex)
                 {
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(CookieManger));
                 }
             }
         }
@@ -358,7 +368,10 @@ namespace JCodes.Framework.Common
                 }
                 return false;
             }
-            catch { return false; }
+            catch (Exception ex){
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(CookieManger));    
+                return false; 
+            }
 
         }
 

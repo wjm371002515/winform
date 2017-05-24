@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
 using System.Windows.Forms;
+using JCodes.Framework.jCodesenum.BaseEnum;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Winform
 {
     /// <summary>
     /// 用来显示动态图标或者文本的系统托盘辅助类
@@ -110,8 +111,9 @@ namespace JCodes.Framework.Common
                     m_animationIcons[i] = Icon.FromHandle(bitmap[i].GetHicon());
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(SysTray));
                 // I was getting generic GDI+ exceptions from time to time
             }
         }
@@ -135,8 +137,9 @@ namespace JCodes.Framework.Common
                     m_animationIcons[i] = Icon.FromHandle(bmp.GetHicon());
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(SysTray));
                 // I was getting generic GDI+ exceptions from time to time
             }
         }

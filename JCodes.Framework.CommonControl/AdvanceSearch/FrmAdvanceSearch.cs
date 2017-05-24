@@ -9,8 +9,10 @@ using System.Windows.Forms;
 using JCodes.Framework.Common;
 using JCodes.Framework.Common.Collections;
 using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.Entity;
+using JCodes.Framework.Common.Databases;
 
-namespace JCodes.Framework.CommonControl
+namespace JCodes.Framework.CommonControl.AdvanceSearch
 {
     public partial class FrmAdvanceSearch : DevExpress.XtraEditors.XtraForm
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace JCodes.Framework.CommonControl
+namespace JCodes.Framework.CommonControl.Device
 {
     /// <summary>
     /// USB条码扫描器的封装类

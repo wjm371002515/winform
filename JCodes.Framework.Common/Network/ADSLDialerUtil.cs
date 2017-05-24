@@ -5,8 +5,10 @@ using System.Text;
 using DotRas;
 using System.Collections.ObjectModel;
 using System.Threading;
+using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.Entity;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Network
 {
     public delegate void ADSLHandleDelegate(string result);
 
@@ -35,7 +37,7 @@ namespace JCodes.Framework.Common
             }
             catch (Exception ex)
             {
-                LogTextHelper.Error(ex);
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(ADSLDialerUtil));
                 throw;
             }
 
@@ -71,7 +73,7 @@ namespace JCodes.Framework.Common
             }
             catch (Exception ex)
             {
-                LogTextHelper.WriteLine(ex.ToString());
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(ADSLDialerUtil));
                 throw;
             }
         }

@@ -5,6 +5,7 @@ using System.Net;
 using System.Configuration;
 using System.IO;
 using System.Web;
+using JCodes.Framework.jCodesenum.BaseEnum;
 
 namespace JCodes.Framework.Common.Web
 {
@@ -95,7 +96,7 @@ namespace JCodes.Framework.Common.Web
             }
             catch (WebException ex)
             {
-                LogTextHelper.Error(ex);
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FileServerManage));
                 return false;
             }
             return true;
@@ -158,8 +159,9 @@ namespace JCodes.Framework.Common.Web
                     stream.Write(buffer, 0, length);
                 }
             }
-            catch (WebException exception)
+            catch (WebException ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FileServerManage));
                 return false;
             }
 
@@ -188,8 +190,9 @@ namespace JCodes.Framework.Common.Web
             {
                 response = request.GetResponse();
             }
-            catch (WebException exception)
+            catch (WebException ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FileServerManage));
                 return false;
             }
             finally
@@ -228,8 +231,9 @@ namespace JCodes.Framework.Common.Web
                     result = true;
                 }
             }
-            catch (WebException exception)
+            catch (WebException ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FileServerManage));
                 return false;
             }
             finally
@@ -279,6 +283,7 @@ namespace JCodes.Framework.Common.Web
             }
             catch (WebException ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FileServerManage));
                 return ex.Message.ToString();
             }
         }

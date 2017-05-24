@@ -4,7 +4,7 @@ using System.Text;
 using System.Globalization;
 using System.Threading;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Office
 {
     /// <summary>
     /// 系统语言环境辅助类

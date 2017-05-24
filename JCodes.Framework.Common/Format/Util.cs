@@ -3,8 +3,9 @@ using System.Reflection;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Text;
+using JCodes.Framework.jCodesenum.BaseEnum;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Format
 {
     /// <summary>
     /// “ª∞„∏®÷˙¿‡
@@ -44,8 +45,9 @@ namespace JCodes.Framework.Common
                         }
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(Util));
                     throw;
                 }
             }
@@ -70,6 +72,7 @@ namespace JCodes.Framework.Common
                 }
                 catch (Exception ex)
                 {
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(Util));
                     throw;
                 }
             }

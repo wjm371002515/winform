@@ -11,6 +11,8 @@ using System.IO;
 using System.Diagnostics;
 using JCodes.Framework.CommonControl;
 using JCodes.Framework.Entity;
+using JCodes.Framework.AddIn.UI.BizControl;
+using JCodes.Framework.CommonControl.BaseUI;
 
 namespace JCodes.Framework.AddIn.UI.WareHouse
 {

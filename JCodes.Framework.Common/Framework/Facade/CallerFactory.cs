@@ -6,8 +6,9 @@ using System.Collections;
 using System.Collections.Generic;
 
 using JCodes.Framework.Common;
+using JCodes.Framework.Common.Files;
 
-namespace JCodes.Framework.Common.Facade
+namespace JCodes.Framework.Common.Framework.Facade
 {
     /// <summary>
     /// 混合式框架或WCF框架中针对不同调用方式的工厂类（WCF或者Win调用）

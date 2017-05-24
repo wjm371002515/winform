@@ -1,4 +1,7 @@
 ﻿using JCodes.Framework.Common;
+using JCodes.Framework.CommonControl.BaseUI;
+using JCodes.Framework.CommonControl.Other;
+using JCodes.Framework.jCodesenum.BaseEnum;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace JCodes.Framework.CommonControl
+namespace JCodes.Framework.CommonControl.Device
 {
     /// <summary>
     /// 摄像头图形显示窗体
@@ -48,6 +51,8 @@ namespace JCodes.Framework.CommonControl
                 lblError.Visible = true;
                 panel1.Visible = false;
                 btnOK.Enabled = false;
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(CameraDialog));
+                MessageDxUtil.ShowError(ex.Message);
             }
         }
 

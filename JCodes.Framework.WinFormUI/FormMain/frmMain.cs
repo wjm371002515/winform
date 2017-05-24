@@ -263,7 +263,9 @@ namespace JCodes.Framework.WinFormUI
                     barManager1.RestoreFromXml(dlg.FileName);
                     SkinHelper.InitSkinPopupMenu(iPaintStyle);
                 }
-                catch { }
+                catch (Exception ex){
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(frmMain));
+                }
                 Refresh(false);
             }
         }

@@ -1,8 +1,9 @@
-﻿using System;
+﻿using JCodes.Framework.jCodesenum.BaseEnum;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Format
 {
     /// <summary>
     /// 处理数据类型转换，数制转换、编码转换相关的类
@@ -165,8 +166,9 @@ namespace JCodes.Framework.Common
             {
                 return Convert.ToInt32(data);
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(ConvertHelper));
                 return defValue;
             }
 
@@ -215,8 +217,9 @@ namespace JCodes.Framework.Common
             {
                 return Convert.ToInt32(data);
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(ConvertHelper));
                 return defValue;
             }
         }
@@ -244,8 +247,9 @@ namespace JCodes.Framework.Common
             {
                 return Convert.ToBoolean(data);
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(ConvertHelper));
                 return defValue;
             }
         }
@@ -294,8 +298,9 @@ namespace JCodes.Framework.Common
             {
                 return Convert.ToBoolean(data);
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(ConvertHelper));
                 return defValue;
             }
         }
@@ -325,8 +330,9 @@ namespace JCodes.Framework.Common
             {
                 return Convert.ToSingle(data);
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(ConvertHelper));
                 return defValue;
             }
         }
@@ -349,8 +355,9 @@ namespace JCodes.Framework.Common
             {
                 return Convert.ToSingle(data);
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(ConvertHelper));
                 return defValue;
             }
         }
@@ -406,8 +413,9 @@ namespace JCodes.Framework.Common
             {
                 return Convert.ToDouble(data);
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(ConvertHelper));
                 return defValue;
             }
         }
@@ -432,8 +440,9 @@ namespace JCodes.Framework.Common
             {
                 return Math.Round(Convert.ToDouble(data), decimals);
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(ConvertHelper));
                 return defValue;
             }
         }
@@ -458,8 +467,9 @@ namespace JCodes.Framework.Common
             {
                 return Convert.ToDouble(data);
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(ConvertHelper));
                 return defValue;
             }
 
@@ -512,8 +522,9 @@ namespace JCodes.Framework.Common
             {
                 return Math.Round(Convert.ToDouble(data), decimals);
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(ConvertHelper));
                 return defValue;
             }
         }
@@ -581,8 +592,9 @@ namespace JCodes.Framework.Common
                 {
                     return Enum.Parse(targetType, data.ToString(), true);
                 }
-                catch
+                catch (Exception ex)
                 {
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(ConvertHelper));
                     return Enum.ToObject(targetType, data);
                 }
             }
@@ -635,8 +647,9 @@ namespace JCodes.Framework.Common
             {
                 return Convert.ToDecimal(data);
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(ConvertHelper));
                 return defValue;
             }
         }
@@ -660,8 +673,9 @@ namespace JCodes.Framework.Common
             {
                 return Convert.ToDecimal(data);
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(ConvertHelper));
                 return defValue;
             }
         }
@@ -716,8 +730,9 @@ namespace JCodes.Framework.Common
             {
                 return Convert.ToDateTime(data);
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(ConvertHelper));
                 return defValue;
             }
         }
@@ -740,8 +755,9 @@ namespace JCodes.Framework.Common
             {
                 return Convert.ToDateTime(data);
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(ConvertHelper));
                 return defValue;
             }
         }

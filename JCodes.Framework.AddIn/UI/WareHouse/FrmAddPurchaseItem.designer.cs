@@ -1,4 +1,5 @@
 ﻿
+using JCodes.Framework.Common;
 using JCodes.Framework.CommonControl;
 namespace JCodes.Framework.AddIn.UI.WareHouse
 {
@@ -37,7 +38,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             this.lblQuantity = new System.Windows.Forms.Label();
             this.lblAmount = new System.Windows.Forms.Label();
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
-            this.lvwDetail = new SortableListView();
+            this.lvwDetail = new JCodes.Framework.Common.Winform.SortableListView();
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -55,7 +56,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             this.txtName = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.lvwGoods = new SortableListView();
+            this.lvwGoods = new JCodes.Framework.Common.Winform.SortableListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader25 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -571,12 +572,12 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         public DevExpress.XtraEditors.TextEdit txtQuantity;
-        private SortableListView lvwGoods;
+        private JCodes.Framework.Common.Winform.SortableListView lvwGoods;
         private System.Windows.Forms.TreeView treeGoods;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
-        private SortableListView lvwDetail;
+        private JCodes.Framework.Common.Winform.SortableListView lvwDetail;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;

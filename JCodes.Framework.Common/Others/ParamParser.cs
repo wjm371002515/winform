@@ -4,7 +4,7 @@ using System.Text;
 using System.Collections.Specialized;
 using System.IO;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Office
 {
     /// <summary>
     /// 命令行参数解析工具类

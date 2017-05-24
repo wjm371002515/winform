@@ -3,6 +3,9 @@ using System.Windows.Forms;
 using System.Windows.Forms.Design; 
 using System.Drawing.Design; 
 using System.Drawing;
+using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.Common;
+using JCodes.Framework.CommonControl.Other;
 
 namespace JCodes.Framework.CommonControl.Settings
 {
@@ -102,8 +105,10 @@ namespace JCodes.Framework.CommonControl.Settings
 				{
 					imageIndex = (int)Convert.ToUInt16( pe.Value.ToString() ) ;
 				}
-				catch
+				catch (Exception ex)
 				{
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(ImageMapEditor));
+                    MessageDxUtil.ShowError(ex.Message); 
 				}
 			}
 			// no instance, or the instance represents an undefined image

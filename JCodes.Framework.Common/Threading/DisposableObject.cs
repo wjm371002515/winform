@@ -143,8 +143,9 @@ namespace JCodes.Framework.Common.Threading
                         this._disposeState = DisposeState.Disposed;
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(DisposableObject));
                     this._disposeState = DisposeState.None;
                     throw;
                 }

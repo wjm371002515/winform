@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace JCodes.Framework.CommonControl
+namespace JCodes.Framework.CommonControl.PlugInInterface
 {
     /// <summary>
     /// 登陆用户的基础信息

@@ -4,8 +4,9 @@ using System.Globalization;
 using System.Reflection;
 using System.Text;
 using Microsoft.VisualBasic;
+using JCodes.Framework.jCodesenum.BaseEnum;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Format
 {
     /// <summary>
     /// 字符串大小写等相关操作辅助类
@@ -139,8 +140,10 @@ namespace JCodes.Framework.Common
                         sb.Append(i.GetValue(o, null).ToString());
                     }
                 }
-                catch
-                {  }
+                catch (Exception ex)
+                {
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(StringUtil));
+                }
                 sb.Append(Environment.NewLine);
             }
 
@@ -155,8 +158,10 @@ namespace JCodes.Framework.Common
                         sb.Append(i.GetValue(o).ToString());
                     }
                 }
-                catch
-                {  }
+                catch (Exception ex)
+                {
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(StringUtil));
+                }
                 sb.Append(Environment.NewLine);
             }
 

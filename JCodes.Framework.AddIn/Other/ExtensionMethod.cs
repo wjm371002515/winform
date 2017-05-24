@@ -1,30 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data;
-using System.Windows.Forms;
+﻿using DevExpress.XtraBars;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
-using DevExpress.XtraTab;
-using JCodes.Framework.Common;
+using DevExpress.XtraLayout;
+using DevExpress.XtraLayout.Utils;
 using JCodes.Framework.BLL;
-using JCodes.Framework.CommonControl;
+using JCodes.Framework.Common;
+using JCodes.Framework.Common.Databases;
+using JCodes.Framework.Common.Framework;
+using JCodes.Framework.Entity;
 using JCodes.Framework.jCodesenum.BaseEnum;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Reflection;
+using System.Text;
+using System.Windows.Forms;
 
-namespace JCodes.Framework.AddIn
+namespace JCodes.Framework.AddIn.Other
 {
     /// <summary>
     /// 扩展函数封装
     /// </summary>
     public static class ExtensionMethod
     {
+
         #region 控件设计状态判断
 
         /// <summary>
         /// 判断控件是否在设计模式下
         /// </summary>
-        public static bool IsInDesignMode(this System.Windows.Forms.Control control)
+        public static bool IsInDesignMode(this Control control)
         {
             return ResolveDesignMode(control);
         }
@@ -34,12 +40,12 @@ namespace JCodes.Framework.AddIn
         /// </summary>
         /// <param name="control">控件对象</param>
         /// <returns>如果是设计模式，返回true，否则为false</returns>
-        private static bool ResolveDesignMode(System.Windows.Forms.Control control)
+        private static bool ResolveDesignMode(Control control)
         {
             System.Reflection.PropertyInfo designModeProperty;
             bool designMode;
 
-            designModeProperty = control.GetType().GetProperty("DesignMode", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            designModeProperty = control.GetType().GetProperty("DesignMode", BindingFlags.Instance | BindingFlags.NonPublic);
             designMode = (bool)designModeProperty.GetValue(control, null);
 
             if (control.Parent != null)
@@ -85,6 +91,73 @@ namespace JCodes.Framework.AddIn
         }
         #endregion
 
+        #region 查询控件扩展函数
+        /// <summary>
+        /// 添加开始日期和结束日期的查询操作
+        /// </summary>
+        /// <param name="condition">SearchCondition对象</param>
+        /// <param name="fieldName">字段名称</param>
+        /// <param name="startCtrl">开始日期控件</param>
+        /// <param name="endCtrl">结束日期控件</param>
+        /// <returns></returns>
+        public static SearchCondition AddDateCondition(this SearchCondition condition, string fieldName, DateEdit startCtrl, DateEdit endCtrl)
+        {
+            if (startCtrl.Text.Length > 0)
+            {
+                condition.AddCondition(fieldName, startCtrl.DateTime, SqlOperator.MoreThanOrEqual);
+            }
+            if (endCtrl.Text.Length > 0)
+            {
+                condition.AddCondition(fieldName, endCtrl.DateTime.AddDays(1), SqlOperator.LessThan);
+            }
+            return condition;
+        }
+
+        /// <summary>
+        /// 添加开始日期和结束日期的查询操作
+        /// </summary>
+        /// <param name="condition">SearchCondition对象</param>
+        /// <param name="fieldName">字段名称</param>
+        /// <param name="startDate">开始日期</param>
+        /// <param name="endDate">结束日期</param>
+        /// <returns></returns>
+        public static SearchCondition AddDateCondition(this SearchCondition condition, string fieldName, string startDate, string endDate)
+        {
+            DateTime date;
+            if (!string.IsNullOrEmpty(startDate) && DateTime.TryParse(startDate, out date))
+            {
+                condition.AddCondition(fieldName, date, SqlOperator.MoreThanOrEqual);
+            }
+
+            if (!string.IsNullOrEmpty(endDate) && DateTime.TryParse(endDate, out date))
+            {
+                condition.AddCondition(fieldName, date.AddDays(1), SqlOperator.LessThan);
+            }
+            return condition;
+        }
+
+        /// <summary>
+        /// 添加开始日期和结束日期的查询操作
+        /// </summary>
+        /// <param name="condition">SearchCondition对象</param>
+        /// <param name="fieldName">字段名称</param>
+        /// <param name="startDate">开始日期</param>
+        /// <param name="endDate">结束日期</param>
+        /// <returns></returns>
+        public static SearchCondition AddDateCondition(this SearchCondition condition, string fieldName, DateTime? startDate, DateTime? endDate)
+        {
+            if (startDate.HasValue)
+            {
+                condition.AddCondition(fieldName, startDate.Value, SqlOperator.MoreThanOrEqual);
+            }
+            if (endDate.HasValue)
+            {
+                condition.AddCondition(fieldName, endDate.Value.AddDays(1), SqlOperator.LessThan);
+            }
+            return condition;
+        }
+        #endregion
+
         #region ComboBoxEdit控件
 
         /// <summary>
@@ -104,7 +177,7 @@ namespace JCodes.Framework.AddIn
                 return "";
             }
         }
-               
+
         /// <summary>
         /// 设置下拉列表选中指定的值
         /// </summary>
@@ -113,9 +186,9 @@ namespace JCodes.Framework.AddIn
         public static int SetDropDownValue(this ComboBoxEdit combo, string value)
         {
             int result = -1;
-            for(int i =0; i <combo.Properties.Items.Count; i++)
+            for (int i = 0; i < combo.Properties.Items.Count; i++)
             {
-                if(combo.Properties.Items[i].ToString() == value)
+                if (combo.Properties.Items[i].ToString() == value)
                 {
                     combo.SelectedIndex = i;
                     result = i;
@@ -191,80 +264,6 @@ namespace JCodes.Framework.AddIn
             combo.Properties.BeginUpdate();//可以加快
             combo.Properties.Items.Clear();
             combo.Properties.Items.AddRange(itemList);
-
-            if (!string.IsNullOrEmpty(defaultValue))
-            {
-                combo.SetComboBoxItem(defaultValue);
-            }
-
-            combo.Properties.EndUpdate();//可以加快
-        }
-        #endregion
-
-        #region CheckedComboBoxEdit
-        /// <summary>
-        /// 设置下拉列表选中指定的值
-        /// </summary>
-        /// <param name="combo">下拉列表</param>
-        /// <param name="value">指定的CListItem中的值</param>
-        public static void SetComboBoxItem(this CheckedComboBoxEdit combo, string value)
-        {
-            combo.SetEditValue(value);
-        }
-
-        /// <summary>
-        /// 绑定下拉列表控件为指定的数据字典列表
-        /// </summary>
-        /// <param name="combo">下拉列表控件</param>
-        /// <param name="dictTypeName">数据字典类型名称</param>
-        public static void BindDictItems(this CheckedComboBoxEdit combo, string dictTypeName)
-        {
-            BindDictItems(combo, dictTypeName, null);
-        }
-
-        /// <summary>
-        /// 绑定下拉列表控件为指定的数据字典列表
-        /// </summary>
-        /// <param name="combo">下拉列表控件</param>
-        /// <param name="dictTypeName">数据字典类型名称</param>
-        public static void BindDictItems(this CheckedComboBoxEdit combo, string dictTypeName, string defaultValue)
-        {
-            List<CListItem> itemList = new List<CListItem>();
-            Dictionary<string, string> dict = BLLFactory<DictData>.Instance.GetDictByDictType(dictTypeName);
-            foreach (string key in dict.Keys)
-            {
-                itemList.Add(new CListItem(key, dict[key]));
-            }
-
-            BindDictItems(combo, itemList, defaultValue);
-        }
-
-        /// <summary>
-        /// 绑定下拉列表控件为指定的数据字典列表
-        /// </summary>
-        /// <param name="combo">下拉列表控件</param>
-        /// <param name="itemList">数据字典列表</param>
-        public static void BindDictItems(this CheckedComboBoxEdit combo, List<CListItem> itemList)
-        {
-            BindDictItems(combo, itemList, null);
-        }
-
-        /// <summary>
-        /// 绑定下拉列表控件为指定的数据字典列表
-        /// </summary>
-        /// <param name="combo">下拉列表控件</param>
-        /// <param name="itemList">数据字典列表</param>
-        public static void BindDictItems(this CheckedComboBoxEdit combo, List<CListItem> itemList, string defaultValue)
-        {
-            List<CheckedListBoxItem> checkList = new List<CheckedListBoxItem>();
-            foreach (CListItem item in itemList)
-            {
-                checkList.Add(new CheckedListBoxItem(item.Value, item.Text));
-            }
-
-            combo.Properties.BeginUpdate();//可以加快
-            combo.Properties.Items.Clear();
-            combo.Properties.Items.AddRange(checkList.ToArray());//可以加快
 
             if (!string.IsNullOrEmpty(defaultValue))
             {
@@ -361,26 +360,15 @@ namespace JCodes.Framework.AddIn
 
         #endregion
 
-        #region CustomGridLookUpEdit控件
-
-        /// <summary>
-        /// 获取下拉列表的值
-        /// </summary>
-        /// <param name="combo">下拉列表</param>
-        /// <returns></returns>
-        public static string GetComboBoxValue(this CustomGridLookUpEdit combo)
-        {
-            return combo.EditValue as string;
-        }
-
+        #region CheckedComboBoxEdit
         /// <summary>
         /// 设置下拉列表选中指定的值
         /// </summary>
         /// <param name="combo">下拉列表</param>
         /// <param name="value">指定的CListItem中的值</param>
-        public static void SetComboBoxItem(this CustomGridLookUpEdit combo, string value)
+        public static void SetComboBoxItem(this CheckedComboBoxEdit combo, string value)
         {
-            combo.EditValue = value;
+            combo.SetEditValue(value);
         }
 
         /// <summary>
@@ -388,7 +376,7 @@ namespace JCodes.Framework.AddIn
         /// </summary>
         /// <param name="combo">下拉列表控件</param>
         /// <param name="dictTypeName">数据字典类型名称</param>
-        public static void BindDictItems(this CustomGridLookUpEdit combo, string dictTypeName)
+        public static void BindDictItems(this CheckedComboBoxEdit combo, string dictTypeName)
         {
             BindDictItems(combo, dictTypeName, null);
         }
@@ -398,37 +386,16 @@ namespace JCodes.Framework.AddIn
         /// </summary>
         /// <param name="combo">下拉列表控件</param>
         /// <param name="dictTypeName">数据字典类型名称</param>
-        /// <param name="defaultValue">控件默认值</param>
-        public static void BindDictItems(this CustomGridLookUpEdit combo, string dictTypeName, string defaultValue)
+        public static void BindDictItems(this CheckedComboBoxEdit combo, string dictTypeName, string defaultValue)
         {
-            string displayName = dictTypeName;
-            const string valueName = "值内容";
-            const string pinyin = "拼音码";
-            DataTable dt = DataTableHelper.CreateTable(string.Format("{0},{1},{2}", displayName, valueName, pinyin));
-
+            List<CListItem> itemList = new List<CListItem>();
             Dictionary<string, string> dict = BLLFactory<DictData>.Instance.GetDictByDictType(dictTypeName);
             foreach (string key in dict.Keys)
             {
-                DataRow row = dt.NewRow();
-                row[displayName] = key;
-                row[valueName] = dict[key];
-                row[pinyin] = Pinyin.GetFirstPY(key);
-                dt.Rows.Add(row);
+                itemList.Add(new CListItem(key, dict[key]));
             }
 
-            combo.Properties.ValueMember = valueName;
-            combo.Properties.DisplayMember = displayName;
-            combo.Properties.DataSource = dt;
-            combo.Properties.PopulateViewColumns();
-            combo.Properties.View.Columns[valueName].Visible = false;
-            combo.Properties.View.Columns[displayName].Width = 400;
-            combo.Properties.View.Columns[pinyin].Width = 200;
-            combo.Properties.PopupFormMinSize = new System.Drawing.Size(600, 0);
-
-            if (!string.IsNullOrEmpty(defaultValue))
-            {
-                combo.EditValue = defaultValue;
-            }
+            BindDictItems(combo, itemList, defaultValue);
         }
 
         /// <summary>
@@ -436,7 +403,7 @@ namespace JCodes.Framework.AddIn
         /// </summary>
         /// <param name="combo">下拉列表控件</param>
         /// <param name="itemList">数据字典列表</param>
-        public static void BindDictItems(this CustomGridLookUpEdit combo, List<CListItem> itemList)
+        public static void BindDictItems(this CheckedComboBoxEdit combo, List<CListItem> itemList)
         {
             BindDictItems(combo, itemList, null);
         }
@@ -446,162 +413,113 @@ namespace JCodes.Framework.AddIn
         /// </summary>
         /// <param name="combo">下拉列表控件</param>
         /// <param name="itemList">数据字典列表</param>
-        /// <param name="defaultValue">控件默认值</param>
-        public static void BindDictItems(this CustomGridLookUpEdit combo, List<CListItem> itemList, string defaultValue)
+        public static void BindDictItems(this CheckedComboBoxEdit combo, List<CListItem> itemList, string defaultValue)
         {
-            string displayName = "显示内容";
-            const string valueName = "值内容";
-            const string pinyin = "拼音码";
-            DataTable dt = DataTableHelper.CreateTable(string.Format("{0},{1},{2}", displayName, valueName, pinyin));
-
+            List<CheckedListBoxItem> checkList = new List<CheckedListBoxItem>();
             foreach (CListItem item in itemList)
             {
-                DataRow row = dt.NewRow();
-                row[displayName] = item.Text;
-                row[valueName] = item.Value;
-                row[pinyin] = Pinyin.GetFirstPY(item.Text);
-                dt.Rows.Add(row);
+                checkList.Add(new CheckedListBoxItem(item.Value, item.Text));
             }
 
-            combo.Properties.ValueMember = valueName;
-            combo.Properties.DisplayMember = displayName;
-            combo.Properties.DataSource = dt;
-            combo.Properties.PopulateViewColumns();
-            combo.Properties.View.Columns[valueName].Visible = false;
+            combo.Properties.BeginUpdate();//可以加快
+            combo.Properties.Items.Clear();
+            combo.Properties.Items.AddRange(checkList.ToArray());//可以加快
 
             if (!string.IsNullOrEmpty(defaultValue))
             {
-                combo.Text = defaultValue;
+                combo.SetComboBoxItem(defaultValue);
             }
+
+            combo.Properties.EndUpdate();//可以加快
+        }
+        #endregion
+
+        #region CheckedListBox
+        /// <summary>
+        /// 设置下拉列表选中指定的值
+        /// </summary>
+        /// <param name="combo">下拉列表</param>
+        /// <param name="value">指定的CListItem中的值</param>
+        public static void SetComboBoxItem(this CheckedListBox combo, string value)
+        {
+            combo.SelectedValue = value;
+        }
+
+        /// <summary>
+        /// 绑定下拉列表控件为指定的数据字典列表
+        /// </summary>
+        /// <param name="combo">下拉列表控件</param>
+        /// <param name="itemList">数据字典列表</param>
+        public static void BindDictItems(this CheckedListBox combo, List<CListItem> itemList)
+        {
+            BindDictItems(combo, itemList, null);
+        }
+
+        /// <summary>
+        /// 绑定下拉列表控件为指定的数据字典列表
+        /// </summary>
+        /// <param name="combo">下拉列表控件</param>
+        /// <param name="itemList">数据字典列表</param>
+        /// <param name="defaultValue">默认值</param>
+        public static void BindDictItems(this CheckedListBox combo, List<CListItem> itemList, string defaultValue)
+        {
+            combo.BeginUpdate();//可以加快
+            combo.Items.Clear();
+            combo.Items.AddRange(itemList.ToArray());//可以加快
 
             if (!string.IsNullOrEmpty(defaultValue))
             {
-                combo.EditValue = defaultValue;
+                combo.SetComboBoxItem(defaultValue);
             }
+
+            combo.EndUpdate();//可以加快
         }
+
         #endregion
 
-        #region 查询相关扩展
 
         /// <summary>
-        /// 添加开始日期和结束日期的查询操作
+        /// IP地址转换为INT类型
         /// </summary>
-        /// <param name="condition">SearchCondition对象</param>
-        /// <param name="fieldName">字段名称</param>
-        /// <param name="startDate">开始日期</param>
-        /// <param name="endDate">结束日期</param>
+        /// <param name="IP">IP地址</param>
         /// <returns></returns>
-        public static SearchCondition AddDateCondition(this SearchCondition condition, string fieldName, string startDate, string endDate)
-        {     
-            DateTime date;
-            if (!string.IsNullOrEmpty(startDate) && DateTime.TryParse(startDate, out date))
-            {
-                condition.AddCondition(fieldName, date, SqlOperator.MoreThanOrEqual);
-            }
+        public static int ToInteger(this IPAddress IP)
+        {
+            int result = 0;
 
-            if (!string.IsNullOrEmpty(endDate) && DateTime.TryParse(endDate, out date))
-            {
-                condition.AddCondition(fieldName, date.AddDays(1), SqlOperator.LessThan);
-            }
-            return condition;
+            byte[] bytes = IP.GetAddressBytes();
+            result = (int)(bytes[0] << 24 | bytes[1] << 16 | bytes[2] << 8 | bytes[3]);
+
+            return result;
         }
 
         /// <summary>
-        /// 添加开始日期和结束日期的查询操作
+        /// 比较两个IP的大小。如果相等返回0，如果IP1大于IP2返回1，如果IP1小于IP2返回-1。
         /// </summary>
-        /// <param name="condition">SearchCondition对象</param>
-        /// <param name="fieldName">字段名称</param>
-        /// <param name="startDate">开始日期</param>
-        /// <param name="endDate">结束日期</param>
-        /// <returns></returns>
-        public static SearchCondition AddDateCondition(this SearchCondition condition, string fieldName, DateTime startDate, DateTime endDate)
+        /// <param name="IP1">IP地址1</param>
+        /// <param name="IP2">IP地址2</param>
+        /// <returns>如果相等返回0，如果IP1大于IP2返回1，如果IP1小于IP2返回-1。</returns>
+        public static int Compare(this IPAddress IP1, IPAddress IP2)
         {
-            condition.AddCondition(fieldName, startDate, SqlOperator.MoreThanOrEqual);
-            condition.AddCondition(fieldName, endDate.AddDays(1), SqlOperator.LessThan);
-            return condition;
+            int ip1 = IP1.ToInteger();
+            int ip2 = IP2.ToInteger();
+            return (((ip1 - ip2) >> 0x1F) | (int)((uint)(-(ip1 - ip2)) >> 0x1F));
         }
-
-        /// <summary>
-        /// 添加数值区间的查询操作
-        /// </summary>
-        /// <param name="condition">SearchCondition对象</param>
-        /// <param name="fieldName">字段名称</param>
-        /// <param name="startCtrl">开始范围控件</param>
-        /// <param name="endCtrl">结束范围控件</param>
-        /// <returns></returns>
-        public static SearchCondition AddNumericCondition(this SearchCondition condition, string fieldName, SpinEdit startCtrl, SpinEdit endCtrl)
-        {
-            if (startCtrl.Text.Length > 0)
-            {
-                condition.AddCondition(fieldName, startCtrl.Value, SqlOperator.MoreThanOrEqual);
-            }
-            if (endCtrl.Text.Length > 0)
-            {
-                condition.AddCondition(fieldName, endCtrl.Value, SqlOperator.LessThanOrEqual);
-            }
-            return condition;
-        }
-
-        public static SearchCondition AddNumericCondition(this SearchCondition condition, string fieldName, TextEdit startCtrl, TextEdit endCtrl)
-        {
-            decimal value = 0;
-            if (decimal.TryParse(startCtrl.Text.Trim(), out value))
-            {
-                condition.AddCondition(fieldName, value, SqlOperator.MoreThanOrEqual);
-            }
-            if (decimal.TryParse(endCtrl.Text.Trim(), out value))
-            {
-                condition.AddCondition(fieldName, value, SqlOperator.LessThanOrEqual);
-            }
-            return condition;
-        }
-
-        public static SearchCondition AddNumericCondition2(this SearchCondition condition, string fieldName, TextEdit startCtrl, TextEdit endCtrl)
-        {
-            decimal value = 0;
-            int hour = 0;
-            int minute = 0;
-            decimal hourMinute = 0;
-            if (decimal.TryParse(startCtrl.Text.Trim(), out value))
-            {
-                hour = (int)value;
-                hourMinute = hour * 60;
-                string[] startValue = startCtrl.Text.Split(new char[] { '.' });
-                if (int.TryParse(startValue[1].Trim(), out minute))
-                {
-                    hourMinute += minute;
-                }
-                condition.AddCondition(fieldName, hourMinute, SqlOperator.MoreThanOrEqual);
-            }
-            if (decimal.TryParse(endCtrl.Text.Trim(), out value))
-            {
-                hour = (int)value;
-                hourMinute = hour * 60;
-                string[] endValue = endCtrl.Text.Split(new char[] { '.' });
-                if (int.TryParse(endValue[1].Trim(), out minute))
-                {
-                    hourMinute += minute;
-                }
-                condition.AddCondition(fieldName, hourMinute, SqlOperator.LessThanOrEqual);
-            }
-            return condition;
-        }
-        #endregion
 
         #region 控件布局显示
         /// <summary>
         /// 设置控件组是否显示
         /// </summary>
         /// <returns></returns>
-        public static void ToVisibility(this DevExpress.XtraLayout.LayoutControlGroup control, bool visible)
+        public static void ToVisibility(this LayoutControlGroup control, bool visible)
         {
             if (visible)
             {
-                control.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                control.Visibility = LayoutVisibility.Always;
             }
             else
             {
-                control.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                control.Visibility = LayoutVisibility.Never;
             }
         }
 
@@ -610,23 +528,23 @@ namespace JCodes.Framework.AddIn
         /// </summary>
         /// <param name="control"></param>
         /// <returns></returns>
-        public static bool GetVisibility(this DevExpress.XtraLayout.LayoutControlGroup control)
+        public static bool GetVisibility(this LayoutControlGroup control)
         {
-            return control.Visibility == DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            return control.Visibility == LayoutVisibility.Always;
         }
         /// <summary>
         /// 设置控件组是否显示
         /// </summary>
         /// <returns></returns>
-        public static void ToVisibility(this DevExpress.XtraLayout.LayoutControlItem control, bool visible)
+        public static void ToVisibility(this LayoutControlItem control, bool visible)
         {
             if (visible)
             {
-                control.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                control.Visibility = LayoutVisibility.Always;
             }
             else
             {
-                control.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                control.Visibility = LayoutVisibility.Never;
             }
         }
 
@@ -635,23 +553,23 @@ namespace JCodes.Framework.AddIn
         /// </summary>
         /// <param name="control"></param>
         /// <returns></returns>
-        public static bool GetVisibility(this DevExpress.XtraLayout.LayoutControlItem control)
+        public static bool GetVisibility(this LayoutControlItem control)
         {
-            return control.Visibility == DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            return control.Visibility == LayoutVisibility.Always;
         }
         /// <summary>
         /// 设置控件组是否显示
         /// </summary>
         /// <returns></returns>
-        public static void ToVisibility(this DevExpress.XtraLayout.EmptySpaceItem control, bool visible)
+        public static void ToVisibility(this EmptySpaceItem control, bool visible)
         {
             if (visible)
             {
-                control.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                control.Visibility = LayoutVisibility.Always;
             }
             else
             {
-                control.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                control.Visibility = LayoutVisibility.Never;
             }
         }
 
@@ -660,28 +578,61 @@ namespace JCodes.Framework.AddIn
         /// </summary>
         /// <param name="control"></param>
         /// <returns></returns>
-        public static bool GetVisibility(this DevExpress.XtraLayout.EmptySpaceItem control)
+        public static bool GetVisibility(this EmptySpaceItem control)
         {
-            return control.Visibility == DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            return control.Visibility == LayoutVisibility.Always;
         }
 
         /// <summary>
         /// 设置控件组是否显示
         /// </summary>
         /// <returns></returns>
-        public static void ToVisibility(this DevExpress.XtraBars.BarButtonItem control, bool visible)
+        public static void ToVisibility(this BarButtonItem control, bool visible)
         {
             if (visible)
             {
-                control.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                control.Visibility = BarItemVisibility.Always;
             }
             else
             {
-                control.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                control.Visibility = BarItemVisibility.Never;
             }
         }
 
         #endregion
 
+        /// <summary>
+        /// 已分隔符显示多项内容
+        /// </summary>
+        /// <param name="dict">Dictionary对象</param>
+        /// <returns></returns>
+        public static string ToDiplayString(this Dictionary<string, string> dict)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (string key in dict.Keys)
+            {
+                string info = dict[key];
+                if (!string.IsNullOrEmpty(info))
+                {
+                    sb.AppendFormat("{0} /", info);
+                }
+            }
+            return sb.ToString().Trim('/');
+        }
+
+        /// <summary>
+        /// 克隆一个新的对象
+        /// </summary>
+        /// <param name="dict">待克隆的Dict对象</param>
+        /// <returns></returns>
+        public static Dictionary<string, string> Clone(this Dictionary<string, string> dict)
+        {
+            Dictionary<string, string> newDict = new Dictionary<string, string>();
+            foreach (KeyValuePair<string, string> pair in dict)
+            {
+                newDict.Add(pair.Key, pair.Value);
+            }
+            return newDict;
+        }
     }
 }

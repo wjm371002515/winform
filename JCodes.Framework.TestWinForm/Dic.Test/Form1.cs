@@ -11,6 +11,9 @@ using JCodes.Framework.CommonControl;
 using JCodes.Framework.BLL;
 using JCodes.Framework.Common;
 using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.AddIn.UI.Dictionary;
+using JCodes.Framework.CommonControl.Pager;
+using JCodes.Framework.CommonControl.Other;
 
 namespace TestDictionary
 {
@@ -40,7 +43,8 @@ namespace TestDictionary
             }
             catch (Exception ex)
             {
-                //MessageUtil.ShowError(ex.Message);
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(Form1));
+                MessageDxUtil.ShowError(ex.Message); 
             }
         }
 

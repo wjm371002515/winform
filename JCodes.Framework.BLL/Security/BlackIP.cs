@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using JCodes.Framework.Common;
 using JCodes.Framework.Entity;
 using JCodes.Framework.IDAL;
+using JCodes.Framework.Common.Framework;
+using JCodes.Framework.Common.Network;
 
 namespace JCodes.Framework.BLL
 {

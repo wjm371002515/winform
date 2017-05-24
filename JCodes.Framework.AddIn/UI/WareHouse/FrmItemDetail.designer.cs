@@ -1,5 +1,4 @@
-﻿using JCodes.Framework.CommonControl;
-namespace JCodes.Framework.AddIn.UI.WareHouse
+﻿namespace JCodes.Framework.AddIn.UI.WareHouse
 {
     partial class FrmItemDetail
     {
@@ -68,7 +67,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             this.layoutControlItem26 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.winGridViewPager1 = new WinGridViewPager();
+            this.winGridViewPager1 = new JCodes.Framework.CommonControl.Pager.WinGridViewPager();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -712,7 +711,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
         #endregion
 
         private DevExpress.XtraEditors.SimpleButton btnSearch;
-        private WinGridViewPager winGridViewPager1;
+        private JCodes.Framework.CommonControl.Pager.WinGridViewPager winGridViewPager1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private DevExpress.XtraEditors.SimpleButton btnAddNew;
         private DevExpress.XtraLayout.LayoutControl layoutControl1;

@@ -6,6 +6,8 @@ using System.Data;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
 using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.Common;
+using JCodes.Framework.CommonControl.Other;
 
 namespace JCodes.Framework.CommonControl.Settings
 {	
@@ -1074,8 +1076,10 @@ namespace JCodes.Framework.CommonControl.Settings
 							// return image from panels ImageList
 							return GetImageList().Images[m_imageIndex];
 						}
-						catch(Exception)
+						catch(Exception ex)
 						{
+                            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(ImageMapEditor));
+                            MessageDxUtil.ShowError(ex.Message); 
 							// An exception occured , the imagelist (or image) might have been disposed
 							// or removed in the designer , return null
 							return null;
@@ -1126,8 +1130,10 @@ namespace JCodes.Framework.CommonControl.Settings
 						{
 							return GetImageList().Images[m_focusImageIndex];
 						}
-						catch (Exception)
+						catch (Exception ex)
 						{
+                            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(ImageMapEditor));
+                            MessageDxUtil.ShowError(ex.Message); 
 							return null;
 						}
 					}
@@ -1178,8 +1184,10 @@ namespace JCodes.Framework.CommonControl.Settings
 						{
 							return GetImageList().Images[m_selectedImageIndex];
 						}
-						catch (Exception)
+						catch (Exception ex)
 						{
+                            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(ImageMapEditor));
+                            MessageDxUtil.ShowError(ex.Message); 
 							return null;
 						}
 					}

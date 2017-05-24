@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JCodes.Framework.jCodesenum.BaseEnum;
+using System;
 using System.Threading;
 
 namespace JCodes.Framework.Common.Threading
@@ -134,9 +135,9 @@ namespace JCodes.Framework.Common.Threading
                     Elapsed(this, new EventArgs());
                 }
             }
-            catch
+            catch (Exception ex)
             {
-
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(Timer));
             }
             finally
             {

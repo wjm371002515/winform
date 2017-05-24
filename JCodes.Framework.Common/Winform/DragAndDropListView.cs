@@ -4,7 +4,7 @@ using System.Collections;
 using System.Windows.Forms;
 using System.ComponentModel;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Winform
 {
     /// <summary>
     /// 可拖拉的ListView封装控件

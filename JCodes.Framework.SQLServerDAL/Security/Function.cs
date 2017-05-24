@@ -7,24 +7,27 @@ using Microsoft.Practices.EnterpriseLibrary.Data;
 using JCodes.Framework.Entity;
 using JCodes.Framework.Common;
 using JCodes.Framework.IDAL;
+using JCodes.Framework.Common.Framework.BaseDAL;
+using JCodes.Framework.Common.Databases;
 
 namespace JCodes.Framework.SQLServerDAL
 {
     /// <summary>
     /// 系统功能定义
     /// </summary>
-    public class Function : BaseDALSQLServer<FunctionInfo>, IFunction
+    public class Functions : BaseDALSQLServer<FunctionInfo>, IFunctions
     {
         #region 对象实例及构造函数
 
-        public static Function Instance
+        public static Functions Instance
         {
             get
             {
-                return new Function();
+                return new Functions();
             }
         }
-        public Function() : base("T_ACL_Function", "ID")
+        public Functions()
+            : base(SQLServerPortal.gc._securityTablePre + "Function", "ID")
         {
             this.sortField = "SortCode";
             this.isDescending = false;

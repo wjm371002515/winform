@@ -12,6 +12,11 @@ using JCodes.Framework.CommonControl;
 using JCodes.Framework.Common;
 using JCodes.Framework.Entity;
 using JCodes.Framework.BLL;
+using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.Common.Files;
+using JCodes.Framework.CommonControl.BaseUI;
+using JCodes.Framework.Common.Framework;
+using JCodes.Framework.CommonControl.Other;
 
 namespace JCodes.Framework.AddIn.UI.WareHouse
 {
@@ -116,7 +121,10 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
                                 {
                                     itemInfo.Price = Convert.ToDecimal(dr["单价（元）"].ToString());
                                 }
-                                catch { }
+                                catch (Exception ex){
+                                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmImportItemStock));
+                                    MessageDxUtil.ShowError(ex.Message);
+                                }
                                 itemInfo.Source = dr["来源"].ToString();
                                 itemInfo.Specification = dr["规格型号"].ToString();
                                 itemInfo.StoragePos = dr["库位"].ToString();
@@ -146,7 +154,10 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
                                 {
                                     itemInfo.Price = Convert.ToDecimal(dr["单价（元）"].ToString());
                                 }
-                                catch { }
+                                catch (Exception ex){
+                                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmImportItemStock));
+                                    MessageDxUtil.ShowError(ex.Message);
+                                }
                                 itemInfo.Source = dr["来源"].ToString();
                                 itemInfo.Specification = dr["规格型号"].ToString();
                                 itemInfo.StoragePos = dr["库位"].ToString();
@@ -166,7 +177,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
                         catch (Exception ex)
                         {
                             intFail++;
-                            LogTextHelper.Error(ex);
+                            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmImportItemStock));
                             if (isFirstError)
                             {
                                 MessageDxUtil.ShowError(ex.Message);
@@ -182,8 +193,8 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
                 }
                 catch (Exception ex)
                 {
-                    LogTextHelper.Error(ex);
-                    MessageDxUtil.ShowError(ex.ToString());
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmImportItemStock));
+                    MessageDxUtil.ShowError(ex.Message);
                 }
             }
             return intOk;
@@ -235,7 +246,10 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
                                 {
                                     quantity = Convert.ToInt32(dr["库存量"].ToString());
                                 }
-                                catch { }
+                                catch (Exception ex){
+                                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmImportItemStock));
+                                    MessageDxUtil.ShowError(ex.Message);
+                                }
                                 stockInfo.StockQuantity = quantity;
 
                                 decimal price = 0M;
@@ -243,7 +257,10 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
                                 {
                                     price = Convert.ToDecimal(dr["单价（元）"].ToString());
                                 }
-                                catch { }
+                                catch (Exception ex){
+                                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmImportItemStock));
+                                    MessageDxUtil.ShowError(ex.Message);
+                                }
 
                                 bool success = BLLFactory<Stock>.Instance.Update(stockInfo, stockInfo.ID.ToString());
                                 if (success)
@@ -267,7 +284,10 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
                                 {
                                     quantity = Convert.ToInt32(dr["库存量"].ToString());
                                 }
-                                catch { }
+                                catch (Exception ex){
+                                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmImportItemStock));
+                                    MessageDxUtil.ShowError(ex.Message);
+                                }
                                 stockInfo.StockQuantity = quantity;
 
                                 decimal price = 0M;
@@ -275,7 +295,10 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
                                 {
                                     price = Convert.ToDecimal(dr["单价（元）"].ToString());
                                 }
-                                catch { }
+                                catch (Exception ex){
+                                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmImportItemStock));
+                                    MessageDxUtil.ShowError(ex.Message);
+                                }
 
                                 bool success = BLLFactory<Stock>.Instance.Insert(stockInfo);
                                 if (success)
@@ -289,7 +312,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
                         catch (Exception ex)
                         {
                             intFail++;
-                            LogTextHelper.Error(ex);
+                            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmImportItemStock));
                             if (isFirstError)
                             {
                                 MessageDxUtil.ShowError(ex.Message);
@@ -306,7 +329,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
                 }
                 catch (Exception ex)
                 {
-                    LogTextHelper.Error(ex);
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmImportItemStock));
                     MessageDxUtil.ShowError(ex.ToString());
                 }
             }
@@ -320,9 +343,10 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
                 string templateFile = Path.Combine(Application.StartupPath, "备件及库存导入模板.xls");
                 Process.Start(templateFile);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageDxUtil.ShowWarning("文件打开失败");
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmImportItemStock));
+                MessageDxUtil.ShowError("文件打开失败:"+ex.Message);
             }
         }
 
@@ -369,7 +393,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             }
             catch (Exception ex)
             {
-                LogTextHelper.Error(ex);
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmImportItemStock));
                 MessageDxUtil.ShowError(ex.Message);
             }
         }
@@ -423,7 +447,10 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
                 {
                     dt = Convert.ToDateTime(tb.Text);
                 }
-                catch { }
+                catch (Exception ex){
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmImportItemStock));
+                    MessageDxUtil.ShowError(ex.Message);
+                }
             }
             return dt;
         }
@@ -437,7 +464,10 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
                 {
                     dt = Convert.ToDateTime(text);
                 }
-                catch { }
+                catch (Exception ex){
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmImportItemStock));
+                    MessageDxUtil.ShowError(ex.Message);
+                }
             }
             return dt;
         }

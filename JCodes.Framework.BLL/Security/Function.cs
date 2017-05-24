@@ -1,4 +1,5 @@
 ﻿using JCodes.Framework.Common;
+using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Entity;
 using JCodes.Framework.IDAL;
 using System.Collections;
@@ -9,18 +10,18 @@ namespace JCodes.Framework.BLL
     /// <summary>
     /// 系统功能定义
     /// </summary>
-    public class Function : BaseBLL<FunctionInfo>
+    public class Functions : BaseBLL<FunctionInfo>
     {
-        private IFunction functionDal;
+        private IFunctions functionDal;
 
         /// <summary>
         /// 构造函数
         /// </summary>
-        public Function()  : base()
+        public Functions()  : base()
         {
             base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
 
-            functionDal = baseDal as IFunction;
+            functionDal = baseDal as IFunctions;
         }
 
         /// <summary>

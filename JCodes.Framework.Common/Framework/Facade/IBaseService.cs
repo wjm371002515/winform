@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 using JCodes.Framework.Entity;
 
-namespace JCodes.Framework.Common.Facade
+namespace JCodes.Framework.Common.Framework.Facade
 {
     /// <summary>
     /// 基于Facade业务模式定义的接口，可以使用WCF、传统本地访问等模式进行获取数据的公共接口

@@ -12,6 +12,12 @@ using NPOI.SS.UserModel;
 using System.Web;
 using System.Threading;
 using JCodes.Framework.Common;
+using JCodes.Framework.CommonControl;
+using JCodes.Framework.Common.Databases;
+using JCodes.Framework.Common.Format;
+using JCodes.Framework.Common.Files;
+using JCodes.Framework.Common.Office;
+using JCodes.Framework.CommonControl.Other;
 
 namespace TestControlUtil
 {
@@ -41,7 +47,7 @@ namespace TestControlUtil
             {
                 SaveToFile(workbook, saveFile);
 
-                if (MessageUtil.ShowYesNoAndTips("保存成功，是否打开文件？") == System.Windows.Forms.DialogResult.Yes)
+                if (MessageDxUtil.ShowYesNoAndTips("保存成功，是否打开文件？") == System.Windows.Forms.DialogResult.Yes)
                 {
                     System.Diagnostics.Process.Start(saveFile);
                 }
@@ -87,7 +93,7 @@ namespace TestControlUtil
             {
                 SaveToFile(workbook, saveFile);
 
-                if (MessageUtil.ShowYesNoAndTips("保存成功，是否打开文件？") == System.Windows.Forms.DialogResult.Yes)
+                if (MessageDxUtil.ShowYesNoAndTips("保存成功，是否打开文件？") == System.Windows.Forms.DialogResult.Yes)
                 {
                     System.Diagnostics.Process.Start(saveFile);
                 }
@@ -138,7 +144,7 @@ namespace TestControlUtil
             {
 
                 NPOIHelper.Export(dt, "测试内容", saveFile);
-                if (MessageUtil.ShowYesNoAndTips("保存成功，是否打开文件？") == System.Windows.Forms.DialogResult.Yes)
+                if (MessageDxUtil.ShowYesNoAndTips("保存成功，是否打开文件？") == System.Windows.Forms.DialogResult.Yes)
                 {
                     System.Diagnostics.Process.Start(saveFile);
                 }

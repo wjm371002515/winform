@@ -1,4 +1,6 @@
 ﻿using JCodes.Framework.Common;
+using JCodes.Framework.Common.Encrypt;
+using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Entity;
 using JCodes.Framework.IDAL;
 using System;
@@ -224,7 +226,7 @@ namespace JCodes.Framework.BLL
             List<FunctionInfo> functionsByUser = null;
             if (userByName != null)
             {
-                functionsByUser = BLLFactory<Function>.Instance.GetFunctionsByUser(userByName.ID, typeID);
+                functionsByUser = BLLFactory<Functions>.Instance.GetFunctionsByUser(userByName.ID, typeID);
             }
             return functionsByUser;
         }

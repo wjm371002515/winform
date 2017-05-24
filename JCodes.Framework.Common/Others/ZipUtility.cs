@@ -4,8 +4,9 @@ using System.Text;
 using System.Collections;
 using ICSharpCode.SharpZipLib.Zip;
 using System.IO;
+using JCodes.Framework.jCodesenum.BaseEnum;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Office
 {
     /// <summary>
     /// 使用ICSharpCode.SharpZipLib进行文件（包括文件夹）压缩的辅助类
@@ -247,7 +248,10 @@ namespace JCodes.Framework.Common
                 fastZip.CreateZip(fileToZip, zipedFile, recurse, "");
                 return true;
             }
-            catch { return false; }
+            catch (Exception ex){
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(ZipUtility));
+                return false; 
+            }
         }
 
         /// <summary>
@@ -264,8 +268,9 @@ namespace JCodes.Framework.Common
                 fastZip.ExtractZip(zipFile, targetDirectory, "");
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(ZipUtility));
                 return false;
             }
         }

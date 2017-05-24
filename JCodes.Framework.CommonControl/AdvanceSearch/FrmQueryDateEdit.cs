@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace JCodes.Framework.CommonControl
+namespace JCodes.Framework.CommonControl.AdvanceSearch
 {
     internal partial class FrmQueryDateEdit : FrmQueryBase
     {

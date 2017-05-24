@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Winform
 {
     /// <summary>
     /// 多线程中数据的绑定和赋值辅助类

@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 using System.Diagnostics;
 using JCodes.Framework.jCodesenum.BaseEnum;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Device
 {
     /// <summary>
     /// 全局的鼠标钩子操作类，用作捕捉全局的鼠标输入操作。
@@ -87,9 +87,10 @@ namespace JCodes.Framework.Common
                     Enabled = true;
                     return true;
                 }
-                catch
+                catch (Exception ex)
                 {
                     Enabled = false;
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(MouseHook));
                     return false;
                 }
             }
@@ -111,9 +112,10 @@ namespace JCodes.Framework.Common
                     Enabled = false;
                     return true;
                 }
-                catch
+                catch (Exception ex)
                 {
                     Enabled = true;
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(MouseHook));
                     return false;
                 }
             }

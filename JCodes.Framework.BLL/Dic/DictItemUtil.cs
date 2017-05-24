@@ -4,6 +4,8 @@ using System.Configuration;
 using System.Text;
 using System.Collections.Generic;
 using JCodes.Framework.Common;
+using JCodes.Framework.Entity;
+using JCodes.Framework.Common.Framework;
 
 namespace JCodes.Framework.BLL
 {

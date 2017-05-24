@@ -1,8 +1,9 @@
+using JCodes.Framework.jCodesenum.BaseEnum;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Format
 {
     /// <summary>
     /// 转换人民币大小金额辅助类
@@ -138,8 +139,9 @@ namespace JCodes.Framework.Common
                 decimal num = Convert.ToDecimal(numberString);
                 return ToRMB(num);
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(RMBUtil));
                 return "非数字形式！";
             }
         }

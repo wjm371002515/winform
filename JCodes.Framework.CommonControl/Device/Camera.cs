@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 
-namespace JCodes.Framework.CommonControl
+namespace JCodes.Framework.CommonControl.Device
 {
     /// <summary>
     /// 摄像头封装类

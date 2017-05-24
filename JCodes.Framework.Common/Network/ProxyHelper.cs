@@ -8,8 +8,9 @@ using Microsoft.Win32;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Net;
+using JCodes.Framework.jCodesenum.BaseEnum;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Network
 {
     /// <summary>
     /// IE代理设置辅助类
@@ -168,9 +169,10 @@ namespace JCodes.Framework.Common
                 stream.Close();
                 return code;
             }
-            catch (Exception ce)
+            catch (Exception ex)
             {
-                throw ce;
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(ProxyHelper));
+                throw ex;
             }
         }
 

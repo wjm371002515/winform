@@ -5,7 +5,7 @@ using System.IO.Ports;
 using System.Windows.Forms;
 using JCodes.Framework.jCodesenum.BaseEnum;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Winform
 {
     /// <summary>
     /// 串口开发辅助类

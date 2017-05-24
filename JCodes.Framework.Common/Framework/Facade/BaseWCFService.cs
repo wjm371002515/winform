@@ -5,10 +5,11 @@ using System.Linq;
 using System.Collections.Generic;
 using System.ServiceModel;
 using System.Reflection;
-
 using JCodes.Framework.Entity;
+using JCodes.Framework.Common.Files;
+using JCodes.Framework.Common.Network;
 
-namespace JCodes.Framework.Common.Facade
+namespace JCodes.Framework.Common.Framework.Facade
 {
     /// <summary>
     /// 基于WCF数据访问方式的基础API包装类

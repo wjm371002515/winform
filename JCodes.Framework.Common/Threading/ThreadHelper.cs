@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Globalization;
+using JCodes.Framework.jCodesenum.BaseEnum;
 
 namespace JCodes.Framework.Common.Threading
 {
@@ -51,7 +52,7 @@ namespace JCodes.Framework.Common.Threading
         {
             try
             {
-                LogTextHelper.Info(string.Format("UICulture = {0}", cultureName));
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_INFO, string.Format("UICulture = {0}", cultureName), typeof(ThreadHelper));
 
                 var culture = new CultureInfo(cultureName);
                 mainCulture = culture;
@@ -59,7 +60,7 @@ namespace JCodes.Framework.Common.Threading
             }
             catch (Exception ex)
             {
-                LogTextHelper.Error(string.Format("Error setting UICulture: {0}", cultureName), ex);
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(ThreadHelper));
             }
         }
 

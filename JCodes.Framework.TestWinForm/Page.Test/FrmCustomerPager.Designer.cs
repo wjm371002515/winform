@@ -44,7 +44,7 @@
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.bandedGridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.pager1 = new JCodes.Framework.CommonControl.Pager();
+            this.pager1 = new JCodes.Framework.CommonControl.Pager.Pager();
             this.label1 = new System.Windows.Forms.Label();
             this.txtName = new DevExpress.XtraEditors.TextEdit();
             this.cmbArea = new System.Windows.Forms.ComboBox();
@@ -318,7 +318,7 @@
         #endregion
 
         public DevExpress.XtraGrid.GridControl gridControl1;
-        private JCodes.Framework.CommonControl.Pager pager1;
+        private JCodes.Framework.CommonControl.Pager.Pager pager1;
         private System.Windows.Forms.Label label1;
         private DevExpress.XtraEditors.TextEdit txtName;
         private System.Windows.Forms.ComboBox cmbArea;

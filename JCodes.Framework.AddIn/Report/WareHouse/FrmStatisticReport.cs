@@ -1,4 +1,5 @@
 ﻿using JCodes.Framework.CommonControl;
+using JCodes.Framework.CommonControl.BaseUI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace JCodes.Framework.AddIn
+namespace JCodes.Framework.AddIn.Report.WareHouse
 {
     public partial class FrmStatisticReport : BaseDock
     {

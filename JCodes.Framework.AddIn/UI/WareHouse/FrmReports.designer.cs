@@ -1,4 +1,5 @@
-﻿using JCodes.Framework.CommonControl;
+﻿using JCodes.Framework.AddIn.UI.BizControl;
+using JCodes.Framework.CommonControl;
 namespace JCodes.Framework.AddIn.UI.WareHouse
 {
     partial class FrmReports

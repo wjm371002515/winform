@@ -9,6 +9,8 @@ using System.Windows.Forms;
 using JCodes.Framework.CommonControl.Settings;
 using System.Configuration;
 using JCodes.Framework.Common;
+using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.CommonControl.Other;
 
 namespace JCodes.Framework.CommonControl.Framework
 {
@@ -17,15 +19,15 @@ namespace JCodes.Framework.CommonControl.Framework
         private SettingsProvider settings;
         private ISettingsStorage store;
 
-        public PageEmail()
+        public PageEmail(string creator)
         {
             InitializeComponent();
 
             if (!this.DesignMode)
             {
                 //DatabaseStorage：在数据库里面，以指定用户标识保存参数数据
-                string creator = Portal.gc.LoginUserInfo.Name;
-                store = new DatabaseStorage(creator);
+                //string creator = Portal.gc.LoginUserInfo.Name;
+                // store = new DatabaseStorage(creator);
                 // 20170513 wjm 暂时注释掉
                 //settings = new SettingsProvider(store);
             }
@@ -88,7 +90,7 @@ namespace JCodes.Framework.CommonControl.Framework
             }
             catch (Exception ex)
             {
-                LogTextHelper.Error(ex);
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(PageEmail));
                 MessageDxUtil.ShowError(ex.Message);
             }
 

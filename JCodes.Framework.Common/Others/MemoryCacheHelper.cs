@@ -4,7 +4,7 @@ using System.Text;
 using System.Runtime.Caching;
 using System.Linq;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Office
 {
     /// <summary>
     /// 基于MemoryCache的缓存辅助类

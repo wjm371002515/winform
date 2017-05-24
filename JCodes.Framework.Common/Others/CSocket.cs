@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.IO;
 using JCodes.Framework.jCodesenum.BaseEnum;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Office
 {
 	/// <summary>
 	/// 网页数据操作辅助类。
@@ -104,16 +104,18 @@ namespace JCodes.Framework.Common
                 {
                     content = System.Text.Encoding.GetEncoding(charset).GetString(buffer);
                 }
-                catch (ArgumentException)
+                catch (ArgumentException ex)
                 {//指定的编码不可识别
                     content = System.Text.Encoding.GetEncoding("gb2312").GetString(buffer);
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(CSocket));
                 }
 
                 //content = CText.RemoveByReg(content, @"<!--[\s\S]*?-->");
             }
-            catch
+            catch (Exception ex)
             {
                 content = "";
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(CSocket));
             }
 
             return content;
@@ -122,11 +124,6 @@ namespace JCodes.Framework.Common
         private static HttpWebResponse _MyGetResponse(string sUrl)
         {
             int iTimeOut = 10000;
-            //try
-            //{
-            //    //iTimeOut = int.Parse(System.Configuration.ConfigurationManager.AppSettings["SocketTimeOut"]);
-            //}
-            //catch { iTimeOut = 10000; }
 
             bool bCookie = false;
             bool bRepeat = false;
@@ -151,8 +148,9 @@ namespace JCodes.Framework.Common
                 //resquest.KeepAlive = true;
                 return (HttpWebResponse)resquest.GetResponse();
             }
-            catch (WebException we)
+            catch (WebException ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(CSocket));
                 if (!bRepeat)
                 {
                     bRepeat = true;
@@ -161,8 +159,9 @@ namespace JCodes.Framework.Common
                 }
                 return null;
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(CSocket));
                 return null;
             }
         }
@@ -184,7 +183,9 @@ namespace JCodes.Framework.Common
                     count = stream.Read(buffer, 0, Const.BUFFSIZE);
                 }
             }
-            catch {}
+            catch (Exception ex){
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(CSocket));
+            }
 
             return (byte[])arBuffer.ToArray(System.Type.GetType("System.Byte"));
         }
@@ -209,8 +210,9 @@ namespace JCodes.Framework.Common
                     sHead += sKey + ":" + headers[sKey] + "\r\n";
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(CSocket));
             }
             return sHead;
         }
@@ -279,9 +281,10 @@ namespace JCodes.Framework.Common
                 {
                     ipHostInfo = System.Net.Dns.GetHostEntry(site.Host);
                 }
-                catch (Exception Ex)
+                catch (Exception ex)
                 {
-                    throw Ex;
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(CSocket));
+                    throw ex;
                 }
                 IPAddress ipAddress = ipHostInfo.AddressList[0];
                 IPEndPoint remoteEP = new IPEndPoint(ipAddress, site.Port);
@@ -292,9 +295,10 @@ namespace JCodes.Framework.Common
                 {
                     sock.Connect(remoteEP);
                 }
-                catch (Exception Ex)
+                catch (Exception ex)
                 {
-                    throw Ex;
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(CSocket));
+                    throw ex;
                 }
                 foreach (KeyValuePair<int,string>  kvUrl in listUrl)
                 {
@@ -323,9 +327,10 @@ namespace JCodes.Framework.Common
                         {
                             nBytes = sock.Receive(bytes, bytes.Length - 1, 0);
                         }
-                        catch (Exception Ex)
+                        catch (Exception ex)
                         {
-                            string str = Ex.Message;
+                            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(CSocket));
+                            string str = ex.Message;
                             nBytes = -1;
                         }
                         if (nBytes <= 0) break;
@@ -357,15 +362,18 @@ namespace JCodes.Framework.Common
                     sbHtml = new StringBuilder();
                 }
             }
-            catch (Exception Ex)
+            catch (Exception ex)
             {
-                string s = Ex.Message;
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(CSocket));
+                string s = ex.Message;
                 try
                 {
                     sock.Shutdown(SocketShutdown.Both);
                     sock.Close();
                 }
-                catch { }
+                catch (Exception ex1){
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex1, typeof(CSocket));
+                }
             }
             finally
             {
@@ -374,7 +382,9 @@ namespace JCodes.Framework.Common
                     sock.Shutdown(SocketShutdown.Both);
                     sock.Close();
                 }
-                catch { }
+                catch (Exception ex){
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(CSocket));
+                }
             }
             return listResult;          
         }

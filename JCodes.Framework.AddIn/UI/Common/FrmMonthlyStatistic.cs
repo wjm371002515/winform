@@ -1,6 +1,9 @@
 ﻿using JCodes.Framework.BLL;
 using JCodes.Framework.Common;
+using JCodes.Framework.Common.Framework;
 using JCodes.Framework.CommonControl;
+using JCodes.Framework.CommonControl.BaseUI;
+using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.Entity;
 using System;
 using System.Collections.Generic;
@@ -92,7 +95,7 @@ namespace JCodes.Framework.AddIn.UI.Common
         private void ExecuteEachWareMonthlyReport()
         {
             #region 构造库房结存月报表（单库房）
-            List<WareHouseInfo> wareList = BLLFactory<BLL.WareHouse>.Instance.GetAll();
+            List<WareHouseInfo> wareList = BLLFactory<WareHouses>.Instance.GetAll();
             ReportMonthlyHeaderInfo eachWareHeaderInfo = GetMainHeader();
             eachWareHeaderInfo.ReportTitle = string.Format("{0}库房结存月报表", DateTime.Now.ToString("yyyy年MM月"));
             eachWareHeaderInfo.ReportType = 2;

@@ -5,7 +5,7 @@ using System.Net.Sockets;
 using System.Collections;
 using JCodes.Framework.jCodesenum.BaseEnum;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Network
 {
     /// <summary>
     /// 添加附件
@@ -408,9 +408,10 @@ namespace JCodes.Framework.Common
             {
                 networkStream.Write(WriteBuffer, 0, WriteBuffer.Length);
             }
-            catch
+            catch (Exception ex)
             {
                 errmsg = "网络连接错误";
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(SmtpServerHelper));
                 return false;
             }
             return true;
@@ -428,9 +429,10 @@ namespace JCodes.Framework.Common
             {
                 StreamSize = networkStream.Read(ReadBuffer, 0, ReadBuffer.Length);
             }
-            catch
+            catch (Exception ex)
             {
                 errmsg = "网络连接错误";
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(SmtpServerHelper));
                 return "false";
             }
 
@@ -518,9 +520,10 @@ namespace JCodes.Framework.Common
             {
                 tcpClient = new TcpClient(smtpServer, port);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                errmsg = e.ToString();
+                errmsg = ex.ToString();
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(SmtpServerHelper));
                 return false;
             }
             networkStream = tcpClient.GetStream();
@@ -827,8 +830,9 @@ namespace JCodes.Framework.Common
                 sw.Flush();
                 return true;
             }
-            catch (Exception err)
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(SmtpServerHelper));
                 return false;
             }
         }
@@ -847,9 +851,10 @@ namespace JCodes.Framework.Common
                     str = null;
                 }
             }
-            catch (Exception err)
+            catch (Exception ex)
             {
-                str = err.Message;
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(SmtpServerHelper));
+                str = ex.Message;
             }
             return str;
         }

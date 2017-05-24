@@ -31,7 +31,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMonthReportSearch));
-            this.winGridView1 = new WinGridView();
+            this.winGridView1 = new JCodes.Framework.CommonControl.Pager.WinGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.btnMonthlySearch = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
@@ -302,7 +302,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
 
         private DevExpress.XtraEditors.SimpleButton btnMonthlySearch;
         private System.Windows.Forms.Label label1;
-        private WinGridView winGridView1;
+        private JCodes.Framework.CommonControl.Pager.WinGridView winGridView1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem menu_InRefresh;
         private System.Windows.Forms.StatusStrip statusStrip1;

@@ -1,4 +1,6 @@
 ﻿using JCodes.Framework.Common;
+using JCodes.Framework.Common.Network;
+using JCodes.Framework.Entity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

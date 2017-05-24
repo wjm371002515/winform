@@ -3,8 +3,9 @@ using System.Text;
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.Threading;
+using JCodes.Framework.jCodesenum.BaseEnum;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Winform
 {
     /// <summary>
     /// DOS操作封装辅助类
@@ -106,9 +107,9 @@ namespace JCodes.Framework.Common
                 // Display the command output.
                 Console.WriteLine(result);
             }
-            catch (Exception objException)
+            catch (Exception ex)
             {
-                LogTextHelper.Error(objException);
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(DosHelper));
                 // Log the exception
             }
         }
@@ -130,20 +131,17 @@ namespace JCodes.Framework.Common
                 //Start the thread.
                 objThread.Start(command);
             }
-            catch (ThreadStartException objException)
+            catch (ThreadStartException ex)
             {
-                LogTextHelper.Error(objException);
-                // Log the exception
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(DosHelper));
             }
-            catch (ThreadAbortException objException)
+            catch (ThreadAbortException ex)
             {
-                LogTextHelper.Error(objException);
-                // Log the exception
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(DosHelper));
             }
-            catch (Exception objException)
+            catch (Exception ex)
             {
-                LogTextHelper.Error(objException);
-                // Log the exception
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(DosHelper));
             }
         }
     }

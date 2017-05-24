@@ -11,6 +11,12 @@ using System.Threading;
 using System.IO;
 using System.Diagnostics;
 using JCodes.Framework.Common;
+using JCodes.Framework.CommonControl;
+using JCodes.Framework.Common.Office;
+using JCodes.Framework.CommonControl.Other;
+using JCodes.Framework.Common.Files;
+using JCodes.Framework.CommonControl.Other.Images;
+using JCodes.Framework.Common.Databases;
 
 namespace TestControlUtil
 {
@@ -209,7 +215,7 @@ namespace TestControlUtil
             if (!string.IsNullOrEmpty(saveFile))
             {
                 workbook.Save(saveFile);
-                if (MessageUtil.ShowYesNoAndTips("保存成功，是否打开文件？") == System.Windows.Forms.DialogResult.Yes)
+                if (MessageDxUtil.ShowYesNoAndTips("保存成功，是否打开文件？") == System.Windows.Forms.DialogResult.Yes)
                 {
                     System.Diagnostics.Process.Start(saveFile);
                 }
@@ -226,7 +232,7 @@ namespace TestControlUtil
             string savedFile = AsposeExcelTools.ExportWithDataSource(templateFile, "testAdvice.xls", dictSource);
             if (!string.IsNullOrEmpty(savedFile))
             {
-                if (MessageUtil.ShowYesNoAndTips("导出成功，是否打开文件？") == System.Windows.Forms.DialogResult.Yes)
+                if (MessageDxUtil.ShowYesNoAndTips("导出成功，是否打开文件？") == System.Windows.Forms.DialogResult.Yes)
                 {
                     Process.Start(savedFile);
                 }
@@ -244,7 +250,7 @@ namespace TestControlUtil
             string savedFile = AsposeExcelTools.ExportWithReplace(templateFile, "testAdvice.xls", dictSource);
             if (!string.IsNullOrEmpty(savedFile))
             {
-                if (MessageUtil.ShowYesNoAndTips("导出成功，是否打开文件？") == System.Windows.Forms.DialogResult.Yes)
+                if (MessageDxUtil.ShowYesNoAndTips("导出成功，是否打开文件？") == System.Windows.Forms.DialogResult.Yes)
                 {
                     Process.Start(savedFile);
                 }

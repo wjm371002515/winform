@@ -5,6 +5,8 @@ using System.Data.Common;
 using JCodes.Framework.Common;
 using JCodes.Framework.Entity;
 using JCodes.Framework.IDAL;
+using JCodes.Framework.Common.Framework;
+using JCodes.Framework.Common.Extension;
 
 namespace JCodes.Framework.BLL
 {

@@ -1,9 +1,10 @@
+using JCodes.Framework.jCodesenum.BaseEnum;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Winform
 {
     /// <summary>
     /// 为ToolStripStatusLabel提供一个线程安全的包装类
@@ -33,8 +34,9 @@ namespace JCodes.Framework.Common
                         // Invoke the SetText operation from the Parent of the ToolStripStatusLabel
                         text = (string)base.Parent.Invoke(getTextDel, null);
                     }
-                    catch
+                    catch (Exception ex)
                     {
+                        LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(SafeToolStripLabel));
                     }
 
                     return text;
@@ -61,8 +63,9 @@ namespace JCodes.Framework.Common
                         // Invoke the SetText operation from the Parent of the ToolStripStatusLabel
                         base.Parent.Invoke(setTextDel, new object[] { value });
                     }
-                    catch
+                    catch (Exception ex)
                     {
+                        LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(SafeToolStripLabel));
                     }
                 }
                 else

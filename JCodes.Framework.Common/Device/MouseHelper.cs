@@ -7,7 +7,7 @@ using System.Security.Permissions;
 using System.Windows.Forms;
 using JCodes.Framework.jCodesenum.BaseEnum;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Device
 {
     /// <summary>
     /// 鼠标辅助操作类，提供获取鼠标状态以及模拟鼠标点击等操作

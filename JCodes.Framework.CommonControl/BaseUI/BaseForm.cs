@@ -1,4 +1,8 @@
 ﻿using JCodes.Framework.Common;
+using JCodes.Framework.Common.Office;
+using JCodes.Framework.CommonControl.Other;
+using JCodes.Framework.CommonControl.PlugInInterface;
+using JCodes.Framework.jCodesenum.BaseEnum;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,7 +11,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace JCodes.Framework.CommonControl
+namespace JCodes.Framework.CommonControl.BaseUI
 {
     /// <summary>
     /// 常规界面基类
@@ -60,7 +64,7 @@ namespace JCodes.Framework.CommonControl
         public void WriteException(Exception ex)
         {
             // 在本地记录异常
-            LogTextHelper.Error(ex);
+            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(BaseForm));
             MessageDxUtil.ShowError(ex.Message);
         }
 
@@ -109,6 +113,8 @@ namespace JCodes.Framework.CommonControl
                 }
                 catch (Exception ex)
                 {
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(BaseForm));
+                    MessageDxUtil.ShowError(ex.Message);
                     this.ProcessException(ex);
                 }
                 finally

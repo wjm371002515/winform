@@ -1,9 +1,10 @@
+using JCodes.Framework.jCodesenum.BaseEnum;
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Format
 {
     /// <summary>
     /// 提供字节数组和图片之间的转换辅助类
@@ -79,8 +80,9 @@ namespace JCodes.Framework.Common
                     }
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(ByteImageConvertor));
             }
             return image;
         }
@@ -121,8 +123,9 @@ namespace JCodes.Framework.Common
                     }
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(ByteImageConvertor));
             }
             return image;
         }
@@ -145,8 +148,9 @@ namespace JCodes.Framework.Common
                     image = new Bitmap(tempImage);
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(ByteImageConvertor));
                 // 当文件为.ico图标文件的时候，上面操作无效，继续转换
                 try
                 {
@@ -154,8 +158,10 @@ namespace JCodes.Framework.Common
                     Icon icon = new Icon(stream);
                     if (icon != null) image = icon.ToBitmap();
                 }
-                catch
-                { }
+                catch (Exception ex1)
+                {
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex1, typeof(ByteImageConvertor));
+                }
             }
 
             return image;
@@ -176,7 +182,9 @@ namespace JCodes.Framework.Common
                     bitmap = new Bitmap((Image)new Bitmap(stream));
                 }
             }
-            catch { }
+            catch (Exception ex){
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(ByteImageConvertor));
+            }
 
             return bitmap;
         }
@@ -199,7 +207,9 @@ namespace JCodes.Framework.Common
                     byteImage = stream.ToArray();
                 }
             }
-            catch { }
+            catch (Exception ex){
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(ByteImageConvertor));
+            }
 
             return byteImage;
         }

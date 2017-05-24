@@ -11,7 +11,7 @@ using NPOI.HPSF;
 using NPOI.SS.Util;
 using NPOI.SS.UserModel;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Office
 {
     /// <summary>
     /// 利用NPOI类库，实现对Excel进行操作的辅助类

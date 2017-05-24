@@ -7,6 +7,8 @@ using Microsoft.Practices.EnterpriseLibrary.Data;
 using JCodes.Framework.Common;
 using JCodes.Framework.Entity;
 using JCodes.Framework.IDAL;
+using JCodes.Framework.Common.Framework.BaseDAL;
+using JCodes.Framework.Common.Databases;
 
 namespace JCodes.Framework.SQLServerDAL
 {
@@ -24,7 +26,8 @@ namespace JCodes.Framework.SQLServerDAL
 				return new RoleData();
 			}
 		}
-		public RoleData() : base("T_ACL_RoleData","ID")
+        public RoleData()
+            : base(SQLServerPortal.gc._securityTablePre + "RoleData", "ID")
 		{
 		}
 

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ServiceModel;
+using JCodes.Framework.jCodesenum.BaseEnum;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Network
 {
     /// <summary>
     /// WCF服务包装类，避免使用Using等方式导致服务出错的问题
@@ -19,19 +20,19 @@ namespace JCodes.Framework.Common
                 work(client);
                 client.Close();
             }
-            catch (CommunicationException e)
+            catch (CommunicationException ex)
             {
-                LogTextHelper.WriteLine(e.ToString());
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(WcfExtensions));
                 client.Abort();
             }
-            catch (TimeoutException e)
+            catch (TimeoutException ex)
             {
-                LogTextHelper.WriteLine(e.ToString());
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(WcfExtensions));
                 client.Abort();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                LogTextHelper.WriteLine(e.ToString());
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(WcfExtensions));
                 client.Abort();
                 throw;
             }

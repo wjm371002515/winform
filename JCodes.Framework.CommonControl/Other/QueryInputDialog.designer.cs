@@ -1,4 +1,4 @@
-﻿namespace JCodes.Framework.CommonControl
+﻿namespace JCodes.Framework.CommonControl.Other
 {
     partial class QueryInputDialog
     {

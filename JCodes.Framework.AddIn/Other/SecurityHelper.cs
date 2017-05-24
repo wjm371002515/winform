@@ -1,13 +1,17 @@
 ﻿using JCodes.Framework.BLL;
 using JCodes.Framework.Common;
+using JCodes.Framework.Common.Framework;
+using JCodes.Framework.Common.Office;
 using JCodes.Framework.CommonControl;
+using JCodes.Framework.CommonControl.PlugInInterface;
 using JCodes.Framework.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using JCodes.Framework.Common.Extension;
 
-namespace JCodes.Framework.AddIn
+namespace JCodes.Framework.AddIn.Other
 {
     /// <summary>
     /// 增加一个辅助类，操作和权限系统相关的资源，以便使得权限和工作流相对独立使用。

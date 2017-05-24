@@ -1,4 +1,4 @@
-﻿namespace JCodes.Framework.AddIn
+﻿namespace JCodes.Framework.AddIn.Test
 {
     partial class Test
     {

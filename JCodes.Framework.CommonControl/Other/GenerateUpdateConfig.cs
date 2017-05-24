@@ -1,4 +1,6 @@
 ﻿using JCodes.Framework.Common;
+using JCodes.Framework.Common.Encrypt;
+using JCodes.Framework.Common.Files;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -66,7 +68,7 @@ namespace JCodes.Framework.CommonControl.Other
             FileUtil.AppendText(txtFileName.Text.Trim(), "\t</files>\r\n", Encoding.UTF8);
             FileUtil.AppendText(txtFileName.Text.Trim(), "</manifest>\r\n", Encoding.UTF8);
 
-            MessageUtil.ShowTips("操作完成");
+            MessageDxUtil.ShowTips("操作完成");
         }
     }
 }

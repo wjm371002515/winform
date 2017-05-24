@@ -7,8 +7,10 @@ using System.Data.Common;
 using System.Reflection;
 
 using JCodes.Framework.Entity;
+using JCodes.Framework.Common.Office;
+using JCodes.Framework.Common.Files;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Framework
 {
     /// <summary>
     /// 业务基类对象

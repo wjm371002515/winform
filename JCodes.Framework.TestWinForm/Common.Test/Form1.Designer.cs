@@ -80,6 +80,7 @@
             this.btnpublicsecurt = new System.Windows.Forms.Button();
             this.btnRegeditTool = new System.Windows.Forms.Button();
             this.btnAutoUpdateConfig = new System.Windows.Forms.Button();
+            this.btnWait = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
@@ -655,6 +656,17 @@
             this.btnAutoUpdateConfig.UseVisualStyleBackColor = true;
             this.btnAutoUpdateConfig.Click += new System.EventHandler(this.btnAutoUpdateConfig_Click);
             // 
+            // btnWait
+            // 
+            this.btnWait.Location = new System.Drawing.Point(759, 602);
+            this.btnWait.Margin = new System.Windows.Forms.Padding(4);
+            this.btnWait.Name = "btnWait";
+            this.btnWait.Size = new System.Drawing.Size(189, 34);
+            this.btnWait.TabIndex = 41;
+            this.btnWait.Text = "等待";
+            this.btnWait.UseVisualStyleBackColor = true;
+            this.btnWait.Click += new System.EventHandler(this.btnWait_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -664,6 +676,7 @@
             this.Controls.Add(this.btnUnicodeHelper);
             this.Controls.Add(this.btnGZipUtil);
             this.Controls.Add(this.btnRegistryHelper);
+            this.Controls.Add(this.btnWait);
             this.Controls.Add(this.btnAutoUpdateConfig);
             this.Controls.Add(this.btnRegeditTool);
             this.Controls.Add(this.btnpublicsecurt);
@@ -778,6 +791,7 @@
         private System.Windows.Forms.Button btnpublicsecurt;
         private System.Windows.Forms.Button btnRegeditTool;
         private System.Windows.Forms.Button btnAutoUpdateConfig;
+        private System.Windows.Forms.Button btnWait;
     }
 }
 

@@ -8,8 +8,9 @@ using System.Configuration.Install;
 
 using Microsoft.Win32;
 using JCodes.Framework.Common;
+using JCodes.Framework.jCodesenum.BaseEnum;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Winform
 {
     /// <summary>
     /// window服务辅助类，包括安装、卸载、启动、停止、重新启动、判断服务是否存在等操作。
@@ -158,7 +159,7 @@ namespace JCodes.Framework.Common
             }
             catch(Exception ex)
             {
-                LogTextHelper.Error(ex);
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(WinServiceHelper));
                 return false;
             }
             return true;
@@ -187,7 +188,7 @@ namespace JCodes.Framework.Common
             }
             catch(Exception ex)
             {
-                LogTextHelper.Error(ex);
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(WinServiceHelper));
                 return false;
             }
             return true;
@@ -212,7 +213,7 @@ namespace JCodes.Framework.Common
             }
             catch (Exception ex)
             {
-                LogTextHelper.Error(ex);
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(WinServiceHelper));
                 return false;
             }
             return true;
@@ -236,7 +237,7 @@ namespace JCodes.Framework.Common
             }
             catch (Exception ex)
             {
-                LogTextHelper.Error(ex);
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(WinServiceHelper));
                 return string.Empty;
             }
         }

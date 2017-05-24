@@ -1,6 +1,9 @@
-﻿using JCodes.Framework.BLL;
+﻿using JCodes.Framework.AddIn.Other;
+using JCodes.Framework.BLL;
 using JCodes.Framework.Common;
+using JCodes.Framework.Common.Framework;
 using JCodes.Framework.CommonControl;
+using JCodes.Framework.CommonControl.BaseUI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

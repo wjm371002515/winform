@@ -14,6 +14,11 @@ using JCodes.Framework.Entity;
 using JCodes.Framework.Common;
 using JCodes.Framework.BLL;
 using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.CommonControl.BaseUI;
+using JCodes.Framework.Common.Framework;
+using JCodes.Framework.Common.Databases;
+using JCodes.Framework.CommonControl.Other;
+using JCodes.Framework.Common.Files;
 
 namespace JCodes.Framework.AddIn.UI.WareHouse
 {
@@ -75,13 +80,13 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             {
                 #region MyRegion
 
-                DataTable dtCostCenter = BLLFactory<BLL.WareHouse>.Instance.SqlTable(sql + string.Format(" AND ReportCode='001' AND Total <> 0 "));
+                DataTable dtCostCenter = BLLFactory<WareHouses>.Instance.SqlTable(sql + string.Format(" AND ReportCode='001' AND Total <> 0 "));
                 dtCostCenter.TableName = "CostCenter";
 
-                DataTable dtNormalDept = BLLFactory<BLL.WareHouse>.Instance.SqlTable(sql + string.Format(" AND ReportCode='002' AND Total <> 0 "));
+                DataTable dtNormalDept = BLLFactory<WareHouses>.Instance.SqlTable(sql + string.Format(" AND ReportCode='002' AND Total <> 0 "));
                 dtNormalDept.TableName = "NormalDept";
 
-                DataTable dtSpecialDept = BLLFactory<BLL.WareHouse>.Instance.SqlTable(sql + string.Format(" AND ReportCode='003' AND Total <> 0 "));
+                DataTable dtSpecialDept = BLLFactory<WareHouses>.Instance.SqlTable(sql + string.Format(" AND ReportCode='003' AND Total <> 0 "));
                 dtSpecialDept.TableName = "SpecialDept";
 
                 string path = System.IO.Path.Combine(Application.StartupPath, "Report3.xls");

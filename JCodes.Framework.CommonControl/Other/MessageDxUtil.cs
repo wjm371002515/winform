@@ -1,7 +1,8 @@
+using JCodes.Framework.Common;
 using System;
 using System.Windows.Forms;
 
-namespace JCodes.Framework.CommonControl
+namespace JCodes.Framework.CommonControl.Other
 {
 	/// <summary>
 	/// MessageBox 的摘要说明。
@@ -91,6 +92,26 @@ namespace JCodes.Framework.CommonControl
                 return dlg.txtInput.Text;
             }
             return initValue;
+        }
+
+        /// <summary>
+        /// 显示一个YesNo选择对话框
+        /// </summary>
+        /// <param name="prompt">对话框的选择内容提示信息</param>
+        /// <returns>如果选择Yes则返回true，否则返回false</returns>
+        public static bool ConfirmYesNo(string prompt)
+        {
+            return MessageBox.Show(prompt, "确认", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+        }
+
+        /// <summary>
+        /// 显示一个YesNoCancel选择对话框
+        /// </summary>
+        /// <param name="prompt">对话框的选择内容提示信息</param>
+        /// <returns>返回选择结果的的DialogResult值</returns>
+        public static DialogResult ConfirmYesNoCancel(string prompt)
+        {
+            return MessageBox.Show(prompt, "确认", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
         }
 	}
 }

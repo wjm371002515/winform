@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using JCodes.Framework.jCodesenum.BaseEnum;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Office
 {
     /// <summary>
     /// 提供的方法来操纵数据流的辅助方法
@@ -177,9 +178,10 @@ namespace JCodes.Framework.Common
             {
                 encode = Encoding.GetEncoding(encoding);
             }
-            catch
+            catch (Exception ex)
             {
                 encode = Encoding.Default;
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(StreamUtils));
             }
             StreamReader inputStreamReader = new StreamReader(inputStream, encode);
             return Copy(inputStreamReader, outputWriter);

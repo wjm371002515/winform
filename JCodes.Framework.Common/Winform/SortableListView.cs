@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Collections;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Winform
 {
     /// <summary>
     /// 列表ListView排序类

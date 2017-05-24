@@ -8,9 +8,12 @@ using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using JCodes.Framework.Common;
+using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.CommonControl.PlugInInterface;
+using JCodes.Framework.Common.Office;
+using JCodes.Framework.CommonControl.Other;
 
-
-namespace JCodes.Framework.CommonControl
+namespace JCodes.Framework.CommonControl.BaseUI
 {
     /// <summary>
     /// 自定义控件基类
@@ -70,7 +73,7 @@ namespace JCodes.Framework.CommonControl
         public void WriteException(Exception ex)
         {
             // 在本地记录异常
-            LogTextHelper.Error(ex);
+            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(BaseUserControl));
             MessageDxUtil.ShowError(ex.Message);
         }
 

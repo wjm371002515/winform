@@ -1,4 +1,5 @@
-﻿using JCodes.Framework.CommonControl.Attachment;
+﻿
+using JCodes.Framework.AddIn.UI.Attachment;
 namespace TestAttachmentDx
 {
     partial class Form1
@@ -30,7 +31,7 @@ namespace TestAttachmentDx
         private void InitializeComponent()
         {
             this.btnAttachment = new DevExpress.XtraEditors.SimpleButton();
-            this.attachmentControl1 = new AttachmentControl();
+            this.attachmentControl1 = new JCodes.Framework.AddIn.UI.BizControl.AttachmentControl();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -127,7 +128,7 @@ namespace TestAttachmentDx
 
         #endregion
 
-        private AttachmentControl attachmentControl1;
+        private JCodes.Framework.AddIn.UI.BizControl.AttachmentControl attachmentControl1;
         private DevExpress.XtraEditors.SimpleButton btnAttachment;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;

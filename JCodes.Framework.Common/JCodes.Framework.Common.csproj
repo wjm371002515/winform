@@ -17,12 +17,12 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\jCodes\Framework\</OutputPath>
+    <OutputPath>..\jCodes\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -129,22 +129,21 @@
     <Compile Include="Collections\ThreadSafeSortedList.cs" />
     <Compile Include="Const\JCodes.Framework.Common.Const.cs" />
     <Compile Include="CryptographyHelper.cs" />
-    <Compile Include="Database\DataTableHelper.cs" />
-    <Compile Include="Database\JetAccessUtil.cs" />
-    <Compile Include="Database\OleDbHelper.cs" />
-    <Compile Include="Database\PageHelper.cs" />
-    <Compile Include="Database\SearchCondition.cs" />
-    <Compile Include="Database\SearchInfo.cs" />
-    <Compile Include="Database\SmartDataReader.cs" />
-    <Compile Include="Database\SQLInjectionHelper.cs" />
-    <Compile Include="Database\SqlScriptHelper.cs" />
+    <Compile Include="Databases\DataTableHelper.cs" />
+    <Compile Include="Databases\JetAccessUtil.cs" />
+    <Compile Include="Databases\OleDbHelper.cs" />
+    <Compile Include="Databases\PageHelper.cs" />
+    <Compile Include="Databases\SearchCondition.cs" />
+    <Compile Include="Databases\SearchInfo.cs" />
+    <Compile Include="Databases\SmartDataReader.cs" />
+    <Compile Include="Databases\SQLInjectionHelper.cs" />
+    <Compile Include="Databases\SqlScriptHelper.cs" />
     <Compile Include="Data\JCodes.Framework.Common.Data.cs" />
     <Compile Include="DbHelper.cs" />
     <Compile Include="Device\AudioHelper.cs" />
     <Compile Include="Device\Camera.cs" />
     <Compile Include="Device\FingerprintHelper.cs" />
     <Compile Include="Device\HardwareInfoHelper.cs" />
-    <Compile Include="Device\KeyboardHelper.cs" />
     <Compile Include="Device\KeyboardHook.cs" />
     <Compile Include="Device\MouseHelper.cs" />
     <Compile Include="Device\MouseHook.cs" />
@@ -154,33 +153,28 @@
     <Compile Include="Encrypt\MD5Util.cs" />
     <Compile Include="Encrypt\QQEncryptUtil.cs" />
     <Compile Include="Encrypt\RSASecurityHelper.cs" />
-    <Compile Include="Entity\CListItem.cs" />
-    <Compile Include="Entity\CommonResult.cs" />
-    <Compile Include="Entity\NotifyContactInfo.cs" />
     <Compile Include="Extension\ControlExtensions.cs" />
-    <Compile Include="Extension\ExtensionMethod.cs" />
     <Compile Include="Extension\StringExtensionMethod.cs" />
     <Compile Include="FileHelper.cs" />
-    <Compile Include="File\AppConfig.cs" />
-    <Compile Include="File\ConfigurationUtil.cs" />
-    <Compile Include="File\CSVHelper.cs" />
-    <Compile Include="File\DatabaseInfo.cs" />
-    <Compile Include="File\DirectoryUtil.cs" />
-    <Compile Include="File\ExcelHelper.cs" />
-    <Compile Include="File\ExtensionAttachUtil.cs" />
-    <Compile Include="File\FileAssociationsHelper.cs" />
-    <Compile Include="File\FileDialogHelper.cs" />
-    <Compile Include="File\FileUtil.cs" />
-    <Compile Include="File\INIFileUtil.cs" />
-    <Compile Include="File\IsolatedStorageHelper.cs" />
-    <Compile Include="File\LogTextHelper.cs" />
-    <Compile Include="File\MyFileSystemWatcher.cs">
+    <Compile Include="Files\AppConfig.cs" />
+    <Compile Include="Files\ConfigurationUtil.cs" />
+    <Compile Include="Files\CSVHelper.cs" />
+    <Compile Include="Files\DatabaseInfo.cs" />
+    <Compile Include="Files\DirectoryUtil.cs" />
+    <Compile Include="Files\ExcelHelper.cs" />
+    <Compile Include="Files\ExtensionAttachUtil.cs" />
+    <Compile Include="Files\FileAssociationsHelper.cs" />
+    <Compile Include="Files\FileDialogHelper.cs" />
+    <Compile Include="Files\FileUtil.cs" />
+    <Compile Include="Files\INIFileUtil.cs" />
+    <Compile Include="Files\IsolatedStorageHelper.cs" />
+    <Compile Include="Files\MyFileSystemWatcher.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="File\Serializer.cs" />
-    <Compile Include="File\SpecialDirectories.cs" />
-    <Compile Include="File\XmlConvertor.cs" />
-    <Compile Include="File\XmlHelper.cs" />
+    <Compile Include="Files\Serializer.cs" />
+    <Compile Include="Files\SpecialDirectories.cs" />
+    <Compile Include="Files\XmlConvertor.cs" />
+    <Compile Include="Files\XmlHelper.cs" />
     <Compile Include="Format\ArgumentValidation.cs" />
     <Compile Include="Format\ByteImageConvertor.cs" />
     <Compile Include="Format\BytesTools.cs" />
@@ -215,22 +209,18 @@
     <Compile Include="Framework\Facade\CustomClientChannel.cs" />
     <Compile Include="Framework\Facade\IBaseService.cs" />
     <Compile Include="Framework\IBaseDAL.cs" />
-    <Compile Include="Image\CheckCode.cs" />
-    <Compile Include="Image\IconReaderHelper.cs" />
-    <Compile Include="Image\ImageFormatHandler.cs" />
-    <Compile Include="Image\ImageHelper.cs" />
-    <Compile Include="Image\ImagePrintHelper.cs" />
-    <Compile Include="Image\MyScreenCapture.cs" />
-    <Compile Include="Image\PrintFormHelper.cs" />
-    <Compile Include="Image\ResourceHelper.cs" />
-    <Compile Include="Image\ScreenCapture.cs" />
-    <Compile Include="Image\ScreenCaptureWindow.cs">
+    <Compile Include="Images\CheckCode.cs" />
+    <Compile Include="Images\IconReaderHelper.cs" />
+    <Compile Include="Images\ImageFormatHandler.cs" />
+    <Compile Include="Images\MyScreenCapture.cs" />
+    <Compile Include="Images\ResourceHelper.cs" />
+    <Compile Include="Images\ScreenCapture.cs" />
+    <Compile Include="Images\ScreenCaptureWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Image\UnCodebase.cs" />
-    <Compile Include="Image\ValidateImgHelper.cs" />
-    <Compile Include="Image\WebPageCapture.cs" />
-    <Compile Include="Image\WebPreview.cs" />
+    <Compile Include="Images\UnCodebase.cs" />
+    <Compile Include="Images\ValidateImgHelper.cs" />
+    <Compile Include="Images\WebPageCapture.cs" />
     <Compile Include="LogHelper.cs" />
     <Compile Include="Network\ADSLDialerUtil.cs" />
     <Compile Include="Network\CookieManger.cs" />
@@ -303,15 +293,6 @@
     <Compile Include="Winform\CallCtrlWithThreadSafety.cs" />
     <Compile Include="Winform\CheckBoxListUtil.cs" />
     <Compile Include="Winform\ChildWinManagement.cs" />
-    <Compile Include="Winform\CoolPrintPreviewControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Winform\CoolPrintPreviewDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Winform\CoolPrintPreviewDialog.designer.cs">
-      <DependentUpon>CoolPrintPreviewDialog.cs</DependentUpon>
-    </Compile>
     <Compile Include="Winform\DGVPrinter.cs" />
     <Compile Include="Winform\DosHelper.cs" />
     <Compile Include="Winform\DragAndDropListView.cs">
@@ -320,35 +301,17 @@
     <Compile Include="Winform\DragDropTreeView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Winform\ExRichTextBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Winform\ExRichTextBoxPrintHelper.cs" />
     <Compile Include="Winform\FormAnimator.cs" />
     <Compile Include="Winform\FreezeWindowUtil.cs" />
     <Compile Include="Winform\FullScreenHelper.cs" />
     <Compile Include="Winform\GDI.cs" />
     <Compile Include="Winform\ImeHelper.cs" />
-    <Compile Include="Winform\MessageUtil.cs" />
     <Compile Include="Winform\MultipadPrintDocument.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Winform\NativeMethods.cs" />
     <Compile Include="Winform\NotifyIconHelper.cs" />
     <Compile Include="Winform\POSPrinter.cs" />
-    <Compile Include="Winform\PrintDGV.cs" />
-    <Compile Include="Winform\PrintOptions.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Winform\PrintOptions.designer.cs">
-      <DependentUpon>PrintOptions.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Winform\QueryInputDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Winform\QueryInputDialog.designer.cs">
-      <DependentUpon>QueryInputDialog.cs</DependentUpon>
-    </Compile>
     <Compile Include="Winform\RegisterHotKeyHelper.cs" />
     <Compile Include="Winform\RTFUtility.cs" />
     <Compile Include="Winform\SafeNativeMethods.cs" />
@@ -362,7 +325,6 @@
     <Compile Include="Winform\SortableListView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Winform\StartupHelper.cs" />
     <Compile Include="Winform\SysTray.cs" />
     <Compile Include="Winform\TreeViewDrager.cs" />
     <Compile Include="Winform\Win32Window.cs" />
@@ -389,17 +351,8 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Winform\CoolPrintPreviewDialog.resx">
-      <DependentUpon>CoolPrintPreviewDialog.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Winform\DragAndDropListView.resx">
       <DependentUpon>DragAndDropListView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Winform\PrintOptions.resx">
-      <DependentUpon>PrintOptions.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Winform\QueryInputDialog.resx">
-      <DependentUpon>QueryInputDialog.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

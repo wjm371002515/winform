@@ -7,8 +7,9 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Diagnostics;
 using Microsoft.Win32;
 using System.Collections;
+using JCodes.Framework.jCodesenum.BaseEnum;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Office
 {
     /// <summary>
     /// 压缩文本、字节或者文件的压缩辅助类
@@ -288,8 +289,9 @@ namespace JCodes.Framework.Common
                     }
                 }
             }
-            catch //(Exception ex4)
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(GZipUtil));
                 result.Errors = true;
             }
             return result;
@@ -321,8 +323,9 @@ namespace JCodes.Framework.Common
                 result.ZipFileSize = fsOut.Length;
                 result.CompressionPercent = GetCompressionPercent(result.TempFileSize, result.ZipFileSize);
             }
-            catch //(Exception ex1)
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(GZipUtil));
                 result.Errors = true;
             }
             finally
@@ -409,8 +412,9 @@ namespace JCodes.Framework.Common
                             // increment the fileIndex
                             fileIndex++;
                         }
-                        catch //(Exception ex1)
+                        catch (Exception ex)
                         {
+                            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(GZipUtil));
                             result.Errors = true;
                         }
                         finally
@@ -427,8 +431,9 @@ namespace JCodes.Framework.Common
                         }
                     }
                 }
-                catch //(Exception ex2)
+                catch (Exception ex)
                 {
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(GZipUtil));
                     result.Errors = true;
                 }
                 finally
@@ -572,8 +577,9 @@ namespace JCodes.Framework.Common
                     }
                 }
             }
-            catch //(Exception ex3)
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(GZipUtil));
                 result.Errors = true;
             }
             finally
@@ -594,8 +600,9 @@ namespace JCodes.Framework.Common
                     result.TempFileDeleted = true;
                 }
             }
-            catch //(Exception ex4)
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(GZipUtil));
                 result.Errors = true;
             }
 
@@ -674,8 +681,9 @@ namespace JCodes.Framework.Common
 
                 success = true;
             }
-            catch //(Exception ex2)
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(GZipUtil));
                 success = false;
             }
             finally
@@ -731,8 +739,9 @@ namespace JCodes.Framework.Common
                     }
                 }
             }
-            catch //(Exception ex1)
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(GZipUtil));
                 result.Errors = true;
             }
             finally
@@ -826,8 +835,9 @@ namespace JCodes.Framework.Common
                     }
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(GZipUtil));
                 success = false;
             }
             return success;

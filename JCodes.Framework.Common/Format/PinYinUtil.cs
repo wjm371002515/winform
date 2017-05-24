@@ -5,7 +5,7 @@ using System.Collections;
 using System.Threading;
 using System.Globalization;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Format
 {
     /// <summary>
     /// 中文字符串转换为拼音或者拼音首字母的辅助类，另一个辅助类可以使用Pinyin类

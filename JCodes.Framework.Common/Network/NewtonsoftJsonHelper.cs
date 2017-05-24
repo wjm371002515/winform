@@ -5,27 +5,13 @@ using System.Text;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Network
 {
     /// <summary>
     /// 基于Newtonsoft.Json.dll的Json转换辅助类
     /// </summary>
     public class NewtonsoftJsonHelper
     {
-        private void Test()
-        {
-            //List<QQunData> entities = new List<QQunData>();
-
-            //try
-            //{
-            //    entities = (List<QQunData>)JsonConvert.DeserializeObject(json, typeof(List<QQunData>));
-            //}
-            //catch (Exception ex)
-            //{
-            //    LogHelper.Error(ex);
-            //}
-        }
-
         /// <summary>
         /// 把对象为json字符串
         /// </summary>

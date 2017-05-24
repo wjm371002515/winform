@@ -4,8 +4,10 @@ using System.Text;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using System.Globalization;
+using JCodes.Framework.Common.Network;
+using JCodes.Framework.jCodesenum.BaseEnum;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Format
 {
     /// <summary>
     /// 时间相关操作辅助类库
@@ -153,7 +155,9 @@ namespace JCodes.Framework.Common
                 int sc = GetInt(regSc.Match(html).Value, false);
                 res = res.AddHours(hr).AddMinutes(mn).AddSeconds(sc);
             }
-            catch { }
+            catch (Exception ex){
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(DateTime));
+            }
             return res;
         }
 

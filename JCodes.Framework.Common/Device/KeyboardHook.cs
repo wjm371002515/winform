@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using JCodes.Framework.Common.Collections;
 using JCodes.Framework.jCodesenum.BaseEnum;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Device
 {
     /// <summary>
     ///全局键盘钩子，用来捕捉系统全局的键盘输入。
@@ -91,9 +91,10 @@ namespace JCodes.Framework.Common
                     Enabled = true;
                     return true;
                 }
-                catch
+                catch (Exception ex)
                 {
                     Enabled = false;
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(KeyboardHook));
                     return false;
                 }
             }
@@ -117,9 +118,10 @@ namespace JCodes.Framework.Common
                     Enabled = false;
                     return true;
                 }
-                catch
+                catch (Exception ex)
                 {
                     Enabled = true;
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(KeyboardHook));
                     return false;
                 }
             }

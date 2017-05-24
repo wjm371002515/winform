@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using org.in2bits.MyXls;
 using org.in2bits.MyXls.ByteUtil;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Office
 {
     /// <summary>
     /// 使用MyXls操作Excel的辅助类

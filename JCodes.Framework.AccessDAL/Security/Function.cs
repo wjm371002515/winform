@@ -7,24 +7,26 @@ using Microsoft.Practices.EnterpriseLibrary.Data;
 using JCodes.Framework.Common;
 using JCodes.Framework.Entity;
 using JCodes.Framework.IDAL;
+using JCodes.Framework.Common.Framework.BaseDAL;
+using JCodes.Framework.Common.Databases;
 
 namespace JCodes.Framework.AccessDAL
 {
     /// <summary>
     /// 系统功能定义
     /// </summary>
-    public class Function : BaseDALAccess<FunctionInfo>, IFunction
+    public class Functions : BaseDALAccess<FunctionInfo>, IFunctions
     {
         #region 对象实例及构造函数
 
-        public static Function Instance
+        public static Functions Instance
         {
             get
             {
-                return new Function();
+                return new Functions();
             }
         }
-        public Function()
+        public Functions()
             : base("T_ACL_Function", "ID")
         {
             this.sortField = "SortCode";

@@ -7,8 +7,10 @@ using Microsoft.Practices.EnterpriseLibrary.Data;
 using JCodes.Framework.Common;
 using JCodes.Framework.Entity;
 using JCodes.Framework.IDAL;
+using JCodes.Framework.Common.Framework.BaseDAL;
+using JCodes.Framework.Common.Databases;
 
-namespace WHC.Security.DALSQLite
+namespace JCodes.Framework.SQLiteDAL
 {
     /// <summary>
     /// 角色的数据权限

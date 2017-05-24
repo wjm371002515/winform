@@ -1,4 +1,5 @@
 ﻿using JCodes.Framework.Common;
+using JCodes.Framework.Common.Winform;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Configuration;
 using JCodes.Framework.jCodesenum.BaseEnum;
+using System.Text;
+using System.Data.Common;
 
 
 [assembly: log4net.Config.XmlConfigurator(Watch = true)]
@@ -82,6 +84,25 @@ namespace JCodes.Framework.Common
                 case LogLevel.LOG_LEVEL_DEBUG:
                 case LogLevel.LOG_LEVEL_SQL: log.Debug(str); break;
             }
+        }
+
+        /// <summary>
+        /// 根据 SqlParameter 得到起对应的sql
+        /// </summary>
+        /// <param name="cmdParms"></param>
+        /// <returns></returns>
+        public static string DbParameterToString(params DbParameter[] cmdParms)
+        {
+            if (cmdParms == null || cmdParms.Length == 0)
+                return string.Empty;
+            StringBuilder sb = new StringBuilder();
+            sb.Append("  Sql参数: ");
+            for (Int32 i = 0; i < cmdParms.Length; i++)
+            {
+                sb.Append(cmdParms[i] + "=" + cmdParms[i] + " ,");
+            }
+
+            return sb.ToString();
         }
     }
 }

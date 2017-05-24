@@ -92,7 +92,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.winGridView1 = new WinGridView();
+            this.winGridView1 = new JCodes.Framework.CommonControl.Pager.WinGridView();
             this.lvwDetail = new System.Windows.Forms.ListView();
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -1165,7 +1165,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
         private System.Windows.Forms.ToolStripMenuItem menu_ModifyStock;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.GroupBox groupBox3;
-        private WinGridView winGridView1;
+        private JCodes.Framework.CommonControl.Pager.WinGridView winGridView1;
         private DevExpress.XtraEditors.TextEdit txtStockQuantity2;
         private DevExpress.XtraEditors.TextEdit txtStockQuantity1;
         private DevExpress.XtraEditors.TextEdit txtPrice2;

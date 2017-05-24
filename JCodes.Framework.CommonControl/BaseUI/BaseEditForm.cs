@@ -7,8 +7,11 @@ using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using JCodes.Framework.Common;
+using JCodes.Framework.CommonControl.Other;
+using JCodes.Framework.CommonControl.Other.Images;
+using JCodes.Framework.jCodesenum.BaseEnum;
 
-namespace JCodes.Framework.CommonControl
+namespace JCodes.Framework.CommonControl.BaseUI
 {
     /// <summary>
     /// 编辑界面基类
@@ -216,6 +219,8 @@ namespace JCodes.Framework.CommonControl
                 }
                 catch (Exception ex)
                 {
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(BaseEditForm));
+                    MessageDxUtil.ShowError(ex.Message);
                     this.ProcessException(ex);
                 }
                 finally

@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using Microsoft.Win32;
 using System;
 using System.Text;
+using JCodes.Framework.jCodesenum.BaseEnum;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Device
 {
     /// <summary>
     /// 获取系统信息、电脑CPU、磁盘、网卡、内存等相关信息辅助类
@@ -168,13 +169,15 @@ namespace JCodes.Framework.Common
                     if (m_StatData == null)
                         throw new NotSupportedException();
                 }
-                catch (NotSupportedException e)
+                catch (NotSupportedException ex)
                 {
-                    throw e;
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(HardwareInfoHelper));
+                    throw ex;
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    throw new NotSupportedException("Error while querying the system information.", e);
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(HardwareInfoHelper));
+                    throw new NotSupportedException("Error while querying the system information.", ex);
                 }
             }
 
@@ -189,9 +192,10 @@ namespace JCodes.Framework.Common
                 {
                     return (int)m_StatData.GetValue(@"KERNEL\CPUUsage");
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    throw new NotSupportedException("Error while querying the system information.", e);
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(HardwareInfoHelper));
+                    throw new NotSupportedException("Error while querying the system information.", ex);
                 }
             }
 
@@ -204,7 +208,9 @@ namespace JCodes.Framework.Common
                 {
                     m_StatData.Close();
                 }
-                catch { }
+                catch (Exception ex){
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(HardwareInfoHelper));
+                }
                 // stopping the counter
                 try
                 {
@@ -212,7 +218,9 @@ namespace JCodes.Framework.Common
                     stopKey.GetValue(@"KERNEL\CPUUsage", false);
                     stopKey.Close();
                 }
-                catch { }
+                catch (Exception ex){
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(HardwareInfoHelper));
+                }
             }
 
             /// <summary>Holds the registry key that's used to read the CPU load.</summary>
@@ -338,9 +346,10 @@ namespace JCodes.Framework.Common
                     break;
                 }
             }
-            catch
+            catch (Exception ex)
             {
                 strCpuID = "078BFBFF00020FC1";//默认给出一个
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(HardwareInfoHelper));
             }
             return strCpuID;
 

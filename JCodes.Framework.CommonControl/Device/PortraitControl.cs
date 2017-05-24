@@ -9,8 +9,12 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 
 using JCodes.Framework.Common;
+using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.CommonControl.Other;
+using JCodes.Framework.CommonControl.Other.Images;
+using JCodes.Framework.CommonControl.DocViewer;
 
-namespace JCodes.Framework.CommonControl
+namespace JCodes.Framework.CommonControl.Device
 {
     /// <summary>
     /// 保存图片的处理代理定义
@@ -153,8 +157,8 @@ namespace JCodes.Framework.CommonControl
                 }
                 catch (Exception ex)
                 {
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(PortraitControl));
                     MessageDxUtil.ShowError(ex.Message);
-                    LogTextHelper.Error(ex);
                 }
             }
             return false;
@@ -221,8 +225,8 @@ namespace JCodes.Framework.CommonControl
             }
             catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(PortraitControl));
                 MessageDxUtil.ShowError(ex.Message);
-                LogTextHelper.Error(ex);
             }
         }
 

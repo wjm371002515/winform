@@ -1,10 +1,11 @@
+using JCodes.Framework.jCodesenum.BaseEnum;
 using System;
 using System.Collections.Generic;
-using System.Text; 
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Office
 {
     /// <summary>
     /// 网页内容、字符串的正则表达式操作辅助类
@@ -288,13 +289,17 @@ namespace JCodes.Framework.Common
                             listResult.Add(sLink, nodes[i].SelectSingleNode("title").InnerText);
                             lisDes.Add(sLink, nodes[i].SelectSingleNode("description").InnerText);
                         }
-                        catch { }
+                        catch (Exception ex){
+                            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(CSocket));
+                        }
                     }
                     return listResult;
                 }
                 
             }
-            catch { }
+            catch (Exception ex){
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(CSocket));
+            }
 
             //RSS1.0（RDF）
             try
@@ -313,13 +318,16 @@ namespace JCodes.Framework.Common
                             listResult.Add(sLink, nodes[i].SelectSingleNode("rss:title", nsMgr).InnerText);
                             lisDes.Add(sLink, nodes[i].SelectSingleNode("rss:description",nsMgr).InnerText);
                         }
-                        catch { }
-                        //listResult.Add("<a href=\"" + nodes[i].SelectSingleNode("rss:link",nsMgr).InnerText + "\">" + nodes[i].SelectSingleNode("rss:title",nsMgr).InnerText + "</a>");
+                        catch (Exception ex){
+                            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(CText));
+                        }
                     }
                     return listResult;
                 }
             }
-            catch{}
+            catch (Exception ex){
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(CText));
+            }
 
             //RSS ATOM
             try
@@ -337,7 +345,9 @@ namespace JCodes.Framework.Common
                             listResult.Add(sLink, nodes[i].SelectSingleNode("atom:title", nsMgr).InnerText);
                             lisDes.Add(sLink, nodes[i].SelectSingleNode("atom:content", nsMgr).InnerText);
                         }
-                        catch { }
+                        catch (Exception ex){
+                            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(CText));
+                        }
                         //listResult.Add("<a href=\"" + nodes[i].SelectSingleNode("atom:link",nsMgr).Attributes["href"].InnerText + "\">" + nodes[i].SelectSingleNode("atom:title",nsMgr).InnerText + "</a>");
                     }
                     return listResult;
@@ -364,7 +374,9 @@ namespace JCodes.Framework.Common
                 xml.LoadXml(sContent.Trim());
                 title = xml.SelectSingleNode("/rss/channel/title").InnerText;
             }
-            catch { }
+            catch (Exception ex){
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(CText));
+            }
 
             return title;
         }
@@ -471,7 +483,9 @@ namespace JCodes.Framework.Common
                 }
 
             }
-            catch { }
+            catch (Exception ex){
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(CText));
+            }
 
             //RSS1.0（RDF）
             try
@@ -490,7 +504,9 @@ namespace JCodes.Framework.Common
                     return listResult;
                 }
             }
-            catch { }
+            catch (Exception ex){
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(CText));
+            }
 
             //RSS ATOM
             try
@@ -508,7 +524,9 @@ namespace JCodes.Framework.Common
                     return listResult;
                 }
             }
-            catch { }
+            catch (Exception ex){
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(CText));
+            }
 
             return listResult;
         }
@@ -630,8 +648,9 @@ namespace JCodes.Framework.Common
 
                 return myUri.AbsoluteUri;
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(CText));
                 return sUrl;
             }
         }
@@ -667,8 +686,9 @@ namespace JCodes.Framework.Common
 
                 return baseUri.Scheme+ "://" + baseUri.Authority;
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(CText));
                 return sUrl;
             }
             
@@ -798,7 +818,9 @@ namespace JCodes.Framework.Common
 
                     dt = new DateTime(iYear, iMonth, iDay, iHour, iMinute, 0);                
                 }
-                catch { }
+                catch (Exception ex){
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(CText));
+                }
             }
             return dt;
         } 

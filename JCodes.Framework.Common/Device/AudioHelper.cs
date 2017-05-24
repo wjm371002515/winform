@@ -6,7 +6,7 @@ using System.Media;
 using System.Security;
 using System.Security.Permissions;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Device
 {
     /// <summary>
     /// WAV声音格式文件播放辅助类

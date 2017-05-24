@@ -6,22 +6,23 @@ using System.Collections.Generic;
 using JCodes.Framework.Common;
 using JCodes.Framework.Entity;
 using JCodes.Framework.IDAL;
+using JCodes.Framework.Common.Framework;
 
 namespace JCodes.Framework.BLL
 {
     /// <summary>
     /// 功能菜单
     /// </summary>
-	public class Menu : BaseBLL<MenuInfo>
+	public class Menus : BaseBLL<MenuInfo>
     {
-        private IMenu menuDal;
+        private IMenus menuDal;
 
-        public Menu() : base()
+        public Menus() : base()
         {
             base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
             baseDal.OnOperationLog += new OperationLogEventHandler(OperationLog.OnOperationLog);//如果需要记录操作日志，则实现这个事件
 
-            this.menuDal = baseDal as IMenu;
+            this.menuDal = baseDal as IMenus;
         }
                 
         /// <summary>

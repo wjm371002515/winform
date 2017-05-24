@@ -1,4 +1,5 @@
 ﻿using JCodes.Framework.CommonControl;
+using JCodes.Framework.CommonControl.BaseUI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

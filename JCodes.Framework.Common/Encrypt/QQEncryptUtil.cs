@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Encrypt
 {
     /// <summary>
     /// QQ密码加密操作辅助类

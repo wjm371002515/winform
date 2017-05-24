@@ -20,6 +20,18 @@ using JCodes.Framework.Common.Web;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.CommonControl;
 using JCodes.Framework.CommonControl.Other;
+using JCodes.Framework.Common.Winform;
+using JCodes.Framework.Common.Databases;
+using JCodes.Framework.Common.Files;
+using JCodes.Framework.CommonControl.Other.Images;
+using JCodes.Framework.Common.Encrypt;
+using JCodes.Framework.Common.Device;
+using JCodes.Framework.Common.Format;
+using JCodes.Framework.Common.Office;
+using JCodes.Framework.Common.Network;
+using JCodes.Framework.Common.Images;
+using JCodes.Framework.CommonControl.RSARegistryTool;
+using DevExpress.Utils;
 
 namespace TestCommons
 {
@@ -27,12 +39,15 @@ namespace TestCommons
     {
         private RegisterHotKeyHelper hotKey1 = new RegisterHotKeyHelper();
         private RegisterHotKeyHelper hotKey2 = new RegisterHotKeyHelper();
+        private WaitDialogForm _WaitBeforeLogin = null;
 
-        public Form1()
+        public Form1(WaitDialogForm WaitBeforeLogin)
         {
             InitializeComponent();
 
             SetHotKey();
+
+            _WaitBeforeLogin = WaitBeforeLogin;
         }
 
         private void SetHotKey()
@@ -54,7 +69,7 @@ namespace TestCommons
 
         void hotKey2_HotKey()
         {
-            MessageUtil.ShowTips("测试热键");
+            MessageDxUtil.ShowTips("测试热键");
         }
 
         void hotKey1_HotKey()
@@ -64,17 +79,17 @@ namespace TestCommons
 
         private void btnMessageBox_Click(object sender, EventArgs e)
         {
-            MessageUtil.ShowTips("提示信息对话框");
-            MessageUtil.ShowWarning("警告消息提示框");
-            MessageUtil.ShowError("错误消息提示框");
+            MessageDxUtil.ShowTips("提示信息对话框");
+            MessageDxUtil.ShowWarning("警告消息提示框");
+            MessageDxUtil.ShowError("错误消息提示框");
 
-            MessageUtil.ShowYesNoAndTips("提示对话框，有Yes/No按钮");
-            MessageUtil.ShowYesNoAndWarning("警告对话框，有Yes/No按钮");
-            MessageUtil.ShowYesNoAndError("错误对话框，有Yes/No按钮");
-            MessageUtil.ShowYesNoCancelAndTips("提示对话框，有Yes/No/Cancel按钮");
+            MessageDxUtil.ShowYesNoAndTips("提示对话框，有Yes/No按钮");
+            MessageDxUtil.ShowYesNoAndWarning("警告对话框，有Yes/No按钮");
+            MessageDxUtil.ShowYesNoAndError("错误对话框，有Yes/No按钮");
+            MessageDxUtil.ShowYesNoCancelAndTips("提示对话框，有Yes/No/Cancel按钮");
 
-            MessageUtil.ConfirmYesNo("确认对话框，有Yes/No对话框");
-            MessageUtil.ConfirmYesNoCancel("确认对话框，有Yes/No/Cancel对话框");
+            MessageDxUtil.ConfirmYesNo("确认对话框，有Yes/No对话框");
+            MessageDxUtil.ConfirmYesNoCancel("确认对话框，有Yes/No/Cancel对话框");
 
         }
 
@@ -107,7 +122,7 @@ namespace TestCommons
             }
             if (!string.IsNullOrEmpty(strNameList))
             {
-                MessageUtil.ShowTips(strNameList);
+                MessageDxUtil.ShowTips(strNameList);
             }
 
             //Process.Start(Path.GetTempPath());
@@ -125,7 +140,7 @@ namespace TestCommons
                 DataSet ds = helper.ExecuteDataSet(sql);
                 if (ds.Tables[0].Rows.Count > 0)
                 {
-                    MessageUtil.ShowTips(string.Format("tableName:{0} RowCount:{1}", tableName, ds.Tables[0].Rows.Count));
+                    MessageDxUtil.ShowTips(string.Format("tableName:{0} RowCount:{1}", tableName, ds.Tables[0].Rows.Count));
                 }
             }
 
@@ -253,7 +268,8 @@ namespace TestCommons
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message);
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(Form1));
+                MessageDxUtil.ShowError(ex.Message); 
             }
             finally
             {
@@ -321,16 +337,16 @@ namespace TestCommons
             string originalString2 = RSASecurityHelper.RSADecrypt(privateKey, encryptedString); 
             if (originalString == originalString2)
             {
-                MessageUtil.ShowTips("解密完全正确");
+                MessageDxUtil.ShowTips("解密完全正确");
             }
             else
             {
-                MessageUtil.ShowWarning("解密失败");
+                MessageDxUtil.ShowWarning("解密失败");
             }
           
             string regcode = RSASecurityHelper.RSAEncrypSignature(privateKey, originalString);
             bool validated = RSASecurityHelper.Validate(originalString, regcode, publicKey);
-            MessageUtil.ShowTips( validated ? "验证成功" : "验证失败");
+            MessageDxUtil.ShowTips(validated ? "验证成功" : "验证失败");
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -347,6 +363,9 @@ namespace TestCommons
             {
                 this.Text = this.Text + "[未注册]";
             }
+
+            //关闭登录提示画面  
+            _WaitBeforeLogin.Invoke((EventHandler)delegate { _WaitBeforeLogin.Close(); }); 
         }
 
         private void btnPlaySound_Click(object sender, EventArgs e)
@@ -359,7 +378,8 @@ namespace TestCommons
             }
             catch (Exception ex)
             {
-                LogTextHelper.Error("没找到声音文件" , ex);
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(Form1));
+                MessageDxUtil.ShowError(ex.Message); 
             }
         }
 
@@ -387,10 +407,10 @@ namespace TestCommons
             sb.AppendFormat("IP:\t {0} \r\n", ip);
             sb.AppendFormat("MacAddress:\t {0} \r\n", macAddress);
             sb.AppendFormat("TotalPhysicalMemory:\t {0} \r\n", memery);
-            MessageUtil.ShowTips(sb.ToString());
+            MessageDxUtil.ShowTips(sb.ToString());
 
             string identity = FingerprintHelper.Value();
-            MessageUtil.ShowTips(identity);
+            MessageDxUtil.ShowTips(identity);
         }
 
         private void btnKeyboadHook_Click(object sender, EventArgs e)
@@ -476,7 +496,7 @@ namespace TestCommons
         private void btnTestEnum_Click(object sender, EventArgs e)
         {
             string desc = EnumHelper.GetDescription(typeof(SqlOperator), SqlOperator.Like);
-            MessageUtil.ShowTips(string.Format("SqlOperator.Like:{0}", desc));
+            MessageDxUtil.ShowTips(string.Format("SqlOperator.Like:{0}", desc));
 
             SortedList list = EnumHelper.GetStatus(typeof(SqlOperator));
             StringBuilder sb = new StringBuilder();
@@ -484,7 +504,7 @@ namespace TestCommons
             {
                 sb.AppendFormat("key:{0} Value:{1} \r\n", key, list[key]);
             }
-            MessageUtil.ShowTips(sb.ToString());
+            MessageDxUtil.ShowTips(sb.ToString());
         }
 
         private void btnThread_Click(object sender, EventArgs e)
@@ -563,7 +583,7 @@ namespace TestCommons
             {
                 sb.AppendFormat("{0}:{1}\r\n", i, syncDict[i]);
             }
-            MessageUtil.ShowTips(sb.ToString());
+            MessageDxUtil.ShowTips(sb.ToString());
 
             //框架内置的排序字典
             SortedDictionary<string, string> sortDict = new SortedDictionary<string, string>();
@@ -576,7 +596,7 @@ namespace TestCommons
             {
                 sb.AppendFormat("{0}:{1}\r\n", key, sortDict[key]);
             }
-            MessageUtil.ShowTips(sb.ToString());
+            MessageDxUtil.ShowTips(sb.ToString());
         }
 
 
@@ -595,12 +615,12 @@ namespace TestCommons
                 //利用子目录上传，需要服务器手动创建目录
                 bool second = file.UploadFile("DB\\Test.txt", "logfiles/Test.txt");
 
-                MessageUtil.ShowTips(string.Format("第一次上传:{0} 第二次上传{1}", first, second));
+                MessageDxUtil.ShowTips(string.Format("第一次上传:{0} 第二次上传{1}", first, second));
 
                 byte[] fileBytes = file.ReadFileBytes("Test.txt");
                 if (fileBytes != null)
                 {
-                    MessageUtil.ShowTips(string.Format("File Bytes:{0}", fileBytes.Length));
+                    MessageDxUtil.ShowTips(string.Format("File Bytes:{0}", fileBytes.Length));
                 }
 
                 //删除文件
@@ -612,7 +632,8 @@ namespace TestCommons
             }
             catch (Exception ex)
             {
-                MessageUtil.ShowError(ex.Message);
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(Form1));
+                MessageDxUtil.ShowError(ex.Message); 
             }
         }
 
@@ -637,14 +658,14 @@ namespace TestCommons
             {
                 sb.AppendFormat("Key:{0}   Value:{1} \r\n", key, syncOrderDict[key]);
             }
-            MessageUtil.ShowTips(sb.ToString());
+            MessageDxUtil.ShowTips(sb.ToString());
 
             sb = new StringBuilder();
             foreach (string item in syncList)
             {
                 sb.AppendFormat("item:{0} \r\n", item);
             }
-            MessageUtil.ShowTips(sb.ToString());
+            MessageDxUtil.ShowTips(sb.ToString());
         }
 
         private void AddSyncDict()
@@ -670,7 +691,7 @@ namespace TestCommons
             {
                 sb.AppendFormat("{0},", i);
             }
-            MessageUtil.ShowTips(sb.ToString());
+            MessageDxUtil.ShowTips(sb.ToString());
 
             //插入排序法
             list = new int[10] { 0, 1, 2, 3, 4, 9, 8, 7, 6, 5 };
@@ -680,7 +701,7 @@ namespace TestCommons
             {
                 sb.AppendFormat("{0},", i);
             }
-            MessageUtil.ShowTips(sb.ToString());
+            MessageDxUtil.ShowTips(sb.ToString());
         }
                 
         private void btnTimer_Click(object sender, EventArgs e)
@@ -805,11 +826,12 @@ namespace TestCommons
             try
             {
                 bool success = email.SendEmail();
-                MessageUtil.ShowTips(success ? "发送成功" : "发送失败");
+                MessageDxUtil.ShowTips(success ? "发送成功" : "发送失败");
             }
             catch (Exception ex)
             {
-                MessageUtil.ShowError(ex.Message);
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(Form1));
+                MessageDxUtil.ShowError(ex.Message); 
             }
 
             return;
@@ -826,11 +848,12 @@ namespace TestCommons
             try
             {
                 bool success = email.SendEmail();
-                MessageUtil.ShowTips(success ? "发送成功" : "发送失败"); 
+                MessageDxUtil.ShowTips(success ? "发送成功" : "发送失败"); 
             }
             catch (Exception ex)
             {
-                MessageUtil.ShowError(ex.Message);
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(Form1));
+                MessageDxUtil.ShowError(ex.Message); 
             }
         }
 
@@ -864,7 +887,7 @@ namespace TestCommons
             //TcpListener listen = NetworkUtil.CreateTcpListener("127.0.0.1", 9900);
             //listen.Start(100);
 
-            MessageUtil.ShowTips(sb.ToString());
+            MessageDxUtil.ShowTips(sb.ToString());
         }
 
         private void btnValidateUtil_Click(object sender, EventArgs e)
@@ -873,7 +896,7 @@ namespace TestCommons
             bool isPhoneMoble = ValidateUtil.IsValidPhoneAndMobile("18620292076");
             bool isEmail = ValidateUtil.IsEmail("wuhuacong@163.com");
             bool result = isMoble && isPhoneMoble && isEmail;
-            MessageUtil.ShowTips(result.ToString());
+            MessageDxUtil.ShowTips(result.ToString());
         }
 
         private void btnPinyinUtil_Click(object sender, EventArgs e)
@@ -930,7 +953,7 @@ namespace TestCommons
             sb.AppendLine("中文拼音:" + letters);
             sb.AppendLine("首字母:" + PinYinUtil.GetFirstPY(testWord));
 
-            MessageUtil.ShowTips(sb.ToString());
+            MessageDxUtil.ShowTips(sb.ToString());
         }
 
         private void btnRMBUtil_Click(object sender, EventArgs e)
@@ -944,7 +967,7 @@ namespace TestCommons
             sb.AppendLine();
             sb.AppendLine("RMB转换1:" + result1);
             sb.AppendLine("RMB转换2:" + result2);
-            MessageUtil.ShowTips(sb.ToString());
+            MessageDxUtil.ShowTips(sb.ToString());
         }
 
         private void btnCheckCode_Click(object sender, EventArgs e)
@@ -955,11 +978,12 @@ namespace TestCommons
             try
             {
                 string result = CheckCode.Read(bitmap);
-                MessageUtil.ShowTips(result); //好像变化了，不可以了。
+                MessageDxUtil.ShowTips(result); //好像变化了，不可以了。
             }
             catch (Exception ex)
             {
-                MessageUtil.ShowError(ex.Message);
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(Form1));
+                MessageDxUtil.ShowError(ex.Message); 
             }
         }
 
@@ -991,7 +1015,7 @@ namespace TestCommons
             ArrayList list = mail.ReceiveMail("codeany@163.com", "wjm4568521");
 
             string content = mail.ReadEmail("1");
-            MessageUtil.ShowTips(content);
+            MessageDxUtil.ShowTips(content);
         }
 
         private void btnRegistryHelper_Click(object sender, EventArgs e)
@@ -1007,9 +1031,9 @@ namespace TestCommons
             }
 
             RegistryHelper.SaveValue(softwareKey, "Test", "测试内容", Microsoft.Win32.Registry.LocalMachine);
-            result += RegistryHelper.GetValue(softwareKey, "Test", Microsoft.Win32.Registry.LocalMachine); 
+            result += RegistryHelper.GetValue(softwareKey, "Test", Microsoft.Win32.Registry.LocalMachine);
 
-            MessageUtil.ShowTips(result);
+            MessageDxUtil.ShowTips(result);
         }
 
         private void btnGZipUtil_Click(object sender, EventArgs e)
@@ -1021,7 +1045,7 @@ namespace TestCommons
             GZipUtil.Compress(Application.StartupPath, Application.StartupPath, "cityroad.zip");
             GZipUtil.Decompress(Application.StartupPath, Path.Combine(Application.StartupPath, "cityroad"), "cityroad.zip");
 
-            MessageUtil.ShowTips("操作完成");
+            MessageDxUtil.ShowTips("操作完成");
         }
 
         private void btnUnicodeHelper_Click(object sender, EventArgs e)
@@ -1031,7 +1055,7 @@ namespace TestCommons
             string result = test + "\r\n";
             result += UnicodeHelper.StringToUnicode(test) + "\r\n";
 
-            MessageUtil.ShowTips(result);
+            MessageDxUtil.ShowTips(result);
         }
 
         private void btnRTFUtil_Click(object sender, EventArgs e)
@@ -1072,6 +1096,25 @@ namespace TestCommons
         {
             GenerateUpdateConfig generateUpdateConfig = new GenerateUpdateConfig();
             generateUpdateConfig.ShowDialog();
+        }
+
+        private void btnWait_Click(object sender, EventArgs e)
+        {
+            WaitDialogForm WaitBeforeLogin = null; 
+            new Thread((ThreadStart)delegate  
+            {  
+                WaitBeforeLogin = new DevExpress.Utils.WaitDialogForm("请稍候...", "正在加载应用系统");
+                Thread.Sleep(3000);
+                Console.WriteLine("1:"+DateTime.Now);
+            }).Start();
+            Console.WriteLine("2:" + DateTime.Now);
+            Console.WriteLine("3:" + DateTime.Now);
+            FrmRegeditTool frt = new FrmRegeditTool();
+            Console.WriteLine("4:" + DateTime.Now);
+            frt.ShowDialog();
+            //关闭登录提示画面  
+            WaitBeforeLogin.Invoke((EventHandler)delegate { WaitBeforeLogin.Close(); }); 
+            
         }
     }
 

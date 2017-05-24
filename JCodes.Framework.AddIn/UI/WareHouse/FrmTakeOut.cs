@@ -14,6 +14,15 @@ using JCodes.Framework.Common;
 using JCodes.Framework.BLL;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.Entity;
+using JCodes.Framework.CommonControl.BaseUI;
+using JCodes.Framework.AddIn.Other;
+using JCodes.Framework.Common.Framework;
+using JCodes.Framework.Common.Extension;
+using JCodes.Framework.Common.Databases;
+using JCodes.Framework.CommonControl.Other;
+using JCodes.Framework.Common.Files;
+using JCodes.Framework.Common.Office;
+using JCodes.Framework.CommonControl.LocalReports;
 
 namespace JCodes.Framework.AddIn.UI.WareHouse
 {
@@ -461,7 +470,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             }
             catch (Exception ex)
             {
-                LogTextHelper.Error(ex);
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmTakeOut));
                 MessageDxUtil.ShowError(ex.Message);
             }
         }
@@ -604,8 +613,8 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
                 AsposeExcelTools.DataTableToExcel2(dt, fileName, out outError);
                 if (!string.IsNullOrEmpty(outError))
                 {
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, outError, typeof(FrmTakeOut));
                     MessageDxUtil.ShowError(outError);
-                    LogTextHelper.Error(outError);
                 }
                 else
                 {
@@ -614,8 +623,8 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             }
             catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmTakeOut));
                 MessageDxUtil.ShowError(ex.Message);
-                LogTextHelper.Error(ex);
             }
         }
 
@@ -674,8 +683,8 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
                 AsposeExcelTools.DataTableToExcel2(dtDetail, fileName, out outError);
                 if (!string.IsNullOrEmpty(outError))
                 {
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, outError, typeof(FrmTakeOut));
                     MessageDxUtil.ShowError(outError);
-                    LogTextHelper.Error(outError);
                 }
                 else
                 {
@@ -684,8 +693,8 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             }
             catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmTakeOut));
                 MessageDxUtil.ShowError(ex.Message);
-                LogTextHelper.Error(ex);
             }
             #endregion
         }

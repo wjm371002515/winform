@@ -12,6 +12,10 @@ using Microsoft.Practices.EnterpriseLibrary.Data;
 using DevExpress.XtraGrid.Views.Grid;
 using JCodes.Framework.Common;
 using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.CommonControl;
+using JCodes.Framework.CommonControl.Other;
+using JCodes.Framework.Common.Databases;
+using JCodes.Framework.CommonControl.Pager;
 
 namespace WHC.OrderWater.UI
 {
@@ -35,7 +39,7 @@ namespace WHC.OrderWater.UI
                 this.winGridViewPager1.PagerInfo.PageSize = 30;//页面大小                
                 //this.winGridViewPager1.EventRowBackColor = Color.LightCyan;//间隔颜色
                 this.winGridViewPager1.ShowCheckBox = true;
-                this.winGridViewPager1.OnCheckBoxSelectionChanged += new JCodes.Framework.CommonControl.SelectionChangedEventHandler(winGridViewPager1_OnCheckBoxSelectionChanged);
+                this.winGridViewPager1.OnCheckBoxSelectionChanged += new SelectionChangedEventHandler(winGridViewPager1_OnCheckBoxSelectionChanged);
                 this.winGridViewPager1.BestFitColumnWith = false;
                 
                 this.winGridViewPager1.gridView1.DataSourceChanged += new EventHandler(gridView1_DataSourceChanged);
@@ -194,7 +198,7 @@ namespace WHC.OrderWater.UI
 
         private void winGridViewPager1_OnDeleteSelected(object sender, EventArgs e)
         {
-            if (MessageUtil.ShowYesNoAndTips("您确定删除选定的记录么？") == DialogResult.No)
+            if (MessageDxUtil.ShowYesNoAndTips("您确定删除选定的记录么？") == DialogResult.No)
             {
                 return;
             }
@@ -284,7 +288,7 @@ namespace WHC.OrderWater.UI
         /// <returns></returns>
         private DataTable FindToDataTable(string where, PagerInfo pagerInfo)
         {
-            JCodes.Framework.CommonControl.PagerHelper helper = new JCodes.Framework.CommonControl.PagerHelper("All_Customer", "*", "LastUpdated", pagerInfo.PageSize, pagerInfo.CurrenetPageIndex, true, where);
+            PagerHelper helper = new PagerHelper("All_Customer", "*", "LastUpdated", pagerInfo.PageSize, pagerInfo.CurrenetPageIndex, true, where);
             string countSql = helper.GetPagingSql(DatabaseType.Access, true);
             string dataSql = helper.GetPagingSql(DatabaseType.Access, false);
 
@@ -424,7 +428,7 @@ namespace WHC.OrderWater.UI
                     sb.Append("\r\n");
                 }
             }
-            MessageUtil.ShowTips(sb.ToString().Trim(','));
+            MessageDxUtil.ShowTips(sb.ToString().Trim(','));
         }
 
         private void btnSecondPager_Click(object sender, EventArgs e)

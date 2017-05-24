@@ -5,8 +5,11 @@ using System.Drawing;
 using System.IO;
 using System.Text;
 using System.ComponentModel;
+using System.Data;
+using System.Collections;
+using System.Collections.Generic;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Office
 {
     /// <summary>
     /// 反射操作辅助类，如获取或设置字段、属性的值等反射信息。
@@ -468,6 +471,61 @@ namespace JCodes.Framework.Common
             return CreateInstance(type.FullName);
         } 
         #endregion
+
+
+        public static DataTable CreateTable(object objSource)
+        {
+            DataTable table = null;
+            IEnumerable objList = objSource as IEnumerable;
+            if (objList == null)
+                return null;
+
+            foreach (object obj in objList)
+            {
+                if (table == null)
+                {
+                    List<string> nameList = ReflectionUtil.GetPropertyNames(obj);
+                    table = new DataTable("");
+                    DataColumn column;
+
+                    foreach (string name in nameList)
+                    {
+                        column = new DataColumn();
+                        column.DataType = System.Type.GetType("System.String");
+                        column.ColumnName = name;
+                        column.Caption = name;
+                        table.Columns.Add(column);
+                    }
+                }
+
+                DataRow row = table.NewRow();
+                PropertyInfo[] propertyInfos = obj.GetType().GetProperties(bf);
+                foreach (PropertyInfo property in propertyInfos)
+                {
+                    row[property.Name] = property.GetValue(obj, null);
+                }
+                table.Rows.Add(row);
+            }
+
+            return table;
+        }
+
+        /// <summary>
+        /// 获取对象属性信息（组装成字符串输出）
+        /// </summary>
+        public static List<string> GetPropertyNames(object obj)
+        {
+            List<string> nameList = new List<string>();
+            PropertyInfo[] propertyInfos = obj.GetType().GetProperties(bf);
+
+            foreach (PropertyInfo property in propertyInfos)
+            {
+                nameList.Add(property.Name);
+            }
+
+            return nameList;
+        }
+
 
     }
 }

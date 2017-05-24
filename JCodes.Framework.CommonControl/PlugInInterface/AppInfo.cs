@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace JCodes.Framework.CommonControl
+namespace JCodes.Framework.CommonControl.PlugInInterface
 {
     /// <summary>
     /// 应用程序信息

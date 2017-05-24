@@ -7,6 +7,8 @@ using Microsoft.Practices.EnterpriseLibrary.Data;
 using JCodes.Framework.Common;
 using JCodes.Framework.Entity;
 using JCodes.Framework.IDAL;
+using JCodes.Framework.Common.Framework.BaseDAL;
+using JCodes.Framework.Common.Databases;
 
 namespace JCodes.Framework.SQLServerDAL
 {
@@ -25,7 +27,8 @@ namespace JCodes.Framework.SQLServerDAL
                 return new OU();
             }
         }
-        public OU()  : base("T_ACL_OU", "ID")
+        public OU()
+            : base(SQLServerPortal.gc._securityTablePre + "OU", "ID")
         {
             this.sortField = "SortCode";
             this.isDescending = false;

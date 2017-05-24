@@ -1,4 +1,4 @@
-﻿namespace JCodes.Framework.CommonControl
+﻿namespace JCodes.Framework.CommonControl.BaseUI
 {
     partial class DataNavigator
     {

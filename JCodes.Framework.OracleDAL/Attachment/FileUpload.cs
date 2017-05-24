@@ -9,24 +9,27 @@ using JCodes.Framework.Common;
 using JCodes.Framework.Entity;
 using JCodes.Framework.IDAL;
 using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.Common.Framework.BaseDAL;
+using JCodes.Framework.Common.Databases;
 
 namespace JCodes.Framework.OracleDAL
 {
     /// <summary>
     /// 相关附件信息
     /// </summary>
-	public class FileUpload : BaseDALOracle<FileUploadInfo>, IFileUpload
+	public class FileUploads : BaseDALOracle<FileUploadInfo>, IFileUploads
 	{
 		#region 对象实例及构造函数
 
-		public static FileUpload Instance
+		public static FileUploads Instance
 		{
 			get
 			{
-				return new FileUpload();
+				return new FileUploads();
 			}
 		}
-		public FileUpload() : base("TB_FileUpload","ID")
+        public FileUploads()
+            : base("TB_FileUpload", "ID")
         {
             this.SeqName = "";//由于字符型组件，不需要序列
             this.sortField = "AddTime";

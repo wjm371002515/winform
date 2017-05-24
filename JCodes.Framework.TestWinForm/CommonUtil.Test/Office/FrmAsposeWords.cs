@@ -10,6 +10,11 @@ using Aspose.Words.Tables;
 using System.IO;
 using System.Diagnostics;
 using JCodes.Framework.Common;
+using JCodes.Framework.CommonControl;
+using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.Common.Office;
+using JCodes.Framework.CommonControl.Other;
+using JCodes.Framework.Common.Files;
 
 namespace TestControlUtil
 {
@@ -55,14 +60,15 @@ namespace TestControlUtil
                     #endregion
 
                     doc.Save(saveDocFile, SaveFormat.Doc);
-                    if (MessageUtil.ShowYesNoAndTips("保存成功，是否打开文件？") == System.Windows.Forms.DialogResult.Yes)
+                    if (MessageDxUtil.ShowYesNoAndTips("保存成功，是否打开文件？") == System.Windows.Forms.DialogResult.Yes)
                     {
                         System.Diagnostics.Process.Start(saveDocFile);
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageUtil.ShowError(ex.Message);
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmAsposeWords));
+                    MessageDxUtil.ShowError(ex.Message);
                     return;
                 }
             }
@@ -164,7 +170,7 @@ namespace TestControlUtil
             string savedFile = AsposeWordTools.ExportWithBookMark(templateFile, "testAdvice.doc", dictSource);
             if (!string.IsNullOrEmpty(savedFile))
             {
-                if (MessageUtil.ShowYesNoAndTips("导出成功，是否打开文件？") == System.Windows.Forms.DialogResult.Yes)
+                if (MessageDxUtil.ShowYesNoAndTips("导出成功，是否打开文件？") == System.Windows.Forms.DialogResult.Yes)
                 {
                     Process.Start(savedFile);
                 }
@@ -183,7 +189,7 @@ namespace TestControlUtil
             string savedFile = AsposeWordTools.ExportWithReplace(templateFile, "testAdvice.doc", dictSource);
             if (!string.IsNullOrEmpty(savedFile))
             {
-                if (MessageUtil.ShowYesNoAndTips("导出成功，是否打开文件？") == System.Windows.Forms.DialogResult.Yes)
+                if (MessageDxUtil.ShowYesNoAndTips("导出成功，是否打开文件？") == System.Windows.Forms.DialogResult.Yes)
                 {
                     Process.Start(savedFile);
                 }

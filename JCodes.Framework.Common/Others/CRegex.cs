@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Data;
+using JCodes.Framework.jCodesenum.BaseEnum;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Office
 {
     /// <summary>
     /// 正则表达式辅助类
@@ -512,7 +513,9 @@ namespace JCodes.Framework.Common
 
                     dt = new DateTime(iYear, iMonth, iDay, iHour, iMinute, 0);
                 }
-                catch { }
+                catch (Exception ex){
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(CRegex));
+                }
             }
             return dt;
         }

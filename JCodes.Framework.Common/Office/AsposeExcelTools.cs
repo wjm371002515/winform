@@ -9,8 +9,10 @@ using Aspose.Cells;
 using System.Diagnostics;
 using System.Web;
 using Aspose.Cells.Drawing;
+using JCodes.Framework.Common.Files;
+using JCodes.Framework.jCodesenum.BaseEnum;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Office
 {
     /// <summary>
     /// 本辅助类主要用来简化对Aspose.Cells控件的使用，实现对Excel操作的辅助类
@@ -62,12 +64,11 @@ namespace JCodes.Framework.Common
                         }
                     }
                 }
-                catch (System.Exception e)
+                catch (Exception ex)
                 {
-                    error = error + " DataTableInsertToExcel: " + e.Message;
+                    error = error + " DataTableInsertToExcel: " + ex.Message;
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(AsposeExcelTools));
                 }
-
-
             }
             //-------------保存-------------
             workbook.Save(fromfile);
@@ -119,18 +120,20 @@ namespace JCodes.Framework.Common
                             }
                         }
                     }
-                    catch (System.Exception e)
+                    catch (Exception ex)
                     {
-                        error = error + " DataTableToExcel: " + e.Message;
+                        error = error + " DataTableToExcel: " + ex.Message;
+                        LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(AsposeExcelTools));
                     }
                 }
 
                 workbook.Save(filepath);
                 return true;
             }
-            catch (System.Exception e)
+            catch (Exception ex)
             {
-                error = error + " DataTableToExcel: " + e.Message;
+                error = error + " DataTableToExcel: " + ex.Message;
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(AsposeExcelTools));
                 return false;
             }
         }
@@ -191,9 +194,10 @@ namespace JCodes.Framework.Common
                 wb.Save(filepath);
                 return true;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                error = error + " DataTableToExcel: " + e.Message;
+                error = error + " DataTableToExcel: " + ex.Message;
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(AsposeExcelTools));
                 return false;
             }
 
@@ -269,9 +273,10 @@ namespace JCodes.Framework.Common
                 }
                 return true;
             }
-            catch (System.Exception e)
+            catch (Exception ex)
             {
-                error = e.Message;
+                error = ex.Message;
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(AsposeExcelTools));
                 return false;
             }
 
@@ -335,18 +340,20 @@ namespace JCodes.Framework.Common
                             }
                         }
                     }
-                    catch (System.Exception e)
+                    catch (Exception ex)
                     {
-                        error = e.Message;
+                        error = ex.Message;
+                        LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(AsposeExcelTools));
                         continue;
                     }
                 }
 
                 return true;
             }
-            catch (System.Exception e)
+            catch (Exception ex)
             {
-                error = e.Message;
+                error = ex.Message;
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(AsposeExcelTools));
                 return false;
             }
 
@@ -382,9 +389,10 @@ namespace JCodes.Framework.Common
 
                 return true;
             }
-            catch (System.Exception e)
+            catch (Exception ex)
             {
-                error = e.Message;
+                error = ex.Message;
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(AsposeExcelTools));
                 return false;
             }
 
@@ -442,9 +450,10 @@ namespace JCodes.Framework.Common
                 }
                 return true;
             }
-            catch (System.Exception e)
+            catch (Exception ex)
             {
-                error = e.Message;
+                error = ex.Message;
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(AsposeExcelTools));
                 return false;
             }
         }
@@ -469,9 +478,10 @@ namespace JCodes.Framework.Common
                     //datatable.Columns[picture.UpperLeftColumn].DataType = image.GetType();
                     rows[picture.UpperLeftRow][picture.UpperLeftColumn] = image;
                 }
-                catch (System.Exception e)
+                catch (Exception ex)
                 {
-                    error = error + " InsertPicturesIntoDataTable: " + e.Message;
+                    error = error + " InsertPicturesIntoDataTable: " + ex.Message;
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(AsposeExcelTools));
                 }
             }
             return true;
@@ -524,9 +534,10 @@ namespace JCodes.Framework.Common
                                 lists[picture.UpperLeftRow][picture.UpperLeftColumn] = picture.Data;
                             }
                         }
-                        catch (System.Exception e)
+                        catch (Exception ex)
                         {
-                            error = error + e.Message;
+                            error = error + ex.Message;
+                            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(AsposeExcelTools));
                         }
                     }
                 }
@@ -575,9 +586,10 @@ namespace JCodes.Framework.Common
                             cells[nRow, i].PutValue(list[i]);
                         }
                     }
-                    catch (System.Exception e)
+                    catch (Exception ex)
                     {
-                        error = error + e.Message;
+                        error = error + ex.Message;
+                        LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(AsposeExcelTools));
                     }
                 }
 

@@ -43,8 +43,8 @@ namespace JCodes.Framework.WinFormUI
 
         private void sbCustomization_Click(object sender, EventArgs e)
         {
-            var frmSetting = new frmSettings();
-            frmSetting.ShowDialog();
+            var frmConnSetting = new frmConnSettings();
+            frmConnSetting.ShowDialog();
         }
     }
 }

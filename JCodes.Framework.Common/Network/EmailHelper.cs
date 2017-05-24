@@ -8,8 +8,9 @@ using System.Reflection;
 using System.Net.Mail;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using JCodes.Framework.jCodesenum.BaseEnum;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Network
 {
     /// <summary>
     /// 发送邮件的辅助类，可以发送附件、嵌入图片、HTML等内容邮件。使用底层SMTP协议指令进行发送。
@@ -419,7 +420,7 @@ namespace JCodes.Framework.Common
             catch(Exception ex)
             {
                 errmsg += "要附加的文件不存在" + enter;
-                LogTextHelper.Error(errmsg, ex);
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(EmailHelper));
 
                 return Base64Encode("要附加的文件:" + path + "不存在");
             }
@@ -729,9 +730,10 @@ namespace JCodes.Framework.Common
             {
                 ns.Write(WriteBuffer, 0, WriteBuffer.Length);
             }
-            catch
+            catch (Exception ex)
             {
                 errmsg = "网络连接错误";
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(EmailHelper));
                 return false;
             }
             return true;
@@ -750,9 +752,10 @@ namespace JCodes.Framework.Common
             {
                 StreamSize = ns.Read(ReadBuffer, 0, ReadBuffer.Length);
             }
-            catch
+            catch (Exception ex)
             {
                 errmsg = "网络连接错误";
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(EmailHelper));
                 return ReturnValue;
             }
 
@@ -924,9 +927,10 @@ namespace JCodes.Framework.Common
                 tc = new TcpClient(mailserver, mailserverport);
                 ns = tc.GetStream();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                errmsg = e.ToString();
+                errmsg = ex.ToString();
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(EmailHelper));
                 return false;
             }
 

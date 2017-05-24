@@ -42,7 +42,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             this.txtAddress = new DevExpress.XtraEditors.MemoEdit();
             this.label6 = new DevExpress.XtraEditors.LabelControl();
             this.label2 = new DevExpress.XtraEditors.LabelControl();
-            this.txtManager = new ManagerSelectControl();
+            this.txtManager = new JCodes.Framework.AddIn.UI.BizControl.ManagerSelectControl();
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNote.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhone.Properties)).BeginInit();
@@ -218,7 +218,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
         private DevExpress.XtraEditors.MemoEdit txtAddress;
         private DevExpress.XtraEditors.LabelControl label6;
         private DevExpress.XtraEditors.LabelControl label2;
-        private ManagerSelectControl txtManager;
+        private JCodes.Framework.AddIn.UI.BizControl.ManagerSelectControl txtManager;
 
     }
 }

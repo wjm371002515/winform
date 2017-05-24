@@ -2,8 +2,9 @@ using System;
 using System.Text;
 using System.IO;
 using System.Security.Cryptography;
+using JCodes.Framework.jCodesenum.BaseEnum;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Encrypt
 {
     /// <summary>
     /// DES对称加解密、AES RijndaelManaged加解密、Base64加密解密、MD5加密等操作辅助类
@@ -25,8 +26,9 @@ namespace JCodes.Framework.Common
             {
                 return DesEncrypt(strText, Const.DEFAULT_ENCRYPT_KEY);
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(EncodeHelper));
                 return "";
             }
         }
@@ -42,8 +44,9 @@ namespace JCodes.Framework.Common
             {
                 return DesDecrypt(strText, Const.DEFAULT_ENCRYPT_KEY);
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(EncodeHelper));
                 return "";
             }
         }
@@ -235,8 +238,9 @@ namespace JCodes.Framework.Common
 
                 return Encoding.UTF8.GetString(decryptedData);
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(EncodeHelper));
                 return string.Empty;
             }
         }
@@ -402,8 +406,9 @@ namespace JCodes.Framework.Common
                 fr.Close();
                 fren.Close();
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(EncodeHelper));
                 //文件异常
                 return false;
             }
@@ -439,8 +444,9 @@ namespace JCodes.Framework.Common
                 fr.Close();
                 frde.Close();
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(EncodeHelper));
                 //文件异常
                 return false;
             }
@@ -601,8 +607,9 @@ namespace JCodes.Framework.Common
                     throw new Exception("字符串无法转换成功！");
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(EncodeHelper));
                 if (throwException)
                 {
                     throw;

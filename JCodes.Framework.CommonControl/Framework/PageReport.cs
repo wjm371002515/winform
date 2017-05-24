@@ -8,6 +8,8 @@ using System.Windows.Forms;
 using JCodes.Framework.CommonControl.Settings;
 using System.Configuration;
 using JCodes.Framework.Common;
+using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.CommonControl.Other;
 
 namespace JCodes.Framework.CommonControl.Framework
 {
@@ -92,7 +94,7 @@ namespace JCodes.Framework.CommonControl.Framework
             }
             catch (Exception ex)
             {
-                LogTextHelper.Error(ex);
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(PageReport));
                 MessageDxUtil.ShowError(ex.Message);
             }
 

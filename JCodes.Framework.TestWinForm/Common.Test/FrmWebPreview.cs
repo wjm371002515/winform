@@ -1,4 +1,9 @@
 ﻿using JCodes.Framework.Common;
+using JCodes.Framework.Common.Images;
+using JCodes.Framework.CommonControl;
+using JCodes.Framework.CommonControl.Other;
+using JCodes.Framework.CommonControl.Other.Images;
+using JCodes.Framework.jCodesenum.BaseEnum;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -47,7 +52,8 @@ namespace TestCommons
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message);
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmWebPreview));
+                MessageDxUtil.ShowError(ex.Message); 
             }
             finally
             {

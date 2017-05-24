@@ -7,6 +7,8 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.Threading;
+using JCodes.Framework.Common;
+using JCodes.Framework.Common.Files;
 
 namespace JCodes.Framework.CommonControl.Framework
 {

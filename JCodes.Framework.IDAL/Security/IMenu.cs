@@ -5,13 +5,14 @@ using System.Data.Common;
 using System.Collections.Generic;
 using JCodes.Framework.Common;
 using JCodes.Framework.Entity;
+using JCodes.Framework.Common.Framework;
 
 namespace JCodes.Framework.IDAL
 {
     /// <summary>
     /// 功能菜单
     /// </summary>
-	public interface IMenu : IBaseDAL<MenuInfo>
+	public interface IMenus : IBaseDAL<MenuInfo>
     {       
         /// <summary>
         /// 获取树形结构的菜单列表

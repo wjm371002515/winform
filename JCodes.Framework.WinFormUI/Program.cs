@@ -12,6 +12,12 @@ using JCodes.Framework.Common;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.CommonControl.Framework;
 using JCodes.Framework.CommonControl;
+using JCodes.Framework.AddIn;
+using JCodes.Framework.AddIn.UI.Basic;
+using JCodes.Framework.AddIn.Other;
+using DevExpress.Utils;
+using DevExpress.XtraSplashScreen;
+using JCodes.Framework.Common.Files;
 
 namespace JCodes.Framework.WinFormUI
 {
@@ -48,8 +54,17 @@ namespace JCodes.Framework.WinFormUI
             }
             else
             {
-                LoginNormal(args);
-                //Application.Run(new frmLogin());
+                Thread app = new Thread((ThreadStart)delegate
+                {
+                    AppConfig appconfig = new AppConfig();
+                    string startAppText = appconfig.AppConfigGet("StartAppText");
+                    string startAppCaption = appconfig.AppConfigGet("StartAppCaption");
+                    Portal.gc._waitBeforeLogin = new WaitDialogForm(startAppText, startAppCaption);
+                    LoginNormal(args);
+                });
+                // 执行线程状态
+                app.ApartmentState = ApartmentState.STA;
+                app.Start();
             }
         }
 
@@ -62,6 +77,8 @@ namespace JCodes.Framework.WinFormUI
             {
                 if (dlg.bLogin)
                 {
+                    Splasher.Show(typeof(frmSplash));
+
                     MainForm MainDialog = new MainForm();
                     Portal.gc.MainDialog = MainDialog;
 

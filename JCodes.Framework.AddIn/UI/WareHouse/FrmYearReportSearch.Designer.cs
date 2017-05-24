@@ -30,7 +30,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.winGridView1 = new WinGridView();
+            this.winGridView1 = new JCodes.Framework.CommonControl.Pager.WinGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menu_InRefresh = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_Excel = new System.Windows.Forms.ToolStripMenuItem();
@@ -137,7 +137,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
 
         #endregion
 
-        private WinGridView winGridView1;
+        private JCodes.Framework.CommonControl.Pager.WinGridView winGridView1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem menu_InRefresh;
         private System.Windows.Forms.StatusStrip statusStrip1;

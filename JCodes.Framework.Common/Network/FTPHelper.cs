@@ -6,8 +6,9 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Collections;
+using JCodes.Framework.jCodesenum.BaseEnum;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Network
 {
     /// <summary>
     /// FTP²Ù×÷¸¨ÖúÀà
@@ -366,9 +367,10 @@ namespace JCodes.Framework.Common
                     i2 = responseStr.IndexOf(')') - i1;
                     pasv = responseStr.Substring(i1, i2).Split(',');
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     Disconnect();
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FTPHelper));
                     throw new Exception("Malformed PASV response: " + responseStr);
                 }
 
@@ -411,6 +413,7 @@ namespace JCodes.Framework.Common
                 }
                 catch (Exception ex)
                 {
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FTPHelper));
                     throw new Exception("Failed to connect for data transfer: " + ex.Message);
                 }
             }
@@ -469,6 +472,7 @@ namespace JCodes.Framework.Common
                 }
                 catch (Exception ex)
                 {
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FTPHelper));
                     throw new Exception("Failed to connect for data transfer: " + ex.Message);
                 }
             }
@@ -499,6 +503,7 @@ namespace JCodes.Framework.Common
             }
             catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FTPHelper));
                 throw new Exception("Failed to connect for data transfer: " + ex.Message);
             }
         }
@@ -604,6 +609,7 @@ namespace JCodes.Framework.Common
             }
             catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FTPHelper));
                 throw new Exception(ex.Message);
             }
 
@@ -819,6 +825,7 @@ namespace JCodes.Framework.Common
             }
             catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FTPHelper));
                 throw new Exception("Uhandled PWD response: " + ex.Message);
             }
 
@@ -1000,6 +1007,7 @@ namespace JCodes.Framework.Common
             catch (Exception ex)
             {
                 file = null;
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FTPHelper));
                 throw new Exception(ex.Message);
             }
 
@@ -1078,8 +1086,9 @@ namespace JCodes.Framework.Common
             {
                 file_size = GetFileSize(remote_filename);
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FTPHelper));
                 file_size = 0;
             }
 
@@ -1092,6 +1101,7 @@ namespace JCodes.Framework.Common
                 catch (Exception ex)
                 {
                     file = null;
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FTPHelper));
                     throw new Exception(ex.Message);
                 }
 
@@ -1111,6 +1121,7 @@ namespace JCodes.Framework.Common
                 catch (Exception ex)
                 {
                     file = null;
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FTPHelper));
                     throw new Exception(ex.Message);
                 }
             }
@@ -1176,6 +1187,7 @@ namespace JCodes.Framework.Common
                 CloseDataSocket();
                 ReadResponse();
                 SetBinaryMode(false);
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FTPHelper));
                 throw ex;
             }
 
@@ -1227,6 +1239,7 @@ namespace JCodes.Framework.Common
                 file = null;
                 ReadResponse();
                 SetBinaryMode(false);
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FTPHelper));
                 throw ex;
             }
 

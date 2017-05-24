@@ -1,4 +1,7 @@
 ﻿using JCodes.Framework.Common;
+using JCodes.Framework.Common.Files;
+using JCodes.Framework.CommonControl;
+using JCodes.Framework.CommonControl.Other.Images;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

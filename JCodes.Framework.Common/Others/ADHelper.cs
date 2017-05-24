@@ -1,8 +1,9 @@
-﻿using System;
+﻿using JCodes.Framework.jCodesenum.BaseEnum;
+using System;
 using System.Collections.Generic;
 using System.DirectoryServices;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Office
 {
     /// <summary>
     /// AD(Active Directory 动态目录）操作辅助类
@@ -41,7 +42,9 @@ namespace JCodes.Framework.Common
                 if (!Entry.Guid.ToString().ToLower().Trim().Equals(""))
                     return true;
             }
-            catch { }
+            catch (Exception ex){
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(ADHelper));
+            }
             return false;
         }
 
@@ -65,8 +68,9 @@ namespace JCodes.Framework.Common
                 List<Entry> Entries = this.FindGroups("cn=" + GroupName);
                 return (Entries.Count < 1) ? new List<Entry>() : this.FindActiveUsersAndGroups("memberOf=" + Entries[0].DistinguishedName);
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(ADHelper));
                 return new List<Entry>();
             }
         }

@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Collections;
+using JCodes.Framework.Common.Office;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Framework
 {
     /// <summary>
     /// 对业务类进行构造的工厂类

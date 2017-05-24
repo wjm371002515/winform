@@ -9,6 +9,11 @@ using JCodes.Framework.CommonControl;
 using JCodes.Framework.Entity;
 using JCodes.Framework.Common;
 using JCodes.Framework.BLL;
+using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.CommonControl.BaseUI;
+using JCodes.Framework.AddIn.Other;
+using JCodes.Framework.CommonControl.Other;
+using JCodes.Framework.Common.Framework;
 
 namespace JCodes.Framework.AddIn.UI.WareHouse
 {
@@ -191,7 +196,8 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
                     }
                     catch (Exception ex)
                     {
-                        MessageDxUtil.ShowTips(string.Format("初始化库存为0失败：", ex.Message));
+                        LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmEditItemDetail));
+                        MessageDxUtil.ShowError("初始化库存为0失败："+ex.Message);
                     }
 
                     return true;
@@ -202,7 +208,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             }
             catch (Exception ex)
             {
-                LogTextHelper.Error(ex);
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmEditItemDetail));
                 MessageDxUtil.ShowError(ex.Message);
             }
             return false;
@@ -258,7 +264,8 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
                         }
                         catch (Exception ex)
                         {
-                            MessageDxUtil.ShowTips(string.Format("初始化库存为0失败：", ex.Message));
+                            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmEditItemDetail));
+                            MessageDxUtil.ShowError("初始化库存为0失败："+ex.Message);
                         }
                         //MessageDxUtil.ShowTips("备件数据保存成功");
                         //this.DialogResult = DialogResult.OK;
@@ -268,7 +275,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
                 }
                 catch (Exception ex)
                 {
-                    LogTextHelper.Error(ex);
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmEditItemDetail));
                     MessageDxUtil.ShowError(ex.Message);
                 }
             }

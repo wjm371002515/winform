@@ -10,7 +10,7 @@ using System.Configuration;
 using System.ServiceModel.Configuration;
 using System.Reflection;
 
-namespace JCodes.Framework.Common.Facade
+namespace JCodes.Framework.Common.Framework.Facade
 {
     /// <summary>
     /// 自定义的客户端信道(允许从自定义的配置文件中加载)

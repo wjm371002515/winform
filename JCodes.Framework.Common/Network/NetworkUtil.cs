@@ -8,8 +8,9 @@ using System.Management;
 using System.Net.NetworkInformation;
 using Microsoft.Win32;
 using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.Common.Format;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Network
 {
     /// <summary>
     /// 网络相关操作辅助类
@@ -122,7 +123,9 @@ namespace JCodes.Framework.Common
                     }
                 }
             }
-            catch { }
+            catch (Exception ex){
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(NetworkUtil));
+            }
 
             return cardList;
         }
@@ -710,6 +713,7 @@ namespace JCodes.Framework.Common
             }
             catch (SocketException ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(NetworkUtil));
                 throw ex;
             }
             finally
@@ -848,8 +852,9 @@ namespace JCodes.Framework.Common
             {
                 return Dns.Resolve(hostIP).HostName;
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(NetworkUtil));
             }
             return null;
 
@@ -884,7 +889,9 @@ namespace JCodes.Framework.Common
         public static IPHostEntry ResolveHost(string host)
         {
             try { return Dns.Resolve(host); }
-            catch { }
+            catch (Exception ex){
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(NetworkUtil));
+            }
 
             return null;
         }

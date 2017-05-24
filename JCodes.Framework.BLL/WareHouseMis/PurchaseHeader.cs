@@ -7,6 +7,8 @@ using JCodes.Framework.Common;
 using JCodes.Framework.Entity;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.IDAL;
+using JCodes.Framework.Common.Framework;
+using JCodes.Framework.Common.Databases;
 
 namespace JCodes.Framework.BLL
 {

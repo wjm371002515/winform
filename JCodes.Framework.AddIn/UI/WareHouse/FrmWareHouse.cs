@@ -1,5 +1,10 @@
-﻿using JCodes.Framework.Common;
+﻿using JCodes.Framework.AddIn.Other;
+using JCodes.Framework.BLL;
+using JCodes.Framework.Common;
+using JCodes.Framework.Common.Framework;
 using JCodes.Framework.CommonControl;
+using JCodes.Framework.CommonControl.BaseUI;
+using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.Entity;
 using System;
 using System.Collections.Generic;
@@ -142,7 +147,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
                 foreach (int iRow in rowSelected)
                 {
                     string ID = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "ID");
-                    BLLFactory<BLL.WareHouse>.Instance.Delete(ID);
+                    BLLFactory<WareHouses>.Instance.Delete(ID);
                 }
                 BindData();
             }
@@ -182,7 +187,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             PagerInfo pagerInfo = new PagerInfo();
             pagerInfo.CurrenetPageIndex = 1;
             pagerInfo.PageSize = int.MaxValue;
-            this.winGridViewPager1.AllToExport = BLLFactory<BLL.WareHouse>.Instance.GetAllToDataTable(pagerInfo);
+            this.winGridViewPager1.AllToExport = BLLFactory<WareHouses>.Instance.GetAllToDataTable(pagerInfo);
         }
 
         private void winGridViewPager1_OnPageChanged(object sender, EventArgs e)
@@ -203,7 +208,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             this.winGridViewPager1.AddColumnAlias("Note", "备注");
             #endregion
 
-            this.winGridViewPager1.DataSource = BLLFactory<BLL.WareHouse>.Instance.GetAllToDataTable(this.winGridViewPager1.PagerInfo);
+            this.winGridViewPager1.DataSource = BLLFactory<WareHouses>.Instance.GetAllToDataTable(this.winGridViewPager1.PagerInfo);
             this.winGridViewPager1.PrintTitle = this.AppInfo.AppUnit + " -- " + "库房信息报表";
         }
 

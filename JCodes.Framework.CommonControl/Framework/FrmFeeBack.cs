@@ -1,4 +1,9 @@
 ﻿using JCodes.Framework.Common;
+using JCodes.Framework.Common.Format;
+using JCodes.Framework.Common.Network;
+using JCodes.Framework.CommonControl.BaseUI;
+using JCodes.Framework.CommonControl.Other;
+using JCodes.Framework.jCodesenum.BaseEnum;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -71,14 +76,14 @@ namespace JCodes.Framework.CommonControl.Framework
                 }
                 else if (currentTry < maxTry)
                 {
-                    LogTextHelper.Error(email.ErrorMessage);
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_ERR, email.ErrorMessage, typeof(FrmFeeBack));
                     SendEmail();
                 }
             }
             catch (Exception ex)
             {
-                LogTextHelper.Error(ex);
-
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmFeeBack));
+                MessageDxUtil.ShowError(ex.Message);
                 if (currentTry <= maxTry)
                 {
                     SendEmail();

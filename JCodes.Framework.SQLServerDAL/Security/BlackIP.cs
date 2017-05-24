@@ -7,6 +7,8 @@ using Microsoft.Practices.EnterpriseLibrary.Data;
 using JCodes.Framework.Common;
 using JCodes.Framework.Entity;
 using JCodes.Framework.IDAL;
+using JCodes.Framework.Common.Framework.BaseDAL;
+using JCodes.Framework.Common.Databases;
 
 namespace JCodes.Framework.SQLServerDAL
 {
@@ -25,7 +27,7 @@ namespace JCodes.Framework.SQLServerDAL
             }
         }
         public BlackIP()
-            : base("T_ACL_BlackIP", "ID")
+            : base(SQLServerPortal.gc._securityTablePre + "BlackIP", "ID")
         {
             this.sortField = "CreateTime";
         }

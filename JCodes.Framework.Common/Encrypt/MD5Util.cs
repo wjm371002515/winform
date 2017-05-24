@@ -2,8 +2,9 @@
 using System.IO;
 using System.Collections.Generic;
 using System.Text;
+using JCodes.Framework.jCodesenum.BaseEnum;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Encrypt
 {
     /// <summary>
     /// MD5各种长度加密字符、验证MD5等操作辅助类
@@ -126,8 +127,9 @@ namespace JCodes.Framework.Common
                     fsWrite.Close();
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(MD5Util));
                 return false;
             }
 
@@ -152,8 +154,9 @@ namespace JCodes.Framework.Common
                 string md5 = System.Text.Encoding.ASCII.GetString(md5File, md5File.Length - 32, 32);   //读取文件最后32位，其中保存的就是MD5值
                 return result == md5;
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(MD5Util));
                 return false;
             }
         }

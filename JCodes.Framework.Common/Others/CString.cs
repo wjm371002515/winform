@@ -3,7 +3,7 @@ using System.Globalization ;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Office
 {
 	/// <summary>
 	/// ×Ö·û´®²Ù×÷Àà

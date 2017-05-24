@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Security.Cryptography;
 
-namespace JCodes.Framework.CommonControl
+namespace JCodes.Framework.CommonControl.RSARegistryTool
 {
     public partial class FrmKeyPair : Form
     {

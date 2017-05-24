@@ -1,4 +1,6 @@
 ﻿using JCodes.Framework.Common;
+using JCodes.Framework.CommonControl;
+using JCodes.Framework.CommonControl.Other;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +22,7 @@ namespace TestCommons
 
         public void ShowMessage()
         {
-            MessageUtil.ShowTips("单件实例测试函数");
+            MessageDxUtil.ShowTips("单件实例测试函数");
         }
     }
 
@@ -55,7 +57,7 @@ namespace TestCommons
 
         public void ShowMessage()
         {
-            MessageUtil.ShowTips("单件实例测试函数");
+            MessageDxUtil.ShowTips("单件实例测试函数");
         }
     }
 }

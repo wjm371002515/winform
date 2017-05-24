@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Globalization;
+using JCodes.Framework.jCodesenum.BaseEnum;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Office
 {
     /// <summary>
     /// 字符串Unicode转换操作辅助类
@@ -62,7 +63,8 @@ namespace JCodes.Framework.Common
                 }
                 catch (FormatException ex)
                 {
-                    outStr += "Erorr";//ex.Message;
+                    outStr += ex.Message;
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(UnicodeHelper));
                 }
             }
             return outStr;

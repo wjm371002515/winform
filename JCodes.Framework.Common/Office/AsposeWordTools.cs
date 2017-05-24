@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Web;
+using JCodes.Framework.Common.Files;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Office
 {
     /// <summary>
     /// 本辅助类主要用来简化对Aspose.Word控件的使用，提供导出Word文档的操作

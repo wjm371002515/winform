@@ -13,7 +13,7 @@ using NPOI.POIFS;
 using NPOI.SS.UserModel;
 using NPOI.Util;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Office
 {
     /// <summary>
     /// NPOI操作Excel的工具类(也可以参考NPOIHelper）

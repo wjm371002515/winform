@@ -1,4 +1,8 @@
-﻿using JCodes.Framework.Common;
+﻿using JCodes.Framework.AddIn.Other;
+using JCodes.Framework.Common;
+using JCodes.Framework.Common.Winform;
+using JCodes.Framework.CommonControl;
+using JCodes.Framework.CommonControl.Other;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -37,7 +41,7 @@ namespace TestCommons
         private void btnConvertToHTML_Click(object sender, EventArgs e)
         {
             string content = RTFUtility.RtfToHtml(this.richTextBox1);
-            MessageUtil.ShowTips(content);
+            MessageDxUtil.ShowTips(content);
         }
 
         private void btnPrint_Click(object sender, EventArgs e)

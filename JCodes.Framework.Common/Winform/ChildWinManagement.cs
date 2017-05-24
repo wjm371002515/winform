@@ -1,7 +1,8 @@
+using JCodes.Framework.Common.Office;
 using System;
 using System.Windows.Forms;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Winform
 {
 	/// <summary>
 	/// 窗口管理辅助类

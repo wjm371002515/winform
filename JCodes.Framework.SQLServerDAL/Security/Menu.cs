@@ -7,25 +7,27 @@ using Microsoft.Practices.EnterpriseLibrary.Data;
 using JCodes.Framework.Common;
 using JCodes.Framework.Entity;
 using JCodes.Framework.IDAL;
+using JCodes.Framework.Common.Framework.BaseDAL;
+using JCodes.Framework.Common.Databases;
 
 namespace JCodes.Framework.SQLServerDAL
 {
     /// <summary>
     /// 功能菜单
     /// </summary>
-    public class Menu : BaseDALSQLServer<MenuInfo>, IMenu
+    public class Menus : BaseDALSQLServer<MenuInfo>, IMenus
     {
         #region 对象实例及构造函数
 
-        public static Menu Instance
+        public static Menus Instance
         {
             get
             {
-                return new Menu();
+                return new Menus();
             }
         }
-        public Menu()
-            : base("T_ACL_Menu", "ID")
+        public Menus()
+            : base(SQLServerPortal.gc._securityTablePre + "Menu", "ID")
         {
             this.sortField = "Seq";
             this.isDescending = false;

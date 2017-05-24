@@ -1,9 +1,10 @@
+using JCodes.Framework.jCodesenum.BaseEnum;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Winform
 {
     /// <summary>
     /// 线程安全状态条包装类
@@ -36,8 +37,9 @@ namespace JCodes.Framework.Common
                 {
                     Invoke(setTextDel, new object[] { toolStripLabel, text });
                 }
-                catch
+                catch (Exception ex)
                 {
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(SafeStatusStrip));
                 }
             }
             else

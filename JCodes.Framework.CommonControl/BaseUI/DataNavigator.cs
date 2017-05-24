@@ -6,7 +6,7 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 
-namespace JCodes.Framework.CommonControl
+namespace JCodes.Framework.CommonControl.BaseUI
 {
     public delegate void PostionChangedEventHandler(object sender, EventArgs e);
 

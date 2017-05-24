@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using JCodes.Framework.jCodesenum.BaseEnum;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Winform
 {
     /// <summary>
     /// 托盘图标辅助类

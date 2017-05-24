@@ -8,8 +8,9 @@ using System.Text.RegularExpressions;
 using System.IO.Compression;
 using System.Web;
 using System.Collections.Specialized;
+using JCodes.Framework.jCodesenum.BaseEnum;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Network
 {
     /// <summary>
     /// 获取网页数据辅助类库。
@@ -228,6 +229,7 @@ namespace JCodes.Framework.Common
                 catch (WebException ex)
                 {
                     httpWebResponse = (HttpWebResponse)ex.Response;
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(HttpHelper));
                 }
                 Stream responseStream = httpWebResponse.GetResponseStream();
                 StreamReader streamReader = new StreamReader(responseStream, encoding);
@@ -238,8 +240,9 @@ namespace JCodes.Framework.Common
                 currentTry = 0;
                 return html;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(HttpHelper));
                 if (currentTry <= maxTry)
                 {
                     GetHtml(url, cookieContainer, postData, isPost);
@@ -285,8 +288,9 @@ namespace JCodes.Framework.Common
                 currentTry = 0;
                 return html;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(HttpHelper));
                 if (currentTry <= maxTry)
                 {
                     GetHtml(url, cookieContainer, reference);
@@ -386,8 +390,9 @@ namespace JCodes.Framework.Common
                 currentTry = 0;
                 return responseStream;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(HttpHelper));
                 if (currentTry <= maxTry)
                 {
                     CookieCollection cookie = new CookieCollection();
@@ -567,8 +572,9 @@ namespace JCodes.Framework.Common
                     }
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(HttpHelper));
             }
             finally
             {
@@ -599,27 +605,29 @@ namespace JCodes.Framework.Common
                 ServicePointManager.Expect100Continue = false;
                 ((HttpWebResponse)request.GetResponse()).Close();
             }
-            catch (WebException exception)
+            catch (WebException ex)
             {
-                if (exception.Status != WebExceptionStatus.ProtocolError)
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(HttpHelper));
+                if (ex.Status != WebExceptionStatus.ProtocolError)
                 {
                     return num;
                 }
-                if (exception.Message.IndexOf("500 ") > 0)
+                if (ex.Message.IndexOf("500 ") > 0)
                 {
                     return 500;
                 }
-                if (exception.Message.IndexOf("401 ") > 0)
+                if (ex.Message.IndexOf("401 ") > 0)
                 {
                     return 401;
                 }
-                if (exception.Message.IndexOf("404") > 0)
+                if (ex.Message.IndexOf("404") > 0)
                 {
                     num = 404;
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(HttpHelper));
                 num = 401;
             }
             return num;

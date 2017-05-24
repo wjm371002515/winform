@@ -3,7 +3,7 @@ using System.IO;
 using System.Text;
 using System.Runtime.InteropServices;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Device
 {
     /// <summary>
     ///声音文件播放操作辅助类。除了MP3声音文件外，还可以播放WAV格式、midi格式声音文件。

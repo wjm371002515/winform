@@ -1,4 +1,6 @@
 ﻿using JCodes.Framework.Common;
+using JCodes.Framework.CommonControl;
+using JCodes.Framework.CommonControl.Other;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -42,13 +44,13 @@ namespace WHC.OrderWater.UI
             #region 输入验证
             if (this.txtNumber.Text.Length == 0 && !string.IsNullOrEmpty(ID))
             {
-                MessageUtil.ShowTips("客户编号不能为空");
+                MessageDxUtil.ShowTips("客户编号不能为空");
                 this.txtNumber.Focus();
                 return;
             }
             else if (this.txtName.Text.Length == 0)
             {
-                MessageUtil.ShowTips("客户名称不能为空");
+                MessageDxUtil.ShowTips("客户名称不能为空");
                 this.txtName.Focus();
                 return;
             } 
@@ -56,42 +58,11 @@ namespace WHC.OrderWater.UI
 
             if (!string.IsNullOrEmpty(ID))
             {
-                //CustomerInfo info = BLLFactory<Customer>.Instance.FindByID(ID);
-                //if (info != null)
-                //{
-                //    SetInfo(info);
-
-                //    try
-                //    {
-                //        bool succeed = BLLFactory<Customer>.Instance.Update(info, info.ID);
-                //        MessageUtil.ShowTips("保存成功");
-                //        this.DialogResult = DialogResult.OK;
-                //    }
-                //    catch (Exception ex)
-                //    {
-                //        LogHelper.Error(ex);
-                //        MessageUtil.ShowError(ex.Message);
-                //    }
-                //}
+                
             }
             else
             {
-                //CustomerInfo info = new CustomerInfo();
-                //SetInfo(info);
-                //info.ID = Guid.NewGuid().ToString();
-
-                //try
-                //{
-                //    bool succeed = BLLFactory<Customer>.Instance.Insert(info);
-                //    MessageUtil.ShowTips("保存成功");
-                //    this.DialogResult = DialogResult.OK;
-
-                //}
-                //catch (Exception ex)
-                //{
-                //    LogHelper.Error(ex);
-                //    MessageUtil.ShowError(ex.Message);
-                //}
+                
             }
         }
 

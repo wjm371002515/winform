@@ -1,6 +1,9 @@
 using System;
 using System.Runtime.InteropServices;  
 using System.Drawing;
+using JCodes.Framework.Common;
+using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.CommonControl.Other;
 
 namespace JCodes.Framework.CommonControl.Settings
 {	
@@ -63,8 +66,10 @@ namespace JCodes.Framework.CommonControl.Settings
 				else
 					return false;
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(ThemeManager));
+                MessageDxUtil.ShowError(ex.Message); 
 				return false;
 			}
 		}
@@ -75,9 +80,10 @@ namespace JCodes.Framework.CommonControl.Settings
 			{
 				CloseThemeData(hwnd);
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
-				
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(ThemeManager));
+                MessageDxUtil.ShowError(ex.Message); 
 			}
 		}
 		
@@ -87,8 +93,10 @@ namespace JCodes.Framework.CommonControl.Settings
 			{
 				return OpenThemeData(hwnd, classes );
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(ThemeManager));
+                MessageDxUtil.ShowError(ex.Message); 
 				return System.IntPtr.Zero;
 			}
 		}
@@ -99,8 +107,10 @@ namespace JCodes.Framework.CommonControl.Settings
 			{
 				return GetWindowTheme(hwnd);
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(ThemeManager));
+                MessageDxUtil.ShowError(ex.Message); 
 				return -1;
 			}
 
@@ -112,8 +122,10 @@ namespace JCodes.Framework.CommonControl.Settings
 			{
 				return IsThemeActive();
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(ThemeManager));
+                MessageDxUtil.ShowError(ex.Message); 
 				return false;
 			}
 		}
@@ -127,8 +139,10 @@ namespace JCodes.Framework.CommonControl.Settings
 				GetThemeColor ( hTheme, partID, stateID, propID, out color );
 				return ColorTranslator.FromWin32 ( color );
 			}
-			catch (Exception) 
+			catch (Exception ex) 
 			{
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(ThemeManager));
+                MessageDxUtil.ShowError(ex.Message); 
 				return Color.Empty;
 			}
 		}

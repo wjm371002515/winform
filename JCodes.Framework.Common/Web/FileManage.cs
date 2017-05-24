@@ -7,6 +7,7 @@ using System.Threading;
 using System.Web.UI.WebControls;
 using System.Text.RegularExpressions;
 using System.Net;
+using JCodes.Framework.jCodesenum.BaseEnum;
 
 namespace JCodes.Framework.Common.Web
 {
@@ -63,7 +64,7 @@ namespace JCodes.Framework.Common.Web
             }
             catch (Exception ex)
             {
-                HttpContext.Current.Response.Write("Error:" + ex.Message);
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FileManage));
             }
             finally
             {
@@ -133,8 +134,9 @@ namespace JCodes.Framework.Common.Web
                         }
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FileManage));
                     return false;
                 }
                 finally
@@ -143,8 +145,9 @@ namespace JCodes.Framework.Common.Web
                     myFile.Close();
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FileManage));
                 return false;
             }
             return true;
@@ -213,6 +216,7 @@ namespace JCodes.Framework.Common.Web
             }
             catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FileManage));
                 return ex.Message;
             }
             return strHTML;

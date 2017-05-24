@@ -10,7 +10,7 @@ using System.Reflection;
 using System.Data.Common;
 using JCodes.Framework.Entity;
 
-namespace JCodes.Framework.Common.Facade
+namespace JCodes.Framework.Common.Framework.Facade
 {
     /// <summary>
     /// 基于Winform的基础API包装类

@@ -8,7 +8,7 @@ using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 
-namespace JCodes.Framework.AddIn
+namespace JCodes.Framework.AddIn.Test
 {
     public partial class Test : DevExpress.XtraEditors.XtraForm
     {

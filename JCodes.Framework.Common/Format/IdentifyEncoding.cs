@@ -1,9 +1,10 @@
 ﻿
+using JCodes.Framework.jCodesenum.BaseEnum;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Format
 {
     #region Class IdentifyEncoding.....
 
@@ -76,8 +77,9 @@ namespace JCodes.Framework.Common
                 }
                 chinesestream.Close();
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(IdentifyEncoding));
                 throw;
             }
 
@@ -106,8 +108,9 @@ namespace JCodes.Framework.Common
                 chinesefile = new System.IO.FileStream(testfile.FullName, System.IO.FileMode.Open, System.IO.FileAccess.Read);
                 ReadInput(chinesefile, ref rawtext, 0, rawtext.Length);
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(IDCardHelper));
                 throw;
             }
             finally

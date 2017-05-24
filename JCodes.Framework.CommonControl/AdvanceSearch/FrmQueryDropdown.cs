@@ -8,8 +8,9 @@ using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using JCodes.Framework.Common;
+using JCodes.Framework.Entity;
 
-namespace JCodes.Framework.CommonControl
+namespace JCodes.Framework.CommonControl.AdvanceSearch
 {
     internal partial class FrmQueryDropdown : FrmQueryBase
     {

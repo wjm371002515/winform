@@ -1,4 +1,4 @@
-﻿namespace JCodes.Framework.CommonControl
+﻿namespace JCodes.Framework.CommonControl.AdvanceSearch
 {
     partial class FrmQueryDropdown
     {

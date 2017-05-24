@@ -13,6 +13,9 @@ using System.Drawing.Drawing2D;
 using System.Reflection;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using JCodes.Framework.Common;
+using JCodes.Framework.CommonControl.Other;
+using JCodes.Framework.jCodesenum.BaseEnum;
 
 namespace JCodes.Framework.AddIn.UI.WareHouse
 {
@@ -381,8 +384,10 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
 				else
 					return false;
 			}
-			catch (System.DllNotFoundException)  // pre-XP systems which don't have UxTheme.dll
+			catch (System.DllNotFoundException ex)  // pre-XP systems which don't have UxTheme.dll
 			{
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(NotifyWindow));
+                MessageDxUtil.ShowError(ex.Message);
 				return false;
 			}
 		}

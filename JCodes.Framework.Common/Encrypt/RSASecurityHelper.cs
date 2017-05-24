@@ -3,8 +3,10 @@ using System.Security.Cryptography;
 using System.Text;
 using System.IO;
 using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.Common.Device;
+using JCodes.Framework.Common.Office;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Encrypt
 {
     /// <summary>
     /// 非对称加密、解密、验证辅助类
@@ -165,8 +167,9 @@ namespace JCodes.Framework.Common
                         bPassed = true;
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(RSASecurityHelper));
                 }
             }
             return bPassed;
@@ -262,6 +265,7 @@ namespace JCodes.Framework.Common
             }
             catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(RSASecurityHelper));
                 return -1;
             }
 

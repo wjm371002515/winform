@@ -5,6 +5,7 @@ using System.Web.UI;
 using System.Web;
 using System.Web.UI.WebControls;
 using System.Text.RegularExpressions;
+using JCodes.Framework.jCodesenum.BaseEnum;
 
 namespace JCodes.Framework.Common.Web
 {
@@ -293,8 +294,9 @@ namespace JCodes.Framework.Common.Web
             {
                 return DateTime.Parse(str).ToString("yyyy-MM-dd");
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(JavascriptHelper));
                 return DateTime.Now.ToString("yyyy-MM-dd");
             }
         }
@@ -327,8 +329,9 @@ namespace JCodes.Framework.Common.Web
                 {
                     return Convert.ToDateTime(value);
                 }
-                catch
+                catch (Exception ex)
                 {
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(JavascriptHelper));
                     return Convert.ToDateTime("1970-1-1");
                 }
             }
@@ -351,8 +354,9 @@ namespace JCodes.Framework.Common.Web
                 {
                     return Convert.ToDateTime(value);
                 }
-                catch
+                catch (Exception ex)
                 {
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(JavascriptHelper));
                     return null;
                 }
             }
@@ -375,8 +379,9 @@ namespace JCodes.Framework.Common.Web
                 {
                     return Convert.ToDecimal(value);
                 }
-                catch
+                catch (Exception ex)
                 {
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(JavascriptHelper));
                     return 0M;
                 }
             }
@@ -399,8 +404,9 @@ namespace JCodes.Framework.Common.Web
                 {
                     return Convert.ToInt32(value);
                 }
-                catch
+                catch (Exception ex)
                 {
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(JavascriptHelper));
                     return 0;
                 }
             }

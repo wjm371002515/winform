@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Text;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Format
 {
     /// <summary>
     /// CRC循环冗余校验码校验辅助类

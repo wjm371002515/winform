@@ -1,13 +1,14 @@
 ﻿using JCodes.Framework.AddIn.UI.WareHouse;
 using JCodes.Framework.BLL;
 using JCodes.Framework.Common;
+using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace JCodes.Framework.AddIn
+namespace JCodes.Framework.AddIn.Other
 {
     public class WareHouseHelper
     {
@@ -29,7 +30,7 @@ namespace JCodes.Framework.AddIn
             if (found)
             {
                 //如果是组长，获取所有可以管理的库房
-                wareList = BLLFactory<WareHouse>.Instance.GetAll();
+                wareList = BLLFactory<WareHouses>.Instance.GetAll();
                 foreach (WareHouseInfo wareInfo in wareList)
                 {
                     itemList.Add(new CListItem(wareInfo.Name, wareInfo.Name));
@@ -38,7 +39,7 @@ namespace JCodes.Framework.AddIn
             else
             {
                 //非组长只能管理负责的
-                wareList = BLLFactory<WareHouse>.Instance.GetMangedList(userName);
+                wareList = BLLFactory<WareHouses>.Instance.GetMangedList(userName);
                 foreach (WareHouseInfo wareInfo in wareList)
                 {
                     itemList.Add(new CListItem(wareInfo.Name, wareInfo.Name));
@@ -100,7 +101,7 @@ namespace JCodes.Framework.AddIn
             //}
             //catch (Exception ex)
             //{
-            //    LogTextHelper.Error(ex);
+            //    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(WareHouseHelper));
             //    MessageDxUtil.ShowError(ex.Message);
             //}
         }

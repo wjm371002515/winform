@@ -6,11 +6,13 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
-
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using JCodes.Framework.Entity;
+using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.Common.Format;
+using JCodes.Framework.Common.Databases;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Framework
 {
     /// <summary>
     /// 定义一个记录操作日志的事件处理
@@ -239,6 +241,9 @@ namespace JCodes.Framework.Common
             string sql = string.Format("INSERT INTO {0} ({1}) VALUES ({2})", targetTable, fields, vals);
 
             Database db = CreateDatabase();
+
+            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "Insert:" + sql, typeof(AbstractBaseDAL<T>));
+
             DbCommand command = db.GetSqlStringCommand(sql);
             foreach (string field in recordField.Keys)
             {
@@ -335,6 +340,9 @@ namespace JCodes.Framework.Common
                 string sql = string.Format("UPDATE {0} SET {1} WHERE {2} = {3}{2} ",
                     targetTable, setValue.Substring(0, setValue.Length - 1), primaryKey, parameterPrefix);
                 Database db = CreateDatabase();
+
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "PrivateUpdate:" + sql, typeof(AbstractBaseDAL<T>));
+
                 DbCommand command = db.GetSqlStringCommand(sql);
 
                 bool foundID = false;
@@ -380,7 +388,7 @@ namespace JCodes.Framework.Common
             }
             catch (Exception ex)
             {
-                LogTextHelper.WriteLine(ex.ToString());
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(AbstractBaseDAL<T>));
                 throw;
             }
         }
@@ -397,6 +405,9 @@ namespace JCodes.Framework.Common
         {
             StringBuilder result = new StringBuilder();
             Database db = CreateDatabase();
+
+            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "SqlValueList:" + sql, typeof(AbstractBaseDAL<T>));
+
             DbCommand command = db.GetSqlStringCommand(sql);
 
             if (trans != null)
@@ -431,6 +442,9 @@ namespace JCodes.Framework.Common
         public virtual int SqlExecute(string sql, DbTransaction trans = null)
         {
             Database db = CreateDatabase();
+
+            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "SqlExecute:" + sql, typeof(AbstractBaseDAL<T>));
+
             DbCommand command = db.GetSqlStringCommand(sql);
             if (trans != null)
             {
@@ -452,6 +466,9 @@ namespace JCodes.Framework.Common
         public virtual int StoreProcExecute(string storeProcName, DbParameter[] parameters, DbTransaction trans = null)
         {
             Database db = CreateDatabase();
+
+            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "StoreProcExecute:" + storeProcName + ", parameters:" + LogHelper.DbParameterToString(parameters), typeof(AbstractBaseDAL<T>));
+
             DbCommand command = db.GetStoredProcCommand(storeProcName);
             foreach (DbParameter param in parameters)
             {
@@ -491,6 +508,9 @@ namespace JCodes.Framework.Common
         public virtual DataTable SqlTable(string sql, DbParameter[] parameters, DbTransaction trans = null)
         {
             Database db = CreateDatabase();
+
+            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "SqlTable:" + sql + ", parameters: " + LogHelper.DbParameterToString(parameters), typeof(AbstractBaseDAL<T>));
+
             DbCommand command = db.GetSqlStringCommand(sql);
             if (parameters != null)
             {
@@ -621,10 +641,14 @@ namespace JCodes.Framework.Common
             Database db = CreateDatabase();
             if (trans != null)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "Update:" + sql, typeof(AbstractBaseDAL<T>));
+
                 return db.ExecuteNonQuery(trans, CommandType.Text, sql) > 0;
             }
             else
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "Update:" + sql, typeof(AbstractBaseDAL<T>));
+
                 return db.ExecuteNonQuery(CommandType.Text, sql) > 0;
             }
         }
@@ -659,6 +683,9 @@ namespace JCodes.Framework.Common
             bool result = false;
             string sql = string.Format("Update {0} set {1}={2}ID  Where {1} = {2}ID", tableName, primaryKey, parameterPrefix);
             Database db = CreateDatabase();
+
+            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "InsertIfNew:" + sql, typeof(AbstractBaseDAL<T>));
+
             DbCommand command = db.GetSqlStringCommand(sql);
             db.AddInParameter(command, "ID", TypeToDbType(primaryKeyValue.GetType()), primaryKeyValue);
 
@@ -696,6 +723,9 @@ namespace JCodes.Framework.Common
             string sql = string.Format("Select {0} From {1} Where ({2} = {3}ID)", selectedFields, tableName, primaryKey, parameterPrefix);
 
             Database db = CreateDatabase();
+
+            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "PrivateFindByID:" + sql, typeof(AbstractBaseDAL<T>));
+
             DbCommand command = db.GetSqlStringCommand(sql);
             db.AddInParameter(command, "ID", TypeToDbType(key.GetType()), key);
 
@@ -771,12 +801,12 @@ namespace JCodes.Framework.Common
         {
             if (HasInjectionData(condition))
             {
-                LogTextHelper.Error(string.Format("检测出SQL注入的恶意数据, {0}", condition));
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_ERR, string.Format("检测出SQL注入的恶意数据, {0}", condition), typeof(AbstractBaseDAL<T>));
                 throw new Exception("检测出SQL注入的恶意数据");
             }
             if (HasInjectionData(orderBy))
             {
-                LogTextHelper.Error(string.Format("检测出SQL注入的恶意数据, {0}", orderBy));
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_ERR, string.Format("检测出SQL注入的恶意数据, {0}", orderBy), typeof(AbstractBaseDAL<T>));
                 throw new Exception("检测出SQL注入的恶意数据");
             }
 
@@ -796,6 +826,9 @@ namespace JCodes.Framework.Common
 
             #region 获取单条记录
             Database db = CreateDatabase();
+
+            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "FindSingle:"+sql, typeof(AbstractBaseDAL<T>));
+
             DbCommand command = db.GetSqlStringCommand(sql);
             if (paramList != null)
             {
@@ -879,7 +912,7 @@ namespace JCodes.Framework.Common
         {
             if (HasInjectionData(condition))
             {
-                LogTextHelper.Error(string.Format("检测出SQL注入的恶意数据, {0}", condition));
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_ERR, string.Format("检测出SQL注入的恶意数据, {0}", condition), typeof(AbstractBaseDAL<T>));
                 throw new Exception("检测出SQL注入的恶意数据");
             }
 
@@ -915,6 +948,9 @@ namespace JCodes.Framework.Common
             List<T> list = new List<T>();
 
             Database db = CreateDatabase();
+
+            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "GetList:"+sql, typeof(AbstractBaseDAL<T>));
+
             DbCommand command = db.GetSqlStringCommand(sql);
             if (paramList != null)
             {
@@ -1008,7 +1044,7 @@ namespace JCodes.Framework.Common
         {
             if (HasInjectionData(condition))
             {
-                LogTextHelper.Error(string.Format("检测出SQL注入的恶意数据, {0}", condition));
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_ERR, string.Format("检测出SQL注入的恶意数据, {0}", condition), typeof(AbstractBaseDAL<T>));
                 throw new Exception("检测出SQL注入的恶意数据");
             }
 
@@ -1046,7 +1082,7 @@ namespace JCodes.Framework.Common
         {
             if (HasInjectionData(orderBy))
             {
-                LogTextHelper.Error(string.Format("检测出SQL注入的恶意数据, {0}", orderBy));
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_ERR, string.Format("检测出SQL注入的恶意数据, {0}", orderBy), typeof(AbstractBaseDAL<T>));
                 throw new Exception("检测出SQL注入的恶意数据");
             }
 
@@ -1109,7 +1145,7 @@ namespace JCodes.Framework.Common
         {
             if (HasInjectionData(orderBy))
             {
-                LogTextHelper.Error(string.Format("检测出SQL注入的恶意数据, {0}", orderBy));
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_ERR, string.Format("检测出SQL注入的恶意数据, {0}", orderBy), typeof(AbstractBaseDAL<T>));
                 throw new Exception("检测出SQL注入的恶意数据");
             }
 
@@ -1161,7 +1197,7 @@ namespace JCodes.Framework.Common
         {
             if (HasInjectionData(condition))
             {
-                LogTextHelper.Error(string.Format("检测出SQL注入的恶意数据, {0}", condition));
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_ERR, string.Format("检测出SQL注入的恶意数据, {0}", condition), typeof(AbstractBaseDAL<T>));
                 throw new Exception("检测出SQL注入的恶意数据");
             }
 
@@ -1201,7 +1237,7 @@ namespace JCodes.Framework.Common
         {
             if (HasInjectionData(condition))
             {
-                LogTextHelper.Error(string.Format("检测出SQL注入的恶意数据, {0}", condition));
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_ERR, string.Format("检测出SQL注入的恶意数据, {0}", condition), typeof(AbstractBaseDAL<T>));
                 throw new Exception("检测出SQL注入的恶意数据");
             }
 
@@ -1225,6 +1261,9 @@ namespace JCodes.Framework.Common
         protected DataTable GetDataTableBySql(string sql, DbTransaction trans = null)
         {
             Database db = CreateDatabase();
+
+            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "GetDataTableBySql:" + sql, typeof(AbstractBaseDAL<T>));
+
             DbCommand command = db.GetSqlStringCommand(sql);
 
             DataTable dt = null;
@@ -1273,6 +1312,9 @@ namespace JCodes.Framework.Common
 
             List<string> list = new List<string>();
             Database db = CreateDatabase();
+
+            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "GetFieldListByCondition:" + sql, typeof(AbstractBaseDAL<T>));
+
             DbCommand command = db.GetSqlStringCommand(sql);
 
             string number = string.Empty;
@@ -1318,7 +1360,7 @@ namespace JCodes.Framework.Common
         {
             if (HasInjectionData(condition))
             {
-                LogTextHelper.Error(string.Format("检测出SQL注入的恶意数据, {0}", condition));
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_ERR, string.Format("检测出SQL注入的恶意数据, {0}", condition), typeof(AbstractBaseDAL<T>));
                 throw new Exception("检测出SQL注入的恶意数据");
             }
 
@@ -1406,7 +1448,9 @@ namespace JCodes.Framework.Common
                         pi.SetValue(obj, dr[pi.Name] ?? "", null);
                     }
                 }
-                catch { }
+                catch (Exception ex){
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(AbstractBaseDAL<T>));
+                }
             }
             return obj;
         }
@@ -1455,6 +1499,9 @@ namespace JCodes.Framework.Common
             string sql = string.Format("Select Count(*) from {0} ", tableName);
 
             Database db = CreateDatabase();
+
+            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "GetRecordCount:" + sql, typeof(AbstractBaseDAL<T>));
+
             DbCommand command = db.GetSqlStringCommand(sql);
 
             return GetExecuteScalarValue(db, command, trans);
@@ -1470,13 +1517,16 @@ namespace JCodes.Framework.Common
         {
             if (HasInjectionData(condition))
             {
-                LogTextHelper.Error(string.Format("检测出SQL注入的恶意数据, {0}", condition));
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_ERR, string.Format("检测出SQL注入的恶意数据, {0}", condition), typeof(AbstractBaseDAL<T>));
                 throw new Exception("检测出SQL注入的恶意数据");
             }
 
             string sql = string.Format("Select Count(*) from {0} WHERE {1} ", tableName, condition);
 
             Database db = CreateDatabase();
+
+            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "GetRecordCount:"+sql, typeof(AbstractBaseDAL<T>));
+
             DbCommand command = db.GetSqlStringCommand(sql);
 
             return GetExecuteScalarValue(db, command, trans);
@@ -1519,13 +1569,16 @@ namespace JCodes.Framework.Common
         {
             if (HasInjectionData(condition))
             {
-                LogTextHelper.Error(string.Format("检测出SQL注入的恶意数据, {0}", condition));
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_ERR, string.Format("检测出SQL注入的恶意数据, {0}", condition), typeof(AbstractBaseDAL<T>));
                 throw new Exception("检测出SQL注入的恶意数据");
             }
 
             string sql = string.Format("Select Count(*) from {0} WHERE {1} ", tableName, condition);
 
             Database db = CreateDatabase();
+
+            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "IsExistRecord:" + sql, typeof(AbstractBaseDAL<T>));
+
             DbCommand command = db.GetSqlStringCommand(sql);
 
             int result = GetExecuteScalarValue(db, command, trans);
@@ -1549,6 +1602,9 @@ namespace JCodes.Framework.Common
 
             string sql = string.Format("SELECT COUNT(*) FROM {0} WHERE {1}", tableName, fields);
             Database db = CreateDatabase();
+
+            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "IsExistKey:"+sql, typeof(AbstractBaseDAL<T>));
+
             DbCommand command = db.GetSqlStringCommand(sql);
             foreach (string field in recordTable.Keys)
             {
@@ -1584,6 +1640,9 @@ namespace JCodes.Framework.Common
 			string sql = string.Format("SELECT MAX({0}) AS MaxID FROM {1}", primaryKey, tableName);
 
             Database db = CreateDatabase();
+
+            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "GetMaxID:" + sql, typeof(AbstractBaseDAL<T>));
+
             DbCommand command = db.GetSqlStringCommand(sql);
 
             object obj = null;
@@ -1615,6 +1674,9 @@ namespace JCodes.Framework.Common
             string sql = string.Format("Select {0} FROM {1} WHERE {2} ", fieldName, tableName, condition);
 
             Database db = CreateDatabase();
+
+            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "GetFieldValue:" + sql, typeof(AbstractBaseDAL<T>));
+
             DbCommand command = db.GetSqlStringCommand(sql);
             db.AddInParameter(command, primaryKey, TypeToDbType(key.GetType()), key);
 
@@ -1651,6 +1713,9 @@ namespace JCodes.Framework.Common
             string sql = string.Format("DELETE FROM {0} WHERE {1} ", tableName, condition);
 
             Database db = CreateDatabase();
+
+            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "Delete:" + sql, typeof(AbstractBaseDAL<T>));
+
             DbCommand command = db.GetSqlStringCommand(sql);
             db.AddInParameter(command, primaryKey, TypeToDbType(key.GetType()), key);
 
@@ -1681,6 +1746,9 @@ namespace JCodes.Framework.Common
             string sql = string.Format("DELETE FROM {0} WHERE {1} ", tableName, condition);
 
             Database db = CreateDatabase();
+
+            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "DeleteByUser:" + sql, typeof(AbstractBaseDAL<T>));
+
             DbCommand command = db.GetSqlStringCommand(sql);
             db.AddInParameter(command, primaryKey, TypeToDbType(key.GetType()), key);
 
@@ -1709,13 +1777,16 @@ namespace JCodes.Framework.Common
         {
             if (HasInjectionData(condition))
             {
-                LogTextHelper.Error(string.Format("检测出SQL注入的恶意数据, {0}", condition));
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_ERR, string.Format("检测出SQL注入的恶意数据, {0}", condition), typeof(AbstractBaseDAL<T>));
                 throw new Exception("检测出SQL注入的恶意数据");
             }
 
             string sql = string.Format("DELETE FROM {0} WHERE {1} ", tableName, condition);
 
             Database db = CreateDatabase();
+
+            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "DeleteByCondition:" + sql, typeof(AbstractBaseDAL<T>));
+
             DbCommand command = db.GetSqlStringCommand(sql);
             if(paramList != null)
             {
@@ -1884,9 +1955,10 @@ namespace JCodes.Framework.Common
                     dbt = (DbType)Enum.Parse(typeof(DbType), t.Name);
                 }
             }
-            catch
+            catch (Exception ex)
             {
                 dbt = DbType.String;
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(AbstractBaseDAL<T>));
             }
             return dbt;
         }
@@ -2011,6 +2083,9 @@ namespace JCodes.Framework.Common
 
             string sql = string.Format("Select * FROM {0}", tableName);
             Database db = CreateDatabase();
+
+            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "GetReaderSchema:" + sql, typeof(AbstractBaseDAL<T>));
+
             DbCommand command = db.GetSqlStringCommand(sql);
             try
             {
@@ -2021,7 +2096,7 @@ namespace JCodes.Framework.Common
             }
             catch (Exception ex)
             {
-                LogTextHelper.Error(ex);
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(AbstractBaseDAL<T>));
             }
 
             return schemaTable;
@@ -2069,6 +2144,9 @@ namespace JCodes.Framework.Common
         public bool StorePorcExecute(string storeProcName, Hashtable inParameters = null, Hashtable outParameters = null, DbTransaction trans = null)
         {
             Database db = CreateDatabase();
+
+            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "StorePorcExecute:" + storeProcName, typeof(AbstractBaseDAL<T>));
+
             DbCommand command = db.GetStoredProcCommand(storeProcName);
             //参数传入
             SetStoreParameters(db, command, inParameters, outParameters);
@@ -2101,6 +2179,9 @@ namespace JCodes.Framework.Common
         public List<T> StorePorcToList(string storeProcName, Hashtable inParameters = null, Hashtable outParameters = null, DbTransaction trans = null)
         {
             Database db = CreateDatabase();
+
+            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "StorePorcToList:" + storeProcName, typeof(AbstractBaseDAL<T>));
+
             DbCommand command = db.GetStoredProcCommand(storeProcName);
             //参数传入
             SetStoreParameters(db, command, inParameters, outParameters);
@@ -2150,6 +2231,9 @@ namespace JCodes.Framework.Common
         public DataTable StorePorcToDataTable(string storeProcName, Hashtable inParameters = null, Hashtable outParameters = null, DbTransaction trans = null)
         {
             Database db = CreateDatabase();
+
+            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "StorePorcToDataTable:" + storeProcName, typeof(AbstractBaseDAL<T>));
+
             DbCommand command = db.GetStoredProcCommand(storeProcName);
             //参数传入
             SetStoreParameters(db, command, inParameters, outParameters);
@@ -2189,6 +2273,9 @@ namespace JCodes.Framework.Common
         public T StorePorcToEntity(string storeProcName, Hashtable inParameters = null, Hashtable outParameters = null, DbTransaction trans = null)
         {
             Database db = CreateDatabase();
+
+            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "StorePorcToEntity:" + storeProcName, typeof(AbstractBaseDAL<T>));
+
             DbCommand command = db.GetStoredProcCommand(storeProcName);
 
             //参数传入

@@ -1,5 +1,4 @@
-﻿using JCodes.Framework.CommonControl;
-namespace JCodes.Framework.AddIn.UI.WareHouse
+﻿namespace JCodes.Framework.AddIn.UI.WareHouse
 {
     partial class FrmWareHouse
     {
@@ -36,7 +35,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbClose = new System.Windows.Forms.ToolStripButton();
-            this.winGridViewPager1 = new WinGridViewPager();
+            this.winGridViewPager1 = new JCodes.Framework.CommonControl.Pager.WinGridViewPager();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -148,7 +147,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
         private System.Windows.Forms.ToolStripButton tsbDelete;
         private System.Windows.Forms.ToolStripButton tsbClose;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private WinGridViewPager winGridViewPager1;
+        private JCodes.Framework.CommonControl.Pager.WinGridViewPager winGridViewPager1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using JCodes.Framework.Common;
+using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Entity;
 using System.Collections;
 using System.Collections.Generic;

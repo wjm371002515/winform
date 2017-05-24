@@ -1,8 +1,11 @@
 using System;
 using Microsoft.Win32;
 using System.Windows.Forms;
+using JCodes.Framework.Common.Files;
+using JCodes.Framework.Common.Encrypt;
+using JCodes.Framework.jCodesenum.BaseEnum;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Office
 {
     /// <summary>
     /// 注册表操作辅助类，通过默认指定注册表的前缀路径，减少调用复杂性。
@@ -53,9 +56,10 @@ namespace JCodes.Framework.Common
                 RegistryKey regKey = rootRegistry.OpenSubKey(softwareKey);
                 strRet = regKey.GetValue(key).ToString();
             }
-            catch
+            catch (Exception ex)
             {
                 strRet = "";
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(RegistryHelper));
             }
             return strRet;
         }

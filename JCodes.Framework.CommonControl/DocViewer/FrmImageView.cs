@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JCodes.Framework.CommonControl.BaseUI;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace JCodes.Framework.CommonControl
+namespace JCodes.Framework.CommonControl.DocViewer
 {
     /// <summary>
     /// 图片显示窗体

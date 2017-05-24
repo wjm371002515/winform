@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
-using JCodes.Framework.CommonControl.Attachment;
+using JCodes.Framework.AddIn.UI.Attachment;
 
 namespace TestAttachmentDx
 {

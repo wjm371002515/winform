@@ -4,8 +4,9 @@ using System.Text;
 using System.Reflection;
 using System.ComponentModel;
 using System.Collections;
+using JCodes.Framework.jCodesenum.BaseEnum;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Format
 {
     /// <summary>
     /// 枚举操作辅助类
@@ -131,8 +132,9 @@ namespace JCodes.Framework.Common
                 DescriptionAttribute[] attributes = (DescriptionAttribute[])fi.GetCustomAttributes(typeof(DescriptionAttribute), false);
                 return (attributes.Length > 0) ? attributes[0].Description : GetName(t, v);
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(EnumHelper));
                 return "UNKNOWN";
             }
         }
@@ -149,8 +151,9 @@ namespace JCodes.Framework.Common
             {
                 return Enum.GetName(t, v);
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(EnumHelper));
                 return "UNKNOWN";
             }
         }

@@ -1,5 +1,5 @@
 ﻿using System.Windows.Forms;
-namespace JCodes.Framework.CommonControl
+namespace JCodes.Framework.CommonControl.BaseUI
 {
     partial class BaseEditForm
     {
@@ -33,7 +33,7 @@ namespace JCodes.Framework.CommonControl
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
-            this.dataNavigator1 = new JCodes.Framework.CommonControl.DataNavigator();
+            this.dataNavigator1 = new DataNavigator();
             this.picPrint = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.picPrint)).BeginInit();
             this.SuspendLayout();

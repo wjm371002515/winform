@@ -2,6 +2,9 @@ using System;
 using System.Windows.Forms;
 using System.Threading;
 using System.Reflection;
+using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.Common;
+using JCodes.Framework.CommonControl.Other;
 
 namespace JCodes.Framework.CommonControl.Framework
 {
@@ -68,8 +71,10 @@ namespace JCodes.Framework.CommonControl.Framework
             {
                 m_SplashForm.Invoke(new MethodInvoker(m_SplashForm.Close));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(Splasher));
+                MessageDxUtil.ShowError(ex.Message);
             }
             m_SplashThread = null;
             m_SplashForm = null;

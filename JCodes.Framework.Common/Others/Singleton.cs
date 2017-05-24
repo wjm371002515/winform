@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Reflection;
+using JCodes.Framework.jCodesenum.BaseEnum;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Office
 {
     /// <summary>
     /// 创建一个类对象的单件实例，类对象的构造函数不能为Public修饰符的，一般为private。
@@ -39,9 +40,10 @@ namespace JCodes.Framework.Common
                                 constructor = typeof(T).GetConstructor(BindingFlags.Instance |
                                               BindingFlags.NonPublic, null, new Type[0], null);
                             }
-                            catch (Exception exception)
+                            catch (Exception ex)
                             {
-                                throw new InvalidOperationException(exception.Message, exception);
+                                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(Singleton<T>));
+                                throw new InvalidOperationException(ex.Message, ex);
                             }
 
                             if (constructor == null || constructor.IsAssembly)

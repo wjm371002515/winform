@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Web;
 using System.Text.RegularExpressions;
+using JCodes.Framework.jCodesenum.BaseEnum;
 
 namespace JCodes.Framework.Common.Web
 {
@@ -237,7 +238,9 @@ namespace JCodes.Framework.Common.Web
             {
                 return System.Web.HttpContext.Current.Request.Url.ToString();
             }
-            catch { }
+            catch (Exception ex){
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(UrlHelper));
+            }
 
             return "";
         }
@@ -254,7 +257,9 @@ namespace JCodes.Framework.Common.Web
             {
                 retVal = System.Web.HttpContext.Current.Request.UrlReferrer.ToString();
             }
-            catch { }
+            catch (Exception ex){
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(UrlHelper));
+            }
 
             if (retVal == null)
                 return "";

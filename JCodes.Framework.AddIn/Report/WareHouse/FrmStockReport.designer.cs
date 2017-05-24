@@ -1,4 +1,4 @@
-﻿namespace JCodes.Framework.AddIn
+﻿namespace JCodes.Framework.AddIn.Report.WareHouse
 {
     partial class FrmStockReport
     {

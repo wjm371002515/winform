@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
-
 using DevExpress.Spreadsheet;
 using JCodes.Framework.Common;
+using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.CommonControl.BaseUI;
+using JCodes.Framework.Common.Files;
+using JCodes.Framework.CommonControl.Other;
 
-namespace JCodes.Framework.CommonControl
+namespace JCodes.Framework.CommonControl.DocViewer
 {  
     /// <summary>
     /// Excel控件的测试例子
@@ -96,12 +99,12 @@ namespace JCodes.Framework.CommonControl
                     IWorkbook workbook = spreadsheetControl1.Document;
                     workbook.SaveDocument(filePath);
 
-                    MessageUtil.ShowTips("保存成功");
+                    MessageDxUtil.ShowTips("保存成功");
                 }
                 catch (Exception ex)
                 {
-                    LogTextHelper.Error(ex);
-                    MessageUtil.ShowError(ex.Message);
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmExcelView));
+                    MessageDxUtil.ShowError(ex.Message);
                 }
             }
         }
@@ -151,7 +154,7 @@ namespace JCodes.Framework.CommonControl
                     }
                     catch (Exception ex)
                     {
-                        LogTextHelper.Error(ex);
+                        LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmExcelView));
                         MessageDxUtil.ShowError(ex.Message);
                     } 
                     #endregion

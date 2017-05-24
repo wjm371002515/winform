@@ -11,6 +11,14 @@ using JCodes.Framework.Common;
 using JCodes.Framework.BLL;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.Entity;
+using JCodes.Framework.CommonControl.BaseUI;
+using JCodes.Framework.Common.Framework;
+using JCodes.Framework.AddIn.Other;
+using JCodes.Framework.Common.Extension;
+using JCodes.Framework.Common.Databases;
+using JCodes.Framework.CommonControl.Other;
+using JCodes.Framework.Common.Office;
+using JCodes.Framework.CommonControl.PlugInInterface;
 
 namespace JCodes.Framework.AddIn.UI.WareHouse
 {
@@ -171,7 +179,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
         {
             this.txtSearchWareHouse.Properties.Items.Clear();
             this.txtSearchWareHouse.Properties.Items.Add(new CListItem("所有仓库", ""));
-            this.txtSearchWareHouse.Properties.Items.AddRange(BLLFactory<BLL.WareHouse>.Instance.GetAllWareHouse().ToArray());
+            this.txtSearchWareHouse.Properties.Items.AddRange(BLLFactory<WareHouses>.Instance.GetAllWareHouse().ToArray());
 
             //使用扩展函数方式绑定字典
             this.txtBigType.BindDictItems("备件属类");
@@ -603,7 +611,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             this.treeView1.Nodes.Clear();
 
             TreeNode WareHouseNode = new TreeNode("仓库列表", 1, 1);
-            List<CListItem> warehouseList = BLLFactory<BLL.WareHouse>.Instance.GetAllWareHouse();
+            List<CListItem> warehouseList = BLLFactory<WareHouses>.Instance.GetAllWareHouse();
             foreach (CListItem item in warehouseList)
             {
                 TreeNode subNode = new TreeNode(item.Text, 1, 1);

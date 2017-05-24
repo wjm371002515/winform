@@ -1,9 +1,17 @@
 ﻿using DevExpress.LookAndFeel;
+using JCodes.Framework.AddIn;
+using JCodes.Framework.AddIn.Other;
+using JCodes.Framework.AddIn.UI.Basic;
 using JCodes.Framework.BLL;
 using JCodes.Framework.Common;
+using JCodes.Framework.Common.Device;
+using JCodes.Framework.Common.Framework;
+using JCodes.Framework.Common.Network;
 using JCodes.Framework.CommonControl;
-using JCodes.Framework.CommonControl.Security;
+using JCodes.Framework.CommonControl.Framework;
+using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.Entity;
+using JCodes.Framework.jCodesenum.BaseEnum;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -66,7 +74,7 @@ namespace TestSecurityMix_WCF_WIN
         {
             if (this.txtLogin.Text.Trim() == "")
             {
-                MessageUtil.ShowTips("请输入帐号");
+                MessageDxUtil.ShowTips("请输入帐号");
                 this.txtLogin.Focus();
                 return;
             }
@@ -85,7 +93,7 @@ namespace TestSecurityMix_WCF_WIN
                     if (info != null)
                     {
                         //获取该登陆用户的权限集合
-                        List<FunctionInfo> list = BLLFactory<Function>.Instance.GetFunctionsByUser(info.ID, systemType);
+                        List<FunctionInfo> list = BLLFactory<Functions>.Instance.GetFunctionsByUser(info.ID, systemType);
                         if (list != null && list.Count > 0)
                         {
                             foreach (FunctionInfo functionInfo in list)
@@ -100,24 +108,25 @@ namespace TestSecurityMix_WCF_WIN
                         //进一步判断用户角色
                         if (BLLFactory<User>.Instance.UserIsAdmin(loginName))
                         {
-                            MessageUtil.ShowTips(string.Format("用户【{0}】身份验证正确", loginName));
+                            MessageDxUtil.ShowTips(string.Format("用户【{0}】身份验证正确", loginName));
                         }
                         else
                         {
-                            MessageUtil.ShowWarning("该用户没有管理员权限");
+                            MessageDxUtil.ShowWarning("该用户没有管理员权限");
                             return;
                         }
                     }
                 }
                 else
                 {
-                    MessageUtil.ShowWarning("用户名或密码错误");
+                    MessageDxUtil.ShowWarning("用户名或密码错误");
                     return;
                 }
             }
-            catch (Exception err)
+            catch (Exception ex)
             {
-                MessageUtil.ShowError(err.Message);
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(Form1));
+                MessageDxUtil.ShowError(ex.Message); 
             }
         }
 

@@ -7,24 +7,26 @@ using Microsoft.Practices.EnterpriseLibrary.Data;
 using JCodes.Framework.Common;
 using JCodes.Framework.Entity;
 using JCodes.Framework.IDAL;
+using JCodes.Framework.Common.Framework.BaseDAL;
+using JCodes.Framework.Common.Databases;
 
 namespace JCodes.Framework.OracleDAL
 {
     /// <summary>
     /// 功能菜单
     /// </summary>
-    public class Menu : BaseDALOracle<MenuInfo>, IMenu
+    public class Menus : BaseDALOracle<MenuInfo>, IMenus
     {
         #region 对象实例及构造函数
 
-        public static Menu Instance
+        public static Menus Instance
         {
             get
             {
-                return new Menu();
+                return new Menus();
             }
         }
-        public Menu()
+        public Menus()
             : base("T_ACL_Menu", "ID")
         {
             this.sortField = "Seq";

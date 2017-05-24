@@ -285,6 +285,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\JCodes.Framework.AddIn\JCodes.Framework.AddIn.csproj">
+      <Project>{b2c03c8b-b0c2-4da0-9a85-bdc8bf8dcebf}</Project>
+      <Name>JCodes.Framework.AddIn</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JCodes.Framework.BLL\JCodes.Framework.BLL.csproj">
       <Project>{2ec4520f-5197-4e3f-b689-7023a98623e0}</Project>
       <Name>JCodes.Framework.BLL</Name>

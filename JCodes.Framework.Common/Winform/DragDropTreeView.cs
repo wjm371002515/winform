@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms.Design;
 using JCodes.Framework.jCodesenum.BaseEnum;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Winform
 {
 	// - Implements:
 	//   + Auto scrolling

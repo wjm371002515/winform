@@ -12,8 +12,11 @@ using Microsoft.Practices.EnterpriseLibrary.Data;
 using Microsoft.Practices.EnterpriseLibrary.Data.Configuration;
 using JCodes.Framework.Entity;
 using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.Common.Encrypt;
+using JCodes.Framework.Common.Databases;
+using JCodes.Framework.Common.Format;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Framework.BaseDAL
 {
     /// <summary>
     /// 数据访问层的基类
@@ -241,7 +244,7 @@ namespace JCodes.Framework.Common
             }
             catch (Exception ex)
             {
-                LogTextHelper.WriteLine(ex.ToString());
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(BaseDALAccess<T>));
                 throw;
             }
         }
@@ -390,7 +393,7 @@ namespace JCodes.Framework.Common
         {
             if (HasInjectionData(condition))
             {
-                LogTextHelper.Error(string.Format("检测出SQL注入的恶意数据, {0}", condition));
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_ERR, string.Format("检测出SQL注入的恶意数据, {0}", condition), typeof(BaseDALAccess<T>));
                 throw new Exception("检测出SQL注入的恶意数据");
             }
 
@@ -420,7 +423,7 @@ namespace JCodes.Framework.Common
         {
             if (HasInjectionData(condition))
             {
-                LogTextHelper.Error(string.Format("检测出SQL注入的恶意数据, {0}", condition));
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_ERR, string.Format("检测出SQL注入的恶意数据, {0}", condition), typeof(BaseDALAccess<T>));
                 throw new Exception("检测出SQL注入的恶意数据");
             }
 
@@ -580,10 +583,10 @@ namespace JCodes.Framework.Common
                     {
                         decryptStr = EncodeHelper.AES_Decrypt(password);
                     }
-                    catch
+                    catch (Exception ex)
                     {
                         decryptStr = password;
-                        //throw new InvalidOperationException("无法解密数据库");
+                        LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(BaseDALAccess<T>));
                     }
 
                     connectionString += string.Format(";{0}={1};", passwordKey, decryptStr);

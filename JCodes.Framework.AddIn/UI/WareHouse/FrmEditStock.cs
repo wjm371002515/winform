@@ -1,7 +1,11 @@
 ﻿using JCodes.Framework.BLL;
 using JCodes.Framework.Common;
+using JCodes.Framework.Common.Framework;
 using JCodes.Framework.CommonControl;
+using JCodes.Framework.CommonControl.BaseUI;
+using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.Entity;
+using JCodes.Framework.jCodesenum.BaseEnum;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -53,7 +57,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
                     }
                     catch (Exception ex)
                     {
-                        LogTextHelper.Error(ex);
+                        LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmEditStock));
                         MessageDxUtil.ShowError(ex.Message);
                         return;
                     }
@@ -97,7 +101,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
                     }
                     catch (Exception ex)
                     {
-                        LogTextHelper.Error(ex);
+                        LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmEditStock));
                         MessageDxUtil.ShowError(ex.Message);
                     }
                 }
@@ -118,7 +122,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
                 }
                 catch (Exception ex)
                 {
-                    LogTextHelper.Error(ex);
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmEditStock));
                     MessageDxUtil.ShowError(ex.Message);
                 }
             }
@@ -141,8 +145,8 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
                 }
                 catch (Exception ex)
                 {
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmEditStock));
                     MessageDxUtil.ShowError(ex.Message);
-                    LogTextHelper.Error(ex);
                 }
             }
         }

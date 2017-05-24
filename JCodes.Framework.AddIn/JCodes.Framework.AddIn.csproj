@@ -55,6 +55,35 @@
     <Reference Include="DevExpress.XtraLayout.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraNavBar.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraPrinting.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraTreeList.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="KP-ImageViewerV2, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\JCodes.Framework.libs\Others\KP-ImageViewerV2.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\JCodes.Framework.libs\Microsoft.Practices\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\JCodes.Framework.libs\Microsoft.Practices\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ObjectBuilder, Version=1.0.51206.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\JCodes.Framework.libs\Microsoft.Practices\Microsoft.Practices.ObjectBuilder.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.Common">
+      <HintPath>..\JCodes.Framework.libs\Spire.XLS-FE\Spire.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.License">
+      <HintPath>..\JCodes.Framework.libs\Spire.XLS-FE\Spire.License.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.Pdf">
+      <HintPath>..\JCodes.Framework.libs\Spire.XLS-FE\Spire.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.XLS">
+      <HintPath>..\JCodes.Framework.libs\Spire.XLS-FE\Spire.XLS.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -67,39 +96,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\ManagerSelectControl.cs">
+    <Compile Include="Other\ExRichTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Other\ExRichTextBoxPrintHelper.cs" />
+    <Compile Include="Other\StartupHelper.cs" />
+    <Compile Include="UI\BizControl\ManagerSelectControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\ManagerSelectControl.designer.cs">
+    <Compile Include="UI\BizControl\ManagerSelectControl.designer.cs">
       <DependentUpon>ManagerSelectControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Other\DatabaseStorage.cs" />
     <Compile Include="Other\ExtensionMethod.cs" />
+    <Compile Include="Other\Portal.cs" />
+    <Compile Include="Other\RibbonPageHelper.cs" />
     <Compile Include="Other\SecurityHelper.cs" />
     <Compile Include="Other\WareHouseHelper.cs" />
-    <Compile Include="Other\WareHouse\FrmAnnualSummary.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Other\WareHouse\FrmAnnualSummary.Designer.cs">
-      <DependentUpon>FrmAnnualSummary.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Other\WareHouse\FrmClearAll.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Other\WareHouse\FrmClearAll.Designer.cs">
-      <DependentUpon>FrmClearAll.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Other\WareHouse\FrmMonthlyStatistic.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Other\WareHouse\FrmMonthlyStatistic.Designer.cs">
-      <DependentUpon>FrmMonthlyStatistic.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Other\WareHouse\FrmSystemMessage.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Other\WareHouse\FrmSystemMessage.Designer.cs">
-      <DependentUpon>FrmSystemMessage.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -136,6 +149,108 @@
     <Compile Include="Report\WareHouse\FrmStockReport.designer.cs">
       <DependentUpon>FrmStockReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\BizControl\AttachmentControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\BizControl\AttachmentControl.Designer.cs">
+      <DependentUpon>AttachmentControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\BizControl\BizAttachment.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\BizControl\BizAttachment.Designer.cs">
+      <DependentUpon>BizAttachment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Attachment\FrmAttachment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Attachment\FrmAttachment.Designer.cs">
+      <DependentUpon>FrmAttachment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Attachment\FrmAttachmentGroupView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Attachment\FrmAttachmentGroupView.Designer.cs">
+      <DependentUpon>FrmAttachmentGroupView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Attachment\FrmPicturePreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Attachment\FrmPicturePreview.designer.cs">
+      <DependentUpon>FrmPicturePreview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Attachment\FrmUploadFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Attachment\FrmUploadFile.designer.cs">
+      <DependentUpon>FrmUploadFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Basic\AboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Basic\AboutBox.Designer.cs">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\BizControl\CompanyControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\BizControl\CompanyControl.Designer.cs">
+      <DependentUpon>CompanyControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\BizControl\CustomGridControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\BizControl\CustomGridLookUpEdit.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\BizControl\DeptControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\BizControl\DeptControl.Designer.cs">
+      <DependentUpon>DeptControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\BizControl\FunctionControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\BizControl\FunctionControl.Designer.cs">
+      <DependentUpon>FunctionControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\BizControl\GlassButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\BizControl\GlassButton.designer.cs">
+      <DependentUpon>GlassButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\BizControl\MenuControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\BizControl\MenuControl.Designer.cs">
+      <DependentUpon>MenuControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\BizControl\NameControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\BizControl\NameControl.designer.cs">
+      <DependentUpon>NameControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\BizControl\PrintableListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\BizControl\RowMergeGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\BizControl\RowMergeGridView.designer.cs">
+      <DependentUpon>RowMergeGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\BizControl\UserNameControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\BizControl\UserNameControl.designer.cs">
+      <DependentUpon>UserNameControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\BizControl\VistaButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="UI\Common\FrmAnnualSummary.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,17 +269,221 @@
     <Compile Include="UI\Common\FrmMonthlyStatistic.designer.cs">
       <DependentUpon>FrmMonthlyStatistic.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Common\FrmSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Common\FrmSettings.designer.cs">
+      <DependentUpon>FrmSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Common\FrmSystemMessage.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\Common\FrmSystemMessage.designer.cs">
       <DependentUpon>FrmSystemMessage.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\System\Frm_Login.cs">
+    <Compile Include="UI\Dictionary\FrmBatchAddDictData.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\System\Frm_Login.Designer.cs">
+    <Compile Include="UI\Dictionary\FrmBatchAddDictData.Designer.cs">
+      <DependentUpon>FrmBatchAddDictData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Dictionary\FrmBatchAddDistrict.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Dictionary\FrmBatchAddDistrict.Designer.cs">
+      <DependentUpon>FrmBatchAddDistrict.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Dictionary\FrmCityDistrict.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Dictionary\FrmCityDistrict.Designer.cs">
+      <DependentUpon>FrmCityDistrict.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Dictionary\FrmDictionary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Dictionary\FrmDictionary.designer.cs">
+      <DependentUpon>FrmDictionary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Dictionary\FrmEditCity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Dictionary\FrmEditCity.Designer.cs">
+      <DependentUpon>FrmEditCity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Dictionary\FrmEditDictData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Dictionary\FrmEditDictData.designer.cs">
+      <DependentUpon>FrmEditDictData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Dictionary\FrmEditDictType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Dictionary\FrmEditDictType.designer.cs">
+      <DependentUpon>FrmEditDictType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Dictionary\FrmEditDistrict.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Dictionary\FrmEditDistrict.Designer.cs">
+      <DependentUpon>FrmEditDistrict.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Basic\FrmAddMoreFunction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Basic\FrmAddMoreFunction.Designer.cs">
+      <DependentUpon>FrmAddMoreFunction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Basic\FrmBlackIP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Basic\FrmBlackIP.Designer.cs">
+      <DependentUpon>FrmBlackIP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Basic\FrmEditBlackIP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Basic\FrmEditBlackIP.designer.cs">
+      <DependentUpon>FrmEditBlackIP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Basic\FrmEditMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Basic\FrmEditMenu.Designer.cs">
+      <DependentUpon>FrmEditMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Basic\FrmEditOperationLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Basic\FrmEditOperationLog.designer.cs">
+      <DependentUpon>FrmEditOperationLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Basic\FrmEditOperationLogSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Basic\FrmEditOperationLogSetting.designer.cs">
+      <DependentUpon>FrmEditOperationLogSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Basic\FrmEditRoleOU.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Basic\FrmEditRoleOU.Designer.cs">
+      <DependentUpon>FrmEditRoleOU.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Basic\FrmEditSystemType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Basic\FrmEditSystemType.designer.cs">
+      <DependentUpon>FrmEditSystemType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Basic\FrmEditTree.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Basic\FrmEditTree.designer.cs">
+      <DependentUpon>FrmEditTree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Basic\FrmEditUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Basic\FrmEditUser.designer.cs">
+      <DependentUpon>FrmEditUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Basic\FrmFunction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Basic\FrmFunction.designer.cs">
+      <DependentUpon>FrmFunction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Basic\FrmLoginLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Basic\FrmLoginLog.designer.cs">
+      <DependentUpon>FrmLoginLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Basic\FrmMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Basic\FrmMenu.designer.cs">
+      <DependentUpon>FrmMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Basic\FrmModifyPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Basic\FrmModifyPassword.designer.cs">
+      <DependentUpon>FrmModifyPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Basic\FrmOperationLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Basic\FrmOperationLog.designer.cs">
+      <DependentUpon>FrmOperationLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Basic\FrmOperationLogSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Basic\FrmOperationLogSetting.Designer.cs">
+      <DependentUpon>FrmOperationLogSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Basic\FrmOU.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Basic\FrmOU.designer.cs">
+      <DependentUpon>FrmOU.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Basic\FrmRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Basic\FrmRole.designer.cs">
+      <DependentUpon>FrmRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Basic\FrmSelectUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Basic\FrmSelectUser.designer.cs">
+      <DependentUpon>FrmSelectUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Basic\FrmSystemType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Basic\FrmSystemType.designer.cs">
+      <DependentUpon>FrmSystemType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Basic\FrmUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Basic\FrmUser.Designer.cs">
+      <DependentUpon>FrmUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Basic\Frm_Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Basic\Frm_Login.Designer.cs">
       <DependentUpon>Frm_Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Basic\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Basic\Login.designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Basic\Logon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Basic\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Basic\MainForm.designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Basic\RegDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\SmallTools\xlsDataDeal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\SmallTools\xlsDataDeal.designer.cs">
+      <DependentUpon>xlsDataDeal.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Test\Test.cs">
       <SubType>Form</SubType>
@@ -304,20 +623,9 @@
     <None Include="Resources\logo_banner.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Controls\ManagerSelectControl.resx">
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="UI\BizControl\ManagerSelectControl.resx">
       <DependentUpon>ManagerSelectControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Other\WareHouse\FrmAnnualSummary.resx">
-      <DependentUpon>FrmAnnualSummary.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Other\WareHouse\FrmClearAll.resx">
-      <DependentUpon>FrmClearAll.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Other\WareHouse\FrmMonthlyStatistic.resx">
-      <DependentUpon>FrmMonthlyStatistic.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Other\WareHouse\FrmSystemMessage.resx">
-      <DependentUpon>FrmSystemMessage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -338,6 +646,51 @@
     <EmbeddedResource Include="Report\WareHouse\FrmStockReport.resx">
       <DependentUpon>FrmStockReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\BizControl\AttachmentControl.resx">
+      <DependentUpon>AttachmentControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\BizControl\BizAttachment.resx">
+      <DependentUpon>BizAttachment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Attachment\FrmAttachment.resx">
+      <DependentUpon>FrmAttachment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Attachment\FrmAttachmentGroupView.resx">
+      <DependentUpon>FrmAttachmentGroupView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Attachment\FrmPicturePreview.resx">
+      <DependentUpon>FrmPicturePreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Attachment\FrmUploadFile.resx">
+      <DependentUpon>FrmUploadFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Basic\AboutBox.resx">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\BizControl\CompanyControl.resx">
+      <DependentUpon>CompanyControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\BizControl\DeptControl.resx">
+      <DependentUpon>DeptControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\BizControl\FunctionControl.resx">
+      <DependentUpon>FunctionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\BizControl\MenuControl.resx">
+      <DependentUpon>MenuControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\BizControl\NameControl.resx">
+      <DependentUpon>NameControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\BizControl\RowMergeGridView.resx">
+      <DependentUpon>RowMergeGridView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\BizControl\UserNameControl.resx">
+      <DependentUpon>UserNameControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\BizControl\VistaButton.resx">
+      <DependentUpon>VistaButton.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Common\FrmAnnualSummary.resx">
       <DependentUpon>FrmAnnualSummary.cs</DependentUpon>
     </EmbeddedResource>
@@ -347,11 +700,116 @@
     <EmbeddedResource Include="UI\Common\FrmMonthlyStatistic.resx">
       <DependentUpon>FrmMonthlyStatistic.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Common\FrmSettings.resx">
+      <DependentUpon>FrmSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Common\FrmSystemMessage.resx">
       <DependentUpon>FrmSystemMessage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\System\Frm_Login.resx">
+    <EmbeddedResource Include="UI\Dictionary\FrmBatchAddDictData.resx">
+      <DependentUpon>FrmBatchAddDictData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Dictionary\FrmBatchAddDistrict.resx">
+      <DependentUpon>FrmBatchAddDistrict.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Dictionary\FrmCityDistrict.resx">
+      <DependentUpon>FrmCityDistrict.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Dictionary\FrmDictionary.resx">
+      <DependentUpon>FrmDictionary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Dictionary\FrmEditCity.resx">
+      <DependentUpon>FrmEditCity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Dictionary\FrmEditDictData.resx">
+      <DependentUpon>FrmEditDictData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Dictionary\FrmEditDictType.resx">
+      <DependentUpon>FrmEditDictType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Dictionary\FrmEditDistrict.resx">
+      <DependentUpon>FrmEditDistrict.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Basic\FrmAddMoreFunction.resx">
+      <DependentUpon>FrmAddMoreFunction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Basic\FrmBlackIP.resx">
+      <DependentUpon>FrmBlackIP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Basic\FrmEditBlackIP.resx">
+      <DependentUpon>FrmEditBlackIP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Basic\FrmEditMenu.resx">
+      <DependentUpon>FrmEditMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Basic\FrmEditOperationLog.resx">
+      <DependentUpon>FrmEditOperationLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Basic\FrmEditOperationLogSetting.resx">
+      <DependentUpon>FrmEditOperationLogSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Basic\FrmEditRoleOU.resx">
+      <DependentUpon>FrmEditRoleOU.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Basic\FrmEditSystemType.resx">
+      <DependentUpon>FrmEditSystemType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Basic\FrmEditTree.resx">
+      <DependentUpon>FrmEditTree.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Basic\FrmEditUser.resx">
+      <DependentUpon>FrmEditUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Basic\FrmFunction.resx">
+      <DependentUpon>FrmFunction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Basic\FrmLoginLog.resx">
+      <DependentUpon>FrmLoginLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Basic\FrmMenu.resx">
+      <DependentUpon>FrmMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Basic\FrmModifyPassword.resx">
+      <DependentUpon>FrmModifyPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Basic\FrmOperationLog.resx">
+      <DependentUpon>FrmOperationLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Basic\FrmOperationLogSetting.resx">
+      <DependentUpon>FrmOperationLogSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Basic\FrmOU.resx">
+      <DependentUpon>FrmOU.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Basic\FrmRole.resx">
+      <DependentUpon>FrmRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Basic\FrmSelectUser.resx">
+      <DependentUpon>FrmSelectUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Basic\FrmSystemType.resx">
+      <DependentUpon>FrmSystemType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Basic\FrmUser.resx">
+      <DependentUpon>FrmUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Basic\Frm_Login.resx">
       <DependentUpon>Frm_Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Basic\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Basic\Logon.resx">
+      <DependentUpon>Logon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Basic\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Basic\RegDlg.resx">
+      <DependentUpon>RegDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\SmallTools\xlsDataDeal.resx">
+      <DependentUpon>xlsDataDeal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Test\Test.resx">
       <DependentUpon>Test.cs</DependentUpon>
@@ -415,6 +873,7 @@
     <Content Include="Resources\%2812,41%29.png" />
     <Content Include="Resources\%2813,41%29.png" />
     <Content Include="Resources\deletefile.png" />
+    <None Include="Resources\menuIcon.ico" />
     <Content Include="Resources\Product.png" />
     <Content Include="Resources\Quit.ico" />
     <Content Include="Resources\Stock2.ICO" />

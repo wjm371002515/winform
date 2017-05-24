@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Threading
 {
     /// <summary>
     /// 定时器辅助类，可指定运行间隔、延迟启动时间等操作。

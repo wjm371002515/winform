@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Collections;
+using JCodes.Framework.jCodesenum.BaseEnum;
 
 namespace JCodes.Framework.Common
 {
@@ -78,8 +79,9 @@ namespace JCodes.Framework.Common
                 cmd.Parameters.Clear();
                 return count;
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(SqlHelper));
                 trans.Rollback();
                 cmd.Parameters.Clear();
                 return 0;
@@ -116,8 +118,9 @@ namespace JCodes.Framework.Common
                         if (sqlStringList.Count > 0)
                             trans.Commit();
                     }
-                    catch
+                    catch (Exception ex)
                     {
+                        LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(SqlHelper));
                         trans.Rollback();
                         throw;
                     }
@@ -140,8 +143,9 @@ namespace JCodes.Framework.Common
                 cmd.Parameters.Clear();
                 return reader;
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(SqlHelper));
                 conn.Close();
                 throw;
             }
@@ -274,6 +278,7 @@ namespace JCodes.Framework.Common
             }
             catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(SqlHelper));
                 throw new Exception(ex.Message);
             }
         }

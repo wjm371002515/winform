@@ -54,7 +54,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtName = new DevExpress.XtraEditors.TextEdit();
             this.label1 = new System.Windows.Forms.Label();
-            this.winGridViewPager1 = new JCodes.Framework.CommonControl.WinGridViewPager();
+            this.winGridViewPager1 = new JCodes.Framework.CommonControl.Pager.WinGridViewPager();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menu_NewOrder = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_BuyTicket = new System.Windows.Forms.ToolStripMenuItem();
@@ -521,7 +521,7 @@
         private System.Windows.Forms.Label label5;
         private DevExpress.XtraEditors.SimpleButton btnSearch;
         private DevExpress.XtraEditors.SimpleButton btnAddNew;
-        private JCodes.Framework.CommonControl.WinGridViewPager winGridViewPager1;
+        private JCodes.Framework.CommonControl.Pager.WinGridViewPager winGridViewPager1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private DevExpress.XtraEditors.TextEdit txtCompany;
         private System.Windows.Forms.Label label7;

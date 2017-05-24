@@ -10,8 +10,12 @@ using System.IO;
 using System.Data.OleDb;
 using System.Data.Common;
 using JCodes.Framework.Common;
+using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.Common.Files;
+using JCodes.Framework.CommonControl.Other;
+using JCodes.Framework.Common.Office;
 
-namespace JCodes.Framework.CommonControl
+namespace JCodes.Framework.CommonControl.BaseUI
 {
     /// <summary>
     /// 通用Excel数据导入操作
@@ -108,7 +112,7 @@ namespace JCodes.Framework.CommonControl
                             catch (Exception ex)
                             {
                                 errorCount++;
-                                LogTextHelper.Error(ex);
+                                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmImportExcelData));
                                 MessageDxUtil.ShowError(ex.Message);
                             }
 
@@ -144,7 +148,7 @@ namespace JCodes.Framework.CommonControl
                 catch (Exception ex)
                 {
                     e.Result = ex.Message;
-                    LogTextHelper.Error(ex);
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmImportExcelData));
                     MessageDxUtil.ShowError(ex.ToString());
                 }
             }
@@ -177,9 +181,10 @@ namespace JCodes.Framework.CommonControl
                 }
                 Process.Start(templateFile);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageDxUtil.ShowWarning("文件打开失败");
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmImportExcelData));
+                MessageDxUtil.ShowWarning("文件打开失败:"+ex.Message);
             }
         }
 
@@ -222,7 +227,7 @@ namespace JCodes.Framework.CommonControl
             }
             catch (Exception ex)
             {
-                LogTextHelper.Error(ex);
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmImportExcelData));
                 MessageDxUtil.ShowError(ex.Message);
             }
         }
@@ -258,7 +263,10 @@ namespace JCodes.Framework.CommonControl
                 {
                     dt = Convert.ToDateTime(tb.Text);
                 }
-                catch { }
+                catch (Exception ex){
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmImportExcelData));
+                    MessageDxUtil.ShowError(ex.Message);
+                }
             }
             return dt;
         }
@@ -272,7 +280,10 @@ namespace JCodes.Framework.CommonControl
                 {
                     dt = Convert.ToDateTime(text);
                 }
-                catch { }
+                catch (Exception ex){
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmImportExcelData));
+                    MessageDxUtil.ShowError(ex.Message);
+                }
             }
             return dt;
         }

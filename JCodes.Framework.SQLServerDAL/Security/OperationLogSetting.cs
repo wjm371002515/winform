@@ -7,6 +7,8 @@ using Microsoft.Practices.EnterpriseLibrary.Data;
 using JCodes.Framework.Common;
 using JCodes.Framework.Entity;
 using JCodes.Framework.IDAL;
+using JCodes.Framework.Common.Framework.BaseDAL;
+using JCodes.Framework.Common.Databases;
 
 namespace JCodes.Framework.SQLServerDAL
 {
@@ -25,7 +27,7 @@ namespace JCodes.Framework.SQLServerDAL
             }
         }
         public OperationLogSetting()
-            : base("T_ACL_OperationLogSetting", "ID")
+            : base(SQLServerPortal.gc._securityTablePre + "OperationLogSetting", "ID")
         {
             this.SortField = "CreateTime";
             this.IsDescending = true;

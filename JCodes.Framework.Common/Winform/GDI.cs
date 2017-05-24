@@ -25,7 +25,7 @@ using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Winform
 {
     /// <summary>
     /// GDI操作辅助类

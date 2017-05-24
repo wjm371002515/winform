@@ -7,8 +7,10 @@ using System.Globalization;
 using System.Security.Cryptography;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using JCodes.Framework.Common.Format;
+using JCodes.Framework.jCodesenum.BaseEnum;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Extension
 {
     /// <summary>
     /// 用于字符串转换其他类型的扩展函数
@@ -232,8 +234,9 @@ namespace JCodes.Framework.Common
                 HttpWebResponse myHttpWebResponse = (HttpWebResponse)myRequest.GetResponse();
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(StringExtensionMethod));
                 return false;
             }
         }

@@ -14,6 +14,10 @@ using JCodes.Framework.CommonControl;
 using System.Diagnostics;
 using JCodes.Framework.Common;
 using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.Common.Office;
+using JCodes.Framework.CommonControl.Other;
+using JCodes.Framework.CommonControl.Pager;
+using JCodes.Framework.Common.Databases;
 
 namespace WHC.OrderWater.UI
 {
@@ -26,16 +30,16 @@ namespace WHC.OrderWater.UI
 
         private void FrmCustomerPager_Load(object sender, EventArgs e)
         {
-            this.pager1.PageChanged += new JCodes.Framework.CommonControl.PageChangedEventHandler(pager1_PageChanged);
-            this.pager1.ExportCurrent += new JCodes.Framework.CommonControl.ExportCurrentEventHandler(pager1_ExportCurrent);
-            this.pager1.ExportAll += new JCodes.Framework.CommonControl.ExportAllEventHandler(pager1_ExportAll);
+            this.pager1.PageChanged += new PageChangedEventHandler(pager1_PageChanged);
+            this.pager1.ExportCurrent += new ExportCurrentEventHandler(pager1_ExportCurrent);
+            this.pager1.ExportAll += new ExportAllEventHandler(pager1_ExportAll);
 
             BindData();
         }
 
         void pager1_ExportAll(object sender, EventArgs e)
         {
-            MessageUtil.ShowTips("导出所有");
+            MessageDxUtil.ShowTips("导出所有");
 
             SaveFileDialog dlg = new SaveFileDialog();
             dlg.Filter = "Excel (*.xls)|*.xls";
@@ -79,7 +83,7 @@ namespace WHC.OrderWater.UI
 
         void pager1_ExportCurrent(object sender, EventArgs e)
         {
-            MessageUtil.ShowTips("导出当前页");
+            MessageDxUtil.ShowTips("导出当前页");
         }
 
         void pager1_PageChanged(object sender, EventArgs e)
@@ -132,7 +136,7 @@ namespace WHC.OrderWater.UI
         /// <returns></returns>
         private DataTable FindToDataTable(string where, PagerInfo pagerInfo)
         {
-            JCodes.Framework.CommonControl.PagerHelper helper = new JCodes.Framework.CommonControl.PagerHelper("All_Customer", "*", "LastUpdated", pagerInfo.PageSize, pagerInfo.CurrenetPageIndex, true, where);
+            PagerHelper helper = new PagerHelper("All_Customer", "*", "LastUpdated", pagerInfo.PageSize, pagerInfo.CurrenetPageIndex, true, where);
             string countSql = helper.GetPagingSql(DatabaseType.Access, true);
             string dataSql = helper.GetPagingSql(DatabaseType.Access, false);
 

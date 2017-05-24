@@ -8,8 +8,13 @@ using System.Collections;
 using System.Net;
 using Microsoft.Win32;
 using JCodes.Framework.Common;
+using JCodes.Framework.Common.Files;
+using JCodes.Framework.CommonControl.Other;
+using JCodes.Framework.Common.Office;
+using JCodes.Framework.Common.Device;
+using JCodes.Framework.Common.Encrypt;
 
-namespace JCodes.Framework.CommonControl
+namespace JCodes.Framework.CommonControl.RSARegistryTool
 {
 	/// <summary>
 	/// Form1 的摘要说明。
@@ -331,7 +336,7 @@ namespace JCodes.Framework.CommonControl
 
                 // 写入lic 文件
                 FileUtil.WriteText(LicensePath, txtRegisterCode.Text.Trim(), Encoding.Default);
-                MessageUtil.ShowTips("祝贺您，注册成功");
+                MessageDxUtil.ShowTips("祝贺您，注册成功");
                 Close();
                 Application.Exit();
             }
@@ -365,7 +370,7 @@ namespace JCodes.Framework.CommonControl
             AppConfig config = new AppConfig();
             string LicensePath = config.AppConfigGet("LicensePath");
             FileUtil.DeleteFile(LicensePath);
-            MessageUtil.ShowTips("祝贺您，注销成功");
+            MessageDxUtil.ShowTips("祝贺您，注销成功");
             Close();
             Application.Exit();
         }

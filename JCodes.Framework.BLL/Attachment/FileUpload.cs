@@ -8,6 +8,11 @@ using JCodes.Framework.Common;
 using JCodes.Framework.Entity;
 using System.Drawing;
 using JCodes.Framework.IDAL;
+using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.CommonControl;
+using JCodes.Framework.Common.Framework;
+using JCodes.Framework.Common.Files;
+using JCodes.Framework.CommonControl.Other.Images;
 
 namespace JCodes.Framework.BLL
 {
@@ -82,13 +87,14 @@ namespace JCodes.Framework.BLL
                     }
                     catch (Exception ex)
                     {
-                        //FileUtil.DeleteFile(filePath);
+                        LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FileUpload));
                         result.ErrorMessage = ex.Message;
                     }
                 }
             }
             catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FileUpload));
                 result.ErrorMessage = ex.Message;
             }
             return result;
@@ -158,7 +164,7 @@ namespace JCodes.Framework.BLL
         /// <returns></returns>
         public List<FileUploadInfo> GetAllByUser(string userId)
         {
-            IFileUpload dal = baseDal as IFileUpload;
+            IFileUploads dal = baseDal as IFileUploads;
             return dal.GetAllByUser(userId);
         }
                
@@ -171,7 +177,7 @@ namespace JCodes.Framework.BLL
         /// <returns></returns>
         public List<FileUploadInfo> GetAllByUser(string userId, string category, PagerInfo pagerInfo)
         {
-            IFileUpload dal = baseDal as IFileUpload;
+            IFileUploads dal = baseDal as IFileUploads;
             return dal.GetAllByUser(userId, category, pagerInfo);
         }
 
@@ -183,7 +189,7 @@ namespace JCodes.Framework.BLL
         /// <returns></returns>
         public List<FileUploadInfo> GetByAttachGUID(string attachmentGUID, PagerInfo pagerInfo)
         {
-            IFileUpload dal = baseDal as IFileUpload;
+            IFileUploads dal = baseDal as IFileUploads;
             return dal.GetByAttachGUID(attachmentGUID, pagerInfo);
         }
                         
@@ -194,7 +200,7 @@ namespace JCodes.Framework.BLL
         /// <returns></returns>
         public List<FileUploadInfo> GetByAttachGUID(string attachmentGUID)
         {
-            IFileUpload dal = baseDal as IFileUpload;
+            IFileUploads dal = baseDal as IFileUploads;
             return dal.GetByAttachGUID(attachmentGUID);
         }
 
@@ -205,7 +211,7 @@ namespace JCodes.Framework.BLL
         /// <returns></returns>
         public bool DeleteByFilePath(string relativeFilePath, string userId)
         {
-            IFileUpload dal = baseDal as IFileUpload;
+            IFileUploads dal = baseDal as IFileUploads;
             return dal.DeleteByFilePath(relativeFilePath, userId);
         }
 
@@ -262,7 +268,7 @@ namespace JCodes.Framework.BLL
         /// <returns>返回ID和文件名的列表</returns>
         public Dictionary<string, string> GetFileNames(string attachmentGUID)
         {
-            IFileUpload dal = baseDal as IFileUpload;
+            IFileUploads dal = baseDal as IFileUploads;
             return dal.GetFileNames(attachmentGUID);
         }
 
@@ -273,7 +279,7 @@ namespace JCodes.Framework.BLL
         /// <returns></returns>
         public bool SetDeleteFlag(string id)
         {
-            IFileUpload dal = baseDal as IFileUpload;
+            IFileUploads dal = baseDal as IFileUploads;
             return dal.SetDeleteFlag(id);
         }
 
@@ -440,7 +446,7 @@ namespace JCodes.Framework.BLL
                         }
                         catch (Exception ex)
                         {
-                            LogTextHelper.Error(ex);
+                            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FileUpload));
                         }
                     }
                 }

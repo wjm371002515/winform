@@ -17,11 +17,12 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\jCodes\Framework\</OutputPath>
+    <OutputPath>..\jCodes\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -133,42 +134,6 @@
     <Compile Include="AdvanceSearch\FrmQueryTextEdit.Designer.cs">
       <DependentUpon>FrmQueryTextEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="Attachment\Controls\AttachmentControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Attachment\Controls\AttachmentControl.Designer.cs">
-      <DependentUpon>AttachmentControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Attachment\Controls\BizAttachment.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Attachment\Controls\BizAttachment.Designer.cs">
-      <DependentUpon>BizAttachment.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Attachment\FrmAttachment.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Attachment\FrmAttachment.Designer.cs">
-      <DependentUpon>FrmAttachment.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Attachment\FrmAttachmentGroupView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Attachment\FrmAttachmentGroupView.Designer.cs">
-      <DependentUpon>FrmAttachmentGroupView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Attachment\FrmPicturePreview.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Attachment\FrmPicturePreview.designer.cs">
-      <DependentUpon>FrmPicturePreview.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Attachment\FrmUploadFile.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Attachment\FrmUploadFile.designer.cs">
-      <DependentUpon>FrmUploadFile.cs</DependentUpon>
-    </Compile>
     <Compile Include="BaseUI\BaseDock.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -205,69 +170,8 @@
     <Compile Include="BaseUI\FrmImportExcelData.designer.cs">
       <DependentUpon>FrmImportExcelData.cs</DependentUpon>
     </Compile>
-    <Compile Include="BizControls\CompanyControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="BizControls\CompanyControl.Designer.cs">
-      <DependentUpon>CompanyControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BizControls\CustomGridControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="BizControls\CustomGridLookUpEdit.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="BizControls\DeptControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="BizControls\DeptControl.Designer.cs">
-      <DependentUpon>DeptControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BizControls\FunctionControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="BizControls\FunctionControl.Designer.cs">
-      <DependentUpon>FunctionControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BizControls\GlassButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="BizControls\GlassButton.designer.cs">
-      <DependentUpon>GlassButton.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BizControls\MenuControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="BizControls\MenuControl.Designer.cs">
-      <DependentUpon>MenuControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BizControls\NameControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="BizControls\NameControl.designer.cs">
-      <DependentUpon>NameControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BizControls\PrintableListView.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="BizControls\RowMergeGridView.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="BizControls\RowMergeGridView.designer.cs">
-      <DependentUpon>RowMergeGridView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BizControls\SortableListView.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="BizControls\UserNameControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="BizControls\UserNameControl.designer.cs">
-      <DependentUpon>UserNameControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BizControls\VistaButton.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="Device\KeyboardHelper.cs" />
+    <Compile Include="Other\Images\ImageHelper.cs" />
     <Compile Include="Device\Camera.cs" />
     <Compile Include="Device\CameraDialog.cs">
       <SubType>Form</SubType>
@@ -302,54 +206,6 @@
       <DependentUpon>PortraitControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Device\USBScanner.cs" />
-    <Compile Include="Dic\FrmBatchAddDictData.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dic\FrmBatchAddDictData.Designer.cs">
-      <DependentUpon>FrmBatchAddDictData.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dic\FrmBatchAddDistrict.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dic\FrmBatchAddDistrict.Designer.cs">
-      <DependentUpon>FrmBatchAddDistrict.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dic\FrmCityDistrict.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dic\FrmCityDistrict.Designer.cs">
-      <DependentUpon>FrmCityDistrict.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dic\FrmDictionary.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dic\FrmDictionary.designer.cs">
-      <DependentUpon>FrmDictionary.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dic\FrmEditCity.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dic\FrmEditCity.Designer.cs">
-      <DependentUpon>FrmEditCity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dic\FrmEditDictData.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dic\FrmEditDictData.designer.cs">
-      <DependentUpon>FrmEditDictData.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dic\FrmEditDictType.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dic\FrmEditDictType.designer.cs">
-      <DependentUpon>FrmEditDictType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dic\FrmEditDistrict.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dic\FrmEditDistrict.Designer.cs">
-      <DependentUpon>FrmEditDistrict.cs</DependentUpon>
-    </Compile>
     <Compile Include="DocViewer\FrmExcelView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -374,31 +230,12 @@
     <Compile Include="DocViewer\FrmWordView.designer.cs">
       <DependentUpon>FrmWordView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Framework\AboutBox.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Framework\AboutBox.Designer.cs">
-      <DependentUpon>AboutBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Framework\DatabaseStorage.cs" />
     <Compile Include="Framework\EmailParameter.cs" />
     <Compile Include="Framework\FrmFeeBack.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Framework\FrmFeeBack.designer.cs">
       <DependentUpon>FrmFeeBack.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Framework\FrmModifyPassword.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Framework\FrmModifyPassword.designer.cs">
-      <DependentUpon>FrmModifyPassword.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Framework\FrmSettings.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Framework\FrmSettings.designer.cs">
-      <DependentUpon>FrmSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Framework\frmSplash.cs">
       <SubType>Form</SubType>
@@ -408,21 +245,6 @@
     </Compile>
     <Compile Include="Framework\ISettingsStorage.cs" />
     <Compile Include="Framework\ISplashForm.cs" />
-    <Compile Include="Framework\Login.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Framework\Login.designer.cs">
-      <DependentUpon>Login.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Framework\Logon.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Framework\MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Framework\MainForm.designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Framework\PageEmail.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -435,89 +257,81 @@
     <Compile Include="Framework\PageReport.designer.cs">
       <DependentUpon>PageReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Framework\RegDlg.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Framework\ReportParameter.cs" />
     <Compile Include="Framework\SettingsProviderNet.cs" />
     <Compile Include="Framework\Splasher.cs" />
-    <Compile Include="LocalReport\FileManagerWrapper.cs" />
-    <Compile Include="LocalReport\LocalReportPrinter.cs" />
-    <Compile Include="LocalReport\ProcessingThread.cs" />
-    <Compile Include="LocalReport\ReportHelper.cs" />
-    <Compile Include="LocalReport\ReportViewerDialog.cs">
+    <Compile Include="LocalReports\FileManagerWrapper.cs" />
+    <Compile Include="LocalReports\LocalReportPrinter.cs" />
+    <Compile Include="LocalReports\ProcessingThread.cs" />
+    <Compile Include="LocalReports\ReportHelper.cs" />
+    <Compile Include="LocalReports\ReportViewerDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LocalReport\ReportViewerDialog.designer.cs">
+    <Compile Include="LocalReports\ReportViewerDialog.designer.cs">
       <DependentUpon>ReportViewerDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Other\ExtensionMethod.cs" />
+    <Compile Include="Other\CoolPrintPreviewControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Other\GenerateUpdateConfig.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Other\GenerateUpdateConfig.Designer.cs">
       <DependentUpon>GenerateUpdateConfig.cs</DependentUpon>
     </Compile>
+    <Compile Include="Other\Images\PrintFormHelper.cs" />
     <Compile Include="Other\MessageDxUtil.cs" />
-    <Compile Include="Other\Portal.cs" />
     <Compile Include="Other\QueryInputDialog.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Other\QueryInputDialog.designer.cs">
       <DependentUpon>QueryInputDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Other\RibbonPageHelper.cs" />
-    <Compile Include="Pager.WinControlDx\CoolPrintPreviewControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Pager.WinControlDx\CoolPrintPreviewDialog.cs">
+    <Compile Include="Other\Images\WebPreview.cs" />
+    <Compile Include="Pager\CoolPrintPreviewDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Pager.WinControlDx\CoolPrintPreviewDialog.designer.cs">
+    <Compile Include="Pager\CoolPrintPreviewDialog.designer.cs">
       <DependentUpon>CoolPrintPreviewDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pager.WinControlDx\FrmSelectColumnDisplay.cs">
+    <Compile Include="Pager\FrmSelectColumnDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Pager.WinControlDx\FrmSelectColumnDisplay.Designer.cs">
+    <Compile Include="Pager\FrmSelectColumnDisplay.Designer.cs">
       <DependentUpon>FrmSelectColumnDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pager.WinControlDx\GridCheckMarksSelection.cs" />
-    <Compile Include="Pager.WinControlDx\MyConstants.cs" />
-    <Compile Include="Pager.WinControlDx\Others\AppConfig.cs" />
-    <Compile Include="Pager.WinControlDx\Others\CallCtrlSafety.cs" />
-    <Compile Include="Pager.WinControlDx\Others\DevControlHelper.cs" />
-    <Compile Include="Pager.WinControlDx\Others\PageHelper.cs" />
-    <Compile Include="Pager.WinControlDx\Others\PrintDGV.cs" />
-    <Compile Include="Pager.WinControlDx\Others\ReflectionUtil.cs" />
-    <Compile Include="Pager.WinControlDx\Others\RegistryHelper.cs" />
-    <Compile Include="Pager.WinControlDx\Others\SortableBindingList.cs" />
-    <Compile Include="Pager.WinControlDx\Others\StringExtensionMethod.cs" />
-    <Compile Include="Pager.WinControlDx\Pager.cs">
+    <Compile Include="Pager\GridCheckMarksSelection.cs" />
+    <Compile Include="Pager\MyConstants.cs" />
+    <Compile Include="Pager\Others\CallCtrlSafety.cs" />
+    <Compile Include="Pager\Others\DevControlHelper.cs" />
+    <Compile Include="Pager\Others\ImagePrintHelper.cs" />
+    <Compile Include="Pager\Others\PrintDGV.cs" />
+    <Compile Include="Pager\Others\SortableBindingList.cs" />
+    <Compile Include="Pager\Pager.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Pager.WinControlDx\PrintOptions.cs">
+    <Compile Include="Pager\PrintOptions.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Pager.WinControlDx\PrintOptions.designer.cs">
+    <Compile Include="Pager\PrintOptions.designer.cs">
       <DependentUpon>PrintOptions.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pager.WinControlDx\WinGridView.cs">
+    <Compile Include="Pager\WinGridView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Pager.WinControlDx\WinGridView.Designer.cs">
+    <Compile Include="Pager\WinGridView.Designer.cs">
       <DependentUpon>WinGridView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pager.WinControlDx\WinGridViewPager.cs">
+    <Compile Include="Pager\WinGridViewPager.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Pager.WinControlDx\WinGridViewPager.Designer.cs">
+    <Compile Include="Pager\WinGridViewPager.Designer.cs">
       <DependentUpon>WinGridViewPager.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pager.WinControlDx\WinListViewPager.cs">
+    <Compile Include="Pager\WinListViewPager.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Pager.WinControlDx\WinListViewPager.Designer.cs">
+    <Compile Include="Pager\WinListViewPager.Designer.cs">
       <DependentUpon>WinListViewPager.cs</DependentUpon>
     </Compile>
     <Compile Include="PlugInInterface\AppInfo.cs" />
@@ -537,126 +351,6 @@
     </Compile>
     <Compile Include="RSARegistryTool\FrmRegeditTool.cs">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Security\FrmAddMoreFunction.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Security\FrmAddMoreFunction.Designer.cs">
-      <DependentUpon>FrmAddMoreFunction.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Security\FrmBlackIP.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Security\FrmBlackIP.Designer.cs">
-      <DependentUpon>FrmBlackIP.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Security\FrmEditBlackIP.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Security\FrmEditBlackIP.designer.cs">
-      <DependentUpon>FrmEditBlackIP.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Security\FrmEditMenu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Security\FrmEditMenu.Designer.cs">
-      <DependentUpon>FrmEditMenu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Security\FrmEditOperationLog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Security\FrmEditOperationLog.designer.cs">
-      <DependentUpon>FrmEditOperationLog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Security\FrmEditOperationLogSetting.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Security\FrmEditOperationLogSetting.designer.cs">
-      <DependentUpon>FrmEditOperationLogSetting.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Security\FrmEditRoleOU.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Security\FrmEditRoleOU.Designer.cs">
-      <DependentUpon>FrmEditRoleOU.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Security\FrmEditSystemType.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Security\FrmEditSystemType.designer.cs">
-      <DependentUpon>FrmEditSystemType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Security\FrmEditTree.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Security\FrmEditTree.designer.cs">
-      <DependentUpon>FrmEditTree.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Security\FrmEditUser.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Security\FrmEditUser.designer.cs">
-      <DependentUpon>FrmEditUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Security\FrmFunction.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Security\FrmFunction.designer.cs">
-      <DependentUpon>FrmFunction.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Security\FrmLoginLog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Security\FrmLoginLog.designer.cs">
-      <DependentUpon>FrmLoginLog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Security\FrmMenu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Security\FrmMenu.designer.cs">
-      <DependentUpon>FrmMenu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Security\FrmOperationLog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Security\FrmOperationLog.designer.cs">
-      <DependentUpon>FrmOperationLog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Security\FrmOperationLogSetting.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Security\FrmOperationLogSetting.Designer.cs">
-      <DependentUpon>FrmOperationLogSetting.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Security\FrmOU.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Security\FrmOU.designer.cs">
-      <DependentUpon>FrmOU.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Security\FrmRole.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Security\FrmRole.designer.cs">
-      <DependentUpon>FrmRole.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Security\FrmSelectUser.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Security\FrmSelectUser.designer.cs">
-      <DependentUpon>FrmSelectUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Security\FrmSystemType.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Security\FrmSystemType.designer.cs">
-      <DependentUpon>FrmSystemType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Security\FrmUser.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Security\FrmUser.Designer.cs">
-      <DependentUpon>FrmUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings\EtchedLine.cs">
       <SubType>UserControl</SubType>
@@ -688,17 +382,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Framework\splashbg.jpg" />
-    <Content Include="Pager.WinControlDx\Icon\Add.ico" />
-    <Content Include="Pager.WinControlDx\Icon\copy.ico" />
-    <Content Include="Pager.WinControlDx\Icon\Delete.ico" />
-    <Content Include="Pager.WinControlDx\Icon\Edit.ico" />
-    <Content Include="Pager.WinControlDx\Icon\excel.ico" />
-    <Content Include="Pager.WinControlDx\Icon\filter.ico" />
-    <Content Include="Pager.WinControlDx\Icon\ico_have2.gif" />
-    <Content Include="Pager.WinControlDx\Icon\ico_nohave2.gif" />
-    <Content Include="Pager.WinControlDx\Icon\print.ico" />
-    <Content Include="Pager.WinControlDx\Icon\Refresh.ico" />
-    <Content Include="Pager.WinControlDx\Resources\check.ico" />
+    <Content Include="Pager\Icon\Add.ico" />
+    <Content Include="Pager\Icon\copy.ico" />
+    <Content Include="Pager\Icon\Delete.ico" />
+    <Content Include="Pager\Icon\Edit.ico" />
+    <Content Include="Pager\Icon\excel.ico" />
+    <Content Include="Pager\Icon\filter.ico" />
+    <Content Include="Pager\Icon\ico_have2.gif" />
+    <Content Include="Pager\Icon\ico_nohave2.gif" />
+    <Content Include="Pager\Icon\print.ico" />
+    <Content Include="Pager\Icon\Refresh.ico" />
+    <Content Include="Pager\Resources\check.ico" />
     <Content Include="Resources\CabrioletRed.png" />
     <None Include="Resources\menuIcon.ico" />
     <Content Include="Settings\MozBar\MozItem.bmp" />
@@ -725,24 +419,6 @@
     <EmbeddedResource Include="AdvanceSearch\FrmQueryTextEdit.resx">
       <DependentUpon>FrmQueryTextEdit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Attachment\Controls\AttachmentControl.resx">
-      <DependentUpon>AttachmentControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Attachment\Controls\BizAttachment.resx">
-      <DependentUpon>BizAttachment.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Attachment\FrmAttachment.resx">
-      <DependentUpon>FrmAttachment.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Attachment\FrmAttachmentGroupView.resx">
-      <DependentUpon>FrmAttachmentGroupView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Attachment\FrmPicturePreview.resx">
-      <DependentUpon>FrmPicturePreview.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Attachment\FrmUploadFile.resx">
-      <DependentUpon>FrmUploadFile.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="BaseUI\BaseDock.resx">
       <DependentUpon>BaseDock.cs</DependentUpon>
     </EmbeddedResource>
@@ -757,30 +433,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BaseUI\FrmImportExcelData.resx">
       <DependentUpon>FrmImportExcelData.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BizControls\CompanyControl.resx">
-      <DependentUpon>CompanyControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BizControls\DeptControl.resx">
-      <DependentUpon>DeptControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BizControls\FunctionControl.resx">
-      <DependentUpon>FunctionControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BizControls\MenuControl.resx">
-      <DependentUpon>MenuControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BizControls\NameControl.resx">
-      <DependentUpon>NameControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BizControls\RowMergeGridView.resx">
-      <DependentUpon>RowMergeGridView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BizControls\UserNameControl.resx">
-      <DependentUpon>UserNameControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BizControls\VistaButton.resx">
-      <DependentUpon>VistaButton.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Device\CameraDialog.resx">
       <DependentUpon>CameraDialog.cs</DependentUpon>
@@ -797,30 +449,6 @@
     <EmbeddedResource Include="Device\PortraitControl.resx">
       <DependentUpon>PortraitControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dic\FrmBatchAddDictData.resx">
-      <DependentUpon>FrmBatchAddDictData.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dic\FrmBatchAddDistrict.resx">
-      <DependentUpon>FrmBatchAddDistrict.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dic\FrmCityDistrict.resx">
-      <DependentUpon>FrmCityDistrict.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dic\FrmDictionary.resx">
-      <DependentUpon>FrmDictionary.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dic\FrmEditCity.resx">
-      <DependentUpon>FrmEditCity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dic\FrmEditDictData.resx">
-      <DependentUpon>FrmEditDictData.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dic\FrmEditDictType.resx">
-      <DependentUpon>FrmEditDictType.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dic\FrmEditDistrict.resx">
-      <DependentUpon>FrmEditDistrict.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="DocViewer\FrmExcelView.resx">
       <DependentUpon>FrmExcelView.cs</DependentUpon>
     </EmbeddedResource>
@@ -833,29 +461,11 @@
     <EmbeddedResource Include="DocViewer\FrmWordView.resx">
       <DependentUpon>FrmWordView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Framework\AboutBox.resx">
-      <DependentUpon>AboutBox.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Framework\FrmFeeBack.resx">
       <DependentUpon>FrmFeeBack.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Framework\FrmModifyPassword.resx">
-      <DependentUpon>FrmModifyPassword.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Framework\FrmSettings.resx">
-      <DependentUpon>FrmSettings.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Framework\frmSplash.resx">
       <DependentUpon>frmSplash.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Framework\Login.resx">
-      <DependentUpon>Login.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Framework\Logon.resx">
-      <DependentUpon>Logon.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Framework\MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Framework\PageEmail.resx">
       <DependentUpon>PageEmail.cs</DependentUpon>
@@ -863,10 +473,7 @@
     <EmbeddedResource Include="Framework\PageReport.resx">
       <DependentUpon>PageReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Framework\RegDlg.resx">
-      <DependentUpon>RegDlg.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="LocalReport\ReportViewerDialog.resx">
+    <EmbeddedResource Include="LocalReports\ReportViewerDialog.resx">
       <DependentUpon>ReportViewerDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Other\GenerateUpdateConfig.resx">
@@ -875,25 +482,25 @@
     <EmbeddedResource Include="Other\QueryInputDialog.resx">
       <DependentUpon>QueryInputDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pager.WinControlDx\CoolPrintPreviewDialog.resx">
+    <EmbeddedResource Include="Pager\CoolPrintPreviewDialog.resx">
       <DependentUpon>CoolPrintPreviewDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pager.WinControlDx\FrmSelectColumnDisplay.resx">
+    <EmbeddedResource Include="Pager\FrmSelectColumnDisplay.resx">
       <DependentUpon>FrmSelectColumnDisplay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pager.WinControlDx\Pager.resx">
+    <EmbeddedResource Include="Pager\Pager.resx">
       <DependentUpon>Pager.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pager.WinControlDx\PrintOptions.resx">
+    <EmbeddedResource Include="Pager\PrintOptions.resx">
       <DependentUpon>PrintOptions.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pager.WinControlDx\WinGridView.resx">
+    <EmbeddedResource Include="Pager\WinGridView.resx">
       <DependentUpon>WinGridView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pager.WinControlDx\WinGridViewPager.resx">
+    <EmbeddedResource Include="Pager\WinGridViewPager.resx">
       <DependentUpon>WinGridViewPager.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pager.WinControlDx\WinListViewPager.resx">
+    <EmbeddedResource Include="Pager\WinListViewPager.resx">
       <DependentUpon>WinListViewPager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
@@ -906,66 +513,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RSARegistryTool\FrmRegeditTool.resx">
       <DependentUpon>FrmRegeditTool.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Security\FrmAddMoreFunction.resx">
-      <DependentUpon>FrmAddMoreFunction.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Security\FrmBlackIP.resx">
-      <DependentUpon>FrmBlackIP.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Security\FrmEditBlackIP.resx">
-      <DependentUpon>FrmEditBlackIP.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Security\FrmEditMenu.resx">
-      <DependentUpon>FrmEditMenu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Security\FrmEditOperationLog.resx">
-      <DependentUpon>FrmEditOperationLog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Security\FrmEditOperationLogSetting.resx">
-      <DependentUpon>FrmEditOperationLogSetting.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Security\FrmEditRoleOU.resx">
-      <DependentUpon>FrmEditRoleOU.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Security\FrmEditSystemType.resx">
-      <DependentUpon>FrmEditSystemType.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Security\FrmEditTree.resx">
-      <DependentUpon>FrmEditTree.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Security\FrmEditUser.resx">
-      <DependentUpon>FrmEditUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Security\FrmFunction.resx">
-      <DependentUpon>FrmFunction.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Security\FrmLoginLog.resx">
-      <DependentUpon>FrmLoginLog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Security\FrmMenu.resx">
-      <DependentUpon>FrmMenu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Security\FrmOperationLog.resx">
-      <DependentUpon>FrmOperationLog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Security\FrmOperationLogSetting.resx">
-      <DependentUpon>FrmOperationLogSetting.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Security\FrmOU.resx">
-      <DependentUpon>FrmOU.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Security\FrmRole.resx">
-      <DependentUpon>FrmRole.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Security\FrmSelectUser.resx">
-      <DependentUpon>FrmSelectUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Security\FrmSystemType.resx">
-      <DependentUpon>FrmSystemType.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Security\FrmUser.resx">
-      <DependentUpon>FrmUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Settings\EtchedLine.resx">
       <DependentUpon>EtchedLine.cs</DependentUpon>
@@ -990,10 +537,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JCodes.Framework.BLL\JCodes.Framework.BLL.csproj">
-      <Project>{2ec4520f-5197-4e3f-b689-7023a98623e0}</Project>
-      <Name>JCodes.Framework.BLL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\JCodes.Framework.Common\JCodes.Framework.Common.csproj">
       <Project>{0dc2c51c-4601-4045-a412-bed930658c2c}</Project>
       <Name>JCodes.Framework.Common</Name>
@@ -1007,23 +550,7 @@
       <Name>JCodes.Framework.jCodesenum</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controls\" />
-    <Folder Include="DocViewer\AdvanceSearch\" />
-    <Folder Include="DocViewer\BaseUI\" />
-    <Folder Include="DocViewer\Control\" />
-    <Folder Include="DocViewer\Device\" />
-    <Folder Include="NewFolder1\" />
-    <Folder Include="Other\AdvanceSearch\" />
-    <Folder Include="Other\BaseUI\" />
-    <Folder Include="Other\Control\" />
-    <Folder Include="Other\Device\" />
-    <Folder Include="Other\DocViewer\AdvanceSearch\" />
-    <Folder Include="Other\DocViewer\BaseUI\" />
-    <Folder Include="Other\DocViewer\Control\" />
-    <Folder Include="Other\DocViewer\Device\" />
-    <Folder Include="Other\LocalReport\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>echo "编译后处理的事情 JCodes.Framework.CommonControl"</PostBuildEvent>

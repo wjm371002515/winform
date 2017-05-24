@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 using JCodes.Framework.Entity;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Framework
 {
 	/// <summary>
 	/// 数据访问层的接口

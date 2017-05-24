@@ -9,7 +9,7 @@ using System.Globalization;
 using System.Windows.Forms;
 using JCodes.Framework.jCodesenum.BaseEnum;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Winform
 {
     #region Supporting Classes
 

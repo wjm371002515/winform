@@ -6,8 +6,10 @@ using System.Collections.Generic;
 using JCodes.Framework.Common;
 using JCodes.Framework.Entity;
 using JCodes.Framework.IDAL;
+using JCodes.Framework.Common.Framework.BaseDAL;
+using JCodes.Framework.Common.Databases;
 
-namespace WHC.Dictionary.DALSQL
+namespace JCodes.Framework.SQLServerDAL
 {
 	/// <summary>
 	/// District 的摘要说明。

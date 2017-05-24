@@ -92,11 +92,11 @@
     <Compile Include="FormMain\frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormMain\frmSettings.cs">
+    <Compile Include="FormMain\frmConnSettings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormMain\frmSettings.Designer.cs">
-      <DependentUpon>frmSettings.cs</DependentUpon>
+    <Compile Include="FormMain\frmConnSettings.Designer.cs">
+      <DependentUpon>frmConnSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Person.cs" />
     <Compile Include="Program.cs" />
@@ -110,8 +110,8 @@
     <EmbeddedResource Include="FormMain\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormMain\frmSettings.resx">
-      <DependentUpon>frmSettings.cs</DependentUpon>
+    <EmbeddedResource Include="FormMain\frmConnSettings.resx">
+      <DependentUpon>frmConnSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="rdlc\WHC.Member.ConsumptionReport.rdlc" />
     <EmbeddedResource Include="rdlc\WHC.WareHouseMis.PurchaseReport.rdlc" />
@@ -137,6 +137,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Template\网下利率询价及申购申请表汇总表.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="writelog.bat" />
   </ItemGroup>
   <ItemGroup>
@@ -186,6 +189,7 @@
     <Content Include="images\sun2.png" />
     <Content Include="images\yezi2.png" />
     <Content Include="images\yezi3.png" />
+    <Content Include="note.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JCodes.Framework.AddIn\JCodes.Framework.AddIn.csproj">

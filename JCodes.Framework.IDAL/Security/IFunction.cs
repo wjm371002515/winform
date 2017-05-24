@@ -1,11 +1,12 @@
 ﻿using JCodes.Framework.Common;
+using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Entity;
 using System.Collections;
 using System.Collections.Generic;
 
 namespace JCodes.Framework.IDAL
 {
-    public interface IFunction : IBaseDAL<FunctionInfo>
+    public interface IFunctions : IBaseDAL<FunctionInfo>
 	{
         List<FunctionInfo> GetFunctions(string roleIDs, string typeID);
         List<FunctionNodeInfo> GetFunctionNodes(string roleIDs, string typeID);

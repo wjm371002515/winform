@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using JCodes.Framework.jCodesenum.BaseEnum;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Winform
 {
     /// <summary>
     /// 实现系统全局热键注册辅助类
@@ -73,8 +73,9 @@ namespace JCodes.Framework.Common
                     m_HotKeyWnd.AssignHandle(m_WindowHandle);
                     Star = true;
                 }
-                catch
+                catch (Exception ex)
                 {
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(RegisterHotKeyHelper));
                     StopHotKey();
                 }
             }

@@ -13,6 +13,13 @@ namespace JCodes.Framework.Common
         /// </summary>
         public const string jCodes_VERSION = "V1.0.0.0";
 
+        #region 主程序常量
+        /// <summary>
+        /// 反馈的邮箱 TODO
+        /// </summary>
+        public const string Feedback_Mail = "http://www.baidu.com";
+        #endregion
+
         //部分常量
         public const int WS_CHILD = 0x40000000;
         public const int WS_VISIBLE = 0x10000000;

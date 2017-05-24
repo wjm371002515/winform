@@ -4,7 +4,7 @@ using System.Text;
 using System.Diagnostics;
 using JCodes.Framework.jCodesenum.BaseEnum;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Winform
 {
     /// <summary>
     /// 对进程的窗体进行冻结、解冻操作辅助类

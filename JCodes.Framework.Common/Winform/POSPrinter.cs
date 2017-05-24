@@ -3,8 +3,9 @@ using System.Text;
 using System.Runtime.InteropServices;
 using System.IO;
 using System.Drawing;
+using JCodes.Framework.jCodesenum.BaseEnum;
 
-namespace JCodes.Framework.Common
+namespace JCodes.Framework.Common.Winform
 {
     /// <summary>
     /// 并口POS打印机操作辅助类
@@ -68,6 +69,7 @@ namespace JCodes.Framework.Common
             }
             catch (Exception ex)
             {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(POSPrinter));
                 return ex.Message;
             }
         }
