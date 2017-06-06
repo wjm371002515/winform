@@ -27,7 +27,7 @@ namespace JCodes.Framework.OracleDAL
             }
         }
         public Role()
-            : base("T_ACL_Role", "ID")
+            : base(OraclePortal.gc._securityTablePre + "Role", "ID")
         {
             this.SeqName = string.Format("SEQ_{0}", tableName);//数值型主键，通过序列生成
             this.sortField = "SortCode";
@@ -130,7 +130,7 @@ namespace JCodes.Framework.OracleDAL
 
         public void AddFunction(string functionID, int roleID)
         {
-            string commandText = string.Format("INSERT INTO T_ACL_Role_Function(Function_ID, Role_ID) VALUES('{0}',{1})", functionID, roleID);
+            string commandText = string.Format("INSERT INTO {0}Role_Function(Function_ID, Role_ID) VALUES('{1}',{2})", OraclePortal.gc._securityTablePre, functionID, roleID);
 
             Database db = CreateDatabase();
             DbCommand command = db.GetSqlStringCommand(commandText);
@@ -139,7 +139,7 @@ namespace JCodes.Framework.OracleDAL
 
         public void AddOU(int ouID, int roleID)
         {
-            string commandText = string.Format("INSERT INTO T_ACL_OU_Role(OU_ID, Role_ID) VALUES({0},{1})", ouID, roleID);
+            string commandText = string.Format("INSERT INTO {0}OU_Role(OU_ID, Role_ID) VALUES({1},{2})", OraclePortal.gc._securityTablePre, ouID, roleID);
             Database db = CreateDatabase();
             DbCommand command = db.GetSqlStringCommand(commandText);
             db.ExecuteNonQuery(command);
@@ -147,7 +147,7 @@ namespace JCodes.Framework.OracleDAL
 
         public void AddUser(int userID, int roleID)
         {
-            string commandText = string.Format("INSERT INTO T_ACL_User_Role(User_ID, Role_ID) VALUES({0},{1})", userID, roleID);
+            string commandText = string.Format("INSERT INTO {0}User_Role(User_ID, Role_ID) VALUES({1},{2})", OraclePortal.gc._securityTablePre, userID, roleID);
             Database db = CreateDatabase();
             DbCommand command = db.GetSqlStringCommand(commandText);
             db.ExecuteNonQuery(command);
@@ -161,7 +161,7 @@ namespace JCodes.Framework.OracleDAL
         /// <returns></returns>
         public bool EditRoleUsers(int roleID, List<int> newUserList)
         {
-            string sql = string.Format("Delete from T_ACL_User_Role where Role_ID = {0} ", roleID);
+            string sql = string.Format("Delete from {0}User_Role where Role_ID = {1} ", OraclePortal.gc._securityTablePre, roleID);
             base.SqlExecute(sql);
 
             foreach (int userId in newUserList)
@@ -179,7 +179,7 @@ namespace JCodes.Framework.OracleDAL
         /// <returns></returns>
         public bool EditRoleFunctions(int roleID, List<string> newFunctionList)
         {
-            string sql = string.Format("Delete from T_ACL_Role_Function where Role_ID = {0} ", roleID);
+            string sql = string.Format("Delete from {0}Role_Function where Role_ID = {1} ", OraclePortal.gc._securityTablePre, roleID);
             base.SqlExecute(sql);
 
             foreach (string functionId in newFunctionList)
@@ -197,7 +197,7 @@ namespace JCodes.Framework.OracleDAL
         /// <returns></returns>
         public bool EditRoleOUs(int roleID, List<int> newOUList)
         {
-            string sql = string.Format("Delete from T_ACL_OU_Role where Role_ID = {0} ", roleID);
+            string sql = string.Format("Delete from {0}OU_Role where Role_ID = {1} ", OraclePortal.gc._securityTablePre, roleID);
             base.SqlExecute(sql);
 
             foreach (int ouId in newOUList)
@@ -209,26 +209,26 @@ namespace JCodes.Framework.OracleDAL
 
         public List<RoleInfo> GetRolesByFunction(string functionID)
         {
-            string sql = string.Format(@"SELECT * FROM T_ACL_Role 
-            INNER JOIN T_ACL_Role_Function On T_ACL_Role.ID=T_ACL_Role_Function.Role_ID WHERE Function_ID ='{0}' ", functionID);
+            string sql = string.Format(@"SELECT * FROM {0}Role 
+            INNER JOIN {0}Role_Function On {0}Role.ID={0}Role_Function.Role_ID WHERE Function_ID ='{1}' ", OraclePortal.gc._securityTablePre, functionID);
             return this.GetList(sql, null);
         }
 
         public List<RoleInfo> GetRolesByOU(int ouID)
         {
-            string sql = "SELECT * FROM T_ACL_Role INNER JOIN T_ACL_OU_Role ON T_ACL_Role.ID=Role_ID WHERE OU_ID = " + ouID;
+            string sql = string.Format( "SELECT * FROM {0}Role INNER JOIN {0}OU_Role ON {0}Role.ID=Role_ID WHERE OU_ID = {1}", OraclePortal.gc._securityTablePre, ouID);
             return this.GetList(sql, null);
         }
 
         public List<RoleInfo> GetRolesByUser(int userID)
         {
-            string sql = "SELECT * FROM T_ACL_Role INNER JOIN T_ACL_User_Role On T_ACL_Role.ID=T_ACL_User_Role.Role_ID WHERE User_ID = " + userID;
+            string sql = string.Format("SELECT * FROM {0}Role INNER JOIN {0}User_Role On {0}Role.ID={0}User_Role.Role_ID WHERE User_ID = {1}",OraclePortal.gc._securityTablePre, userID);
             return this.GetList(sql, null);
         }
 
         public void RemoveFunction(string functionID, int roleID)
         {
-            string commandText = string.Format("DELETE FROM T_ACL_Role_Function WHERE Function_ID='{0}' AND Role_ID={1}", functionID, roleID);
+            string commandText = string.Format("DELETE FROM {0}Role_Function WHERE Function_ID='{1}' AND Role_ID={2}", OraclePortal.gc._securityTablePre, functionID, roleID);
             Database db = CreateDatabase();
             DbCommand command = db.GetSqlStringCommand(commandText);
             db.ExecuteNonQuery(command);
@@ -236,7 +236,7 @@ namespace JCodes.Framework.OracleDAL
 
         public void RemoveOU(int ouID, int roleID)
         {
-            string commandText = string.Format("DELETE FROM T_ACL_OU_Role WHERE OU_ID={0} AND Role_ID={1}", ouID, roleID);
+            string commandText = string.Format("DELETE FROM {0}OU_Role WHERE OU_ID={1} AND Role_ID={2}", OraclePortal.gc._securityTablePre, ouID, roleID);
             Database db = CreateDatabase();
             DbCommand command = db.GetSqlStringCommand(commandText);
             db.ExecuteNonQuery(command);
@@ -244,7 +244,7 @@ namespace JCodes.Framework.OracleDAL
 
         public void RemoveUser(int userID, int roleID)
         {
-            string commandText = string.Format("DELETE FROM T_ACL_User_Role WHERE User_ID={0} AND Role_ID={1}", userID, roleID);
+            string commandText = string.Format("DELETE FROM {0}User_Role WHERE User_ID={1} AND Role_ID={2}",OraclePortal.gc._securityTablePre, userID, roleID);
             Database db = CreateDatabase();
             DbCommand command = db.GetSqlStringCommand(commandText);
             db.ExecuteNonQuery(command);

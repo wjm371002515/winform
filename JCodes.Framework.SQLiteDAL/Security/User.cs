@@ -28,7 +28,7 @@ namespace JCodes.Framework.SQLiteDAL
             }
         }
         public User()
-            : base("T_ACL_User", "ID")
+            : base(SQLitePortal.gc._securityTablePre+"User", "ID")
         {
             this.sortField = "SortCode";
             this.isDescending = false;
@@ -297,30 +297,30 @@ namespace JCodes.Framework.SQLiteDAL
         /// <returns></returns>
         public List<SimpleUserInfo> GetSimpleUsersByOU(int ouID)
         {
-            string sql = string.Format(@"Select ID,Name,Password,FullName,HandNo,MobilePhone,Email From {0} 
-            Inner Join T_ACL_OU_User ON {0}.ID=User_ID Where Deleted = 0 AND T_ACL_OU_User.OU_ID = {1}", tableName, ouID);
+            string sql = string.Format(@"Select ID,Name,Password,FullName,HandNo,MobilePhone,Email From {1} 
+            Inner Join {0}OU_User ON {1}.ID=User_ID Where Deleted = 0 AND {0}OU_User.OU_ID = {2}", SQLitePortal.gc._securityTablePre, tableName, ouID);
             return FillSimpleUsers(sql);
         }
 
         public List<SimpleUserInfo> GetSimpleUsersByRole(int roleID)
         {
-            string sql = string.Format(@"Select ID,Name,Password,FullName,HandNo,MobilePhone,Email From {0} 
-            INNER JOIN T_ACL_User_Role ON {0}.ID=User_ID Where Deleted = 0 AND T_ACL_User_Role.Role_ID ={1} ", tableName, roleID);
+            string sql = string.Format(@"Select ID,Name,Password,FullName,HandNo,MobilePhone,Email From {1} 
+            INNER JOIN {0}User_Role ON {1}.ID=User_ID Where Deleted = 0 AND {0}User_Role.Role_ID ={2} ", SQLitePortal.gc._securityTablePre, tableName, roleID);
 
             return this.FillSimpleUsers(sql);
         }
 
         public List<UserInfo> GetUsersByOU(int ouID)
         {
-            string sql = string.Format(@"SELECT * FROM {0} INNER JOIN T_ACL_OU_User On {0}.ID=T_ACL_OU_User.User_ID 
-            WHERE Deleted = 0 AND T_ACL_OU_User.OU_ID ={1} ", tableName, ouID);
+            string sql = string.Format(@"SELECT * FROM {1} INNER JOIN {0}OU_User On {1}.ID={0}OU_User.User_ID 
+            WHERE Deleted = 0 AND {0}OU_User.OU_ID ={2} ", SQLitePortal.gc._securityTablePre, tableName, ouID);
             return GetList(sql, null);
         }
 
         public List<UserInfo> GetUsersByRole(int roleID)
         {
-            string sql = string.Format(@"SELECT * FROM {0} INNER JOIN T_ACL_User_Role On {0}.ID=T_ACL_User_Role.User_ID 
-            WHERE Deleted = 0 AND T_ACL_User_Role.Role_ID = {1}", tableName, roleID);
+            string sql = string.Format(@"SELECT * FROM {1} INNER JOIN {0}User_Role On {1}.ID={0}User_Role.User_ID 
+            WHERE Deleted = 0 AND {0}User_Role.Role_ID = {2}", SQLitePortal.gc._securityTablePre, tableName, roleID);
             return this.GetList(sql, null);
         }
 

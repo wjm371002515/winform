@@ -83,12 +83,12 @@ namespace JCodes.Framework.SQLServerDAL
             #region 添加别名解析
             //dict.Add("ID", "编号");
             dict.Add("ID", "");
-             dict.Add("Role_ID", "角色ID");
-             dict.Add("BelongCompanys", "所属公司");
-             dict.Add("BelongDepts", "所属部门");
-             dict.Add("ExcludeDepts", "排除部门");
-             dict.Add("Note", "备注");
-             #endregion
+            dict.Add("Role_ID", "角色ID");
+            dict.Add("BelongCompanys", "所属公司");
+            dict.Add("BelongDepts", "所属部门");
+            dict.Add("ExcludeDepts", "排除部门");
+            dict.Add("Note", "备注");
+            #endregion
 
             return dict;
         }

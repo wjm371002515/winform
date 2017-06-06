@@ -1,0 +1,181 @@
+using System;
+using System.Text;
+using System.Data;
+using System.Drawing;
+using System.Windows.Forms;
+using System.ComponentModel;
+using System.Collections.Generic;
+using JCodes.Framework.Entity;
+using JCodes.Framework.Common;
+using JCodes.Framework.BLL;
+using JCodes.Framework.CommonControl;
+using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.CommonControl.BaseUI;
+using JCodes.Framework.CommonControl.Other;
+using JCodes.Framework.Common.Framework;
+
+namespace JCodes.Framework.AddIn.UI.Security
+{
+    public partial class FrmEditSystemType : BaseEditForm
+    {
+        public FrmEditSystemType()
+        {
+            InitializeComponent();
+        }
+
+        /// <summary>
+        /// 实现控件输入检查的函数
+        /// </summary>
+        /// <returns></returns>
+        public override bool CheckInput()
+        {
+            bool result = true;//默认是可以通过
+
+            #region MyRegion
+
+            if (this.txtOid.Text.Trim().Length == 0)
+            {
+                MessageDxUtil.ShowTips("请输入系统标识");
+                this.txtOid.Focus();
+                result = false;
+            }
+            else if (this.txtName.Text.Trim().Length == 0)
+            {
+                MessageDxUtil.ShowTips("请输入系统名称");
+                this.txtName.Focus();
+                result = false;
+            }
+            #endregion
+
+            return result;
+        }
+
+        /// <summary>
+        /// 初始化数据字典
+        /// </summary>
+        private void InitDictItem()
+        {
+            //初始化代码
+        }
+
+        /// <summary>
+        /// 数据显示的函数
+        /// </summary>
+        public override void DisplayData()
+        {
+            InitDictItem();//数据字典加载（公用）
+
+            if (!string.IsNullOrEmpty(ID))
+            {
+                #region 显示客户信息
+                SystemTypeInfo info = BLLFactory<SystemType>.Instance.FindByID(ID);
+                if (info != null)
+                {
+                    this.txtOid.Text = info.OID;
+                    txtName.Text = info.Name;
+                    txtCustomID.Text = info.CustomID;
+                    txtAuthorize.Text = info.Authorize;
+                    txtNote.Text = info.Note;
+
+                    this.txtOid.Enabled = false;
+                }
+                #endregion
+                //this.btnOK.Enabled = Portal.gc.HasFunction("SystemType/Edit");             
+            }
+            else
+            {                
+                //this.btnOK.Enabled = Portal.gc.HasFunction("SystemType/Add");  
+            }
+        }
+
+        /// <summary>
+        /// 编辑或者保存状态下取值函数
+        /// </summary>
+        /// <param name="info"></param>
+        private void SetInfo(SystemTypeInfo info)
+        {
+            info.Name = txtName.Text;
+            info.CustomID = txtCustomID.Text;
+            info.Authorize = txtAuthorize.Text;
+            info.Note = txtNote.Text;
+        }
+
+        /// <summary>
+        /// 新增状态下的数据保存
+        /// </summary>
+        /// <returns></returns>
+        public override bool SaveAddNew()
+        {
+            SystemTypeInfo info = new SystemTypeInfo();
+            SetInfo(info);
+
+            try
+            {
+                #region 新增数据
+                //检查是否还有其他相同关键字的记录
+                bool exist = BLLFactory<SystemType>.Instance.IsExistKey("OID", info.OID);
+                if (exist)
+                {
+                    MessageDxUtil.ShowTips("指定的【系统标识】已经存在，不能重复添加，请修改");
+                    return false;
+                }
+
+                bool succeed = BLLFactory<SystemType>.Instance.Insert(info);
+                if (succeed)
+                {
+                    //可添加其他关联操作
+
+                    return true;
+                }
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmEditSystemType));
+                MessageDxUtil.ShowError(ex.Message);
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 编辑状态下的数据保存
+        /// </summary>
+        /// <returns></returns>
+        public override bool SaveUpdated()
+        {
+            //检查不同ID是否还有其他相同关键字的记录
+            string condition = string.Format("Name ='{0}' and OID <> '{1}' ", this.txtName.Text, ID);
+            bool exist = BLLFactory<SystemType>.Instance.IsExistRecord(condition);
+            if (exist)
+            {
+                MessageDxUtil.ShowTips("指定的【系统名称】已经存在，不能重复添加，请修改");
+                return false;
+            }
+
+            SystemTypeInfo info = BLLFactory<SystemType>.Instance.FindByID(ID);
+            if (info != null)
+            {
+                SetInfo(info);
+
+                try
+                {
+                    #region 更新数据
+                    bool succeed = BLLFactory<SystemType>.Instance.Update(info, info.OID);
+                    if (succeed)
+                    {
+                        //可添加其他关联操作
+
+                        return true;
+                    }
+                    #endregion
+                }
+                catch (Exception ex)
+                {
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmEditSystemType));
+                    MessageDxUtil.ShowError(ex.Message);
+                }
+            }
+            return false;
+        }
+    }
+}

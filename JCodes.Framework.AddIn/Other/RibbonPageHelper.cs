@@ -17,6 +17,9 @@ using JCodes.Framework.CommonControl;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.CommonControl.PlugInInterface;
+using System.Threading;
+using DevExpress.Utils;
+using System.Diagnostics;
 
 namespace JCodes.Framework.AddIn.Other
 {
@@ -73,27 +76,58 @@ namespace JCodes.Framework.AddIn.Other
                         //如果没有菜单的权限，则跳过
                         if (!Portal.gc.HasFunction(thirdInfo.FunctionId)) continue;
 
-                        //添加功能按钮（三级菜单）
-                        BarButtonItem button = new BarButtonItem();
-                        button.PaintStyle = BarItemPaintStyle.CaptionGlyph;
-                        button.LargeGlyph = LoadIcon(thirdInfo.Icon);
-                        button.Glyph = LoadIcon(thirdInfo.Icon);
-
-                        button.Name = thirdInfo.ID;
-                        button.Caption = thirdInfo.Name;
-                        button.Tag = thirdInfo.WinformType;
-                        button.ItemClick += (sender, e) =>
+                        // 判断 WinformType 如果是 RgbiSkins 则表示皮肤
+                        if (thirdInfo.WinformType == Const.RgbiSkins)
                         {
-                            if (button.Tag != null && !string.IsNullOrEmpty(button.Tag.ToString()))
+                            RibbonGalleryBarItem rgbi = new RibbonGalleryBarItem();
+                            var galleryItemGroup1 = new GalleryItemGroup();
+                            rgbi.Name = thirdInfo.ID;
+                            rgbi.Caption = thirdInfo.Name;
+                            rgbi.Gallery.Groups.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItemGroup[] {
+            galleryItemGroup1});
+                            group.ItemLinks.Add(rgbi);
+                            DevExpress.XtraBars.Helpers.SkinHelper.InitSkinGallery(rgbi, true);
+                        }
+                        else {
+                            //添加功能按钮（三级菜单）
+                            BarButtonItem button = new BarButtonItem();
+                            button.PaintStyle = BarItemPaintStyle.CaptionGlyph;
+                            button.LargeGlyph = LoadIcon(thirdInfo.Icon);
+                            button.Glyph = LoadIcon(thirdInfo.Icon);
+
+                            button.Name = thirdInfo.ID;
+                            button.Caption = thirdInfo.Name;
+                            button.Tag = thirdInfo.WinformType;
+                            button.ItemClick += (sender, e) =>
                             {
-                                LoadPlugInForm(button.Tag.ToString());
+                                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, "吴建明测试1"+DateTime.Now.ToShortTimeString(), typeof(RibbonPageHelper));
+
+                                if (button.Tag != null && !string.IsNullOrEmpty(button.Tag.ToString()))
+                                {
+                                    Portal.gc._waitBeforeLogin = new WaitDialogForm("正则加载 "+button.Caption + " 窗体中...", "加载窗体");
+                                    LoadPlugInForm(button.Tag.ToString());
+                                    Portal.gc._waitBeforeLogin.Invoke((EventHandler)delegate {
+                                        if (Portal.gc._waitBeforeLogin != null)
+                                        { 
+                                            Portal.gc._waitBeforeLogin.Close(); Portal.gc._waitBeforeLogin = null;
+                                        }
+                                    });  
+                                }
+                                else
+                                {
+                                    MessageDxUtil.ShowTips(button.Caption);
+                                }
+                            };
+                            if (thirdInfo.WinformType.Contains(Const.BeginGroup))
+                            {
+                                group.ItemLinks.Add(button, true);
                             }
                             else
                             {
-                                MessageDxUtil.ShowTips(button.Caption);
+                                group.ItemLinks.Add(button);
                             }
-                        };
-                        group.ItemLinks.Add(button);
+                            
+                        }
                     }
                 }
             }
@@ -107,7 +141,7 @@ namespace JCodes.Framework.AddIn.Other
         private Image LoadIcon(string iconPath)
         {
             // 20170512 wjm 临时修改
-            Image result = Properties.Resources.menuIcon.ToBitmap();
+            Image result = Properties.Resources.favicon.ToBitmap();
             try
             {
                 if (!string.IsNullOrEmpty(iconPath))
@@ -140,6 +174,14 @@ namespace JCodes.Framework.AddIn.Other
                 string type = itemArray[0].Trim();
                 string filePath = itemArray[1].Trim();//必须是相对路径
 
+                // 判断是否是打开连接
+                // 如果是 则做页面的调整操作
+                if (Const.BtnLink == type)
+                {
+                    Process.Start(filePath);
+                    return;
+                }
+
                 //判断是否配置了显示模式，默认窗体为Show非模式显示
                 string showDialog = (itemArray.Length > 2) ? itemArray[2].ToLower() : "";
                 bool isShowDialog = (showDialog == "1") || (showDialog == "dialog");
@@ -151,7 +193,7 @@ namespace JCodes.Framework.AddIn.Other
                     Type objType = tempAssembly.GetType(type);
                     if (objType != null)
                     {
-                        LoadMdiForm(this.mainForm, objType, isShowDialog);    
+                        LoadMdiForm(this.mainForm, objType, isShowDialog);
                     }
                 }
             }

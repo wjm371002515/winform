@@ -1,0 +1,186 @@
+using System;
+using System.Text;
+using System.Data;
+using System.Drawing;
+using System.Windows.Forms;
+using System.ComponentModel;
+using System.Collections.Generic;
+using JCodes.Framework.Entity;
+using JCodes.Framework.Common;
+using JCodes.Framework.BLL;
+using JCodes.Framework.CommonControl;
+using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.CommonControl.BaseUI;
+using JCodes.Framework.CommonControl.Other;
+using JCodes.Framework.Common.Framework;
+using JCodes.Framework.AddIn.Other;
+
+namespace JCodes.Framework.AddIn.UI._50Go
+{
+    public partial class FrmEditCouponCategory : BaseEditForm
+    {
+        public FrmEditCouponCategory()
+        {
+            InitializeComponent();
+        }
+
+        /// <summary>
+        /// 数据显示的函数
+        /// </summary>
+        public override void DisplayData()
+        {
+            if (!string.IsNullOrEmpty(ID))
+            {
+                #region 显示客户信息
+                CouponCategoryInfo info = BLLFactory<CouponCategory>.Instance.FindByID(ID);
+                if (info != null)
+                {
+                    txtHandNo.Text = info.HandNo;
+                    txtName.Text = info.Name;
+                    txtCompany.Value = info.BelongCompanys;
+                    txtEnabled.SelectedIndex = info.Enabled;
+                }
+                #endregion            
+            }
+        }
+
+        /// <summary>
+        /// 编辑状态下的数据保存
+        /// </summary>
+        /// <returns></returns>
+        public override bool SaveUpdated()
+        {
+            CouponCategoryInfo info = BLLFactory<CouponCategory>.Instance.FindByID(ID);
+            if (info != null)
+            {
+                SetInfo(info);
+
+                try
+                {
+                    #region 更新数据
+                    bool succeed = BLLFactory<CouponCategory>.Instance.Update(info, ID);
+                    if (succeed)
+                    {
+                        //可添加其他关联操作
+
+                        return true;
+                    }
+                    #endregion
+                }
+                catch (Exception ex)
+                {
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmEditCouponCategory));
+                    MessageDxUtil.ShowError(ex.Message);
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 新增状态下的数据保存
+        /// </summary>
+        /// <returns></returns>
+        public override bool SaveAddNew()
+        {
+            //检查不同ID是否还有其他相同关键字的记录
+            string condition = string.Format("HandNo ='{0}' ", txtHandNo.Text.Trim());
+            bool exist = BLLFactory<CouponCategory>.Instance.IsExistRecord(condition);
+            if (exist)
+            {
+                MessageDxUtil.ShowTips("指定的【分类编码】已经存在，请修改");
+                return false;
+            }
+
+            CouponCategoryInfo couponCategoryInfo = new CouponCategoryInfo();
+            SetInfo(couponCategoryInfo);
+
+            try
+            {
+                #region 新增数据
+                bool succeed = BLLFactory<CouponCategory>.Instance.Insert(couponCategoryInfo);
+                if (succeed)
+                {
+                    return true;
+                }
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmEditCouponCategory));
+                MessageDxUtil.ShowError(ex.Message);
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 编辑或者保存状态下取值函数
+        /// </summary>
+        /// <param name="info"></param>
+        private void SetInfo(CouponCategoryInfo Info)
+        {
+            // 如果没有ID值则为新增
+            if (string.IsNullOrEmpty(Info.ID))
+            {
+                Info.ID = Guid.NewGuid().ToString();
+                Info.Creator = Portal.gc.UserInfo.FullName;
+                Info.Creator_ID = Portal.gc.UserInfo.ID.ToString();
+                Info.CreateTime = DateTime.Now;
+            }
+            Info.HandNo = txtHandNo.Text.Trim();
+            Info.Name = txtName.Text.Trim();
+            Info.BelongCompanys = txtCompany.Value;
+            Info.Enabled = txtEnabled.SelectedIndex;
+            if (!string.IsNullOrEmpty(Info.ID))
+            {
+                Info.Editor = Portal.gc.UserInfo.FullName;
+                Info.Editor_ID = Portal.gc.UserInfo.ID.ToString();
+                Info.EditTime = DateTime.Now;
+            }
+        }
+
+        /// <summary>
+        /// 实现控件输入检查的函数
+        /// </summary>
+        /// <returns></returns>
+        public override bool CheckInput()
+        {
+            bool result = true;//默认是可以通过
+
+            #region MyRegion
+
+            if (this.txtHandNo.Text.Trim().Length == 0)
+            {
+                MessageDxUtil.ShowTips("请输入分类编码");
+                this.txtHandNo.Focus();
+                result = false;
+            }
+            else if (this.txtName.Text.Trim().Length == 0)
+            {
+                MessageDxUtil.ShowTips("请输入分类名称");
+                this.txtName.Focus();
+                result = false;
+            }
+            else if (this.txtCompany.Text.Trim().Length == 0)
+            {
+                MessageDxUtil.ShowTips("请输入操作公司");
+                this.txtCompany.Focus();
+                result = false;
+            }
+            else if (this.txtEnabled.Text.Trim().Length == 0)
+            {
+                MessageDxUtil.ShowTips("请输入是否可用");
+                this.txtCompany.Focus();
+                result = false;
+            }
+            else if (this.txtName.Text.Contains("-"))
+            {
+                MessageDxUtil.ShowTips("分类名称中不允许输入字符-");
+                this.txtName.Focus();
+                result = false;
+            }
+            #endregion
+
+            return result;
+        }
+    }
+}

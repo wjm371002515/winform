@@ -28,116 +28,107 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.sbCustomization = new DevExpress.XtraEditors.SimpleButton();
-            this.sbClose = new DevExpress.XtraEditors.SimpleButton();
-            this.sbLogin = new DevExpress.XtraEditors.SimpleButton();
-            this.label1 = new DevExpress.Utils.Frames.ApplicationCaption8_1();
-            this.teUserName = new DevExpress.XtraEditors.TextEdit();
-            this.tePwd = new DevExpress.XtraEditors.TextEdit();
-            this.comboBoxEdit1 = new DevExpress.XtraEditors.ComboBoxEdit();
-            ((System.ComponentModel.ISupportInitialize)(this.teUserName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tePwd.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
+            this.components = new System.ComponentModel.Container();
+            this.button1 = new System.Windows.Forms.Button();
+            this.snapDockManager1 = new DevExpress.Snap.Extensions.SnapDockManager(this.components);
+            this.txtLog = new System.Windows.Forms.RichTextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
+            ((System.ComponentModel.ISupportInitialize)(this.snapDockManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             this.SuspendLayout();
             // 
-            // sbCustomization
+            // button1
             // 
-            this.sbCustomization.Location = new System.Drawing.Point(117, 458);
-            this.sbCustomization.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.sbCustomization.Name = "sbCustomization";
-            this.sbCustomization.Size = new System.Drawing.Size(94, 29);
-            this.sbCustomization.TabIndex = 16;
-            this.sbCustomization.TabStop = false;
-            this.sbCustomization.Text = "系统配置";
-            this.sbCustomization.ToolTip = "系统配置";
-            this.sbCustomization.ToolTipTitle = "Show";
+            this.button1.Location = new System.Drawing.Point(127, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(96, 37);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "反射1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // sbClose
+            // snapDockManager1
             // 
-            this.sbClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.sbClose.Location = new System.Drawing.Point(714, 458);
-            this.sbClose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.sbClose.Name = "sbClose";
-            this.sbClose.Size = new System.Drawing.Size(146, 29);
-            this.sbClose.TabIndex = 15;
-            this.sbClose.TabStop = false;
-            this.sbClose.Text = "取    消";
+            this.snapDockManager1.Form = this;
+            this.snapDockManager1.SnapControl = null;
+            this.snapDockManager1.TopZIndexControls.AddRange(new string[] {
+            "DevExpress.XtraBars.BarDockControl",
+            "DevExpress.XtraBars.StandaloneBarDockControl",
+            "System.Windows.Forms.StatusBar",
+            "System.Windows.Forms.MenuStrip",
+            "System.Windows.Forms.StatusStrip",
+            "DevExpress.XtraBars.Ribbon.RibbonStatusBar",
+            "DevExpress.XtraBars.Ribbon.RibbonControl",
+            "DevExpress.XtraBars.Navigation.OfficeNavigationBar"});
             // 
-            // sbLogin
+            // txtLog
             // 
-            this.sbLogin.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.sbLogin.Location = new System.Drawing.Point(563, 458);
-            this.sbLogin.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.sbLogin.Name = "sbLogin";
-            this.sbLogin.Size = new System.Drawing.Size(141, 29);
-            this.sbLogin.TabIndex = 14;
-            this.sbLogin.TabStop = false;
-            this.sbLogin.Text = "登    陆";
+            this.txtLog.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.txtLog.Location = new System.Drawing.Point(0, 218);
+            this.txtLog.Name = "txtLog";
+            this.txtLog.Size = new System.Drawing.Size(977, 397);
+            this.txtLog.TabIndex = 1;
+            this.txtLog.Text = "";
             // 
-            // label1
+            // button2
             // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(117, 128);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(743, 90);
-            this.label1.TabIndex = 13;
-            this.label1.TabStop = false;
-            this.label1.Text = "Enter your data";
+            this.button2.Location = new System.Drawing.Point(12, 12);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(96, 37);
+            this.button2.TabIndex = 0;
+            this.button2.Text = "反射1";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // teUserName
+            // layoutControl1
             // 
-            this.teUserName.Location = new System.Drawing.Point(315, 255);
-            this.teUserName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.teUserName.Name = "teUserName";
-            this.teUserName.Size = new System.Drawing.Size(416, 28);
-            this.teUserName.TabIndex = 17;
+            this.layoutControl1.Location = new System.Drawing.Point(530, 82);
+            this.layoutControl1.Name = "layoutControl1";
+            this.layoutControl1.Root = this.layoutControlGroup1;
+            this.layoutControl1.Size = new System.Drawing.Size(180, 120);
+            this.layoutControl1.TabIndex = 2;
+            this.layoutControl1.Text = "layoutControl1";
             // 
-            // tePwd
+            // layoutControlGroup1
             // 
-            this.tePwd.Location = new System.Drawing.Point(315, 293);
-            this.tePwd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tePwd.Name = "tePwd";
-            this.tePwd.Size = new System.Drawing.Size(416, 28);
-            this.tePwd.TabIndex = 18;
-            // 
-            // comboBoxEdit1
-            // 
-            this.comboBoxEdit1.Location = new System.Drawing.Point(315, 331);
-            this.comboBoxEdit1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.comboBoxEdit1.Name = "comboBoxEdit1";
-            this.comboBoxEdit1.Size = new System.Drawing.Size(416, 28);
-            this.comboBoxEdit1.TabIndex = 19;
+            this.layoutControlGroup1.CustomizationFormText = "layoutControlGroup1";
+            this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.layoutControlGroup1.GroupBordersVisible = false;
+            this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlGroup1.Name = "layoutControlGroup1";
+            this.layoutControlGroup1.Size = new System.Drawing.Size(180, 120);
+            this.layoutControlGroup1.Text = "layoutControlGroup1";
+            this.layoutControlGroup1.TextVisible = false;
             // 
             // Test
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(977, 615);
-            this.Controls.Add(this.sbCustomization);
-            this.Controls.Add(this.sbClose);
-            this.Controls.Add(this.sbLogin);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.teUserName);
-            this.Controls.Add(this.tePwd);
-            this.Controls.Add(this.comboBoxEdit1);
+            this.Controls.Add(this.layoutControl1);
+            this.Controls.Add(this.txtLog);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Name = "Test";
             this.Text = "Test";
-            ((System.ComponentModel.ISupportInitialize)(this.teUserName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tePwd.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.snapDockManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private DevExpress.XtraEditors.SimpleButton sbCustomization;
-        private DevExpress.XtraEditors.SimpleButton sbClose;
-        private DevExpress.XtraEditors.SimpleButton sbLogin;
-        private DevExpress.Utils.Frames.ApplicationCaption8_1 label1;
-        private DevExpress.XtraEditors.TextEdit teUserName;
-        private DevExpress.XtraEditors.TextEdit tePwd;
-        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit1;
+        private System.Windows.Forms.Button button1;
+        private DevExpress.Snap.Extensions.SnapDockManager snapDockManager1;
+        private System.Windows.Forms.RichTextBox txtLog;
+        private System.Windows.Forms.Button button2;
+        private DevExpress.XtraLayout.LayoutControl layoutControl1;
+        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
+
     }
 }

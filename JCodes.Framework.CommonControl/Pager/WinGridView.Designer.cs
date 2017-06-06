@@ -42,7 +42,6 @@
             this.menu_Print = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_Export = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_ColumnWidth = new System.Windows.Forms.ToolStripMenuItem();
-            this.menu_Buy = new System.Windows.Forms.ToolStripMenuItem();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
@@ -64,8 +63,7 @@
             this.menu_SetColumn,
             this.menu_Print,
             this.menu_Export,
-            this.menu_ColumnWidth,
-            this.menu_Buy});
+            this.menu_ColumnWidth});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(353, 258);
             // 
@@ -150,14 +148,6 @@
             this.menu_ColumnWidth.Text = "设置固定宽度显示(&W)";
             this.menu_ColumnWidth.Click += new System.EventHandler(this.menu_ColumnWidth_Click);
             // 
-            // menu_Buy
-            // 
-            this.menu_Buy.ForeColor = System.Drawing.Color.Red;
-            this.menu_Buy.Name = "menu_Buy";
-            this.menu_Buy.Size = new System.Drawing.Size(352, 22);
-            this.menu_Buy.Text = "未注册版本，购买请访问http://www.iqidi.com（&G)";
-            this.menu_Buy.Click += new System.EventHandler(this.menu_Buy_Click);
-            // 
             // gridControl1
             // 
             this.gridControl1.ContextMenuStrip = this.contextMenuStrip1;
@@ -219,7 +209,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem menu_Export;
-        private System.Windows.Forms.ToolStripMenuItem menu_Buy;
         public DevExpress.XtraGrid.GridControl gridControl1;
         public DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.Utils.ToolTipController toolTipController1;

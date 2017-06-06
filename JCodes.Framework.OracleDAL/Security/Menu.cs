@@ -27,7 +27,7 @@ namespace JCodes.Framework.OracleDAL
             }
         }
         public Menus()
-            : base("T_ACL_Menu", "ID")
+            : base(OraclePortal.gc._securityTablePre + "Menu", "ID")
         {
             this.sortField = "Seq";
             this.isDescending = false;

@@ -27,7 +27,7 @@ namespace JCodes.Framework.AccessDAL
             }
         }
         public LoginLog()
-            : base("T_ACL_LoginLog", "ID")
+            : base(AccessPortal.gc._securityTablePre + "LoginLog", "ID")
         {
             this.sortField = "LastUpdated";
         }

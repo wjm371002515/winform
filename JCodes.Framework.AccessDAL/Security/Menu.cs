@@ -27,7 +27,7 @@ namespace JCodes.Framework.AccessDAL
             }
         }
         public Menus()
-            : base("T_ACL_Menu", "ID")
+            : base(AccessPortal.gc._securityTablePre + "Menu", "ID")
         {
             this.sortField = "Seq";
             this.isDescending = false;

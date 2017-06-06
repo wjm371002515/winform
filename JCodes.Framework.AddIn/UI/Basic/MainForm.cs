@@ -28,49 +28,175 @@ namespace JCodes.Framework.AddIn.UI.Basic
     {
         #region 属性变量
         private AppConfig config = new AppConfig();
-        //月结线程
-        private BackgroundWorker worker;
-        private BackgroundWorker annualWorker;
         //全局热键
         private RegisterHotKeyHelper hotKey2 = new RegisterHotKeyHelper();
         //用来第一次创建动态菜单
         private RibbonPageHelper ribbonHelper = null;
-
-        /// <summary>
-        /// 设置窗体的标题信息
-        /// </summary>
-        public override sealed string Text
-        {
-            get { return base.Text; }
-            set { base.Text = value; }
-        }
-
-        /// <summary>
-        /// 获取或设置命令状态信息
-        /// </summary>
-        public string CommandStatus
-        {
-            get { return lblCommandStatus.Caption; }
-            set { lblCommandStatus.Caption = value; }
-        }
-
-        /// <summary>
-        /// 获取或设置用户信息
-        /// </summary>
-        public string UserStatus
-        {
-            get { return lblCurrentUser.Caption; }
-            set { lblCurrentUser.Caption = value; }
-        } 
-
         #endregion 
 
+        #region 托盘菜单操作
+
+        /// <summary>
+        /// 热键事件处理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void notifyMenu_Show_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                this.WindowState = FormWindowState.Maximized;
+                this.Show();
+                this.BringToFront();
+                this.Activate();
+                this.Focus();
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Minimized;
+                this.Hide();
+            }
+        }
+
+        /// <summary>
+        /// 托盘双击显示主界面
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            notifyMenu_Show_Click(sender, e);
+        }
+
+        /// <summary>
+        /// 托盘关于
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void notifyMenu_About_Click(object sender, EventArgs e)
+        {
+            Portal.gc.About();
+        }
+
+        /// <summary>
+        /// 托盘退出
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void notifyMenu_Exit_Click(object sender, EventArgs e)
+        {
+            Portal.gc.Quit();
+        }
+
+        #endregion
+
+        /// <summary>
+        /// 根据权限屏蔽功能 TODO
+        /// </summary>
+        private void InitAuthorizedUI()
+        {
+            //this.tool_Dict.Enabled = Portal.gc.HasFunction("Dictionary");
+            //this.tool_Settings.Enabled = Portal.gc.HasFunction("Parameters");
+        }
+
+        #region Window 窗体事件
+        /// <summary>
+        /// 窗体移动事件处理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MainForm_Move(object sender, EventArgs e)
+        {
+            if (this == null)
+            {
+                return;
+            }
+
+            //最小化到托盘的时候显示图标提示信息
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                this.Hide();
+                notifyIcon.ShowBalloonTip(3000, "程序最小化提示",
+                    "图标已经缩小到托盘，打开窗口请双击图标即可。也可以使用Alt+S键来显示/隐藏窗体。",
+                    ToolTipIcon.Info);
+            }
+        }
+
+        /// <summary>
+        /// 窗体控件加载完毕
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            Init();
+        }
+
+        /// <summary>
+        /// 初始化界面信息
+        /// </summary>
+        private void Init()
+        {
+            //显示日期信息
+            CCalendar cal = new CCalendar();
+            // TODO 这里事件调整为取数据库时间
+            this.lblCalendar.Caption = cal.GetDateInfo(System.DateTime.Now).Fullinfo;
+
+            //其他初始化工作 TODO
+        }
+
+        /// <summary>
+        /// 退出系统
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        public void Exit(object sender, EventArgs args)
+        {
+            DialogResult dr = MessageDxUtil.ShowYesNoAndTips("点击“Yes”退出系统，点击“No”返回");
+
+            if (dr == DialogResult.Yes)
+            {
+                notifyIcon.Visible = false;
+                Application.ExitThread();
+            }
+            else if (dr == DialogResult.No)
+            {
+                return;
+            }
+        }
+
+        /// <summary>
+        /// 缩小到托盘中，不退出
+        /// </summary>
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //如果我们操作【×】按钮，那么不关闭程序而是缩小化到托盘，并提示用户.
+            if (this.WindowState != FormWindowState.Minimized)
+            {
+                e.Cancel = true;//不关闭程序
+
+                //最小化到托盘的时候显示图标提示信息，提示用户并未关闭程序
+                this.WindowState = FormWindowState.Minimized;
+                notifyIcon.ShowBalloonTip(3000, "程序最小化提示",
+                     "图标已经缩小到托盘，打开窗口请双击图标即可。也可以使用Alt+S键来显示/隐藏窗体。",
+                     ToolTipIcon.Info);
+            }
+        }
+
+        private void MainForm_MaximizedBoundsChanged(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+
+        /// <summary>
+        /// 构造函数初始化界面信息
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
 
             Splasher.Status = "正在展示相关的内容...";
-            System.Threading.Thread.Sleep(1000);
+            System.Threading.Thread.Sleep(Const.SLEEP_TIME);
             Application.DoEvents();
 
             InitUserRelated();
@@ -81,37 +207,67 @@ namespace JCodes.Framework.AddIn.UI.Basic
             UserLookAndFeel.Default.SetSkinStyle("Office 2010 Blue");
 
             Splasher.Status = "初始化完毕...";
-            System.Threading.Thread.Sleep(100);
+            System.Threading.Thread.Sleep(Const.SLEEP_TIME);
             Application.DoEvents();
 
             Splasher.Close();
-            SetHotKey(); 
+            SetHotKey();
         }
-                 
+
+        /// <summary>
+        /// 设置Alt+S的显示/隐藏窗体全局热键
+        /// </summary>
+        private void SetHotKey()
+        {
+            try
+            {
+                hotKey2.Keys = Keys.S;
+                hotKey2.ModKey = MODKEY.MOD_ALT;
+                hotKey2.WindowHandle = this.Handle;
+                hotKey2.WParam = 10003;
+                // 绑定热键事件
+                hotKey2.HotKey += new RegisterHotKeyHelper.HotKeyPass(hotKey2_HotKey);
+                hotKey2.StarHotKey();
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(MainForm));
+                MessageDxUtil.ShowError(ex.Message);
+            }
+        }
+
+        // 热键事件
+        void hotKey2_HotKey()
+        {
+            notifyMenu_Show_Click(null, null);
+        }
+
         /// <summary>
         /// 初始化用户相关的系统信息
         /// </summary>
         private void InitUserRelated()
-        {            
+        {
             #region 初始化系统名称
             try
             {
-                string CertificatedCompany = config.AppConfigGet("CertificatedCompany");
+                string Manufacturer = config.AppConfigGet("Manufacturer");
                 string ApplicationName = config.AppConfigGet("ApplicationName");
-                string AppWholeName = string.Format("{0}-{1}", CertificatedCompany, ApplicationName);
-                Portal.gc.AppUnit = CertificatedCompany;
+                string AppWholeName = string.Format("{0}-【{1}】", Manufacturer, ApplicationName);
+                Portal.gc.AppUnit = Manufacturer;
                 Portal.gc.AppName = AppWholeName;
                 Portal.gc.AppWholeName = AppWholeName;
 
                 this.Text = AppWholeName;
-                this.notifyIcon1.BalloonTipText = AppWholeName;
-                this.notifyIcon1.BalloonTipTitle = AppWholeName;
-                this.notifyIcon1.Text = AppWholeName;
+                this.notifyIcon.BalloonTipText = AppWholeName;
+                this.notifyIcon.BalloonTipTitle = AppWholeName;
+                this.notifyIcon.Text = AppWholeName;
+                this.notifyIcon.Tag = AppWholeName;
 
-                UserStatus = string.Format("当前用户：{0}({1})", Portal.gc.UserInfo.FullName, Portal.gc.UserInfo.Name);
-                CommandStatus = string.Format("欢迎使用 {0}", Portal.gc.AppWholeName);
+                lblCurrentUser.Caption = string.Format("当前用户：{0}({1})", Portal.gc.UserInfo.FullName, Portal.gc.UserInfo.Name);
+                lblCommandStatus.Caption = string.Format("欢迎使用 {0}", Portal.gc.AppWholeName);
             }
-            catch (Exception ex){
+            catch (Exception ex)
+            {
                 LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(MainForm));
                 MessageDxUtil.ShowError(ex.Message);
                 return;
@@ -134,163 +290,14 @@ namespace JCodes.Framework.AddIn.UI.Basic
                 ribbonControl.SelectedPage = ribbonControl.Pages[0];
             }
         }
-
-        /// <summary>
-        /// 设置Alt+S的显示/隐藏窗体全局热键
-        /// </summary>
-        private void SetHotKey()
-        {
-            try
-            {
-                hotKey2.Keys = Keys.S;
-                hotKey2.ModKey = MODKEY.MOD_ALT;
-                hotKey2.WindowHandle = this.Handle;
-                hotKey2.WParam = 10003;
-                hotKey2.HotKey += new RegisterHotKeyHelper.HotKeyPass(hotKey2_HotKey);
-                hotKey2.StarHotKey();
-            }
-            catch (Exception ex)
-            {
-                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(MainForm));
-                MessageDxUtil.ShowError(ex.Message);
-            }
-        }
-
-        void hotKey2_HotKey()
-        {
-            notifyMenu_Show_Click(null, null);
-        }
-
-        #region 托盘菜单操作
-
-        private void notifyMenu_About_Click(object sender, EventArgs e)
-        {
-            Portal.gc.About();
-        }
-
-        private void notifyMenu_Show_Click(object sender, EventArgs e)
-        {
-            if (this.WindowState == FormWindowState.Minimized)
-            {
-                this.WindowState = FormWindowState.Maximized;
-                this.Show();
-                this.BringToFront();
-                this.Activate();
-                this.Focus();
-            }
-            else
-            {
-                this.WindowState = FormWindowState.Minimized;
-                this.Hide();
-            }
-        }
-
-        private void notifyMenu_Exit_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                this.ShowInTaskbar = false;
-                Portal.gc.Quit();
-            }
-            catch (Exception ex)
-            {
-                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(MainForm));
-                MessageDxUtil.ShowError(ex.Message);
-            }
-        }
-
-        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            notifyMenu_Show_Click(sender, e);
-        }
-
-        private void MainForm_MaximizedBoundsChanged(object sender, EventArgs e)
-        {
-            this.Hide();
-        }
-
-        /// <summary>
-        /// 缩小到托盘中，不退出
-        /// </summary>
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            //如果我们操作【×】按钮，那么不关闭程序而是缩小化到托盘，并提示用户.
-            if (this.WindowState != FormWindowState.Minimized)
-            {
-                e.Cancel = true;//不关闭程序
-
-                //最小化到托盘的时候显示图标提示信息，提示用户并未关闭程序
-                this.WindowState = FormWindowState.Minimized;
-                notifyIcon1.ShowBalloonTip(3000, "程序最小化提示",
-                     "图标已经缩小到托盘，打开窗口请双击图标即可。也可以使用Alt+S键来显示/隐藏窗体。",
-                     ToolTipIcon.Info);
-            }
-        }
-
-        private void MainForm_Move(object sender, EventArgs e)
-        {
-            if (this == null)
-            {
-                return;
-            }
-
-            //最小化到托盘的时候显示图标提示信息
-            if (this.WindowState == FormWindowState.Minimized)
-            {
-                this.Hide();
-                notifyIcon1.ShowBalloonTip(3000, "程序最小化提示",
-                    "图标已经缩小到托盘，打开窗口请双击图标即可。也可以使用Alt+S键来显示/隐藏窗体。",
-                    ToolTipIcon.Info);
-            }
-        }
-
         #endregion
 
+        #region Tab顶部右键菜单
         /// <summary>
-        /// 退出系统
+        /// tab键右击弹出框
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="args"></param>
-        public void Exit(object sender, EventArgs args)
-        {
-            DialogResult dr = MessageDxUtil.ShowYesNoAndTips("点击“Yes”退出系统，点击“No”返回");
-
-            if (dr == DialogResult.Yes)
-            {
-                notifyIcon1.Visible = false;
-                Application.ExitThread();
-            }
-            else if (dr == DialogResult.No)
-            {
-                return;
-            }
-        }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            Init();
-        }
-
-        /// <summary>
-        /// 根据权限屏蔽功能
-        /// </summary>
-        private void InitAuthorizedUI()
-        {
-            this.tool_Dict.Enabled = Portal.gc.HasFunction("Dictionary");
-            //this.tool_Settings.Enabled = Portal.gc.HasFunction("Parameters");
-        }
-
-        private void Init()
-        {
-            //显示日期信息
-            CCalendar cal = new CCalendar();
-            this.lblCalendar.Caption = cal.GetDateInfo(System.DateTime.Now).Fullinfo;
-
-            //其他初始化工作
-        }
-
-        #region Tab顶部右键菜单
-
+        /// <param name="e"></param>
         private void xtraTabbedMdiManager1_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Right)
@@ -299,12 +306,15 @@ namespace JCodes.Framework.AddIn.UI.Basic
             DevExpress.XtraTab.ViewInfo.BaseTabHitInfo hi = xtraTabbedMdiManager1.CalcHitInfo(new Point(e.X, e.Y));
             if (hi.HitTest == DevExpress.XtraTab.ViewInfo.XtraTabHitTest.PageHeader)
             {
-                //Form f = (hi.Page as DevExpress.XtraTabbedMdi.XtraMdiTabPage).MdiChild;
-                //do something
                 popupMenu1.ShowPopup(Cursor.Position);
             }
         }
 
+        /// <summary>
+        /// 关闭当前窗口
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void popMenuCloseCurrent_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             XtraMdiTabPage page = xtraTabbedMdiManager1.SelectedPage;
@@ -314,11 +324,21 @@ namespace JCodes.Framework.AddIn.UI.Basic
             }
         }
 
+        /// <summary>
+        /// 关闭全部窗口
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void popMenuCloseAll_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             CloseAllDocuments();
         }
 
+        /// <summary>
+        /// 关闭除此之外窗口
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void popMenuCloseOther_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             XtraMdiTabPage selectedPage = xtraTabbedMdiManager1.SelectedPage;
@@ -342,6 +362,9 @@ namespace JCodes.Framework.AddIn.UI.Basic
             }
         }
 
+        /// <summary>
+        /// 关闭全部窗口
+        /// </summary>
         public void CloseAllDocuments()
         {
             foreach (Form form in this.MdiChildren)
@@ -356,65 +379,16 @@ namespace JCodes.Framework.AddIn.UI.Basic
         #endregion
 
         #region 工具条操作
-        private void btnRelogin_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            if (MessageDxUtil.ShowYesNoAndWarning("您确定需要重新登录吗？") != DialogResult.Yes)
-                return;
-
-
-            Portal.gc.MainDialog.Hide();
-
-            Logon dlg = new Logon();
-            dlg.StartPosition = FormStartPosition.CenterScreen;
-            if (DialogResult.OK == dlg.ShowDialog())
-            {
-                if (dlg.bLogin)
-                {
-                    CloseAllDocuments();
-                    InitUserRelated();
-                }
-
-            }
-            dlg.Dispose();
-            Portal.gc.MainDialog.Show();
-        }
-
-        private void barItemExit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            Exit(null, null);
-        }
-
-        private void btnHelp_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            Portal.gc.Help();
-        }
-
-        private void btnAbout_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            Portal.gc.About();
-        }
-
-        private void btnRegister_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            Portal.gc.ShowRegDlg();
-        }
-
-        private void btnBug_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            FrmFeeBack dlg = new FrmFeeBack();
-            dlg.ShowDialog();
-        }
-
-        private void btnMyWeb_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            Process.Start("http://www.iqidi.com");
-        }
-
+        /// <summary>
+        /// 访问技术支持网站
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void menuLogo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             try
             {
-                Process.Start("http://www.iqidi.com");
+                Process.Start(Const.SystemWebUrl);
             }
             catch (Exception ex)
             {
@@ -422,81 +396,6 @@ namespace JCodes.Framework.AddIn.UI.Basic
                 MessageDxUtil.ShowError(ex.Message);
             }
         }
-
-
-        private void tool_Settings_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            FrmSettings dlg = new FrmSettings();
-            dlg.ShowDialog();
-        }
-
-        private void tool_Dict_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            FrmDictionary dlg = new FrmDictionary();
-            dlg.ShowDialog();
-        }
-
-        private void tool_Security_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            // 20170513 wjm 暂时注释掉
-            //Portal.StartLogin();
-        }
-
-        private void tool_ModifyPass_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            FrmModifyPassword dlg = new FrmModifyPassword();
-            dlg.InitFunction(Portal.gc.LoginUserInfo, Portal.gc.FunctionDict);//初始化权限控制信息
-            dlg.ShowDialog();
-        }
-
-        private void tool_CurrentUserInfo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            FrmEditUser dlg = new FrmEditUser();
-            dlg.ID = Portal.gc.LoginUserInfo.ID.ToString();
-            dlg.ShowDialog();
-        }
-
-       
-        
-        private void lblCurrentUser_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            tool_CurrentUserInfo_ItemClick(null, null);
-        }
-
-
-        private void tool_MyAddress_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            //ChildWinManagement.LoadMdiForm(this, typeof(FrmAddress));
-        }
-
-        private void tool_PublicAddress_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            //ChildWinManagement.LoadMdiForm(this, typeof(FrmAddressCompany));
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         /// <summary>
         /// 反馈邮箱
@@ -509,9 +408,65 @@ namespace JCodes.Framework.AddIn.UI.Basic
             string mailUrl = string.Format(Const.Feedback_Mail);
             Process.Start(mailUrl);
         }
+
+        /// <summary>
+        /// 当前用户
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void lblCurrentUser_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Portal.gc.CurrentUserInfo();
+        }
         #endregion
 
+        #region 菜单工具栏事件处理
+        /// <summary>
+        /// 退出 applicationMenu1
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnExit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Exit(sender, e);
+        }
 
+        /// <summary>
+        /// 重新登录
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnRelogin_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (MessageDxUtil.ShowYesNoAndWarning("您确定需要重新登录吗？") != DialogResult.Yes)
+                return;
 
+            Portal.gc.MainDialog.Hide();
+
+            Login dlg = new Login();
+            dlg.StartPosition = FormStartPosition.CenterScreen;
+            if (DialogResult.OK == dlg.ShowDialog())
+            {
+                if (dlg.bLogin)
+                {
+                    CloseAllDocuments();
+                    InitUserRelated();
+                }
+            }
+            dlg.Dispose();
+            Portal.gc.MainDialog.Show();
+        }
+
+        /// <summary>
+        /// 修改密码
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnModPwd_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Portal.gc.ModPwd();
+        }
+
+        #endregion
     }
 }

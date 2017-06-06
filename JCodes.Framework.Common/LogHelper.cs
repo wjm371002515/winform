@@ -37,7 +37,7 @@ namespace JCodes.Framework.Common
             switch (logLevel)
             {
                 case LogLevel.LOG_LEVEL_EMERG:
-                case LogLevel.LOG_TYPE_ALERT:
+                case LogLevel.LOG_LEVEL_ALERT:
                 case LogLevel.LOG_LEVEL_CRIT: log.Fatal("jCodes 系统致命日志", ex); break;
                 case LogLevel.LOG_LEVEL_ERR: log.Error("jCodes 系统错误日志", ex); break;
                 case LogLevel.LOG_LEVEL_WARN: log.Warn("jCodes 系统警告日志", ex); break;
@@ -75,7 +75,7 @@ namespace JCodes.Framework.Common
             switch (logLevel)
             {
                 case LogLevel.LOG_LEVEL_EMERG:
-                case LogLevel.LOG_TYPE_ALERT:
+                case LogLevel.LOG_LEVEL_ALERT:
                 case LogLevel.LOG_LEVEL_CRIT: log.Fatal(str); break;
                 case LogLevel.LOG_LEVEL_ERR: log.Error(str); break;
                 case LogLevel.LOG_LEVEL_WARN: log.Warn(str); break;

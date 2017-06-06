@@ -23,8 +23,6 @@ namespace JCodes.Framework.WinFormUI
 {
     static class Program
     {
-        public static GlobalControl gc = new GlobalControl();
-
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -43,34 +41,37 @@ namespace JCodes.Framework.WinFormUI
             DevExpress.UserSkins.BonusSkins.Register();
             UserLookAndFeel.Default.SetSkinStyle("DevExpress Style");
 
-
             Process[] processes = System.Diagnostics.Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName);
 
-            if (processes.Length > 1)
-            {
-                XtraMessageBox.Show("应用程序已经在运行中。。", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Thread.Sleep(1000);
-                System.Environment.Exit(1);
-            }
-            else
-            {
-                Thread app = new Thread((ThreadStart)delegate
+            try {
+                if (processes.Length > 1)
                 {
-                    AppConfig appconfig = new AppConfig();
-                    string startAppText = appconfig.AppConfigGet("StartAppText");
-                    string startAppCaption = appconfig.AppConfigGet("StartAppCaption");
-                    Portal.gc._waitBeforeLogin = new WaitDialogForm(startAppText, startAppCaption);
-                    LoginNormal(args);
-                });
-                // 执行线程状态
-                app.ApartmentState = ApartmentState.STA;
-                app.Start();
+
+                    XtraMessageBox.Show(Const.StartAppText, Const.SystemTipInfo, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Thread.Sleep(Const.SLEEP_TIME);
+                    System.Environment.Exit(1);
+                }
+                else
+                {
+                    Thread app = new Thread((ThreadStart)delegate
+                    {
+                        Portal.gc._waitBeforeLogin = new WaitDialogForm(Const.StartAppText, Const.SystemTipInfo);
+                        LoginNormal(args);
+                    });
+                    // 执行线程状态
+                    app.ApartmentState = ApartmentState.STA;
+                    app.Start();
+                }
             }
+            catch (Exception ex) {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_EMERG, ex, typeof(Program));
+                XtraMessageBox.Show(ex.Message, ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+           
         }
 
         private static void LoginNormal(string[] args)
         {
-
             Login dlg = new Login();
             dlg.StartPosition = FormStartPosition.CenterScreen;
             if (DialogResult.OK == dlg.ShowDialog())
@@ -81,8 +82,8 @@ namespace JCodes.Framework.WinFormUI
 
                     MainForm MainDialog = new MainForm();
                     Portal.gc.MainDialog = MainDialog;
-
-                    MainDialog.ShowDialog();
+                    Portal.gc.MainDialog.StartPosition = FormStartPosition.CenterScreen;
+                    Application.Run(Portal.gc.MainDialog);
                 }
             }
             dlg.Dispose();
@@ -141,7 +142,7 @@ namespace JCodes.Framework.WinFormUI
 
         private static void getScreenshot()
         {
-            Thread.Sleep(800); 
+            Thread.Sleep(Const.SLEEP_TIME); 
             int width = Screen.PrimaryScreen.Bounds.Width;
             int height = Screen.PrimaryScreen.Bounds.Height;
             Bitmap bmp = new Bitmap(width, height);

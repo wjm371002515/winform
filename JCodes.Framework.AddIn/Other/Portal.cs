@@ -19,6 +19,7 @@ using JCodes.Framework.Common.Framework;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.CommonControl.Other;
 using DevExpress.Utils;
+using JCodes.Framework.AddIn.UI.Security;
 
 namespace JCodes.Framework.AddIn.Other
 {
@@ -29,22 +30,17 @@ namespace JCodes.Framework.AddIn.Other
 
     public class GlobalControl
     {
-        public MainForm MainDialog;
-
-        private string manageUser = "";
-        public string gAppMsgboxTitle = string.Empty;   //程序的对话框标题
-        public string gAppUnit = string.Empty; //单位名称
-        public LicenseCheckResult LicenseResult = new LicenseCheckResult();//授权码检查的结果
-        public LoginUserInfo LoginUserInfo = null;//登陆用户基础信息 
+        public MainForm MainDialog;                                         // 主窗体对话框(对应的是MainForm)
+        public LicenseCheckResult LicenseResult = new LicenseCheckResult(); //授权码检查的结果
+        public LoginUserInfo LoginUserInfo = null;                          //登陆用户基础信息 
         public Dictionary<string, string> FunctionDict = new Dictionary<string, string>();//登录用户具有的功能字典集合
-        public string SystemType = "WareMis";//系统类型
-        public string AppUnit = string.Empty; //单位名称
-        public string AppName = string.Empty;  //程序名称
-        public string AppWholeName = string.Empty;//单位名称+程序名称
-        public bool Registed { get; set; }// 判断是否注册了   
-        public bool EnableRegister = false;//设置一个开关，确定是否要求注册后才能使用软件
-        // 登录等待窗口
-        public WaitDialogForm _waitBeforeLogin = null; 
+        public string SystemType = "071bafed-4634-4083-bb34-86dda58edfc4";  //系统类型
+        public string AppUnit = string.Empty;                               //单位名称
+        public string AppName = string.Empty;                               //程序名称
+        public string AppWholeName = string.Empty;                          //单位名称+程序名称
+        public bool Registed { get; set;}                                   // 判断是否注册了   
+        public bool EnableRegister = false;                                 //设置一个开关，确定是否要求注册后才能使用软件
+        public WaitDialogForm _waitBeforeLogin = null;                      // 登录等待窗口
 
         /// <summary>
         /// 登录用户信息
@@ -104,7 +100,7 @@ namespace JCodes.Framework.AddIn.Other
         /// </summary>
         public void ShowRegDlg()
         {
-            RegDlg myRegdlg = RegDlg.Instance();
+            RegDlg myRegdlg = new RegDlg();
             myRegdlg.StartPosition = FormStartPosition.CenterScreen;
             myRegdlg.TopMost = true;
             myRegdlg.Hide();
@@ -158,7 +154,7 @@ namespace JCodes.Framework.AddIn.Other
         {
             try
             {
-                const string helpfile = "Help.chm";
+                const string helpfile = Const.HelpFile;
                 Process.Start(helpfile);
             }
             catch (Exception ex)
@@ -224,6 +220,26 @@ namespace JCodes.Framework.AddIn.Other
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// 修改密码
+        /// </summary>
+        public void ModPwd()
+        {
+            FrmModifyPassword dlg = new FrmModifyPassword();
+            dlg.StartPosition = FormStartPosition.CenterScreen;
+            dlg.ShowDialog();
+        }
+
+        /// <summary>
+        /// 显示当前用户信息
+        /// </summary>
+        public void CurrentUserInfo() {
+            FrmEditUser dlg = new FrmEditUser();
+            dlg.ID = Portal.gc.LoginUserInfo.ID.ToString();
+            dlg.StartPosition = FormStartPosition.CenterScreen;
+            dlg.ShowDialog();
         }
         #endregion
 

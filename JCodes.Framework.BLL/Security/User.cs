@@ -247,8 +247,7 @@ namespace JCodes.Framework.BLL
         public override bool Insert(UserInfo obj, DbTransaction trans = null)
         {
             UserInfo info = (UserInfo)obj;
-            //info.Password = EncryptHelper.ComputeHash(info.Password, info.Name.ToLower());
-            info.Password = EncodeHelper.DesEncrypt(info.Password);
+            info.Password = EncodeHelper.DesEncrypt(Const.defaultPwd);
             return base.Insert(obj, trans);
         }
 
@@ -278,7 +277,6 @@ namespace JCodes.Framework.BLL
             UserInfo userByName = this.GetUserByName(userName);
             if (userByName != null)
             {
-                //userPassword = EncryptHelper.ComputeHash(userPassword, userName.ToLower());
                 userPassword = EncodeHelper.DesEncrypt(userPassword);
                 userByName.Password = userPassword;
 
@@ -324,12 +322,6 @@ namespace JCodes.Framework.BLL
 
         public override bool Update(UserInfo obj, object primaryKeyValue, DbTransaction trans = null)
         {
-            if (obj.Password.Length < 50)
-            {
-                //obj.Password = EncryptHelper.ComputeHash(obj.Password, obj.Name.ToLower());
-                obj.Password = EncodeHelper.DesEncrypt(obj.Password);
-                
-            }
             return this.userDal.Update(obj, primaryKeyValue, trans);
         }
 

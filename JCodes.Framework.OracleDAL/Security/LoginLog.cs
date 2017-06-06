@@ -27,7 +27,7 @@ namespace JCodes.Framework.OracleDAL
             }
         }
         public LoginLog()
-            : base("T_ACL_LoginLog", "ID")
+            : base(OraclePortal.gc._securityTablePre + "LoginLog", "ID")
         {
             this.SeqName = string.Format("SEQ_{0}", tableName);//数值型主键，通过序列生成
             this.sortField = "LastUpdated";

@@ -291,7 +291,9 @@ namespace JCodes.Framework.CommonControl.Pager
                 }
 
                 dataSource = value;
+                this.gridView1.Columns.Clear();
                 this.gridControl1.DataSource = dataSource;
+                this.gridView1.RefreshData();
                 this.pager.InitPageInfo(PagerInfo.RecordCount, PagerInfo.PageSize);
             }
         }
@@ -599,11 +601,6 @@ namespace JCodes.Framework.CommonControl.Pager
             }
         } 
 
-        private void menu_Buy_Click(object sender, EventArgs e)
-        {
-            Process.Start("http://www.iqidi.com");
-        }
-
         private void menu_CopyInfo_Click(object sender, EventArgs e)
         {
             int[] selectedRow = this.gridView1.GetSelectedRows();
@@ -907,10 +904,6 @@ namespace JCodes.Framework.CommonControl.Pager
                 this.pager.ExportAll += new ExportAllEventHandler(pager_ExportAll);
 
                 LicenseCheckResult result = LicenseTool.CheckLicense();
-                if (result.IsValided)
-                {
-                    menu_Buy.Visible = false;
-                }
                 this.contextMenuStrip1.Opening += new CancelEventHandler(contextMenuStrip1_Opening);
                 this.gridControl1.MouseClick += new MouseEventHandler(dataGridView1_MouseClick);
                 this.gridControl1.MouseDoubleClick += new MouseEventHandler(dataGridView1_MouseDoubleClick);

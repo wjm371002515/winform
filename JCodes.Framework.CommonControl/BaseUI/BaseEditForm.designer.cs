@@ -33,7 +33,7 @@ namespace JCodes.Framework.CommonControl.BaseUI
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
-            this.dataNavigator1 = new DataNavigator();
+            this.dataNavigator1 = new JCodes.Framework.CommonControl.BaseUI.DataNavigator();
             this.picPrint = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.picPrint)).BeginInit();
             this.SuspendLayout();
@@ -74,9 +74,9 @@ namespace JCodes.Framework.CommonControl.BaseUI
             this.dataNavigator1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.dataNavigator1.AutoSize = true;
             this.dataNavigator1.CurrentIndex = 0;
-            this.dataNavigator1.Location = new System.Drawing.Point(12, 387);
+            this.dataNavigator1.Location = new System.Drawing.Point(12, 381);
             this.dataNavigator1.Name = "dataNavigator1";
-            this.dataNavigator1.Size = new System.Drawing.Size(191, 28);
+            this.dataNavigator1.Size = new System.Drawing.Size(191, 34);
             this.dataNavigator1.TabIndex = 3;
             // 
             // picPrint
@@ -100,6 +100,7 @@ namespace JCodes.Framework.CommonControl.BaseUI
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.btnCancel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BaseEditForm";
             this.ShowInTaskbar = false;
             this.Text = "BaseEditForm";

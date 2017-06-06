@@ -85,12 +85,12 @@ namespace JCodes.Framework.SQLServerDAL
             DbCommand command = null;
 
             bool flag = false;
-            string sql = string.Format("SELECT Count(ID) As Records FROM T_ACL_SystemAuthorize WHERE SystemType_OID='{0}' ", typeID);
+            string sql = string.Format("SELECT Count(ID) As Records FROM {0}SystemAuthorize WHERE SystemType_OID='{1}' ", SQLServerPortal.gc._securityTablePre, typeID);
             command = db.GetSqlStringCommand(sql);
             int num = Convert.ToInt32(db.ExecuteScalar(command).ToString());
             if (num <= authorizeAmount)
             {
-                sql = string.Format("SELECT * FROM T_ACL_SystemAuthorize WHERE Content='{0}'  And SystemType_OID='{1}' ", serialNumber, typeID);
+                sql = string.Format("SELECT * FROM {0}SystemAuthorize WHERE Content='{1}'  And SystemType_OID='{2}' ", SQLServerPortal.gc._securityTablePre, serialNumber, typeID);
 
                 command = db.GetSqlStringCommand(sql);
                 using (IDataReader reader = db.ExecuteReader(command))
@@ -104,7 +104,7 @@ namespace JCodes.Framework.SQLServerDAL
                     flag = num < authorizeAmount;
                     if (flag)
                     {
-                        sql = string.Format("INSERT INTO T_ACL_SystemAuthorize (SystemType_OID,Content) VALUES ('{0}', '{1}') ", typeID, serialNumber);
+                        sql = string.Format("INSERT INTO {0}SystemAuthorize (SystemType_OID,Content) VALUES ('{1}', '{2}') ", SQLServerPortal.gc._securityTablePre, typeID, serialNumber);
                         command = db.GetSqlStringCommand(sql);
                         db.ExecuteNonQuery(command);
                     }

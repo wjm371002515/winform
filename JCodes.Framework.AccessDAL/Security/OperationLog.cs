@@ -26,7 +26,8 @@ namespace JCodes.Framework.AccessDAL
 				return new OperationLog();
 			}
 		}
-		public OperationLog() : base("T_ACL_OperationLog","ID")
+        public OperationLog()
+            : base(AccessPortal.gc._securityTablePre + "OperationLog", "ID")
         {
             this.SortField = "CreateTime";
             this.IsDescending = true;

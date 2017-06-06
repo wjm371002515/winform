@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="50Go\Coupon.cs" />
+    <Compile Include="50Go\CouponCategoryInfo.cs" />
     <Compile Include="Attachment\FileUploadInfo.cs" />
     <Compile Include="BaseEntity\BaseEntity.cs" />
     <Compile Include="Common\CListItem.cs" />

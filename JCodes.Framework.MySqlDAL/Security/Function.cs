@@ -27,7 +27,7 @@ namespace JCodes.Framework.MySqlDAL
             }
         }
         public Functions()
-            : base("T_ACL_Function", "ID")
+            : base(MySqlPortal.gc._securityTablePre + "Function", "ID")
         {
             this.sortField = "SortCode";
             this.isDescending = false;
@@ -160,8 +160,8 @@ namespace JCodes.Framework.MySqlDAL
 
         public List<FunctionInfo> GetFunctions(string roleIDs, string typeID)
         {
-            string sql = @"SELECT * FROM T_ACL_Function 
-            INNER JOIN T_ACL_Role_Function On T_ACL_Function.ID=T_ACL_Role_Function.Function_ID WHERE Role_ID IN (" + roleIDs + ")";
+            string sql = string.Format( @"SELECT * FROM {0}Function 
+            INNER JOIN {0}Role_Function On {0}Function.ID={0}Role_Function.Function_ID WHERE Role_ID IN ({1})", MySqlPortal.gc._securityTablePre, roleIDs);
             if (typeID.Length > 0)
             {
                 sql = sql + string.Format(" AND SystemType_ID='{0}' ", typeID);
@@ -171,8 +171,8 @@ namespace JCodes.Framework.MySqlDAL
 
         public List<FunctionNodeInfo> GetFunctionNodes(string roleIDs, string typeID)
         {
-            string sql = @"SELECT * FROM T_ACL_Function 
-            INNER JOIN T_ACL_Role_Function On T_ACL_Function.ID=T_ACL_Role_Function.Function_ID WHERE Role_ID IN (" + roleIDs + ")";
+            string sql = string.Format( @"SELECT * FROM {0}Function 
+            INNER JOIN {0}Role_Function On {0}Function.ID={0}Role_Function.Function_ID WHERE Role_ID IN ({1})", MySqlPortal.gc._securityTablePre, roleIDs);
             if (typeID.Length > 0)
             {
                 sql = sql + string.Format(" AND SystemType_ID='{0}' ", typeID);
@@ -193,8 +193,8 @@ namespace JCodes.Framework.MySqlDAL
         }
         public List<FunctionInfo> GetFunctionsByRole(int roleID)
         {
-            string sql = @"SELECT * FROM T_ACL_Function 
-            LEFT JOIN T_ACL_Role_Function On T_ACL_Function.ID=T_ACL_Role_Function.Function_ID WHERE Role_ID = " + roleID;
+            string sql = string.Format(@"SELECT * FROM {0}Function 
+            LEFT JOIN {0}Role_Function On {0}Function.ID={0}Role_Function.Function_ID WHERE Role_ID = {1}", MySqlPortal.gc._securityTablePre, roleID);
             return this.GetList(sql, null);
         }
 
@@ -252,9 +252,9 @@ namespace JCodes.Framework.MySqlDAL
             {
                 string roleString = string.Join(",", roleList);
 
-                string sql = string.Format(@"SELECT F.* FROM T_ACL_Function AS F 
-                INNER JOIN T_ACL_Role_Function AS RF ON F.ID = RF.Function_ID
-                WHERE RF.Role_ID IN ({0}) AND F.SystemType_ID = '{1}' Order By PID, Name ", roleString, systemType);
+                string sql = string.Format(@"SELECT F.* FROM {0}Function AS F 
+                INNER JOIN {0}Role_Function AS RF ON F.ID = RF.Function_ID
+                WHERE RF.Role_ID IN ({1}) AND F.SystemType_ID = '{2}' Order By PID, Name ",MySqlPortal.gc._securityTablePre, roleString, systemType);
 
                 DataTable dt = base.SqlTable(sql);
                 string sortCode = string.Format("{0} {1}", GetSafeFileName(sortField), isDescending ? "DESC" : "ASC");

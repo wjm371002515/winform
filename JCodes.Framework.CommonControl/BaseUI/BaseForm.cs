@@ -26,12 +26,12 @@ namespace JCodes.Framework.CommonControl.BaseUI
         /// <summary>
         /// 进行数据过滤的Sql条件，默认通过 Cache.Instance["DataFilterCondition"]获取
         /// </summary>
-        public string DataFilterCondition { get; set; }
+        //public string DataFilterCondition { get; set; }
 
         /// <summary>
         /// 选择查看的公司ID
         /// </summary>
-        public string SelectedCompanyID { get; set; }
+        //public string SelectedCompanyID { get; set; }
 
         /// <summary>
         /// 默认构造函数
@@ -46,8 +46,8 @@ namespace JCodes.Framework.CommonControl.BaseUI
             this.FunctionDict = Cache.Instance["FunctionDict"] as Dictionary<string, string>;
 
             // 进行数据过滤的Sql条件
-            this.DataFilterCondition = Cache.Instance["DataFilterCondition"] as string;
-            this.SelectedCompanyID = Cache.Instance["SelectedCompanyID"] as string;
+            //this.DataFilterCondition = Cache.Instance["DataFilterCondition"] as string;
+            //this.SelectedCompanyID = Cache.Instance["SelectedCompanyID"] as string;
         }
 
         /// <summary>

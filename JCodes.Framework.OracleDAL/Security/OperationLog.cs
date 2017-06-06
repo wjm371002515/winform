@@ -26,7 +26,7 @@ namespace JCodes.Framework.OracleDAL
 				return new OperationLog();
 			}
 		}
-		public OperationLog() : base("T_ACL_OperationLog","ID")
+		public OperationLog() : base(OraclePortal.gc._securityTablePre+"OperationLog","ID")
         {
             this.SeqName = "";//由于字符型组件，不需要序列
             this.SortField = "CreateTime";

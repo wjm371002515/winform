@@ -26,7 +26,8 @@ namespace JCodes.Framework.AccessDAL
 				return new RoleData();
 			}
 		}
-		public RoleData() : base("T_ACL_RoleData","ID")
+        public RoleData()
+            : base(AccessPortal.gc._securityTablePre+"RoleData", "ID")
 		{
 		}
 

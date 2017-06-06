@@ -74,6 +74,7 @@
     <Compile Include="Security\RoleData.cs" />
     <Compile Include="Security\SystemType.cs" />
     <Compile Include="Security\User.cs" />
+    <Compile Include="MySqlPortal.cs" />
     <Compile Include="WareHouseMis\ItemDetail.cs" />
     <Compile Include="WareHouseMis\PurchaseDetail.cs" />
     <Compile Include="WareHouseMis\PurchaseHeader.cs" />

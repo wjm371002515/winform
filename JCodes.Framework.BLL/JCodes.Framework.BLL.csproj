@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="50Go\Coupon.cs" />
+    <Compile Include="50Go\CouponCategory.cs" />
     <Compile Include="Attachment\FileUpload.cs" />
     <Compile Include="Dic\City.cs" />
     <Compile Include="Dic\DictData.cs" />

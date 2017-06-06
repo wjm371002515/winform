@@ -26,7 +26,7 @@ namespace JCodes.Framework.MySqlDAL
 				return new OperationLog();
 			}
 		}
-		public OperationLog() : base("T_ACL_OperationLog","ID")
+		public OperationLog() : base(MySqlPortal.gc._securityTablePre+"OperationLog","ID")
         {
             this.SortField = "CreateTime";
             this.IsDescending = true;

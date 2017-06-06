@@ -41,7 +41,6 @@
             this.menu_SetColumn = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_Print = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_ColumnWidth = new System.Windows.Forms.ToolStripMenuItem();
-            this.menu_Buy = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pager = new Pager();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
@@ -65,8 +64,7 @@
             this.menu_CopyInfo,
             this.menu_SetColumn,
             this.menu_Print,
-            this.menu_ColumnWidth,
-            this.menu_Buy});
+            this.menu_ColumnWidth});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(353, 236);
             // 
@@ -142,14 +140,6 @@
             this.menu_ColumnWidth.Size = new System.Drawing.Size(352, 22);
             this.menu_ColumnWidth.Text = "设置固定宽度显示(&W)";
             this.menu_ColumnWidth.Click += new System.EventHandler(this.menu_ColumnWidth_Click);
-            // 
-            // menu_Buy
-            // 
-            this.menu_Buy.ForeColor = System.Drawing.Color.Red;
-            this.menu_Buy.Name = "menu_Buy";
-            this.menu_Buy.Size = new System.Drawing.Size(352, 22);
-            this.menu_Buy.Text = "未注册版本，购买请访问http://www.iqidi.com（&G)";
-            this.menu_Buy.Click += new System.EventHandler(this.menu_Buy_Click);
             // 
             // panel1
             // 
@@ -240,7 +230,6 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem menu_Edit;
         private System.Windows.Forms.ToolStripMenuItem menu_Add;
-        private System.Windows.Forms.ToolStripMenuItem menu_Buy;
         private System.Windows.Forms.Panel panel1;
         private Pager pager;
         public DevExpress.XtraGrid.GridControl gridControl1;

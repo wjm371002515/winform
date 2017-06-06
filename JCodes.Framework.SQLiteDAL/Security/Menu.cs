@@ -27,7 +27,7 @@ namespace JCodes.Framework.SQLiteDAL
             }
         }
         public Menus()
-            : base("T_ACL_Menu", "ID")
+            : base(SQLitePortal.gc._securityTablePre + "Menu", "ID")
         {
             this.sortField = "Seq";
             this.isDescending = false;

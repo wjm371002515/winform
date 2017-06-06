@@ -27,7 +27,7 @@ namespace JCodes.Framework.SQLiteDAL
             }
         }
         public OperationLogSetting()
-            : base("T_ACL_OperationLogSetting", "ID")
+            : base(SQLitePortal.gc._securityTablePre+"OperationLogSetting", "ID")
         {
             this.SortField = "CreateTime";
             this.IsDescending = true;

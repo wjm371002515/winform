@@ -27,7 +27,7 @@ namespace JCodes.Framework.MySqlDAL
             }
         }
         public LoginLog()
-            : base("T_ACL_LoginLog", "ID")
+            : base(MySqlPortal.gc._securityTablePre+"LoginLog", "ID")
         {
             this.sortField = "LastUpdated";
         }

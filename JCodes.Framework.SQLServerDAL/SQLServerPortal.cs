@@ -17,6 +17,6 @@ namespace JCodes.Framework.SQLServerDAL
         // 权限对应的表前缀
         public string _securityTablePre = new AppConfig().AppConfigGet("SecurityTablePre");
 
-        
+        public string _50GoTablePre = new AppConfig().AppConfigGet("50GoTablePre");
     }
 }

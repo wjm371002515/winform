@@ -27,7 +27,7 @@ namespace JCodes.Framework.MySqlDAL
             }
         }
         public Menus()
-            : base("T_ACL_Menu", "ID")
+            : base(MySqlPortal.gc._securityTablePre+"Menu", "ID")
         {
             this.sortField = "Seq";
             this.isDescending = false;

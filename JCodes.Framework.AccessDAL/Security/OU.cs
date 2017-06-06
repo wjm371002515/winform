@@ -28,7 +28,7 @@ namespace JCodes.Framework.AccessDAL
             }
         }
         public OU()
-            : base("T_ACL_OU", "ID")
+            : base(AccessPortal.gc._securityTablePre + "OU", "ID")
         {
             this.sortField = "SortCode";
             this.isDescending = false;
@@ -159,7 +159,7 @@ namespace JCodes.Framework.AccessDAL
         /// <returns></returns>
         public bool EditOuUsers(int ouID, List<int> newUserList)
         {
-            string sql = string.Format("Delete from T_ACL_OU_User where OU_ID = {0} ", ouID);
+            string sql = string.Format("Delete from {0}OU_User where OU_ID = {1} ", AccessPortal.gc._securityTablePre, ouID);
             base.SqlExecute(sql);
 
             foreach (int userId in newUserList)
@@ -171,7 +171,7 @@ namespace JCodes.Framework.AccessDAL
 
         public void AddUser(int userID, int ouID)
         {
-            string commandText = string.Format("INSERT INTO T_ACL_OU_User(User_ID, OU_ID) VALUES({0},{1})", userID, ouID);
+            string commandText = string.Format("INSERT INTO {0}OU_User(User_ID, OU_ID) VALUES({1},{2})", AccessPortal.gc._securityTablePre, userID, ouID);
             Database db = CreateDatabase();
             DbCommand command = db.GetSqlStringCommand(commandText);
             db.ExecuteNonQuery(command);
@@ -179,7 +179,7 @@ namespace JCodes.Framework.AccessDAL
 
         public void RemoveUser(int userID, int ouID)
         {
-            string commandText = string.Format("DELETE FROM T_ACL_OU_User WHERE User_ID={0} AND OU_ID={1}", userID, ouID);
+            string commandText = string.Format("DELETE FROM {0}OU_User WHERE User_ID={1} AND OU_ID={2}", AccessPortal.gc._securityTablePre, userID, ouID);
             Database db = CreateDatabase();
             DbCommand command = db.GetSqlStringCommand(commandText);
             db.ExecuteNonQuery(command);
@@ -190,10 +190,10 @@ namespace JCodes.Framework.AccessDAL
             OUInfo info = this.FindByID(key, trans);
             if (info != null)
             {
-                string sql = string.Format("UPDATE [T_ACL_OU] SET PID={0} Where PID={1}", info.PID, key);
+                string sql = string.Format("UPDATE [{0}OU] SET PID={1} Where PID={2}", AccessPortal.gc._securityTablePre, info.PID, key);
                 SqlExecute(sql, trans);
 
-                sql = string.Format("Delete From [T_ACL_OU] Where ID={0}", key);
+                sql = string.Format("Delete From [{0}OU] Where ID={1}", AccessPortal.gc._securityTablePre, key);
                 SqlExecute(sql, trans);
             }
 
@@ -202,15 +202,13 @@ namespace JCodes.Framework.AccessDAL
 
         public List<OUInfo> GetOUsByRole(int roleID)
         {
-            //string sql = "SELECT * FROM T_ACL_OU INNER JOIN T_ACL_OU_Role On [T_ACL_OU].ID=T_ACL_OU_Role.OU_ID WHERE Role_ID = " + roleID;
-            string sql = "SELECT * FROM T_ACL_OU, T_ACL_OU_Role Where [T_ACL_OU].ID=T_ACL_OU_Role.OU_ID And Role_ID = " + roleID;
+            string sql = string.Format("SELECT * FROM {0}OU, {0}OU_Role Where [{0}OU].ID={0}OU_Role.OU_ID And Role_ID = {1}", AccessPortal.gc._securityTablePre, roleID);
             return this.GetList(sql, null);
         }
 
         public List<OUInfo> GetOUsByUser(int userID)
         {
-            //string sql = "SELECT * FROM T_ACL_OU INNER JOIN T_ACL_OU_User On [T_ACL_OU].ID=T_ACL_OU_User.OU_ID WHERE User_ID = " + userID;
-            string sql = "SELECT * FROM T_ACL_OU, T_ACL_OU_User Where [T_ACL_OU].ID=T_ACL_OU_User.OU_ID And User_ID = " + userID;
+            string sql = string.Format("SELECT * FROM {0}OU, {0}OU_User Where [{0}OU].ID={0}OU_User.OU_ID And User_ID = ",AccessPortal.gc._securityTablePre, userID);
             return this.GetList(sql, null);
         }
 

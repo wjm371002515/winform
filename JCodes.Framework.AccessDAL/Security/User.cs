@@ -28,7 +28,7 @@ namespace JCodes.Framework.AccessDAL
             }
         }
         public User()
-            : base("T_ACL_User", "ID")
+            : base(AccessPortal.gc._securityTablePre+"User", "ID")
         {
             this.sortField = "SortCode";
             this.isDescending = false;
@@ -297,29 +297,25 @@ namespace JCodes.Framework.AccessDAL
         /// <returns></returns>
         public List<SimpleUserInfo> GetSimpleUsersByOU(int ouID)
         {
-            //string sql = "Select ID,Name,Password,FullName From T_ACL_OU_User Inner Join [T_ACL_User] ON [T_ACL_User].ID=User_ID Where OU_ID = " + ouID;
-            string sql = "Select ID,Name,Password,FullName,HandNo,MobilePhone,Email From T_ACL_OU_User, [T_ACL_User] Where [T_ACL_User].ID=User_ID And Deleted = 0 AND OU_ID = " + ouID;
+            string sql = string.Format("Select ID,Name,Password,FullName,HandNo,MobilePhone,Email From {0}OU_User, [{0}User] Where [{0}User].ID=User_ID And Deleted = 0 AND OU_ID = {1}", AccessPortal.gc._securityTablePre, ouID);
             return FillSimpleUsers(sql);
         }
 
         public List<SimpleUserInfo> GetSimpleUsersByRole(int roleID)
         {
-            //string sql = "Select ID,Name,Password,FullName From [T_ACL_User] INNER JOIN T_ACL_User_Role ON [T_ACL_User].ID=User_ID Where Role_ID = " + roleID;
-            string sql = "Select ID,Name,Password,FullName,HandNo,MobilePhone,Email From [T_ACL_User], T_ACL_User_Role Where [T_ACL_User].ID=User_ID and Deleted = 0 AND Role_ID = " + roleID;
+            string sql = string.Format("Select ID,Name,Password,FullName,HandNo,MobilePhone,Email From [{0}User], {0}User_Role Where [{0}User].ID=User_ID and Deleted = 0 AND Role_ID = {1}", AccessPortal.gc._securityTablePre, roleID);
             return this.FillSimpleUsers(sql);
         }
 
         public List<UserInfo> GetUsersByOU(int ouID)
         {
-            //string sql = "SELECT * FROM [T_ACL_User] INNER JOIN T_ACL_OU_User On [T_ACL_User].ID=T_ACL_OU_User.User_ID WHERE OU_ID = " + ouID;
-            string sql = "SELECT * FROM [T_ACL_User], T_ACL_OU_User Where [T_ACL_User].ID=T_ACL_OU_User.User_ID and Deleted = 0 AND OU_ID = " + ouID;
+            string sql = string.Format("SELECT * FROM [{0}User], {0}OU_User Where [{0}User].ID={0}OU_User.User_ID and Deleted = 0 AND OU_ID = {1}", AccessPortal.gc._securityTablePre, ouID);
             return GetList(sql, null);
         }
 
         public List<UserInfo> GetUsersByRole(int roleID)
         {
-            //string sql = "SELECT * FROM [T_ACL_User] INNER JOIN T_ACL_User_Role On [T_ACL_User].ID=T_ACL_User_Role.User_ID WHERE Role_ID = " + roleID;
-            string sql = "SELECT * FROM [T_ACL_User], T_ACL_User_Role Where [T_ACL_User].ID=T_ACL_User_Role.User_ID and Deleted = 0 AND Role_ID = " + roleID;
+            string sql = string.Format( "SELECT * FROM [{0}User], {0}User_Role Where [{0}User].ID={0}User_Role.User_ID and Deleted = 0 AND Role_ID = {1}",AccessPortal.gc._securityTablePre, roleID);
             return this.GetList(sql, null);
         }
 

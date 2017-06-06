@@ -11,7 +11,7 @@ namespace JCodes.Framework.jCodesenum.BaseEnum
         /// <summary>
         /// 警戒性错误， 必须被立即修改的错误 2
         /// </summary>
-        LOG_TYPE_ALERT = 2,
+        LOG_LEVEL_ALERT = 2,
 
         /// <summary>
         /// 临界值错误， 超过临界值的错误 3

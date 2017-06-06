@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccessPortal.cs" />
     <Compile Include="Attachment\FileUpload.cs" />
     <Compile Include="Dic\City.cs" />
     <Compile Include="Dic\DictData.cs" />

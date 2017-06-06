@@ -41,7 +41,8 @@
             // 
             // txtUserName
             // 
-            this.txtUserName.Location = new System.Drawing.Point(98, 332);
+            this.txtUserName.Location = new System.Drawing.Point(140, 522);
+            this.txtUserName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(214)))), ((int)(((byte)(233)))));
             this.txtUserName.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 11F, System.Drawing.FontStyle.Bold);
@@ -49,14 +50,15 @@
             this.txtUserName.Properties.Appearance.Options.UseFont = true;
             this.txtUserName.Properties.AutoHeight = false;
             this.txtUserName.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.txtUserName.Size = new System.Drawing.Size(110, 25);
+            this.txtUserName.Size = new System.Drawing.Size(157, 25);
             this.txtUserName.TabIndex = 0;
-            this.txtUserName.ToolTip = "首次登陆的默认账号为:admin";
+            this.txtUserName.ToolTip = "请输入用户名";
             this.txtUserName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtUserName_KeyUp);
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(303, 332);
+            this.txtPassword.Location = new System.Drawing.Point(433, 522);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(214)))), ((int)(((byte)(233)))));
             this.txtPassword.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 11F, System.Drawing.FontStyle.Bold);
@@ -65,9 +67,9 @@
             this.txtPassword.Properties.AutoHeight = false;
             this.txtPassword.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.txtPassword.Properties.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(110, 25);
+            this.txtPassword.Size = new System.Drawing.Size(157, 25);
             this.txtPassword.TabIndex = 1;
-            this.txtPassword.ToolTip = "首次登陆的默认密码为空,  以后请更改默认密码！";
+            this.txtPassword.ToolTip = "首次登陆的默认密码为123,  以后请更改默认密码！";
             this.txtPassword.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyUp);
             // 
             // btnLogin
@@ -77,9 +79,10 @@
             this.btnLogin.Appearance.Options.UseFont = true;
             this.btnLogin.Appearance.Options.UseImage = true;
             this.btnLogin.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.btnLogin.Location = new System.Drawing.Point(437, 331);
+            this.btnLogin.Location = new System.Drawing.Point(624, 520);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(87, 26);
+            this.btnLogin.Size = new System.Drawing.Size(124, 41);
             this.btnLogin.TabIndex = 3;
             this.btnLogin.ToolTip = "登录系统";
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -89,9 +92,10 @@
             this.labelControl1.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("labelControl1.Appearance.Image")));
             this.labelControl1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.labelControl1.Location = new System.Drawing.Point(569, 1);
+            this.labelControl1.Location = new System.Drawing.Point(813, 2);
+            this.labelControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(29, 30);
+            this.labelControl1.Size = new System.Drawing.Size(41, 47);
             this.labelControl1.TabIndex = 3;
             this.labelControl1.Visible = false;
             this.labelControl1.Click += new System.EventHandler(this.labelControl1_Click);
@@ -101,9 +105,10 @@
             this.lblTips.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblTips.Appearance.ForeColor = System.Drawing.Color.Yellow;
             this.lblTips.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Horizontal;
-            this.lblTips.Location = new System.Drawing.Point(85, 219);
+            this.lblTips.Location = new System.Drawing.Point(121, 344);
+            this.lblTips.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.lblTips.Name = "lblTips";
-            this.lblTips.Size = new System.Drawing.Size(240, 21);
+            this.lblTips.Size = new System.Drawing.Size(336, 31);
             this.lblTips.TabIndex = 5;
             this.lblTips.Text = "                                                ";
             // 
@@ -114,20 +119,21 @@
             this.btnExit.Appearance.Options.UseBackColor = true;
             this.btnExit.Appearance.Options.UseImage = true;
             this.btnExit.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.btnExit.Location = new System.Drawing.Point(548, 332);
+            this.btnExit.Location = new System.Drawing.Point(783, 522);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(21, 23);
+            this.btnExit.Size = new System.Drawing.Size(30, 36);
             this.btnExit.TabIndex = 6;
             this.btnExit.ToolTip = "退出系统";
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayoutStore = System.Windows.Forms.ImageLayout.Tile;
             this.BackgroundImageStore = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImageStore")));
-            this.ClientSize = new System.Drawing.Size(600, 371);
+            this.ClientSize = new System.Drawing.Size(857, 583);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.lblTips);
             this.Controls.Add(this.labelControl1);
@@ -137,6 +143,7 @@
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Login";

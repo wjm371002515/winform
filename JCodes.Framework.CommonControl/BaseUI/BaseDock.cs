@@ -26,25 +26,24 @@ namespace JCodes.Framework.CommonControl.BaseUI
         /// <summary>
         /// 进行数据过滤的Sql条件，默认通过 Cache.Instance["DataFilterCondition"]获取
         /// </summary>
-        public string DataFilterCondition { get; set; }
+       // public string DataFilterCondition { get; set; }
 
         /// <summary>
         /// 选择查看的公司ID
-        /// </summary>
-        public string SelectedCompanyID { get; set; }
+       /// </summary>
+       //public string SelectedCompanyID { get; set; }
 
         public BaseDock()
         {
             InitializeComponent();
-
             //为了保证一些界面控件的权限控制和身份确认，以及简化操作，在界面初始化的时候，从缓存里面内容（如果存在的话）
             //继承的子模块，也可以通过InitFunction()进行指定用户相关信息
             this.LoginUserInfo = Cache.Instance["LoginUserInfo"] as LoginUserInfo;
             this.FunctionDict = Cache.Instance["FunctionDict"] as Dictionary<string, string>;
 
             // 进行数据过滤的Sql条件
-            this.DataFilterCondition = Cache.Instance["DataFilterCondition"] as string;
-            this.SelectedCompanyID = Cache.Instance["SelectedCompanyID"] as string;
+            //this.DataFilterCondition = Cache.Instance["DataFilterCondition"] as string;
+           // this.SelectedCompanyID = Cache.Instance["SelectedCompanyID"] as string;
         }
 
         /// <summary>

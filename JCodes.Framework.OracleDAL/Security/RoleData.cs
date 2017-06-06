@@ -26,7 +26,7 @@ namespace JCodes.Framework.OracleDAL
 				return new RoleData();
 			}
 		}
-		public RoleData() : base("T_ACL_RoleData","ID")
+		public RoleData() : base(OraclePortal.gc._securityTablePre+"RoleData","ID")
         {
             this.SeqName = "";//由于字符型组件，不需要序列
 		}

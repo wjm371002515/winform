@@ -27,7 +27,7 @@ namespace JCodes.Framework.SQLiteDAL
             }
         }
         public RoleData()
-            : base("T_ACL_RoleData", "ID")
+            : base(SQLitePortal.gc._securityTablePre+"RoleData", "ID")
         {
         }
 

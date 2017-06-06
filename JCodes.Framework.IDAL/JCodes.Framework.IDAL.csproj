@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="50Go\ICoupon.cs" />
+    <Compile Include="50Go\ICouponCategory.cs" />
     <Compile Include="Attachment\IFileUpload.cs" />
     <Compile Include="Dic\ICity.cs" />
     <Compile Include="Dic\IDictData.cs" />

@@ -127,7 +127,8 @@
     <Compile Include="Collections\SyncOrderedDictionary.cs" />
     <Compile Include="Collections\ThreadSafeDictionary.cs" />
     <Compile Include="Collections\ThreadSafeSortedList.cs" />
-    <Compile Include="Const\JCodes.Framework.Common.Const.cs" />
+    <Compile Include="Const\JCodes.Framework.Common.Other.Const.cs" />
+    <Compile Include="Const\JCodes.Framework.Common.SystemConfig.Const.cs" />
     <Compile Include="CryptographyHelper.cs" />
     <Compile Include="Databases\DataTableHelper.cs" />
     <Compile Include="Databases\JetAccessUtil.cs" />

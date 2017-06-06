@@ -27,7 +27,7 @@ namespace JCodes.Framework.SQLiteDAL
             }
         }
         public BlackIP()
-            : base("T_ACL_BlackIP", "ID")
+            : base(SQLitePortal.gc._securityTablePre+"BlackIP", "ID")
         {
             this.sortField = "CreateTime";
         }
@@ -121,14 +121,14 @@ namespace JCodes.Framework.SQLiteDAL
         /// <returns></returns>
         public string GetUserIdList(string id)
         {
-            string sql = string.Format(@"SELECT USER_ID FROM T_ACL_BLACKIP_USER m INNER JOIN T_ACL_BLACKIP t
-            ON m.BLACKIP_ID=t.ID WHERE t.ID = '{0}' ", id);
+            string sql = string.Format(@"SELECT USER_ID FROM {0}BLACKIP_USER m INNER JOIN {0}BLACKIP t
+            ON m.BLACKIP_ID=t.ID WHERE t.ID = '{1}' ",SQLitePortal.gc._securityTablePre, id);
             return SqlValueList(sql);
         }
 
         public void AddUser(int userID, string blackID)
         {
-            string commandText = string.Format("INSERT INTO T_ACL_BLACKIP_USER(User_ID, BLACKIP_ID) VALUES({0}, '{1}')", userID, blackID);
+            string commandText = string.Format("INSERT INTO {0}BLACKIP_USER(User_ID, BLACKIP_ID) VALUES({1}, '{2}')",SQLitePortal.gc._securityTablePre, userID, blackID);
             Database db = CreateDatabase();
             DbCommand command = db.GetSqlStringCommand(commandText);
             db.ExecuteNonQuery(command);
@@ -136,7 +136,7 @@ namespace JCodes.Framework.SQLiteDAL
 
         public void RemoveUser(int userID, string blackID)
         {
-            string commandText = string.Format("DELETE FROM T_ACL_BLACKIP_USER WHERE User_ID={0} AND BLACKIP_ID='{1}'", userID, blackID);
+            string commandText = string.Format("DELETE FROM {0}BLACKIP_USER WHERE User_ID={1} AND BLACKIP_ID='{2}'", SQLitePortal.gc._securityTablePre, userID, blackID);
             Database db = CreateDatabase();
             DbCommand command = db.GetSqlStringCommand(commandText);
             db.ExecuteNonQuery(command);
@@ -150,8 +150,8 @@ namespace JCodes.Framework.SQLiteDAL
         /// <returns></returns>
         public List<BlackIPInfo> FindByUser(int userId, AuthrizeType type)
         {
-            string sql = string.Format(@"SELECT t.* FROM T_ACL_BLACKIP t INNER JOIN T_ACL_BLACKIP_USER m
-            ON t.ID=m.BLACKIP_ID WHERE m.User_ID = {0} and t.AuthorizeType={1} and t.Forbid=0 ", userId, (int)type);
+            string sql = string.Format(@"SELECT t.* FROM {0}BLACKIP t INNER JOIN {0}BLACKIP_USER m
+            ON t.ID=m.BLACKIP_ID WHERE m.User_ID = {1} and t.AuthorizeType={2} and t.Forbid=0 ", SQLitePortal.gc._securityTablePre, userId, (int)type);
             return GetList(sql, null);
         }
     }

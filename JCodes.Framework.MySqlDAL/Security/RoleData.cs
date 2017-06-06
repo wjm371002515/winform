@@ -26,7 +26,8 @@ namespace JCodes.Framework.MySqlDAL
 				return new RoleData();
 			}
 		}
-		public RoleData() : base("T_ACL_RoleData","ID")
+        public RoleData()
+            : base(MySqlPortal.gc._securityTablePre + "RoleData", "ID")
 		{
 		}
 

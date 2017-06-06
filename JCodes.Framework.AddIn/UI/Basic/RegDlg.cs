@@ -30,16 +30,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
         private DevExpress.XtraEditors.SimpleButton btRegister;
         private DevExpress.XtraEditors.SimpleButton btnCopy;
 
-        private static RegDlg instance;
-
-        public static RegDlg Instance()
-        {
-            if (instance == null || instance.IsDisposed)
-                instance = new RegDlg();
-            return instance;
-        }
-
-        protected RegDlg()
+        public RegDlg()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;

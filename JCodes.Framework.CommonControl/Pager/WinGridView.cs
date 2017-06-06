@@ -545,12 +545,6 @@ namespace JCodes.Framework.CommonControl.Pager
             ExportToExcel();
         }
 
-        private void menu_Buy_Click(object sender, EventArgs e)
-        {
-            Process.Start("http://www.iqidi.com");
-        }
-
-
         private void menu_CopyInfo_Click(object sender, EventArgs e)
         {
             int[] selectedRow = this.gridView1.GetSelectedRows();
@@ -596,7 +590,13 @@ namespace JCodes.Framework.CommonControl.Pager
                 }
             }
 
-            Clipboard.SetText(sbHeader.ToString() + "\r\n" + sb.ToString());
+            try {
+                Clipboard.SetText(sbHeader.ToString() + "\r\n" + sb.ToString());
+            }
+            catch (Exception ex)
+            {
+                
+            }
         }
 
         private void menu_SetColumn_Click(object sender, EventArgs e)
@@ -847,10 +847,6 @@ namespace JCodes.Framework.CommonControl.Pager
             if (!this.DesignMode)
             {
                 LicenseCheckResult result = LicenseTool.CheckLicense();
-                if (result.IsValided)
-                {
-                    menu_Buy.Visible = false;
-                }
                 this.contextMenuStrip1.Opening += new CancelEventHandler(contextMenuStrip1_Opening);
                 this.gridControl1.MouseClick += new MouseEventHandler(dataGridView1_MouseClick);
                 this.gridControl1.MouseDoubleClick += new MouseEventHandler(dataGridView1_MouseDoubleClick);

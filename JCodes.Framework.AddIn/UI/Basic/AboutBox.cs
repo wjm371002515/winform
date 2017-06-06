@@ -18,13 +18,6 @@ namespace JCodes.Framework.AddIn.UI.Basic
         {
             InitializeComponent();
 
-            //this.Text = String.Format("关于 {0} ", AssemblyTitle);
-            //this.labelProductName.Text = AssemblyProduct;
-            //this.labelVersion.Text = String.Format("版本 {0} ", AssemblyVersion);
-            //this.labelCopyright.Text = AssemblyCopyright;
-            //this.labelCompanyName.Text = AssemblyCompany;
-            //this.textBoxDescription.Text = AssemblyDescription;
-
             #region 初始化系统名称
             try
             {
@@ -35,7 +28,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
 
                 this.Text = string.Format("{0}-{1}", CertificatedCompany, ApplicationName);
                 this.lblProductName.Text = ApplicationName;
-                this.lblVersion.Text = String.Format("版本 {0}", AssemblyVersion);
+                this.lblVersion.Text = String.Format("版本 {0}", Const.jCodes_VERSION);
                 this.lblCopyright.Text = AssemblyCopyright;
                 this.lblCertificated.Text = string.Format("授权【{0}】使用", CertificatedCompany);
                 string description = config.AppConfigGet("Description");//软件介绍
