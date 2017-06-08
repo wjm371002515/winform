@@ -28,11 +28,8 @@ namespace JCodes.Framework.AddIn.UI.Security
     {
         public FrmBlackIP()
         {
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, "吴建明测试2 start" + DateTime.Now.ToShortTimeString(), typeof(FrmBlackIP));
             InitializeComponent();
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, "吴建明测试2-1 start" + DateTime.Now.ToShortTimeString(), typeof(FrmBlackIP));
             InitDictItem();
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, "吴建明测试2-2 start" + DateTime.Now.ToShortTimeString(), typeof(FrmBlackIP));
             this.winGridViewPager1.OnStartExport += new EventHandler(winGridViewPager1_OnStartExport);
             this.winGridViewPager1.OnEditSelected += new EventHandler(winGridViewPager1_OnEditSelected);
             this.winGridViewPager1.OnAddNew += new EventHandler(winGridViewPager1_OnAddNew);
@@ -44,31 +41,11 @@ namespace JCodes.Framework.AddIn.UI.Security
 			this.winGridViewPager1.gridView1.DataSourceChanged +=new EventHandler(gridView1_DataSourceChanged);
             this.winGridViewPager1.gridView1.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(gridView1_CustomColumnDisplayText);
             this.winGridViewPager1.gridView1.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(gridView1_RowCellStyle);
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, "吴建明测试2-3 start" + DateTime.Now.ToShortTimeString(), typeof(FrmBlackIP));
             //关联回车键进行查询
             foreach (Control control in this.layoutControl1.Controls)
             {
                 control.KeyUp += new System.Windows.Forms.KeyEventHandler(this.SearchControl_KeyUp);
             }
-
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, "吴建明测试2" + DateTime.Now.ToShortTimeString(), typeof(FrmBlackIP));
-        }
-
-        void Init_Function()
-        {
-            if (!Portal.gc.HasFunction("BlackIP/search"))
-            {
-                btnSearch.Visible = false;
-                btnSearch.Enabled = false;
-            }
-
-            if (!Portal.gc.HasFunction("BlackIP/add"))
-            {
-                btnAddNew.Visible = false;
-                btnAddNew.Enabled = false;
-            }
-
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, "吴建明测试3" + DateTime.Now.ToShortTimeString(), typeof(FrmBlackIP));
         }
 
         void gridView1_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
@@ -96,7 +73,6 @@ namespace JCodes.Framework.AddIn.UI.Security
                     e.Appearance.BackColor2 = Color.LightCyan;
                 }
             }
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, "吴建明测试4" + DateTime.Now.ToShortTimeString(), typeof(FrmBlackIP));
         }
         void gridView1_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
         {
@@ -122,7 +98,6 @@ namespace JCodes.Framework.AddIn.UI.Security
                     e.DisplayText = ((AuthrizeType)e.Value).ToString();
                 }
             }
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, "吴建明测试5" + DateTime.Now.ToShortTimeString(), typeof(FrmBlackIP));
         }
         
         /// <summary>
@@ -142,7 +117,6 @@ namespace JCodes.Framework.AddIn.UI.Security
                 SetGridColumWidth("Name", 200);
                 SetGridColumWidth("Note", 200);
             }
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, "吴建明测试6" + DateTime.Now.ToShortTimeString(), typeof(FrmBlackIP));
         }
 
         private void SetGridColumWidth(string columnName, int width)
@@ -152,7 +126,6 @@ namespace JCodes.Framework.AddIn.UI.Security
             {
                 column.Width = width;
             }
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, "吴建明测试7" + DateTime.Now.ToShortTimeString(), typeof(FrmBlackIP));
         }
 
         /// <summary>
@@ -163,16 +136,19 @@ namespace JCodes.Framework.AddIn.UI.Security
             BindData();
 
             Init_Function();
-
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, "吴建明测试8" + DateTime.Now.ToShortTimeString(), typeof(FrmBlackIP));
         }
-        
+
+        void Init_Function()
+        {
+            btnSearch.Enabled = Portal.gc.HasFunction("BlackIP/search");
+            btnAddNew.Enabled = Portal.gc.HasFunction("BlackIP/add");
+        }
+
         /// <summary>
         /// 初始化字典列表内容
         /// </summary>
         private void InitDictItem()
         {
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, "吴建明测试9 start" + DateTime.Now.ToShortTimeString(), typeof(FrmBlackIP));
             //初始化分类
             Dictionary<string, object> dictEnum = EnumHelper.GetMemberKeyValue<AuthrizeType>();
             this.txtAuthorizeType.Properties.Items.Clear();
@@ -180,7 +156,6 @@ namespace JCodes.Framework.AddIn.UI.Security
             {
                 this.txtAuthorizeType.Properties.Items.Add(new CListItem(item, dictEnum[item].ToString()));
             }
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, "吴建明测试9" + DateTime.Now.ToShortTimeString(), typeof(FrmBlackIP));
         }
         
         /// <summary>
@@ -189,7 +164,6 @@ namespace JCodes.Framework.AddIn.UI.Security
         private void winGridViewPager1_OnRefresh(object sender, EventArgs e)
         {
             BindData();
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, "吴建明测试10" + DateTime.Now.ToShortTimeString(), typeof(FrmBlackIP));
         }
         
         /// <summary>
@@ -197,6 +171,12 @@ namespace JCodes.Framework.AddIn.UI.Security
         /// </summary>
         private void winGridViewPager1_OnDeleteSelected(object sender, EventArgs e)
         {
+            if (!Portal.gc.HasFunction("BlackIP/del"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
             if (MessageDxUtil.ShowYesNoAndTips("您确定删除选定的记录么？") == DialogResult.No)
             {
                 return;
@@ -210,7 +190,6 @@ namespace JCodes.Framework.AddIn.UI.Security
             }
              
             BindData();
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, "吴建明测试11" + DateTime.Now.ToShortTimeString(), typeof(FrmBlackIP));
         }
         
         /// <summary>
@@ -218,6 +197,12 @@ namespace JCodes.Framework.AddIn.UI.Security
         /// </summary>
         private void winGridViewPager1_OnEditSelected(object sender, EventArgs e)
         {
+            if (!Portal.gc.HasFunction("BlackIP/edit"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
             string ID = this.winGridViewPager1.gridView1.GetFocusedRowCellDisplayText("ID");
             List<string> IDList = new List<string>();
             for (int i = 0; i < this.winGridViewPager1.gridView1.RowCount; i++)
@@ -238,14 +223,11 @@ namespace JCodes.Framework.AddIn.UI.Security
                     BindData();
                 }
             }
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, "吴建明测试12" + DateTime.Now.ToShortTimeString(), typeof(FrmBlackIP));
         }        
         
         void dlg_OnDataSaved(object sender, EventArgs e)
         {
             BindData();
-
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, "吴建明测试13" + DateTime.Now.ToShortTimeString(), typeof(FrmBlackIP));
         }
         
         /// <summary>
@@ -253,8 +235,13 @@ namespace JCodes.Framework.AddIn.UI.Security
         /// </summary>        
         private void winGridViewPager1_OnAddNew(object sender, EventArgs e)
         {
+            if (!Portal.gc.HasFunction("BlackIP/add"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
             btnAddNew_Click(null, null);
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, "吴建明测试14" + DateTime.Now.ToShortTimeString(), typeof(FrmBlackIP));
         }
         
         /// <summary>
@@ -264,8 +251,6 @@ namespace JCodes.Framework.AddIn.UI.Security
         {
             string where = GetConditionSql();
             this.winGridViewPager1.AllToExport = BLLFactory<BlackIP>.Instance.FindToDataTable(where);
-
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, "吴建明测试15" + DateTime.Now.ToShortTimeString(), typeof(FrmBlackIP));
          }
 
         /// <summary>
@@ -274,8 +259,6 @@ namespace JCodes.Framework.AddIn.UI.Security
         private void winGridViewPager1_OnPageChanged(object sender, EventArgs e)
         {
             BindData();
-
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, "吴建明测试16" + DateTime.Now.ToShortTimeString(), typeof(FrmBlackIP));
         }
  
         
@@ -298,7 +281,6 @@ namespace JCodes.Framework.AddIn.UI.Security
             }
 
             string where = condition.BuildConditionSql().Replace("Where", "");
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, "吴建明测试17" + DateTime.Now.ToShortTimeString(), typeof(FrmBlackIP));
             return where;
         }
         
@@ -310,25 +292,10 @@ namespace JCodes.Framework.AddIn.UI.Security
             //entity
             this.winGridViewPager1.DisplayColumns = "Name,AuthorizeType,Forbid,IPStart,IPEnd,Note,Creator,CreateTime";
             this.winGridViewPager1.ColumnNameAlias = BLLFactory<BlackIP>.Instance.GetColumnNameAlias();//字段列显示名称转义
-
-            #region 添加别名解析
-
-            //this.winGridViewPager1.AddColumnAlias("Name", "显示名称");
-            //this.winGridViewPager1.AddColumnAlias("AuthorizeType", "授权类型");
-            //this.winGridViewPager1.AddColumnAlias("Forbid", "是否禁用");
-            //this.winGridViewPager1.AddColumnAlias("IPStart", "IP起始地址");
-            //this.winGridViewPager1.AddColumnAlias("IPEnd", "IP结束地址");
-            //this.winGridViewPager1.AddColumnAlias("Note", "备注");
-            //this.winGridViewPager1.AddColumnAlias("Creator", "创建人");
-            //this.winGridViewPager1.AddColumnAlias("CreateTime", "创建时间");
-
-            #endregion
-
             string where = GetConditionSql();
             List<BlackIPInfo> list = BLLFactory<BlackIP>.Instance.Find(where);
             this.winGridViewPager1.DataSource = new SortableBindingList<BlackIPInfo>(list);
             this.winGridViewPager1.PrintTitle = "登陆系统的黑白名单列表报表";
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, "吴建明测试18" + DateTime.Now.ToShortTimeString(), typeof(FrmBlackIP));
         }
         
         /// <summary>
@@ -351,8 +318,6 @@ namespace JCodes.Framework.AddIn.UI.Security
             {
                 BindData();
             }
-
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, "吴建明测试19" + DateTime.Now.ToShortTimeString(), typeof(FrmBlackIP));
         }
         
         /// <summary>
@@ -362,14 +327,18 @@ namespace JCodes.Framework.AddIn.UI.Security
         {
             if (e.KeyCode == Keys.Enter)
             {
+                if (!Portal.gc.HasFunction("BlackIP/search"))
+                {
+                    return;
+                }
+
                 btnSearch_Click(null, null);
             }
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, "吴建明测试20" + DateTime.Now.ToShortTimeString(), typeof(FrmBlackIP));
         }
 
         private void txtForbid_CheckedChanged(object sender, EventArgs e)
         {
-            //BindData();
+            BindData();
         }        					 						 						 						 						 						 						 						 						 						 						 	 						 	 
     }
 }

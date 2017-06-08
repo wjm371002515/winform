@@ -69,7 +69,7 @@ namespace JCodes.Framework.AddIn.UI._50Go
         {
             if (!Portal.gc.HasFunction("Generatecoupons/del"))
             {
-                MessageDxUtil.ShowError("您没有此权限，请与管理员联系!");
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
             }
 
@@ -94,7 +94,7 @@ namespace JCodes.Framework.AddIn.UI._50Go
         {
             if (!Portal.gc.HasFunction("Generatecoupons/edit"))
             {
-                MessageDxUtil.ShowError("您没有此权限，请与管理员联系!");
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
             }
 
@@ -338,7 +338,7 @@ namespace JCodes.Framework.AddIn.UI._50Go
         {
             if (!Portal.gc.HasFunction("Generatecoupons/addCategory"))
             {
-                MessageDxUtil.ShowError("您没有此权限，请与管理员联系!");
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
             }
 
@@ -404,7 +404,7 @@ namespace JCodes.Framework.AddIn.UI._50Go
         {
             if (!Portal.gc.HasFunction("Generatecoupons/editCategory"))
             {
-                MessageDxUtil.ShowError("您没有此权限，请与管理员联系!");
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
             }
 

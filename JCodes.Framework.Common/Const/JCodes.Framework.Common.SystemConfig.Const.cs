@@ -87,6 +87,13 @@ namespace JCodes.Framework.Common
         /// 删除
         /// </summary>
         public const string Del = "删除";
+
+        /// <summary>
+        /// 没有权限提示信息
+        /// </summary>
+        public const string NoAuthMsg = "您没有此权限，请与管理员联系!";
+
+        public const string ForbidOperMsg = "不允许此操作，请与管理员联系！";
         #endregion
     }
 }

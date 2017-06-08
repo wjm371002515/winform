@@ -39,7 +39,28 @@ namespace JCodes.Framework.AddIn.UI.Security
                 InitDictItem();                
                 InitTreeFunction();
                 RefreshTreeView();
+                Init_Function();
             }
+        }
+
+        void Init_Function()
+        {
+            if (!Portal.gc.HasFunction("Role/RoleDataSearch"))
+            {
+                xtraTabControl1.TabPages.Remove(xtraTabControl1.TabPages[2]);
+            }
+            if (!Portal.gc.HasFunction("Role/FunctionSearch"))
+            {
+                xtraTabControl1.TabPages.Remove(xtraTabControl1.TabPages[1]);
+            }
+            btnAdd.Enabled = Portal.gc.HasFunction("Role/add");
+            btnDelete.Enabled = Portal.gc.HasFunction("Role/del");
+            btnEditOU.Enabled = Portal.gc.HasFunction("Role/OUedit");
+            btnRemoveOU.Enabled = Portal.gc.HasFunction("Role/OUdel");
+            btnEditUser.Enabled = Portal.gc.HasFunction("Role/UserAdd");
+            btnRemoveUser.Enabled = Portal.gc.HasFunction("Role/UserDel");
+            btnSaveFunction.Enabled = Portal.gc.HasFunction("Role/FunctionSave");
+            btnSaveRoleData.Enabled = Portal.gc.HasFunction("Role/RoleDataSave");
         }
 
         private void InitDictItem()
@@ -318,6 +339,12 @@ namespace JCodes.Framework.AddIn.UI.Security
 
         private void menu_Delete_Click(object sender, EventArgs e)
         {
+            if (!Portal.gc.HasFunction("Role/del"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
             TreeNode node = this.treeView1.SelectedNode;
             if (node != null && node.Tag != null)
             {
@@ -349,11 +376,18 @@ namespace JCodes.Framework.AddIn.UI.Security
 
         private void menu_Add_Click(object sender, EventArgs e)
         {
+            if (!Portal.gc.HasFunction("Role/add"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
             //跳转到第一个页面
             this.xtraTabControl1.SelectedTabPageIndex = 0;
 
             ClearInput();
             currentID = "";
+            groupControl2.Text = Const.Add + "角色详细信息";
 
             TreeNode node = this.treeView1.SelectedNode;
             if (node != null && node.Tag != null)
@@ -399,6 +433,7 @@ namespace JCodes.Framework.AddIn.UI.Security
                     RoleInfo info = e.Node.Tag as RoleInfo;
                     if (info != null)
                     {
+                        groupControl2.Text = Const.Edit + "角色详细信息";
                         currentID = info.ID.ToString();
                         this.txtName.Text = info.Name;
                         this.txtNote.Text = info.Note;
@@ -438,6 +473,12 @@ namespace JCodes.Framework.AddIn.UI.Security
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(currentID) && !Portal.gc.HasFunction("Role/edit"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
             #region 验证用户输入
             if (this.txtName.Text == "")
             {

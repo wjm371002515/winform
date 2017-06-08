@@ -29,67 +29,36 @@ namespace JCodes.Framework.AddIn.UI.Security
         /// </summary>
         private void InitializeComponent()
         {
-            JCodes.Framework.Common.LogHelper.WriteLog(JCodes.Framework.jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_CRIT, "吴建明测试2- 0-1start" , typeof(FrmBlackIP));
             this.components = new System.ComponentModel.Container();
-            JCodes.Framework.Common.LogHelper.WriteLog(JCodes.Framework.jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_CRIT, "吴建明测试2- 0-1 -1start", typeof(FrmBlackIP));
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmBlackIP));
-            JCodes.Framework.Common.LogHelper.WriteLog(JCodes.Framework.jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_CRIT, "吴建明测试2- 0-1 -2start", typeof(FrmBlackIP));
             this.btnAddNew = new DevExpress.XtraEditors.SimpleButton();
-            JCodes.Framework.Common.LogHelper.WriteLog(JCodes.Framework.jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_CRIT, "吴建明测试2- 0-1 -3start", typeof(FrmBlackIP));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            JCodes.Framework.Common.LogHelper.WriteLog(JCodes.Framework.jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_CRIT, "吴建明测试2- 0-1 -4start", typeof(FrmBlackIP));
             this.btnSearch = new DevExpress.XtraEditors.SimpleButton();
-            JCodes.Framework.Common.LogHelper.WriteLog(JCodes.Framework.jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_CRIT, "吴建明测试2- 0-1 -5start", typeof(FrmBlackIP));
             this.txtName = new DevExpress.XtraEditors.TextEdit();
-            JCodes.Framework.Common.LogHelper.WriteLog(JCodes.Framework.jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_CRIT, "吴建明测试2- 0-1 -6start", typeof(FrmBlackIP));
             this.txtAuthorizeType = new DevExpress.XtraEditors.ComboBoxEdit();
-            JCodes.Framework.Common.LogHelper.WriteLog(JCodes.Framework.jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_CRIT, "吴建明测试2- 0-1 -7start", typeof(FrmBlackIP));
             this.txtForbid = new DevExpress.XtraEditors.CheckEdit();
-            JCodes.Framework.Common.LogHelper.WriteLog(JCodes.Framework.jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_CRIT, "吴建明测试2- 0-1 -8start", typeof(FrmBlackIP));
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
-            JCodes.Framework.Common.LogHelper.WriteLog(JCodes.Framework.jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_CRIT, "吴建明测试2- 0-1 -9start", typeof(FrmBlackIP));
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            JCodes.Framework.Common.LogHelper.WriteLog(JCodes.Framework.jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_CRIT, "吴建明测试2- 0-1 -10start", typeof(FrmBlackIP));
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            JCodes.Framework.Common.LogHelper.WriteLog(JCodes.Framework.jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_CRIT, "吴建明测试2- 0-1 -11start", typeof(FrmBlackIP));
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            JCodes.Framework.Common.LogHelper.WriteLog(JCodes.Framework.jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_CRIT, "吴建明测试2- 0-1 -12start", typeof(FrmBlackIP));
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            JCodes.Framework.Common.LogHelper.WriteLog(JCodes.Framework.jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_CRIT, "吴建明测试2- 0-1 -13start", typeof(FrmBlackIP));
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            JCodes.Framework.Common.LogHelper.WriteLog(JCodes.Framework.jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_CRIT, "吴建明测试2- 0-1 -14start", typeof(FrmBlackIP));
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            JCodes.Framework.Common.LogHelper.WriteLog(JCodes.Framework.jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_CRIT, "吴建明测试2- 0-1 -15start", typeof(FrmBlackIP));
             this.winGridViewPager1 = new JCodes.Framework.CommonControl.Pager.WinGridView();
-            JCodes.Framework.Common.LogHelper.WriteLog(JCodes.Framework.jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_CRIT, "吴建明测试2- 0-1 -16start", typeof(FrmBlackIP));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            JCodes.Framework.Common.LogHelper.WriteLog(JCodes.Framework.jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_CRIT, "吴建明测试2- 0-1 -17start", typeof(FrmBlackIP));
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
-            JCodes.Framework.Common.LogHelper.WriteLog(JCodes.Framework.jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_CRIT, "吴建明测试2- 0-1 -18start", typeof(FrmBlackIP));
             this.layoutControl1.SuspendLayout();
-            JCodes.Framework.Common.LogHelper.WriteLog(JCodes.Framework.jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_CRIT, "吴建明测试2- 0-1 -19start", typeof(FrmBlackIP));
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).BeginInit();
-            JCodes.Framework.Common.LogHelper.WriteLog(JCodes.Framework.jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_CRIT, "吴建明测试2- 0-1 -20start", typeof(FrmBlackIP));
             ((System.ComponentModel.ISupportInitialize)(this.txtAuthorizeType.Properties)).BeginInit();
-            JCodes.Framework.Common.LogHelper.WriteLog(JCodes.Framework.jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_CRIT, "吴建明测试2- 0-1 -21start", typeof(FrmBlackIP));
             ((System.ComponentModel.ISupportInitialize)(this.txtForbid.Properties)).BeginInit();
-            JCodes.Framework.Common.LogHelper.WriteLog(JCodes.Framework.jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_CRIT, "吴建明测试2- 0-1 -22start", typeof(FrmBlackIP));
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
-            JCodes.Framework.Common.LogHelper.WriteLog(JCodes.Framework.jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_CRIT, "吴建明测试2- 0-1 -23start", typeof(FrmBlackIP));
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            JCodes.Framework.Common.LogHelper.WriteLog(JCodes.Framework.jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_CRIT, "吴建明测试2- 0-1 -24start", typeof(FrmBlackIP));
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            JCodes.Framework.Common.LogHelper.WriteLog(JCodes.Framework.jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_CRIT, "吴建明测试2- 0-1 -25start", typeof(FrmBlackIP));
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
-            JCodes.Framework.Common.LogHelper.WriteLog(JCodes.Framework.jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_CRIT, "吴建明测试2- 0-1 -26start", typeof(FrmBlackIP));
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
-            JCodes.Framework.Common.LogHelper.WriteLog(JCodes.Framework.jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_CRIT, "吴建明测试2- 0-1 -27start", typeof(FrmBlackIP));
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
-            JCodes.Framework.Common.LogHelper.WriteLog(JCodes.Framework.jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_CRIT, "吴建明测试2- 0-1 -28start", typeof(FrmBlackIP));
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
-            JCodes.Framework.Common.LogHelper.WriteLog(JCodes.Framework.jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_CRIT, "吴建明测试2- 0-1 -29start", typeof(FrmBlackIP));
             this.SuspendLayout();
-            JCodes.Framework.Common.LogHelper.WriteLog(JCodes.Framework.jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_CRIT, "吴建明测试2- 0-2start", typeof(FrmBlackIP));
             // 
             // btnAddNew
             // 
@@ -304,9 +273,7 @@ namespace JCodes.Framework.AddIn.UI.Security
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
-            this.ResumeLayout(false);
-            JCodes.Framework.Common.LogHelper.WriteLog(JCodes.Framework.jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_CRIT, "吴建明测试2- 0-3start" , typeof(FrmBlackIP));
-        }
+            this.ResumeLayout(false);        }
 
         #endregion
 

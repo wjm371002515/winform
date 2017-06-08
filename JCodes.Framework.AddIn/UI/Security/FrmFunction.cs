@@ -31,6 +31,14 @@ namespace JCodes.Framework.AddIn.UI.Security
         {
             InitDictItem();
             RefreshTreeView();
+            Init_Function();
+        }
+
+        void Init_Function()
+        {
+            btnAdd.Enabled = Portal.gc.HasFunction("Function/add");
+            btnDelete.Enabled = Portal.gc.HasFunction("Function/del");
+            btnBatchAdd.Enabled = Portal.gc.HasFunction("Function/BatchAdd");
         }
 
         /// <summary>
@@ -151,6 +159,12 @@ namespace JCodes.Framework.AddIn.UI.Security
 
         private void menu_Delete_Click(object sender, EventArgs e)
         {
+            if (!Portal.gc.HasFunction("Function/del"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
             TreeNode node = this.treeView1.SelectedNode;
             if (node != null && !string.IsNullOrEmpty(node.Name))
             {
@@ -173,6 +187,12 @@ namespace JCodes.Framework.AddIn.UI.Security
 
         private void menu_DeletAll_Click(object sender, EventArgs e)
         {
+            if (!Portal.gc.HasFunction("Function/BatchDel"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
             TreeNode node = this.treeView1.SelectedNode;
             if (node != null && !string.IsNullOrEmpty(node.Name))
             {
@@ -195,6 +215,14 @@ namespace JCodes.Framework.AddIn.UI.Security
 
         private void menu_Add_Click(object sender, EventArgs e)
         {
+            if (!Portal.gc.HasFunction("Function/add"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
+            groupControl1.Text = Const.Add + "功能详细信息";
+
             ClearInput();
             currentID = "";
             TreeNode node = this.treeView1.SelectedNode;
@@ -220,6 +248,7 @@ namespace JCodes.Framework.AddIn.UI.Security
             if (e.Node != null && e.Node.Tag != null)
             {
                 currentID = e.Node.Tag.ToString();
+                groupControl1.Text = Const.Edit + "功能详细信息";
                 FunctionInfo info = BLLFactory<Functions>.Instance.FindByID(currentID);
 
                 if (info != null)
@@ -260,7 +289,13 @@ namespace JCodes.Framework.AddIn.UI.Security
         }
 
         private void btnSave_Click(object sender, EventArgs e)
-        {            
+        {
+            if (!string.IsNullOrEmpty(currentID) && !Portal.gc.HasFunction("Function/edit"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
             if (this.functionControl1.Text.Length == 0)
                 return;
 
@@ -285,12 +320,20 @@ namespace JCodes.Framework.AddIn.UI.Security
             }
 
             #endregion
-
+            // 更新操作
             if (!string.IsNullOrEmpty(currentID))
             {
                 try
                 {
+                    // 合法操作检查
                     FunctionInfo info = BLLFactory<Functions>.Instance.FindByID(currentID);
+
+                    if (info.PID != functionControl1.Value && BLLFactory<Functions>.Instance.GetFunctionByPID(currentID).Count <= 1)
+                    {
+                        MessageDxUtil.ShowError(Const.ForbidOperMsg);
+                        return;
+                    }
+
                     if (info != null)
                     {
                         info = SetFunction(info);
@@ -359,6 +402,8 @@ namespace JCodes.Framework.AddIn.UI.Security
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            groupControl1.Text = Const.Add + "功能详细信息";
+
             menu_Add_Click(null, null);
         }
 

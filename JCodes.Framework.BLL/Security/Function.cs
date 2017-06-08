@@ -162,5 +162,14 @@ namespace JCodes.Framework.BLL
         {
             return functionDal.DeleteWithSubNode(mainID);
         }
+
+        /// <summary>
+        /// 根据指定的父ID获取其下面一级（仅限一级）的功能列表
+        /// </summary>
+        /// <param name="pid">菜单父ID</param>
+        public List<FunctionInfo> GetFunctionByPID(string pid)
+        {
+            return functionDal.GetFunctionByPID(pid);
+        }
     }
 }

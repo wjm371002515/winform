@@ -286,5 +286,16 @@ namespace JCodes.Framework.AccessDAL
             }
             return menuNodeInfo;
         }
+
+        /// <summary>
+        /// 根据指定的父ID获取其下面一级（仅限一级）的菜单列表
+        /// </summary>
+        /// <param name="PID">菜单父ID</param>
+        public List<FunctionInfo> GetFunctionByPID(string PID)
+        {
+            string sql = string.Format(@"Select t.*,case pid when '-1' then '0' else pid end as parentId From {1} t 
+                                         Where  PID='{0}' Order By SortCode ", PID, tableName);
+            return GetList(sql, null);
+        }
     }
 }

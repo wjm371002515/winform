@@ -35,7 +35,6 @@ namespace TestDictionary
         private void Form1_Load(object sender, EventArgs e)
         {
             //JCodes.Framework.jCodesenum.BaseEnum.
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_ERR, "吴建明测试", typeof(Form1));
             try
             {
                 //this.txtItemType.Items.Clear();

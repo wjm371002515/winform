@@ -145,6 +145,15 @@ namespace JCodes.Framework.AddIn.UI.Security
             InitDeptTreeview();
             InitRoleTree();
             BindData();
+            Init_Function();
+        }
+
+        void Init_Function()
+        {
+            btnSearch.Enabled = Portal.gc.HasFunction("User/search");
+            btnAddNew.Enabled = Portal.gc.HasFunction("User/add");
+            btnImport.Enabled = Portal.gc.HasFunction("User/import");
+            btnExport.Enabled = Portal.gc.HasFunction("User/export");
         }
 
         #region 初始化组织结构树方法
@@ -298,6 +307,12 @@ namespace JCodes.Framework.AddIn.UI.Security
         /// </summary>
         private void winGridViewPager1_OnDeleteSelected(object sender, EventArgs e)
         {
+            if (!Portal.gc.HasFunction("User/del"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
             if (MessageDxUtil.ShowYesNoAndTips("您确定删除选定的记录么？") == DialogResult.No)
             {
                 return;
@@ -318,6 +333,12 @@ namespace JCodes.Framework.AddIn.UI.Security
         /// </summary>
         private void winGridViewPager1_OnEditSelected(object sender, EventArgs e)
         {
+            if (!Portal.gc.HasFunction("User/edit"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
             string ID = this.winGridViewPager1.gridView1.GetFocusedRowCellDisplayText("ID");
             List<string> IDList = new List<string>();
             for (int i = 0; i < this.winGridViewPager1.gridView1.RowCount; i++)
@@ -350,6 +371,12 @@ namespace JCodes.Framework.AddIn.UI.Security
         /// </summary>        
         private void winGridViewPager1_OnAddNew(object sender, EventArgs e)
         {
+            if (!Portal.gc.HasFunction("User/add"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
             btnAddNew_Click(null, null);
         }
 
@@ -452,6 +479,12 @@ namespace JCodes.Framework.AddIn.UI.Security
         /// </summary>
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            if (!Portal.gc.HasFunction("User/search"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
             treeConditionSql = "";
             advanceCondition = null;//必须重置查询条件，否则可能会使用高级查询条件了
             isUseRoleSearch = false;
@@ -499,6 +532,12 @@ namespace JCodes.Framework.AddIn.UI.Security
         /// </summary>          
         private void btnImport_Click(object sender, EventArgs e)
         {
+            if (!Portal.gc.HasFunction("User/import"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
             //如果导入的Excel不指定部门，则默认使用选定的部门作为记录的部门
             TreeNode deptNode = this.treeDept.SelectedNode;
             if (deptNode != null)
@@ -671,6 +710,12 @@ namespace JCodes.Framework.AddIn.UI.Security
         /// </summary>
         private void btnExport_Click(object sender, EventArgs e)
         {
+            if (!Portal.gc.HasFunction("User/export"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
             string file = FileDialogHelper.SaveExcel(string.Format("{0}.xls", moduleName));
             if (!string.IsNullOrEmpty(file))
             {
@@ -791,6 +836,12 @@ namespace JCodes.Framework.AddIn.UI.Security
 
         private void menuDept_AddNew_Click(object sender, EventArgs e)
         {
+            if (!Portal.gc.HasFunction("User/add"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
             btnAddNew_Click(null, null);
         }
 
@@ -826,6 +877,12 @@ namespace JCodes.Framework.AddIn.UI.Security
 
         private void menu_InitPassword_Click(object sender, EventArgs e)
         {
+            if (!Portal.gc.HasFunction("User/initPwd"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
             if (MessageDxUtil.ShowYesNoAndTips("您确定重置选定记录的用户密码么？ \r\n重置后密码将设置为【12345678】") == DialogResult.No)
             {
                 return;

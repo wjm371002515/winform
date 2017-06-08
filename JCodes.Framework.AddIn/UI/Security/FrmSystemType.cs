@@ -38,7 +38,17 @@ namespace JCodes.Framework.AddIn.UI.Security
         public override void FormOnLoad()
         {
             BindData();
+
+
         }
+
+        void Init_Function()
+        {
+            tsbNew.Enabled = Portal.gc.HasFunction("SystemType/add");
+            tsbEdit.Enabled = Portal.gc.HasFunction("SystemType/edit");
+            tsbDelete.Enabled = Portal.gc.HasFunction("SystemType/del");
+        }
+		
 
         /// <summary>
         /// 初始化字典列表内容
@@ -67,6 +77,12 @@ namespace JCodes.Framework.AddIn.UI.Security
 
         private void winGridView1_OnDeleteSelected(object sender, EventArgs e)
         {
+            if (!Portal.gc.HasFunction("SystemType/del"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
             if (MessageDxUtil.ShowYesNoAndTips("您确定删除选定的记录么？") == DialogResult.No)
             {
                 return;
@@ -86,6 +102,12 @@ namespace JCodes.Framework.AddIn.UI.Security
 
         private void winGridView1_OnEditSelected(object sender, EventArgs e)
         {
+            if (!Portal.gc.HasFunction("SystemType/edit"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
             int[] rowSelected = this.winGridView1.GridView1.GetSelectedRows();
             foreach (int iRow in rowSelected)
             {
@@ -102,6 +124,12 @@ namespace JCodes.Framework.AddIn.UI.Security
 
         private void winGridView1_OnAddNew(object sender, EventArgs e)
         {
+            if (!Portal.gc.HasFunction("SystemType/add"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
             FrmEditSystemType dlg = new FrmEditSystemType();
             if (DialogResult.OK == dlg.ShowDialog())
             {

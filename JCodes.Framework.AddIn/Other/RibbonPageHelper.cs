@@ -100,8 +100,6 @@ namespace JCodes.Framework.AddIn.Other
                             button.Tag = thirdInfo.WinformType;
                             button.ItemClick += (sender, e) =>
                             {
-                                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, "吴建明测试1"+DateTime.Now.ToShortTimeString(), typeof(RibbonPageHelper));
-
                                 if (button.Tag != null && !string.IsNullOrEmpty(button.Tag.ToString()))
                                 {
                                     Portal.gc._waitBeforeLogin = new WaitDialogForm("正则加载 "+button.Caption + " 窗体中...", "加载窗体");

@@ -17,6 +17,7 @@ using JCodes.Framework.Common.Databases;
 using JCodes.Framework.CommonControl.Pager.Others;
 using JCodes.Framework.Common.Files;
 using JCodes.Framework.Common.Office;
+using JCodes.Framework.AddIn.Other;
 
 namespace JCodes.Framework.AddIn.UI.Security
 {
@@ -87,6 +88,14 @@ namespace JCodes.Framework.AddIn.UI.Security
         {
             InitTree();
             BindData();
+            Init_Function();
+        }
+
+        void Init_Function()
+        {
+            btnSearch.Enabled = Portal.gc.HasFunction("Menu/search");
+            btnAddNew.Enabled = Portal.gc.HasFunction("Menu/add");
+            btnExport.Enabled = Portal.gc.HasFunction("Menu/Export");
         }
 
         /// <summary>
@@ -110,6 +119,12 @@ namespace JCodes.Framework.AddIn.UI.Security
         /// </summary>
         private void winGridViewPager1_OnDeleteSelected(object sender, EventArgs e)
         {
+            if (!Portal.gc.HasFunction("Menu/del"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
             if (MessageDxUtil.ShowYesNoAndTips("您确定删除选定的记录么？") == DialogResult.No)
             {
                 return;
@@ -130,6 +145,12 @@ namespace JCodes.Framework.AddIn.UI.Security
         /// </summary>
         private void winGridViewPager1_OnEditSelected(object sender, EventArgs e)
         {
+            if (!Portal.gc.HasFunction("Menu/edit"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
             string ID = this.winGridViewPager1.gridView1.GetFocusedRowCellDisplayText("ID");
             List<string> IDList = new List<string>();
             for (int i = 0; i < this.winGridViewPager1.gridView1.RowCount; i++)
@@ -162,6 +183,12 @@ namespace JCodes.Framework.AddIn.UI.Security
         /// </summary>        
         private void winGridViewPager1_OnAddNew(object sender, EventArgs e)
         {
+            if (!Portal.gc.HasFunction("Menu/add"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
             btnAddNew_Click(null, null);
         }
 
@@ -170,6 +197,12 @@ namespace JCodes.Framework.AddIn.UI.Security
         /// </summary> 
         private void winGridViewPager1_OnStartExport(object sender, EventArgs e)
         {
+            if (!Portal.gc.HasFunction("Menu/Export"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
             string where = GetConditionSql();
             this.winGridViewPager1.AllToExport = BLLFactory<Menus>.Instance.FindToDataTable(where);
         }
@@ -237,6 +270,12 @@ namespace JCodes.Framework.AddIn.UI.Security
         /// </summary>
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            if (!Portal.gc.HasFunction("Menu/search"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
             treeConditionSql = "";
             BindData();
         }

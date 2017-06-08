@@ -80,7 +80,7 @@ namespace JCodes.Framework.AddIn.UI._50Go
         {
             if (!Portal.gc.HasFunction("Exchangecoupons/exchange"))
             {
-                MessageDxUtil.ShowError("您没有此权限，请与管理员联系!");
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
             }
 

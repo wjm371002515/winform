@@ -35,7 +35,16 @@ namespace JCodes.Framework.AddIn.UI.Security
             {
                 RefreshTreeView();
                 InitDictItem();
+                Init_Function();
             }
+        }
+
+        void Init_Function()
+        {
+            btnAdd.Enabled = Portal.gc.HasFunction("OU/add");
+            btnDelete.Enabled = Portal.gc.HasFunction("OU/del");
+            btnEditUser.Enabled = Portal.gc.HasFunction("OU/OUUserAdd");
+            btnRemoveUser.Enabled = Portal.gc.HasFunction("OU/OUUserDel");
         }
 
         private void InitDictItem()
@@ -162,6 +171,12 @@ namespace JCodes.Framework.AddIn.UI.Security
 
         private void menu_Delete_Click(object sender, EventArgs e)
         {
+            if (!Portal.gc.HasFunction("OU/del"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
             TreeNode node = this.treeView1.SelectedNode;
             if (node != null && !string.IsNullOrEmpty(node.Name))
             {
@@ -183,7 +198,14 @@ namespace JCodes.Framework.AddIn.UI.Security
 
         private void menu_Add_Click(object sender, EventArgs e)
         {
+            if (!Portal.gc.HasFunction("OU/add"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
             ClearInput();
+            groupControl2.Text = Const.Add + "组织机构详细信息";
             currentID = "";
 
             TreeNode node = this.treeView1.SelectedNode;
@@ -285,6 +307,7 @@ namespace JCodes.Framework.AddIn.UI.Security
 
                 if (info != null)
                 {
+                    groupControl2.Text = Const.Edit + "组织机构详细信息";
                     currentID = id.ToString();
 
                     this.txtName.Text = info.Name;
@@ -336,6 +359,12 @@ namespace JCodes.Framework.AddIn.UI.Security
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(currentID) && !Portal.gc.HasFunction("OU/edit"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
             #region 验证用户输入
             if (this.txtName.Text == "")
             {
@@ -369,6 +398,14 @@ namespace JCodes.Framework.AddIn.UI.Security
                     #endregion
 
                     OUInfo info = BLLFactory<OU>.Instance.FindByID(currentID);
+                    if (info.PID != cmbUpperOU.Value.ToString().ToInt32() && BLLFactory<OU>.Instance.Find(string.Format("PID={0}", currentID)).Count <= 1)
+                    {
+                        MessageDxUtil.ShowError(Const.ForbidOperMsg);
+                        return;
+                    }
+                    // 合法性校验
+                    
+
                     if (info != null)
                     {
                         info = SetOUInfo(info);

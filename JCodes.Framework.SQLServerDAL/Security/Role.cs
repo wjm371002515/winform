@@ -137,7 +137,7 @@ namespace JCodes.Framework.SQLServerDAL
 
         public void AddOU(int ouID, int roleID)
         {
-            string commandText = string.Format("INSERT INTO {0}OU_Role(OU_ID, Role_ID) VALUES({0},{1})", SQLServerPortal.gc._securityTablePre, ouID, roleID);
+            string commandText = string.Format("INSERT INTO {0}OU_Role(OU_ID, Role_ID) VALUES({1},{2})", SQLServerPortal.gc._securityTablePre, ouID, roleID);
             Database db = CreateDatabase();
             DbCommand command = db.GetSqlStringCommand(commandText);
             db.ExecuteNonQuery(command);

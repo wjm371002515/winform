@@ -17,11 +17,7 @@ namespace JCodes.Framework.AddIn.Test
     {
         public Test()
         {
-            LogHelper.WriteLog(JCodes.Framework.jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_CRIT, "吴建明测试 Test 0 Start", typeof(Test));
-
             InitializeComponent();
-
-            LogHelper.WriteLog(JCodes.Framework.jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_CRIT, "吴建明测试 Test 1 Start", typeof(Test));
         }
 
         public delegate void SetValueDelegate(object target, object arg);

@@ -206,6 +206,12 @@ namespace JCodes.Framework.AddIn.UI.Security
             MenuInfo info = BLLFactory<Menus>.Instance.FindByID(ID);
             if (info != null)
             {
+                if (info.PID != this.menuControl1.Value && BLLFactory<Menus>.Instance.GetMenuByID(ID).Count <= 1)
+                {
+                    MessageDxUtil.ShowError(Const.ForbidOperMsg);
+                    return false;
+                }
+
                 SetInfo(info);
 
                 try
