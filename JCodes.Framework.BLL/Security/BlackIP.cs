@@ -68,6 +68,7 @@ namespace JCodes.Framework.BLL
         {
             bool result = false;
             IBlackIP dal = baseDal as IBlackIP;
+
             List<BlackIPInfo> whiteList = dal.FindByUser(userId, AuthrizeType.白名单);
 
             if (whiteList.Count > 0)

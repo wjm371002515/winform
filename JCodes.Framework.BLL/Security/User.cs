@@ -415,6 +415,7 @@ namespace JCodes.Framework.BLL
             {
                 return "";
             }
+
             string identity = "";
             UserInfo userInfo = this.GetUserByName(userName);
             if (userInfo != null && !userInfo.IsExpire && !userInfo.Deleted)

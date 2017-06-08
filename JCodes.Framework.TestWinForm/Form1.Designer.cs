@@ -44,7 +44,6 @@
             this.flyoutPanelControl1 = new DevExpress.Utils.FlyoutPanelControl();
             this.colorPickEdit1 = new DevExpress.XtraEditors.ColorPickEdit();
             this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
-            this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchControl1.Properties)).BeginInit();
@@ -56,7 +55,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.flyoutPanelControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.colorPickEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -210,20 +208,11 @@
             this.textEdit2.Size = new System.Drawing.Size(100, 28);
             this.textEdit2.TabIndex = 10;
             // 
-            // memoEdit1
-            // 
-            this.memoEdit1.Location = new System.Drawing.Point(289, 177);
-            this.memoEdit1.Name = "memoEdit1";
-            this.memoEdit1.Size = new System.Drawing.Size(309, 301);
-            this.memoEdit1.TabIndex = 11;
-            this.memoEdit1.UseOptimizedRendering = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(836, 535);
-            this.Controls.Add(this.memoEdit1);
             this.Controls.Add(this.textEdit2);
             this.Controls.Add(this.colorPickEdit1);
             this.Controls.Add(this.flyoutPanel1);
@@ -249,7 +238,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.flyoutPanelControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.colorPickEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -273,7 +261,6 @@
         private DevExpress.Utils.FlyoutPanelControl flyoutPanelControl1;
         private DevExpress.XtraEditors.ColorPickEdit colorPickEdit1;
         private DevExpress.XtraEditors.TextEdit textEdit2;
-        private DevExpress.XtraEditors.MemoEdit memoEdit1;
     }
 }
 

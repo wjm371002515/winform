@@ -11,6 +11,8 @@ using Microsoft.Practices.EnterpriseLibrary.Data;
 using JCodes.Framework.Entity;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.Common.Databases;
+using JCodes.Framework.Common.Files;
+using System.Configuration;
 
 namespace JCodes.Framework.Common.Framework.BaseDAL
 {
@@ -114,6 +116,11 @@ namespace JCodes.Framework.Common.Framework.BaseDAL
 
             return result;
         }
+
+        public override bool TestConnection()
+        {
+            return TestConnection(ConfigurationManager.ConnectionStrings["mysql"].ToString());
+        }  
 
         #endregion
 

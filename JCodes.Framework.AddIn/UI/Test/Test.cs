@@ -6,7 +6,6 @@ using System.Drawing;
 using System.Text;
 using System.Linq;
 using System.Windows.Forms;
-using DevExpress.XtraEditors;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Diagnostics;
@@ -14,7 +13,7 @@ using JCodes.Framework.Common;
 
 namespace JCodes.Framework.AddIn.Test
 {
-    public partial class Test : DevExpress.XtraEditors.XtraForm
+    public partial class Test : Form
     {
         public Test()
         {

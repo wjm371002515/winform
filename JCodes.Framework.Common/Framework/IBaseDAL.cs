@@ -205,6 +205,11 @@ namespace JCodes.Framework.Common.Framework
         bool TestConnection(string connectionString);
 
         /// <summary>
+        /// 测试数据库是否正常连接
+        /// </summary>
+        bool TestConnection();
+
+        /// <summary>
         /// 执行sql语句
         /// </summary>
         /// <param name="commandType">执行类型</param>

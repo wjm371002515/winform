@@ -18,6 +18,9 @@ using JCodes.Framework.AddIn.Other;
 using DevExpress.Utils;
 using DevExpress.XtraSplashScreen;
 using JCodes.Framework.Common.Files;
+using JCodes.Framework.Common.Network;
+using JCodes.Framework.CommonControl.Other;
+using OAUS.Core;
 
 namespace JCodes.Framework.WinFormUI
 {
@@ -41,33 +44,54 @@ namespace JCodes.Framework.WinFormUI
             DevExpress.UserSkins.BonusSkins.Register();
             UserLookAndFeel.Default.SetSkinStyle("DevExpress Style");
 
-            Process[] processes = System.Diagnostics.Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName);
+            AppConfig appConfig = new AppConfig(@"AutoUpdater\AutoUpdater.exe.config");
+            string serverIP = appConfig.AppConfigGet("ServerIP");
+            Int32 serverPort = Convert.ToInt32(appConfig.AppConfigGet("ServerPort"));
+            Boolean _isUpdate = Convert.ToBoolean(appConfig.AppConfigGet("isUpdate"));
 
-            try {
-                if (processes.Length > 1)
-                {
+            // 检查更新服务器端口是否可用
+            if (NetworkUtil.CheckIPPortEnabled(serverIP, serverPort) < 0 || NetworkUtil.CheckIPPortEnabled(serverIP, serverPort + 2) < 0)
+            {
+                _isUpdate = false;
+                MessageDxUtil.ShowTips("更新服务器端不可用,服务器更新取消!");
+            }
 
-                    XtraMessageBox.Show(Const.StartAppText, Const.SystemTipInfo, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Thread.Sleep(Const.SLEEP_TIME);
-                    System.Environment.Exit(1);
-                }
-                else
+            // 自动升级工具
+            if (_isUpdate && VersionHelper.HasNewVersion(serverIP, serverPort) && (MessageDxUtil.ShowYesNoAndTips("服务器有新的版本是否更新") == DialogResult.Yes))
+            {
+                string updateExePath = AppDomain.CurrentDomain.BaseDirectory + "AutoUpdater\\AutoUpdater.exe";
+                System.Diagnostics.Process myProcess = System.Diagnostics.Process.Start(updateExePath);
+            }
+            else
+            {
+                Process[] processes = System.Diagnostics.Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName);
+
+                try
                 {
-                    Thread app = new Thread((ThreadStart)delegate
+                    if (processes.Length > 1)
                     {
-                        Portal.gc._waitBeforeLogin = new WaitDialogForm(Const.StartAppText, Const.SystemTipInfo);
-                        LoginNormal(args);
-                    });
-                    // 执行线程状态
-                    app.ApartmentState = ApartmentState.STA;
-                    app.Start();
+                        XtraMessageBox.Show(Const.StartAppText, Const.SystemTipInfo, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Thread.Sleep(Const.SLEEP_TIME);
+                        System.Environment.Exit(1);
+                    }
+                    else
+                    {
+                        Thread app = new Thread((ThreadStart)delegate
+                        {
+                            Portal.gc._waitBeforeLogin = new WaitDialogForm(Const.StartAppText, Const.SystemTipInfo);
+                            LoginNormal(args);
+                        });
+                        // 执行线程状态
+                        app.ApartmentState = ApartmentState.STA;
+                        app.Start();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_EMERG, ex, typeof(Program));
+                    XtraMessageBox.Show(ex.Message, ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            catch (Exception ex) {
-                LogHelper.WriteLog(LogLevel.LOG_LEVEL_EMERG, ex, typeof(Program));
-                XtraMessageBox.Show(ex.Message, ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-           
         }
 
         private static void LoginNormal(string[] args)

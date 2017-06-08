@@ -14,6 +14,7 @@ using JCodes.Framework.Entity;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.Common.Encrypt;
 using JCodes.Framework.Common.Databases;
+using JCodes.Framework.Common.Files;
 
 namespace JCodes.Framework.Common.Framework.BaseDAL
 {
@@ -116,6 +117,11 @@ namespace JCodes.Framework.Common.Framework.BaseDAL
 
             return result;
         }
+
+        public override bool TestConnection()
+        {
+            return TestConnection(ConfigurationManager.ConnectionStrings["sqlite"].ToString());
+        } 
 
         #endregion
 

@@ -896,6 +896,34 @@ namespace JCodes.Framework.Common.Network
             return null;
         }
 
+        /// <summary>
+        /// 检查远程服务器端口是否可用
+        /// </summary>
+        /// <param name="serverIP">服务器IP</param>
+        /// <param name="serverPort">服务器端口</param>
+        /// <returns>1表示连接成功，-1表示服务器IP有问题，-2表示端口又问题，-3表示连接不同</returns>
+        public static int CheckIPPortEnabled(string serverIP, Int32 serverPort)
+        {
+            if (string.IsNullOrEmpty(serverIP))
+                return -1;
+            if (serverPort <= 0)
+                return -2;
+
+            IPAddress ip = IPAddress.Parse(serverIP);
+            IPEndPoint point = new IPEndPoint(ip, serverPort);
+            try
+            {
+                TcpClient tcp = new TcpClient();
+                tcp.Connect(point);
+                return 1;
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(NetworkUtil));
+                return -3;
+            }
+        }
+
     }
 
     #region Win32Utils

@@ -576,6 +576,14 @@ namespace JCodes.Framework.Common.Framework
             throw new NotSupportedException();
         }
 
+        /// <summary>
+        /// 测试数据库是否正常连接
+        /// </summary>
+        public virtual bool TestConnection()
+        {
+            throw new NotSupportedException();
+        }
+
 		#endregion
 
 		#region 对象添加、修改
