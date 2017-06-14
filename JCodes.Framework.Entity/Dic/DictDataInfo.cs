@@ -9,11 +9,10 @@ namespace JCodes.Framework.Entity
     public class DictDataInfo : BaseEntity
     {    
         #region Field Members
-
-        private string m_ID = Guid.NewGuid().ToString();         
-        private string m_DictType_ID = ""; //字典类型名称          
+        private string m_ID = Guid.NewGuid().ToString();
+        private Int32 m_DictType_ID = 0; //字典类型名称        
+        private Int32 m_Value = 0; //字典值内容  
         private string m_Name = ""; //字典显示名称          
-        private string m_Value = ""; //字典值内容          
         private string m_Remark = ""; //备注信息          
         private string m_Seq = ""; //排序          
         private string m_Editor = ""; //编辑者          
@@ -22,7 +21,9 @@ namespace JCodes.Framework.Entity
         #endregion
 
         #region Property Members
-
+        /// <summary>
+        /// ID编码
+        /// </summary>
         [DataMember]
         public virtual string ID
         {
@@ -40,7 +41,7 @@ namespace JCodes.Framework.Entity
         /// 字典类型名称
         /// </summary>
         [DataMember]
-        public virtual string DictType_ID
+        public virtual Int32 DictType_ID
         {
             get
             {
@@ -49,6 +50,22 @@ namespace JCodes.Framework.Entity
             set
             {
                 this.m_DictType_ID = value;
+            }
+        }
+
+        /// <summary>
+        /// 字典值内容
+        /// </summary>
+        [DataMember]
+        public virtual Int32 Value
+        {
+            get
+            {
+                return this.m_Value;
+            }
+            set
+            {
+                this.m_Value = value;
             }
         }
 
@@ -65,22 +82,6 @@ namespace JCodes.Framework.Entity
             set
             {
                 this.m_Name = value;
-            }
-        }
-
-        /// <summary>
-        /// 字典值内容
-        /// </summary>
-        [DataMember]
-        public virtual string Value
-        {
-            get
-            {
-                return this.m_Value;
-            }
-            set
-            {
-                this.m_Value = value;
             }
         }
 

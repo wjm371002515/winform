@@ -23,7 +23,7 @@ namespace JCodes.Framework.AddIn.UI.Security
     /// <summary>
     /// 角色管理模块
     /// </summary>
-    public partial class FrmRole : BaseForm
+    public partial class FrmRole : BaseDock
     {
         private string currentID = string.Empty;
 

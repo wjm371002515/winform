@@ -46,6 +46,12 @@ namespace JCodes.Framework.BLL
             IBlackIP dal = baseDal as IBlackIP;
             dal.RemoveUser(userID, blackID);
         }
+
+        public void RemoveUserByBlackId(string blackID)
+        {
+            IBlackIP dal = baseDal as IBlackIP;
+            dal.RemoveUserByBlackId(blackID);
+        }
         
         /// <summary>
         /// 根据用户ID和授权类型获取列表

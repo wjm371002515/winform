@@ -150,7 +150,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
 
         private void ShowGoodsTreeView()
         {
-            this.treeGoods.Nodes.Clear();
+            /*this.treeGoods.Nodes.Clear();
             this.treeGoods.BeginUpdate();
 
             #region 项目类型信息明细类别
@@ -166,7 +166,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             #endregion
 
             this.treeGoods.EndUpdate();
-            this.treeGoods.ExpandAll();
+            this.treeGoods.ExpandAll();*/
         }
 
         private void txtName_TextChanged(object sender, EventArgs e)

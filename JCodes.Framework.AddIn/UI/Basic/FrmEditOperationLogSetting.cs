@@ -124,6 +124,8 @@ namespace JCodes.Framework.AddIn.UI.Basic
             info.Editor = Portal.gc.UserInfo.FullName;
             info.Editor_ID = Portal.gc.UserInfo.ID.ToString();
             info.EditTime = txtCreateTime.DateTime;
+
+            info.CurrentLoginUserId = Portal.gc.UserInfo.ID.ToString();
         }
 
         /// <summary>
@@ -205,11 +207,6 @@ namespace JCodes.Framework.AddIn.UI.Basic
                 }
             }
             return false;
-        }
-
-        private void FrmEditOperationLogSetting_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -58,8 +58,6 @@
     <Compile Include="AccessPortal.cs" />
     <Compile Include="Attachment\FileUpload.cs" />
     <Compile Include="Dic\City.cs" />
-    <Compile Include="Dic\DictData.cs" />
-    <Compile Include="Dic\DictType.cs" />
     <Compile Include="Dic\District.cs" />
     <Compile Include="Dic\Province.cs" />
     <Compile Include="Dic\UserParameter.cs" />

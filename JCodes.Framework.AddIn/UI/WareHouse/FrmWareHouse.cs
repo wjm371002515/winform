@@ -16,7 +16,7 @@ using System.Windows.Forms;
 
 namespace JCodes.Framework.AddIn.UI.WareHouse
 {
-    public partial class FrmWareHouse : BaseForm
+    public partial class FrmWareHouse : BaseDock
     {
         public FrmWareHouse()
         {
@@ -147,7 +147,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
                 foreach (int iRow in rowSelected)
                 {
                     string ID = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "ID");
-                    BLLFactory<WareHouses>.Instance.Delete(ID);
+                    BLLFactory<WareHouses>.Instance.DeleteByUser(ID, LoginUserInfo.ID.ToString());
                 }
                 BindData();
             }

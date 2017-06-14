@@ -99,7 +99,7 @@ namespace JCodes.Framework.AccessDAL
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public override bool Delete(object key, DbTransaction trans = null)
+        public override bool DeleteByUser(object key, string userId, DbTransaction trans = null)
         {
             FunctionInfo info = this.FindByID(key, trans);
             if (info != null)
@@ -107,7 +107,7 @@ namespace JCodes.Framework.AccessDAL
                 string sql = string.Format("UPDATE {2} SET PID='{0}' Where PID='{1}' ", info.PID, key, tableName);
                 SqlExecute(sql, trans);
 
-                base.Delete(key, trans);
+                base.DeleteByUser(key, userId, trans);
 
                 return true;
             }
@@ -119,7 +119,7 @@ namespace JCodes.Framework.AccessDAL
         /// </summary>
         /// <param name="mainID">节点ID</param>
         /// <returns></returns>
-        public bool DeleteWithSubNode(string mainID)
+        public bool DeleteWithSubNode(string mainID, string userId)
         {
             //只获取ID、PID所需字段，提高效率
             string sql = string.Format("Select ID,PID From {0} Order By PID ", tableName);
@@ -132,7 +132,7 @@ namespace JCodes.Framework.AccessDAL
             //根据返回的ID集合，逐一删除
             foreach (string id in list)
             {
-                base.Delete(id);
+                base.DeleteByUser(id, userId);
             }
             return true;
         }

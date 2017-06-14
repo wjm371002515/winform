@@ -26,7 +26,8 @@ namespace JCodes.Framework.SQLServerDAL
 				return new DictData();
 			}
 		}
-		public DictData() : base("tb_DictData","ID")
+        public DictData()
+            : base(SQLServerPortal.gc._basicTablePre + "DictData", "ID")
 		{
             sortField = "Seq";
             IsDescending = false;
@@ -43,11 +44,10 @@ namespace JCodes.Framework.SQLServerDAL
 		{
 			DictDataInfo dictDataInfo = new DictDataInfo();
 			SmartDataReader reader = new SmartDataReader(dataReader);
-
             dictDataInfo.ID = reader.GetString("ID");
-            dictDataInfo.DictType_ID = reader.GetString("DictType_ID");
+            dictDataInfo.DictType_ID = reader.GetInt32("DictType_ID");
+            dictDataInfo.Value = reader.GetInt32("Value");
 			dictDataInfo.Name = reader.GetString("Name");
-			dictDataInfo.Value = reader.GetString("Value");
 			dictDataInfo.Remark = reader.GetString("Remark");
 			dictDataInfo.Seq = reader.GetString("Seq");
             dictDataInfo.Editor = reader.GetString("Editor");
@@ -64,9 +64,8 @@ namespace JCodes.Framework.SQLServerDAL
         protected override Hashtable GetHashByEntity(DictDataInfo obj)
 		{
 		    DictDataInfo info = obj as DictDataInfo;
-			Hashtable hash = new Hashtable(); 
-			
- 			hash.Add("ID", info.ID);
+			Hashtable hash = new Hashtable();
+            hash.Add("ID", info.ID);
  			hash.Add("DictType_ID", info.DictType_ID);
  			hash.Add("Name", info.Name);
  			hash.Add("Value", info.Value);
@@ -83,57 +82,26 @@ namespace JCodes.Framework.SQLServerDAL
         /// </summary>
         /// <param name="dictTypeId"></param>
         /// <returns></returns>
-        public List<DictDataInfo> FindByTypeID(string dictTypeId)
+        public List<DictDataInfo> FindByTypeID(Int32 dictTypeId)
         {
-            string condition = string.Format("DictType_ID='{0}' ", dictTypeId);
+            string condition = string.Format("DictType_ID={0} ", dictTypeId);
             return Find(condition);
         }
 
-        /// <summary>
-        /// 根据字典类型名称获取所有该类型的字典列表集合
-        /// </summary>
-        /// <param name="dictType">字典类型名称</param>
-        /// <returns></returns>
-        public List<DictDataInfo> FindByDictType(string dictTypeName)
-        {
-            string sql = string.Format("select * from tb_DictData d inner join tb_DictType t on d.DictType_ID = t.ID where t.Name ='{0}'", 
-                dictTypeName);
-
-            Database db = CreateDatabase();
-            DbCommand command = db.GetSqlStringCommand(sql);
-
-            DictDataInfo entity = null;
-            List<DictDataInfo> list = new List<DictDataInfo>();
-            using (IDataReader dr = db.ExecuteReader(command))
-            {
-                while (dr.Read())
-                {
-                    entity = DataReaderToEntity(dr);
-                    if (entity != null)
-                    {
-                        list.Add(entity);
-                    }
-                }
-            }
-            return list;
-        }
-
-        private Dictionary<string, string> GetDictBySql(string sql)
+        private List<DicKeyValueInfo> GetDictBySql(string sql)
         {
             Database db = CreateDatabase();
             DbCommand command = db.GetSqlStringCommand(sql);
 
-            Dictionary<string, string> list = new Dictionary<string, string>();
+            List<DicKeyValueInfo> list = new List<DicKeyValueInfo>();
             using (IDataReader dr = db.ExecuteReader(command))
             {
                 while (dr.Read())
                 {
+                    Int32 dictType_ID = Convert.ToInt32( dr["DictType_ID"]);
+                    Int32 value = Convert.ToInt32( dr["Value"]);
                     string name = dr["Name"].ToString();
-                    string value = dr["Value"].ToString();
-                    if (!list.ContainsKey(name))
-                    {
-                        list.Add(name, value);
-                    }
+                    list.Add(new DicKeyValueInfo() { DictType_ID = dictType_ID, Value = value, Name = name });
                 }
             }
             return list;
@@ -143,64 +111,12 @@ namespace JCodes.Framework.SQLServerDAL
         /// 获取所有的字典列表集合(Key为名称，Value为值）
         /// </summary>
         /// <returns></returns>
-        public Dictionary<string, string> GetAllDict()
+        public List<DicKeyValueInfo> GetAllDict()
         {
-            string sql = string.Format("select d.Name,d.Value from tb_DictData d inner join tb_DictType t on d.DictType_ID = t.ID order by d.{0} {1}", 
-                sortField, IsDescending ? "DESC" :"ASC" );
+            string sql = string.Format("select d.DictType_ID,d.Name,d.Value from {0}DictData d inner join {0}DictType t on d.DictType_ID = t.ID order by d.{1} {2}",
+                SQLServerPortal.gc._basicTablePre, sortField, IsDescending ? "DESC" : "ASC");
 
             return GetDictBySql(sql);
-        }
-        
-        /// <summary>
-        /// 根据字典类型ID获取所有该类型的字典列表集合(Key为名称，Value为值）
-        /// </summary>
-        /// <param name="dictTypeId">字典类型ID</param>
-        /// <returns></returns>
-        public Dictionary<string, string> GetDictByTypeID(string dictTypeId)
-        {
-            string sql = string.Format("select d.Name,d.Value from tb_DictData d inner join tb_DictType t on d.DictType_ID = t.ID where t.ID ='{0}' order by d.{1} {2}", 
-                dictTypeId, sortField, IsDescending ? "DESC" : "ASC");
-
-            return GetDictBySql(sql);
-        }
-
-        /// <summary>
-        /// 根据字典类型名称获取所有该类型的字典列表集合(Key为名称，Value为值）
-        /// </summary>
-        /// <param name="dictTypeName">字典类型名称</param>
-        /// <returns></returns>
-        public Dictionary<string, string> GetDictByDictType(string dictTypeName)
-        {
-            string sql = string.Format("select d.Name,d.Value from tb_DictData d inner join tb_DictType t on d.DictType_ID = t.ID where t.Name ='{0}' order by d.{1} {2}", 
-                dictTypeName, sortField, IsDescending ? "DESC" : "ASC");
-
-            return GetDictBySql(sql);
-        }
-
-        /// <summary>
-        /// 根据字典类型名称和字典Value值（即字典编码），解析成字典对应的名称
-        /// </summary>
-        /// <param name="dictTypeName">字典类型名称</param>
-        /// <param name="dictValue">字典Value值，即字典编码</param>
-        /// <returns>字典对应的名称</returns>
-        public string GetDictName(string dictTypeName, string dictValue)
-        {
-            string sql = string.Format("select d.Name from tb_DictData d inner join tb_DictType t on d.DictType_ID = t.ID where t.Name ='{0}' and d.Value='{1}'",
-                dictTypeName, dictValue);
-
-            Database db = CreateDatabase();
-            DbCommand command = db.GetSqlStringCommand(sql);
-
-            string name = "";
-            using (IDataReader dr = db.ExecuteReader(command))
-            {
-                if (dr.Read())
-                {
-                    name = dr["Name"].ToString();
-                }
-            }
-
-            return name;
         }
     }
 }

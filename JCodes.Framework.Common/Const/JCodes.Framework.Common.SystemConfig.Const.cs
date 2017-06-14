@@ -13,10 +13,6 @@ namespace JCodes.Framework.Common
         /// 设置jcodes 对应的版本号
         /// </summary>
         public const string jCodes_VERSION = "V1.0.0.0";
-        /// <summary>
-        /// 系统名字
-        /// </summary>
-        public const string SystemName = "jCodes";
 
         /// <summary>
         /// 访问的官网
@@ -89,11 +85,19 @@ namespace JCodes.Framework.Common
         public const string Del = "删除";
 
         /// <summary>
+        /// 重启参数
+        /// </summary>
+        public const string Restart = "restart";
+
+        /// <summary>
         /// 没有权限提示信息
         /// </summary>
         public const string NoAuthMsg = "您没有此权限，请与管理员联系!";
 
         public const string ForbidOperMsg = "不允许此操作，请与管理员联系！";
+
+        public const string CopyOkMsg = "复制成功";
+
         #endregion
     }
 }

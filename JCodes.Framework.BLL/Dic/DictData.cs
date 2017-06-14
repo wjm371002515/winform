@@ -7,6 +7,7 @@ using JCodes.Framework.Common;
 using JCodes.Framework.Entity;
 using JCodes.Framework.IDAL;
 using JCodes.Framework.Common.Framework;
+using JCodes.Framework.Common.Office;
 
 namespace JCodes.Framework.BLL
 {
@@ -22,32 +23,28 @@ namespace JCodes.Framework.BLL
         /// </summary>
         /// <param name="dictTypeId"></param>
         /// <returns></returns>
-        public List<DictDataInfo> FindByTypeID(string dictTypeId)
+        public List<DictDataInfo> FindByTypeID(Int32 dictTypeId)
         {
             IDictData dal = baseDal as IDictData;
             return dal.FindByTypeID(dictTypeId);
-        }
-
-        /// <summary>
-        /// 根据字典类型名称获取所有该类型的字典列表集合
-        /// </summary>
-        /// <param name="dictType">字典类型名称</param>
-        /// <returns></returns>
-        public List<DictDataInfo> FindByDictType(string dictTypeName)
-        {
-            IDictData dal = baseDal as IDictData;
-            return dal.FindByDictType(dictTypeName);
         }
                 
         /// <summary>
         /// 获取所有的字典列表集合(Key为名称，Value为值）
         /// </summary>
         /// <returns></returns>
-        public Dictionary<string, string> GetAllDict()
+        public List<DicKeyValueInfo> GetAllDict()
         {
-            IDictData dal = baseDal as IDictData;
-            return dal.GetAllDict();
-
+            var lst = Cache.Instance["DictData"] as List<DicKeyValueInfo>;
+            if (lst != null)
+            {
+                return lst;
+            }
+            else 
+            {
+                IDictData dal = baseDal as IDictData;
+                return dal.GetAllDict();
+            }
         }
 
         /// <summary>
@@ -55,50 +52,17 @@ namespace JCodes.Framework.BLL
         /// </summary>
         /// <param name="dictTypeId">字典类型ID</param>
         /// <returns></returns>
-        public Dictionary<string, string> GetDictByTypeID(string dictTypeId)
+        public List<DicKeyValueInfo> GetDictByTypeID(Int32 dictTypeId)
         {
-            IDictData dal = baseDal as IDictData;
-            return dal.GetDictByTypeID(dictTypeId);
+            List<DicKeyValueInfo> lst = GetAllDict();
+            return lst.FindAll(s => s.DictType_ID == dictTypeId);
         }
 
-        /// <summary>
-        /// 根据字典类型名称获取所有该类型的字典列表集合(Key为名称，Value为值）
-        /// </summary>
-        /// <param name="dictType">字典类型名称</param>
-        /// <returns></returns>
-        public Dictionary<string, string> GetDictByDictType(string dictTypeName)
+        public string GetDictName(Int32 dictTypeId, Int32 value)
         {
-            IDictData dal = baseDal as IDictData;
-            return dal.GetDictByDictType(dictTypeName);
+            List<DicKeyValueInfo> lst = GetAllDict();
+            return lst.Find(s => s.DictType_ID == dictTypeId && s.Value == value).Name;
         }
 
-        /// <summary>
-        /// 根据字典类型获取对应的CListItem集合
-        /// </summary>
-        /// <param name="dictTypeName"></param>
-        /// <returns></returns>
-        public CListItem[] GetDictListItemByDictType(string dictTypeName)
-        {
-            IDictData dal = baseDal as IDictData;
-            List<CListItem> itemList = new List<CListItem>();
-            Dictionary<string, string> dict = dal.GetDictByDictType(dictTypeName);
-            foreach (string key in dict.Keys)
-            {
-                itemList.Add(new CListItem(key, dict[key]));
-            }
-            return itemList.ToArray();
-        }
-                
-        /// <summary>
-        /// 根据字典类型名称和字典Value值（即字典编码），解析成字典对应的名称
-        /// </summary>
-        /// <param name="dictTypeName">字典类型名称</param>
-        /// <param name="dictValue">字典Value值，即字典编码</param>
-        /// <returns>字典对应的名称</returns>
-        public string GetDictName(string dictTypeName, string dictValue)
-        {
-            IDictData dal = baseDal as IDictData;
-            return dal.GetDictName(dictTypeName, dictValue);
-        }
     }
 }

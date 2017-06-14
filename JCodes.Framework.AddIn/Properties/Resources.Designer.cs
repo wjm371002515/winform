@@ -69,5 +69,15 @@ namespace JCodes.Framework.AddIn.Properties {
                 return ((System.Drawing.Icon)(obj));
             }
         }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap jcodes_about {
+            get {
+                object obj = ResourceManager.GetObject("jcodes_about", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

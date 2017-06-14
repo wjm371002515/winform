@@ -14,7 +14,7 @@ namespace JCodes.Framework.CommonControl.Device
     /// <summary>
     /// 读卡器、USB条码扫描器、串口条码扫描器数据读取及显示窗体
     /// </summary>
-    public partial class DeviceReaderDialog : BaseForm
+    public partial class DeviceReaderDialog : BaseDock
     {
         private CardReader _cardReader;
         private USBScanner _usbScanner;

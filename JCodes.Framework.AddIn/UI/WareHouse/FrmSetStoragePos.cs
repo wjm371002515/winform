@@ -10,7 +10,7 @@ using System.Text;
 
 namespace JCodes.Framework.AddIn.UI.WareHouse
 {
-    public partial class FrmSetStoragePos : BaseForm
+    public partial class FrmSetStoragePos : BaseDock
     {
         public FrmSetStoragePos()
         {

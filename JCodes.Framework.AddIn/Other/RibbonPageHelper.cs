@@ -20,6 +20,7 @@ using JCodes.Framework.CommonControl.PlugInInterface;
 using System.Threading;
 using DevExpress.Utils;
 using System.Diagnostics;
+using JCodes.Framework.Common.Office;
 
 namespace JCodes.Framework.AddIn.Other
 {
@@ -104,12 +105,16 @@ namespace JCodes.Framework.AddIn.Other
                                 {
                                     Portal.gc._waitBeforeLogin = new WaitDialogForm("正则加载 "+button.Caption + " 窗体中...", "加载窗体");
                                     LoadPlugInForm(button.Tag.ToString());
-                                    Portal.gc._waitBeforeLogin.Invoke((EventHandler)delegate {
-                                        if (Portal.gc._waitBeforeLogin != null)
-                                        { 
-                                            Portal.gc._waitBeforeLogin.Close(); Portal.gc._waitBeforeLogin = null;
-                                        }
-                                    });  
+                                    if (Portal.gc._waitBeforeLogin != null)
+                                    {
+                                        Portal.gc._waitBeforeLogin.Invoke((EventHandler)delegate
+                                        {
+                                            if (Portal.gc._waitBeforeLogin != null)
+                                            {
+                                                Portal.gc._waitBeforeLogin.Close(); Portal.gc._waitBeforeLogin = null;
+                                            }
+                                        });
+                                    }
                                 }
                                 else
                                 {
@@ -184,6 +189,20 @@ namespace JCodes.Framework.AddIn.Other
                 string showDialog = (itemArray.Length > 2) ? itemArray[2].ToLower() : "";
                 bool isShowDialog = (showDialog == "1") || (showDialog == "dialog");
 
+                if (isShowDialog)
+                {
+                    if (Portal.gc._waitBeforeLogin != null)
+                    {
+                        Portal.gc._waitBeforeLogin.Invoke((EventHandler)delegate
+                        {
+                            if (Portal.gc._waitBeforeLogin != null)
+                            {
+                                Portal.gc._waitBeforeLogin.Close(); Portal.gc._waitBeforeLogin = null;
+                            }
+                        });
+                    }
+                }
+
                 string dllFullPath = Path.Combine(Application.StartupPath, filePath);
                 Assembly tempAssembly = System.Reflection.Assembly.LoadFrom(dllFullPath);
                 if (tempAssembly != null)
@@ -234,8 +253,11 @@ namespace JCodes.Framework.AddIn.Other
                 IFunction function = tableForm as IFunction;
                 if (function != null)
                 {
+                    // 20170610 改成从缓存中读取
+                    var cacheDict = Cache.Instance["FunctionDict"] as Dictionary<string, string>;
+                    var loginUserInfo = Cache.Instance["LoginUserInfo"] as LoginUserInfo;
                     //初始化权限控制信息
-                    function.InitFunction(Portal.gc.LoginUserInfo, Portal.gc.FunctionDict);
+                    function.InitFunction(loginUserInfo, cacheDict);
 
                     //记录程序的相关信息
                     function.AppInfo = new AppInfo(Portal.gc.AppUnit, Portal.gc.AppName, Portal.gc.AppWholeName, Portal.gc.SystemType);

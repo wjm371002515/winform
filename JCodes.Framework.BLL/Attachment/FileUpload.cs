@@ -420,7 +420,7 @@ namespace JCodes.Framework.BLL
         /// </summary>
         /// <param name="key">记录ID</param>
         /// <returns></returns>
-        public override bool Delete(object key, DbTransaction trans = null)
+        public override bool DeleteByUser(object key, string userId, DbTransaction trans = null)
         {
             //删除记录前，需要把文件移动到删除目录下面
             FileUploadInfo info = FindByID(key, trans);
@@ -452,7 +452,7 @@ namespace JCodes.Framework.BLL
                 }
             }
 
-            return base.Delete(key, trans);
+            return base.DeleteByUser(key, userId, trans);
         }
 
         /// <summary>
@@ -460,13 +460,13 @@ namespace JCodes.Framework.BLL
         /// </summary>
         /// <param name="owerID">所属者的ID</param>
         /// <returns></returns>
-        public bool DeleteByOwerID(string owerID)
+        public bool DeleteByOwerID(string owerID, string userId)
         {
             string condition = string.Format("Owner_ID ='{0}' ", owerID);
             List<FileUploadInfo> list = base.Find(condition);
             foreach (FileUploadInfo info in list)
             {
-                Delete(info.ID);
+                DeleteByUser(info.ID, userId);
             }
             return true;
         }
@@ -476,13 +476,13 @@ namespace JCodes.Framework.BLL
         /// </summary>
         /// <param name="attachment_GUID">所属者的ID</param>
         /// <returns></returns>
-        public bool DeleteByAttachGUID(string attachment_GUID)
+        public bool DeleteByAttachGUID(string attachment_GUID, string userId)
         {
             string condition = string.Format("AttachmentGUID ='{0}' ", attachment_GUID);
             List<FileUploadInfo> list = base.Find(condition);
             foreach (FileUploadInfo info in list)
             {
-                Delete(info.ID);
+                DeleteByUser(info.ID, userId);
             }
             return true;
         }

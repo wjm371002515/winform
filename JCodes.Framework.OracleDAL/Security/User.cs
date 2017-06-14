@@ -204,7 +204,7 @@ namespace JCodes.Framework.OracleDAL
         /// </summary>
         /// <param name="key">ID值</param>
         /// <returns></returns>
-        public override bool Delete(object key, DbTransaction trans = null)
+        public override bool DeleteByUser(object key, string userId, DbTransaction trans = null)
         {
             UserInfo info = this.FindByID(key, trans);
             if (info != null)

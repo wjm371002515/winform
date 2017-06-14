@@ -34,7 +34,7 @@ namespace JCodes.Framework.BLL
         /// <param name="key">主键的值</param>
         /// <param name="trans">事务对象</param>
         /// <returns></returns>
-        public override bool Delete(object key, DbTransaction trans = null)
+        public override bool DeleteByUser(object key, string userId, DbTransaction trans = null)
         {
             List<SimpleUserInfo> adminSimpleUsers = BLLFactory<Role>.Instance.GetAdminSimpleUsers();
             if (adminSimpleUsers.Count == 1)
@@ -254,17 +254,6 @@ namespace JCodes.Framework.BLL
         /// <summary>
         /// 修改用户密码
         /// </summary>
-        /// <param name="userName">用户登陆名称</param>
-        /// <param name="userPassword">用户密码</param>
-        /// <returns></returns>
-        public bool ModifyPassword(string userName, string userPassword)
-        {
-            return ModifyPassword(userName, userPassword, "", "", "");
-        }
-
-        /// <summary>
-        /// 修改用户密码
-        /// </summary>
         /// <param name="userName">修改用户名</param>
         /// <param name="userPassword">用户密码（未加密）</param>
         /// <param name="systemType">系统类型</param>
@@ -298,7 +287,7 @@ namespace JCodes.Framework.BLL
         /// <param name="ip">登陆IP</param>
         /// <param name="macAddr">登陆Mac地址</param>
         /// <returns></returns>
-        public bool ResetPassword(int loginUser_ID, int changeUser_ID, string ip, string macAddr)
+        public bool ResetPassword(int loginUser_ID, int changeUser_ID, string systemType, string ip, string macAddr)
         {
             bool result = false;
             UserInfo loginInfo = this.FindByID(loginUser_ID);
@@ -314,7 +303,7 @@ namespace JCodes.Framework.BLL
                 {
                     //记录用户修改密码日志
                     string message = string.Format("{0}重置了用户【{1}】的登陆密码", loginInfo.FullName, changeInfo.FullName);
-                    BLLFactory<LoginLog>.Instance.AddLoginLog(loginInfo, "Security", ip, macAddr, message);
+                    BLLFactory<LoginLog>.Instance.AddLoginLog(loginInfo, systemType, ip, macAddr, message);
                 }
             }
             return result;
@@ -386,18 +375,6 @@ namespace JCodes.Framework.BLL
                 result = UserInRole(userName, RoleInfo.CompanyAdminName);
             }
             return result;
-        }
-
-        /// <summary>
-        /// 根据用户名、密码验证用户身份有效性
-        /// </summary>
-        /// <param name="userName">用户名</param>
-        /// <param name="userPassword">用户密码</param>
-        /// <param name="systemType">系统类型ID</param>
-        /// <returns></returns>
-        public string VerifyUser(string userName, string userPassword, string systemType)
-        {
-            return VerifyUser(userName, userPassword, systemType, "", "");
         }
 
         /// <summary>

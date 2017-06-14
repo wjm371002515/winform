@@ -185,7 +185,7 @@ namespace JCodes.Framework.OracleDAL
             db.ExecuteNonQuery(command);
         }
 
-        public override bool Delete(object key, DbTransaction trans = null)
+        public override bool DeleteByUser(object key, string userId, DbTransaction trans = null)
         {
             OUInfo info = this.FindByID(key, trans);
             if (info != null)

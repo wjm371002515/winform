@@ -1,5 +1,7 @@
 ﻿using JCodes.Framework.BLL;
 using JCodes.Framework.Common;
+using JCodes.Framework.Common.Databases;
+using JCodes.Framework.Common.Format;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.CommonControl;
 using JCodes.Framework.CommonControl.BaseUI;
@@ -16,17 +18,74 @@ using System.Windows.Forms;
 
 namespace JCodes.Framework.AddIn.UI.Dictionary
 {
-    public partial class FrmEditDictData : BaseForm
+    public partial class FrmEditDictData : BaseEditForm
     {
-        public string ID = string.Empty;
-        public string LoginID = "";//登陆用户ID 
-
         public FrmEditDictData()
         {
             InitializeComponent();
         }
-        
-        private void FrmEditDictData_Load(object sender, EventArgs e)
+
+        public override bool CheckInput()
+        {
+            bool result = true;//默认是可以通过
+            #region MyRegion
+            if (this.txtDictType.Text.Trim().Length == 0)
+            {
+                MessageDxUtil.ShowTips("字典大类不能为空");
+                this.txtDictType.Focus();
+                result = false;
+            }
+            if (this.txtValue.Text.Trim().Length == 0)
+            {
+                MessageDxUtil.ShowTips("数据字典值不能为空");
+                this.txtValue.Focus();
+                result = false;
+            }
+            if (this.txtName.Text.Trim().Length == 0)
+            {
+                MessageDxUtil.ShowTips("数据字典名称不能为空");
+                this.txtName.Focus();
+                result = false;
+            }
+            if (this.txtSeq.Text.Trim().Length == 0)
+            {
+                MessageDxUtil.ShowTips("数据字典排序不能为空");
+                this.txtSeq.Focus();
+                result = false;
+            }
+
+            string Id = txtValue.Text;
+            if (result)
+            {
+                if (!ValidateUtil.IsNumeric(Id))
+                {
+                    MessageDxUtil.ShowTips("数据字典值只允许输入数字");
+                    txtValue.Focus();
+                    result = false;
+                }
+            }
+
+            // 检查对应的值是否已经存在数据库了
+            if (result && string.IsNullOrEmpty(ID))
+            {
+                SearchCondition condition = new SearchCondition();
+                condition.AddCondition("DictType_ID", Convert.ToInt32(this.txtDictType.Tag), SqlOperator.Equal);
+                condition.AddCondition("Value", Convert.ToInt32(Id), SqlOperator.Equal);
+                string where = condition.BuildConditionSql().Replace("Where", "");
+                var lst = BLLFactory<DictData>.Instance.Find(where);
+                if (lst.Count > 0)
+                {
+                    MessageDxUtil.ShowTips(string.Format("已存在此值域数据[字典大类编号:{0},字典值:{1},字典名称:{2}]", lst[0].DictType_ID, lst[0].Value, lst[0].Name));
+                    this.txtValue.Focus();
+                    result = false;
+                }
+            }
+            #endregion
+
+            return result;
+        }
+
+        public override void DisplayData()
         {
             if (!string.IsNullOrEmpty(ID))
             {
@@ -43,15 +102,12 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
                     this.txtName.Text = info.Name;
                     this.txtNote.Text = info.Remark;
                     this.txtSeq.Text = info.Seq;
-                    this.txtValue.Text = info.Value;
+                    this.txtValue.Text = info.Value.ToString();
                 }
-                //this.btnOK.Enabled = Portal.gc.HasFunction("Product/Modify");
             }
             else
             {
                 this.Text = "新建 " + this.Text;
-                //this.btnOK.Enabled = Portal.gc.HasFunction("Product/Add");
-                btnEqual_Click(null, null);
             }
 
             this.txtName.Focus();
@@ -59,85 +115,69 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
 
         private void SetInfo(DictDataInfo info)
         {
-            info.Editor = LoginID;
-            info.LastUpdated = DateTime.Now;
+            info.DictType_ID = Convert.ToInt32(this.txtDictType.Tag);
+            info.Value = Convert.ToInt32(this.txtValue.Text.Trim());
             info.Name = this.txtName.Text.Trim();
-            info.Remark = this.txtNote.Text.Trim();
             info.Seq = this.txtSeq.Text;
-            info.Value = this.txtValue.Text.Trim();
-            info.DictType_ID = this.txtDictType.Tag.ToString();
+            info.Remark = this.txtNote.Text.Trim();
+            info.Editor = LoginUserInfo.ID.ToString();
+            info.LastUpdated = DateTime.Now;
+
+            info.CurrentLoginUserId = LoginUserInfo.ID.ToString();
         }
 
-        private void btnOK_Click(object sender, EventArgs e)
+        public override void ClearScreen()
         {
-            if (this.txtName.Text.Trim().Length == 0)
-            {
-                MessageDxUtil.ShowTips("请输入项目名称");
-                this.txtName.Focus();
-                return;
-            }
-            if (this.txtValue.Text.Trim().Length == 0)
-            {
-                MessageDxUtil.ShowTips("请输入项目值");
-                this.txtValue.Focus();
-                return;
-            }
+            txtValue.Text = string.Empty;
+            txtName.Text = string.Empty;
+            txtSeq.Text = string.Empty;
+            txtNote.Text = string.Empty;
 
-            if (!string.IsNullOrEmpty(ID))
+            base.ClearScreen();
+        }
+
+        public override bool SaveAddNew()
+        {
+            DictDataInfo info = new DictDataInfo();
+
+            SetInfo(info);
+
+            try
             {
-                DictDataInfo info = BLLFactory<DictData>.Instance.FindByID(ID);
-                if (info != null)
+                #region 新增数据
+
+                bool succeed = BLLFactory<DictData>.Instance.Insert(info);
+                if (succeed)
                 {
-                    SetInfo(info);
-
-                    try
-                    {
-                        bool succeed = BLLFactory<DictData>.Instance.Update(info, info.ID.ToString());
-                        if (succeed)
-                        {
-                            ProcessDataSaved(this.btnOK, new EventArgs());
-                            MessageDxUtil.ShowTips("保存成功");
-                            if (!this.chkNotClose.Checked)
-                            {
-                                this.DialogResult = DialogResult.OK;
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmEditDictData));
-                        MessageDxUtil.ShowError(ex.Message);
-                    }
+                    //可添加其他关联操作
+                    return true;
                 }
+                #endregion
             }
-            else
+            catch (Exception ex)
             {
-                DictDataInfo info = new DictDataInfo();
-                SetInfo(info);
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmEditDictData));
+                MessageDxUtil.ShowError(ex.Message);
+            }
+            return false;
+        }
 
+        public override bool SaveUpdated()
+        {
+            DictDataInfo info = BLLFactory<DictData>.Instance.FindByID(ID);
+            if (info != null)
+            {
+                SetInfo(info);
                 try
                 {
-                    bool succeed = BLLFactory<DictData>.Instance.Insert(info);
+                    #region 更新数据
+                    bool succeed = BLLFactory<DictData>.Instance.Update(info, info.ID.ToString());
                     if (succeed)
                     {
-                        ProcessDataSaved(this.btnOK, new EventArgs());
-                        MessageDxUtil.ShowTips("保存成功");
-                        if (!this.chkNotClose.Checked)
-                        {
-                            this.DialogResult = DialogResult.OK;
-                        }
-                        else
-                        {
-                            int intSeq = 0;
-                            string seqValue = this.txtSeq.Text;
-                            if (int.TryParse(seqValue, out intSeq))
-                            {
-                                this.txtSeq.Text = (intSeq + 1).ToString().PadLeft(seqValue.Trim().Length, '0');
-                            }
-                            this.txtName.Focus();
-                            this.txtName.SelectAll();
-                        }
+                        //可添加其他关联操作
+                        return true;
                     }
+                    #endregion
                 }
                 catch (Exception ex)
                 {
@@ -145,33 +185,7 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
                     MessageDxUtil.ShowError(ex.Message);
                 }
             }
+            return false;
         }
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        bool equal = false;//是否名称和值保持一致
-        private void btnEqual_Click(object sender, EventArgs e)
-        {
-            equal = !equal;
-            if (equal)
-            {
-                this.btnEqual.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
-            }
-            else
-            {
-                this.btnEqual.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default;
-            }
-        }
-
-        private void txtName_TextChanged(object sender, EventArgs e)
-        {
-            if (equal)
-            {
-                this.txtValue.Text = txtName.Text;
-            }
-        }
-
     }
 }

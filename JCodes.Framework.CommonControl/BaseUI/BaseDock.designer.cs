@@ -37,7 +37,7 @@
             this.ClientSize = new System.Drawing.Size(292, 266);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BaseDock";
-            this.Text = "BaseForm";
+            this.Text = "BaseDock";
             this.Load += new System.EventHandler(this.BaseForm_Load);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.BaseForm_KeyUp);
             this.ResumeLayout(false);

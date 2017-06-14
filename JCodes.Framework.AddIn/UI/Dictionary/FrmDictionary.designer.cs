@@ -30,17 +30,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("付款方式", 1, 1);
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("押金类型", 1, 1);
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("客户来源", 1, 1);
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("服务生等级", 1, 1);
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("客房字典管理", 0, 0, new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3,
-            treeNode4});
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("KTV包间字典管理");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("茶室字典管理");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDictionary));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.treeView1 = new System.Windows.Forms.TreeView();
@@ -56,7 +45,6 @@
             this.lblDictType = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
-            this.btnBatchAdd = new DevExpress.XtraEditors.SimpleButton();
             this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
             this.btnEdit = new DevExpress.XtraEditors.SimpleButton();
             this.winGridViewPager1 = new JCodes.Framework.CommonControl.Pager.WinGridViewPager();
@@ -97,34 +85,6 @@
             this.treeView1.ImageList = this.imageList1;
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Name = "treeView1";
-            treeNode1.ImageIndex = 1;
-            treeNode1.Name = "节点1";
-            treeNode1.SelectedImageIndex = 1;
-            treeNode1.Text = "付款方式";
-            treeNode2.ImageIndex = 1;
-            treeNode2.Name = "节点3";
-            treeNode2.SelectedImageIndex = 1;
-            treeNode2.Text = "押金类型";
-            treeNode3.ImageIndex = 1;
-            treeNode3.Name = "节点4";
-            treeNode3.SelectedImageIndex = 1;
-            treeNode3.Text = "客户来源";
-            treeNode4.ImageIndex = 1;
-            treeNode4.Name = "节点5";
-            treeNode4.SelectedImageIndex = 1;
-            treeNode4.Text = "服务生等级";
-            treeNode5.ImageIndex = 0;
-            treeNode5.Name = "节点0";
-            treeNode5.SelectedImageIndex = 0;
-            treeNode5.Text = "客房字典管理";
-            treeNode6.Name = "KTV包间字典管理";
-            treeNode6.Text = "KTV包间字典管理";
-            treeNode7.Name = "茶室字典管理";
-            treeNode7.Text = "茶室字典管理";
-            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode5,
-            treeNode6,
-            treeNode7});
             this.treeView1.SelectedImageIndex = 0;
             this.treeView1.Size = new System.Drawing.Size(209, 586);
             this.treeView1.TabIndex = 0;
@@ -134,6 +94,7 @@
             // 
             // contextMenuStrip1
             // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menu_AddType,
             this.menu_EditType,
@@ -142,45 +103,45 @@
             this.toolStripSeparator1,
             this.menu_ClearData});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(213, 120);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(298, 160);
             // 
             // menu_AddType
             // 
             this.menu_AddType.Name = "menu_AddType";
-            this.menu_AddType.Size = new System.Drawing.Size(212, 22);
+            this.menu_AddType.Size = new System.Drawing.Size(297, 30);
             this.menu_AddType.Text = "添加字典大类(&A)";
             this.menu_AddType.Click += new System.EventHandler(this.menu_AddType_Click);
             // 
             // menu_EditType
             // 
             this.menu_EditType.Name = "menu_EditType";
-            this.menu_EditType.Size = new System.Drawing.Size(212, 22);
+            this.menu_EditType.Size = new System.Drawing.Size(297, 30);
             this.menu_EditType.Text = "编辑字典大类";
             this.menu_EditType.Click += new System.EventHandler(this.menu_EditType_Click);
             // 
             // menu_DeleteType
             // 
             this.menu_DeleteType.Name = "menu_DeleteType";
-            this.menu_DeleteType.Size = new System.Drawing.Size(212, 22);
+            this.menu_DeleteType.Size = new System.Drawing.Size(297, 30);
             this.menu_DeleteType.Text = "删除字典大类(&D)";
             this.menu_DeleteType.Click += new System.EventHandler(this.menu_DeleteType_Click);
             // 
             // menu_Refresh
             // 
             this.menu_Refresh.Name = "menu_Refresh";
-            this.menu_Refresh.Size = new System.Drawing.Size(212, 22);
+            this.menu_Refresh.Size = new System.Drawing.Size(297, 30);
             this.menu_Refresh.Text = "刷新列表(&R)";
             this.menu_Refresh.Click += new System.EventHandler(this.menu_Refresh_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(209, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(294, 6);
             // 
             // menu_ClearData
             // 
             this.menu_ClearData.Name = "menu_ClearData";
-            this.menu_ClearData.Size = new System.Drawing.Size(212, 22);
+            this.menu_ClearData.Size = new System.Drawing.Size(297, 30);
             this.menu_ClearData.Text = "清空字典大类数据项目(&C)";
             this.menu_ClearData.Click += new System.EventHandler(this.menu_ClearData_Click);
             // 
@@ -199,7 +160,6 @@
             this.groupControl1.Controls.Add(this.lblDictType);
             this.groupControl1.Controls.Add(this.label1);
             this.groupControl1.Controls.Add(this.btnDelete);
-            this.groupControl1.Controls.Add(this.btnBatchAdd);
             this.groupControl1.Controls.Add(this.btnAdd);
             this.groupControl1.Controls.Add(this.btnEdit);
             this.groupControl1.Location = new System.Drawing.Point(6, 12);
@@ -212,7 +172,7 @@
             this.lblDictType.AutoSize = true;
             this.lblDictType.Location = new System.Drawing.Point(137, 36);
             this.lblDictType.Name = "lblDictType";
-            this.lblDictType.Size = new System.Drawing.Size(55, 14);
+            this.lblDictType.Size = new System.Drawing.Size(82, 22);
             this.lblDictType.TabIndex = 1;
             this.lblDictType.Text = "大类名称";
             // 
@@ -221,7 +181,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(18, 36);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(115, 14);
+            this.label1.Size = new System.Drawing.Size(172, 22);
             this.label1.TabIndex = 1;
             this.label1.Text = "您选择的字典大类：";
             // 
@@ -234,16 +194,6 @@
             this.btnDelete.TabIndex = 0;
             this.btnDelete.Text = "删除";
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnBatchAdd
-            // 
-            this.btnBatchAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBatchAdd.Location = new System.Drawing.Point(385, 36);
-            this.btnBatchAdd.Name = "btnBatchAdd";
-            this.btnBatchAdd.Size = new System.Drawing.Size(86, 23);
-            this.btnBatchAdd.TabIndex = 0;
-            this.btnBatchAdd.Text = "批量添加";
-            this.btnBatchAdd.Click += new System.EventHandler(this.btnBatchAdd_Click);
             // 
             // btnAdd
             // 
@@ -274,23 +224,28 @@
             this.winGridViewPager1.ColumnNameAlias = ((System.Collections.Generic.Dictionary<string, string>)(resources.GetObject("winGridViewPager1.ColumnNameAlias")));
             this.winGridViewPager1.DataSource = null;
             this.winGridViewPager1.DisplayColumns = "";
+            this.winGridViewPager1.FixedColumns = null;
             this.winGridViewPager1.Location = new System.Drawing.Point(3, 92);
             this.winGridViewPager1.MinimumSize = new System.Drawing.Size(540, 0);
             this.winGridViewPager1.Name = "winGridViewPager1";
             this.winGridViewPager1.PrintTitle = "";
+            this.winGridViewPager1.ShowAddMenu = true;
             this.winGridViewPager1.ShowCheckBox = false;
+            this.winGridViewPager1.ShowDeleteMenu = true;
+            this.winGridViewPager1.ShowEditMenu = true;
             this.winGridViewPager1.ShowExportButton = true;
             this.winGridViewPager1.Size = new System.Drawing.Size(722, 491);
             this.winGridViewPager1.TabIndex = 0;
             // 
             // contextMenuStrip2
             // 
+            this.contextMenuStrip2.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(61, 4);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(74, 4);
             // 
             // FrmDictionary
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(947, 586);
             this.Controls.Add(this.splitContainer1);
@@ -328,7 +283,6 @@
         private System.Windows.Forms.ToolStripMenuItem menu_Refresh;
         private System.Windows.Forms.ToolStripMenuItem menu_EditType;
         private DevExpress.XtraEditors.GroupControl groupControl1;
-        private DevExpress.XtraEditors.SimpleButton btnBatchAdd;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem menu_ClearData;
     }

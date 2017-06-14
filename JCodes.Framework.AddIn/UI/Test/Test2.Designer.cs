@@ -1,6 +1,6 @@
-﻿namespace JCodes.Framework.CommonControl.BaseUI
+﻿namespace JCodes.Framework.AddIn.UI.Test
 {
-    partial class BaseForm
+    partial class Test2
     {
         /// <summary>
         /// Required designer variable.
@@ -28,23 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BaseForm));
             this.SuspendLayout();
             // 
-            // BaseForm
+            // Test2
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(292, 266);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "BaseForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "BaseForm";
-            this.Load += new System.EventHandler(this.BaseForm_Load);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.BaseForm_KeyUp);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(493, 435);
+            this.Name = "Test2";
+            this.Text = "Test2";
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
     }
 }

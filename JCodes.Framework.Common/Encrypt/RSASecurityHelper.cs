@@ -5,6 +5,8 @@ using System.IO;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.Common.Device;
 using JCodes.Framework.Common.Office;
+using JCodes.Framework.Common.Files;
+using Microsoft.Win32;
 
 namespace JCodes.Framework.Common.Encrypt
 {
@@ -242,21 +244,21 @@ namespace JCodes.Framework.Common.Encrypt
         /// 返回注册码信息 (用公钥生成)
         /// </summary>
         /// <returns></returns>
-        public static string GetRegistrationCode()
+        public static string GetRegistrationCode(string userName, string Company)
         {
             string machineCode = HardwareInfoHelper.GetCPUId();
             string expireDate = Convert.ToDateTime(Data.getSysDate()).AddYears(1).ToString("yyyy-MM-dd");
             string publicKey = Const.publicKey;
-            return RSASecurityHelper.RSAEncrypt(publicKey, machineCode + Const.VerticalLine + expireDate);
+            return RSASecurityHelper.RSAEncrypt(publicKey, machineCode + Const.VerticalLine + expireDate + Const.VerticalLine + Company + Const.VerticalLine + userName);
         }
 
   
         /// <summary>
-        /// 验证注册码信息
+        /// 验证注册码信息(机器码|有效日期|注册公司|注册用户)
         /// </summary>
         /// <param name="encryptedString"> 注册码信息 </param>
-        /// <returns>返回0 表示正确，-1表示注册码错误，-2表示机器码错误， -3表示注册已过期， -4表示其他内部错误</returns>
-        public static Int32 CheckRegistrationCode(string encryptedString)
+        /// <returns>返回0 表示正确，-1表示注册码错误，-2表示机器码错误， -3表示注册已过期， -4表示其他内部错误, -5 注册人员信息错误，-6注册公司错误</returns>
+        public static Int32 CheckRegistrationCode(string encryptedString, string struserName, string strcompany)
         {
             string originalString = null;
             try
@@ -270,18 +272,47 @@ namespace JCodes.Framework.Common.Encrypt
             }
 
             string[] d2 = originalString.Split('|');
-            if (d2.Length != 2)
+            if (d2.Length != 4)
                 return -4;
 
             string machineCode = d2[0];
             string expireDate = d2[1];
+            string companyName = d2[2];
+            string userName = d2[3];
             if (!string.Equals(machineCode, HardwareInfoHelper.GetCPUId(), StringComparison.OrdinalIgnoreCase))
                 return -2;
-            
+
             DateTime nowdt = Convert.ToDateTime( Data.getSysDate() );
             DateTime expiredt = Convert.ToDateTime( expireDate);
             if (nowdt > expiredt)
                 return -3;
+
+            AppConfig appconfig = new AppConfig();
+            string LicensePath = appconfig.AppConfigGet("LicensePath");
+            if (!string.Equals(struserName, userName, StringComparison.OrdinalIgnoreCase))
+                return -5;
+            if (!string.Equals(strcompany, companyName, StringComparison.OrdinalIgnoreCase))
+                return -6;
+
+            RegistryKey reg;
+            string regkey = UIConstants.SoftwareRegistryKey;
+            reg = Registry.CurrentUser.OpenSubKey(regkey, true);
+            if (null == reg)
+            {
+                reg = Registry.CurrentUser.CreateSubKey(regkey);
+            }
+            if (null != reg)
+            {
+                reg.SetValue("productName", UIConstants.SoftwareProductName);
+                reg.SetValue("version", UIConstants.SoftwareVersion);
+                reg.SetValue("SysDate", expireDate);
+                reg.SetValue("UserName", userName);
+                reg.SetValue("Company", companyName);
+                reg.SetValue("regCode", encryptedString);
+            }
+
+            // 写入lic 文件
+            FileUtil.WriteText(LicensePath, encryptedString+Const.VerticalLine+userName+Const.VerticalLine+companyName, Encoding.Default);
 
             return 0;
         }

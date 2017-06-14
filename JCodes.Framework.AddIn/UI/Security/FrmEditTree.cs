@@ -16,7 +16,7 @@ using JCodes.Framework.Common.Extension;
 
 namespace JCodes.Framework.AddIn.UI.Security
 {
-    public partial class FrmEditTree : BaseForm
+    public partial class FrmEditTree : BaseDock
     {
         public enum DisplayTreeType  { OU, Role, User, Function }
         public DisplayTreeType DisplayType;

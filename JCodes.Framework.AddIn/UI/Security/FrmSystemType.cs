@@ -1,10 +1,14 @@
 ﻿using JCodes.Framework.AddIn.Other;
 using JCodes.Framework.BLL;
 using JCodes.Framework.Common;
+using JCodes.Framework.Common.Files;
 using JCodes.Framework.Common.Framework;
+using JCodes.Framework.Common.Office;
 using JCodes.Framework.CommonControl;
 using JCodes.Framework.CommonControl.BaseUI;
 using JCodes.Framework.CommonControl.Other;
+using JCodes.Framework.CommonControl.RSARegistryTool;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +19,7 @@ using System.Windows.Forms;
 
 namespace JCodes.Framework.AddIn.UI.Security
 {
-    public partial class FrmSystemType : BaseForm
+    public partial class FrmSystemType : BaseDock
     {
         public FrmSystemType()
         {
@@ -94,7 +98,7 @@ namespace JCodes.Framework.AddIn.UI.Security
                 foreach (int iRow in rowSelected)
                 {
                     string ID = this.winGridView1.GridView1.GetRowCellDisplayText(iRow, "OID");
-                    BLLFactory<SystemType>.Instance.Delete(ID);
+                    BLLFactory<SystemType>.Instance.DeleteByUser(ID, LoginUserInfo.ID.ToString());
                 }
                 BindData();
             }
@@ -174,6 +178,59 @@ namespace JCodes.Framework.AddIn.UI.Security
         private void tsbClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void tsbReg_Click(object sender, EventArgs e)
+        {
+            if (!Portal.gc.HasFunction("SystemType/regTool"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
+            FrmRegeditTool frt = new FrmRegeditTool();
+            frt.ShowDialog();
+        }
+
+        /// <summary>
+        /// 注销本机序列号
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tsbCancelReg_Click(object sender, EventArgs e)
+        {
+            if (!Portal.gc.HasFunction("SystemType/cancalReg"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
+            if (MessageDxUtil.ShowYesNoAndTips("您确定要注销嘛？此操作不可逆！") == DialogResult.No)
+            {
+                return;
+            }
+
+            RegistryKey reg;
+            string regkey = UIConstants.SoftwareRegistryKey;
+            reg = Registry.CurrentUser.OpenSubKey(regkey, true);
+            if (null == reg)
+            {
+                reg = Registry.CurrentUser.CreateSubKey(regkey);
+            }
+            if (null != reg)
+            {
+                reg.SetValue("productName", UIConstants.SoftwareProductName);
+                reg.SetValue("version", UIConstants.SoftwareVersion);
+                reg.SetValue("SysDate", Data.getSysDate());
+                reg.SetValue("regCode", string.Empty);
+                reg.SetValue("UserName", string.Empty);
+                reg.SetValue("Company", string.Empty);
+                
+            }
+            AppConfig config = new AppConfig();
+            string LicensePath = config.AppConfigGet("LicensePath");
+            FileUtil.DeleteFile(LicensePath);
+            MessageDxUtil.ShowTips("祝贺您，注销成功！\r\n请重启登录之后才会生效！");
         }
 
 

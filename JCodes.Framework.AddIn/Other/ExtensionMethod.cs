@@ -222,7 +222,7 @@ namespace JCodes.Framework.AddIn.Other
         /// <param name="dictTypeName">数据字典类型名称</param>
         public static void BindDictItems(this ComboBoxEdit combo, string dictTypeName)
         {
-            BindDictItems(combo, dictTypeName, null);
+            //BindDictItems(combo, dictTypeName, null);
         }
 
         /// <summary>
@@ -233,14 +233,14 @@ namespace JCodes.Framework.AddIn.Other
         /// <param name="defaultValue">控件默认值</param>
         public static void BindDictItems(this ComboBoxEdit combo, string dictTypeName, string defaultValue)
         {
-            Dictionary<string, string> dict = BLLFactory<DictData>.Instance.GetDictByDictType(dictTypeName);
+            /*Dictionary<string, string> dict = BLLFactory<DictData>.Instance.GetDictByDictType(dictTypeName);
             List<CListItem> itemList = new List<CListItem>();
             foreach (string key in dict.Keys)
             {
                 itemList.Add(new CListItem(key, dict[key]));
             }
 
-            BindDictItems(combo, itemList, defaultValue);
+            BindDictItems(combo, itemList, defaultValue);*/
         }
 
         /// <summary>
@@ -292,7 +292,7 @@ namespace JCodes.Framework.AddIn.Other
         /// <param name="dictTypeName">字典大类</param>
         public static void BindDictItems(this RadioGroup radGroup, string dictTypeName)
         {
-            BindDictItems(radGroup, dictTypeName, null);
+            //BindDictItems(radGroup, dictTypeName, null);
         }
 
         /// <summary>
@@ -303,7 +303,7 @@ namespace JCodes.Framework.AddIn.Other
         /// <param name="defaultValue">控件默认值</param>
         public static void BindDictItems(this RadioGroup radGroup, string dictTypeName, string defaultValue)
         {
-            Dictionary<string, string> dict = BLLFactory<DictData>.Instance.GetDictByDictType(dictTypeName);
+            /*Dictionary<string, string> dict = BLLFactory<DictData>.Instance.GetDictByDictType(dictTypeName);
             List<RadioGroupItem> groupList = new List<RadioGroupItem>();
             foreach (string key in dict.Keys)
             {
@@ -319,7 +319,7 @@ namespace JCodes.Framework.AddIn.Other
                 SetRaidioGroupItem(radGroup, defaultValue);
             }
 
-            radGroup.Properties.EndUpdate();//可以加快
+            radGroup.Properties.EndUpdate();//可以加快*/
         }
 
         /// <summary>
@@ -388,14 +388,14 @@ namespace JCodes.Framework.AddIn.Other
         /// <param name="dictTypeName">数据字典类型名称</param>
         public static void BindDictItems(this CheckedComboBoxEdit combo, string dictTypeName, string defaultValue)
         {
-            List<CListItem> itemList = new List<CListItem>();
+            /*List<CListItem> itemList = new List<CListItem>();
             Dictionary<string, string> dict = BLLFactory<DictData>.Instance.GetDictByDictType(dictTypeName);
             foreach (string key in dict.Keys)
             {
                 itemList.Add(new CListItem(key, dict[key]));
             }
 
-            BindDictItems(combo, itemList, defaultValue);
+            BindDictItems(combo, itemList, defaultValue);*/
         }
 
         /// <summary>

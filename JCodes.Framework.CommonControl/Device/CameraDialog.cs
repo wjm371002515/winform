@@ -16,7 +16,7 @@ namespace JCodes.Framework.CommonControl.Device
     /// <summary>
     /// 摄像头图形显示窗体
     /// </summary>
-    public partial class CameraDialog : BaseForm
+    public partial class CameraDialog : BaseDock
     {
         private Camera _camera;
         public CameraDialog()

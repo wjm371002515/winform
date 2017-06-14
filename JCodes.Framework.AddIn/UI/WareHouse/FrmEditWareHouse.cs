@@ -16,7 +16,7 @@ using JCodes.Framework.BLL;
 
 namespace JCodes.Framework.AddIn.UI.WareHouse
 {
-    public partial class FrmEditWareHouse : BaseForm
+    public partial class FrmEditWareHouse : BaseDock
     {
         public string ID = string.Empty;
 

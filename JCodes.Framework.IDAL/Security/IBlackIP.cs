@@ -24,6 +24,8 @@ namespace JCodes.Framework.IDAL
         void AddUser(int userID, string blackID);
         
         void RemoveUser(int userID, string blackID);
+
+        void RemoveUserByBlackId(string blackID);
                        
         /// <summary>
         /// 根据用户ID和授权类型获取列表

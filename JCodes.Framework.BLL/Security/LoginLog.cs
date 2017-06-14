@@ -20,6 +20,8 @@ namespace JCodes.Framework.BLL
         public LoginLog() : base()
         {
             base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+
+            baseDal.OnOperationLog += new OperationLogEventHandler(OperationLog.OnOperationLog);//如果需要记录操作日志，则实现这个事件
         }
 
         /// <summary>
@@ -50,6 +52,7 @@ namespace JCodes.Framework.BLL
                 logInfo.Company_ID = info.Company_ID;
                 logInfo.CompanyName = info.CompanyName;
 
+                logInfo.CurrentLoginUserId = info.ID.ToString();
                 BLLFactory<LoginLog>.Instance.Insert(logInfo);
             }
             catch (Exception ex)

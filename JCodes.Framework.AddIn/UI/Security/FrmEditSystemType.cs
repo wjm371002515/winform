@@ -13,6 +13,7 @@ using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.CommonControl.BaseUI;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.Common.Framework;
+using JCodes.Framework.AddIn.Other;
 
 namespace JCodes.Framework.AddIn.UI.Security
 {
@@ -98,6 +99,7 @@ namespace JCodes.Framework.AddIn.UI.Security
             info.CustomID = txtCustomID.Text;
             info.Authorize = txtAuthorize.Text;
             info.Note = txtNote.Text;
+            info.CurrentLoginUserId = Portal.gc.UserInfo.ID.ToString();
         }
 
         /// <summary>

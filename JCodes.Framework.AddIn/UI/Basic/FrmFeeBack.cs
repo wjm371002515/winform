@@ -15,11 +15,8 @@ using System.Windows.Forms;
 
 namespace JCodes.Framework.AddIn.UI.Basic
 {
-    public partial class FrmFeeBack : BaseForm
+    public partial class FrmFeeBack : BaseDock
     {
-        private int maxTry = 3;
-        private int currentTry = 0;
-
         public FrmFeeBack()
         {
             InitializeComponent();
@@ -48,48 +45,44 @@ namespace JCodes.Framework.AddIn.UI.Basic
             }
             #endregion
 
-            SendEmail();
-            this.DialogResult = DialogResult.OK;
-            MessageDxUtil.ShowTips("谢谢您的建议！");
+            if (SendEmail())
+            {
+                this.DialogResult = DialogResult.OK;
+                MessageDxUtil.ShowTips("谢谢您的建议！");
+            }
+            else
+            {
+                this.DialogResult = DialogResult.No;
+                MessageDxUtil.ShowTips("发送邮件失败，具体原因参考日志！");
+            }
+            
         }
 
-        private void SendEmail()
+        private bool SendEmail()
         {
-            Thread.Sleep(100);
-            currentTry++;
-
-            EmailHelper email = new EmailHelper("smtp.163.com", "wuhuacong2013@163.com", "123abc");
+            Thread.Sleep(Const.SLEEP_TIME);
+            EmailHelper email = new EmailHelper("smtp.163.com", "codeany@163.com", "abc123");
             email.Subject = string.Format("来自【{0}】对Winform开发框架的建议", this.txtEmail.Text);
             email.Body = this.txtAdvise.Text;//支持嵌入图片的内容发送
             email.IsHtml = true;
-            email.From = "wuhuacong2013@163.com";
-            email.FromName = "wuhuacong2013";
-            email.AddRecipient("6966254@qq.com");
-            //email.AddAttachment(System.IO.Path.Combine(Application.StartupPath, "cityroad.jpg")); 
+            email.From = "codeany@163.com";
+            email.FromName = "jCodes 官方邮箱";
+            email.AddRecipient("codeany@163.com");
+            email.RecipientName = "jCodes 官方邮箱";
+            bool success = false;
 
             try
             {
-                bool success = email.SendEmail();
-                if (success)
-                {
-                    currentTry = 0;
-                }
-                else if (currentTry < maxTry)
-                {
-                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_ERR, email.ErrorMessage, typeof(FrmFeeBack));
-                    SendEmail();
-                }
+                success = email.SendEmail();
+                return success;
             }
             catch (Exception ex)
             {
                 LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmFeeBack));
                 MessageDxUtil.ShowError(ex.Message);
-                if (currentTry <= maxTry)
-                {
-                    SendEmail();
-                }
-                currentTry = 0;
-            }  
+                success = false;
+                return success;
+            }
         }
     }
 }

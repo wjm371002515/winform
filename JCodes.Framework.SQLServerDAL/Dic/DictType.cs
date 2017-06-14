@@ -26,7 +26,8 @@ namespace JCodes.Framework.SQLServerDAL
 				return new DictType();
 			}
 		}
-		public DictType() : base("tb_DictType","ID")
+        public DictType()
+            : base(SQLServerPortal.gc._basicTablePre+"DictType", "ID")
 		{
             sortField = "Seq";
             IsDescending = false;
@@ -44,13 +45,13 @@ namespace JCodes.Framework.SQLServerDAL
 			DictTypeInfo dictTypeInfo = new DictTypeInfo();
 			SmartDataReader reader = new SmartDataReader(dataReader);
 
-            dictTypeInfo.ID = reader.GetString("ID");
+            dictTypeInfo.ID = reader.GetInt32("ID");
 			dictTypeInfo.Name = reader.GetString("Name");
 			dictTypeInfo.Remark = reader.GetString("Remark");
 			dictTypeInfo.Seq = reader.GetString("Seq");
             dictTypeInfo.Editor = reader.GetString("Editor");
 			dictTypeInfo.LastUpdated = reader.GetDateTime("LastUpdated");
-            dictTypeInfo.PID = reader.GetString("PID");
+            dictTypeInfo.PID = reader.GetInt32("PID");
 			
 			return dictTypeInfo;
 		}
@@ -76,59 +77,29 @@ namespace JCodes.Framework.SQLServerDAL
 			return hash;
 		}
 
-
         /// <summary>
         /// 获取所有字典类型的列表集合(Key为名称，Value为ID值）
         /// </summary>
         /// <param name="dictTypeId">字典类型ID</param>
         /// <returns></returns>
-        public Dictionary<string, string> GetAllType()
+        public Dictionary<Int32, string> GetAllType(Int32 PID)
         {
-            string sql = string.Format("select Name,ID from tb_DictType order by {0} {1}",
-                sortField, IsDescending ? "DESC" : "ASC");
+            string sql = string.Format("select ID, Name from {0}DictType where PID ={3} order by {1} {2}",
+                SQLServerPortal.gc._basicTablePre, sortField, IsDescending ? "DESC" : "ASC", PID);
 
             Database db = CreateDatabase();
             DbCommand command = db.GetSqlStringCommand(sql);
 
-            Dictionary<string, string> list = new Dictionary<string, string>();
+            Dictionary<Int32, string> list = new Dictionary<Int32, string>();
             using (IDataReader dr = db.ExecuteReader(command))
             {
                 while (dr.Read())
                 {
                     string name = dr["Name"].ToString();
-                    string value = dr["ID"].ToString();
-                    if (!list.ContainsKey(name))
+                    Int32 value = Convert.ToInt32(dr["ID"]);
+                    if (!list.ContainsKey(value))
                     {
-                        list.Add(name, value);
-                    }
-                }
-            }
-            return list;
-        }
-
-        /// <summary>
-        /// 获取所有字典类型的列表集合(Key为名称，Value为ID值）
-        /// </summary>
-        /// <param name="dictTypeId">字典类型ID</param>
-        /// <returns></returns>
-        public Dictionary<string, string> GetAllType(string PID)
-        {
-            string sql = string.Format("select Name,ID from tb_DictType where PID ='{2}' order by {0} {1}",
-                sortField, IsDescending ? "DESC" : "ASC", PID);
-
-            Database db = CreateDatabase();
-            DbCommand command = db.GetSqlStringCommand(sql);
-
-            Dictionary<string, string> list = new Dictionary<string, string>();
-            using (IDataReader dr = db.ExecuteReader(command))
-            {
-                while (dr.Read())
-                {
-                    string name = dr["Name"].ToString();
-                    string value = dr["ID"].ToString();
-                    if (!list.ContainsKey(name))
-                    {
-                        list.Add(name, value);
+                        list.Add(value, name);
                     }
                 }
             }
@@ -139,7 +110,7 @@ namespace JCodes.Framework.SQLServerDAL
         public List<DictTypeNodeInfo> GetTree()
         {
             List<DictTypeNodeInfo> typeNodeList = new List<DictTypeNodeInfo>();
-            string sql = string.Format("Select * From tb_DictType Order By PID, Seq ");
+            string sql = string.Format("Select * From {0}DictType Order By PID, Seq ", SQLServerPortal.gc._basicTablePre);
             Database db = CreateDatabase();
             DbCommand cmdWrapper = db.GetSqlStringCommand(sql);
 
@@ -147,10 +118,10 @@ namespace JCodes.Framework.SQLServerDAL
             if (ds.Tables.Count > 0)
             {
                 DataTable dt = ds.Tables[0];
-                DataRow[] dataRows = dt.Select(string.Format(" PID = '{0}' ", -1));
+                DataRow[] dataRows = dt.Select(string.Format(" PID = {0} ", -1));
                 for (int i = 0; i < dataRows.Length; i++)
                 {
-                    string id = dataRows[i]["ID"].ToString();
+                    Int32 id = Convert.ToInt32( dataRows[i]["ID"]);
                     DictTypeNodeInfo DictTypeNodeInfo = GetNode(id, dt);
                     typeNodeList.Add(DictTypeNodeInfo);
                 }
@@ -159,62 +130,20 @@ namespace JCodes.Framework.SQLServerDAL
             return typeNodeList;
         }
 
-        private DictTypeNodeInfo GetNode(string id, DataTable dt)
+        private DictTypeNodeInfo GetNode(Int32 id, DataTable dt)
         {
             DictTypeInfo DictTypeInfo = this.FindByID(id);
             DictTypeNodeInfo DictTypeNodeInfo = new DictTypeNodeInfo(DictTypeInfo);
 
-            DataRow[] dChildRows = dt.Select(string.Format(" PID='{0}' ", id));
+            DataRow[] dChildRows = dt.Select(string.Format(" PID={0} ", id));
 
             for (int i = 0; i < dChildRows.Length; i++)
             {
-                string childId = dChildRows[i]["ID"].ToString();
+                Int32 childId = Convert.ToInt32( dChildRows[i]["ID"]);
                 DictTypeNodeInfo childNodeInfo = GetNode(childId, dt);
                 DictTypeNodeInfo.Children.Add(childNodeInfo);
             }
             return DictTypeNodeInfo;
-        }
-
-        public List<DictTypeInfo> GetTopItems()
-        {
-            string sql = string.Format("Select * From tb_DictType Where PID=-1 Order By Seq  ");
-            Database db = CreateDatabase();
-            DbCommand command = db.GetSqlStringCommand(sql);
-
-            List<DictTypeInfo> list = new List<DictTypeInfo>();
-            DictTypeInfo entity;
-            using (IDataReader dr = db.ExecuteReader(command))
-            {
-                while (dr.Read())
-                {
-                    entity = DataReaderToEntity(dr);
-                    list.Add(entity);
-                }
-            }
-            return list;
-        }
-
-        public List<DictTypeNodeInfo> GetTreeByID(string mainID)
-        {
-            List<DictTypeNodeInfo> typeNodeList = new List<DictTypeNodeInfo>();
-            string sql = string.Format("Select * From tb_DictType Where Order By PID, Seq ");
-            Database db = CreateDatabase();
-            DbCommand cmdWrapper = db.GetSqlStringCommand(sql);
-
-            DataSet ds = db.ExecuteDataSet(cmdWrapper);
-            if (ds.Tables.Count > 0)
-            {
-                DataTable dt = ds.Tables[0];
-                DataRow[] dataRows = dt.Select(string.Format(" PID = '{0}' ", mainID));
-                for (int i = 0; i < dataRows.Length; i++)
-                {
-                    string id = dataRows[i]["ID"].ToString();
-                    DictTypeNodeInfo DictTypeNodeInfo = GetNode(id, dt);
-                    typeNodeList.Add(DictTypeNodeInfo);
-                }
-            }
-
-            return typeNodeList;
         }
     }
 }

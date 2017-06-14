@@ -22,7 +22,7 @@ using JCodes.Framework.CommonControl.Other;
 
 namespace JCodes.Framework.AddIn.UI.Security
 {
-    public partial class FrmSelectUser : BaseForm
+    public partial class FrmSelectUser : BaseDock
     {
         private Dictionary<string, string> m_SelectUserDict = new Dictionary<string,string>();
         /// <summary>

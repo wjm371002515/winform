@@ -137,7 +137,7 @@ namespace JCodes.Framework.BLL
 			}
 		}
 
-        public override bool Delete(object key, DbTransaction trans = null)
+        public override bool DeleteByUser(object key, string userId, DbTransaction trans = null)
         {
             this.FillAdminID(trans);
 
@@ -145,7 +145,7 @@ namespace JCodes.Framework.BLL
 			{
 				throw new Exception("管理员角色 不能被删除！");
 			}
-			return baseDal.Delete(key, trans);
+            return baseDal.DeleteByUser(key, userId, trans);
 		}
 
         /// <summary>

@@ -32,14 +32,16 @@ namespace JCodes.Framework.AddIn.Test
             this.button1 = new System.Windows.Forms.Button();
             this.txtLog = new System.Windows.Forms.RichTextBox();
             this.button2 = new System.Windows.Forms.Button();
-            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            this.btnException = new System.Windows.Forms.Button();
+            this.btnException2 = new System.Windows.Forms.Button();
+            this.comboBoxEdit1 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -74,55 +76,91 @@ namespace JCodes.Framework.AddIn.Test
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // groupControl1
-            // 
-            this.groupControl1.Location = new System.Drawing.Point(284, 97);
-            this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(200, 100);
-            this.groupControl1.TabIndex = 2;
-            this.groupControl1.Text = "groupControl1";
-            // 
-            // gridControl1
-            // 
-            this.gridControl1.Location = new System.Drawing.Point(141, 112);
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(400, 200);
-            this.gridControl1.TabIndex = 3;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
-            // 
-            // gridView1
-            // 
-            this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.Name = "gridView1";
-            // 
             // textEdit1
             // 
-            this.textEdit1.Location = new System.Drawing.Point(548, 65);
+            this.textEdit1.Location = new System.Drawing.Point(206, 12);
             this.textEdit1.Name = "textEdit1";
             this.textEdit1.Size = new System.Drawing.Size(100, 28);
             this.textEdit1.TabIndex = 4;
+            // 
+            // btnException
+            // 
+            this.btnException.Location = new System.Drawing.Point(312, 10);
+            this.btnException.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnException.Name = "btnException";
+            this.btnException.Size = new System.Drawing.Size(100, 30);
+            this.btnException.TabIndex = 0;
+            this.btnException.Text = "异常测试";
+            this.btnException.UseVisualStyleBackColor = true;
+            this.btnException.Click += new System.EventHandler(this.btnException_Click);
+            // 
+            // btnException2
+            // 
+            this.btnException2.Location = new System.Drawing.Point(418, 10);
+            this.btnException2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnException2.Name = "btnException2";
+            this.btnException2.Size = new System.Drawing.Size(100, 30);
+            this.btnException2.TabIndex = 0;
+            this.btnException2.Text = "异常测试2";
+            this.btnException2.UseVisualStyleBackColor = true;
+            this.btnException2.Click += new System.EventHandler(this.btnException2_Click);
+            // 
+            // comboBoxEdit1
+            // 
+            this.comboBoxEdit1.Location = new System.Drawing.Point(275, 62);
+            this.comboBoxEdit1.Name = "comboBoxEdit1";
+            this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEdit1.Size = new System.Drawing.Size(116, 28);
+            this.comboBoxEdit1.TabIndex = 6;
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(12, 62);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(103, 22);
+            this.labelControl1.TabIndex = 7;
+            this.labelControl1.Text = "labelControl1";
+            // 
+            // textEdit2
+            // 
+            this.textEdit2.Location = new System.Drawing.Point(153, 62);
+            this.textEdit2.Name = "textEdit2";
+            this.textEdit2.Size = new System.Drawing.Size(100, 28);
+            this.textEdit2.TabIndex = 8;
+            // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Location = new System.Drawing.Point(432, 65);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(75, 23);
+            this.simpleButton1.TabIndex = 9;
+            this.simpleButton1.Text = "simpleButton1";
             // 
             // Test
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(879, 503);
+            this.Controls.Add(this.simpleButton1);
+            this.Controls.Add(this.textEdit2);
+            this.Controls.Add(this.labelControl1);
+            this.Controls.Add(this.comboBoxEdit1);
             this.Controls.Add(this.textEdit1);
-            this.Controls.Add(this.gridControl1);
-            this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.txtLog);
             this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnException2);
+            this.Controls.Add(this.btnException);
             this.Controls.Add(this.button1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Test";
             this.Text = "Test";
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            this.Load += new System.EventHandler(this.Test_Load);
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -131,10 +169,13 @@ namespace JCodes.Framework.AddIn.Test
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.RichTextBox txtLog;
         private System.Windows.Forms.Button button2;
-        private DevExpress.XtraEditors.GroupControl groupControl1;
-        private DevExpress.XtraGrid.GridControl gridControl1;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraEditors.TextEdit textEdit1;
+        private System.Windows.Forms.Button btnException;
+        private System.Windows.Forms.Button btnException2;
+        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit1;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.TextEdit textEdit2;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
 
     }
 }

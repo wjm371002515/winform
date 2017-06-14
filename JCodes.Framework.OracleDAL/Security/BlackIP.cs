@@ -143,6 +143,14 @@ namespace JCodes.Framework.OracleDAL
             db.ExecuteNonQuery(command);
         }
 
+        public void RemoveUserByBlackId(string blackID)
+        {
+            string commandText = string.Format("DELETE FROM {0}BLACKIP_USER WHERE BLACKIP_ID='{1}'", OraclePortal.gc._securityTablePre, blackID);
+            Database db = CreateDatabase();
+            DbCommand command = db.GetSqlStringCommand(commandText);
+            db.ExecuteNonQuery(command);
+        }
+
         /// <summary>
         /// 根据用户ID和授权类型获取列表
         /// </summary>

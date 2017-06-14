@@ -1,6 +1,9 @@
-﻿using JCodes.Framework.BLL;
+﻿using JCodes.Framework.AddIn.Other;
+using JCodes.Framework.BLL;
 using JCodes.Framework.Common;
+using JCodes.Framework.Common.Device;
 using JCodes.Framework.Common.Framework;
+using JCodes.Framework.Common.Network;
 using JCodes.Framework.CommonControl;
 using JCodes.Framework.CommonControl.BaseUI;
 using JCodes.Framework.CommonControl.Other;
@@ -40,7 +43,9 @@ namespace JCodes.Framework.AddIn.UI.Basic
 
             try
             {
-                bool result = BLLFactory<User>.Instance.ModifyPassword(this.LoginUserInfo.Name, this.txtPassword.Text);
+                string ip = NetworkUtil.GetLocalIP();
+                string macAddr = HardwareInfoHelper.GetMacAddress();
+                bool result = BLLFactory<User>.Instance.ModifyPassword(this.LoginUserInfo.Name, this.txtPassword.Text, Portal.gc.SystemType, ip, macAddr);
 
                 if (result)
                 {

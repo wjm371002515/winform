@@ -14,10 +14,11 @@ using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.CommonControl.BaseUI;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.CommonControl.Other;
+using JCodes.Framework.AddIn.Other;
 
 namespace JCodes.Framework.AddIn.UI.Security
 {
-    public partial class FrmAddMoreFunction : BaseForm
+    public partial class FrmAddMoreFunction : BaseDock
     {
         public FrmAddMoreFunction()
         {
@@ -222,6 +223,7 @@ namespace JCodes.Framework.AddIn.UI.Security
             info.Name = this.txtName.Text;
             info.PID = this.functionControl1.Value;
             info.ControlID = this.txtFunctionID.Text;
+            info.CurrentLoginUserId = Portal.gc.UserInfo.ID.ToString();
             return info;
         }
     }

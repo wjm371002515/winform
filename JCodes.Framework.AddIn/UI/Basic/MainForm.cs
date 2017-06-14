@@ -21,6 +21,9 @@ using JCodes.Framework.AddIn.Other;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.Common.Office;
 using JCodes.Framework.AddIn.UI.Common;
+using JCodes.Framework.Entity;
+using JCodes.Framework.Common.Framework;
+using JCodes.Framework.BLL;
 
 namespace JCodes.Framework.AddIn.UI.Basic
 {
@@ -195,16 +198,83 @@ namespace JCodes.Framework.AddIn.UI.Basic
         {
             InitializeComponent();
 
+            #region 加载皮肤
             Splasher.Status = "正在展示相关的内容...";
             System.Threading.Thread.Sleep(Const.SLEEP_TIME);
             Application.DoEvents();
-
-            InitUserRelated();
-
             DevExpress.XtraBars.Helpers.SkinHelper.InitSkinGallery(rgbiSkins, true);
             this.ribbonControl.Toolbar.ItemLinks.Clear();
             this.ribbonControl.Toolbar.ItemLinks.Add(rgbiSkins);
             UserLookAndFeel.Default.SetSkinStyle("Office 2010 Blue");
+            #endregion
+
+            #region 加载缓存数据
+            Splasher.Status = "加载数据缓存数据...";
+            System.Threading.Thread.Sleep(Const.SLEEP_TIME);
+            Application.DoEvents();
+            #region 获取用户的功能列表
+            Dictionary<string, string> functionDict = new Dictionary<string, string>();
+            UserInfo info = Portal.gc.UserInfo;
+
+            List<FunctionInfo> list = BLLFactory<Functions>.Instance.GetFunctionsByUser(info.ID, Portal.gc.SystemType);
+            if (list != null && list.Count > 0)
+            {
+                functionDict.Clear();
+                foreach (FunctionInfo functionInfo in list)
+                {
+                    if (!functionDict.ContainsKey(functionInfo.ControlID))
+                    {
+                        functionDict.Add(functionInfo.ControlID, functionInfo.ControlID);
+                    }
+                }
+            }
+            #endregion
+
+            #region 获取角色对应的用户操作部门及公司范围
+            List<int> companyLst = BLLFactory<RoleData>.Instance.GetBelongCompanysByUser(info.ID);
+            List<int> deptLst = BLLFactory<RoleData>.Instance.GetBelongDeptsByUser(info.ID);
+            StringBuilder companysb = new StringBuilder();
+            StringBuilder deptsb = new StringBuilder();
+            companysb.Append(" in (");
+            for (int i = 0; i < companyLst.Count; i++)
+            {
+                companysb.Append(" '" + companyLst[i] + "', ");
+            }
+            companysb.Append(" '')");
+
+            if (companyLst.Contains(-1))
+            {
+                companysb.Append(" or (1 = 1)");
+            }
+
+            deptsb.Append(" in (");
+            for (int i = 0; i < deptLst.Count; i++)
+            {
+                deptsb.Append(" '" + deptsb[i] + "', ");
+            }
+            deptsb.Append(" '')");
+
+            if (deptLst.Contains(-11))
+            {
+                deptsb.Append(" or (1 = 1)");
+            }
+            #endregion
+
+            // 并保持到缓存中
+            Cache.Instance["LoginUserInfo"] = Portal.gc.ConvertToLoginUser(info);
+            Cache.Instance["FunctionDict"] = functionDict;
+            Cache.Instance["RoleList"] = BLLFactory<Role>.Instance.GetRolesByUser(info.ID);
+            Cache.Instance["canOptCompanyID"] = companysb.ToString();
+            Cache.Instance["canOptDeptId"] = deptsb.ToString();
+            Cache.Instance["DictData"] = BLLFactory<DictData>.Instance.GetAllDict();
+            #endregion
+
+            #region 初始化菜单及界面数据
+            Splasher.Status = "初始化菜单及界面数据...";
+            System.Threading.Thread.Sleep(Const.SLEEP_TIME);
+            Application.DoEvents();
+            InitUserRelated();
+            #endregion
 
             Splasher.Status = "初始化完毕...";
             System.Threading.Thread.Sleep(Const.SLEEP_TIME);
@@ -256,6 +326,12 @@ namespace JCodes.Framework.AddIn.UI.Basic
                 Portal.gc.AppUnit = Manufacturer;
                 Portal.gc.AppName = AppWholeName;
                 Portal.gc.AppWholeName = AppWholeName;
+
+
+                if (!RegistryHelper.CheckRegister())
+                {
+                    AppWholeName += "[未注册]";
+                }
 
                 this.Text = AppWholeName;
                 this.notifyIcon.BalloonTipText = AppWholeName;

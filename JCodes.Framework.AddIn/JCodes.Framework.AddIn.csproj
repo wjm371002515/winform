@@ -532,6 +532,12 @@
     <Compile Include="UI\Test\Test.Designer.cs">
       <DependentUpon>Test.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Test\Test2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Test\Test2.Designer.cs">
+      <DependentUpon>Test2.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\WareHouse\FrmAddPurchaseItem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -867,6 +873,9 @@
     <EmbeddedResource Include="UI\Test\Test.resx">
       <DependentUpon>Test.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Test\Test2.resx">
+      <DependentUpon>Test2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\WareHouse\FrmAddPurchaseItem.resx">
       <DependentUpon>FrmAddPurchaseItem.cs</DependentUpon>
     </EmbeddedResource>
@@ -920,6 +929,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\WareHouse\SetWareHouseAlias.resx">
       <DependentUpon>SetWareHouseAlias.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -929,6 +939,7 @@
     <Content Include="Resources\deletefile.png" />
     <None Include="Resources\menuIcon.ico" />
     <None Include="Resources\favicon.ico" />
+    <None Include="Resources\jcodes_about.jpg" />
     <Content Include="Resources\Product.png" />
     <Content Include="Resources\Quit.ico" />
     <Content Include="Resources\Stock2.ICO" />

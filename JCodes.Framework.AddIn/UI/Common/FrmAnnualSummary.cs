@@ -16,7 +16,7 @@ using System.Windows.Forms;
 
 namespace JCodes.Framework.AddIn.UI.Common
 {
-    public partial class FrmAnnualSummary : BaseForm
+    public partial class FrmAnnualSummary : BaseDock
     {
         private BackgroundWorker annualWorker;
 
@@ -56,7 +56,7 @@ namespace JCodes.Framework.AddIn.UI.Common
 
         private void ExecuteAnnualCostReport()
         {
-            #region 构造全年费用汇总报表
+            /*#region 构造全年费用汇总报表
             CListItem[] itemTypeArray = DictItemUtil.GetDictByDictType("备件类别");
             CListItem[] costCenterArray = DictItemUtil.GetDictByDictType("成本中心");
             CListItem[] deptArray = DictItemUtil.GetDictByDictType("部门");
@@ -260,7 +260,7 @@ namespace JCodes.Framework.AddIn.UI.Common
                 BLLFactory<ReportAnnualCostDetail>.Instance.Insert(totalInfo2);
                 #endregion
             }
-            #endregion
+            #endregion*/
         }
 
         private void annualWorker_DoWork(object sender, DoWorkEventArgs e)

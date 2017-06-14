@@ -20,7 +20,7 @@ namespace JCodes.Framework.AddIn.UI._50Go
     /// <summary>
     /// 用户登录日志信息
     /// </summary>	
-    public partial class FrmCouponCategory : BaseForm
+    public partial class FrmCouponCategory : BaseDock
     {
         public FrmCouponCategory()
         {
@@ -82,7 +82,7 @@ namespace JCodes.Framework.AddIn.UI._50Go
             foreach (int iRow in rowSelected)
             {
                 string ID = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "ID");
-                BLLFactory<Coupon>.Instance.Delete(ID);
+                BLLFactory<Coupon>.Instance.DeleteByUser(ID, LoginUserInfo.ID.ToString());
             }
             BindData();
         }

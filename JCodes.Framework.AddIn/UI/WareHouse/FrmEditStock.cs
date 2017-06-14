@@ -17,7 +17,7 @@ using System.Windows.Forms;
 
 namespace JCodes.Framework.AddIn.UI.WareHouse
 {
-    public partial class FrmEditStock : BaseForm
+    public partial class FrmEditStock : BaseDock
     {
         public string ID = string.Empty;
         public string WareHouse = string.Empty;

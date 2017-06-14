@@ -21,7 +21,7 @@ namespace JCodes.Framework.AddIn.UI.Security
     /// <summary>
     /// 角色包含机构
     /// </summary>
-    public partial class FrmEditRoleOU : BaseForm
+    public partial class FrmEditRoleOU : BaseDock
     {
         private Dictionary<int, int> m_SelectOUDict = new Dictionary<int, int>();
         /// <summary>

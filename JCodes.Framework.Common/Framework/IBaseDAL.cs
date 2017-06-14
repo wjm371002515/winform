@@ -82,7 +82,7 @@ namespace JCodes.Framework.Common.Framework
 		/// <param name="key">指定对象的ID</param>
         /// <param name="trans">事务对象</param>
 		/// <returns>执行成功返回<c>true</c>，否则为<c>false</c>。</returns>
-        bool Delete(object key, DbTransaction trans = null);
+        bool DeleteByUser(object key, string userId, DbTransaction trans = null);
 
         /// <summary>
         /// 根据指定条件,从数据库中删除指定对象

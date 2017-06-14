@@ -816,14 +816,14 @@ namespace JCodes.Framework.Common.Framework.Facade
         /// </summary>
         /// <param name="key">指定对象的ID</param>
         /// <returns>执行成功返回<c>true</c>，否则为<c>false</c>。</returns>
-        public virtual bool Delete(string key)
+        public virtual bool DeleteByUser(string key, string userId)
         {
             bool result = false;
             IBaseService<T> service = CreateClient();
             ICommunicationObject comm = service as ICommunicationObject;
             comm.Using(client =>
             {
-                result = service.Delete(key);
+                result = service.DeleteByUser(key, userId);
             });
 
             return result;
@@ -834,14 +834,14 @@ namespace JCodes.Framework.Common.Framework.Facade
         /// </summary>
         /// <param name="key">指定对象的ID</param>
         /// <returns>执行成功返回<c>true</c>，否则为<c>false</c>。</returns>
-        public virtual bool Delete2(int key)
+        public virtual bool DeleteByUser2(int key, string userId)
         {
             bool result = false;
             IBaseService<T> service = CreateClient();
             ICommunicationObject comm = service as ICommunicationObject;
             comm.Using(client =>
             {
-                result = service.Delete2(key);
+                result = service.DeleteByUser2(key, userId);
             });
 
             return result;

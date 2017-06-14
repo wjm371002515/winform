@@ -177,7 +177,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             foreach (int iRow in rowSelected)
             {
                 string ID = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "ID");
-                BLLFactory<ItemDetail>.Instance.Delete(ID);
+                BLLFactory<ItemDetail>.Instance.DeleteByUser(ID, LoginUserInfo.ID.ToString());
             }
             BindData();
         }
@@ -347,11 +347,11 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
 
                 #region 下拉列表数据
 
-                dlg.AddColumnListItem("Manufacture", WareHouseHelper.GetDictData("供货商"));
+                /*dlg.AddColumnListItem("Manufacture", WareHouseHelper.GetDictData("供货商"));
                 dlg.AddColumnListItem("ItemBigType", WareHouseHelper.GetDictData("备件属类"));
                 dlg.AddColumnListItem("ItemType", WareHouseHelper.GetDictData("备件类别"));
                 dlg.AddColumnListItem("Source", WareHouseHelper.GetDictData("来源"));
-                dlg.AddColumnListItem("Dept", WareHouseHelper.GetDictData("部门"));
+                dlg.AddColumnListItem("Dept", WareHouseHelper.GetDictData("部门"));*/
 
                 dlg.AddColumnListItem("Material", BLLFactory<ItemDetail>.Instance.GetFieldList("Material"));
                 dlg.AddColumnListItem("Specification", BLLFactory<ItemDetail>.Instance.GetFieldList("Specification"));

@@ -107,12 +107,10 @@ namespace JCodes.Framework.AddIn.UI.Security
                     txtWebIcon.Text = info.WebIcon;
                     txtSystemType.SetComboBoxItem(info.SystemType_ID);//设置系统类型
                 }
-                #endregion
-                //this.btnOK.Enabled = Portal.gc.HasFunction("Menu/Edit");             
+                #endregion           
             }
             else
-            {
-                //this.btnOK.Enabled = Portal.gc.HasFunction("Menu/Add");  
+            { 
                 if (!string.IsNullOrEmpty(SystemType_ID))
                 {
                     txtSystemType.SetComboBoxItem(SystemType_ID); 

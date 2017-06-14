@@ -15,7 +15,7 @@ using System.Windows.Forms;
 
 namespace JCodes.Framework.AddIn.UI.Common
 {
-    public partial class FrmSystemMessage : BaseForm
+    public partial class FrmSystemMessage : BaseDock
     {
         public FrmSystemMessage()
         {

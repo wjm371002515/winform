@@ -15,7 +15,7 @@ using JCodes.Framework.jCodesenum.BaseEnum;
 
 namespace JCodes.Framework.AddIn.UI.Attachment
 {
-    internal partial class FrmPicturePreview : BaseForm
+    internal partial class FrmPicturePreview : BaseDock
     {
         /// <summary>
         /// 图片路径

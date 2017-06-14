@@ -18,7 +18,7 @@ using JCodes.Framework.CommonControl.Other;
 
 namespace JCodes.Framework.AddIn.UI.Dictionary
 {
-    public partial class FrmBatchAddDistrict : BaseForm
+    public partial class FrmBatchAddDistrict : BaseDock
     {
         public string ID = string.Empty;
         public string LoginID = "";//登陆用户ID 

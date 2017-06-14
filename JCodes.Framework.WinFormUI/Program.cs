@@ -32,6 +32,13 @@ namespace JCodes.Framework.WinFormUI
         [STAThread]
         static void Main(string[] args)
         {
+            // lst 保存进程参数，后续判断参数只用使用lst.Contains 即可
+            List<string> lst = new List<string>();
+            foreach (string arg in args)
+            {
+                lst.Add(arg);
+            }
+
             // 20150918 wujm09397 捕捉系统框架的异常
             Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
@@ -44,13 +51,15 @@ namespace JCodes.Framework.WinFormUI
             DevExpress.UserSkins.BonusSkins.Register();
             UserLookAndFeel.Default.SetSkinStyle("DevExpress Style");
 
-            AppConfig appConfig = new AppConfig(@"AutoUpdater\AutoUpdater.exe.config");
+            Portal.gc._waitBeforeLogin = new WaitDialogForm(Const.StartAppText, Const.SystemTipInfo);
+
+            AppConfig appConfig = new AppConfig(@"AutoUpdater\\AutoUpdater.exe.config");
             string serverIP = appConfig.AppConfigGet("ServerIP");
             Int32 serverPort = Convert.ToInt32(appConfig.AppConfigGet("ServerPort"));
             Boolean _isUpdate = Convert.ToBoolean(appConfig.AppConfigGet("isUpdate"));
 
             // 检查更新服务器端口是否可用
-            if (NetworkUtil.CheckIPPortEnabled(serverIP, serverPort) < 0 || NetworkUtil.CheckIPPortEnabled(serverIP, serverPort + 2) < 0)
+            if (_isUpdate && (NetworkUtil.CheckIPPortEnabled(serverIP, serverPort) < 0 || NetworkUtil.CheckIPPortEnabled(serverIP, serverPort + 2) < 0))
             {
                 _isUpdate = false;
                 MessageDxUtil.ShowTips("更新服务器端不可用,服务器更新取消!");
@@ -64,32 +73,30 @@ namespace JCodes.Framework.WinFormUI
             }
             else
             {
+                // 重启之后需要停止一段时间确保进程已经死了
+                if (lst.Contains(Const.Restart)) {
+                    Thread.Sleep(Const.SLEEP_TIME*2);
+                }
+
                 Process[] processes = System.Diagnostics.Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName);
 
                 try
                 {
                     if (processes.Length > 1)
                     {
-                        XtraMessageBox.Show(Const.StartAppText, Const.SystemTipInfo, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageDxUtil.ShowTips(Const.StartAppText);
                         Thread.Sleep(Const.SLEEP_TIME);
                         System.Environment.Exit(1);
                     }
                     else
                     {
-                        Thread app = new Thread((ThreadStart)delegate
-                        {
-                            Portal.gc._waitBeforeLogin = new WaitDialogForm(Const.StartAppText, Const.SystemTipInfo);
-                            LoginNormal(args);
-                        });
-                        // 执行线程状态
-                        app.ApartmentState = ApartmentState.STA;
-                        app.Start();
+                        LoginNormal(args);
                     }
                 }
                 catch (Exception ex)
                 {
                     LogHelper.WriteLog(LogLevel.LOG_LEVEL_EMERG, ex, typeof(Program));
-                    XtraMessageBox.Show(ex.Message, ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageDxUtil.ShowError(ex.Message);
                 }
             }
         }
@@ -107,6 +114,18 @@ namespace JCodes.Framework.WinFormUI
                     MainForm MainDialog = new MainForm();
                     Portal.gc.MainDialog = MainDialog;
                     Portal.gc.MainDialog.StartPosition = FormStartPosition.CenterScreen;
+
+                    if (Portal.gc._waitBeforeLogin != null)
+                    {
+                        Portal.gc._waitBeforeLogin.Invoke((EventHandler)delegate
+                        {
+                            if (Portal.gc._waitBeforeLogin != null)
+                            {
+                                Portal.gc._waitBeforeLogin.Close(); Portal.gc._waitBeforeLogin = null;
+                            }
+                        });
+                    }
+
                     Application.Run(Portal.gc.MainDialog);
                 }
             }
@@ -128,9 +147,8 @@ namespace JCodes.Framework.WinFormUI
             Thread t = new Thread(getScreenshot);
             t.IsBackground = true;
             t.Start();
-          
-            XtraMessageBox.Show(e.Exception.Message, "系统捕捉异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            
+
+            FrmException.ShowBug(e.Exception);  
         }
 
         /// <summary>
@@ -151,14 +169,15 @@ namespace JCodes.Framework.WinFormUI
                     LogHelper.WriteLog(LogLevel.LOG_LEVEL_EMERG, innerEx, typeof(Program));
                     sb.AppendLine(innerEx.Message);
                 }
-                XtraMessageBox.Show(sb.ToString(), "系统捕捉异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                FrmException.ShowBug(ex); 
+                MessageDxUtil.ShowError(sb.ToString());
                 // 捕捉异常图片
                 getScreenshot();
             }
             else
             {
                 LogHelper.WriteLog(LogLevel.LOG_LEVEL_EMERG, ex, typeof(Program));
-                XtraMessageBox.Show(ex.Message, "系统捕捉异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                FrmException.ShowBug(ex); 
                 // 捕捉异常图片
                 getScreenshot();
             }

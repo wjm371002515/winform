@@ -47,6 +47,7 @@
     <Compile Include="Common\CommonResult.cs" />
     <Compile Include="Common\NotifyContactInfo.cs" />
     <Compile Include="Dic\CityInfo.cs" />
+    <Compile Include="Dic\DicKeyValueInfo.cs" />
     <Compile Include="Dic\DictDataInfo.cs" />
     <Compile Include="Dic\DictTypeInfo.cs" />
     <Compile Include="Dic\DictTypeNodeInfo.cs" />

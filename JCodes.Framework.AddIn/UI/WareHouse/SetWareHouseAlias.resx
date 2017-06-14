@@ -235,6 +235,6 @@
     <value>SetWareHouseAlias</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>WHC.WareHouseMis.UI.BaseForm, WHC.WareHouseMis.DxUI, Version=3.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>WHC.WareHouseMis.UI.BaseDock, WHC.WareHouseMis.DxUI, Version=3.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>

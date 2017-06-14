@@ -11,6 +11,7 @@ using JCodes.Framework.Entity;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.Common.Format;
 using JCodes.Framework.Common.Databases;
+using JCodes.Framework.Common.Office;
 
 namespace JCodes.Framework.Common.Framework
 {
@@ -1706,38 +1707,6 @@ namespace JCodes.Framework.Common.Framework
 
             return result;
         }
-
-        /// <summary>
-		/// 根据指定对象的ID,从数据库中删除指定对象
-		/// </summary>
-		/// <param name="key">指定对象的ID</param>
-        /// <param name="trans">事务对象</param>
-		/// <returns>执行成功返回<c>true</c>，否则为<c>false</c>。</returns>
-        public virtual bool Delete(object key, DbTransaction trans = null)
-        {
-            OperationLogOfDelete(key, null, trans); //根据设置记录操作日志
-
-            string condition = string.Format("{0} = {1}{0}", primaryKey, parameterPrefix);
-            string sql = string.Format("DELETE FROM {0} WHERE {1} ", tableName, condition);
-
-            Database db = CreateDatabase();
-
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "Delete:" + sql, typeof(AbstractBaseDAL<T>));
-
-            DbCommand command = db.GetSqlStringCommand(sql);
-            db.AddInParameter(command, primaryKey, TypeToDbType(key.GetType()), key);
-
-            bool result = false;
-            if (trans != null)
-            {
-                result = db.ExecuteNonQuery(command, trans) > 0;
-            }
-            else
-            {
-                result = db.ExecuteNonQuery(command) > 0;
-            }
-            return result;
-		}
 
         /// <summary>
         /// 根据指定对象的ID和用户ID,从数据库中删除指定对象(用于记录人员的操作日志）

@@ -18,7 +18,7 @@ using JCodes.Framework.AddIn.Other;
 
 namespace JCodes.Framework.AddIn.UI.Security
 {
-    public partial class FrmFunction : BaseForm
+    public partial class FrmFunction : BaseDock
     {
         private string currentID = string.Empty;
 
@@ -95,7 +95,6 @@ namespace JCodes.Framework.AddIn.UI.Security
 
             Cursor.Current = Cursors.Default;
             treeView1.EndUpdate();
-            //this.treeView1.ExpandAll();
         }
 
         private void AddChildNode(List<FunctionNodeInfo> list, TreeNode fnode)
@@ -173,7 +172,7 @@ namespace JCodes.Framework.AddIn.UI.Security
                     //int id = Convert.ToInt32(node.Name);
                     try
                     {
-                        BLLFactory<Functions>.Instance.Delete(node.Name);
+                        BLLFactory<Functions>.Instance.DeleteByUser(node.Name, LoginUserInfo.ID.ToString());
                         RefreshTreeView();
                     }
                     catch (Exception ex)
@@ -198,10 +197,9 @@ namespace JCodes.Framework.AddIn.UI.Security
             {
                 if (MessageDxUtil.ShowYesNoAndTips("您确认删除指定节点及其子节点吗？\r\n如果该节点含有子节点，子节点也会一并删除！") == DialogResult.Yes)
                 {
-                    //int id = Convert.ToInt32(node.Name);
                     try
                     {
-                        BLLFactory<Functions>.Instance.DeleteWithSubNode(node.Name);
+                        BLLFactory<Functions>.Instance.DeleteWithSubNode(node.Name, Portal.gc.UserInfo.ID.ToString());
                         RefreshTreeView();
                     }
                     catch (Exception ex)
@@ -279,6 +277,7 @@ namespace JCodes.Framework.AddIn.UI.Security
             info.PID = this.functionControl1.Value;
             info.ControlID = this.txtFunctionID.Text;
             info.SortCode = this.txtSortCode.Text;
+            info.CurrentLoginUserId = Portal.gc.UserInfo.ID.ToString();
             return info;
         }
 

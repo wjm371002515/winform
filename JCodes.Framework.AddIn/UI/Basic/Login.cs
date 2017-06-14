@@ -1,13 +1,7 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Configuration;
 using System.Windows.Forms;
 using JCodes.Framework.Common;
 using JCodes.Framework.Entity;
-using JCodes.Framework.CommonControl;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.BLL;
 using JCodes.Framework.Common.Network;
@@ -16,8 +10,6 @@ using JCodes.Framework.Common.Framework;
 using JCodes.Framework.AddIn.Other;
 using JCodes.Framework.Common.Device;
 using DevExpress.XtraEditors;
-using JCodes.Framework.Common.Office;
-using System.Collections.Generic;
 
 namespace JCodes.Framework.AddIn.UI.Basic
 {
@@ -63,34 +55,13 @@ namespace JCodes.Framework.AddIn.UI.Basic
                 string macAddr = HardwareInfoHelper.GetMacAddress();
                 string loginName = this.txtUserName.Text.Trim();
 
-                string identity = BLLFactory<User>.Instance.VerifyUser(loginName, this.txtPassword.Text, Const.SystemName, ip, macAddr);
+                string identity = BLLFactory<User>.Instance.VerifyUser(loginName, this.txtPassword.Text, Portal.gc.SystemType, ip, macAddr);
                 if (!string.IsNullOrEmpty(identity))
                 {
                     if (BLLFactory<User>.Instance.UserIsAdmin(loginName))
                     {
                         UserInfo info = BLLFactory<User>.Instance.GetUserByName(loginName);                        
-                        Portal.gc.UserInfo = info; //赋值给全局变量“管理用户”     
-                        Portal.gc.LoginUserInfo = Portal.gc.ConvertToLoginUser(info);
-                        Portal.gc.RoleList = BLLFactory<Role>.Instance.GetRolesByUser(info.ID);//用户的角色集合
-
-                        #region 获取用户的功能列表
-                        List<FunctionInfo> list = BLLFactory<Functions>.Instance.GetFunctionsByUser(info.ID, Portal.gc.SystemType);
-                        if (list != null && list.Count > 0)
-                        {
-                            foreach (FunctionInfo functionInfo in list)
-                            {
-                                if (!Portal.gc.FunctionDict.ContainsKey(functionInfo.ControlID))
-                                {
-                                    Portal.gc.FunctionDict.Add(functionInfo.ControlID, functionInfo.ControlID);
-                                }
-                            }
-                        }
-                        #endregion
-
-                        // 并保持到缓存中
-                        Cache.Instance["LoginUserInfo"] = Portal.gc.LoginUserInfo;
-                        Cache.Instance["FunctionDict"] = Portal.gc.FunctionDict;
-
+                        Portal.gc.UserInfo = info;                                  //赋值给全局变量“管理用户” 
                         bLogin = true;
                         this.DialogResult = DialogResult.OK;
                     }

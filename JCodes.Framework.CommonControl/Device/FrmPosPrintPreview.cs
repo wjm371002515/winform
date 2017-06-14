@@ -19,7 +19,7 @@ namespace JCodes.Framework.CommonControl.Device
     /// <summary>
     /// POS小票打印的打印预览管理界面
     /// </summary>
-    public partial class FrmPosPrintPreview : BaseForm
+    public partial class FrmPosPrintPreview : BaseDock
     {
         #region 属性变量
         /// <summary>

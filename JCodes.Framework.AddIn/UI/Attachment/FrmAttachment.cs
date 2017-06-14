@@ -11,7 +11,7 @@ using JCodes.Framework.CommonControl.BaseUI;
 
 namespace JCodes.Framework.AddIn.UI.Attachment
 {
-    public partial class FrmAttachment : BaseForm
+    public partial class FrmAttachment : BaseDock
     {
         /// <summary>
         /// 用户ID

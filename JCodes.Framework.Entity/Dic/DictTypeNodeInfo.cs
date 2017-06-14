@@ -30,7 +30,7 @@ namespace JCodes.Framework.Entity
         public DictTypeNodeInfo(DictTypeInfo typeInfo)
 		{
 			base.ID = typeInfo.ID;
-			base.Name = typeInfo.Name;
+            base.Name = typeInfo.ID+"_"+typeInfo.Name;
 			base.Remark = typeInfo.Remark;
 			base.Seq = typeInfo.Seq;
 			base.PID = typeInfo.PID;

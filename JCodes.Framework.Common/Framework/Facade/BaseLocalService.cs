@@ -448,9 +448,9 @@ namespace JCodes.Framework.Common.Framework.Facade
         /// </summary>
         /// <param name="key">指定对象的ID</param>
         /// <returns>执行成功返回<c>true</c>，否则为<c>false</c>。</returns>
-        public virtual bool Delete(string key)
+        public virtual bool DeleteByUser(string key, string userId)
         {
-            return baseBLL.Delete(key);
+            return baseBLL.DeleteByUser(key, userId);
         }
 
         /// <summary>
@@ -458,9 +458,9 @@ namespace JCodes.Framework.Common.Framework.Facade
         /// </summary>
         /// <param name="key">指定对象的ID</param>
         /// <returns>执行成功返回<c>true</c>，否则为<c>false</c>。</returns>
-        public virtual bool Delete2(int key)
+        public virtual bool DeleteByUser2(int key, string userId)
         {
-            return baseBLL.Delete(key);
+            return baseBLL.DeleteByUser(key, userId);
         }
 
         /// <summary>

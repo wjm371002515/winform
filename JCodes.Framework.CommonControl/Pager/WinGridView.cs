@@ -16,6 +16,7 @@ using JCodes.Framework.Common;
 using JCodes.Framework.Common.Extension;
 using JCodes.Framework.Common.Office;
 using JCodes.Framework.CommonControl.Pager.Others;
+using JCodes.Framework.CommonControl.Other;
 
 namespace JCodes.Framework.CommonControl.Pager
 { 
@@ -379,12 +380,12 @@ namespace JCodes.Framework.CommonControl.Pager
                     }
                     else
                     {
-                        MessageBox.Show("文件格式不正确");
+                        MessageDxUtil.ShowTips("文件格式不正确");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("需要指定一个保存的目录");
+                    MessageDxUtil.ShowTips("需要指定一个保存的目录");
                 }
             }
         }
@@ -493,7 +494,7 @@ namespace JCodes.Framework.CommonControl.Pager
                 OnEndExport(this, new EventArgs());
             }
 
-            if (MessageBox.Show("导出操作完成, 您想打开该Excel文件么?", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            if (MessageDxUtil.ShowYesNoAndTips("导出操作完成, 您想打开该Excel文件么?") == DialogResult.Yes)
             {
                 Process.Start(saveFileDialog.FileName);
             }
@@ -591,7 +592,9 @@ namespace JCodes.Framework.CommonControl.Pager
             }
 
             try {
+                Clipboard.Clear();
                 Clipboard.SetText(sbHeader.ToString() + "\r\n" + sb.ToString());
+                MessageDxUtil.ShowTips(Const.CopyOkMsg);
             }
             catch (Exception ex)
             {
@@ -846,7 +849,6 @@ namespace JCodes.Framework.CommonControl.Pager
         {
             if (!this.DesignMode)
             {
-                LicenseCheckResult result = LicenseTool.CheckLicense();
                 this.contextMenuStrip1.Opening += new CancelEventHandler(contextMenuStrip1_Opening);
                 this.gridControl1.MouseClick += new MouseEventHandler(dataGridView1_MouseClick);
                 this.gridControl1.MouseDoubleClick += new MouseEventHandler(dataGridView1_MouseDoubleClick);

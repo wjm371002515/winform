@@ -23,17 +23,16 @@ namespace JCodes.Framework.AddIn.UI.Basic
             {
                 AppConfig config = new AppConfig();
                 string Manufacturer = config.AppConfigGet("Manufacturer");
-                string CertificatedCompany = config.AppConfigGet("CertificatedCompany");
                 string ApplicationName = config.AppConfigGet("ApplicationName");
+                string ContactInfo = config.AppConfigGet("ContactInfo");
 
-                this.Text = string.Format("{0}-{1}", CertificatedCompany, ApplicationName);
+                this.Text = string.Format("{0}-【{1}】", Manufacturer, ApplicationName);
                 this.lblProductName.Text = ApplicationName;
                 this.lblVersion.Text = String.Format("版本 {0}", Const.jCodes_VERSION);
-                this.lblCopyright.Text = AssemblyCopyright;
-                this.lblCertificated.Text = string.Format("授权【{0}】使用", CertificatedCompany);
+                this.lblCertificated.Text = string.Format("授权【{0}】使用", Manufacturer);
                 string description = config.AppConfigGet("Description");//软件介绍
                 this.txtDescription.Text = description;
-                this.lblContact.Text = AssemblyDescription;//联系方式
+                this.lblContact.Text = ContactInfo;//联系方式
             }
             catch (Exception ex){
                 LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(AboutBox));
@@ -128,8 +127,9 @@ namespace JCodes.Framework.AddIn.UI.Basic
         {            
             if (this.lblContact.Text.Trim().Length > 0)
             {
+                Clipboard.Clear();
                 Clipboard.SetText(this.lblContact.Text);
-                MessageDxUtil.ShowTips("感谢您的支持！");
+                MessageDxUtil.ShowTips(Const.CopyOkMsg);
             }
         }
 

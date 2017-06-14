@@ -20,7 +20,7 @@ using JCodes.Framework.CommonControl.Other;
 
 namespace JCodes.Framework.AddIn.UI.WareHouse
 {
-    public partial class FrmImportItemStock : BaseForm
+    public partial class FrmImportItemStock : BaseDock
     {
         private AppConfig config = new AppConfig();
         private DataSet myDs = new DataSet();

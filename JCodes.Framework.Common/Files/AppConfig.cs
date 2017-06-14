@@ -41,6 +41,10 @@ namespace JCodes.Framework.Common.Files
         /// <param name="configFilePath">配置文件路径（绝对路径）</param>
         public AppConfig(string configFilePath)
         {
+            if (!FileUtil.FileIsExist(configFilePath))
+            {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_ERR, "文件不存在 configFilePath:"+configFilePath, typeof(AppConfig));
+            }
             filePath = configFilePath;
         }
 

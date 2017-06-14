@@ -19,7 +19,7 @@ namespace JCodes.Framework.CommonControl.DocViewer
     /// <summary>
     /// Excel控件的测试例子
     /// </summary>
-    public partial class FrmExcelView : BaseForm
+    public partial class FrmExcelView : BaseDock
     {    
         /// <summary>
         /// 加载流数据

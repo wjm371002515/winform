@@ -16,7 +16,7 @@ using JCodes.Framework.CommonControl.BaseUI;
 
 namespace JCodes.Framework.AddIn.UI.WareHouse
 {
-    public partial class FrmReports : BaseForm
+    public partial class FrmReports : BaseDock
     {
         public FrmReports()
         {

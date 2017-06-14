@@ -16,6 +16,7 @@ using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Common.Databases;
 using JCodes.Framework.CommonControl.Pager.Others;
+using JCodes.Framework.AddIn.Other;
 
 namespace JCodes.Framework.AddIn.UI.Basic
 {
@@ -78,17 +79,6 @@ namespace JCodes.Framework.AddIn.UI.Basic
                     }
                 }
             }
-            //else if (e.Column.FieldName == "Age")
-            //{
-            //    e.DisplayText = string.Format("{0}岁", e.Value);
-            //}
-            //else if (Column.FieldName == "ReceivedMoney")
-            //{
-            //    if (e.Value != null)
-            //    {
-            //        e.DisplayText = e.Value.ToString().ToDecimal().ToString("C");
-            //    }
-            //}
         }
         
         /// <summary>
@@ -127,6 +117,14 @@ namespace JCodes.Framework.AddIn.UI.Basic
         public override void  FormOnLoad()
         {   
             BindData();
+
+            Init_Function();
+        }
+
+        void Init_Function()
+        {
+            btnSearch.Enabled = Portal.gc.HasFunction("OperationLogSet/search");
+            btnAddNew.Enabled = Portal.gc.HasFunction("OperationLogSet/add");
         }
         
         /// <summary>
@@ -150,6 +148,12 @@ namespace JCodes.Framework.AddIn.UI.Basic
         /// </summary>
         private void winGridViewPager1_OnDeleteSelected(object sender, EventArgs e)
         {
+            if (!Portal.gc.HasFunction("OperationLogSet/del"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
             if (MessageDxUtil.ShowYesNoAndTips("您确定删除选定的记录么？") == DialogResult.No)
             {
                 return;
@@ -159,7 +163,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
             foreach (int iRow in rowSelected)
             {
                 string ID = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "ID");
-                BLLFactory<OperationLogSetting>.Instance.Delete(ID);
+                BLLFactory<OperationLogSetting>.Instance.DeleteByUser(ID, LoginUserInfo.ID.ToString());
             }
              
             BindData();
@@ -170,6 +174,12 @@ namespace JCodes.Framework.AddIn.UI.Basic
         /// </summary>
         private void winGridViewPager1_OnEditSelected(object sender, EventArgs e)
         {
+            if (!Portal.gc.HasFunction("OperationLogSet/edit"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
             string ID = this.winGridViewPager1.gridView1.GetFocusedRowCellDisplayText("ID");
             List<string> IDList = new List<string>();
             for (int i = 0; i < this.winGridViewPager1.gridView1.RowCount; i++)
@@ -202,6 +212,12 @@ namespace JCodes.Framework.AddIn.UI.Basic
         /// </summary>        
         private void winGridViewPager1_OnAddNew(object sender, EventArgs e)
         {
+            if (!Portal.gc.HasFunction("OperationLogSet/add"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
             btnAddNew_Click(null, null);
         }
         
@@ -244,6 +260,11 @@ namespace JCodes.Framework.AddIn.UI.Basic
         /// </summary>
         private void BindData()
         {
+            if (!Portal.gc.HasFunction("OperationLogSet/search"))
+            {
+                return;
+            }
+
         	//entity
             this.winGridViewPager1.DisplayColumns = "TableName,Forbid,InsertLog,DeleteLog,UpdateLog,Note,Creator,CreateTime,Editor,EditTime";
             this.winGridViewPager1.ColumnNameAlias = BLLFactory<OperationLogSetting>.Instance.GetColumnNameAlias();//字段列显示名称转义

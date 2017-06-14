@@ -21,7 +21,7 @@ using JCodes.Framework.AddIn.Other;
 
 namespace JCodes.Framework.AddIn.UI.Security
 {
-    public partial class FrmMenu : BaseForm
+    public partial class FrmMenu : BaseDock
     {
         public FrmMenu()
         {
@@ -134,7 +134,7 @@ namespace JCodes.Framework.AddIn.UI.Security
             foreach (int iRow in rowSelected)
             {
                 string ID = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "ID");
-                BLLFactory<Menus>.Instance.Delete(ID);
+                BLLFactory<Menus>.Instance.DeleteByUser(ID, LoginUserInfo.ID.ToString());
             }
 
             BindData();

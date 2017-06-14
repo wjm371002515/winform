@@ -25,8 +25,6 @@ namespace JCodes.Framework.AddIn.UI.Basic
         private void sbLogin_Click(object sender, EventArgs e)
         {
             this.Hide();
-            //var frmMain = new frmMain();
-           // frmMain.ShowDialog();
             this.Close();
         }
 
@@ -43,8 +41,6 @@ namespace JCodes.Framework.AddIn.UI.Basic
 
         private void sbCustomization_Click(object sender, EventArgs e)
         {
-            //var frmSetting = new frmSettings();
-            //frmSetting.ShowDialog();
         }
     }
 }

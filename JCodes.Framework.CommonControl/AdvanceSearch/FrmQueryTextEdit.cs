@@ -1,4 +1,6 @@
-﻿using System;
+﻿using JCodes.Framework.Common;
+using JCodes.Framework.CommonControl.Other;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -39,7 +41,9 @@ namespace JCodes.Framework.CommonControl.AdvanceSearch
         {
             if (this.txtContent.Text.Length > 0)
             {
+                Clipboard.Clear();
                 Clipboard.SetText(this.txtContent.Text);
+                MessageDxUtil.ShowTips(Const.CopyOkMsg);
             }
         }
         private void btnPaste_Click(object sender, EventArgs e)

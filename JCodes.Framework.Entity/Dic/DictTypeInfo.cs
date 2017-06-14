@@ -10,13 +10,13 @@ namespace JCodes.Framework.Entity
     {    
         #region Field Members
 
-        private string m_ID = Guid.NewGuid().ToString();         
+        private Int32 m_ID = 0;         
         private string m_Name = ""; //字典类型名称          
         private string m_Remark = ""; //备注说明          
         private string m_Seq = ""; //排序          
         private string m_Editor = ""; //编辑者          
         private DateTime m_LastUpdated = System.DateTime.Now; //编辑时间   
-        private string m_PID = "";//字典大类
+        private Int32 m_PID = 0;//字典大类
 
 
         #endregion
@@ -24,7 +24,7 @@ namespace JCodes.Framework.Entity
         #region Property Members
 
         [DataMember]
-        public virtual string ID
+        public virtual Int32 ID
         {
             get
             {
@@ -120,7 +120,7 @@ namespace JCodes.Framework.Entity
         /// 字典大类
         /// </summary>
         [DataMember]
-        public string PID
+        public Int32 PID
         {
             get { return m_PID; }
             set { m_PID = value; }

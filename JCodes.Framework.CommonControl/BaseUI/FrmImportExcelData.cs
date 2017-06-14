@@ -20,7 +20,7 @@ namespace JCodes.Framework.CommonControl.BaseUI
     /// <summary>
     /// 通用Excel数据导入操作
     /// </summary>
-    public partial class FrmImportExcelData : BaseForm
+    public partial class FrmImportExcelData : BaseDock
     {
         private AppConfig config = new AppConfig();
         private DataSet myDs = new DataSet();

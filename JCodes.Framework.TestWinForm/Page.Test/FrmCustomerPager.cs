@@ -75,7 +75,7 @@ namespace WHC.OrderWater.UI
         }
         private void All_WorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if (MessageBox.Show("导出操作完成, 您想打开该Excel文件么?", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            if (MessageDxUtil.ShowYesNoAndTips("导出操作完成, 您想打开该Excel文件么?")== DialogResult.Yes)
             {
                 Process.Start(e.Result.ToString());
             }

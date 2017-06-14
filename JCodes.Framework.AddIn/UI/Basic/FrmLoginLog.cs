@@ -24,7 +24,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
     /// <summary>
     /// 用户登录日志信息
     /// </summary>	
-    public partial class FrmLoginLog : BaseForm
+    public partial class FrmLoginLog : BaseDock
     {
         public FrmLoginLog()
         {
@@ -120,7 +120,15 @@ namespace JCodes.Framework.AddIn.UI.Basic
         public override void FormOnLoad()
         {
             InitTree();
-            BindData();
+
+            Init_Function();
+        }
+
+        private void Init_Function()
+        {
+            btnSearch.Enabled = Portal.gc.HasFunction("LoginLog/search");
+            btnDeleteMonthLog.Enabled  = Portal.gc.HasFunction("LoginLog/del30");
+            btnExport.Enabled = Portal.gc.HasFunction("LoginLog/Export");
         }
 
         /// <summary>
@@ -136,6 +144,12 @@ namespace JCodes.Framework.AddIn.UI.Basic
         /// </summary>
         private void winGridViewPager1_OnDeleteSelected(object sender, EventArgs e)
         {
+            if (!Portal.gc.HasFunction("LoginLog/del"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
             if (MessageDxUtil.ShowYesNoAndTips("您确定删除选定的记录么？") == DialogResult.No)
             {
                 return;
@@ -145,7 +159,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
             foreach (int iRow in rowSelected)
             {
                 string ID = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "ID");
-                BLLFactory<LoginLog>.Instance.Delete(ID);
+                BLLFactory<LoginLog>.Instance.DeleteByUser(ID, LoginUserInfo.ID.ToString());
             }
             BindData();
         }
@@ -154,8 +168,14 @@ namespace JCodes.Framework.AddIn.UI.Basic
         /// <summary>
         /// 分页控件全部导出操作前的操作
         /// </summary> 
-         private void winGridViewPager1_OnStartExport(object sender, EventArgs e)
+        private void winGridViewPager1_OnStartExport(object sender, EventArgs e)
         {
+            if (!Portal.gc.HasFunction("LoginLog/Export"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
             PagerInfo pagerInfo = new PagerInfo();
             pagerInfo.CurrenetPageIndex = 1;
             pagerInfo.PageSize = int.MaxValue;
@@ -209,6 +229,9 @@ namespace JCodes.Framework.AddIn.UI.Basic
             {
                 where = treeConditionSql;
             }
+            // 增加系统可以访问的公司部门的权限
+            where += " and (Company_ID " + canOptCompanyID + ")";
+
             return where;
         }
         
@@ -254,6 +277,12 @@ namespace JCodes.Framework.AddIn.UI.Basic
         {
             if (e.KeyCode == Keys.Enter)
             {
+                if (!Portal.gc.HasFunction("LoginLog/search"))
+                {
+                    MessageDxUtil.ShowError(Const.NoAuthMsg);
+                    return;
+                }
+
                 btnSearch_Click(null, null);
             }
         }
@@ -334,60 +363,61 @@ namespace JCodes.Framework.AddIn.UI.Basic
 
         private void InitTree()
         {
-            this.treeView1.BeginUpdate();
-            this.treeView1.Nodes.Clear();
-            //添加一个未分类和全部客户的组别
-            TreeNode topNode = new TreeNode("所有记录", 0, 0);
-            this.treeView1.Nodes.Add(topNode);
+            treeView1.Nodes.Clear();
+            treeView1.BeginUpdate();
+            Cursor.Current = Cursors.WaitCursor;
 
-            List<OUInfo> companyList = new List<OUInfo>();            
-            if (Portal.gc.UserInRole(RoleInfo.SuperAdminName))
+            List<OUInfo> list = Portal.gc.GetMyTopGroup();
+            foreach (OUInfo groupInfo in list)
             {
-                List<OUInfo> list = Portal.gc.GetMyTopGroup();
-                foreach (OUInfo groupInfo in list)
+                //不显示删除的机构
+                if (groupInfo != null && !groupInfo.Deleted)
                 {
-                    companyList.AddRange(BLLFactory<OU>.Instance.GetAllCompany(groupInfo.ID));
+                    TreeNode topnode = new TreeNode();
+                    topnode.Text = groupInfo.Name;
+                    topnode.Name = groupInfo.ID.ToString();
+                    topnode.Tag = string.Format("Company_ID = {0} and SystemType_ID = '{1}'", groupInfo.ID, Portal.gc.SystemType);
+                    topnode.ImageIndex = Portal.gc.GetImageIndex(groupInfo.Category);
+                    topnode.SelectedImageIndex = Portal.gc.GetImageIndex(groupInfo.Category);
+                    this.treeView1.Nodes.Add(topnode);
+
+                    List<OUNodeInfo> sublist = BLLFactory<OU>.Instance.GetTreeByID(groupInfo.ID);
+                    AddOUNode(sublist, topnode);
                 }
             }
-            else
-            {
-                OUInfo myCompanyInfo = BLLFactory<OU>.Instance.FindByID(Portal.gc.UserInfo.Company_ID);
-                if (myCompanyInfo != null)
-                {
-                    companyList.Add(myCompanyInfo);
-                }
-            }
 
-            TreeNode companyNode = new TreeNode("所属公司", 1, 1);
-            this.treeView1.Nodes.Add(companyNode);
-            foreach (OUInfo info in companyList)
-            {
-                //添加公司节点
-                TreeNode subNode = new TreeNode(info.Name, 1, 1);
-                subNode.Tag = string.Format("Company_ID='{0}' ", info.ID);
-                companyNode.Nodes.Add(subNode);
-
-                //下面在添加系统类型节点
-                List<SystemTypeInfo> typeList = BLLFactory<SystemType>.Instance.GetAll();
-                foreach (SystemTypeInfo typeInfo in typeList)
-                {
-                    TreeNode typeNode = new TreeNode(typeInfo.Name, 2, 2);
-                    typeNode.Tag = string.Format("Company_ID='{0}' AND SystemType_ID='{1}' ", info.ID, typeInfo.OID);
-                    subNode.Nodes.Add(typeNode);
-                }
-
-                TreeNode securityNode = new TreeNode("权限管理系统", 2, 2);
-                securityNode.Tag = string.Format("Company_ID='{0}' AND SystemType_ID='{1}' ", info.ID, "Security");
-                subNode.Nodes.Add(securityNode);
-            }
-
+            Cursor.Current = Cursors.Default;
+            treeView1.EndUpdate();
             this.treeView1.ExpandAll();
-            this.treeView1.EndUpdate();
+        }
+
+        private void AddOUNode(List<OUNodeInfo> list, TreeNode parentNode)
+        {
+            foreach (OUNodeInfo ouInfo in list)
+            {
+                TreeNode ouNode = new TreeNode();
+                ouNode.Text = ouInfo.Name;
+                ouNode.Name = ouInfo.ID.ToString();
+                ouNode.Tag = string.Format("Company_ID = {0} and SystemType_ID = '{1}'", ouInfo.ID, Portal.gc.SystemType);
+                if (ouInfo.Deleted)
+                {
+                    ouNode.ForeColor = Color.Red;
+                    continue;//跳过不显示
+                }
+                ouNode.ImageIndex = Portal.gc.GetImageIndex(ouInfo.Category);
+                ouNode.SelectedImageIndex = Portal.gc.GetImageIndex(ouInfo.Category);
+                parentNode.Nodes.Add(ouNode);
+            }
         }
 
         string treeConditionSql = "";
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
+            if (!Portal.gc.HasFunction("LoginLog/search"))
+            {
+                return;
+            }
+
             if (e.Node != null && e.Node.Tag != null)
             {
                 treeConditionSql = e.Node.Tag.ToString();

@@ -146,12 +146,6 @@
     <Compile Include="BaseUI\BaseEditForm.designer.cs">
       <DependentUpon>BaseEditForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="BaseUI\BaseForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BaseUI\BaseForm.designer.cs">
-      <DependentUpon>BaseForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="BaseUI\BaseUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -171,6 +165,12 @@
       <DependentUpon>FrmImportExcelData.cs</DependentUpon>
     </Compile>
     <Compile Include="Device\KeyboardHelper.cs" />
+    <Compile Include="Framework\FrmException.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Framework\FrmException.Designer.cs">
+      <DependentUpon>FrmException.cs</DependentUpon>
+    </Compile>
     <Compile Include="Other\Images\ImageHelper.cs" />
     <Compile Include="Device\Camera.cs" />
     <Compile Include="Device\CameraDialog.cs">
@@ -295,7 +295,6 @@
       <DependentUpon>FrmSelectColumnDisplay.cs</DependentUpon>
     </Compile>
     <Compile Include="Pager\GridCheckMarksSelection.cs" />
-    <Compile Include="Pager\MyConstants.cs" />
     <Compile Include="Pager\Others\CallCtrlSafety.cs" />
     <Compile Include="Pager\Others\DevControlHelper.cs" />
     <Compile Include="Pager\Others\ImagePrintHelper.cs" />
@@ -336,6 +335,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="RSARegistryTool\FrmKeyPair.cs">
       <SubType>Form</SubType>
@@ -389,6 +393,8 @@
     <Content Include="Pager\Resources\check.ico" />
     <Content Include="Resources\CabrioletRed.png" />
     <None Include="Resources\menuIcon.ico" />
+    <None Include="Resources\logo-108.png" />
+    <None Include="Resources\logo-1081.png" />
     <Content Include="Settings\MozBar\MozItem.bmp" />
     <Content Include="Settings\MozBar\MozPane.bmp" />
     <None Include="Resources\%2813,41%291.png" />
@@ -418,9 +424,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BaseUI\BaseEditForm.resx">
       <DependentUpon>BaseEditForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BaseUI\BaseForm.resx">
-      <DependentUpon>BaseForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaseUI\DataNavigator.resx">
       <DependentUpon>DataNavigator.cs</DependentUpon>
@@ -454,6 +457,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DocViewer\FrmWordView.resx">
       <DependentUpon>FrmWordView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Framework\FrmException.resx">
+      <DependentUpon>FrmException.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Framework\frmSplash.resx">
       <DependentUpon>frmSplash.cs</DependentUpon>
@@ -497,6 +503,10 @@
     <EmbeddedResource Include="Properties\Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="RSARegistryTool\FrmKeyPair.resx">
       <DependentUpon>FrmKeyPair.cs</DependentUpon>

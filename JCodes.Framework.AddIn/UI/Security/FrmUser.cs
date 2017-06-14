@@ -613,7 +613,7 @@ namespace JCodes.Framework.AddIn.UI.Security
             info.Gender = dr["性别"].ToString();
             info.MobilePhone = dr["移动电话"].ToString();
             info.Email = dr["邮件地址"].ToString();
-
+            info.CurrentLoginUserId = Portal.gc.UserInfo.ID.ToString();
             #region 可选字段
 
             if (dr.Table.Columns.Contains("是否过期"))
@@ -895,7 +895,7 @@ namespace JCodes.Framework.AddIn.UI.Security
                 string macAddr = HardwareInfoHelper.GetMacAddress();
                 string changeUserId = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "ID");
 
-                bool success = BLLFactory<User>.Instance.ResetPassword(Portal.gc.UserInfo.ID, changeUserId.ToInt32(), ip, macAddr);
+                bool success = BLLFactory<User>.Instance.ResetPassword(Portal.gc.UserInfo.ID, changeUserId.ToInt32(),Portal.gc.SystemType, ip, macAddr);
                 MessageDxUtil.ShowTips(success ? "重置密码操作成功" : "操作失败");
             }
         }

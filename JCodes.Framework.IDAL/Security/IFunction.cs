@@ -17,7 +17,7 @@ namespace JCodes.Framework.IDAL
         List<FunctionNodeInfo> GetTreeByID(string mainID);
         List<FunctionNodeInfo> GetTreeWithRole(string systemType, List<int> roleList);
 
-        bool DeleteWithSubNode(string mainID);
+        bool DeleteWithSubNode(string mainID, string userId);
 
         List<FunctionInfo> GetFunctionByPID(string PID);
 	}

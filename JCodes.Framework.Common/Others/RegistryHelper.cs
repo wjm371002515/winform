@@ -126,7 +126,9 @@ namespace JCodes.Framework.Common.Office
         public static bool CheckRegister()
         {
             // 保存注册码的信息
-            string regCode = string.Empty;             //注册码
+            string regCode = string.Empty;              //注册码
+            string userName = string.Empty;             // 注册用户
+            string company = string.Empty;              // 注册公司
             RegistryKey reg = Registry.CurrentUser.OpenSubKey(UIConstants.SoftwareRegistryKey, true);
 
             // 首先判断注册表中是否存在regCode 注册码的信息，如果没有在从lic文件中读取文件，如果2个都不存在则验证不通过
@@ -135,13 +137,24 @@ namespace JCodes.Framework.Common.Office
                 AppConfig config = new AppConfig();
                 string LicensePath = config.AppConfigGet("LicensePath");
                 if (FileUtil.IsExistFile(LicensePath))
-                    regCode = FileUtil.FileToString(LicensePath);
+                {
+                    string[] tmpstr = FileUtil.FileToString(LicensePath).Split(Convert.ToChar(Const.VerticalLine));
+
+                    if (tmpstr.Length == 3)
+                    {
+                        regCode = tmpstr[0];
+                        userName = tmpstr[1];
+                        company = tmpstr[2];
+                    }
+                }
             }
 
             if (reg.GetValue("regCode") != null)
             {
                 // 获取验证码
                 regCode = reg.GetValue("regCode").ToString();
+                userName = reg.GetValue("UserName").ToString();
+                company = reg.GetValue("Company").ToString();
             }
 
             // 再去配置表的数据
@@ -150,7 +163,16 @@ namespace JCodes.Framework.Common.Office
                 AppConfig config = new AppConfig();
                 string LicensePath = config.AppConfigGet("LicensePath");
                 if (FileUtil.IsExistFile(LicensePath))
-                    regCode = FileUtil.FileToString(LicensePath);
+                {
+                    string[] tmpstr = FileUtil.FileToString(LicensePath).Split(Convert.ToChar(Const.VerticalLine));
+
+                    if (tmpstr.Length == 3)
+                    {
+                        regCode = tmpstr[0];
+                        userName = tmpstr[1];
+                        company = tmpstr[2];
+                    }
+                }
             }
 
             // 2个都没有获取到注册码信息则认为没有注册过
@@ -159,7 +181,7 @@ namespace JCodes.Framework.Common.Office
                 return false;
             }
 
-            Int32 passed = RSASecurityHelper.CheckRegistrationCode(regCode);
+            Int32 passed = RSASecurityHelper.CheckRegistrationCode(regCode,userName, company);
             if (passed == 0)
             { return true; }
             else

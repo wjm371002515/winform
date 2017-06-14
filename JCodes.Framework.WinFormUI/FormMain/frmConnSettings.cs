@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using DevExpress.Utils;
 using System.IO;
 using DevExpress.XtraEditors;
+using JCodes.Framework.CommonControl.Other;
 
 namespace JCodes.Framework.WinFormUI
 {
@@ -19,7 +20,7 @@ namespace JCodes.Framework.WinFormUI
 
         private void buttonOK_Click(object sender, EventArgs e)
         {
-            XtraMessageBox.Show("此功能待完善");
+            MessageDxUtil.ShowTips("此功能待完善");
         }
 	}
 }

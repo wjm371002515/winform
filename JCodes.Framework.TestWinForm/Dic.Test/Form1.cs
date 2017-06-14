@@ -26,8 +26,6 @@ namespace TestDictionary
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //代码设置
-            MyConstants.License = "37c6V0hDLkRpY3Rpa25hcnl85LyN5Y2O6IGqfOW5_*W3nueIseWQr*i-qubKgObcr*bciemZkOWFrOWPuHxGYWxzZQvv";
             FrmDictionary dict = new FrmDictionary();
             dict.Show();
         }

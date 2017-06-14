@@ -20,7 +20,7 @@ namespace JCodes.Framework.BLL
         public Functions()  : base()
         {
             base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
-
+            baseDal.OnOperationLog += new OperationLogEventHandler(OperationLog.OnOperationLog);//如果需要记录操作日志，则实现这个事件
             functionDal = baseDal as IFunctions;
         }
 
@@ -158,9 +158,9 @@ namespace JCodes.Framework.BLL
         /// </summary>
         /// <param name="Id">节点ID</param>
         /// <returns></returns>
-        public bool DeleteWithSubNode(string mainID)
+        public bool DeleteWithSubNode(string mainID, string userId)
         {
-            return functionDal.DeleteWithSubNode(mainID);
+            return functionDal.DeleteWithSubNode(mainID, userId);
         }
 
         /// <summary>

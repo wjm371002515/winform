@@ -22,7 +22,7 @@ using JCodes.Framework.Common.Files;
 
 namespace JCodes.Framework.AddIn.UI.WareHouse
 {
-    public partial class FrmYearReportSearch : BaseForm
+    public partial class FrmYearReportSearch : BaseDock
     {
         public string ReprotTypeName = "";
         public MonthlyReportType ReportType;

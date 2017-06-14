@@ -1,20 +1,17 @@
 ﻿using JCodes.Framework.Common;
 using JCodes.Framework.CommonControl.BaseUI;
+using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.Entity;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using Spire.Xls;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Text;
 using System.Windows.Forms;
 
 namespace JCodes.Framework.AddIn.UI.SmallTools
 {
-    public partial class xlsDataDeal : BaseForm
+    public partial class xlsDataDeal : BaseDock
     {
         // 定义gc数据变量 
         private List<MFileInfo> _fileInfolst = new List<MFileInfo>();
@@ -141,14 +138,15 @@ namespace JCodes.Framework.AddIn.UI.SmallTools
             if (txtPath.Text.Trim().Length <= 0)
             {
                 LogHelper.WriteLog(LogLevel.LOG_LEVEL_ERR, "检查错误 请选择xls路径", typeof(xlsDataDeal));
-                MessageBox.Show("请选择xls路径");
+
+                MessageDxUtil.ShowWarning("请选择xls路径");
                 return;
             }
 
             if (_fileInfolst.Count <= 0)
             {
                 LogHelper.WriteLog(LogLevel.LOG_LEVEL_ERR, "检查错误 此路径下不存在有效的xls文件", typeof(xlsDataDeal));
-                MessageBox.Show("此路径下不存在有效的xls文件");
+                MessageDxUtil.ShowWarning("此路径下不存在有效的xls文件");
                 return;
             }
 
@@ -163,7 +161,7 @@ namespace JCodes.Framework.AddIn.UI.SmallTools
                 catch (Exception ex)
                 {
                     LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(xlsDataDeal));
-                    MessageBox.Show(ex.Message);
+                    MessageDxUtil.ShowError(ex.Message);
                     return;
                 }
             }
@@ -204,7 +202,7 @@ namespace JCodes.Framework.AddIn.UI.SmallTools
             catch (Exception ex)
             {
                 LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(xlsDataDeal));
-                MessageBox.Show(ex.Message);
+                MessageDxUtil.ShowError(ex.Message);
                 return;
             }
 
@@ -219,28 +217,28 @@ namespace JCodes.Framework.AddIn.UI.SmallTools
             if (!File.Exists(path + "\\"+ filename))
             {
                 LogHelper.WriteLog(LogLevel.LOG_LEVEL_ERR, "检查错误 路径[" + path + "\\" + filename + "] 对应的文件不存在", typeof(xlsDataDeal));
-                MessageBox.Show("路径["+path+"\\"+filename+"] 对应的文件不存在");
+                MessageDxUtil.ShowWarning("路径[" + path + "\\" + filename + "] 对应的文件不存在");
                 return false;
             }
 
             if (!File.Exists(Application.StartupPath + "\\Template\\网下利率询价及申购申请表汇总表.xlsx"))
             {
                 LogHelper.WriteLog(LogLevel.LOG_LEVEL_ERR, "检查错误 Template 目录下模板文件不存在 请联系管理员", typeof(xlsDataDeal));
-                MessageBox.Show("Template 目录下模板文件不存在 请联系管理员");
+                MessageDxUtil.ShowWarning("Template 目录下模板文件不存在 请联系管理员");
                 return false;
             }
 
             if (!ReadXlsData(path + "\\" + filename))
             {
                 LogHelper.WriteLog(LogLevel.LOG_LEVEL_ERR, "检查错误 读取 [" + filename + "] 内部数据失败，请检查格式正确性", typeof(xlsDataDeal));
-                MessageBox.Show("读取 ["+filename+"] 内部数据失败，请检查格式正确性");
+                MessageDxUtil.ShowWarning("读取 [" + filename + "] 内部数据失败，请检查格式正确性");
                 return false;
             }
 
             if (!WriteXlsData(path + "\\" + filename, sheet))
             {
                 LogHelper.WriteLog(LogLevel.LOG_LEVEL_ERR, "检查错误 写入 [" + filename + "] 数据失败，请检查格式正确性", typeof(xlsDataDeal));
-                MessageBox.Show("写入 [" + filename + "] 数据失败，请检查格式正确性");
+                MessageDxUtil.ShowWarning("写入 [" + filename + "] 数据失败，请检查格式正确性");
                 return false;
             }
             LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, " 结束处理文件: " + filename, typeof(xlsDataDeal));
@@ -455,7 +453,7 @@ namespace JCodes.Framework.AddIn.UI.SmallTools
             catch (Exception ex)
             {
                 LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(xlsDataDeal));
-                MessageBox.Show(ex.Message);
+                MessageDxUtil.ShowError(ex.Message);
                 return false;
             }
 
@@ -504,7 +502,7 @@ namespace JCodes.Framework.AddIn.UI.SmallTools
             }
             catch (Exception ex){
                 LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(xlsDataDeal));
-                MessageBox.Show(ex.Message);
+                MessageDxUtil.ShowError(ex.Message);
                 return false;
             }
             LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, " 结束把上一次读的数据写入到文件: " + filename, typeof(xlsDataDeal));

@@ -411,7 +411,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
 
         private void InitDeptInfo(TreeNode node)
         {
-            CListItem[] dictList = DictItemUtil.GetDictByDictType("部门");
+            /*CListItem[] dictList = DictItemUtil.GetDictByDictType("部门");
             foreach (CListItem item in dictList)
             {
                 string condition = string.Format(" where d.Dept = '{0}' ", item.Value);
@@ -422,12 +422,12 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
                 subNode.Tag = new CustomTreeData(CustomTreeType.Dept, item.Value);
 
                 node.Nodes.Add(subNode);
-            }
+            }*/
         }
 
         private void InitUsagePosInfo(TreeNode node)
         {
-            CListItem[] dictList = DictItemUtil.GetDictByDictType("使用位置");
+            /*CListItem[] dictList = DictItemUtil.GetDictByDictType("使用位置");
             foreach (CListItem item in dictList)
             {
                 string condition = string.Format(" where d.UsagePos = '{0}' ", item.Value);
@@ -438,11 +438,11 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
                 subNode.Tag = new CustomTreeData(CustomTreeType.UsagePos, item.Value);
 
                 node.Nodes.Add(subNode); 
-            }
+            }*/
         }
         private void InitItemTypeInfo(TreeNode node)
         {
-            CListItem[] dictList = DictItemUtil.GetDictByDictType("备件类别");
+            /*CListItem[] dictList = DictItemUtil.GetDictByDictType("备件类别");
             foreach (CListItem item in dictList)
             {
                 string condition = string.Format(" where d.ItemType = '{0}' ", item.Value);
@@ -453,12 +453,12 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
                 subNode.Tag = new CustomTreeData(CustomTreeType.ItemType, item.Value);
 
                 node.Nodes.Add(subNode);
-            }
+            }*/
         }
 
         private void InitItemBigTypeInfo(TreeNode node)
         {
-            CListItem[] dictList = DictItemUtil.GetDictByDictType("备件属类");
+            /*CListItem[] dictList = DictItemUtil.GetDictByDictType("备件属类");
             foreach (CListItem item in dictList)
             {
                 string condition = string.Format(" where d.ItemBigType = '{0}' ", item.Value);
@@ -469,7 +469,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
                 subNode.Tag = new CustomTreeData(CustomTreeType.ItemBigType, item.Value);
 
                 node.Nodes.Add(subNode);
-            }
+            }*/
         }
 
         private void txtGoodsType_KeyDown(object sender, KeyEventArgs e)
@@ -592,7 +592,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
 
                 if (!string.IsNullOrEmpty(ID) && StockQuantity == 0)
                 {
-                    BLLFactory<Stock>.Instance.Delete(ID);
+                    BLLFactory<Stock>.Instance.DeleteByUser(ID, LoginUserInfo.ID.ToString());
                 }
             }
 
@@ -645,14 +645,14 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
         /// </summary>
         private void AddDictData(TreeNode treeNode, int i, string fieldName)
         {
-            List<DictDataInfo> dict = BLLFactory<DictData>.Instance.FindByDictType(treeNode.Text);
+            /*List<DictDataInfo> dict = BLLFactory<DictData>.Instance.FindByDictType(treeNode.Text);
             foreach (DictDataInfo info in dict)
             {
                 TreeNode subNode = new TreeNode(info.Name, i, i);
 
                 subNode.Tag = string.Format("{0}='{1}' ", fieldName, info.Value);
                 treeNode.Nodes.Add(subNode);
-            }
+            }*/
         }
 
         string treeConditionSql = "";

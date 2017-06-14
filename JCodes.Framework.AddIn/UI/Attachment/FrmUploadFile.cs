@@ -20,7 +20,7 @@ using JCodes.Framework.jCodesenum.BaseEnum;
 
 namespace JCodes.Framework.AddIn.UI.Attachment
 {
-    public partial class FrmUploadFile : BaseForm
+    public partial class FrmUploadFile : BaseDock
     {
         #region 字段属性
 

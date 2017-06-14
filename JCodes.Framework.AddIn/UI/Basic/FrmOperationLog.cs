@@ -36,7 +36,6 @@ namespace JCodes.Framework.AddIn.UI.Basic
             this.winGridViewPager1.OnPageChanged += new EventHandler(winGridViewPager1_OnPageChanged);
             this.winGridViewPager1.OnStartExport += new EventHandler(winGridViewPager1_OnStartExport);
             this.winGridViewPager1.OnEditSelected += new EventHandler(winGridViewPager1_OnEditSelected);
-            //this.winGridViewPager1.OnAddNew += new EventHandler(winGridViewPager1_OnAddNew);
             this.winGridViewPager1.OnDeleteSelected += new EventHandler(winGridViewPager1_OnDeleteSelected);
             this.winGridViewPager1.OnRefresh += new EventHandler(winGridViewPager1_OnRefresh);
             this.winGridViewPager1.AppendedMenu = this.contextMenuStrip1;
@@ -44,7 +43,6 @@ namespace JCodes.Framework.AddIn.UI.Basic
             this.winGridViewPager1.BestFitColumnWith = false;//是否设置为自动调整宽度，false为不设置
 			this.winGridViewPager1.gridView1.DataSourceChanged +=new EventHandler(gridView1_DataSourceChanged);
             this.winGridViewPager1.gridView1.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(gridView1_CustomColumnDisplayText);
-            this.winGridViewPager1.gridView1.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(gridView1_RowCellStyle);
 
             //关联回车键进行查询
             foreach (Control control in this.layoutControl1.Controls)
@@ -52,19 +50,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
                 control.KeyUp += new System.Windows.Forms.KeyEventHandler(this.SearchControl_KeyUp);
             }
         }
-        void gridView1_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
-        {
-            //if (e.Column.FieldName == "OrderStatus")
-            //{
-            //    string status = this.winGridViewPager1.gridView1.GetRowCellValue(e.RowHandle, "OrderStatus").ToString();
-            //    Color color = Color.White;
-            //    if (status == "已审核")
-            //    {
-            //        e.Appearance.BackColor = Color.Red;
-            //        e.Appearance.BackColor2 = Color.LightCyan;
-            //    }
-            //}
-        }
+
         void gridView1_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
         {
             if (e.Column.ColumnType == typeof(DateTime))
@@ -82,17 +68,6 @@ namespace JCodes.Framework.AddIn.UI.Basic
                     }
                 }
             }
-            //else if (e.Column.FieldName == "Age")
-            //{
-            //    e.DisplayText = string.Format("{0}岁", e.Value);
-            //}
-            //else if (Column.FieldName == "ReceivedMoney")
-            //{
-            //    if (e.Value != null)
-            //    {
-            //        e.DisplayText = e.Value.ToString().ToDecimal().ToString("C");
-            //    }
-            //}
         }
         
         /// <summary>
@@ -131,6 +106,14 @@ namespace JCodes.Framework.AddIn.UI.Basic
         {
             InitTree();
             BindData();
+            Init_Function();
+        }
+
+        void Init_Function()
+        {
+            btnSearch.Enabled = Portal.gc.HasFunction("OperationLog/search");
+            btnExport.Enabled = Portal.gc.HasFunction("OperationLog/Export");
+            btnSetTableLog.Enabled = Portal.gc.HasFunction("OperationLog/OperationLogSet");
         }
         
         /// <summary>
@@ -154,6 +137,12 @@ namespace JCodes.Framework.AddIn.UI.Basic
         /// </summary>
         private void winGridViewPager1_OnDeleteSelected(object sender, EventArgs e)
         {
+            if (!Portal.gc.HasFunction("OperationLog/del"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
             if (MessageDxUtil.ShowYesNoAndTips("您确定删除选定的记录么？") == DialogResult.No)
             {
                 return;
@@ -163,7 +152,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
             foreach (int iRow in rowSelected)
             {
                 string ID = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "ID");
-                BLLFactory<OperationLog>.Instance.Delete(ID);
+                BLLFactory<OperationLog>.Instance.DeleteByUser(ID, LoginUserInfo.ID.ToString());
             }
              
             BindData();
@@ -174,6 +163,12 @@ namespace JCodes.Framework.AddIn.UI.Basic
         /// </summary>
         private void winGridViewPager1_OnEditSelected(object sender, EventArgs e)
         {
+            if (!Portal.gc.HasFunction("OperationLog/edit"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
             string ID = this.winGridViewPager1.gridView1.GetFocusedRowCellDisplayText("ID");
             List<string> IDList = new List<string>();
             for (int i = 0; i < this.winGridViewPager1.gridView1.RowCount; i++)
@@ -202,18 +197,16 @@ namespace JCodes.Framework.AddIn.UI.Basic
         }
         
         /// <summary>
-        /// 分页控件新增操作
-        /// </summary>        
-        private void winGridViewPager1_OnAddNew(object sender, EventArgs e)
-        {
-            btnAddNew_Click(null, null);
-        }
-        
-        /// <summary>
         /// 分页控件全部导出操作前的操作
         /// </summary> 
         private void winGridViewPager1_OnStartExport(object sender, EventArgs e)
         {
+            if (!Portal.gc.HasFunction("OperationLog/Export"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
             string where = GetConditionSql();
             this.winGridViewPager1.AllToExport = BLLFactory<OperationLog>.Instance.FindToDataTable(where);
          }
@@ -250,6 +243,9 @@ namespace JCodes.Framework.AddIn.UI.Basic
             {
                 where = treeConditionSql;
             }
+
+            // 增加系统可以访问的公司部门的权限
+            where += " and (Company_ID " + canOptCompanyID + ")";
             return where;
         }
         
@@ -258,20 +254,14 @@ namespace JCodes.Framework.AddIn.UI.Basic
         /// </summary>
         private void BindData()
         {
+            if (!Portal.gc.HasFunction("OperationLog/search"))
+            {
+                return;
+            }
+
         	//entity
             this.winGridViewPager1.DisplayColumns = "LoginName,FullName,CompanyName,TableName,OperationType,IPAddress,MacAddress,CreateTime";
             this.winGridViewPager1.ColumnNameAlias = BLLFactory<OperationLog>.Instance.GetColumnNameAlias();//字段列显示名称转义
-
-            #region 添加别名解析
-
-            //this.winGridViewPager1.AddColumnAlias("LoginName", "登录名");
-            //this.winGridViewPager1.AddColumnAlias("FullName", "真实名称");
-            //this.winGridViewPager1.AddColumnAlias("CompanyName", "所属公司名称");
-            //this.winGridViewPager1.AddColumnAlias("TableName", "操作表名称");
-            //this.winGridViewPager1.AddColumnAlias("OperationType", "操作类型");
-            //this.winGridViewPager1.AddColumnAlias("CreateTime", "创建时间");
-
-            #endregion
 
             string where = GetConditionSql();
 	            List<OperationLogInfo> list = BLLFactory<OperationLog>.Instance.FindWithPager(where, this.winGridViewPager1.PagerInfo);
@@ -289,26 +279,18 @@ namespace JCodes.Framework.AddIn.UI.Basic
         }
         
         /// <summary>
-        /// 新增数据操作
-        /// </summary>
-        private void btnAddNew_Click(object sender, EventArgs e)
-        {
-            FrmEditOperationLog dlg = new FrmEditOperationLog();
-            dlg.OnDataSaved += new EventHandler(dlg_OnDataSaved);
-            
-            if (DialogResult.OK == dlg.ShowDialog())
-            {
-                BindData();
-            }
-        }
-        
-        /// <summary>
         /// 提供给控件回车执行查询的操作
         /// </summary>
         private void SearchControl_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
+                if (!Portal.gc.HasFunction("OperationLog/search"))
+                {
+                    MessageDxUtil.ShowError(Const.NoAuthMsg);
+                    return;
+                }
+
                 btnSearch_Click(null, null);
             }
         }        
@@ -321,6 +303,12 @@ namespace JCodes.Framework.AddIn.UI.Basic
         /// </summary>
         private void btnExport_Click(object sender, EventArgs e)
         {
+            if (!Portal.gc.HasFunction("OperationLog/Export"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
             string file = FileDialogHelper.SaveExcel(string.Format("{0}.xls", moduleName));
             if (!string.IsNullOrEmpty(file))
             {
@@ -373,8 +361,6 @@ namespace JCodes.Framework.AddIn.UI.Basic
 
         private void btnSetTableLog_Click(object sender, EventArgs e)
         {
-            //FrmOperationLogSetting dlg = new FrmOperationLogSetting();
-            //dlg.ShowDialog();
             ChildWinManagement.LoadMdiForm(Portal.gc.MainDialog, typeof(FrmOperationLogSetting));
         }
 
@@ -382,71 +368,24 @@ namespace JCodes.Framework.AddIn.UI.Basic
         {
             this.treeView1.BeginUpdate();
             this.treeView1.Nodes.Clear();
-            //添加一个未分类和全部客户的组别
-            TreeNode topNode = new TreeNode("所有记录", 0, 0);
-            this.treeView1.Nodes.Add(topNode);
-
-            TreeNode companyNode = new TreeNode("所属公司", 1, 1);
-            this.treeView1.Nodes.Add(companyNode);
-
-            List<OUInfo> companyList = new List<OUInfo>();
-            if (Portal.gc.UserInRole(RoleInfo.SuperAdminName))
-            {
-                List<OUInfo> list = Portal.gc.GetMyTopGroup();
-                foreach (OUInfo groupInfo in list)
-                {
-                    companyList.AddRange(BLLFactory<OU>.Instance.GetAllCompany(groupInfo.ID));
-                }
-            }
-            else
-            {
-                OUInfo myCompanyInfo = BLLFactory<OU>.Instance.FindByID(Portal.gc.UserInfo.Company_ID);
-                if (myCompanyInfo != null)
-                {
-                    companyList.Add(myCompanyInfo);
-                }
-            }
-
-            foreach (OUInfo info in companyList)
-            {
-                TreeNode subNode = new TreeNode(info.Name, 1, 1);
-                subNode.Tag = string.Format("Company_ID='{0}' ", info.ID);
-                companyNode.Nodes.Add(subNode);
-            }
-
-            TreeNode tableNode = new TreeNode("数据库表", 2, 2);
+           
+            TreeNode tableNode = new TreeNode("数据库表", 0, 0);
             this.treeView1.Nodes.Add(tableNode);
             List<string> tableList = BLLFactory<OperationLog>.Instance.GetFieldList("TableName");
 
             bool isCompanyAdmin = Portal.gc.UserInRole(RoleInfo.CompanyAdminName);
             foreach (string tablename in tableList)
             {
-                TreeNode subNode = new TreeNode(tablename, 3, 3);                
-                //如果是公司管理员，增加公司标识
-                if (isCompanyAdmin)
-                {
-                    subNode.Tag = string.Format("TableName='{0}' AND Company_ID='{1}' ", tablename, Portal.gc.UserInfo.Company_ID);
-                }
-                else
-                {
-                    subNode.Tag = string.Format("TableName='{0}' ", tablename);
-                }
+                TreeNode subNode = new TreeNode(tablename, 1, 1);
+                subNode.Tag = string.Format("TableName='{0}' AND (Company_ID {1}) ", tablename, canOptCompanyID);
                 tableNode.Nodes.Add(subNode);
 
                 List<string> operationList = new List<string>() { "增加", "修改", "删除"};
                 foreach (string operationType in operationList)
                 {
-                    TreeNode operationNode = new TreeNode(operationType, 4, 4);                    
-                    //如果是公司管理员，增加公司标识
-                    if (isCompanyAdmin)
-                    {
-                        operationNode.Tag = string.Format("TableName='{0}'  AND OperationType='{1}' AND Company_ID='{2}' ",
-                            tablename, operationType, Portal.gc.UserInfo.Company_ID);
-                    }
-                    else
-                    {
-                        operationNode.Tag = string.Format("TableName='{0}' AND OperationType='{1}' ", tablename, operationType);
-                    }
+                    TreeNode operationNode = new TreeNode(operationType, 2, 2);
+                    operationNode.Tag = string.Format("TableName='{0}'  AND OperationType='{1}' AND (Company_ID {2}) ",
+                            tablename, operationType, canOptCompanyID);
                     subNode.Nodes.Add(operationNode);
                 }
             }
@@ -458,6 +397,11 @@ namespace JCodes.Framework.AddIn.UI.Basic
         string treeConditionSql = "";
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
+            if (!Portal.gc.HasFunction("OperationLog/search"))
+            {
+                return;
+            }
+
             if (e.Node != null && e.Node.Tag != null)
             {
                 treeConditionSql = e.Node.Tag.ToString();

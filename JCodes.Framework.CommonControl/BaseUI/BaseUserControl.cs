@@ -26,14 +26,18 @@ namespace JCodes.Framework.CommonControl.BaseUI
         public event EventHandler OnDataSaved;
 
         /// <summary>
-        /// 进行数据过滤的Sql条件，默认通过 Cache.Instance["DataFilterCondition"]获取
+        /// 可操作性公司
+        /// 需要在前面加上括号 字段名 + canOptCompanyID + 括号
+        /// 如: "and ( CompanyID " +  canOptCompanyID + ") "
         /// </summary>
-        //public string DataFilterCondition { get; set; }
+        public string canOptCompanyID { get; set; }
 
         /// <summary>
-        /// 选择查看的公司ID
+        /// 可操作部门
+        /// 需要在前面加上括号 字段名 + canOptDeptId + 括号
+        /// 如: "and ( DeptId " +  canOptDeptId + ") "
         /// </summary>
-        //public string SelectedCompanyID { get; set; }
+        public string canOptDeptId { get; set; }
 
         /// <summary>
         /// 默认构造函数
@@ -50,8 +54,8 @@ namespace JCodes.Framework.CommonControl.BaseUI
                 this.FunctionDict = Cache.Instance["FunctionDict"] as Dictionary<string, string>;
 
                 // 进行数据过滤的Sql条件
-                //this.DataFilterCondition = Cache.Instance["DataFilterCondition"] as string;
-                //this.SelectedCompanyID = Cache.Instance["SelectedCompanyID"] as string;
+                this.canOptCompanyID = Cache.Instance["canOptCompanyID"] as string;
+                this.canOptDeptId = Cache.Instance["canOptDeptId"] as string;
             }
         }
 

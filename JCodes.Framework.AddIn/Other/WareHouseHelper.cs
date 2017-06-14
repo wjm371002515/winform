@@ -49,22 +49,6 @@ namespace JCodes.Framework.AddIn.Other
             return itemList;
         }
 
-        /// <summary>
-        /// 获取指定字典类型的字典列表，返回CListItem列表集合
-        /// </summary>
-        /// <param name="dictTypeName">数据字典类型名称</param>
-        /// <returns></returns>
-        public static List<CListItem> GetDictData(string dictTypeName)
-        {
-            List<CListItem> list = new List<CListItem>();
-            Dictionary<string, string> dict = BLLFactory<DictData>.Instance.GetDictByDictType(dictTypeName);
-            foreach (string key in dict.Keys)
-            {
-                list.Add(new CListItem(key, dict[key]));
-            }
-            return list;
-        }
-
         #region 弹出提示消息窗口
         /// <summary>
         /// 弹出提示消息窗口

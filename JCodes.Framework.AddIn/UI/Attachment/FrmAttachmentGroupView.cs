@@ -23,7 +23,7 @@ using JCodes.Framework.CommonControl.DocViewer;
 
 namespace JCodes.Framework.AddIn.UI.Attachment
 {
-    public partial class FrmAttachmentGroupView : BaseForm
+    public partial class FrmAttachmentGroupView : BaseDock
     {
         #region public属性变量
 
@@ -121,7 +121,7 @@ namespace JCodes.Framework.AddIn.UI.Attachment
                     string id = item.Tag.ToString();
                     try
                     {
-                        sucess = BLLFactory<FileUpload>.Instance.Delete(id);
+                        sucess = BLLFactory<FileUpload>.Instance.DeleteByUser(id, LoginUserInfo.ID.ToString());
                     }
                     catch (Exception ex)
                     {
@@ -421,7 +421,7 @@ namespace JCodes.Framework.AddIn.UI.Attachment
                     if (item != null && item.Tag != null)
                     {
                         string id = item.Tag.ToString();
-                        sucess = BLLFactory<FileUpload>.Instance.Delete(id);
+                        sucess = BLLFactory<FileUpload>.Instance.DeleteByUser(id, LoginUserInfo.ID.ToString());
                     }
                 }
             }

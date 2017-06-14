@@ -17,7 +17,7 @@ namespace JCodes.Framework.CommonControl.LocalReports
     /// <summary>
     /// 通用的RDLC报表的查看器
     /// </summary>
-    public partial class ReportViewerDialog : BaseForm
+    public partial class ReportViewerDialog : BaseDock
     {
         /// <summary>
         /// 默认构造函数

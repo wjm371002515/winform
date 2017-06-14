@@ -17,7 +17,7 @@ using System.Windows.Forms;
 
 namespace JCodes.Framework.AddIn.UI.Dictionary
 {
-    public partial class FrmCityDistrict : BaseForm
+    public partial class FrmCityDistrict : BaseDock
     {
         private string SelectedProvinceId = "";
         private string SelectedCityId = "";
@@ -186,7 +186,7 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
             foreach (int iRow in rowSelected)
             {
                 string ID = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "ID");
-                BLLFactory<District>.Instance.Delete(ID);
+                BLLFactory<District>.Instance.DeleteByUser(ID, LoginUserInfo.ID.ToString());
             }
 
             BindData();
@@ -392,7 +392,7 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
                 string message = "您确认要删除选定的记录吗";
                 if (MessageDxUtil.ShowYesNoAndWarning(message) == System.Windows.Forms.DialogResult.Yes)
                 {
-                    BLLFactory<City>.Instance.Delete(selectedNode.Tag.ToString());
+                    BLLFactory<City>.Instance.DeleteByUser(selectedNode.Tag.ToString(), LoginUserInfo.ID.ToString());
                 }
             }
         }

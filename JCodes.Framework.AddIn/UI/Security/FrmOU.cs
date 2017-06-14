@@ -20,7 +20,7 @@ using JCodes.Framework.Common.Format;
 
 namespace JCodes.Framework.AddIn.UI.Security
 {
-    public partial class FrmOU : BaseForm
+    public partial class FrmOU : BaseDock
     {
         private string currentID = string.Empty;
 

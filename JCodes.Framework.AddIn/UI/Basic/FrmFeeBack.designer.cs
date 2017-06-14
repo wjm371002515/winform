@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmFeeBack));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.txtEmail = new DevExpress.XtraEditors.TextEdit();
             this.txtAdvise = new DevExpress.XtraEditors.MemoEdit();
@@ -36,10 +35,10 @@
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
-            this.lblContact = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAdvise.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
@@ -61,18 +60,20 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(63, 286);
+            this.txtEmail.Location = new System.Drawing.Point(87, 278);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(615, 20);
+            this.txtEmail.Size = new System.Drawing.Size(591, 28);
             this.txtEmail.StyleController = this.layoutControl1;
             this.txtEmail.TabIndex = 5;
             // 
             // txtAdvise
             // 
-            this.txtAdvise.Location = new System.Drawing.Point(63, 12);
+            this.txtAdvise.Location = new System.Drawing.Point(87, 12);
             this.txtAdvise.Name = "txtAdvise";
-            this.txtAdvise.Size = new System.Drawing.Size(615, 270);
+            this.txtAdvise.Size = new System.Drawing.Size(591, 262);
+            this.txtAdvise.StyleController = this.layoutControl1;
             this.txtAdvise.TabIndex = 4;
+            this.txtAdvise.UseOptimizedRendering = true;
             // 
             // layoutControlGroup1
             // 
@@ -93,19 +94,19 @@
             this.layoutControlItem1.CustomizationFormText = "软件建议";
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(670, 274);
+            this.layoutControlItem1.Size = new System.Drawing.Size(670, 266);
             this.layoutControlItem1.Text = "软件建议";
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(48, 14);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(72, 22);
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.txtEmail;
             this.layoutControlItem2.CustomizationFormText = "您的邮箱";
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 274);
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 266);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(670, 24);
+            this.layoutControlItem2.Size = new System.Drawing.Size(670, 32);
             this.layoutControlItem2.Text = "您的邮箱";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(48, 14);
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(72, 22);
             // 
             // btnOK
             // 
@@ -117,22 +118,11 @@
             this.btnOK.Text = "发送";
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
-            // lblContact
-            // 
-            this.lblContact.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblContact.Appearance.ForeColor = System.Drawing.Color.Blue;
-            this.lblContact.Location = new System.Drawing.Point(12, 340);
-            this.lblContact.Name = "lblContact";
-            this.lblContact.Size = new System.Drawing.Size(354, 20);
-            this.lblContact.TabIndex = 2;
-            this.lblContact.Text = "您也可以通过发邮件给 wuhuacong@163.com 与我联系";
-            // 
             // FrmFeeBack
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(700, 382);
-            this.Controls.Add(this.lblContact);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.layoutControl1);
             this.Name = "FrmFeeBack";
@@ -141,11 +131,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAdvise.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -158,6 +148,5 @@
         private DevExpress.XtraEditors.TextEdit txtEmail;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraEditors.SimpleButton btnOK;
-        private DevExpress.XtraEditors.LabelControl lblContact;
     }
 }

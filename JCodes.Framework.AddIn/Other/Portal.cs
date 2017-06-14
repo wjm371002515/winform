@@ -31,9 +31,6 @@ namespace JCodes.Framework.AddIn.Other
     public class GlobalControl
     {
         public MainForm MainDialog;                                         // 主窗体对话框(对应的是MainForm)
-        public LicenseCheckResult LicenseResult = new LicenseCheckResult(); //授权码检查的结果
-        public LoginUserInfo LoginUserInfo = null;                          //登陆用户基础信息 
-        public Dictionary<string, string> FunctionDict = new Dictionary<string, string>();//登录用户具有的功能字典集合
         public string SystemType = "071bafed-4634-4083-bb34-86dda58edfc4";  //系统类型
         public string AppUnit = string.Empty;                               //单位名称
         public string AppName = string.Empty;                               //程序名称
@@ -46,11 +43,6 @@ namespace JCodes.Framework.AddIn.Other
         /// 登录用户信息
         /// </summary>
         public UserInfo UserInfo { get; set; }
-
-        /// <summary>
-        /// 用户具有的角色集合
-        /// </summary>
-        public List<RoleInfo> RoleList { get; set; }
 
         /// <summary>
         /// 转换框架通用的用户基础信息，方便框架使用
@@ -82,12 +74,12 @@ namespace JCodes.Framework.AddIn.Other
         public bool HasFunction(string controlID)
         {
             bool result = false;
-
+            var cacheDict = Cache.Instance["FunctionDict"] as Dictionary<string, string>;
             if (string.IsNullOrEmpty(controlID))
             {
                 result = true;
             }
-            else if (FunctionDict != null && FunctionDict.ContainsKey(controlID))
+            else if (cacheDict != null && cacheDict.ContainsKey(controlID))
             {
                 result = true;
             }
@@ -176,53 +168,6 @@ namespace JCodes.Framework.AddIn.Other
         }
 
         /// <summary>
-        /// 检查用户的授权码，系统运行开始调用即可
-        /// </summary>
-        /// <returns></returns>
-        public LicenseCheckResult CheckLicense()
-        {
-            LicenseCheckResult result = new LicenseCheckResult();
-            string license = MyConstants.License;
-            if (!string.IsNullOrEmpty(license))
-            {
-                try
-                {
-                    string decodeLicense = Base64Util.Decrypt(MD5Util.RemoveMD5Profix(license));
-                    string[] strArray = decodeLicense.Split('|');
-                    if (strArray.Length >= 4)
-                    {
-                        string componentType = strArray[0];
-                        if (componentType.ToLower() == "whc.security")
-                        {
-                            result.IsValided = true;
-                        }
-                        result.Username = strArray[1];
-                        result.CompanyName = strArray[2];
-                        try
-                        {
-                            result.DisplayCopyright = Convert.ToBoolean(strArray[3]);
-                        }
-                        catch (Exception ex)
-                        {
-                            result.DisplayCopyright = true;
-                            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(GlobalControl));
-                            MessageDxUtil.ShowError(ex.Message);
-                        }
-
-                        this.LicenseResult = result;//保存授权结果到变量中，方便调用
-                    }
-                }
-                catch (Exception ex)
-                {
-                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(GlobalControl));
-                    MessageDxUtil.ShowError(ex.Message);
-                }
-            }
-
-            return result;
-        }
-
-        /// <summary>
         /// 修改密码
         /// </summary>
         public void ModPwd()
@@ -237,7 +182,8 @@ namespace JCodes.Framework.AddIn.Other
         /// </summary>
         public void CurrentUserInfo() {
             FrmEditUser dlg = new FrmEditUser();
-            dlg.ID = Portal.gc.LoginUserInfo.ID.ToString();
+            var loginUserInfo = Cache.Instance["LoginUserInfo"] as LoginUserInfo;
+            dlg.ID = loginUserInfo.ID.ToString();
             dlg.StartPosition = FormStartPosition.CenterScreen;
             dlg.ShowDialog();
         }
@@ -273,10 +219,12 @@ namespace JCodes.Framework.AddIn.Other
         /// <returns></returns>
         public bool UserInRole(string roleName)
         {
+            var roleList = Cache.Instance["RoleList"] as List<RoleInfo>;
+
             bool result = false;
-            if (RoleList != null)
+            if (roleList != null)
             {
-                foreach (RoleInfo info in RoleList)
+                foreach (RoleInfo info in roleList)
                 {
                     if (info.Name.Equals(roleName, StringComparison.OrdinalIgnoreCase))
                     {

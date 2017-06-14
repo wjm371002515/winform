@@ -20,7 +20,7 @@ namespace JCodes.Framework.CommonControl.DocViewer
     /// <summary>
     /// WORD控件的测试例子
     /// </summary>
-    public partial class FrmWordView : BaseForm
+    public partial class FrmWordView : BaseDock
     {
         /// <summary>
         /// 加载流数据

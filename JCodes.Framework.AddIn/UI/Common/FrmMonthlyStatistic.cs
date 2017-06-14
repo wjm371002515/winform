@@ -16,7 +16,7 @@ using System.Windows.Forms;
 
 namespace JCodes.Framework.AddIn.UI.Common
 {
-    public partial class FrmMonthlyStatistic : BaseForm
+    public partial class FrmMonthlyStatistic : BaseDock
     {      
         //月结线程
         private BackgroundWorker worker;
@@ -52,7 +52,7 @@ namespace JCodes.Framework.AddIn.UI.Common
 
         private void ExecuteDeptMonthReport()
         {
-            #region 构造库房部门结存月结报表
+            /*#region 构造库房部门结存月结报表
             CListItem[] deptArray = DictItemUtil.GetDictByDictType("部门");
             ReportMonthlyHeaderInfo deptHeaderInfo = GetMainHeader();
             deptHeaderInfo.ReportTitle = string.Format("{0}部门结存月报表", DateTime.Now.ToString("yyyy年MM月"));
@@ -89,7 +89,7 @@ namespace JCodes.Framework.AddIn.UI.Common
                 }
                 worker.ReportProgress(20);
             }
-            #endregion
+            #endregion*/
         }
 
         private void ExecuteEachWareMonthlyReport()
@@ -137,7 +137,7 @@ namespace JCodes.Framework.AddIn.UI.Common
 
         private void ExecuteAllWareItemTypeMonthlyReport()
         {
-            #region 构造所有库房结存月结报表(含备件属类、备件类别分类）
+            /*#region 构造所有库房结存月结报表(含备件属类、备件类别分类）
             CListItem[] itemBigTypeArray = DictItemUtil.GetDictByDictType("备件属类");
             CListItem[] itemTypeArray = DictItemUtil.GetDictByDictType("备件类别");
             ReportMonthlyHeaderInfo allWareHeaderInfo = GetMainHeader();
@@ -201,12 +201,12 @@ namespace JCodes.Framework.AddIn.UI.Common
                 }
                 worker.ReportProgress(60);
             }
-            #endregion
+            #endregion*/
         }
 
         private void ExecuteEachPartCostMonthlyReport()
         {
-            #region 构造各车间成本月报表
+            /*#region 构造各车间成本月报表
             CListItem[] deptArray = DictItemUtil.GetDictByDictType("部门");
             CListItem[] itemTypeArray = DictItemUtil.GetDictByDictType("备件类别");
             ReportMonthlyHeaderInfo deptCostHeaderInfo = GetMainHeader();
@@ -245,7 +245,7 @@ namespace JCodes.Framework.AddIn.UI.Common
 
                 worker.ReportProgress(90);
             }
-            #endregion
+            #endregion*/
         }
 
         void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)

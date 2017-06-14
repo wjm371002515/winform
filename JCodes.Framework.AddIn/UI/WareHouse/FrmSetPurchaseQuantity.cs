@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace JCodes.Framework.AddIn.UI.WareHouse
 {
-    public partial class FrmSetPurchaseQuantity : BaseForm
+    public partial class FrmSetPurchaseQuantity : BaseDock
     {
         public string ID = "";
         public FrmSetPurchaseQuantity()

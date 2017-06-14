@@ -20,17 +20,18 @@ namespace JCodes.Framework.BLL
 		public SystemType() :base()
         {
             base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+            baseDal.OnOperationLog += new OperationLogEventHandler(OperationLog.OnOperationLog);//如果需要记录操作日志，则实现这个事件
 			this.systemTypeDal = (ISystemType) baseDal;
 		}
 
-        public override bool Delete(object key, System.Data.Common.DbTransaction trans = null)
+        public override bool DeleteByUser(object key, string userId, System.Data.Common.DbTransaction trans = null)
         {
             int count = BLLFactory<Role>.Instance.GetRecordCount();
             if (count == 1)
             {
                 throw new Exception("系统至少需要保留一个记录！");
             }
-            return base.Delete(key, trans);
+            return base.DeleteByUser(key, userId, trans);
         }
 
         /// <summary>

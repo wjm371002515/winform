@@ -18,7 +18,7 @@ namespace JCodes.Framework.CommonControl.DocViewer
     /// <summary>
     /// PDF测试显示窗体
     /// </summary>
-    public partial class FrmPDFView : BaseForm
+    public partial class FrmPDFView : BaseDock
     {
         /// <summary>
         /// 加载流数据

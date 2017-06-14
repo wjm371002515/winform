@@ -10,6 +10,10 @@ using System.Reflection;
 using System.Reflection.Emit;
 using System.Diagnostics;
 using JCodes.Framework.Common;
+using JCodes.Framework.CommonControl.Framework;
+using JCodes.Framework.BLL;
+using JCodes.Framework.Common.Framework;
+using JCodes.Framework.Entity;
 
 namespace JCodes.Framework.AddIn.Test
 {
@@ -124,6 +128,29 @@ namespace JCodes.Framework.AddIn.Test
         private void button2_Click(object sender, EventArgs e)
         {
             txtLog.Text = string.Empty;
+        }
+
+        private void btnException_Click(object sender, EventArgs e)
+        {
+            throw new Exception("啊..我这行代码异常了...");
+        }
+
+        private void btnException2_Click(object sender, EventArgs e)
+        {
+            FrmException frmException = new FrmException(new Exception("自己创建的异常窗体"));
+            frmException.ShowDialog();
+        }
+
+        private void Test_Load(object sender, EventArgs e)
+        {
+            var lst = BLLFactory<DictData>.Instance.GetDictByTypeID(100000);
+            comboBoxEdit1.Properties.Items.Clear();
+            comboBoxEdit1.Properties.Items.Add(new CListItem(Const.NoSelectMsg, Const.NoSeletValue.ToString()));
+            foreach(var one in lst)
+            {
+                comboBoxEdit1.Properties.Items.Add(new CListItem(one.Name, one.Value.ToString()));
+            }
+            labelControl1.Text = BLLFactory<DictData>.Instance.GetDictName(100000, 1);
         }
     }
 

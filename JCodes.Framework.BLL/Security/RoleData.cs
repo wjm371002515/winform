@@ -18,6 +18,8 @@ namespace JCodes.Framework.BLL
         public RoleData() : base()
         {
             base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+
+            baseDal.OnOperationLog += new OperationLogEventHandler(OperationLog.OnOperationLog);//如果需要记录操作日志，则实现这个事件
         }
 
         /// <summary>
@@ -109,10 +111,11 @@ namespace JCodes.Framework.BLL
                         List<int> companyList = info.BelongCompanys.ToDelimitedList<int>(",");
                         for (int i = 0; i < companyList.Count; i++)
                         {
-                            if (companyList[i] == -1) // -1代表用户所在公司
+                            // 20170610 wujm 这里不需要对其做转换反而会造成权限不对
+                            /*if (companyList[i] == -1) // -1代表用户所在公司
                             {
                                 companyList[i] = userInfo.Company_ID.ToInt32();
-                            }
+                            }*/
 
                             if (!notDuplicatedCompanyList.Contains(companyList[i]))
                             {
@@ -129,10 +132,11 @@ namespace JCodes.Framework.BLL
                         List<int> deptList = info.BelongDepts.ToDelimitedList<int>(",");
                         for (int i = 0; i < deptList.Count; i++)
                         {
-                            if (deptList[i] == -11) // -11代表用户所在部门
+                            // 20170610 wujm 这里不需要对其做转换反而会造成权限不对
+                            /*if (deptList[i] == -11) // -11代表用户所在部门
                             {
                                 deptList[i] = userInfo.Dept_ID.ToInt32();
-                            }
+                            }*/
 
                             if (!notDuplicatedDeptList.Contains(deptList[i]))
                             {

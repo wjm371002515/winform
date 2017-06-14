@@ -17,7 +17,7 @@ using System.Windows.Forms;
 
 namespace JCodes.Framework.AddIn.UI.Dictionary
 {
-    public partial class FrmEditDistrict : BaseForm
+    public partial class FrmEditDistrict : BaseDock
     {        
         public string ID = string.Empty;
         public string LoginID = "";//登陆用户ID 

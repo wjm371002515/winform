@@ -18,7 +18,7 @@ namespace JCodes.Framework.CommonControl.Device
     /// <summary>
     /// 设置打印机名称的窗体
     /// </summary>
-    public partial class FrmSetPrinterName : BaseForm
+    public partial class FrmSetPrinterName : BaseDock
     {
         /// <summary>
         /// 默认的打印机名称

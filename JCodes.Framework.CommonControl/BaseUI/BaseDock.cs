@@ -24,14 +24,18 @@ namespace JCodes.Framework.CommonControl.BaseUI
         public event EventHandler OnDataSaved;
 
         /// <summary>
-        /// 进行数据过滤的Sql条件，默认通过 Cache.Instance["DataFilterCondition"]获取
+        /// 可操作性公司
+        /// 需要在前面加上括号 字段名 + canOptCompanyID + 括号
+        /// 如: "and ( CompanyID " +  canOptCompanyID + ") "
         /// </summary>
-       // public string DataFilterCondition { get; set; }
+        public string canOptCompanyID { get; set; }
 
         /// <summary>
-        /// 选择查看的公司ID
-       /// </summary>
-       //public string SelectedCompanyID { get; set; }
+        /// 可操作部门
+        /// 需要在前面加上括号 字段名 + canOptDeptId + 括号
+        /// 如: "and ( DeptId " +  canOptDeptId + ") "
+        /// </summary>
+        public string canOptDeptId { get; set; }
 
         public BaseDock()
         {
@@ -40,10 +44,9 @@ namespace JCodes.Framework.CommonControl.BaseUI
             //继承的子模块，也可以通过InitFunction()进行指定用户相关信息
             this.LoginUserInfo = Cache.Instance["LoginUserInfo"] as LoginUserInfo;
             this.FunctionDict = Cache.Instance["FunctionDict"] as Dictionary<string, string>;
-
             // 进行数据过滤的Sql条件
-            //this.DataFilterCondition = Cache.Instance["DataFilterCondition"] as string;
-           // this.SelectedCompanyID = Cache.Instance["SelectedCompanyID"] as string;
+            this.canOptCompanyID = Cache.Instance["canOptCompanyID"] as string;
+            this.canOptDeptId = Cache.Instance["canOptDeptId"] as string;
         }
 
         /// <summary>
@@ -79,8 +82,7 @@ namespace JCodes.Framework.CommonControl.BaseUI
             // 显示异常页面
             //FrmException frmException = new FrmException(this.UserInfo, ex);
             //frmException.ShowDialog();
-
-            MessageBox.Show(ex.Message);//临时处理
+            MessageDxUtil.ShowError(ex.Message);
         }
 
         /// <summary>

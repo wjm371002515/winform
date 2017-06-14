@@ -15,7 +15,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
     /// <summary>
     /// 设置库房对应关系
     /// </summary>
-    public partial class SetWareHouseAlias : BaseForm
+    public partial class SetWareHouseAlias : BaseDock
     {
         public Dictionary<string, string> WareHouseDict = new Dictionary<string, string>();
 

@@ -18,7 +18,7 @@ using JCodes.Framework.CommonControl.Other;
 
 namespace JCodes.Framework.AddIn.UI.Dictionary
 {
-    public partial class FrmBatchAddDictData : BaseForm
+    public partial class FrmBatchAddDictData : BaseDock
     {
         public string ID = string.Empty;
         public string LoginID = "";//登陆用户ID 
@@ -41,9 +41,9 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
                 DictDataInfo info = new DictDataInfo();
                 info.Editor = LoginID;
                 info.LastUpdated = DateTime.Now;
-                info.DictType_ID = this.txtDictType.Tag.ToString();
+                info.DictType_ID = Convert.ToInt32( this.txtDictType.Tag.ToString());
                 info.Name = dictData.Trim();
-                info.Value = dictData.Trim();
+                info.Value = Convert.ToInt32( dictData.Trim());
                 info.Remark = this.txtNote.Text.Trim();
                 info.Seq = seq;
 

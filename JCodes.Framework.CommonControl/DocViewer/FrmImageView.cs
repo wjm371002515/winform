@@ -13,7 +13,7 @@ namespace JCodes.Framework.CommonControl.DocViewer
     /// <summary>
     /// 图片显示窗体
     /// </summary>
-    public partial class FrmImageView : BaseForm
+    public partial class FrmImageView : BaseDock
     {
         public FrmImageView()
         {

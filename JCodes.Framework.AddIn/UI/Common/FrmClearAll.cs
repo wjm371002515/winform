@@ -16,7 +16,7 @@ using System.Windows.Forms;
 
 namespace JCodes.Framework.AddIn.UI.Common
 {
-    public partial class FrmClearAll : BaseForm
+    public partial class FrmClearAll : BaseDock
     {
         public FrmClearAll()
         {

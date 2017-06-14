@@ -374,7 +374,6 @@ namespace JCodes.Framework.AddIn.UI.Basic
             this.Controls.Add(this.txtForbid);
             this.Name = "FrmEditOperationLogSetting";
             this.Text = "记录操作日志的数据表配置";
-            this.Load += new System.EventHandler(this.FrmEditOperationLogSetting_Load);
             this.Controls.SetChildIndex(this.txtForbid, 0);
             this.Controls.SetChildIndex(this.layoutControl1, 0);
             this.Controls.SetChildIndex(this.btnCancel, 0);

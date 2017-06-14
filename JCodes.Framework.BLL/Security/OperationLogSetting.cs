@@ -17,6 +17,8 @@ namespace JCodes.Framework.BLL
         public OperationLogSetting() : base()
         {
             base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+
+            baseDal.OnOperationLog += new OperationLogEventHandler(OperationLog.OnOperationLog);//如果需要记录操作日志，则实现这个事件
         }
 
         /// <summary>

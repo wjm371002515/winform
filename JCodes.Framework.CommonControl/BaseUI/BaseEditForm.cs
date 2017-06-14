@@ -16,7 +16,7 @@ namespace JCodes.Framework.CommonControl.BaseUI
     /// <summary>
     /// 编辑界面基类
     /// </summary>
-    public partial class BaseEditForm : BaseForm
+    public partial class BaseEditForm : BaseDock
     {
         public string ID = string.Empty;  // 记录主键
         public List<string> IDList = new List<string>();//所有待展示的ID列表
@@ -37,6 +37,13 @@ namespace JCodes.Framework.CommonControl.BaseUI
         public override void FormOnLoad()
         {
             base.FormOnLoad();
+
+            // 特殊处理 如果是当前用户信息 则修改此值
+            if (base.Name == "FrmEditUser" && base.ParentForm.Name == "MainForm")
+            {
+                ID = LoginUserInfo.ID.ToString();
+            }
+
             if (!this.DesignMode)
             {
                 if (!string.IsNullOrEmpty(ID))

@@ -155,7 +155,7 @@ namespace JCodes.Framework.AddIn.UI.BizControl
                     string id = item.Tag.ToString();
                     try
                     {
-                        sucess = BLLFactory<FileUpload>.Instance.Delete(id);
+                        sucess = BLLFactory<FileUpload>.Instance.DeleteByUser(id, UserId);
                     }
                     catch (Exception ex)
                     {
@@ -487,7 +487,7 @@ namespace JCodes.Framework.AddIn.UI.BizControl
                     if (item != null && item.Tag != null)
                     {
                         string id = item.Tag.ToString();
-                        sucess = BLLFactory<FileUpload>.Instance.Delete(id);
+                        sucess = BLLFactory<FileUpload>.Instance.DeleteByUser(id, UserId);
                     }
                 }
             }

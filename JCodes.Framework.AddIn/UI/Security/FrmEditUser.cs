@@ -174,23 +174,7 @@ namespace JCodes.Framework.AddIn.UI.Security
                 txtCreateTime.DateTime = DateTime.Now; //默认当前时间
                 //this.btnOK.Enabled = Portal.gc.HasFunction("User/Add");  
             }
-
-            //tempInfo在对象存在则为指定对象，新建则是全新的对象，但有一些初始化的GUID用于附件上传
-            //SetAttachInfo(tempInfo);
         }
-
-        //private void SetAttachInfo(UserInfo info)
-        //{
-        //    this.attachmentGUID.AttachmentGUID = info.AttachGUID;
-        //    this.attachmentGUID.userId = LoginUserInfo.Name;
-
-        //    string name = txtName.Text;
-        //    if (!string.IsNullOrEmpty(name))
-        //    {
-        //        string dir = string.Format("{0}", name);
-        //        this.attachmentGUID.Init(dir, tempInfo.ID, LoginUserInfo.Name);
-        //    }
-        //}
 
         public override void ClearScreen()
         {
