@@ -18,5 +18,7 @@ namespace JCodes.Framework.AccessDAL
         public string _securityTablePre = new AppConfig().AppConfigGet("SecurityTablePre");
 
         public string _basicTablePre = new AppConfig().AppConfigGet("BasicTablePre");
+
+        public string _contactTablePre = new AppConfig().AppConfigGet("ContactTablePre");
     }
 }

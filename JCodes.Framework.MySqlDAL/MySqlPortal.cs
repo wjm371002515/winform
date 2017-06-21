@@ -20,5 +20,7 @@ namespace JCodes.Framework.MySqlDAL
         public string _50GoTablePre = new AppConfig().AppConfigGet("50GoTablePre");
 
         public string _basicTablePre = new AppConfig().AppConfigGet("BasicTablePre");
+
+        public string _contactTablePre = new AppConfig().AppConfigGet("ContactTablePre");
     }
 }

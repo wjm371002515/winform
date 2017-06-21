@@ -324,6 +324,48 @@
     <Compile Include="UI\Common\FrmSystemMessage.designer.cs">
       <DependentUpon>FrmSystemMessage.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Contact\FrmAddress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Contact\FrmAddress.designer.cs">
+      <DependentUpon>FrmAddress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Contact\FrmAddressCompany.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Contact\FrmAddressCompany.designer.cs">
+      <DependentUpon>FrmAddressCompany.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Contact\FrmAddressGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Contact\FrmAddressGroup.designer.cs">
+      <DependentUpon>FrmAddressGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Contact\FrmBatchAddAddress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Contact\FrmBatchAddAddress.designer.cs">
+      <DependentUpon>FrmBatchAddAddress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Contact\FrmEditAddress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Contact\FrmEditAddress.designer.cs">
+      <DependentUpon>FrmEditAddress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Contact\FrmEditAddressGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Contact\FrmEditAddressGroup.designer.cs">
+      <DependentUpon>FrmEditAddressGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Contact\FrmSelectAddressGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Contact\FrmSelectAddressGroup.designer.cs">
+      <DependentUpon>FrmSelectAddressGroup.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Dictionary\FrmBatchAddDistrict.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -772,6 +814,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Common\FrmSystemMessage.resx">
       <DependentUpon>FrmSystemMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Contact\FrmAddress.resx">
+      <DependentUpon>FrmAddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Contact\FrmAddressCompany.resx">
+      <DependentUpon>FrmAddressCompany.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Contact\FrmAddressGroup.resx">
+      <DependentUpon>FrmAddressGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Contact\FrmBatchAddAddress.resx">
+      <DependentUpon>FrmBatchAddAddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Contact\FrmEditAddress.resx">
+      <DependentUpon>FrmEditAddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Contact\FrmEditAddressGroup.resx">
+      <DependentUpon>FrmEditAddressGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Contact\FrmSelectAddressGroup.resx">
+      <DependentUpon>FrmSelectAddressGroup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Dictionary\FrmBatchAddDistrict.resx">
       <DependentUpon>FrmBatchAddDistrict.cs</DependentUpon>

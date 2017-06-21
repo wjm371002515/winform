@@ -57,6 +57,8 @@
   <ItemGroup>
     <Compile Include="AccessPortal.cs" />
     <Compile Include="Attachment\FileUpload.cs" />
+    <Compile Include="Contact\Address.cs" />
+    <Compile Include="Contact\AddressGroup.cs" />
     <Compile Include="Dic\City.cs" />
     <Compile Include="Dic\District.cs" />
     <Compile Include="Dic\Province.cs" />

@@ -46,6 +46,8 @@
     <Compile Include="Common\CListItem.cs" />
     <Compile Include="Common\CommonResult.cs" />
     <Compile Include="Common\NotifyContactInfo.cs" />
+    <Compile Include="Contact\AddressGroupInfo.cs" />
+    <Compile Include="Contact\AddressInfo.cs" />
     <Compile Include="Dic\CityInfo.cs" />
     <Compile Include="Dic\DicKeyValueInfo.cs" />
     <Compile Include="Dic\DictDataInfo.cs" />
@@ -89,6 +91,7 @@
       <Name>JCodes.Framework.jCodesenum</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>echo "编译后处理的事情 JCodes.Framework.Entity"</PostBuildEvent>

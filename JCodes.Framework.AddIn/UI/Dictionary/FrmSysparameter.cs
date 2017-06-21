@@ -217,12 +217,6 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
                                 if (MeEvent != null) MeEvent(string.Format("系统参数[{0}]-{1} 修改前:{2} → 修改后:{3}", c.TabIndex, c.Tag, _beforeStr, currStr));
                                 _beforeStr = string.Empty;
                             }
-                            if (c.TabIndex == null)
-                                LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, "ComboBoxEdit TabIndex 为null",typeof(FrmSysparameter));
-                            if (_SysId == null)
-                                LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, "ComboBoxEdit _SysId 为null", typeof(FrmSysparameter));
-                            if (currStr == null)
-                                LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, "ComboBoxEdit currStr 为null", typeof(FrmSysparameter));
                             SetInfo(c.TabIndex, _SysId, currStr);
                         };
                         ((System.ComponentModel.ISupportInitialize)(cbb.Properties)).EndInit();
@@ -264,12 +258,6 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
                                 if (MeEvent != null) MeEvent(string.Format("系统参数[{0}]-{1} 修改前:{2} → 修改后:{3}", c.TabIndex, c.Tag, _beforeStr, currStr));
                                 _beforeStr = string.Empty;
                             }
-                            if (c.TabIndex == null)
-                                LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, "CheckedComboBoxEdit TabIndex 为null", typeof(FrmSysparameter));
-                            if (_SysId == null)
-                                LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, "CheckedComboBoxEdit _SysId 为null", typeof(FrmSysparameter));
-                            if (currStr == null)
-                                LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, "CheckedComboBoxEdit currStr 为null", typeof(FrmSysparameter));
                             SetInfo(c.TabIndex, _SysId, currStr);
                         };
                         ((System.ComponentModel.ISupportInitialize)(ccbb.Properties)).EndInit();
@@ -498,42 +486,33 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
 
         private void SetInfo(Int32 Id, Int32 sysId, string newValue)
         {
-            try
+            bool isExist = false;
+            foreach(var i in _info)
             {
-                bool isExist = false;
-                foreach(var i in _info)
+                // 找到了
+                if (i.ID == Id)
                 {
-                    // 找到了
-                    if (i.ID == Id)
-                    {
-                        i.sysId = sysId;
-                        i.Value = newValue;
-                        i.Editor = LoginUserInfo.ID.ToString();
-                        i.EditorTime = System.DateTime.Now; //创建时间   
-                        i.CurrentLoginUserId = Portal.gc.UserInfo.ID.ToString();
-                        isExist = true;
-                        break;
-                    }
+                    i.sysId = sysId;
+                    i.Value = newValue;
+                    i.Editor = LoginUserInfo.ID.ToString();
+                    i.EditorTime = System.DateTime.Now; //创建时间   
+                    i.CurrentLoginUserId = Portal.gc.UserInfo.ID.ToString();
+                    isExist = true;
+                    break;
                 }
+            }
 
-                if (isExist == false)
-                {
-                    SysparameterInfo info = new SysparameterInfo();
-                    info.ID = Id;
-                    info.sysId = sysId;
-                    info.Value = newValue;
-                    info.Editor = LoginUserInfo.ID.ToString();
-                    info.EditorTime = System.DateTime.Now; //创建时间   
-                    info.CurrentLoginUserId = Portal.gc.UserInfo.ID.ToString();
-                    _info.Add(info);
-                }
-            }
-            catch (Exception ex)
+            if (isExist == false)
             {
-                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, "吴建明测试", typeof(FrmSysparameter));
-                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmSysparameter));
+                SysparameterInfo info = new SysparameterInfo();
+                info.ID = Id;
+                info.sysId = sysId;
+                info.Value = newValue;
+                info.Editor = LoginUserInfo.ID.ToString();
+                info.EditorTime = System.DateTime.Now; //创建时间   
+                info.CurrentLoginUserId = Portal.gc.UserInfo.ID.ToString();
+                _info.Add(info);
             }
-            
         }
 
         /// <summary>

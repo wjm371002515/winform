@@ -44,6 +44,8 @@
     <Compile Include="50Go\ICoupon.cs" />
     <Compile Include="50Go\ICouponCategory.cs" />
     <Compile Include="Attachment\IFileUpload.cs" />
+    <Compile Include="Contact\IAddress.cs" />
+    <Compile Include="Contact\IAddressGroup.cs" />
     <Compile Include="Dic\ICity.cs" />
     <Compile Include="Dic\IDictData.cs" />
     <Compile Include="Dic\IDictType.cs" />

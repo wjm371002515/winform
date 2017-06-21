@@ -53,6 +53,8 @@
     <Compile Include="50Go\Coupon.cs" />
     <Compile Include="50Go\CouponCategory.cs" />
     <Compile Include="Attachment\FileUpload.cs" />
+    <Compile Include="Contact\Address.cs" />
+    <Compile Include="Contact\AddressGroup.cs" />
     <Compile Include="Dic\City.cs" />
     <Compile Include="Dic\DictData.cs" />
     <Compile Include="Dic\DictType.cs" />
