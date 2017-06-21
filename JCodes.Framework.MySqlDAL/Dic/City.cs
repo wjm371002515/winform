@@ -25,7 +25,7 @@ namespace JCodes.Framework.MySqlDAL
 				return new City();
 			}
 		}
-		public City() : base("TB_City","ID")
+		public City() : base(MySqlPortal.gc._basicTablePre+"City","ID")
 		{
             IsDescending = false;
 		}
@@ -69,7 +69,7 @@ namespace JCodes.Framework.MySqlDAL
 
         public List<CityInfo> GetCitysByProvinceName(string provinceName)
         {
-            string sql = string.Format("Select c.* from TB_City c inner join TB_Province p on c.ProvinceId=p.ID where ProvinceName='{0}' ", provinceName);
+            string sql = string.Format("Select c.* from {0}City c inner join {0}Province p on c.ProvinceId=p.ID where ProvinceName='{1}' ", MySqlPortal.gc._basicTablePre, provinceName);
             return base.GetList(sql, null);
         }
     }

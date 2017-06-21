@@ -7,12 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.Common;
-using JCodes.Framework.Entity;
-using JCodes.Framework.Common;
-using JCodes.Framework.CommonControl;
-using JCodes.Framework.jCodesenum.BaseEnum;
-using JCodes.Framework.BLL;
 using JCodes.Framework.CommonControl.BaseUI;
+using JCodes.Framework.Entity;
+using JCodes.Framework.BLL;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.CommonControl.Other;
 
@@ -20,9 +17,6 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
 {
     public partial class FrmBatchAddDistrict : BaseDock
     {
-        public string ID = string.Empty;
-        public string LoginID = "";//登陆用户ID 
-
         public FrmBatchAddDistrict()
         {
             InitializeComponent();
@@ -93,7 +87,6 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
                     catch (Exception ex)
                     {
                         trans.Rollback();
-                        LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmBatchAddDistrict));
                         MessageDxUtil.ShowError(ex.Message);
                     }
                 }

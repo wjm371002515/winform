@@ -435,7 +435,6 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
             this.Controls.Add(this.splitContainerControl1);
             this.Name = "FrmCityDistrict";
             this.Text = "全国省份行政区划管理";
-            this.Load += new System.EventHandler(this.FrmCityDistrict_Load);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();

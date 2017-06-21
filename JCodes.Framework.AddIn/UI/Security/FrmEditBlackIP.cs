@@ -145,7 +145,7 @@ namespace JCodes.Framework.AddIn.UI.Security
         private void SetInfo(BlackIPInfo info)
         {
             info.Name = txtName.Text;
-            info.AuthorizeType = txtAuthorizeType.GetComboBoxValue().ToInt32();
+            info.AuthorizeType = txtAuthorizeType.GetComboBoxStrValue().ToInt32();
             info.Forbid = txtForbid.Checked;
             info.IPStart = txtIPStart.Text;
             info.IPEnd = txtIPEnd.Text;

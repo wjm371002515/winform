@@ -151,11 +151,11 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
 
         private void InitDictItem()
         {
-            this.txtManufacture.BindDictItems("供货商");
-            this.txtBigType.BindDictItems("备件属类");
-            this.txtItemType.BindDictItems("备件类别");
-            this.txtSource.BindDictItems("来源");
-            this.txtDept.BindDictItems("部门");
+            //this.txtManufacture.BindDictItems("供货商");
+            //this.txtBigType.BindDictItems("备件属类");
+            //this.txtItemType.BindDictItems("备件类别");
+            //this.txtSource.BindDictItems("来源");
+            //this.txtDept.BindDictItems("部门");
 
             this.txtWareHouse.Properties.Items.Clear();
             this.txtWareHouse.Properties.Items.AddRange(BLLFactory<WareHouses>.Instance.GetAllWareHouse().ToArray());

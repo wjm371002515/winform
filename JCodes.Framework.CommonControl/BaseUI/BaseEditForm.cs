@@ -39,7 +39,7 @@ namespace JCodes.Framework.CommonControl.BaseUI
             base.FormOnLoad();
 
             // 特殊处理 如果是当前用户信息 则修改此值
-            if (base.Name == "FrmEditUser" && base.ParentForm.Name == "MainForm")
+            if (base.Name == "FrmEditUser" && base.ParentForm != null && base.ParentForm.Name == "MainForm")
             {
                 ID = LoginUserInfo.ID.ToString();
             }

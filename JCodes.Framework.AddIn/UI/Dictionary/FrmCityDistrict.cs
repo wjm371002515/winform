@@ -1,4 +1,5 @@
-﻿using JCodes.Framework.BLL;
+﻿using JCodes.Framework.AddIn.Other;
+using JCodes.Framework.BLL;
 using JCodes.Framework.Common;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.CommonControl;
@@ -19,9 +20,10 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
 {
     public partial class FrmCityDistrict : BaseDock
     {
-        private string SelectedProvinceId = "";
-        private string SelectedCityId = "";
+        private string SelectedProvinceId = "0";
+        private string SelectedCityId = "0";
 
+        #region 框架初始化
         public FrmCityDistrict()
         {
             InitializeComponent();
@@ -38,23 +40,192 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
             this.winGridViewPager1.BestFitColumnWith = false;//是否设置为自动调整宽度，false为不设置
             this.winGridViewPager1.gridView1.DataSourceChanged += new EventHandler(gridView1_DataSourceChanged);
             this.winGridViewPager1.gridView1.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(gridView1_CustomColumnDisplayText);
-            this.winGridViewPager1.gridView1.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(gridView1_RowCellStyle);
-
         }
+        #endregion
 
-        void gridView1_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        #region 省份
+        /// <summary>
+        /// 初始化省份列表内容
+        /// </summary>
+        private void InitProvinceTree()
         {
-            //if (e.Column.FieldName == "OrderStatus")
-            //{
-            //    string status = this.winGridViewPager1.gridView1.GetRowCellValue(e.RowHandle, "OrderStatus").ToString();
-            //    Color color = Color.White;
-            //    if (status == "已审核")
-            //    {
-            //        e.Appearance.BackColor = Color.Red;
-            //        e.Appearance.BackColor2 = Color.LightCyan;
-            //    }
-            //}
+            //初始化代码
+            this.treeCity.Nodes.Clear();
+            this.treeProvince.Nodes.Clear();
+
+            this.treeProvince.BeginUpdate();
+            List<ProvinceInfo> provinceList = BLLFactory<Province>.Instance.GetAll();
+            foreach (ProvinceInfo info in provinceList)
+            {
+                TreeNode node = new TreeNode(info.ProvinceName);
+                node.Tag = info.ID;
+
+                this.treeProvince.Nodes.Add(node);
+            }
+            this.treeProvince.EndUpdate();
         }
+
+        private void treeProvince_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            InitCityTree();
+        }
+
+        private void menuTree_ExpandAll_Click(object sender, EventArgs e)
+        {
+            this.treeProvince.ExpandAll();
+        }
+
+        private void menuTree_Clapase_Click(object sender, EventArgs e)
+        {
+            this.treeProvince.CollapseAll();
+        }
+
+        private void menuTree_Refresh_Click(object sender, EventArgs e)
+        {
+            InitProvinceTree();
+        }
+
+        #endregion
+
+        #region 城市
+        /// <summary>
+        /// 初始化城市列表
+        /// </summary>
+        private void InitCityTree()
+        {
+            TreeNode selectedNode = this.treeProvince.SelectedNode;
+            if (selectedNode != null && selectedNode.Tag != null)
+            {
+                this.SelectedProvinceId = selectedNode.Tag.ToString();
+
+                this.treeCity.Nodes.Clear();
+                this.treeCity.BeginUpdate();
+
+                List<CityInfo> cityList = BLLFactory<City>.Instance.GetCitysByProvinceID(selectedNode.Tag.ToString());
+                foreach (CityInfo info in cityList)
+                {
+                    TreeNode node = new TreeNode(info.ZipCode+"_"+info.CityName, 1, 1);
+                    node.Tag = info.ID;
+                    this.treeCity.Nodes.Add(node);
+                }
+
+                this.treeCity.EndUpdate();
+            }
+        }
+
+        private void treeCity_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            if (e.Node != null && e.Node.Tag != null)
+            {
+                this.SelectedCityId = e.Node.Tag.ToString();
+                this.lblCityName.Text = e.Node.Text;
+                this.lblCityName.Tag = e.Node.Tag.ToString();
+
+                BindData();
+            }
+        }
+
+        private void menuCity_ExpandAll_Click(object sender, EventArgs e)
+        {
+            this.treeCity.ExpandAll();
+        }
+
+        private void menuCity_Clapse_Click(object sender, EventArgs e)
+        {
+            this.treeCity.CollapseAll();
+        }
+
+        private void menuCity_Refresh_Click(object sender, EventArgs e)
+        {
+            InitCityTree();
+        }
+
+        private void menuCity_AddNew_Click(object sender, EventArgs e)
+        {
+            if (!Portal.gc.HasFunction("CityDistrict/CityAdd"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(SelectedProvinceId))
+            {
+                MessageDxUtil.ShowTips("请先选择省份");
+                return;
+            }
+
+            ProvinceInfo info = BLLFactory<Province>.Instance.FindByID(SelectedProvinceId);
+            if (info != null)
+            {
+                FrmEditCity dlg = new FrmEditCity();
+                dlg.txtProvince.Text = info.ProvinceName;
+                dlg.txtProvince.Tag = info.ID;
+                dlg.OnDataSaved += new EventHandler(dlgCity_OnDataSaved);
+                dlg.ShowDialog();
+            }
+        }
+
+        private void treeCity_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            menuCity_Edit_Click(null, null);
+        }
+
+        private void menuCity_Edit_Click(object sender, EventArgs e)
+        {
+            if (!Portal.gc.HasFunction("CityDistrict/CityEdit"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
+            TreeNode selectedNode = this.treeCity.SelectedNode;
+            if (selectedNode != null && selectedNode.Tag != null)
+            {
+                ProvinceInfo info = BLLFactory<Province>.Instance.FindByID(SelectedProvinceId);
+                if (info != null)
+                {
+                    FrmEditCity dlg = new FrmEditCity();
+                    dlg.txtProvince.Text = info.ProvinceName;
+                    dlg.txtProvince.Tag = info.ID;
+                    dlg.ID = selectedNode.Tag.ToString();
+                    dlg.OnDataSaved += new EventHandler(dlgCity_OnDataSaved);
+                    dlg.ShowDialog();
+                }
+            }
+        }
+
+        private void menuCity_Delete_Click(object sender, EventArgs e)
+        {
+            if (!Portal.gc.HasFunction("CityDistrict/CityDel"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
+            TreeNode selectedNode = this.treeCity.SelectedNode;
+            if (selectedNode != null && selectedNode.Tag != null)
+            {
+                string message = "您确认要删除选定的记录吗";
+                if (MessageDxUtil.ShowYesNoAndWarning(message) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    BLLFactory<City>.Instance.DeleteByUser(selectedNode.Tag.ToString(), LoginUserInfo.ID.ToString());
+                    BLLFactory<District>.Instance.DeleteByCondition(string.Format("CityID={0}", selectedNode.Tag.ToString()));
+
+                    InitCityTree();
+                }
+            }
+        }
+
+        void dlgCity_OnDataSaved(object sender, EventArgs e)
+        {
+            InitCityTree();
+        }
+
+        #endregion
+
+        #region 区乡县
+       
+
         void gridView1_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
         {
             if (e.Column.ColumnType == typeof(DateTime))
@@ -72,17 +243,6 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
                     }
                 }
             }
-            //else if (e.Column.FieldName == "Age")
-            //{
-            //    e.DisplayText = string.Format("{0}岁", e.Value);
-            //}
-            //else if (Column.FieldName == "ReceivedMoney")
-            //{
-            //    if (e.Value != null)
-            //    {
-            //        e.DisplayText = e.Value.ToString().ToDecimal().ToString("C");
-            //    }
-            //}
         }
 
         /// <summary>
@@ -112,58 +272,6 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
             }
         }
 
-        private void FrmCityDistrict_Load(object sender, EventArgs e)
-        {
-            BindData();
-        }
-
-        /// <summary>
-        /// 初始化省份列表内容
-        /// </summary>
-        private void InitProvinceTree()
-        {
-            //初始化代码
-            this.treeCity.Nodes.Clear();
-            this.treeProvince.Nodes.Clear();
-
-            this.treeProvince.BeginUpdate();
-            List<ProvinceInfo> provinceList = BLLFactory<Province>.Instance.GetAll();
-            foreach (ProvinceInfo info in provinceList)
-            {
-                TreeNode node = new TreeNode(info.ProvinceName);
-                node.Tag = info.ID;
-
-                this.treeProvince.Nodes.Add(node);
-            }
-            this.treeProvince.EndUpdate();
-
-        }
-
-        /// <summary>
-        /// 初始化城市列表
-        /// </summary>
-        private void InitCityTree()
-        {
-            TreeNode selectedNode = this.treeProvince.SelectedNode;
-            if (selectedNode != null && selectedNode.Tag != null)
-            {
-                this.SelectedProvinceId = selectedNode.Tag.ToString();
-
-                this.treeCity.Nodes.Clear();
-                this.treeCity.BeginUpdate();
-
-                List<CityInfo> cityList = BLLFactory<City>.Instance.GetCitysByProvinceID(selectedNode.Tag.ToString());
-                foreach (CityInfo info in cityList)
-                {
-                    TreeNode node = new TreeNode(info.CityName, 1, 1);
-                    node.Tag = info.ID;
-                    this.treeCity.Nodes.Add(node);
-                }
-
-                this.treeCity.EndUpdate();
-            }
-        }
-
         /// <summary>
         /// 分页控件刷新操作
         /// </summary>
@@ -172,24 +280,38 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
             BindData();
         }
 
-        /// <summary>
-        /// 分页控件删除操作
-        /// </summary>
-        private void winGridViewPager1_OnDeleteSelected(object sender, EventArgs e)
+        private void btnBatchAdd_Click(object sender, EventArgs e)
         {
-            if (MessageDxUtil.ShowYesNoAndTips("您确定删除选定的记录么？") == DialogResult.No)
+            if (!Portal.gc.HasFunction("CityDistrict/DistrictAdd"))
             {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
             }
 
-            int[] rowSelected = this.winGridViewPager1.GridView1.GetSelectedRows();
-            foreach (int iRow in rowSelected)
+            if (string.IsNullOrWhiteSpace(SelectedCityId))
             {
-                string ID = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "ID");
-                BLLFactory<District>.Instance.DeleteByUser(ID, LoginUserInfo.ID.ToString());
+                MessageDxUtil.ShowTips("请先选择城市");
+                return;
             }
 
-            BindData();
+            FrmBatchAddDistrict dlg = new FrmBatchAddDistrict();
+            dlg.txtCity.Text = lblCityName.Text;
+            dlg.txtCity.Tag = lblCityName.Tag;
+            dlg.OnDataSaved += new EventHandler(District_OnDataSaved);
+            dlg.ShowDialog();
+        }
+
+        /// <summary>
+        /// 分页控件新增操作
+        /// </summary>        
+        private void winGridViewPager1_OnAddNew(object sender, EventArgs e)
+        {
+            btnBatchAdd_Click(null, null);
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            winGridViewPager1_OnEditSelected(this.winGridViewPager1.gridView1, null);
         }
 
         /// <summary>
@@ -197,6 +319,12 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
         /// </summary>
         private void winGridViewPager1_OnEditSelected(object sender, EventArgs e)
         {
+            if (!Portal.gc.HasFunction("CityDistrict/DistrictEdit"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
             if (string.IsNullOrWhiteSpace(SelectedCityId))
             {
                 MessageDxUtil.ShowTips("请先选择城市");
@@ -222,17 +350,40 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
             }
         }
 
-        void dlg_OnDataSaved(object sender, EventArgs e)
+        private void btnDelete_Click(object sender, EventArgs e)
         {
-            BindData();
+            winGridViewPager1_OnDeleteSelected(this.winGridViewPager1.gridView1, null);
         }
 
         /// <summary>
-        /// 分页控件新增操作
-        /// </summary>        
-        private void winGridViewPager1_OnAddNew(object sender, EventArgs e)
+        /// 分页控件删除操作
+        /// </summary>
+        private void winGridViewPager1_OnDeleteSelected(object sender, EventArgs e)
         {
-            btnBatchAdd_Click(null, null);
+            if (!Portal.gc.HasFunction("CityDistrict/DistrictDel"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
+            if (MessageDxUtil.ShowYesNoAndTips("您确定删除选定的记录么？") == DialogResult.No)
+            {
+                return;
+            }
+
+            int[] rowSelected = this.winGridViewPager1.GridView1.GetSelectedRows();
+            foreach (int iRow in rowSelected)
+            {
+                string ID = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "ID");
+                BLLFactory<District>.Instance.DeleteByUser(ID, LoginUserInfo.ID.ToString());
+            }
+
+            BindData();
+        }
+
+        void dlg_OnDataSaved(object sender, EventArgs e)
+        {
+            BindData();
         }
 
         /// <summary>
@@ -242,14 +393,6 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
         {
             List<DistrictInfo> list = BLLFactory<District>.Instance.GetDistrictByCity(SelectedCityId);
             this.winGridViewPager1.AllToExport = list;
-        }
-
-        /// <summary>
-        /// 分页控件翻页的操作
-        /// </summary> 
-        private void winGridViewPager1_OnPageChanged(object sender, EventArgs e)
-        {
-            BindData();
         }
 
         /// <summary>
@@ -271,167 +414,11 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
             this.winGridViewPager1.PrintTitle = "District报表";
         }
 
-        /// <summary>
-        /// 查询数据操作
-        /// </summary>
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            BindData();
-        }
-
-        /// <summary>
-        /// 提供给控件回车执行查询的操作
-        /// </summary>
-        private void SearchControl_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                btnSearch_Click(null, null);
-            }
-        }
-
-        private void treeProvince_AfterSelect(object sender, TreeViewEventArgs e)
-        {            
-            InitCityTree();
-        }
-
-        private void treeCity_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-            if (e.Node != null && e.Node.Tag != null)
-            {
-                this.SelectedCityId = e.Node.Tag.ToString();
-                this.lblCityName.Text = e.Node.Text;
-                this.lblCityName.Tag = e.Node.Tag.ToString();
-
-                BindData();
-            }
-        }
-
-        private void treeCity_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            menuCity_Edit_Click(null, null);
-        }
-
-        private void menuTree_ExpandAll_Click(object sender, EventArgs e)
-        {
-            this.treeProvince.ExpandAll();
-        }
-
-        private void menuTree_Clapase_Click(object sender, EventArgs e)
-        {
-            this.treeProvince.CollapseAll();
-        }
-
-        private void menuTree_Refresh_Click(object sender, EventArgs e)
-        {
-            InitProvinceTree();
-        }
-
-        private void menuCity_ExpandAll_Click(object sender, EventArgs e)
-        {
-            this.treeCity.ExpandAll();
-        }
-
-        private void menuCity_Clapse_Click(object sender, EventArgs e)
-        {
-            this.treeCity.CollapseAll();
-        }
-
-        private void menuCity_Refresh_Click(object sender, EventArgs e)
-        {
-            InitCityTree();
-        }
-
-        private void menuCity_AddNew_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(SelectedProvinceId))
-            {
-                MessageDxUtil.ShowTips("请先选择省份");
-                return;
-            }
-
-            ProvinceInfo info = BLLFactory<Province>.Instance.FindByID(SelectedProvinceId);
-            if (info != null)
-            {
-                FrmEditCity dlg = new FrmEditCity();
-                dlg.txtProvince.Text = info.ProvinceName;
-                dlg.txtProvince.Tag = info.ID;
-                dlg.OnDataSaved += new EventHandler(dlgCity_OnDataSaved);
-                dlg.ShowDialog();
-            }
-        }
-
-        void dlgCity_OnDataSaved(object sender, EventArgs e)
-        {
-            InitCityTree();
-        }
-
-        private void menuCity_Edit_Click(object sender, EventArgs e)
-        {
-            TreeNode selectedNode = this.treeCity.SelectedNode;
-            if (selectedNode != null && selectedNode.Tag != null)
-            {
-                ProvinceInfo info = BLLFactory<Province>.Instance.FindByID(SelectedProvinceId);
-                if (info != null)
-                {
-                    FrmEditCity dlg = new FrmEditCity();
-                    dlg.txtProvince.Text = info.ProvinceName;
-                    dlg.txtProvince.Tag = info.ID;
-                    dlg.ID = selectedNode.Tag.ToString();
-                    dlg.OnDataSaved += new EventHandler(dlgCity_OnDataSaved);
-                    dlg.ShowDialog();
-                }
-            }
-        }
-
-        private void menuCity_Delete_Click(object sender, EventArgs e)
-        {
-            TreeNode selectedNode = this.treeCity.SelectedNode;
-            if (selectedNode != null && selectedNode.Tag != null)
-            {
-                string message = "您确认要删除选定的记录吗";
-                if (MessageDxUtil.ShowYesNoAndWarning(message) == System.Windows.Forms.DialogResult.Yes)
-                {
-                    BLLFactory<City>.Instance.DeleteByUser(selectedNode.Tag.ToString(), LoginUserInfo.ID.ToString());
-                }
-            }
-        }
-
-        private void btnBatchAdd_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(SelectedCityId))
-            {
-                MessageDxUtil.ShowTips("请先选择城市");
-                return;
-            }
-
-            FrmBatchAddDistrict dlg = new FrmBatchAddDistrict();
-            dlg.txtCity.Text = lblCityName.Text;
-            dlg.txtCity.Tag = lblCityName.Tag;
-            dlg.OnDataSaved += new EventHandler(District_OnDataSaved);
-            dlg.ShowDialog();
-        }
+        
         void District_OnDataSaved(object sender, EventArgs e)
         {
             BindData();
         }
-
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            winGridViewPager1_OnEditSelected(this.winGridViewPager1.gridView1, null);
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(SelectedCityId))
-            {
-                MessageDxUtil.ShowTips("请先选择城市");
-                return;
-            }
-
-            winGridViewPager1_OnDeleteSelected(this.winGridViewPager1.gridView1, null);
-        }
-
-
+        #endregion
     }
 }

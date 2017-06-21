@@ -127,6 +127,8 @@
     <Compile Include="Collections\SyncOrderedDictionary.cs" />
     <Compile Include="Collections\ThreadSafeDictionary.cs" />
     <Compile Include="Collections\ThreadSafeSortedList.cs" />
+    <Compile Include="Const\JCodes.Framework.Common.Dic.Const.cs" />
+    <Compile Include="Const\JCodes.Framework.Common.Num.Const.cs" />
     <Compile Include="Const\JCodes.Framework.Common.Other.Const.cs" />
     <Compile Include="Const\JCodes.Framework.Common.Controls.Const.cs" />
     <Compile Include="Const\JCodes.Framework.Common.SystemConfig.Const.cs" />

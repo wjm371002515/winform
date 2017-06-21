@@ -1,23 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Linq;
-using System.Windows.Forms;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Diagnostics;
-using JCodes.Framework.Common;
+using JCodes.Framework.AddIn.Other;
 using JCodes.Framework.CommonControl.Framework;
-using JCodes.Framework.BLL;
-using JCodes.Framework.Common.Framework;
-using JCodes.Framework.Entity;
+using JCodes.Framework.CommonControl.BaseUI;
+using JCodes.Framework.CommonControl.Other;
 
 namespace JCodes.Framework.AddIn.Test
 {
-    public partial class Test : Form
+    public partial class Test : BaseDock
     {
         public Test()
         {
@@ -143,7 +135,12 @@ namespace JCodes.Framework.AddIn.Test
 
         private void Test_Load(object sender, EventArgs e)
         {
-            var lst = BLLFactory<DictData>.Instance.GetDictByTypeID(100000);
+
+            this.comboBoxEdit1.BindDictItems(100000);
+            comboBoxEdit1.SetComboBoxItem(1);
+            checkedComboBoxEdit1.BindDictItems(100000);
+            checkedComboBoxEdit1.SetEditValue("0,1");
+            /*var lst = BLLFactory<DictData>.Instance.GetDictByTypeID(100000);
             comboBoxEdit1.Properties.Items.Clear();
             comboBoxEdit1.Properties.Items.Add(new CListItem(Const.NoSelectMsg, Const.NoSeletValue.ToString()));
             foreach(var one in lst)
@@ -151,6 +148,24 @@ namespace JCodes.Framework.AddIn.Test
                 comboBoxEdit1.Properties.Items.Add(new CListItem(one.Name, one.Value.ToString()));
             }
             labelControl1.Text = BLLFactory<DictData>.Instance.GetDictName(100000, 1);
+
+            checkedComboBoxEdit1.Properties.Items.Clear();
+            checkedComboBoxEdit1.Properties.Items.Add(new CListItem(Const.NoSelectMsg, Const.NoSeletValue.ToString()));
+            foreach (var one in lst)
+            {
+                checkedComboBoxEdit1.Properties.Items.Add(new CListItem(one.Name, one.Value.ToString()));
+            }*/
+        }
+
+        /// <summary>
+        /// 下拉框取值
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button3_Click(object sender, EventArgs e)
+        {
+            MessageDxUtil.ShowError("单选下拉框comboBoxEdit1取值:" + comboBoxEdit1.GetComboBoxIntValue());
+            MessageDxUtil.ShowError("多选下拉框checkedComboBoxEdit1取值:" + checkedComboBoxEdit1.GetCheckedComboBoxValue());
         }
     }
 

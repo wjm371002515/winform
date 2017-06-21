@@ -923,7 +923,6 @@ namespace JCodes.Framework.Common.Network
                 return -3;
             }
         }
-
     }
 
     #region Win32Utils

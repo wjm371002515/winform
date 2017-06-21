@@ -25,7 +25,7 @@ namespace JCodes.Framework.OracleDAL
 				return new District();
 			}
 		}
-		public District() : base("TB_District","ID")
+		public District() : base(OraclePortal.gc._basicTablePre+"District","ID")
         {
             this.SeqName = string.Format("SEQ_{0}", tableName);//数值型主键，通过序列生成
             this.isDescending = false;
@@ -68,7 +68,7 @@ namespace JCodes.Framework.OracleDAL
 
         public List<DistrictInfo> GetDistrictByCityName(string cityName)
         {
-            string sql = string.Format("Select c.* from TB_District as c inner join TB_City as p on c.CityID=p.ID where CityName='{0}' ", cityName);
+            string sql = string.Format("Select c.* from {0}District as c inner join {0}City as p on c.CityID=p.ID where CityName='{1}' ", OraclePortal.gc._basicTablePre, cityName);
             return base.GetList(sql, null);
         }
     }

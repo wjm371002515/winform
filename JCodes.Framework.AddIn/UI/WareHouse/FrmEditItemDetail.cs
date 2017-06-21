@@ -81,14 +81,14 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
         /// </summary>
         private void InitDictItem()
         {
-            this.txtManufacture.BindDictItems("供货商");
-            this.txtBigType.BindDictItems("备件属类");
-            this.txtItemType.BindDictItems("备件类别");
-            this.txtUnit.BindDictItems("单位");
-            this.txtSource.BindDictItems("来源");
-            this.txtUsagePos.BindDictItems("使用位置");
-            this.txtUsagePos.SelectedIndex = 0;
-            this.txtBelongDept.BindDictItems("部门");
+            //this.txtManufacture.BindDictItems("供货商");
+            //this.txtBigType.BindDictItems("备件属类");
+            //this.txtItemType.BindDictItems("备件类别");
+            //this.txtUnit.BindDictItems("单位");
+            //this.txtSource.BindDictItems("来源");
+            //this.txtUsagePos.BindDictItems("使用位置");
+            //this.txtUsagePos.SelectedIndex = 0;
+            //this.txtBelongDept.BindDictItems("部门");
 
             //其他绑定方式
             this.txtBelongWareHouse.Properties.Items.Clear();

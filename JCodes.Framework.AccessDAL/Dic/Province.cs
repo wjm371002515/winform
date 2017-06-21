@@ -25,7 +25,7 @@ namespace JCodes.Framework.AccessDAL
 				return new Province();
 			}
 		}
-		public Province() : base("TB_Province","ID")
+		public Province() : base(AccessPortal.gc._basicTablePre+"Province","ID")
 		{
             IsDescending = false;
 		}

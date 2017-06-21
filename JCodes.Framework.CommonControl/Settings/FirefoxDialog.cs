@@ -1,9 +1,7 @@
+using JCodes.Framework.Common;
+using JCodes.Framework.CommonControl.Other;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
 using System.Windows.Forms;
 
 namespace JCodes.Framework.CommonControl.Settings
@@ -154,16 +152,17 @@ namespace JCodes.Framework.CommonControl.Settings
 			}
 		}  
 		#endregion
-
+       
 		#endregion
 
 		#region Dialog Buttons
-		private void btnOK_Click(object sender, EventArgs e)
-		{
-			bool result = this.Apply();
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            bool result = this.Search();
             if (result)
             {
-                this.Close();
+                // 保存成功不做关闭操作
+                //this.Close();
             }
             else
             {
@@ -172,7 +171,7 @@ namespace JCodes.Framework.CommonControl.Settings
                     this.ParentForm.DialogResult = DialogResult.None;
                 }
             }
-		}
+        }
 
 		private void btnCancel_Click(object sender, EventArgs e)
 		{
@@ -184,7 +183,8 @@ namespace JCodes.Framework.CommonControl.Settings
             bool result = this.Apply();
             if (result)
             {
-                this.Close();
+                // 保存成功不做关闭操作
+                //this.Close();
             }
             else
             {
@@ -193,8 +193,23 @@ namespace JCodes.Framework.CommonControl.Settings
                     this.ParentForm.DialogResult = DialogResult.None;
                 }
             }
-
 		}
+
+        private bool Search()
+        {
+            foreach (PageProp pageProp in pages.Values)
+            {
+                if (pageProp.Page.IsInit)
+                {
+                    bool result = pageProp.Page.OnSearch();
+                    if (!result)
+                    {
+                        return result;
+                    }
+                }
+            }
+            return true;//最后全部返回
+        }
 
 		private bool Apply()
 		{
@@ -211,6 +226,11 @@ namespace JCodes.Framework.CommonControl.Settings
 			}
             return true;//最后全部返回
 		}
+
+        public void ChangeValue(string inputStr)
+        {
+            meChangeContent.Text = meChangeContent.Text + inputStr + Const.WrapText;
+        }
 
 		private void Close()
 		{

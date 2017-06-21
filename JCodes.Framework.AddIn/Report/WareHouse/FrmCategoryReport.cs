@@ -116,7 +116,7 @@ namespace JCodes.Framework.AddIn.Report.WareHouse
             this.txtWareHouse.Properties.Items.Clear();
             this.txtWareHouse.Properties.Items.AddRange(BLLFactory<WareHouses>.Instance.GetAllWareHouse().ToArray());
 
-            this.txtDept.BindDictItems("部门");
+            //this.txtDept.BindDictItems("部门");
         }
 
         private DataTable dt = null;

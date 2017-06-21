@@ -90,6 +90,17 @@ namespace JCodes.Framework.Common
         public const string Restart = "restart";
 
         /// <summary>
+        /// 日期格式
+        /// </summary>
+        public const string DateformatString = "yyyy-MM-dd";
+
+        /// <summary>
+        /// 时间格式
+        /// </summary>
+        public const string TimeformatString = "hh:mm:ss";
+
+
+        /// <summary>
         /// 没有权限提示信息
         /// </summary>
         public const string NoAuthMsg = "您没有此权限，请与管理员联系!";

@@ -17,42 +17,111 @@ using System.Windows.Forms;
 
 namespace JCodes.Framework.AddIn.UI.Dictionary
 {
-    public partial class FrmEditDistrict : BaseDock
+    public partial class FrmEditDistrict : BaseEditForm
     {        
-        public string ID = string.Empty;
-        public string LoginID = "";//登陆用户ID 
-        private DistrictInfo tempInfo = new DistrictInfo();
-
         public FrmEditDistrict()
         {
             InitializeComponent();
         }
 
-        private void btnOK_Click(object sender, EventArgs e)
+
+        public override bool CheckInput()
         {
-            tempInfo.DistrictName = this.txtDistrict.Text;
-            tempInfo.CityID = Convert.ToInt32(this.txtCity.Tag.ToString());
+            bool result = true;//默认是可以通过
+            #region MyRegion
+            if (this.txtDistrict.Text.Trim().Length == 0)
+            {
+                MessageDxUtil.ShowTips("区县名称不能为空");
+                this.txtDistrict.Focus();
+                result = false;
+            }
+            #endregion
+
+            return result;
+        }
+        public override void DisplayData()
+        {
+            if (!string.IsNullOrEmpty(ID))
+            {
+                this.Text = "编辑 " + this.Text;
+                DistrictInfo info = BLLFactory<District>.Instance.FindByID(ID);
+                if (info != null)
+                {
+                    this.txtDistrict.Text = info.DistrictName;
+                }
+            }
+            else
+            {
+                this.Text = "新建 " + this.Text;
+            }
+            this.txtCity.Focus();
+        }
+
+        public override void ClearScreen()
+        {
+            txtDistrict.Text = string.Empty;
+            base.ClearScreen();
+        }
+
+        public override bool SaveAddNew()
+        {
+            DistrictInfo info = new DistrictInfo();
+
+            SetInfo(info);
 
             try
             {
-                bool succeed = false;
-                if (string.IsNullOrEmpty(ID))
-                {
-                    succeed = BLLFactory<District>.Instance.Insert(tempInfo);
-                }
-                else
-                {
-                    succeed = BLLFactory<District>.Instance.Update(tempInfo, tempInfo.ID);
-                }
+                #region 新增数据
 
-                ProcessDataSaved(this.btnOK, new EventArgs());
-                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                bool succeed = BLLFactory<District>.Instance.Insert(info);
+                if (succeed)
+                {
+                    //可添加其他关联操作
+
+                    return true;
+                }
+                #endregion
             }
             catch (Exception ex)
             {
                 LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmEditDistrict));
                 MessageDxUtil.ShowError(ex.Message);
             }
+            return false;
+        }
+
+        public override bool SaveUpdated()
+        {
+            DistrictInfo info = new DistrictInfo();
+            if (info != null)
+            {
+                SetInfo(info);
+                try
+                {
+                    #region 更新数据
+                    bool succeed = BLLFactory<District>.Instance.Update(info, ID);
+                    if (succeed)
+                    {
+                        //可添加其他关联操作
+                        return true;
+                    }
+                    #endregion
+                }
+                catch (Exception ex)
+                {
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmEditCity));
+                    MessageDxUtil.ShowError(ex.Message);
+                }
+            }
+            return false;
+        }
+
+        private void SetInfo(DistrictInfo info)
+        {
+            info.DistrictName = this.txtDistrict.Text;
+            info.CityID = Convert.ToInt32(this.txtCity.Tag);
+
+            info.CurrentLoginUserId = LoginUserInfo.ID.ToString();
         }
 
         private void FrmEditCityDistrict_Load(object sender, EventArgs e)
@@ -62,7 +131,6 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
                 DistrictInfo info = BLLFactory<District>.Instance.FindByID(ID);
                 if (info != null)
                 {
-                    tempInfo = info;
                     this.txtDistrict.Text = info.DistrictName;
                 }
             }

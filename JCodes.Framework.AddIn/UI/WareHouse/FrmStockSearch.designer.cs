@@ -29,6 +29,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmStockSearch));
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("所有记录", 0, 0);
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("自定义分组1", 1, 1);
@@ -38,12 +39,12 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             treeNode2,
             treeNode3,
             treeNode4});
-            this.imageList1 = new System.Windows.Forms.ImageList();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menu_SetAlarm = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_ModifyStock = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_DeleteZero = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip();
+            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menu_ClapseAll = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_ExpandAll = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_Refresh = new System.Windows.Forms.ToolStripMenuItem();
@@ -111,11 +112,11 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.treeView1 = new System.Windows.Forms.TreeView();
-            this.menuTree = new System.Windows.Forms.ContextMenuStrip();
+            this.menuTree = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuTree_ExpandAll = new System.Windows.Forms.ToolStripMenuItem();
             this.menuTree_Clapase = new System.Windows.Forms.ToolStripMenuItem();
             this.menuTree_Refresh = new System.Windows.Forms.ToolStripMenuItem();
-            this.imageListTree = new System.Windows.Forms.ImageList();
+            this.imageListTree = new System.Windows.Forms.ImageList(this.components);
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             this.splitContainerControl2 = new DevExpress.XtraEditors.SplitContainerControl();
             this.contextMenuStrip1.SuspendLayout();
@@ -124,12 +125,16 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStockQuantity2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUsagePos.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStockQuantity1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMapNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtItemNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtItemType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtManufacture.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPrice2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbSpecNumber.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPrice1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSource.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUnit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBigType.Properties)).BeginInit();
@@ -182,62 +187,64 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             // 
             // contextMenuStrip1
             // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menu_SetAlarm,
             this.menu_ModifyStock,
             this.menu_DeleteZero});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(191, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(252, 88);
             // 
             // menu_SetAlarm
             // 
             this.menu_SetAlarm.Name = "menu_SetAlarm";
-            this.menu_SetAlarm.Size = new System.Drawing.Size(190, 22);
+            this.menu_SetAlarm.Size = new System.Drawing.Size(251, 28);
             this.menu_SetAlarm.Text = "设置库存警告数量(&Q)";
             this.menu_SetAlarm.Click += new System.EventHandler(this.menu_SetAlarm_Click);
             // 
             // menu_ModifyStock
             // 
             this.menu_ModifyStock.Name = "menu_ModifyStock";
-            this.menu_ModifyStock.Size = new System.Drawing.Size(190, 22);
+            this.menu_ModifyStock.Size = new System.Drawing.Size(251, 28);
             this.menu_ModifyStock.Text = "调整库存数量(&M)";
             this.menu_ModifyStock.Click += new System.EventHandler(this.menu_ModifyStock_Click);
             // 
             // menu_DeleteZero
             // 
             this.menu_DeleteZero.Name = "menu_DeleteZero";
-            this.menu_DeleteZero.Size = new System.Drawing.Size(190, 22);
+            this.menu_DeleteZero.Size = new System.Drawing.Size(251, 28);
             this.menu_DeleteZero.Text = "删除冗余库存信息(&D)";
             this.menu_DeleteZero.ToolTipText = "该操作删除库存为0的多余库存记录,谨慎操作!";
             this.menu_DeleteZero.Click += new System.EventHandler(this.menu_DeleteZero_Click);
             // 
             // contextMenuStrip2
             // 
+            this.contextMenuStrip2.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menu_ClapseAll,
             this.menu_ExpandAll,
             this.menu_Refresh});
             this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(141, 70);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(177, 88);
             // 
             // menu_ClapseAll
             // 
             this.menu_ClapseAll.Name = "menu_ClapseAll";
-            this.menu_ClapseAll.Size = new System.Drawing.Size(140, 22);
+            this.menu_ClapseAll.Size = new System.Drawing.Size(176, 28);
             this.menu_ClapseAll.Text = "全部折叠(&C)";
             this.menu_ClapseAll.Click += new System.EventHandler(this.menu_ClapseAll_Click);
             // 
             // menu_ExpandAll
             // 
             this.menu_ExpandAll.Name = "menu_ExpandAll";
-            this.menu_ExpandAll.Size = new System.Drawing.Size(140, 22);
+            this.menu_ExpandAll.Size = new System.Drawing.Size(176, 28);
             this.menu_ExpandAll.Text = "全部展开(&E)";
             this.menu_ExpandAll.Click += new System.EventHandler(this.menu_ExpandAll_Click);
             // 
             // menu_Refresh
             // 
             this.menu_Refresh.Name = "menu_Refresh";
-            this.menu_Refresh.Size = new System.Drawing.Size(140, 22);
+            this.menu_Refresh.Size = new System.Drawing.Size(176, 28);
             this.menu_Refresh.Text = "刷新列表(&R)";
             this.menu_Refresh.Click += new System.EventHandler(this.menu_Refresh_Click);
             // 
@@ -296,115 +303,119 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             // 
             // txtStockQuantity2
             // 
+            this.txtStockQuantity2.Location = new System.Drawing.Point(601, 61);
+            this.txtStockQuantity2.Name = "txtStockQuantity2";
             this.txtStockQuantity2.Properties.Mask.EditMask = "[0-9]*";
             this.txtStockQuantity2.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txtStockQuantity2.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.txtStockQuantity2.Location = new System.Drawing.Point(597, 61);
-            this.txtStockQuantity2.Name = "txtStockQuantity2";
-            this.txtStockQuantity2.Size = new System.Drawing.Size(55, 20);
+            this.txtStockQuantity2.Size = new System.Drawing.Size(51, 28);
+            this.txtStockQuantity2.StyleController = this.layoutControl1;
             this.txtStockQuantity2.TabIndex = 15;
             this.txtStockQuantity2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtGoodsType_KeyDown);
             // 
             // txtUsagePos
             // 
-            this.txtUsagePos.Location = new System.Drawing.Point(215, 61);
+            this.txtUsagePos.Location = new System.Drawing.Point(239, 61);
             this.txtUsagePos.Name = "txtUsagePos";
-            this.txtUsagePos.Size = new System.Drawing.Size(101, 20);
+            this.txtUsagePos.Size = new System.Drawing.Size(77, 28);
             this.txtUsagePos.StyleController = this.layoutControl1;
             this.txtUsagePos.TabIndex = 16;
             this.txtUsagePos.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtGoodsType_KeyDown);
             // 
             // txtStockQuantity1
             // 
+            this.txtStockQuantity1.Location = new System.Drawing.Point(561, 61);
+            this.txtStockQuantity1.Name = "txtStockQuantity1";
             this.txtStockQuantity1.Properties.Mask.EditMask = "[0-9]*";
             this.txtStockQuantity1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txtStockQuantity1.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.txtStockQuantity1.Location = new System.Drawing.Point(537, 61);
-            this.txtStockQuantity1.Name = "txtStockQuantity1";
-            this.txtStockQuantity1.Size = new System.Drawing.Size(42, 20);
+            this.txtStockQuantity1.Size = new System.Drawing.Size(18, 28);
+            this.txtStockQuantity1.StyleController = this.layoutControl1;
             this.txtStockQuantity1.TabIndex = 14;
             this.txtStockQuantity1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtGoodsType_KeyDown);
             // 
             // txtMapNo
             // 
-            this.txtMapNo.Location = new System.Drawing.Point(372, 37);
+            this.txtMapNo.Location = new System.Drawing.Point(396, 37);
             this.txtMapNo.Name = "txtMapNo";
-            this.txtMapNo.Size = new System.Drawing.Size(109, 20);
+            this.txtMapNo.Size = new System.Drawing.Size(85, 28);
             this.txtMapNo.StyleController = this.layoutControl1;
             this.txtMapNo.TabIndex = 10;
             this.txtMapNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtGoodsType_KeyDown);
             // 
             // txtItemNo
             // 
-            this.txtItemNo.Location = new System.Drawing.Point(63, 37);
+            this.txtItemNo.Location = new System.Drawing.Point(87, 37);
             this.txtItemNo.Name = "txtItemNo";
-            this.txtItemNo.Size = new System.Drawing.Size(97, 20);
+            this.txtItemNo.Size = new System.Drawing.Size(73, 28);
             this.txtItemNo.StyleController = this.layoutControl1;
             this.txtItemNo.TabIndex = 9;
             this.txtItemNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtGoodsType_KeyDown);
             // 
             // txtItemType
             // 
-            this.txtItemType.Location = new System.Drawing.Point(371, 12);
+            this.txtItemType.Location = new System.Drawing.Point(395, 12);
             this.txtItemType.Name = "txtItemType";
             this.txtItemType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.txtItemType.Size = new System.Drawing.Size(110, 20);
+            this.txtItemType.Size = new System.Drawing.Size(86, 28);
             this.txtItemType.StyleController = this.layoutControl1;
             this.txtItemType.TabIndex = 6;
             this.txtItemType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtGoodsType_KeyDown);
             // 
             // txtManufacture
             // 
-            this.txtManufacture.Location = new System.Drawing.Point(536, 12);
+            this.txtManufacture.Location = new System.Drawing.Point(560, 12);
             this.txtManufacture.Name = "txtManufacture";
             this.txtManufacture.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.txtManufacture.Size = new System.Drawing.Size(116, 20);
+            this.txtManufacture.Size = new System.Drawing.Size(92, 28);
             this.txtManufacture.StyleController = this.layoutControl1;
             this.txtManufacture.TabIndex = 7;
             this.txtManufacture.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtGoodsType_KeyDown);
             // 
             // txtPrice2
             // 
+            this.txtPrice2.Location = new System.Drawing.Point(439, 61);
+            this.txtPrice2.Name = "txtPrice2";
             this.txtPrice2.Properties.Mask.EditMask = "[0-9]*";
             this.txtPrice2.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txtPrice2.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.txtPrice2.Location = new System.Drawing.Point(435, 61);
-            this.txtPrice2.Name = "txtPrice2";
-            this.txtPrice2.Size = new System.Drawing.Size(47, 20);
+            this.txtPrice2.Size = new System.Drawing.Size(43, 28);
+            this.txtPrice2.StyleController = this.layoutControl1;
             this.txtPrice2.TabIndex = 13;
             this.txtPrice2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtGoodsType_KeyDown);
             // 
             // cmbSpecNumber
             // 
-            this.cmbSpecNumber.Location = new System.Drawing.Point(536, 37);
+            this.cmbSpecNumber.Location = new System.Drawing.Point(560, 37);
             this.cmbSpecNumber.Name = "cmbSpecNumber";
             this.cmbSpecNumber.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbSpecNumber.Size = new System.Drawing.Size(116, 20);
+            this.cmbSpecNumber.Size = new System.Drawing.Size(92, 28);
             this.cmbSpecNumber.StyleController = this.layoutControl1;
             this.cmbSpecNumber.TabIndex = 13;
             this.cmbSpecNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtGoodsType_KeyDown);
             // 
             // txtPrice1
             // 
+            this.txtPrice1.Location = new System.Drawing.Point(395, 61);
+            this.txtPrice1.Name = "txtPrice1";
             this.txtPrice1.Properties.Mask.EditMask = "[0-9]*";
             this.txtPrice1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txtPrice1.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.txtPrice1.Location = new System.Drawing.Point(371, 61);
-            this.txtPrice1.Name = "txtPrice1";
-            this.txtPrice1.Size = new System.Drawing.Size(44, 20);
+            this.txtPrice1.Size = new System.Drawing.Size(20, 28);
+            this.txtPrice1.StyleController = this.layoutControl1;
             this.txtPrice1.TabIndex = 12;
             this.txtPrice1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtGoodsType_KeyDown);
             // 
             // txtSource
             // 
-            this.txtSource.Location = new System.Drawing.Point(707, 12);
+            this.txtSource.Location = new System.Drawing.Point(731, 12);
             this.txtSource.Name = "txtSource";
             this.txtSource.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.txtSource.Size = new System.Drawing.Size(120, 20);
+            this.txtSource.Size = new System.Drawing.Size(96, 28);
             this.txtSource.StyleController = this.layoutControl1;
             this.txtSource.TabIndex = 8;
             this.txtSource.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtGoodsType_KeyDown);
@@ -421,11 +432,11 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             // 
             // txtUnit
             // 
-            this.txtUnit.Location = new System.Drawing.Point(63, 61);
+            this.txtUnit.Location = new System.Drawing.Point(87, 61);
             this.txtUnit.Name = "txtUnit";
             this.txtUnit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.txtUnit.Size = new System.Drawing.Size(97, 20);
+            this.txtUnit.Size = new System.Drawing.Size(73, 28);
             this.txtUnit.StyleController = this.layoutControl1;
             this.txtUnit.TabIndex = 15;
             this.txtUnit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtGoodsType_KeyDown);
@@ -442,40 +453,40 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             // 
             // txtBigType
             // 
-            this.txtBigType.Location = new System.Drawing.Point(216, 12);
+            this.txtBigType.Location = new System.Drawing.Point(240, 12);
             this.txtBigType.Name = "txtBigType";
             this.txtBigType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.txtBigType.Size = new System.Drawing.Size(100, 20);
+            this.txtBigType.Size = new System.Drawing.Size(76, 28);
             this.txtBigType.StyleController = this.layoutControl1;
             this.txtBigType.TabIndex = 5;
             this.txtBigType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtGoodsType_KeyDown);
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(215, 37);
+            this.txtName.Location = new System.Drawing.Point(239, 37);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(102, 20);
+            this.txtName.Size = new System.Drawing.Size(78, 28);
             this.txtName.StyleController = this.layoutControl1;
             this.txtName.TabIndex = 11;
             this.txtName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtGoodsType_KeyDown);
             // 
             // txtMaterial
             // 
-            this.txtMaterial.Location = new System.Drawing.Point(707, 37);
+            this.txtMaterial.Location = new System.Drawing.Point(731, 37);
             this.txtMaterial.Name = "txtMaterial";
-            this.txtMaterial.Size = new System.Drawing.Size(120, 20);
+            this.txtMaterial.Size = new System.Drawing.Size(96, 28);
             this.txtMaterial.StyleController = this.layoutControl1;
             this.txtMaterial.TabIndex = 12;
             this.txtMaterial.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtGoodsType_KeyDown);
             // 
             // txtStoragePos
             // 
-            this.txtStoragePos.Location = new System.Drawing.Point(707, 61);
+            this.txtStoragePos.Location = new System.Drawing.Point(731, 61);
             this.txtStoragePos.Name = "txtStoragePos";
             this.txtStoragePos.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.txtStoragePos.Size = new System.Drawing.Size(120, 20);
+            this.txtStoragePos.Size = new System.Drawing.Size(96, 28);
             this.txtStoragePos.StyleController = this.layoutControl1;
             this.txtStoragePos.TabIndex = 19;
             this.txtStoragePos.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtGoodsType_KeyDown);
@@ -483,19 +494,19 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             // txtSearchWareHouse
             // 
             this.txtSearchWareHouse.AllowDrop = true;
-            this.txtSearchWareHouse.Location = new System.Drawing.Point(63, 12);
+            this.txtSearchWareHouse.Location = new System.Drawing.Point(87, 12);
             this.txtSearchWareHouse.Name = "txtSearchWareHouse";
             this.txtSearchWareHouse.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.DropDown)});
             this.txtSearchWareHouse.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.txtSearchWareHouse.Size = new System.Drawing.Size(98, 20);
+            this.txtSearchWareHouse.Size = new System.Drawing.Size(74, 28);
             this.txtSearchWareHouse.StyleController = this.layoutControl1;
             this.txtSearchWareHouse.TabIndex = 4;
             this.txtSearchWareHouse.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtGoodsType_KeyDown);
             // 
             // layoutControlGroup1
             // 
-            this.layoutControlGroup1.CustomizationFormText = "layoutControlGroup1";
+            this.layoutControlGroup1.CustomizationFormText = "Root";
             this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem1,
@@ -528,7 +539,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.txtSearchWareHouse;
-            this.layoutControlItem1.CustomizationFormText = "layoutControlItem1";
+            this.layoutControlItem1.CustomizationFormText = "选择仓库";
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.MaxSize = new System.Drawing.Size(175, 25);
             this.layoutControlItem1.MinSize = new System.Drawing.Size(50, 25);
@@ -536,12 +547,12 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             this.layoutControlItem1.Size = new System.Drawing.Size(153, 25);
             this.layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem1.Text = "选择仓库";
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(48, 14);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(72, 22);
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.txtBigType;
-            this.layoutControlItem2.CustomizationFormText = "layoutControlItem2";
+            this.layoutControlItem2.CustomizationFormText = "备件属类";
             this.layoutControlItem2.Location = new System.Drawing.Point(153, 0);
             this.layoutControlItem2.MaxSize = new System.Drawing.Size(175, 25);
             this.layoutControlItem2.MinSize = new System.Drawing.Size(50, 25);
@@ -549,12 +560,12 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             this.layoutControlItem2.Size = new System.Drawing.Size(155, 25);
             this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem2.Text = "备件属类";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(48, 14);
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(72, 22);
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.txtItemType;
-            this.layoutControlItem3.CustomizationFormText = "layoutControlItem3";
+            this.layoutControlItem3.CustomizationFormText = "备件类别";
             this.layoutControlItem3.Location = new System.Drawing.Point(308, 0);
             this.layoutControlItem3.MaxSize = new System.Drawing.Size(175, 25);
             this.layoutControlItem3.MinSize = new System.Drawing.Size(50, 25);
@@ -562,12 +573,12 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             this.layoutControlItem3.Size = new System.Drawing.Size(165, 25);
             this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem3.Text = "备件类别";
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(48, 14);
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(72, 22);
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.txtManufacture;
-            this.layoutControlItem4.CustomizationFormText = "layoutControlItem4";
+            this.layoutControlItem4.CustomizationFormText = "供货商";
             this.layoutControlItem4.Location = new System.Drawing.Point(473, 0);
             this.layoutControlItem4.MaxSize = new System.Drawing.Size(175, 25);
             this.layoutControlItem4.MinSize = new System.Drawing.Size(50, 25);
@@ -575,12 +586,12 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             this.layoutControlItem4.Size = new System.Drawing.Size(171, 25);
             this.layoutControlItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem4.Text = "供货商";
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(48, 14);
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(72, 22);
             // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.txtSource;
-            this.layoutControlItem5.CustomizationFormText = "layoutControlItem5";
+            this.layoutControlItem5.CustomizationFormText = "来源";
             this.layoutControlItem5.Location = new System.Drawing.Point(644, 0);
             this.layoutControlItem5.MaxSize = new System.Drawing.Size(175, 25);
             this.layoutControlItem5.MinSize = new System.Drawing.Size(50, 25);
@@ -588,12 +599,12 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             this.layoutControlItem5.Size = new System.Drawing.Size(175, 25);
             this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem5.Text = "来源";
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(48, 14);
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(72, 22);
             // 
             // layoutControlItem16
             // 
             this.layoutControlItem16.Control = this.txtItemNo;
-            this.layoutControlItem16.CustomizationFormText = "layoutControlItem16";
+            this.layoutControlItem16.CustomizationFormText = "备件编码";
             this.layoutControlItem16.Location = new System.Drawing.Point(0, 25);
             this.layoutControlItem16.MaxSize = new System.Drawing.Size(175, 24);
             this.layoutControlItem16.MinSize = new System.Drawing.Size(105, 24);
@@ -601,12 +612,12 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             this.layoutControlItem16.Size = new System.Drawing.Size(152, 24);
             this.layoutControlItem16.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem16.Text = "备件编码";
-            this.layoutControlItem16.TextSize = new System.Drawing.Size(48, 14);
+            this.layoutControlItem16.TextSize = new System.Drawing.Size(72, 22);
             // 
             // layoutControlItem17
             // 
             this.layoutControlItem17.Control = this.txtMapNo;
-            this.layoutControlItem17.CustomizationFormText = "layoutControlItem17";
+            this.layoutControlItem17.CustomizationFormText = "图号";
             this.layoutControlItem17.Location = new System.Drawing.Point(309, 25);
             this.layoutControlItem17.MaxSize = new System.Drawing.Size(175, 24);
             this.layoutControlItem17.MinSize = new System.Drawing.Size(105, 24);
@@ -614,12 +625,12 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             this.layoutControlItem17.Size = new System.Drawing.Size(164, 24);
             this.layoutControlItem17.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem17.Text = "图号";
-            this.layoutControlItem17.TextSize = new System.Drawing.Size(48, 14);
+            this.layoutControlItem17.TextSize = new System.Drawing.Size(72, 22);
             // 
             // layoutControlItem18
             // 
             this.layoutControlItem18.Control = this.txtName;
-            this.layoutControlItem18.CustomizationFormText = "layoutControlItem18";
+            this.layoutControlItem18.CustomizationFormText = "备件名称";
             this.layoutControlItem18.Location = new System.Drawing.Point(152, 25);
             this.layoutControlItem18.MaxSize = new System.Drawing.Size(175, 24);
             this.layoutControlItem18.MinSize = new System.Drawing.Size(105, 24);
@@ -627,7 +638,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             this.layoutControlItem18.Size = new System.Drawing.Size(157, 24);
             this.layoutControlItem18.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem18.Text = "备件名称";
-            this.layoutControlItem18.TextSize = new System.Drawing.Size(48, 14);
+            this.layoutControlItem18.TextSize = new System.Drawing.Size(72, 22);
             // 
             // layoutControlItem19
             // 
@@ -640,7 +651,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             this.layoutControlItem19.Size = new System.Drawing.Size(175, 24);
             this.layoutControlItem19.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem19.Text = "材质";
-            this.layoutControlItem19.TextSize = new System.Drawing.Size(48, 14);
+            this.layoutControlItem19.TextSize = new System.Drawing.Size(72, 22);
             // 
             // layoutControlItem20
             // 
@@ -653,7 +664,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             this.layoutControlItem20.Size = new System.Drawing.Size(171, 24);
             this.layoutControlItem20.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem20.Text = "规格型号";
-            this.layoutControlItem20.TextSize = new System.Drawing.Size(48, 14);
+            this.layoutControlItem20.TextSize = new System.Drawing.Size(72, 22);
             // 
             // layoutControlItem22
             // 
@@ -666,7 +677,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             this.layoutControlItem22.Size = new System.Drawing.Size(152, 24);
             this.layoutControlItem22.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem22.Text = "单位";
-            this.layoutControlItem22.TextSize = new System.Drawing.Size(48, 14);
+            this.layoutControlItem22.TextSize = new System.Drawing.Size(72, 22);
             // 
             // layoutControlItem23
             // 
@@ -679,7 +690,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             this.layoutControlItem23.Size = new System.Drawing.Size(156, 24);
             this.layoutControlItem23.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem23.Text = "使用位置";
-            this.layoutControlItem23.TextSize = new System.Drawing.Size(48, 14);
+            this.layoutControlItem23.TextSize = new System.Drawing.Size(72, 22);
             // 
             // emptySpaceItem1
             // 
@@ -732,12 +743,12 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             this.layoutControlItem6.Size = new System.Drawing.Size(175, 24);
             this.layoutControlItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem6.Text = "库位";
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(48, 14);
+            this.layoutControlItem6.TextSize = new System.Drawing.Size(72, 22);
             // 
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.txtPrice1;
-            this.layoutControlItem8.CustomizationFormText = "layoutControlItem8";
+            this.layoutControlItem8.CustomizationFormText = "单价";
             this.layoutControlItem8.Location = new System.Drawing.Point(308, 49);
             this.layoutControlItem8.MaxSize = new System.Drawing.Size(115, 24);
             this.layoutControlItem8.MinSize = new System.Drawing.Size(75, 24);
@@ -745,7 +756,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             this.layoutControlItem8.Size = new System.Drawing.Size(99, 24);
             this.layoutControlItem8.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem8.Text = "单价";
-            this.layoutControlItem8.TextSize = new System.Drawing.Size(48, 14);
+            this.layoutControlItem8.TextSize = new System.Drawing.Size(72, 22);
             // 
             // simpleSeparator1
             // 
@@ -768,7 +779,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             this.layoutControlItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem7.Text = "~";
             this.layoutControlItem7.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
-            this.layoutControlItem7.TextSize = new System.Drawing.Size(9, 14);
+            this.layoutControlItem7.TextSize = new System.Drawing.Size(13, 22);
             this.layoutControlItem7.TextToControlDistance = 5;
             // 
             // layoutControlItem9
@@ -782,7 +793,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             this.layoutControlItem9.Size = new System.Drawing.Size(97, 24);
             this.layoutControlItem9.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem9.Text = "库存量";
-            this.layoutControlItem9.TextSize = new System.Drawing.Size(48, 14);
+            this.layoutControlItem9.TextSize = new System.Drawing.Size(72, 22);
             // 
             // layoutControlItem10
             // 
@@ -796,7 +807,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             this.layoutControlItem10.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem10.Text = "~";
             this.layoutControlItem10.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
-            this.layoutControlItem10.TextSize = new System.Drawing.Size(9, 14);
+            this.layoutControlItem10.TextSize = new System.Drawing.Size(13, 22);
             this.layoutControlItem10.TextToControlDistance = 5;
             // 
             // groupBox3
@@ -807,7 +818,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             this.groupBox3.Controls.Add(this.winGridView1);
             this.groupBox3.Location = new System.Drawing.Point(9, 140);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(839, 540);
+            this.groupBox3.Size = new System.Drawing.Size(839, 532);
             this.groupBox3.TabIndex = 13;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "库存商品信息";
@@ -819,7 +830,8 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             this.winGridView1.DataSource = null;
             this.winGridView1.DisplayColumns = "";
             this.winGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.winGridView1.Location = new System.Drawing.Point(3, 18);
+            this.winGridView1.FixedColumns = null;
+            this.winGridView1.Location = new System.Drawing.Point(3, 25);
             this.winGridView1.MinimumSize = new System.Drawing.Size(540, 0);
             this.winGridView1.Name = "winGridView1";
             this.winGridView1.PrintTitle = "";
@@ -828,7 +840,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             this.winGridView1.ShowDeleteMenu = true;
             this.winGridView1.ShowEditMenu = true;
             this.winGridView1.ShowExportButton = true;
-            this.winGridView1.Size = new System.Drawing.Size(833, 519);
+            this.winGridView1.Size = new System.Drawing.Size(833, 504);
             this.winGridView1.TabIndex = 2;
             // 
             // lvwDetail
@@ -853,7 +865,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             this.lvwDetail.Location = new System.Drawing.Point(0, 0);
             this.lvwDetail.MultiSelect = false;
             this.lvwDetail.Name = "lvwDetail";
-            this.lvwDetail.Size = new System.Drawing.Size(915, 684);
+            this.lvwDetail.Size = new System.Drawing.Size(915, 676);
             this.lvwDetail.TabIndex = 3;
             this.lvwDetail.UseCompatibleStateImageBehavior = false;
             this.lvwDetail.View = System.Windows.Forms.View.Details;
@@ -923,7 +935,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             this.treeGoods.Location = new System.Drawing.Point(0, 0);
             this.treeGoods.Name = "treeGoods";
             this.treeGoods.SelectedImageIndex = 0;
-            this.treeGoods.Size = new System.Drawing.Size(212, 684);
+            this.treeGoods.Size = new System.Drawing.Size(212, 676);
             this.treeGoods.TabIndex = 2;
             this.treeGoods.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeGoods_AfterSelect);
             this.treeGoods.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeGoods_NodeMouseDoubleClick);
@@ -944,7 +956,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             // 
             this.xtraTabPage1.Controls.Add(this.splitContainerControl1);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(1132, 684);
+            this.xtraTabPage1.Size = new System.Drawing.Size(1132, 676);
             this.xtraTabPage1.Text = "库存查询";
             // 
             // splitContainerControl1
@@ -958,7 +970,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             this.splitContainerControl1.Panel2.Controls.Add(this.layoutControl1);
             this.splitContainerControl1.Panel2.Controls.Add(this.groupBox3);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(1132, 684);
+            this.splitContainerControl1.Size = new System.Drawing.Size(1132, 676);
             this.splitContainerControl1.SplitterPosition = 271;
             this.splitContainerControl1.TabIndex = 15;
             this.splitContainerControl1.Text = "splitContainerControl1";
@@ -973,7 +985,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(271, 684);
+            this.groupControl1.Size = new System.Drawing.Size(271, 676);
             this.groupControl1.TabIndex = 28;
             this.groupControl1.Text = "库存分类";
             // 
@@ -985,7 +997,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             this.treeView1.HideSelection = false;
             this.treeView1.ImageIndex = 0;
             this.treeView1.ImageList = this.imageListTree;
-            this.treeView1.Location = new System.Drawing.Point(2, 22);
+            this.treeView1.Location = new System.Drawing.Point(2, 30);
             this.treeView1.Name = "treeView1";
             treeNode1.ImageIndex = 0;
             treeNode1.Name = "节点73";
@@ -1011,25 +1023,26 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             treeNode1,
             treeNode5});
             this.treeView1.SelectedImageIndex = 0;
-            this.treeView1.Size = new System.Drawing.Size(267, 660);
+            this.treeView1.Size = new System.Drawing.Size(267, 644);
             this.treeView1.TabIndex = 0;
             this.treeView1.TabStop = false;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
             // menuTree
             // 
+            this.menuTree.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuTree.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuTree_ExpandAll,
             this.menuTree_Clapase,
             this.menuTree_Refresh});
             this.menuTree.Name = "menuTree";
-            this.menuTree.Size = new System.Drawing.Size(141, 70);
+            this.menuTree.Size = new System.Drawing.Size(185, 94);
             // 
             // menuTree_ExpandAll
             // 
             this.menuTree_ExpandAll.Image = ((System.Drawing.Image)(resources.GetObject("menuTree_ExpandAll.Image")));
             this.menuTree_ExpandAll.Name = "menuTree_ExpandAll";
-            this.menuTree_ExpandAll.Size = new System.Drawing.Size(140, 22);
+            this.menuTree_ExpandAll.Size = new System.Drawing.Size(184, 30);
             this.menuTree_ExpandAll.Text = "全部展开(&E)";
             this.menuTree_ExpandAll.Click += new System.EventHandler(this.menuTree_ExpandAll_Click);
             // 
@@ -1037,7 +1050,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             // 
             this.menuTree_Clapase.Image = ((System.Drawing.Image)(resources.GetObject("menuTree_Clapase.Image")));
             this.menuTree_Clapase.Name = "menuTree_Clapase";
-            this.menuTree_Clapase.Size = new System.Drawing.Size(140, 22);
+            this.menuTree_Clapase.Size = new System.Drawing.Size(184, 30);
             this.menuTree_Clapase.Text = "全部折叠(&C)";
             this.menuTree_Clapase.Click += new System.EventHandler(this.menuTree_Clapase_Click);
             // 
@@ -1045,7 +1058,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             // 
             this.menuTree_Refresh.Image = ((System.Drawing.Image)(resources.GetObject("menuTree_Refresh.Image")));
             this.menuTree_Refresh.Name = "menuTree_Refresh";
-            this.menuTree_Refresh.Size = new System.Drawing.Size(140, 22);
+            this.menuTree_Refresh.Size = new System.Drawing.Size(184, 30);
             this.menuTree_Refresh.Text = "刷新列表(&R)";
             this.menuTree_Refresh.Click += new System.EventHandler(this.menuTree_Refresh_Click);
             // 
@@ -1074,7 +1087,7 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             // 
             this.xtraTabPage2.Controls.Add(this.splitContainerControl2);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(1132, 684);
+            this.xtraTabPage2.Size = new System.Drawing.Size(1132, 676);
             this.xtraTabPage2.Text = "库房项目明细";
             // 
             // splitContainerControl2
@@ -1087,14 +1100,14 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             this.splitContainerControl2.Panel1.Text = "Panel1";
             this.splitContainerControl2.Panel2.Controls.Add(this.lvwDetail);
             this.splitContainerControl2.Panel2.Text = "Panel2";
-            this.splitContainerControl2.Size = new System.Drawing.Size(1132, 684);
+            this.splitContainerControl2.Size = new System.Drawing.Size(1132, 676);
             this.splitContainerControl2.SplitterPosition = 212;
             this.splitContainerControl2.TabIndex = 0;
             this.splitContainerControl2.Text = "splitContainerControl2";
             // 
             // FrmStockSearch
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1138, 713);
             this.Controls.Add(this.xtraTabControl1);
@@ -1107,12 +1120,16 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtStockQuantity2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUsagePos.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStockQuantity1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMapNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtItemNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtItemType.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtManufacture.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPrice2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbSpecNumber.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPrice1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSource.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUnit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBigType.Properties)).EndInit();

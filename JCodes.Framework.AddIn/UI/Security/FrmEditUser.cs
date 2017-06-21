@@ -188,7 +188,7 @@ namespace JCodes.Framework.AddIn.UI.Security
         /// <param name="info"></param>
         private void SetInfo(UserInfo info)
         {
-            info.PID = this.cmbManager.GetComboBoxValue().ToInt32();
+            info.PID = this.cmbManager.GetComboBoxStrValue().ToInt32();
             info.HandNo = txtHandNo.Text;
             info.Name = txtName.Text;
             info.FullName = txtFullName.Text;

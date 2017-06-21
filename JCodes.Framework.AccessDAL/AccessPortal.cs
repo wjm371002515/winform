@@ -16,5 +16,7 @@ namespace JCodes.Framework.AccessDAL
     {
         // 权限对应的表前缀
         public string _securityTablePre = new AppConfig().AppConfigGet("SecurityTablePre");
+
+        public string _basicTablePre = new AppConfig().AppConfigGet("BasicTablePre");
     }
 }

@@ -1,5 +1,6 @@
 ﻿using JCodes.Framework.BLL;
 using JCodes.Framework.Common;
+using JCodes.Framework.Common.Format;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.CommonControl;
 using JCodes.Framework.CommonControl.BaseUI;
@@ -17,55 +18,129 @@ using System.Windows.Forms;
 
 namespace JCodes.Framework.AddIn.UI.Dictionary
 {
-    public partial class FrmEditCity : BaseDock
+    public partial class FrmEditCity : BaseEditForm
     {        
-        public string ID = string.Empty;
-        public string LoginID = "";//登陆用户ID 
-        private CityInfo tempInfo = new CityInfo();
-
         public FrmEditCity()
         {
             InitializeComponent();
         }
 
-        private void btnOK_Click(object sender, EventArgs e)
+        public override bool CheckInput()
         {
-            tempInfo.CityName = this.txtCity.Text;
-            tempInfo.ProvinceID = Convert.ToInt32(this.txtProvince.Tag.ToString());
+            bool result = true;//默认是可以通过
+            #region MyRegion
+            if (this.txtCity.Text.Trim().Length == 0)
+            {
+                MessageDxUtil.ShowTips("城市名称不能为空");
+                this.txtCity.Focus();
+                result = false;
+            }
+
+            if (this.txtZipCode.Text.Trim().Length == 0)
+            {
+                MessageDxUtil.ShowTips("城市编码不能为空");
+                this.txtZipCode.Focus();
+                result = false;
+            }
+
+            if (true)
+            { 
+                string strZipCode = txtZipCode.Text.Trim();
+                if (!ValidateUtil.IsNumber(strZipCode))
+                {
+                    MessageDxUtil.ShowTips("城市编码格式不正确，请输入数字");
+                    this.txtZipCode.Focus();
+                    result = false;
+                }
+            }
+            #endregion
+
+            return result;
+        }
+        public override void DisplayData()
+        {
+            if (!string.IsNullOrEmpty(ID))
+            {
+                this.Text = "编辑 " + this.Text;
+                CityInfo info = BLLFactory<City>.Instance.FindByID(ID);
+                if (info != null)
+                {
+                    this.txtCity.Text = info.CityName;
+                }
+            }
+            else
+            {
+                this.Text = "新建 " + this.Text;
+            }
+            this.txtCity.Focus();
+        }
+
+        public override void ClearScreen()
+        {
+            txtCity.Text = string.Empty;
+            txtZipCode.Text = string.Empty;
+            base.ClearScreen();
+        }
+
+        public override bool SaveAddNew()
+        {
+            CityInfo info = new CityInfo();
+
+            SetInfo(info);
 
             try
             {
-                bool succeed = false;
-                if (string.IsNullOrEmpty(ID))
-                {
-                    succeed = BLLFactory<City>.Instance.Insert(tempInfo);
-                }
-                else
-                {
-                    succeed = BLLFactory<City>.Instance.Update(tempInfo, tempInfo.ID);
-                }
+                #region 新增数据
 
-                ProcessDataSaved(this.btnOK, new EventArgs());
-                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                bool succeed = BLLFactory<City>.Instance.Insert(info);
+                if (succeed)
+                {
+                    //可添加其他关联操作
+
+                    return true;
+                }
+                #endregion
             }
             catch (Exception ex)
             {
                 LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmEditCity));
                 MessageDxUtil.ShowError(ex.Message);
             }
+            return false;
         }
 
-        private void FrmEditCity_Load(object sender, EventArgs e)
+        public override bool SaveUpdated()
         {
-            if (!string.IsNullOrEmpty(ID))
+            CityInfo info = new CityInfo();
+            if (info != null)
             {
-                CityInfo info = BLLFactory<City>.Instance.FindByID(ID);
-                if (info != null)
+                SetInfo(info);
+                try
                 {
-                    tempInfo = info;
-                    this.txtCity.Text = info.CityName;
+                    #region 更新数据
+                    bool succeed = BLLFactory<City>.Instance.Update(info, ID);
+                    if (succeed)
+                    {
+                        //可添加其他关联操作
+                        return true;
+                    }
+                    #endregion
+                }
+                catch (Exception ex)
+                {
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmEditCity));
+                    MessageDxUtil.ShowError(ex.Message);
                 }
             }
+            return false;
+        }
+
+        private void SetInfo(CityInfo info)
+        {
+            info.CityName = this.txtCity.Text;
+            info.ProvinceID = Convert.ToInt32(this.txtProvince.Tag.ToString());
+            info.ZipCode = txtZipCode.Text;
+            info.CurrentLoginUserId = LoginUserInfo.ID.ToString();
         }
     }
 }

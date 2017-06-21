@@ -48,8 +48,8 @@
     <Compile Include="Dic\IDictData.cs" />
     <Compile Include="Dic\IDictType.cs" />
     <Compile Include="Dic\IDistrict.cs" />
+    <Compile Include="Dic\ISysparameter.cs" />
     <Compile Include="Dic\IProvince.cs" />
-    <Compile Include="Dic\IUserParameter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\IBlackIP.cs" />
     <Compile Include="Security\IFunction.cs" />

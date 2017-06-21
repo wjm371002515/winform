@@ -25,7 +25,8 @@ namespace JCodes.Framework.SQLServerDAL
 				return new Province();
 			}
 		}
-		public Province() : base("TB_Province","ID")
+        public Province()
+            : base(SQLServerPortal.gc._basicTablePre + "Province", "ID")
 		{
             IsDescending = false;
 		}

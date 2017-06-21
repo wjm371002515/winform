@@ -39,9 +39,9 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             //this.dtStart.DateTime = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd 00:00:00"));
             //this.dtEnd.DateTime = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd 23:59:59"));
 
-            this.txtManufacture.BindDictItems("供货商");
-            this.txtSearchManufacture.BindDictItems("供货商");
-            this.txtSearchDept.BindDictItems("部门");
+            //this.txtManufacture.BindDictItems("供货商");
+            //this.txtSearchManufacture.BindDictItems("供货商");
+            //this.txtSearchDept.BindDictItems("部门");
 
             this.txtWareHouse.Properties.Items.Clear();
             this.txtWareHouse.Properties.Items.AddRange(WareHouseHelper.GetWareHouse(LoginUserInfo.ID, LoginUserInfo.Name).ToArray());

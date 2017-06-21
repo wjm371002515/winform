@@ -50,8 +50,8 @@
     <Compile Include="Dic\DictData.cs" />
     <Compile Include="Dic\DictType.cs" />
     <Compile Include="Dic\District.cs" />
+    <Compile Include="Dic\Sysparameter.cs" />
     <Compile Include="Dic\Province.cs" />
-    <Compile Include="Dic\UserParameter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\BlackIP.cs" />
     <Compile Include="Security\Function.cs" />

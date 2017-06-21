@@ -69,6 +69,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
                     {
                         LogHelper.WriteLog(LogLevel.LOG_LEVEL_ERR, "该用户没有管理员权限", typeof(Login));
                         MessageDxUtil.ShowError("该用户没有管理员权限");
+                        txtUserName.Focus();
                         return;
                     }
                 }
@@ -76,6 +77,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
                 {
                     LogHelper.WriteLog(LogLevel.LOG_LEVEL_ERR, "用户名或密码错误或被禁止登陆", typeof(Login));
                     MessageDxUtil.ShowError("用户名或密码错误或被禁止登陆");
+                    txtUserName.Focus();
                     return;
                 }
             }

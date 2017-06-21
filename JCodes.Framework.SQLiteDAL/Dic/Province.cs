@@ -25,7 +25,7 @@ namespace JCodes.Framework.SQLiteDAL
 				return new Province();
 			}
 		}
-		public Province() : base("TB_Province","ID")
+		public Province() : base(SQLitePortal.gc._basicTablePre+"Province","ID")
 		{
             IsDescending = false;
 		}

@@ -182,11 +182,12 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             this.txtSearchWareHouse.Properties.Items.AddRange(BLLFactory<WareHouses>.Instance.GetAllWareHouse().ToArray());
 
             //使用扩展函数方式绑定字典
-            this.txtBigType.BindDictItems("备件属类");
-            this.txtItemType.BindDictItems("备件类别");
-            this.txtSource.BindDictItems("来源");
-            this.txtManufacture.BindDictItems("供货商");
-            this.txtUnit.BindDictItems("单位");
+            //this.txtBigType.BindDictItems("备件属类");
+            //this.txtItemType.BindDictItems("备件类别");
+            //this.txtSource.BindDictItems("来源");
+            //this.txtManufacture.BindDictItems("供货商");
+            //this.txtUnit.BindDictItems("单位");
+            this.txtUnit.BindDictItems(1000);
         }
 
         /// <summary>

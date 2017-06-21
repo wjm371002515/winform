@@ -56,6 +56,31 @@ namespace JCodes.Framework.Common
         /// </summary>
         public const string VerticalLine  = "|";
 
+        /// <summary>
+        /// 冒号:
+        /// </summary>
+        public const string Colon = ":";
+
+        /// <summary>
+        /// 加
+        /// </summary>
+        public const string Plus = "+";
+
+        /// <summary>
+        /// 减
+        /// </summary>
+        public const string Minus = "-";
+
+        /// <summary>
+        /// 乘
+        /// </summary>
+        public const string Multiply = "*";
+
+        /// <summary>
+        /// 除以
+        /// </summary>
+        public const string Divide = "/";
+
         // Browsing for directory.
         public const uint BIF_RETURNONLYFSDIRS = 0x0001;
         public const uint BIF_DONTGOBELOWDOMAIN = 0x0002;

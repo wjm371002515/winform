@@ -25,7 +25,7 @@ namespace JCodes.Framework.MySqlDAL
 				return new Province();
 			}
 		}
-		public Province() : base("TB_Province","ID")
+		public Province() : base(MySqlPortal.gc._basicTablePre+"Province","ID")
 		{
             IsDescending = false;
 		}

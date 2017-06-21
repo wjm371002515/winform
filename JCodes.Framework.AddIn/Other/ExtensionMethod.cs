@@ -56,7 +56,253 @@ namespace JCodes.Framework.AddIn.Other
         }
         #endregion
 
-        #region 日期控件
+        #region ComboBoxEdit控件
+
+        /// <summary>
+        /// 获取下拉列表的值
+        /// </summary>
+        /// <param name="combo">下拉列表</param>
+        /// <returns></returns>
+        public static string GetComboBoxStrValue(this ComboBoxEdit combo)
+        {
+            CListItem item = combo.SelectedItem as CListItem;
+            if (item != null)
+            {
+                return item.Value;
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+        /// <summary>
+        /// 获取下拉列表的值
+        /// </summary>
+        /// <param name="combo">下拉列表</param>
+        /// <returns></returns>
+        public static Int32? GetComboBoxIntValue(this ComboBoxEdit combo)
+        {
+            CDicKeyValue item = combo.SelectedItem as CDicKeyValue;
+            if (item != null)
+            {
+                return item.Value;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// 设置下拉列表选中指定的值
+        /// </summary>
+        /// <param name="combo">下拉列表</param>
+        /// <param name="value">指定的CListItem中的值</param>
+        public static void SetComboBoxItem(this ComboBoxEdit combo, string value)
+        {
+            for (int i = 0; i < combo.Properties.Items.Count; i++)
+            {
+                CListItem item = combo.Properties.Items[i] as CListItem;
+                if (item != null && item.Value == value)
+                {
+                    combo.SelectedIndex = i;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 设置下拉列表选中指定的值
+        /// </summary>
+        /// <param name="combo">下拉列表</param>
+        /// <param name="value">指定的CListItem中的值</param>
+        public static void SetComboBoxItem(this ComboBoxEdit combo, Int32? value)
+        {
+            for (int i = 0; i < combo.Properties.Items.Count; i++)
+            {
+                CDicKeyValue item = combo.Properties.Items[i] as CDicKeyValue;
+                if (item != null && item.Value == value)
+                {
+                    combo.SelectedIndex = i;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 绑定下拉列表控件为指定的数据字典列表
+        /// </summary>
+        /// <param name="combo">下拉列表控件</param>
+        /// <param name="dictTypeId">数据字典编号</param>
+        public static void BindDictItems(this ComboBoxEdit combo, Int32 dictTypeId)
+        {
+            BindDictItems(combo, dictTypeId, null);
+        }
+
+        /// <summary>
+        /// 绑定下拉列表控件为指定的数据字典列表（数据字典值允许 key(Int)=>valu(string)）
+        /// </summary>
+        /// <param name="combo">下拉列表控件</param>
+        /// <param name="dictTypeName">数据字典类型名称</param>
+        /// <param name="defaultValue">控件默认值</param>
+        public static void BindDictItems(this ComboBoxEdit combo, Int32 dictTypeId, Int32? defaultValue)
+        {
+            var lst = BLLFactory<DictData>.Instance.GetDictByTypeID(dictTypeId);
+            combo.Properties.BeginUpdate();//可以加快
+            combo.Properties.Items.Clear();
+            combo.Properties.Items.Add(new CDicKeyValue(Const.NoSeletValue, Const.NoSelectMsg));
+            foreach (var one in lst)
+            {
+                combo.Properties.Items.Add(new CDicKeyValue(one.Value, one.Name));
+            }
+
+            if (defaultValue != null)
+                SetComboBoxItem(combo, defaultValue);
+            combo.Properties.EndUpdate();//可以加快
+        }
+
+        /// <summary>
+        /// 绑定下拉列表控件为指定的数据字典列表 如果下拉框出现 Key(string) => Value(String) 调用此方法
+        /// </summary>
+        /// <param name="combo">下拉列表控件</param>
+        /// <param name="itemList">数据字典列表</param>
+        public static void BindDictItems(this ComboBoxEdit combo, List<CListItem> itemList)
+        {
+            BindDictItems(combo, itemList, null);
+        }
+
+        /// <summary>
+        /// 绑定下拉列表控件为指定的数据字典列表
+        /// </summary>
+        /// <param name="combo">下拉列表控件</param>
+        /// <param name="itemList">数据字典列表</param>
+        /// <param name="defaultValue">控件默认值</param>
+        public static void BindDictItems(this ComboBoxEdit combo, List<CListItem> itemList, string defaultValue)
+        {
+            combo.Properties.BeginUpdate();//可以加快
+            combo.Properties.Items.Clear();
+            combo.Properties.Items.Add(new CListItem(Const.NoSelectMsg, Const.NoSeletValue.ToString()));
+            combo.Properties.Items.AddRange(itemList);
+
+            if (!string.IsNullOrEmpty(defaultValue))
+            {
+                combo.SetComboBoxItem(defaultValue);
+            }
+            combo.Properties.EndUpdate();//可以加快
+        }
+        #endregion
+
+        #region CheckedComboBoxEdit
+
+        /// <summary>
+        /// 获取下拉列表的值
+        /// </summary>
+        /// <param name="combo">下拉列表</param>
+        /// <returns></returns>
+        public static string GetCheckedComboBoxValue(this CheckedComboBoxEdit combo) 
+        {
+            if (combo.Properties.Items.Count <= 0)
+            {
+                return string.Empty;
+            }
+            else
+            {
+                StringBuilder sb = new StringBuilder();
+                for (Int32 i = 0; i < combo.Properties.Items.Count; i ++)
+                {
+                    if (combo.Properties.Items[i].CheckState == CheckState.Checked)
+                    {
+                        sb.Append(combo.Properties.Items[i].Value + Const.Comma);
+                    }
+                }
+                if (sb.Length > 0)
+                    return sb.Remove(sb.Length - 1, 1).ToString();
+                else
+                    return sb.ToString();
+            }
+        }
+
+        /// <summary>
+        /// 设置下拉列表选中指定的值
+        /// </summary>
+        /// <param name="combo">下拉列表</param>
+        /// <param name="value">指定的CListItem中的值</param>
+        public static void SetComboBoxItem(this CheckedComboBoxEdit combo, string value)
+        {
+            combo.SetEditValue(value);
+        }
+
+        /// <summary>
+        /// 绑定下拉列表控件为指定的数据字典列表
+        /// </summary>
+        /// <param name="combo">下拉列表控件</param>
+        /// <param name="dictTypeName">数据字典类型名称</param>
+        public static void BindDictItems(this CheckedComboBoxEdit combo, Int32 dictTypeId)
+        {
+            BindDictItems(combo, dictTypeId, null);
+        }
+
+        /// <summary>
+        /// 绑定下拉列表控件为指定的数据字典列表
+        /// </summary>
+        /// <param name="combo">下拉列表控件</param>
+        /// <param name="dictTypeId">数据字典值</param>
+        public static void BindDictItems(this CheckedComboBoxEdit combo, Int32 dictTypeId, string defaultValue)
+        {
+            List<CheckedListBoxItem> dataSourcre = new List<CheckedListBoxItem>();
+            var lst = BLLFactory<DictData>.Instance.GetDictByTypeID(dictTypeId);
+            combo.Properties.BeginUpdate();//可以加快
+            combo.Properties.Items.Clear();
+            foreach (DicKeyValueInfo one in lst)
+            {
+                dataSourcre.Add(new CheckedListBoxItem() { Value = one.Value, Description = one.Value + Const.Minus + one.Name });
+            }
+            combo.Properties.Items.AddRange(dataSourcre.ToArray());
+
+            if (!string.IsNullOrEmpty(defaultValue))
+            {
+                combo.SetComboBoxItem(defaultValue);
+            }
+
+            combo.Properties.EndUpdate();//可以加快
+        }
+
+        /// <summary>
+        /// 绑定下拉列表控件为指定的数据字典列表
+        /// </summary>
+        /// <param name="combo">下拉列表控件</param>
+        /// <param name="itemList">数据字典列表</param>
+        public static void BindDictItems(this CheckedComboBoxEdit combo, List<CListItem> itemList)
+        {
+            BindDictItems(combo, itemList, null);
+        }
+
+        /// <summary>
+        /// 绑定下拉列表控件为指定的数据字典列表
+        /// </summary>
+        /// <param name="combo">下拉列表控件</param>
+        /// <param name="itemList">数据字典列表</param>
+        public static void BindDictItems(this CheckedComboBoxEdit combo, List<CListItem> itemList, string defaultValue)
+        {
+            List<CheckedListBoxItem> checkList = new List<CheckedListBoxItem>();
+            foreach (CListItem item in itemList)
+            {
+                checkList.Add(new CheckedListBoxItem(item.Value, item.Text));
+            }
+
+            combo.Properties.BeginUpdate();//可以加快
+            combo.Properties.Items.Clear();
+            combo.Properties.Items.AddRange(checkList.ToArray());//可以加快
+
+            if (!string.IsNullOrEmpty(defaultValue))
+            {
+                combo.SetComboBoxItem(defaultValue);
+            }
+
+            combo.Properties.EndUpdate();//可以加快
+        }
+        #endregion
+
+        #region DateEdit 日期控件
         /// <summary>
         /// 设置时间格式有效显示，如果大于默认时间，赋值给控件；否则不赋值
         /// </summary>
@@ -66,11 +312,11 @@ namespace JCodes.Framework.AddIn.Other
         {
             if (dateTime > Convert.ToDateTime("1900-1-1"))
             {
-                control.DateTime = dateTime;
+                control.EditValue = dateTime;
             }
             else
             {
-                control.Text = "";
+                control.EditValue = string.Empty;
             }
         }
 
@@ -80,16 +326,84 @@ namespace JCodes.Framework.AddIn.Other
         /// <param name="dateTime">时间对象</param>
         /// <param name="formatString">默认格式为yyyy-MM-dd</param>
         /// <returns></returns>
-        public static string GetDateTimeString(this DateTime dateTime, string formatString = "yyyy-MM-dd")
+        public static string GetDateTimeString(this DateEdit control, string formatString = Const.DateformatString)
         {
             string result = "";
-            if (dateTime > Convert.ToDateTime("1900-1-1"))
+
+            if (string.IsNullOrEmpty(control.EditValue.ToString()))
+                return string.Empty;
+
+            if (Convert.ToDateTime(control.EditValue) > Convert.ToDateTime("1900-1-1"))
             {
-                result = dateTime.ToString(formatString);
+                result = Convert.ToDateTime(control.EditValue).ToString(formatString);
             }
             return result;
         }
         #endregion
+
+        #region TimeEdit 时间控件
+        /// <summary>
+        /// 设置时间格式有效显示，如果大于默认时间，赋值给控件；否则不赋值
+        /// </summary>
+        /// <param name="control">DateEdit控件对象</param>
+        /// <param name="dateTime">日期对象</param>
+        public static void SetTime(this TimeEdit control, DateTime dateTime)
+        {
+            if (dateTime > Convert.ToDateTime("1900-1-1"))
+            {
+                control.EditValue = dateTime;
+            }
+            else
+            {
+                control.EditValue = string.Empty;
+            }
+        }
+
+        /// <summary>
+        /// 获取时间的显示内容，如果小于默认时间（1900-1-1），则为空
+        /// </summary>
+        /// <param name="dateTime">时间对象</param>
+        /// <param name="formatString">默认格式为yyyy-MM-dd</param>
+        /// <returns></returns>
+        public static string GetTimeString(this TimeEdit control, string formatString = Const.TimeformatString)
+        {
+            string result = "";
+
+            if (string.IsNullOrEmpty(control.EditValue.ToString()))
+                return string.Empty;
+
+            if (Convert.ToDateTime(control.EditValue) > Convert.ToDateTime("1900-1-1"))
+            {
+                result = Convert.ToDateTime(control.EditValue).ToString(formatString);
+            }
+            return result;
+        }
+        #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         #region 查询控件扩展函数
         /// <summary>
@@ -158,121 +472,7 @@ namespace JCodes.Framework.AddIn.Other
         }
         #endregion
 
-        #region ComboBoxEdit控件
-
-        /// <summary>
-        /// 获取下拉列表的值
-        /// </summary>
-        /// <param name="combo">下拉列表</param>
-        /// <returns></returns>
-        public static string GetComboBoxValue(this ComboBoxEdit combo)
-        {
-            CListItem item = combo.SelectedItem as CListItem;
-            if (item != null)
-            {
-                return item.Value;
-            }
-            else
-            {
-                return "";
-            }
-        }
-
-        /// <summary>
-        /// 设置下拉列表选中指定的值
-        /// </summary>
-        /// <param name="combo">下拉列表</param>
-        /// <param name="value">指定的CListItem中的值</param>
-        public static int SetDropDownValue(this ComboBoxEdit combo, string value)
-        {
-            int result = -1;
-            for (int i = 0; i < combo.Properties.Items.Count; i++)
-            {
-                if (combo.Properties.Items[i].ToString() == value)
-                {
-                    combo.SelectedIndex = i;
-                    result = i;
-                    break;
-                }
-            }
-            return result;
-        }
-
-        /// <summary>
-        /// 设置下拉列表选中指定的值
-        /// </summary>
-        /// <param name="combo">下拉列表</param>
-        /// <param name="value">指定的CListItem中的值</param>
-        public static void SetComboBoxItem(this ComboBoxEdit combo, string value)
-        {
-            for (int i = 0; i < combo.Properties.Items.Count; i++)
-            {
-                CListItem item = combo.Properties.Items[i] as CListItem;
-                if (item != null && item.Value == value)
-                {
-                    combo.SelectedIndex = i;
-                }
-            }
-        }
-
-        /// <summary>
-        /// 绑定下拉列表控件为指定的数据字典列表
-        /// </summary>
-        /// <param name="combo">下拉列表控件</param>
-        /// <param name="dictTypeName">数据字典类型名称</param>
-        public static void BindDictItems(this ComboBoxEdit combo, string dictTypeName)
-        {
-            //BindDictItems(combo, dictTypeName, null);
-        }
-
-        /// <summary>
-        /// 绑定下拉列表控件为指定的数据字典列表
-        /// </summary>
-        /// <param name="combo">下拉列表控件</param>
-        /// <param name="dictTypeName">数据字典类型名称</param>
-        /// <param name="defaultValue">控件默认值</param>
-        public static void BindDictItems(this ComboBoxEdit combo, string dictTypeName, string defaultValue)
-        {
-            /*Dictionary<string, string> dict = BLLFactory<DictData>.Instance.GetDictByDictType(dictTypeName);
-            List<CListItem> itemList = new List<CListItem>();
-            foreach (string key in dict.Keys)
-            {
-                itemList.Add(new CListItem(key, dict[key]));
-            }
-
-            BindDictItems(combo, itemList, defaultValue);*/
-        }
-
-        /// <summary>
-        /// 绑定下拉列表控件为指定的数据字典列表
-        /// </summary>
-        /// <param name="combo">下拉列表控件</param>
-        /// <param name="itemList">数据字典列表</param>
-        public static void BindDictItems(this ComboBoxEdit combo, List<CListItem> itemList)
-        {
-            BindDictItems(combo, itemList, null);
-        }
-
-        /// <summary>
-        /// 绑定下拉列表控件为指定的数据字典列表
-        /// </summary>
-        /// <param name="combo">下拉列表控件</param>
-        /// <param name="itemList">数据字典列表</param>
-        /// <param name="defaultValue">控件默认值</param>
-        public static void BindDictItems(this ComboBoxEdit combo, List<CListItem> itemList, string defaultValue)
-        {
-            combo.Properties.BeginUpdate();//可以加快
-            combo.Properties.Items.Clear();
-            combo.Properties.Items.AddRange(itemList);
-
-            if (!string.IsNullOrEmpty(defaultValue))
-            {
-                combo.SetComboBoxItem(defaultValue);
-            }
-
-            combo.Properties.EndUpdate();//可以加快
-        }
-        #endregion
+      
 
         #region 单选框组RadioGroup
         /// <summary>
@@ -360,79 +560,7 @@ namespace JCodes.Framework.AddIn.Other
 
         #endregion
 
-        #region CheckedComboBoxEdit
-        /// <summary>
-        /// 设置下拉列表选中指定的值
-        /// </summary>
-        /// <param name="combo">下拉列表</param>
-        /// <param name="value">指定的CListItem中的值</param>
-        public static void SetComboBoxItem(this CheckedComboBoxEdit combo, string value)
-        {
-            combo.SetEditValue(value);
-        }
-
-        /// <summary>
-        /// 绑定下拉列表控件为指定的数据字典列表
-        /// </summary>
-        /// <param name="combo">下拉列表控件</param>
-        /// <param name="dictTypeName">数据字典类型名称</param>
-        public static void BindDictItems(this CheckedComboBoxEdit combo, string dictTypeName)
-        {
-            BindDictItems(combo, dictTypeName, null);
-        }
-
-        /// <summary>
-        /// 绑定下拉列表控件为指定的数据字典列表
-        /// </summary>
-        /// <param name="combo">下拉列表控件</param>
-        /// <param name="dictTypeName">数据字典类型名称</param>
-        public static void BindDictItems(this CheckedComboBoxEdit combo, string dictTypeName, string defaultValue)
-        {
-            /*List<CListItem> itemList = new List<CListItem>();
-            Dictionary<string, string> dict = BLLFactory<DictData>.Instance.GetDictByDictType(dictTypeName);
-            foreach (string key in dict.Keys)
-            {
-                itemList.Add(new CListItem(key, dict[key]));
-            }
-
-            BindDictItems(combo, itemList, defaultValue);*/
-        }
-
-        /// <summary>
-        /// 绑定下拉列表控件为指定的数据字典列表
-        /// </summary>
-        /// <param name="combo">下拉列表控件</param>
-        /// <param name="itemList">数据字典列表</param>
-        public static void BindDictItems(this CheckedComboBoxEdit combo, List<CListItem> itemList)
-        {
-            BindDictItems(combo, itemList, null);
-        }
-
-        /// <summary>
-        /// 绑定下拉列表控件为指定的数据字典列表
-        /// </summary>
-        /// <param name="combo">下拉列表控件</param>
-        /// <param name="itemList">数据字典列表</param>
-        public static void BindDictItems(this CheckedComboBoxEdit combo, List<CListItem> itemList, string defaultValue)
-        {
-            List<CheckedListBoxItem> checkList = new List<CheckedListBoxItem>();
-            foreach (CListItem item in itemList)
-            {
-                checkList.Add(new CheckedListBoxItem(item.Value, item.Text));
-            }
-
-            combo.Properties.BeginUpdate();//可以加快
-            combo.Properties.Items.Clear();
-            combo.Properties.Items.AddRange(checkList.ToArray());//可以加快
-
-            if (!string.IsNullOrEmpty(defaultValue))
-            {
-                combo.SetComboBoxItem(defaultValue);
-            }
-
-            combo.Properties.EndUpdate();//可以加快
-        }
-        #endregion
+    
 
         #region CheckedListBox
         /// <summary>

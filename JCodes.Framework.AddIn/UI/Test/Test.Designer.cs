@@ -39,9 +39,14 @@ namespace JCodes.Framework.AddIn.Test
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.checkedComboBoxEdit1 = new DevExpress.XtraEditors.CheckedComboBoxEdit();
+            this.txtUnit = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkedComboBoxEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtUnit.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -116,6 +121,7 @@ namespace JCodes.Framework.AddIn.Test
             // 
             // labelControl1
             // 
+            this.labelControl1.Appearance.ForeColor = System.Drawing.Color.Red;
             this.labelControl1.Location = new System.Drawing.Point(12, 62);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(103, 22);
@@ -137,11 +143,42 @@ namespace JCodes.Framework.AddIn.Test
             this.simpleButton1.TabIndex = 9;
             this.simpleButton1.Text = "simpleButton1";
             // 
+            // checkedComboBoxEdit1
+            // 
+            this.checkedComboBoxEdit1.Location = new System.Drawing.Point(30, 104);
+            this.checkedComboBoxEdit1.Name = "checkedComboBoxEdit1";
+            this.checkedComboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.checkedComboBoxEdit1.Size = new System.Drawing.Size(100, 28);
+            this.checkedComboBoxEdit1.TabIndex = 10;
+            // 
+            // txtUnit
+            // 
+            this.txtUnit.Location = new System.Drawing.Point(557, 64);
+            this.txtUnit.Name = "txtUnit";
+            this.txtUnit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtUnit.Size = new System.Drawing.Size(73, 28);
+            this.txtUnit.TabIndex = 16;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(530, 11);
+            this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(100, 30);
+            this.button3.TabIndex = 0;
+            this.button3.Text = "下拉框取值";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // Test
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(879, 503);
+            this.Controls.Add(this.txtUnit);
+            this.Controls.Add(this.checkedComboBoxEdit1);
             this.Controls.Add(this.simpleButton1);
             this.Controls.Add(this.textEdit2);
             this.Controls.Add(this.labelControl1);
@@ -149,6 +186,7 @@ namespace JCodes.Framework.AddIn.Test
             this.Controls.Add(this.textEdit1);
             this.Controls.Add(this.txtLog);
             this.Controls.Add(this.button2);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.btnException2);
             this.Controls.Add(this.btnException);
             this.Controls.Add(this.button1);
@@ -159,6 +197,8 @@ namespace JCodes.Framework.AddIn.Test
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkedComboBoxEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtUnit.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -176,6 +216,9 @@ namespace JCodes.Framework.AddIn.Test
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.TextEdit textEdit2;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraEditors.CheckedComboBoxEdit checkedComboBoxEdit1;
+        private DevExpress.XtraEditors.ComboBoxEdit txtUnit;
+        private System.Windows.Forms.Button button3;
 
     }
 }

@@ -35,26 +35,17 @@
             this.btnEnURL = new System.Windows.Forms.Button();
             this.rtbLog = new System.Windows.Forms.RichTextBox();
             this.searchControl1 = new DevExpress.XtraEditors.SearchControl();
-            this.tokenEdit1 = new DevExpress.XtraEditors.TokenEdit();
             this.memoExEdit1 = new DevExpress.XtraEditors.MemoExEdit();
             this.spinEdit1 = new DevExpress.XtraEditors.SpinEdit();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
-            this.flyoutPanel1 = new DevExpress.Utils.FlyoutPanel();
-            this.flyoutPanelControl1 = new DevExpress.Utils.FlyoutPanelControl();
             this.colorPickEdit1 = new DevExpress.XtraEditors.ColorPickEdit();
-            this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchControl1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tokenEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoExEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.flyoutPanel1)).BeginInit();
-            this.flyoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.flyoutPanelControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.colorPickEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -118,7 +109,7 @@
             // 
             // searchControl1
             // 
-            this.searchControl1.Location = new System.Drawing.Point(155, 177);
+            this.searchControl1.Location = new System.Drawing.Point(13, 69);
             this.searchControl1.Name = "searchControl1";
             this.searchControl1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Repository.ClearButton(),
@@ -126,23 +117,13 @@
             this.searchControl1.Size = new System.Drawing.Size(100, 28);
             this.searchControl1.TabIndex = 2;
             // 
-            // tokenEdit1
-            // 
-            this.tokenEdit1.Location = new System.Drawing.Point(234, 371);
-            this.tokenEdit1.Name = "tokenEdit1";
-            this.tokenEdit1.Properties.Separators.AddRange(new string[] {
-            ","});
-            this.tokenEdit1.Size = new System.Drawing.Size(306, 29);
-            this.tokenEdit1.TabIndex = 3;
-            this.tokenEdit1.UseOptimizedRendering = true;
-            // 
             // memoExEdit1
             // 
-            this.memoExEdit1.Location = new System.Drawing.Point(496, 204);
+            this.memoExEdit1.Location = new System.Drawing.Point(13, 205);
             this.memoExEdit1.Name = "memoExEdit1";
             this.memoExEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.memoExEdit1.Size = new System.Drawing.Size(219, 28);
+            this.memoExEdit1.Size = new System.Drawing.Size(118, 28);
             this.memoExEdit1.TabIndex = 4;
             // 
             // spinEdit1
@@ -152,7 +133,7 @@
             0,
             0,
             0});
-            this.spinEdit1.Location = new System.Drawing.Point(169, 289);
+            this.spinEdit1.Location = new System.Drawing.Point(13, 103);
             this.spinEdit1.Name = "spinEdit1";
             this.spinEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -161,7 +142,7 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(618, 305);
+            this.richTextBox1.Location = new System.Drawing.Point(715, 81);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(100, 152);
             this.richTextBox1.TabIndex = 6;
@@ -169,58 +150,31 @@
             // 
             // maskedTextBox1
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(267, 239);
+            this.maskedTextBox1.Location = new System.Drawing.Point(13, 137);
             this.maskedTextBox1.Name = "maskedTextBox1";
             this.maskedTextBox1.Size = new System.Drawing.Size(100, 28);
             this.maskedTextBox1.TabIndex = 7;
             // 
-            // flyoutPanel1
-            // 
-            this.flyoutPanel1.Controls.Add(this.flyoutPanelControl1);
-            this.flyoutPanel1.Location = new System.Drawing.Point(133, 21);
-            this.flyoutPanel1.Name = "flyoutPanel1";
-            this.flyoutPanel1.Size = new System.Drawing.Size(150, 150);
-            this.flyoutPanel1.TabIndex = 8;
-            // 
-            // flyoutPanelControl1
-            // 
-            this.flyoutPanelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flyoutPanelControl1.FlyoutPanel = this.flyoutPanel1;
-            this.flyoutPanelControl1.Location = new System.Drawing.Point(0, 0);
-            this.flyoutPanelControl1.Name = "flyoutPanelControl1";
-            this.flyoutPanelControl1.Size = new System.Drawing.Size(150, 150);
-            this.flyoutPanelControl1.TabIndex = 0;
-            // 
             // colorPickEdit1
             // 
             this.colorPickEdit1.EditValue = System.Drawing.Color.Empty;
-            this.colorPickEdit1.Location = new System.Drawing.Point(78, 326);
+            this.colorPickEdit1.Location = new System.Drawing.Point(13, 171);
             this.colorPickEdit1.Name = "colorPickEdit1";
             this.colorPickEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.colorPickEdit1.Size = new System.Drawing.Size(100, 28);
             this.colorPickEdit1.TabIndex = 9;
             // 
-            // textEdit2
-            // 
-            this.textEdit2.Location = new System.Drawing.Point(90, 450);
-            this.textEdit2.Name = "textEdit2";
-            this.textEdit2.Size = new System.Drawing.Size(100, 28);
-            this.textEdit2.TabIndex = 10;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(836, 535);
-            this.Controls.Add(this.textEdit2);
             this.Controls.Add(this.colorPickEdit1);
-            this.Controls.Add(this.flyoutPanel1);
             this.Controls.Add(this.maskedTextBox1);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.spinEdit1);
             this.Controls.Add(this.memoExEdit1);
-            this.Controls.Add(this.tokenEdit1);
             this.Controls.Add(this.searchControl1);
             this.Controls.Add(this.rtbLog);
             this.Controls.Add(this.panel1);
@@ -230,14 +184,9 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchControl1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tokenEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoExEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.flyoutPanel1)).EndInit();
-            this.flyoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.flyoutPanelControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.colorPickEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -252,15 +201,11 @@
         private System.Windows.Forms.Button btnDeURL;
         private DevExpress.XtraEditors.TextEdit textEdit1;
         private DevExpress.XtraEditors.SearchControl searchControl1;
-        private DevExpress.XtraEditors.TokenEdit tokenEdit1;
         private DevExpress.XtraEditors.MemoExEdit memoExEdit1;
         private DevExpress.XtraEditors.SpinEdit spinEdit1;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.MaskedTextBox maskedTextBox1;
-        private DevExpress.Utils.FlyoutPanel flyoutPanel1;
-        private DevExpress.Utils.FlyoutPanelControl flyoutPanelControl1;
         private DevExpress.XtraEditors.ColorPickEdit colorPickEdit1;
-        private DevExpress.XtraEditors.TextEdit textEdit2;
     }
 }
 

@@ -1,5 +1,9 @@
 ﻿using JCodes.Framework.AddIn;
 using JCodes.Framework.AddIn.Other;
+using JCodes.Framework.AddIn.UI.Dictionary;
+using JCodes.Framework.BLL;
+using JCodes.Framework.Common;
+using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Common.Office;
 using JCodes.Framework.CommonControl;
 using JCodes.Framework.CommonControl.BaseUI;
@@ -26,18 +30,13 @@ namespace JCodes.Framework.AddIn.UI.Common
         {
             this.firefoxDialog1.ImageList = this.imageList1;
 
-            var loginUserInfo = Cache.Instance["LoginUserInfo"] as LoginUserInfo;
-
-            this.firefoxDialog1.AddPage("报表设置", new PageReport());//基于本地文件的参数存储
-            this.firefoxDialog1.AddPage("邮箱设置", new PageEmail(loginUserInfo.Name));//基于数据库的参数存储
-
-            //下面是陪衬的
-            this.firefoxDialog1.AddPage("短信设置", new PageEmail(loginUserInfo.Name));
-            this.firefoxDialog1.AddPage("声音设置", new PageEmail(loginUserInfo.Name));
-            this.firefoxDialog1.AddPage("系统设置", new PageEmail(loginUserInfo.Name));
-            this.firefoxDialog1.AddPage("备份设置", new PageEmail(loginUserInfo.Name));
-            this.firefoxDialog1.AddPage("其他设置", new PageEmail(loginUserInfo.Name));
-
+            var lst = BLLFactory<DictData>.Instance.GetDictByTypeID(Const.DIC_PARAMETER);
+            foreach (var dic in lst)
+            {
+                var frm1 = new FrmSysparameter(dic.Value, dic.Name);
+                this.firefoxDialog1.AddPage(dic.Name, frm1);//基于本地文件的参数存储
+                frm1.MeEvent += firefoxDialog1.ChangeValue;
+            }
             this.firefoxDialog1.Init();
         }
     }

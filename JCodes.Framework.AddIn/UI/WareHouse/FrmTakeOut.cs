@@ -39,8 +39,8 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             //this.dtStart.DateTime = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd 00:00:00"));
             //this.dtEnd.DateTime = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd 23:59:59"));
 
-            this.txtManufacture.BindDictItems("供货商");
-            this.txtSearchManufacture.BindDictItems("供货商");
+            //this.txtManufacture.BindDictItems("供货商");
+            //this.txtSearchManufacture.BindDictItems("供货商");
 
             this.txtWareHouse.Properties.Items.Clear();
             this.txtWareHouse.Properties.Items.AddRange(WareHouseHelper.GetWareHouse(LoginUserInfo.ID, LoginUserInfo.Name).ToArray());
@@ -51,9 +51,9 @@ namespace JCodes.Framework.AddIn.UI.WareHouse
             this.txtSearchWareHouse.Properties.Items.AddRange(WareHouseHelper.GetWareHouse(LoginUserInfo.ID, LoginUserInfo.Name).ToArray());
             this.txtSearchWareHouse.SelectedIndex = 0;
 
-            this.txtCostCenter.BindDictItems("成本中心");
-            this.txtSearchCostCenter.BindDictItems("成本中心");
-            this.txtSearchDept.BindDictItems("部门");
+            //this.txtCostCenter.BindDictItems("成本中心");
+            ///this.txtSearchCostCenter.BindDictItems("成本中心");
+            //this.txtSearchDept.BindDictItems("部门");
 
             this.txtCreator.Items.Clear();
             this.txtCreator.Items.Add(this.LoginUserInfo.FullName);

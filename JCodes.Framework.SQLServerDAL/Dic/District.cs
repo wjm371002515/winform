@@ -25,7 +25,7 @@ namespace JCodes.Framework.SQLServerDAL
 				return new District();
 			}
 		}
-		public District() : base("TB_District","ID")
+		public District() : base(SQLServerPortal.gc._basicTablePre+"District","ID")
 		{
             this.isDescending = false;
 		}
@@ -67,7 +67,7 @@ namespace JCodes.Framework.SQLServerDAL
 
         public List<DistrictInfo> GetDistrictByCityName(string cityName)
         {
-            string sql = string.Format("Select c.* from TB_District as c inner join TB_City as p on c.CityID=p.ID where CityName='{0}' ", cityName);
+            string sql = string.Format("Select c.* from {0}District as c inner join {0}City as p on c.CityID=p.ID where CityName='{1}' ", SQLServerPortal.gc._basicTablePre, cityName);
             return base.GetList(sql, null);
         }
     }

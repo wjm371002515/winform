@@ -18,5 +18,7 @@ namespace JCodes.Framework.OracleDAL
         public string _securityTablePre = new AppConfig().AppConfigGet("SecurityTablePre");
 
         public string _50GoTablePre = new AppConfig().AppConfigGet("50GoTablePre");
+
+        public string _basicTablePre = new AppConfig().AppConfigGet("BasicTablePre");
     }
 }

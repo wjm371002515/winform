@@ -86,6 +86,14 @@ namespace JCodes.Framework.CommonControl.Settings
             return true;
 		}
 
+        /// <summary>
+        /// ²éÕÒÊÂ¼ş
+        /// </summary>
+        /// <returns></returns>
+        public virtual bool OnSearch()
+        {
+            return true;
+        }
 
 		#endregion
 	}

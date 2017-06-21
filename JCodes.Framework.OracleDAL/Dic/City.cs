@@ -25,7 +25,7 @@ namespace JCodes.Framework.OracleDAL
 				return new City();
 			}
 		}
-		public City() : base("TB_City","ID")
+		public City() : base(OraclePortal.gc._basicTablePre+"City","ID")
         {
             this.SeqName = string.Format("SEQ_{0}", tableName);//数值型主键，通过序列生成
             this.IsDescending = false;
@@ -70,7 +70,7 @@ namespace JCodes.Framework.OracleDAL
 
         public List<CityInfo> GetCitysByProvinceName(string provinceName)
         {
-            string sql = string.Format("Select c.* from TB_City c inner join TB_Province p on c.ProvinceId=p.ID where ProvinceName='{0}' ", provinceName);
+            string sql = string.Format("Select c.* from {0}City c inner join {0}Province p on c.ProvinceId=p.ID where ProvinceName='{1}' ",OraclePortal.gc._basicTablePre, provinceName);
             return base.GetList(sql, null);
         }
     }

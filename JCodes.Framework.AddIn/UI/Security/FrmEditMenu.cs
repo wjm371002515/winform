@@ -90,10 +90,13 @@ namespace JCodes.Framework.AddIn.UI.Security
         {
             InitDictItem();//数据字典加载（公用）
 
+
+
             if (!string.IsNullOrEmpty(ID))
             {
                 #region 显示客户信息
                 MenuInfo info = BLLFactory<Menus>.Instance.FindByID(ID);
+
                 if (info != null)
                 {
                     this.menuControl1.Value = info.PID;
@@ -135,7 +138,7 @@ namespace JCodes.Framework.AddIn.UI.Security
             info.WinformType = txtWinformType.Text;
             info.Url = txtUrl.Text;
             info.WebIcon = txtWebIcon.Text;
-            info.SystemType_ID = this.txtSystemType.GetComboBoxValue();
+            info.SystemType_ID = this.txtSystemType.GetComboBoxStrValue();
 
             info.CurrentLoginUserId = Portal.gc.UserInfo.ID.ToString();
         }

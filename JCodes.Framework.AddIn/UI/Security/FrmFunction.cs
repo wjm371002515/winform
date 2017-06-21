@@ -368,7 +368,7 @@ namespace JCodes.Framework.AddIn.UI.Security
                     //当新建系统类型的时候
                     functionInfo = new FunctionInfo();
                     functionInfo.PID = "-1";
-                    functionInfo.SystemType_ID = this.txtSystemType.GetComboBoxValue();
+                    functionInfo.SystemType_ID = this.txtSystemType.GetComboBoxStrValue();
                     functionInfo.ControlID = this.txtFunctionID.Text;
                     functionInfo.SortCode = this.txtSortCode.Text;
 

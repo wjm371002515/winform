@@ -26,7 +26,7 @@ namespace JCodes.Framework.SQLServerDAL
 				return new City();
 			}
 		}
-		public City() : base("TB_City","ID")
+		public City() : base(SQLServerPortal.gc._basicTablePre+"City","ID")
 		{
             IsDescending = false;
 		}
@@ -70,7 +70,7 @@ namespace JCodes.Framework.SQLServerDAL
 
         public List<CityInfo> GetCitysByProvinceName(string provinceName)
         {
-            string sql = string.Format("Select c.* from TB_City as c inner join TB_Province as p on c.ProvinceId=p.ID where ProvinceName='{0}' ", provinceName);
+            string sql = string.Format("Select c.* from {0}City as c inner join {0}Province as p on c.ProvinceId=p.ID where ProvinceName='{1}' ", SQLServerPortal.gc._basicTablePre, provinceName);
             return base.GetList(sql, null);
         }
     }

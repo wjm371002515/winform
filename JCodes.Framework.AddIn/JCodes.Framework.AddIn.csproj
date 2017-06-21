@@ -151,7 +151,6 @@
     <Compile Include="UI\BizControl\ManagerSelectControl.designer.cs">
       <DependentUpon>ManagerSelectControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Other\DatabaseStorage.cs" />
     <Compile Include="Other\ExtensionMethod.cs" />
     <Compile Include="Other\Portal.cs" />
     <Compile Include="Other\RibbonPageHelper.cs" />
@@ -325,17 +324,17 @@
     <Compile Include="UI\Common\FrmSystemMessage.designer.cs">
       <DependentUpon>FrmSystemMessage.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Dictionary\FrmBatchAddDictData.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\Dictionary\FrmBatchAddDictData.Designer.cs">
-      <DependentUpon>FrmBatchAddDictData.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI\Dictionary\FrmBatchAddDistrict.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Dictionary\FrmBatchAddDistrict.Designer.cs">
+    <Compile Include="UI\Dictionary\FrmBatchAddDistrict.designer.cs">
       <DependentUpon>FrmBatchAddDistrict.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Dictionary\FrmSearchSysparameter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Dictionary\FrmSearchSysparameter.Designer.cs">
+      <DependentUpon>FrmSearchSysparameter.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Dictionary\FrmCityDistrict.cs">
       <SubType>Form</SubType>
@@ -372,6 +371,12 @@
     </Compile>
     <Compile Include="UI\Dictionary\FrmEditDistrict.Designer.cs">
       <DependentUpon>FrmEditDistrict.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Dictionary\FrmSysparameter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Dictionary\FrmSysparameter.Designer.cs">
+      <DependentUpon>FrmSysparameter.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Security\FrmAddMoreFunction.cs">
       <SubType>Form</SubType>
@@ -768,11 +773,11 @@
     <EmbeddedResource Include="UI\Common\FrmSystemMessage.resx">
       <DependentUpon>FrmSystemMessage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Dictionary\FrmBatchAddDictData.resx">
-      <DependentUpon>FrmBatchAddDictData.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UI\Dictionary\FrmBatchAddDistrict.resx">
       <DependentUpon>FrmBatchAddDistrict.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Dictionary\FrmSearchSysparameter.resx">
+      <DependentUpon>FrmSearchSysparameter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Dictionary\FrmCityDistrict.resx">
       <DependentUpon>FrmCityDistrict.cs</DependentUpon>
@@ -791,6 +796,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Dictionary\FrmEditDistrict.resx">
       <DependentUpon>FrmEditDistrict.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Dictionary\FrmSysparameter.resx">
+      <DependentUpon>FrmSysparameter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Security\FrmAddMoreFunction.resx">
       <DependentUpon>FrmAddMoreFunction.cs</DependentUpon>

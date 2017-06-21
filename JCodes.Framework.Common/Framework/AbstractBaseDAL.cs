@@ -1843,6 +1843,7 @@ namespace JCodes.Framework.Common.Framework
                     Hashtable dbrecordField = GetHashByEntity(objInDb);//把数据库里的实体对象数据转换为哈希表
 
                     StringBuilder sb = new StringBuilder();
+                    sb.AppendLine(string.Format("主键值:{0}",id));
                     foreach (string field in recordField.Keys)
                     {                          
                         string newValue = recordField[field].ToString();

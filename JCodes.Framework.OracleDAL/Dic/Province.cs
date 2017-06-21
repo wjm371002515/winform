@@ -25,7 +25,7 @@ namespace JCodes.Framework.OracleDAL
 				return new Province();
 			}
 		}
-		public Province() : base("TB_Province","ID")
+		public Province() : base(OraclePortal.gc._basicTablePre+"Province","ID")
         {
             this.SeqName = string.Format("SEQ_{0}", tableName);//数值型主键，通过序列生成
             IsDescending = false;

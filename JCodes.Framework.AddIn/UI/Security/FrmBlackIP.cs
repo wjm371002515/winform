@@ -274,7 +274,7 @@ namespace JCodes.Framework.AddIn.UI.Security
 
             if (this.txtAuthorizeType.Text.Length > 0)
             {
-                condition.AddCondition("AuthorizeType", this.txtAuthorizeType.GetComboBoxValue().ToInt32(), SqlOperator.Equal); //数值类型
+                condition.AddCondition("AuthorizeType", this.txtAuthorizeType.GetComboBoxStrValue().ToInt32(), SqlOperator.Equal); //数值类型
             }
             if (this.txtForbid.Checked)
             {

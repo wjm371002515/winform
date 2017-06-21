@@ -211,7 +211,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
                 condition.AddCondition("LastUpdated", Convert.ToDateTime(dateTimePicker2.DateTime.AddDays(1).ToString("yyyy-MM-dd")), SqlOperator.LessThanOrEqual);
             }
 
-            string systemType = this.txtSystemType.GetComboBoxValue();
+            string systemType = this.txtSystemType.GetComboBoxStrValue();
             if (!string.IsNullOrEmpty(systemType))
             {
                 condition.AddCondition("SystemType_ID", systemType, SqlOperator.Equal);
