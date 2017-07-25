@@ -61,23 +61,14 @@ namespace JCodes.Framework.AddIn.UI.Security
                 }
 
                 //可特殊设置特别的宽度
-                SetGridColumWidth("Name", 150);
-                SetGridColumWidth("Icon", 200);
-                SetGridColumWidth("Seq", 80);
-                SetGridColumWidth("Visible", 80);
-                SetGridColumWidth("WinformType", 400);
-                SetGridColumWidth("WebIcon", 200);
-                SetGridColumWidth("Url", 200);
-                SetGridColumWidth("Note", 200);
-            }
-        }
-
-        private void SetGridColumWidth(string columnName, int width)
-        {
-            DevExpress.XtraGrid.Columns.GridColumn column = this.winGridViewPager1.gridView1.Columns.ColumnByFieldName(columnName);
-            if (column != null)
-            {
-                column.Width = width;
+                winGridViewPager1.gridView1.SetGridColumWidth("Name", 150);
+                winGridViewPager1.gridView1.SetGridColumWidth("Icon", 200);
+                winGridViewPager1.gridView1.SetGridColumWidth("Seq", 80);
+                winGridViewPager1.gridView1.SetGridColumWidth("Visible", 80);
+                winGridViewPager1.gridView1.SetGridColumWidth("WinformType", 400);
+                winGridViewPager1.gridView1.SetGridColumWidth("WebIcon", 200);
+                winGridViewPager1.gridView1.SetGridColumWidth("Url", 200);
+                winGridViewPager1.gridView1.SetGridColumWidth("Note", 200);
             }
         }
 
@@ -93,9 +84,9 @@ namespace JCodes.Framework.AddIn.UI.Security
 
         void Init_Function()
         {
-            btnSearch.Enabled = Portal.gc.HasFunction("Menu/search");
-            btnAddNew.Enabled = Portal.gc.HasFunction("Menu/add");
-            btnExport.Enabled = Portal.gc.HasFunction("Menu/Export");
+            btnSearch.Enabled = HasFunction("Menu/search");
+            btnAddNew.Enabled = HasFunction("Menu/add");
+            btnExport.Enabled = HasFunction("Menu/Export");
         }
 
         /// <summary>
@@ -119,7 +110,7 @@ namespace JCodes.Framework.AddIn.UI.Security
         /// </summary>
         private void winGridViewPager1_OnDeleteSelected(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("Menu/del"))
+            if (!HasFunction("Menu/del"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -145,7 +136,7 @@ namespace JCodes.Framework.AddIn.UI.Security
         /// </summary>
         private void winGridViewPager1_OnEditSelected(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("Menu/edit"))
+            if (!HasFunction("Menu/edit"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -183,7 +174,7 @@ namespace JCodes.Framework.AddIn.UI.Security
         /// </summary>        
         private void winGridViewPager1_OnAddNew(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("Menu/add"))
+            if (!HasFunction("Menu/add"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -197,7 +188,7 @@ namespace JCodes.Framework.AddIn.UI.Security
         /// </summary> 
         private void winGridViewPager1_OnStartExport(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("Menu/Export"))
+            if (!HasFunction("Menu/Export"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -270,7 +261,7 @@ namespace JCodes.Framework.AddIn.UI.Security
         /// </summary>
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("Menu/search"))
+            if (!HasFunction("Menu/search"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;

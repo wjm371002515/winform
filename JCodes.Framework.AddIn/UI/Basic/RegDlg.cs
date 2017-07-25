@@ -14,6 +14,7 @@ using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.Common.Files;
 using JCodes.Framework.Common.Encrypt;
 using System.Text;
+using System.Drawing;
 
 namespace JCodes.Framework.AddIn.UI.Basic
 {
@@ -22,17 +23,17 @@ namespace JCodes.Framework.AddIn.UI.Basic
     /// </summary>
     public class RegDlg : BaseDock
     {
-        private TextBox tbMachineCode;
-        private Label label2;
-        private TextBox tbSerialNumber;
-        private Label label3;
+        private DevExpress.XtraEditors.TextEdit txtMachineCode;
+        private DevExpress.XtraEditors.LabelControl lblMachineCode;
+        private DevExpress.XtraEditors.MemoEdit txtSerialNumber;
+        private DevExpress.XtraEditors.LabelControl lblSerialNumber;
         private Container components = null;
         private DevExpress.XtraEditors.SimpleButton btRegister;
         private DevExpress.XtraEditors.SimpleButton btnGetSerial;
-        private Label lblUserName;
-        private TextBox txtUserName;
-        private Label lblCompany;
-        private TextBox txtCompany;
+        private DevExpress.XtraEditors.LabelControl lblUserName;
+        private DevExpress.XtraEditors.TextEdit txtUserName;
+        private DevExpress.XtraEditors.LabelControl lblCompany;
+        private DevExpress.XtraEditors.TextEdit txtCompany;
         private DevExpress.XtraEditors.SimpleButton btnCopy;
 
         public RegDlg()
@@ -65,60 +66,60 @@ namespace JCodes.Framework.AddIn.UI.Basic
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegDlg));
-            this.tbMachineCode = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.tbSerialNumber = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.txtMachineCode = new DevExpress.XtraEditors.TextEdit();
+            this.lblMachineCode = new DevExpress.XtraEditors.LabelControl();
+            this.txtSerialNumber = new DevExpress.XtraEditors.MemoEdit();
+            this.lblSerialNumber = new DevExpress.XtraEditors.LabelControl();
             this.btRegister = new DevExpress.XtraEditors.SimpleButton();
             this.btnCopy = new DevExpress.XtraEditors.SimpleButton();
             this.btnGetSerial = new DevExpress.XtraEditors.SimpleButton();
-            this.lblUserName = new System.Windows.Forms.Label();
-            this.txtUserName = new System.Windows.Forms.TextBox();
-            this.lblCompany = new System.Windows.Forms.Label();
-            this.txtCompany = new System.Windows.Forms.TextBox();
+            this.lblUserName = new DevExpress.XtraEditors.LabelControl();
+            this.txtUserName = new DevExpress.XtraEditors.TextEdit();
+            this.lblCompany = new DevExpress.XtraEditors.LabelControl();
+            this.txtCompany = new DevExpress.XtraEditors.TextEdit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMachineCode.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSerialNumber.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtUserName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCompany.Properties)).BeginInit();
             this.SuspendLayout();
             // 
-            // tbMachineCode
+            // txtMachineCode
             // 
-            this.tbMachineCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtMachineCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbMachineCode.Location = new System.Drawing.Point(104, 15);
-            this.tbMachineCode.Name = "tbMachineCode";
-            this.tbMachineCode.ReadOnly = true;
-            this.tbMachineCode.Size = new System.Drawing.Size(456, 29);
-            this.tbMachineCode.TabIndex = 1;
+            this.txtMachineCode.Location = new System.Drawing.Point(104, 15);
+            this.txtMachineCode.Name = "txtMachineCode";
+            this.txtMachineCode.Properties.ReadOnly = true;
+            this.txtMachineCode.Size = new System.Drawing.Size(456, 28);
+            this.txtMachineCode.TabIndex = 1;
             // 
-            // label2
+            // lblMachineCode
             // 
-            this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label2.Location = new System.Drawing.Point(22, 17);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(88, 24);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "机器码：";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblMachineCode.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblMachineCode.Location = new System.Drawing.Point(44, 18);
+            this.lblMachineCode.Name = "lblMachineCode";
+            this.lblMachineCode.Size = new System.Drawing.Size(54, 22);
+            this.lblMachineCode.TabIndex = 0;
+            this.lblMachineCode.Text = "机器码";
             // 
-            // tbSerialNumber
+            // txtSerialNumber
             // 
-            this.tbSerialNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtSerialNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbSerialNumber.Location = new System.Drawing.Point(104, 167);
-            this.tbSerialNumber.MinimumSize = new System.Drawing.Size(286, 100);
-            this.tbSerialNumber.Multiline = true;
-            this.tbSerialNumber.Name = "tbSerialNumber";
-            this.tbSerialNumber.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbSerialNumber.Size = new System.Drawing.Size(518, 107);
-            this.tbSerialNumber.TabIndex = 1;
+            this.txtSerialNumber.Location = new System.Drawing.Point(104, 167);
+            this.txtSerialNumber.MinimumSize = new System.Drawing.Size(286, 100);
+            this.txtSerialNumber.Name = "txtSerialNumber";
+            this.txtSerialNumber.Size = new System.Drawing.Size(518, 100);
+            this.txtSerialNumber.TabIndex = 1;
             // 
-            // label3
+            // lblSerialNumber
             // 
-            this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label3.Location = new System.Drawing.Point(22, 169);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(88, 25);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "序列号：";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblSerialNumber.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblSerialNumber.Location = new System.Drawing.Point(44, 167);
+            this.lblSerialNumber.Name = "lblSerialNumber";
+            this.lblSerialNumber.Size = new System.Drawing.Size(54, 22);
+            this.lblSerialNumber.TabIndex = 0;
+            this.lblSerialNumber.Text = "序列号";
             // 
             // btRegister
             // 
@@ -152,12 +153,11 @@ namespace JCodes.Framework.AddIn.UI.Basic
             // lblUserName
             // 
             this.lblUserName.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblUserName.Location = new System.Drawing.Point(3, 69);
+            this.lblUserName.Location = new System.Drawing.Point(26, 70);
             this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(107, 24);
+            this.lblUserName.Size = new System.Drawing.Size(72, 22);
             this.lblUserName.TabIndex = 0;
-            this.lblUserName.Text = "注册用户：";
-            this.lblUserName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblUserName.Text = "注册用户";
             // 
             // txtUserName
             // 
@@ -165,18 +165,17 @@ namespace JCodes.Framework.AddIn.UI.Basic
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtUserName.Location = new System.Drawing.Point(104, 67);
             this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(518, 29);
+            this.txtUserName.Size = new System.Drawing.Size(518, 28);
             this.txtUserName.TabIndex = 1;
             // 
             // lblCompany
             // 
             this.lblCompany.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblCompany.Location = new System.Drawing.Point(-1, 116);
+            this.lblCompany.Location = new System.Drawing.Point(26, 119);
             this.lblCompany.Name = "lblCompany";
-            this.lblCompany.Size = new System.Drawing.Size(111, 24);
+            this.lblCompany.Size = new System.Drawing.Size(72, 22);
             this.lblCompany.TabIndex = 0;
-            this.lblCompany.Text = "注册公司：";
-            this.lblCompany.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblCompany.Text = "注册公司";
             // 
             // txtCompany
             // 
@@ -184,7 +183,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCompany.Location = new System.Drawing.Point(104, 116);
             this.txtCompany.Name = "txtCompany";
-            this.txtCompany.Size = new System.Drawing.Size(518, 29);
+            this.txtCompany.Size = new System.Drawing.Size(518, 28);
             this.txtCompany.TabIndex = 1;
             // 
             // RegDlg
@@ -197,10 +196,10 @@ namespace JCodes.Framework.AddIn.UI.Basic
             this.Controls.Add(this.lblCompany);
             this.Controls.Add(this.txtUserName);
             this.Controls.Add(this.lblUserName);
-            this.Controls.Add(this.tbMachineCode);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.tbSerialNumber);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.txtMachineCode);
+            this.Controls.Add(this.lblMachineCode);
+            this.Controls.Add(this.txtSerialNumber);
+            this.Controls.Add(this.lblSerialNumber);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -209,6 +208,10 @@ namespace JCodes.Framework.AddIn.UI.Basic
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "注册";
             this.Load += new System.EventHandler(this.RegDlg_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.txtMachineCode.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSerialNumber.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtUserName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCompany.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -218,9 +221,13 @@ namespace JCodes.Framework.AddIn.UI.Basic
 
         private void btRegister_Click(object sender, EventArgs e)
         {
-            string regCode = tbSerialNumber.Text.Trim();
+            string regCode = txtSerialNumber.Text.Trim();
             string userName = txtUserName.Text.Trim();
             string company = txtCompany.Text.Trim();
+
+            // 校验文本框信息是否完整
+            if (!CheckInput()) return;
+
             Int32 passed = -1;
             passed = RSASecurityHelper.CheckRegistrationCode(regCode, userName, company);
 
@@ -232,6 +239,37 @@ namespace JCodes.Framework.AddIn.UI.Basic
             {
                 MessageDxUtil.ShowError("注册失败");
             }
+        }
+
+        private bool CheckInput()
+        {
+            bool result = true;//默认是可以通过
+            #region 校验文本框内容
+            if (txtUserName.Text.Trim().Length == 0)
+            {
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblUserName.Text.Replace(Const.MsgCheckSign, string.Empty));
+                lblUserName.Appearance.ForeColor = Color.Red;
+                this.txtUserName.Focus();
+                result = false;
+            }
+
+            if (txtCompany.Text.Trim().Length == 0)
+            {
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblCompany.Text.Replace(Const.MsgCheckSign, string.Empty));
+                lblCompany.Appearance.ForeColor = Color.Red;
+                this.txtCompany.Focus();
+                result = false;
+            }
+
+            if (txtSerialNumber.Text.Trim().Length == 0)
+            {
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblSerialNumber.Text.Replace(Const.MsgCheckSign, string.Empty));
+                lblSerialNumber.Appearance.ForeColor = Color.Red;
+                this.txtSerialNumber.Focus();
+                result = false;
+            }
+            #endregion
+            return result;
         }
 
         /// <summary>
@@ -257,13 +295,13 @@ namespace JCodes.Framework.AddIn.UI.Basic
 
         private void RegDlg_Load(object sender, EventArgs e)
         {
-            tbMachineCode.Text = HardwareInfoHelper.GetCPUId();
+            txtMachineCode.Text = HardwareInfoHelper.GetCPUId();
         }
 
         private void btnCopy_Click(object sender, EventArgs e)
         {
             Clipboard.Clear();
-            Clipboard.SetText(this.tbMachineCode.Text);
+            Clipboard.SetText(this.txtMachineCode.Text);
             MessageDxUtil.ShowTips(Const.CopyOkMsg);
         }
 
@@ -274,9 +312,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
         /// <param name="e"></param>
         private void btnGetSerial_Click(object sender, EventArgs e)
         {
-            AppConfig appconfig = new AppConfig();
-            string email = appconfig.AppConfigGet("EMail");
-            MessageDxUtil.ShowTips(string.Format("请发送邮箱到{0}申请试用序列号, 邮箱标题【XXX申请jCodes 应用程序序列号】，邮件正文填写申请理由", email));
+            MessageDxUtil.ShowTips(string.Format("请发送邮箱到{0}申请试用序列号, 邮箱标题【XXX申请jCodes 应用程序序列号】，邮件正文填写申请理由", Portal.gc.config.AppConfigGet("EMail")));
         }
     }
 }

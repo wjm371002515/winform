@@ -26,7 +26,8 @@ namespace JCodes.Framework.SQLServerDAL
 				return new ReportMonthlyHeader();
 			}
 		}
-		public ReportMonthlyHeader() : base("WM_ReportMonthlyHeader","ID")
+        public ReportMonthlyHeader()
+            : base(SQLServerPortal.gc._wareHouseTablePre + "ReportMonthlyHeader", "ID")
 		{
 		}
 

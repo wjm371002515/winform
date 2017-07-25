@@ -13,6 +13,7 @@ using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.Common.Winform;
 using JCodes.Framework.Common.Files;
 using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.Common.Office;
 
 namespace JCodes.Framework.CommonControl.Device
 {
@@ -87,7 +88,13 @@ namespace JCodes.Framework.CommonControl.Device
             if (!this.DesignMode)
             {
                 //默认从配置里面加载
-                AppConfig config = new AppConfig();
+                AppConfig config = Cache.Instance["AppConfig"] as AppConfig;
+                if (config == null)
+                {
+                    config = new AppConfig();
+                    Cache.Instance["AppConfig"] = config;
+                }	
+
                 string printer = config.AppConfigGet(Const.SaveConfigName);
                 if (!string.IsNullOrEmpty(printer))
                 {

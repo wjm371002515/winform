@@ -14,5 +14,6 @@ namespace JCodes.Framework.IDAL
 	/// </summary>
 	public interface IPurchaseDetail : IBaseDAL<PurchaseDetailInfo>
 	{
+        DataTable GetPurchaseDetailReportByID(int PurchaseHead_ID);
     }
 }

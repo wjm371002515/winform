@@ -26,7 +26,7 @@ namespace JCodes.Framework.SQLServerDAL
 				return new WareHouse();
 			}
 		}
-		public WareHouse() : base("WM_WareHouse","ID")
+		public WareHouse() : base(SQLServerPortal.gc._wareHouseTablePre+"WareHouse","ID")
         {
             this.sortField = "ID";
             this.isDescending = false;

@@ -228,7 +228,6 @@ namespace JCodes.Framework.CommonControl.BaseUI
                 {
                     LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(BaseEditForm));
                     MessageDxUtil.ShowError(ex.Message);
-                    this.ProcessException(ex);
                 }
                 finally
                 {

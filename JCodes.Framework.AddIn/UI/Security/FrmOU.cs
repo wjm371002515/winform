@@ -41,10 +41,10 @@ namespace JCodes.Framework.AddIn.UI.Security
 
         void Init_Function()
         {
-            btnAdd.Enabled = Portal.gc.HasFunction("OU/add");
-            btnDelete.Enabled = Portal.gc.HasFunction("OU/del");
-            btnEditUser.Enabled = Portal.gc.HasFunction("OU/OUUserAdd");
-            btnRemoveUser.Enabled = Portal.gc.HasFunction("OU/OUUserDel");
+            btnAdd.Enabled = HasFunction("OU/add");
+            btnDelete.Enabled = HasFunction("OU/del");
+            btnEditUser.Enabled = HasFunction("OU/OUUserAdd");
+            btnRemoveUser.Enabled = HasFunction("OU/OUUserDel");
         }
 
         private void InitDictItem()
@@ -171,7 +171,7 @@ namespace JCodes.Framework.AddIn.UI.Security
 
         private void menu_Delete_Click(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("OU/del"))
+            if (!HasFunction("OU/del"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -198,7 +198,7 @@ namespace JCodes.Framework.AddIn.UI.Security
 
         private void menu_Add_Click(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("OU/add"))
+            if (!HasFunction("OU/add"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -359,7 +359,7 @@ namespace JCodes.Framework.AddIn.UI.Security
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(currentID) && !Portal.gc.HasFunction("OU/edit"))
+            if (!string.IsNullOrEmpty(currentID) && !HasFunction("OU/edit"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;

@@ -77,12 +77,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
                     txtMacAddress.Text = info.MacAddress;
                     txtCreateTime.SetDateTime(info.CreateTime);
                 }
-                #endregion
-                //this.btnOK.Enabled = Portal.gc.HasFunction("OperationLog/Edit");             
-            }
-            else
-            {
-                //this.btnOK.Enabled = Portal.gc.HasFunction("OperationLog/Add");  
+                #endregion          
             }
         }
 

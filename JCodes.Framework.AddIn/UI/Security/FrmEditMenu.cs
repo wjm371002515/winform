@@ -55,7 +55,7 @@ namespace JCodes.Framework.AddIn.UI.Security
 
             if (this.txtName.Text.Trim().Length == 0)
             {
-                MessageDxUtil.ShowTips("«Î ‰»Îœ‘ æ√˚≥∆");
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblName.Text.Replace(Const.MsgCheckSign, string.Empty));
                 this.txtName.Focus();
                 result = false;
             }

@@ -30,12 +30,12 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.chkTopItem = new System.Windows.Forms.CheckBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblSeq = new System.Windows.Forms.Label();
+            this.lblParent = new System.Windows.Forms.Label();
             this.lblID = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblName = new System.Windows.Forms.Label();
             this.txtNote = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lblNote = new System.Windows.Forms.Label();
             this.txtParent = new System.Windows.Forms.TextBox();
             this.txtSeq = new System.Windows.Forms.TextBox();
             this.txtID = new System.Windows.Forms.TextBox();
@@ -70,12 +70,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.chkTopItem);
-            this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.lblSeq);
+            this.groupBox1.Controls.Add(this.lblParent);
             this.groupBox1.Controls.Add(this.lblID);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.lblName);
             this.groupBox1.Controls.Add(this.txtNote);
-            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.lblNote);
             this.groupBox1.Controls.Add(this.txtParent);
             this.groupBox1.Controls.Add(this.txtSeq);
             this.groupBox1.Controls.Add(this.txtID);
@@ -97,23 +97,23 @@
             this.chkTopItem.UseVisualStyleBackColor = true;
             this.chkTopItem.CheckedChanged += new System.EventHandler(this.chkTopItem_CheckedChanged);
             // 
-            // label9
+            // lblSeq
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(22, 114);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(82, 22);
-            this.label9.TabIndex = 40;
-            this.label9.Text = "类型排序";
+            this.lblSeq.AutoSize = true;
+            this.lblSeq.Location = new System.Drawing.Point(22, 114);
+            this.lblSeq.Name = "lblSeq";
+            this.lblSeq.Size = new System.Drawing.Size(82, 22);
+            this.lblSeq.TabIndex = 40;
+            this.lblSeq.Text = "类型排序";
             // 
-            // label2
+            // lblParent
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(21, 152);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(82, 22);
-            this.label2.TabIndex = 40;
-            this.label2.Text = "父类名称";
+            this.lblParent.AutoSize = true;
+            this.lblParent.Location = new System.Drawing.Point(21, 152);
+            this.lblParent.Name = "lblParent";
+            this.lblParent.Size = new System.Drawing.Size(82, 22);
+            this.lblParent.TabIndex = 40;
+            this.lblParent.Text = "父类名称";
             // 
             // lblID
             // 
@@ -124,14 +124,14 @@
             this.lblID.TabIndex = 40;
             this.lblID.Text = "类别ID";
             // 
-            // label1
+            // lblName
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 78);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 22);
-            this.label1.TabIndex = 40;
-            this.label1.Text = "类型名称";
+            this.lblName.AutoSize = true;
+            this.lblName.Location = new System.Drawing.Point(21, 78);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(82, 22);
+            this.lblName.TabIndex = 40;
+            this.lblName.Text = "类型名称";
             // 
             // txtNote
             // 
@@ -142,14 +142,14 @@
             this.txtNote.Size = new System.Drawing.Size(286, 70);
             this.txtNote.TabIndex = 3;
             // 
-            // label7
+            // lblNote
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(47, 188);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(46, 22);
-            this.label7.TabIndex = 35;
-            this.label7.Text = "备注";
+            this.lblNote.AutoSize = true;
+            this.lblNote.Location = new System.Drawing.Point(47, 188);
+            this.lblNote.Name = "lblNote";
+            this.lblNote.Size = new System.Drawing.Size(46, 22);
+            this.lblNote.TabIndex = 35;
+            this.lblNote.Text = "备注";
             // 
             // txtParent
             // 
@@ -209,12 +209,12 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox chkTopItem;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblSeq;
+        private System.Windows.Forms.Label lblParent;
         private System.Windows.Forms.Label lblID;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.TextBox txtNote;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblNote;
         private System.Windows.Forms.TextBox txtParent;
         private System.Windows.Forms.TextBox txtSeq;
         private System.Windows.Forms.TextBox txtID;

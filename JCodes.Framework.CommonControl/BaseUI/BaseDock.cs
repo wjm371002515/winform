@@ -61,31 +61,6 @@ namespace JCodes.Framework.CommonControl.BaseUI
         }
 
         /// <summary>
-        /// 记录异常
-        /// </summary>
-        /// <param name="ex"></param>
-        public void WriteException(Exception ex)
-        {
-            // 在本地记录异常
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(BaseDock));
-            MessageDxUtil.ShowError(ex.Message);
-        }
-
-        /// <summary>
-        /// 处理异常信息
-        /// </summary>
-        /// <param name="ex">异常</param>
-        public void ProcessException(Exception ex)
-        {
-            this.WriteException(ex);
-
-            // 显示异常页面
-            //FrmException frmException = new FrmException(this.UserInfo, ex);
-            //frmException.ShowDialog();
-            MessageDxUtil.ShowError(ex.Message);
-        }
-
-        /// <summary>
         /// 可供重写的窗体加载函数，子窗体特殊处理只需重写该函数
         /// </summary>
         public virtual void FormOnLoad()
@@ -128,7 +103,6 @@ namespace JCodes.Framework.CommonControl.BaseUI
                 {
                     LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(BaseDock));
                     MessageDxUtil.ShowError(ex.Message);
-                    this.ProcessException(ex);
                 }
                 finally
                 {

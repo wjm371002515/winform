@@ -154,42 +154,40 @@
     <Compile Include="Other\ExtensionMethod.cs" />
     <Compile Include="Other\Portal.cs" />
     <Compile Include="Other\RibbonPageHelper.cs" />
-    <Compile Include="Other\SecurityHelper.cs" />
-    <Compile Include="Other\WareHouseHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Report\WareHouse\FrmCategoryReport.cs">
+    <Compile Include="Report\WareHouseManage\FrmCategoryReport.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Report\WareHouse\FrmCategoryReport.designer.cs">
+    <Compile Include="Report\WareHouseManage\FrmCategoryReport.designer.cs">
       <DependentUpon>FrmCategoryReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Report\WareHouse\FrmLineHistoryReport.cs">
+    <Compile Include="Report\WareHouseManage\FrmLineHistoryReport.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Report\WareHouse\FrmLineHistoryReport.designer.cs">
+    <Compile Include="Report\WareHouseManage\FrmLineHistoryReport.designer.cs">
       <DependentUpon>FrmLineHistoryReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Report\WareHouse\FrmMultiItemReport.cs">
+    <Compile Include="Report\WareHouseManage\FrmMultiItemReport.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Report\WareHouse\FrmMultiItemReport.designer.cs">
+    <Compile Include="Report\WareHouseManage\FrmMultiItemReport.designer.cs">
       <DependentUpon>FrmMultiItemReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Report\WareHouse\FrmStatisticReport.cs">
+    <Compile Include="Report\WareHouseManage\FrmStatisticReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Report\WareHouse\FrmStatisticReport.designer.cs">
+    <Compile Include="Report\WareHouseManage\FrmStatisticReport.designer.cs">
       <DependentUpon>FrmStatisticReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Report\WareHouse\FrmStockReport.cs">
+    <Compile Include="Report\WareHouseManage\FrmStockReport.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Report\WareHouse\FrmStockReport.designer.cs">
+    <Compile Include="Report\WareHouseManage\FrmStockReport.designer.cs">
       <DependentUpon>FrmStockReport.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\BizControl\AttachmentControl.cs">
@@ -567,11 +565,35 @@
     <Compile Include="UI\Basic\RegDlg.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="UI\SmallTools\FrmIPO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\SmallTools\FrmIPO.designer.cs">
+      <DependentUpon>FrmIPO.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\SmallTools\xlsDataDeal.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\SmallTools\xlsDataDeal.designer.cs">
       <DependentUpon>xlsDataDeal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Test\FrmCacheData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Test\FrmCacheData.designer.cs">
+      <DependentUpon>FrmCacheData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Test\FrmControls.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Test\FrmControls.Designer.cs">
+      <DependentUpon>FrmControls.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Test\FrmLayoutControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Test\FrmLayoutControl.Designer.cs">
+      <DependentUpon>FrmLayoutControl.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Test\Test.cs">
       <SubType>Form</SubType>
@@ -579,115 +601,133 @@
     <Compile Include="UI\Test\Test.Designer.cs">
       <DependentUpon>Test.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Test\Test2.cs">
+    <Compile Include="UI\WareHouseManage\FrmAddPurchaseItem.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Test\Test2.Designer.cs">
-      <DependentUpon>Test2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\WareHouse\FrmAddPurchaseItem.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\WareHouse\FrmAddPurchaseItem.designer.cs">
+    <Compile Include="UI\WareHouseManage\FrmAddPurchaseItem.designer.cs">
       <DependentUpon>FrmAddPurchaseItem.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\WareHouse\FrmEditItemDetail.cs">
+    <Compile Include="UI\WareHouseManage\FrmEditItemDetail.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\WareHouse\FrmEditItemDetail.Designer.cs">
+    <Compile Include="UI\WareHouseManage\FrmEditItemDetail.Designer.cs">
       <DependentUpon>FrmEditItemDetail.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\WareHouse\FrmEditStock.cs">
+    <Compile Include="UI\WareHouseManage\FrmEditStock.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\WareHouse\FrmEditStock.designer.cs">
+    <Compile Include="UI\WareHouseManage\FrmEditStock.designer.cs">
       <DependentUpon>FrmEditStock.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\WareHouse\FrmEditWareHouse.cs">
+    <Compile Include="UI\WareHouseManage\FrmEditClient.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\WareHouse\FrmEditWareHouse.designer.cs">
+    <Compile Include="UI\WareHouseManage\FrmEditClient.designer.cs">
+      <DependentUpon>FrmEditClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WareHouseManage\FrmEditSupplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\WareHouseManage\FrmEditSupplier.designer.cs">
+      <DependentUpon>FrmEditSupplier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WareHouseManage\FrmEditWareHouse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\WareHouseManage\FrmEditWareHouse.designer.cs">
       <DependentUpon>FrmEditWareHouse.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\WareHouse\FrmImportItemStock.cs">
+    <Compile Include="UI\WareHouseManage\FrmImportItemStock.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\WareHouse\FrmImportItemStock.designer.cs">
+    <Compile Include="UI\WareHouseManage\FrmImportItemStock.designer.cs">
       <DependentUpon>FrmImportItemStock.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\WareHouse\FrmItemDetail.cs">
+    <Compile Include="UI\WareHouseManage\FrmItemDetail.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\WareHouse\FrmItemDetail.designer.cs">
+    <Compile Include="UI\WareHouseManage\FrmItemDetail.designer.cs">
       <DependentUpon>FrmItemDetail.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\WareHouse\FrmMonthReportSearch.cs">
+    <Compile Include="UI\WareHouseManage\FrmMonthReportSearch.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\WareHouse\FrmMonthReportSearch.Designer.cs">
+    <Compile Include="UI\WareHouseManage\FrmMonthReportSearch.Designer.cs">
       <DependentUpon>FrmMonthReportSearch.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\WareHouse\FrmPurchase.cs">
+    <Compile Include="UI\WareHouseManage\FrmTakeOut.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\WareHouse\FrmPurchase.designer.cs">
-      <DependentUpon>FrmPurchase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\WareHouse\FrmReports.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\WareHouse\FrmReports.designer.cs">
-      <DependentUpon>FrmReports.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\WareHouse\FrmSetPurchaseQuantity.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\WareHouse\FrmSetPurchaseQuantity.Designer.cs">
-      <DependentUpon>FrmSetPurchaseQuantity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\WareHouse\FrmSetStoragePos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\WareHouse\FrmSetStoragePos.Designer.cs">
-      <DependentUpon>FrmSetStoragePos.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\WareHouse\FrmStockAlert.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\WareHouse\FrmStockAlert.designer.cs">
-      <DependentUpon>FrmStockAlert.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\WareHouse\FrmStockSearch.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\WareHouse\FrmStockSearch.designer.cs">
-      <DependentUpon>FrmStockSearch.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\WareHouse\FrmTakeOut.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\WareHouse\FrmTakeOut.designer.cs">
+    <Compile Include="UI\WareHouseManage\FrmTakeOut.designer.cs">
       <DependentUpon>FrmTakeOut.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\WareHouse\FrmWareHouse.cs">
+    <Compile Include="UI\WareHouseManage\FrmPurchase.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\WareHouse\FrmWareHouse.designer.cs">
+    <Compile Include="UI\WareHouseManage\FrmPurchase.designer.cs">
+      <DependentUpon>FrmPurchase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WareHouseManage\FrmReports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\WareHouseManage\FrmReports.designer.cs">
+      <DependentUpon>FrmReports.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WareHouseManage\FrmSetPurchaseQuantity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\WareHouseManage\FrmSetPurchaseQuantity.Designer.cs">
+      <DependentUpon>FrmSetPurchaseQuantity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WareHouseManage\FrmSetStoragePos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\WareHouseManage\FrmSetStoragePos.Designer.cs">
+      <DependentUpon>FrmSetStoragePos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WareHouseManage\FrmStockAlert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\WareHouseManage\FrmStockAlert.designer.cs">
+      <DependentUpon>FrmStockAlert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WareHouseManage\FrmStockSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\WareHouseManage\FrmStockSearch.designer.cs">
+      <DependentUpon>FrmStockSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WareHouseManage\FrmClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\WareHouseManage\FrmClient.designer.cs">
+      <DependentUpon>FrmClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WareHouseManage\FrmSupplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\WareHouseManage\FrmSupplier.designer.cs">
+      <DependentUpon>FrmSupplier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WareHouseManage\FrmWareHouse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\WareHouseManage\FrmWareHouse.designer.cs">
       <DependentUpon>FrmWareHouse.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\WareHouse\FrmYearReportSearch.cs">
+    <Compile Include="UI\WareHouseManage\FrmYearReportSearch.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\WareHouse\FrmYearReportSearch.Designer.cs">
+    <Compile Include="UI\WareHouseManage\FrmYearReportSearch.Designer.cs">
       <DependentUpon>FrmYearReportSearch.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\WareHouse\NotifyWindow.cs">
+    <Compile Include="UI\WareHouseManage\NotifyWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\WareHouse\SetWareHouseAlias.cs">
+    <Compile Include="UI\WareHouseManage\SetWareHouseAlias.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\WareHouse\SetWareHouseAlias.designer.cs">
+    <Compile Include="UI\WareHouseManage\SetWareHouseAlias.designer.cs">
       <DependentUpon>SetWareHouseAlias.cs</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -740,19 +780,19 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Report\WareHouse\FrmCategoryReport.resx">
+    <EmbeddedResource Include="Report\WareHouseManage\FrmCategoryReport.resx">
       <DependentUpon>FrmCategoryReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Report\WareHouse\FrmLineHistoryReport.resx">
+    <EmbeddedResource Include="Report\WareHouseManage\FrmLineHistoryReport.resx">
       <DependentUpon>FrmLineHistoryReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Report\WareHouse\FrmMultiItemReport.resx">
+    <EmbeddedResource Include="Report\WareHouseManage\FrmMultiItemReport.resx">
       <DependentUpon>FrmMultiItemReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Report\WareHouse\FrmStatisticReport.resx">
+    <EmbeddedResource Include="Report\WareHouseManage\FrmStatisticReport.resx">
       <DependentUpon>FrmStatisticReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Report\WareHouse\FrmStockReport.resx">
+    <EmbeddedResource Include="Report\WareHouseManage\FrmStockReport.resx">
       <DependentUpon>FrmStockReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\BizControl\AttachmentControl.resx">
@@ -938,67 +978,88 @@
     <EmbeddedResource Include="UI\Basic\RegDlg.resx">
       <DependentUpon>RegDlg.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\SmallTools\FrmIPO.resx">
+      <DependentUpon>FrmIPO.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\SmallTools\xlsDataDeal.resx">
       <DependentUpon>xlsDataDeal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Test\FrmCacheData.resx">
+      <DependentUpon>FrmCacheData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Test\FrmControls.resx">
+      <DependentUpon>FrmControls.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Test\FrmLayoutControl.resx">
+      <DependentUpon>FrmLayoutControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Test\Test.resx">
       <DependentUpon>Test.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Test\Test2.resx">
-      <DependentUpon>Test2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\WareHouse\FrmAddPurchaseItem.resx">
+    <EmbeddedResource Include="UI\WareHouseManage\FrmAddPurchaseItem.resx">
       <DependentUpon>FrmAddPurchaseItem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\WareHouse\FrmEditItemDetail.resx">
+    <EmbeddedResource Include="UI\WareHouseManage\FrmEditItemDetail.resx">
       <DependentUpon>FrmEditItemDetail.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\WareHouse\FrmEditStock.resx">
+    <EmbeddedResource Include="UI\WareHouseManage\FrmEditStock.resx">
       <DependentUpon>FrmEditStock.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\WareHouse\FrmEditWareHouse.resx">
+    <EmbeddedResource Include="UI\WareHouseManage\FrmEditClient.resx">
+      <DependentUpon>FrmEditClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\WareHouseManage\FrmEditSupplier.resx">
+      <DependentUpon>FrmEditSupplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\WareHouseManage\FrmEditWareHouse.resx">
       <DependentUpon>FrmEditWareHouse.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\WareHouse\FrmImportItemStock.resx">
+    <EmbeddedResource Include="UI\WareHouseManage\FrmImportItemStock.resx">
       <DependentUpon>FrmImportItemStock.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\WareHouse\FrmItemDetail.resx">
+    <EmbeddedResource Include="UI\WareHouseManage\FrmItemDetail.resx">
       <DependentUpon>FrmItemDetail.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\WareHouse\FrmMonthReportSearch.resx">
+    <EmbeddedResource Include="UI\WareHouseManage\FrmMonthReportSearch.resx">
       <DependentUpon>FrmMonthReportSearch.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\WareHouse\FrmPurchase.resx">
-      <DependentUpon>FrmPurchase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\WareHouse\FrmReports.resx">
-      <DependentUpon>FrmReports.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\WareHouse\FrmSetPurchaseQuantity.resx">
-      <DependentUpon>FrmSetPurchaseQuantity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\WareHouse\FrmSetStoragePos.resx">
-      <DependentUpon>FrmSetStoragePos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\WareHouse\FrmStockAlert.resx">
-      <DependentUpon>FrmStockAlert.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\WareHouse\FrmStockSearch.resx">
-      <DependentUpon>FrmStockSearch.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\WareHouse\FrmTakeOut.resx">
+    <EmbeddedResource Include="UI\WareHouseManage\FrmTakeOut.resx">
       <DependentUpon>FrmTakeOut.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\WareHouse\FrmWareHouse.resx">
+    <EmbeddedResource Include="UI\WareHouseManage\FrmPurchase.resx">
+      <DependentUpon>FrmPurchase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\WareHouseManage\FrmReports.resx">
+      <DependentUpon>FrmReports.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\WareHouseManage\FrmSetPurchaseQuantity.resx">
+      <DependentUpon>FrmSetPurchaseQuantity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\WareHouseManage\FrmSetStoragePos.resx">
+      <DependentUpon>FrmSetStoragePos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\WareHouseManage\FrmStockAlert.resx">
+      <DependentUpon>FrmStockAlert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\WareHouseManage\FrmStockSearch.resx">
+      <DependentUpon>FrmStockSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\WareHouseManage\FrmClient.resx">
+      <DependentUpon>FrmClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\WareHouseManage\FrmSupplier.resx">
+      <DependentUpon>FrmSupplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\WareHouseManage\FrmWareHouse.resx">
       <DependentUpon>FrmWareHouse.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\WareHouse\FrmYearReportSearch.resx">
+    <EmbeddedResource Include="UI\WareHouseManage\FrmYearReportSearch.resx">
       <DependentUpon>FrmYearReportSearch.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\WareHouse\NotifyWindow.resx">
+    <EmbeddedResource Include="UI\WareHouseManage\NotifyWindow.resx">
       <DependentUpon>NotifyWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\WareHouse\SetWareHouseAlias.resx">
+    <EmbeddedResource Include="UI\WareHouseManage\SetWareHouseAlias.resx">
       <DependentUpon>SetWareHouseAlias.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>

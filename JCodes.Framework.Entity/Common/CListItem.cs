@@ -2,6 +2,7 @@ using System;
 using System.Text;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
 
 namespace JCodes.Framework.Entity
 {
@@ -19,8 +20,8 @@ namespace JCodes.Framework.Entity
         /// <param name="value">实际的值内容</param>
         public CListItem(string text, string value)
         {
-            this.text = text;
-            this.value = value;
+            this._text = text;
+            this._value = value;
         }
 
         /// <summary>
@@ -29,12 +30,12 @@ namespace JCodes.Framework.Entity
         /// <param name="text">显示的内容</param>
         public CListItem(string text)
         {
-            this.text = text;
-            this.value = text;
+            this._text = text;
+            this._value = text;
         }
 
-        private string text;
-        private string value;
+        private string _text;
+        private string _value;
 
         /// <summary>
         /// 显示内容
@@ -42,8 +43,8 @@ namespace JCodes.Framework.Entity
         [DataMember]
         public string Text
         {
-            get { return text; }
-            set { text = value; }
+            get { return _text; }
+            set { _text = value; }
         }
 
         /// <summary>
@@ -52,8 +53,8 @@ namespace JCodes.Framework.Entity
         [DataMember]
         public string Value
         {
-            get { return this.value; }
-            set { this.value = value; }
+            get { return this._value; }
+            set { this._value = value; }
         }
 
         /// <summary>
@@ -62,7 +63,14 @@ namespace JCodes.Framework.Entity
         /// <returns></returns>
         public override string ToString()
         {
-            return Text.ToString();
+            if (Regex.IsMatch(_value, "[A-F0-9]{8}(-[A-F0-9]{4}){3}-[A-F0-9]{12}|[A-F0-9]{32}", RegexOptions.IgnoreCase))
+            {
+                return _text;
+            }
+            else
+            {
+                return string.Format("{0}-{1}",_value, _text);
+            }
         }
 
     }

@@ -26,7 +26,7 @@ namespace JCodes.Framework.OracleDAL
 				return new ItemDetail();
 			}
 		}
-		public ItemDetail() : base("WM_ItemDetail","ID")
+		public ItemDetail() : base(OraclePortal.gc._wareHouseTablePre+"ItemDetail","ID")
         {
             this.SeqName = string.Format("SEQ_{0}", tableName);//数值型主键，通过序列生成
 		}
@@ -122,6 +122,9 @@ namespace JCodes.Framework.OracleDAL
             dict.Add("WareHouse", "所属库房");
             dict.Add("Dept", "所属部门");
             dict.Add("Note", "备注");
+            dict.Add("Quantity", "数量");
+            dict.Add("Amount", "金额");
+            dict.Add("HandNo", "货单号");
 
             #endregion
             return dict;

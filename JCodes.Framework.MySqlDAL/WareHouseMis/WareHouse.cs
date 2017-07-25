@@ -26,7 +26,8 @@ namespace JCodes.Framework.MySqlDAL
 				return new WareHouse();
 			}
 		}
-		public WareHouse() : base("WM_WareHouse","ID")
+        public WareHouse()
+            : base(MySqlPortal.gc._wareHouseTablePre + "WareHouse", "ID")
         {
             this.sortField = "ID";
             this.isDescending = false;

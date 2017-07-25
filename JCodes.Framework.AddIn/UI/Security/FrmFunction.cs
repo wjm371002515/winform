@@ -36,9 +36,9 @@ namespace JCodes.Framework.AddIn.UI.Security
 
         void Init_Function()
         {
-            btnAdd.Enabled = Portal.gc.HasFunction("Function/add");
-            btnDelete.Enabled = Portal.gc.HasFunction("Function/del");
-            btnBatchAdd.Enabled = Portal.gc.HasFunction("Function/BatchAdd");
+            btnAdd.Enabled = HasFunction("Function/add");
+            btnDelete.Enabled = HasFunction("Function/del");
+            btnBatchAdd.Enabled = HasFunction("Function/BatchAdd");
         }
 
         /// <summary>
@@ -158,7 +158,7 @@ namespace JCodes.Framework.AddIn.UI.Security
 
         private void menu_Delete_Click(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("Function/del"))
+            if (!HasFunction("Function/del"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -186,7 +186,7 @@ namespace JCodes.Framework.AddIn.UI.Security
 
         private void menu_DeletAll_Click(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("Function/BatchDel"))
+            if (!HasFunction("Function/BatchDel"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -213,7 +213,7 @@ namespace JCodes.Framework.AddIn.UI.Security
 
         private void menu_Add_Click(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("Function/add"))
+            if (!HasFunction("Function/add"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -289,7 +289,7 @@ namespace JCodes.Framework.AddIn.UI.Security
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(currentID) && !Portal.gc.HasFunction("Function/edit"))
+            if (!string.IsNullOrEmpty(currentID) && !HasFunction("Function/edit"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;

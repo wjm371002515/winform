@@ -134,7 +134,13 @@ namespace JCodes.Framework.Common.Office
             // 首先判断注册表中是否存在regCode 注册码的信息，如果没有在从lic文件中读取文件，如果2个都不存在则验证不通过
             if (null == reg)
             {
-                AppConfig config = new AppConfig();
+                AppConfig config = Cache.Instance["AppConfig"] as AppConfig;
+                if (config == null)
+                {
+                    config = new AppConfig();
+                    Cache.Instance["AppConfig"] = config;
+                }
+
                 string LicensePath = config.AppConfigGet("LicensePath");
                 if (FileUtil.IsExistFile(LicensePath))
                 {
@@ -160,7 +166,13 @@ namespace JCodes.Framework.Common.Office
             // 再去配置表的数据
             if (string.Equals(regCode, string.Empty))
             {
-                AppConfig config = new AppConfig();
+                AppConfig config = Cache.Instance["AppConfig"] as AppConfig;
+                if (config == null)
+                {
+                    config = new AppConfig();
+                    Cache.Instance["AppConfig"] = config;
+                }
+
                 string LicensePath = config.AppConfigGet("LicensePath");
                 if (FileUtil.IsExistFile(LicensePath))
                 {

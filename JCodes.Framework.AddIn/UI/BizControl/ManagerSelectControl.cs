@@ -8,6 +8,8 @@ using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using JCodes.Framework.AddIn.Other;
+using JCodes.Framework.Common.Framework;
+using JCodes.Framework.BLL;
 
 namespace JCodes.Framework.AddIn.UI.BizControl
 {
@@ -73,7 +75,7 @@ namespace JCodes.Framework.AddIn.UI.BizControl
             {
                 txtOperator.Properties.ValueMember = "Name";
                 txtOperator.Properties.DisplayMember = "FullName";
-                txtOperator.Properties.DataSource = SecurityHelper.GetSimpleUsers();
+                txtOperator.Properties.DataSource = BLLFactory<User>.Instance.GetSimpleUsers();
             }
         }
 

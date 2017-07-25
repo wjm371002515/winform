@@ -26,7 +26,8 @@ namespace JCodes.Framework.OracleDAL
 				return new PurchaseDetail();
 			}
 		}
-		public PurchaseDetail() : base("WM_PurchaseDetail","ID")
+        public PurchaseDetail()
+            : base(OraclePortal.gc._wareHouseTablePre + "PurchaseDetail", "ID")
         {
             this.SeqName = string.Format("SEQ_{0}", tableName);//数值型主键，通过序列生成
 		}
@@ -98,6 +99,15 @@ namespace JCodes.Framework.OracleDAL
 
 			return hash;
 		}
+
+        public DataTable GetPurchaseDetailReportByID(int PurchaseHead_ID)
+        {
+            string sql = string.Format(@"Select HandNo,ItemNo,ItemName,MapNo,Specification,Material,
+            ItemBigType,ItemType,Unit,Price,Quantity,Amount,Source,StoragePos,UsagePos,d.WareHouse,d.Dept
+            From {0}PurchaseDetail d inner join {0}PurchaseHeader h on d.PurchaseHead_ID = h.ID 
+            Where h.ID={1} order by CreateDate ", OraclePortal.gc._wareHouseTablePre, PurchaseHead_ID);
+            return this.SqlTable(sql);
+        }
 
     }
 }

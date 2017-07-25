@@ -30,30 +30,30 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
         {
             bool result = true;//默认是可以通过
             #region MyRegion
-            if (this.txtName.Text.Trim().Length == 0)
+            if (txtID.Text.Trim().Length == 0)
             {
-                MessageDxUtil.ShowTips("类别编号不能为空");
-                this.txtName.Focus();
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblID.Text.Replace(Const.MsgCheckSign, string.Empty));
+                this.txtID.Focus();
                 result = false;
             }
 
             if (txtName.Text.Trim().Length == 0)
             {
-                MessageDxUtil.ShowTips("类型名称不能为空");
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblName.Text.Replace(Const.MsgCheckSign, string.Empty));
                 txtName.Focus();
                 result = false;
             }
 
             if (txtSeq.Text.Trim().Length == 0)
             {
-                MessageDxUtil.ShowTips("类型排序不能为空");
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblSeq.Text.Replace(Const.MsgCheckSign, string.Empty));
                 txtSeq.Focus();
                 result = false;
             }
 
             if (txtParent.Text.Trim().Length == 0)
             {
-                MessageDxUtil.ShowTips("父类名称不能为空");
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblParent.Text.Replace(Const.MsgCheckSign, string.Empty));
                 txtParent.Focus();
                 result = false;
             }
@@ -63,7 +63,7 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
             {
                 if (!ValidateUtil.IsNumeric(Id))
                 {
-                    MessageDxUtil.ShowTips("类别编号只允许输入数字");
+                    MessageDxUtil.ShowWarning(txtID.Text.Replace(Const.MsgCheckSign, string.Empty) + Const.MsgErrFormatByNum);
                     txtID.Focus();
                     result = false;
                 }

@@ -72,7 +72,13 @@ namespace JCodes.Framework.Common.Framework
             this.bllPrefix = bllPrefix;
 
             #region 根据不同的数据库类型，构造相应的DAL层
-            AppConfig config = new AppConfig();
+            AppConfig config = Cache.Instance["AppConfig"] as AppConfig;
+            if (config == null)
+            {
+                config = new AppConfig();
+                Cache.Instance["AppConfig"] = config;
+            }
+
             string dbType = config.AppConfigGet("ComponentDbType");
             if (string.IsNullOrEmpty(dbType))
             {

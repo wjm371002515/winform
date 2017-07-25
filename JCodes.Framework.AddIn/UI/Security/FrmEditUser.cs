@@ -77,25 +77,25 @@ namespace JCodes.Framework.AddIn.UI.Security
             #region MyRegion
             if (this.txtName.Text.Trim().Length == 0)
             {
-                MessageDxUtil.ShowTips("请输入用户名/登录名");
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblName.Text.Replace(Const.MsgCheckSign, string.Empty));
                 this.txtName.Focus();
                 result = false;
             }
             else if (this.txtFullName.Text.Trim().Length == 0)
             {
-                MessageDxUtil.ShowTips("请输入真实姓名");
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblFullName.Text.Replace(Const.MsgCheckSign, string.Empty));
                 this.txtFullName.Focus();
                 result = false;
             }
             else if (this.txtCompany.Text == "")
             {
-                MessageDxUtil.ShowTips("所属公司不能为空");
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblCompany.Text.Replace(Const.MsgCheckSign, string.Empty));
                 this.txtCompany.Focus();
                 return false;
             }
             else if (this.txtDept.Text == "")
             {
-                MessageDxUtil.ShowTips("默认部门机构不能为空");
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblDept.Text.Replace(Const.MsgCheckSign, string.Empty));
                 this.txtDept.Focus();
                 return false;
             }
@@ -165,14 +165,12 @@ namespace JCodes.Framework.AddIn.UI.Security
                     txtIsExpire.Checked = info.IsExpire;
                     txtDeleted.Checked = info.Deleted;
                 }
-                #endregion
-                //this.btnOK.Enabled = Portal.gc.HasFunction("User/Edit");             
+                #endregion            
             }
             else
             {
                 txtCreator.Text = Portal.gc.UserInfo.FullName;//默认为当前登录用户
                 txtCreateTime.DateTime = DateTime.Now; //默认当前时间
-                //this.btnOK.Enabled = Portal.gc.HasFunction("User/Add");  
             }
         }
 

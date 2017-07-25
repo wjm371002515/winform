@@ -28,5 +28,7 @@ namespace JCodes.Framework.IDAL
         /// <param name="isIn">入库还是出库，true为入库，否则为出库</param>
         /// <returns></returns>
         int GetPurchaseQuantity(string condition, bool isIn);
+
+        DataTable GetPurchaseReport(string condition);
     }
 }

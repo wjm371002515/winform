@@ -47,9 +47,8 @@ namespace JCodes.Framework.BLL
         /// <returns></returns>
         public DataTable GetPurchaseReport(string condition)
         {
-            string sql = string.Format(@"Select h.ID,h.HandNo,h.OperationType,h.Manufacture,h.WareHouse,d.Dept,h.CostCenter,h.Note,h.CreateDate,h.Creator,h.PickingPeople  
-            from WM_PurchaseHeader h inner join WM_PurchaseDetail d on h.ID = d.PurchaseHead_ID {0} order by h.CreateDate", condition);
-            return SqlTable(sql);
+            IPurchaseHeader dal = baseDal as IPurchaseHeader;
+            return dal.GetPurchaseReport(condition);
         }
 
         /// <summary>

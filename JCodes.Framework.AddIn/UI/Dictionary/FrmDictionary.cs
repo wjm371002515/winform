@@ -54,9 +54,9 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
 
         void Init_Function()
         {
-            btnAdd.Enabled = Portal.gc.HasFunction("DicSet/DictDataAdd");
-            btnEdit.Enabled = Portal.gc.HasFunction("DicSet/DictDataEdit");
-            btnDelete.Enabled = Portal.gc.HasFunction("DicSet/DictDataDel");
+            btnAdd.Enabled = HasFunction("DicSet/DictDataAdd");
+            btnEdit.Enabled = HasFunction("DicSet/DictDataEdit");
+            btnDelete.Enabled = HasFunction("DicSet/DictDataDel");
         }
 
         #region 分类数据
@@ -108,7 +108,7 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
 
         private void menu_AddType_Click(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("DicSet/DictTypeAdd"))
+            if (!HasFunction("DicSet/DictTypeAdd"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -145,7 +145,7 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
         /// <param name="e"></param>
         private void menu_EditType_Click(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("DicSet/DictTypeEdit"))
+            if (!HasFunction("DicSet/DictTypeEdit"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -172,7 +172,7 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
 
         private void menu_DeleteType_Click(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("DicSet/DictTypeDel"))
+            if (!HasFunction("DicSet/DictTypeDel"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -218,7 +218,7 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
         /// <returns></returns>
         bool drager_ProcessDragNode(TreeNode dragNode, TreeNode dropNode)
         {
-            if (!Portal.gc.HasFunction("DicSet/DictTypeDrag"))
+            if (!HasFunction("DicSet/DictTypeDrag"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return false;
@@ -266,7 +266,7 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
         private void menu_ClearData_Click(object sender, EventArgs e)
         {
 
-            if (!Portal.gc.HasFunction("DicSet/DictDataClearAll"))
+            if (!HasFunction("DicSet/DictDataClearAll"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -304,7 +304,7 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
         #region 分类数据字典数据
         private void winGridViewPager1_OnAddNew(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("DicSet/DictDataAdd"))
+            if (!HasFunction("DicSet/DictDataAdd"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -329,7 +329,7 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
 
         private void winGridViewPager1_OnEditSelected(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("DicSet/DictDataEdit"))
+            if (!HasFunction("DicSet/DictDataEdit"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -350,7 +350,7 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
 
         private void winGridViewPager1_OnDeleteSelected(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("DicSet/DictDataDel"))
+            if (!HasFunction("DicSet/DictDataDel"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;

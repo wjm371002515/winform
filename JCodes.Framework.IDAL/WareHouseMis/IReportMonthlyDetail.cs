@@ -14,5 +14,6 @@ namespace JCodes.Framework.IDAL
 	/// </summary>
 	public interface IReportMonthlyDetail : IBaseDAL<ReportMonthlyDetailInfo>
 	{
+
     }
 }

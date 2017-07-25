@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\jCodes\</OutputPath>
+    <OutputPath>..\jCodes\AddIn\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -55,6 +55,7 @@
     <Reference Include="DevExpress.XtraPdfViewer.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraPrinting.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraRichEdit.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraRichEdit.v14.1.Extensions, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraSpreadsheet.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
@@ -163,6 +164,12 @@
     </Compile>
     <Compile Include="BaseUI\FrmImportExcelData.designer.cs">
       <DependentUpon>FrmImportExcelData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ucCodeEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ucCodeEditor.designer.cs">
+      <DependentUpon>ucCodeEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="Device\KeyboardHelper.cs" />
     <Compile Include="Framework\FrmException.cs">
@@ -418,6 +425,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BaseUI\FrmImportExcelData.resx">
       <DependentUpon>FrmImportExcelData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ucCodeEditor.resx">
+      <DependentUpon>ucCodeEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Device\CameraDialog.resx">
       <DependentUpon>CameraDialog.cs</DependentUpon>

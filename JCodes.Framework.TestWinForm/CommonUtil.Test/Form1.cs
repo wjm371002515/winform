@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JCodes.Framework.Common.Winform;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,38 +19,32 @@ namespace TestControlUtil
 
         private void btnAsposeCell_Click(object sender, EventArgs e)
         {
-            FrmAsposeCell dlg = new FrmAsposeCell();
-            dlg.ShowDialog();
+            ChildWinManagement.PopDialogForm(typeof(FrmAsposeCell));
         }
 
         private void btnAsposeWords_Click(object sender, EventArgs e)
         {
-            FrmAsposeWords dlg = new FrmAsposeWords();
-            dlg.ShowDialog();
+            ChildWinManagement.PopDialogForm(typeof(FrmAsposeWords));
         }
 
         private void btnFrmMyXls_Click(object sender, EventArgs e)
         {
-            FrmMyXls dlg = new FrmMyXls();
-            dlg.ShowDialog();
+            ChildWinManagement.PopDialogForm(typeof(FrmMyXls));
         }
 
         private void btnNPOI_Click(object sender, EventArgs e)
         {
-            FrmNPOI dlg = new FrmNPOI();
-            dlg.ShowDialog();
+            ChildWinManagement.PopDialogForm(typeof(FrmNPOI));
         }
 
         private void btnADSLDialer_Click(object sender, EventArgs e)
         {
-            FrmADSLDialer dlg = new FrmADSLDialer();
-            dlg.ShowDialog();
+            ChildWinManagement.PopDialogForm(typeof(FrmADSLDialer));
         }
 
         private void btnZipUtil_Click(object sender, EventArgs e)
         {
-            FrmZipUtil dlg = new FrmZipUtil();
-            dlg.ShowDialog();
+            ChildWinManagement.PopDialogForm(typeof(FrmZipUtil));
         }
     }
 }

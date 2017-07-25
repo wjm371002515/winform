@@ -12,6 +12,7 @@ using JCodes.Framework.Common.Files;
 using JCodes.Framework.CommonControl.BaseUI;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.Common.Office;
 
 namespace JCodes.Framework.CommonControl.Device
 {
@@ -30,11 +31,18 @@ namespace JCodes.Framework.CommonControl.Device
         /// </summary>
         public string SaveConfigName { get; set; }
 
-        private AppConfig config = new AppConfig();//配置文件操作类
+        private AppConfig config = null;//配置文件操作类
 
         public FrmSetPrinterName()
         {
             InitializeComponent();
+
+            config = Cache.Instance["AppConfig"] as AppConfig;
+            if (config == null)
+            {
+                config = new AppConfig();
+                Cache.Instance["AppConfig"] = config;
+            }	
         }
 
         private void FrmSetPrinterName_Load(object sender, EventArgs e)

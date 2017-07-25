@@ -67,7 +67,7 @@ namespace JCodes.Framework.AddIn.UI._50Go
         /// </summary>
         private void winGridViewPager1_OnDeleteSelected(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("Generatecoupons/del"))
+            if (!HasFunction("Generatecoupons/del"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -92,7 +92,7 @@ namespace JCodes.Framework.AddIn.UI._50Go
         /// </summary>
         private void winGridViewPager1_OnEditSelected(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("Generatecoupons/edit"))
+            if (!HasFunction("Generatecoupons/edit"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -246,7 +246,7 @@ namespace JCodes.Framework.AddIn.UI._50Go
         /// <param name="e"></param>
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if (!Portal.gc.HasFunction("Generatecoupons/search"))
+            if (!HasFunction("Generatecoupons/search"))
             {
                 return;
             }
@@ -291,23 +291,14 @@ namespace JCodes.Framework.AddIn.UI._50Go
             // 加载分类数据
             InitTree();
 
-            InitControl();
+            Init_Function();
         }
 
-        private void InitControl()
+        private void Init_Function()
         {
-            if (!Portal.gc.HasFunction("Generatecoupons/add"))
-            {
-                btnGenerate.Enabled = false;
-            }
-            if (!Portal.gc.HasFunction("Generatecoupons/search"))
-            {
-                btnSearch.Enabled = false;
-            }
-            if (!Portal.gc.HasFunction("Generatecoupons/export"))
-            {
-                btnExport.Enabled = false;
-            }
+            btnGenerate.Enabled = HasFunction("Generatecoupons/add");
+            btnSearch.Enabled = HasFunction("Generatecoupons/search");
+            btnExport.Enabled = HasFunction("Generatecoupons/export");
 
             // 初始化查询界面分类下拉框
             // 初始化类别 
@@ -336,7 +327,7 @@ namespace JCodes.Framework.AddIn.UI._50Go
         /// <param name="e"></param>
         private void menuTree_Add_Click(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("Generatecoupons/addCategory"))
+            if (!HasFunction("Generatecoupons/addCategory"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -402,7 +393,7 @@ namespace JCodes.Framework.AddIn.UI._50Go
         /// <param name="e"></param>
         private void treeView1_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            if (!Portal.gc.HasFunction("Generatecoupons/editCategory"))
+            if (!HasFunction("Generatecoupons/editCategory"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;

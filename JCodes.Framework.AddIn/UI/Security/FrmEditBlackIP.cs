@@ -43,25 +43,25 @@ namespace JCodes.Framework.AddIn.UI.Security
             #region MyRegion
             if (this.txtName.Text.Trim().Length == 0)
             {
-                MessageDxUtil.ShowTips("请输入显示名称");
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblName.Text.Replace(Const.MsgCheckSign, string.Empty));
                 this.txtName.Focus();
                 result = false;
             }
             else if (this.txtAuthorizeType.Text.Length == 0)
             {
-                MessageDxUtil.ShowTips("请选择授权类型");
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblAuthorizeType.Text.Replace(Const.MsgCheckSign, string.Empty));
                 this.txtAuthorizeType.Focus();
                 result = false;
             }
             else if (this.txtIPStart.Text.Length == 0)
             {
-                MessageDxUtil.ShowTips("请输入IP起始地址");
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblIPStart.Text.Replace(Const.MsgCheckSign, string.Empty));
                 this.txtIPStart.Focus();
                 result = false;
             }
             else if (this.txtIPEnd.Text.Length == 0)
             {
-                MessageDxUtil.ShowTips("请输入IP结束地址");
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblIPEnd.Text.Replace(Const.MsgCheckSign, string.Empty));
                 this.txtIPEnd.Focus();
                 result = false;
             }
@@ -119,14 +119,12 @@ namespace JCodes.Framework.AddIn.UI.Security
                     txtCreator.Text = info.Creator;
                     txtCreateTime.SetDateTime(info.CreateTime);
                 }
-                #endregion
-                //this.btnOK.Enabled = Portal.gc.HasFunction("BlackIP/Edit");             
+                #endregion         
             }
             else
             {
                 txtCreator.Text = Portal.gc.UserInfo.FullName;//默认为当前登录用户
                 txtCreateTime.DateTime = DateTime.Now; //默认当前时间
-                //this.btnOK.Enabled = Portal.gc.HasFunction("BlackIP/Add");  
             }
 
             RefreshUsers();

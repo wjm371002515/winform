@@ -114,17 +114,8 @@ namespace JCodes.Framework.AddIn.UI.Security
                 }
 
                 //可特殊设置特别的宽度 
-                SetGridColumWidth("Name", 200);
-                SetGridColumWidth("Note", 200);
-            }
-        }
-
-        private void SetGridColumWidth(string columnName, int width)
-        {
-            DevExpress.XtraGrid.Columns.GridColumn column = this.winGridViewPager1.gridView1.Columns.ColumnByFieldName(columnName);
-            if (column != null)
-            {
-                column.Width = width;
+                winGridViewPager1.gridView1.SetGridColumWidth("Name", 200);
+                winGridViewPager1.gridView1.SetGridColumWidth("Note", 200);
             }
         }
 
@@ -140,8 +131,8 @@ namespace JCodes.Framework.AddIn.UI.Security
 
         void Init_Function()
         {
-            btnSearch.Enabled = Portal.gc.HasFunction("BlackIP/search");
-            btnAddNew.Enabled = Portal.gc.HasFunction("BlackIP/add");
+            btnSearch.Enabled = HasFunction("BlackIP/search");
+            btnAddNew.Enabled = HasFunction("BlackIP/add");
         }
 
         /// <summary>
@@ -171,7 +162,7 @@ namespace JCodes.Framework.AddIn.UI.Security
         /// </summary>
         private void winGridViewPager1_OnDeleteSelected(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("BlackIP/del"))
+            if (!HasFunction("BlackIP/del"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -198,7 +189,7 @@ namespace JCodes.Framework.AddIn.UI.Security
         /// </summary>
         private void winGridViewPager1_OnEditSelected(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("BlackIP/edit"))
+            if (!HasFunction("BlackIP/edit"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -236,7 +227,7 @@ namespace JCodes.Framework.AddIn.UI.Security
         /// </summary>        
         private void winGridViewPager1_OnAddNew(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("BlackIP/add"))
+            if (!HasFunction("BlackIP/add"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -328,7 +319,7 @@ namespace JCodes.Framework.AddIn.UI.Security
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (!Portal.gc.HasFunction("BlackIP/search"))
+                if (!HasFunction("BlackIP/search"))
                 {
                     return;
                 }

@@ -26,7 +26,8 @@ namespace JCodes.Framework.SQLServerDAL
 				return new ItemDetail();
 			}
 		}
-		public ItemDetail() : base("WM_ItemDetail","ID")
+        public ItemDetail()
+            : base(SQLServerPortal.gc._wareHouseTablePre + "ItemDetail", "ID")
 		{
 		}
 
@@ -103,8 +104,8 @@ namespace JCodes.Framework.SQLServerDAL
             #region 添加别名解析
 
             dict.Add("ID", "编号");
-            dict.Add("ItemNo", "项目编号");
-            dict.Add("ItemName", "项目名称");
+            dict.Add("ItemNo", "备件编号");
+            dict.Add("ItemName", "备件名称");
             dict.Add("Manufacture", "供货商");
             dict.Add("MapNo", "图号");
             dict.Add("Specification", "规格型号");
@@ -120,6 +121,9 @@ namespace JCodes.Framework.SQLServerDAL
             dict.Add("WareHouse", "所属库房");
             dict.Add("Dept", "所属部门");
             dict.Add("Note", "备注");
+            dict.Add("Quantity", "数量");
+            dict.Add("Amount", "金额");
+            dict.Add("HandNo", "货单号");
 
             #endregion
             return dict;
@@ -134,7 +138,7 @@ namespace JCodes.Framework.SQLServerDAL
         /// <returns></returns>
         public List<ItemDetailInfo> FindByBigType(string bigType)
         {
-            string sql = string.Format("ItemBigType like '%{0}%' or dbo.f_GetPy(ItemBigType) like '{0}%' ", bigType);
+            string sql = string.Format("ItemBigType like '%{0}%' ", bigType);
             return this.Find(sql);
         }
 
@@ -145,7 +149,7 @@ namespace JCodes.Framework.SQLServerDAL
         /// <returns></returns>
         public List<ItemDetailInfo> FindByItemType(string itemType, string wareHouse)
         {
-            string sql = string.Format("(ItemType like '%{0}%' or dbo.f_GetPy(ItemType) like '{0}%') AND WareHouse ='{1}' ", itemType, wareHouse);
+            string sql = string.Format("(ItemType like '%{0}%') AND WareHouse ='{1}' ", itemType, wareHouse);
             return this.Find(sql);
         }
 
@@ -156,7 +160,7 @@ namespace JCodes.Framework.SQLServerDAL
         /// <returns></returns>
         public List<ItemDetailInfo> FindByName(string itemName)
         {
-            string sql = string.Format("ItemName like '%{0}%' or dbo.f_GetPy(ItemName) like '{0}%' ", itemName);
+            string sql = string.Format("ItemName like '%{0}%' ", itemName);
             return this.Find(sql);
         }
                  
@@ -190,7 +194,7 @@ namespace JCodes.Framework.SQLServerDAL
         /// <returns></returns>
         public List<ItemDetailInfo> FindByNameAndNo(string itemName, string itemNo, string wareHouse)
         {
-            string sql = string.Format("(ItemName like '%{0}%' or dbo.f_GetPy(ItemName) like '{0}%') AND WareHouse='{1}' ", itemName, wareHouse);
+            string sql = string.Format("(ItemName like '%{0}%' ) AND WareHouse='{1}' ", itemName, wareHouse);
             if (!string.IsNullOrEmpty(itemNo))
             {
                 sql += string.Format(" AND (ItemNo like '{0}%') ", itemNo);  

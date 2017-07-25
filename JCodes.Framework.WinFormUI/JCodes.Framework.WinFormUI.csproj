@@ -263,16 +263,16 @@ IF EXIST $(TargetDir)Framework\*.pdb DEL $(TargetDir)Framework\*.pdb
 IF EXIST $(TargetDir)AddIn\*.pdb DEL $(TargetDir)AddIn\*.pdb
 
 echo "删除Framework 文件夹对应的dll"
-IF EXIST $(TargetDir)JCodes.Framework.BLL.dll DEL $(TargetDir)JCodes.Framework.BLL.dll
-IF EXIST $(TargetDir)JCodes.Framework.Common.dll DEL $(TargetDir)JCodes.Framework.Common.dll
-IF EXIST $(TargetDir)JCodes.Framework.CommonControl.dll DEL $(TargetDir)JCodes.Framework.CommonControl.dll
-IF EXIST $(TargetDir)JCodes.Framework.Data.DALFactory.dll DEL $(TargetDir)JCodes.Framework.Data.DALFactory.dll
-IF EXIST $(TargetDir)JCodes.Framework.Data.IDAL.dll DEL $(TargetDir)JCodes.Framework.Data.IDAL.dll
-IF EXIST $(TargetDir)JCodes.Framework.Data.Model.dll DEL $(TargetDir)JCodes.Framework.Data.Model.dll
-IF EXIST $(TargetDir)JCodes.Framework.Data.SQLServerDAL.dll DEL $(TargetDir)JCodes.Framework.Data.SQLServerDAL.dll
-IF EXIST $(TargetDir)JCodes.Framework.Entity.dll DEL $(TargetDir)JCodes.Framework.Entity.dll
-IF EXIST $(TargetDir)JCodes.Framework.Enum.dll DEL $(TargetDir)JCodes.Framework.Enum.dll
-IF EXIST $(TargetDir)log4net.dll DEL $(TargetDir)log4net.dll
+#IF EXIST $(TargetDir)JCodes.Framework.BLL.dll DEL $(TargetDir)JCodes.Framework.BLL.dll
+#IF EXIST $(TargetDir)JCodes.Framework.Common.dll DEL $(TargetDir)JCodes.Framework.Common.dll
+#IF EXIST $(TargetDir)JCodes.Framework.CommonControl.dll DEL $(TargetDir)JCodes.Framework.CommonControl.dll
+#IF EXIST $(TargetDir)JCodes.Framework.Data.DALFactory.dll DEL $(TargetDir)JCodes.Framework.Data.DALFactory.dll
+#IF EXIST $(TargetDir)JCodes.Framework.Data.IDAL.dll DEL $(TargetDir)JCodes.Framework.Data.IDAL.dll
+#IF EXIST $(TargetDir)JCodes.Framework.Data.Model.dll DEL $(TargetDir)JCodes.Framework.Data.Model.dll
+#IF EXIST $(TargetDir)JCodes.Framework.Data.SQLServerDAL.dll DEL $(TargetDir)JCodes.Framework.Data.SQLServerDAL.dll
+#IF EXIST $(TargetDir)JCodes.Framework.Entity.dll DEL $(TargetDir)JCodes.Framework.Entity.dll
+#IF EXIST $(TargetDir)JCodes.Framework.Enum.dll DEL $(TargetDir)JCodes.Framework.Enum.dll
+#IF EXIST $(TargetDir)log4net.dll DEL $(TargetDir)log4net.dll
 
 echo "删除AddIn 文件夹对应的dll"
 IF EXIST $(TargetDir)JCodes.Framework.AddIn.dll DEL $(TargetDir)JCodes.Framework.AddIn.dll

@@ -26,7 +26,8 @@ namespace JCodes.Framework.AccessDAL
 				return new ReportMonthlyCostDetail();
 			}
 		}
-		public ReportMonthlyCostDetail() : base("WM_ReportMonthlyCostDetail","ID")
+        public ReportMonthlyCostDetail()
+            : base(AccessPortal.gc._wareHouseTablePre + "ReportMonthlyCostDetail", "ID")
 		{
 		}
 

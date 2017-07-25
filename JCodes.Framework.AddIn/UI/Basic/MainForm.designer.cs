@@ -30,12 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup2 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
+            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup3 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
+            DevExpress.Utils.SuperToolTip superToolTip4 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem4 = new DevExpress.Utils.ToolTipItem();
             DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem3 = new DevExpress.Utils.ToolTipTitleItem();
             DevExpress.Utils.ToolTipItem toolTipItem3 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem2 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
             this.ribbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.applicationMenu1 = new DevExpress.XtraBars.Ribbon.ApplicationMenu(this.components);
             this.btnExit = new DevExpress.XtraBars.BarButtonItem();
@@ -53,6 +53,7 @@
             this.popMenuCloseCurrent = new DevExpress.XtraBars.BarButtonItem();
             this.popMenuCloseAll = new DevExpress.XtraBars.BarButtonItem();
             this.popMenuCloseOther = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.repositoryItemProgressBar1 = new DevExpress.XtraEditors.Repository.RepositoryItemProgressBar();
             this.repositoryItemProgressBar2 = new DevExpress.XtraEditors.Repository.RepositoryItemProgressBar();
@@ -95,6 +96,7 @@
             this.popMenuCloseCurrent,
             this.popMenuCloseAll,
             this.popMenuCloseOther,
+            this.barButtonItem2,
             this.barButtonItem1,
             this.btnModPwd});
             this.ribbonControl.LargeImages = this.imageCollection1;
@@ -103,6 +105,7 @@
             this.ribbonControl.MaxItemId = 68;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.PageHeaderItemLinks.Add(this.menuLogo, true);
+            this.ribbonControl.PageHeaderItemLinks.Add(this.barButtonItem2);
             this.ribbonControl.PageHeaderItemLinks.Add(this.barButtonItem1);
             this.ribbonControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemProgressBar1,
@@ -182,6 +185,7 @@
             this.imageCollection1.Images.SetKeyName(24, "Contact.ico");
             this.imageCollection1.Images.SetKeyName(25, "user004.ico");
             this.imageCollection1.Images.SetKeyName(26, "Addressbook.ico");
+            this.imageCollection1.Images.SetKeyName(27, "Refresh.ico");
             // 
             // rgbiSkins
             // 
@@ -189,9 +193,9 @@
             // 
             // 
             // 
-            galleryItemGroup2.Caption = "Group1";
+            galleryItemGroup3.Caption = "Group1";
             this.rgbiSkins.Gallery.Groups.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItemGroup[] {
-            galleryItemGroup2});
+            galleryItemGroup3});
             this.rgbiSkins.Id = 21;
             this.rgbiSkins.Name = "rgbiSkins";
             // 
@@ -216,9 +220,9 @@
             this.menuLogo.Id = 51;
             this.menuLogo.ImageIndex = 18;
             this.menuLogo.Name = "menuLogo";
-            toolTipItem3.Text = "访问技术支持网站";
-            superToolTip3.Items.Add(toolTipItem3);
-            this.menuLogo.SuperTip = superToolTip3;
+            toolTipItem4.Text = "访问技术支持网站";
+            superToolTip4.Items.Add(toolTipItem4);
+            this.menuLogo.SuperTip = superToolTip4;
             this.menuLogo.Width = 0;
             this.menuLogo.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuLogo_ItemClick);
             // 
@@ -249,12 +253,12 @@
             this.lblCurrentUser.Description = "查看/编辑当前用户信息";
             this.lblCurrentUser.Id = 55;
             this.lblCurrentUser.Name = "lblCurrentUser";
-            toolTipTitleItem2.Text = "提示信息";
-            toolTipItem1.LeftIndent = 6;
-            toolTipItem1.Text = "单击该处，可以进行查看/编辑当前用户信息操作。";
-            superToolTip1.Items.Add(toolTipTitleItem2);
-            superToolTip1.Items.Add(toolTipItem1);
-            this.lblCurrentUser.SuperTip = superToolTip1;
+            toolTipTitleItem3.Text = "提示信息";
+            toolTipItem3.LeftIndent = 6;
+            toolTipItem3.Text = "单击该处，可以进行查看/编辑当前用户信息操作。";
+            superToolTip3.Items.Add(toolTipTitleItem3);
+            superToolTip3.Items.Add(toolTipItem3);
+            this.lblCurrentUser.SuperTip = superToolTip3;
             this.lblCurrentUser.TextAlignment = System.Drawing.StringAlignment.Near;
             this.lblCurrentUser.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.lblCurrentUser_ItemClick);
             // 
@@ -278,6 +282,16 @@
             this.popMenuCloseOther.Id = 62;
             this.popMenuCloseOther.Name = "popMenuCloseOther";
             this.popMenuCloseOther.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.popMenuCloseOther_ItemClick);
+            // 
+            // barButtonItem2
+            // 
+            this.barButtonItem2.Caption = "刷新内存";
+            this.barButtonItem2.Description = "刷新内存";
+            this.barButtonItem2.Hint = "刷新内存";
+            this.barButtonItem2.Id = 64;
+            this.barButtonItem2.ImageIndex = 27;
+            this.barButtonItem2.Name = "barButtonItem2";
+            this.barButtonItem2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem2_ItemClick);
             // 
             // barButtonItem1
             // 
@@ -420,6 +434,7 @@
         private DevExpress.XtraBars.BarButtonItem popMenuCloseCurrent;
         private DevExpress.XtraBars.BarButtonItem popMenuCloseAll;
         private DevExpress.XtraBars.BarButtonItem popMenuCloseOther;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
         private DevExpress.XtraBars.Ribbon.ApplicationMenu applicationMenu1;
         private DevExpress.XtraBars.BarButtonItem btnModPwd;

@@ -40,7 +40,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
             #region MyRegion
             if (this.txtTableName.Text.Trim().Length == 0)
             {
-                MessageDxUtil.ShowTips("请输入数据库表");
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblTableName.Text.Replace(Const.MsgCheckSign, string.Empty));
                 this.txtTableName.Focus();
                 result = false;
             }
@@ -89,16 +89,14 @@ namespace JCodes.Framework.AddIn.UI.Basic
                     txtEditor.Text = info.Editor;
                     txtEditTime.SetDateTime(info.EditTime);
                 }
-                #endregion
-                //this.btnOK.Enabled = Portal.gc.HasFunction("OperationLogSetting/Edit");             
+                #endregion            
             }
             else
             {
                 txtCreateTime.DateTime = DateTime.Now; //默认当前时间
                 txtCreator.Text = Portal.gc.UserInfo.FullName;//默认为当前登录用户
                 txtEditor.Text = Portal.gc.UserInfo.FullName;//默认为当前登录用户
-                txtEditTime.DateTime = DateTime.Now; //默认当前时间
-                //this.btnOK.Enabled = Portal.gc.HasFunction("OperationLogSetting/Add");  
+                txtEditTime.DateTime = DateTime.Now; //默认当前时间 
             }
         }
 

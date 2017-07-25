@@ -46,7 +46,7 @@ namespace JCodes.Framework.AddIn.UI.Contact
             #region MyRegion
             if (this.txtName.Text.Trim().Length == 0)
             {
-                MessageDxUtil.ShowTips("«Î ‰»Î–’√˚");
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblName.Text.Replace(Const.MsgCheckSign, string.Empty));
                 this.txtName.Focus();
                 result = false;
             }
@@ -94,9 +94,9 @@ namespace JCodes.Framework.AddIn.UI.Contact
                     txtPosition.Text = info.Position;
                     txtOther.Text = info.Other;
                     txtNote.Text = info.Note;
-                    txtCreator.Text = SecurityHelper.GetFullNameByID(info.Creator);
+                    txtCreator.Text = info.Creator;
                     txtCreateTime.SetDateTime(info.CreateTime);
-                    txtEditor.Text = SecurityHelper.GetFullNameByID(info.Editor);
+                    txtEditor.Text = info.Editor;
                     txtEditTime.SetDateTime(info.EditTime);
                 }
                 #endregion

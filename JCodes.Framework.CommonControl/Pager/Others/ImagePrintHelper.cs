@@ -92,9 +92,6 @@ namespace JCodes.Framework.CommonControl.Pager.Others
 
         private void GetImageForPrint(object sender, PrintPageEventArgs e)
         {
-            //PrintOptionsDialog pod = new PrintOptionsDialog();
-            //pod.ShowDialog();
-
             ContentAlignment alignment = this.AllowPrintCenter ? ContentAlignment.MiddleCenter : ContentAlignment.TopLeft;
 
             RectangleF pageRect = e.PageSettings.PrintableArea;

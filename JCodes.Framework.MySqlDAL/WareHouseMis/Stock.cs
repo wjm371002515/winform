@@ -26,7 +26,8 @@ namespace JCodes.Framework.MySqlDAL
 				return new Stock();
 			}
 		}
-		public Stock() : base("WM_Stock","ID")
+        public Stock()
+            : base(MySqlPortal.gc._wareHouseTablePre + "Stock", "ID")
 		{
 		}
 
@@ -171,6 +172,21 @@ namespace JCodes.Framework.MySqlDAL
                 dt.Rows.Add(row);
             }
             return dt;//已经过排序
+        }
+
+        public DataTable GetCurrentStockReport(string condition)
+        {
+            //ID,ItemNo,ItemName,Manufacture,MapNo,Specification,Material,ItemBigType,ItemType,Unit,Price,(UnitCost * StockQuantity) StockAmount, (Price * StockQuantity) Amount, Source,StoragePos,UsagePos,StockQuantity,AlarmQuantity,Note
+            string sql = string.Format(@"Select t.ID,d.ItemNo,d.ItemName,Price,t.StockQuantity,(Price * t.StockQuantity) as StockAmount,d.Manufacture,d.MapNo,d.Specification,d.Material,d.ItemBigType,d.ItemType,d.Unit, Source,StoragePos,UsagePos,LowWarning,HighWarning,t.Note,t.WareHouse,d.Dept
+                                         From {0}Stock t inner join {0}ItemDetail d on t.ItemNo = d.ItemNo  {1} order by t.id ", MySqlPortal.gc._wareHouseTablePre, condition);
+            return this.SqlTable(sql);
+        }
+
+        public int GetCurrentStockReportCount(string condition)
+        {
+            string sql = string.Format(@"Select count(*) From {0}Stock t inner join {0}ItemDetail d on t.ItemNo = d.ItemNo  {1} ", MySqlPortal.gc._wareHouseTablePre, condition);
+            string value = this.SqlValueList(sql);
+            return Convert.ToInt32(value);
         }
     }
 }

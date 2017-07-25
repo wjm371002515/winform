@@ -24,10 +24,8 @@ namespace JCodes.Framework.BLL
         /// <returns></returns>
         public DataTable GetCurrentStockReport(string condition)
         {
-            //ID,ItemNo,ItemName,Manufacture,MapNo,Specification,Material,ItemBigType,ItemType,Unit,Price,(UnitCost * StockQuantity) StockAmount, (Price * StockQuantity) Amount, Source,StoragePos,UsagePos,StockQuantity,AlarmQuantity,Note
-            string sql = string.Format(@"Select t.ID,d.ItemNo,d.ItemName,Price,t.StockQuantity,(Price * t.StockQuantity) as StockAmount,d.Manufacture,d.MapNo,d.Specification,d.Material,d.ItemBigType,d.ItemType,d.Unit, Source,StoragePos,UsagePos,LowWarning,HighWarning,t.Note,t.WareHouse,d.Dept
-                                         From WM_Stock t inner join WM_ItemDetail d on t.ItemNo = d.ItemNo  {0} order by t.id ", condition);
-            return baseDal.SqlTable(sql);
+            IStock dal = baseDal as IStock;
+            return dal.GetCurrentStockReport(condition);
         }
 
         /// <summary>
@@ -37,9 +35,8 @@ namespace JCodes.Framework.BLL
         /// <returns></returns>
         public int GetCurrentStockReportCount(string condition)
         {
-            string sql = string.Format(@"Select count(*) From WM_Stock t inner join WM_ItemDetail d on t.ItemNo = d.ItemNo  {0} ", condition);
-            string value = baseDal.SqlValueList(sql);
-            return Convert.ToInt32(value);
+            IStock dal = baseDal as IStock;
+            return dal.GetCurrentStockReportCount(condition);
         }
 
         /// <summary>

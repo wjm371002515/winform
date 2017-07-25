@@ -45,7 +45,7 @@ namespace JCodes.Framework.AddIn.UI.Contact
             #region MyRegion
             if (this.txtName.Text.Trim().Length == 0)
             {
-                MessageDxUtil.ShowTips("请输入分组名称");
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblName.Text.Replace(Const.MsgCheckSign, string.Empty));
                 this.txtName.Focus();
                 result = false;
             }
@@ -94,7 +94,7 @@ namespace JCodes.Framework.AddIn.UI.Contact
                     txtSeq.Text = info.Seq;
                     txtName.Text = info.Name;
                     txtNote.Text = info.Note;
-                    txtEditor.Text = SecurityHelper.GetFullNameByID(info.Editor);
+                    txtEditor.Text = info.Editor;
                     txtEditTime.SetDateTime(info.EditTime);
                 }
                 #endregion          

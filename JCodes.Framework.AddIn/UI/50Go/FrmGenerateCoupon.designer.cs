@@ -39,15 +39,15 @@ namespace JCodes.Framework.AddIn.UI._50Go
             this.txtEndTime = new DevExpress.XtraEditors.DateEdit();
             this.txtEnabled = new DevExpress.XtraEditors.ComboBoxEdit();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lblID = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lblMobilePhone = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lblFullName = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lblCategory = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lblStartTime = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lblEndTime = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lblEnabled = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.picPrint)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -64,15 +64,15 @@ namespace JCodes.Framework.AddIn.UI._50Go
             ((System.ComponentModel.ISupportInitialize)(this.txtEndTime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEnabled.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblID)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblMobilePhone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblFullName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblCategory)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblStartTime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblEndTime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblEnabled)).BeginInit();
             this.SuspendLayout();
             // 
             // btnOK
@@ -226,50 +226,50 @@ namespace JCodes.Framework.AddIn.UI._50Go
             // 
             this.layoutControlGroup1.CustomizationFormText = "layoutControlGroup1";
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem1,
-            this.layoutControlItem6,
-            this.layoutControlItem7,
+            this.lblID,
+            this.lblMobilePhone,
+            this.lblFullName,
             this.layoutControlItem9,
             this.layoutControlItem11,
-            this.layoutControlItem4,
-            this.layoutControlItem2,
-            this.layoutControlItem3,
-            this.layoutControlItem5});
+            this.lblCategory,
+            this.lblStartTime,
+            this.lblEndTime,
+            this.lblEnabled});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Size = new System.Drawing.Size(465, 280);
             this.layoutControlGroup1.Text = "layoutControlGroup1";
             this.layoutControlGroup1.TextVisible = false;
             // 
-            // layoutControlItem1
+            // lblID
             // 
-            this.layoutControlItem1.Control = this.txtID;
-            this.layoutControlItem1.CustomizationFormText = "优惠券兑换码";
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(445, 32);
-            this.layoutControlItem1.Text = "优惠券兑换码(*)";
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(132, 22);
+            this.lblID.Control = this.txtID;
+            this.lblID.CustomizationFormText = "优惠券兑换码";
+            this.lblID.Location = new System.Drawing.Point(0, 0);
+            this.lblID.Name = "lblID";
+            this.lblID.Size = new System.Drawing.Size(445, 32);
+            this.lblID.Text = "优惠券兑换码(*)";
+            this.lblID.TextSize = new System.Drawing.Size(132, 22);
             // 
-            // layoutControlItem6
+            // lblMobilePhone
             // 
-            this.layoutControlItem6.Control = this.txtMobilePhone;
-            this.layoutControlItem6.CustomizationFormText = "手机号";
-            this.layoutControlItem6.Location = new System.Drawing.Point(0, 128);
-            this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(445, 32);
-            this.layoutControlItem6.Text = "手机号(*)";
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(132, 22);
+            this.lblMobilePhone.Control = this.txtMobilePhone;
+            this.lblMobilePhone.CustomizationFormText = "手机号";
+            this.lblMobilePhone.Location = new System.Drawing.Point(0, 128);
+            this.lblMobilePhone.Name = "lblMobilePhone";
+            this.lblMobilePhone.Size = new System.Drawing.Size(445, 32);
+            this.lblMobilePhone.Text = "手机号(*)";
+            this.lblMobilePhone.TextSize = new System.Drawing.Size(132, 22);
             // 
-            // layoutControlItem7
+            // lblFullName
             // 
-            this.layoutControlItem7.Control = this.txtFullName;
-            this.layoutControlItem7.CustomizationFormText = "联系人";
-            this.layoutControlItem7.Location = new System.Drawing.Point(0, 160);
-            this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(445, 32);
-            this.layoutControlItem7.Text = "联系人(*)";
-            this.layoutControlItem7.TextSize = new System.Drawing.Size(132, 22);
+            this.lblFullName.Control = this.txtFullName;
+            this.lblFullName.CustomizationFormText = "联系人";
+            this.lblFullName.Location = new System.Drawing.Point(0, 160);
+            this.lblFullName.Name = "lblFullName";
+            this.lblFullName.Size = new System.Drawing.Size(445, 32);
+            this.lblFullName.Text = "联系人(*)";
+            this.lblFullName.TextSize = new System.Drawing.Size(132, 22);
             // 
             // layoutControlItem9
             // 
@@ -291,45 +291,45 @@ namespace JCodes.Framework.AddIn.UI._50Go
             this.layoutControlItem11.Text = "创建时间";
             this.layoutControlItem11.TextSize = new System.Drawing.Size(132, 22);
             // 
-            // layoutControlItem4
+            // lblCategory
             // 
-            this.layoutControlItem4.Control = this.txtCategory;
-            this.layoutControlItem4.CustomizationFormText = "优惠券类别";
-            this.layoutControlItem4.Location = new System.Drawing.Point(0, 32);
-            this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(445, 32);
-            this.layoutControlItem4.Text = "优惠券类别(*)";
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(132, 22);
+            this.lblCategory.Control = this.txtCategory;
+            this.lblCategory.CustomizationFormText = "优惠券类别";
+            this.lblCategory.Location = new System.Drawing.Point(0, 32);
+            this.lblCategory.Name = "lblCategory";
+            this.lblCategory.Size = new System.Drawing.Size(445, 32);
+            this.lblCategory.Text = "优惠券类别(*)";
+            this.lblCategory.TextSize = new System.Drawing.Size(132, 22);
             // 
-            // layoutControlItem2
+            // lblStartTime
             // 
-            this.layoutControlItem2.Control = this.txtStartTime;
-            this.layoutControlItem2.CustomizationFormText = "有效开始时间";
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 64);
-            this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(445, 32);
-            this.layoutControlItem2.Text = "有效开始时间(*)";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(132, 22);
+            this.lblStartTime.Control = this.txtStartTime;
+            this.lblStartTime.CustomizationFormText = "有效开始时间";
+            this.lblStartTime.Location = new System.Drawing.Point(0, 64);
+            this.lblStartTime.Name = "lblStartTime";
+            this.lblStartTime.Size = new System.Drawing.Size(445, 32);
+            this.lblStartTime.Text = "有效开始时间(*)";
+            this.lblStartTime.TextSize = new System.Drawing.Size(132, 22);
             // 
-            // layoutControlItem3
+            // lblEndTime
             // 
-            this.layoutControlItem3.Control = this.txtEndTime;
-            this.layoutControlItem3.CustomizationFormText = "有效开始结束";
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 96);
-            this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(445, 32);
-            this.layoutControlItem3.Text = "有效开始结束(*)";
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(132, 22);
+            this.lblEndTime.Control = this.txtEndTime;
+            this.lblEndTime.CustomizationFormText = "有效开始结束";
+            this.lblEndTime.Location = new System.Drawing.Point(0, 96);
+            this.lblEndTime.Name = "lblEndTime";
+            this.lblEndTime.Size = new System.Drawing.Size(445, 32);
+            this.lblEndTime.Text = "有效开始结束(*)";
+            this.lblEndTime.TextSize = new System.Drawing.Size(132, 22);
             // 
-            // layoutControlItem5
+            // lblEnabled
             // 
-            this.layoutControlItem5.Control = this.txtEnabled;
-            this.layoutControlItem5.CustomizationFormText = "是否使用";
-            this.layoutControlItem5.Location = new System.Drawing.Point(0, 192);
-            this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(445, 32);
-            this.layoutControlItem5.Text = "是否使用(*)";
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(132, 22);
+            this.lblEnabled.Control = this.txtEnabled;
+            this.lblEnabled.CustomizationFormText = "是否使用";
+            this.lblEnabled.Location = new System.Drawing.Point(0, 192);
+            this.lblEnabled.Name = "lblEnabled";
+            this.lblEnabled.Size = new System.Drawing.Size(445, 32);
+            this.lblEnabled.Text = "是否使用(*)";
+            this.lblEnabled.TextSize = new System.Drawing.Size(132, 22);
             // 
             // FrmGenerateCoupon
             // 
@@ -361,15 +361,15 @@ namespace JCodes.Framework.AddIn.UI._50Go
             ((System.ComponentModel.ISupportInitialize)(this.txtEndTime.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEnabled.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblID)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblMobilePhone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblFullName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblCategory)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblStartTime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblEndTime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblEnabled)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -385,17 +385,17 @@ namespace JCodes.Framework.AddIn.UI._50Go
         private DevExpress.XtraEditors.TextEdit txtFullName;
         private DevExpress.XtraEditors.TextEdit txtCreator;
 
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;    
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
+        private DevExpress.XtraLayout.LayoutControlItem lblID;
+        private DevExpress.XtraLayout.LayoutControlItem lblCategory;    
+        private DevExpress.XtraLayout.LayoutControlItem lblMobilePhone;
+        private DevExpress.XtraLayout.LayoutControlItem lblFullName;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
         private DevExpress.XtraEditors.ComboBoxEdit txtCategory;
         private DevExpress.XtraEditors.DateEdit txtCreateTime;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
+        private DevExpress.XtraLayout.LayoutControlItem lblStartTime;
+        private DevExpress.XtraLayout.LayoutControlItem lblEndTime;
+        private DevExpress.XtraLayout.LayoutControlItem lblEnabled;
         private DevExpress.XtraEditors.DateEdit txtEndTime;
         private DevExpress.XtraEditors.DateEdit txtStartTime;
         private DevExpress.XtraEditors.ComboBoxEdit txtEnabled;

@@ -15,6 +15,9 @@ JCodes.Framework.SQLServerDAL/Properties/licenses.licx
 JCodes.Framework.TestWinForm/Properties/licenses.licx
 JCodes.Framework.WebControls/Properties/licenses.licx
 JCodes.Framework.WebUI/Properties/licenses.licx
+JCodes.Framework.AddIn.Common/Properties/licenses.licx
+JCodes.Framework.AddIn.Test/Properties/licenses.licx
+JCodes.Framework.AddIn.50Go/Properties/licenses.licx
 
 # 过滤掉不上传的文件夹
 JCodes.Framework.WinFormUI/obj/
@@ -55,6 +58,12 @@ JCodes.Framework.OracleDAL/obj/
 JCodes.Framework.OracleDAL/bin/
 JCodes.Framework.SQLiteDAL/obj/
 JCodes.Framework.SQLiteDAL/bin/
+JCodes.Framework.AddIn.Common/obj/
+JCodes.Framework.AddIn.Common/bin/
+JCodes.Framework.AddIn.Test/obj/
+JCodes.Framework.AddIn.Test/bin/
+JCodes.Framework.AddIn.50Go/obj/
+JCodes.Framework.AddIn.50Go/bin/
 Bin/
 jCodes/
 

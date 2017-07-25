@@ -26,7 +26,8 @@ namespace JCodes.Framework.OracleDAL
 				return new ReportMonthlyDetail();
 			}
 		}
-		public ReportMonthlyDetail() : base("WM_ReportMonthlyDetail","ID")
+        public ReportMonthlyDetail()
+            : base(OraclePortal.gc._wareHouseTablePre + "ReportMonthlyDetail", "ID")
         {
             this.SeqName = string.Format("SEQ_{0}", tableName);//数值型主键，通过序列生成
 		}

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 
 using JCodes.Framework.Common;
 using JCodes.Framework.Common.Files;
+using JCodes.Framework.Common.Office;
 
 namespace JCodes.Framework.Common.Framework.Facade
 {
@@ -85,7 +86,13 @@ namespace JCodes.Framework.Common.Framework.Facade
         private static Assembly LoadAssembly()
         {
             #region 获取配置类型及构建对象的命名空间，决定是WCF（通过WCF服务访问数据库）还是Win（传统方式访问数据库），默认为Win
-            AppConfig config = new AppConfig();
+            AppConfig config = Cache.Instance["AppConfig"] as AppConfig;
+            if (config == null)
+            {
+                config = new AppConfig();
+                Cache.Instance["AppConfig"] = config;
+            }
+
             string callerType = config.AppConfigGet("CallerType");
             bool isWCF = !string.IsNullOrEmpty(callerType) && callerType.ToLower() == "wcf";
 

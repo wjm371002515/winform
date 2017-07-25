@@ -57,20 +57,20 @@ namespace JCodes.Framework.AddIn.UI.Contact
         {
             if (AddressType.个人 == AddressType)
             {
-                tsbNew.Enabled = Portal.gc.HasFunction("PersonalAddress/GroupAdd");
-                tsbEdit.Enabled = Portal.gc.HasFunction("PersonalAddress/GroupEdit");
-                tsbDelete.Enabled = Portal.gc.HasFunction("PersonalAddress/GroupDel");
-                btnImport.Enabled = Portal.gc.HasFunction("PersonalAddress/Import");
-                btnExport.Enabled = Portal.gc.HasFunction("PersonalAddress/Export");
+                tsbNew.Enabled = HasFunction("PersonalAddress/GroupAdd");
+                tsbEdit.Enabled = HasFunction("PersonalAddress/GroupEdit");
+                tsbDelete.Enabled = HasFunction("PersonalAddress/GroupDel");
+                btnImport.Enabled = HasFunction("PersonalAddress/Import");
+                btnExport.Enabled = HasFunction("PersonalAddress/Export");
 
             }
             if (AddressType.公共 == AddressType)
             {
-                tsbNew.Enabled = Portal.gc.HasFunction("CommonAddress/GroupAdd");
-                tsbEdit.Enabled = Portal.gc.HasFunction("CommonAddress/GroupEdit");
-                tsbDelete.Enabled = Portal.gc.HasFunction("CommonAddress/GroupDel");
-                btnImport.Enabled = Portal.gc.HasFunction("CommonAddress/Import");
-                btnExport.Enabled = Portal.gc.HasFunction("CommonAddress/Export");
+                tsbNew.Enabled = HasFunction("CommonAddress/GroupAdd");
+                tsbEdit.Enabled = HasFunction("CommonAddress/GroupEdit");
+                tsbDelete.Enabled = HasFunction("CommonAddress/GroupDel");
+                btnImport.Enabled = HasFunction("CommonAddress/Import");
+                btnExport.Enabled = HasFunction("CommonAddress/Export");
             }
         }
 
@@ -91,13 +91,6 @@ namespace JCodes.Framework.AddIn.UI.Contact
                     }
                 }
             }
-            else if (e.Column.FieldName == "Operator" || e.Column.FieldName == "Editor" || e.Column.FieldName == "Creator")
-            {
-                if (e.Value != null)
-                {
-                    e.DisplayText = SecurityHelper.GetFullNameByID(e.Value.ToString());
-                }
-            }
         }
 
         /// <summary>
@@ -114,17 +107,8 @@ namespace JCodes.Framework.AddIn.UI.Contact
                 }
 
                 //可特殊设置特别的宽度
-                SetGridColumWidth("Name", 200);
-                SetGridColumWidth("Note", 200);
-            }
-        }
-
-        private void SetGridColumWidth(string columnName, int width)
-        {
-            DevExpress.XtraGrid.Columns.GridColumn column = this.winGridViewPager1.gridView1.Columns.ColumnByFieldName(columnName);
-            if (column != null)
-            {
-                column.Width = width;
+                winGridViewPager1.gridView1.SetGridColumWidth("Name", 200);
+                winGridViewPager1.gridView1.SetGridColumWidth("Note", 200);
             }
         }
 
@@ -149,12 +133,12 @@ namespace JCodes.Framework.AddIn.UI.Contact
         /// </summary>
         private void winGridViewPager1_OnDeleteSelected(object sender, EventArgs e)
         {
-            if (AddressType.个人 == AddressType && !Portal.gc.HasFunction("PersonalAddress/GroupDel"))
+            if (AddressType.个人 == AddressType && !HasFunction("PersonalAddress/GroupDel"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
             }
-            if (AddressType.公共 == AddressType && !Portal.gc.HasFunction("CommonAddress/GroupDel"))
+            if (AddressType.公共 == AddressType && !HasFunction("CommonAddress/GroupDel"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -180,12 +164,12 @@ namespace JCodes.Framework.AddIn.UI.Contact
         /// </summary>
         private void winGridViewPager1_OnEditSelected(object sender, EventArgs e)
         {
-            if (AddressType.个人 == AddressType && !Portal.gc.HasFunction("PersonalAddress/GroupEdit"))
+            if (AddressType.个人 == AddressType && !HasFunction("PersonalAddress/GroupEdit"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
             }
-            if (AddressType.公共 == AddressType && !Portal.gc.HasFunction("CommonAddress/GroupEdit"))
+            if (AddressType.公共 == AddressType && !HasFunction("CommonAddress/GroupEdit"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -225,12 +209,12 @@ namespace JCodes.Framework.AddIn.UI.Contact
         /// </summary>        
         private void winGridViewPager1_OnAddNew(object sender, EventArgs e)
         {
-            if (AddressType.个人 == AddressType && !Portal.gc.HasFunction("PersonalAddress/GroupAdd"))
+            if (AddressType.个人 == AddressType && !HasFunction("PersonalAddress/GroupAdd"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
             }
-            if (AddressType.公共 == AddressType && !Portal.gc.HasFunction("CommonAddress/GroupAdd"))
+            if (AddressType.公共 == AddressType && !HasFunction("CommonAddress/GroupAdd"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -244,12 +228,12 @@ namespace JCodes.Framework.AddIn.UI.Contact
         /// </summary> 
         private void winGridViewPager1_OnStartExport(object sender, EventArgs e)
         {
-            if (AddressType.个人 == AddressType && !Portal.gc.HasFunction("PersonalAddress/Export"))
+            if (AddressType.个人 == AddressType && !HasFunction("PersonalAddress/Export"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
             }
-            if (AddressType.公共 == AddressType && !Portal.gc.HasFunction("CommonAddress/Export"))
+            if (AddressType.公共 == AddressType && !HasFunction("CommonAddress/Export"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;

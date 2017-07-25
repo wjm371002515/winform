@@ -30,7 +30,6 @@ namespace JCodes.Framework.AddIn.UI.Basic
     public partial class MainForm : RibbonForm
     {
         #region 属性变量
-        private AppConfig config = new AppConfig();
         //全局热键
         private RegisterHotKeyHelper hotKey2 = new RegisterHotKeyHelper();
         //用来第一次创建动态菜单
@@ -78,7 +77,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
         /// <param name="e"></param>
         private void notifyMenu_About_Click(object sender, EventArgs e)
         {
-            Portal.gc.About();
+            ChildWinManagement.PopDialogForm(typeof(AboutBox));
         }
 
         /// <summary>
@@ -88,7 +87,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
         /// <param name="e"></param>
         private void notifyMenu_Exit_Click(object sender, EventArgs e)
         {
-            Portal.gc.Quit();
+            Application.Exit();
         }
 
         #endregion
@@ -98,8 +97,6 @@ namespace JCodes.Framework.AddIn.UI.Basic
         /// </summary>
         private void InitAuthorizedUI()
         {
-            //this.tool_Dict.Enabled = Portal.gc.HasFunction("Dictionary");
-            //this.tool_Settings.Enabled = Portal.gc.HasFunction("Parameters");
         }
 
         #region Window 窗体事件
@@ -224,7 +221,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
                 {
                     if (!functionDict.ContainsKey(functionInfo.ControlID))
                     {
-                        functionDict.Add(functionInfo.ControlID, functionInfo.ControlID);
+                        functionDict.Add(functionInfo.ControlID, functionInfo.Name);
                     }
                 }
             }
@@ -267,6 +264,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
             Cache.Instance["canOptCompanyID"] = companysb.ToString();
             Cache.Instance["canOptDeptId"] = deptsb.ToString();
             Cache.Instance["DictData"] = BLLFactory<DictData>.Instance.GetAllDict();
+            Cache.Instance["AppConfig"] = Portal.gc.config;
             #endregion
 
             #region 初始化菜单及界面数据
@@ -320,8 +318,8 @@ namespace JCodes.Framework.AddIn.UI.Basic
             #region 初始化系统名称
             try
             {
-                string Manufacturer = config.AppConfigGet("Manufacturer");
-                string ApplicationName = config.AppConfigGet("ApplicationName");
+                string Manufacturer = Portal.gc.config.AppConfigGet("Manufacturer");
+                string ApplicationName = Portal.gc.config.AppConfigGet("ApplicationName");
                 string AppWholeName = string.Format("{0}-【{1}】", Manufacturer, ApplicationName);
                 Portal.gc.AppUnit = Manufacturer;
                 Portal.gc.AppName = AppWholeName;
@@ -480,9 +478,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
         /// <param name="e"></param>
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            //使用QQ开放平台的发邮件界面
-            string mailUrl = string.Format(Const.Feedback_Mail);
-            Process.Start(mailUrl);
+            ChildWinManagement.PopDialogForm(typeof(FrmFeeBack));
         }
 
         /// <summary>
@@ -540,9 +536,19 @@ namespace JCodes.Framework.AddIn.UI.Basic
         /// <param name="e"></param>
         private void btnModPwd_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Portal.gc.ModPwd();
+            ChildWinManagement.PopDialogForm(typeof(FrmModifyPassword));
         }
 
         #endregion
+
+        /// <summary>
+        /// 手工刷新内存
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            MessageDxUtil.ShowTips("TODO 刷新内存");
+        }
     }
 }

@@ -8,6 +8,7 @@ using System.Data;
 using System.Text.RegularExpressions;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.Common.Files;
+using JCodes.Framework.Common.Office;
 
 namespace JCodes.Framework.Common.Databases
 {
@@ -107,7 +108,13 @@ namespace JCodes.Framework.Common.Databases
         /// <returns></returns> 
         public string BuildConditionSql()
         {
-            AppConfig config = new AppConfig();
+            AppConfig config = Cache.Instance["AppConfig"] as AppConfig;
+            if (config == null)
+            {
+                config = new AppConfig();
+                Cache.Instance["AppConfig"] = config;
+            }	
+
             string databaseType = config.AppConfigGet("ComponentDbType");
             DatabaseType dbType = GetDataBaseType(databaseType);
             return BuildConditionSql(dbType);

@@ -26,7 +26,8 @@ namespace JCodes.Framework.OracleDAL
 				return new WareHouse();
 			}
 		}
-		public WareHouse() : base("WM_WareHouse","ID")
+        public WareHouse()
+            : base(OraclePortal.gc._wareHouseTablePre + "WareHouse", "ID")
         {
             this.SeqName = string.Format("SEQ_{0}", tableName);//数值型主键，通过序列生成
             this.sortField = "ID";

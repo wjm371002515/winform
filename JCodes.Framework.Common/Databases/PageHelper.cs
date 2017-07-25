@@ -1,4 +1,5 @@
 using JCodes.Framework.Common.Files;
+using JCodes.Framework.Common.Office;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using System;
 using System.Data;
@@ -356,7 +357,13 @@ namespace JCodes.Framework.Common.Databases
         /// <param name="isDoCount">如果isDoCount为True，返回总数统计Sql；否则返回分页语句Sql</param>
         public string GetPagingSql(bool isDoCount)
         {
-            AppConfig config = new AppConfig();
+            AppConfig config = Cache.Instance["AppConfig"] as AppConfig;
+            if (config == null)
+            {
+                config = new AppConfig();
+                Cache.Instance["AppConfig"] = config;
+            }
+
             string databaseType = config.AppConfigGet("ComponentDbType");
             DatabaseType dbType = GetDataBaseType(databaseType);
             return GetPagingSql(dbType, isDoCount);

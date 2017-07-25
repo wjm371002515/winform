@@ -4,6 +4,7 @@ using JCodes.Framework.Common;
 using JCodes.Framework.Common.Files;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Common.Office;
+using JCodes.Framework.Common.Winform;
 using JCodes.Framework.CommonControl;
 using JCodes.Framework.CommonControl.BaseUI;
 using JCodes.Framework.CommonControl.Other;
@@ -48,9 +49,9 @@ namespace JCodes.Framework.AddIn.UI.Security
 
         void Init_Function()
         {
-            tsbNew.Enabled = Portal.gc.HasFunction("SystemType/add");
-            tsbEdit.Enabled = Portal.gc.HasFunction("SystemType/edit");
-            tsbDelete.Enabled = Portal.gc.HasFunction("SystemType/del");
+            tsbNew.Enabled = HasFunction("SystemType/add");
+            tsbEdit.Enabled = HasFunction("SystemType/edit");
+            tsbDelete.Enabled = HasFunction("SystemType/del");
         }
 		
 
@@ -81,7 +82,7 @@ namespace JCodes.Framework.AddIn.UI.Security
 
         private void winGridView1_OnDeleteSelected(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("SystemType/del"))
+            if (!HasFunction("SystemType/del"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -106,7 +107,7 @@ namespace JCodes.Framework.AddIn.UI.Security
 
         private void winGridView1_OnEditSelected(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("SystemType/edit"))
+            if (!HasFunction("SystemType/edit"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -128,7 +129,7 @@ namespace JCodes.Framework.AddIn.UI.Security
 
         private void winGridView1_OnAddNew(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("SystemType/add"))
+            if (!HasFunction("SystemType/add"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -182,14 +183,13 @@ namespace JCodes.Framework.AddIn.UI.Security
 
         private void tsbReg_Click(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("SystemType/regTool"))
+            if (!HasFunction("SystemType/regTool"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
             }
 
-            FrmRegeditTool frt = new FrmRegeditTool();
-            frt.ShowDialog();
+            ChildWinManagement.PopDialogForm(typeof(FrmRegeditTool));
         }
 
         /// <summary>
@@ -199,7 +199,7 @@ namespace JCodes.Framework.AddIn.UI.Security
         /// <param name="e"></param>
         private void tsbCancelReg_Click(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("SystemType/cancalReg"))
+            if (!HasFunction("SystemType/cancalReg"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -227,8 +227,8 @@ namespace JCodes.Framework.AddIn.UI.Security
                 reg.SetValue("Company", string.Empty);
                 
             }
-            AppConfig config = new AppConfig();
-            string LicensePath = config.AppConfigGet("LicensePath");
+            
+            string LicensePath = Portal.gc.config.AppConfigGet("LicensePath");
             FileUtil.DeleteFile(LicensePath);
             MessageDxUtil.ShowTips("祝贺您，注销成功！\r\n请重启登录之后才会生效！");
         }

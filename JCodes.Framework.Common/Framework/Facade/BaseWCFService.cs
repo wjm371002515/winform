@@ -8,6 +8,7 @@ using System.Reflection;
 using JCodes.Framework.Entity;
 using JCodes.Framework.Common.Files;
 using JCodes.Framework.Common.Network;
+using JCodes.Framework.Common.Office;
 
 namespace JCodes.Framework.Common.Framework.Facade
 {
@@ -17,7 +18,7 @@ namespace JCodes.Framework.Common.Framework.Facade
     /// <typeparam name="T">Facade接口</typeparam>
     public class BaseWCFService<T> : IBaseService<T> where T : BaseEntity, new()
     {
-        private AppConfig config = new AppConfig();
+        private AppConfig config = null;
         /// <summary>
         /// WCF配置文件, 默认为"WcfConfig.config"
         /// </summary>
@@ -32,7 +33,13 @@ namespace JCodes.Framework.Common.Framework.Facade
         /// 默认构造函数
         /// </summary>
         public BaseWCFService()
-        {         
+        {
+            config = Cache.Instance["AppConfig"] as AppConfig;
+            if (config == null)
+            {
+                config = new AppConfig();
+                Cache.Instance["AppConfig"] = config;
+            }
         }
                
         /// <summary>
@@ -42,6 +49,13 @@ namespace JCodes.Framework.Common.Framework.Facade
         /// <param name="configurationPath">配置路径</param>
         public BaseWCFService(string endpointConfigurationName, string configurationPath)
         {
+            config = Cache.Instance["AppConfig"] as AppConfig;
+            if (config == null)
+            {
+                config = new AppConfig();
+                Cache.Instance["AppConfig"] = config;
+            }
+
             this.endpointConfigurationName = endpointConfigurationName;
             this.configurationPath = configurationPath;
         }

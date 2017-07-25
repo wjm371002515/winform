@@ -31,25 +31,25 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
             #region MyRegion
             if (this.txtDictType.Text.Trim().Length == 0)
             {
-                MessageDxUtil.ShowTips("字典大类不能为空");
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblDictType.Text.Replace(Const.MsgCheckSign, string.Empty));
                 this.txtDictType.Focus();
                 result = false;
             }
             if (this.txtValue.Text.Trim().Length == 0)
             {
-                MessageDxUtil.ShowTips("数据字典值不能为空");
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblValue.Text.Replace(Const.MsgCheckSign, string.Empty));
                 this.txtValue.Focus();
                 result = false;
             }
             if (this.txtName.Text.Trim().Length == 0)
             {
-                MessageDxUtil.ShowTips("数据字典名称不能为空");
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblName.Text.Replace(Const.MsgCheckSign, string.Empty));
                 this.txtName.Focus();
                 result = false;
             }
             if (this.txtSeq.Text.Trim().Length == 0)
             {
-                MessageDxUtil.ShowTips("数据字典排序不能为空");
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblSeq.Text.Replace(Const.MsgCheckSign, string.Empty));
                 this.txtSeq.Focus();
                 result = false;
             }
@@ -59,7 +59,7 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
             {
                 if (!ValidateUtil.IsNumeric(Id))
                 {
-                    MessageDxUtil.ShowTips("数据字典值只允许输入数字");
+                    MessageDxUtil.ShowWarning(lblValue.Text.Replace(Const.MsgCheckSign, string.Empty) + Const.MsgErrFormatByNum);
                     txtValue.Focus();
                     result = false;
                 }

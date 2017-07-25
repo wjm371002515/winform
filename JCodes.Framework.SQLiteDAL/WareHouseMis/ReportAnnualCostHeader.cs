@@ -26,7 +26,8 @@ namespace JCodes.Framework.SQLiteDAL
 				return new ReportAnnualCostHeader();
 			}
 		}
-		public ReportAnnualCostHeader() : base("WM_ReportAnnualCostHeader","ID")
+        public ReportAnnualCostHeader()
+            : base(SQLitePortal.gc._wareHouseTablePre + "ReportAnnualCostHeader", "ID")
 		{
 		}
 

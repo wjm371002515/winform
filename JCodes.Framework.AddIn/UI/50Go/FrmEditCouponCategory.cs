@@ -150,37 +150,55 @@ namespace JCodes.Framework.AddIn.UI._50Go
 
             if (this.txtHandNo.Text.Trim().Length == 0)
             {
-                MessageDxUtil.ShowTips("请输入分类编码");
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblHandNo.Text.Replace(Const.MsgCheckSign, string.Empty));
+                ClearRedColor();
+                lblHandNo.AppearanceItemCaption.ForeColor = Color.Red;
                 this.txtHandNo.Focus();
                 result = false;
             }
             else if (this.txtName.Text.Trim().Length == 0)
             {
-                MessageDxUtil.ShowTips("请输入分类名称");
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblName.Text.Replace(Const.MsgCheckSign, string.Empty));
+                ClearRedColor();
+                lblName.AppearanceItemCaption.ForeColor = Color.Red;
                 this.txtName.Focus();
                 result = false;
             }
             else if (this.txtCompany.Text.Trim().Length == 0)
             {
-                MessageDxUtil.ShowTips("请输入操作公司");
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblCompany.Text.Replace(Const.MsgCheckSign, string.Empty));
+                ClearRedColor();
+                lblCompany.AppearanceItemCaption.ForeColor = Color.Red;
                 this.txtCompany.Focus();
                 result = false;
             }
             else if (this.txtEnabled.Text.Trim().Length == 0)
             {
-                MessageDxUtil.ShowTips("请输入是否可用");
-                this.txtCompany.Focus();
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblEnabled.Text.Replace(Const.MsgCheckSign, string.Empty));
+                ClearRedColor();
+                lblEnabled.AppearanceItemCaption.ForeColor = Color.Red;
+                this.txtEnabled.Focus();
                 result = false;
             }
-            else if (this.txtName.Text.Contains("-"))
+            else if (this.txtName.Text.Contains(Const.Minus))
             {
-                MessageDxUtil.ShowTips("分类名称中不允许输入字符-");
+                MessageDxUtil.ShowWarning("分类名称中不允许输入字符-");
+                ClearRedColor();
+                lblName.AppearanceItemCaption.ForeColor = Color.Red;
                 this.txtName.Focus();
                 result = false;
             }
             #endregion
 
             return result;
+        }
+
+        private void ClearRedColor()
+        {
+            lblHandNo.AppearanceItemCaption.ForeColor = Color.FromArgb(0, 0, 0, 0);
+            lblCompany.AppearanceItemCaption.ForeColor = Color.FromArgb(0, 0, 0, 0);
+            lblEnabled.AppearanceItemCaption.ForeColor = Color.FromArgb(0, 0, 0, 0);
+            lblName.AppearanceItemCaption.ForeColor = Color.FromArgb(0, 0, 0, 0);
         }
     }
 }

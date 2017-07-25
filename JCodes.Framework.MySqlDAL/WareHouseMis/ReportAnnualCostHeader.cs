@@ -26,7 +26,8 @@ namespace JCodes.Framework.MySqlDAL
 				return new ReportAnnualCostHeader();
 			}
 		}
-		public ReportAnnualCostHeader() : base("WM_ReportAnnualCostHeader","ID")
+        public ReportAnnualCostHeader()
+            : base(MySqlPortal.gc._wareHouseTablePre + "ReportAnnualCostHeader", "ID")
 		{
 		}
 

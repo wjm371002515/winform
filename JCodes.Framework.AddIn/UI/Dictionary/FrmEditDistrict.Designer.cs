@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblDistrict = new System.Windows.Forms.Label();
             this.txtDistrict = new System.Windows.Forms.TextBox();
             this.txtCity = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -55,14 +55,14 @@
             // 
             this.picPrint.Location = new System.Drawing.Point(206, 111);
             // 
-            // label2
+            // lblDistrict
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(25, 62);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(82, 22);
-            this.label2.TabIndex = 52;
-            this.label2.Text = "区县名称";
+            this.lblDistrict.AutoSize = true;
+            this.lblDistrict.Location = new System.Drawing.Point(25, 62);
+            this.lblDistrict.Name = "lblDistrict";
+            this.lblDistrict.Size = new System.Drawing.Size(82, 22);
+            this.lblDistrict.TabIndex = 52;
+            this.lblDistrict.Text = "区县名称";
             // 
             // txtDistrict
             // 
@@ -99,7 +99,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(487, 150);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblDistrict);
             this.Controls.Add(this.txtCity);
             this.Controls.Add(this.txtDistrict);
             this.MaximizeBox = false;
@@ -109,7 +109,7 @@
             this.Load += new System.EventHandler(this.FrmEditCityDistrict_Load);
             this.Controls.SetChildIndex(this.txtDistrict, 0);
             this.Controls.SetChildIndex(this.txtCity, 0);
-            this.Controls.SetChildIndex(this.label2, 0);
+            this.Controls.SetChildIndex(this.lblDistrict, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.btnCancel, 0);
             this.Controls.SetChildIndex(this.btnOK, 0);
@@ -124,7 +124,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblDistrict;
         public System.Windows.Forms.TextBox txtDistrict;
         public System.Windows.Forms.TextBox txtCity;
         private System.Windows.Forms.Label label1;

@@ -29,34 +29,34 @@ namespace JCodes.Framework.AddIn.UI.Security
         private void InitializeComponent()
         {
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtOid = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtName = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtCustomID = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtAuthorize = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.txtOid = new DevExpress.XtraEditors.TextEdit();
+            this.txtName = new DevExpress.XtraEditors.TextEdit();
+            this.txtCustomID = new DevExpress.XtraEditors.TextEdit();
+            this.txtAuthorize = new DevExpress.XtraEditors.TextEdit();
             this.txtNote = new DevExpress.XtraEditors.MemoEdit();
+            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.lblOid = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lblName = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.picPrint)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOid.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCustomID.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAuthorize.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNote.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblOid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNote.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btnOK
@@ -97,13 +97,64 @@ namespace JCodes.Framework.AddIn.UI.Security
             this.layoutControl1.TabIndex = 6;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // labelControl1
+            // 
+            this.labelControl1.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.labelControl1.Location = new System.Drawing.Point(145, 12);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(338, 22);
+            this.labelControl1.StyleController = this.layoutControl1;
+            this.labelControl1.TabIndex = 6;
+            this.labelControl1.Text = "(注意：系统标识一旦建立，请勿随意修改)";
+            // 
+            // txtOid
+            // 
+            this.txtOid.Location = new System.Drawing.Point(111, 12);
+            this.txtOid.Name = "txtOid";
+            this.txtOid.Size = new System.Drawing.Size(30, 28);
+            this.txtOid.StyleController = this.layoutControl1;
+            this.txtOid.TabIndex = 1;
+            // 
+            // txtName
+            // 
+            this.txtName.Location = new System.Drawing.Point(111, 38);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(372, 28);
+            this.txtName.StyleController = this.layoutControl1;
+            this.txtName.TabIndex = 2;
+            // 
+            // txtCustomID
+            // 
+            this.txtCustomID.Location = new System.Drawing.Point(111, 70);
+            this.txtCustomID.Name = "txtCustomID";
+            this.txtCustomID.Size = new System.Drawing.Size(372, 28);
+            this.txtCustomID.StyleController = this.layoutControl1;
+            this.txtCustomID.TabIndex = 3;
+            // 
+            // txtAuthorize
+            // 
+            this.txtAuthorize.Location = new System.Drawing.Point(111, 102);
+            this.txtAuthorize.Name = "txtAuthorize";
+            this.txtAuthorize.Size = new System.Drawing.Size(372, 28);
+            this.txtAuthorize.StyleController = this.layoutControl1;
+            this.txtAuthorize.TabIndex = 4;
+            // 
+            // txtNote
+            // 
+            this.txtNote.Location = new System.Drawing.Point(111, 134);
+            this.txtNote.Name = "txtNote";
+            this.txtNote.Size = new System.Drawing.Size(372, 103);
+            this.txtNote.StyleController = this.layoutControl1;
+            this.txtNote.TabIndex = 5;
+            this.txtNote.UseOptimizedRendering = true;
+            // 
             // layoutControlGroup1
             // 
             this.layoutControlGroup1.CustomizationFormText = "layoutControlGroup1";
             this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem1,
-            this.layoutControlItem2,
+            this.lblOid,
+            this.lblName,
             this.layoutControlItem3,
             this.layoutControlItem4,
             this.layoutControlItem5,
@@ -114,124 +165,74 @@ namespace JCodes.Framework.AddIn.UI.Security
             this.layoutControlGroup1.Text = "layoutControlGroup1";
             this.layoutControlGroup1.TextVisible = false;
             // 
-            // layoutControlItem1
+            // lblOid
             // 
-            this.layoutControlItem1.Control = this.txtOid;
-            this.layoutControlItem1.CustomizationFormText = "系统标识";
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem1.MaxSize = new System.Drawing.Size(222, 24);
-            this.layoutControlItem1.MinSize = new System.Drawing.Size(105, 24);
-            this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(222, 24);
-            this.layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem1.Text = "系统标识(*)";
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(65, 14);
+            this.lblOid.Control = this.txtOid;
+            this.lblOid.CustomizationFormText = "系统标识";
+            this.lblOid.Location = new System.Drawing.Point(0, 0);
+            this.lblOid.MaxSize = new System.Drawing.Size(222, 24);
+            this.lblOid.MinSize = new System.Drawing.Size(105, 24);
+            this.lblOid.Name = "lblOid";
+            this.lblOid.Size = new System.Drawing.Size(133, 26);
+            this.lblOid.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.lblOid.Text = "系统标识(*)";
+            this.lblOid.TextSize = new System.Drawing.Size(96, 22);
             // 
-            // txtOid
+            // lblName
             // 
-            this.txtOid.Location = new System.Drawing.Point(80, 12);
-            this.txtOid.Name = "txtOid";
-            this.txtOid.Size = new System.Drawing.Size(150, 20);
-            this.txtOid.StyleController = this.layoutControl1;
-            this.txtOid.TabIndex = 1;
-            // 
-            // layoutControlItem2
-            // 
-            this.layoutControlItem2.Control = this.txtName;
-            this.layoutControlItem2.CustomizationFormText = "系统名称";
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 24);
-            this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(475, 24);
-            this.layoutControlItem2.Text = "系统名称(*)";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(65, 14);
-            // 
-            // txtName
-            // 
-            this.txtName.Location = new System.Drawing.Point(80, 36);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(403, 20);
-            this.txtName.StyleController = this.layoutControl1;
-            this.txtName.TabIndex = 2;
+            this.lblName.Control = this.txtName;
+            this.lblName.CustomizationFormText = "系统名称";
+            this.lblName.Location = new System.Drawing.Point(0, 26);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(475, 32);
+            this.lblName.Text = "系统名称(*)";
+            this.lblName.TextSize = new System.Drawing.Size(96, 22);
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.txtCustomID;
             this.layoutControlItem3.CustomizationFormText = "客户编码";
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 48);
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 58);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(475, 24);
+            this.layoutControlItem3.Size = new System.Drawing.Size(475, 32);
             this.layoutControlItem3.Text = "客户编码";
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(65, 14);
-            // 
-            // txtCustomID
-            // 
-            this.txtCustomID.Location = new System.Drawing.Point(80, 60);
-            this.txtCustomID.Name = "txtCustomID";
-            this.txtCustomID.Size = new System.Drawing.Size(403, 20);
-            this.txtCustomID.StyleController = this.layoutControl1;
-            this.txtCustomID.TabIndex = 3;
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(96, 22);
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.txtAuthorize;
             this.layoutControlItem4.CustomizationFormText = "授权编码";
-            this.layoutControlItem4.Location = new System.Drawing.Point(0, 72);
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 90);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(475, 24);
+            this.layoutControlItem4.Size = new System.Drawing.Size(475, 32);
             this.layoutControlItem4.Text = "授权编码";
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(65, 14);
-            // 
-            // txtAuthorize
-            // 
-            this.txtAuthorize.Location = new System.Drawing.Point(80, 84);
-            this.txtAuthorize.Name = "txtAuthorize";
-            this.txtAuthorize.Size = new System.Drawing.Size(403, 20);
-            this.txtAuthorize.StyleController = this.layoutControl1;
-            this.txtAuthorize.TabIndex = 4;
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(96, 22);
             // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.txtNote;
             this.layoutControlItem5.CustomizationFormText = "备注";
-            this.layoutControlItem5.Location = new System.Drawing.Point(0, 96);
+            this.layoutControlItem5.Location = new System.Drawing.Point(0, 122);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(475, 133);
+            this.layoutControlItem5.Size = new System.Drawing.Size(475, 107);
             this.layoutControlItem5.Text = "备注";
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(65, 14);
-            // 
-            // labelControl1
-            // 
-            this.labelControl1.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.labelControl1.Location = new System.Drawing.Point(234, 12);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(226, 14);
-            this.labelControl1.StyleController = this.layoutControl1;
-            this.labelControl1.TabIndex = 6;
-            this.labelControl1.Text = "(注意：系统标识一旦建立，请勿随意修改)";
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(96, 22);
             // 
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.labelControl1;
             this.layoutControlItem6.CustomizationFormText = "layoutControlItem6";
-            this.layoutControlItem6.Location = new System.Drawing.Point(222, 0);
+            this.layoutControlItem6.Location = new System.Drawing.Point(133, 0);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(253, 24);
+            this.layoutControlItem6.Size = new System.Drawing.Size(342, 26);
             this.layoutControlItem6.Text = "layoutControlItem6";
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextToControlDistance = 0;
             this.layoutControlItem6.TextVisible = false;
             // 
-            // txtNote
-            // 
-            this.txtNote.Location = new System.Drawing.Point(80, 108);
-            this.txtNote.Name = "txtNote";
-            this.txtNote.Size = new System.Drawing.Size(403, 129);
-            this.txtNote.StyleController = this.layoutControl1;
-            this.txtNote.TabIndex = 5;
-            // 
             // FrmEditSystemType
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(514, 313);
             this.Controls.Add(this.layoutControl1);
@@ -246,18 +247,18 @@ namespace JCodes.Framework.AddIn.UI.Security
             ((System.ComponentModel.ISupportInitialize)(this.picPrint)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOid.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCustomID.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAuthorize.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNote.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblOid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNote.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -273,8 +274,8 @@ namespace JCodes.Framework.AddIn.UI.Security
           private DevExpress.XtraEditors.TextEdit txtCustomID;
           private DevExpress.XtraEditors.TextEdit txtAuthorize;
   
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;    
-         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;    
+        private DevExpress.XtraLayout.LayoutControlItem lblOid;    
+         private DevExpress.XtraLayout.LayoutControlItem lblName;    
          private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;    
          private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;    
          private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;

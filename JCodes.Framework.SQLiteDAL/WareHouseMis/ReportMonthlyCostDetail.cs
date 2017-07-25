@@ -26,7 +26,8 @@ namespace JCodes.Framework.SQLiteDAL
 				return new ReportMonthlyCostDetail();
 			}
 		}
-		public ReportMonthlyCostDetail() : base("WM_ReportMonthlyCostDetail","ID")
+        public ReportMonthlyCostDetail()
+            : base(SQLitePortal.gc._wareHouseTablePre + "ReportMonthlyCostDetail", "ID")
 		{
 		}
 

@@ -142,7 +142,7 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
 
         private void menuCity_AddNew_Click(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("CityDistrict/CityAdd"))
+            if (!HasFunction("CityDistrict/CityAdd"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -172,7 +172,7 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
 
         private void menuCity_Edit_Click(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("CityDistrict/CityEdit"))
+            if (!HasFunction("CityDistrict/CityEdit"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -196,7 +196,7 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
 
         private void menuCity_Delete_Click(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("CityDistrict/CityDel"))
+            if (!HasFunction("CityDistrict/CityDel"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -259,16 +259,7 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
                 }
 
                 //可特殊设置特别的宽度
-                SetGridColumWidth("DistrictName", 400);
-            }
-        }
-
-        private void SetGridColumWidth(string columnName, int width)
-        {
-            DevExpress.XtraGrid.Columns.GridColumn column = this.winGridViewPager1.gridView1.Columns.ColumnByFieldName(columnName);
-            if (column != null)
-            {
-                column.Width = width;
+                winGridViewPager1.gridView1.SetGridColumWidth("DistrictName", 400);
             }
         }
 
@@ -282,7 +273,7 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
 
         private void btnBatchAdd_Click(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("CityDistrict/DistrictAdd"))
+            if (!HasFunction("CityDistrict/DistrictAdd"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -319,7 +310,7 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
         /// </summary>
         private void winGridViewPager1_OnEditSelected(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("CityDistrict/DistrictEdit"))
+            if (!HasFunction("CityDistrict/DistrictEdit"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -360,7 +351,7 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
         /// </summary>
         private void winGridViewPager1_OnDeleteSelected(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("CityDistrict/DistrictDel"))
+            if (!HasFunction("CityDistrict/DistrictDel"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;

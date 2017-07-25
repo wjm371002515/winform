@@ -9,6 +9,7 @@ using System.IO;
 using System.Threading;
 using JCodes.Framework.Common;
 using JCodes.Framework.Common.Files;
+using JCodes.Framework.Common.Office;
 
 namespace JCodes.Framework.CommonControl.Framework
 {
@@ -32,7 +33,12 @@ namespace JCodes.Framework.CommonControl.Framework
         {
             if (!this.DesignMode)
             {
-                AppConfig config = new AppConfig();
+                AppConfig config = Cache.Instance["AppConfig"] as AppConfig;
+                if (config == null)
+                {
+                    config = new AppConfig();
+                    Cache.Instance["AppConfig"] = config;
+                }	
                 string picturePath = config.AppConfigGet("SplashScreen");
                 if (!string.IsNullOrEmpty(picturePath))
                 {

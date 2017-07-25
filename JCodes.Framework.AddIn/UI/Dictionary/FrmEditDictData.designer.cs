@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblSeq = new System.Windows.Forms.Label();
+            this.lblName = new System.Windows.Forms.Label();
+            this.lblDictType = new System.Windows.Forms.Label();
             this.txtValue = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblValue = new System.Windows.Forms.Label();
             this.txtNote = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lblNote = new System.Windows.Forms.Label();
             this.txtDictType = new System.Windows.Forms.TextBox();
             this.txtSeq = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
@@ -65,13 +65,13 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.lblSeq);
+            this.groupBox1.Controls.Add(this.lblName);
+            this.groupBox1.Controls.Add(this.lblDictType);
             this.groupBox1.Controls.Add(this.txtValue);
-            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.lblValue);
             this.groupBox1.Controls.Add(this.txtNote);
-            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.lblNote);
             this.groupBox1.Controls.Add(this.txtDictType);
             this.groupBox1.Controls.Add(this.txtSeq);
             this.groupBox1.Controls.Add(this.txtName);
@@ -82,32 +82,32 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "字典项目信息";
             // 
-            // label9
+            // lblSeq
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(26, 136);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(118, 22);
-            this.label9.TabIndex = 40;
-            this.label9.Text = "数据字典排序";
+            this.lblSeq.AutoSize = true;
+            this.lblSeq.Location = new System.Drawing.Point(26, 136);
+            this.lblSeq.Name = "lblSeq";
+            this.lblSeq.Size = new System.Drawing.Size(118, 22);
+            this.lblSeq.TabIndex = 40;
+            this.lblSeq.Text = "数据字典排序";
             // 
-            // label1
+            // lblName
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(26, 101);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(118, 22);
-            this.label1.TabIndex = 40;
-            this.label1.Text = "数据字典名称";
+            this.lblName.AutoSize = true;
+            this.lblName.Location = new System.Drawing.Point(26, 101);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(118, 22);
+            this.lblName.TabIndex = 40;
+            this.lblName.Text = "数据字典名称";
             // 
-            // label2
+            // lblDictType
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(62, 35);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(82, 22);
-            this.label2.TabIndex = 38;
-            this.label2.Text = "字典大类";
+            this.lblDictType.AutoSize = true;
+            this.lblDictType.Location = new System.Drawing.Point(62, 35);
+            this.lblDictType.Name = "lblDictType";
+            this.lblDictType.Size = new System.Drawing.Size(82, 22);
+            this.lblDictType.TabIndex = 38;
+            this.lblDictType.Text = "字典大类";
             // 
             // txtValue
             // 
@@ -116,14 +116,14 @@
             this.txtValue.Size = new System.Drawing.Size(163, 29);
             this.txtValue.TabIndex = 2;
             // 
-            // label4
+            // lblValue
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(44, 67);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(100, 22);
-            this.label4.TabIndex = 39;
-            this.label4.Text = "数据字典值";
+            this.lblValue.AutoSize = true;
+            this.lblValue.Location = new System.Drawing.Point(44, 67);
+            this.lblValue.Name = "lblValue";
+            this.lblValue.Size = new System.Drawing.Size(100, 22);
+            this.lblValue.TabIndex = 39;
+            this.lblValue.Text = "数据字典值";
             // 
             // txtNote
             // 
@@ -134,14 +134,14 @@
             this.txtNote.Size = new System.Drawing.Size(256, 70);
             this.txtNote.TabIndex = 4;
             // 
-            // label7
+            // lblNote
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(98, 174);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(46, 22);
-            this.label7.TabIndex = 35;
-            this.label7.Text = "备注";
+            this.lblNote.AutoSize = true;
+            this.lblNote.Location = new System.Drawing.Point(98, 174);
+            this.lblNote.Name = "lblNote";
+            this.lblNote.Size = new System.Drawing.Size(46, 22);
+            this.lblNote.TabIndex = 35;
+            this.lblNote.Text = "备注";
             // 
             // txtDictType
             // 
@@ -192,14 +192,14 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.Label lblDictType;
         private System.Windows.Forms.TextBox txtValue;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblValue;
         private System.Windows.Forms.TextBox txtNote;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblNote;
         private System.Windows.Forms.TextBox txtName;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblSeq;
         public System.Windows.Forms.TextBox txtDictType;
         private System.Windows.Forms.TextBox txtSeq;
     }

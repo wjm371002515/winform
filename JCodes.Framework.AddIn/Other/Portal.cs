@@ -20,6 +20,8 @@ using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.CommonControl.Other;
 using DevExpress.Utils;
 using JCodes.Framework.AddIn.UI.Security;
+using JCodes.Framework.AddIn.UI.WareHouseManage;
+using JCodes.Framework.Common.Files;
 
 namespace JCodes.Framework.AddIn.Other
 {
@@ -38,6 +40,7 @@ namespace JCodes.Framework.AddIn.Other
         public bool Registed { get; set;}                                   // 判断是否注册了   
         public bool EnableRegister = false;                                 //设置一个开关，确定是否要求注册后才能使用软件
         public WaitDialogForm _waitBeforeLogin = null;                      // 登录等待窗口
+        public AppConfig config = new AppConfig();                                 // config 全局变量 只一次读取config文件提高效率
 
         /// <summary>
         /// 登录用户信息
@@ -130,15 +133,6 @@ namespace JCodes.Framework.AddIn.Other
         }
 
         #region 基本操作函数
-
-        /// <summary>
-        /// Quits the application
-        /// </summary>
-        public void Quit()
-        {
-            Application.Exit();
-        }
-
         /// <summary>
         /// Opens the help document.
         /// </summary>
@@ -155,26 +149,6 @@ namespace JCodes.Framework.AddIn.Other
                 MessageDxUtil.ShowError(ex.Message);
                 return;
             }
-        }
-
-        /// <summary>
-        /// 关于对话框信息
-        /// </summary>
-        public void About()
-        {
-            AboutBox dlg = new AboutBox();
-            dlg.StartPosition = FormStartPosition.CenterScreen;
-            dlg.ShowDialog();
-        }
-
-        /// <summary>
-        /// 修改密码
-        /// </summary>
-        public void ModPwd()
-        {
-            FrmModifyPassword dlg = new FrmModifyPassword();
-            dlg.StartPosition = FormStartPosition.CenterScreen;
-            dlg.ShowDialog();
         }
 
         /// <summary>
@@ -237,25 +211,6 @@ namespace JCodes.Framework.AddIn.Other
         }
 
         /// <summary>
-        /// 判断当前管理员是否有权限管理相关机构节点
-        /// </summary>
-        /// <param name="companyId">待管理的机构公司ID</param>
-        /// <returns></returns>
-        public bool DataCanManage(object companyId)
-        {
-            bool result = false;
-            if (UserInRole(RoleInfo.SuperAdminName))
-            {
-                result = true;
-            }
-            else if (UserInRole(RoleInfo.CompanyAdminName))
-            {
-                result = (UserInfo.Company_ID == companyId.ToString());
-            }
-            return result;
-        }
-
-        /// <summary>
         /// 根据当前用户身份，获取对应的顶级机构管理节点。
         /// 如果是超级管理员，返回集团节点；如果是公司管理员，返回其公司节点
         /// </summary>
@@ -276,5 +231,58 @@ namespace JCodes.Framework.AddIn.Other
             }
             return list;
         }
+
+        #region 弹出提示消息窗口
+        /// <summary>
+        /// 弹出提示消息窗口
+        /// </summary>
+        /// <param name="caption"></param>
+        /// <param name="content"></param>
+        public void Notify(string caption, string content)
+        {
+            Notify(caption, content, 400, 200, 5000);
+        }
+
+        /// <summary>
+        /// 弹出提示消息窗口
+        /// </summary>
+        /// <param name="caption"></param>
+        /// <param name="content"></param>
+        public void Notify(string caption, string content, int width, int height, int waitTime)
+        {
+            NotifyWindow notifyWindow = new NotifyWindow(caption, content);
+            notifyWindow.TitleClicked += new System.EventHandler(notifyWindowClick);
+            notifyWindow.TextClicked += new EventHandler(notifyWindowClick);
+            notifyWindow.SetDimensions(width, height);
+            notifyWindow.WaitTime = waitTime;
+            notifyWindow.Notify();
+
+            //保存到系统消息表
+            //SystemMessageInfo messageInfo = new SystemMessageInfo();
+            //messageInfo.ID = Guid.NewGuid().ToString();
+            //messageInfo.Title = caption;
+            //messageInfo.Content = content;
+            //try
+            //{
+            //    BLLFactory<SystemMessage>.Instance.Insert(messageInfo);
+            //}
+            //catch (Exception ex)
+            //{
+            //    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(WareHouseHelper));
+            //    MessageDxUtil.ShowError(ex.Message);
+            //}
+        }
+
+        private void notifyWindowClick(object sender, EventArgs e)
+        {
+            //SystemMessageInfo info = BLLFactory<SystemMessage>.Instance.FindLast();
+            //if (info != null)
+            //{
+            //    //FrmEditMessage dlg = new FrmEditMessage();
+            //    //dlg.ID = info.ID;
+            //    //dlg.ShowDialog();
+            //}
+        }
+        #endregion
     }
 }

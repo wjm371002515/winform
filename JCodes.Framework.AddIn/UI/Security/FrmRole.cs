@@ -45,22 +45,22 @@ namespace JCodes.Framework.AddIn.UI.Security
 
         void Init_Function()
         {
-            if (!Portal.gc.HasFunction("Role/RoleDataSearch"))
+            if (!HasFunction("Role/RoleDataSearch"))
             {
                 xtraTabControl1.TabPages.Remove(xtraTabControl1.TabPages[2]);
             }
-            if (!Portal.gc.HasFunction("Role/FunctionSearch"))
+            if (!HasFunction("Role/FunctionSearch"))
             {
                 xtraTabControl1.TabPages.Remove(xtraTabControl1.TabPages[1]);
             }
-            btnAdd.Enabled = Portal.gc.HasFunction("Role/add");
-            btnDelete.Enabled = Portal.gc.HasFunction("Role/del");
-            btnEditOU.Enabled = Portal.gc.HasFunction("Role/OUedit");
-            btnRemoveOU.Enabled = Portal.gc.HasFunction("Role/OUdel");
-            btnEditUser.Enabled = Portal.gc.HasFunction("Role/UserAdd");
-            btnRemoveUser.Enabled = Portal.gc.HasFunction("Role/UserDel");
-            btnSaveFunction.Enabled = Portal.gc.HasFunction("Role/FunctionSave");
-            btnSaveRoleData.Enabled = Portal.gc.HasFunction("Role/RoleDataSave");
+            btnAdd.Enabled = HasFunction("Role/add");
+            btnDelete.Enabled = HasFunction("Role/del");
+            btnEditOU.Enabled = HasFunction("Role/OUedit");
+            btnRemoveOU.Enabled = HasFunction("Role/OUdel");
+            btnEditUser.Enabled = HasFunction("Role/UserAdd");
+            btnRemoveUser.Enabled = HasFunction("Role/UserDel");
+            btnSaveFunction.Enabled = HasFunction("Role/FunctionSave");
+            btnSaveRoleData.Enabled = HasFunction("Role/RoleDataSave");
         }
 
         private void InitDictItem()
@@ -339,7 +339,7 @@ namespace JCodes.Framework.AddIn.UI.Security
 
         private void menu_Delete_Click(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("Role/del"))
+            if (!HasFunction("Role/del"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -376,7 +376,7 @@ namespace JCodes.Framework.AddIn.UI.Security
 
         private void menu_Add_Click(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("Role/add"))
+            if (!HasFunction("Role/add"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -473,7 +473,7 @@ namespace JCodes.Framework.AddIn.UI.Security
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(currentID) && !Portal.gc.HasFunction("Role/edit"))
+            if (!string.IsNullOrEmpty(currentID) && !HasFunction("Role/edit"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;

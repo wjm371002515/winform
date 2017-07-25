@@ -122,18 +122,9 @@ namespace JCodes.Framework.AddIn.UI.Security
                 }
 
                 //可特殊设置特别的宽度
-                SetGridColumWidth("Gender", 50);
-                SetGridColumWidth("Email", 150);
-                SetGridColumWidth("Note", 200);
-            }
-        }
-
-        private void SetGridColumWidth(string columnName, int width)
-        {
-            DevExpress.XtraGrid.Columns.GridColumn column = this.winGridViewPager1.gridView1.Columns.ColumnByFieldName(columnName);
-            if (column != null)
-            {
-                column.Width = width;
+                winGridViewPager1.gridView1.SetGridColumWidth("Gender", 50);
+                winGridViewPager1.gridView1.SetGridColumWidth("Email", 150);
+                winGridViewPager1.gridView1.SetGridColumWidth("Note", 200);
             }
         }
 
@@ -150,10 +141,10 @@ namespace JCodes.Framework.AddIn.UI.Security
 
         void Init_Function()
         {
-            btnSearch.Enabled = Portal.gc.HasFunction("User/search");
-            btnAddNew.Enabled = Portal.gc.HasFunction("User/add");
-            btnImport.Enabled = Portal.gc.HasFunction("User/import");
-            btnExport.Enabled = Portal.gc.HasFunction("User/export");
+            btnSearch.Enabled = HasFunction("User/search");
+            btnAddNew.Enabled = HasFunction("User/add");
+            btnImport.Enabled = HasFunction("User/import");
+            btnExport.Enabled = HasFunction("User/export");
         }
 
         #region 初始化组织结构树方法
@@ -307,7 +298,7 @@ namespace JCodes.Framework.AddIn.UI.Security
         /// </summary>
         private void winGridViewPager1_OnDeleteSelected(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("User/del"))
+            if (!HasFunction("User/del"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -333,7 +324,7 @@ namespace JCodes.Framework.AddIn.UI.Security
         /// </summary>
         private void winGridViewPager1_OnEditSelected(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("User/edit"))
+            if (!HasFunction("User/edit"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -371,7 +362,7 @@ namespace JCodes.Framework.AddIn.UI.Security
         /// </summary>        
         private void winGridViewPager1_OnAddNew(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("User/add"))
+            if (!HasFunction("User/add"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -479,7 +470,7 @@ namespace JCodes.Framework.AddIn.UI.Security
         /// </summary>
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("User/search"))
+            if (!HasFunction("User/search"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -532,7 +523,7 @@ namespace JCodes.Framework.AddIn.UI.Security
         /// </summary>          
         private void btnImport_Click(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("User/import"))
+            if (!HasFunction("User/import"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -710,7 +701,7 @@ namespace JCodes.Framework.AddIn.UI.Security
         /// </summary>
         private void btnExport_Click(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("User/export"))
+            if (!HasFunction("User/export"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -836,7 +827,7 @@ namespace JCodes.Framework.AddIn.UI.Security
 
         private void menuDept_AddNew_Click(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("User/add"))
+            if (!HasFunction("User/add"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -877,7 +868,7 @@ namespace JCodes.Framework.AddIn.UI.Security
 
         private void menu_InitPassword_Click(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("User/initPwd"))
+            if (!HasFunction("User/initPwd"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;

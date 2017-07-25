@@ -6,6 +6,8 @@ using JCodes.Framework.AddIn.Other;
 using JCodes.Framework.CommonControl.Framework;
 using JCodes.Framework.CommonControl.BaseUI;
 using JCodes.Framework.CommonControl.Other;
+using JCodes.Framework.Common.Office;
+using JCodes.Framework.Common.Framework;
 
 namespace JCodes.Framework.AddIn.Test
 {
@@ -166,6 +168,31 @@ namespace JCodes.Framework.AddIn.Test
         {
             MessageDxUtil.ShowError("单选下拉框comboBoxEdit1取值:" + comboBoxEdit1.GetComboBoxIntValue());
             MessageDxUtil.ShowError("多选下拉框checkedComboBoxEdit1取值:" + checkedComboBoxEdit1.GetCheckedComboBoxValue());
+        }
+
+        private void btnMessage_Click(object sender, EventArgs e)
+        {
+            Portal.gc.Notify("提示消息中心", "这里是提示的消息中心体内容，情关注消息中心");
+        }
+
+        private void btnCache_Click(object sender, EventArgs e)
+        {
+            Cache.Instance["CacheTest1"] = "这里你可以保存任何对象，没有有效期";
+            MessageDxUtil.ShowTips(Cache.Instance["CacheTest1"] as string);
+        }
+
+        private void btnMemory_Click(object sender, EventArgs e)
+        {
+            string key = "MemoryTest1";
+            string fullName = MemoryCacheHelper.GetCacheItem<string>(key,
+                delegate() { return "这里可以写Factory方法去查询并缓存到内存中时间为30分钟"; },
+                new TimeSpan(0, 30, 0));//30分钟过期
+            MessageDxUtil.ShowTips(fullName);
+        }
+
+        private void ccbb_Properties_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+
         }
     }
 

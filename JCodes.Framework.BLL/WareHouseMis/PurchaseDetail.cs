@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using JCodes.Framework.Common;
 using JCodes.Framework.Entity;
 using JCodes.Framework.Common.Framework;
+using JCodes.Framework.IDAL;
 
 namespace JCodes.Framework.BLL
 {
@@ -23,11 +24,8 @@ namespace JCodes.Framework.BLL
         /// <returns></returns>
         public DataTable GetPurchaseDetailReportByID(int PurchaseHead_ID)
         {
-            string sql = string.Format(@"Select HandNo,ItemNo,ItemName,MapNo,Specification,Material,
-            ItemBigType,ItemType,Unit,Price,Quantity,Amount,Source,StoragePos,UsagePos,d.WareHouse,d.Dept
-            From WM_PurchaseDetail d inner join WM_PurchaseHeader h on d.PurchaseHead_ID = h.ID 
-            Where h.ID={0} order by CreateDate ", PurchaseHead_ID);
-            return SqlTable(sql);
+            IPurchaseDetail dal = baseDal as IPurchaseDetail;
+            return dal.GetPurchaseDetailReportByID(PurchaseHead_ID);
         }
     }
 }

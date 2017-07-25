@@ -13,6 +13,7 @@ using JCodes.Framework.CommonControl;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Common.Files;
 using JCodes.Framework.CommonControl.Other.Images;
+using JCodes.Framework.Common.Office;
 
 namespace JCodes.Framework.BLL
 {
@@ -45,7 +46,13 @@ namespace JCodes.Framework.BLL
                 if (string.IsNullOrEmpty(info.BasePath))
                 {
                     //如果没指定基础路径，则以配置为主，如果没有配置项AttachmentBasePath，默认一个相对目录
-                    AppConfig config = new AppConfig();
+                    AppConfig config = Cache.Instance["AppConfig"] as AppConfig;
+                    if (config == null)
+                    {
+                        config = new AppConfig();
+                        Cache.Instance["AppConfig"] = config;
+                    }	
+
                     string AttachmentBasePath = config.AppConfigGet("AttachmentBasePath");//配置的基础路径
                     if (string.IsNullOrEmpty(AttachmentBasePath))
                     {

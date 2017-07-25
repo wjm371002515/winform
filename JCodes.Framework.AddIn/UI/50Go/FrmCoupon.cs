@@ -51,7 +51,7 @@ namespace JCodes.Framework.AddIn.UI._50Go
 
         private void InitControl()
         {
-            if (!Portal.gc.HasFunction("Exchangecoupons/search"))
+            if (!HasFunction("Exchangecoupons/search"))
             {
                 btnSearch.Enabled = false;
             }
@@ -78,7 +78,7 @@ namespace JCodes.Framework.AddIn.UI._50Go
         /// </summary>
         private void winGridViewPager1_OnEditSelected(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("Exchangecoupons/exchange"))
+            if (!HasFunction("Exchangecoupons/exchange"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;

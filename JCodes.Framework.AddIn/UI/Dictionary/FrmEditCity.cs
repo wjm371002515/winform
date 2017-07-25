@@ -31,14 +31,14 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
             #region MyRegion
             if (this.txtCity.Text.Trim().Length == 0)
             {
-                MessageDxUtil.ShowTips("城市名称不能为空");
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblCity.Text.Replace(Const.MsgCheckSign, string.Empty));
                 this.txtCity.Focus();
                 result = false;
             }
 
             if (this.txtZipCode.Text.Trim().Length == 0)
             {
-                MessageDxUtil.ShowTips("城市编码不能为空");
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblZipCode.Text.Replace(Const.MsgCheckSign, string.Empty));
                 this.txtZipCode.Focus();
                 result = false;
             }
@@ -48,7 +48,7 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
                 string strZipCode = txtZipCode.Text.Trim();
                 if (!ValidateUtil.IsNumber(strZipCode))
                 {
-                    MessageDxUtil.ShowTips("城市编码格式不正确，请输入数字");
+                    MessageDxUtil.ShowWarning(lblZipCode.Text.Replace(Const.MsgCheckSign, string.Empty) + Const.MsgErrFormatByNum);
                     this.txtZipCode.Focus();
                     result = false;
                 }

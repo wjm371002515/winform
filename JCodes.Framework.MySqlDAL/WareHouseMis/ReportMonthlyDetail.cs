@@ -26,7 +26,8 @@ namespace JCodes.Framework.MySqlDAL
 				return new ReportMonthlyDetail();
 			}
 		}
-		public ReportMonthlyDetail() : base("WM_ReportMonthlyDetail","ID")
+        public ReportMonthlyDetail()
+            : base(MySqlPortal.gc._wareHouseTablePre + "ReportMonthlyDetail", "ID")
 		{
 		}
 

@@ -4,6 +4,7 @@ using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Threading.Tasks;
+using JCodes.Framework.Common.Winform;
 
 namespace JCodes.Framework.WinFormUI
 {
@@ -43,8 +44,7 @@ namespace JCodes.Framework.WinFormUI
 
         private void sbCustomization_Click(object sender, EventArgs e)
         {
-            var frmConnSetting = new frmConnSettings();
-            frmConnSetting.ShowDialog();
+            ChildWinManagement.PopDialogForm(typeof(frmConnSettings));
         }
     }
 }

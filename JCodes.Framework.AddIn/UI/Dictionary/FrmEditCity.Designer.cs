@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblCity = new System.Windows.Forms.Label();
             this.txtCity = new System.Windows.Forms.TextBox();
             this.txtProvince = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -57,14 +57,14 @@
             // 
             this.picPrint.Location = new System.Drawing.Point(209, 132);
             // 
-            // label2
+            // lblCity
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(25, 62);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(82, 22);
-            this.label2.TabIndex = 52;
-            this.label2.Text = "城市名称";
+            this.lblCity.AutoSize = true;
+            this.lblCity.Location = new System.Drawing.Point(25, 62);
+            this.lblCity.Name = "lblCity";
+            this.lblCity.Size = new System.Drawing.Size(82, 22);
+            this.lblCity.TabIndex = 52;
+            this.lblCity.Text = "城市名称";
             // 
             // txtCity
             // 
@@ -120,7 +120,7 @@
             this.ClientSize = new System.Drawing.Size(487, 177);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblZipCode);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblCity);
             this.Controls.Add(this.txtProvince);
             this.Controls.Add(this.txtZipCode);
             this.Controls.Add(this.txtCity);
@@ -131,7 +131,7 @@
             this.Controls.SetChildIndex(this.txtCity, 0);
             this.Controls.SetChildIndex(this.txtZipCode, 0);
             this.Controls.SetChildIndex(this.txtProvince, 0);
-            this.Controls.SetChildIndex(this.label2, 0);
+            this.Controls.SetChildIndex(this.lblCity, 0);
             this.Controls.SetChildIndex(this.lblZipCode, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.btnCancel, 0);
@@ -147,7 +147,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblCity;
         public System.Windows.Forms.TextBox txtCity;
         public System.Windows.Forms.TextBox txtProvince;
         private System.Windows.Forms.Label label1;

@@ -42,11 +42,16 @@ namespace JCodes.Framework.AddIn.Test
             this.checkedComboBoxEdit1 = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             this.txtUnit = new DevExpress.XtraEditors.ComboBoxEdit();
             this.button3 = new System.Windows.Forms.Button();
+            this.btnMessage = new System.Windows.Forms.Button();
+            this.btnCache = new System.Windows.Forms.Button();
+            this.btnMemory = new System.Windows.Forms.Button();
+            this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkedComboBoxEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUnit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -63,10 +68,10 @@ namespace JCodes.Framework.AddIn.Test
             // txtLog
             // 
             this.txtLog.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.txtLog.Location = new System.Drawing.Point(0, 177);
+            this.txtLog.Location = new System.Drawing.Point(0, 212);
             this.txtLog.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtLog.Name = "txtLog";
-            this.txtLog.Size = new System.Drawing.Size(879, 326);
+            this.txtLog.Size = new System.Drawing.Size(861, 326);
             this.txtLog.TabIndex = 1;
             this.txtLog.Text = "";
             // 
@@ -145,7 +150,7 @@ namespace JCodes.Framework.AddIn.Test
             // 
             // checkedComboBoxEdit1
             // 
-            this.checkedComboBoxEdit1.Location = new System.Drawing.Point(30, 104);
+            this.checkedComboBoxEdit1.Location = new System.Drawing.Point(15, 90);
             this.checkedComboBoxEdit1.Name = "checkedComboBoxEdit1";
             this.checkedComboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -172,11 +177,53 @@ namespace JCodes.Framework.AddIn.Test
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // btnMessage
+            // 
+            this.btnMessage.Location = new System.Drawing.Point(636, 10);
+            this.btnMessage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnMessage.Name = "btnMessage";
+            this.btnMessage.Size = new System.Drawing.Size(100, 30);
+            this.btnMessage.TabIndex = 0;
+            this.btnMessage.Text = "消息中心";
+            this.btnMessage.UseVisualStyleBackColor = true;
+            this.btnMessage.Click += new System.EventHandler(this.btnMessage_Click);
+            // 
+            // btnCache
+            // 
+            this.btnCache.Location = new System.Drawing.Point(742, 11);
+            this.btnCache.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnCache.Name = "btnCache";
+            this.btnCache.Size = new System.Drawing.Size(100, 30);
+            this.btnCache.TabIndex = 0;
+            this.btnCache.Text = "缓存Cache";
+            this.btnCache.UseVisualStyleBackColor = true;
+            this.btnCache.Click += new System.EventHandler(this.btnCache_Click);
+            // 
+            // btnMemory
+            // 
+            this.btnMemory.Location = new System.Drawing.Point(742, 45);
+            this.btnMemory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnMemory.Name = "btnMemory";
+            this.btnMemory.Size = new System.Drawing.Size(100, 30);
+            this.btnMemory.TabIndex = 0;
+            this.btnMemory.Text = "内存数据";
+            this.btnMemory.UseVisualStyleBackColor = true;
+            this.btnMemory.Click += new System.EventHandler(this.btnMemory_Click);
+            // 
+            // memoEdit1
+            // 
+            this.memoEdit1.Location = new System.Drawing.Point(163, 96);
+            this.memoEdit1.Name = "memoEdit1";
+            this.memoEdit1.Size = new System.Drawing.Size(344, 111);
+            this.memoEdit1.TabIndex = 17;
+            this.memoEdit1.UseOptimizedRendering = true;
+            // 
             // Test
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(879, 503);
+            this.ClientSize = new System.Drawing.Size(861, 538);
+            this.Controls.Add(this.memoEdit1);
             this.Controls.Add(this.txtUnit);
             this.Controls.Add(this.checkedComboBoxEdit1);
             this.Controls.Add(this.simpleButton1);
@@ -186,6 +233,9 @@ namespace JCodes.Framework.AddIn.Test
             this.Controls.Add(this.textEdit1);
             this.Controls.Add(this.txtLog);
             this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnMemory);
+            this.Controls.Add(this.btnCache);
+            this.Controls.Add(this.btnMessage);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.btnException2);
             this.Controls.Add(this.btnException);
@@ -199,6 +249,7 @@ namespace JCodes.Framework.AddIn.Test
             ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkedComboBoxEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUnit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -219,6 +270,10 @@ namespace JCodes.Framework.AddIn.Test
         private DevExpress.XtraEditors.CheckedComboBoxEdit checkedComboBoxEdit1;
         private DevExpress.XtraEditors.ComboBoxEdit txtUnit;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnMessage;
+        private System.Windows.Forms.Button btnCache;
+        private System.Windows.Forms.Button btnMemory;
+        private DevExpress.XtraEditors.MemoEdit memoEdit1;
 
     }
 }

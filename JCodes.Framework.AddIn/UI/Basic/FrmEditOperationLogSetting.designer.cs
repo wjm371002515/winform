@@ -39,7 +39,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
             this.txtNote = new DevExpress.XtraEditors.MemoEdit();
             this.txtTableName = new DevExpress.XtraEditors.ComboBoxEdit();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lblTableName = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -64,7 +64,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
             ((System.ComponentModel.ISupportInitialize)(this.txtNote.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTableName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblTableName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
@@ -113,10 +113,10 @@ namespace JCodes.Framework.AddIn.UI.Basic
             // 
             // txtCreator
             // 
-            this.txtCreator.Location = new System.Drawing.Point(63, 271);
+            this.txtCreator.Location = new System.Drawing.Point(87, 255);
             this.txtCreator.Name = "txtCreator";
             this.txtCreator.Properties.ReadOnly = true;
-            this.txtCreator.Size = new System.Drawing.Size(237, 20);
+            this.txtCreator.Size = new System.Drawing.Size(213, 28);
             this.txtCreator.StyleController = this.layoutControl1;
             this.txtCreator.TabIndex = 7;
             // 
@@ -124,14 +124,12 @@ namespace JCodes.Framework.AddIn.UI.Basic
             // 
             this.txtCreateTime.EditValue = null;
             this.txtCreateTime.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.txtCreateTime.Location = new System.Drawing.Point(355, 271);
+            this.txtCreateTime.Location = new System.Drawing.Point(379, 255);
             this.txtCreateTime.Name = "txtCreateTime";
             this.txtCreateTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.txtCreateTime.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.txtCreateTime.Properties.CalendarTimeProperties.CloseUpKey = new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.F4);
-            this.txtCreateTime.Properties.CalendarTimeProperties.PopupBorderStyle = DevExpress.XtraEditors.Controls.PopupBorderStyles.Default;
             this.txtCreateTime.Properties.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
             this.txtCreateTime.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.txtCreateTime.Properties.EditFormat.FormatString = "yyyy-MM-dd HH:mm";
@@ -139,16 +137,16 @@ namespace JCodes.Framework.AddIn.UI.Basic
             this.txtCreateTime.Properties.Mask.EditMask = "yyyy-MM-dd HH:mm";
             this.txtCreateTime.Properties.ReadOnly = true;
             this.txtCreateTime.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.txtCreateTime.Size = new System.Drawing.Size(238, 20);
+            this.txtCreateTime.Size = new System.Drawing.Size(214, 28);
             this.txtCreateTime.StyleController = this.layoutControl1;
             this.txtCreateTime.TabIndex = 9;
             // 
             // txtEditor
             // 
-            this.txtEditor.Location = new System.Drawing.Point(63, 295);
+            this.txtEditor.Location = new System.Drawing.Point(87, 287);
             this.txtEditor.Name = "txtEditor";
             this.txtEditor.Properties.ReadOnly = true;
-            this.txtEditor.Size = new System.Drawing.Size(237, 20);
+            this.txtEditor.Size = new System.Drawing.Size(213, 28);
             this.txtEditor.StyleController = this.layoutControl1;
             this.txtEditor.TabIndex = 10;
             // 
@@ -156,14 +154,12 @@ namespace JCodes.Framework.AddIn.UI.Basic
             // 
             this.txtEditTime.EditValue = null;
             this.txtEditTime.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.txtEditTime.Location = new System.Drawing.Point(355, 295);
+            this.txtEditTime.Location = new System.Drawing.Point(379, 287);
             this.txtEditTime.Name = "txtEditTime";
             this.txtEditTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.txtEditTime.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.txtEditTime.Properties.CalendarTimeProperties.CloseUpKey = new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.F4);
-            this.txtEditTime.Properties.CalendarTimeProperties.PopupBorderStyle = DevExpress.XtraEditors.Controls.PopupBorderStyles.Default;
             this.txtEditTime.Properties.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
             this.txtEditTime.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.txtEditTime.Properties.EditFormat.FormatString = "yyyy-MM-dd HH:mm";
@@ -171,7 +167,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
             this.txtEditTime.Properties.Mask.EditMask = "yyyy-MM-dd HH:mm";
             this.txtEditTime.Properties.ReadOnly = true;
             this.txtEditTime.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.txtEditTime.Size = new System.Drawing.Size(238, 20);
+            this.txtEditTime.Size = new System.Drawing.Size(214, 28);
             this.txtEditTime.StyleController = this.layoutControl1;
             this.txtEditTime.TabIndex = 12;
             // 
@@ -182,7 +178,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
             this.txtInsertLog.Name = "txtInsertLog";
             this.txtInsertLog.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default;
             this.txtInsertLog.Properties.Caption = "记录插入日志";
-            this.txtInsertLog.Size = new System.Drawing.Size(131, 19);
+            this.txtInsertLog.Size = new System.Drawing.Size(131, 26);
             this.txtInsertLog.StyleController = this.layoutControl1;
             this.txtInsertLog.TabIndex = 3;
             // 
@@ -193,7 +189,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
             this.txtDeleteLog.Name = "txtDeleteLog";
             this.txtDeleteLog.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default;
             this.txtDeleteLog.Properties.Caption = "记录删除日志";
-            this.txtDeleteLog.Size = new System.Drawing.Size(135, 19);
+            this.txtDeleteLog.Size = new System.Drawing.Size(135, 26);
             this.txtDeleteLog.StyleController = this.layoutControl1;
             this.txtDeleteLog.TabIndex = 4;
             // 
@@ -204,26 +200,27 @@ namespace JCodes.Framework.AddIn.UI.Basic
             this.txtUpdateLog.Name = "txtUpdateLog";
             this.txtUpdateLog.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default;
             this.txtUpdateLog.Properties.Caption = "记录更新日志";
-            this.txtUpdateLog.Size = new System.Drawing.Size(307, 19);
+            this.txtUpdateLog.Size = new System.Drawing.Size(307, 26);
             this.txtUpdateLog.StyleController = this.layoutControl1;
             this.txtUpdateLog.TabIndex = 5;
             // 
             // txtNote
             // 
-            this.txtNote.Location = new System.Drawing.Point(63, 60);
+            this.txtNote.Location = new System.Drawing.Point(87, 67);
             this.txtNote.Name = "txtNote";
-            this.txtNote.Size = new System.Drawing.Size(530, 207);
+            this.txtNote.Size = new System.Drawing.Size(506, 184);
             this.txtNote.StyleController = this.layoutControl1;
             this.txtNote.TabIndex = 6;
+            this.txtNote.UseOptimizedRendering = true;
             // 
             // txtTableName
             // 
-            this.txtTableName.Location = new System.Drawing.Point(63, 12);
+            this.txtTableName.Location = new System.Drawing.Point(87, 12);
             this.txtTableName.Name = "txtTableName";
             this.txtTableName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.txtTableName.Properties.DropDownRows = 12;
-            this.txtTableName.Size = new System.Drawing.Size(195, 20);
+            this.txtTableName.Size = new System.Drawing.Size(171, 28);
             this.txtTableName.StyleController = this.layoutControl1;
             this.txtTableName.TabIndex = 2;
             // 
@@ -232,7 +229,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
             this.layoutControlGroup1.CustomizationFormText = "layoutControlGroup1";
             this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem2,
+            this.lblTableName,
             this.layoutControlItem3,
             this.layoutControlItem6,
             this.layoutControlItem7,
@@ -247,18 +244,18 @@ namespace JCodes.Framework.AddIn.UI.Basic
             this.layoutControlGroup1.Text = "layoutControlGroup1";
             this.layoutControlGroup1.TextVisible = false;
             // 
-            // layoutControlItem2
+            // lblTableName
             // 
-            this.layoutControlItem2.Control = this.txtTableName;
-            this.layoutControlItem2.CustomizationFormText = "数据库表";
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem2.MaxSize = new System.Drawing.Size(250, 0);
-            this.layoutControlItem2.MinSize = new System.Drawing.Size(50, 25);
-            this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(585, 25);
-            this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem2.Text = "数据库表";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(48, 14);
+            this.lblTableName.Control = this.txtTableName;
+            this.lblTableName.CustomizationFormText = "数据库表";
+            this.lblTableName.Location = new System.Drawing.Point(0, 0);
+            this.lblTableName.MaxSize = new System.Drawing.Size(250, 0);
+            this.lblTableName.MinSize = new System.Drawing.Size(50, 25);
+            this.lblTableName.Name = "lblTableName";
+            this.lblTableName.Size = new System.Drawing.Size(585, 25);
+            this.lblTableName.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.lblTableName.Text = "数据库表";
+            this.lblTableName.TextSize = new System.Drawing.Size(72, 22);
             // 
             // layoutControlItem3
             // 
@@ -266,7 +263,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
             this.layoutControlItem3.CustomizationFormText = "记录插入日志";
             this.layoutControlItem3.Location = new System.Drawing.Point(0, 25);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(135, 23);
+            this.layoutControlItem3.Size = new System.Drawing.Size(135, 30);
             this.layoutControlItem3.Text = "记录插入日志";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextToControlDistance = 0;
@@ -276,31 +273,31 @@ namespace JCodes.Framework.AddIn.UI.Basic
             // 
             this.layoutControlItem6.Control = this.txtNote;
             this.layoutControlItem6.CustomizationFormText = "备注";
-            this.layoutControlItem6.Location = new System.Drawing.Point(0, 48);
+            this.layoutControlItem6.Location = new System.Drawing.Point(0, 55);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(585, 211);
+            this.layoutControlItem6.Size = new System.Drawing.Size(585, 188);
             this.layoutControlItem6.Text = "备注";
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(48, 14);
+            this.layoutControlItem6.TextSize = new System.Drawing.Size(72, 22);
             // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.txtCreator;
             this.layoutControlItem7.CustomizationFormText = "创建人";
-            this.layoutControlItem7.Location = new System.Drawing.Point(0, 259);
+            this.layoutControlItem7.Location = new System.Drawing.Point(0, 243);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(292, 24);
+            this.layoutControlItem7.Size = new System.Drawing.Size(292, 32);
             this.layoutControlItem7.Text = "创建人";
-            this.layoutControlItem7.TextSize = new System.Drawing.Size(48, 14);
+            this.layoutControlItem7.TextSize = new System.Drawing.Size(72, 22);
             // 
             // layoutControlItem10
             // 
             this.layoutControlItem10.Control = this.txtEditor;
             this.layoutControlItem10.CustomizationFormText = "编辑人";
-            this.layoutControlItem10.Location = new System.Drawing.Point(0, 283);
+            this.layoutControlItem10.Location = new System.Drawing.Point(0, 275);
             this.layoutControlItem10.Name = "layoutControlItem10";
-            this.layoutControlItem10.Size = new System.Drawing.Size(292, 24);
+            this.layoutControlItem10.Size = new System.Drawing.Size(292, 32);
             this.layoutControlItem10.Text = "编辑人";
-            this.layoutControlItem10.TextSize = new System.Drawing.Size(48, 14);
+            this.layoutControlItem10.TextSize = new System.Drawing.Size(72, 22);
             // 
             // layoutControlItem4
             // 
@@ -308,7 +305,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
             this.layoutControlItem4.CustomizationFormText = "记录删除日志";
             this.layoutControlItem4.Location = new System.Drawing.Point(135, 25);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(139, 23);
+            this.layoutControlItem4.Size = new System.Drawing.Size(139, 30);
             this.layoutControlItem4.Text = "记录删除日志";
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextToControlDistance = 0;
@@ -320,7 +317,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
             this.layoutControlItem5.CustomizationFormText = "记录更新日志";
             this.layoutControlItem5.Location = new System.Drawing.Point(274, 25);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(311, 23);
+            this.layoutControlItem5.Size = new System.Drawing.Size(311, 30);
             this.layoutControlItem5.Text = "记录更新日志";
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextToControlDistance = 0;
@@ -330,21 +327,21 @@ namespace JCodes.Framework.AddIn.UI.Basic
             // 
             this.layoutControlItem9.Control = this.txtCreateTime;
             this.layoutControlItem9.CustomizationFormText = "创建时间";
-            this.layoutControlItem9.Location = new System.Drawing.Point(292, 259);
+            this.layoutControlItem9.Location = new System.Drawing.Point(292, 243);
             this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(293, 24);
+            this.layoutControlItem9.Size = new System.Drawing.Size(293, 32);
             this.layoutControlItem9.Text = "创建时间";
-            this.layoutControlItem9.TextSize = new System.Drawing.Size(48, 14);
+            this.layoutControlItem9.TextSize = new System.Drawing.Size(72, 22);
             // 
             // layoutControlItem12
             // 
             this.layoutControlItem12.Control = this.txtEditTime;
             this.layoutControlItem12.CustomizationFormText = "编辑时间";
-            this.layoutControlItem12.Location = new System.Drawing.Point(292, 283);
+            this.layoutControlItem12.Location = new System.Drawing.Point(292, 275);
             this.layoutControlItem12.Name = "layoutControlItem12";
-            this.layoutControlItem12.Size = new System.Drawing.Size(293, 24);
+            this.layoutControlItem12.Size = new System.Drawing.Size(293, 32);
             this.layoutControlItem12.Text = "编辑时间";
-            this.layoutControlItem12.TextSize = new System.Drawing.Size(48, 14);
+            this.layoutControlItem12.TextSize = new System.Drawing.Size(72, 22);
             // 
             // txtForbid
             // 
@@ -362,12 +359,12 @@ namespace JCodes.Framework.AddIn.UI.Basic
             this.txtForbid.Properties.Appearance.Options.UseForeColor = true;
             this.txtForbid.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default;
             this.txtForbid.Properties.Caption = "是否禁用";
-            this.txtForbid.Size = new System.Drawing.Size(89, 19);
+            this.txtForbid.Size = new System.Drawing.Size(89, 26);
             this.txtForbid.TabIndex = 1;
             // 
             // FrmEditOperationLogSetting
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(624, 427);
             this.Controls.Add(this.layoutControl1);
@@ -396,7 +393,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
             ((System.ComponentModel.ISupportInitialize)(this.txtNote.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTableName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblTableName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
@@ -419,7 +416,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
           private DevExpress.XtraEditors.DateEdit txtCreateTime;
           private DevExpress.XtraEditors.TextEdit txtEditor;
           private DevExpress.XtraEditors.DateEdit txtEditTime;    
-         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;    
+         private DevExpress.XtraLayout.LayoutControlItem lblTableName;    
          private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;    
          private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;    
          private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;    

@@ -60,43 +60,6 @@ namespace JCodes.Framework.CommonControl.BaseUI
         }
 
         /// <summary>
-        /// 处理数据保存后的事件触发
-        /// </summary>
-        public virtual void ProcessDataSaved(object sender, EventArgs e)
-        {
-            if (OnDataSaved != null)
-            {
-                OnDataSaved(sender, e);
-            }
-        }
-
-        /// <summary>
-        /// 记录异常
-        /// </summary>
-        /// <param name="ex"></param>
-        public void WriteException(Exception ex)
-        {
-            // 在本地记录异常
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(BaseUserControl));
-            MessageDxUtil.ShowError(ex.Message);
-        }
-
-        /// <summary>
-        /// 处理异常信息
-        /// </summary>
-        /// <param name="ex">异常</param>
-        public void ProcessException(Exception ex)
-        {
-            this.WriteException(ex);
-
-            // 显示异常页面
-            //FrmException frmException = new FrmException(this.UserInfo, ex);
-            //frmException.ShowDialog();
-
-            MessageDxUtil.ShowError(ex.Message);//临时处理
-        }
-
-        /// <summary>
         /// 初始化权限控制信息
         /// </summary>
         public void InitFunction(LoginUserInfo userInfo, Dictionary<string, string> functionDict)

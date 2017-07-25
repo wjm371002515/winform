@@ -528,7 +528,7 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
         /// <returns></returns>
         public override bool OnApply()
         {
-            if (!Portal.gc.HasFunction("Sysparameter/Edit"))
+            if (!HasFunction("Sysparameter/Edit"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return false;
@@ -557,7 +557,7 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
 
         public override bool OnSearch()
         {
-            if (!Portal.gc.HasFunction("Sysparameter/search"))
+            if (!HasFunction("Sysparameter/search"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return false;

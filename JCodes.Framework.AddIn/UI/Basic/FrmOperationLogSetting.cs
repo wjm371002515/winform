@@ -95,19 +95,10 @@ namespace JCodes.Framework.AddIn.UI.Basic
                 }
 
                 //可特殊设置特别的宽度
-                SetGridColumWidth("TableName", 150);
-                SetGridColumWidth("EditTime", 150);
-                SetGridColumWidth("CreateTime", 150);
-                SetGridColumWidth("Note", 200);
-            }
-        }
-
-        private void SetGridColumWidth(string columnName, int width)
-        {
-            DevExpress.XtraGrid.Columns.GridColumn column = this.winGridViewPager1.gridView1.Columns.ColumnByFieldName(columnName);
-            if (column != null)
-            {
-                column.Width = width;
+                winGridViewPager1.gridView1.SetGridColumWidth("TableName", 150);
+                winGridViewPager1.gridView1.SetGridColumWidth("EditTime", 150);
+                winGridViewPager1.gridView1.SetGridColumWidth("CreateTime", 150);
+                winGridViewPager1.gridView1.SetGridColumWidth("Note", 200);
             }
         }
 
@@ -123,8 +114,8 @@ namespace JCodes.Framework.AddIn.UI.Basic
 
         void Init_Function()
         {
-            btnSearch.Enabled = Portal.gc.HasFunction("OperationLogSet/search");
-            btnAddNew.Enabled = Portal.gc.HasFunction("OperationLogSet/add");
+            btnSearch.Enabled = HasFunction("OperationLogSet/search");
+            btnAddNew.Enabled = HasFunction("OperationLogSet/add");
         }
         
         /// <summary>
@@ -148,7 +139,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
         /// </summary>
         private void winGridViewPager1_OnDeleteSelected(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("OperationLogSet/del"))
+            if (!HasFunction("OperationLogSet/del"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -174,7 +165,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
         /// </summary>
         private void winGridViewPager1_OnEditSelected(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("OperationLogSet/edit"))
+            if (!HasFunction("OperationLogSet/edit"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -212,7 +203,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
         /// </summary>        
         private void winGridViewPager1_OnAddNew(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("OperationLogSet/add"))
+            if (!HasFunction("OperationLogSet/add"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -260,7 +251,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
         /// </summary>
         private void BindData()
         {
-            if (!Portal.gc.HasFunction("OperationLogSet/search"))
+            if (!HasFunction("OperationLogSet/search"))
             {
                 return;
             }

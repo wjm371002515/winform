@@ -26,7 +26,8 @@ namespace JCodes.Framework.OracleDAL
 				return new ReportAnnualCostDetail();
 			}
 		}
-		public ReportAnnualCostDetail() : base("WM_ReportAnnualCostDetail","ID")
+        public ReportAnnualCostDetail()
+            : base(OraclePortal.gc._wareHouseTablePre + "ReportAnnualCostDetail", "ID")
         {
             this.SeqName = string.Format("SEQ_{0}", tableName);//数值型主键，通过序列生成
 		}

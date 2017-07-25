@@ -84,18 +84,9 @@ namespace JCodes.Framework.AddIn.UI.Basic
                 }
 
                 //可特殊设置特别的宽度
-                SetGridColumWidth("MacAddress", 150);
-                SetGridColumWidth("CreateTime", 150);
-                SetGridColumWidth("Note", 200);
-            }
-        }
-
-        private void SetGridColumWidth(string columnName, int width)
-        {
-            DevExpress.XtraGrid.Columns.GridColumn column = this.winGridViewPager1.gridView1.Columns.ColumnByFieldName(columnName);
-            if (column != null)
-            {
-                column.Width = width;
+                winGridViewPager1.gridView1.SetGridColumWidth("MacAddress", 150);
+                winGridViewPager1.gridView1.SetGridColumWidth("CreateTime", 150);
+                winGridViewPager1.gridView1.SetGridColumWidth("Note", 200);
             }
         }
 
@@ -111,9 +102,9 @@ namespace JCodes.Framework.AddIn.UI.Basic
 
         void Init_Function()
         {
-            btnSearch.Enabled = Portal.gc.HasFunction("OperationLog/search");
-            btnExport.Enabled = Portal.gc.HasFunction("OperationLog/Export");
-            btnSetTableLog.Enabled = Portal.gc.HasFunction("OperationLog/OperationLogSet");
+            btnSearch.Enabled = HasFunction("OperationLog/search");
+            btnExport.Enabled = HasFunction("OperationLog/Export");
+            btnSetTableLog.Enabled = HasFunction("OperationLog/OperationLogSet");
         }
         
         /// <summary>
@@ -137,7 +128,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
         /// </summary>
         private void winGridViewPager1_OnDeleteSelected(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("OperationLog/del"))
+            if (!HasFunction("OperationLog/del"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -163,7 +154,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
         /// </summary>
         private void winGridViewPager1_OnEditSelected(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("OperationLog/edit"))
+            if (!HasFunction("OperationLog/edit"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -201,7 +192,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
         /// </summary> 
         private void winGridViewPager1_OnStartExport(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("OperationLog/Export"))
+            if (!HasFunction("OperationLog/Export"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -254,7 +245,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
         /// </summary>
         private void BindData()
         {
-            if (!Portal.gc.HasFunction("OperationLog/search"))
+            if (!HasFunction("OperationLog/search"))
             {
                 return;
             }
@@ -285,7 +276,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (!Portal.gc.HasFunction("OperationLog/search"))
+                if (!HasFunction("OperationLog/search"))
                 {
                     MessageDxUtil.ShowError(Const.NoAuthMsg);
                     return;
@@ -303,7 +294,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
         /// </summary>
         private void btnExport_Click(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("OperationLog/Export"))
+            if (!HasFunction("OperationLog/Export"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -397,7 +388,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
         string treeConditionSql = "";
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if (!Portal.gc.HasFunction("OperationLog/search"))
+            if (!HasFunction("OperationLog/search"))
             {
                 return;
             }

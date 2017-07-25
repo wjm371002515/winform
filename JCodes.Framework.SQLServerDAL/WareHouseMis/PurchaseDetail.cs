@@ -26,7 +26,8 @@ namespace JCodes.Framework.SQLServerDAL
 				return new PurchaseDetail();
 			}
 		}
-		public PurchaseDetail() : base("WM_PurchaseDetail","ID")
+        public PurchaseDetail()
+            : base(SQLServerPortal.gc._wareHouseTablePre + "PurchaseDetail", "ID")
 		{
 		}
 
@@ -96,6 +97,15 @@ namespace JCodes.Framework.SQLServerDAL
 
 			return hash;
 		}
+
+        public DataTable GetPurchaseDetailReportByID(int PurchaseHead_ID)
+        {
+            string sql = string.Format(@"Select HandNo,ItemNo,ItemName,MapNo,Specification,Material,
+            ItemBigType,ItemType,Unit,Price,Quantity,Amount,Source,StoragePos,UsagePos,d.WareHouse,d.Dept
+            From {0}PurchaseDetail d inner join {0}PurchaseHeader h on d.PurchaseHead_ID = h.ID 
+            Where h.ID={1} order by CreateDate ", SQLServerPortal.gc._wareHouseTablePre, PurchaseHead_ID);
+            return this.SqlTable(sql);
+        }
 
     }
 }

@@ -26,7 +26,8 @@ namespace JCodes.Framework.AccessDAL
 				return new ReportMonthlyHeader();
 			}
 		}
-		public ReportMonthlyHeader() : base("WM_ReportMonthlyHeader","ID")
+        public ReportMonthlyHeader()
+            : base(AccessPortal.gc._wareHouseTablePre + "ReportMonthlyHeader", "ID")
 		{
 		}
 

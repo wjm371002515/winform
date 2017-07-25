@@ -84,13 +84,6 @@ namespace JCodes.Framework.AddIn.UI.Contact
                     }
                 }
             }
-            else if (e.Column.FieldName == "Operator" || e.Column.FieldName == "Editor" || e.Column.FieldName == "Creator")
-            {
-                if (e.Value != null)
-                {
-                    e.DisplayText = SecurityHelper.GetFullNameByID(e.Value.ToString());
-                }
-            }
         }
 
         /// <summary>
@@ -105,23 +98,14 @@ namespace JCodes.Framework.AddIn.UI.Contact
                 {
                     column.Width = 100;
                 }
-                SetGridColumWidth("Name", 80);
-                SetGridColumWidth("Sex", 60);
 
                 //可特殊设置特别的宽度
-                SetGridColumWidth("Email", 200);
-                SetGridColumWidth("HomeAddress", 200);
-                SetGridColumWidth("OfficeAddress", 200);
-                SetGridColumWidth("Note", 200);
-            }
-        }
-
-        private void SetGridColumWidth(string columnName, int width)
-        {
-            DevExpress.XtraGrid.Columns.GridColumn column = this.winGridViewPager1.gridView1.Columns.ColumnByFieldName(columnName);
-            if (column != null)
-            {
-                column.Width = width;
+                winGridViewPager1.gridView1.SetGridColumWidth("Email", 200);
+                winGridViewPager1.gridView1.SetGridColumWidth("HomeAddress", 200);
+                winGridViewPager1.gridView1.SetGridColumWidth("OfficeAddress", 200);
+                winGridViewPager1.gridView1.SetGridColumWidth("Note", 200);
+                winGridViewPager1.gridView1.SetGridColumWidth("Name", 80);
+                winGridViewPager1.gridView1.SetGridColumWidth("Sex", 60);
             }
         }
 
@@ -137,11 +121,11 @@ namespace JCodes.Framework.AddIn.UI.Contact
 
         void Init_Function()
         {
-            btnSearch.Enabled = Portal.gc.HasFunction("CommonAddress/ContactSearch");
-            btnAddNew.Enabled = Portal.gc.HasFunction("CommonAddress/ContactAdd");
-            btnBatchAdd.Enabled = Portal.gc.HasFunction("CommonAddress/ContactBatchAdd");
-            btnImport.Enabled = Portal.gc.HasFunction("CommonAddress/ContactExport");
-            btnExport.Enabled = Portal.gc.HasFunction("CommonAddress/ContactImport");
+            btnSearch.Enabled = HasFunction("CommonAddress/ContactSearch");
+            btnAddNew.Enabled = HasFunction("CommonAddress/ContactAdd");
+            btnBatchAdd.Enabled = HasFunction("CommonAddress/ContactBatchAdd");
+            btnImport.Enabled = HasFunction("CommonAddress/ContactExport");
+            btnExport.Enabled = HasFunction("CommonAddress/ContactImport");
         }
 
         /// <summary>
@@ -165,7 +149,7 @@ namespace JCodes.Framework.AddIn.UI.Contact
         /// </summary>
         private void winGridViewPager1_OnDeleteSelected(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("CommonAddress/ContactDel"))
+            if (!HasFunction("CommonAddress/ContactDel"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -191,7 +175,7 @@ namespace JCodes.Framework.AddIn.UI.Contact
         /// </summary>
         private void winGridViewPager1_OnEditSelected(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("CommonAddress/ContactEdit"))
+            if (!HasFunction("CommonAddress/ContactEdit"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -231,7 +215,7 @@ namespace JCodes.Framework.AddIn.UI.Contact
         /// </summary>        
         private void winGridViewPager1_OnAddNew(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("CommonAddress/ContactAdd"))
+            if (!HasFunction("CommonAddress/ContactAdd"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -245,7 +229,7 @@ namespace JCodes.Framework.AddIn.UI.Contact
         /// </summary> 
         private void winGridViewPager1_OnStartExport(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("CommonAddress/ContactExport"))
+            if (!HasFunction("CommonAddress/ContactExport"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -303,7 +287,7 @@ namespace JCodes.Framework.AddIn.UI.Contact
         /// </summary>
         private void BindData()
         {
-            if (!Portal.gc.HasFunction("CommonAddress/ContactSearch"))
+            if (!HasFunction("CommonAddress/ContactSearch"))
             {
                 return;
             }

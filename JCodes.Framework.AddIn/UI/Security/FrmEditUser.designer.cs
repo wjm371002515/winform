@@ -69,10 +69,10 @@ namespace JCodes.Framework.AddIn.UI.Security
             this.layoutControlItem22 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lblName = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lblFullName = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem20 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem23 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lblCompany = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -82,7 +82,7 @@ namespace JCodes.Framework.AddIn.UI.Security
             this.layoutControlItem30 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lblDept = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem27 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -137,10 +137,10 @@ namespace JCodes.Framework.AddIn.UI.Security
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblFullName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblCompany)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
@@ -150,7 +150,7 @@ namespace JCodes.Framework.AddIn.UI.Security
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblDept)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem27)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
@@ -510,10 +510,10 @@ namespace JCodes.Framework.AddIn.UI.Security
             this.layoutControlItem22,
             this.layoutControlItem11,
             this.layoutControlItem2,
-            this.layoutControlItem3,
-            this.layoutControlItem5,
+            this.lblName,
+            this.lblFullName,
             this.layoutControlItem20,
-            this.layoutControlItem23,
+            this.lblCompany,
             this.layoutControlItem16,
             this.layoutControlItem17,
             this.layoutControlItem14,
@@ -523,7 +523,7 @@ namespace JCodes.Framework.AddIn.UI.Security
             this.layoutControlItem30,
             this.layoutControlItem4,
             this.layoutControlItem8,
-            this.layoutControlItem1,
+            this.lblDept,
             this.layoutControlItem24,
             this.layoutControlItem27,
             this.layoutControlItem9,
@@ -589,25 +589,25 @@ namespace JCodes.Framework.AddIn.UI.Security
             this.layoutControlItem2.Text = "用户编码";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(139, 22);
             // 
-            // layoutControlItem3
+            // lblName
             // 
-            this.layoutControlItem3.Control = this.txtName;
-            this.layoutControlItem3.CustomizationFormText = "用户名/登录名";
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(299, 32);
-            this.layoutControlItem3.Text = "用户名(*)";
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(139, 22);
+            this.lblName.Control = this.txtName;
+            this.lblName.CustomizationFormText = "用户名/登录名";
+            this.lblName.Location = new System.Drawing.Point(0, 0);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(299, 32);
+            this.lblName.Text = "用户名(*)";
+            this.lblName.TextSize = new System.Drawing.Size(139, 22);
             // 
-            // layoutControlItem5
+            // lblFullName
             // 
-            this.layoutControlItem5.Control = this.txtFullName;
-            this.layoutControlItem5.CustomizationFormText = "用户全名";
-            this.layoutControlItem5.Location = new System.Drawing.Point(299, 0);
-            this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(300, 32);
-            this.layoutControlItem5.Text = "真实姓名(*)";
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(139, 22);
+            this.lblFullName.Control = this.txtFullName;
+            this.lblFullName.CustomizationFormText = "用户全名";
+            this.lblFullName.Location = new System.Drawing.Point(299, 0);
+            this.lblFullName.Name = "lblFullName";
+            this.lblFullName.Size = new System.Drawing.Size(300, 32);
+            this.lblFullName.Text = "真实姓名(*)";
+            this.lblFullName.TextSize = new System.Drawing.Size(139, 22);
             // 
             // layoutControlItem20
             // 
@@ -619,15 +619,15 @@ namespace JCodes.Framework.AddIn.UI.Security
             this.layoutControlItem20.Text = "审核状态";
             this.layoutControlItem20.TextSize = new System.Drawing.Size(139, 22);
             // 
-            // layoutControlItem23
+            // lblCompany
             // 
-            this.layoutControlItem23.Control = this.txtCompany;
-            this.layoutControlItem23.CustomizationFormText = "所属公司(*)";
-            this.layoutControlItem23.Location = new System.Drawing.Point(0, 32);
-            this.layoutControlItem23.Name = "layoutControlItem23";
-            this.layoutControlItem23.Size = new System.Drawing.Size(300, 26);
-            this.layoutControlItem23.Text = "所属公司(*)";
-            this.layoutControlItem23.TextSize = new System.Drawing.Size(139, 22);
+            this.lblCompany.Control = this.txtCompany;
+            this.lblCompany.CustomizationFormText = "所属公司(*)";
+            this.lblCompany.Location = new System.Drawing.Point(0, 32);
+            this.lblCompany.Name = "lblCompany";
+            this.lblCompany.Size = new System.Drawing.Size(300, 26);
+            this.lblCompany.Text = "所属公司(*)";
+            this.lblCompany.TextSize = new System.Drawing.Size(139, 22);
             // 
             // layoutControlItem16
             // 
@@ -721,15 +721,15 @@ namespace JCodes.Framework.AddIn.UI.Security
             this.layoutControlItem8.Text = "职务头衔";
             this.layoutControlItem8.TextSize = new System.Drawing.Size(139, 22);
             // 
-            // layoutControlItem1
+            // lblDept
             // 
-            this.layoutControlItem1.Control = this.txtDept;
-            this.layoutControlItem1.CustomizationFormText = "默认机构/部门(*)";
-            this.layoutControlItem1.Location = new System.Drawing.Point(300, 32);
-            this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(299, 26);
-            this.layoutControlItem1.Text = "默认机构/部门(*)";
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(139, 22);
+            this.lblDept.Control = this.txtDept;
+            this.lblDept.CustomizationFormText = "默认机构/部门(*)";
+            this.lblDept.Location = new System.Drawing.Point(300, 32);
+            this.lblDept.Name = "lblDept";
+            this.lblDept.Size = new System.Drawing.Size(299, 26);
+            this.lblDept.Text = "默认机构/部门(*)";
+            this.lblDept.TextSize = new System.Drawing.Size(139, 22);
             // 
             // layoutControlItem24
             // 
@@ -972,10 +972,10 @@ namespace JCodes.Framework.AddIn.UI.Security
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblFullName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblCompany)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
@@ -985,7 +985,7 @@ namespace JCodes.Framework.AddIn.UI.Security
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblDept)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem27)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
@@ -1029,8 +1029,8 @@ namespace JCodes.Framework.AddIn.UI.Security
           private DevExpress.XtraEditors.TextEdit txtCreator;
           private DevExpress.XtraEditors.DateEdit txtCreateTime;    
          private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
-         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;    
-         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
+         private DevExpress.XtraLayout.LayoutControlItem lblName;    
+         private DevExpress.XtraLayout.LayoutControlItem lblFullName;
          private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;    
          private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;    
          private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;    
@@ -1062,9 +1062,9 @@ namespace JCodes.Framework.AddIn.UI.Security
          private DevExpress.XtraEditors.ComboBoxEdit cmbManager;
          private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
          private DeptControl txtDept;
-         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
+         private DevExpress.XtraLayout.LayoutControlItem lblDept;
          private CompanyControl txtCompany;
-         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem23;
+         private DevExpress.XtraLayout.LayoutControlItem lblCompany;
          private DevExpress.XtraEditors.ComboBoxEdit txtGender;
          private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
          private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;

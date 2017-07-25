@@ -36,13 +36,13 @@ namespace JCodes.Framework.AddIn.UI.Security
 
             if (this.txtOid.Text.Trim().Length == 0)
             {
-                MessageDxUtil.ShowTips("请输入系统标识");
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblOid.Text.Replace(Const.MsgCheckSign, string.Empty));
                 this.txtOid.Focus();
                 result = false;
             }
             else if (this.txtName.Text.Trim().Length == 0)
             {
-                MessageDxUtil.ShowTips("请输入系统名称");
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblName.Text.Replace(Const.MsgCheckSign, string.Empty));
                 this.txtName.Focus();
                 result = false;
             }
@@ -80,12 +80,10 @@ namespace JCodes.Framework.AddIn.UI.Security
 
                     this.txtOid.Enabled = false;
                 }
-                #endregion
-                //this.btnOK.Enabled = Portal.gc.HasFunction("SystemType/Edit");             
+                #endregion          
             }
             else
-            {                
-                //this.btnOK.Enabled = Portal.gc.HasFunction("SystemType/Add");  
+            {                 
             }
         }
 

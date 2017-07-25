@@ -109,6 +109,12 @@ namespace JCodes.Framework.Common
 
         public const string CopyOkMsg = "复制成功";
 
+        public const string MsgCheckInput = "请输入";
+
+        public const string MsgCheckSign = "(*)";
+
+        public const string MsgErrFormatByNum = "格式不正确，请输入数字";
+
         #endregion
     }
 }

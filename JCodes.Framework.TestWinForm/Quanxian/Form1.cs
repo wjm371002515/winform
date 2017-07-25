@@ -63,7 +63,6 @@ namespace TestSecurityMix_WCF_WIN
                 {
                     MainForm MainDialog = new MainForm();
                     Portal.gc.MainDialog = MainDialog;
-
                     MainDialog.ShowDialog();
                 }
             }

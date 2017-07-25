@@ -16,17 +16,18 @@ namespace JCodes.Framework.AccessDAL
 	/// WareHouse 鐨勬憳瑕佽鏄庛�?
 	/// </summary>
 	public class WareHouse : BaseDALAccess<WareHouseInfo>, IWareHouse
-	{
-		#region 瀵硅薄瀹炰緥鍙婃瀯閫犲嚱鏁?
+    {
+        #region  对象实例及构造函数
 
-		public static WareHouse Instance
+        public static WareHouse Instance
 		{
 			get
 			{
 				return new WareHouse();
 			}
 		}
-		public WareHouse() : base("WM_WareHouse","ID")
+        public WareHouse()
+            : base(AccessPortal.gc._wareHouseTablePre + "WareHouse", "ID")
         {
             this.sortField = "ID";
             this.isDescending = false;

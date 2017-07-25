@@ -243,20 +243,17 @@ namespace TestCommons
 
         private void btnIcon_Click(object sender, EventArgs e)
         {
-            FrmIconReader dlg = new FrmIconReader();
-            dlg.ShowDialog();
+            ChildWinManagement.PopDialogForm(typeof(FrmIconReader));
         }
 
         private void btnSnap_Click(object sender, EventArgs e)
         {
-            FrmWebPreview dlg = new FrmWebPreview();
-            dlg.ShowDialog();
+            ChildWinManagement.PopDialogForm(typeof(FrmWebPreview));
         }
 
         private void btnResouceHelper_Click(object sender, EventArgs e)
         {
-            FrmImageHelper dlg = new FrmImageHelper();
-            dlg.ShowDialog();
+            ChildWinManagement.PopDialogForm(typeof(FrmImageHelper));
         }
 
         private void btnPrintForm_Click(object sender, EventArgs e)
@@ -372,7 +369,12 @@ namespace TestCommons
         {
             try
             {
-                AppConfig config = new AppConfig();
+                AppConfig config = Cache.Instance["AppConfig"] as AppConfig;
+                if (config == null)
+                {
+                    config = new AppConfig();
+                    Cache.Instance["AppConfig"] = config;
+                }	
                 string SoundFilePath = config.AppConfigGet("SoundFilePath");
                 AudioHelper.Play(SoundFilePath);//AudioHelper.Play("ringin.wav");
             }
@@ -1060,8 +1062,7 @@ namespace TestCommons
 
         private void btnRTFUtil_Click(object sender, EventArgs e)
         {
-            FrmTestRTF dlg = new FrmTestRTF();
-            dlg.ShowDialog();
+            ChildWinManagement.PopDialogForm(typeof(FrmTestRTF));
         }
 
         /// <summary>
@@ -1071,8 +1072,7 @@ namespace TestCommons
         /// <param name="e"></param>
         private void btnpublicsecurt_Click(object sender, EventArgs e)
         {
-            FrmKeyPair fkp = new FrmKeyPair();
-            fkp.ShowDialog();
+            ChildWinManagement.PopDialogForm(typeof(FrmKeyPair));
         }
 
         /// <summary>
@@ -1082,8 +1082,7 @@ namespace TestCommons
         /// <param name="e"></param>
         private void btnRegeditTool_Click(object sender, EventArgs e)
         {
-            FrmRegeditTool frt = new FrmRegeditTool();
-            frt.ShowDialog();
+            ChildWinManagement.PopDialogForm(typeof(FrmRegeditTool));
         }
 
         /// <summary>
@@ -1094,8 +1093,7 @@ namespace TestCommons
         /// <param name="e"></param>
         private void btnAutoUpdateConfig_Click(object sender, EventArgs e)
         {
-            GenerateUpdateConfig generateUpdateConfig = new GenerateUpdateConfig();
-            generateUpdateConfig.ShowDialog();
+            ChildWinManagement.PopDialogForm(typeof(GenerateUpdateConfig));
         }
 
         private void btnWait_Click(object sender, EventArgs e)
@@ -1109,9 +1107,8 @@ namespace TestCommons
             }).Start();
             Console.WriteLine("2:" + DateTime.Now);
             Console.WriteLine("3:" + DateTime.Now);
-            FrmRegeditTool frt = new FrmRegeditTool();
-            Console.WriteLine("4:" + DateTime.Now);
-            frt.ShowDialog();
+            ChildWinManagement.PopDialogForm(typeof(FrmRegeditTool));
+           
             //关闭登录提示画面  
             WaitBeforeLogin.Invoke((EventHandler)delegate { WaitBeforeLogin.Close(); }); 
             

@@ -287,8 +287,14 @@ namespace JCodes.Framework.Common.Encrypt
             if (nowdt > expiredt)
                 return -3;
 
-            AppConfig appconfig = new AppConfig();
-            string LicensePath = appconfig.AppConfigGet("LicensePath");
+            AppConfig config = Cache.Instance["AppConfig"] as AppConfig;
+            if (config == null)
+            {
+                config = new AppConfig();
+                Cache.Instance["AppConfig"] = config;
+            }
+
+            string LicensePath = config.AppConfigGet("LicensePath");
             if (!string.Equals(struserName, userName, StringComparison.OrdinalIgnoreCase))
                 return -5;
             if (!string.Equals(strcompany, companyName, StringComparison.OrdinalIgnoreCase))

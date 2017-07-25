@@ -13,6 +13,7 @@ using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.Common.Office;
 using JCodes.Framework.Common.Device;
 using JCodes.Framework.Common.Encrypt;
+using JCodes.Framework.Common.Winform;
 
 namespace JCodes.Framework.CommonControl.RSARegistryTool
 {
@@ -392,7 +393,12 @@ namespace JCodes.Framework.CommonControl.RSARegistryTool
 		//验证
 		private void btnValidateCode_Click(object sender, EventArgs e)
 		{
-            AppConfig config = new AppConfig();
+            AppConfig config = Cache.Instance["AppConfig"] as AppConfig;
+            if (config == null)
+            {
+                config = new AppConfig();
+                Cache.Instance["AppConfig"] = config;
+            }	
             string LicensePath = config.AppConfigGet("LicensePath");
             string machineCode = GetMachineCode();
             string regCode = txtRegisterCode.Text.Trim();//FileUtil.FileToString(LicensePath);
@@ -413,8 +419,7 @@ namespace JCodes.Framework.CommonControl.RSARegistryTool
 
         private void btnGenerateNewKey_Click(object sender, EventArgs e)
         {
-            FrmKeyPair dlg = new FrmKeyPair();
-            dlg.ShowDialog();
+            ChildWinManagement.PopDialogForm(typeof(FrmKeyPair));
         }
 
         private void btnGetMachineCode_Click(object sender, EventArgs e)
@@ -435,7 +440,12 @@ namespace JCodes.Framework.CommonControl.RSARegistryTool
         /// <param name="e"></param>
         private void btnReg_Click(object sender, EventArgs e)
         {
-            AppConfig config = new AppConfig();
+            AppConfig config = Cache.Instance["AppConfig"] as AppConfig;
+            if (config == null)
+            {
+                config = new AppConfig();
+                Cache.Instance["AppConfig"] = config;
+            }	
             string LicensePath = config.AppConfigGet("LicensePath");
             string machineCode = GetMachineCode();
             string regCode = txtRegisterCode.Text.Trim();
@@ -475,7 +485,12 @@ namespace JCodes.Framework.CommonControl.RSARegistryTool
                 reg.SetValue("SysDate", Data.getSysDate());
                 reg.SetValue("regCode", string.Empty);
             }
-            AppConfig config = new AppConfig();
+            AppConfig config = Cache.Instance["AppConfig"] as AppConfig;
+            if (config == null)
+            {
+                config = new AppConfig();
+                Cache.Instance["AppConfig"] = config;
+            }	
             string LicensePath = config.AppConfigGet("LicensePath");
             FileUtil.DeleteFile(LicensePath);
             MessageDxUtil.ShowTips("祝贺您，注销成功");

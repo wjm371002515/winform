@@ -25,7 +25,9 @@ namespace JCodes.Framework.Entity
         private string m_Note = ""; //备注     
         private string m_WareHouse = ""; //库房编号          
         private string m_Dept = ""; //部门    
-
+        private Int32 m_Quantity = 0;// 数量
+        private double m_Amount = 0; //金额
+        
         #endregion
 
         #region Property Members
@@ -279,6 +281,36 @@ namespace JCodes.Framework.Entity
             set
             {
                 this.m_Dept = value;
+            }
+        }
+
+        /// <summary>
+        /// 数量
+        /// </summary>
+        public virtual Int32 Quantity
+        {
+            get
+            {
+                return this.m_Quantity;
+            }
+            set
+            {
+                this.m_Quantity = value;
+            }
+        }
+
+        /// <summary>
+        /// 金额
+        /// </summary>
+        public virtual double Amount
+        {
+            get
+            {
+                return this.m_Amount;
+            }
+            set
+            {
+                this.m_Amount = value;
             }
         }
 

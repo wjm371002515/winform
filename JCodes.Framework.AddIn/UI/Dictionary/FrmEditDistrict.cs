@@ -31,7 +31,7 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
             #region MyRegion
             if (this.txtDistrict.Text.Trim().Length == 0)
             {
-                MessageDxUtil.ShowTips("区县名称不能为空");
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblDistrict.Text.Replace(Const.MsgCheckSign, string.Empty));
                 this.txtDistrict.Focus();
                 result = false;
             }

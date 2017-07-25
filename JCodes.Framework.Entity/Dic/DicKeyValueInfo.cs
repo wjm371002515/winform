@@ -61,6 +61,11 @@ namespace JCodes.Framework.Entity
                 this.m_Name = value;
             }
         }
+
+        public override string ToString()
+        {
+            return string.Format("{0}-{1}", this.m_Value, this.m_Name);
+        }
         #endregion
     }
 }

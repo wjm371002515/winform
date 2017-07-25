@@ -22,7 +22,7 @@ namespace JCodes.Framework.CommonControl.BaseUI
     /// </summary>
     public partial class FrmImportExcelData : BaseDock
     {
-        private AppConfig config = new AppConfig();
+        private AppConfig config = null;
         private DataSet myDs = new DataSet();
         private BackgroundWorker worker = null;
 
@@ -48,6 +48,13 @@ namespace JCodes.Framework.CommonControl.BaseUI
         public FrmImportExcelData()
         {
             InitializeComponent();
+
+            config = Cache.Instance["AppConfig"] as AppConfig;
+            if (config == null)
+            {
+                config = new AppConfig();
+                Cache.Instance["AppConfig"] = config;
+            }
 
             this.gridView1.OptionsBehavior.AutoPopulateColumns = true;
 

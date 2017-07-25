@@ -73,6 +73,8 @@
     <Compile Include="WareHouseMis\IReportMonthlyDetail.cs" />
     <Compile Include="WareHouseMis\IReportMonthlyHeader.cs" />
     <Compile Include="WareHouseMis\IStock.cs" />
+    <Compile Include="WareHouseMis\IClient.cs" />
+    <Compile Include="WareHouseMis\ISupplier.cs" />
     <Compile Include="WareHouseMis\IWareHouse.cs" />
   </ItemGroup>
   <ItemGroup>

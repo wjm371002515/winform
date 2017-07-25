@@ -37,7 +37,7 @@ namespace JCodes.Framework.AddIn.UI.Contact
             this.txtPID = new DevExpress.XtraEditors.ComboBoxEdit();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lblName = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -54,7 +54,7 @@ namespace JCodes.Framework.AddIn.UI.Contact
             ((System.ComponentModel.ISupportInitialize)(this.txtPID.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
@@ -101,28 +101,30 @@ namespace JCodes.Framework.AddIn.UI.Contact
             // 
             // txtSeq
             // 
-            this.txtSeq.Location = new System.Drawing.Point(63, 12);
+            this.txtSeq.Location = new System.Drawing.Point(87, 12);
             this.txtSeq.Name = "txtSeq";
-            this.txtSeq.Size = new System.Drawing.Size(150, 20);
+            this.txtSeq.Size = new System.Drawing.Size(126, 28);
             this.txtSeq.StyleController = this.layoutControl1;
             this.txtSeq.TabIndex = 2;
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(63, 36);
+            this.txtName.Location = new System.Drawing.Point(87, 36);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(428, 20);
+            this.txtName.Properties.Appearance.BackColor = System.Drawing.Color.White;
+            this.txtName.Properties.Appearance.Options.UseBackColor = true;
+            this.txtName.Size = new System.Drawing.Size(404, 28);
             this.txtName.StyleController = this.layoutControl1;
             this.txtName.TabIndex = 3;
             // 
             // txtEditor
             // 
-            this.txtEditor.Location = new System.Drawing.Point(63, 182);
+            this.txtEditor.Location = new System.Drawing.Point(87, 174);
             this.txtEditor.Name = "txtEditor";
             this.txtEditor.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.SeaShell;
             this.txtEditor.Properties.AppearanceReadOnly.Options.UseBackColor = true;
             this.txtEditor.Properties.ReadOnly = true;
-            this.txtEditor.Size = new System.Drawing.Size(187, 20);
+            this.txtEditor.Size = new System.Drawing.Size(163, 28);
             this.txtEditor.StyleController = this.layoutControl1;
             this.txtEditor.TabIndex = 5;
             // 
@@ -130,7 +132,7 @@ namespace JCodes.Framework.AddIn.UI.Contact
             // 
             this.txtEditTime.EditValue = null;
             this.txtEditTime.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.txtEditTime.Location = new System.Drawing.Point(305, 182);
+            this.txtEditTime.Location = new System.Drawing.Point(329, 174);
             this.txtEditTime.Name = "txtEditTime";
             this.txtEditTime.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.SeaShell;
             this.txtEditTime.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -138,8 +140,6 @@ namespace JCodes.Framework.AddIn.UI.Contact
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.txtEditTime.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.txtEditTime.Properties.CalendarTimeProperties.CloseUpKey = new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.F4);
-            this.txtEditTime.Properties.CalendarTimeProperties.PopupBorderStyle = DevExpress.XtraEditors.Controls.PopupBorderStyles.Default;
             this.txtEditTime.Properties.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
             this.txtEditTime.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.txtEditTime.Properties.EditFormat.FormatString = "yyyy-MM-dd HH:mm";
@@ -147,26 +147,27 @@ namespace JCodes.Framework.AddIn.UI.Contact
             this.txtEditTime.Properties.Mask.EditMask = "yyyy-MM-dd HH:mm";
             this.txtEditTime.Properties.ReadOnly = true;
             this.txtEditTime.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.txtEditTime.Size = new System.Drawing.Size(186, 20);
+            this.txtEditTime.Size = new System.Drawing.Size(162, 28);
             this.txtEditTime.StyleController = this.layoutControl1;
             this.txtEditTime.TabIndex = 6;
             // 
             // txtNote
             // 
-            this.txtNote.Location = new System.Drawing.Point(63, 60);
+            this.txtNote.Location = new System.Drawing.Point(87, 68);
             this.txtNote.Name = "txtNote";
-            this.txtNote.Size = new System.Drawing.Size(428, 118);
+            this.txtNote.Size = new System.Drawing.Size(404, 102);
             this.txtNote.StyleController = this.layoutControl1;
             this.txtNote.TabIndex = 4;
+            this.txtNote.UseOptimizedRendering = true;
             // 
             // txtPID
             // 
-            this.txtPID.Location = new System.Drawing.Point(268, 12);
+            this.txtPID.Location = new System.Drawing.Point(292, 12);
             this.txtPID.Name = "txtPID";
             this.txtPID.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.txtPID.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.txtPID.Size = new System.Drawing.Size(200, 20);
+            this.txtPID.Size = new System.Drawing.Size(176, 28);
             this.txtPID.StyleController = this.layoutControl1;
             this.txtPID.TabIndex = 1;
             // 
@@ -176,7 +177,7 @@ namespace JCodes.Framework.AddIn.UI.Contact
             this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem2,
-            this.layoutControlItem3,
+            this.lblName,
             this.layoutControlItem4,
             this.layoutControlItem5,
             this.layoutControlItem6,
@@ -198,47 +199,47 @@ namespace JCodes.Framework.AddIn.UI.Contact
             this.layoutControlItem2.Size = new System.Drawing.Size(205, 24);
             this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem2.Text = "排序序号";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(48, 14);
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(72, 22);
             // 
-            // layoutControlItem3
+            // lblName
             // 
-            this.layoutControlItem3.Control = this.txtName;
-            this.layoutControlItem3.CustomizationFormText = "分组名称";
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 24);
-            this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(483, 24);
-            this.layoutControlItem3.Text = "分组名称";
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(48, 14);
+            this.lblName.Control = this.txtName;
+            this.lblName.CustomizationFormText = "分组名称";
+            this.lblName.Location = new System.Drawing.Point(0, 24);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(483, 32);
+            this.lblName.Text = "分组名称";
+            this.lblName.TextSize = new System.Drawing.Size(72, 22);
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.txtNote;
             this.layoutControlItem4.CustomizationFormText = "备注";
-            this.layoutControlItem4.Location = new System.Drawing.Point(0, 48);
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 56);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(483, 122);
+            this.layoutControlItem4.Size = new System.Drawing.Size(483, 106);
             this.layoutControlItem4.Text = "备注";
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(48, 14);
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(72, 22);
             // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.txtEditor;
             this.layoutControlItem5.CustomizationFormText = "编辑人";
-            this.layoutControlItem5.Location = new System.Drawing.Point(0, 170);
+            this.layoutControlItem5.Location = new System.Drawing.Point(0, 162);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(242, 24);
+            this.layoutControlItem5.Size = new System.Drawing.Size(242, 32);
             this.layoutControlItem5.Text = "编辑人";
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(48, 14);
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(72, 22);
             // 
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.txtEditTime;
             this.layoutControlItem6.CustomizationFormText = "编辑时间";
-            this.layoutControlItem6.Location = new System.Drawing.Point(242, 170);
+            this.layoutControlItem6.Location = new System.Drawing.Point(242, 162);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(241, 24);
+            this.layoutControlItem6.Size = new System.Drawing.Size(241, 32);
             this.layoutControlItem6.Text = "编辑时间";
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(48, 14);
+            this.layoutControlItem6.TextSize = new System.Drawing.Size(72, 22);
             // 
             // layoutControlItem1
             // 
@@ -251,11 +252,11 @@ namespace JCodes.Framework.AddIn.UI.Contact
             this.layoutControlItem1.Size = new System.Drawing.Size(278, 24);
             this.layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem1.Text = "上级分组";
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(48, 14);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(72, 22);
             // 
             // FrmEditAddressGroup
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(522, 278);
             this.Controls.Add(this.layoutControl1);
@@ -279,7 +280,7 @@ namespace JCodes.Framework.AddIn.UI.Contact
             ((System.ComponentModel.ISupportInitialize)(this.txtPID.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
@@ -300,7 +301,7 @@ namespace JCodes.Framework.AddIn.UI.Contact
   
          private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;    
          private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;    
-         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;    
+         private DevExpress.XtraLayout.LayoutControlItem lblName;    
          private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;    
          private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;    
          private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;

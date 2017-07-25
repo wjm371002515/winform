@@ -96,21 +96,12 @@ namespace JCodes.Framework.AddIn.UI.Basic
                 }
 
                 //可特殊设置特别的宽度
-                SetGridColumWidth("ID", 60);
-                SetGridColumWidth("User_ID", 80);
-                SetGridColumWidth("LoginName", 60);
-                SetGridColumWidth("Company_ID", 80);
-                SetGridColumWidth("Note", 200);
-                SetGridColumWidth("LastUpdated", 150);
-            }
-        }
-
-        private void SetGridColumWidth(string columnName, int width)
-        {
-            DevExpress.XtraGrid.Columns.GridColumn column = this.winGridViewPager1.gridView1.Columns.ColumnByFieldName(columnName);
-            if (column != null)
-            {
-                column.Width = width;
+                winGridViewPager1.gridView1.SetGridColumWidth("ID", 60);
+                winGridViewPager1.gridView1.SetGridColumWidth("User_ID", 80);
+                winGridViewPager1.gridView1.SetGridColumWidth("LoginName", 60);
+                winGridViewPager1.gridView1.SetGridColumWidth("Company_ID", 80);
+                winGridViewPager1.gridView1.SetGridColumWidth("Note", 200);
+                winGridViewPager1.gridView1.SetGridColumWidth("LastUpdated", 150);
             }
         }
 
@@ -126,9 +117,9 @@ namespace JCodes.Framework.AddIn.UI.Basic
 
         private void Init_Function()
         {
-            btnSearch.Enabled = Portal.gc.HasFunction("LoginLog/search");
-            btnDeleteMonthLog.Enabled  = Portal.gc.HasFunction("LoginLog/del30");
-            btnExport.Enabled = Portal.gc.HasFunction("LoginLog/Export");
+            btnSearch.Enabled = HasFunction("LoginLog/search");
+            btnDeleteMonthLog.Enabled  = HasFunction("LoginLog/del30");
+            btnExport.Enabled = HasFunction("LoginLog/Export");
         }
 
         /// <summary>
@@ -144,7 +135,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
         /// </summary>
         private void winGridViewPager1_OnDeleteSelected(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("LoginLog/del"))
+            if (!HasFunction("LoginLog/del"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -170,7 +161,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
         /// </summary> 
         private void winGridViewPager1_OnStartExport(object sender, EventArgs e)
         {
-            if (!Portal.gc.HasFunction("LoginLog/Export"))
+            if (!HasFunction("LoginLog/Export"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -277,7 +268,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (!Portal.gc.HasFunction("LoginLog/search"))
+                if (!HasFunction("LoginLog/search"))
                 {
                     MessageDxUtil.ShowError(Const.NoAuthMsg);
                     return;
@@ -413,7 +404,7 @@ namespace JCodes.Framework.AddIn.UI.Basic
         string treeConditionSql = "";
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if (!Portal.gc.HasFunction("LoginLog/search"))
+            if (!HasFunction("LoginLog/search"))
             {
                 return;
             }

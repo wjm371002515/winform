@@ -1,6 +1,8 @@
-﻿using JCodes.Framework.Common;
+﻿using JCodes.Framework.AddIn.Other;
+using JCodes.Framework.Common;
 using JCodes.Framework.Common.Files;
 using JCodes.Framework.CommonControl;
+using JCodes.Framework.CommonControl.BaseUI;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using System;
@@ -12,7 +14,7 @@ using System.Windows.Forms;
 
 namespace JCodes.Framework.AddIn.UI.Basic
 {
-    partial class AboutBox : DevExpress.XtraEditors.XtraForm
+    partial class AboutBox : BaseDock
     {
         public AboutBox()
         {
@@ -21,16 +23,15 @@ namespace JCodes.Framework.AddIn.UI.Basic
             #region 初始化系统名称
             try
             {
-                AppConfig config = new AppConfig();
-                string Manufacturer = config.AppConfigGet("Manufacturer");
-                string ApplicationName = config.AppConfigGet("ApplicationName");
-                string ContactInfo = config.AppConfigGet("ContactInfo");
+                string Manufacturer = Portal.gc.config.AppConfigGet("Manufacturer");
+                string ApplicationName = Portal.gc.config.AppConfigGet("ApplicationName");
+                string ContactInfo = Portal.gc.config.AppConfigGet("ContactInfo");
 
                 this.Text = string.Format("{0}-【{1}】", Manufacturer, ApplicationName);
                 this.lblProductName.Text = ApplicationName;
                 this.lblVersion.Text = String.Format("版本 {0}", Const.jCodes_VERSION);
                 this.lblCertificated.Text = string.Format("授权【{0}】使用", Manufacturer);
-                string description = config.AppConfigGet("Description");//软件介绍
+                string description = Portal.gc.config.AppConfigGet("Description");//软件介绍
                 this.txtDescription.Text = description;
                 this.lblContact.Text = ContactInfo;//联系方式
             }

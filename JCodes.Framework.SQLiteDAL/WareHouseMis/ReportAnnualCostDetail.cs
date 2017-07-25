@@ -26,7 +26,8 @@ namespace JCodes.Framework.SQLiteDAL
 				return new ReportAnnualCostDetail();
 			}
 		}
-		public ReportAnnualCostDetail() : base("WM_ReportAnnualCostDetail","ID")
+        public ReportAnnualCostDetail()
+            : base(SQLitePortal.gc._wareHouseTablePre + "ReportAnnualCostDetail", "ID")
 		{
 		}
 

@@ -5,7 +5,6 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-
 using JCodes.Framework.Entity;
 using System.Data.Common;
 using Microsoft.Practices.EnterpriseLibrary.Data;
@@ -16,6 +15,7 @@ using JCodes.Framework.CommonControl;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.Common.Databases;
 using JCodes.Framework.CommonControl.Pager;
+using JCodes.Framework.AddIn.Other;
 
 namespace WHC.OrderWater.UI
 {
@@ -88,9 +88,6 @@ namespace WHC.OrderWater.UI
 
          void gridView1_DataSourceChanged(object sender, EventArgs e)
          {
-             //this.winGridViewPager1.gridView1.VisibleColumns[0].Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
-             //this.winGridViewPager1.gridView1.VisibleColumns[1].Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
-
              this.winGridViewPager1.FixedColumns = "Name";
 
              if (this.winGridViewPager1.gridView1.Columns.Count > 0 && this.winGridViewPager1.gridView1.RowCount > 0)
@@ -103,22 +100,12 @@ namespace WHC.OrderWater.UI
 
                  //可特殊设置特别的宽度
                  //CreateDate,Note,LastUpdated
-                 SetGridColumWidth("CreateDate", 120);
-                 SetGridColumWidth("LastUpdated", 120);
-                 SetGridColumWidth("Address", 200);
-                 SetGridColumWidth("Note", 200);
+                 winGridViewPager1.gridView1.SetGridColumWidth("CreateDate", 120);
+                 winGridViewPager1.gridView1.SetGridColumWidth("LastUpdated", 120);
+                 winGridViewPager1.gridView1.SetGridColumWidth("Address", 200);
+                 winGridViewPager1.gridView1.SetGridColumWidth("Note", 200);
              }
          }
-
-         private void SetGridColumWidth(string columnName, int width)
-         {
-             DevExpress.XtraGrid.Columns.GridColumn column = this.winGridViewPager1.gridView1.Columns.ColumnByFieldName(columnName);
-             if (column != null)
-             {
-                 column.Width = width;
-             }
-         }
-
 
          void winGridViewPager1_OnCheckBoxSelectionChanged(object sender, EventArgs e)
          {

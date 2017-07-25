@@ -40,7 +40,7 @@ namespace JCodes.Framework.AddIn.UI.Contact
             #region MyRegion
             if (this.txtContent.Text.Trim().Length == 0)
             {
-                MessageDxUtil.ShowTips("请参考格式输入通讯录内容");
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + txtContent.Text.Replace(Const.MsgCheckSign, string.Empty));
                 this.txtContent.Focus();
                 result = false;
             }

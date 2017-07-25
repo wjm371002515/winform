@@ -26,7 +26,8 @@ namespace JCodes.Framework.OracleDAL
 				return new PurchaseHeader();
 			}
 		}
-		public PurchaseHeader() : base("WM_PurchaseHeader","ID")
+        public PurchaseHeader()
+            : base(OraclePortal.gc._wareHouseTablePre + "PurchaseHeader", "ID")
         {
             this.SeqName = string.Format("SEQ_{0}", tableName);//数值型主键，通过序列生成
 		}
@@ -120,8 +121,8 @@ namespace JCodes.Framework.OracleDAL
                 subWhere = "h.OperationType='出库' ";
             }
 
-            string sql = string.Format(@"SELECT SUM(d.Quantity) AS SumQuantity FROM WM_PurchaseDetail AS d 
-            INNER JOIN WM_PurchaseHeader AS h ON d.PurchaseHead_ID = h.ID Where {0} AND {1}", subWhere, condition);
+            string sql = string.Format(@"SELECT SUM(d.Quantity) AS SumQuantity FROM {0}PurchaseDetail AS d 
+            INNER JOIN {0}PurchaseHeader AS h ON d.PurchaseHead_ID = h.ID Where {1} AND {2}", OraclePortal.gc._wareHouseTablePre, subWhere, condition);
             string value = SqlValueList(sql);
             if (string.IsNullOrEmpty(value))
             {
@@ -129,6 +130,13 @@ namespace JCodes.Framework.OracleDAL
             }
 
             return Convert.ToInt32(value);
+        }
+
+        public DataTable GetPurchaseReport(string condition)
+        {
+            string sql = string.Format(@"Select h.ID,h.HandNo,h.OperationType,h.Manufacture,h.WareHouse,d.Dept,h.CostCenter,h.Note,h.CreateDate,h.Creator,h.PickingPeople  
+            from {0}PurchaseHeader h inner join {0}PurchaseDetail d on h.ID = d.PurchaseHead_ID {1} order by h.CreateDate", OraclePortal.gc._wareHouseTablePre, condition);
+            return this.SqlTable(sql);
         }
     }
 }

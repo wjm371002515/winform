@@ -207,6 +207,10 @@ namespace JCodes.Framework.CommonControl.Pager
                 if (value != null)
                 {
                     appendedMenu = value;
+
+                    if (appendedMenu.Items.Count > 0)
+                        this.toolStripSeparator1.Visible = true;
+
                     for (int i = 0; appendedMenu.Items.Count > 0; i++)
                     {
                         this.contextMenuStrip1.Items.Insert(i, appendedMenu.Items[0]);
@@ -229,6 +233,7 @@ namespace JCodes.Framework.CommonControl.Pager
             this.menu_Delete.Visible = (this.OnDeleteSelected != null && this.ShowDeleteMenu);
             this.menu_Edit.Visible = (this.OnEditSelected != null && this.ShowEditMenu);
             this.menu_Refresh.Visible = (this.OnRefresh != null);
+            this.toolStripSeparator2.Visible = (menu_Add.Visible || menu_Delete.Visible || menu_Edit.Visible || menu_Refresh.Visible);
 
             this.menu_Add.Text = AddMenuText;
             this.menu_Edit.Text = EditMenuText;

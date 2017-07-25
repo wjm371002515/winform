@@ -39,37 +39,37 @@ namespace JCodes.Framework.AddIn.UI._50Go
             #region MyRegion
             if (this.txtCategory.Text.Length == 0)
             {
-                MessageDxUtil.ShowTips("请选择优惠券类别");
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblCategory.Text.Replace(Const.MsgCheckSign, string.Empty));
                 this.txtCategory.Focus();
                 result = false;
             }
             else if (this.txtStartTime.Text.Length == 0)
             {
-                MessageDxUtil.ShowTips("请输入有效开始日期");
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblStartTime.Text.Replace(Const.MsgCheckSign, string.Empty));
                 this.txtStartTime.Focus();
                 result = false;
             }
             else if (this.txtEndTime.Text.Length == 0)
             {
-                MessageDxUtil.ShowTips("请输入有效结束日期");
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblEndTime.Text.Replace(Const.MsgCheckSign, string.Empty));
                 this.txtEndTime.Focus();
                 result = false;
             }
             else if (this.txtMobilePhone.Text.Length == 0)
             {
-                MessageDxUtil.ShowTips("请输入手机号");
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblMobilePhone.Text.Replace(Const.MsgCheckSign, string.Empty));
                 this.txtMobilePhone.Focus();
                 result = false;
             }
             else if (this.txtFullName.Text.Length == 0)
             {
-                MessageDxUtil.ShowTips("请输入联系人");
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblFullName.Text.Replace(Const.MsgCheckSign, string.Empty));
                 this.txtFullName.Focus();
                 result = false;
             }
             else if (this.txtEnabled.Text.Length == 0)
             {
-                MessageDxUtil.ShowTips("请输入是否可用");
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblEnabled.Text.Replace(Const.MsgCheckSign, string.Empty));
                 this.txtEnabled.Focus();
                 result = false;
             }

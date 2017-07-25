@@ -18,6 +18,8 @@ namespace JCodes.Framework.Common.Files
         /// </summary>
         public AppConfig()
         {
+            LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, "Appconfig Æô¶¯", typeof(AppConfig));
+
             string webconfig = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Web.Config");
             string appConfig = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile.Replace(".vshost", "");
 

@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraBars;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraLayout;
 using DevExpress.XtraLayout.Utils;
 using JCodes.Framework.BLL;
@@ -182,7 +183,11 @@ namespace JCodes.Framework.AddIn.Other
             combo.Properties.Items.Clear();
             combo.Properties.Items.Add(new CListItem(Const.NoSelectMsg, Const.NoSeletValue.ToString()));
             combo.Properties.Items.AddRange(itemList);
-
+            /*for (Int32 i = 0; i < itemList.Count; i++)
+            { 
+                combo.Properties.Items.Add(itemList[i]);
+            }*/
+              
             if (!string.IsNullOrEmpty(defaultValue))
             {
                 combo.SetComboBoxItem(defaultValue);
@@ -380,7 +385,25 @@ namespace JCodes.Framework.AddIn.Other
         }
         #endregion
 
-
+        #region GridView 控件
+        public static void SetGridColumWidth(this GridView gridView, string columnName, int width)
+        {
+            DevExpress.XtraGrid.Columns.GridColumn column = gridView.Columns.ColumnByFieldName(columnName);
+            if (column != null)
+            {
+                column.Width = width;
+            }
+            else
+            {
+                //如果是数据库获取的Datatable可能字段为大写
+                column = gridView.Columns.ColumnByFieldName(columnName.ToUpper());
+                if (column != null)
+                {
+                    column.Width = width;
+                }
+            }
+        }
+        #endregion
 
 
 

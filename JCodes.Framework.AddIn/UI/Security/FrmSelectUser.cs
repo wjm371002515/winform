@@ -72,20 +72,11 @@ namespace JCodes.Framework.AddIn.UI.Security
                 }
 
                 //可特殊设置特别的宽度
-                SetGridColumWidth("Gender", 50);
-                SetGridColumWidth("Email", 150);
-                SetGridColumWidth("Note", 150);
+                winGridView1.gridView1.SetGridColumWidth("Gender", 50);
+                winGridView1.gridView1.SetGridColumWidth("Email", 150);
+                winGridView1.gridView1.SetGridColumWidth("Note", 150);
             }
 
-        }
-
-        private void SetGridColumWidth(string columnName, int width)
-        {
-            GridColumn column = this.winGridView1.gridView1.Columns.ColumnByFieldName(columnName);
-            if (column != null)
-            {
-                column.Width = width;
-            }
         }
 
         void winGridView1_OnRefresh(object sender, EventArgs e)

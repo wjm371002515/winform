@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\jCodes\</OutputPath>
+    <OutputPath>..\jCodes\AddIn\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -72,7 +72,11 @@
     <Compile Include="Security\SimpleUserInfo.cs" />
     <Compile Include="Security\SystemTypeInfo.cs" />
     <Compile Include="Security\UserInfo.cs" />
-    <Compile Include="SmallTools\xlsDataDeal.cs" />
+    <Compile Include="SmallTools\MIPOInfo.cs" />
+    <Compile Include="SmallTools\MFileInfo.cs" />
+    <Compile Include="SmallTools\MClientInfo.cs" />
+    <Compile Include="SmallTools\MAmountInfo.cs" />
+    <Compile Include="SmallTools\MBankInfo.cs" />
     <Compile Include="WareHouseMis\EnumClass.cs" />
     <Compile Include="WareHouseMis\ItemDetailInfo.cs" />
     <Compile Include="WareHouseMis\PurchaseDetailInfo.cs" />
@@ -83,6 +87,8 @@
     <Compile Include="WareHouseMis\ReportMonthlyDetailInfo.cs" />
     <Compile Include="WareHouseMis\ReportMonthlyHeaderInfo.cs" />
     <Compile Include="WareHouseMis\StockInfo.cs" />
+    <Compile Include="WareHouseMis\Client.cs" />
+    <Compile Include="WareHouseMis\SupplierInfo.cs" />
     <Compile Include="WareHouseMis\WareHouseInfo.cs" />
   </ItemGroup>
   <ItemGroup>

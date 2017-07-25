@@ -49,5 +49,9 @@ namespace JCodes.Framework.IDAL
         /// <param name="condition"></param>
         /// <returns></returns>
         DataTable GetItemStockQuantityReport(string condition, string fieldName);
+
+        DataTable GetCurrentStockReport(string condition);
+
+        int GetCurrentStockReportCount(string condition);
     }
 }

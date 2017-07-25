@@ -26,7 +26,8 @@ namespace JCodes.Framework.OracleDAL
 				return new ReportMonthlyHeader();
 			}
 		}
-		public ReportMonthlyHeader() : base("WM_ReportMonthlyHeader","ID")
+        public ReportMonthlyHeader()
+            : base(OraclePortal.gc._wareHouseTablePre + "ReportMonthlyHeader", "ID")
         {
             this.SeqName = string.Format("SEQ_{0}", tableName);//数值型主键，通过序列生成
 		}

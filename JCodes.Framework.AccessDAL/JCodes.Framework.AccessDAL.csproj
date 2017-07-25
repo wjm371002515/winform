@@ -60,6 +60,8 @@
     <Compile Include="Contact\Address.cs" />
     <Compile Include="Contact\AddressGroup.cs" />
     <Compile Include="Dic\City.cs" />
+    <Compile Include="Dic\DictData.cs" />
+    <Compile Include="Dic\DictType.cs" />
     <Compile Include="Dic\District.cs" />
     <Compile Include="Dic\Province.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,6 +85,8 @@
     <Compile Include="WareHouseMis\ReportMonthlyDetail.cs" />
     <Compile Include="WareHouseMis\ReportMonthlyHeader.cs" />
     <Compile Include="WareHouseMis\Stock.cs" />
+    <Compile Include="WareHouseMis\Client.cs" />
+    <Compile Include="WareHouseMis\Supplier.cs" />
     <Compile Include="WareHouseMis\WareHouse.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -26,7 +26,8 @@ namespace JCodes.Framework.SQLServerDAL
 				return new ReportAnnualCostDetail();
 			}
 		}
-		public ReportAnnualCostDetail() : base("WM_ReportAnnualCostDetail","ID")
+        public ReportAnnualCostDetail()
+            : base(SQLServerPortal.gc._wareHouseTablePre + "ReportAnnualCostDetail", "ID")
 		{
 		}
 

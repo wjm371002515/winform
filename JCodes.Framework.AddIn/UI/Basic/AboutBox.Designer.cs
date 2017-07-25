@@ -156,8 +156,6 @@
             // AboutBox
             // 
             this.AcceptButton = this.okButton;
-            this.Appearance.BackColor = System.Drawing.Color.Gainsboro;
-            this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(741, 637);

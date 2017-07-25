@@ -26,7 +26,8 @@ namespace JCodes.Framework.SQLiteDAL
 				return new ReportMonthlyHeader();
 			}
 		}
-		public ReportMonthlyHeader() : base("WM_ReportMonthlyHeader","ID")
+        public ReportMonthlyHeader()
+            : base(SQLitePortal.gc._wareHouseTablePre + "ReportMonthlyHeader", "ID")
 		{
 		}
 

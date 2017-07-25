@@ -136,7 +136,12 @@ namespace JCodes.Framework.CommonControl.Framework
             // 把日志打包以附件的形式发送到邮箱
             if (chkCanHelp.Checked)
             {
-                AppConfig config = new AppConfig();
+                AppConfig config = Cache.Instance["AppConfig"] as AppConfig;
+                if (config == null)
+                {
+                    config = new AppConfig();
+                    Cache.Instance["AppConfig"] = config;
+                }	
                 string LicensePath = config.AppConfigGet("LicensePath");
                 if (FileUtil.IsExistFile(LicensePath))
                 {

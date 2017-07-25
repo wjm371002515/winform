@@ -93,22 +93,13 @@ namespace JCodes.Framework.AddIn.UI.Dictionary
                 }
 
                 //可特殊设置特别的宽度 
-                SetGridColumWidth("SysId", 30);
-                SetGridColumWidth("Name", 120);
-                SetGridColumWidth("Value", 60);
-                SetGridColumWidth("Remark", 120);
-                SetGridColumWidth("Seq", 50);
-                SetGridColumWidth("Editor", 80);
-                SetGridColumWidth("EditorTime", 100);
-            }
-        }
-
-        private void SetGridColumWidth(string columnName, int width)
-        {
-            DevExpress.XtraGrid.Columns.GridColumn column = this.winGridViewPager1.gridView1.Columns.ColumnByFieldName(columnName);
-            if (column != null)
-            {
-                column.Width = width;
+                winGridViewPager1.gridView1.SetGridColumWidth("SysId", 30);
+                winGridViewPager1.gridView1.SetGridColumWidth("Name", 120);
+                winGridViewPager1.gridView1.SetGridColumWidth("Value", 60);
+                winGridViewPager1.gridView1.SetGridColumWidth("Remark", 120);
+                winGridViewPager1.gridView1.SetGridColumWidth("Seq", 50);
+                winGridViewPager1.gridView1.SetGridColumWidth("Editor", 80);
+                winGridViewPager1.gridView1.SetGridColumWidth("EditorTime", 100);
             }
         }
 

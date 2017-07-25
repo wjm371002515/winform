@@ -26,7 +26,8 @@ namespace JCodes.Framework.OracleDAL
 				return new ReportAnnualCostHeader();
 			}
 		}
-		public ReportAnnualCostHeader() : base("WM_ReportAnnualCostHeader","ID")
+        public ReportAnnualCostHeader()
+            : base(OraclePortal.gc._wareHouseTablePre + "ReportAnnualCostHeader", "ID")
         {
             this.SeqName = string.Format("SEQ_{0}", tableName);//数值型主键，通过序列生成
 		}
