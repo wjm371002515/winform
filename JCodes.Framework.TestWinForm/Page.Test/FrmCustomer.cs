@@ -15,7 +15,7 @@ using JCodes.Framework.CommonControl;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.Common.Databases;
 using JCodes.Framework.CommonControl.Pager;
-using JCodes.Framework.AddIn.Other;
+using JCodes.Framework.CommonControl.Controls;
 
 namespace WHC.OrderWater.UI
 {

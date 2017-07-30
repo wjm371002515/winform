@@ -1,0 +1,405 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6FFFBDB0-3A25-46CF-9738-CB3C0735DB33}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JCodes.Framework.AddIn.Basic</RootNamespace>
+    <AssemblyName>JCodes.Framework.AddIn.Basic</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\jCodes\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v14.1.UI, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeList.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="KP-ImageViewerV2, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\JCodes.Framework.libs\Others\KP-ImageViewerV2.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BizControl\AttachmentControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BizControl\AttachmentControl.Designer.cs">
+      <DependentUpon>AttachmentControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BizControl\BizAttachment.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BizControl\BizAttachment.Designer.cs">
+      <DependentUpon>BizAttachment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BizControl\CompanyControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BizControl\CompanyControl.Designer.cs">
+      <DependentUpon>CompanyControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BizControl\CustomGridControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BizControl\CustomGridLookUpEdit.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BizControl\DeptControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BizControl\DeptControl.Designer.cs">
+      <DependentUpon>DeptControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BizControl\FunctionControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BizControl\FunctionControl.Designer.cs">
+      <DependentUpon>FunctionControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BizControl\GlassButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BizControl\GlassButton.designer.cs">
+      <DependentUpon>GlassButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BizControl\ManagerSelectControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BizControl\ManagerSelectControl.designer.cs">
+      <DependentUpon>ManagerSelectControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BizControl\MenuControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BizControl\MenuControl.Designer.cs">
+      <DependentUpon>MenuControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BizControl\NameControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BizControl\NameControl.designer.cs">
+      <DependentUpon>NameControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BizControl\PrintableListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BizControl\RowMergeGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BizControl\RowMergeGridView.designer.cs">
+      <DependentUpon>RowMergeGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BizControl\UserNameControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BizControl\UserNameControl.designer.cs">
+      <DependentUpon>UserNameControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BizControl\VistaButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Other\Portal.cs" />
+    <Compile Include="Other\RibbonPageHelper.cs" />
+    <Compile Include="Other\StartupHelper.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\AboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\AboutBox.Designer.cs">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmAnnualSummary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmAnnualSummary.designer.cs">
+      <DependentUpon>FrmAnnualSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmAttachment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmAttachment.Designer.cs">
+      <DependentUpon>FrmAttachment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmAttachmentGroupView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmAttachmentGroupView.Designer.cs">
+      <DependentUpon>FrmAttachmentGroupView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmClearAll.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmClearAll.designer.cs">
+      <DependentUpon>FrmClearAll.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmEditOperationLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmEditOperationLog.designer.cs">
+      <DependentUpon>FrmEditOperationLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmEditOperationLogSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmEditOperationLogSetting.designer.cs">
+      <DependentUpon>FrmEditOperationLogSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmFeeBack.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmFeeBack.designer.cs">
+      <DependentUpon>FrmFeeBack.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmLoginLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmLoginLog.designer.cs">
+      <DependentUpon>FrmLoginLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmModifyPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmModifyPassword.designer.cs">
+      <DependentUpon>FrmModifyPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmMonthlyStatistic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmMonthlyStatistic.designer.cs">
+      <DependentUpon>FrmMonthlyStatistic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmOperationLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmOperationLog.designer.cs">
+      <DependentUpon>FrmOperationLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmOperationLogSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmOperationLogSetting.Designer.cs">
+      <DependentUpon>FrmOperationLogSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmPicturePreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmPicturePreview.designer.cs">
+      <DependentUpon>FrmPicturePreview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmSystemMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmSystemMessage.designer.cs">
+      <DependentUpon>FrmSystemMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmUploadFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmUploadFile.designer.cs">
+      <DependentUpon>FrmUploadFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Frm_Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Frm_Login.Designer.cs">
+      <DependentUpon>Frm_Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Login.designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\MainForm.designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\NotifyWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\RegDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="BizControl\AttachmentControl.resx">
+      <DependentUpon>AttachmentControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BizControl\BizAttachment.resx">
+      <DependentUpon>BizAttachment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BizControl\CompanyControl.resx">
+      <DependentUpon>CompanyControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BizControl\DeptControl.resx">
+      <DependentUpon>DeptControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BizControl\FunctionControl.resx">
+      <DependentUpon>FunctionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BizControl\ManagerSelectControl.resx">
+      <DependentUpon>ManagerSelectControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BizControl\MenuControl.resx">
+      <DependentUpon>MenuControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BizControl\NameControl.resx">
+      <DependentUpon>NameControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BizControl\RowMergeGridView.resx">
+      <DependentUpon>RowMergeGridView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BizControl\UserNameControl.resx">
+      <DependentUpon>UserNameControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BizControl\VistaButton.resx">
+      <DependentUpon>VistaButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\AboutBox.resx">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmAnnualSummary.resx">
+      <DependentUpon>FrmAnnualSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmAttachment.resx">
+      <DependentUpon>FrmAttachment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmAttachmentGroupView.resx">
+      <DependentUpon>FrmAttachmentGroupView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmClearAll.resx">
+      <DependentUpon>FrmClearAll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmEditOperationLog.resx">
+      <DependentUpon>FrmEditOperationLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmEditOperationLogSetting.resx">
+      <DependentUpon>FrmEditOperationLogSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmFeeBack.resx">
+      <DependentUpon>FrmFeeBack.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmLoginLog.resx">
+      <DependentUpon>FrmLoginLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmModifyPassword.resx">
+      <DependentUpon>FrmModifyPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmMonthlyStatistic.resx">
+      <DependentUpon>FrmMonthlyStatistic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmOperationLog.resx">
+      <DependentUpon>FrmOperationLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmOperationLogSetting.resx">
+      <DependentUpon>FrmOperationLogSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmPicturePreview.resx">
+      <DependentUpon>FrmPicturePreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmSystemMessage.resx">
+      <DependentUpon>FrmSystemMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmUploadFile.resx">
+      <DependentUpon>FrmUploadFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Frm_Login.resx">
+      <DependentUpon>Frm_Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\NotifyWindow.resx">
+      <DependentUpon>NotifyWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\RegDlg.resx">
+      <DependentUpon>RegDlg.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JCodes.Framework.BLL\JCodes.Framework.BLL.csproj">
+      <Project>{2ec4520f-5197-4e3f-b689-7023a98623e0}</Project>
+      <Name>JCodes.Framework.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JCodes.Framework.CommonControl\JCodes.Framework.CommonControl.csproj">
+      <Project>{64cfe6d2-0684-4d68-bfa0-ec7effdf4623}</Project>
+      <Name>JCodes.Framework.CommonControl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JCodes.Framework.Common\JCodes.Framework.Common.csproj">
+      <Project>{0dc2c51c-4601-4045-a412-bed930658c2c}</Project>
+      <Name>JCodes.Framework.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JCodes.Framework.Entity\JCodes.Framework.Entity.csproj">
+      <Project>{22d7993c-a8c8-4306-90a4-96ff76a12c0a}</Project>
+      <Name>JCodes.Framework.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JCodes.Framework.Enum\JCodes.Framework.jCodesenum.csproj">
+      <Project>{bd86470b-26c1-4b51-b6a8-3f11cebb4950}</Project>
+      <Name>JCodes.Framework.jCodesenum</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jcodes_about.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\favicon.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>echo "编译后处理的事情 JCodes.Framework.AddIn.Basic"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

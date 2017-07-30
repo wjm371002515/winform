@@ -1,7 +1,7 @@
-﻿using JCodes.Framework.AddIn.Other;
-using JCodes.Framework.Common;
+﻿using JCodes.Framework.Common;
 using JCodes.Framework.Common.Winform;
 using JCodes.Framework.CommonControl;
+using JCodes.Framework.CommonControl.Controls;
 using JCodes.Framework.CommonControl.Other;
 using System;
 using System.Collections.Generic;

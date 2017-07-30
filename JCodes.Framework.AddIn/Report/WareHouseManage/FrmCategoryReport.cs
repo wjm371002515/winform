@@ -16,7 +16,6 @@ using JCodes.Framework.Common;
 using JCodes.Framework.BLL;
 using JCodes.Framework.CommonControl;
 using JCodes.Framework.jCodesenum.BaseEnum;
-using JCodes.Framework.AddIn.Other;
 using JCodes.Framework.Common.Databases;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.CommonControl.Other;

@@ -191,9 +191,9 @@
     <Content Include="note.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JCodes.Framework.AddIn\JCodes.Framework.AddIn.csproj">
-      <Project>{b2c03c8b-b0c2-4da0-9a85-bdc8bf8dcebf}</Project>
-      <Name>JCodes.Framework.AddIn</Name>
+    <ProjectReference Include="..\JCodes.Framework.AddIn.Basic\JCodes.Framework.AddIn.Basic.csproj">
+      <Project>{6fffbdb0-3a25-46cf-9738-cb3c0735db33}</Project>
+      <Name>JCodes.Framework.AddIn.Basic</Name>
     </ProjectReference>
     <ProjectReference Include="..\JCodes.Framework.CommonControl\JCodes.Framework.CommonControl.csproj">
       <Project>{64cfe6d2-0684-4d68-bfa0-ec7effdf4623}</Project>
@@ -233,54 +233,8 @@ echo "Dev文件夹"
 mkdir Dev
 xcopy /Y "$(TargetDir)DevExpress*.dll" "$(TargetDir)Dev\"
 
-echo "拷贝到Framework文件夹下"
-xcopy /Y "$(TargetDir)JCodes.Framework.BLL.dll" "$(TargetDir)Framework\"
-xcopy /Y "$(TargetDir)JCodes.Framework.Common.dll" "$(TargetDir)Framework\"
-xcopy /Y "$(TargetDir)JCodes.Framework.CommonControl.dll" "$(TargetDir)Framework\"
-xcopy /Y "$(TargetDir)JCodes.Framework.Data.DALFactory.dll" "$(TargetDir)Framework\"
-xcopy /Y "$(TargetDir)JCodes.Framework.Data.IDAL.dll" "$(TargetDir)Framework\"
-xcopy /Y "$(TargetDir)JCodes.Framework.Data.Model.dll" "$(TargetDir)Framework\"
-xcopy /Y "$(TargetDir)JCodes.Framework.Data.SQLServerDAL.dll" "$(TargetDir)Framework\"
-xcopy /Y "$(TargetDir)JCodes.Framework.Entity.dll" "$(TargetDir)Framework\"
-xcopy /Y "$(TargetDir)JCodes.Framework.Enum.dll" "$(TargetDir)Framework\"
-xcopy /Y "$(TargetDir)log4net.dll" "$(TargetDir)Framework\"
-
-echo "拷贝到"
-xcopy /Y "$(TargetDir)JCodes.Framework.AddIn.dll" "$(TargetDir)AddIn\"
-xcopy /Y "$(TargetDir)JCodes.Framework.Common" "$(TargetDir)AddIn\"
-xcopy /Y "$(TargetDir)JCodes.Framework.Data.Model" "$(TargetDir)AddIn\"
-xcopy /Y "$(TargetDir)JCodes.Framework.Entity" "$(TargetDir)AddIn\"
-xcopy /Y "$(TargetDir)JCodes.Framework.Enum" "$(TargetDir)AddIn\"
-xcopy /Y "$(TargetDir)log4net" "$(TargetDir)AddIn\"
-
 echo "删除不要的文件"
 IF EXIST $(TargetDir)DevExpress*.dll DEL $(TargetDir)DevExpress*.dll
-
-echo "删除pdb vshost"
-IF EXIST $(TargetDir)*.pdb DEL $(TargetDir)*.pdb
-IF EXIST $(ProjectName)*.vshost* DEL $(ProjectName)*.vshost*
-IF EXIST $(TargetDir)Framework\*.pdb DEL $(TargetDir)Framework\*.pdb
-IF EXIST $(TargetDir)AddIn\*.pdb DEL $(TargetDir)AddIn\*.pdb
-
-echo "删除Framework 文件夹对应的dll"
-#IF EXIST $(TargetDir)JCodes.Framework.BLL.dll DEL $(TargetDir)JCodes.Framework.BLL.dll
-#IF EXIST $(TargetDir)JCodes.Framework.Common.dll DEL $(TargetDir)JCodes.Framework.Common.dll
-#IF EXIST $(TargetDir)JCodes.Framework.CommonControl.dll DEL $(TargetDir)JCodes.Framework.CommonControl.dll
-#IF EXIST $(TargetDir)JCodes.Framework.Data.DALFactory.dll DEL $(TargetDir)JCodes.Framework.Data.DALFactory.dll
-#IF EXIST $(TargetDir)JCodes.Framework.Data.IDAL.dll DEL $(TargetDir)JCodes.Framework.Data.IDAL.dll
-#IF EXIST $(TargetDir)JCodes.Framework.Data.Model.dll DEL $(TargetDir)JCodes.Framework.Data.Model.dll
-#IF EXIST $(TargetDir)JCodes.Framework.Data.SQLServerDAL.dll DEL $(TargetDir)JCodes.Framework.Data.SQLServerDAL.dll
-#IF EXIST $(TargetDir)JCodes.Framework.Entity.dll DEL $(TargetDir)JCodes.Framework.Entity.dll
-#IF EXIST $(TargetDir)JCodes.Framework.Enum.dll DEL $(TargetDir)JCodes.Framework.Enum.dll
-#IF EXIST $(TargetDir)log4net.dll DEL $(TargetDir)log4net.dll
-
-echo "删除AddIn 文件夹对应的dll"
-IF EXIST $(TargetDir)JCodes.Framework.AddIn.dll DEL $(TargetDir)JCodes.Framework.AddIn.dll
-IF EXIST $(TargetDir)JCodes.Framework.Common.dll DEL $(TargetDir)JCodes.Framework.Common.dll
-IF EXIST $(TargetDir)JCodes.Framework.Data.Model.dll DEL $(TargetDir)JCodes.Framework.Data.Model.dll
-IF EXIST $(TargetDir)JCodes.Framework.Entity.dll DEL $(TargetDir)JCodes.Framework.Entity.dll
-IF EXIST $(TargetDir)JCodes.Framework.Enum.dll DEL $(TargetDir)JCodes.Framework.Enum.dll
-IF EXIST $(TargetDir)log4net.dll DEL $(TargetDir)log4net.dll
 
 echo "生成成功"</PostBuildEvent>
   </PropertyGroup>

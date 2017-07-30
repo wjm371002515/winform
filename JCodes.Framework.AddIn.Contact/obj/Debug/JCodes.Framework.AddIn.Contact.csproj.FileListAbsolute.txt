@@ -1,0 +1,13 @@
+G:\github_winform\winform\jCodes\JCodes.Framework.AddIn.Contact.dll
+G:\github_winform\winform\jCodes\JCodes.Framework.AddIn.Contact.pdb
+G:\github_winform\winform\JCodes.Framework.AddIn.Contact\obj\Debug\JCodes.Framework.AddIn.Contact.csprojResolveAssemblyReference.cache
+G:\github_winform\winform\JCodes.Framework.AddIn.Contact\obj\Debug\JCodes.Framework.AddIn.Contact.FrmAddress.resources
+G:\github_winform\winform\JCodes.Framework.AddIn.Contact\obj\Debug\JCodes.Framework.AddIn.Contact.FrmAddressCompany.resources
+G:\github_winform\winform\JCodes.Framework.AddIn.Contact\obj\Debug\JCodes.Framework.AddIn.Contact.FrmAddressGroup.resources
+G:\github_winform\winform\JCodes.Framework.AddIn.Contact\obj\Debug\JCodes.Framework.AddIn.Contact.FrmBatchAddAddress.resources
+G:\github_winform\winform\JCodes.Framework.AddIn.Contact\obj\Debug\JCodes.Framework.AddIn.Contact.FrmEditAddress.resources
+G:\github_winform\winform\JCodes.Framework.AddIn.Contact\obj\Debug\JCodes.Framework.AddIn.Contact.FrmEditAddressGroup.resources
+G:\github_winform\winform\JCodes.Framework.AddIn.Contact\obj\Debug\JCodes.Framework.AddIn.Contact.FrmSelectAddressGroup.resources
+G:\github_winform\winform\JCodes.Framework.AddIn.Contact\obj\Debug\JCodes.Framework.AddIn.Contact.csproj.GenerateResource.Cache
+G:\github_winform\winform\JCodes.Framework.AddIn.Contact\obj\Debug\JCodes.Framework.AddIn.Contact.dll
+G:\github_winform\winform\JCodes.Framework.AddIn.Contact\obj\Debug\JCodes.Framework.AddIn.Contact.pdb

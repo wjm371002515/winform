@@ -288,6 +288,18 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\JCodes.Framework.AddIn.Basic\JCodes.Framework.AddIn.Basic.csproj">
+      <Project>{6fffbdb0-3a25-46cf-9738-cb3c0735db33}</Project>
+      <Name>JCodes.Framework.AddIn.Basic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JCodes.Framework.AddIn.Dictionary\JCodes.Framework.AddIn.Dictionary.csproj">
+      <Project>{84431db5-067b-4d33-a93e-f75ebd9c40fc}</Project>
+      <Name>JCodes.Framework.AddIn.Dictionary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JCodes.Framework.AddIn.Test\JCodes.Framework.AddIn.Test.csproj">
+      <Project>{e4db049f-62b6-46ad-8eee-d03cc25540b8}</Project>
+      <Name>JCodes.Framework.AddIn.Test</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JCodes.Framework.AddIn\JCodes.Framework.AddIn.csproj">
       <Project>{b2c03c8b-b0c2-4da0-9a85-bdc8bf8dcebf}</Project>
       <Name>JCodes.Framework.AddIn</Name>

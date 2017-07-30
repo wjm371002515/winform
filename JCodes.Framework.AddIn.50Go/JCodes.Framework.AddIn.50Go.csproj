@@ -18,7 +18,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\jCodes\AddIn\</OutputPath>
+    <OutputPath>..\jCodes\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -36,6 +36,11 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.Data.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -47,9 +52,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmCoupon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCoupon.Designer.cs">
+      <DependentUpon>FrmCoupon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmCouponCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCouponCategory.designer.cs">
+      <DependentUpon>FrmCouponCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmEditCouponCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmEditCouponCategory.designer.cs">
+      <DependentUpon>FrmEditCouponCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmGenerateCoupon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmGenerateCoupon.designer.cs">
+      <DependentUpon>FrmGenerateCoupon.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\JCodes.Framework.AddIn.Basic\JCodes.Framework.AddIn.Basic.csproj">
+      <Project>{6fffbdb0-3a25-46cf-9738-cb3c0735db33}</Project>
+      <Name>JCodes.Framework.AddIn.Basic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JCodes.Framework.BLL\JCodes.Framework.BLL.csproj">
       <Project>{2ec4520f-5197-4e3f-b689-7023a98623e0}</Project>
       <Name>JCodes.Framework.BLL</Name>
@@ -70,6 +103,20 @@
       <Project>{bd86470b-26c1-4b51-b6a8-3f11cebb4950}</Project>
       <Name>JCodes.Framework.jCodesenum</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FrmCoupon.resx">
+      <DependentUpon>FrmCoupon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCouponCategory.resx">
+      <DependentUpon>FrmCouponCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmEditCouponCategory.resx">
+      <DependentUpon>FrmEditCouponCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmGenerateCoupon.resx">
+      <DependentUpon>FrmGenerateCoupon.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

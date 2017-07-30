@@ -11,9 +11,9 @@ using JCodes.Framework.CommonControl;
 using JCodes.Framework.BLL;
 using JCodes.Framework.Common;
 using JCodes.Framework.jCodesenum.BaseEnum;
-using JCodes.Framework.AddIn.UI.Dictionary;
 using JCodes.Framework.CommonControl.Pager;
 using JCodes.Framework.CommonControl.Other;
+using JCodes.Framework.AddIn.Dictionary;
 
 namespace TestDictionary
 {

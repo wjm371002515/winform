@@ -1,7 +1,6 @@
 ﻿using DevExpress.LookAndFeel;
 using JCodes.Framework.AddIn;
-using JCodes.Framework.AddIn.Other;
-using JCodes.Framework.AddIn.UI.Basic;
+using JCodes.Framework.AddIn.Basic;
 using JCodes.Framework.BLL;
 using JCodes.Framework.Common;
 using JCodes.Framework.Common.Device;

@@ -1,0 +1,16 @@
+G:\github_winform\winform\jCodes\JCodes.Framework.AddIn.Dictionary.dll
+G:\github_winform\winform\jCodes\JCodes.Framework.AddIn.Dictionary.pdb
+G:\github_winform\winform\JCodes.Framework.AddIn.Dictionary\obj\Debug\JCodes.Framework.AddIn.Dictionary.csprojResolveAssemblyReference.cache
+G:\github_winform\winform\JCodes.Framework.AddIn.Dictionary\obj\Debug\JCodes.Framework.AddIn.Dictionary.FrmBatchAddDistrict.resources
+G:\github_winform\winform\JCodes.Framework.AddIn.Dictionary\obj\Debug\JCodes.Framework.AddIn.Dictionary.FrmCityDistrict.resources
+G:\github_winform\winform\JCodes.Framework.AddIn.Dictionary\obj\Debug\JCodes.Framework.AddIn.Dictionary.FrmDictionary.resources
+G:\github_winform\winform\JCodes.Framework.AddIn.Dictionary\obj\Debug\JCodes.Framework.AddIn.Dictionary.FrmEditCity.resources
+G:\github_winform\winform\JCodes.Framework.AddIn.Dictionary\obj\Debug\JCodes.Framework.AddIn.Dictionary.FrmEditDictData.resources
+G:\github_winform\winform\JCodes.Framework.AddIn.Dictionary\obj\Debug\JCodes.Framework.AddIn.Dictionary.FrmEditDictType.resources
+G:\github_winform\winform\JCodes.Framework.AddIn.Dictionary\obj\Debug\JCodes.Framework.AddIn.Dictionary.FrmEditDistrict.resources
+G:\github_winform\winform\JCodes.Framework.AddIn.Dictionary\obj\Debug\JCodes.Framework.AddIn.Dictionary.FrmSearchSysparameter.resources
+G:\github_winform\winform\JCodes.Framework.AddIn.Dictionary\obj\Debug\JCodes.Framework.AddIn.Dictionary.FrmSettings.resources
+G:\github_winform\winform\JCodes.Framework.AddIn.Dictionary\obj\Debug\JCodes.Framework.AddIn.Dictionary.FrmSysparameter.resources
+G:\github_winform\winform\JCodes.Framework.AddIn.Dictionary\obj\Debug\JCodes.Framework.AddIn.Dictionary.csproj.GenerateResource.Cache
+G:\github_winform\winform\JCodes.Framework.AddIn.Dictionary\obj\Debug\JCodes.Framework.AddIn.Dictionary.dll
+G:\github_winform\winform\JCodes.Framework.AddIn.Dictionary\obj\Debug\JCodes.Framework.AddIn.Dictionary.pdb

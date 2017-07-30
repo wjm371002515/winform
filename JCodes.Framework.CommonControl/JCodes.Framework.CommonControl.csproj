@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\jCodes\AddIn\</OutputPath>
+    <OutputPath>..\jCodes\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -165,6 +165,9 @@
     <Compile Include="BaseUI\FrmImportExcelData.designer.cs">
       <DependentUpon>FrmImportExcelData.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ExRichTextBox.cs" />
+    <Compile Include="Controls\ExRichTextBoxPrintHelper.cs" />
+    <Compile Include="Controls\ExtensionMethod.cs" />
     <Compile Include="Controls\ucCodeEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>

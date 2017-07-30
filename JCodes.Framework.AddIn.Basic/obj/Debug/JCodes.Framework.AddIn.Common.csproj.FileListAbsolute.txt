@@ -1,0 +1,4 @@
+G:\github_winform\winform\jCodes\AddIn\JCodes.Framework.AddIn.Common.dll
+G:\github_winform\winform\jCodes\AddIn\JCodes.Framework.AddIn.Common.pdb
+G:\github_winform\winform\JCodes.Framework.AddIn.Common\obj\Debug\JCodes.Framework.AddIn.Common.dll
+G:\github_winform\winform\JCodes.Framework.AddIn.Common\obj\Debug\JCodes.Framework.AddIn.Common.pdb

@@ -13,14 +13,13 @@ using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.CommonControl.Framework;
 using JCodes.Framework.CommonControl;
 using JCodes.Framework.AddIn;
-using JCodes.Framework.AddIn.UI.Basic;
-using JCodes.Framework.AddIn.Other;
 using DevExpress.Utils;
 using DevExpress.XtraSplashScreen;
 using JCodes.Framework.Common.Files;
 using JCodes.Framework.Common.Network;
 using JCodes.Framework.CommonControl.Other;
 using OAUS.Core;
+using JCodes.Framework.AddIn.Basic;
 
 namespace JCodes.Framework.WinFormUI
 {
