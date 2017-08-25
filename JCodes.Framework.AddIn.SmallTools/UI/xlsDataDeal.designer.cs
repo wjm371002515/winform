@@ -36,9 +36,9 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.gcViewData = new DevExpress.XtraGrid.GridControl();
             this.gcDataView = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.rtbLog = new System.Windows.Forms.RichTextBox();
             this.gcFileName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcDealStatus = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.rtbLog = new System.Windows.Forms.RichTextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -85,7 +85,7 @@
             this.txtPath.Enabled = false;
             this.txtPath.Location = new System.Drawing.Point(151, 11);
             this.txtPath.Name = "txtPath";
-            this.txtPath.Size = new System.Drawing.Size(582, 28);
+            this.txtPath.Size = new System.Drawing.Size(582, 29);
             this.txtPath.TabIndex = 1;
             // 
             // lblPath
@@ -93,7 +93,7 @@
             this.lblPath.AutoSize = true;
             this.lblPath.Location = new System.Drawing.Point(21, 18);
             this.lblPath.Name = "lblPath";
-            this.lblPath.Size = new System.Drawing.Size(125, 18);
+            this.lblPath.Size = new System.Drawing.Size(121, 22);
             this.lblPath.TabIndex = 0;
             this.lblPath.Text = "xls文件夹路径";
             // 
@@ -135,15 +135,6 @@
             this.gcDataView.OptionsView.ShowGroupPanel = false;
             this.gcDataView.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gcDataView_CustomColumnDisplayText);
             // 
-            // rtbLog
-            // 
-            this.rtbLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rtbLog.Location = new System.Drawing.Point(0, 0);
-            this.rtbLog.Name = "rtbLog";
-            this.rtbLog.Size = new System.Drawing.Size(617, 881);
-            this.rtbLog.TabIndex = 0;
-            this.rtbLog.Text = "";
-            // 
             // gcFileName
             // 
             this.gcFileName.Caption = "文件名";
@@ -163,15 +154,24 @@
             this.gcDealStatus.VisibleIndex = 1;
             this.gcDealStatus.Width = 70;
             // 
-            // frmMain
+            // rtbLog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.rtbLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtbLog.Location = new System.Drawing.Point(0, 0);
+            this.rtbLog.Name = "rtbLog";
+            this.rtbLog.Size = new System.Drawing.Size(617, 881);
+            this.rtbLog.TabIndex = 0;
+            this.rtbLog.Text = "";
+            // 
+            // xlsDataDeal
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1282, 930);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.panel1);
-            this.Name = "frmMain";
-            this.Text = "处理xls表格数据";
+            this.Name = "xlsDataDeal";
+            this.Text = "EB发行";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);

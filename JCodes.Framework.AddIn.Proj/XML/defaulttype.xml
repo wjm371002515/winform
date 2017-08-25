@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<datatype>
+  <item guid="1FB6734A-46DF-49E8-89A1-60E38E062D1E">
+    <name>STDtinyInt</name>
+    <chineseName>整数</chineseName>
+    <oracle>number(3,0)</oracle>
+    <mysql>tinyint(3)</mysql>
+    <db2>smallint</db2>
+    <sqlserver>tinyint</sqlserver>
+    <sqlite>tinyint</sqlite>
+    <access>tinyint</access>
+  </item>
+  <item guid="1FB6734A-46DF-49E8-89A1-60E38E062D12">
+    <name>STDtinyInt</name>
+    <chineseName>整数2</chineseName>
+    <oracle>number(3,0)</oracle>
+    <mysql>tinyint(3)</mysql>
+    <db2>smallint</db2>
+    <sqlserver>tinyint</sqlserver>
+    <sqlite>tinyint</sqlite>
+    <access>tinyint</access>
+  </item>
+</datatype>

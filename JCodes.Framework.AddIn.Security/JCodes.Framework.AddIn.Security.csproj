@@ -140,6 +140,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="UI\FrmAddMoreFunction.resx">
       <DependentUpon>FrmAddMoreFunction.cs</DependentUpon>
     </EmbeddedResource>

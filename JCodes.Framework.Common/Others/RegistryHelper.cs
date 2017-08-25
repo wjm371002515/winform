@@ -129,6 +129,7 @@ namespace JCodes.Framework.Common.Office
             string regCode = string.Empty;              //注册码
             string userName = string.Empty;             // 注册用户
             string company = string.Empty;              // 注册公司
+
             RegistryKey reg = Registry.CurrentUser.OpenSubKey(UIConstants.SoftwareRegistryKey, true);
 
             // 首先判断注册表中是否存在regCode 注册码的信息，如果没有在从lic文件中读取文件，如果2个都不存在则验证不通过
@@ -140,10 +141,10 @@ namespace JCodes.Framework.Common.Office
                     config = new AppConfig();
                     Cache.Instance["AppConfig"] = config;
                 }
-
                 string LicensePath = config.AppConfigGet("LicensePath");
                 if (FileUtil.IsExistFile(LicensePath))
                 {
+                    
                     string[] tmpstr = FileUtil.FileToString(LicensePath).Split(Convert.ToChar(Const.VerticalLine));
 
                     if (tmpstr.Length == 3)
@@ -155,7 +156,8 @@ namespace JCodes.Framework.Common.Office
                 }
             }
 
-            if (reg.GetValue("regCode") != null)
+            // 20170815 wujianming 修复新部署环境报错 未引用实例对象问题
+            if (null != reg && reg.GetValue("regCode") != null)
             {
                 // 获取验证码
                 regCode = reg.GetValue("regCode").ToString();
@@ -192,7 +194,6 @@ namespace JCodes.Framework.Common.Office
             {
                 return false;
             }
-
             Int32 passed = RSASecurityHelper.CheckRegistrationCode(regCode,userName, company);
             if (passed == 0)
             { return true; }

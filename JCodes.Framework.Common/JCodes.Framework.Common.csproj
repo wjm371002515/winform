@@ -344,10 +344,6 @@
       <Project>{bd86470b-26c1-4b51-b6a8-3f11cebb4950}</Project>
       <Name>JCodes.Framework.jCodesenum</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JCodes.Framework.Model\JCodes.Framework.Model.csproj">
-      <Project>{F31B2A29-7F65-4019-B015-44A9FF67F33A}</Project>
-      <Name>JCodes.Framework.Model</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Others\CCalendarData.xml">

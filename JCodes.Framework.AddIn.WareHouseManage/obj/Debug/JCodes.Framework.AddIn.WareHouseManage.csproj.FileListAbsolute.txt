@@ -1,4 +1,5 @@
-G:\github_winform\winform\JCodes.Framework.AddIn.WareHouseManage\obj\Debug\JCodes.Framework.AddIn.WareHouseManage.csprojResolveAssemblyReference.cache
+G:\github_winform\winform\jCodes\JCodes.Framework.AddIn.WareHouseManage.dll
+G:\github_winform\winform\jCodes\JCodes.Framework.AddIn.WareHouseManage.pdb
 G:\github_winform\winform\JCodes.Framework.AddIn.WareHouseManage\obj\Debug\JCodes.Framework.AddIn.WareHouseManage.FrmAddPurchaseItem.resources
 G:\github_winform\winform\JCodes.Framework.AddIn.WareHouseManage\obj\Debug\JCodes.Framework.AddIn.WareHouseManage.FrmClient.resources
 G:\github_winform\winform\JCodes.Framework.AddIn.WareHouseManage\obj\Debug\JCodes.Framework.AddIn.WareHouseManage.FrmEditClient.resources
@@ -23,5 +24,4 @@ G:\github_winform\winform\JCodes.Framework.AddIn.WareHouseManage\obj\Debug\JCode
 G:\github_winform\winform\JCodes.Framework.AddIn.WareHouseManage\obj\Debug\JCodes.Framework.AddIn.WareHouseManage.csproj.GenerateResource.Cache
 G:\github_winform\winform\JCodes.Framework.AddIn.WareHouseManage\obj\Debug\JCodes.Framework.AddIn.WareHouseManage.dll
 G:\github_winform\winform\JCodes.Framework.AddIn.WareHouseManage\obj\Debug\JCodes.Framework.AddIn.WareHouseManage.pdb
-G:\github_winform\winform\jCodes\JCodes.Framework.AddIn.WareHouseManage.dll
-G:\github_winform\winform\jCodes\JCodes.Framework.AddIn.WareHouseManage.pdb
+G:\github_winform\winform\JCodes.Framework.AddIn.WareHouseManage\obj\Debug\JCodes.Framework.AddIn.WareHouseManage.csprojResolveAssemblyReference.cache

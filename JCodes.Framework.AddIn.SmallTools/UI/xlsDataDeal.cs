@@ -2,6 +2,7 @@
 using JCodes.Framework.CommonControl.BaseUI;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.Entity;
+using JCodes.Framework.Entity.SmallTools;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using Spire.Xls;
 using System;
@@ -15,15 +16,10 @@ namespace JCodes.Framework.AddIn.SmallTools
     {
         // 定义gc数据变量 
         private List<MFileInfo> _fileInfolst = new List<MFileInfo>();
-        // 定义客户基本信息 主键ID
-        private List<MClientInfo> _clientInfolst = new List<MClientInfo>();
-        // 定义开户金额信息 外键ID
-        private List<MAmountInfo> _amountInfolst = new List<MAmountInfo>();
-        // 定义银行信息     主键ID
-        private List<MBankInfo> _bankInfolst = new List<MBankInfo>();
+        // 定义EBList 数组
+        private List<MEBInfo> _mEBInfolst = new List<MEBInfo>();
         // 从第几行开始写数据
         private Int32 _rowNum = 2;
-
 
         public xlsDataDeal()
         {
@@ -91,9 +87,9 @@ namespace JCodes.Framework.AddIn.SmallTools
             }
                 
             // 最后一个判断 是否是 网下利率询价及认购申请表
-            if (!fileDetail[2].Contains("网下利率询价及认购申请表"))
+            if (!fileDetail[2].Contains("17浙报EB网下认购申请表"))
             {
-                LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, "第三个串内容不是 网下利率询价及认购申请表 不符合 " + filename, typeof(xlsDataDeal));
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, "第三个串内容不是 17浙报EB网下认购申请表 不符合 " + filename, typeof(xlsDataDeal));
                 return false;
             }
                 
@@ -179,20 +175,21 @@ namespace JCodes.Framework.AddIn.SmallTools
                 {
                     one.DealStatus = 1;
                     gcDataView.RefreshData();
+                    Application.DoEvents();
 
-                    _clientInfolst.Clear();
-                    _amountInfolst.Clear();
-                    _bankInfolst.Clear();
+                    _mEBInfolst.Clear();
 
                     if (DoDeal(one.FileName, sheet))
                     {
                         one.DealStatus = 2;
                         gcDataView.RefreshData();
+                        Application.DoEvents();
                     }
                     else
                     {
                         one.DealStatus = 3;
                         gcDataView.RefreshData();
+                        Application.DoEvents();
                     }
                 }
 
@@ -259,8 +256,8 @@ namespace JCodes.Framework.AddIn.SmallTools
                 workbook.LoadFromFile(filename);
                 Worksheet sheet = workbook.Worksheets[0];
 
-                #region 机构名称
-                CellRange[] ranges = sheet.FindAllString("机构名称", false, false);
+                #region 机构名或姓名
+                CellRange[] ranges = sheet.FindAllString("机构全称（合格机构投资者填写）：", false, false);
                
                 foreach (CellRange range in ranges)
                 {
@@ -268,7 +265,7 @@ namespace JCodes.Framework.AddIn.SmallTools
                     row = range.Rows[0].Row;
                 }
                 // 机构名称
-                string organizeName = sheet[row, column + 2].Value;
+                string organizeName = sheet[row, column + 1].Value;
 
                 LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, String.Format(" 插入调试信息: 查找机构名称 行[row={0}],列[column={1}],机构名称[organizeName={2}]", row, column, organizeName), typeof(xlsDataDeal));
 
@@ -277,133 +274,74 @@ namespace JCodes.Framework.AddIn.SmallTools
                 if (string.IsNullOrEmpty(organizeName))
                 {
                     #region 个人姓名
-                    ranges = sheet.FindAllString("个人姓名", false, false);
+                    ranges = sheet.FindAllString("个人全名（合格个人投资者填写）：", false, false);
                     foreach (CellRange range in ranges)
                     {
                         column = range.Rows[0].Column;
                         row = range.Rows[0].Row;
                     }
-                    organizeName = sheet[row, column + 2].Value;
+                    organizeName = sheet[row, column + 1].Value;
 
                     LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, String.Format(" 插入调试信息: 机构名称为空 再次查找个人信息 行[row={0}],列[column={1}],个人信息[organizeName={2}]", row, column, organizeName), typeof(xlsDataDeal));
                     #endregion
                 }
 
-                // 认购主体信息及申购信息
-                #region 认购主体信息及申购信息
-                ranges = sheet.FindAllString("认购主体信息及申购信息", false, false);
+                #region 证券账户户名（上海）
+                ranges = sheet.FindAllString("证券账户户名（上海）", false, false);
                 foreach (CellRange range in ranges)
                 {
                     column = range.Rows[0].Column;
                     row = range.Rows[0].Row;
                 }
 
-                LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, String.Format(" 插入调试信息: 认购主体信息及申购信息查找  行[row={0}],列[column={1}]", row, column), typeof(xlsDataDeal));
-                Int32 cnt = 2;
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, String.Format(" 插入调试信息: 证券账户户名（上海）信息查找  行[row={0}],列[column={1}]", row, column), typeof(xlsDataDeal));
+                Int32 cnt = 1;
                 while (true)
                 {
-                    string strhangshu = sheet[row + cnt, column].Value;
                     try
                     {
-                        Int32 numhangshu = Int32.Parse(strhangshu);
-                        string accountName = sheet[row + cnt, column + 1].Value;
-                        if (string.IsNullOrEmpty(accountName)) break;
-                        string accountCode = sheet[row + cnt, column + 2].Value;
-                        string seat = sheet[row + cnt, column + 3].Value;
-                        string cardId = sheet[row + cnt, column + 4].Value;
+                        string accountName = sheet[row + cnt, column].Value;        // 证券账户户名（上海）
+                        if (string.IsNullOrEmpty(accountName)) break;               // 没有数据则表示查询结束
+                        string accountCode = sheet[row + cnt, column + 1].Value;    // 证券账户代码（上海）
+                        string seat = sheet[row + cnt, column + 2].Value;           // 托管券商席位号（上海）
+                        string cardId = sheet[row + cnt, column + 3].Value;         // 身份证明号码
 
-                        _clientInfolst.Add(new MClientInfo() { Id = numhangshu, OrganizeName = organizeName, AccountName = accountName, AccountCode = accountCode, Seat = seat, CardId = cardId });
+                        // 第一笔记录
+                        string rate1 = sheet[row + cnt, column + 4].Value;          // 到期赎回价格1（元）
+                        string balance1 = sheet[row + cnt, column + 5].Value;       // 认购数量1（万元）
 
-                        #region 开户金额信息
-                        // 第一个
-                        string strrate = sheet[row + cnt, column + 5].Value;
-                        if (string.IsNullOrEmpty(strrate)) {
-                            cnt++;
-                            continue;
-                        };
+                        // 第二笔记录
+                        string rate2 = sheet[row + cnt, column + 6].Value;          // 到期赎回价格2（元）
+                        string balance2 = sheet[row + cnt, column + 7].Value;       // 认购数量2（万元）
 
-                        double dourate = 0;
-                        try {
-                            dourate = Convert.ToDouble(strrate);
-                        }
-                        catch (Exception ex)
-                        {
-                            dourate = 0.0;
-                        }
-                        string strbalance = sheet[row + cnt, column + 6].Value;
-                        double doubalance = 0;
-                        try
-                        {
-                            doubalance = Convert.ToDouble(strbalance);
-                        }
-                        catch (Exception ex)
-                        {
-                            doubalance = 0.0;
-                        }
-                        _amountInfolst.Add(new MAmountInfo() { Id = numhangshu, Rate = dourate, Balance = doubalance });
+                        // 第三笔记录
+                        string rate3 = sheet[row + cnt, column + 8].Value;          // 到期赎回价格3（元）
+                        string balance3 = sheet[row + cnt, column + 9].Value;       // 认购数量3（万元）
 
-                        // 第二个
-                        strrate = sheet[row + cnt, column + 7].Value;
-                        if (string.IsNullOrEmpty(strrate))
-                        {
-                            cnt++;
-                            continue;
-                        };
+                        string bankName = sheet[row + cnt, column + 10].Value;      // 退款汇入行全称
+                        string bankAccount = sheet[row + cnt, column + 11].Value;   // 退款收款人账号
+                        string clientName = sheet[row + cnt, column + 12].Value;    // 退款收款人全称
+                        string bankProvince = sheet[row + cnt, column + 13].Value;  // 退款汇入行省份/地市
+                        string systemId = sheet[row + cnt, column + 14].Value;      // 退款汇入行大额支付系统行号
 
-                        dourate = 0;
-                        try
+                        if (!string.IsNullOrEmpty(rate1))
                         {
-                            dourate = Convert.ToDouble(strrate);
+                            _mEBInfolst.Add(new MEBInfo() { OrganizeName = organizeName, AccountName = accountName, AccountCode = accountCode, Seat = seat, CardId = cardId, Rate = rate1, Balance = balance1, BankName = bankName, BankAccount = bankAccount, ClientName = clientName, BankProvince = bankProvince, SystemId = systemId});
                         }
-                        catch (Exception ex)
-                        {
-                            dourate = 0.0;
-                        }
-                        strbalance = sheet[row + cnt, column + 8].Value;
-                        doubalance = 0;
-                        try
-                        {
-                            doubalance = Convert.ToDouble(strbalance);
-                        }
-                        catch (Exception ex)
-                        {
-                            doubalance = 0.0;
-                        }
-                        _amountInfolst.Add(new MAmountInfo() { Id = numhangshu, Rate = dourate, Balance = doubalance });
 
-                        // 第三个
-                        strrate = sheet[row + cnt, column + 9].Value;
-                        if (string.IsNullOrEmpty(strrate))
+                        if (!string.IsNullOrEmpty(rate2))
                         {
-                            cnt++;
-                            continue;
-                        };
+                            _mEBInfolst.Add(new MEBInfo() { OrganizeName = organizeName, AccountName = accountName, AccountCode = accountCode, Seat = seat, CardId = cardId, Rate = rate2, Balance = balance2, BankName = bankName, BankAccount = bankAccount, ClientName = clientName, BankProvince = bankProvince, SystemId = systemId });
+                        }
 
-                        dourate = 0;
-                        try
+                        if (!string.IsNullOrEmpty(rate3))
                         {
-                            dourate = Convert.ToDouble(strrate);
+                            _mEBInfolst.Add(new MEBInfo() { OrganizeName = organizeName, AccountName = accountName, AccountCode = accountCode, Seat = seat, CardId = cardId, Rate = rate3, Balance = balance3, BankName = bankName, BankAccount = bankAccount, ClientName = clientName, BankProvince = bankProvince, SystemId = systemId });
                         }
-                        catch (Exception ex)
-                        {
-                            dourate = 0.0;
-                        }
-                        strbalance = sheet[row + cnt, column + 10].Value;
-                        doubalance = 0;
-                        try
-                        {
-                            doubalance = Convert.ToDouble(strbalance);
-                        }
-                        catch (Exception ex)
-                        {
-                            doubalance = 0.0;
-                        }
-                        _amountInfolst.Add(new MAmountInfo() { Id = numhangshu, Rate = dourate, Balance = doubalance });
-
-                        #endregion
                     }
                     catch (Exception ex)
                     {
+                        LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(xlsDataDeal));
                         break;
                     }
                     
@@ -411,41 +349,7 @@ namespace JCodes.Framework.AddIn.SmallTools
                 }
 
                 #endregion
-
-                // 退款信息
-                ranges = sheet.FindAllString("退款信息", false, false);
-                foreach (CellRange range in ranges)
-                {
-                    column = range.Rows[0].Column;
-                    row = range.Rows[0].Row;
-                }
-
-                LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, String.Format(" 插入调试信息: 退款信息查找  行[row={0}],列[column={1}]", row, column), typeof(xlsDataDeal));
-                cnt = 2;
-                while (true)
-                {
-                    string strhangshu = sheet[row + cnt, column].Value;
-                    try
-                    {
-                        Int32 numhangshu = Int32.Parse(strhangshu);
-                        string bankName = sheet[row + cnt, column + 1].Value;
-                        if (string.IsNullOrEmpty(bankName)) break;
-                        string clientName = sheet[row + cnt, column + 3].Value;
-                        string bankAccount = sheet[row + cnt, column + 5].Value;
-                        string systemId = sheet[row + cnt, column + 7].Value;
-                        string bankProvince = sheet[row + cnt, column + 9].Value;
-                        string bankCity = sheet[row + cnt, column + 10].Value;
-
-                        _bankInfolst.Add(new MBankInfo() { Id = numhangshu, BankName = bankName, ClientName = clientName, BankAccount = bankAccount, SystemId = systemId, BankProvince = bankProvince, BankCity = bankCity });
-                    }
-                    catch (Exception ex)
-                    {
-                        break;
-                    }
-
-                    cnt++;
-                }
-
+              
                 workbook.Dispose();
                 //workbook.SaveToFile("替换.xlsx");
                 //System.Diagnostics.Process.Start("替换.xlsx");
@@ -467,35 +371,28 @@ namespace JCodes.Framework.AddIn.SmallTools
             rtbLog.AppendText(DateTime.Now.ToString() + " 开始把上一次读的数据写入到文件: " + filename + "\r\n");
             try
             {
-                _amountInfolst.ForEach(a =>
+                _mEBInfolst.ForEach(a =>
                 {
-                    MClientInfo clientInfo = _clientInfolst.Find(
-                        delegate(MClientInfo oneinfo){
-                            return oneinfo.Id == a.Id;
-                        });
+                    // https://www.e-iceblue.com/Tutorials/Spire.XLS/Spire.XLS-Program-Guide/Spire.XLS-Program-Guide-Content.html
+                    sheet[_rowNum, 1].Style.WrapText = true;
+                    sheet[_rowNum, 1].Text = a.OrganizeName;
+                    sheet[_rowNum, 2].Style.WrapText = true;
+                    sheet[_rowNum, 2].Text = a.AccountName;
+                    sheet[_rowNum, 3].Text = a.AccountCode;
+                    sheet[_rowNum, 4].Text = a.Seat;
+                    sheet[_rowNum, 5].Style.WrapText = true;
+                    sheet[_rowNum, 5].Text = a.CardId;
+                    sheet[_rowNum, 6].Text = a.Rate;
+                    sheet[_rowNum, 7].Text = a.Balance;
+                    sheet[_rowNum, 8].Style.WrapText = true;
+                    sheet[_rowNum, 8].Text = a.BankName;
+                    sheet[_rowNum, 9].Style.WrapText = true;
+                    sheet[_rowNum, 9].Text = a.ClientName;
+                    sheet[_rowNum, 10].Text = a.BankAccount;
+                    sheet[_rowNum, 11].Text = a.SystemId;
+                    sheet[_rowNum, 12].Text = a.BankProvince;
 
-                    MBankInfo bankInfo = _bankInfolst.Find(
-                        delegate(MBankInfo oneinfo)
-                        {
-                            return oneinfo.Id == a.Id;
-                        });
-
-                    sheet[_rowNum, 1].Text = clientInfo.OrganizeName;
-                    sheet[_rowNum, 2].Text = clientInfo.AccountName;
-                    sheet[_rowNum, 3].Text = clientInfo.AccountCode;
-                    sheet[_rowNum, 4].Text = clientInfo.Seat;
-                    sheet[_rowNum, 5].Text = clientInfo.CardId;
-                    sheet[_rowNum, 6].Text = a.Rate.ToString();
-                    sheet[_rowNum, 7].Text = a.Balance.ToString();
-                    sheet[_rowNum, 8].Text = bankInfo.BankName;
-                    sheet[_rowNum, 9].Text = bankInfo.ClientName;
-                    sheet[_rowNum, 10].Text = bankInfo.BankAccount;
-                    sheet[_rowNum, 11].Text = bankInfo.SystemId;
-                    sheet[_rowNum, 12].Text = bankInfo.BankProvince;
-                    sheet[_rowNum, 13].Text = bankInfo.BankCity;
-
-                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, String.Format(" 插入调试信息: 文件名[filename={0}],行号[Id={1}],机构名或姓名[OrganizeName={2}]," +
-                    "证券账户户名[AccountName={3}],证券账户代码[AccountCode={4}],托管席位号[Seat={5}],身份证明号码[CardId={6}],票面利率[Rate={7}],申购金额[Balance={8}],退款汇入行全称[BankName={9}],退款收款人全称[ClientName={10}],退款收款人账号[BankAccount={11}],大额支付系统号[SystemId={12}],退款汇入行省份[BankProvince={13}],退款汇入行地市[BankCity={14}]", filename, a.Id, clientInfo.OrganizeName, clientInfo.AccountName, clientInfo.AccountCode, clientInfo.Seat, clientInfo.CardId, a.Rate.ToString(), a.Balance.ToString(), bankInfo.BankName, bankInfo.ClientName, bankInfo.BankAccount, bankInfo.SystemId, bankInfo.BankProvince, bankInfo.BankCity), typeof(xlsDataDeal));
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, String.Format(" 插入调试信息: 文件名[filename={0}],机构名或姓名[OrganizeName={1}]," + "证券账户户名（上海）[AccountName={2}],证券账户代码（上海）[AccountCode={3}],托管席位号[Seat={4}],身份证明号码（如营业执照注册号等）[CardId={5}],到期赎回价格[Rate={6}],申购金额[Balance={7}],退款汇入行全称[BankName={8}],退款收款人全称[ClientName={9}],退款收款人账号[BankAccount={10}],大额支付系统号[SystemId={11}],退款汇入行省份[BankProvince={12}]", filename, a.OrganizeName, a.AccountName, a.AccountCode, a.Seat, a.CardId, a.Rate.ToString(), a.Balance.ToString(), a.BankName, a.ClientName, a.BankAccount, a.SystemId, a.BankProvince), typeof(xlsDataDeal));
 
                     _rowNum++;
                 });

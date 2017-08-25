@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using System.Reflection;
 using JCodes.Framework.Common.Format;
 using JCodes.Framework.jCodesenum.BaseEnum;
+using System.Runtime.InteropServices;
 
 namespace JCodes.Framework.Common.Files
 {
@@ -582,6 +583,31 @@ namespace JCodes.Framework.Common.Files
                     return (BitConverter.ToString(hashBytes1) == BitConverter.ToString(hashBytes2));
                 }
             }
+        }
+
+        [DllImport("kernel32.dll")]
+        public static extern IntPtr _lopen(string lpPathName, int iReadWrite);
+
+        [DllImport("kernel32.dll")]
+        public static extern bool CloseHandle(IntPtr hObject);
+
+        public const int OF_READWRITE = 2;
+        public const int OF_SHARE_DENY_NONE = 0x40;
+
+        /// <summary>
+        /// 判断文件是否被占用
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns>被占用返回true, 未被占用返回false </returns>
+        public static bool FileIsUsing(string fileName)
+        {
+            IntPtr vHandle = _lopen(fileName, OF_READWRITE | OF_SHARE_DENY_NONE);
+            if (vHandle == new IntPtr(-1))  
+            {
+                return true;
+            }
+            CloseHandle(vHandle);  
+            return false;
         }
 
         #endregion

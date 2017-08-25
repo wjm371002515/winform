@@ -118,12 +118,5 @@ namespace JCodes.Framework.CommonControl.BaseUI
         protected DevExpress.XtraEditors.SimpleButton btnAdd;
         protected DataNavigator dataNavigator1;
         protected PictureBox picPrint;
-
-
-
-
-
-
-
     }
 }

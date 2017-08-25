@@ -165,7 +165,9 @@
     <Compile Include="BaseUI\FrmImportExcelData.designer.cs">
       <DependentUpon>FrmImportExcelData.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\ExRichTextBox.cs" />
+    <Compile Include="Controls\ExRichTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\ExRichTextBoxPrintHelper.cs" />
     <Compile Include="Controls\ExtensionMethod.cs" />
     <Compile Include="Controls\ucCodeEditor.cs">

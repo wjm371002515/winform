@@ -187,6 +187,24 @@ namespace JCodes.Framework.Common.Files
         }
 
         /// <summary>
+        /// 获取指定节点下面的XML内容
+        /// </summary>
+        /// <param name="XmlPathNode">XML节点</param>
+        /// <returns></returns>
+        public string ReadInnerXML(string XmlPathNode)
+        {
+            try
+            {
+                return objXmlDoc.SelectSingleNode(XmlPathNode).InnerXml;
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(XmlHelper));
+                throw ex;
+            }
+        }
+
+        /// <summary>
         /// 读取节点属性内容
         /// </summary>
         /// <param name="XmlPathNode">XML节点</param>
@@ -276,7 +294,7 @@ namespace JCodes.Framework.Common.Files
         /// <param name="Content">节点内容</param>
         public void Replace(string XmlPathNode, string Content)
         {
-            objXmlDoc.SelectSingleNode(XmlPathNode).InnerText = Content;
+            objXmlDoc.SelectSingleNode(XmlPathNode).InnerXml = Content;
         }
 
         /// <summary>
@@ -287,6 +305,25 @@ namespace JCodes.Framework.Common.Files
         {
             string mainNode = Node.Substring(0, Node.LastIndexOf("/"));
             objXmlDoc.SelectSingleNode(mainNode).RemoveChild(objXmlDoc.SelectSingleNode(Node));
+        }
+
+        /// <summary>
+        /// 获取指定节点下面的XML子节点
+        /// </summary>
+        /// <param name="XmlPathNode">XML节点</param>
+        /// <returns></returns>
+        public void DeleteByPathNode(string XmlPathNode)
+        {
+            try
+            {
+                XmlNode xn = objXmlDoc.SelectSingleNode(XmlPathNode);
+                xn.ParentNode.RemoveChild(xn);
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(XmlHelper));
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -319,8 +356,18 @@ namespace JCodes.Framework.Common.Files
             XmlNode objNode = objXmlDoc.SelectSingleNode(MainNode);
             XmlElement objElement = objXmlDoc.CreateElement(Element);
             objElement.SetAttribute(Attrib, AttribContent);
-            objElement.InnerText = Content;
+            objElement.InnerXml = Content;
             objNode.AppendChild(objElement);
+        }
+
+        public void InsertElement(string elementName, string Attrib, string AttribContent, string innerXML, XmlNode refChild)
+        {
+            XmlNode root = objXmlDoc.DocumentElement;
+            //Add the node to the document.
+            XmlNode nodeA = objXmlDoc.CreateElement(elementName);
+            ((XmlElement)nodeA).SetAttribute(Attrib, AttribContent);
+            nodeA.InnerXml = innerXML;
+            root.InsertBefore(nodeA, refChild);
         }
 
         /// <summary>
@@ -340,7 +387,7 @@ namespace JCodes.Framework.Common.Files
         /// <summary>
         /// 保存XML文档
         /// </summary>
-        public void Save()
+        public void Save(bool isSave = true)
         {
             try
             {
@@ -351,7 +398,8 @@ namespace JCodes.Framework.Common.Files
                 LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(XmlHelper));
                 throw ex;
             }
-            objXmlDoc = null;
+            if (isSave)
+                objXmlDoc = null;
         }
 
         /// <summary>

@@ -32,6 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.Data.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
@@ -57,6 +58,7 @@
     <Compile Include="Dic\ProvinceInfo.cs" />
     <Compile Include="Dic\SysparameterInfo.cs" />
     <Compile Include="Pager.Entity\PagerInfo.cs" />
+    <Compile Include="Proj\DataTypeInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\BlackIPInfo.cs" />
     <Compile Include="Security\CategoryEnum.cs" />
@@ -72,11 +74,9 @@
     <Compile Include="Security\SimpleUserInfo.cs" />
     <Compile Include="Security\SystemTypeInfo.cs" />
     <Compile Include="Security\UserInfo.cs" />
+    <Compile Include="SmallTools\MEBInfo.cs" />
     <Compile Include="SmallTools\MIPOInfo.cs" />
     <Compile Include="SmallTools\MFileInfo.cs" />
-    <Compile Include="SmallTools\MClientInfo.cs" />
-    <Compile Include="SmallTools\MAmountInfo.cs" />
-    <Compile Include="SmallTools\MBankInfo.cs" />
     <Compile Include="WareHouseMis\EnumClass.cs" />
     <Compile Include="WareHouseMis\ItemDetailInfo.cs" />
     <Compile Include="WareHouseMis\PurchaseDetailInfo.cs" />

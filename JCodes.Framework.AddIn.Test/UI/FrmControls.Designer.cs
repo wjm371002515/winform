@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmControls));
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.te = new DevExpress.XtraEditors.TimeEdit();
@@ -75,6 +76,8 @@
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
+            this.winGridViewPager1 = new JCodes.Framework.CommonControl.Pager.WinGridViewPager();
+            this.winGridView1 = new JCodes.Framework.CommonControl.Pager.WinGridView();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
@@ -608,19 +611,57 @@
             // xtraTabPage3
             // 
             this.xtraTabPage3.Controls.Add(this.gridControl1);
+            this.xtraTabPage3.Controls.Add(this.winGridViewPager1);
+            this.xtraTabPage3.Controls.Add(this.winGridView1);
             this.xtraTabPage3.Name = "xtraTabPage3";
             this.xtraTabPage3.Size = new System.Drawing.Size(1044, 586);
             this.xtraTabPage3.Text = "树形控件";
             // 
+            // winGridViewPager1
+            // 
+            this.winGridViewPager1.AppendedMenu = null;
+            this.winGridViewPager1.ColumnNameAlias = ((System.Collections.Generic.Dictionary<string, string>)(resources.GetObject("winGridViewPager1.ColumnNameAlias")));
+            this.winGridViewPager1.DataSource = null;
+            this.winGridViewPager1.DisplayColumns = "";
+            this.winGridViewPager1.FixedColumns = null;
+            this.winGridViewPager1.Location = new System.Drawing.Point(3, 221);
+            this.winGridViewPager1.MinimumSize = new System.Drawing.Size(540, 0);
+            this.winGridViewPager1.Name = "winGridViewPager1";
+            this.winGridViewPager1.PrintTitle = "";
+            this.winGridViewPager1.ShowAddMenu = true;
+            this.winGridViewPager1.ShowCheckBox = false;
+            this.winGridViewPager1.ShowDeleteMenu = true;
+            this.winGridViewPager1.ShowEditMenu = true;
+            this.winGridViewPager1.ShowExportButton = true;
+            this.winGridViewPager1.Size = new System.Drawing.Size(640, 212);
+            this.winGridViewPager1.TabIndex = 1;
+            // 
+            // winGridView1
+            // 
+            this.winGridView1.AppendedMenu = null;
+            this.winGridView1.ColumnNameAlias = ((System.Collections.Generic.Dictionary<string, string>)(resources.GetObject("winGridView1.ColumnNameAlias")));
+            this.winGridView1.DataSource = null;
+            this.winGridView1.DisplayColumns = "";
+            this.winGridView1.FixedColumns = null;
+            this.winGridView1.Location = new System.Drawing.Point(3, 3);
+            this.winGridView1.Name = "winGridView1";
+            this.winGridView1.PrintTitle = "";
+            this.winGridView1.ShowAddMenu = true;
+            this.winGridView1.ShowCheckBox = false;
+            this.winGridView1.ShowDeleteMenu = true;
+            this.winGridView1.ShowEditMenu = true;
+            this.winGridView1.ShowExportButton = true;
+            this.winGridView1.Size = new System.Drawing.Size(540, 212);
+            this.winGridView1.TabIndex = 0;
+            // 
             // gridControl1
             // 
             this.gridControl1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(0, 0);
+            this.gridControl1.Location = new System.Drawing.Point(599, 15);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1044, 586);
-            this.gridControl1.TabIndex = 0;
+            this.gridControl1.Size = new System.Drawing.Size(400, 200);
+            this.gridControl1.TabIndex = 2;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             // 
@@ -628,7 +669,17 @@
             // 
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsView.ShowColumnHeaders = false;
+            this.gridView1.OptionsCustomization.AllowFilter = false;
+            this.gridView1.OptionsCustomization.AllowGroup = false;
+            this.gridView1.OptionsMenu.EnableColumnMenu = false;
+            this.gridView1.OptionsMenu.EnableFooterMenu = false;
+            this.gridView1.OptionsMenu.EnableGroupPanelMenu = false;
+            this.gridView1.OptionsSelection.MultiSelect = true;
+            this.gridView1.OptionsView.ColumnAutoWidth = false;
+            this.gridView1.OptionsView.EnableAppearanceEvenRow = true;
+            this.gridView1.OptionsView.EnableAppearanceOddRow = true;
+            this.gridView1.OptionsView.ShowGroupExpandCollapseButtons = false;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
             // FrmControls
             // 
@@ -729,6 +780,8 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage3;
+        private CommonControl.Pager.WinGridViewPager winGridViewPager1;
+        private CommonControl.Pager.WinGridView winGridView1;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
     }

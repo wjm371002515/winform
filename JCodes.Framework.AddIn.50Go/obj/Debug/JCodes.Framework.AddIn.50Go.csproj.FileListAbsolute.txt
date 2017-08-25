@@ -1,6 +1,5 @@
 G:\github_winform\winform\jCodes\JCodes.Framework.AddIn.50Go.dll
 G:\github_winform\winform\jCodes\JCodes.Framework.AddIn.50Go.pdb
-G:\github_winform\winform\JCodes.Framework.AddIn.50Go\obj\Debug\JCodes.Framework.AddIn.50Go.csprojResolveAssemblyReference.cache
 G:\github_winform\winform\JCodes.Framework.AddIn.50Go\obj\Debug\JCodes.Framework.AddIn._50Go.FrmCoupon.resources
 G:\github_winform\winform\JCodes.Framework.AddIn.50Go\obj\Debug\JCodes.Framework.AddIn._50Go.FrmCouponCategory.resources
 G:\github_winform\winform\JCodes.Framework.AddIn.50Go\obj\Debug\JCodes.Framework.AddIn._50Go.FrmEditCouponCategory.resources

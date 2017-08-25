@@ -1,0 +1,9 @@
+G:\github_winform\winform\jCodes\JCodes.Framework.AddIn.Proj.dll
+G:\github_winform\winform\jCodes\JCodes.Framework.AddIn.Proj.pdb
+G:\github_winform\winform\JCodes.Framework.AddIn.Proj\obj\Debug\JCodes.Framework.AddIn.Proj.csprojResolveAssemblyReference.cache
+G:\github_winform\winform\JCodes.Framework.AddIn.Proj\obj\Debug\JCodes.Framework.AddIn.Proj.FrmDefaultType.resources
+G:\github_winform\winform\JCodes.Framework.AddIn.Proj\obj\Debug\JCodes.Framework.AddIn.Proj.csproj.GenerateResource.Cache
+G:\github_winform\winform\JCodes.Framework.AddIn.Proj\obj\Debug\JCodes.Framework.AddIn.Proj.dll
+G:\github_winform\winform\JCodes.Framework.AddIn.Proj\obj\Debug\JCodes.Framework.AddIn.Proj.pdb
+G:\github_winform\winform\JCodes.Framework.AddIn.Proj\obj\Debug\JCodes.Framework.AddIn.Proj.FrmInfoDetail.resources
+G:\github_winform\winform\JCodes.Framework.AddIn.Proj\obj\Debug\JCodes.Framework.AddIn.Proj.dll.licenses
