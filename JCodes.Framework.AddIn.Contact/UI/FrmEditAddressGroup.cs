@@ -68,9 +68,9 @@ namespace JCodes.Framework.AddIn.Contact
             this.txtPID.Properties.Items.Clear();
             foreach (AddressGroupInfo info in comboList)
             {
-                this.txtPID.Properties.Items.Add(new CListItem(info.Name, info.ID));
+                this.txtPID.Properties.Items.Add(new CListItem(info.ID, info.Name));
             }
-            this.txtPID.Properties.Items.Insert(0, new CListItem("нч", "-1"));
+            this.txtPID.Properties.Items.Insert(0, new CListItem("-1", "нч"));
             if (this.txtPID.Properties.Items.Count == 1)
             {
                 this.txtPID.SelectedIndex = 0;

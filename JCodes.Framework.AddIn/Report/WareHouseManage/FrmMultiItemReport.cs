@@ -67,9 +67,9 @@ namespace JCodes.Framework.AddIn.Report.WareHouseManage
         private void InitItem()
         {
             this.txtFieldName.Properties.Items.Clear();
-            this.txtFieldName.Properties.Items.Add(new CListItem("备件名称", "ItemName"));
-            this.txtFieldName.Properties.Items.Add(new CListItem("所在库位", "StoragePos"));
-            this.txtFieldName.Properties.Items.Add(new CListItem("规格型号", "Specification"));
+            this.txtFieldName.Properties.Items.Add(new CListItem("ItemName", "备件名称"));
+            this.txtFieldName.Properties.Items.Add(new CListItem("StoragePos", "所在库位"));
+            this.txtFieldName.Properties.Items.Add(new CListItem( "Specification", "规格型号"));
 
             this.txtWareHouse.Properties.Items.Clear();
             this.txtWareHouse.Properties.Items.AddRange(BLLFactory<WareHouse>.Instance.GetAllWareHouse().ToArray());

@@ -20,6 +20,8 @@ namespace JCodes.Framework.AddIn.SmallTools
         private List<MEBInfo> _mEBInfolst = new List<MEBInfo>();
         // 从第几行开始写数据
         private Int32 _rowNum = 2;
+        // 文件标识
+        private Int32 _fileNum = 0;
 
         public xlsDataDeal()
         {
@@ -69,6 +71,8 @@ namespace JCodes.Framework.AddIn.SmallTools
                 return false;
             }
 
+            // 20170829 wjm 不在检查文件名
+            /*
             string[] fileDetail = filename.Split('-');
 
             if (fileDetail.Length != 3)
@@ -91,7 +95,7 @@ namespace JCodes.Framework.AddIn.SmallTools
             {
                 LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, "第三个串内容不是 17浙报EB网下认购申请表 不符合 " + filename, typeof(xlsDataDeal));
                 return false;
-            }
+            }*/
                 
             return true;
         }
@@ -131,6 +135,9 @@ namespace JCodes.Framework.AddIn.SmallTools
         /// <param name="e"></param>
         private void btnDeal_Click(object sender, EventArgs e)
         {
+            // 重新置文件标识
+            _fileNum = 0;
+
             if (txtPath.Text.Trim().Length <= 0)
             {
                 LogHelper.WriteLog(LogLevel.LOG_LEVEL_ERR, "检查错误 请选择xls路径", typeof(xlsDataDeal));
@@ -211,6 +218,7 @@ namespace JCodes.Framework.AddIn.SmallTools
             LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, " 开始处理文件: " + filename, typeof(xlsDataDeal));
             rtbLog.AppendText(DateTime.Now.ToString() + " 开始处理文件: " + filename + "\r\n");
             string path = txtPath.Text.Trim();
+
             if (!File.Exists(path + "\\"+ filename))
             {
                 LogHelper.WriteLog(LogLevel.LOG_LEVEL_ERR, "检查错误 路径[" + path + "\\" + filename + "] 对应的文件不存在", typeof(xlsDataDeal));
@@ -246,6 +254,10 @@ namespace JCodes.Framework.AddIn.SmallTools
         {
             LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, " 开始读取文件: " + filename, typeof(xlsDataDeal));
             rtbLog.AppendText(DateTime.Now.ToString() + " 开始读取文件: " + filename + "\r\n");
+
+            // 每次新增文件标识
+            _fileNum++;
+
             // 列
             Int32 column = 0;
             // 行
@@ -326,17 +338,17 @@ namespace JCodes.Framework.AddIn.SmallTools
 
                         if (!string.IsNullOrEmpty(rate1))
                         {
-                            _mEBInfolst.Add(new MEBInfo() { OrganizeName = organizeName, AccountName = accountName, AccountCode = accountCode, Seat = seat, CardId = cardId, Rate = rate1, Balance = balance1, BankName = bankName, BankAccount = bankAccount, ClientName = clientName, BankProvince = bankProvince, SystemId = systemId});
+                            _mEBInfolst.Add(new MEBInfo() { OrganizeName = organizeName, AccountName = accountName, AccountCode = accountCode, Seat = seat, CardId = cardId, Rate = rate1, Balance = balance1, BankName = bankName, BankAccount = bankAccount, ClientName = clientName, BankProvince = bankProvince, SystemId = systemId, Ident = _fileNum.ToString()});
                         }
 
                         if (!string.IsNullOrEmpty(rate2))
                         {
-                            _mEBInfolst.Add(new MEBInfo() { OrganizeName = organizeName, AccountName = accountName, AccountCode = accountCode, Seat = seat, CardId = cardId, Rate = rate2, Balance = balance2, BankName = bankName, BankAccount = bankAccount, ClientName = clientName, BankProvince = bankProvince, SystemId = systemId });
+                            _mEBInfolst.Add(new MEBInfo() { OrganizeName = organizeName, AccountName = accountName, AccountCode = accountCode, Seat = seat, CardId = cardId, Rate = rate2, Balance = balance2, BankName = bankName, BankAccount = bankAccount, ClientName = clientName, BankProvince = bankProvince, SystemId = systemId, Ident = _fileNum.ToString() });
                         }
 
                         if (!string.IsNullOrEmpty(rate3))
                         {
-                            _mEBInfolst.Add(new MEBInfo() { OrganizeName = organizeName, AccountName = accountName, AccountCode = accountCode, Seat = seat, CardId = cardId, Rate = rate3, Balance = balance3, BankName = bankName, BankAccount = bankAccount, ClientName = clientName, BankProvince = bankProvince, SystemId = systemId });
+                            _mEBInfolst.Add(new MEBInfo() { OrganizeName = organizeName, AccountName = accountName, AccountCode = accountCode, Seat = seat, CardId = cardId, Rate = rate3, Balance = balance3, BankName = bankName, BankAccount = bankAccount, ClientName = clientName, BankProvince = bankProvince, SystemId = systemId, Ident = _fileNum.ToString() });
                         }
                     }
                     catch (Exception ex)
@@ -391,6 +403,7 @@ namespace JCodes.Framework.AddIn.SmallTools
                     sheet[_rowNum, 10].Text = a.BankAccount;
                     sheet[_rowNum, 11].Text = a.SystemId;
                     sheet[_rowNum, 12].Text = a.BankProvince;
+                    sheet[_rowNum, 13].Text = a.Ident;
 
                     LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, String.Format(" 插入调试信息: 文件名[filename={0}],机构名或姓名[OrganizeName={1}]," + "证券账户户名（上海）[AccountName={2}],证券账户代码（上海）[AccountCode={3}],托管席位号[Seat={4}],身份证明号码（如营业执照注册号等）[CardId={5}],到期赎回价格[Rate={6}],申购金额[Balance={7}],退款汇入行全称[BankName={8}],退款收款人全称[ClientName={9}],退款收款人账号[BankAccount={10}],大额支付系统号[SystemId={11}],退款汇入行省份[BankProvince={12}]", filename, a.OrganizeName, a.AccountName, a.AccountCode, a.Seat, a.CardId, a.Rate.ToString(), a.Balance.ToString(), a.BankName, a.ClientName, a.BankAccount, a.SystemId, a.BankProvince), typeof(xlsDataDeal));
 

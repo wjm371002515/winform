@@ -32,7 +32,7 @@ namespace JCodes.Framework.Common.Network
                 ReadOnlyCollection<RasConnection> ret = RasConnection.GetActiveConnections();
                 foreach (RasConnection connection in ret)
                 {
-                    list.Add(new CListItem(connection.EntryName, connection.EntryId.ToString()));
+                    list.Add(new CListItem(connection.EntryId.ToString(), connection.EntryName));
                 }
             }
             catch (Exception ex)

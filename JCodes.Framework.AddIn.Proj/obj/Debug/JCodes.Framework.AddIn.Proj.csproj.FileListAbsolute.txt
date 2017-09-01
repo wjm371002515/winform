@@ -7,3 +7,6 @@ G:\github_winform\winform\JCodes.Framework.AddIn.Proj\obj\Debug\JCodes.Framework
 G:\github_winform\winform\JCodes.Framework.AddIn.Proj\obj\Debug\JCodes.Framework.AddIn.Proj.pdb
 G:\github_winform\winform\JCodes.Framework.AddIn.Proj\obj\Debug\JCodes.Framework.AddIn.Proj.FrmInfoDetail.resources
 G:\github_winform\winform\JCodes.Framework.AddIn.Proj\obj\Debug\JCodes.Framework.AddIn.Proj.dll.licenses
+G:\github_winform\winform\JCodes.Framework.AddIn.Proj\obj\Debug\JCodes.Framework.AddIn.Proj.FrmDataType.resources
+G:\github_winform\winform\jCodes\XML\datatype.xml
+G:\github_winform\winform\jCodes\XML\defaulttype.xml

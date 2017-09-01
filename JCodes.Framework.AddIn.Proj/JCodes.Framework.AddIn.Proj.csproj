@@ -60,6 +60,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\FrmDataType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmDataType.Designer.cs">
+      <DependentUpon>FrmDataType.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\FrmDefaultType.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +81,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="UI\FrmDataType.resx">
+      <DependentUpon>FrmDataType.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\FrmDefaultType.resx">
       <DependentUpon>FrmDefaultType.cs</DependentUpon>
     </EmbeddedResource>
@@ -101,8 +110,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="XML\datatype.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="XML\defaulttype.xml">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

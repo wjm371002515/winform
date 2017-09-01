@@ -76,7 +76,7 @@ namespace JCodes.Framework.AddIn.Security
             List<SystemTypeInfo> systemList = BLLFactory<SystemType>.Instance.GetAll();
             foreach (SystemTypeInfo info in systemList)
             {
-                this.txtSystemType.Properties.Items.Add(new CListItem(info.Name, info.OID));
+                this.txtSystemType.Properties.Items.Add(new CListItem(info.OID, info.Name));
             }
             if (this.txtSystemType.Properties.Items.Count == 1)
             {

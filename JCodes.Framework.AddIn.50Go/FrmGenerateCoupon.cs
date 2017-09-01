@@ -88,7 +88,8 @@ namespace JCodes.Framework.AddIn._50Go
             List<CouponCategoryInfo> lst = BLLFactory<CouponCategory>.Instance.GetAllCouponCategory();
             foreach (var couponCategory in lst)
             {
-                this.txtCategory.Properties.Items.Add(new CListItem(couponCategory.HandNo + "-" + couponCategory.Name, couponCategory.ID));
+                // 20170901 wjm 调整key 和value的顺序
+                this.txtCategory.Properties.Items.Add(new CListItem(couponCategory.ID, couponCategory.HandNo + "-" + couponCategory.Name ));
             }
         }
 

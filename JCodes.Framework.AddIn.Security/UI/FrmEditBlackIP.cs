@@ -92,7 +92,7 @@ namespace JCodes.Framework.AddIn.Security
             this.txtAuthorizeType.Properties.Items.Clear();
             foreach (string item in dictEnum.Keys)
             {
-                this.txtAuthorizeType.Properties.Items.Add(new CListItem(item, dictEnum[item].ToString()));
+                this.txtAuthorizeType.Properties.Items.Add(new CListItem(dictEnum[item].ToString(), item));
             }
         }
 
@@ -240,7 +240,8 @@ namespace JCodes.Framework.AddIn.Security
             foreach (SimpleUserInfo info in list)
             {
                 string name = string.Format("{0}（{1}）", info.FullName, info.Name);
-                CListItem item = new CListItem(name, info.ID.ToString());
+                // 20170901 wjm 调整key 和value的顺序
+                CListItem item = new CListItem(info.ID.ToString(), name);
                 this.lvwUser.Items.Add(item);
 
                 if (!SelectUserDict.ContainsKey(info.ID.ToString()))

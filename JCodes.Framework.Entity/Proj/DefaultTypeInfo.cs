@@ -7,9 +7,9 @@ using System.Text;
 
 namespace JCodes.Framework.Entity
 {
-    public class DataTypeInfo : IDXDataErrorInfo
+    public class DefaultTypeInfo : IDXDataErrorInfo
     {
-        public DataTypeInfo()
+        public DefaultTypeInfo()
         { }
 
         private string guid;
@@ -35,47 +35,65 @@ namespace JCodes.Framework.Entity
 
         private string chineseName;
 
-        [DisplayName("类型名称")]
+        [DisplayName("名称")]
         public string ChineseName
         {
             get { return chineseName; }
             set { chineseName = value; }
         }
+        
+        private string oracle;
 
-        private string stdType;
-
-        [DisplayName("标准类型")]
-        public string StdType
+        [DisplayName("Oracle")]
+        public string Oracle
         {
-            get { return stdType; }
-            set { stdType = value; }
+            get { return oracle; }
+            set { oracle = value; }
         }
 
-        private string length;
+        private string mysql;
 
-        [DisplayName("长度")]
-        public string Length
+        [DisplayName("Mysql")]
+        public string Mysql
         {
-            get { return length; }
-            set { length = value; }
+            get { return mysql; }
+            set { mysql = value; }
         }
 
-        private string precision;
+        private string db2;
 
-        [DisplayName("精度")]
-        public string Precision
+        [DisplayName("DB2")]
+        public string DB2
         {
-            get { return precision; }
-            set { precision = value; }
+            get { return db2; }
+            set { db2 = value; }
         }
 
-        private string remark;
+        private string sqlserver;
 
-        [DisplayName("备注")]
-        public string Remark
+        [DisplayName("SqlServer")]
+        public string SqlServer
         {
-            get { return remark; }
-            set { remark = value; }
+            get { return sqlserver; }
+            set { sqlserver = value; }
+        }
+
+        private string sqlite;
+
+        [DisplayName("Sqlite")]
+        public string Sqlite
+        {
+            get { return sqlite; }
+            set { sqlite = value; }
+        }
+
+        private string access;
+
+        [DisplayName("Access")]
+        public string Access
+        {
+            get { return access; }
+            set { access = value; }
         }
 
         /// <summary>

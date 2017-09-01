@@ -143,5 +143,15 @@ namespace JCodes.Framework.Entity.SmallTools
             get { return _bankProvince; }
         }
 
+        private string _ident;
+        /// <summary>
+        /// 标识
+        /// </summary>
+        public string Ident
+        {
+            set { _ident = value; }
+            get { return _ident; }
+        }
+
     }
 }

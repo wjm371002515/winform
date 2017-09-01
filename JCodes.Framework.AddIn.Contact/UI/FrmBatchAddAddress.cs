@@ -247,7 +247,8 @@ namespace JCodes.Framework.AddIn.Contact
             this.checkedListContact.Items.Clear();
             foreach (AddressGroupNodeInfo nodeInfo in groupList)
             {
-                this.checkedListContact.Items.Add(new CListItem(nodeInfo.Name, nodeInfo.ID), false);
+                // // 20170901 wjm 调整key 和value的顺序
+                this.checkedListContact.Items.Add(new CListItem(nodeInfo.ID, nodeInfo.Name), false);
             }
             this.checkedListContact.EndUpdate();
         }

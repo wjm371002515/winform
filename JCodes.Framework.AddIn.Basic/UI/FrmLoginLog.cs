@@ -54,9 +54,11 @@ namespace JCodes.Framework.AddIn.Basic
             List<SystemTypeInfo> systemList = BLLFactory<SystemType>.Instance.GetAll();
             foreach (SystemTypeInfo info in systemList)
             {
-                this.txtSystemType.Properties.Items.Add(new CListItem(info.Name, info.OID));
+                // 20170901 wjm 调整key 和value的顺序
+                this.txtSystemType.Properties.Items.Add(new CListItem(info.OID, info.Name));
             }
-            this.txtSystemType.Properties.Items.Add(new CListItem("所有", ""));
+            // 20170901 wjm 调整key 和value的顺序
+            this.txtSystemType.Properties.Items.Add(new CListItem(string.Empty, "所有"));
         }
 
         void gridView1_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)

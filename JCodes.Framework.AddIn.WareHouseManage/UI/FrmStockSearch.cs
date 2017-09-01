@@ -161,7 +161,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
         private void InitDictItem()
         {
             this.txtSearchWareHouse.Properties.Items.Clear();
-            this.txtSearchWareHouse.Properties.Items.Add(new CListItem("所有仓库", ""));
+            this.txtSearchWareHouse.Properties.Items.Add(new CListItem("", "所有仓库"));
             this.txtSearchWareHouse.Properties.Items.AddRange(BLLFactory<WareHouse>.Instance.GetAllWareHouse().ToArray());
 
             //使用扩展函数方式绑定字典

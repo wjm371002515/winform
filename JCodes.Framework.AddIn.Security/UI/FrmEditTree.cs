@@ -67,14 +67,14 @@ namespace JCodes.Framework.AddIn.Security
                     {
                         if (!checkedDict.ContainsKey(info.ID.ToString()))
                         {
-                            checkedDict.Add(info.ID.ToString(), new CListItem(info.Name, info.PID.ToString()));
+                            checkedDict.Add(info.ID.ToString(), new CListItem(info.PID.ToString(), info.Name));
                         }
                     }
                     foreach (OUInfo info in list)
                     {
                         if (!treeDict.ContainsKey(info.ID.ToString()))
                         {
-                            treeDict.Add(info.ID.ToString(), new CListItem(info.Name, info.PID.ToString()));
+                            treeDict.Add(info.ID.ToString(), new CListItem(info.PID.ToString(), info.Name));
                         }
                     } 
                     #endregion
@@ -98,14 +98,14 @@ namespace JCodes.Framework.AddIn.Security
                     {
                         if (!checkedDict.ContainsKey(info.ID.ToString()))
                         {
-                            checkedDict.Add(info.ID.ToString(), new CListItem(info.Name, "-1"));
+                            checkedDict.Add(info.ID.ToString(), new CListItem("-1", info.Name));
                         }
                     }
                     foreach (RoleInfo info in list)
                     {
                         if (!treeDict.ContainsKey(info.ID.ToString()))
                         {
-                            treeDict.Add(info.ID.ToString(), new CListItem(info.Name, "-1"));
+                            treeDict.Add(info.ID.ToString(), new CListItem("-1", info.Name));
                         }
                     } 
                     #endregion
@@ -134,7 +134,7 @@ namespace JCodes.Framework.AddIn.Security
                         if (!checkedDict.ContainsKey(info.ID.ToString()))
                         {
                             string name = string.Format("{0}（{1}）", info.Name, info.FullName);
-                            checkedDict.Add(info.ID.ToString(), new CListItem(name, info.PID.ToString()));
+                            checkedDict.Add(info.ID.ToString(), new CListItem(info.PID.ToString(), name));
                         }
                     }
                     foreach (UserInfo info in list)
@@ -142,7 +142,7 @@ namespace JCodes.Framework.AddIn.Security
                         if (!treeDict.ContainsKey(info.ID.ToString()))
                         {
                             string name = string.Format("{0}（{1}）", info.Name, info.FullName);
-                            treeDict.Add(info.ID.ToString(), new CListItem(name, info.PID.ToString()));
+                            treeDict.Add(info.ID.ToString(), new CListItem(info.PID.ToString(), name));
                         }
                     } 
                     #endregion
@@ -170,14 +170,16 @@ namespace JCodes.Framework.AddIn.Security
                     {
                         if (!checkedDict.ContainsKey(info.ID))
                         {
-                            checkedDict.Add(info.ID, new CListItem(info.Name, info.PID.ToString()));
+                            // 20170901 wjm 调整key 和value的顺序
+                            checkedDict.Add(info.ID, new CListItem( info.PID.ToString(), info.Name));
                         }
                     }
                     foreach (FunctionInfo info in list)
                     {
                         if (!treeDict.ContainsKey(info.ID))
                         {
-                            treeDict.Add(info.ID, new CListItem(info.Name, info.PID.ToString()));
+                            // 20170901 wjm 调整key 和value的顺序
+                            treeDict.Add(info.ID, new CListItem(info.PID.ToString(), info.Name));
                         }
                     } 
                     #endregion

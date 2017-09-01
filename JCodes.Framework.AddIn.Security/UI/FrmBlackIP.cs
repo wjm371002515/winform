@@ -145,7 +145,8 @@ namespace JCodes.Framework.AddIn.Security
             this.txtAuthorizeType.Properties.Items.Clear();
             foreach (string item in dictEnum.Keys)
             {
-                this.txtAuthorizeType.Properties.Items.Add(new CListItem(item, dictEnum[item].ToString()));
+                // 20170901 wjm 调整key 和value的顺序
+                this.txtAuthorizeType.Properties.Items.Add(new CListItem(dictEnum[item].ToString(), item));
             }
         }
         

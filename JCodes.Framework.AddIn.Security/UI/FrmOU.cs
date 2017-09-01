@@ -117,7 +117,7 @@ namespace JCodes.Framework.AddIn.Security
             List<RoleInfo> list = BLLFactory<Role>.Instance.GetRolesByOU(id);
             foreach (RoleInfo info in list)
             {
-                CListItem item = new CListItem(info.Name, info.ID.ToString());
+                CListItem item = new CListItem(info.ID.ToString(), info.Name);
                 this.lvwRole.Items.Add(item);
             }
             if (this.lvwRole.Items.Count > 0)
@@ -141,7 +141,7 @@ namespace JCodes.Framework.AddIn.Security
             foreach (SimpleUserInfo info in list)
             {
                 string name = string.Format("{0}（{1}）", info.FullName, info.Name);
-                CListItem item = new CListItem(name, info.ID.ToString());
+                CListItem item = new CListItem(info.ID.ToString(), name);
                 this.lvwUser.Items.Add(item);
 
                 if (!SelectUserDict.ContainsKey(info.ID.ToString()))

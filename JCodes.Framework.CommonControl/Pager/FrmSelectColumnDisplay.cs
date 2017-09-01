@@ -93,7 +93,7 @@ namespace JCodes.Framework.CommonControl.Pager
                 string newName = GetRightColumnName(columnName);
                 if (!string.IsNullOrEmpty(newName))
                 {
-                    mCheckedListBox.Items.Add(new CListItem(GetColumnNameAlias(newName), newName), true);
+                    mCheckedListBox.Items.Add(new CListItem(newName, GetColumnNameAlias(newName)), true);
                 }
             }
 

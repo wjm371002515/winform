@@ -31,7 +31,7 @@ namespace TestControlUtil
         private void FrmADSLDialer_Load(object sender, EventArgs e)
         {
             this.txtRasName.Items.Clear();
-            CListItem item = new CListItem("请选择一个链接...", "");
+            CListItem item = new CListItem("", "请选择一个链接...");
             this.txtRasName.Items.Add(item);
 
             List<CListItem> list = util.InitRAS();

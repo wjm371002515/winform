@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<datatype>
+  <item guid="1FB6734A-46DF-49E8-89A1-60E38E062D1E">
+    <name>CHAR_256</name>
+    <chineseName>字符串256</chineseName>
+    <stdtype></stdtype>
+    <length>tinyint(3)</length>
+    <precision>smallint</precision>
+    <remark>tinyint</remark>
+  </item>
+</datatype>

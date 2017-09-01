@@ -187,7 +187,7 @@ namespace JCodes.Framework.CommonControl.Controls
         {
             combo.Properties.BeginUpdate();//可以加快
             combo.Properties.Items.Clear();
-            combo.Properties.Items.Add(new CListItem(Const.NoSelectMsg, Const.NoSeletValue.ToString()));
+            combo.Properties.Items.Add(new CListItem(Const.NoSeletValue.ToString(), Const.NoSelectMsg));
             combo.Properties.Items.AddRange(itemList);
             /*for (Int32 i = 0; i < itemList.Count; i++)
             { 

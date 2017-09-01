@@ -46,7 +46,7 @@ namespace JCodes.Framework.BLL
             List<WareHouseInfo> wareList = BLLFactory<WareHouse>.Instance.GetAll();
             foreach (WareHouseInfo wareInfo in wareList)
             {
-                itemList.Add(new CListItem(wareInfo.Name, wareInfo.ID.ToString()));
+                itemList.Add(new CListItem(wareInfo.ID.ToString(), wareInfo.Name));
             }
             return itemList;
         }

@@ -80,7 +80,7 @@ namespace JCodes.Framework.SQLServerDAL
             DataTable dt = SqlTable(sql);
             foreach (DataRow dr in dt.Rows)
             {
-                CListItem cl = new CListItem(dr["Name"].ToString(), dr["ID"].ToString());
+                CListItem cl = new CListItem( dr["ID"].ToString(), dr["Name"].ToString());
                 lst.Add(cl);
             }
             return lst;

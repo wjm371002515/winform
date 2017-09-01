@@ -81,6 +81,7 @@ namespace JCodes.Framework.AccessDAL
             DataTable dt = SqlTable(sql);
             foreach (DataRow dr in dt.Rows)
             {
+                // 20170901 wjm 调整key 和value的顺序
                 CListItem cl = new CListItem(dr["ID"].ToString(), dr["Name"].ToString());
                 lst.Add(cl);
             }

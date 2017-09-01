@@ -58,11 +58,11 @@ namespace JCodes.Framework.AddIn.Security
             //初始化代码
             this.cmbManager.Properties.BeginUpdate();
             this.cmbManager.Properties.Items.Clear();
-            this.cmbManager.Properties.Items.Add(new CListItem("无", "-1"));
+            this.cmbManager.Properties.Items.Add(new CListItem("-1", "无"));
             List<UserInfo> list = BLLFactory<User>.Instance.FindByDept(DeptID);
             foreach (UserInfo info in list)
             {
-                this.cmbManager.Properties.Items.Add(new CListItem(info.FullName, info.ID.ToString()));
+                this.cmbManager.Properties.Items.Add(new CListItem(info.ID.ToString(), info.FullName));
             }
             this.cmbManager.Properties.EndUpdate();
         }

@@ -10,3 +10,4 @@ G:\github_winform\winform\JCodes.Framework.AddIn.Contact\obj\Debug\JCodes.Framew
 G:\github_winform\winform\JCodes.Framework.AddIn.Contact\obj\Debug\JCodes.Framework.AddIn.Contact.csproj.GenerateResource.Cache
 G:\github_winform\winform\JCodes.Framework.AddIn.Contact\obj\Debug\JCodes.Framework.AddIn.Contact.dll
 G:\github_winform\winform\JCodes.Framework.AddIn.Contact\obj\Debug\JCodes.Framework.AddIn.Contact.pdb
+G:\github_winform\winform\JCodes.Framework.AddIn.Contact\obj\Debug\JCodes.Framework.AddIn.Contact.csprojResolveAssemblyReference.cache

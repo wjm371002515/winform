@@ -274,7 +274,7 @@ namespace JCodes.Framework.AddIn.Contact
             foreach (AddressGroupNodeInfo nodeInfo in groupList)
             {
                 bool check = groupIdList.Contains(nodeInfo.ID);
-                this.checkedListContact.Items.Add(new CListItem(nodeInfo.Name, nodeInfo.ID), check);
+                this.checkedListContact.Items.Add(new CListItem(nodeInfo.ID, nodeInfo.Name), check);
             }
             this.checkedListContact.EndUpdate();
         }

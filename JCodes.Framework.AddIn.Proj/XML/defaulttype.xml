@@ -1,23 +1,123 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <datatype>
-  <item guid="1FB6734A-46DF-49E8-89A1-60E38E062D1E">
+  <item guid="3d668a2b-d7d4-4e20-a072-817dfdaeb6e7">
     <name>STDtinyInt</name>
     <chineseName>整数</chineseName>
     <oracle>number(3,0)</oracle>
-    <mysql>tinyint(3)</mysql>
+    <mysql>tinyint</mysql>
     <db2>smallint</db2>
     <sqlserver>tinyint</sqlserver>
     <sqlite>tinyint</sqlite>
-    <access>tinyint</access>
+    <access>integer</access>
   </item>
-  <item guid="1FB6734A-46DF-49E8-89A1-60E38E062D12">
-    <name>STDtinyInt</name>
-    <chineseName>整数2</chineseName>
-    <oracle>number(3,0)</oracle>
-    <mysql>tinyint(3)</mysql>
+  <item guid="c7de470c-af8d-4b06-b23e-37fd5a76725a">
+    <name>STDsmallInt</name>
+    <chineseName>整数</chineseName>
+    <oracle>number(5,0)</oracle>
+    <mysql>tinyint</mysql>
     <db2>smallint</db2>
-    <sqlserver>tinyint</sqlserver>
-    <sqlite>tinyint</sqlite>
-    <access>tinyint</access>
+    <sqlserver>smallint</sqlserver>
+    <sqlite>smallint</sqlite>
+    <access>integer</access>
+  </item>
+  <item guid="4f25b339-d3bd-4c08-81ca-62754f3b558f">
+    <name>STDmediumInt</name>
+    <chineseName>整数</chineseName>
+    <oracle>number(7,0)</oracle>
+    <mysql>int</mysql>
+    <db2>int</db2>
+    <sqlserver>int</sqlserver>
+    <sqlite>int</sqlite>
+    <access>integer</access>
+  </item>
+  <item guid="bfa6fb85-f71e-45e1-a060-1b431e8aadbf">
+    <name>STDint</name>
+    <chineseName>整数</chineseName>
+    <oracle>number(10,0)</oracle>
+    <mysql>int</mysql>
+    <db2>int</db2>
+    <sqlserver>int</sqlserver>
+    <sqlite>int</sqlite>
+    <access>integer</access>
+  </item>
+  <item guid="ecbf1d53-2cc1-4dd3-85d4-a8514fabf967">
+    <name>STDbigInt</name>
+    <chineseName>整数</chineseName>
+    <oracle>number(20,0)</oracle>
+    <mysql>bigint</mysql>
+    <db2>bigint</db2>
+    <sqlserver>numeric(20)</sqlserver>
+    <sqlite>numeric(20)</sqlite>
+    <access>integer</access>
+  </item>
+  <item guid="82fccf5f-7c4d-4abc-885a-2f37d18217ed">
+    <name>STDdecimal</name>
+    <chineseName>精度数</chineseName>
+    <oracle>number($L,$P)</oracle>
+    <mysql>decimal($L,$P)</mysql>
+    <db2>decimal($L,$P)</db2>
+    <sqlserver>decimal($L,$P)</sqlserver>
+    <sqlite>decimal($L,$P)</sqlite>
+    <access>integer</access>
+  </item>
+  <item guid="4dafae22-1a5a-4843-803c-97c7778f6d61">
+    <name>STDchar</name>
+    <chineseName>字符</chineseName>
+    <oracle>char($L)</oracle>
+    <mysql>char($L)</mysql>
+    <db2>char($L)</db2>
+    <sqlserver>decimal($L,$P)</sqlserver>
+    <sqlite>decimal($L,$P)</sqlite>
+    <access>integer</access>
+  </item>
+  <item guid="e64e59dc-00fb-418b-83a6-a978f0725d2a">
+    <name>STDstr</name>
+    <chineseName>字符串</chineseName>
+    <oracle>varchar2($L)</oracle>
+    <mysql>varchar($L)</mysql>
+    <db2>varchar($L)</db2>
+    <sqlserver>decimal($L,$P)</sqlserver>
+    <sqlite>decimal($L,$P)</sqlite>
+    <access>integer</access>
+  </item>
+  <item guid="35a2f5c8-c327-4338-b8d9-eef4c5160e45">
+    <name>STDdatetime</name>
+    <chineseName>日期时间</chineseName>
+    <oracle>date</oracle>
+    <mysql>datetime</mysql>
+    <db2>timestamp</db2>
+    <sqlserver>decimal($L,$P)</sqlserver>
+    <sqlite>decimal($L,$P)</sqlite>
+    <access>integer</access>
+  </item>
+  <item guid="5f6eb462-d616-4c18-a465-b2d1134d5abf">
+    <name>STDtext</name>
+    <chineseName>大字段</chineseName>
+    <oracle>clob</oracle>
+    <mysql>text</mysql>
+    <db2>clob</db2>
+    <sqlserver>decimal($L,$P)</sqlserver>
+    <sqlite>decimal($L,$P)</sqlite>
+    <access>integer</access>
+  </item>
+  <item guid="788e6ec7-b341-4d40-b628-87e69ce0fe2c">
+    <name>STDdate</name>
+    <chineseName>日期</chineseName>
+    <oracle>number(8,0)</oracle>
+    <mysql>int</mysql>
+    <db2>int</db2>
+    <sqlserver>decimal($L,$P)</sqlserver>
+    <sqlite>decimal($L,$P)</sqlite>
+    <access>integer</access>
+  </item>
+  <item guid="83c24b82-c09e-4f80-84ee-bc298fc74e5e">
+    <name>STDtime</name>
+    <chineseName>时间</chineseName>
+    <oracle>number(6,0)</oracle>
+    <mysql>int</mysql>
+    <db2>int</db2>
+    <sqlserver>decimal($L,$P)</sqlserver>
+    <sqlite>decimal($L,$P)</sqlite>
+    <access>integer</access>
   </item>
 </datatype>

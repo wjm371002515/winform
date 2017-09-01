@@ -286,7 +286,7 @@ namespace JCodes.Framework.AddIn.Security
             foreach (UserInfo info in list)
             {
                 string name = string.Format("{0}（{1}）", info.FullName, info.Name);
-                CListItem item = new CListItem(name, info.ID.ToString());
+                CListItem item = new CListItem(info.ID.ToString(), name);
                 this.lvwUser.Items.Add(item);
 
                 if (!SelectUserDict.ContainsKey(info.ID.ToString()))
@@ -309,7 +309,7 @@ namespace JCodes.Framework.AddIn.Security
             List<OUInfo> list = BLLFactory<OU>.Instance.GetOUsByRole(roleId);
             foreach (OUInfo info in list)
             {
-                CListItem item = new CListItem(info.Name, info.ID.ToString());
+                CListItem item = new CListItem( info.ID.ToString(), info.Name);
                 this.lvwOU.Items.Add(item);
             }
             if (this.lvwOU.Items.Count > 0)

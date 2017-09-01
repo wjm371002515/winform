@@ -51,7 +51,7 @@ namespace JCodes.Framework.AddIn.Security
             List<SystemTypeInfo> systemList = BLLFactory<SystemType>.Instance.GetAll();
             foreach (SystemTypeInfo info in systemList)
             {
-                this.txtSystemType.Properties.Items.Add(new CListItem(info.Name, info.OID));
+                this.txtSystemType.Properties.Items.Add(new CListItem(info.OID, info.Name));
             }
             if (this.txtSystemType.Properties.Items.Count == 1)
             {
@@ -134,7 +134,7 @@ namespace JCodes.Framework.AddIn.Security
                 {
                     displayName = string.Format("{0}({1})", info.Name, info.CompanyName);
                 }
-                CListItem item = new CListItem(displayName, info.ID.ToString());
+                CListItem item = new CListItem(info.ID.ToString(), displayName );
                 this.lvwRole.Items.Add(item);
             }
             if (this.lvwRole.Items.Count > 0)

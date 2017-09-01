@@ -15,10 +15,11 @@ namespace JCodes.Framework.Entity
     {
         /// <summary>
         /// 参数化构造CListItem对象
+        /// 20170901 wjm 调整key 和value的顺序
         /// </summary>
         /// <param name="text">显示的内容</param>
         /// <param name="value">实际的值内容</param>
-        public CListItem(string text, string value)
+        public CListItem(string value, string text)
         {
             this._text = text;
             this._value = value;
