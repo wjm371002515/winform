@@ -466,7 +466,7 @@ namespace JCodes.Framework.AddIn.Security
             info.Category = this.txtCategory.Text;
             info.Editor = Portal.gc.UserInfo.FullName;
             info.Editor_ID = Portal.gc.UserInfo.ID.ToString();
-            info.EditTime = DateTime.Now;
+            info.EditTime = DateTimeHelper.GetServerDateTime2();
 
             info.CurrentLoginUserId = Portal.gc.UserInfo.ID.ToString();
             return info;
@@ -561,7 +561,7 @@ namespace JCodes.Framework.AddIn.Security
                 info = SetRoleInfo(info);
                 info.Creator = Portal.gc.UserInfo.FullName;
                 info.Creator_ID = Portal.gc.UserInfo.ID.ToString();
-                info.CreateTime = DateTime.Now;
+                info.CreateTime = DateTimeHelper.GetServerDateTime2();
 
                 try
                 {

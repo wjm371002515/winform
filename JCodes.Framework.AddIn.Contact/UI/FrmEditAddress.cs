@@ -104,9 +104,9 @@ namespace JCodes.Framework.AddIn.Contact
             else
             {
                 txtCreator.Text = LoginUserInfo.FullName;//默认为当前登录用户
-                txtCreateTime.DateTime = DateTime.Now; //默认当前时间
+                txtCreateTime.DateTime = DateTimeHelper.GetServerDateTime2(); //默认当前时间
                 txtEditor.Text = LoginUserInfo.FullName;//默认为当前登录用户
-                txtEditTime.DateTime = DateTime.Now; //默认当前时间
+                txtEditTime.DateTime = DateTimeHelper.GetServerDateTime2(); //默认当前时间
             }
 
             BindAddressGroup();
@@ -157,7 +157,7 @@ namespace JCodes.Framework.AddIn.Contact
             info.Other = txtOther.Text;
             info.Note = txtNote.Text;
 
-            info.EditTime = DateTime.Now;
+            info.EditTime = DateTimeHelper.GetServerDateTime2();
             info.Editor = LoginUserInfo.ID.ToString();//当前用户
             info.CurrentLoginUserId = LoginUserInfo.ID.ToString(); //记录当前登录的用户信息，供操作日志记录使用
         }
@@ -171,7 +171,7 @@ namespace JCodes.Framework.AddIn.Contact
             AddressInfo info = tempInfo;//必须使用存在的局部变量，因为部分信息可能被附件使用
             SetInfo(info);
             info.Creator = LoginUserInfo.ID.ToString();
-            info.CreateTime = DateTime.Now;
+            info.CreateTime = DateTimeHelper.GetServerDateTime2();
             info.Dept_ID = LoginUserInfo.DeptId;
             info.Company_ID = LoginUserInfo.CompanyId;
             info.AddressType = this.AddressType;//限定类型

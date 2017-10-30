@@ -19,6 +19,7 @@ using JCodes.Framework.Common.Office;
 using JCodes.Framework.CommonControl.LocalReports;
 using JCodes.Framework.CommonControl.Controls;
 using JCodes.Framework.AddIn.Basic;
+using JCodes.Framework.Common.Format;
 
 namespace JCodes.Framework.AddIn.WareHouseManage
 {
@@ -31,7 +32,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
 
         private void InitDictItem()
         {
-            this.txtCreateDate.DateTime = DateTime.Now;
+            this.txtCreateDate.DateTime = DateTimeHelper.GetServerDateTime2();
 
             txtManufacture.BindDictItems(BLLFactory<Supplier>.Instance.GetAllSupplierDic());
             txtSearchManufacture.BindDictItems(BLLFactory<Supplier>.Instance.GetAllSupplierDic());
@@ -408,8 +409,8 @@ namespace JCodes.Framework.AddIn.WareHouseManage
                 headInfo.Note = this.txtNote.Text;
                 headInfo.OperationType = "入库";
                 headInfo.WareHouse = this.txtWareHouse.GetComboBoxStrValue();
-                headInfo.CreateYear = DateTime.Now.Year;
-                headInfo.CreateMonth = DateTime.Now.Month;
+                headInfo.CreateYear = DateTimeHelper.GetServerDateTime2().Year;
+                headInfo.CreateMonth = DateTimeHelper.GetServerDateTime2().Month;
 
                 int headId = BLLFactory<PurchaseHeader>.Instance.Insert2(headInfo);
                 if (headId > 0)
@@ -557,7 +558,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
             try
             {
                 SpecialDirectories sp = new SpecialDirectories();
-                string fileName = FileDialogHelper.SaveExcel(string.Format("入库单({0})", DateTime.Now.ToString("yyyy-MM-dd")), sp.Desktop);
+                string fileName = FileDialogHelper.SaveExcel(string.Format("入库单({0})", DateTimeHelper.GetServerDate()), sp.Desktop);
                 if (string.IsNullOrEmpty(fileName))
                 {
                     return;
@@ -639,7 +640,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
 
             #region 导出数据操作
             SpecialDirectories sp = new SpecialDirectories();
-            string fileToSave = FileDialogHelper.SaveExcel(string.Format("入库单明细({0})", DateTime.Now.ToString("yyyy-MM-dd")), sp.Desktop);
+            string fileToSave = FileDialogHelper.SaveExcel(string.Format("入库单明细({0})", DateTimeHelper.GetServerDate()), sp.Desktop);
             if (string.IsNullOrEmpty(fileToSave))
             {
                 return;
@@ -678,8 +679,8 @@ namespace JCodes.Framework.AddIn.WareHouseManage
             headInfo.Note = this.txtNote.Text;
             headInfo.OperationType = "入库";
             headInfo.WareHouse = this.txtWareHouse.GetComboBoxStrValue();
-            headInfo.CreateYear = DateTime.Now.Year;
-            headInfo.CreateMonth = DateTime.Now.Month;
+            headInfo.CreateYear = DateTimeHelper.GetServerDateTime2().Year;
+            headInfo.CreateMonth = DateTimeHelper.GetServerDateTime2().Month;
 
             List<PurchaseDetailInfo> detailList = new List<PurchaseDetailInfo>();
             for (int i = 0; i < this.lvwDetail.gridView1.RowCount; i++)

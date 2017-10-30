@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI.WebControls;
 using System.Text.RegularExpressions;
 using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.Common.Format;
 
 namespace JCodes.Framework.Common.Web
 {
@@ -288,7 +289,7 @@ namespace JCodes.Framework.Common.Web
         public static string DateStringToString(string str)
         {
             if (string.IsNullOrEmpty(str))
-                return DateTime.Now.ToShortDateString();
+                return DateTimeHelper.GetServerDate();
 
             try
             {
@@ -297,7 +298,7 @@ namespace JCodes.Framework.Common.Web
             catch (Exception ex)
             {
                 LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(JavascriptHelper));
-                return DateTime.Now.ToString("yyyy-MM-dd");
+                return DateTimeHelper.GetServerDate();
             }
         }
 

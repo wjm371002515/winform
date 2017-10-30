@@ -9,6 +9,7 @@ using System.IO.Compression;
 using System.Web;
 using System.Collections.Specialized;
 using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.Common.Format;
 
 namespace JCodes.Framework.Common.Network
 {
@@ -416,7 +417,7 @@ namespace JCodes.Framework.Common.Network
         public string PostStream(string url, string[] files, NameValueCollection nvc = null, CookieContainer cookieContainer = null, string reference = null)
         {
             string boundary = "----------------------------" +
-            DateTime.Now.Ticks.ToString("x");
+            DateTimeHelper.GetServerDateTime2().Ticks.ToString("x");
 
             HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(url);
             webRequest.ContentType = "multipart/form-data; boundary=" + boundary;

@@ -22,6 +22,7 @@ using JCodes.Framework.Common.Files;
 using JCodes.Framework.Common.Network;
 using JCodes.Framework.Common.Device;
 using JCodes.Framework.AddIn.Basic;
+using JCodes.Framework.Common.Format;
 
 namespace JCodes.Framework.AddIn.Security
 {
@@ -688,7 +689,7 @@ namespace JCodes.Framework.AddIn.Security
 
             info.Creator = Portal.gc.UserInfo.FullName;
             info.Creator_ID = Portal.gc.UserInfo.ID.ToString();
-            info.CreateTime = DateTime.Now;
+            info.CreateTime = DateTimeHelper.GetServerDateTime2();
             info.Editor = Portal.gc.UserInfo.FullName;
             info.Editor_ID = Portal.gc.UserInfo.ID.ToString(); 
             #endregion

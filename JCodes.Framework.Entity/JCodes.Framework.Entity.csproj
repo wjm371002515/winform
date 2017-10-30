@@ -58,6 +58,16 @@
     <Compile Include="Dic\ProvinceInfo.cs" />
     <Compile Include="Dic\SysparameterInfo.cs" />
     <Compile Include="Pager.Entity\PagerInfo.cs" />
+    <Compile Include="Proj\ErrornoInfo.cs" />
+    <Compile Include="Proj\ConstantInfo.cs" />
+    <Compile Include="Proj\TableIndexsInfo.cs" />
+    <Compile Include="Proj\TableFieldsInfo.cs" />
+    <Compile Include="Proj\TablesInfo.cs" />
+    <Compile Include="Proj\TablesTypeInfo.cs" />
+    <Compile Include="Proj\StdFieldInfo.cs" />
+    <Compile Include="Proj\ModRecordInfo.cs" />
+    <Compile Include="Proj\DictInfo.cs" />
+    <Compile Include="Proj\ProjectInfo.cs" />
     <Compile Include="Proj\DataTypeInfo.cs" />
     <Compile Include="Proj\DefaultTypeInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

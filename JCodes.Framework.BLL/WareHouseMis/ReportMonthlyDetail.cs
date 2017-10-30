@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using JCodes.Framework.Common;
 using JCodes.Framework.Entity;
 using JCodes.Framework.Common.Framework;
+using JCodes.Framework.Common.Format;
 
 namespace JCodes.Framework.BLL
 {
@@ -45,19 +46,19 @@ namespace JCodes.Framework.BLL
             string sql = string.Format("Select Sum(Quantity) from WM_PurchaseDetail d inner join WM_PurchaseHeader h on d.PurchaseHead_ID = h.ID Where d.Dept='{0}' ", deptName);
             if (valueType == StatisticValueType.CurrentCount)
             {
-                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} ", DateTime.Now.Year, DateTime.Now.Month);
+                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} ", DateTimeHelper.GetServerDateTime2().Year, DateTimeHelper.GetServerDateTime2().Month);
             }
             else if (valueType == StatisticValueType.CurrentInCount)
             {
-                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} and h.OperationType='入库' ", DateTime.Now.Year, DateTime.Now.Month);
+                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} and h.OperationType='入库' ", DateTimeHelper.GetServerDateTime2().Year, DateTimeHelper.GetServerDateTime2().Month);
             }
             else if (valueType == StatisticValueType.CurrentOutCount)
             {
-                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} and h.OperationType='出库' ", DateTime.Now.Year, DateTime.Now.Month);
+                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} and h.OperationType='出库' ", DateTimeHelper.GetServerDateTime2().Year, DateTimeHelper.GetServerDateTime2().Month);
             }
             else if (valueType == StatisticValueType.LastCount)
             {
-                DateTime lastMonth = DateTime.Now.AddMonths(-1);
+                DateTime lastMonth = DateTimeHelper.GetServerDateTime2().AddMonths(-1);
                 sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} ", lastMonth.Year, lastMonth.Month);
             }
 
@@ -81,19 +82,19 @@ namespace JCodes.Framework.BLL
             string sql = string.Format("Select Sum(Amount) from WM_PurchaseDetail d inner join WM_PurchaseHeader h on d.PurchaseHead_ID = h.ID Where d.Dept='{0}' ", deptName);
             if (valueType == StatisticValueType.CurrentMoney)
             {
-                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} ", DateTime.Now.Year, DateTime.Now.Month);
+                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} ", DateTimeHelper.GetServerDateTime2().Year, DateTimeHelper.GetServerDateTime2().Month);
             }
             else if (valueType == StatisticValueType.CurrentInMoney)
             {
-                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} and h.OperationType='入库' ", DateTime.Now.Year, DateTime.Now.Month);
+                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} and h.OperationType='入库' ", DateTimeHelper.GetServerDateTime2().Year, DateTimeHelper.GetServerDateTime2().Month);
             }
             else if (valueType == StatisticValueType.CurrentOutMoney)
             {
-                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} and h.OperationType='出库' ", DateTime.Now.Year, DateTime.Now.Month);
+                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} and h.OperationType='出库' ", DateTimeHelper.GetServerDateTime2().Year, DateTimeHelper.GetServerDateTime2().Month);
             }
             else if (valueType == StatisticValueType.LastMoney)
             {
-                DateTime lastMonth = DateTime.Now.AddMonths(-1);
+                DateTime lastMonth = DateTimeHelper.GetServerDateTime2().AddMonths(-1);
                 sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} ", lastMonth.Year, lastMonth.Month);
             }
 
@@ -117,19 +118,19 @@ namespace JCodes.Framework.BLL
             string sql = string.Format("Select Sum(Quantity) from WM_PurchaseDetail d inner join WM_PurchaseHeader h on d.PurchaseHead_ID = h.ID Where d.WareHouse='{0}' ", wareHouseName);
             if (valueType == StatisticValueType.CurrentCount)
             {
-                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} ", DateTime.Now.Year, DateTime.Now.Month);
+                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} ", DateTimeHelper.GetServerDateTime2().Year, DateTimeHelper.GetServerDateTime2().Month);
             }
             else if (valueType == StatisticValueType.CurrentInCount)
             {
-                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} and h.OperationType='入库' ", DateTime.Now.Year, DateTime.Now.Month);
+                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} and h.OperationType='入库' ", DateTimeHelper.GetServerDateTime2().Year, DateTimeHelper.GetServerDateTime2().Month);
             }
             else if (valueType == StatisticValueType.CurrentOutCount)
             {
-                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} and h.OperationType='出库' ", DateTime.Now.Year, DateTime.Now.Month);
+                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} and h.OperationType='出库' ", DateTimeHelper.GetServerDateTime2().Year, DateTimeHelper.GetServerDateTime2().Month);
             }
             else if (valueType == StatisticValueType.LastCount)
             {
-                DateTime lastMonth = DateTime.Now.AddMonths(-1);
+                DateTime lastMonth = DateTimeHelper.GetServerDateTime2().AddMonths(-1);
                 sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} ", lastMonth.Year, lastMonth.Month);
             }
 
@@ -153,19 +154,19 @@ namespace JCodes.Framework.BLL
             string sql = string.Format("Select Sum(Amount) from WM_PurchaseDetail d inner join WM_PurchaseHeader h on d.PurchaseHead_ID = h.ID Where d.WareHouse='{0}' ", wareHouseName);
             if (valueType == StatisticValueType.CurrentMoney)
             {
-                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} ", DateTime.Now.Year, DateTime.Now.Month);
+                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} ", DateTimeHelper.GetServerDateTime2().Year, DateTimeHelper.GetServerDateTime2().Month);
             }
             else if (valueType == StatisticValueType.CurrentInMoney)
             {
-                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} and h.OperationType='入库' ", DateTime.Now.Year, DateTime.Now.Month);
+                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} and h.OperationType='入库' ", DateTimeHelper.GetServerDateTime2().Year, DateTimeHelper.GetServerDateTime2().Month);
             }
             else if (valueType == StatisticValueType.CurrentOutMoney)
             {
-                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} and h.OperationType='出库' ", DateTime.Now.Year, DateTime.Now.Month);
+                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} and h.OperationType='出库' ", DateTimeHelper.GetServerDateTime2().Year, DateTimeHelper.GetServerDateTime2().Month);
             }
             else if (valueType == StatisticValueType.LastMoney)
             {
-                DateTime lastMonth = DateTime.Now.AddMonths(-1);
+                DateTime lastMonth = DateTimeHelper.GetServerDateTime2().AddMonths(-1);
                 sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} ", lastMonth.Year, lastMonth.Month);
             }
 
@@ -189,19 +190,19 @@ namespace JCodes.Framework.BLL
             string sql = string.Format("Select Sum(Quantity) from WM_PurchaseDetail d inner join WM_PurchaseHeader h on d.PurchaseHead_ID = h.ID Where ItemType='{0}' ", itemType);
             if (valueType == StatisticValueType.CurrentCount)
             {
-                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} ", DateTime.Now.Year, DateTime.Now.Month);
+                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} ", DateTimeHelper.GetServerDateTime2().Year, DateTimeHelper.GetServerDateTime2().Month);
             }
             else if (valueType == StatisticValueType.CurrentInCount)
             {
-                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} and h.OperationType='入库' ", DateTime.Now.Year, DateTime.Now.Month);
+                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} and h.OperationType='入库' ", DateTimeHelper.GetServerDateTime2().Year, DateTimeHelper.GetServerDateTime2().Month);
             }
             else if (valueType == StatisticValueType.CurrentOutCount)
             {
-                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} and h.OperationType='出库' ", DateTime.Now.Year, DateTime.Now.Month);
+                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} and h.OperationType='出库' ", DateTimeHelper.GetServerDateTime2().Year, DateTimeHelper.GetServerDateTime2().Month);
             }
             else if (valueType == StatisticValueType.LastCount)
             {
-                DateTime lastMonth = DateTime.Now.AddMonths(-1);
+                DateTime lastMonth = DateTimeHelper.GetServerDateTime2().AddMonths(-1);
                 sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} ", lastMonth.Year, lastMonth.Month);
             }
 
@@ -225,19 +226,19 @@ namespace JCodes.Framework.BLL
             string sql = string.Format("Select Sum(Amount) from WM_PurchaseDetail d inner join WM_PurchaseHeader h on d.PurchaseHead_ID = h.ID Where ItemType='{0}' ", itemType);
             if (valueType == StatisticValueType.CurrentMoney)
             {
-                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} ", DateTime.Now.Year, DateTime.Now.Month);
+                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} ", DateTimeHelper.GetServerDateTime2().Year, DateTimeHelper.GetServerDateTime2().Month);
             }
             else if (valueType == StatisticValueType.CurrentInMoney)
             {
-                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} and h.OperationType='入库' ", DateTime.Now.Year, DateTime.Now.Month);
+                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} and h.OperationType='入库' ", DateTimeHelper.GetServerDateTime2().Year, DateTimeHelper.GetServerDateTime2().Month);
             }
             else if (valueType == StatisticValueType.CurrentOutMoney)
             {
-                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} and h.OperationType='出库' ", DateTime.Now.Year, DateTime.Now.Month);
+                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} and h.OperationType='出库' ", DateTimeHelper.GetServerDateTime2().Year, DateTimeHelper.GetServerDateTime2().Month);
             }
             else if (valueType == StatisticValueType.LastMoney)
             {
-                DateTime lastMonth = DateTime.Now.AddMonths(-1);
+                DateTime lastMonth = DateTimeHelper.GetServerDateTime2().AddMonths(-1);
                 sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} ", lastMonth.Year, lastMonth.Month);
             }
 
@@ -261,19 +262,19 @@ namespace JCodes.Framework.BLL
             string sql = string.Format("Select Sum(Quantity) from WM_PurchaseDetail d inner join WM_PurchaseHeader h on d.PurchaseHead_ID = h.ID Where ItemBigType='{0}' ", itemBigType);
             if (valueType == StatisticValueType.CurrentCount)
             {
-                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} ", DateTime.Now.Year, DateTime.Now.Month);
+                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} ", DateTimeHelper.GetServerDateTime2().Year, DateTimeHelper.GetServerDateTime2().Month);
             }
             else if (valueType == StatisticValueType.CurrentInCount)
             {
-                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} and h.OperationType='入库' ", DateTime.Now.Year, DateTime.Now.Month);
+                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} and h.OperationType='入库' ", DateTimeHelper.GetServerDateTime2().Year, DateTimeHelper.GetServerDateTime2().Month);
             }
             else if (valueType == StatisticValueType.CurrentOutCount)
             {
-                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} and h.OperationType='出库' ", DateTime.Now.Year, DateTime.Now.Month);
+                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} and h.OperationType='出库' ", DateTimeHelper.GetServerDateTime2().Year, DateTimeHelper.GetServerDateTime2().Month);
             }
             else if (valueType == StatisticValueType.LastCount)
             {
-                DateTime lastMonth = DateTime.Now.AddMonths(-1);
+                DateTime lastMonth = DateTimeHelper.GetServerDateTime2().AddMonths(-1);
                 sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} ", lastMonth.Year, lastMonth.Month);
             }
 
@@ -297,19 +298,19 @@ namespace JCodes.Framework.BLL
             string sql = string.Format("Select Sum(Amount) from WM_PurchaseDetail d inner join WM_PurchaseHeader h on d.PurchaseHead_ID = h.ID Where ItemBigType='{0}' ", itemBigType);
             if (valueType == StatisticValueType.CurrentMoney)
             {
-                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} ", DateTime.Now.Year, DateTime.Now.Month);
+                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} ", DateTimeHelper.GetServerDateTime2().Year, DateTimeHelper.GetServerDateTime2().Month);
             }
             else if (valueType == StatisticValueType.CurrentInMoney)
             {
-                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} and h.OperationType='入库' ", DateTime.Now.Year, DateTime.Now.Month);
+                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} and h.OperationType='入库' ", DateTimeHelper.GetServerDateTime2().Year, DateTimeHelper.GetServerDateTime2().Month);
             }
             else if (valueType == StatisticValueType.CurrentOutMoney)
             {
-                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} and h.OperationType='出库' ", DateTime.Now.Year, DateTime.Now.Month);
+                sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} and h.OperationType='出库' ", DateTimeHelper.GetServerDateTime2().Year, DateTimeHelper.GetServerDateTime2().Month);
             }
             else if (valueType == StatisticValueType.LastMoney)
             {
-                DateTime lastMonth = DateTime.Now.AddMonths(-1);
+                DateTime lastMonth = DateTimeHelper.GetServerDateTime2().AddMonths(-1);
                 sql += string.Format(" AND h.CreateYear={0} and h.CreateMonth={1} ", lastMonth.Year, lastMonth.Month);
             }
 

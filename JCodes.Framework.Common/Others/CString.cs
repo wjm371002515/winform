@@ -1,5 +1,6 @@
+using JCodes.Framework.Common.Format;
 using System;
-using System.Globalization ;
+using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -532,7 +533,7 @@ namespace JCodes.Framework.Common.Office
         public static string GetUniqueString()
         {
             Random rand = new Random();
-            return ((int)(rand.NextDouble() * 10000)).ToString() + DateTime.Now.Ticks.ToString();
+            return ((int)(rand.NextDouble() * 10000)).ToString() + DateTimeHelper.GetServerDateTime2().Ticks.ToString();
         }
 
         /// <summary>

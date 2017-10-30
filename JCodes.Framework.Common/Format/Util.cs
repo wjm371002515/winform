@@ -251,7 +251,7 @@ namespace JCodes.Framework.Common.Format
         }
         #endregion
 
-        static Random m_random = new Random((int)DateTime.Now.Ticks);
+        static Random m_random = new Random((int)DateTimeHelper.GetServerDateTime2().Ticks);
         /// <summary>
         /// 随机发生器，按指定概率随机执行操作
         /// </summary>

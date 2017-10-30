@@ -77,6 +77,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="UI\FrmIPO.resx">
       <DependentUpon>FrmIPO.cs</DependentUpon>
     </EmbeddedResource>

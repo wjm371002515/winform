@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <dataitem>
+      <item guid="1111">
+        <name>2</name>
+        <chineseName>-1</chineseName>
+        <datatype>Asd</datatype>
+        <dictno>100000</dictno>
+        <remark></remark>
+      </item>
+  </dataitem>
+</datatype>

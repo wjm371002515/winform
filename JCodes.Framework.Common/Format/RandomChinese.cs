@@ -67,7 +67,7 @@ namespace JCodes.Framework.Common.Format
                 string str_r1 = rBase[r1].Trim();
 
                 //区位码第2位 
-                rnd = new Random(r1 * unchecked((int)DateTime.Now.Ticks) + i); // 更换随机数发生器的 种子避免产生重复值 
+                rnd = new Random(r1 * unchecked((int)DateTimeHelper.GetServerDateTime2().Ticks) + i); // 更换随机数发生器的 种子避免产生重复值 
                 int r2;
                 if (r1 == 13)
                 {
@@ -80,12 +80,12 @@ namespace JCodes.Framework.Common.Format
                 string str_r2 = rBase[r2].Trim();
 
                 //区位码第3位 
-                rnd = new Random(r2 * unchecked((int)DateTime.Now.Ticks) + i);
+                rnd = new Random(r2 * unchecked((int)DateTimeHelper.GetServerDateTime2().Ticks) + i);
                 int r3 = rnd.Next(10, 16);
                 string str_r3 = rBase[r3].Trim();
 
                 //区位码第4位 
-                rnd = new Random(r3 * unchecked((int)DateTime.Now.Ticks) + i);
+                rnd = new Random(r3 * unchecked((int)DateTimeHelper.GetServerDateTime2().Ticks) + i);
                 int r4;
                 if (r3 == 10)
                 {
@@ -234,7 +234,7 @@ namespace JCodes.Framework.Common.Format
             char[] Pattern = new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
             string result = "";
             int n = Pattern.Length;
-            System.Random random = new Random(~unchecked((int)DateTime.Now.Ticks));
+            System.Random random = new Random(~unchecked((int)DateTimeHelper.GetServerDateTime2().Ticks));
             for (int i = 0; i < Length; i++)
             {
                 int rnd = random.Next(0, n);
@@ -268,7 +268,7 @@ namespace JCodes.Framework.Common.Format
         /// <returns>随机文件名</returns>
         public static string RandomFileName()
         {
-            return DateTime.Now.ToString("yyyyMMddHHmmss", CultureInfo.CurrentCulture) + GetRandomNumber(4);
+            return DateTimeHelper.GetServerDateTime2().ToString("yyyyMMddHHmmss", CultureInfo.CurrentCulture) + GetRandomNumber(4);
         }
     }
 }

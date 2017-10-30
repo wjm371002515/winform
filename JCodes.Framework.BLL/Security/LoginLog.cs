@@ -9,6 +9,7 @@ using JCodes.Framework.IDAL;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Common.Databases;
+using JCodes.Framework.Common.Format;
 
 namespace JCodes.Framework.BLL
 {
@@ -42,7 +43,7 @@ namespace JCodes.Framework.BLL
                 LoginLogInfo logInfo = new LoginLogInfo();
                 logInfo.IPAddress = ip;
                 logInfo.MacAddress = macAddr;
-                logInfo.LastUpdated = DateTime.Now;
+                logInfo.LastUpdated = DateTimeHelper.GetServerDateTime2();
                 logInfo.Note = note;
                 logInfo.SystemType_ID = systemType;
                 
@@ -108,7 +109,7 @@ namespace JCodes.Framework.BLL
         public void DeleteMonthLog()
         {
             SearchCondition search = new SearchCondition();
-            search.AddCondition("LastUpdated", DateTime.Now.AddDays(-30), SqlOperator.LessThanOrEqual);
+            search.AddCondition("LastUpdated", DateTimeHelper.GetServerDateTime2().AddDays(-30), SqlOperator.LessThanOrEqual);
             string condition = search.BuildConditionSql().Replace("Where", "");
             baseDal.DeleteByCondition(condition);
         }

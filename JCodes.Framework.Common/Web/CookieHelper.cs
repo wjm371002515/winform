@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JCodes.Framework.Common.Format;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Web;
@@ -19,7 +20,7 @@ namespace JCodes.Framework.Common.Web
             HttpCookie cookie = HttpContext.Current.Request.Cookies[cookiename];
             if (cookie != null)
             {
-                cookie.Expires = DateTime.Now.AddYears(-3);
+                cookie.Expires = DateTimeHelper.GetServerDateTime2().AddYears(-3);
                 HttpContext.Current.Response.Cookies.Add(cookie);
             }
         }
@@ -47,7 +48,7 @@ namespace JCodes.Framework.Common.Web
         /// <param name="cookievalue"></param>
         public static void SetCookie(string cookiename, string cookievalue)
         {
-            SetCookie(cookiename, cookievalue, DateTime.Now.AddDays(1.0));
+            SetCookie(cookiename, cookievalue, DateTimeHelper.GetServerDateTime2().AddDays(1.0));
         }
 
         /// <summary>

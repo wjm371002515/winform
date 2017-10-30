@@ -19,6 +19,7 @@ using JCodes.Framework.Common.Databases;
 using JCodes.Framework.Common.Files;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.BLL;
+using JCodes.Framework.Common.Format;
 
 namespace JCodes.Framework.AddIn.WareHouseManage
 {
@@ -246,7 +247,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
             {
                 this.txtMonthlyYear.Properties.Items.Add(string.Format("{0}", year));
             }
-            this.txtMonthlyYear.Text = string.Format("{0}", DateTime.Now.Year);
+            this.txtMonthlyYear.Text = string.Format("{0}", DateTimeHelper.GetServerDateTime2().Year);
         }
 
         private void btnMonthlySearch_Click(object sender, EventArgs e)

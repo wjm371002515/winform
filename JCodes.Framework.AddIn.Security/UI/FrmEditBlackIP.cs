@@ -125,7 +125,7 @@ namespace JCodes.Framework.AddIn.Security
             else
             {
                 txtCreator.Text = Portal.gc.UserInfo.FullName;//默认为当前登录用户
-                txtCreateTime.DateTime = DateTime.Now; //默认当前时间
+                txtCreateTime.DateTime = DateTimeHelper.GetServerDateTime2(); //默认当前时间
             }
 
             RefreshUsers();
@@ -151,7 +151,7 @@ namespace JCodes.Framework.AddIn.Security
             info.Note = txtNote.Text;
             info.Editor = Portal.gc.UserInfo.FullName;
             info.Editor_ID = Portal.gc.UserInfo.ID.ToString();
-            info.EditTime = DateTime.Now;
+            info.EditTime = DateTimeHelper.GetServerDateTime2();
 
             info.CurrentLoginUserId = Portal.gc.UserInfo.ID.ToString(); //记录当前登录的用户信息，供操作日志记录使用
         }
@@ -166,7 +166,7 @@ namespace JCodes.Framework.AddIn.Security
             SetInfo(info);
             info.Creator = Portal.gc.UserInfo.FullName;
             info.Creator_ID = Portal.gc.UserInfo.ID.ToString();
-            info.CreateTime = DateTime.Now;
+            info.CreateTime = DateTimeHelper.GetServerDateTime2();
 
             try
             {

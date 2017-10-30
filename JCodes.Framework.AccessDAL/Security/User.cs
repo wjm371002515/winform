@@ -10,6 +10,7 @@ using JCodes.Framework.IDAL;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.Common.Framework.BaseDAL;
 using JCodes.Framework.Common.Databases;
+using JCodes.Framework.Common.Format;
 
 namespace JCodes.Framework.AccessDAL
 {
@@ -394,7 +395,7 @@ namespace JCodes.Framework.AccessDAL
 
             sql = string.Format("Update {0} Set CurrentLoginIP='{1}',CurrentMacAddress='{2}', CurrentLoginTime=@CurrentLoginTime Where ID = {3}", tableName, ip, macAddr, id);
             dbCommand = db.GetSqlStringCommand(sql);
-            db.AddInParameter(dbCommand, "CurrentLoginTime", DbType.DateTime, DateTime.Now);
+            db.AddInParameter(dbCommand, "CurrentLoginTime", DbType.DateTime, DateTimeHelper.GetServerDateTime2());
             return db.ExecuteNonQuery(dbCommand) > 0;
         }
     }

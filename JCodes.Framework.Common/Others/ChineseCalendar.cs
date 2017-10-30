@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Globalization;
+using JCodes.Framework.Common.Format;
 
 namespace JCodes.Framework.Common.Office
 {
@@ -21,7 +22,7 @@ namespace JCodes.Framework.Common.Office
         /// <returns></returns>
         public static string GetChineseDateTimeNow()
         {
-            return GetChineseDateTime(DateTime.Now);
+            return GetChineseDateTime(DateTimeHelper.GetServerDateTime2());
         }
 
         /// <summary>

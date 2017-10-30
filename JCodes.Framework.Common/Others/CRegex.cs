@@ -4,6 +4,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Data;
 using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.Common.Format;
 
 namespace JCodes.Framework.Common.Office
 {
@@ -490,7 +491,7 @@ namespace JCodes.Framework.Common.Office
         /// <param name="sRegex">±í´ïÊ½×Ö·û´®</param>
         public static DateTime GetCreateDate(string sInput, string sRegex)
         {
-            DateTime dt = System.DateTime.Now;
+            DateTime dt = DateTimeHelper.GetServerDateTime2();
             Regex re = new Regex(sRegex, RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace | RegexOptions.Multiline);
             Match mc = re.Match(sInput);
             if (mc.Success)

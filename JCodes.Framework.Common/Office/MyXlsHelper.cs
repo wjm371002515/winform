@@ -2,6 +2,7 @@
 using System.Data;
 
 using org.in2bits.MyXls;
+using JCodes.Framework.Common.Format;
 
 namespace JCodes.Framework.Common.Office
 {
@@ -18,7 +19,7 @@ namespace JCodes.Framework.Common.Office
         public static void Export(DataTable dtSource, string strFileName, string SheetName = "Sheet1", Int32 startRow = 0, Int32 startColumn = 0)
         {
             XlsDocument xls = new XlsDocument();
-            xls.FileName = DateTime.Now.ToString("yyyyMMddHHmmssffff", System.Globalization.DateTimeFormatInfo.InvariantInfo);
+            xls.FileName = DateTimeHelper.GetServerDateTime2().ToString("yyyyMMddHHmmssffff", System.Globalization.DateTimeFormatInfo.InvariantInfo);
             xls.SummaryInformation.Author = "吴建明"; //填加xls文件作者信息
             xls.SummaryInformation.NameOfCreatingApplication = "jCodes 项目管理"; //填加xls文件创建程序信息
             xls.SummaryInformation.LastSavedBy = "吴建明"; //填加xls文件最后保存者信息

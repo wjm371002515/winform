@@ -14,6 +14,7 @@ using JCodes.Framework.Common;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.BLL;
+using JCodes.Framework.Common.Format;
 
 namespace JCodes.Framework.AddIn.Contact
 {
@@ -78,7 +79,7 @@ namespace JCodes.Framework.AddIn.Contact
         private void SetInfo(AddressInfo info)
         {
             info.Note = txtNote.Text;
-            info.EditTime = DateTime.Now;
+            info.EditTime = DateTimeHelper.GetServerDateTime2();
             info.Editor = LoginUserInfo.ID.ToString();//当前用户
             info.CurrentLoginUserId = LoginUserInfo.ID.ToString(); //记录当前登录的用户信息，供操作日志记录使用
         }
@@ -152,7 +153,7 @@ namespace JCodes.Framework.AddIn.Contact
 
                             SetInfo(info);
                             info.Creator = LoginUserInfo.ID.ToString();
-                            info.CreateTime = DateTime.Now;
+                            info.CreateTime = DateTimeHelper.GetServerDateTime2();
                             info.Dept_ID = LoginUserInfo.DeptId;
                             info.Company_ID = LoginUserInfo.CompanyId;
                             info.AddressType = AddressType;

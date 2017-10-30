@@ -776,7 +776,7 @@ namespace JCodes.Framework.Common.Format
                 return defValue;
             }
 
-            DateTime temp = DateTime.Now;
+            DateTime temp = DateTimeHelper.GetServerDateTime2();
 
             if (DateTime.TryParse(data, out temp))
             {

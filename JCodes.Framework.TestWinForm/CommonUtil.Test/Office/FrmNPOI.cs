@@ -132,7 +132,7 @@ namespace TestControlUtil
             {
                 DataRow row = dt.NewRow();
                 row[0] = RandomChinese.GetRandomChinese(3);
-                row[1] = new Random(DateTime.Now.Millisecond).Next(20, 50);
+                row[1] = new Random(DateTimeHelper.GetServerDateTime2().Millisecond).Next(20, 50);
                 row[2] = "xxx@163.com";
                 row[3] = RandomChinese.GetRandomChinese2(50);
                 dt.Rows.Add(row);

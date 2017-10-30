@@ -28,19 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup1 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
+            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup2 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
+            DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem3 = new DevExpress.Utils.ToolTipItem();
             DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem2 = new DevExpress.Utils.ToolTipTitleItem();
             DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
             this.ribbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
-            this.applicationMenu1 = new DevExpress.XtraBars.Ribbon.ApplicationMenu();
+            this.applicationMenu1 = new DevExpress.XtraBars.Ribbon.ApplicationMenu(this.components);
             this.btnExit = new DevExpress.XtraBars.BarButtonItem();
             this.btnRelogin = new DevExpress.XtraBars.BarButtonItem();
             this.btnModPwd = new DevExpress.XtraBars.BarButtonItem();
-            this.imageCollection1 = new DevExpress.Utils.ImageCollection();
+            this.imageCollection1 = new DevExpress.Utils.ImageCollection(this.components);
             this.rgbiSkins = new DevExpress.XtraBars.RibbonGalleryBarItem();
             this.progressBar = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemProgressBar3 = new DevExpress.XtraEditors.Repository.RepositoryItemProgressBar();
@@ -57,13 +58,13 @@
             this.repositoryItemProgressBar1 = new DevExpress.XtraEditors.Repository.RepositoryItemProgressBar();
             this.repositoryItemProgressBar2 = new DevExpress.XtraEditors.Repository.RepositoryItemProgressBar();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
-            this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager();
-            this.notifyIcon = new System.Windows.Forms.NotifyIcon();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
+            this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
+            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.notifyMenu_Show = new System.Windows.Forms.ToolStripMenuItem();
             this.notifyMenu_About = new System.Windows.Forms.ToolStripMenuItem();
             this.notifyMenu_Exit = new System.Windows.Forms.ToolStripMenuItem();
-            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu();
+            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.applicationMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection1)).BeginInit();
@@ -192,9 +193,9 @@
             // 
             // 
             // 
-            galleryItemGroup1.Caption = "Group1";
+            galleryItemGroup2.Caption = "Group1";
             this.rgbiSkins.Gallery.Groups.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItemGroup[] {
-            galleryItemGroup1});
+            galleryItemGroup2});
             this.rgbiSkins.Id = 21;
             this.rgbiSkins.Name = "rgbiSkins";
             // 
@@ -219,9 +220,9 @@
             this.menuLogo.Id = 51;
             this.menuLogo.ImageIndex = 18;
             this.menuLogo.Name = "menuLogo";
-            toolTipItem1.Text = "访问技术支持网站";
-            superToolTip1.Items.Add(toolTipItem1);
-            this.menuLogo.SuperTip = superToolTip1;
+            toolTipItem3.Text = "访问技术支持网站";
+            superToolTip3.Items.Add(toolTipItem3);
+            this.menuLogo.SuperTip = superToolTip3;
             this.menuLogo.Width = 0;
             this.menuLogo.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuLogo_ItemClick);
             // 
@@ -252,12 +253,12 @@
             this.lblCurrentUser.Description = "查看/编辑当前用户信息";
             this.lblCurrentUser.Id = 55;
             this.lblCurrentUser.Name = "lblCurrentUser";
-            toolTipTitleItem1.Text = "提示信息";
-            toolTipItem2.LeftIndent = 6;
-            toolTipItem2.Text = "单击该处，可以进行查看/编辑当前用户信息操作。";
-            superToolTip2.Items.Add(toolTipTitleItem1);
-            superToolTip2.Items.Add(toolTipItem2);
-            this.lblCurrentUser.SuperTip = superToolTip2;
+            toolTipTitleItem2.Text = "提示信息";
+            toolTipItem1.LeftIndent = 6;
+            toolTipItem1.Text = "单击该处，可以进行查看/编辑当前用户信息操作。";
+            superToolTip1.Items.Add(toolTipTitleItem2);
+            superToolTip1.Items.Add(toolTipItem1);
+            this.lblCurrentUser.SuperTip = superToolTip1;
             this.lblCurrentUser.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
             // popMenuCloseCurrent
@@ -417,7 +418,6 @@
         private System.Windows.Forms.NotifyIcon notifyIcon;
         private DevExpress.XtraBars.BarButtonItem btnExit;
         private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar1;
-        private DevExpress.XtraBars.BarEditItem progressBar;
         private DevExpress.XtraEditors.Repository.RepositoryItemProgressBar repositoryItemProgressBar1;
         private DevExpress.XtraEditors.Repository.RepositoryItemProgressBar repositoryItemProgressBar3;
         private DevExpress.XtraEditors.Repository.RepositoryItemProgressBar repositoryItemProgressBar2;
@@ -440,6 +440,7 @@
         private System.Windows.Forms.ToolStripMenuItem notifyMenu_Show;
         private System.Windows.Forms.ToolStripMenuItem notifyMenu_About;
         private System.Windows.Forms.ToolStripMenuItem notifyMenu_Exit;
+        public DevExpress.XtraBars.BarEditItem progressBar;
     }
 }
 

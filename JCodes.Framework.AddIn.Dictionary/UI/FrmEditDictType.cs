@@ -193,7 +193,7 @@ namespace JCodes.Framework.AddIn.Dictionary
         {
             info.ID = Convert.ToInt32(txtID.Text);
             info.Editor = LoginUserInfo.ID.ToString();
-            info.LastUpdated = DateTime.Now;
+            info.LastUpdated = DateTimeHelper.GetServerDateTime2();
             info.Name = this.txtName.Text.Trim();
             info.Remark = this.txtNote.Text.Trim();
             info.Seq = this.txtSeq.Text;

@@ -289,21 +289,21 @@ namespace JCodes.Framework.Common.Files
 
             string tempPath;
 
-            tempPath = rootPath + "\\" + DateTime.Now.Year.ToString();
+            tempPath = rootPath + "\\" + DateTimeHelper.GetServerDateTime2().Year.ToString();
 
             CreateDirectory(tempPath);
 
-            tempPath = tempPath + "\\" + DateTime.Now.Month.ToString("00");
+            tempPath = tempPath + "\\" + DateTimeHelper.GetServerDateTime2().Month.ToString("00");
 
             CreateDirectory(tempPath);
 
-            tempPath = tempPath + "\\" + DateTime.Now.Day.ToString("00");
+            tempPath = tempPath + "\\" + DateTimeHelper.GetServerDateTime2().Day.ToString("00");
 
             CreateDirectory(tempPath);
 
             if (hour)
             {
-                tempPath = tempPath + "\\" + DateTime.Now.Hour.ToString("00");
+                tempPath = tempPath + "\\" + DateTimeHelper.GetServerDateTime2().Hour.ToString("00");
 
                 CreateDirectory(tempPath);
             }

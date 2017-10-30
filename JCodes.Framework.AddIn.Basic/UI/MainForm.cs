@@ -21,6 +21,7 @@ using JCodes.Framework.Common.Office;
 using JCodes.Framework.Entity;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.BLL;
+using JCodes.Framework.Common.Format;
 
 namespace JCodes.Framework.AddIn.Basic
 {
@@ -134,10 +135,8 @@ namespace JCodes.Framework.AddIn.Basic
         /// </summary>
         private void Init()
         {
-            //显示日期信息
-            CCalendar cal = new CCalendar();
-            // TODO 这里事件调整为取数据库时间
-            this.lblCalendar.Caption = cal.GetDateInfo(System.DateTime.Now).Fullinfo;
+            // 这里事件调整为取数据库时间
+            this.lblCalendar.Caption = DateTimeHelper.GetServerDateTime();
 
             //其他初始化工作 TODO
         }

@@ -1,5 +1,6 @@
 ﻿using JCodes.Framework.BLL;
 using JCodes.Framework.Common;
+using JCodes.Framework.Common.Format;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.CommonControl;
 using JCodes.Framework.CommonControl.BaseUI;
@@ -42,11 +43,11 @@ namespace JCodes.Framework.AddIn.Basic
         private ReportMonthlyHeaderInfo GetMainHeader()
         {
             ReportMonthlyHeaderInfo headerInfo = new ReportMonthlyHeaderInfo();
-            headerInfo.CreateDate = DateTime.Now;
+            headerInfo.CreateDate = DateTimeHelper.GetServerDateTime2();
             headerInfo.Creator = LoginUserInfo.FullName;
-            headerInfo.ReportMonth = DateTime.Now.Month;
-            headerInfo.ReportYear = DateTime.Now.Year;
-            headerInfo.YearMonth = DateTime.Now.ToString("yyyy年MM月");
+            headerInfo.ReportMonth = DateTimeHelper.GetServerDateTime2().Month;
+            headerInfo.ReportYear = DateTimeHelper.GetServerDateTime2().Year;
+            headerInfo.YearMonth = DateTimeHelper.GetServerDateTime2().ToString("yyyy年MM月");
             return headerInfo;
         }
 
@@ -55,7 +56,7 @@ namespace JCodes.Framework.AddIn.Basic
             /*#region 构造库房部门结存月结报表
             CListItem[] deptArray = DictItemUtil.GetDictByDictType("部门");
             ReportMonthlyHeaderInfo deptHeaderInfo = GetMainHeader();
-            deptHeaderInfo.ReportTitle = string.Format("{0}部门结存月报表", DateTime.Now.ToString("yyyy年MM月"));
+            deptHeaderInfo.ReportTitle = string.Format("{0}部门结存月报表", DateTimeHelper.GetServerDateTime2().ToString("yyyy年MM月"));
             deptHeaderInfo.ReportType = 1;
             int headerID = BLLFactory<ReportMonthlyHeader>.Instance.InsertOrUpdate(deptHeaderInfo);
             if (headerID > 0)
@@ -71,9 +72,9 @@ namespace JCodes.Framework.AddIn.Basic
                 {
                     ReportMonthlyDetailInfo detailInfo = new ReportMonthlyDetailInfo();
                     detailInfo.Header_ID = headerID;
-                    detailInfo.ReportYear = DateTime.Now.Year;
-                    detailInfo.ReportMonth = DateTime.Now.Month;
-                    detailInfo.YearMonth = DateTime.Now.ToString("yyyy年MM月");
+                    detailInfo.ReportYear = DateTimeHelper.GetServerDateTime2().Year;
+                    detailInfo.ReportMonth = DateTimeHelper.GetServerDateTime2().Month;
+                    detailInfo.YearMonth = DateTimeHelper.GetServerDateTime2().ToString("yyyy年MM月");
                     detailInfo.ItemName = deptItem.Value;//项目名称为部门名称
                     detailInfo.CurrentCount = BLLFactory<ReportMonthlyDetail>.Instance.GetDeptCount(StatisticValueType.CurrentCount, deptItem.Value);
                     detailInfo.CurrentInCount = BLLFactory<ReportMonthlyDetail>.Instance.GetDeptCount(StatisticValueType.CurrentInCount, deptItem.Value);
@@ -97,7 +98,7 @@ namespace JCodes.Framework.AddIn.Basic
             #region 构造库房结存月报表（单库房）
             List<WareHouseInfo> wareList = BLLFactory<WareHouse>.Instance.GetAll();
             ReportMonthlyHeaderInfo eachWareHeaderInfo = GetMainHeader();
-            eachWareHeaderInfo.ReportTitle = string.Format("{0}库房结存月报表", DateTime.Now.ToString("yyyy年MM月"));
+            eachWareHeaderInfo.ReportTitle = string.Format("{0}库房结存月报表", DateTimeHelper.GetServerDateTime2().ToString("yyyy年MM月"));
             eachWareHeaderInfo.ReportType = 2;
             int headerID = BLLFactory<ReportMonthlyHeader>.Instance.InsertOrUpdate(eachWareHeaderInfo);
             if (headerID > 0)
@@ -113,9 +114,9 @@ namespace JCodes.Framework.AddIn.Basic
                 {
                     ReportMonthlyDetailInfo detailInfo = new ReportMonthlyDetailInfo();
                     detailInfo.Header_ID = headerID;
-                    detailInfo.ReportYear = DateTime.Now.Year;
-                    detailInfo.ReportMonth = DateTime.Now.Month;
-                    detailInfo.YearMonth = DateTime.Now.ToString("yyyy年MM月");
+                    detailInfo.ReportYear = DateTimeHelper.GetServerDateTime2().Year;
+                    detailInfo.ReportMonth = DateTimeHelper.GetServerDateTime2().Month;
+                    detailInfo.YearMonth = DateTimeHelper.GetServerDateTime2().ToString("yyyy年MM月");
                     detailInfo.ItemName = wareInfo.Name;//项目名称为库房名称
                     detailInfo.CurrentCount = BLLFactory<ReportMonthlyDetail>.Instance.GetEachWareCount(StatisticValueType.CurrentCount, wareInfo.Name);
                     detailInfo.CurrentInCount = BLLFactory<ReportMonthlyDetail>.Instance.GetEachWareCount(StatisticValueType.CurrentInCount, wareInfo.Name);
@@ -141,7 +142,7 @@ namespace JCodes.Framework.AddIn.Basic
             CListItem[] itemBigTypeArray = DictItemUtil.GetDictByDictType("备件属类");
             CListItem[] itemTypeArray = DictItemUtil.GetDictByDictType("备件类别");
             ReportMonthlyHeaderInfo allWareHeaderInfo = GetMainHeader();
-            allWareHeaderInfo.ReportTitle = string.Format("{0}库房结存月报表", DateTime.Now.ToString("yyyy年MM月"));
+            allWareHeaderInfo.ReportTitle = string.Format("{0}库房结存月报表", DateTimeHelper.GetServerDateTime2().ToString("yyyy年MM月"));
             allWareHeaderInfo.ReportType = 3;
             int headerID = BLLFactory<ReportMonthlyHeader>.Instance.InsertOrUpdate(allWareHeaderInfo);
             if (headerID > 0)
@@ -157,9 +158,9 @@ namespace JCodes.Framework.AddIn.Basic
                 {
                     ReportMonthlyDetailInfo detailInfo = new ReportMonthlyDetailInfo();
                     detailInfo.Header_ID = headerID;
-                    detailInfo.ReportYear = DateTime.Now.Year;
-                    detailInfo.ReportMonth = DateTime.Now.Month;
-                    detailInfo.YearMonth = DateTime.Now.ToString("yyyy年MM月");
+                    detailInfo.ReportYear = DateTimeHelper.GetServerDateTime2().Year;
+                    detailInfo.ReportMonth = DateTimeHelper.GetServerDateTime2().Month;
+                    detailInfo.YearMonth = DateTimeHelper.GetServerDateTime2().ToString("yyyy年MM月");
                     detailInfo.ItemName = bigItem.Value;//项目名称为部门名称
                     detailInfo.CurrentCount = BLLFactory<ReportMonthlyDetail>.Instance.GetWareItemBigTypeCount(StatisticValueType.CurrentCount, bigItem.Value);
                     detailInfo.CurrentInCount = BLLFactory<ReportMonthlyDetail>.Instance.GetWareItemBigTypeCount(StatisticValueType.CurrentInCount, bigItem.Value);
@@ -181,9 +182,9 @@ namespace JCodes.Framework.AddIn.Basic
                 {
                     ReportMonthlyDetailInfo detailInfo = new ReportMonthlyDetailInfo();
                     detailInfo.Header_ID = headerID;
-                    detailInfo.ReportYear = DateTime.Now.Year;
-                    detailInfo.ReportMonth = DateTime.Now.Month;
-                    detailInfo.YearMonth = DateTime.Now.ToString("yyyy年MM月");
+                    detailInfo.ReportYear = DateTimeHelper.GetServerDateTime2().Year;
+                    detailInfo.ReportMonth = DateTimeHelper.GetServerDateTime2().Month;
+                    detailInfo.YearMonth = DateTimeHelper.GetServerDateTime2().ToString("yyyy年MM月");
                     detailInfo.ItemName = itemType.Value;//项目名称为部门名称
                     detailInfo.CurrentCount = BLLFactory<ReportMonthlyDetail>.Instance.GetWareItemTypeCount(StatisticValueType.CurrentCount, itemType.Value);
                     detailInfo.CurrentInCount = BLLFactory<ReportMonthlyDetail>.Instance.GetWareItemTypeCount(StatisticValueType.CurrentInCount, itemType.Value);
@@ -210,7 +211,7 @@ namespace JCodes.Framework.AddIn.Basic
             CListItem[] deptArray = DictItemUtil.GetDictByDictType("部门");
             CListItem[] itemTypeArray = DictItemUtil.GetDictByDictType("备件类别");
             ReportMonthlyHeaderInfo deptCostHeaderInfo = GetMainHeader();
-            deptCostHeaderInfo.ReportTitle = string.Format("{0}各车间成本月报表", DateTime.Now.ToString("yyyy年MM月"));
+            deptCostHeaderInfo.ReportTitle = string.Format("{0}各车间成本月报表", DateTimeHelper.GetServerDateTime2().ToString("yyyy年MM月"));
             deptCostHeaderInfo.ReportType = 4;
             int headerID = BLLFactory<ReportMonthlyHeader>.Instance.InsertOrUpdate(deptCostHeaderInfo);
             if (headerID > 0)
@@ -229,12 +230,12 @@ namespace JCodes.Framework.AddIn.Basic
                     {
                         ReportMonthlyCostDetailInfo detailInfo = new ReportMonthlyCostDetailInfo();
                         detailInfo.Header_ID = headerID;
-                        detailInfo.ReportYear = DateTime.Now.Year;
-                        detailInfo.ReportMonth = DateTime.Now.Month;
-                        detailInfo.YearMonth = DateTime.Now.ToString("yyyy年MM月");
+                        detailInfo.ReportYear = DateTimeHelper.GetServerDateTime2().Year;
+                        detailInfo.ReportMonth = DateTimeHelper.GetServerDateTime2().Month;
+                        detailInfo.YearMonth = DateTimeHelper.GetServerDateTime2().ToString("yyyy年MM月");
                         detailInfo.DeptName = deptItem.Value;
                         detailInfo.ItemType = itemType.Value;
-                        detailInfo.TotalMoney = BLLFactory<ReportMonthlyDetail>.Instance.GetPartMonthlyCost(deptItem.Value, itemType.Value, DateTime.Now.Year, DateTime.Now.Month);
+                        detailInfo.TotalMoney = BLLFactory<ReportMonthlyDetail>.Instance.GetPartMonthlyCost(deptItem.Value, itemType.Value, DateTimeHelper.GetServerDateTime2().Year, DateTimeHelper.GetServerDateTime2().Month);
                         //detailInfo.ReportCode = "";//
                         BLLFactory<ReportMonthlyCostDetail>.Instance.Insert(detailInfo);
 

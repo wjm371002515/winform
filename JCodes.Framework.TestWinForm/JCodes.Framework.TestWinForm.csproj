@@ -40,6 +40,7 @@
       <HintPath>..\JCodes.Framework.libs\Aspose\Aspose.Words.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.BonusSkins.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.CodeParser.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Office.v14.1.Core, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Printing.v14.1.Core, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -118,6 +119,12 @@
     </Compile>
     <Compile Include="Common.Test\FrmWebPreview.Designer.cs">
       <DependentUpon>FrmWebPreview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common.Test\SyntaxHighlight.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common.Test\SyntaxHighlight.designer.cs">
+      <DependentUpon>SyntaxHighlight.cs</DependentUpon>
     </Compile>
     <Compile Include="Common.Test\TestSingletonClass.cs" />
     <Compile Include="CommonUtil.Test\Form1.cs">
@@ -221,6 +228,9 @@
     <EmbeddedResource Include="Common.Test\FrmWebPreview.resx">
       <DependentUpon>FrmWebPreview.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Common.Test\SyntaxHighlight.resx">
+      <DependentUpon>SyntaxHighlight.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CommonUtil.Test\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -257,6 +267,7 @@
     <EmbeddedResource Include="Page.Test\FrmEditCustomer.resx">
       <DependentUpon>FrmEditCustomer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

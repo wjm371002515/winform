@@ -16,6 +16,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TestCommons;
 using WHC.OrderWater.UI;
 
 namespace JCodes.Framework.TestWinForm
@@ -28,6 +29,7 @@ namespace JCodes.Framework.TestWinForm
         [STAThread]
         static void Main()
         {
+            /*
             System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("zh-CN");
             DevExpress.UserSkins.BonusSkins.Register();
             DevExpress.Skins.SkinManager.EnableFormSkins();
@@ -48,7 +50,7 @@ namespace JCodes.Framework.TestWinForm
             }
 
             // 自动升级工具
-            if (_isUpdate && VersionHelper.HasNewVersion(serverIP, serverPort) && (MessageDxUtil.ShowYesNoAndTips("服务器有新的版本是否更新") == DialogResult.Yes))
+            /*if (_isUpdate && VersionHelper.HasNewVersion(serverIP, serverPort) && (MessageDxUtil.ShowYesNoAndTips("服务器有新的版本是否更新") == DialogResult.Yes))
             {
                 string updateExePath = AppDomain.CurrentDomain.BaseDirectory + "AutoUpdater\\AutoUpdater.exe";
                 System.Diagnostics.Process myProcess = System.Diagnostics.Process.Start(updateExePath);  
@@ -61,7 +63,7 @@ namespace JCodes.Framework.TestWinForm
                     WaitBeforeLogin = new DevExpress.Utils.WaitDialogForm("请稍候...", "正在加载应用系统");
                     Application.Run(new TestCommons.Form1(WaitBeforeLogin));
                 }).Start();
-            }
+            }*/
             //Application.Run(new Form1());
 
             // 分页控件
@@ -77,6 +79,8 @@ namespace JCodes.Framework.TestWinForm
 
             // 权限管理系统
             //Application.Run(new TestSecurityMix_WCF_WIN.Form1());
+            DevExpress.UserSkins.BonusSkins.Register();
+            Application.Run(new SyntaxHighlightModule());
         }
     }
 }

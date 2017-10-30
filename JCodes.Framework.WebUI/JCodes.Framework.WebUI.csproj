@@ -102,10 +102,6 @@
       <Project>{0DC2C51C-4601-4045-A412-BED930658C2C}</Project>
       <Name>JCodes.Framework.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JCodes.Framework.Model\JCodes.Framework.Model.csproj">
-      <Project>{F31B2A29-7F65-4019-B015-44A9FF67F33A}</Project>
-      <Name>JCodes.Framework.Model</Name>
-    </ProjectReference>
     <ProjectReference Include="..\JCodes.Framework.SQLServerDAL\JCodes.Framework.SQLServerDAL.csproj">
       <Project>{B10441F3-9C12-46EC-BDB7-768AEF8EC863}</Project>
       <Name>JCodes.Framework.SQLServerDAL</Name>

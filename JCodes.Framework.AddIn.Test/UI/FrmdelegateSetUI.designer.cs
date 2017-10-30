@@ -67,23 +67,39 @@
             // 
             // richText
             // 
-            this.richText.ActiveViewType = DevExpress.XtraRichEdit.RichEditViewType.Simple;
+            this.richText.ActiveViewType = DevExpress.XtraRichEdit.RichEditViewType.Draft;
             this.richText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richText.EnableToolTips = true;
             this.richText.Location = new System.Drawing.Point(2, 2);
-            this.richText.Margin = new System.Windows.Forms.Padding(0);
-            this.richText.Name = "richText";
+            this.richText.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.richText.Name = "richEditControl";
+            this.richText.Options.AutoCorrect.DetectUrls = false;
+            this.richText.Options.AutoCorrect.ReplaceTextAsYouType = false;
+            this.richText.Options.Behavior.PasteLineBreakSubstitution = DevExpress.XtraRichEdit.LineBreakSubstitute.Paragraph;
             this.richText.Options.CopyPaste.MaintainDocumentSectionSettings = false;
+            this.richText.Options.DocumentCapabilities.Bookmarks = DevExpress.XtraRichEdit.DocumentCapability.Disabled;
+            this.richText.Options.DocumentCapabilities.CharacterStyle = DevExpress.XtraRichEdit.DocumentCapability.Disabled;
+            this.richText.Options.DocumentCapabilities.HeadersFooters = DevExpress.XtraRichEdit.DocumentCapability.Disabled;
+            this.richText.Options.DocumentCapabilities.Hyperlinks = DevExpress.XtraRichEdit.DocumentCapability.Disabled;
+            this.richText.Options.DocumentCapabilities.InlinePictures = DevExpress.XtraRichEdit.DocumentCapability.Disabled;
+            this.richText.Options.DocumentCapabilities.Numbering.Bulleted = DevExpress.XtraRichEdit.DocumentCapability.Disabled;
+            this.richText.Options.DocumentCapabilities.Numbering.MultiLevel = DevExpress.XtraRichEdit.DocumentCapability.Disabled;
+            this.richText.Options.DocumentCapabilities.Numbering.Simple = DevExpress.XtraRichEdit.DocumentCapability.Disabled;
+            this.richText.Options.DocumentCapabilities.ParagraphFormatting = DevExpress.XtraRichEdit.DocumentCapability.Disabled;
+            this.richText.Options.DocumentCapabilities.Paragraphs = DevExpress.XtraRichEdit.DocumentCapability.Enabled;
+            this.richText.Options.DocumentCapabilities.ParagraphStyle = DevExpress.XtraRichEdit.DocumentCapability.Disabled;
+            this.richText.Options.DocumentCapabilities.Sections = DevExpress.XtraRichEdit.DocumentCapability.Disabled;
+            this.richText.Options.DocumentCapabilities.Tables = DevExpress.XtraRichEdit.DocumentCapability.Disabled;
+            this.richText.Options.DocumentCapabilities.TableStyle = DevExpress.XtraRichEdit.DocumentCapability.Disabled;
             this.richText.Options.Fields.UseCurrentCultureDateTimeFormat = false;
             this.richText.Options.HorizontalRuler.Visibility = DevExpress.XtraRichEdit.RichEditRulerVisibility.Hidden;
-            this.richText.Options.HorizontalScrollbar.Visibility = DevExpress.XtraRichEdit.RichEditScrollbarVisibility.Hidden;
             this.richText.Options.MailMerge.KeepLastParagraph = false;
-            this.richText.Options.VerticalRuler.Visibility = DevExpress.XtraRichEdit.RichEditRulerVisibility.Hidden;
-            this.richText.Size = new System.Drawing.Size(918, 650);
-            this.richText.TabIndex = 0;
-            this.richText.Text = "111";
-            this.richText.Views.DraftView.Padding = new System.Windows.Forms.Padding(0);
-            this.richText.Views.SimpleView.Padding = new System.Windows.Forms.Padding(0);
+            this.richText.Size = new System.Drawing.Size(1111, 627);
+            this.richText.TabIndex = 1;
+            this.richText.Text = "richEditControl1";
+            this.richText.Views.DraftView.AllowDisplayLineNumbers = true;
+            this.richText.Views.DraftView.Padding = new System.Windows.Forms.Padding(80, 4, 0, 0);
+            this.richText.InitializeDocument += new System.EventHandler(this.richEditControl_InitializeDocument);
             // 
             // FrmdelegateSetUI
             // 

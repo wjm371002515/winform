@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using JCodes.Framework.Common;
 using JCodes.Framework.Entity;
 using JCodes.Framework.Common.Framework;
+using JCodes.Framework.Common.Format;
 
 namespace JCodes.Framework.BLL
 {
@@ -43,7 +44,7 @@ namespace JCodes.Framework.BLL
                     info.TableName = tableName;
                     info.OperationType = operationType;
                     info.Note = note;
-                    info.CreateTime = DateTime.Now;
+                    info.CreateTime = DateTimeHelper.GetServerDateTime2();
 
                     if (!string.IsNullOrEmpty(userId))
                     {

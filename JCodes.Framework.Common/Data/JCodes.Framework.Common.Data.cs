@@ -1,4 +1,5 @@
-﻿using JCodes.Framework.Common.Office;
+﻿using JCodes.Framework.Common.Format;
+using JCodes.Framework.Common.Office;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -33,7 +34,7 @@ namespace JCodes.Framework.Common
                     throw new Exception("获取日期参数格式不正确");
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 // 获取注册表的日期
                 string regkey = UIConstants.SoftwareRegistryKey;
@@ -45,7 +46,7 @@ namespace JCodes.Framework.Common
                 }
                 else
                 {
-                    nowDate = DateTime.Now.ToString("yyyy-MM-dd");
+                    nowDate = DateTimeHelper.GetServerDate();
                 }
             }
             return nowDate;

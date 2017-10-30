@@ -86,10 +86,6 @@
       <Project>{22d7993c-a8c8-4306-90a4-96ff76a12c0a}</Project>
       <Name>JCodes.Framework.Entity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JCodes.Framework.Model\JCodes.Framework.Model.csproj">
-      <Project>{F31B2A29-7F65-4019-B015-44A9FF67F33A}</Project>
-      <Name>JCodes.Framework.Model</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

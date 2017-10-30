@@ -121,7 +121,7 @@ namespace JCodes.Framework.AddIn.Dictionary
             info.Seq = this.txtSeq.Text;
             info.Remark = this.txtNote.Text.Trim();
             info.Editor = LoginUserInfo.ID.ToString();
-            info.LastUpdated = DateTime.Now;
+            info.LastUpdated = DateTimeHelper.GetServerDateTime2();
 
             info.CurrentLoginUserId = LoginUserInfo.ID.ToString();
         }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using JCodes.Framework.Common;
 using JCodes.Framework.Entity;
 using JCodes.Framework.Common.Framework;
+using JCodes.Framework.Common.Format;
 
 namespace JCodes.Framework.BLL
 {
@@ -45,7 +46,7 @@ namespace JCodes.Framework.BLL
             else
             {
                 existInfo.Note = info.Note;
-                existInfo.CreateDate = DateTime.Now;
+                existInfo.CreateDate = DateTimeHelper.GetServerDateTime2();
                 existInfo.Creator = info.Creator;
                 existInfo.ReportTitle = info.ReportTitle;
                 baseDal.Update(existInfo, existInfo.ID.ToString());

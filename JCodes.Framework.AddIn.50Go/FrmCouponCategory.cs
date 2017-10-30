@@ -2,6 +2,7 @@
 using JCodes.Framework.Common;
 using JCodes.Framework.Common.Databases;
 using JCodes.Framework.Common.Files;
+using JCodes.Framework.Common.Format;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Common.Office;
 using JCodes.Framework.CommonControl.BaseUI;
@@ -148,7 +149,7 @@ namespace JCodes.Framework.AddIn._50Go
         /// </summary>
         private void btnExport_Click(object sender, EventArgs e)
         {
-            string file = FileDialogHelper.SaveExcel(string.Format("{0}.xls", "优惠券信息数据" + DateTime.Now.ToString("yyyyMMddHHmmss")));
+            string file = FileDialogHelper.SaveExcel(string.Format("{0}.xls", "优惠券信息数据" + DateTimeHelper.GetServerDateTime2().ToString("yyyyMMddHHmmss")));
             if (!string.IsNullOrEmpty(file))
             {
                 string where = GetConditionSql();

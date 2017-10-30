@@ -20,6 +20,7 @@ using JCodes.Framework.Common.Network;
 using JCodes.Framework.CommonControl.Other;
 using OAUS.Core;
 using JCodes.Framework.AddIn.Basic;
+using JCodes.Framework.Common.Format;
 
 namespace JCodes.Framework.WinFormUI
 {
@@ -191,7 +192,7 @@ namespace JCodes.Framework.WinFormUI
             using (Graphics g = Graphics.FromImage(bmp))
             {
                 g.CopyFromScreen(0, 0, 0, 0, new Size(width, height));
-                bmp.Save("Screen\\" + DateTime.Now.ToString("yyyyMMdd_hhmmss") + ".png", ImageFormat.Png);
+                bmp.Save("Screen\\" + DateTimeHelper.GetServerDateTime2().ToString("yyyyMMdd_hhmmss") + ".png", ImageFormat.Png);
             }
         }
     }

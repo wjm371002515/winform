@@ -8,6 +8,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using JCodes.Framework.Common.Encrypt;
 using JCodes.Framework.Common.Office;
 using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.Common.Format;
 
 namespace JCodes.Framework.Common.Files
 {
@@ -22,7 +23,7 @@ namespace JCodes.Framework.Common.Files
         /// </summary>
         public static void SaveDataTime()
         {
-            SaveDataTime(DateTime.Now);
+            SaveDataTime(DateTimeHelper.GetServerDateTime2());
         }
 
         /// <summary>

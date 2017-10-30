@@ -14,6 +14,7 @@ using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Common.Files;
 using JCodes.Framework.CommonControl.Other.Images;
 using JCodes.Framework.Common.Office;
+using JCodes.Framework.Common.Format;
 
 namespace JCodes.Framework.BLL
 {
@@ -78,7 +79,7 @@ namespace JCodes.Framework.BLL
                 if (!string.IsNullOrEmpty(relativeSavePath))
                 {
                     info.SavePath = relativeSavePath.Trim('\\');
-                    info.AddTime = DateTime.Now;
+                    info.AddTime = DateTimeHelper.GetServerDateTime2();
 
                     try
                     {

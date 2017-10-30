@@ -171,7 +171,7 @@ namespace JCodes.Framework.AddIn.Security
             else
             {
                 txtCreator.Text = Portal.gc.UserInfo.FullName;//默认为当前登录用户
-                txtCreateTime.DateTime = DateTime.Now; //默认当前时间
+                txtCreateTime.DateTime = DateTimeHelper.GetServerDateTime2(); //默认当前时间
             }
         }
 
@@ -215,7 +215,7 @@ namespace JCodes.Framework.AddIn.Security
             info.SortCode = txtSortCode.Text;
             info.Editor = Portal.gc.UserInfo.FullName;
             info.Editor_ID = Portal.gc.UserInfo.ID.ToString();
-            info.EditTime = DateTime.Now;
+            info.EditTime = DateTimeHelper.GetServerDateTime2();
             info.Deleted = txtDeleted.Checked;
 
             info.CurrentLoginUserId = Portal.gc.UserInfo.ID.ToString();
@@ -231,7 +231,7 @@ namespace JCodes.Framework.AddIn.Security
             SetInfo(info);
             info.Creator = Portal.gc.UserInfo.FullName;
             info.Creator_ID = Portal.gc.UserInfo.ID.ToString();
-            info.CreateTime = DateTime.Now;
+            info.CreateTime = DateTimeHelper.GetServerDateTime2();
 
             try
             {
@@ -313,7 +313,7 @@ namespace JCodes.Framework.AddIn.Security
                 }
 
                 DateTime birthDay = IDCardHelper.GetBirthday(idCardNo);
-                int age = DateTime.Now.Year - birthDay.Year;
+                int age = DateTimeHelper.GetServerDateTime2().Year - birthDay.Year;
                 string sex = IDCardHelper.GetSexName(idCardNo);
 
                 this.txtBirthday.DateTime = birthDay;

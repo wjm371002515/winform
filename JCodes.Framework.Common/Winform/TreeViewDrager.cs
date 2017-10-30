@@ -39,7 +39,6 @@ namespace JCodes.Framework.Common.Winform
         private TreeView tempTreeView;
         private ImageList imageListDrag = new ImageList();
 		private ImageList imageListTreeView;
-        private Image nodeImage;//将来用来记录节点的图标。
 
         /// <summary>
         /// 设置拖动树的时候，显示的图片，显示其中第一个

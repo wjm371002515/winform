@@ -115,6 +115,8 @@ namespace JCodes.Framework.Common
 
         public const string MsgErrFormatByNum = "格式不正确，请输入数字";
 
+        public const string MsgIsExistMsg = "该值已存在";
+
         #endregion
     }
 }

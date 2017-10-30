@@ -18,6 +18,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using JCodes.Framework.Common.Format;
 
 namespace JCodes.Framework.AddIn.Contact
 {
@@ -358,7 +359,7 @@ namespace JCodes.Framework.AddIn.Contact
             info.Name = dr["分组名称"].ToString();
             info.Note = dr["备注"].ToString();
             info.Creator = LoginUserInfo.ID.ToString();
-            info.CreateTime = DateTime.Now;
+            info.CreateTime = DateTimeHelper.GetServerDateTime2();
             info.Dept_ID = LoginUserInfo.DeptId;
             info.Company_ID = LoginUserInfo.CompanyId;
 

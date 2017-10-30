@@ -10,6 +10,7 @@ using NPOI.HSSF.UserModel;
 using NPOI.HPSF;
 using NPOI.SS.Util;
 using NPOI.SS.UserModel;
+using JCodes.Framework.Common.Format;
 
 namespace JCodes.Framework.Common.Office
 {
@@ -92,7 +93,7 @@ namespace JCodes.Framework.Common.Office
             si.Comments = ""; //填加xls文件作者信息
             si.Title = ""; //填加xls文件标题信息
             si.Subject = "";//填加文件主题信息
-            si.CreateDateTime = DateTime.Now;
+            si.CreateDateTime = DateTimeHelper.GetServerDateTime2();
 
             return Export(dtSource, strHeaderText, dsi, si);
         }

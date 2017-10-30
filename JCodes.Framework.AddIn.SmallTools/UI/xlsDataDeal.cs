@@ -1,4 +1,5 @@
 ﻿using JCodes.Framework.Common;
+using JCodes.Framework.Common.Format;
 using JCodes.Framework.CommonControl.BaseUI;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.Entity;
@@ -41,7 +42,7 @@ namespace JCodes.Framework.AddIn.SmallTools
             {
                 string path = folderbrowserdialog.SelectedPath;
                 LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, " 选择文件夹路径为: " + path, typeof(xlsDataDeal));
-                rtbLog.AppendText(DateTime.Now.ToString() + " 选择文件夹路径为: " + path + "\r\n");
+                rtbLog.AppendText(DateTimeHelper.GetServerDateTime2().ToString() + " 选择文件夹路径为: " + path + "\r\n");
                 // 赋值文件路径
                 txtPath.Text = path;
                 _fileInfolst.Clear();
@@ -62,7 +63,7 @@ namespace JCodes.Framework.AddIn.SmallTools
         private bool CheckFile(string filename)
         {
             LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, " 检查文件名: " + filename, typeof(xlsDataDeal));
-            rtbLog.AppendText(DateTime.Now.ToString() + " 检查文件名: " + filename + "\r\n");
+            rtbLog.AppendText(DateTimeHelper.GetServerDateTime2().ToString() + " 检查文件名: " + filename + "\r\n");
 
             // 过滤临时文件
             if (filename.StartsWith("~$"))
@@ -210,13 +211,13 @@ namespace JCodes.Framework.AddIn.SmallTools
                 return;
             }
 
-            rtbLog.AppendText(DateTime.Now.ToString() + " 【处理完成】导出路径 " + Application.StartupPath + "\\网下利率询价及申购申请表汇总表.xlsx\r\n");
+            rtbLog.AppendText(DateTimeHelper.GetServerDateTime2().ToString() + " 【处理完成】导出路径 " + Application.StartupPath + "\\网下利率询价及申购申请表汇总表.xlsx\r\n");
         }
 
         private bool DoDeal(string filename, Worksheet sheet)
         {
             LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, " 开始处理文件: " + filename, typeof(xlsDataDeal));
-            rtbLog.AppendText(DateTime.Now.ToString() + " 开始处理文件: " + filename + "\r\n");
+            rtbLog.AppendText(DateTimeHelper.GetServerDateTime2().ToString() + " 开始处理文件: " + filename + "\r\n");
             string path = txtPath.Text.Trim();
 
             if (!File.Exists(path + "\\"+ filename))
@@ -253,7 +254,7 @@ namespace JCodes.Framework.AddIn.SmallTools
         private bool ReadXlsData(string filename)
         {
             LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, " 开始读取文件: " + filename, typeof(xlsDataDeal));
-            rtbLog.AppendText(DateTime.Now.ToString() + " 开始读取文件: " + filename + "\r\n");
+            rtbLog.AppendText(DateTimeHelper.GetServerDateTime2() + " 开始读取文件: " + filename + "\r\n");
 
             // 每次新增文件标识
             _fileNum++;
@@ -380,7 +381,7 @@ namespace JCodes.Framework.AddIn.SmallTools
         private bool WriteXlsData(string filename, Worksheet sheet)
         {
             LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, " 开始把上一次读的数据写入到文件: " + filename, typeof(xlsDataDeal));
-            rtbLog.AppendText(DateTime.Now.ToString() + " 开始把上一次读的数据写入到文件: " + filename + "\r\n");
+            rtbLog.AppendText(DateTimeHelper.GetServerDateTime2().ToString() + " 开始把上一次读的数据写入到文件: " + filename + "\r\n");
             try
             {
                 _mEBInfolst.ForEach(a =>

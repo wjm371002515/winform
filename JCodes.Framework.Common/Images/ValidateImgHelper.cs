@@ -4,6 +4,7 @@ using System.Text;
 using System.Drawing;
 using System.Security.Cryptography;
 using System.Web;
+using JCodes.Framework.Common.Format;
 
 namespace JCodes.Framework.Common.Images
 {
@@ -55,7 +56,7 @@ namespace JCodes.Framework.Common.Images
         {
             HttpContext.Current.Response.Expires = 0;
             HttpContext.Current.Response.Buffer = true;
-            HttpContext.Current.Response.ExpiresAbsolute = DateTime.Now.AddSeconds(-1);
+            HttpContext.Current.Response.ExpiresAbsolute = DateTimeHelper.GetServerDateTime2().AddSeconds(-1);
             HttpContext.Current.Response.AddHeader("pragma", "no-cache");
             HttpContext.Current.Response.CacheControl = "no-cache";
             this.text = Rand.OnlyNumber(4);
@@ -134,9 +135,9 @@ namespace JCodes.Framework.Common.Images
         /// </summary>
         public Color GetRandomColor()
         {
-            Random RandomNum_First = new Random((int)DateTime.Now.Ticks);
+            Random RandomNum_First = new Random((int)DateTimeHelper.GetServerDateTime2().Ticks);
             System.Threading.Thread.Sleep(RandomNum_First.Next(50));
-            Random RandomNum_Sencond = new Random((int)DateTime.Now.Ticks);
+            Random RandomNum_Sencond = new Random((int)DateTimeHelper.GetServerDateTime2().Ticks);
             int int_Red = RandomNum_First.Next(180);
             int int_Green = RandomNum_Sencond.Next(180);
             int int_Blue = (int_Red + int_Green > 300) ? 0 : 400 - int_Red - int_Green;
@@ -241,7 +242,7 @@ namespace JCodes.Framework.Common.Images
             char[] Pattern = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
             string result = "";
             int n = Pattern.Length;
-            System.Random random = new Random(~unchecked((int)DateTime.Now.Ticks));
+            System.Random random = new Random(~unchecked((int)DateTimeHelper.GetServerDateTime2().Ticks));
             for (int i = 0; i < Length; i++)
             {
                 int rnd = random.Next(0, n);
@@ -273,7 +274,7 @@ namespace JCodes.Framework.Common.Images
             char[] Pattern = new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
             string result = "";
             int n = Pattern.Length;
-            System.Random random = new Random(~unchecked((int)DateTime.Now.Ticks));
+            System.Random random = new Random(~unchecked((int)DateTimeHelper.GetServerDateTime2().Ticks));
             for (int i = 0; i < Length; i++)
             {
                 int rnd = random.Next(0, n);

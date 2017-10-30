@@ -13,6 +13,7 @@ using System.Drawing;
 using DevExpress.XtraEditors.Controls;
 using JCodes.Framework.CommonControl.Controls;
 using JCodes.Framework.AddIn.Basic;
+using JCodes.Framework.Common.Format;
 
 namespace JCodes.Framework.AddIn.Dictionary
 {
@@ -496,7 +497,7 @@ namespace JCodes.Framework.AddIn.Dictionary
                     i.sysId = sysId;
                     i.Value = newValue;
                     i.Editor = LoginUserInfo.ID.ToString();
-                    i.EditorTime = System.DateTime.Now; //创建时间   
+                    i.EditorTime = DateTimeHelper.GetServerDateTime2(); //创建时间   
                     i.CurrentLoginUserId = Portal.gc.UserInfo.ID.ToString();
                     isExist = true;
                     break;
@@ -510,7 +511,7 @@ namespace JCodes.Framework.AddIn.Dictionary
                 info.sysId = sysId;
                 info.Value = newValue;
                 info.Editor = LoginUserInfo.ID.ToString();
-                info.EditorTime = System.DateTime.Now; //创建时间   
+                info.EditorTime = DateTimeHelper.GetServerDateTime2(); //创建时间   
                 info.CurrentLoginUserId = Portal.gc.UserInfo.ID.ToString();
                 _info.Add(info);
             }

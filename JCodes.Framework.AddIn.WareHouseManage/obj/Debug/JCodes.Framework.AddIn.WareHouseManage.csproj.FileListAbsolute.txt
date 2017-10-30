@@ -24,4 +24,4 @@ G:\github_winform\winform\JCodes.Framework.AddIn.WareHouseManage\obj\Debug\JCode
 G:\github_winform\winform\JCodes.Framework.AddIn.WareHouseManage\obj\Debug\JCodes.Framework.AddIn.WareHouseManage.csproj.GenerateResource.Cache
 G:\github_winform\winform\JCodes.Framework.AddIn.WareHouseManage\obj\Debug\JCodes.Framework.AddIn.WareHouseManage.dll
 G:\github_winform\winform\JCodes.Framework.AddIn.WareHouseManage\obj\Debug\JCodes.Framework.AddIn.WareHouseManage.pdb
-G:\github_winform\winform\JCodes.Framework.AddIn.WareHouseManage\obj\Debug\JCodes.Framework.AddIn.WareHouseManage.csprojResolveAssemblyReference.cache
+G:\github_winform\winform\JCodes.Framework.AddIn.WareHouseManage\obj\Debug\JCodes.Framework.AddIn.WareHouseManage.dll.licenses

@@ -100,7 +100,7 @@ namespace JCodes.Framework.AddIn._50Go
                 return;
             
             // 直接更新编辑人和状态;
-            BLLFactory<Coupon>.Instance.UseCoupon(ID, Portal.gc.UserInfo.Creator, Portal.gc.UserInfo.Creator_ID, DateTime.Now);
+            BLLFactory<Coupon>.Instance.UseCoupon(ID, Portal.gc.UserInfo.Creator, Portal.gc.UserInfo.Creator_ID, DateTimeHelper.GetServerDateTime2());
 
             MessageDxUtil.ShowYesNoAndTips("操作成功");
        
@@ -120,7 +120,7 @@ namespace JCodes.Framework.AddIn._50Go
                 return false;
             }
             // 检查券的有效期
-            DateTime dt = DateTime.Now;
+            DateTime dt = DateTimeHelper.GetServerDateTime2();
             if (dt < couponInfo.StartTime || dt > couponInfo.EndTime)
             {
                 MessageDxUtil.ShowTips("此优惠券不在使用时间范围内");

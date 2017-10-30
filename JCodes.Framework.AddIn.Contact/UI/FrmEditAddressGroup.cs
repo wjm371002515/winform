@@ -14,6 +14,7 @@ using JCodes.Framework.CommonControl.Controls;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.Common;
 using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.Common.Format;
 
 namespace JCodes.Framework.AddIn.Contact
 {
@@ -110,14 +111,14 @@ namespace JCodes.Framework.AddIn.Contact
                     //如果没有父菜单，则设置为无选项（第一个）
                     this.txtPID.SelectedIndex = 0;
                 }
-                this.txtEditTime.DateTime = DateTime.Now; //默认当前时间
+                this.txtEditTime.DateTime = DateTimeHelper.GetServerDateTime2(); //默认当前时间
                 this.txtEditor.Text = LoginUserInfo.FullName;//默认为当前登录用户 
             }
         }
 
         public override void ClearScreen()
         {
-            this.txtEditTime.DateTime = DateTime.Now; //默认当前时间
+            this.txtEditTime.DateTime = DateTimeHelper.GetServerDateTime2(); //默认当前时间
             this.txtEditor.Text = LoginUserInfo.FullName;//默认为当前登录用户 
             string pid = this.txtPID.GetComboBoxStrValue();
 
@@ -136,7 +137,7 @@ namespace JCodes.Framework.AddIn.Contact
             info.Name = txtName.Text;
             info.Note = txtNote.Text;
 
-            info.EditTime = DateTime.Now;
+            info.EditTime = DateTimeHelper.GetServerDateTime2();
             info.Editor = LoginUserInfo.ID.ToString();//当前用户
             info.CurrentLoginUserId = LoginUserInfo.ID.ToString(); //记录当前登录的用户信息，供操作日志记录使用
         }
@@ -150,7 +151,7 @@ namespace JCodes.Framework.AddIn.Contact
             AddressGroupInfo info = new AddressGroupInfo();
             SetInfo(info);
             info.Creator = LoginUserInfo.ID.ToString();
-            info.CreateTime = DateTime.Now;
+            info.CreateTime = DateTimeHelper.GetServerDateTime2();
             info.Dept_ID = LoginUserInfo.DeptId;
             info.Company_ID = LoginUserInfo.CompanyId;
             info.AddressType = this.AddressType;

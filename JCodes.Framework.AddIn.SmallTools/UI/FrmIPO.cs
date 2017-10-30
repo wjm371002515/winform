@@ -1,4 +1,5 @@
 ﻿using JCodes.Framework.Common;
+using JCodes.Framework.Common.Format;
 using JCodes.Framework.CommonControl.BaseUI;
 using JCodes.Framework.Entity;
 using JCodes.Framework.jCodesenum.BaseEnum;
@@ -39,7 +40,7 @@ namespace JCodes.Framework.AddIn.SmallTools
             {
                 string path = folderbrowserdialog.SelectedPath;
                 LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, " 选择xls导入路径为: " + path, typeof(FrmIPO));
-                rtbLog.AppendText(DateTime.Now.ToString() + " 选择xls导入路径为: " + path + "\r\n");
+                rtbLog.AppendText(DateTimeHelper.GetServerDateTime() + " 选择xls导入路径为: " + path + "\r\n");
                 // 赋值文件路径
                 txtPath.Text = path;
                 _fileInfolst.Clear();
@@ -61,7 +62,7 @@ namespace JCodes.Framework.AddIn.SmallTools
         {
             LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, " 检查文件名: " + filename, typeof(FrmIPO));
 
-            rtbLog.AppendText(DateTime.Now.ToString() + " 检查文件名: " + filename + "\r\n");
+            rtbLog.AppendText(DateTimeHelper.GetServerDateTime() + " 检查文件名: " + filename + "\r\n");
 
             // 过滤临时文件
             if (filename.StartsWith("~$"))
@@ -199,7 +200,7 @@ namespace JCodes.Framework.AddIn.SmallTools
                 return;
             }
 
-            rtbLog.AppendText(DateTime.Now.ToString() + " 【处理完成】导出路径 " + txtPath.Text + "目录下对应的txt文件\r\n");
+            rtbLog.AppendText(DateTimeHelper.GetServerDateTime() + " 【处理完成】导出路径 " + txtPath.Text + "目录下对应的txt文件\r\n");
         }
 
         /// <summary>
@@ -211,7 +212,7 @@ namespace JCodes.Framework.AddIn.SmallTools
         {
             LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, " 开始处理文件: " + filename, typeof(FrmIPO));
 
-            rtbLog.AppendText(DateTime.Now.ToString() + " 开始处理文件: " + filename + "\r\n");
+            rtbLog.AppendText(DateTimeHelper.GetServerDateTime() + " 开始处理文件: " + filename + "\r\n");
             string path = txtPath.Text.Trim();
             if (!File.Exists(path + "\\"+ filename))
             {
@@ -234,7 +235,7 @@ namespace JCodes.Framework.AddIn.SmallTools
         private bool ReadXlsData(string filename)
         {
             LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, " 开始读取文件: " + filename, typeof(FrmIPO));
-            rtbLog.AppendText(DateTime.Now.ToString() + " 开始读取文件: " + filename + "\r\n");
+            rtbLog.AppendText(DateTimeHelper.GetServerDateTime() + " 开始读取文件: " + filename + "\r\n");
 
             try
             {
@@ -248,84 +249,84 @@ namespace JCodes.Framework.AddIn.SmallTools
                 if (!string.Equals("申购流水号", sheet[1, 1].Value))
                 {
                     LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, " 申购流水号 检查失败 正确为:申购流水号,文件中为" + sheet[1, 1].Value, typeof(FrmIPO));
-                    rtbLog.AppendText(DateTime.Now.ToString() + " 申购流水号 检查失败 正确为:申购流水号,文件中为" + sheet[1, 1].Value + "\r\n");
+                    rtbLog.AppendText(DateTimeHelper.GetServerDateTime() + " 申购流水号 检查失败 正确为:申购流水号,文件中为" + sheet[1, 1].Value + "\r\n");
                     return false;
                 }
 
                 if (!string.Equals("发行流水号", sheet[1, 2].Value))
                 {
                     LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, " 发行流水号 检查失败 正确为:发行流水号,文件中为" + sheet[1, 2].Value, typeof(FrmIPO));
-                    rtbLog.AppendText(DateTime.Now.ToString() + " 发行流水号 检查失败 正确为:发行流水号,文件中为" + sheet[1, 2].Value + "\r\n");
+                    rtbLog.AppendText(DateTimeHelper.GetServerDateTime() + " 发行流水号 检查失败 正确为:发行流水号,文件中为" + sheet[1, 2].Value + "\r\n");
                     return false;
                 }
 
                 if (!string.Equals("投资者名称", sheet[1, 3].Value))
                 {
                     LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, " 投资者名称 检查失败 正确为:投资者名称,文件中为" + sheet[1, 3].Value, typeof(FrmIPO));
-                    rtbLog.AppendText(DateTime.Now.ToString() + " 投资者名称 检查失败 正确为:投资者名称,文件中为" + sheet[1, 3].Value + "\r\n");
+                    rtbLog.AppendText(DateTimeHelper.GetServerDateTime() + " 投资者名称 检查失败 正确为:投资者名称,文件中为" + sheet[1, 3].Value + "\r\n");
                     return false;
                 }
 
                 if (!string.Equals("配售对象编码", sheet[1, 4].Value))
                 {
                     LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, " 配售对象编码 检查失败 正确为:配售对象编码,文件中为" + sheet[1, 4].Value, typeof(FrmIPO));
-                    rtbLog.AppendText(DateTime.Now.ToString() + " 配售对象编码 检查失败 正确为:配售对象编码,文件中为" + sheet[1, 4].Value + "\r\n");
+                    rtbLog.AppendText(DateTimeHelper.GetServerDateTime() + " 配售对象编码 检查失败 正确为:配售对象编码,文件中为" + sheet[1, 4].Value + "\r\n");
                     return false;
                 }
 
                 if (!string.Equals("配售对象名称", sheet[1, 5].Value))
                 {
                     LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, " 配售对象名称 检查失败 正确为:配售对象名称,文件中为" + sheet[1, 5].Value, typeof(FrmIPO));
-                    rtbLog.AppendText(DateTime.Now.ToString() + " 配售对象名称 检查失败 正确为:配售对象名称,文件中为" + sheet[1, 5].Value + "\r\n");
+                    rtbLog.AppendText(DateTimeHelper.GetServerDateTime() + " 配售对象名称 检查失败 正确为:配售对象名称,文件中为" + sheet[1, 5].Value + "\r\n");
                     return false;
                 }
 
                 if (!string.Equals("配售对象类型", sheet[1, 6].Value))
                 {
                     LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, " 配售对象类型 检查失败 正确为:配售对象类型,文件中为" + sheet[1, 6].Value, typeof(FrmIPO));
-                    rtbLog.AppendText(DateTime.Now.ToString() + " 配售对象类型 检查失败 正确为:配售对象类型,文件中为" + sheet[1, 6].Value + "\r\n");
+                    rtbLog.AppendText(DateTimeHelper.GetServerDateTime() + " 配售对象类型 检查失败 正确为:配售对象类型,文件中为" + sheet[1, 6].Value + "\r\n");
                     return false;
                 }
 
                 if (!string.Equals("证券代码", sheet[1, 7].Value))
                 {
                     LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, " 证券代码 检查失败 正确为:证券代码,文件中为" + sheet[1, 7].Value, typeof(FrmIPO));
-                    rtbLog.AppendText(DateTime.Now.ToString() + " 证券代码 检查失败 正确为:证券代码,文件中为" + sheet[1, 7].Value + "\r\n");
+                    rtbLog.AppendText(DateTimeHelper.GetServerDateTime() + " 证券代码 检查失败 正确为:证券代码,文件中为" + sheet[1, 7].Value + "\r\n");
                     return false;
                 }
 
                 if (!string.Equals("申购数量（万股）", sheet[1, 8].Value))
                 {
                     LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, " 申购数量（万股） 检查失败 正确为:申购数量（万股）,文件中为" + sheet[1, 8].Value, typeof(FrmIPO));
-                    rtbLog.AppendText(DateTime.Now.ToString() + " 申购数量（万股） 检查失败 正确为:申购数量（万股）,文件中为" + sheet[1, 8].Value + "\r\n");
+                    rtbLog.AppendText(DateTimeHelper.GetServerDateTime() + " 申购数量（万股） 检查失败 正确为:申购数量（万股）,文件中为" + sheet[1, 8].Value + "\r\n");
                     return false;
                 }
 
                 if (!string.Equals("发行价格（元）", sheet[1, 9].Value))
                 {
                     LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, " 发行价格（元） 检查失败 正确为:发行价格（元）,文件中为" + sheet[1, 9].Value, typeof(FrmIPO));
-                    rtbLog.AppendText(DateTime.Now.ToString() + " 发行价格（元） 检查失败 正确为:发行价格（元）,文件中为" + sheet[1, 9].Value + "\r\n");
+                    rtbLog.AppendText(DateTimeHelper.GetServerDateTime() + " 发行价格（元） 检查失败 正确为:发行价格（元）,文件中为" + sheet[1, 9].Value + "\r\n");
                     return false;
                 }
 
                 if (!string.Equals("申购价格（元）", sheet[1, 10].Value))
                 {
                     LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, " 申购价格（元） 检查失败 正确为:申购价格（元）,文件中为" + sheet[1, 10].Value, typeof(FrmIPO));
-                    rtbLog.AppendText(DateTime.Now.ToString() + " 申购价格（元） 检查失败 正确为:申购价格（元）,文件中为" + sheet[1, 10].Value + "\r\n");
+                    rtbLog.AppendText(DateTimeHelper.GetServerDateTime() + " 申购价格（元） 检查失败 正确为:申购价格（元）,文件中为" + sheet[1, 10].Value + "\r\n");
                     return false;
                 }
 
                 if (!string.Equals("配售股数（万股）", sheet[1, 11].Value))
                 {
                     LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, " 配售股数（万股） 检查失败 正确为:配售股数（万股）,文件中为" + sheet[1, 11].Value, typeof(FrmIPO));
-                    rtbLog.AppendText(DateTime.Now.ToString() + " 配售股数（万股） 检查失败 正确为:配售股数（万股）,文件中为" + sheet[1, 11].Value + "\r\n");
+                    rtbLog.AppendText(DateTimeHelper.GetServerDateTime() + " 配售股数（万股） 检查失败 正确为:配售股数（万股）,文件中为" + sheet[1, 11].Value + "\r\n");
                     return false;
                 }
 
                 if (!string.Equals("配售金额（万元）", sheet[1, 12].Value))
                 {
                     LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, " 配售金额（万元） 检查失败 正确为:配售金额（万元）,文件中为" + sheet[1, 12].Value, typeof(FrmIPO));
-                    rtbLog.AppendText(DateTime.Now.ToString() + " 配售金额（万元） 检查失败 正确为:配售金额（万元）,文件中为" + sheet[1, 12].Value + "\r\n");
+                    rtbLog.AppendText(DateTimeHelper.GetServerDateTime() + " 配售金额（万元） 检查失败 正确为:配售金额（万元）,文件中为" + sheet[1, 12].Value + "\r\n");
                     return false;
                 }
 

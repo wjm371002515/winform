@@ -17,6 +17,7 @@ using JCodes.Framework.Common.Extension;
 using JCodes.Framework.Common.Office;
 using JCodes.Framework.CommonControl.Pager.Others;
 using JCodes.Framework.CommonControl.Other;
+using JCodes.Framework.jCodesenum.BaseEnum;
 
 namespace JCodes.Framework.CommonControl.Pager
 { 
@@ -603,7 +604,7 @@ namespace JCodes.Framework.CommonControl.Pager
             }
             catch (Exception ex)
             {
-                
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(WinGridView));
             }
         }
 

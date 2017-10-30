@@ -1,4 +1,5 @@
-﻿using JCodes.Framework.CommonControl.BaseUI;
+﻿using JCodes.Framework.Common.Format;
+using JCodes.Framework.CommonControl.BaseUI;
 using System;
 using System.Threading;
 
@@ -33,8 +34,8 @@ namespace JCodes.Framework.AddIn.Test
             System.Timers.Timer t = new System.Timers.Timer(1000);//实例化Timer类，设置间隔时间为1000毫秒；
             t.Elapsed += new System.Timers.ElapsedEventHandler((obj, e) =>
             {
-                Console.WriteLine(DateTime.Now.ToString("yyyyMMdd HHmmss:fff"));
-                m_SyncContext.Post(SetTextSafePost, DateTime.Now.ToString("yyyyMMdd HHmmss:fff") + "This text was set safely by SynchronizationContext-Post.\r\n");
+                Console.WriteLine(DateTimeHelper.GetServerDateTime());
+                m_SyncContext.Post(SetTextSafePost, DateTimeHelper.GetServerDateTime() + "This text was set safely by SynchronizationContext-Post.\r\n");
             });
             t.AutoReset = true;//设置是执行一次（false）还是一直执行(true)；
             t.Enabled = true;//是否执行System.Timers.Timer.Elapsed事件；

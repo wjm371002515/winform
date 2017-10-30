@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using System.Text.RegularExpressions;
 using System.Net;
 using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.Common.Format;
 
 namespace JCodes.Framework.Common.Web
 {
@@ -196,8 +197,8 @@ namespace JCodes.Framework.Common.Web
         /// <param name="path">文件保存路径</param>
         public static string SaveUrlPics(string strHTML, string path)
         {
-            string nowym = DateTime.Now.ToString("yyyy-MM");  //当前年月
-            string nowdd = DateTime.Now.ToString("dd");       //当天号数
+            string nowym = DateTimeHelper.GetServerDateTime2().ToString("yyyy-MM");  //当前年月
+            string nowdd = DateTimeHelper.GetServerDateTime2().ToString("dd");       //当天号数
             path = path + nowym + "/" + nowdd;
             if (!Directory.Exists(path)) Directory.CreateDirectory(path);
 
@@ -206,7 +207,7 @@ namespace JCodes.Framework.Common.Web
             {
                 for (int i = 0; i < imgurlAry.Length; i++)
                 {
-                    string preStr = System.DateTime.Now.ToString() + "_";
+                    string preStr = DateTimeHelper.GetServerDateTime2().ToString() + "_";
                     preStr = preStr.Replace("-", "");
                     preStr = preStr.Replace(":", "");
                     preStr = preStr.Replace(" ", "");

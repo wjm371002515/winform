@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.ComponentModel;
+using JCodes.Framework.Common.Format;
 
 namespace JCodes.Framework.Common.Files
 {
@@ -152,7 +153,7 @@ namespace JCodes.Framework.Common.Files
                     // specified interval, set return value to true 
                     // and store current datetime in dictionary for this file
                     DateTime lastEventTime = _lastFileEvent[FileName];
-                    DateTime currentTime = DateTime.Now;
+                    DateTime currentTime = DateTimeHelper.GetServerDateTime2();
                     TimeSpan timeSinceLastEvent = currentTime - lastEventTime;
                     retVal = timeSinceLastEvent < _recentTimeSpan;
                     _lastFileEvent[FileName] = currentTime;
@@ -162,7 +163,7 @@ namespace JCodes.Framework.Common.Files
                     // If dictionary does not contain the filename, 
                     // no event has occured in past for this file, so set return value to false
                     // and annd filename alongwith current datetime to the dictionary
-                    _lastFileEvent.Add(FileName, DateTime.Now);
+                    _lastFileEvent.Add(FileName, DateTimeHelper.GetServerDateTime2());
                     retVal = false;
                 }
             }

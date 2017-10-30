@@ -349,7 +349,8 @@ namespace JCodes.Framework.Common.Files
                 //如果文件不存在则创建该文件
                 if (!IsExistFile(filePath))
                 {
-                    File.Create(filePath);
+                    FileStream fs = File.Create(filePath);
+                    fs.Close();
                 }
             }
             catch (IOException ex)

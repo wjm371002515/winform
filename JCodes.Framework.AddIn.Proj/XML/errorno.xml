@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <item guid="2cbd37e9-c0ff-4fa1-9735-c30185310214">
+    <name>MSG_ERR</name>
+    <chineseName>00001</chineseName>
+    <errType></errType>
+    <remark>
+    </remark>
+  </item>
+</datatype>

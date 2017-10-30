@@ -1,4 +1,5 @@
-﻿using JCodes.Framework.CommonControl.BaseUI;
+﻿using JCodes.Framework.Common.Format;
+using JCodes.Framework.CommonControl.BaseUI;
 using System;
 using System.ComponentModel;
 using System.Threading;
@@ -35,7 +36,7 @@ namespace JCodes.Framework.AddIn.Test
             for (Int32 i = 0; i < 100; i++)
             {
                 Thread.Sleep(1000);
-                backgroundWorker1.ReportProgress(i, DateTime.Now.ToString("yyyyMMdd HHmmss:fff") + "This text was set safely by BackgroundWorker.\r\n");
+                backgroundWorker1.ReportProgress(i, DateTimeHelper.GetServerDateTime() + "This text was set safely by BackgroundWorker.\r\n");
             }
 
 

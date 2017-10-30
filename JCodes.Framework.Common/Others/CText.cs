@@ -1,3 +1,4 @@
+using JCodes.Framework.Common.Format;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using System;
 using System.Collections.Generic;
@@ -794,7 +795,7 @@ namespace JCodes.Framework.Common.Office
         /// <returns></returns>
         public static DateTime GetCreateDate(string sContent, string sRegex)
         {
-            DateTime dt = System.DateTime.Now;
+            DateTime dt = DateTimeHelper.GetServerDateTime2();
             
             Regex re = new Regex(sRegex,  RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace | RegexOptions.Multiline);
             Match mc = re.Match(sContent);

@@ -14,6 +14,7 @@ using JCodes.Framework.CommonControl.BaseUI;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.CommonControl.Controls;
+using JCodes.Framework.Common.Format;
 
 namespace JCodes.Framework.AddIn.Basic
 {
@@ -93,10 +94,10 @@ namespace JCodes.Framework.AddIn.Basic
             }
             else
             {
-                txtCreateTime.DateTime = DateTime.Now; //默认当前时间
+                txtCreateTime.DateTime = DateTimeHelper.GetServerDateTime2(); //默认当前时间
                 txtCreator.Text = Portal.gc.UserInfo.FullName;//默认为当前登录用户
                 txtEditor.Text = Portal.gc.UserInfo.FullName;//默认为当前登录用户
-                txtEditTime.DateTime = DateTime.Now; //默认当前时间 
+                txtEditTime.DateTime = DateTimeHelper.GetServerDateTime2(); //默认当前时间 
             }
         }
 

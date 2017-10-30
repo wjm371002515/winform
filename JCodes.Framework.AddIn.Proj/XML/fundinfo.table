@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+	  <item guid="11111" moddate="2017-01-01" modversion="1.0.0.0" modorderId="M11111" proposer="测试" programmer="速度" modcontent="多少" modreason="的" remark="让人"></item>
+    <item guid="22222" moddate="2017-01-22" modversion="1.2.3.4" modorderId="M11111222" proposer="测试2" programmer="速度2" modcontent="多少2" modreason="的2" remark="让人2"></item>
+  </histories>
+  <basicinfo>
+    <item guid="2cbd37e9-c0ff-4fa1-9735-c30185310214">
+      <functionId>100001</functionId>
+      <name>Table1</name>
+      <chineseName>测试表名1</chineseName>
+      <existhistable>0</existhistable>
+      <dbtype>SqlServer</dbtype>
+      <version>1.0.0.0</version>
+      <lasttime>2017-10-11</lasttime>
+      <remark>测试备注信息</remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+	  <item>
+	    <name>guid</name>
+	    <isnull>1</isnull>
+	    <remark>测试备注信息</remark>
+	  </item>
+  </fieldsinfo>
+  <indexsinfo>
+    <item>
+      <name>guid</name>
+      <indexfieldlst>guid</indexfieldlst>
+      <unique>0</unique>
+      <primary>1</primary>
+      <cluster>0</cluster>
+    </item>
+  </indexsinfo>
+</datatype>

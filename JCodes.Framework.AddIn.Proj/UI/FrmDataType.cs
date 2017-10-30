@@ -275,38 +275,6 @@ namespace JCodes.Framework.AddIn.Proj
                         _errlst.Add(new CListItem( "长度不能为空", "Length" + dataTypeInfo.Name));
                     }
                 }
-                // 判断精度是否为空
-                if (string.IsNullOrEmpty(dataTypeInfo.Precision))
-                {
-                    if (dataTypeInfo.lstInfo.ContainsKey("Precision"))
-                    {
-                        dataTypeInfo.lstInfo["Precision"].ErrorText = dataTypeInfo.lstInfo["Precision"].ErrorText + "\r\n精度不能为空";
-                        dataTypeInfo.lstInfo["Precision"].ErrorType = dataTypeInfo.lstInfo["Precision"].ErrorType >= DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical ? dataTypeInfo.lstInfo["Precision"].ErrorType : DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-                    }
-                    else
-                    {
-                        dataTypeInfo.lstInfo.Add("Precision", new DevExpress.XtraEditors.DXErrorProvider.ErrorInfo("精度不能为空", DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical));
-                        _errCount++;
-                        // 20170901 wjm 调整key 和value的顺序
-                        _errlst.Add(new CListItem("精度不能为空", "Precision" + dataTypeInfo.Name));
-                    }
-                }
-                // 判断备注是否为空
-                if (string.IsNullOrEmpty(dataTypeInfo.Remark))
-                {
-                    if (dataTypeInfo.lstInfo.ContainsKey("Remark"))
-                    {
-                        dataTypeInfo.lstInfo["Remark"].ErrorText = dataTypeInfo.lstInfo["Remark"].ErrorText + "\r\n备注不能为空";
-                        dataTypeInfo.lstInfo["Remark"].ErrorType = dataTypeInfo.lstInfo["Remark"].ErrorType >= DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical ? dataTypeInfo.lstInfo["Remark"].ErrorType : DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-                    }
-                    else
-                    {
-                        dataTypeInfo.lstInfo.Add("Remark", new DevExpress.XtraEditors.DXErrorProvider.ErrorInfo("备注不能为空", DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical));
-                        _errCount++;
-                        // 20170901 wjm 调整key 和value的顺序
-                        _errlst.Add(new CListItem("备注不能为空", "Remark" + dataTypeInfo.Name));
-                    }
-                }
             }
         }
 
@@ -454,6 +422,9 @@ namespace JCodes.Framework.AddIn.Proj
 
             xmlhelper.DeleteByPathNode("datatype/item[@guid=\"" + gridView1.GetRowCellDisplayText(gridView1.FocusedRowHandle, "GUID") + "\"]");
             xmlhelper.Save(false);
+
+            // 20170924 wjm 删除lstName 对应的值保存导入的时候缓存问题
+            lstName.Remove(gridView1.GetRowCellDisplayText(gridView1.FocusedRowHandle, "Name"));
 
             (gridView1.DataSource as List<DataTypeInfo>).RemoveAt(gridView1.FocusedRowHandle);
             gridView1.RefreshData();

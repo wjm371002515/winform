@@ -15,6 +15,7 @@ using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.Common.Office;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.Common.Files;
+using JCodes.Framework.Common.Format;
 
 namespace TestControlUtil
 {
@@ -37,8 +38,8 @@ namespace TestControlUtil
                     Aspose.Words.Document doc = new Aspose.Words.Document();
                     doc.BuiltInDocumentProperties.Title = "数据库设计说明书";
                     doc.BuiltInDocumentProperties.Keywords = "数据库设计说明书";
-                    doc.BuiltInDocumentProperties.CreatedTime = DateTime.Now;
-                    doc.BuiltInDocumentProperties.LastSavedTime = DateTime.Now;
+                    doc.BuiltInDocumentProperties.CreatedTime = DateTimeHelper.GetServerDateTime2();
+                    doc.BuiltInDocumentProperties.LastSavedTime = DateTimeHelper.GetServerDateTime2();
                     
                     Aspose.Words.DocumentBuilder builder = new Aspose.Words.DocumentBuilder(doc);
                     builder.PageSetup.PaperSize = PaperSize.A4;

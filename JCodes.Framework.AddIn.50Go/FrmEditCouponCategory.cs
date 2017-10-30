@@ -14,6 +14,7 @@ using JCodes.Framework.CommonControl.BaseUI;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.AddIn.Basic;
+using JCodes.Framework.Common.Format;
 
 namespace JCodes.Framework.AddIn._50Go
 {
@@ -124,7 +125,7 @@ namespace JCodes.Framework.AddIn._50Go
                 Info.ID = Guid.NewGuid().ToString();
                 Info.Creator = Portal.gc.UserInfo.FullName;
                 Info.Creator_ID = Portal.gc.UserInfo.ID.ToString();
-                Info.CreateTime = DateTime.Now;
+                Info.CreateTime = DateTimeHelper.GetServerDateTime2();
             }
             Info.HandNo = txtHandNo.Text.Trim();
             Info.Name = txtName.Text.Trim();
@@ -134,7 +135,7 @@ namespace JCodes.Framework.AddIn._50Go
             {
                 Info.Editor = Portal.gc.UserInfo.FullName;
                 Info.Editor_ID = Portal.gc.UserInfo.ID.ToString();
-                Info.EditTime = DateTime.Now;
+                Info.EditTime = DateTimeHelper.GetServerDateTime2();
             }
         }
 

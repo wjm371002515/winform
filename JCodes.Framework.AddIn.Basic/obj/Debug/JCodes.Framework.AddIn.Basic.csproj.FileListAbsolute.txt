@@ -72,5 +72,6 @@ G:\github_winform\winform\JCodes.Framework.AddIn.Basic\obj\Debug\JCodes.Framewor
 G:\github_winform\winform\JCodes.Framework.AddIn.Basic\obj\Debug\JCodes.Framework.AddIn.Basic.NotifyWindow.resources
 G:\github_winform\winform\JCodes.Framework.AddIn.Basic\obj\Debug\JCodes.Framework.AddIn.Basic.RegDlg.resources
 G:\github_winform\winform\JCodes.Framework.AddIn.Basic\obj\Debug\JCodes.Framework.AddIn.Basic.csproj.GenerateResource.Cache
+G:\github_winform\winform\JCodes.Framework.AddIn.Basic\obj\Debug\JCodes.Framework.AddIn.Basic.dll.licenses
 G:\github_winform\winform\JCodes.Framework.AddIn.Basic\obj\Debug\JCodes.Framework.AddIn.Basic.dll
 G:\github_winform\winform\JCodes.Framework.AddIn.Basic\obj\Debug\JCodes.Framework.AddIn.Basic.pdb

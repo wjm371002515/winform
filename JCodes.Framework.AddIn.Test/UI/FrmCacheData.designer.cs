@@ -70,7 +70,7 @@ namespace JCodes.Framework.AddIn.Test
             this.dockPanel6.FloatSize = new System.Drawing.Size(146, 428);
             this.dockPanel6.ID = new System.Guid("24977e30-0ea6-44aa-8fa4-9abaeb178b5e");
             this.dockPanel6.ImageIndex = 25;
-            this.dockPanel6.Location = new System.Drawing.Point(0, 0);
+            this.dockPanel6.Location = new System.Drawing.Point(-60, 0);
             this.dockPanel6.Name = "dockPanel6";
             this.dockPanel6.OriginalSize = new System.Drawing.Size(200, 200);
             this.dockPanel6.SavedDock = DevExpress.XtraBars.Docking.DockingStyle.Left;

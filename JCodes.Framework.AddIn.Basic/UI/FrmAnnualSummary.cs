@@ -1,5 +1,6 @@
 ﻿using JCodes.Framework.BLL;
 using JCodes.Framework.Common;
+using JCodes.Framework.Common.Format;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.CommonControl;
 using JCodes.Framework.CommonControl.BaseUI;
@@ -48,9 +49,9 @@ namespace JCodes.Framework.AddIn.Basic
         private ReportAnnualCostHeaderInfo GetAnnualMainHeader()
         {
             ReportAnnualCostHeaderInfo headerInfo = new ReportAnnualCostHeaderInfo();
-            headerInfo.CreateDate = DateTime.Now;
+            headerInfo.CreateDate = DateTimeHelper.GetServerDateTime2();
             headerInfo.Creator = LoginUserInfo.FullName;
-            headerInfo.ReportYear = DateTime.Now.Year;
+            headerInfo.ReportYear = DateTimeHelper.GetServerDateTime2().Year;
             return headerInfo;
         }
 
@@ -61,7 +62,7 @@ namespace JCodes.Framework.AddIn.Basic
             CListItem[] costCenterArray = DictItemUtil.GetDictByDictType("成本中心");
             CListItem[] deptArray = DictItemUtil.GetDictByDictType("部门");
             ReportAnnualCostHeaderInfo annualHeaderInfo = GetAnnualMainHeader();
-            annualHeaderInfo.ReportTitle = string.Format("{0}年费用汇总表", DateTime.Now.Year);
+            annualHeaderInfo.ReportTitle = string.Format("{0}年费用汇总表", DateTimeHelper.GetServerDateTime2().Year);
             annualHeaderInfo.ReportType = 100;
             int headerID = BLLFactory<ReportAnnualCostHeader>.Instance.InsertOrUpdate(annualHeaderInfo);
             if (headerID > 0)
@@ -81,7 +82,7 @@ namespace JCodes.Framework.AddIn.Basic
                     //合计项目
                     ReportAnnualCostDetailInfo totalInfo = new ReportAnnualCostDetailInfo();
                     totalInfo.Header_ID = headerID;
-                    totalInfo.ReportYear = DateTime.Now.Year;
+                    totalInfo.ReportYear = DateTimeHelper.GetServerDateTime2().Year;
                     totalInfo.ItemType = itemTypeItem.Value;
                     totalInfo.CostCenterOrDept = string.Format("{0} 汇总", itemTypeItem.Value);
                     totalInfo.ReportCode = "001";
@@ -91,21 +92,21 @@ namespace JCodes.Framework.AddIn.Basic
                         #region 十二个月的记录
                         ReportAnnualCostDetailInfo detailInfo = new ReportAnnualCostDetailInfo();
                         detailInfo.Header_ID = headerID;
-                        detailInfo.ReportYear = DateTime.Now.Year;
+                        detailInfo.ReportYear = DateTimeHelper.GetServerDateTime2().Year;
                         detailInfo.ItemType = itemTypeItem.Value;
                         detailInfo.CostCenterOrDept = costCenterItem.Value;
-                        detailInfo.One = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeCostCenterSumMoney(itemTypeItem.Value, costCenterItem.Value, DateTime.Now.Year, 1);
-                        detailInfo.Two = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeCostCenterSumMoney(itemTypeItem.Value, costCenterItem.Value, DateTime.Now.Year, 2);
-                        detailInfo.Three = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeCostCenterSumMoney(itemTypeItem.Value, costCenterItem.Value, DateTime.Now.Year, 3);
-                        detailInfo.Four = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeCostCenterSumMoney(itemTypeItem.Value, costCenterItem.Value, DateTime.Now.Year, 4);
-                        detailInfo.Five = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeCostCenterSumMoney(itemTypeItem.Value, costCenterItem.Value, DateTime.Now.Year, 5);
-                        detailInfo.Six = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeCostCenterSumMoney(itemTypeItem.Value, costCenterItem.Value, DateTime.Now.Year, 6);
-                        detailInfo.Seven = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeCostCenterSumMoney(itemTypeItem.Value, costCenterItem.Value, DateTime.Now.Year, 7);
-                        detailInfo.Eight = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeCostCenterSumMoney(itemTypeItem.Value, costCenterItem.Value, DateTime.Now.Year, 8);
-                        detailInfo.Nine = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeCostCenterSumMoney(itemTypeItem.Value, costCenterItem.Value, DateTime.Now.Year, 9);
-                        detailInfo.Ten = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeCostCenterSumMoney(itemTypeItem.Value, costCenterItem.Value, DateTime.Now.Year, 10);
-                        detailInfo.Eleven = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeCostCenterSumMoney(itemTypeItem.Value, costCenterItem.Value, DateTime.Now.Year, 11);
-                        detailInfo.Twelve = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeCostCenterSumMoney(itemTypeItem.Value, costCenterItem.Value, DateTime.Now.Year, 12);
+                        detailInfo.One = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeCostCenterSumMoney(itemTypeItem.Value, costCenterItem.Value, DateTimeHelper.GetServerDateTime2().Year, 1);
+                        detailInfo.Two = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeCostCenterSumMoney(itemTypeItem.Value, costCenterItem.Value, DateTimeHelper.GetServerDateTime2().Year, 2);
+                        detailInfo.Three = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeCostCenterSumMoney(itemTypeItem.Value, costCenterItem.Value, DateTimeHelper.GetServerDateTime2().Year, 3);
+                        detailInfo.Four = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeCostCenterSumMoney(itemTypeItem.Value, costCenterItem.Value, DateTimeHelper.GetServerDateTime2().Year, 4);
+                        detailInfo.Five = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeCostCenterSumMoney(itemTypeItem.Value, costCenterItem.Value, DateTimeHelper.GetServerDateTime2().Year, 5);
+                        detailInfo.Six = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeCostCenterSumMoney(itemTypeItem.Value, costCenterItem.Value, DateTimeHelper.GetServerDateTime2().Year, 6);
+                        detailInfo.Seven = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeCostCenterSumMoney(itemTypeItem.Value, costCenterItem.Value, DateTimeHelper.GetServerDateTime2().Year, 7);
+                        detailInfo.Eight = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeCostCenterSumMoney(itemTypeItem.Value, costCenterItem.Value, DateTimeHelper.GetServerDateTime2().Year, 8);
+                        detailInfo.Nine = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeCostCenterSumMoney(itemTypeItem.Value, costCenterItem.Value, DateTimeHelper.GetServerDateTime2().Year, 9);
+                        detailInfo.Ten = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeCostCenterSumMoney(itemTypeItem.Value, costCenterItem.Value, DateTimeHelper.GetServerDateTime2().Year, 10);
+                        detailInfo.Eleven = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeCostCenterSumMoney(itemTypeItem.Value, costCenterItem.Value, DateTimeHelper.GetServerDateTime2().Year, 11);
+                        detailInfo.Twelve = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeCostCenterSumMoney(itemTypeItem.Value, costCenterItem.Value, DateTimeHelper.GetServerDateTime2().Year, 12);
                         detailInfo.Total = detailInfo.One + detailInfo.Two + detailInfo.Three + detailInfo.Four
                             + detailInfo.Five + detailInfo.Six + detailInfo.Seven + detailInfo.Eight + detailInfo.Nine
                             + detailInfo.Ten + detailInfo.Eleven + detailInfo.Twelve;
@@ -145,7 +146,7 @@ namespace JCodes.Framework.AddIn.Basic
                     //合计项目
                     ReportAnnualCostDetailInfo totalInfo = new ReportAnnualCostDetailInfo();
                     totalInfo.Header_ID = headerID;
-                    totalInfo.ReportYear = DateTime.Now.Year;
+                    totalInfo.ReportYear = DateTimeHelper.GetServerDateTime2().Year;
                     totalInfo.ItemType = itemTypeItem.Value;
                     totalInfo.CostCenterOrDept = string.Format("{0} 汇总", itemTypeItem.Value);
                     totalInfo.ReportCode = "002";
@@ -155,21 +156,21 @@ namespace JCodes.Framework.AddIn.Basic
                         #region 十二个月纪录
                         ReportAnnualCostDetailInfo detailInfo = new ReportAnnualCostDetailInfo();
                         detailInfo.Header_ID = headerID;
-                        detailInfo.ReportYear = DateTime.Now.Year;
+                        detailInfo.ReportYear = DateTimeHelper.GetServerDateTime2().Year;
                         detailInfo.ItemType = itemTypeItem.Value;
                         detailInfo.CostCenterOrDept = deptItem.Value;
-                        detailInfo.One = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeDeptSumMoney(itemTypeItem.Value, deptItem.Value, DateTime.Now.Year, 1);
-                        detailInfo.Two = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeDeptSumMoney(itemTypeItem.Value, deptItem.Value, DateTime.Now.Year, 2);
-                        detailInfo.Three = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeDeptSumMoney(itemTypeItem.Value, deptItem.Value, DateTime.Now.Year, 3);
-                        detailInfo.Four = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeDeptSumMoney(itemTypeItem.Value, deptItem.Value, DateTime.Now.Year, 4);
-                        detailInfo.Five = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeDeptSumMoney(itemTypeItem.Value, deptItem.Value, DateTime.Now.Year, 5);
-                        detailInfo.Six = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeDeptSumMoney(itemTypeItem.Value, deptItem.Value, DateTime.Now.Year, 6);
-                        detailInfo.Seven = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeDeptSumMoney(itemTypeItem.Value, deptItem.Value, DateTime.Now.Year, 7);
-                        detailInfo.Eight = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeDeptSumMoney(itemTypeItem.Value, deptItem.Value, DateTime.Now.Year, 8);
-                        detailInfo.Nine = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeDeptSumMoney(itemTypeItem.Value, deptItem.Value, DateTime.Now.Year, 9);
-                        detailInfo.Ten = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeDeptSumMoney(itemTypeItem.Value, deptItem.Value, DateTime.Now.Year, 10);
-                        detailInfo.Eleven = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeDeptSumMoney(itemTypeItem.Value, deptItem.Value, DateTime.Now.Year, 11);
-                        detailInfo.Twelve = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeDeptSumMoney(itemTypeItem.Value, deptItem.Value, DateTime.Now.Year, 12);
+                        detailInfo.One = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeDeptSumMoney(itemTypeItem.Value, deptItem.Value, DateTimeHelper.GetServerDateTime2().Year, 1);
+                        detailInfo.Two = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeDeptSumMoney(itemTypeItem.Value, deptItem.Value, DateTimeHelper.GetServerDateTime2().Year, 2);
+                        detailInfo.Three = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeDeptSumMoney(itemTypeItem.Value, deptItem.Value, DateTimeHelper.GetServerDateTime2().Year, 3);
+                        detailInfo.Four = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeDeptSumMoney(itemTypeItem.Value, deptItem.Value, DateTimeHelper.GetServerDateTime2().Year, 4);
+                        detailInfo.Five = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeDeptSumMoney(itemTypeItem.Value, deptItem.Value, DateTimeHelper.GetServerDateTime2().Year, 5);
+                        detailInfo.Six = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeDeptSumMoney(itemTypeItem.Value, deptItem.Value, DateTimeHelper.GetServerDateTime2().Year, 6);
+                        detailInfo.Seven = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeDeptSumMoney(itemTypeItem.Value, deptItem.Value, DateTimeHelper.GetServerDateTime2().Year, 7);
+                        detailInfo.Eight = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeDeptSumMoney(itemTypeItem.Value, deptItem.Value, DateTimeHelper.GetServerDateTime2().Year, 8);
+                        detailInfo.Nine = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeDeptSumMoney(itemTypeItem.Value, deptItem.Value, DateTimeHelper.GetServerDateTime2().Year, 9);
+                        detailInfo.Ten = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeDeptSumMoney(itemTypeItem.Value, deptItem.Value, DateTimeHelper.GetServerDateTime2().Year, 10);
+                        detailInfo.Eleven = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeDeptSumMoney(itemTypeItem.Value, deptItem.Value, DateTimeHelper.GetServerDateTime2().Year, 11);
+                        detailInfo.Twelve = BLLFactory<ReportAnnualCostDetail>.Instance.GetItemTypeDeptSumMoney(itemTypeItem.Value, deptItem.Value, DateTimeHelper.GetServerDateTime2().Year, 12);
                         detailInfo.Total = detailInfo.One + detailInfo.Two + detailInfo.Three + detailInfo.Four
                             + detailInfo.Five + detailInfo.Six + detailInfo.Seven + detailInfo.Eight + detailInfo.Nine
                             + detailInfo.Ten + detailInfo.Eleven + detailInfo.Twelve;
@@ -209,7 +210,7 @@ namespace JCodes.Framework.AddIn.Basic
                 //合计项目
                 ReportAnnualCostDetailInfo totalInfo2 = new ReportAnnualCostDetailInfo();
                 totalInfo2.Header_ID = headerID;
-                totalInfo2.ReportYear = DateTime.Now.Year;
+                totalInfo2.ReportYear = DateTimeHelper.GetServerDateTime2().Year;
                 totalInfo2.CostCenterOrDept = string.Format("{0} 汇总", "功能性承包");
                 totalInfo2.ReportCode = "003";
                 foreach (CListItem deptItem in deptArray)
@@ -217,21 +218,21 @@ namespace JCodes.Framework.AddIn.Basic
                     #region 十二个月纪录
                     ReportAnnualCostDetailInfo detailInfo = new ReportAnnualCostDetailInfo();
                     detailInfo.Header_ID = headerID;
-                    detailInfo.ReportYear = DateTime.Now.Year;
+                    detailInfo.ReportYear = DateTimeHelper.GetServerDateTime2().Year;
                     detailInfo.ItemType = "";
                     detailInfo.CostCenterOrDept = deptItem.Value;
-                    detailInfo.One = BLLFactory<ReportAnnualCostDetail>.Instance.GetDeptSumMoney(deptItem.Value, DateTime.Now.Year, 1);
-                    detailInfo.Two = BLLFactory<ReportAnnualCostDetail>.Instance.GetDeptSumMoney(deptItem.Value, DateTime.Now.Year, 2);
-                    detailInfo.Three = BLLFactory<ReportAnnualCostDetail>.Instance.GetDeptSumMoney(deptItem.Value, DateTime.Now.Year, 3);
-                    detailInfo.Four = BLLFactory<ReportAnnualCostDetail>.Instance.GetDeptSumMoney(deptItem.Value, DateTime.Now.Year, 4);
-                    detailInfo.Five = BLLFactory<ReportAnnualCostDetail>.Instance.GetDeptSumMoney(deptItem.Value, DateTime.Now.Year, 5);
-                    detailInfo.Six = BLLFactory<ReportAnnualCostDetail>.Instance.GetDeptSumMoney(deptItem.Value, DateTime.Now.Year, 6);
-                    detailInfo.Seven = BLLFactory<ReportAnnualCostDetail>.Instance.GetDeptSumMoney(deptItem.Value, DateTime.Now.Year, 7);
-                    detailInfo.Eight = BLLFactory<ReportAnnualCostDetail>.Instance.GetDeptSumMoney(deptItem.Value, DateTime.Now.Year, 8);
-                    detailInfo.Nine = BLLFactory<ReportAnnualCostDetail>.Instance.GetDeptSumMoney(deptItem.Value, DateTime.Now.Year, 9);
-                    detailInfo.Ten = BLLFactory<ReportAnnualCostDetail>.Instance.GetDeptSumMoney(deptItem.Value, DateTime.Now.Year, 10);
-                    detailInfo.Eleven = BLLFactory<ReportAnnualCostDetail>.Instance.GetDeptSumMoney(deptItem.Value, DateTime.Now.Year, 11);
-                    detailInfo.Twelve = BLLFactory<ReportAnnualCostDetail>.Instance.GetDeptSumMoney(deptItem.Value, DateTime.Now.Year, 12);
+                    detailInfo.One = BLLFactory<ReportAnnualCostDetail>.Instance.GetDeptSumMoney(deptItem.Value, DateTimeHelper.GetServerDateTime2().Year, 1);
+                    detailInfo.Two = BLLFactory<ReportAnnualCostDetail>.Instance.GetDeptSumMoney(deptItem.Value, DateTimeHelper.GetServerDateTime2().Year, 2);
+                    detailInfo.Three = BLLFactory<ReportAnnualCostDetail>.Instance.GetDeptSumMoney(deptItem.Value, DateTimeHelper.GetServerDateTime2().Year, 3);
+                    detailInfo.Four = BLLFactory<ReportAnnualCostDetail>.Instance.GetDeptSumMoney(deptItem.Value, DateTimeHelper.GetServerDateTime2().Year, 4);
+                    detailInfo.Five = BLLFactory<ReportAnnualCostDetail>.Instance.GetDeptSumMoney(deptItem.Value, DateTimeHelper.GetServerDateTime2().Year, 5);
+                    detailInfo.Six = BLLFactory<ReportAnnualCostDetail>.Instance.GetDeptSumMoney(deptItem.Value, DateTimeHelper.GetServerDateTime2().Year, 6);
+                    detailInfo.Seven = BLLFactory<ReportAnnualCostDetail>.Instance.GetDeptSumMoney(deptItem.Value, DateTimeHelper.GetServerDateTime2().Year, 7);
+                    detailInfo.Eight = BLLFactory<ReportAnnualCostDetail>.Instance.GetDeptSumMoney(deptItem.Value, DateTimeHelper.GetServerDateTime2().Year, 8);
+                    detailInfo.Nine = BLLFactory<ReportAnnualCostDetail>.Instance.GetDeptSumMoney(deptItem.Value, DateTimeHelper.GetServerDateTime2().Year, 9);
+                    detailInfo.Ten = BLLFactory<ReportAnnualCostDetail>.Instance.GetDeptSumMoney(deptItem.Value, DateTimeHelper.GetServerDateTime2().Year, 10);
+                    detailInfo.Eleven = BLLFactory<ReportAnnualCostDetail>.Instance.GetDeptSumMoney(deptItem.Value, DateTimeHelper.GetServerDateTime2().Year, 11);
+                    detailInfo.Twelve = BLLFactory<ReportAnnualCostDetail>.Instance.GetDeptSumMoney(deptItem.Value, DateTimeHelper.GetServerDateTime2().Year, 12);
                     detailInfo.Total = detailInfo.One + detailInfo.Two + detailInfo.Three + detailInfo.Four
                             + detailInfo.Five + detailInfo.Six + detailInfo.Seven + detailInfo.Eight + detailInfo.Nine
                             + detailInfo.Ten + detailInfo.Eleven + detailInfo.Twelve;

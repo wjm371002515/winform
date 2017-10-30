@@ -19,6 +19,7 @@ using JCodes.Framework.Common.Office;
 using JCodes.Framework.Common;
 using JCodes.Framework.CommonControl.AdvanceSearch;
 using JCodes.Framework.CommonControl.PlugInInterface;
+using JCodes.Framework.Common.Format;
 
 namespace JCodes.Framework.AddIn.Contact
 {
@@ -433,9 +434,9 @@ namespace JCodes.Framework.AddIn.Contact
             info.Note = dr["±¸×¢"].ToString();
 
             info.Creator = LoginUserInfo.ID.ToString();
-            info.CreateTime = DateTime.Now;
+            info.CreateTime = DateTimeHelper.GetServerDateTime2();
             info.Editor = LoginUserInfo.ID.ToString();
-            info.EditTime = DateTime.Now;
+            info.EditTime = DateTimeHelper.GetServerDateTime2();
             info.Dept_ID = LoginUserInfo.DeptId;
             info.Company_ID = LoginUserInfo.CompanyId;
 

@@ -472,6 +472,9 @@ namespace JCodes.Framework.AddIn.Proj
             xmlhelper.DeleteByPathNode("datatype/item[@guid=\"" + gridView1.GetRowCellDisplayText(gridView1.FocusedRowHandle, "GUID") + "\"]");
             xmlhelper.Save(false);
 
+            // 20170924 wjm 删除lstName 对应的值保存导入的时候缓存问题
+            lstName.Remove(gridView1.GetRowCellDisplayText(gridView1.FocusedRowHandle, "Name"));
+
             (gridView1.DataSource as List<DefaultTypeInfo>).RemoveAt(gridView1.FocusedRowHandle);
             gridView1.RefreshData();
         }

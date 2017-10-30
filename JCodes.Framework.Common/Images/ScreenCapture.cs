@@ -5,6 +5,7 @@ using System.Drawing.Imaging;
 using JCodes.Framework.Common;
 using System.IO;
 using JCodes.Framework.Common.Files;
+using JCodes.Framework.Common.Format;
 
 namespace JCodes.Framework.Common.Images
 {
@@ -108,10 +109,10 @@ namespace JCodes.Framework.Common.Images
             DirectoryUtil.AssertDirExist(this.ImageSavePath);
             if (DirectoryUtil.IsExistDirectory(this.ImageSavePath))
             {
-                string SubPath = Path.Combine(this.ImageSavePath, DateTime.Now.ToString("yyyy-MM-dd"));
+                string SubPath = Path.Combine(this.ImageSavePath, DateTimeHelper.GetServerDate());
                 DirectoryUtil.CreateDirectory(SubPath);
 
-                DateTime snapTime = DateTime.Now;
+                DateTime snapTime = DateTimeHelper.GetServerDateTime2();
                 string baseFilename = snapTime.ToString("yyyy_MM_dd-HH_mm_ss");
                 string fullFilename = Path.Combine(SubPath, baseFilename);
                 if (!string.IsNullOrEmpty(this.ImageExtension.Trim('.')))

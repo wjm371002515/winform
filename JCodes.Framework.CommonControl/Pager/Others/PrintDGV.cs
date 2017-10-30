@@ -12,6 +12,7 @@ using JCodes.Framework.Common;
 using JCodes.Framework.Common.Office;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.CommonControl.Other;
+using JCodes.Framework.Common.Format;
 
 namespace JCodes.Framework.CommonControl.Pager.Others
 {
@@ -262,7 +263,7 @@ namespace JCodes.Framework.CommonControl.Pager.Others
                             e.Graphics.MeasureString(PrintTitle, new Font(dgv.GridControl.Font,
                                     FontStyle.Bold), e.MarginBounds.Width).Height - 13);
 
-                            String s = DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToShortTimeString();
+                            String s = DateTimeHelper.GetServerDateTime2().ToLongDateString() + " " + DateTimeHelper.GetServerDateTime2().ToShortTimeString();
 
                             e.Graphics.DrawString(s, new Font(dgv.GridControl.Font, FontStyle.Bold),
                                     Brushes.Black, e.MarginBounds.Left + (e.MarginBounds.Width -

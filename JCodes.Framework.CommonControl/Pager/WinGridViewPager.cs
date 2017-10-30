@@ -907,7 +907,6 @@ namespace JCodes.Framework.CommonControl.Pager
                 this.contextMenuStrip1.Opening += new CancelEventHandler(contextMenuStrip1_Opening);
                 this.gridControl1.MouseClick += new MouseEventHandler(dataGridView1_MouseClick);
                 this.gridControl1.MouseDoubleClick += new MouseEventHandler(dataGridView1_MouseDoubleClick);
-
                 this.gridView1.Appearance.EvenRow.BackColor = EventRowBackColor;                
             }
         }

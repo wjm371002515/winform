@@ -14,6 +14,7 @@ using JCodes.Framework.Common.Office;
 using JCodes.Framework.Common.Device;
 using JCodes.Framework.Common.Encrypt;
 using JCodes.Framework.Common.Winform;
+using JCodes.Framework.Common.Format;
 
 namespace JCodes.Framework.CommonControl.RSARegistryTool
 {
@@ -58,7 +59,7 @@ namespace JCodes.Framework.CommonControl.RSARegistryTool
         private void Init_View()
         {
             txtMachineCode.Text = HardwareInfoHelper.GetCPUId();
-            txtExpiredDate.Text = DateTime.Now.AddYears(1).ToString("yyyyMMdd");
+            txtExpiredDate.Text = DateTimeHelper.GetServerDateTime2().AddYears(1).ToString("yyyyMMdd");
         }
 
 		/// <summary>

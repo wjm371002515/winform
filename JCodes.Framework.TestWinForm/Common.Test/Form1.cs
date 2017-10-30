@@ -348,9 +348,7 @@ namespace TestCommons
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //WindowsExitHelper.Lock();
-            CCalendar cal = new CCalendar();
-            this.tsslTips.Text = cal.GetDateInfo(System.DateTime.Now).Fullinfo;
+            this.tsslTips.Text = DateTimeHelper.GetServerDate();
 
             if (RegistryHelper.CheckRegister())
             {
@@ -432,7 +430,7 @@ namespace TestCommons
             //仅处理Alt + S 的钩子事件
             if (KeyboardHook.Alt)
             {
-                this.Text = DateTime.Now.ToString();
+                this.Text = DateTimeHelper.GetServerDateTime2().ToString();
                 NativeMethods.BringToFront(this.Handle);
             }
             return true; //如果要被其他程序捕捉，返回True，否则返回False。
@@ -675,7 +673,7 @@ namespace TestCommons
             string key = new Random().Next().ToString();
             if (!syncOrderDict.ContainsKey(key))
             {
-                syncOrderDict.Add(key, DateTime.Now.ToString());
+                syncOrderDict.Add(key, DateTimeHelper.GetServerDateTime2().ToString());
             }
 
             syncList.Add(key);
@@ -720,7 +718,7 @@ namespace TestCommons
 
             this.Invoke(new MethodInvoker(delegate()
             {
-                this.btnTimer.Text = DateTime.Now.ToLongTimeString();
+                this.btnTimer.Text = DateTimeHelper.GetServerDateTime2().ToLongTimeString();
             }));
         }
 
@@ -766,7 +764,7 @@ namespace TestCommons
             //循环入队
             for (int i = 0; i < 100; i++)
             {
-                queueServer.EnqueueItem(new PreDataInfo(i.ToString(), DateTime.Now.ToString()));
+                queueServer.EnqueueItem(new PreDataInfo(i.ToString(), DateTimeHelper.GetServerDateTime2().ToString()));
                 Thread.Sleep(10);
             }
         }
@@ -812,7 +810,7 @@ namespace TestCommons
             while (i-- > 0)
             {
                 Console.WriteLine(i);
-                Thread.Sleep(new Random((int)DateTime.Now.Ticks).Next(100));
+                Thread.Sleep(new Random((int)DateTimeHelper.GetServerDateTime2().Ticks).Next(100));
             }
         }
 
@@ -1026,7 +1024,7 @@ namespace TestCommons
             result += "使用RegistryHelper注册表访问辅助类：" + "\r\n";
 
             string softwareKey = @"Software\DeepLand\OrderWater";
-            bool sucess = RegistryHelper.SaveValue(softwareKey, "Test", DateTime.Now.ToString());
+            bool sucess = RegistryHelper.SaveValue(softwareKey, "Test", DateTimeHelper.GetServerDateTime2().ToString());
             if (sucess)
             {
                 result += RegistryHelper.GetValue(softwareKey, "Test") + "\r\n";
@@ -1103,10 +1101,10 @@ namespace TestCommons
             {  
                 WaitBeforeLogin = new DevExpress.Utils.WaitDialogForm("请稍候...", "正在加载应用系统");
                 Thread.Sleep(3000);
-                Console.WriteLine("1:"+DateTime.Now);
+                Console.WriteLine("1:" + DateTimeHelper.GetServerDateTime2());
             }).Start();
-            Console.WriteLine("2:" + DateTime.Now);
-            Console.WriteLine("3:" + DateTime.Now);
+            Console.WriteLine("2:" + DateTimeHelper.GetServerDateTime2());
+            Console.WriteLine("3:" + DateTimeHelper.GetServerDateTime2());
             ChildWinManagement.PopDialogForm(typeof(FrmRegeditTool));
            
             //关闭登录提示画面  

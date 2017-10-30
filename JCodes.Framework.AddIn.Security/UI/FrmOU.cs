@@ -226,7 +226,7 @@ namespace JCodes.Framework.AddIn.Security
             this.txtHandNo.Text = "";
             //this.txtSortCode.Text = "";
             this.txtCreator.Text = Portal.gc.UserInfo.FullName;
-            this.txtCreateTime.Text = DateTime.Now.ToString();
+            this.txtCreateTime.Text = DateTimeHelper.GetServerDateTime2().ToString();
             this.txtInnerPhone.Text = "";
             this.txtOuterPhone.Text = "";
 
@@ -248,7 +248,7 @@ namespace JCodes.Framework.AddIn.Security
             info.Category = this.txtCategory.Text;
             info.Editor = Portal.gc.UserInfo.FullName;
             info.Editor_ID = Portal.gc.UserInfo.ID.ToString();
-            info.EditTime = DateTime.Now;
+            info.EditTime = DateTimeHelper.GetServerDateTime2();
             info.PID = this.cmbUpperOU.Value.ToString().ToInt32();
 
             OUInfo pInfo = BLLFactory<OU>.Instance.FindByID(info.PID);
@@ -438,7 +438,7 @@ namespace JCodes.Framework.AddIn.Security
                 info = SetOUInfo(info);
                 info.Creator = Portal.gc.UserInfo.FullName;
                 info.Creator_ID = Portal.gc.UserInfo.ID.ToString();
-                info.CreateTime = DateTime.Now;
+                info.CreateTime = DateTimeHelper.GetServerDateTime2();
 
                 try
                 {

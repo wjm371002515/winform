@@ -100,10 +100,6 @@
       <Project>{A7F8FAE9-0036-45CE-97B6-F21E144807C8}</Project>
       <Name>JCodes.Framework.IDAL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JCodes.Framework.Model\JCodes.Framework.Model.csproj">
-      <Project>{F31B2A29-7F65-4019-B015-44A9FF67F33A}</Project>
-      <Name>JCodes.Framework.Model</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

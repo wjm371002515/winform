@@ -186,6 +186,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="UI\FrmAddPurchaseItem.resx">
       <DependentUpon>FrmAddPurchaseItem.cs</DependentUpon>
     </EmbeddedResource>

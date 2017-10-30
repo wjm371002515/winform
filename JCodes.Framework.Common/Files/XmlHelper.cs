@@ -168,6 +168,15 @@ namespace JCodes.Framework.Common.Files
         #region 公用方法
 
         /// <summary>
+        /// 获取XmlDoc 对象
+        /// </summary>
+        /// <returns></returns>
+        public XmlDocument GetXmlDoc()
+        {
+            return objXmlDoc;
+        }
+
+        /// <summary>
         /// 获取指定节点下面的XML子节点
         /// </summary>
         /// <param name="XmlPathNode">XML节点</param>
@@ -380,7 +389,7 @@ namespace JCodes.Framework.Common.Files
         {
             XmlNode objNode = objXmlDoc.SelectSingleNode(MainNode);
             XmlElement objElement = objXmlDoc.CreateElement(Element);
-            objElement.InnerText = Content;
+            objElement.InnerXml = Content;
             objNode.AppendChild(objElement);
         }
 

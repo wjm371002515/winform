@@ -9,6 +9,7 @@ using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.IDAL;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Common.Databases;
+using JCodes.Framework.Common.Format;
 
 namespace JCodes.Framework.BLL
 {
@@ -29,13 +30,13 @@ namespace JCodes.Framework.BLL
         {
             //获取今天的结账数量 + 1
             SearchCondition condition = new SearchCondition();
-            condition.AddCondition("CreateDate", Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd")), SqlOperator.MoreThanOrEqual);
+            condition.AddCondition("CreateDate", Convert.ToDateTime(DateTimeHelper.GetServerDate()), SqlOperator.MoreThanOrEqual);
             string filter = condition.BuildConditionSql().Replace("Where", "");
             int count = baseDal.GetRecordCount(filter);
             count += 1;
 
             string result = string.Format("{0}{1}{2}{3}", isPurchase ? "RK" : "CK",
-                DateTime.Now.ToString("yyyyMMdd"), count.ToString().PadLeft(4, '0'),
+                DateTimeHelper.GetServerDateTime2().ToString("yyyyMMdd"), count.ToString().PadLeft(4, '0'),
                 new Random().Next(100).ToString().PadLeft(2, '0'));
             return result;
         }

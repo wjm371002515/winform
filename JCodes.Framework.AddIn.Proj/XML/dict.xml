@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+    <item guid="11111" moddate="2017-01-01" modversion="1.0.0.0" modorderId="M11111" proposer="测试" programmer="速度" modcontent="多少" modreason="的" remark="让人"></item>
+    <item guid="22222" moddate="2017-01-22" modversion="1.2.3.4" modorderId="M11111222" proposer="测试2" programmer="速度2" modcontent="多少2" modreason="的2" remark="让人2"></item>
+  </histories>
+  <dataitem>
+      <item>
+        <id>2</id>
+        <pid>-1</pid>
+        <name>测试2</name>
+        <remark>STDtinyInt</remark>
+        <subdic>
+          <item>
+            <value>2000</value>
+            <name>2测试</name>
+            <seq>2001</seq>
+            <remark></remark>
+          </item>
+          <item>
+            <value>2002</value>
+            <name>2测试3</name>
+            <seq>2003</seq>
+            <remark></remark>
+          </item>
+        </subdic>
+      </item>
+      <item>
+        <id>1</id>
+        <pid>-1</pid>
+        <name>测试1</name>
+        <remark>STDtinyInt</remark>
+        <subdic></subdic>
+      </item>
+      <item>
+        <id>3</id>
+        <pid>-1</pid>
+        <name>测试3</name>
+        <remark>STDtinyInt</remark>
+        <subdic></subdic>
+      </item>
+      <item>
+        <id>4</id>
+        <pid>1</pid>
+        <name>测试子项</name>
+        <remark>STDtinyInt</remark>
+        <subdic>
+          <item>
+            <value>1000</value>
+            <name>测试</name>
+            <seq>001</seq>
+            <remark></remark>
+          </item>
+          <item>
+            <value>1002</value>
+            <name>测试3</name>
+            <seq>003</seq>
+            <remark></remark>
+          </item>
+        </subdic>
+      </item>
+  </dataitem>
+</datatype>

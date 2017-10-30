@@ -1,4 +1,5 @@
 ﻿using JCodes.Framework.Common;
+using JCodes.Framework.Common.Format;
 using JCodes.Framework.CommonControl;
 using JCodes.Framework.CommonControl.Other;
 using System;
@@ -34,7 +35,7 @@ namespace WHC.OrderWater.UI
         //    info.Telephone5 = txtTelephone5.Text;
         //    info.Area = cmbArea.Text;
         //    info.Type = cmbType.Text;
-        //    info.LastUpdated = DateTime.Now;
+        //    info.LastUpdated = DateTimeHelper.GetServerDateTime2();
         //    info.Shop_ID = "";
         //}
 
@@ -147,7 +148,7 @@ namespace WHC.OrderWater.UI
             else
             {
                 this.Text = "新建 " + this.Text;
-                lblCreateDate.Text = DateTime.Now.ToString();
+                lblCreateDate.Text = DateTimeHelper.GetServerDateTime2().ToString();
                 //根据分店代码和客户信息生成客户代码
                 this.txtNumber.Text = "";//BLLFactory<Customer>.Instance.GenerateCustomerNumber(Portal.gc.LoginInfo.Shop_ID);
                 //this.txtNumber.Visible = false;

@@ -177,8 +177,7 @@ namespace JCodes.Framework.Common.Format
         /// <returns></returns>
         public static ArrayList ExtractInnerContent(string content, string start, string end)
         {
-            int sindex = -1, eindex = -1;
-            int msindex = -1, meindex = -1;
+            int sindex = -1, eindex = -1, msindex = -1;
             int span = 0;
 
             ArrayList al = new ArrayList();

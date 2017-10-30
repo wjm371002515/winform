@@ -14,7 +14,7 @@ namespace JCodes.Framework.Common.Format
     /// </summary>
     public class DateTimeHelper
     {
-        private DateTime dt = DateTime.Now;
+        private DateTime dt = DateTimeHelper.GetServerDateTime2();
 
         /// <summary>
         /// 获取某一年有多少周
@@ -329,7 +329,40 @@ namespace JCodes.Framework.Common.Format
         {
             int day = (Convert.ToInt16(dt.DayOfWeek) == 0) ? 7 : Convert.ToInt16(dt.DayOfWeek);
             return day;
-        } 
+        }
+
+        /// <summary>
+        /// 获取服务器日期时间
+        /// </summary>
+        /// <returns></returns>
+        public static string GetServerDateTime()
+        {
+            return GetServerDateTime2().ToString("yyyy-MM-dd HH:mm:ss.fff");
+        }
+
+        public static DateTime GetServerDateTime2()
+        {
+            return DateTime.Now;
+        }
+
+        /// <summary>
+        /// 获取服务器日期
+        /// </summary>
+        /// <returns></returns>
+        public static string GetServerDate()
+        {
+            return GetServerDateTime2().ToString("yyyy-MM-dd");
+        }
+
+        /// <summary>
+        /// 获取服务器时间
+        /// </summary>
+        /// <returns></returns>
+        public static string GetServerTime()
+        {
+            return GetServerDateTime2().ToString("HH:mm:ss.fff");
+        }
+
 
         #endregion
 
