@@ -1,0 +1,286 @@
+﻿@{
+    ViewBag.Title = "Another";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>企业信息化平台管理系统</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    @using System.Web.Optimization;
+    @Scripts.Render("~/bundles/jquery")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquerytools")
+    @Styles.Render("~/Content/jquerytools")
+
+    <!--常用的一些组件业务脚本函数,放置此处方便脚本提示-->
+    <script src="~/Scripts/ComponentUtil.js"></script>
+    <script type="text/javascript" src="~/Scripts/outlook2.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            //读取动态变化的时间
+            ReadDateTimeShow();
+            //这里实现对时间动态的变化
+            var setTimeInterval = setInterval(ReadDateTimeShow, 1000);
+
+            //调整Windows尺寸
+            windowResize();
+            $(window).resize(function () {
+                windowResize();
+            });
+        });
+
+        function getWindowHeight() {
+            return $(window).height();
+        }
+        function getWindowWidth() {
+            return $(window).width();
+        }
+        function windowResize() {
+            var width = getWindowWidth();
+            var height = getWindowHeight();
+            $('form#form1').width(width);
+            $('form#form1').height(height);
+            $('form#form1').layout();
+        }
+
+
+        function close(divname) {
+            $(divname).dialog('close');
+        }
+
+        //读取动态变化的时间
+        function ReadDateTimeShow() {
+            var year = new Date().getFullYear();
+            var month = new Date().getMonth() + 1;
+            var day = new Date().getDate();
+            var time = new Date().toLocaleTimeString();
+            var addDate = year + "年" + month + "月" + day + "日 " + time;
+            $("#date").text(addDate);
+        }
+    </script>
+
+    <script type="text/javascript">
+        var _menus = {
+            "default": [
+                {
+                    "menuid": "1", "icon": "icon-computer", "menuname": "权限管理",
+                    "menus": [
+                              { "menuid": "13", "menuname": "用户管理", "icon": "icon-user", "url": "/User/Index" },
+                              { "menuid": "14", "menuname": "组织机构管理", "icon": "icon-organ", "url": "/OU/Index" },
+                              { "menuid": "15", "menuname": "角色管理", "icon": "icon-group-key", "url": "/Role/Index" },
+                              { "menuid": "16", "menuname": "功能管理", "icon": "icon-key", "url": "/Function/Index" },
+                              { "menuid": "17", "menuname": "登陆日志", "icon": "icon-view", "url": "/LoginLog/Index" }
+                    ]
+                },
+               {
+                   "menuid": "2", "icon": "icon-user", "menuname": "其他管理",
+                   "menus": [{ "menuid": "21", "menuname": "修改密码", "icon": "icon-lock", "url": "javascript:ShowPasswordDialog()" }
+                   ]
+               }
+            ],
+            "point": [
+                {
+                    "menuid": "3", "icon": "icon-computer", "menuname": "事务中心",
+                    "menus": [
+                              { "menuid": "33", "menuname": "测试菜单1", "icon": "icon-user", "url": "../Commonpage/building.htm" },
+                              { "menuid": "34", "menuname": "测试菜单2", "icon": "icon-organ", "url": "../Commonpage/building.htm" },
+                              { "menuid": "35", "menuname": "测试菜单3", "icon": "icon-group-key", "url": "../Commonpage/building.htm" },
+                              { "menuid": "36", "menuname": "测试菜单4", "icon": "icon-key", "url": "../Commonpage/building.htm" }
+                    ]
+                },
+                {
+                    "menuid": "4", "icon": "icon-user", "menuname": "其他菜单",
+                    "menus": [{ "menuid": "41", "menuname": "测试菜单5", "icon": "icon-lock", "url": "../Commonpage/building.htm" }]
+                }
+            ]
+        };
+
+        function showSubMenu(url, title, menuCategory, defaultIcon) {
+            if (defaultIcon == null || defaultIcon == "") {
+                defaultIcon = "icon-table";
+            }
+            addTab(title, url, "icon " + defaultIcon);
+            Clearnav();
+            if (menuCategory != "") {
+                addNav(_menus[menuCategory]);
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+        //弹出修改密码的对话框
+        function ShowPasswordDialog() {
+            $("#divModPass").dialog('open').dialog('setTitle', '修改用户密码');
+        }
+
+        function ModifyPass() {
+            //首先表单进行检测
+            var validate = $("#ffModPass").form("validate");
+            if (validate == false) {
+                return false;
+            }
+
+            if ($("#txtNewPass").val() == "") {
+                $("#txtNewPass").focus();
+                $.messager.alert("提示", '新密码不能为空');
+                 return;
+            }
+            if ($("#txtNewPass").val() != $("#txtCheckPass").val()) {
+                $("#txtNewPass").focus();
+                $.messager.alert("提示", "两次输入的密码不一致"); return;
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: '/User/ModifyPass?r=' + Math.random(),
+                async: false,
+                data: { Name: $("#txtName").val(), OldPass: $("#txtOldPass").val(), NewPass: $("#txtNewPass").val() },
+                success: function (msg) {
+                    if (msg == "OK") {
+                        $.messager.alert("提示", "操作成功！ ");
+                        $("#divModPass").dialog('close');
+                    }
+                    else {
+                        $.messager.alert("提示", msg);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    $.messager.alert("提示", "操作失败"); //xhr.responseText
+                }
+            });
+        }
+    </script>
+
+</head>
+
+<body style="overflow-y:hidden"  scroll="no">
+    <noscript>
+        <div style=" position:absolute; z-index:100000; height:2046px;top:0px;left:0px; width:100%; background:white; text-align:center;">
+            <img src="~/Content/images/noscript.gif" alt='抱歉，请开启脚本支持！' />
+        </div>
+    </noscript>
+    <form id="form1" class="easyui-layout">
+    
+    <!--顶部Banner-->
+	<div region="north" id="header">
+        <!----------- 一级导航 ------------------>
+        <ul class="navigation" style="display:block">
+            <li><a href="#" onclick="showSubMenu('/User/Index', '用户管理', 'default')">权限管理</a></li>
+            <li><a href="#" onclick="showSubMenu('../Commonpage/MyJob.aspx', '事务中心开发中...', 'point', 'icon-organ')">事务中心</a></li>
+            <li><a href="#" onclick="showSubMenu('../Commonpage/building.htm', '合同起草开发中...', '')">合同起草</a></li>
+            <li><a href="#" onclick="showSubMenu('../Commonpage/building.htm', '合同管理开发中...', '')">合同管理</a></li>
+            <li><a href="#" onclick="showSubMenu('../Commonpage/building.htm', '查询打印开发中...', '')">查询打印</a></li>
+            <li><a href="#" onclick="showSubMenu('../Commonpage/building.htm', '知识管理开发中...', '')">知识管理</a></li>
+            <li><a href="#" onclick="showSubMenu('../Commonpage/building.htm', '系统管理开发中...', '')">系统管理</a></li>
+        </ul>
+        <ul class="button">
+            <li>
+                当前时间：<b id="date"></b>                              
+                 <img src="~/Content/Themes/Default/user_ui.gif" style="border:0px"/>     
+                  <font color="red" size="5">@ViewBag.FullName</font>
+                  <span>，您好！ </span>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </li>
+            <li>
+                <a href="javascript:void(0)" onclick="javascript:ShowPasswordDialog()" title="修改用户密码">
+                    <img border="0" src="~/Content/Themes/Default/btn_hd_support.gif" title="修改用户密码" alt="修改用户密码"/>
+                 </a>
+            </li>
+            <li>
+                <a href="#" onclick="addTab('在线帮助', 'userGuid.htm', 'icon icon-help')" title="在线帮助">
+                    <img border="0" src="~/Content/Themes/Default/btn_hd_help.gif" title="在线帮助" alt="在线帮助" />
+                </a>
+            </li>
+            <li>
+                <a href="/Login/Index" title="注销"><b><img border="0" src="~/Content/Themes/Default/btn_hd_exit.gif" title="注销" alt="注销" /></b></a>
+            </li>
+        </ul>
+	</div>
+	
+	<!--左侧导航菜单-->
+	<div region="west" split="true" title="导航菜单" style="width:200px;padding:1px;overflow:hidden;">
+		<div id="nav" class="easyui-accordion" fit="true" border="false">
+@*            <div id="aa" title="主功能菜单" iconCls="icon-computer" style="padding:10px;overflow:auto;" selected="true">
+                <ul>
+				    <li><div><a ref="91001" href="javascript:void(0)" onclick="javascript:ShowPasswordDialog()" ><span class="icon icon-lock" >&nbsp;</span><span class="nav">脚本功能</span></a></div></li>	
+                    <li><div><a ref="91002" href="#" rel="ChangePassword.aspx" ><span class="icon icon-lock" >&nbsp;</span><span class="nav">打开页面功能</span></a></div></li>	
+                </ul>
+			</div>*@            
+		</div>
+	</div>
+	
+	<!--主工作区-->
+	<div id="mainPanle" region="center" title="" style="overflow:hidden;">
+		<div id="tabs" class="easyui-tabs"  fit="true" border="false" >
+		</div>
+	</div>
+	
+	<!--Tab上菜单操作-->
+	<div id="mm" class="easyui-menu" style="width:150px;">
+		<div id="mm-tabupdate">刷新</div>
+		<div class="menu-sep"></div>
+		<div id="mm-tabclose">关闭</div>
+		<div id="mm-tabcloseall">全部关闭</div>
+		<div id="mm-tabcloseother">除此之外全部关闭</div>
+		<div class="menu-sep"></div>
+		<div id="mm-tabcloseright">当前页右侧全部关闭</div>
+		<div id="mm-tabcloseleft">当前页左侧全部关闭</div>
+		<div class="menu-sep"></div>
+		<div id="mm-exit">退出</div>
+	</div>
+
+    <!--底部版权标识-->
+    <div data-options="region:'south',split:true" style="height: 50px; background: #efefef;">
+        <div class="easyui-layout" data-options="fit:true" style="background: #ccc;">
+            <div data-options="region:'center'" style="text-align: center; padding: 10px;">
+                广东南粤通客运联网有限公司 2015 Email：<a href="mailto:wuhuacong@163.com">wuhuacong@163.com</a>  QQ:6966254
+                <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=6966254&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:6966254:47" alt="有事Q我" title="有事Q我"/></a>
+                <br />
+            </div>
+        </div>
+    </div>
+	</form>
+
+    <div id="divModPass" class="easyui-dialog" style="width:350px;height:260px;padding:10px 20px"
+			closed="true" resizable="true" modal="true" buttons="#dlg-buttons" iconCls="icon-setting"  >
+        <form id="ffModPass" method="post" novalidate="novalidate">
+            <table cellspacing="1" cellpadding="0" border="0" width="100%">
+                <tr style="height: 40px;">
+                    <th style="width: 100px; font-weight: bold; text-align: right;">原密码：</th>
+                    <td style="width: 200px">
+                        <input type="hidden" id="txtName" value="@ViewBag.Name"/>
+                        <input type="password" id="txtOldPass" maxlength="30" />
+                    </td>
+                </tr>
+                <tr style="height: 40px;">
+                    <th style="width: 100px; font-weight: bold; text-align: right;">新密码：</th>
+                    <td style="width: 200px">
+                        <div style="float: left; margin-top: 2px;">
+                            <input type="password" id="txtNewPass" maxlength="30"  class="easyui-validatebox" data-options="required:true,validType:'length[1,30]'"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr style="height: 40px;">
+                    <th style="width: 100px; font-weight: bold; text-align: right;">确认新密码：</th>
+                    <td style="width: 200px">
+                        <input type="password" id="txtCheckPass" maxlength="30"  class="easyui-validatebox" data-options="required:true,validType:'length[1,30]'"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" height="20"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-lock" id="btnModifyPass" onclick="ModifyPass()">提交</a>
+                        <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-cancel" onclick="javascript:$('#divModPass').dialog('close')">关闭</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+</body>
+
+</html>

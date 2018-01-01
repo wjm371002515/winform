@@ -1,0 +1,688 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+    ViewBag.Title = "报表信息";
+}
+
+@*脚本引用放在此处可以实现自定义函数自动提示*@
+<script src="~/Scripts/CommonUtil.js"></script>
+<script src="~/Content/JQueryTools/Highcharts/js/highcharts.js"></script>
+<script src="~/Content/JQueryTools/Highcharts/js/highcharts-more.js"></script>
+<script src="~/Content/JQueryTools/Highcharts/js/highcharts-3d.js"></script>
+<script src="~/Content/JQueryTools/Highcharts/js/themes/grid.js"></script>
+<script src="~/Content/JQueryTools/Highcharts/js/modules/exporting.js"></script>
+
+<script type="text/javascript">
+    //初始化对象
+    $(function () {
+        var chart1 = new Highcharts.Chart({
+            chart: {
+                renderTo: "container1",
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+            },
+            title: {
+                text: '集团分子公司人员组成'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.y}</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+
+                    },
+                    //showInLegend: true
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: '人员数量',
+                data: []
+            }]
+        });
+
+        //通过Ajax获取图表1数据
+        $.ajaxSettings.async = false;
+        var data1 = [];
+        $.getJSON("/User/GetCompanyUserCountJson", function (dict) {                
+            for (var key in dict) {
+                if (dict.hasOwnProperty(key)) {
+                    data1.push([key, dict[key]]);
+                }
+            };
+            chart1.series[0].setData(data1);
+        });
+
+        var chart2 = new Highcharts.Chart({
+            chart: {
+                renderTo: "container2",
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie',
+                options3d: {
+                    enabled: true,
+                    alpha: 45,
+                    beta: 0
+                }
+            },
+            title: {
+                text: '集团分子公司部门组成'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.y}</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    depth: 35,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.name}'
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: '部门数量',
+                data: []
+            }]
+        });
+        //通过Ajax获取图表1数据
+        $.ajaxSettings.async = false;
+        var data2 = [];
+        $.getJSON("/OU/GetCompanyDeptCountJson", function (dict) {
+            for (var key in dict) {
+                if (dict.hasOwnProperty(key)) {
+                    data2.push([key, dict[key]]);
+                }
+            };
+            chart2.series[0].setData(data2);
+        });
+
+        $('#container3').highcharts({
+            chart: {
+                type: 'gauge',
+                plotBackgroundColor: null,
+                plotBackgroundImage: null,
+                plotBorderWidth: 0,
+                plotShadow: false
+            },
+            title: {
+                text: 'Speedometer'
+            },
+            pane: {
+                startAngle: -150,
+                endAngle: 150,
+                background: [{
+                    backgroundColor: {
+                        linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                        stops: [
+                            [0, '#FFF'],
+                            [1, '#333']
+                        ]
+                    },
+                    borderWidth: 0,
+                    outerRadius: '109%'
+                }, {
+                    backgroundColor: {
+                        linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                        stops: [
+                            [0, '#333'],
+                            [1, '#FFF']
+                        ]
+                    },
+                    borderWidth: 1,
+                    outerRadius: '107%'
+                }, {
+                    // default background
+                }, {
+                    backgroundColor: '#DDD',
+                    borderWidth: 0,
+                    outerRadius: '105%',
+                    innerRadius: '103%'
+                }]
+            },
+
+            // the value axis
+            yAxis: {
+                min: 0,
+                max: 200,
+
+                minorTickInterval: 'auto',
+                minorTickWidth: 1,
+                minorTickLength: 10,
+                minorTickPosition: 'inside',
+                minorTickColor: '#666',
+
+                tickPixelInterval: 30,
+                tickWidth: 2,
+                tickPosition: 'inside',
+                tickLength: 10,
+                tickColor: '#666',
+                labels: {
+                    step: 2,
+                    rotation: 'auto'
+                },
+                title: {
+                    text: 'km/h'
+                },
+                plotBands: [{
+                    from: 0,
+                    to: 120,
+                    color: '#55BF3B' // green
+                }, {
+                    from: 120,
+                    to: 160,
+                    color: '#DDDF0D' // yellow
+                }, {
+                    from: 160,
+                    to: 200,
+                    color: '#DF5353' // red
+                }]
+            },
+            series: [{
+                name: 'Speed',
+                data: [80],
+                tooltip: {
+                    valueSuffix: ' km/h'
+                }
+            }]
+        },
+        // Add some life
+        function (chart) {
+            if (!chart.renderer.forExport) {
+                setInterval(function () {
+                    var point = chart.series[0].points[0],
+                        newVal,
+                        inc = Math.round((Math.random() - 0.5) * 20);
+
+                    newVal = point.y + inc;
+                    if (newVal < 0 || newVal > 200) {
+                        newVal = point.y - inc;
+                    }
+
+                    point.update(newVal);
+
+                }, 3000);
+            }
+        });
+
+        var chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'container4',
+                type: 'column',
+                margin: 75,
+                options3d: {
+                    enabled: true,
+                    alpha: 15,
+                    beta: 15,
+                    depth: 50,
+                    viewDistance: 25
+                }
+            },
+            title: {
+                text: 'Chart rotation demo'
+            },
+            subtitle: {
+                text: 'Test options by dragging the sliders below'
+            },
+            plotOptions: {
+                column: {
+                    depth: 25
+                }
+            },
+            series: [{
+                data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+            }]
+        });
+
+        $('#lineContainer1').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Total fruit consumtion, grouped by gender'
+            },
+            xAxis: {
+                categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
+            },
+            yAxis: {
+                allowDecimals: false,
+                min: 0,
+                title: {
+                    text: 'Number of fruits'
+                }
+            },
+            tooltip: {
+                formatter: function () {
+                    return '<b>' + this.x + '</b><br/>' +
+                        this.series.name + ': ' + this.y + '<br/>' +
+                        'Total: ' + this.point.stackTotal;
+                }
+            },
+            plotOptions: {
+                column: {
+                    stacking: 'normal'
+                }
+            },
+            series: [{
+                name: 'John',
+                data: [5, 3, 4, 7, 2],
+                stack: 'male'
+            }, {
+                name: 'Joe',
+                data: [3, 4, 4, 2, 5],
+                stack: 'male'
+            }, {
+                name: 'Jane',
+                data: [2, 5, 6, 2, 1],
+                stack: 'female'
+            }, {
+                name: 'Janet',
+                data: [3, 0, 4, 4, 3],
+                stack: 'female'
+            }]
+        });
+
+        $('#lineContainer2').highcharts({
+            title: {
+                text: 'Monthly Average Temperature',
+                x: -20 //center
+            },
+            subtitle: {
+                text: 'Source: WorldClimate.com',
+                x: -20
+            },
+            xAxis: {
+                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+            },
+            yAxis: {
+                title: {
+                    text: 'Temperature (°C)'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                valueSuffix: '°C'
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            },
+            series: [{
+                name: 'Tokyo',
+                data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+            }, {
+                name: 'New York',
+                data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
+            }, {
+                name: 'Berlin',
+                data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
+            }, {
+                name: 'London',
+                data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+            }]
+        });
+
+        $('#lineContainer3').highcharts({
+            chart: {
+                type: 'bubble',
+                zoomType: 'xy'
+            },
+            title: {
+                text: 'Highcharts Bubbles'
+            },
+            series: [{
+                data: [[97, 36, 79], [94, 74, 60], [68, 76, 58], [64, 87, 56], [68, 27, 73], [74, 99, 42], [7, 93, 87], [51, 69, 40], [38, 23, 33], [57, 86, 31]]
+            }, {
+                data: [[25, 10, 87], [2, 75, 59], [11, 54, 8], [86, 55, 93], [5, 3, 58], [90, 63, 44], [91, 33, 17], [97, 3, 56], [15, 67, 48], [54, 25, 81]]
+            }, {
+                data: [[47, 47, 21], [20, 12, 4], [6, 76, 91], [38, 30, 60], [57, 98, 64], [61, 17, 80], [83, 60, 13], [67, 78, 75], [64, 12, 10], [30, 77, 82]]
+            }]
+        });
+
+        $('#lineContainer4').highcharts({
+            chart: {
+                type: 'area'
+            },
+            title: {
+                text: 'US and USSR nuclear stockpiles'
+            },
+            subtitle: {
+                text: 'Source: <a href="http://thebulletin.metapress.com/content/c4120650912x74k7/fulltext.pdf">' +
+                    'thebulletin.metapress.com</a>'
+            },
+            xAxis: {
+                allowDecimals: false,
+                labels: {
+                    formatter: function () {
+                        return this.value; // clean, unformatted number for year
+                    }
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Nuclear weapon states'
+                },
+                labels: {
+                    formatter: function () {
+                        return this.value / 1000 + 'k';
+                    }
+                }
+            },
+            tooltip: {
+                pointFormat: '{series.name} produced <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
+            },
+            plotOptions: {
+                area: {
+                    pointStart: 1940,
+                    marker: {
+                        enabled: false,
+                        symbol: 'circle',
+                        radius: 2,
+                        states: {
+                            hover: {
+                                enabled: true
+                            }
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: 'USA',
+                data: [null, null, null, null, null, 6, 11, 32, 110, 235, 369, 640,
+                    1005, 1436, 2063, 3057, 4618, 6444, 9822, 15468, 20434, 24126,
+                    27387, 29459, 31056, 31982, 32040, 31233, 29224, 27342, 26662,
+                    26956, 27912, 28999, 28965, 27826, 25579, 25722, 24826, 24605,
+                    24304, 23464, 23708, 24099, 24357, 24237, 24401, 24344, 23586,
+                    22380, 21004, 17287, 14747, 13076, 12555, 12144, 11009, 10950,
+                    10871, 10824, 10577, 10527, 10475, 10421, 10358, 10295, 10104]
+            }, {
+                name: 'USSR/Russia',
+                data: [null, null, null, null, null, null, null, null, null, null,
+                5, 25, 50, 120, 150, 200, 426, 660, 869, 1060, 1605, 2471, 3322,
+                4238, 5221, 6129, 7089, 8339, 9399, 10538, 11643, 13092, 14478,
+                15915, 17385, 19055, 21205, 23044, 25393, 27935, 30062, 32049,
+                33952, 35804, 37431, 39197, 45000, 43000, 41000, 39000, 37000,
+                35000, 33000, 31000, 29000, 27000, 25000, 24000, 23000, 22000,
+                21000, 20000, 19000, 18000, 18000, 17000, 16000]
+            }]
+        });
+    });
+    //-->
+</script>
+
+    <!-- BEGIN DASHBOARD STATS -->
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <a class="dashboard-stat dashboard-stat-light blue-soft" href="#">
+                <div class="visual">
+                    <i class="fa fa-comments"></i>
+                </div>
+                <div class="details">
+                    <div class="number">
+                         1349
+                    </div>
+                    <div class="desc">
+                         New Feedbacks
+                    </div>
+                </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <a class="dashboard-stat dashboard-stat-light red-soft" href="#">
+                <div class="visual">
+                    <i class="fa fa-trophy"></i>
+                </div>
+                <div class="details">
+                    <div class="number">
+                         12,5M$
+                    </div>
+                    <div class="desc">
+                         Total Profit
+                    </div>
+                </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <a class="dashboard-stat dashboard-stat-light green-soft" href="#">
+                <div class="visual">
+                    <i class="fa fa-shopping-cart"></i>
+                </div>
+                <div class="details">
+                    <div class="number">
+                         549
+                    </div>
+                    <div class="desc">
+                         New Orders
+                    </div>
+                </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <a class="dashboard-stat dashboard-stat-light purple-soft" href="#">
+                <div class="visual">
+                    <i class="fa fa-globe"></i>
+                </div>
+                <div class="details">
+                    <div class="number">
+                         +89%
+                    </div>
+                    <div class="desc">
+                         Brand Popularity
+                    </div>
+                </div>
+                </a>
+            </div>
+        </div>
+        <!-- END DASHBOARD STATS -->
+
+        <div class="clearfix">
+        </div>
+
+<div class="portlet box green-meadow">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-filter"></i>报表信息
+        </div>
+    </div>
+    <div class="portlet-body flip-scroll">
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a href="#tab_2_1" data-toggle="tab">饼图数据</a>
+            </li>
+            <li>
+                <a href="#tab_2_2" data-toggle="tab">曲线图数据</a>
+            </li>       
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade active in" id="tab_2_1">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="portlet light ">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="icon-bar-chart font-green-sharp hide"></i>
+                                    <span class="caption-subject font-green-sharp bold uppercase">图表1</span>
+                                </div>
+                                <div class="actions">
+                                    <div class="btn-group btn-group-devided" data-toggle="buttons">
+                                        <label class="btn btn-transparent grey-salsa btn-circle btn-sm active">
+                                        <input type="radio" name="options" class="toggle" id="option1">更多...</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                                <div id="container1" style="height: 300px;max-width:500px"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="portlet light ">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="icon-bar-chart font-green-sharp hide"></i>
+                                    <span class="caption-subject font-green-sharp bold uppercase">3D图表2</span>
+                                </div>
+                                <div class="actions">
+                                    <div class="btn-group btn-group-devided" data-toggle="buttons">
+                                        <label class="btn btn-transparent grey-salsa btn-circle btn-sm active">
+                                        <input type="radio" name="options" class="toggle" id="option1">更多...</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="portlet-body">                                
+                                <div id="container2" style="height: 300px;max-width:500px"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix">
+                    </div>
+
+                    <div class="col-md-6 col-sm-6">
+                        <div class="portlet light ">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="icon-bar-chart font-green-sharp hide"></i>
+                                    <span class="caption-subject font-green-sharp bold uppercase">仪表图3</span>
+                                </div>
+                                <div class="actions">
+                                    <div class="btn-group btn-group-devided" data-toggle="buttons">
+                                        <label class="btn btn-transparent grey-salsa btn-circle btn-sm active">
+                                        <input type="radio" name="options" class="toggle" id="option1">更多...</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                                <div id="container3" style="height: 300px;width:500px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="portlet light ">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="icon-bar-chart font-green-sharp hide"></i>
+                                    <span class="caption-subject font-green-sharp bold uppercase">3D柱状图4</span>
+                                </div>
+                                <div class="actions">
+                                    <div class="btn-group btn-group-devided" data-toggle="buttons">
+                                        <label class="btn btn-transparent grey-salsa btn-circle btn-sm active">
+                                        <input type="radio" name="options" class="toggle" id="option1">更多...</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                                <div id="container4" style="height: 300px;width:500px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="tab_2_2">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="portlet light ">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="icon-bar-chart font-green-sharp hide"></i>
+                                    <span class="caption-subject font-green-sharp bold uppercase">柱状图1</span>
+                                </div>
+                                <div class="actions">
+                                    <div class="btn-group btn-group-devided" data-toggle="buttons">
+                                        <label class="btn btn-transparent grey-salsa btn-circle btn-sm active">
+                                        <input type="radio" name="options" class="toggle" id="option1">更多...</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                                <div id="lineContainer1" style="height: 300px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="portlet light ">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="icon-bar-chart font-green-sharp hide"></i>
+                                    <span class="caption-subject font-green-sharp bold uppercase">曲线图2</span>
+                                </div>
+                                <div class="actions">
+                                    <div class="btn-group btn-group-devided" data-toggle="buttons">
+                                        <label class="btn btn-transparent grey-salsa btn-circle btn-sm active">
+                                        <input type="radio" name="options" class="toggle" id="option1">更多...</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="portlet-body">                                
+                                 <div id="lineContainer2" style="height: 300px;"></div>  
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix">
+                    </div>
+
+                    <div class="col-md-6 col-sm-6">
+                        <div class="portlet light ">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="icon-bar-chart font-green-sharp hide"></i>
+                                    <span class="caption-subject font-green-sharp bold uppercase">散点图3</span>
+                                </div>
+                                <div class="actions">
+                                    <div class="btn-group btn-group-devided" data-toggle="buttons">
+                                        <label class="btn btn-transparent grey-salsa btn-circle btn-sm active">
+                                        <input type="radio" name="options" class="toggle" id="option1">更多...</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                                <div id="lineContainer3" style="height: 250px; "></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="portlet light ">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="icon-bar-chart font-green-sharp hide"></i>
+                                    <span class="caption-subject font-green-sharp bold uppercase">面积图4</span>
+                                </div>
+                                <div class="actions">
+                                    <div class="btn-group btn-group-devided" data-toggle="buttons">
+                                        <label class="btn btn-transparent grey-salsa btn-circle btn-sm active">
+                                        <input type="radio" name="options" class="toggle" id="option1">更多...</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                                <div id="lineContainer4" style="height: 250px; "></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+

@@ -30,7 +30,7 @@ namespace JCodes.Framework.OracleDAL
             : base(OraclePortal.gc._securityTablePre + "Function", "ID")
         {
             this.SeqName = "";//由于字符型组件，不需要序列
-            this.sortField = "SortCode";
+            this.sortField = "Seq";
             this.isDescending = false;
         }
 
@@ -49,9 +49,9 @@ namespace JCodes.Framework.OracleDAL
             info.ID = reader.GetString("ID");
             info.PID = reader.GetString("PID");
             info.Name = reader.GetString("Name");
-            info.ControlID = reader.GetString("ControlID");
+            info.FunctionId = reader.GetString("FunctionId");
             info.SystemType_ID = reader.GetString("SystemType_ID");
-            info.SortCode = reader.GetString("SortCode");
+            info.Seq = reader.GetString("Seq");
 
             return info;
         }
@@ -69,9 +69,9 @@ namespace JCodes.Framework.OracleDAL
             hash.Add("ID", info.ID);
             hash.Add("PID", info.PID);
             hash.Add("Name", info.Name);
-            hash.Add("ControlID", info.ControlID);
+            hash.Add("FunctionId", info.FunctionId);
             hash.Add("SystemType_ID", info.SystemType_ID);
-            hash.Add("SortCode", info.SortCode);
+            hash.Add("Seq", info.Seq);
 
             return hash;
         }
@@ -84,12 +84,12 @@ namespace JCodes.Framework.OracleDAL
         {
             Dictionary<string, string> dict = new Dictionary<string, string>();
             #region 添加别名解析
-            dict.Add("ID", "编号");            
+            dict.Add("ID", "编号");
             dict.Add("PID", "父ID");
             dict.Add("Name", "功能名称");
-            dict.Add("ControlID", "控制标识");
+            dict.Add("FunctionId", "功能ID");
             dict.Add("SystemType_ID", "系统编号");
-            dict.Add("SortCode", "排序码");
+            dict.Add("Seq", "排序");
             #endregion
 
             return dict;
@@ -100,7 +100,7 @@ namespace JCodes.Framework.OracleDAL
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public override bool DeleteByUser(object key, string userId, DbTransaction trans = null)
+        public override bool DeleteByUser(object key, Int32 userId, DbTransaction trans = null)
         {
             FunctionInfo info = this.FindByID(key, trans);
             if (info != null)
@@ -120,7 +120,7 @@ namespace JCodes.Framework.OracleDAL
         /// </summary>
         /// <param name="mainID">节点ID</param>
         /// <returns></returns>
-        public bool DeleteWithSubNode(string mainID, string userId)
+        public bool DeleteWithSubNode(string mainID, Int32 userId)
         {
             //只获取ID、PID所需字段，提高效率
             string sql = string.Format("Select ID,PID From {0} Order By PID ", tableName);
@@ -181,8 +181,8 @@ namespace JCodes.Framework.OracleDAL
 
             List<FunctionNodeInfo> arrReturn = new List<FunctionNodeInfo>();
             DataTable dt = base.SqlTable(sql);
-            string sortCode = string.Format("{0} {1}", GetSafeFileName(sortField), isDescending ? "DESC" : "ASC");
-            DataRow[] dataRows = dt.Select(string.Format(" PID = '{0}' ", -1), sortCode);
+            string seq = string.Format("{0} {1}", GetSafeFileName(sortField), isDescending ? "DESC" : "ASC");
+            DataRow[] dataRows = dt.Select(string.Format(" PID = '{0}' ", -1), seq);
             for (int i = 0; i < dataRows.Length; i++)
             {
                 string id = dataRows[i]["ID"].ToString();
@@ -260,8 +260,8 @@ namespace JCodes.Framework.OracleDAL
                 WHERE RF.Role_ID IN ({1}) AND F.SystemType_ID = '{2}' Order By PID, Name ", OraclePortal.gc._securityTablePre, roleString, systemType);
 
                 DataTable dt = base.SqlTable(sql);
-                string sortCode = string.Format("{0} {1}", GetSafeFileName(sortField), isDescending ? "DESC" : "ASC");
-                DataRow[] dataRows = dt.Select(string.Format(" PID = '{0}' ", -1), sortCode);
+                string seq = string.Format("{0} {1}", GetSafeFileName(sortField), isDescending ? "DESC" : "ASC");
+                DataRow[] dataRows = dt.Select(string.Format(" PID = '{0}' ", -1), seq);
                 for (int i = 0; i < dataRows.Length; i++)
                 {
                     string id = dataRows[i]["ID"].ToString();
@@ -296,7 +296,7 @@ namespace JCodes.Framework.OracleDAL
         public List<FunctionInfo> GetFunctionByPID(string PID)
         {
             string sql = string.Format(@"Select t.*,decode(pid, '-1', 0, pid) as parentId From {1} t 
-                                         Where  PID='{0}' Order By SortCode ", PID, tableName);
+                                         Where  PID='{0}' Order By Seq ", PID, tableName);
             return GetList(sql, null);
         }
     }

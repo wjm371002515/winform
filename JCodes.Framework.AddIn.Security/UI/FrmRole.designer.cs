@@ -72,7 +72,7 @@ namespace JCodes.Framework.AddIn.Security
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtSortCode = new DevExpress.XtraEditors.TextEdit();
+            this.txtSeq = new DevExpress.XtraEditors.TextEdit();
             this.txtHandNo = new DevExpress.XtraEditors.TextEdit();
             this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
             this.groupControl5 = new DevExpress.XtraEditors.GroupControl();
@@ -103,7 +103,7 @@ namespace JCodes.Framework.AddIn.Security
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtCategory.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSortCode.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSeq.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHandNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).BeginInit();
             this.groupControl4.SuspendLayout();
@@ -369,7 +369,7 @@ namespace JCodes.Framework.AddIn.Security
             this.groupControl2.Controls.Add(this.label2);
             this.groupControl2.Controls.Add(this.label1);
             this.groupControl2.Controls.Add(this.label12);
-            this.groupControl2.Controls.Add(this.txtSortCode);
+            this.groupControl2.Controls.Add(this.txtSeq);
             this.groupControl2.Controls.Add(this.txtHandNo);
             this.groupControl2.Controls.Add(this.txtName);
             this.groupControl2.Location = new System.Drawing.Point(15, 12);
@@ -436,14 +436,14 @@ namespace JCodes.Framework.AddIn.Security
             this.label2.TabIndex = 0;
             this.label2.Text = "角色编码：";
             // 
-            // txtSortCode
+            // txtSeq
             // 
-            this.txtSortCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtSeq.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSortCode.Location = new System.Drawing.Point(92, 110);
-            this.txtSortCode.Name = "txtSortCode";
-            this.txtSortCode.Size = new System.Drawing.Size(378, 20);
-            this.txtSortCode.TabIndex = 0;
+            this.txtSeq.Location = new System.Drawing.Point(92, 110);
+            this.txtSeq.Name = "txtSeq";
+            this.txtSeq.Size = new System.Drawing.Size(378, 20);
+            this.txtSeq.TabIndex = 0;
             // 
             // txtHandNo
             // 
@@ -713,7 +713,7 @@ namespace JCodes.Framework.AddIn.Security
             this.groupControl2.ResumeLayout(false);
             this.groupControl2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtCategory.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSortCode.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSeq.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHandNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).EndInit();
             this.groupControl4.ResumeLayout(false);
@@ -765,7 +765,7 @@ namespace JCodes.Framework.AddIn.Security
         private System.Windows.Forms.Label label2;
         private DevExpress.XtraEditors.TextEdit txtHandNo;
         private System.Windows.Forms.Label label3;
-        private DevExpress.XtraEditors.TextEdit txtSortCode;
+        private DevExpress.XtraEditors.TextEdit txtSeq;
         private DevExpress.XtraEditors.ComboBoxEdit txtCategory;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;

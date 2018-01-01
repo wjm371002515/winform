@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using JCodes.Framework.Entity;
 using JCodes.Framework.Common;
 using JCodes.Framework.jCodesenum.BaseEnum;
-using JCodes.Framework.CommonControl;
 using JCodes.Framework.BLL;
 using JCodes.Framework.CommonControl.BaseUI;
 using JCodes.Framework.CommonControl.Other;
@@ -35,7 +30,7 @@ namespace JCodes.Framework.AddIn.Basic
         /// <summary>
         /// 操作用户ID，当前登录用户
         /// </summary>
-        public string UserId = "";
+        public Int32 UserId = 0;
 
         /// <summary>
         /// 设置附件的存储目录分类
@@ -121,7 +116,7 @@ namespace JCodes.Framework.AddIn.Basic
                     string id = item.Tag.ToString();
                     try
                     {
-                        sucess = BLLFactory<FileUpload>.Instance.DeleteByUser(id, LoginUserInfo.ID.ToString());
+                        sucess = BLLFactory<FileUpload>.Instance.DeleteByUser(id, LoginUserInfo.ID);
                     }
                     catch (Exception ex)
                     {
@@ -208,7 +203,7 @@ namespace JCodes.Framework.AddIn.Basic
             List<FileUploadInfo> fileList = BLLFactory<FileUpload>.Instance.GetByAttachGUID(this.AttachmentGUID);
 
             int k = 0;
-            Icon icon = null;
+            System.Drawing.Icon icon = null;
             foreach (FileUploadInfo fileInfo in fileList)
             {
                 string file = fileInfo.FileName;
@@ -323,7 +318,7 @@ namespace JCodes.Framework.AddIn.Basic
                     if (isImage)
                     {
                         FrmPicturePreview frm = new FrmPicturePreview();
-                        Bitmap bitmap = ImageHelper.BitmapFromBytes(fileInfo.FileData);
+                        System.Drawing.Bitmap bitmap = ImageHelper.BitmapFromBytes(fileInfo.FileData);
                         frm.ImageObj = bitmap;
                         frm.ShowDialog();
                     }
@@ -421,7 +416,7 @@ namespace JCodes.Framework.AddIn.Basic
                     if (item != null && item.Tag != null)
                     {
                         string id = item.Tag.ToString();
-                        sucess = BLLFactory<FileUpload>.Instance.DeleteByUser(id, LoginUserInfo.ID.ToString());
+                        sucess = BLLFactory<FileUpload>.Instance.DeleteByUser(id, LoginUserInfo.ID);
                     }
                 }
             }

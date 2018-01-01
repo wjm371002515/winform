@@ -158,7 +158,7 @@
             this.txtName.Location = new System.Drawing.Point(81, 75);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(163, 29);
-            this.txtName.TabIndex = 0;
+            this.txtName.TabIndex = 1;
             // 
             // FrmEditDictType
             // 

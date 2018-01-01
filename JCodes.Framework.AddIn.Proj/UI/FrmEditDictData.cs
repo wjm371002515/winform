@@ -62,7 +62,7 @@ namespace JCodes.Framework.AddIn.Proj
             if (result && string.IsNullOrEmpty(ID))
             {
                 XmlHelper xmldicthelper = new XmlHelper(@"XML\dict.xml");
-                XmlNodeList xmlNodeLst = xmldicthelper.Read(string.Format("datatype/item[id=\"{0}\"]/subdic", this.txtDictType.Tag));
+                XmlNodeList xmlNodeLst = xmldicthelper.Read(string.Format("datatype/dataitem/item[id=\"{0}\"]/subdic", this.txtDictType.Tag));
 
                 foreach (XmlNode xn1 in xmlNodeLst)
                 {
@@ -89,11 +89,10 @@ namespace JCodes.Framework.AddIn.Proj
         {
             if (!string.IsNullOrEmpty(ID))
             {
-                this.Text = "编辑 " + this.Text;
                 this.txtValue.Enabled = false;
 
                 XmlHelper xmldicthelper = new XmlHelper(@"XML\dict.xml");
-                XmlNodeList xmlNodeLst = xmldicthelper.Read(string.Format("datatype/item[id=\"{0}\"]/subdic", this.txtDictType.Tag));
+                XmlNodeList xmlNodeLst = xmldicthelper.Read(string.Format("datatype/dataitem/item[id=\"{0}\"]/subdic", this.txtDictType.Tag));
 
                 foreach (XmlNode xn1 in xmlNodeLst)
                 {
@@ -113,10 +112,6 @@ namespace JCodes.Framework.AddIn.Proj
                     }
                 }
             }
-            else
-            {
-                this.Text = "新建 " + this.Text;
-            }
 
             this.txtName.Focus();
         }
@@ -131,7 +126,7 @@ namespace JCodes.Framework.AddIn.Proj
             info.Editor = LoginUserInfo.ID.ToString();
             info.LastUpdated = DateTimeHelper.GetServerDateTime2();
 
-            info.CurrentLoginUserId = LoginUserInfo.ID.ToString();
+            info.CurrentLoginUserId = LoginUserInfo.ID;
         }
 
         public override void ClearScreen()

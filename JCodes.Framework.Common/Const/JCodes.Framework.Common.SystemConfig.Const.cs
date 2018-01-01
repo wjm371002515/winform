@@ -30,6 +30,11 @@ namespace JCodes.Framework.Common
         public const string HelpFile = "Help.chm";
 
         /// <summary>
+        /// 系统编号ID TODO 待删除
+        /// </summary>
+        public const string SystemTypeID = "f8811525-3cbc-4092-92e0-04d449c0adb9";
+
+        /// <summary>
         /// 界面皮肤空间（菜单界面中的 WinformType）
         /// </summary>
         public const string RgbiSkins = "RibbonGalleryBarItem";

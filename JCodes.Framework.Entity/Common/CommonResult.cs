@@ -24,6 +24,16 @@ namespace JCodes.Framework.Entity
         }
 
         /// <summary>
+        /// 错误号
+        /// </summary>
+        [DataMember]
+        public string ErrorNo
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// 如果不成功，返回的错误信息
         /// </summary>
         [DataMember]

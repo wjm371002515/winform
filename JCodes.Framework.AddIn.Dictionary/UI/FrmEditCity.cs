@@ -61,16 +61,11 @@ namespace JCodes.Framework.AddIn.Dictionary
         {
             if (!string.IsNullOrEmpty(ID))
             {
-                this.Text = "编辑 " + this.Text;
                 CityInfo info = BLLFactory<City>.Instance.FindByID(ID);
                 if (info != null)
                 {
                     this.txtCity.Text = info.CityName;
                 }
-            }
-            else
-            {
-                this.Text = "新建 " + this.Text;
             }
             this.txtCity.Focus();
         }
@@ -140,7 +135,7 @@ namespace JCodes.Framework.AddIn.Dictionary
             info.CityName = this.txtCity.Text;
             info.ProvinceID = Convert.ToInt32(this.txtProvince.Tag.ToString());
             info.ZipCode = txtZipCode.Text;
-            info.CurrentLoginUserId = LoginUserInfo.ID.ToString();
+            info.CurrentLoginUserId = LoginUserInfo.ID;
         }
     }
 }

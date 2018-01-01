@@ -16,7 +16,6 @@ namespace JCodes.Framework.Common.Images
         #region 私有字段
         private string text;
         private Bitmap image;
-        private int letterCount = 4;   //验证码位数
         private int letterWidth = 16;  //单个字体的宽度范围
         private int letterHeight = 20; //单个字体的高度范围
         private static byte[] randb = new byte[4];

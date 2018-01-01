@@ -24,14 +24,12 @@ namespace JCodes.Framework.Entity
         private string m_WinformType; //Winform窗体类型          
         private string m_Url; //Web界面Url地址          
         private string m_WebIcon; //Web界面的菜单图标          
-        private string m_SystemType_ID; //系统编号          
-        private string m_Creator; //创建人          
+        private string m_SystemType_ID; //系统编号                 
         private string m_Creator_ID; //创建人ID          
-        private DateTime m_CreateTime = System.DateTime.Now; //创建时间          
-        private string m_Editor; //编辑人          
+        private DateTime m_CreateTime = System.DateTime.Now; //创建时间                  
         private string m_Editor_ID; //编辑人ID          
         private DateTime m_EditTime = System.DateTime.Now; //编辑时间          
-        private bool m_Deleted = false; //是否已删除          
+        private bool m_Is_Deleted = false; //是否已删除          
 
         #endregion
 
@@ -211,22 +209,6 @@ namespace JCodes.Framework.Entity
         }
 
         /// <summary>
-        /// 创建人
-        /// </summary>
-		[DataMember]
-        public virtual string Creator
-        {
-            get
-            {
-                return this.m_Creator;
-            }
-            set
-            {
-                this.m_Creator = value;
-            }
-        }
-
-        /// <summary>
         /// 创建人ID
         /// </summary>
 		[DataMember]
@@ -255,22 +237,6 @@ namespace JCodes.Framework.Entity
             set
             {
                 this.m_CreateTime = value;
-            }
-        }
-
-        /// <summary>
-        /// 编辑人
-        /// </summary>
-		[DataMember]
-        public virtual string Editor
-        {
-            get
-            {
-                return this.m_Editor;
-            }
-            set
-            {
-                this.m_Editor = value;
             }
         }
 
@@ -310,15 +276,15 @@ namespace JCodes.Framework.Entity
         /// 是否已删除
         /// </summary>
 		[DataMember]
-        public virtual bool Deleted
+        public virtual bool Is_Deleted
         {
             get
             {
-                return this.m_Deleted;
+                return this.m_Is_Deleted;
             }
             set
             {
-                this.m_Deleted = value;
+                this.m_Is_Deleted = value;
             }
         }
 
@@ -371,13 +337,10 @@ namespace JCodes.Framework.Entity
             base.WinformType = menuInfo.WinformType;
             base.Url = menuInfo.Url;
             base.SystemType_ID = menuInfo.SystemType_ID;
-            base.Creator = menuInfo.Creator;
             base.Creator_ID = menuInfo.Creator_ID;
             base.CreateTime = menuInfo.CreateTime;
-            base.Editor = menuInfo.Editor;
             base.Editor_ID = menuInfo.Editor_ID;
             base.EditTime = menuInfo.EditTime;
-            base.Deleted = menuInfo.Deleted;
         }
     }
 }

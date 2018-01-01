@@ -137,7 +137,7 @@ namespace JCodes.Framework.BLL
 			}
 		}
 
-        public override bool DeleteByUser(object key, string userId, DbTransaction trans = null)
+        public override bool DeleteByUser(object key, Int32 userId, DbTransaction trans = null)
         {
             this.FillAdminID(trans);
 

@@ -53,7 +53,7 @@ namespace JCodes.Framework.BLL
                 logInfo.Company_ID = info.Company_ID;
                 logInfo.CompanyName = info.CompanyName;
 
-                logInfo.CurrentLoginUserId = info.ID.ToString();
+                logInfo.CurrentLoginUserId = info.ID;
                 BLLFactory<LoginLog>.Instance.Insert(logInfo);
             }
             catch (Exception ex)

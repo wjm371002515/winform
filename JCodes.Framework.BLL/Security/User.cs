@@ -34,7 +34,7 @@ namespace JCodes.Framework.BLL
         /// <param name="key">主键的值</param>
         /// <param name="trans">事务对象</param>
         /// <returns></returns>
-        public override bool DeleteByUser(object key, string userId, DbTransaction trans = null)
+        public override bool DeleteByUser(object key, Int32 userId, DbTransaction trans = null)
         {
             List<SimpleUserInfo> adminSimpleUsers = BLLFactory<Role>.Instance.GetAdminSimpleUsers();
             if (adminSimpleUsers.Count == 1)
@@ -353,29 +353,29 @@ namespace JCodes.Framework.BLL
         }
 
         /// <summary>
-        /// 判断用户是否为超级管理员
+        /// 判断用户是否为超级管理员 (作废)
         /// </summary>
         /// <param name="userName">用户名称</param>
         /// <returns></returns>
-        public bool UserIsSuperAdmin(string userName)
-        {
-            return UserInRole(userName, RoleInfo.SuperAdminName);
-        }
+        //public bool UserIsSuperAdmin(string userName)
+        //{
+        //    return UserInRole(userName, RoleInfo.SuperAdminName);
+        //}
 
         /// <summary>
-        /// 判断用户是否为管理员，超级管理员、公司级别的系统管理员均通过。
+        /// 判断用户是否为管理员，超级管理员、公司级别的系统管理员均通过。(作废)
         /// </summary>
         /// <param name="userName">用户名称</param>
         /// <returns></returns>
-        public bool UserIsAdmin(string userName)
-        {
-            bool result = UserInRole(userName, RoleInfo.SuperAdminName);
-            if (!result)
-            {
-                result = UserInRole(userName, RoleInfo.CompanyAdminName);
-            }
-            return result;
-        }
+        //public bool UserIsAdmin(string userName)
+        //{
+        //    bool result = UserInRole(userName, RoleInfo.SuperAdminName);
+        //    if (!result)
+        //    {
+        //        result = UserInRole(userName, RoleInfo.CompanyAdminName);
+        //    }
+        //    return result;
+        //}
 
         /// <summary>
         /// 根据用户名、密码验证用户身份有效性

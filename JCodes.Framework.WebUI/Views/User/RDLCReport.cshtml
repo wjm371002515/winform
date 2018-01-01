@@ -1,0 +1,91 @@
+﻿@{  
+Layout = "~/Views/Shared/_Layout.cshtml";
+ViewBag.Title = "RDLC报表";
+}
+
+@*脚本引用放在此处可以实现自定义函数自动提示*@
+<script src="~/Scripts/CommonUtil.js"></script>
+<style>
+    table.view {
+        border: 1px solid #A8CFEB;
+        border-collapse: collapse;
+        margin-bottom: 5px;
+        vertical-align: top;
+        height: 98%;
+        width: 98%;
+    }
+
+    .view th {
+        padding-left: 10px;
+        padding-right: 5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        height: 23px;
+        width: 150px;
+        border: 1px solid silver;
+        background-color: #F1F6FF;
+    }
+
+    .view td {
+        padding-left: 10px;
+        padding-right: 5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        height: 23px;
+        width: 150px;
+        border: 1px solid silver;
+        background-color: #FAFCFF;
+    }
+</style>
+
+<div class="col-md-12">
+    <div class="portlet box green full-height-content full-height-content-scrollable">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-user"></i>RDLC报表
+            </div>
+            <div class="tools">
+                <a href="javascript:;" class="collapse" title="折叠内容">
+                </a>
+                <a href="javascript:;" class="fullscreen" title="全屏">
+                </a>
+            </div>
+        </div>
+        <div class="portlet-body ">
+            <div class="full-height-content-body" style="padding: 20px">
+                <div class="row">
+                    <div style="padding:10px; border:1px solid black">
+                        <div>
+                            <a href="@Url.Action("UserRdlcReport", new { format = "Image" })" target="_blank" class="btn green">图片输出</a>
+                            <a href="@Url.Action("UserRdlcReport", new { format = "PDF" })" target="_blank" class="btn green"> PDF输出</a>
+                            <a href="@Url.Action("UserRdlcReport", new { format = "Excel" })" target="_blank" class="btn green">Excel输出</a>
+                            <a href="@Url.Action("UserRdlcReport", new { format = "Word" })" target="_blank" class="btn green">Word输出</a>
+                        </div>
+                    </div>
+                    <div id="autoUpdate" style="display: none; overflow-y: auto" class="SlideContainer">
+                        <table width="100%" height="100%">
+                            <tr>
+                                <td>
+                                    <table>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr><td><iframe id="myReport" width="100%" height="800"></iframe></td></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#myReport").attr("src", "/User/UserRdlcReport?format=Image");
+        $("#autoUpdate").show();
+    });
+</script>

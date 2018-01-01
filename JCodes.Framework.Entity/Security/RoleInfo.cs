@@ -26,7 +26,7 @@ namespace JCodes.Framework.Entity
         private string m_HandNo; //角色编码          
         private string m_Name; //角色名称          
         private string m_Note; //备注          
-        private string m_SortCode; //排序码          
+        private string m_Seq; //排序码          
         private string m_Category; //角色分类          
         private string m_Company_ID; //所属公司ID          
         private string m_CompanyName; //所属公司名称          
@@ -121,18 +121,18 @@ namespace JCodes.Framework.Entity
         }
 
         /// <summary>
-        /// 排序码
+        /// 排序
         /// </summary>
 		[DataMember]
-        public virtual string SortCode
+        public virtual string Seq
         {
             get
             {
-                return this.m_SortCode;
+                return this.m_Seq;
             }
             set
             {
-                this.m_SortCode = value;
+                this.m_Seq = value;
             }
         }
 

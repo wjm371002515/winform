@@ -1,9 +1,12 @@
-G:\github_winform\winform\jCodes\JCodes.Framework.AddIn.SmallTools.dll
-G:\github_winform\winform\jCodes\JCodes.Framework.AddIn.SmallTools.pdb
 G:\github_winform\winform\JCodes.Framework.AddIn.SmallTools\obj\Debug\JCodes.Framework.AddIn.SmallTools.csprojResolveAssemblyReference.cache
-G:\github_winform\winform\JCodes.Framework.AddIn.SmallTools\obj\Debug\JCodes.Framework.AddIn.SmallTools.FrmIPO.resources
+G:\github_winform\winform\JCodes.Framework.AddIn.SmallTools\obj\Debug\JCodes.Framework.AddIn.SmallTools.FrmServerDos.resources
+G:\github_winform\winform\JCodes.Framework.AddIn.SmallTools\obj\Debug\JCodes.Framework.AddIn.SmallTools.FrmDos.resources
 G:\github_winform\winform\JCodes.Framework.AddIn.SmallTools\obj\Debug\JCodes.Framework.AddIn.SmallTools.xlsDataDeal.resources
 G:\github_winform\winform\JCodes.Framework.AddIn.SmallTools\obj\Debug\JCodes.Framework.AddIn.SmallTools.csproj.GenerateResource.Cache
+G:\github_winform\winform\JCodes.Framework.AddIn.SmallTools\obj\Debug\JCodes.Framework.AddIn.SmallTools.dll.licenses
+G:\github_winform\winform\jCodes\JCodes.Framework.AddIn.SmallTools.dll
+G:\github_winform\winform\jCodes\JCodes.Framework.AddIn.SmallTools.pdb
 G:\github_winform\winform\JCodes.Framework.AddIn.SmallTools\obj\Debug\JCodes.Framework.AddIn.SmallTools.dll
 G:\github_winform\winform\JCodes.Framework.AddIn.SmallTools\obj\Debug\JCodes.Framework.AddIn.SmallTools.pdb
-G:\github_winform\winform\JCodes.Framework.AddIn.SmallTools\obj\Debug\JCodes.Framework.AddIn.SmallTools.dll.licenses
+G:\github_winform\winform\JCodes.Framework.AddIn.SmallTools\obj\Debug\JCodes.Framework.AddIn.SmallTools.FrmHaotianXls.resources
+G:\github_winform\winform\JCodes.Framework.AddIn.SmallTools\obj\Debug\JCodes.Framework.AddIn.SmallTools.FrmIPO.resources

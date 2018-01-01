@@ -1,0 +1,143 @@
+﻿@{
+    ViewBag.Title = "系统图标库";
+}
+    <!DOCTYPE HTML>
+    <html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width" />
+        <title>系统图标库</title>
+        @using System.Web.Optimization;
+        @Scripts.Render("~/bundles/jquery")
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/jquerytools")
+        @Styles.Render("~/Content/jquerytools")
+        <!--常用的一些组件业务脚本函数-->
+        <script src="~/Scripts/ComponentUtil.js"></script>
+
+        <script type="text/javascript">
+            $(function () {
+                //InitDictItem();   //初始化字典信息
+                BindEvent();//绑定查询按钮事件
+            });
+
+            //初始化字典信息
+            function InitDictItem() {
+                //BindDictItem("Titles", "职称");
+                //BindDictItem("Rank", "职务");
+
+                //树控件的绑定操作
+                //$('#CustID').combotree({
+                //    url: '/Icon/GetTreeJson'
+                //});
+
+                //下拉列表绑定操作
+                //$('#CustID').combobox({
+                //    url: '/Icon/GetDictJson',
+                //    valueField: 'ID',
+                //    textField: 'FullName'
+                //});
+            }
+            
+            //绑定按钮的的点击事件
+            function BindEvent() {
+                //图标尺寸
+                var postData = "";//{ size: $("#txtIconSize").combobox('getValue') };
+
+                $("#btnGenerateCSS").click(function () {
+                    $.messager.confirm("操作确认", "您确认重新生成图标记录吗？", function (action) {
+                        if (action) {
+                            $.ajax({
+                                type: 'POST',
+                                url: '/Icon/GenerateIconCSS',
+                                dataType: 'json',
+                                data: postData,
+                                success: function (data) {
+                                    if (data.Success) {
+                                        showTips("操作成功");
+                                        location.reload();
+                                    }
+                                    else {
+                                        showError("操作失败：" + data.ErrorMessage, 3000);
+                                        $("#loading").fadeOut(500);
+                                    }
+                                }
+                            });
+                        }
+                    });
+                });
+            }
+        </script>
+
+        <style>
+            table.view {
+                border: 1px solid #A8CFEB;
+                border-collapse: collapse;
+                margin-bottom: 5px;
+                width: 99%;
+                height: 99%;
+            }
+
+            .view th {
+                padding-left: 10px;
+                padding-right: 5px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                width: 100px;
+                border: 1px solid silver;
+                background-color: #F1F6FF;
+            }
+
+            .view td {
+                padding-left: 10px;
+                padding-right: 5px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                width: 150px;
+                border: 1px solid silver;
+                background-color: #FAFCFF;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="loading" style="display: none;"><img alt="数据正在加载中..." src="~/Content/images/loading02.gif" /></div>
+        <div class="easyui-layout" data-options="fit:true" id="tb">
+            <div data-options="region:'north'" style="padding:5px;height:70px">
+                <!-------------------------------搜索框----------------------------------->
+                <fieldset>
+                    <legend>功能操作</legend>
+                    <form id="ffSearch" method="post">
+                        <div id="toolbar">
+                            <table cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td colspan="2">
+                                        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'" id="btnGenerateCSS">重新生成图标库</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </form>
+                </fieldset>
+            </div>
+            <div data-options="region:'center'" fit="true">
+                <div id="contents">
+                    @using Webdiyer.WebControls.Mvc;
+                    @model  PagedList<JCodes.Framework.Entity.IconInfo>
+                    @foreach (var item in Model)
+                    {
+                        <a href="javascript:void(0)" class="easyui-linkbutton" id="@item.ID" data-options="plain:true,iconCls:'@item.IconCls',size:'large'"> </a>
+                    }
+                </div>
+                <div>
+                    <div style="float:left;width:50%">
+                        @Html.Raw("共：") @Model.TotalItemCount @Html.Raw("个，")@Model.CurrentPageIndex @Html.Raw("/") @Model.TotalPageCount @Html.Raw("页")
+                    </div>
+                    @Html.Pager(Model, new PagerOptions { PageIndexParameterName = "id", ShowPageIndexBox = false,PageIndexBoxType = PageIndexBoxType.DropDownList,
+                   ShowGoButton = false, FirstPageText = "首页", PrevPageText = "上一页", NextPageText = "下一页", LastPageText = "末页", 
+                   PageIndexBoxWrapperFormatString = "请输入页数{0}", GoButtonText = "转到" }, 
+                   new { id = "badoopager" })
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

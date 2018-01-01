@@ -29,7 +29,7 @@ namespace JCodes.Framework.SQLServerDAL
         public Role()
             : base(SQLServerPortal.gc._securityTablePre + "Role", "ID")
         {
-            this.sortField = "SortCode";
+            this.sortField = "Seq";
             this.isDescending = false;
         }
 
@@ -50,7 +50,7 @@ namespace JCodes.Framework.SQLServerDAL
             info.HandNo = reader.GetString("HandNo");
             info.Name = reader.GetString("Name");
             info.Note = reader.GetString("Note");
-            info.SortCode = reader.GetString("SortCode");
+            info.Seq = reader.GetString("Seq");
             info.Category = reader.GetString("Category");
             info.Company_ID = reader.GetString("Company_ID");
             info.CompanyName = reader.GetString("CompanyName");
@@ -80,7 +80,7 @@ namespace JCodes.Framework.SQLServerDAL
             hash.Add("HandNo", info.HandNo);
             hash.Add("Name", info.Name);
             hash.Add("Note", info.Note);
-            hash.Add("SortCode", info.SortCode);
+            hash.Add("Seq", info.Seq);
             hash.Add("Category", info.Category);
             hash.Add("Company_ID", info.Company_ID);
             hash.Add("CompanyName", info.CompanyName);
@@ -109,7 +109,7 @@ namespace JCodes.Framework.SQLServerDAL
             dict.Add("HandNo", "角色编码");
             dict.Add("Name", "角色名称");
             dict.Add("Note", "备注");
-            dict.Add("SortCode", "排序码");
+            dict.Add("Seq", "排序");
             dict.Add("Category", "角色分类");
             dict.Add("Company_ID", "所属公司ID");
             dict.Add("CompanyName", "所属公司名称");

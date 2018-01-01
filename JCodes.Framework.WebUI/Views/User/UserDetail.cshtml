@@ -1,0 +1,333 @@
+﻿@{  
+Layout = "~/Views/Shared/_Layout.cshtml";
+ViewBag.Title = "当前用户信息";
+}
+
+@*脚本引用放在此处可以实现自定义函数自动提示*@
+<script src="~/Scripts/CommonUtil.js"></script>
+
+<div class="col-md-12">
+    <div class="portlet box red-sunglo full-height-content full-height-content-scrollable">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-user"></i>当前用户相关信息
+            </div>
+            <div class="tools">
+                <a href="javascript:;" class="collapse" title="折叠内容">
+                </a>
+                <a href="javascript:;" class="fullscreen" title="全屏">
+                </a>
+            </div>
+        </div>
+        <div class="portlet-body ">
+            <div class="full-height-content-body" style="padding: 20px">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#tab_4_1" data-toggle="tab">基础信息</a>
+                    </li>
+                     <li>
+                        <a href="#tab_4_2" data-toggle="tab">用户可操作功能</a>
+                    </li>                        
+                    <li>
+                        <a href="#tab_4_3" data-toggle="tab">所属机构角色</a>
+                    </li>
+                    <li>
+                        <a href="#tab_4_4" data-toggle="tab">肖像信息</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade active in" id="tab_4_1">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">用户名/登录名</label>
+                                    <div class="col-md-8">                                            
+                                        <label id="Name_global" name="Name" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">真实姓名</label>
+                                    <div class="col-md-8">                                            
+                                        <label id="FullName_global" name="FullName" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">所属公司</label>
+                                    <div class="col-md-8">                                            
+                                        <label id="Company_ID_global" name="Company_ID" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">默认部门</label>
+                                    <div class="col-md-8">                                            
+                                        <label id="Dept_ID_global" name="Dept_ID" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">所属经理</label>
+                                    <div class="col-md-8">                                    
+                                        <label id="PID_global" name="PID" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">职务头衔</label>
+                                    <div class="col-md-8">                                    
+                                        <label id="Title_global" name="Title" class="form-control"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">用户编码</label>
+                                    <div class="col-md-8">                                    
+                                        <label id="HandNo_global" name="HandNo" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">排序</label>
+                                    <div class="col-md-8">                                    
+                                        <label id="SortCode_global" name="SortCode" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">用户呢称</label>
+                                    <div class="col-md-8">                                            
+                                        <label id="Nickname_global" name="Nickname" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">QQ号码</label>
+                                    <div class="col-md-8">                                    
+                                        <label id="QQ_global" name="QQ" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">邮件地址</label>
+                                    <div class="col-md-8">                                    
+                                        <label id="Email_global" name="Email" type="email" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">移动电话</label>
+                                    <div class="col-md-8">                                    
+                                        <label id="MobilePhone_global" name="MobilePhone" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">身份证号码</label>
+                                    <div class="col-md-8">                                    
+                                        <label id="IdentityCard_global" name="IdentityCard" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">性别</label>
+                                    <div class="col-md-8">         
+                                        <label id="Gender_global" name="Gender" class="form-control" />     
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">出生日期</label>
+                                    <div class="col-md-8">                                    
+                                        <label id="Birthday_global" name="Birthday" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">办公电话</label>
+                                    <div class="col-md-8">                                    
+                                        <label id="OfficePhone_global" name="OfficePhone" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">家庭电话</label>
+                                    <div class="col-md-8">                                    
+                                        <label id="HomePhone_global" name="HomePhone" class="form-control" / >
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">家庭住址</label>
+                                    <div class="col-md-8">                                    
+                                        <label id="Address_global" name="Address" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">办公地址</label>
+                                    <div class="col-md-10">                                    
+                                        <label id="WorkAddr_global" name="WorkAddr" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">个性签名</label>
+                                    <div class="col-md-10">                                    
+                                        <label id="Signature_global" name="Signature" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">备注</label>
+                                    <div class="col-md-10">                                    
+                                        <label id="Note_global" name="Note"class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="tab_4_2">
+                        <div class="full-height-content-body">
+                            <div id="jstree_function_global"></div>
+                        </div>
+                    </div>                        
+                    <div class="tab-pane fade" id="tab_4_3">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="portlet box blue ">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <i class="fa fa-gift"></i>用户所属机构
+                                        </div>
+                                        <div class="actions">
+                                            <a class="btn btn-icon-only btn-default btn-sm fullscreen" href="#" data-original-title="" title="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <div class="scroller" style="height:500px" data-rail-visible="1" data-rail-color="yellow" data-handle-color="#a1b2bd">
+                                            <select id="lbxOUs_global" multiple  class="form-control" style="height:100%;width=100%"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="portlet box blue">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <i class="fa fa-gift"></i>用户所属角色
+                                        </div>
+                                        <div class="actions">
+                                            <a class="btn btn-icon-only btn-default btn-sm fullscreen" href="#" data-original-title="" title="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <div class="scroller" style="height:500px" data-rail-visible="1" data-rail-color="yellow" data-handle-color="#a1b2bd">
+                                            <select id="lbxRoles_global" multiple  class="form-control" style="height:100%;width=100%" ></select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="tab_4_4">
+                        <div class="row" style="height: 500px">
+                            <image src="" id="Portrait_global"  style="max-height:128px;max-width=128px"></image>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    //页面初始化
+    $(function () {
+        var ID = '@Session["UserID"]';
+        BindViewInfo(ID);
+    });
+
+    //绑定查看详细信息的方法
+    function BindViewInfo(ID) {
+        //发送请求
+        $.getJSON("/User/FindByID?r=" + Math.random() + "&id=" + ID, function (info) {
+            $("#ID_global").text(info.ID);
+            $("#HandNo_global").text(info.HandNo);
+            $("#Name_global").text(info.Name);
+            $("#FullName_global").text(info.FullName);
+            $("#Nickname_global").text(info.Nickname);
+            $("#Title_global").text(info.Title);
+            $("#IdentityCard_global").text(info.IdentityCard);
+            $("#MobilePhone_global").text(info.MobilePhone);
+            $("#OfficePhone_global").text(info.OfficePhone);
+            $("#HomePhone_global").text(info.HomePhone);
+            $("#Email_global").text(info.Email);
+            $("#Address_global").text(info.Address);
+            $("#WorkAddr_global").text(info.WorkAddr);
+            $("#Gender_global").text(info.Gender);
+            $("#Birthday_global").text(getDateStr(info.Birthday));
+            $("#QQ_global").text(info.QQ);
+            $("#Signature_global").text(info.Signature);
+            $("#Note_global").text(info.Note);
+            $("#CustomField_global").text(info.CustomField);
+            $("#SortCode_global").text(info.SortCode);
+
+            $("#Dept_ID_global").text(info.DeptName);
+            $("#Company_ID_global").text(info.CompanyName);
+
+            $('#lbxRoles_global').empty();
+            $.getJSON("/Role/GetRolesByUser?r=" + Math.random() + "&userid=" + info.ID, function (json) {
+                $.each(json, function (i, item) {
+                    $('#lbxRoles_global').append('<option value="' + item.ID + '">' + item.Name + '</option>');
+                });
+            });
+
+            $('#lbxOUs_global').empty();
+            $.getJSON("/Ou/GetOUsByUser?r=" + Math.random() + "&userid=" + info.ID, function (json) {
+                $.each(json, function (i, item) {
+                    $('#lbxOUs_global').append('<option value="' + item.ID + '">' + item.Name + '</option>');
+                });
+            });
+
+            $('#PID_global').text("无");
+            $.getJSON("/User/FindByID?r=" + Math.random() + "&id=" + info.PID, function (parentInfo) {
+                if (parentInfo != undefined) {
+                    $('#PID_global').val(parentInfo.Name);
+                }
+            });
+
+            var imageUrl = '/User/GetPortrait?id=' + ID +'&r=' + Math.random();
+            $("#Portrait_global").attr('src', imageUrl);
+
+            var treeUrl = '/Function/GetFunctionJsTreeJsonByUser?userId=' + info.ID;
+            bindJsTree("jstree_function_global", treeUrl);
+        });
+    }
+
+</script>
+

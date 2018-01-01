@@ -41,6 +41,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\JCodes.Framework.libs\Aspose\Aspose.Words.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.Data.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DotRas">
       <HintPath>..\JCodes.Framework.libs\DotRas\DotRas.dll</HintPath>
     </Reference>
@@ -83,7 +84,8 @@
     <Reference Include="NVelocity">
       <HintPath>..\JCodes.Framework.libs\NVelocity\NVelocity.dll</HintPath>
     </Reference>
-    <Reference Include="org.in2bits.MyXls">
+    <Reference Include="org.in2bits.MyXls, Version=0.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\JCodes.Framework.libs\org.in2bits\org.in2bits.MyXls.dll</HintPath>
     </Reference>
     <Reference Include="stdole, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -142,6 +144,7 @@
     <Compile Include="Databases\SmartDataReader.cs" />
     <Compile Include="Databases\SQLInjectionHelper.cs" />
     <Compile Include="Databases\SqlScriptHelper.cs" />
+    <Compile Include="Data\JCodes.Framework.Common.ErrorInfo.cs" />
     <Compile Include="Data\JCodes.Framework.Common.Data.cs" />
     <Compile Include="DbHelper.cs" />
     <Compile Include="Device\AudioHelper.cs" />
@@ -264,10 +267,14 @@
     <Compile Include="Others\RegistryHelper.cs" />
     <Compile Include="Others\Singleton.cs" />
     <Compile Include="Others\StreamUtils.cs" />
+    <Compile Include="Others\SystemHelper.cs" />
     <Compile Include="Others\UIConstants.cs" />
     <Compile Include="Others\UnicodeHelper.cs" />
     <Compile Include="Others\ZipUtility.cs" />
-    <Compile Include="Proj\SqlGenerate.cs" />
+    <Compile Include="Proj\ISqlGenerate.cs" />
+    <Compile Include="Proj\OracleGenerate.cs" />
+    <Compile Include="Proj\SqlOperate.cs" />
+    <Compile Include="Proj\SqlServerGenerate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlHelper.cs" />
     <Compile Include="SqlInjection.cs" />

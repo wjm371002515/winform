@@ -65,7 +65,7 @@ namespace JCodes.Framework.AddIn.Basic
                 if (info != null)
                 {
                     tempInfo = info;//重新给临时对象赋值，使之指向存在的记录对象
-                    txtUser_ID.Text = info.User_ID;
+                    txtUser_ID.Text = info.User_ID.ToString();
                     txtLoginName.Text = info.LoginName;
                     txtFullName.Text = info.FullName;
                     txtCompany_ID.Text = info.Company_ID;

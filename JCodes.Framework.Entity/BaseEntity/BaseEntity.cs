@@ -14,7 +14,7 @@ namespace JCodes.Framework.Entity
         /// 当前登录用户ID。该字段不保存到数据表中，只用于记录用户的操作日志。
         /// </summary>
         [DataMember]
-        public string CurrentLoginUserId { get; set; }
+        public Int32 CurrentLoginUserId { get; set; }
 
         #region 在实体类存储一些特殊的数据
         /// <summary>

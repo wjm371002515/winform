@@ -1,0 +1,20 @@
+﻿/** Login style **/
+#login{margin-top:85px;}
+#login #container{background:url(login_body.png) repeat-x left top; }
+
+#login #header{display:none;}
+#login #header h1{}
+
+#login #content{width:580px;height:310px; background-image:url(login_content.png);background-repeat:no-repeat; margin:auto}
+
+#login #content table{margin-left:330px; margin-top:75px;}
+#login #content table th{line-height:20px;font-weight:normal; text-align:left; font-family:宋体}
+#login #content table td{padding-bottom:3px;}
+#login #content table td select{font-size:10pt;width:136px;}
+#login #content table td input{ width:130px;font-size:9pt;height:14px}
+#login #content table td a:link,#login #content table td a:visited{color:#000;line-height:20px}
+#login #content table td a:hover{color:red;line-height:20px}
+#login #content table tfoot td{text-align:right;padding-top:10px;}
+
+#login #footer{display:none;}
+

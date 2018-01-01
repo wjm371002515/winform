@@ -32,9 +32,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.Data.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v14.1.Core, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGrid.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraRichEdit.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraRichEdit.v14.1.Extensions, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="Spire.Common, Version=1.2.366.55040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\JCodes.Framework.libs\Spire.XLS-FE\Spire.Common.dll</HintPath>
@@ -69,6 +72,24 @@
     <Compile Include="UI\FrmIPO.designer.cs">
       <DependentUpon>FrmIPO.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\FrmServerDos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmServerDos.designer.cs">
+      <DependentUpon>FrmServerDos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmDos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmDos.designer.cs">
+      <DependentUpon>FrmDos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmHaotianXls.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmHaotianXls.designer.cs">
+      <DependentUpon>FrmHaotianXls.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\xlsDataDeal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +101,15 @@
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="UI\FrmIPO.resx">
       <DependentUpon>FrmIPO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmServerDos.resx">
+      <DependentUpon>FrmServerDos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmDos.resx">
+      <DependentUpon>FrmDos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmHaotianXls.resx">
+      <DependentUpon>FrmHaotianXls.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\xlsDataDeal.resx">
       <DependentUpon>xlsDataDeal.cs</DependentUpon>

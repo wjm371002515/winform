@@ -54,7 +54,7 @@ namespace JCodes.Framework.AddIn.Security
             this.txtWorkAddr = new DevExpress.XtraEditors.TextEdit();
             this.txtBirthday = new DevExpress.XtraEditors.DateEdit();
             this.txtQq = new DevExpress.XtraEditors.TextEdit();
-            this.txtSortCode = new DevExpress.XtraEditors.TextEdit();
+            this.txtSeq = new DevExpress.XtraEditors.TextEdit();
             this.txtCreator = new DevExpress.XtraEditors.TextEdit();
             this.txtCreateTime = new DevExpress.XtraEditors.DateEdit();
             this.txtCustomField = new DevExpress.XtraEditors.MemoEdit();
@@ -121,7 +121,7 @@ namespace JCodes.Framework.AddIn.Security
             ((System.ComponentModel.ISupportInitialize)(this.txtBirthday.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBirthday.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQq.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSortCode.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSeq.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCreator.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCreateTime.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCreateTime.Properties)).BeginInit();
@@ -215,7 +215,7 @@ namespace JCodes.Framework.AddIn.Security
             this.layoutControl1.Controls.Add(this.txtWorkAddr);
             this.layoutControl1.Controls.Add(this.txtBirthday);
             this.layoutControl1.Controls.Add(this.txtQq);
-            this.layoutControl1.Controls.Add(this.txtSortCode);
+            this.layoutControl1.Controls.Add(this.txtSeq);
             this.layoutControl1.Controls.Add(this.txtCreator);
             this.layoutControl1.Controls.Add(this.txtCreateTime);
             this.layoutControl1.Controls.Add(this.txtCustomField);
@@ -398,13 +398,13 @@ namespace JCodes.Framework.AddIn.Security
             this.txtQq.StyleController = this.layoutControl1;
             this.txtQq.TabIndex = 18;
             // 
-            // txtSortCode
+            // txtSeq
             // 
-            this.txtSortCode.Location = new System.Drawing.Point(453, 102);
-            this.txtSortCode.Name = "txtSortCode";
-            this.txtSortCode.Size = new System.Drawing.Size(154, 28);
-            this.txtSortCode.StyleController = this.layoutControl1;
-            this.txtSortCode.TabIndex = 27;
+            this.txtSeq.Location = new System.Drawing.Point(453, 102);
+            this.txtSeq.Name = "txtSeq";
+            this.txtSeq.Size = new System.Drawing.Size(154, 28);
+            this.txtSeq.StyleController = this.layoutControl1;
+            this.txtSeq.TabIndex = 27;
             // 
             // txtCreator
             // 
@@ -745,7 +745,7 @@ namespace JCodes.Framework.AddIn.Security
             // 
             // layoutControlItem27
             // 
-            this.layoutControlItem27.Control = this.txtSortCode;
+            this.layoutControlItem27.Control = this.txtSeq;
             this.layoutControlItem27.CustomizationFormText = "≈≈–Ú¬Î";
             this.layoutControlItem27.Location = new System.Drawing.Point(299, 90);
             this.layoutControlItem27.Name = "layoutControlItem27";
@@ -956,7 +956,7 @@ namespace JCodes.Framework.AddIn.Security
             ((System.ComponentModel.ISupportInitialize)(this.txtBirthday.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBirthday.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQq.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSortCode.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSeq.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCreator.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCreateTime.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCreateTime.Properties)).EndInit();
@@ -1012,70 +1012,70 @@ namespace JCodes.Framework.AddIn.Security
 
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
-          private DevExpress.XtraEditors.TextEdit txtHandNo;
-          private DevExpress.XtraEditors.TextEdit txtName;
-          private DevExpress.XtraEditors.TextEdit txtFullName;
-          private DevExpress.XtraEditors.TextEdit txtNickname;
-          private DevExpress.XtraEditors.TextEdit txtIdentityCard;
-          private DevExpress.XtraEditors.TextEdit txtMobilePhone;
-          private DevExpress.XtraEditors.TextEdit txtOfficePhone;
-          private DevExpress.XtraEditors.TextEdit txtHomePhone;
-          private DevExpress.XtraEditors.TextEdit txtEmail;
-          private DevExpress.XtraEditors.TextEdit txtAddress;
-          private DevExpress.XtraEditors.TextEdit txtWorkAddr;
-          private DevExpress.XtraEditors.DateEdit txtBirthday;
-          private DevExpress.XtraEditors.TextEdit txtQq;
-          private DevExpress.XtraEditors.TextEdit txtSortCode;
-          private DevExpress.XtraEditors.TextEdit txtCreator;
-          private DevExpress.XtraEditors.DateEdit txtCreateTime;    
-         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
-         private DevExpress.XtraLayout.LayoutControlItem lblName;    
-         private DevExpress.XtraLayout.LayoutControlItem lblFullName;
-         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;    
-         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;    
-         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;    
-         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;    
-         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;    
-         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem12;    
-         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;    
-         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem14;    
-         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem15;    
-         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem16;    
-         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem17;    
-         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem18;    
-         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem19;    
-         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem20;    
-          private DevExpress.XtraLayout.LayoutControlItem layoutControlItem21;
-          private DevExpress.XtraLayout.LayoutControlItem layoutControlItem22;    
-         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem27;
-         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem28;
-         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem30;
-         private DevExpress.XtraEditors.CheckEdit txtIsExpire;
-         private DevExpress.XtraEditors.MemoEdit txtCustomField;
-         private DevExpress.XtraEditors.MemoEdit txtNote;
-         private DevExpress.XtraEditors.MemoEdit txtSignature;
-         private DevExpress.XtraEditors.GroupControl groupControl4;
-         private System.Windows.Forms.ListBox lvwRole;
-         private DevExpress.XtraEditors.GroupControl groupControl3;
-         private System.Windows.Forms.ListBox lvwOU;
-         private DevExpress.XtraEditors.ComboBoxEdit txtAuditStatus;
-         private DevExpress.XtraEditors.ComboBoxEdit cmbManager;
-         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
-         private DeptControl txtDept;
-         private DevExpress.XtraLayout.LayoutControlItem lblDept;
-         private JCodes.Framework.AddIn.Basic.BizControl.CompanyControl txtCompany;
-         private DevExpress.XtraLayout.LayoutControlItem lblCompany;
-         private DevExpress.XtraEditors.ComboBoxEdit txtGender;
-         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
-         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
-         private DevExpress.XtraEditors.ComboBoxEdit txtTitle;
-         private DevExpress.XtraEditors.CheckEdit txtDeleted;
-         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem24;
-         private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
-         private DevExpress.XtraTab.XtraTabPage tabBasic;
-         private DevExpress.XtraTab.XtraTabPage tabFunction;
-         private System.Windows.Forms.TreeView treeFunction;
-         private System.Windows.Forms.ImageList imageList1;    
- 
+        private DevExpress.XtraEditors.TextEdit txtHandNo;
+        private DevExpress.XtraEditors.TextEdit txtName;
+        private DevExpress.XtraEditors.TextEdit txtFullName;
+        private DevExpress.XtraEditors.TextEdit txtNickname;
+        private DevExpress.XtraEditors.TextEdit txtIdentityCard;
+        private DevExpress.XtraEditors.TextEdit txtMobilePhone;
+        private DevExpress.XtraEditors.TextEdit txtOfficePhone;
+        private DevExpress.XtraEditors.TextEdit txtHomePhone;
+        private DevExpress.XtraEditors.TextEdit txtEmail;
+        private DevExpress.XtraEditors.TextEdit txtAddress;
+        private DevExpress.XtraEditors.TextEdit txtWorkAddr;
+        private DevExpress.XtraEditors.DateEdit txtBirthday;
+        private DevExpress.XtraEditors.TextEdit txtQq;
+        private DevExpress.XtraEditors.TextEdit txtSeq;
+        private DevExpress.XtraEditors.TextEdit txtCreator;
+        private DevExpress.XtraEditors.DateEdit txtCreateTime;    
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
+        private DevExpress.XtraLayout.LayoutControlItem lblName;    
+        private DevExpress.XtraLayout.LayoutControlItem lblFullName;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;    
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;    
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;    
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;    
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;    
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem12;    
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;    
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem14;    
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem15;    
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem16;    
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem17;    
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem18;    
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem19;    
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem20;    
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem21;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem22;    
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem27;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem28;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem30;
+        private DevExpress.XtraEditors.CheckEdit txtIsExpire;
+        private DevExpress.XtraEditors.MemoEdit txtCustomField;
+        private DevExpress.XtraEditors.MemoEdit txtNote;
+        private DevExpress.XtraEditors.MemoEdit txtSignature;
+        private DevExpress.XtraEditors.GroupControl groupControl4;
+        private System.Windows.Forms.ListBox lvwRole;
+        private DevExpress.XtraEditors.GroupControl groupControl3;
+        private System.Windows.Forms.ListBox lvwOU;
+        private DevExpress.XtraEditors.ComboBoxEdit txtAuditStatus;
+        private DevExpress.XtraEditors.ComboBoxEdit cmbManager;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
+        private DeptControl txtDept;
+        private DevExpress.XtraLayout.LayoutControlItem lblDept;
+        private JCodes.Framework.AddIn.Basic.BizControl.CompanyControl txtCompany;
+        private DevExpress.XtraLayout.LayoutControlItem lblCompany;
+        private DevExpress.XtraEditors.ComboBoxEdit txtGender;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
+        private DevExpress.XtraEditors.ComboBoxEdit txtTitle;
+        private DevExpress.XtraEditors.CheckEdit txtDeleted;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem24;
+        private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
+        private DevExpress.XtraTab.XtraTabPage tabBasic;
+        private DevExpress.XtraTab.XtraTabPage tabFunction;
+        private System.Windows.Forms.TreeView treeFunction;
+        private System.Windows.Forms.ImageList imageList1;    
+        
     }
 }

@@ -31,7 +31,6 @@ namespace JCodes.Framework.AddIn.WareHouseManage
         {
             if (!string.IsNullOrEmpty(ID))
             {
-                this.Text = "编辑 " + this.Text;
                 StockInfo info = BLLFactory<Stock>.Instance.FindByID(ID);
                 if (info != null)
                 {
@@ -66,7 +65,6 @@ namespace JCodes.Framework.AddIn.WareHouseManage
             }
             else
             {
-                this.Text = "新建 " + this.Text;
                 this.btnOK.Enabled = HasFunction("Stock/Modify");  
             }
         }

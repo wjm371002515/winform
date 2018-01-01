@@ -1,5 +1,3 @@
-G:\github_winform\winform\jCodes\JCodes.Framework.AddIn.Security.dll
-G:\github_winform\winform\jCodes\JCodes.Framework.AddIn.Security.pdb
 G:\github_winform\winform\JCodes.Framework.AddIn.Security\obj\Debug\JCodes.Framework.AddIn.Security.FrmAddMoreFunction.resources
 G:\github_winform\winform\JCodes.Framework.AddIn.Security\obj\Debug\JCodes.Framework.AddIn.Security.FrmBlackIP.resources
 G:\github_winform\winform\JCodes.Framework.AddIn.Security\obj\Debug\JCodes.Framework.AddIn.Security.FrmEditBlackIP.resources
@@ -16,7 +14,9 @@ G:\github_winform\winform\JCodes.Framework.AddIn.Security\obj\Debug\JCodes.Frame
 G:\github_winform\winform\JCodes.Framework.AddIn.Security\obj\Debug\JCodes.Framework.AddIn.Security.FrmSystemType.resources
 G:\github_winform\winform\JCodes.Framework.AddIn.Security\obj\Debug\JCodes.Framework.AddIn.Security.FrmUser.resources
 G:\github_winform\winform\JCodes.Framework.AddIn.Security\obj\Debug\JCodes.Framework.AddIn.Security.csproj.GenerateResource.Cache
+G:\github_winform\winform\JCodes.Framework.AddIn.Security\obj\Debug\JCodes.Framework.AddIn.Security.dll.licenses
+G:\github_winform\winform\jCodes\JCodes.Framework.AddIn.Security.dll
+G:\github_winform\winform\jCodes\JCodes.Framework.AddIn.Security.pdb
 G:\github_winform\winform\JCodes.Framework.AddIn.Security\obj\Debug\JCodes.Framework.AddIn.Security.dll
 G:\github_winform\winform\JCodes.Framework.AddIn.Security\obj\Debug\JCodes.Framework.AddIn.Security.pdb
-G:\github_winform\winform\JCodes.Framework.AddIn.Security\obj\Debug\JCodes.Framework.AddIn.Security.dll.licenses
 G:\github_winform\winform\JCodes.Framework.AddIn.Security\obj\Debug\JCodes.Framework.AddIn.Security.csprojResolveAssemblyReference.cache

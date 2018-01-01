@@ -31,7 +31,7 @@ namespace JCodes.Framework.OracleDAL
             : base(OraclePortal.gc._securityTablePre+"OU", "ID")
         {
             this.SeqName = string.Format("SEQ_{0}", tableName);//数值型主键，通过序列生成
-            this.sortField = "SortCode";
+            this.sortField = "Seq";
             this.isDescending = false;
         }
 
@@ -51,7 +51,7 @@ namespace JCodes.Framework.OracleDAL
             info.PID = reader.GetInt32("PID");
             info.HandNo = reader.GetString("HandNo");
             info.Name = reader.GetString("Name");
-            info.SortCode = reader.GetString("SortCode");
+            info.Seq = reader.GetString("Seq");
             info.Category = reader.GetString("Category");
             info.Address = reader.GetString("Address");
             info.OuterPhone = reader.GetString("OuterPhone");
@@ -85,7 +85,7 @@ namespace JCodes.Framework.OracleDAL
             hash.Add("PID", info.PID);
             hash.Add("HandNo", info.HandNo);
             hash.Add("Name", info.Name);
-            hash.Add("SortCode", info.SortCode);
+            hash.Add("Seq", info.Seq);
             hash.Add("Category", info.Category);
             hash.Add("Address", info.Address);
             hash.Add("OuterPhone", info.OuterPhone);
@@ -116,7 +116,7 @@ namespace JCodes.Framework.OracleDAL
             dict.Add("PID", "父ID");
             dict.Add("HandNo", "机构编码");
             dict.Add("Name", "机构名称");
-            dict.Add("SortCode", "排序码");
+            dict.Add("Seq", "排序");
             dict.Add("Category", "机构分类");
             dict.Add("Address", "机构地址");
             dict.Add("OuterPhone", "外线电话");
@@ -185,7 +185,7 @@ namespace JCodes.Framework.OracleDAL
             db.ExecuteNonQuery(command);
         }
 
-        public override bool DeleteByUser(object key, string userId, DbTransaction trans = null)
+        public override bool DeleteByUser(object key, Int32 userId, DbTransaction trans = null)
         {
             OUInfo info = this.FindByID(key, trans);
             if (info != null)

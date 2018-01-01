@@ -682,7 +682,7 @@ namespace JCodes.Framework.Common.Framework
         /// <param name="key">指定对象的ID</param>
         /// <param name="trans">事务对象</param>
         /// <returns>执行成功返回<c>true</c>，否则为<c>false</c>。</returns>
-        public virtual bool DeleteByUser(object key, string userId, DbTransaction trans = null)
+        public virtual bool DeleteByUser(object key, Int32 userId, DbTransaction trans = null)
         {
             CheckDAL();
             return baseDal.DeleteByUser(key, userId, trans);

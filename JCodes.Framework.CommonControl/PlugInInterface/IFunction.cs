@@ -18,9 +18,9 @@ namespace JCodes.Framework.CommonControl.PlugInInterface
         /// <summary>
         /// 是否具有访问指定控制ID的权限
         /// </summary>
-        /// <param name="controlId">功能控制ID</param>
+        /// <param name="functionId">功能控制ID</param>
         /// <returns></returns>
-        bool HasFunction(string controlId);
+        bool HasFunction(string functionId);
 
         /// <summary>
         /// 登陆用户基础信息

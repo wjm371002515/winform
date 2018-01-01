@@ -39,7 +39,7 @@ namespace JCodes.Framework.AddIn.Basic
         /// <summary>
         /// 附件的编辑人
         /// </summary>
-        public string UserId = string.Empty;
+        public Int32 UserId = 0;
 
         /// <summary>
         /// 附件组所属的记录ID，如属于某个主表记录的ID
@@ -131,7 +131,7 @@ namespace JCodes.Framework.AddIn.Basic
                         info.Category = this.AttachmentDirectory;
                         info.FileExtend = FileUtil.GetExtension(file);
                         info.FileSize = FileUtil.GetFileSize(file);
-                        info.Editor = UserId;//登录人
+                        info.Editor = UserId.ToString();//登录人
                         info.Owner_ID = OwerId;//所属主表记录ID
                         info.AttachmentGUID = AttachmentGUID;
 

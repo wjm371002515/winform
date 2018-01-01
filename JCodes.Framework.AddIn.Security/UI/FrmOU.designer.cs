@@ -65,7 +65,7 @@ namespace JCodes.Framework.AddIn.Security
             this.txtInnerPhone = new DevExpress.XtraEditors.TextEdit();
             this.txtCreator = new DevExpress.XtraEditors.TextEdit();
             this.txtOuterPhone = new DevExpress.XtraEditors.TextEdit();
-            this.txtSortCode = new DevExpress.XtraEditors.TextEdit();
+            this.txtSeq = new DevExpress.XtraEditors.TextEdit();
             this.txtHandNo = new DevExpress.XtraEditors.TextEdit();
             this.label11 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -91,7 +91,7 @@ namespace JCodes.Framework.AddIn.Security
             ((System.ComponentModel.ISupportInitialize)(this.txtInnerPhone.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCreator.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOuterPhone.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSortCode.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSeq.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHandNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCategory.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
@@ -352,7 +352,7 @@ namespace JCodes.Framework.AddIn.Security
             this.groupControl2.Controls.Add(this.txtInnerPhone);
             this.groupControl2.Controls.Add(this.txtCreator);
             this.groupControl2.Controls.Add(this.txtOuterPhone);
-            this.groupControl2.Controls.Add(this.txtSortCode);
+            this.groupControl2.Controls.Add(this.txtSeq);
             this.groupControl2.Controls.Add(this.txtHandNo);
             this.groupControl2.Controls.Add(this.label11);
             this.groupControl2.Controls.Add(this.txtName);
@@ -427,14 +427,14 @@ namespace JCodes.Framework.AddIn.Security
             this.txtOuterPhone.Size = new System.Drawing.Size(301, 20);
             this.txtOuterPhone.TabIndex = 0;
             // 
-            // txtSortCode
+            // txtSeq
             // 
-            this.txtSortCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtSeq.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSortCode.Location = new System.Drawing.Point(93, 144);
-            this.txtSortCode.Name = "txtSortCode";
-            this.txtSortCode.Size = new System.Drawing.Size(301, 20);
-            this.txtSortCode.TabIndex = 0;
+            this.txtSeq.Location = new System.Drawing.Point(93, 144);
+            this.txtSeq.Name = "txtSeq";
+            this.txtSeq.Size = new System.Drawing.Size(301, 20);
+            this.txtSeq.TabIndex = 0;
             // 
             // txtHandNo
             // 
@@ -600,7 +600,7 @@ namespace JCodes.Framework.AddIn.Security
             ((System.ComponentModel.ISupportInitialize)(this.txtInnerPhone.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCreator.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOuterPhone.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSortCode.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSeq.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHandNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCategory.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
@@ -643,7 +643,7 @@ namespace JCodes.Framework.AddIn.Security
         private DevExpress.XtraEditors.GroupControl groupControl4;
         private DevExpress.XtraEditors.TextEdit txtHandNo;
         private System.Windows.Forms.Label label4;
-        private DevExpress.XtraEditors.TextEdit txtSortCode;
+        private DevExpress.XtraEditors.TextEdit txtSeq;
         private System.Windows.Forms.Label label5;
         private DevExpress.XtraEditors.ComboBoxEdit txtCategory;
         private System.Windows.Forms.Label label6;

@@ -235,12 +235,6 @@
     <Compile Include="UI\FrmUploadFile.designer.cs">
       <DependentUpon>FrmUploadFile.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Frm_Login.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\Frm_Login.Designer.cs">
-      <DependentUpon>Frm_Login.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI\Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -347,9 +341,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\FrmUploadFile.resx">
       <DependentUpon>FrmUploadFile.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\Frm_Login.resx">
-      <DependentUpon>Frm_Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

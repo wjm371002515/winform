@@ -17,7 +17,7 @@ namespace JCodes.Framework.Entity
         private int m_PID = -1; //父ID          
         private string m_HandNo; //机构编码          
         private string m_Name; //机构名称          
-        private string m_SortCode; //排序码          
+        private string m_Seq; //排序码          
         private string m_Category; //机构分类          
         private string m_Address; //机构地址          
         private string m_OuterPhone; //外线电话          
@@ -100,18 +100,18 @@ namespace JCodes.Framework.Entity
         }
 
         /// <summary>
-        /// 排序码
+        /// 排序
         /// </summary>
 		[DataMember]
-        public virtual string SortCode
+        public virtual string Seq
         {
             get
             {
-                return this.m_SortCode;
+                return this.m_Seq;
             }
             set
             {
-                this.m_SortCode = value;
+                this.m_Seq = value;
             }
         }
 
@@ -396,7 +396,7 @@ namespace JCodes.Framework.Entity
             base.PID = info.PID;
             base.HandNo = info.HandNo;
             base.Name = info.Name;
-            base.SortCode = info.SortCode;
+            base.Seq = info.Seq;
             base.Category = info.Category;
             base.Address = info.Address;
             base.OuterPhone = info.OuterPhone;

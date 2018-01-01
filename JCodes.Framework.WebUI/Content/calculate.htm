@@ -1,0 +1,866 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+.b3 {
+	font-size: 12px;
+	color: #FF6501;
+	background-color: #FBFBFB;
+	background-position: center;
+	border: 1px solid #B2B2B2;
+	height: 23px;
+	width: 61px;
+}
+-->
+</style>
+<style type="text/css">
+<!--
+.b4 {
+	font-size: 12px;
+	color: #888485;
+	background-color: #FBFBFB;
+	background-position: center;
+	border: 1px solid #B2B2B2;
+	height: 23px;
+	width: 32px;
+}
+-->
+</style>
+<style type="text/css">
+<!--
+.xo {
+	font-size: 12px;
+	color: #FF6701;
+	background-color: #FBFBFB;
+	background-position: center;
+	border: 1px solid #B2B2B2;
+	height: 23px;
+	width: 32px;
+}
+-->
+</style>
+</head>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+<title>个人助理-计算器</title>
+<style>
+body,td {font-size:12px;}
+.b1 {
+	font-family: "宋体";
+	font-size: 12px;
+	color: #313596;
+	background-color: #FBFBFB;
+	background-position: center;
+	border: 1px solid #B2B2B2;
+	height: 23px;
+	width: 43px;
+}
+.b2 {
+	font-size: 12px;
+	color: #FE3498;
+	background-color: #FBFBFB;
+	background-position: center;
+	border: 1px solid #B2B2B2;
+	height: 23px;
+	width: 43px;
+}
+.xn {
+	font-size: 12px;
+	color: #313398;
+	background-color: #FBFBFB;
+	background-position: center;
+	height: 23px;
+	width: 32px;
+	border: 1px solid #B2B2B2;
+}
+.dh {
+	font-size: 12px;
+	color: #868485;
+	background-color: #FBFBFB;
+	background-position: center;
+	height: 23px;
+	width: 40px;
+	border: 1px solid #B2B2B2;
+}
+.or {
+	font-size: 12px;
+	color: #FE6700;
+	height: 23px;
+	width: 40px;
+	background-color: #FBFBFB;
+	background-position: center;
+	border: 1px solid #B2B2B2;
+}
+.border {
+	border: 1px solid #B1BAC3;
+}
+</style>
+
+<script language="javascript">
+<!--
+var endNumber=true
+var mem=0
+var carry=10
+var hexnum="0123456789abcdef"
+var angle="d"
+var stack=""
+var level="0"
+var layer=0
+
+
+//数字键
+
+function inputkey(key)
+{
+	var index=key.charCodeAt(0);
+	if ((carry==2 && (index==48 || index==49))
+	 || (carry==8 && index>=48 && index<=55)
+	 || (carry==10 && (index>=48 && index<=57 || index==46))
+	 || (carry==16 && ((index>=48 && index<=57) || (index>=97 && index<=102))))
+	if(endNumber)
+	{
+		endNumber=false
+		document.calc.display.value = key
+	}
+	else if(document.calc.display.value == null || document.calc.display.value == "0")
+		document.calc.display.value = key
+	else
+		document.calc.display.value += key
+}
+
+function changeSign()
+{
+    if (document.calc.display.value!="0")
+    	if(document.calc.display.value.substr(0,1) == "-")
+        	document.calc.display.value = document.calc.display.value.substr(1)
+    	else
+        	document.calc.display.value = "-" + document.calc.display.value
+}
+
+//函数键
+
+function inputfunction(fun,shiftfun)
+{
+	endNumber=true
+	if (document.calc.shiftf.checked)
+		document.calc.display.value=decto(funcalc(shiftfun,(todec(document.calc.display.value,carry))),carry)
+	else
+		document.calc.display.value=decto(funcalc(fun,(todec(document.calc.display.value,carry))),carry)
+	document.calc.shiftf.checked=false
+	document.calc.hypf.checked=false	
+	inputshift()
+}
+
+function inputtrig(trig,arctrig,hyp,archyp)
+{
+	if (document.calc.hypf.checked)
+		inputfunction(hyp,archyp)
+	else
+		inputfunction(trig,arctrig)
+}
+
+
+//运算符
+
+function operation(join,newlevel)
+{
+	endNumber=true
+	var temp=stack.substr(stack.lastIndexOf("(")+1)+document.calc.display.value
+	while (newlevel!=0 && (newlevel<=(level.charAt(level.length-1))))
+	{
+		temp=parse(temp)
+		level=level.slice(0,-1)
+	}
+	if (temp.match(/^(.*\d[\+\-\*\/\%\^\&\|x])?([+-]?[0-9a-f\.]+)$/))
+		document.calc.display.value=RegExp.$2
+	stack=stack.substr(0,stack.lastIndexOf("(")+1)+temp+join
+	document.calc.operator.value=" "+join+" "
+	level=level+newlevel
+	
+}
+
+//括号
+
+function addbracket()
+{
+	endNumber=true
+	document.calc.display.value=0
+	stack=stack+"("
+	document.calc.operator.value="   "
+	level=level+0
+	
+	layer+=1
+	document.calc.bracket.value="(="+layer
+}
+
+function disbracket()
+{
+	endNumber=true
+	var temp=stack.substr(stack.lastIndexOf("(")+1)+document.calc.display.value
+	while ((level.charAt(level.length-1))>0)
+	{
+		temp=parse(temp)
+		level=level.slice(0,-1)
+	}
+	
+	document.calc.display.value=temp
+	stack=stack.substr(0,stack.lastIndexOf("("))
+	document.calc.operator.value="   "
+	level=level.slice(0,-1)
+
+	layer-=1
+	if (layer>0)
+		document.calc.bracket.value="(="+layer
+	else
+		document.calc.bracket.value=""
+}
+
+//等号
+
+function result()
+{
+	endNumber=true
+	while (layer>0)
+		disbracket()
+	var temp=stack+document.calc.display.value
+	while ((level.charAt(level.length-1))>0)
+	{
+		temp=parse(temp)
+		level=level.slice(0,-1)
+	}
+
+	document.calc.display.value=temp
+	document.calc.bracket.value=""
+	document.calc.operator.value=""
+	stack=""
+	level="0"
+}
+
+
+//修改键
+
+function backspace()
+{
+	if (!endNumber)
+	{
+		if(document.calc.display.value.length>1)
+			document.calc.display.value=document.calc.display.value.substring(0,document.calc.display.value.length - 1)
+		else
+			document.calc.display.value=0
+	}
+}
+
+function clearall()
+{
+	document.calc.display.value=0
+	endNumber=true
+	stack=""
+	level="0"
+	layer=""
+	document.calc.operator.value=""
+	document.calc.bracket.value=""
+}
+
+
+//转换键
+
+function inputChangCarry(newcarry)
+{
+	endNumber=true
+	document.calc.display.value=(decto(todec(document.calc.display.value,carry),newcarry))
+	carry=newcarry
+
+	document.calc.sin.disabled=(carry!=10)
+	document.calc.cos.disabled=(carry!=10)
+	document.calc.tan.disabled=(carry!=10)
+	document.calc.bt.disabled=(carry!=10)
+	document.calc.pi.disabled=(carry!=10)
+	document.calc.e.disabled=(carry!=10)
+	document.calc.kp.disabled=(carry!=10)
+				
+	document.calc.k2.disabled=(carry<=2)
+	document.calc.k3.disabled=(carry<=2)
+	document.calc.k4.disabled=(carry<=2)
+	document.calc.k5.disabled=(carry<=2)
+	document.calc.k6.disabled=(carry<=2)
+	document.calc.k7.disabled=(carry<=2)
+	document.calc.k8.disabled=(carry<=8)
+	document.calc.k9.disabled=(carry<=8)
+	document.calc.ka.disabled=(carry<=10)
+	document.calc.kb.disabled=(carry<=10)
+	document.calc.kc.disabled=(carry<=10)
+	document.calc.kd.disabled=(carry<=10)
+	document.calc.ke.disabled=(carry<=10)
+	document.calc.kf.disabled=(carry<=10)
+
+	
+	
+}
+
+function inputChangAngle(angletype)
+{
+	endNumber=true
+	angle=angletype
+	if (angle=="d")
+		document.calc.display.value=radiansToDegress(document.calc.display.value)
+	else
+		document.calc.display.value=degressToRadians(document.calc.display.value)
+	endNumber=true
+}
+
+function inputshift()
+{
+	if (document.calc.shiftf.checked)
+	{
+		document.calc.bt.value="deg "
+		document.calc.ln.value="exp "
+		document.calc.log.value="expd"
+		
+		if (document.calc.hypf.checked)
+		{
+			document.calc.sin.value="ahs "
+			document.calc.cos.value="ahc "
+			document.calc.tan.value="aht "
+		}
+		else
+		{
+			document.calc.sin.value="asin"
+			document.calc.cos.value="acos"
+			document.calc.tan.value="atan"
+		}
+		
+		document.calc.sqr.value="x^.5"
+		document.calc.cube.value="x^.3"
+		
+		document.calc.floor.value="小数"
+	}
+	else
+	{
+		document.calc.bt.value="d.ms"
+		document.calc.ln.value=" ln "
+		document.calc.log.value="log "
+
+		if (document.calc.hypf.checked)
+		{
+			document.calc.sin.value="hsin"
+			document.calc.cos.value="hcos"
+			document.calc.tan.value="htan"
+		}
+		else
+		{
+			document.calc.sin.value="sin "
+			document.calc.cos.value="cos "
+			document.calc.tan.value="tan "
+		}
+		
+		document.calc.sqr.value="x^2 "
+		document.calc.cube.value="x^3 "
+		
+		document.calc.floor.value="取整"
+	}
+
+}
+//存储器部分
+
+function clearmemory()
+{
+	mem=0
+	document.calc.memory.value="   "
+}
+
+function getmemory()
+{
+	endNumber=true
+	document.calc.display.value=decto(mem,carry)
+}
+
+function putmemory()
+{
+	endNumber=true
+	if (document.calc.display.value!=0)
+	{
+		mem=todec(document.calc.display.value,carry)
+		document.calc.memory.value=" M "
+	}
+	else
+		document.calc.memory.value="   "
+}
+
+function addmemory()
+{
+	endNumber=true
+	mem=parseFloat(mem)+parseFloat(todec(document.calc.display.value,carry))
+	if (mem==0)
+		document.calc.memory.value="   "
+	else
+		document.calc.memory.value=" M "
+}
+
+function multimemory()
+{
+	endNumber=true
+	mem=parseFloat(mem)*parseFloat(todec(document.calc.display.value,carry))
+	if (mem==0)
+		document.calc.memory.value="   "
+	else
+		document.calc.memory.value=" M "
+}
+
+//十进制转换
+
+function todec(num,oldcarry)
+{
+	if (oldcarry==10 || num==0) return(num)
+	var neg=(num.charAt(0)=="-")
+	if (neg) num=num.substr(1)
+	var newnum=0
+	for (var index=1;index<=num.length;index++)
+		newnum=newnum*oldcarry+hexnum.indexOf(num.charAt(index-1))
+	if (neg)
+		newnum=-newnum
+	return(newnum)
+}
+
+function decto(num,newcarry)
+{
+	var neg=(num<0)
+	if (newcarry==10 || num==0) return(num)
+	num=""+Math.abs(num)
+	var newnum=""
+	while (num!=0)
+	{
+		newnum=hexnum.charAt(num%newcarry)+newnum
+		num=Math.floor(num/newcarry)
+	}
+	if (neg)
+		newnum="-"+newnum
+	return(newnum)
+}
+
+//表达式解析
+
+function parse(string)
+{
+	if (string.match(/^(.*\d[\+\-\*\/\%\^\&\|x\<])?([+-]?[0-9a-f\.]+)([\+\-\*\/\%\^\&\|x\<])([+-]?[0-9a-f\.]+)$/))
+		return(RegExp.$1+cypher(RegExp.$2,RegExp.$3,RegExp.$4))
+	else
+		return(string)
+}
+
+//数学运算和位运算
+
+function cypher(left,join,right)
+{
+	left=todec(left,carry)
+	right=todec(right,carry)
+	if (join=="+")
+		return(decto(parseFloat(left)+parseFloat(right),carry))
+	if (join=="-")
+		return(decto(left-right,carry))
+	if (join=="*")
+		return(decto(left*right,carry))
+	if (join=="/" && right!=0)
+		return(decto(left/right,carry))
+	if (join=="%")
+		return(decto(left%right,carry))
+	if (join=="&")
+		return(decto(left&right,carry))
+	if (join=="|")
+		return(decto(left|right,carry))
+	if (join=="^")
+		return(decto(Math.pow(left,right),carry))
+	if (join=="x")
+		return(decto(left^right,carry))
+	if (join=="<")
+		return(decto(left<<right,carry))
+	alert("除数不能为零")
+	return(left)
+}
+
+//函数计算
+
+function funcalc(fun,num)
+{
+	with(Math)
+	{
+		if (fun=="pi")
+			return(PI)
+		if (fun=="e")
+			return(E)
+
+		if (fun=="abs")
+			return(abs(num))
+		if (fun=="ceil")
+			return(ceil(num))
+		if (fun=="round")
+			return(round(num))
+
+		if (fun=="floor")
+			return(floor(num))
+		if (fun=="deci")
+			return(num-floor(num))
+
+
+		if (fun=="ln" && num>0)
+			return(log(num))
+		if (fun=="exp")
+			return(exp(num))
+		if (fun=="log" && num>0)
+			return(log(num)*LOG10E)
+		if (fun=="expdec")
+			return(pow(10,num))
+
+		
+		if (fun=="cube")
+			return(num*num*num)
+		if (fun=="cubt")
+			return(pow(num,1/3))
+		if (fun=="sqr")
+			return(num*num)
+		if (fun=="sqrt" && num>=0)
+			return(sqrt(num))
+
+		if (fun=="!")
+			return(factorial(num))
+
+		if (fun=="recip" && num!=0)
+			return(1/num)
+		
+		if (fun=="dms")
+			return(dms(num))
+		if (fun=="deg")
+			return(deg(num))
+
+		if (fun=="~")
+			return(~num)
+	
+		if (angle=="d")
+		{
+			if (fun=="sin")
+				return(sin(degressToRadians(num)))
+			if (fun=="cos")
+				return(cos(degressToRadians(num)))
+			if (fun=="tan")
+				return(tan(degressToRadians(num)))
+
+			if (fun=="arcsin" && abs(num)<=1)
+				return(radiansToDegress(asin(num)))
+			if (fun=="arccos" && abs(num)<=1)
+				return(radiansToDegress(acos(num)))
+			if (fun=="arctan")
+				return(radiansToDegress(atan(num)))
+		}
+		else
+		{
+			if (fun=="sin")
+				return(sin(num))
+			if (fun=="cos")
+				return(cos(num))
+			if (fun=="tan")
+				return(tan(num))
+
+			if (fun=="arcsin" && abs(num)<=1)
+				return(asin(num))
+			if (fun=="arccos" && abs(num)<=1)
+				return(acos(num))
+			if (fun=="arctan")
+				return(atan(num))
+		}
+	
+		if (fun=="hypsin")
+			return((exp(num)-exp(0-num))*0.5)
+		if (fun=="hypcos")
+			return((exp(num)+exp(-num))*0.5)
+		if (fun=="hyptan")
+			return((exp(num)-exp(-num))/(exp(num)+exp(-num)))
+
+		if (fun=="ahypsin" | fun=="hypcos" | fun=="hyptan")
+		{
+			alert("对不起,公式还没有查到!")
+			return(num)
+		}
+		
+		alert("超出函数定义范围")
+		return(num)
+	}
+}
+
+function factorial(n)
+{
+	n=Math.abs(parseInt(n))
+	var fac=1
+	for (;n>0;n-=1)
+		fac*=n
+	return(fac)
+}
+
+function dms(n)
+{
+	var neg=(n<0)
+	with(Math)
+	{	
+		n=abs(n)
+		var d=floor(n)
+		var m=floor(60*(n-d))
+		var s=(n-d)*60-m
+	}
+	var dms=d+m/100+s*0.006
+	if (neg) 
+		dms=-dms
+	return(dms)
+}
+
+function deg(n)
+{
+	var neg=(n<0)
+	with(Math)
+	{
+		n=abs(n)
+		var d=floor(n)
+		var m=floor((n-d)*100)
+		var s=(n-d)*100-m
+	}
+	var deg=d+m/60+s/36
+	if (neg) 
+		deg=-deg
+	return(deg)
+}
+
+function degressToRadians(degress)
+{
+	return(degress*Math.PI/180)
+}
+
+function radiansToDegress(radians)
+{
+	return(radians*180/Math.PI)
+}
+
+//界面
+
+//-->
+</script>
+</head>
+<body>
+
+<div align="center">个人助理-计算器
+<form name=calc>
+    <table width="500" cellspacing="2">
+      <tr> 
+        <td align="center"> 
+          <table width="490" height="45" cellspacing="0" class="border">
+            <tr> 
+              <td width="26" align="center" bgcolor="#F1FAF1"> </td>
+              <td width="445" align="left" bgcolor="#F1FAF1">结果： &nbsp; 
+                <input type=text name="display" value="0" readonly size="40"></td>
+          </table>
+        </td>
+</tr>
+<tr>
+        <td align="center"> 
+          <table width="100%">
+            <tr>
+              <td> 
+                <input type=radio name="carry" onClick="inputChangCarry(16)">
+                十六进制 
+                <input type=radio name="carry" checked onClick="inputChangCarry(10)">
+      十进制 
+      <input type=radio name="carry" onClick="inputChangCarry(8)">
+      八进制 
+      <input type=radio name="carry" onClick="inputChangCarry(2)">
+      二进制 
+</td>
+<td>
+</td>
+              <td> 
+                <input type=radio name="angle" value="d" onClick="inputChangAngle('d')" checked>
+      角度制 
+      <input type=radio name="angle" value="r" onClick="inputChangAngle('r')">
+      弧度制 
+</td>
+</tr>
+</table>
+          <table width="100%" height="40" border="0" cellpadding="0" cellspacing="1">
+            <tr>
+              <td align="center">
+<table width="100%">
+                  <tr> 
+                    <td> 
+                      <input name="shiftf" type="checkbox" onclick="inputshift()">
+                      上档功能 
+                      <input name="hypf" type="checkbox" onclick="inputshift()">
+                      双曲函数 </td>
+                    <td> 
+                      <input name="bracket" value="" type=text size=3 readonly style="background-color=lightgrey"> 
+                      <input name="memory" value="" type=text size=3 readonly style="background-color=lightgrey"> 
+                      <input name="operator" value="" type=text size=3 readonly style="background-color=lightgrey">
+                    </td>
+                    <td align="right"> 
+                      <input name="button2" type="button" class="b3" 
+   onclick="backspace()" value=" 退格 "> <input name="button2" type="button" class="b3" 
+   onClick="document.calc.display.value = 0 " value=" 清屏 "> <input name="button2" type="button" class="b3" 
+   onClick="clearall()" value=" 全清"> </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+          <table width="100%" cellspacing="0">
+            <tr align="left"> 
+              <td width="29%"> 
+                <table cellpadding="1" cellspacing="1">
+                  <tr  align=center> 
+                    <td width="42" height="23"> <input name=pi type="button" class="b1" 
+  onClick="inputfunction('pi','pi')" value=" PI "> </td>
+                    <td width="42" height="23"> <input name=e type="button" class="b1"
+  onClick="inputfunction('e','e')" value=" E  "> </td>
+                    <td width="42" height="23"> <input name=bt type="button" class="b2" 
+	onClick="inputfunction('dms','deg')" value="d.ms"> </td>
+                  </tr>
+                  <tr  align=center> 
+                    <td width="42" height="23"> <input name="button"  type="button" class="b2" style="color=#ff00ff"
+  onClick="addbracket()" value=" (  "> </td>
+                    <td width="42" height="23"> <input name="button"  type="button" class="b2" 
+  onClick="disbracket()" value=" )  "> </td>
+                    <td width="42" height="23"> <input name=ln type="button" class="b2" 
+  onClick="inputfunction('ln','exp')" value=" ln "> </td>
+                  </tr>
+                  <tr  align=center> 
+                    <td width="42" height="23"> <input name=sin type="button" class="b2"
+  onClick="inputtrig('sin','arcsin','hypsin','ahypsin')" value="sin "> </td>
+                    <td width="42" height="23"> <input name="button"  type="button" class="b2" 
+  onClick="operation('^',7)" value="x^y "> </td>
+                    <td width="42" height="23"> <input name=log type="button" class="b2"
+  onClick="inputfunction('log','expdec')" value="log "> </td>
+                  </tr>
+                  <tr  align=center> 
+                    <td width="42" height="23"> <input name=cos type="button" class="b2"
+  onClick="inputtrig('cos','arccos','hypcos','ahypcos')" value="cos "> </td>
+                    <td width="42" height="23"> <input name=cube type="button" class="b2"
+  onClick="inputfunction('cube','cubt')" value="x^3 "> </td>
+                    <td width="42" height="23"> <input name="button"  type="button" class="b2" 
+  onClick="inputfunction('!','!')" value=" n! "> </td>
+                  </tr>
+                  <tr  align=center> 
+                    <td width="42" height="23"> <input name=tan type="button" class="b2" 
+  onClick="inputtrig('tan','arctan','hyptan','ahyptan')" value="tan "> </td>
+                    <td width="42" height="23"> <input name=sqr type="button" class="b2"
+  onClick="inputfunction('sqr','sqrt')" value="x^2 "> </td>
+                    <td width="42" height="23"> <input name="button"  type="button" class="b2"
+  onClick="inputfunction('recip','recip')" value="1/x "> </td>
+                  </tr>
+                </table></td>
+              <td width="38%"> 
+                <table align="center" cellpadding="1">
+                  <tr> 
+                    <td width="65"> <input  type="button" class="b3" 
+  onClick="putmemory()" value=" 储存 "> </td>
+                  </tr>
+                  <td> <input  type="button" class="b3" 
+  onClick="getmemory()" value=" 取存 "> </td>
+                  </tr>
+                  <tr> 
+                    <td> <input  type="button" class="b3"
+  onClick="addmemory()" value=" 累存 "> </td>
+                  </tr>
+                  <tr> 
+                    <td> <input  type="button" class="b3" 
+  onClick="multimemory()" value=" 积存 "> </td>
+                  </tr>
+                  <tr> 
+                    <td> <input  type="button" class="b3"
+  onClick="clearmemory()" value=" 清存 "> </td>
+                  </tr>
+                </table></td>
+              <td width="33%" align="right"> 
+                <table cellpadding="1" >
+                  <tr  align=center> 
+                    <td > <input name=k7 type="button" value=" 7 "
+  onClick="inputkey('7')" class="xn" ></td>
+                    <td  > <input name=k8 type="button" class="xn" value=" 8 "
+  onClick="inputkey('8')" > </td>
+                    <td> <input name=k9 type="button" class="xn" value=" 9 "
+  onClick="inputkey('9')" > </td>
+                    <td> <input  type="button" class="xo" 
+  onClick="operation('/',6)" value=" / "> </td>
+                    <td> <input  type="button" class="or" 
+  onClick="operation('%',6)" value="取余"> </td>
+                    <td> <input  type="button" class="or"
+  onClick="operation('&',3)" value=" 与 "> </td>
+                  </tr>
+                  <tr  align=center> 
+                    <td > <input name=k4 type="button"  class="xn" value=" 4 "
+  onClick="inputkey('4')" > </td>
+                    <td> <input name=k5 type="button" class="xn" value=" 5 "
+  onClick="inputkey('5')" > </td>
+                    <td > <input name=k6 type="button" class="xn" value=" 6 "
+  onClick="inputkey('6')" > </td>
+                    <td> <input  type="button" class="xo" 
+  onClick="operation('*',6)" value=" * "> </td>
+                    <td> <input name=floor type="button" class="or" 
+  onClick="inputfunction('floor','deci')" value="取整"> </td>
+                    <td> <input  type="button" class="or" 
+  onClick="operation('|',1)" value=" 或 "> </td>
+                  </tr>
+                  <tr  align=center> 
+                    <td > <input  type="button" value=" 1 "
+  onClick="inputkey('1')" class="xn" > </td>
+                    <td > <input name=k2 type="button" value=" 2 "
+  onClick="inputkey('2')"  class="xn"> </td>
+                    <td > <input name=k3 type="button" class="xn" value=" 3 "
+  onClick="inputkey('3')" > </td>
+                    <td> <input  type="button" class="xo" 
+  onClick="operation('-',5)" value=" - "> </td>
+                    <td> <input  type="button" class="or"
+  onClick="operation('<',4)" value="左移"> </td>
+                    <td> <input  type="button" class="or" 
+  onClick="inputfunction('~','~')" value=" 非 "> </td>
+                  </tr>
+                  <tr  align=center> 
+                    <td > <input  type="button" value=" 0 "
+  onClick="inputkey('0')" class="xn" > </td>
+                    <td > <input  type="button" value="+/-"
+  onClick="changeSign()"  class="xn"
+  > </td>
+                    <td > <input name=kp type="button" value=" . "
+  onClick="inputkey('.')" class="xn" > </td>
+                    <td> <input  type="button" class="xo" 
+  onClick="operation('+',5)" value=" + "> </td>
+                    <td> <input  type="button" class="or" 
+  onClick="result()" value=" ＝ "> </td>
+                    <td> <input  type="button" class="or"
+  onClick="operation('x',2)" value="异或"> </td>
+                  </tr>
+                  <tr  align=center> 
+                    <td> <input name=ka type="button" disabled=true class="b4" 
+  onClick="inputkey('a')" value=" A "> </td>
+                    <td> <input name=kb type="button" disabled=true class="b4" 
+  onClick="inputkey('b')" value=" B "> </td>
+                    <td> <input name=kc type="button" disabled=true class="b4" 
+  onClick="inputkey('c')" value=" C "> </td>
+                    <td> <input name=kd type="button" disabled=true class="b4" 
+  onClick="inputkey('d')" value=" D "> </td>
+                    <td> <input name=ke type="button" disabled=true class="dh" 
+  onClick="inputkey('e')" value=" E"> </td>
+                    <td> <input name=kf type="button" disabled=true class="dh" 
+  onClick="inputkey('f')" value=" F"></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+</tr>
+</table>
+      
+    
+	
+  </form>
+</div>
+</body>
+</html>

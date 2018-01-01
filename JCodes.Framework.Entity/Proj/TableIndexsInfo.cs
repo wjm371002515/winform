@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraEditors.DXErrorProvider;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -6,8 +7,17 @@ using System.Text;
 
 namespace JCodes.Framework.Entity
 {
-    public class TableIndexsInfo
+    public class TableIndexsInfo : IDXDataErrorInfo
     {
+        private string guid;
+
+        [DisplayName("GUID")]
+        public string GUID
+        {
+            get { return guid; }
+            set { guid = value; }
+        }
+
         private string indexName;
 
         [DisplayName("索引名")]
@@ -26,31 +36,56 @@ namespace JCodes.Framework.Entity
             set { indexFieldLst = value; }
         }
 
-        private string unique;
+        private Boolean unique;
 
         [DisplayName("唯一")]
-        public string Unique
+        public Boolean Unique
         {
             get { return unique; }
             set { unique = value; }
         }
 
-        private string primary;
+        private Boolean index;
+
+        [DisplayName("索引")]
+        public Boolean Index
+        {
+            get { return index; }
+            set { index = value; }
+        }
+
+        private Boolean primary;
 
         [DisplayName("主键")]
-        public string Primary
+        public Boolean Primary
         {
             get { return primary; }
             set { primary = value; }
         }
 
-        private string cluster;
+        #region IDXDataErrorInfo Members
 
-        [DisplayName("聚合")]
-        public string Cluster
+        /// <summary>
+        /// 用来保存行数据中字段名，错误信息
+        /// </summary>
+        public Dictionary<string, ErrorInfo> lstInfo
         {
-            get { return cluster; }
-            set { cluster = value; }
+            get;
+            set;
         }
+
+        //<gridControl1>
+        void IDXDataErrorInfo.GetPropertyError(string propertyName, ErrorInfo info)
+        {
+            // 添加自定义错误
+            if (lstInfo != null && lstInfo.Count > 0 && lstInfo.ContainsKey(propertyName) && !string.IsNullOrEmpty(lstInfo[propertyName].ErrorText))
+            {
+                info.ErrorText = lstInfo[propertyName].ErrorText;
+                info.ErrorType = lstInfo[propertyName].ErrorType;
+            }
+        }
+        void IDXDataErrorInfo.GetError(ErrorInfo info) { }
+        //</gridControl1>
+        #endregion
     }
 }

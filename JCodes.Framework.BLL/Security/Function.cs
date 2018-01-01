@@ -2,6 +2,7 @@
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Entity;
 using JCodes.Framework.IDAL;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -158,7 +159,7 @@ namespace JCodes.Framework.BLL
         /// </summary>
         /// <param name="Id">节点ID</param>
         /// <returns></returns>
-        public bool DeleteWithSubNode(string mainID, string userId)
+        public bool DeleteWithSubNode(string mainID, Int32 userId)
         {
             return functionDal.DeleteWithSubNode(mainID, userId);
         }

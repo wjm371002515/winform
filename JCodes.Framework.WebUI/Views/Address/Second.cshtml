@@ -1,0 +1,27 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "测试";
+}
+
+@*脚本引用放在此处可以实现自定义函数自动提示*@
+<script src="~/Scripts/CommonUtil.js"></script>
+
+<div name="summernote" id="summernote_1"></div>
+
+
+@section footerScript {
+    <script>
+         //页面初始化
+        $(function () {
+            $('#summernote_1').summernote({
+                lang: 'zh-CN', // default: 'en-US'
+                height: 300
+            });
+
+        });
+    </script>
+
+
+</script>
+
+}

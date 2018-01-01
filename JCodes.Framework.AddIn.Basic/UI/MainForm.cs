@@ -32,6 +32,9 @@ namespace JCodes.Framework.AddIn.Basic
         private RegisterHotKeyHelper hotKey2 = new RegisterHotKeyHelper();
         //用来第一次创建动态菜单
         private RibbonPageHelper ribbonHelper = null;
+
+        //第一步：定义BackgroundWorker对象，并注册事件（执行线程主体、执行UI更新事件）
+        private BackgroundWorker backgroundWorkerShowTime = null;
         #endregion 
 
         #region 托盘菜单操作
@@ -215,9 +218,9 @@ namespace JCodes.Framework.AddIn.Basic
                 functionDict.Clear();
                 foreach (FunctionInfo functionInfo in list)
                 {
-                    if (!functionDict.ContainsKey(functionInfo.ControlID))
+                    if (!functionDict.ContainsKey(functionInfo.FunctionId))
                     {
-                        functionDict.Add(functionInfo.ControlID, functionInfo.Name);
+                        functionDict.Add(functionInfo.FunctionId, functionInfo.Name);
                     }
                 }
             }
@@ -268,6 +271,18 @@ namespace JCodes.Framework.AddIn.Basic
             System.Threading.Thread.Sleep(Const.SLEEP_TIME);
             Application.DoEvents();
             InitUserRelated();
+            #endregion
+
+            #region 注册右下角显示时间
+            backgroundWorkerShowTime = new System.ComponentModel.BackgroundWorker();
+            //设置报告进度更新
+            backgroundWorkerShowTime.WorkerReportsProgress = true;
+            //注册线程主体方法
+            backgroundWorkerShowTime.DoWork += new DoWorkEventHandler(backgroundWorkerShowTime_DoWork);
+            //注册更新UI方法
+            backgroundWorkerShowTime.ProgressChanged += new ProgressChangedEventHandler(backgroundWorkerShowTime_ProgressChanged);
+
+            backgroundWorkerShowTime.RunWorkerAsync();
             #endregion
 
             Splasher.Status = "初始化完毕...";
@@ -528,6 +543,25 @@ namespace JCodes.Framework.AddIn.Basic
 
         #endregion
 
+        #region 异步更新时间
+        //第二步：定义执行线程主体事件
+        //线程主体方法
+        public void backgroundWorkerShowTime_DoWork(object sender, DoWorkEventArgs e)
+        {
+            while(true){
+                System.Threading.Thread.Sleep(1000);
+                backgroundWorkerShowTime.ReportProgress(0, DateTimeHelper.GetServerDateTime());
+            }
+        }
+
+        //第三步：定义执行UI更新事件
+        //UI更新方法
+        public void backgroundWorkerShowTime_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            this.lblCalendar.Caption = e.UserState.ToString();
+        }
+
+        #endregion
         /// <summary>
         /// 手工刷新内存
         /// </summary>

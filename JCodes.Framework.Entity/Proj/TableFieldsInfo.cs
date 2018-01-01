@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraEditors.DXErrorProvider;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -6,8 +7,17 @@ using System.Text;
 
 namespace JCodes.Framework.Entity
 {
-    public class TableFieldsInfo 
+    public class TableFieldsInfo : IDXDataErrorInfo
     {
+        private string guid;
+
+        [DisplayName("GUID")]
+        public string GUID
+        {
+            get { return guid; }
+            set { guid = value; }
+        }
+
         private string fieldName;
 
         [DisplayName("字段名")]
@@ -44,10 +54,10 @@ namespace JCodes.Framework.Entity
             set { fieldInfo = value; }
         }
 
-        private string isNull;
+        private bool isNull;
 
         [DisplayName("允许空")]
-        public string IsNull
+        public bool IsNull
         {
             get { return isNull; }
             set { isNull = value; }
@@ -55,11 +65,36 @@ namespace JCodes.Framework.Entity
 
         private string remark;
 
-        [DisplayName("修改内容")]
+        [DisplayName("备注")]
         public string Remark
         {
             get { return remark; }
             set { remark = value; }
         }
+
+        #region IDXDataErrorInfo Members
+
+        /// <summary>
+        /// 用来保存行数据中字段名，错误信息
+        /// </summary>
+        public Dictionary<string, ErrorInfo> lstInfo
+        {
+            get;
+            set;
+        }
+
+        //<gridControl1>
+        void IDXDataErrorInfo.GetPropertyError(string propertyName, ErrorInfo info)
+        {
+            // 添加自定义错误
+            if (lstInfo != null && lstInfo.Count > 0 && lstInfo.ContainsKey(propertyName) && !string.IsNullOrEmpty(lstInfo[propertyName].ErrorText))
+            {
+                info.ErrorText = lstInfo[propertyName].ErrorText;
+                info.ErrorType = lstInfo[propertyName].ErrorType;
+            }
+        }
+        void IDXDataErrorInfo.GetError(ErrorInfo info) { }
+        //</gridControl1>
+        #endregion
     }
 }

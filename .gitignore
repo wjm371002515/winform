@@ -18,6 +18,7 @@ JCodes.Framework.WebUI/Properties/licenses.licx
 JCodes.Framework.AddIn.Common/Properties/licenses.licx
 JCodes.Framework.AddIn.Test/Properties/licenses.licx
 JCodes.Framework.AddIn.50Go/Properties/licenses.licx
+JCodes.Framework.AddIn.Basic/Properties/licenses.licx
 
 # 过滤掉不上传的文件夹
 JCodes.Framework.WinFormUI/obj/
@@ -67,3 +68,4 @@ JCodes.Framework.AddIn.50Go/bin/
 Bin/
 jCodes/
 
+*.licx

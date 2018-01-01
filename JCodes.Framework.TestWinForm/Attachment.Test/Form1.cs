@@ -24,7 +24,7 @@ namespace TestAttachmentDx
         private void btnAttachment_Click(object sender, EventArgs e)
         {
             FrmAttachment dlg = new FrmAttachment();
-            dlg.UserId = "0bed145f-e3fd-4b95-8eb1-e67146044f87";
+            dlg.UserId = 1;
             dlg.ShowDialog();
         }
     }

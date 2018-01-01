@@ -19,7 +19,7 @@ namespace JCodes.Framework.IDAL
         /// </summary>
         /// <param name="userId">用户ID</param>
         /// <returns></returns>
-        List<FileUploadInfo> GetAllByUser(string userId);
+        List<FileUploadInfo> GetAllByUser(Int32 userId);
                 
         /// <summary>
         /// 获取指定用户的上传信息
@@ -28,7 +28,7 @@ namespace JCodes.Framework.IDAL
         /// <param name="category">附件分类：个人附件，业务附件</param>
         /// <param name="pagerInfo">分页信息</param>
         /// <returns></returns>
-        List<FileUploadInfo> GetAllByUser(string userId, string category, PagerInfo pagerInfo);
+        List<FileUploadInfo> GetAllByUser(Int32 userId, string category, PagerInfo pagerInfo);
                         
         /// <summary>
         /// 获取指定附件组GUID的附件信息

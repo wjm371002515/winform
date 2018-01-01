@@ -46,7 +46,7 @@ namespace JCodes.Framework.OracleDAL
 			SmartDataReader reader = new SmartDataReader(dataReader);
 
             info.ID = reader.GetString("ID");
-			info.User_ID = reader.GetString("User_ID");
+            info.User_ID = reader.GetInt32("User_ID");
 			info.LoginName = reader.GetString("LoginName");
 			info.FullName = reader.GetString("FullName");
 			info.Company_ID = reader.GetString("Company_ID");

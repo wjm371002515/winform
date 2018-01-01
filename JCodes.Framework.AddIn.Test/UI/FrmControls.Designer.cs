@@ -28,15 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmControls));
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
+            this.meInfo = new DevExpress.XtraEditors.MemoEdit();
             this.te = new DevExpress.XtraEditors.TimeEdit();
             this.txtPwd = new DevExpress.XtraEditors.TextEdit();
             this.de = new DevExpress.XtraEditors.DateEdit();
             this.ck = new DevExpress.XtraEditors.CheckEdit();
             this.lbltxtPwd = new DevExpress.XtraEditors.LabelControl();
+            this.lblInfo = new DevExpress.XtraEditors.LabelControl();
             this.lblteinfo = new DevExpress.XtraEditors.LabelControl();
             this.txtFloat = new DevExpress.XtraEditors.TextEdit();
             this.lbldeinfo = new DevExpress.XtraEditors.LabelControl();
@@ -77,17 +78,15 @@
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             this.winGridViewPager1 = new JCodes.Framework.CommonControl.Pager.WinGridViewPager();
             this.winGridView1 = new JCodes.Framework.CommonControl.Pager.WinGridView();
-            this.lblInfo = new DevExpress.XtraEditors.LabelControl();
-            this.meInfo = new DevExpress.XtraEditors.MemoEdit();
+            this.xtraTabPage4 = new DevExpress.XtraTab.XtraTabPage();
+            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.meInfo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.te.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPwd.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.de.Properties.CalendarTimeProperties)).BeginInit();
@@ -120,11 +119,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             this.xtraTabPage3.SuspendLayout();
+            this.xtraTabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.meInfo.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraTabControl1
@@ -138,7 +135,8 @@
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1,
             this.xtraTabPage2,
-            this.xtraTabPage3});
+            this.xtraTabPage3,
+            this.xtraTabPage4});
             // 
             // xtraTabPage1
             // 
@@ -171,6 +169,14 @@
             this.xtraTabPage1.Name = "xtraTabPage1";
             this.xtraTabPage1.Size = new System.Drawing.Size(1044, 586);
             this.xtraTabPage1.Text = "基础控件";
+            // 
+            // meInfo
+            // 
+            this.meInfo.Location = new System.Drawing.Point(130, 325);
+            this.meInfo.Name = "meInfo";
+            this.meInfo.Size = new System.Drawing.Size(264, 107);
+            this.meInfo.TabIndex = 81;
+            this.meInfo.UseOptimizedRendering = true;
             // 
             // te
             // 
@@ -219,6 +225,16 @@
             this.lbltxtPwd.Size = new System.Drawing.Size(120, 22);
             this.lbltxtPwd.TabIndex = 66;
             this.lbltxtPwd.Text = "密码框:";
+            // 
+            // lblInfo
+            // 
+            this.lblInfo.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.lblInfo.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.lblInfo.Location = new System.Drawing.Point(4, 319);
+            this.lblInfo.Name = "lblInfo";
+            this.lblInfo.Size = new System.Drawing.Size(120, 22);
+            this.lblInfo.TabIndex = 65;
+            this.lblInfo.Text = "备注信息:";
             // 
             // lblteinfo
             // 
@@ -620,61 +636,11 @@
             // 
             // xtraTabPage3
             // 
-            this.xtraTabPage3.Controls.Add(this.gridControl1);
             this.xtraTabPage3.Controls.Add(this.winGridViewPager1);
             this.xtraTabPage3.Controls.Add(this.winGridView1);
             this.xtraTabPage3.Name = "xtraTabPage3";
             this.xtraTabPage3.Size = new System.Drawing.Size(1044, 586);
             this.xtraTabPage3.Text = "树形控件";
-            // 
-            // gridControl1
-            // 
-            this.gridControl1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.gridControl1.Location = new System.Drawing.Point(599, 15);
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemDateEdit1});
-            this.gridControl1.Size = new System.Drawing.Size(482, 507);
-            this.gridControl1.TabIndex = 2;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
-            // 
-            // gridView1
-            // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn1});
-            this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsCustomization.AllowFilter = false;
-            this.gridView1.OptionsCustomization.AllowGroup = false;
-            this.gridView1.OptionsMenu.EnableColumnMenu = false;
-            this.gridView1.OptionsMenu.EnableFooterMenu = false;
-            this.gridView1.OptionsMenu.EnableGroupPanelMenu = false;
-            this.gridView1.OptionsSelection.MultiSelect = true;
-            this.gridView1.OptionsView.ColumnAutoWidth = false;
-            this.gridView1.OptionsView.EnableAppearanceEvenRow = true;
-            this.gridView1.OptionsView.EnableAppearanceOddRow = true;
-            this.gridView1.OptionsView.ShowGroupExpandCollapseButtons = false;
-            this.gridView1.OptionsView.ShowGroupPanel = false;
-            this.gridView1.ValidatingEditor += new DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventHandler(this.gridView1_ValidatingEditor);
-            // 
-            // gridColumn1
-            // 
-            this.gridColumn1.Caption = "gridColumn1";
-            this.gridColumn1.ColumnEdit = this.repositoryItemDateEdit1;
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 0;
-            // 
-            // repositoryItemDateEdit1
-            // 
-            this.repositoryItemDateEdit1.AutoHeight = false;
-            this.repositoryItemDateEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemDateEdit1.Name = "repositoryItemDateEdit1";
             // 
             // winGridViewPager1
             // 
@@ -683,7 +649,7 @@
             this.winGridViewPager1.DataSource = null;
             this.winGridViewPager1.DisplayColumns = "";
             this.winGridViewPager1.FixedColumns = null;
-            this.winGridViewPager1.Location = new System.Drawing.Point(3, 221);
+            this.winGridViewPager1.Location = new System.Drawing.Point(95, 250);
             this.winGridViewPager1.MinimumSize = new System.Drawing.Size(540, 0);
             this.winGridViewPager1.Name = "winGridViewPager1";
             this.winGridViewPager1.PrintTitle = "";
@@ -713,23 +679,29 @@
             this.winGridView1.Size = new System.Drawing.Size(540, 212);
             this.winGridView1.TabIndex = 0;
             // 
-            // lblInfo
+            // xtraTabPage4
             // 
-            this.lblInfo.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.lblInfo.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.lblInfo.Location = new System.Drawing.Point(4, 319);
-            this.lblInfo.Name = "lblInfo";
-            this.lblInfo.Size = new System.Drawing.Size(120, 22);
-            this.lblInfo.TabIndex = 65;
-            this.lblInfo.Text = "备注信息:";
+            this.xtraTabPage4.Controls.Add(this.gridControl1);
+            this.xtraTabPage4.Name = "xtraTabPage4";
+            this.xtraTabPage4.Size = new System.Drawing.Size(1044, 586);
+            this.xtraTabPage4.Text = "GridView";
             // 
-            // meInfo
+            // gridControl1
             // 
-            this.meInfo.Location = new System.Drawing.Point(130, 325);
-            this.meInfo.Name = "meInfo";
-            this.meInfo.Size = new System.Drawing.Size(264, 107);
-            this.meInfo.TabIndex = 81;
-            this.meInfo.UseOptimizedRendering = true;
+            this.gridControl1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControl1.Location = new System.Drawing.Point(0, 0);
+            this.gridControl1.MainView = this.gridView1;
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.Size = new System.Drawing.Size(1044, 586);
+            this.gridControl1.TabIndex = 0;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.Name = "gridView1";
             // 
             // FrmControls
             // 
@@ -743,6 +715,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             this.xtraTabControl1.ResumeLayout(false);
             this.xtraTabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.meInfo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.te.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPwd.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.de.Properties.CalendarTimeProperties)).EndInit();
@@ -775,11 +748,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             this.xtraTabPage3.ResumeLayout(false);
+            this.xtraTabPage4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.meInfo.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -835,11 +806,10 @@
         private DevExpress.XtraTab.XtraTabPage xtraTabPage3;
         private CommonControl.Pager.WinGridViewPager winGridViewPager1;
         private CommonControl.Pager.WinGridView winGridView1;
-        private DevExpress.XtraGrid.GridControl gridControl1;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
-        private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEdit1;
         private DevExpress.XtraEditors.LabelControl lblInfo;
         private DevExpress.XtraEditors.MemoEdit meInfo;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage4;
+        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
     }
 }

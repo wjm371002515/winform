@@ -153,7 +153,7 @@ namespace JCodes.Framework.AddIn.Security
             info.Editor_ID = Portal.gc.UserInfo.ID.ToString();
             info.EditTime = DateTimeHelper.GetServerDateTime2();
 
-            info.CurrentLoginUserId = Portal.gc.UserInfo.ID.ToString(); //记录当前登录的用户信息，供操作日志记录使用
+            info.CurrentLoginUserId = Portal.gc.UserInfo.ID; //记录当前登录的用户信息，供操作日志记录使用
         }
 
         /// <summary>

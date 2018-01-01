@@ -40,6 +40,12 @@ namespace JCodes.Framework.AddIn.Proj
             this.tabbedView = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
             this.pmGroup = new DevExpress.XtraBars.PopupMenu(this.components);
             this.pmItem = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.contextMenuStripFields = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem_AddField = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem_DelField = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStripIndex = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem_AddIndex = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem_DelIndex = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.barAndDockingController)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager)).BeginInit();
             this.hideContainerLeft.SuspendLayout();
@@ -50,6 +56,8 @@ namespace JCodes.Framework.AddIn.Proj
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pmGroup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pmItem)).BeginInit();
+            this.contextMenuStripFields.SuspendLayout();
+            this.contextMenuStripIndex.SuspendLayout();
             this.SuspendLayout();
             // 
             // barAndDockingController
@@ -238,6 +246,52 @@ namespace JCodes.Framework.AddIn.Proj
             this.pmItem.Manager = this.barManager1;
             this.pmItem.Name = "pmItem";
             // 
+            // contextMenuStripFields
+            // 
+            this.contextMenuStripFields.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.contextMenuStripFields.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem_AddField,
+            this.toolStripMenuItem_DelField});
+            this.contextMenuStripFields.Name = "contextMenuStripFields";
+            this.contextMenuStripFields.Size = new System.Drawing.Size(166, 64);
+            // 
+            // toolStripMenuItem_AddField
+            // 
+            this.toolStripMenuItem_AddField.Name = "toolStripMenuItem_AddField";
+            this.toolStripMenuItem_AddField.Size = new System.Drawing.Size(165, 30);
+            this.toolStripMenuItem_AddField.Text = "ÐÂÔö×Ö¶Î";
+            this.toolStripMenuItem_AddField.Click+=toolStripMenuItem_AddField_Click;
+            // 
+            // toolStripMenuItem_DelField
+            // 
+            this.toolStripMenuItem_DelField.Name = "toolStripMenuItem_DelField";
+            this.toolStripMenuItem_DelField.Size = new System.Drawing.Size(165, 30);
+            this.toolStripMenuItem_DelField.Text = "É¾³ý×Ö¶Î";
+            this.toolStripMenuItem_DelField.Click+=toolStripMenuItem_DelField_Click;
+            // 
+            // contextMenuStripIndex
+            // 
+            this.contextMenuStripIndex.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.contextMenuStripIndex.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem_AddIndex,
+            this.toolStripMenuItem_DelIndex});
+            this.contextMenuStripIndex.Name = "contextMenuStripIndex";
+            this.contextMenuStripIndex.Size = new System.Drawing.Size(166, 64);
+            // 
+            // toolStripMenuItem_AddIndex
+            // 
+            this.toolStripMenuItem_AddIndex.Name = "toolStripMenuItem_AddIndex";
+            this.toolStripMenuItem_AddIndex.Size = new System.Drawing.Size(165, 30);
+            this.toolStripMenuItem_AddIndex.Text = "ÐÂÔöË÷Òý";
+            this.toolStripMenuItem_AddIndex.Click+=toolStripMenuItem_AddIndex_Click;
+            // 
+            // toolStripMenuItem_DelIndex
+            // 
+            this.toolStripMenuItem_DelIndex.Name = "toolStripMenuItem_DelIndex";
+            this.toolStripMenuItem_DelIndex.Size = new System.Drawing.Size(165, 30);
+            this.toolStripMenuItem_DelIndex.Text = "É¾³ýË÷Òý";
+            this.toolStripMenuItem_DelIndex.Click+=toolStripMenuItem_DelIndex_Click;
+            // 
             // FrmTables
             // 
             this.ClientSize = new System.Drawing.Size(1133, 662);
@@ -262,6 +316,8 @@ namespace JCodes.Framework.AddIn.Proj
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pmGroup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pmItem)).EndInit();
+            this.contextMenuStripFields.ResumeLayout(false);
+            this.contextMenuStripIndex.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -276,7 +332,6 @@ namespace JCodes.Framework.AddIn.Proj
         private DevExpress.XtraBars.Docking2010.DocumentManager documentManager;
         private DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView tabbedView;
         private System.Windows.Forms.UserControl ucToolbox1;
-        private DevExpress.XtraBars.Docking.AutoHideContainer hideContainerLeft;
         private DevExpress.XtraBars.PopupMenu pmGroup;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
@@ -290,5 +345,12 @@ namespace JCodes.Framework.AddIn.Proj
         private DevExpress.XtraBars.BarButtonItem bbiAddItem;
         private DevExpress.XtraBars.BarButtonItem bbiModItem;
         private DevExpress.XtraBars.BarButtonItem bbiDelItem;
+        private DevExpress.XtraBars.Docking.AutoHideContainer hideContainerLeft;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripFields;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_AddField;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_DelField;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripIndex;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_AddIndex;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_DelIndex;
     }
 }

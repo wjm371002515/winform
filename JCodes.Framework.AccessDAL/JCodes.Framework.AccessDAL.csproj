@@ -88,6 +88,9 @@
     <Compile Include="WareHouseMis\Client.cs" />
     <Compile Include="WareHouseMis\Supplier.cs" />
     <Compile Include="WareHouseMis\WareHouse.cs" />
+    <Compile Include="WebMis\Icon.cs" />
+    <Compile Include="WebMis\Information.cs" />
+    <Compile Include="WebMis\InformationStatus.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JCodes.Framework.Common\JCodes.Framework.Common.csproj">
@@ -107,10 +110,17 @@
       <Name>JCodes.Framework.IDAL</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="CRM\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>echo "编译后处理的事情 JCodes.Framework.AccessDAL"</PostBuildEvent>
+    <PostBuildEvent>xcopy ..\jCodes\$(TargetFileName) ..\JCodes.Framework.WebUI\bin\ /y
+echo "编译后处理的事情 JCodes.Framework.AccessDAL"</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

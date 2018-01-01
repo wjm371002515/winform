@@ -54,7 +54,7 @@ namespace JCodes.Framework.AddIn.UI.BizControl
         public void Init()
         {
             //InitUpperFunction
-            DataTable dt = DataTableHelper.CreateTable("ImageIndex|int,ID,PID,Name,ControlID,SystemType_ID,SortCode");
+            DataTable dt = DataTableHelper.CreateTable("ImageIndex|int,ID,PID,Name,FunctionId,SystemType_ID,Seq");
             List<FunctionInfo> list = BLLFactory<Functions>.Instance.GetAll();
             DataRow dr = null;
             foreach (FunctionInfo info in list)
@@ -64,9 +64,9 @@ namespace JCodes.Framework.AddIn.UI.BizControl
                 dr["ID"] = info.ID.ToString();
                 dr["PID"] = info.PID.ToString();
                 dr["Name"] = info.Name;
-                dr["ControlID"] = info.ControlID;
+                dr["FunctionId"] = info.FunctionId;
                 dr["SystemType_ID"] = info.SystemType_ID;
-                dr["SortCode"] = info.SortCode;
+                dr["Seq"] = info.Seq;
                 dt.Rows.Add(dr);
             }
             //增加一行空的

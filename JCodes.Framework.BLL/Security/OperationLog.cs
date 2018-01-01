@@ -29,7 +29,7 @@ namespace JCodes.Framework.BLL
         /// <param name="note">操作详细表述</param>
         /// <param name="trans">事务对象</param>
         /// <returns></returns>
-        public static bool OnOperationLog(string userId, string tableName, string operationType, string note, DbTransaction trans = null)
+        public static bool OnOperationLog(Int32 userId, string tableName, string operationType, string note, DbTransaction trans = null)
         {
             //虽然实现了这个事件，但是我们还需要判断该表是否在配置表里面，如果不在，则不记录操作日志。
             OperationLogSettingInfo settingInfo = BLLFactory<OperationLogSetting>.Instance.FindByTableName(tableName, trans);
@@ -46,20 +46,19 @@ namespace JCodes.Framework.BLL
                     info.Note = note;
                     info.CreateTime = DateTimeHelper.GetServerDateTime2();
 
-                    if (!string.IsNullOrEmpty(userId))
+
+                    UserInfo userInfo = BLLFactory<User>.Instance.FindByID(userId, trans);
+                    if (userInfo != null)
                     {
-                        UserInfo userInfo = BLLFactory<User>.Instance.FindByID(userId, trans);
-                        if (userInfo != null)
-                        {
-                            info.User_ID = userId;
-                            info.LoginName = userInfo.Name;
-                            info.FullName = userInfo.FullName;
-                            info.Company_ID = userInfo.Company_ID;
-                            info.CompanyName = userInfo.CompanyName;
-                            info.MacAddress = userInfo.CurrentMacAddress;
-                            info.IPAddress = userInfo.CurrentLoginIP;
-                        }
+                        info.User_ID = userId;
+                        info.LoginName = userInfo.Name;
+                        info.FullName = userInfo.FullName;
+                        info.Company_ID = userInfo.Company_ID;
+                        info.CompanyName = userInfo.CompanyName;
+                        info.MacAddress = userInfo.CurrentMacAddress;
+                        info.IPAddress = userInfo.CurrentLoginIP;
                     }
+
 
                     return BLLFactory<OperationLog>.Instance.Insert(info, trans);
                 }

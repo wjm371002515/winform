@@ -77,16 +77,16 @@ namespace JCodes.Framework.CommonControl.BaseUI
         /// <summary>
         /// 是否具有访问指定控制ID的权限
         /// </summary>
-        /// <param name="controlId">功能控制ID</param>
+        /// <param name="functionId">功能控制ID</param>
         /// <returns></returns>
-        public bool HasFunction(string controlId)
+        public bool HasFunction(string functionId)
         {
             bool result = false;
-            if (string.IsNullOrEmpty(controlId))
+            if (string.IsNullOrEmpty(functionId))
             {
                 result = true;
             }
-            else if (FunctionDict != null && FunctionDict.ContainsKey(controlId))
+            else if (FunctionDict != null && FunctionDict.ContainsKey(functionId))
             {
                 result = true;
             }

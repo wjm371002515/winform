@@ -96,23 +96,23 @@ namespace TestSecurityMix_WCF_WIN
                         {
                             foreach (FunctionInfo functionInfo in list)
                             {
-                                if (!functionDict.ContainsKey(functionInfo.ControlID))
+                                if (!functionDict.ContainsKey(functionInfo.FunctionId))
                                 {
-                                    functionDict.Add(functionInfo.ControlID, functionInfo);
+                                    functionDict.Add(functionInfo.FunctionId, functionInfo);
                                 }
                             }
                         }
 
                         //进一步判断用户角色
-                        if (BLLFactory<User>.Instance.UserIsAdmin(loginName))
-                        {
+                        //if (BLLFactory<User>.Instance.UserIsAdmin(loginName))
+                        //{
                             MessageDxUtil.ShowTips(string.Format("用户【{0}】身份验证正确", loginName));
-                        }
-                        else
-                        {
-                            MessageDxUtil.ShowWarning("该用户没有管理员权限");
-                            return;
-                        }
+                        //}
+                        //else
+                        //{
+                        //    MessageDxUtil.ShowWarning("该用户没有管理员权限");
+                        //    return;
+                        //}
                     }
                 }
                 else

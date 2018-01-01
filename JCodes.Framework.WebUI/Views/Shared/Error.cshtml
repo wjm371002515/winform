@@ -1,0 +1,35 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>网页没有权限访问</title>
+    <style>
+        body {
+            text-align: center;
+            padding-top: 100px;
+        }
+
+        #error {
+            background-image: url(/Content/Images/error.png);
+            width: 430px;
+            height: 240px;
+            text-align: left;
+        }
+
+            #error p {
+                font-size: 9pt;
+                margin-top: 114px;
+                color: #333;
+                margin-left: 120px;
+                width: 265px;
+                line-height: 22px;
+            }
+    </style>
+</head>
+<body>
+    <div id="error">
+        <p></p>
+    </div>
+</body>
+</html>

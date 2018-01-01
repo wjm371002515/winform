@@ -193,7 +193,7 @@ namespace JCodes.Framework.AddIn.Dictionary
 
                         foreach (Int32 key in dict.Keys)
                         {
-                            BLLFactory<DictType>.Instance.DeleteByUser(key, LoginUserInfo.ID.ToString());
+                            BLLFactory<DictType>.Instance.DeleteByUser(key, LoginUserInfo.ID);
 
                             string condition = string.Format("DictType_ID={0}", key);
                             BLLFactory<DictData>.Instance.DeleteByCondition(condition);
@@ -365,7 +365,7 @@ namespace JCodes.Framework.AddIn.Dictionary
             foreach (int iRow in rowSelected)
             {
                 string ID = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "ID");
-                BLLFactory<DictData>.Instance.DeleteByUser(ID, LoginUserInfo.ID.ToString());
+                BLLFactory<DictData>.Instance.DeleteByUser(ID, LoginUserInfo.ID);
             }
             BindData();
         }

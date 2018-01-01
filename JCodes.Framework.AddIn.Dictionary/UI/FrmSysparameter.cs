@@ -498,7 +498,7 @@ namespace JCodes.Framework.AddIn.Dictionary
                     i.Value = newValue;
                     i.Editor = LoginUserInfo.ID.ToString();
                     i.EditorTime = DateTimeHelper.GetServerDateTime2(); //创建时间   
-                    i.CurrentLoginUserId = Portal.gc.UserInfo.ID.ToString();
+                    i.CurrentLoginUserId = Portal.gc.UserInfo.ID;
                     isExist = true;
                     break;
                 }
@@ -512,7 +512,7 @@ namespace JCodes.Framework.AddIn.Dictionary
                 info.Value = newValue;
                 info.Editor = LoginUserInfo.ID.ToString();
                 info.EditorTime = DateTimeHelper.GetServerDateTime2(); //创建时间   
-                info.CurrentLoginUserId = Portal.gc.UserInfo.ID.ToString();
+                info.CurrentLoginUserId = Portal.gc.UserInfo.ID;
                 _info.Add(info);
             }
         }

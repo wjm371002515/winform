@@ -19,7 +19,6 @@ using JCodes.Framework.Common.Databases;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.Common.Office;
 using JCodes.Framework.CommonControl.PlugInInterface;
-using JCodes.Framework.BLL;
 
 namespace JCodes.Framework.AddIn.WareHouseManage
 {
@@ -576,7 +575,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
 
                 if (!string.IsNullOrEmpty(ID) && StockQuantity == 0)
                 {
-                    BLLFactory<Stock>.Instance.DeleteByUser(ID, LoginUserInfo.ID.ToString());
+                    BLLFactory<Stock>.Instance.DeleteByUser(ID, LoginUserInfo.ID);
                 }
             }
 

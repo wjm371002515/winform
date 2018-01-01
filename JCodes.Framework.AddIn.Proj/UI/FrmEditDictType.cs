@@ -138,7 +138,6 @@ namespace JCodes.Framework.AddIn.Proj
 
             if (!string.IsNullOrEmpty(ID))
             {
-                this.Text = "编辑 " + this.Text;
                 this.chkTopItem.Enabled = false;
                 if (info != null)
                 {
@@ -152,10 +151,6 @@ namespace JCodes.Framework.AddIn.Proj
                         this.chkTopItem.Checked = true;
                     }
                 }
-            }
-            else
-            {
-                this.Text = "新建 " + this.Text;
             }
             this.txtName.Focus();
         }
@@ -240,7 +235,7 @@ namespace JCodes.Framework.AddIn.Proj
                 info.PID = -1;
             }
 
-            info.CurrentLoginUserId = LoginUserInfo.ID.ToString();
+            info.CurrentLoginUserId = LoginUserInfo.ID;
         }
 
         private void chkTopItem_CheckedChanged(object sender, EventArgs e)

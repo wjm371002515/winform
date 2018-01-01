@@ -141,7 +141,7 @@ namespace JCodes.Framework.AddIn.Security
             info.WebIcon = txtWebIcon.Text;
             info.SystemType_ID = this.txtSystemType.GetComboBoxStrValue();
 
-            info.CurrentLoginUserId = Portal.gc.UserInfo.ID.ToString();
+            info.CurrentLoginUserId = Portal.gc.UserInfo.ID;
         }
 
         public override void ClearScreen()

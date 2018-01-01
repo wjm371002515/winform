@@ -155,7 +155,7 @@ namespace JCodes.Framework.AddIn.Contact
             foreach (int iRow in rowSelected)
             {
                 string ID = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "ID");
-                BLLFactory<Address>.Instance.DeleteByUser(ID, LoginUserInfo.ID.ToString());
+                BLLFactory<Address>.Instance.DeleteByUser(ID, LoginUserInfo.ID);
             }
 
             BindData();

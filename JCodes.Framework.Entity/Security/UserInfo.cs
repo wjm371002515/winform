@@ -34,7 +34,7 @@ namespace JCodes.Framework.Entity
         private string m_DeptName; //默认部门名称          
         private string m_Company_ID; //所属公司ID          
         private string m_CompanyName; //所属公司名称          
-        private string m_SortCode; //排序码          
+        private string m_Seq; //排序          
         private string m_Creator; //创建人          
         private string m_Creator_ID; //创建人ID          
         private DateTime m_CreateTime = System.DateTime.Now; //创建时间          
@@ -387,18 +387,18 @@ namespace JCodes.Framework.Entity
         }
 
         /// <summary>
-        /// 排序码
+        /// 排序
         /// </summary>
         [DataMember]
-        public virtual string SortCode
+        public virtual string Seq
         {
             get
             {
-                return this.m_SortCode;
+                return this.m_Seq;
             }
             set
             {
-                this.m_SortCode = value;
+                this.m_Seq = value;
             }
         }
 

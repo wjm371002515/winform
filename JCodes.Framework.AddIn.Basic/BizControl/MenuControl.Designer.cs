@@ -86,8 +86,8 @@
             // 
             // treeListColumn2
             // 
-            this.treeListColumn2.Caption = "控制标识";
-            this.treeListColumn2.FieldName = "ControlID";
+            this.treeListColumn2.Caption = "功能ID";
+            this.treeListColumn2.FieldName = "FunctionId";
             this.treeListColumn2.Name = "treeListColumn2";
             this.treeListColumn2.Visible = true;
             this.treeListColumn2.VisibleIndex = 1;
@@ -105,7 +105,7 @@
             // treeListColumn3
             // 
             this.treeListColumn3.Caption = "排序码";
-            this.treeListColumn3.FieldName = "SortCode";
+            this.treeListColumn3.FieldName = "Seq";
             this.treeListColumn3.Name = "treeListColumn3";
             this.treeListColumn3.Visible = true;
             this.treeListColumn3.VisibleIndex = 3;

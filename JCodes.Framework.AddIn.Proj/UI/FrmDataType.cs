@@ -416,8 +416,9 @@ namespace JCodes.Framework.AddIn.Proj
         /// <param name="e"></param>
         private void btnDel_Click(object sender, EventArgs e)
         {
+            // 20171106 wjm 修复没有数据行删除数据报错问题
             // 20170824 如果是最后一行空行则不再继续操作
-            if (string.IsNullOrEmpty((gridView1.GetFocusedRow() as DataTypeInfo).GUID))
+            if (gridView1.GetFocusedRow() as DataTypeInfo == null || string.IsNullOrEmpty((gridView1.GetFocusedRow() as DataTypeInfo).GUID))
                 return;
 
             xmlhelper.DeleteByPathNode("datatype/item[@guid=\"" + gridView1.GetRowCellDisplayText(gridView1.FocusedRowHandle, "GUID") + "\"]");

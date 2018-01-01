@@ -46,6 +46,7 @@
     <Reference Include="DevExpress.XtraPrinting.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraRichEdit.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraRichEdit.v14.1.Extensions, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeList.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraVerticalGrid.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -87,6 +88,12 @@
     <Compile Include="UI\FrmdelegateSetUI.designer.cs">
       <DependentUpon>FrmdelegateSetUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\FrmBaiduPan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmBaiduPan.designer.cs">
+      <DependentUpon>FrmBaiduPan.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\FrmLayoutControl.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +130,9 @@
     <EmbeddedResource Include="UI\FrmdelegateSetUI.resx">
       <DependentUpon>FrmdelegateSetUI.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmBaiduPan.resx">
+      <DependentUpon>FrmBaiduPan.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\FrmLayoutControl.resx">
       <DependentUpon>FrmLayoutControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -137,6 +147,10 @@
     <ProjectReference Include="..\JCodes.Framework.AddIn.Basic\JCodes.Framework.AddIn.Basic.csproj">
       <Project>{6fffbdb0-3a25-46cf-9738-cb3c0735db33}</Project>
       <Name>JCodes.Framework.AddIn.Basic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JCodes.Framework.BLL\JCodes.Framework.BLL.csproj">
+      <Project>{2ec4520f-5197-4e3f-b689-7023a98623e0}</Project>
+      <Name>JCodes.Framework.BLL</Name>
     </ProjectReference>
     <ProjectReference Include="..\JCodes.Framework.CommonControl\JCodes.Framework.CommonControl.csproj">
       <Project>{64cfe6d2-0684-4d68-bfa0-ec7effdf4623}</Project>

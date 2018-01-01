@@ -58,7 +58,7 @@ namespace JCodes.Framework.AddIn.Security
             this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.functionControl1 = new JCodes.Framework.AddIn.UI.BizControl.FunctionControl();
-            this.txtSortCode = new DevExpress.XtraEditors.TextEdit();
+            this.txtSeq = new DevExpress.XtraEditors.TextEdit();
             this.label3 = new System.Windows.Forms.Label();
             this.txtSystemType = new DevExpress.XtraEditors.ComboBoxEdit();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
@@ -70,7 +70,7 @@ namespace JCodes.Framework.AddIn.Security
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSortCode.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSeq.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSystemType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
@@ -278,7 +278,7 @@ namespace JCodes.Framework.AddIn.Security
             this.groupControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupControl1.Controls.Add(this.functionControl1);
-            this.groupControl1.Controls.Add(this.txtSortCode);
+            this.groupControl1.Controls.Add(this.txtSeq);
             this.groupControl1.Controls.Add(this.label3);
             this.groupControl1.Controls.Add(this.btnSave);
             this.groupControl1.Controls.Add(this.label1);
@@ -304,14 +304,14 @@ namespace JCodes.Framework.AddIn.Security
             this.functionControl1.TabIndex = 6;
             this.functionControl1.Value = "-1";
             // 
-            // txtSortCode
+            // txtSeq
             // 
-            this.txtSortCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtSeq.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSortCode.Location = new System.Drawing.Point(128, 119);
-            this.txtSortCode.Name = "txtSortCode";
-            this.txtSortCode.Size = new System.Drawing.Size(515, 28);
-            this.txtSortCode.TabIndex = 5;
+            this.txtSeq.Location = new System.Drawing.Point(128, 119);
+            this.txtSeq.Name = "txtSeq";
+            this.txtSeq.Size = new System.Drawing.Size(515, 28);
+            this.txtSeq.TabIndex = 5;
             // 
             // label3
             // 
@@ -400,7 +400,7 @@ namespace JCodes.Framework.AddIn.Security
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSortCode.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSeq.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSystemType.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
@@ -437,7 +437,7 @@ namespace JCodes.Framework.AddIn.Security
         private DevExpress.XtraEditors.GroupControl groupControl3;
         private DevExpress.XtraEditors.SimpleButton btnBatchAdd;
         private DevExpress.XtraEditors.ComboBoxEdit txtSystemType;
-        private DevExpress.XtraEditors.TextEdit txtSortCode;
+        private DevExpress.XtraEditors.TextEdit txtSeq;
         private System.Windows.Forms.Label label3;
         private FunctionControl functionControl1;
         private System.Windows.Forms.ToolStripMenuItem menu_Collapse;

@@ -1,0 +1,774 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+    ViewBag.Title = "通讯录分组";
+}
+
+@*脚本引用放在此处可以实现自定义函数自动提示*@
+<script src="~/Scripts/CommonUtil.js"></script>
+
+<!-- BEGIN 数据查询-->
+<div class="portlet box green-meadow">
+    <div class="portlet-title">
+        <div class="caption"> <i class="fa fa-filter"></i>
+            查询内容
+        </div>
+        <div class="tools">
+            <button type="button" class="btn btn-circle btn-sm green" onclick="Refresh()">
+                <i class="fa fa-search"></i>
+                查 询
+            </button>
+            <button type="button" class="btn btn-circle btn-sm green" onclick="ShowImport()">
+                <i class="fa fa-file-excel-o"></i>
+                导 入
+            </button>
+            <button type="button" class="btn btn-circle btn-sm green" onclick="ShowExport()">
+                <i class="fa fa-file-excel-o"></i>
+                导 出
+            </button>
+            <a href="javascript:;" class="collapse" title="折叠内容"></a>
+        </div>
+    </div>
+
+    <div class="portlet-body flip-scroll">
+        <div class="row">
+            <form class="form-horizontal" id="ffSearch">
+                 <div class="col-md-3 col-sm-3 col-xs-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">分组名称</label>
+                        <div class="col-md-8">
+                            <input name="WHC_Name" type="text" class="form-control"/>
+                        </div>
+                    </div>
+                </div>
+                 <div class="col-md-3 col-sm-3 col-xs-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">备注</label>
+                        <div class="col-md-8">
+                            <input name="WHC_Note" type="text" class="form-control"/>
+                        </div>
+                    </div>
+                </div>        
+            </form>
+        </div>
+    </div>
+</div>
+<!-- END 数据查询-->
+
+<!-- BEGIN 表格数据-->
+<div class="portlet box green-meadow">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-cogs"></i>
+            数据列表
+        </div>
+        <div class="tools">
+            <button type="button" onclick="Add()" class="btn btn-circle btn-sm green-meadow">
+                <i class="fa fa-plus"></i>
+                新增
+            </button>
+            <button type="button" onclick="EditView()" class="btn btn-circle btn-sm green-meadow">
+                <i class="fa fa-pencil"></i>
+                修改
+            </button>
+            <button type="button" onclick="EditView('view')" class="btn btn-circle btn-sm green-meadow">
+                <i class="fa fa-table"></i>
+                查看
+            </button>
+            <button type="button" onclick="Delete()" class="btn btn-circle btn-sm green-meadow">
+                <i class="fa fa-minus"></i>
+                删除
+            </button>
+            <button type="button" onclick="Refresh()" class="btn btn-circle btn-sm green-meadow" data-toggle="modal">
+                <i class="fa fa-refresh"></i>
+                刷新
+            </button>
+            <button type="button" class="fullscreen btn btn-circle btn-sm green-meadow" data-original-title="全屏">
+                <i class="icon-size-fullscreen"></i>
+            </button>
+        </div>
+    </div>
+    <div class="portlet-body flip-scroll">
+        <div class="portlet-body">
+            <div>
+                <span>每页显示</span>
+                <select id="rows" onchange="ChangeRows()">
+                    <option>10</option>
+                    <option>50</option>
+                    <option>100</option>
+                    <option>1000</option>
+                </select>
+                <span>条记录</span>&nbsp;&nbsp;
+                <span>共有记录：</span><span id='totalCount' class="label label-success">0</span>条，总页数：<span id='totalPageCount' class="label label-success">0</span>页。
+            </div>
+            <hr />
+            <table id="grid" class="table table-striped table-bordered table-hover" cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
+                <thead id="grid_head">
+                    <tr>
+                        <th class="table-checkbox" style="width:40px"><input class="group-checkable" type="checkbox" onclick="selectAll(this)"></th>
+                         <th>上级分组</th>
+                         <th>通讯录类型</th>
+                         <th>分组名称</th>
+                         <th>备注</th>
+                         <th>排序序号</th>
+        
+                        <th style="width:90px">操作</th>
+                    </tr>
+                </thead>
+                <tbody id="grid_body"></tbody>
+            </table>
+            <div class="paging-toolbar">
+                <ul id='grid_paging'></ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--------------------------添加/修改信息的弹出层---------------------------->
+<div id="add"  class="modal fade bs-modal-lg"tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">
+                    <i class="icon-pencil"></i>
+                    <span id="lblAddTitle" style="font-weight:bold">添加信息</span>
+                </h4>
+            </div>
+            <form class="form-horizontal form-bordered form-row-strippe" id="ffAdd" action="" data-toggle="validator" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="row">
+                         <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">上级分组</label>
+                                <div class="col-md-8">
+                                    <select id="PID" name="PID" type="text" class="form-control select2" placeholder="上级分组..."></select>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">分组名称</label>
+                                <div class="col-md-8">
+                                    <input id="Name" name="Name" type="text" class="form-control" placeholder="分组名称..."/>
+
+                                </div>
+                            </div>
+                        </div>
+                         <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">备注</label>
+                                <div class="col-md-8">
+                                    <textarea id="Note" name="Note" class="form-control" placeholder="备注..."></textarea>
+
+                                </div>
+                            </div>
+                        </div>
+                         <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">排序序号</label>
+                                <div class="col-md-8">
+                                    <input id="Seq" name="Seq" type="text" class="form-control" placeholder="排序序号..."/>
+
+                                </div>
+                            </div>
+                        </div>
+        
+                    </div>
+                </div>
+                <div class="modal-footer bg-info">
+                    <input type="hidden" id="ID" name="ID" />                    
+                    <input type="hidden" id="AddressType" name="AddressType" />
+                    <button type="submit" class="btn blue">确定</button>
+                    <button type="button" class="btn green" data-dismiss="modal">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--------------------------查看信息的弹出层---------------------------->
+<div id="view" class="modal fade bs-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">
+                    <i class="icon-book-open"></i>
+                    <span style="font-weight:bold">查看信息</span>
+                </h4>
+            </div>
+            <form class="form-horizontal form-bordered form-row-strippe" id="ffView" action="">
+                <div class="modal-body">                    
+                    <div class="row">
+                         <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">上级分组</label>
+                                <div class="col-md-8">
+                                    <label id="PID2" name="PID" class="form-control"></label>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">分组名称</label>
+                                <div class="col-md-8">
+                                    <label id="Name2" name="Name" class="form-control"></label>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">备注</label>
+                                <div class="col-md-8">
+                                    <label id="Note2" name="Note" class="form-control"></label>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">排序序号</label>
+                                <div class="col-md-8">
+                                    <label id="Seq2" name="Seq" class="form-control"></label>
+                                </div>
+                            </div>
+                        </div>
+        
+                    </div>
+                </div>
+                <div class="modal-footer bg-info">
+                    <input name="ID2" type="hidden" value="">
+                    <button type="button" class="btn green" data-dismiss="modal">关闭</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!--导入数据操作层-->
+<div id="import" class="modal fade bs-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">文件导入</h4>
+            </div>
+            <div class="modal-body">
+                <div style="text-align:right;padding:5px">
+                    <a href="~/Content/Template/AddressGroup-模板.xls" onclick="javascript:Preview();">
+                        <img alt="文件导入-模板" src="~/Content/images/ico_excel.png" />
+                        <span style="font-size:larger;font-weight:200;color:red">AddressGroup-模板.xls</span>
+                    </a>
+                </div>
+                <hr/>
+                <form id="ffImport" method="post">
+                    <div title="Excel导入操作" style="padding: 5px" data-options="iconCls:'icon-key'">
+                        <input class="easyui-validatebox" type="hidden" id="AttachGUID" name="AttachGUID" />    
+                        <input id="file_upload" name="file_upload" type="file" multiple="multiple">                    
+                        <a href="javascript:;" class="btn btn-primary" id="btnUpload" onclick="javascript: $('#file_upload').uploadify('upload', '*')">上传</a>
+                        <a href="javascript:;" class="btn btn-default" id="btnCancelUpload" onclick="javascript: $('#file_upload').uploadify('cancel', '*')">取消</a>
+
+                        <div id="fileQueue" class="fileQueue"></div>
+                        <br />                    
+                        <hr style="width:98%" />                    
+                        <div id="div_files"></div>
+                        <br />                    
+                    </div>
+                </form>
+
+                <!--数据显示表格-->
+                <table id="gridImport" class="table table-striped table-bordered table-hover" cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
+                    <thead id="gridImport_head">
+                        <tr>
+                            <th class="table-checkbox" style="width:40px"><input class="group-checkable" type="checkbox" onclick="selectAll(this)"></th>
+                             <th>上级分组</th>
+                             <th>通讯录类型</th>
+                             <th>分组名称</th>
+                             <th>备注</th>
+                             <th>排序序号</th>        
+                        </tr>
+                    </thead>
+                    <tbody id="gridImport_body"></tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" onclick="SaveImport()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section footerScript {
+
+<script type="text/javascript">
+        var currentPage = 1, rows = 10; //分页参数：当前页，记录数
+
+        var isAddOrEdit = 'add';//标识是新增还是编辑对话框弹出，用于删除附件的操作
+        var url;//新增或者更新的连接
+        var ID;//ID值，新增为空，编辑或者查看为具体ID
+        var addressType = ("public" == "@Request["type"]") ? "public" : "private";
+        var addressTypeField=  ("public" == "@Request["type"]") ? "公共" : "个人";
+
+        //页面初始化
+        $(function () {
+            InitStyle();        //设置控件的样式
+            BindEvent();        //绑定事件处理
+            Search(currentPage);//初始化第一页数据
+            InitDictItem();     //初始化字典信息
+        });
+
+
+        //设置控件的样式
+        function InitStyle() {
+            
+            //统一设置icheck控件的样式
+            $('input[class=icheck]').iCheck({
+                checkboxClass: 'icheckbox_square-red',
+                radioClass: 'iradio_square-red',
+            });
+
+            //增加数值的调整按钮样式
+            // $("#Age").TouchSpin({
+            //     buttondown_class: 'btn blue',
+            //     buttonup_class: 'btn blue',
+            //     min: 0,
+            //     max: 120,
+            //     stepinterval: 1,
+            //     maxboostedstep: 10,
+            //     prefix: ''
+            // });
+                         
+            //初始化fileinput控件（第一次初始化）
+            //initFileInput("file-Portrait", "/AddressGroup/EditPortrait");
+        }
+
+        //根据条件查询并绑定结果
+        function Search(page) {
+            //根据控件Name属性获取表单预设条件
+            var condition = $("#ffSearch").serialize();
+
+            //根据需要加上一些特殊条件
+            condition += "&WHC_AddressType=" +  addressTypeField;//数值范围
+
+            SearchCondition(page, condition);
+        }
+        function SearchCondition(page, condition) {
+            //获取Json对象集合，并生成数据显示内容
+            url = "/AddressGroup/FindWithPager?page=" + page + "&rows=" + rows;
+            $.getJSON(url + "&" + condition, function (data) {
+                $("#totalCount").text(data.total);
+                $("#totalPageCount").text(Math.ceil(data.total / rows));
+
+                $("#grid_body").html("");
+
+                $.each(data.rows, function (i, item) {
+                    var tr = "<tr>";
+                    tr += "<td><input class='checkboxes' type=\"checkbox\" name=\"checkbox\" value=" + item.ID + "></td>";
+                     tr += "<td>" + item.PID + "</td>";
+                     tr += "<td>" + item.Data1 + "</td>";
+                     tr += "<td>" + item.Name + "</td>";
+                     tr += "<td>" + item.Note + "</td>";
+                     tr += "<td>" + item.Seq + "</td>";
+        
+                    tr += getActionHtml(item.ID); //获取查看、编辑、删除操作代码
+
+                    tr += "</tr>";
+                    $("#grid_body").append(tr);
+                });
+
+                //设置分页属性及处理
+                var element = $('#grid_paging');
+                if(data.total > 0) {
+                    var options = {
+                        bootstrapMajorVersion: 3,
+                        currentPage: page,
+                        numberOfPages: rows,
+                        totalPages: Math.ceil(data.total / rows),
+                        onPageChanged: function (event, oldPage, newPage) {
+                            SearchCondition(newPage, condition);  //页面变化时触发内容更新
+                        }
+                    }
+                    element.bootstrapPaginator(options);
+                } else {
+                    element.html("");
+                }
+            });
+        }
+
+        //设置一页显示多少条
+        function ChangeRows() {
+            rows = $("#rows").val();
+            Refresh();
+        }
+
+        //刷新列表
+        function Refresh() {
+            Search(currentPage);
+        }
+
+        //初始化字典信息（下拉列表）
+        function InitDictItem() {
+            //部分赋值参考
+            
+            //绑定字典
+            //BindDictItem("Rank", "职务");            
+            //绑定树列表
+            BindSelect("PID", "/AddressGroup/GetDictJson");
+            
+            //绑定可选多个Tag
+            // $("#Hobby").select2({
+            //     tags: ["旅游", "爬山", "篮球", "足球", "乒乓球"]
+            // });
+            
+            //绑定添加界面的公司、部门（联动处理）
+            // BindSelect("Company_ID", "/User/GetMyCompanyDictJson?userId="+@Session["UserId"]);
+            // $("#Company_ID").on("change", function (e) {
+            //     var companyid = $("#Company_ID").val();
+            //     BindSelect("Dept_ID", "/User/GetDeptDictJson?parentId="+ companyid);
+            // });
+        }
+
+        //实现删除数据的方法
+        function Delete() {
+            var ids = "";//得到用户选择的数据的ID
+            $("[name='checkbox']").each(function () {
+                if ($(this).is(':checked')) {
+                    ids += $(this).val() + ",";
+                }
+            });
+
+            DeleteByIds(ids);
+        }
+
+        //删除指定的记录
+        function DeleteByIds(ids) {
+            if (ids != "") {
+                showDelete(function () {
+                    //最后去掉最后的逗号,
+                    ids = ids.replace(/,\s*$/, '');
+
+                    //然后发送异步请求的信息到后台删除数据
+                    var postData = { ids: ids };
+                    $.post("/AddressGroup/DeletebyIds", postData, function (json) {
+                        var data = $.parseJSON(json);
+                        if (data.Success) {
+                            showTips("删除选定的记录成功");
+                            Refresh();//刷新页面数据
+                        }
+                        else {
+                            showTips(data.ErrorMessage);
+                        }
+                    });
+                });
+            } else {
+                showTips("请选择你要删除的数据");
+            }
+        }
+
+
+        //弹出新增对话框
+        function Add() {
+            isAddOrEdit = 'add';//新增对话框标识
+            //CKEDITOR.instances.Content.setData('');  //清空编辑器的数据
+            $("#ffAdd")[0].reset();//清空上次输入
+            $('#ffAdd').validate().resetForm();//去除验证信息
+
+            //增加记录前，赋值ID
+            url = '/AddressGroup/Insert';
+            $.get("/AddressGroup/NewGuid?r=" + Math.random(), function (result) {
+                $("#ID").val(result);
+                ID = result;
+
+            });
+
+            //初始化部分控件
+            //$('input[name="Gender"][value="男"]').iCheck('check');
+            $("#PID").select2("val", "");
+            $("#AddressType").val(addressTypeField);
+            //$("#Hobby").select2('val', null);//清空下拉框
+
+            $("#lblAddTitle").text("添加信息");
+            $("#add").modal("show");
+        }
+
+        //修改或查看明细信息（绑定显示数据）
+        function EditView(view) {
+            ID = "";//重置ID的值
+            $("[name='checkbox']").each(function () {
+                if ($(this).is(':checked')) {
+                    ID = $(this).val();//首先取出来用户选择的数据的ID
+                }
+            });
+            
+            EditViewById(ID, view);
+        }
+
+        //编辑或者查看指定记录
+        function EditViewById(ID, view) {
+            if (ID == "") {
+                showTips("请选择一条记录");
+                return;
+            }
+
+            if (view == null) {
+                //处理修改的信息
+                $("#lblAddTitle").text("修改信息");
+                $("#add").modal("show");
+                url = '/AddressGroup/Update?ID=' + ID;
+                //绑定修改详细信息的方法
+                BindEditInfo(ID);
+            }
+            else {
+                //处理查看详细
+                $("#view").modal("show");
+                //绑定查看详细信息方法
+                BindViewInfo(ID);
+            }
+        }
+
+        //绑定编辑详细信息的方法
+        function BindEditInfo(ID) {
+            //使用同步方式，使得联动的控件正常显示
+            $.ajaxSettings.async = false;
+
+            $('#ffAdd').validate().resetForm();//去除验证信息
+
+            //首先用户发送一个异步请求去后台实现方法
+            $.getJSON("/AddressGroup/FindByID?r=" + Math.random() + "&id=" + ID, function (info) {
+                 $("#AddressType").val(info.AddressType);
+                 $("#Name").val(info.Name);
+                 $("#Note").val(info.Note);
+                 $("#Seq").val(info.Seq);
+        
+                //参考赋值
+                //$("#Company_ID1").select2("val", info.Company_ID).trigger('change');//联动
+                $("#PID").select2("val", info.PID);//普通Select2
+                // var array = [info.Hobby];
+                // $("#Hobby").select2('val', array); //集合
+
+                // $("input[name='Gender']").iCheck('uncheck');
+                // $("input[name='Gender'][value='" + info.Gender + "']").iCheck('check');
+                // $("#BirthDate").val(getDateStr(info.BirthDate));
+
+                $("#ID").val(info.ID);
+                // $("#AddressType").val(addressTypeField);
+                isAddOrEdit = 'edit';//新增对话框标识
+            });
+
+        }
+
+        //绑定查看详细信息的方法
+        function BindViewInfo(ID) {
+            //发送请求
+            $.getJSON("/AddressGroup/FindByID?r=" + Math.random() + "&id=" + ID, function (info) {
+                //$("#ID2").text(info.ID);
+
+                 $("#PID2").text(info.PID);
+                 $("#AddressType2").text(info.AddressType);
+                 $("#Name2").text(info.Name);
+                 $("#Note2").text(info.Note);
+                 $("#Seq2").text(info.Seq);
+                 $("#Creator2").text(info.Creator);
+                 $("#CreateTime2").text(info.CreateTime);
+                 $("#Editor2").text(info.Editor);
+                 $("#EditTime2").text(info.EditTime);
+    
+                $.getJSON("/AddressGroup/GetNameByID?id=" + info.PID, function (result) {
+                    $("#PID2").text(result);
+                });
+
+                $.getJSON("/User/GetFullNameByID?userid=" + info.Creator, function (result) {
+                    $("#Creator2").text(result);
+                });
+                $.getJSON("/User/GetFullNameByID?userid=" + info.Editor, function (result) {
+                    $("#Editor2").text(result);
+                });
+                
+                //树形控件
+                // var treeUrl = '/Function/GetFunctionJsTreeJsonByUser?userId=' + info.ID;
+                // bindJsTree("jstree_function2", treeUrl);
+            });
+        }
+
+        //显示导入界面
+        function ShowImport() {
+            $("#import").modal("show");
+        }
+
+        //导出Excel数据
+        function ShowExport() {
+            var url = "/AddressGroup/Export";
+            var condition = $("#ffSearch").serialize();//获取条件
+
+            executeExport(url, condition);//执行导出
+        }
+
+        //绑定相关事件
+        function BindEvent() {
+            //添加、编辑记录的窗体处理
+            formValidate("ffAdd", function (form) {
+                $("#add").modal("hide");
+                //构造参数发送给后台
+                var postData = $("#ffAdd").serializeArray();
+                $.post(url, postData, function (json) {
+                    var data = $.parseJSON(json);
+                    if (data.Success) {
+                        //可增加其他处理
+
+                        //保存成功  1.关闭弹出层，2.刷新表格数据
+                        showTips("保存成功");
+                        Refresh();
+                    }
+                    else {
+                        showError("保存失败:" + data.ErrorMessage, 3000);
+                    }
+                }).error(function () {
+                    showTips("您未被授权使用该功能，请联系管理员进行处理。");
+                });
+            });
+        }
+
+    </script>
+
+<!--添加对uploadify控件的支持-->
+<script type="text/javascript">
+        $(function () {
+
+            //添加界面的附件管理
+            $('#file_upload').uploadify({
+                'swf': '/Content/JQueryTools/uploadify/uploadify.swf',  //FLash文件路径
+                'buttonText': '浏  览',                                 //按钮文本
+                'uploader': '/FileUpload/Upload',                       //处理ASHX页面
+                'queueID': 'fileQueue',                        //队列的ID
+                'queueSizeLimit': 1,                          //队列最多可上传文件数量，默认为999
+                'auto': false,                                 //选择文件后是否自动上传，默认为true
+                'multi': false,                                 //是否为多选，默认为true
+                'removeCompleted': true,                       //是否完成后移除序列，默认为true
+                'fileSizeLimit': '10MB',                       //单个文件大小，0为无限制，可接受KB,MB,GB等单位的字符串值
+                'fileTypeDesc': 'Excel Files',                 //文件描述
+                'fileTypeExts': '*.xls',  //上传的文件后缀过滤器
+                'onQueueComplete': function (event, data) {    //所有队列完成后事件
+
+                    var guid = $("#AttachGUID").val();
+                    ViewUpFiles(guid, "div_files");
+
+                    //提示用户Excel格式是否正常，如果正常加载数据
+                    $.ajax({
+                        url: '/AddressGroup/CheckExcelColumns?guid=' + guid,
+                        type: 'get',
+                        dataType: 'json',
+                        success: function (data) {
+                            if (data.Success) {
+                                InitGrid(); //重新刷新表格数据
+                                showToast("文件已上传，数据加载完毕！");
+                            }
+                            else {
+                                showToast("上传的Excel文件检查不通过。请根据页面右上角的Excel模板格式进行数据录入。", "error");
+                            }
+                        }
+                    });
+                },
+                'onUploadStart': function (file) {
+                    InitUpFile();//上传文件前 ，重置GUID，每次不同
+                    $("#file_upload").uploadify("settings", 'formData', { 'folder': '数据导入文件', 'guid': $("#AttachGUID").val() }); //动态传参数
+                },
+                'onUploadError': function (event, queueId, fileObj, errorObj) {
+                    //alert(errorObj.type + "：" + errorObj.info);
+                }
+            });
+        });
+
+        var attachguid = "";//用来记录附件组的ID，方便更新
+        function InitUpFile() {
+            //新增的时候，绑定附件显示
+            var guid = newGuid();
+            $("#AttachGUID").val(guid);
+            attachguid = guid;
+            ViewUpFiles(attachguid, "div_files");//更新列表
+        }
+
+        //删除指定的附件后，对附件组进行更新
+        function deleteAttach(id) {
+            DeleteAndRefreshAttach(id, attachguid, "div_files");
+        }
+
+        //根据条件查询并绑定结果
+        function InitGrid() {
+            var guid = $("#AttachGUID").val();
+            var url = "/AddressGroup/GetExcelData?guid=" + guid;
+            $.getJSON(url, function (data) {
+                $("#gridImport_body").html("");
+
+                $.each(data.rows, function (i, item) {
+                    var tr = "<tr>";
+                    tr += "<td><input class='checkboxes' type=\"checkbox\" name=\"checkbox\" value=" + item.ID + "></td>";
+                     tr += "<td>" + item.PID + "</td>";
+                     tr += "<td>" + item.Name + "</td>";
+                     tr += "<td>" + item.Note + "</td>";
+                     tr += "<td>" + item.Seq + "</td>";
+        
+                    tr += "</tr>";
+                    $("#gridImport_body").append(tr);
+                });
+            });
+        }
+
+        //保存导入的数据
+        function SaveImport() {
+            
+            var list = [];//构造集合对象
+            var i = 0;
+            var bodyTag = "#gridImport_body";
+            $(bodyTag +" tr").each(function() {
+                //判断是否选中，选中的记录才导入数据库
+                var checkbox = $(this).find("td").find(".checkboxes");
+
+                if (checkbox!=undefined && $(checkbox).is(':checked')) {                    
+                    //遍历每个TD，获取内容，并添加进列表
+                    var rows = [];
+                    $(this).find('td:not(:first-child)').each (function() {
+                        rows.push($(this).text());
+                        // alert($(this).text());
+                    });    
+
+                    list.push({ 'PID': rows[0],'AddressType': rows[1],'Name': rows[2],'Note': rows[3],'Seq': rows[4] });
+                    i++;
+                }
+            });
+
+            if (list.length == 0) {
+                showToast("请选择一条记录", "warning");
+                return;
+            }
+
+            var postData = { 'list': list };//可以增加其他参数，如{ 'list': list, 'Rucanghao': $("#Rucanghao").val() };
+            postData = JSON.stringify(postData);
+
+            $.ajax({
+                url: '/AddressGroup/SaveExcelData',
+                type: 'post',
+                dataType: 'json',
+                contentType: 'application/json;charset=utf-8',
+                traditional: true,
+                success: function (data) {
+                    if (data.Success) {
+                        //保存成功  1.关闭弹出层，2.清空记录显示 3.刷新主列表
+                        showToast("保存成功");
+
+                        $("#import").modal("hide");
+                        $(bodyTag).html("");
+                        Refresh();
+                    }
+                    else {
+                        showToast("保存失败:" + data.ErrorMessage, "error");
+                    }
+                },
+                data: postData
+            });
+        }
+</script>
+
+}

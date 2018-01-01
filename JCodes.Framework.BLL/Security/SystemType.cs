@@ -24,7 +24,7 @@ namespace JCodes.Framework.BLL
 			this.systemTypeDal = (ISystemType) baseDal;
 		}
 
-        public override bool DeleteByUser(object key, string userId, System.Data.Common.DbTransaction trans = null)
+        public override bool DeleteByUser(object key, Int32 userId, System.Data.Common.DbTransaction trans = null)
         {
             int count = BLLFactory<Role>.Instance.GetRecordCount();
             if (count == 1)

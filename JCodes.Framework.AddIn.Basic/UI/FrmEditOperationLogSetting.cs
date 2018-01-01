@@ -124,7 +124,7 @@ namespace JCodes.Framework.AddIn.Basic
             info.Editor_ID = Portal.gc.UserInfo.ID.ToString();
             info.EditTime = txtCreateTime.DateTime;
 
-            info.CurrentLoginUserId = Portal.gc.UserInfo.ID.ToString();
+            info.CurrentLoginUserId = Portal.gc.UserInfo.ID;
         }
 
         /// <summary>

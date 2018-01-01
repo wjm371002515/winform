@@ -82,7 +82,7 @@ namespace JCodes.Framework.AddIn._50Go
             foreach (int iRow in rowSelected)
             {
                 string ID = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "ID");
-                BLLFactory<Coupon>.Instance.DeleteByUser(ID, LoginUserInfo.ID.ToString());
+                BLLFactory<Coupon>.Instance.DeleteByUser(ID, LoginUserInfo.ID);
             }
             BindData();
         }

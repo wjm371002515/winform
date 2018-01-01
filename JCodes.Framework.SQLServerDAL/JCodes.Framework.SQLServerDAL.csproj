@@ -55,12 +55,16 @@
     <Compile Include="Attachment\FileUpload.cs" />
     <Compile Include="Contact\Address.cs" />
     <Compile Include="Contact\AddressGroup.cs" />
+    <Compile Include="CRM\Contact.cs" />
+    <Compile Include="CRM\ContactGroup.cs" />
+    <Compile Include="CRM\Customer.cs" />
     <Compile Include="Dic\City.cs" />
     <Compile Include="Dic\DictData.cs" />
     <Compile Include="Dic\DictType.cs" />
     <Compile Include="Dic\District.cs" />
     <Compile Include="Dic\Sysparameter.cs" />
     <Compile Include="Dic\Province.cs" />
+    <Compile Include="General\GeneralSql.cs" />
     <Compile Include="SQLServerPortal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\BlackIP.cs" />
@@ -86,6 +90,12 @@
     <Compile Include="WareHouseMis\Client.cs" />
     <Compile Include="WareHouseMis\Supplier.cs" />
     <Compile Include="WareHouseMis\WareHouse.cs" />
+    <Compile Include="WebMis\BootstrapIcon.cs" />
+    <Compile Include="WebMis\Icon.cs" />
+    <Compile Include="WebMis\Information.cs" />
+    <Compile Include="WebMis\InformationStatus.cs" />
+    <Compile Include="WebMis\PictureAlbum.cs" />
+    <Compile Include="WebMis\TestUser.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JCodes.Framework.Common\JCodes.Framework.Common.csproj">
@@ -108,7 +118,8 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>echo "编译后处理的事情 JCodes.Framework.SQLServerDAL"</PostBuildEvent>
+    <PostBuildEvent>xcopy ..\jCodes\$(TargetFileName) ..\JCodes.Framework.WebUI\bin\ /y
+echo "编译后处理的事情 JCodes.Framework.SQLServerDAL"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

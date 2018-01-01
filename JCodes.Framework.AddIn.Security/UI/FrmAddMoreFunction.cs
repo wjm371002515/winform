@@ -92,7 +92,7 @@ namespace JCodes.Framework.AddIn.Security
 
             if (functionInfo != null)
             {
-                string filter = string.Format("ControlID='{0}' and SystemType_ID='{1}'", this.txtFunctionID.Text, functionInfo.SystemType_ID);
+                string filter = string.Format("FunctionId='{0}' and SystemType_ID='{1}'", this.txtFunctionID.Text, functionInfo.SystemType_ID);
                 bool isExist = BLLFactory<Functions>.Instance.IsExistRecord(filter);
                 if (isExist)
                 {
@@ -107,9 +107,9 @@ namespace JCodes.Framework.AddIn.Security
                 functionInfo = new FunctionInfo();
                 functionInfo.PID = "-1";
                 functionInfo.SystemType_ID = this.txtSystemType.Text;
-                functionInfo.ControlID = this.txtFunctionID.Text;
+                functionInfo.FunctionId = this.txtFunctionID.Text;
 
-                string filter = string.Format("ControlID='{0}' and SystemType_ID='{1}'", this.txtFunctionID.Text, functionInfo.SystemType_ID);
+                string filter = string.Format("FunctionId='{0}' and SystemType_ID='{1}'", this.txtFunctionID.Text, functionInfo.SystemType_ID);
                 bool isExist = BLLFactory<Functions>.Instance.IsExistRecord(filter);
                 if (isExist)
                 {
@@ -132,14 +132,14 @@ namespace JCodes.Framework.AddIn.Security
                         if (sucess)
                         {
                             FunctionInfo subInfo = null;
-                            int sortCodeIndex = 1;
+                            int seqIndex = 1;
 
                             #region 子功能操作
                             if (chkAdd.Checked)
                             {
                                 subInfo = CreateSubFunction(mainInfo);
-                                subInfo.SortCode = (sortCodeIndex++).ToString("D2");
-                                subInfo.ControlID = string.Format("{0}/Add", mainInfo.ControlID);
+                                subInfo.Seq = (seqIndex++).ToString("D2");
+                                subInfo.FunctionId = string.Format("{0}/Add", mainInfo.FunctionId);
                                 subInfo.Name = string.Format("添加{0}", mainInfo.Name);
 
                                 BLLFactory<Functions>.Instance.Insert(subInfo, trans);
@@ -147,40 +147,40 @@ namespace JCodes.Framework.AddIn.Security
                             if (chkDelete.Checked)
                             {
                                 subInfo = CreateSubFunction(mainInfo);
-                                subInfo.SortCode = (sortCodeIndex++).ToString("D2");
-                                subInfo.ControlID = string.Format("{0}/Delete", mainInfo.ControlID);
+                                subInfo.Seq = (seqIndex++).ToString("D2");
+                                subInfo.FunctionId = string.Format("{0}/Delete", mainInfo.FunctionId);
                                 subInfo.Name = string.Format("删除{0}", mainInfo.Name);
                                 BLLFactory<Functions>.Instance.Insert(subInfo, trans);
                             }
                             if (chkModify.Checked)
                             {
                                 subInfo = CreateSubFunction(mainInfo);
-                                subInfo.SortCode = (sortCodeIndex++).ToString("D2");
-                                subInfo.ControlID = string.Format("{0}/Edit", mainInfo.ControlID);
+                                subInfo.Seq = (seqIndex++).ToString("D2");
+                                subInfo.FunctionId = string.Format("{0}/Edit", mainInfo.FunctionId);
                                 subInfo.Name = string.Format("修改{0}", mainInfo.Name);
                                 BLLFactory<Functions>.Instance.Insert(subInfo, trans);
                             }
                             if (chkView.Checked)
                             {
                                 subInfo = CreateSubFunction(mainInfo);
-                                subInfo.SortCode = (sortCodeIndex++).ToString("D2");
-                                subInfo.ControlID = string.Format("{0}/View", mainInfo.ControlID);
+                                subInfo.Seq = (seqIndex++).ToString("D2");
+                                subInfo.FunctionId = string.Format("{0}/View", mainInfo.FunctionId);
                                 subInfo.Name = string.Format("查看{0}", mainInfo.Name);
                                 BLLFactory<Functions>.Instance.Insert(subInfo, trans);
                             }
                             if (chkImport.Checked)
                             {
                                 subInfo = CreateSubFunction(mainInfo);
-                                subInfo.SortCode = (sortCodeIndex++).ToString("D2");
-                                subInfo.ControlID = string.Format("{0}/Import", mainInfo.ControlID);
+                                subInfo.Seq = (seqIndex++).ToString("D2");
+                                subInfo.FunctionId = string.Format("{0}/Import", mainInfo.FunctionId);
                                 subInfo.Name = string.Format("导入{0}", mainInfo.Name);
                                 BLLFactory<Functions>.Instance.Insert(subInfo, trans);
                             }
                             if (chkExport.Checked)
                             {
                                 subInfo = CreateSubFunction(mainInfo);
-                                subInfo.SortCode = (sortCodeIndex++).ToString("D2");
-                                subInfo.ControlID = string.Format("{0}/Export", mainInfo.ControlID);
+                                subInfo.Seq = (seqIndex++).ToString("D2");
+                                subInfo.FunctionId = string.Format("{0}/Export", mainInfo.FunctionId);
                                 subInfo.Name = string.Format("导出{0}", mainInfo.Name);
                                 BLLFactory<Functions>.Instance.Insert(subInfo, trans);
                             }
@@ -223,8 +223,8 @@ namespace JCodes.Framework.AddIn.Security
         {
             info.Name = this.txtName.Text;
             info.PID = this.functionControl1.Value;
-            info.ControlID = this.txtFunctionID.Text;
-            info.CurrentLoginUserId = Portal.gc.UserInfo.ID.ToString();
+            info.FunctionId = this.txtFunctionID.Text;
+            info.CurrentLoginUserId = Portal.gc.UserInfo.ID;
             return info;
         }
     }

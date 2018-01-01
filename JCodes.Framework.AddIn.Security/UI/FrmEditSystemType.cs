@@ -98,7 +98,7 @@ namespace JCodes.Framework.AddIn.Security
             info.CustomID = txtCustomID.Text;
             info.Authorize = txtAuthorize.Text;
             info.Note = txtNote.Text;
-            info.CurrentLoginUserId = Portal.gc.UserInfo.ID.ToString();
+            info.CurrentLoginUserId = Portal.gc.UserInfo.ID;
         }
 
         /// <summary>

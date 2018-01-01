@@ -13,7 +13,7 @@ namespace JCodes.Framework.Entity
         #region Field Members
 
         private string m_ID = Guid.NewGuid().ToString(); //          
-        private string m_User_ID; //登录用户ID          
+        private Int32 m_User_ID; //登录用户ID          
         private string m_LoginName; //登录名          
         private string m_FullName; //真实名称          
         private string m_Company_ID; //所属公司ID          
@@ -46,7 +46,7 @@ namespace JCodes.Framework.Entity
         /// 登录用户ID
         /// </summary>
 		[DataMember]
-        public virtual string User_ID
+        public virtual Int32 User_ID
         {
             get
             {

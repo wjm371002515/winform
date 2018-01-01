@@ -33,6 +33,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.Data.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\JCodes.Framework.libs\Newtonsoft.Json\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
@@ -46,9 +50,16 @@
     <Compile Include="BaseEntity\BaseEntity.cs" />
     <Compile Include="Common\CListItem.cs" />
     <Compile Include="Common\CommonResult.cs" />
+    <Compile Include="Common\EasyTreeData.cs" />
+    <Compile Include="Common\JsTreeData.cs" />
+    <Compile Include="Common\MenuData.cs" />
     <Compile Include="Common\NotifyContactInfo.cs" />
+    <Compile Include="Common\TreeData.cs" />
     <Compile Include="Contact\AddressGroupInfo.cs" />
     <Compile Include="Contact\AddressInfo.cs" />
+    <Compile Include="CRM\ContactGroupInfo.cs" />
+    <Compile Include="CRM\ContactInfo.cs" />
+    <Compile Include="CRM\CustomerInfo.cs" />
     <Compile Include="Dic\CityInfo.cs" />
     <Compile Include="Dic\DicKeyValueInfo.cs" />
     <Compile Include="Dic\DictDataInfo.cs" />
@@ -60,6 +71,9 @@
     <Compile Include="Pager.Entity\PagerInfo.cs" />
     <Compile Include="Proj\ErrornoInfo.cs" />
     <Compile Include="Proj\ConstantInfo.cs" />
+    <Compile Include="Proj\SysFunctionInfo.cs" />
+    <Compile Include="Proj\SysMenuInfo.cs" />
+    <Compile Include="Proj\StdFieldComboBox.cs" />
     <Compile Include="Proj\TableIndexsInfo.cs" />
     <Compile Include="Proj\TableFieldsInfo.cs" />
     <Compile Include="Proj\TablesInfo.cs" />
@@ -86,6 +100,7 @@
     <Compile Include="Security\SystemTypeInfo.cs" />
     <Compile Include="Security\UserInfo.cs" />
     <Compile Include="SmallTools\MEBInfo.cs" />
+    <Compile Include="SmallTools\MCaiwuInfo.cs" />
     <Compile Include="SmallTools\MIPOInfo.cs" />
     <Compile Include="SmallTools\MFileInfo.cs" />
     <Compile Include="WareHouseMis\EnumClass.cs" />
@@ -101,6 +116,14 @@
     <Compile Include="WareHouseMis\Client.cs" />
     <Compile Include="WareHouseMis\SupplierInfo.cs" />
     <Compile Include="WareHouseMis\WareHouseInfo.cs" />
+    <Compile Include="WebMis\AuthorizeKey.cs" />
+    <Compile Include="WebMis\BootstrapIconInfo.cs" />
+    <Compile Include="WebMis\IconInfo.cs" />
+    <Compile Include="WebMis\InformationInfo.cs" />
+    <Compile Include="WebMis\InformationStatusInfo.cs" />
+    <Compile Include="WebMis\MyDenyAccessException.cs" />
+    <Compile Include="WebMis\PictureAlbumInfo.cs" />
+    <Compile Include="WebMis\TestUserInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JCodes.Framework.Enum\JCodes.Framework.jCodesenum.csproj">

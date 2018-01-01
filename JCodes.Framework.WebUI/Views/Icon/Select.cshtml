@@ -1,0 +1,118 @@
+﻿@{
+    ViewBag.Title = "Select";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width" />
+    <title>选择系统图标</title>
+    @using System.Web.Optimization;
+    @Scripts.Render("~/bundles/jquery")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquerytools")
+    @Styles.Render("~/Content/jquerytools")
+
+    <!--常用的一些组件业务脚本函数,放置此处方便脚本提示-->
+    <script src="~/Scripts/ComponentUtil.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            var iconSize = '@Request.QueryString["iconSize"]';
+            if(iconSize != undefined && iconSize != "")
+            {
+                $("#IconSize").combobox('setValue', iconSize);
+            }
+        });
+
+        var winObject;
+        //初始化操作
+        function doInit(win) {
+            winObject = win;
+            var id = win.getData('id');
+            var value = win.getData('value');
+            //alert("ID" + id);
+        }
+
+        //页面确认操作
+        function doOK(win) {
+            var id = win.getData('id');
+            var value = win.getData('value');
+
+            $('a.easyui-linkbutton').each(function () {
+                var opts = $(this).linkbutton('options');
+                if (opts.selected) {
+                    id.attr('class', opts.iconCls);
+                    value.val(opts.iconCls);
+                }
+            });
+
+            win.close();
+        }
+
+        //选择某个图标
+        function SelectItem(my, iconCls) {
+            //如果选中，则取消选中
+            $('a.easyui-linkbutton').each(function () {
+                var opts = $(this).linkbutton('options');
+                if (opts.selected) {
+                    $(this).linkbutton('unselect');
+                }
+            });
+
+            //设置目标样式，并关闭弹出对话框
+            //my.linkbutton('select');
+            if (winObject) {
+                var id = winObject.getData('id');                
+                id.attr('class', iconCls);
+
+                var value = winObject.getData('value');
+                value.val(iconCls);
+                winObject.close();
+            }
+        }
+    </script>
+
+<style>
+    table.view {border:1px solid #A8CFEB;border-collapse: collapse;margin-bottom:5px;width:99%;height:99%}
+    .view th{ padding-left:10px;padding-right:5px;padding-top:5px;padding-bottom:5px;width: 100px;border: 1px solid silver;background-color:#F1F6FF;}
+    .view td{ padding-left:10px;padding-right:5px;padding-top:5px;padding-bottom:5px;width: 150px;border: 1px solid silver;background-color:#FAFCFF;}
+    </style>
+    </head>
+<body>
+    <div id="loading" style="display: none;"><img alt="数据正在加载中..." src="~/Content/images/loading02.gif" /></div>
+    <div id="tb" style="padding:5px;height:auto">
+        <div>
+            <fieldset>
+                <legend>功能操作</legend>
+                @using (Html.BeginForm("select", "Icon", new RouteValueDictionary { { "id", "" } }, FormMethod.Get))
+                {
+                    <span>尺寸：</span>
+                    <select class="easyui-combobox" id="IconSize" name="IconSize" style="width:100px">
+                        <option value="16">16×16</option>
+                        <option value="24">24×24</option>
+                        <option value="32">32×32</option>
+                    </select>
+                    <input type="submit" value="搜索(S)" accesskey="S" />
+                }
+            </fieldset>            
+        </div>
+        <div id="contents">
+            @using Webdiyer.WebControls.Mvc;
+            @model  PagedList<JCodes.Framework.Entity.IconInfo>
+            @foreach (var item in Model)
+            {
+                <a href="javascript:void(0)" class="easyui-linkbutton" onclick="SelectItem(this, '@item.IconCls')" id="@item.ID" 
+                   data-options="plain:true,iconCls:'@item.IconCls',size:'large',toggle:true"> </a>
+            }
+        </div>
+        <div>
+            <div style="float:left;width:50%">
+                共 @Model.TotalPageCount 页 @Model.TotalItemCount 条记录，当前为第 @Model.CurrentPageIndex 页
+            </div>
+            @Html.Pager(Model, new PagerOptions { PageIndexParameterName = "id" }, new { style = "float:right", id = "badoopager" })
+        </div>
+    </div>
+</body>
+</html>

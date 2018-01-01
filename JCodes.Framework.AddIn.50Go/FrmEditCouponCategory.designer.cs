@@ -37,6 +37,7 @@ namespace JCodes.Framework.AddIn._50Go
             this.lblName = new DevExpress.XtraLayout.LayoutControlItem();
             this.lblCompany = new DevExpress.XtraLayout.LayoutControlItem();
             this.lblEnabled = new DevExpress.XtraLayout.LayoutControlItem();
+            this.txtCompany = new JCodes.Framework.AddIn.Basic.BizControl.CompanyControl();
             ((System.ComponentModel.ISupportInitialize)(this.picPrint)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -78,6 +79,7 @@ namespace JCodes.Framework.AddIn._50Go
             this.layoutControl1.Controls.Add(this.txtHandNo);
             this.layoutControl1.Controls.Add(this.txtName);
             this.layoutControl1.Controls.Add(this.txtEnabled);
+            this.layoutControl1.Controls.Add(this.txtCompany);
             this.layoutControl1.Location = new System.Drawing.Point(12, 8);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(949, 308, 641, 749);
@@ -85,6 +87,16 @@ namespace JCodes.Framework.AddIn._50Go
             this.layoutControl1.Size = new System.Drawing.Size(490, 143);
             this.layoutControl1.TabIndex = 6;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // txtCompany
+            // 
+            this.txtCompany.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCompany.Location = new System.Drawing.Point(154, 44);
+            this.txtCompany.Name = "txtCompany";
+            this.txtCompany.Size = new System.Drawing.Size(154, 22);
+            this.txtCompany.TabIndex = 10;
+            this.txtCompany.Value = "-1";
             // 
             // txtHandNo
             // 

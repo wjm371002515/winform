@@ -25,7 +25,7 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
         /// <summary>
         /// 操作用户ID，当前登录用户
         /// </summary>
-        public string userId = "";
+        public Int32 userId = 0;
 
         /// <summary>
         /// 设置附件的存储目录分类
@@ -67,7 +67,7 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
         /// <param name="attachmentDir">设置附件的存储目录分类</param>
         /// <param name="owerId">附件组所属的记录ID，如属于某个主表记录的ID</param>
         /// <param name="userId">操作用户ID，当前登录用户</param>
-        public void Init(string attachmentDir, string owerId, string userId)
+        public void Init(string attachmentDir, string owerId, Int32 userId)
         {
             this.AttachmentDirectory = attachmentDir;
             this.OwerId = owerId;

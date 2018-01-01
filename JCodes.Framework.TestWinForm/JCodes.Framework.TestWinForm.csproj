@@ -70,6 +70,7 @@
       <HintPath>..\JCodes.Framework.libs\org.in2bits\org.in2bits.MyXls.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
@@ -207,6 +208,12 @@
     <Compile Include="Quanxian\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="SmallTools.Test\FrmWinRarZip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SmallTools.Test\FrmWinRarZip.designer.cs">
+      <DependentUpon>FrmWinRarZip.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Attachment.Test\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -267,7 +274,6 @@
     <EmbeddedResource Include="Page.Test\FrmEditCustomer.resx">
       <DependentUpon>FrmEditCustomer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -279,6 +285,9 @@
     </Compile>
     <EmbeddedResource Include="Quanxian\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SmallTools.Test\FrmWinRarZip.resx">
+      <DependentUpon>FrmWinRarZip.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="CommonUtil.Test\Templates\Advice.doc" />
     <None Include="CommonUtil.Test\Templates\Advice.xls" />

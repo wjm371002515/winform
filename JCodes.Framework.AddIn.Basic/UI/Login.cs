@@ -57,20 +57,21 @@ namespace JCodes.Framework.AddIn.Basic
                 string identity = BLLFactory<User>.Instance.VerifyUser(loginName, this.txtPassword.Text, Portal.gc.SystemType, ip, macAddr);
                 if (!string.IsNullOrEmpty(identity))
                 {
-                    if (BLLFactory<User>.Instance.UserIsAdmin(loginName))
-                    {
-                        UserInfo info = BLLFactory<User>.Instance.GetUserByName(loginName);                        
+                    // 20171109 wjm 不应该直接去判断这个Name的值，不合理 删除其逻辑判断
+                    //if (BLLFactory<User>.Instance.UserIsAdmin(loginName))
+                    //{
+                        UserInfo info = BLLFactory<User>.Instance.GetUserByName(loginName);
                         Portal.gc.UserInfo = info;                                  //赋值给全局变量“管理用户” 
                         bLogin = true;
                         this.DialogResult = DialogResult.OK;
-                    }
-                    else
-                    {
-                        LogHelper.WriteLog(LogLevel.LOG_LEVEL_ERR, "该用户没有管理员权限", typeof(Login));
-                        MessageDxUtil.ShowError("该用户没有管理员权限");
-                        txtUserName.Focus();
-                        return;
-                    }
+                    //}
+                    //else
+                    //{
+                    //    LogHelper.WriteLog(LogLevel.LOG_LEVEL_ERR, "该用户没有管理员权限", typeof(Login));
+                    //    MessageDxUtil.ShowError("该用户没有管理员权限");
+                    //    txtUserName.Focus();
+                    //    return;
+                    //}
                 }
                 else
                 {

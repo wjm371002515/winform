@@ -120,7 +120,6 @@ namespace WHC.OrderWater.UI
 
             if (!string.IsNullOrEmpty(ID))
             {
-                this.Text = "编辑 " + this.Text;
                 //CustomerInfo info = BLLFactory<Customer>.Instance.FindByID(ID);
                 //if (info != null)
                 //{
@@ -147,7 +146,6 @@ namespace WHC.OrderWater.UI
             }
             else
             {
-                this.Text = "新建 " + this.Text;
                 lblCreateDate.Text = DateTimeHelper.GetServerDateTime2().ToString();
                 //根据分店代码和客户信息生成客户代码
                 this.txtNumber.Text = "";//BLLFactory<Customer>.Instance.GenerateCustomerNumber(Portal.gc.LoginInfo.Shop_ID);

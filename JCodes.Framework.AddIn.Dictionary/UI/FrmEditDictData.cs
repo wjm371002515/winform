@@ -89,7 +89,6 @@ namespace JCodes.Framework.AddIn.Dictionary
         {
             if (!string.IsNullOrEmpty(ID))
             {
-                this.Text = "编辑 " + this.Text;
                 DictDataInfo info = BLLFactory<DictData>.Instance.FindByID(ID);
                 if (info != null)
                 {
@@ -105,10 +104,6 @@ namespace JCodes.Framework.AddIn.Dictionary
                     this.txtValue.Text = info.Value.ToString();
                 }
             }
-            else
-            {
-                this.Text = "新建 " + this.Text;
-            }
 
             this.txtName.Focus();
         }
@@ -123,7 +118,7 @@ namespace JCodes.Framework.AddIn.Dictionary
             info.Editor = LoginUserInfo.ID.ToString();
             info.LastUpdated = DateTimeHelper.GetServerDateTime2();
 
-            info.CurrentLoginUserId = LoginUserInfo.ID.ToString();
+            info.CurrentLoginUserId = LoginUserInfo.ID;
         }
 
         public override void ClearScreen()

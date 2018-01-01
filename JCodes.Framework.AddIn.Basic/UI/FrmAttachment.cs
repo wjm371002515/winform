@@ -16,7 +16,7 @@ namespace JCodes.Framework.AddIn.Basic
         /// <summary>
         /// 用户ID
         /// </summary>
-        public string UserId = "";
+        public Int32 UserId = 0;
 
         public FrmAttachment()
         {

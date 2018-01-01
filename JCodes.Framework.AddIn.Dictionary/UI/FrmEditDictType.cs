@@ -101,7 +101,6 @@ namespace JCodes.Framework.AddIn.Dictionary
 
             if (!string.IsNullOrEmpty(ID))
             {
-                this.Text = "编辑 " + this.Text;
                 DictTypeInfo info = BLLFactory<DictType>.Instance.FindByID(ID);
                 if (info != null)
                 {
@@ -116,10 +115,6 @@ namespace JCodes.Framework.AddIn.Dictionary
                         this.chkTopItem.Checked = true;
                     }
                 }
-            }
-            else
-            {
-                this.Text = "新建 " + this.Text;
             }
             this.txtName.Focus();
         }
@@ -203,7 +198,7 @@ namespace JCodes.Framework.AddIn.Dictionary
                 info.PID = -1;
             }
 
-            info.CurrentLoginUserId = LoginUserInfo.ID.ToString();
+            info.CurrentLoginUserId = LoginUserInfo.ID;
         }
 
         private void chkTopItem_CheckedChanged(object sender, EventArgs e)

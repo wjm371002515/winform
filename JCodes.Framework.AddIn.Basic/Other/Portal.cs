@@ -70,17 +70,17 @@ namespace JCodes.Framework.AddIn.Basic
         /// <summary>
         /// 看用户是否具有某个功能
         /// </summary>
-        /// <param name="controlID"></param>
+        /// <param name="functionId"></param>
         /// <returns></returns>
-        public bool HasFunction(string controlID)
+        public bool HasFunction(string functionId)
         {
             bool result = false;
             var cacheDict = Cache.Instance["FunctionDict"] as Dictionary<string, string>;
-            if (string.IsNullOrEmpty(controlID))
+            if (string.IsNullOrEmpty(functionId))
             {
                 result = true;
             }
-            else if (cacheDict != null && cacheDict.ContainsKey(controlID))
+            else if (cacheDict != null && cacheDict.ContainsKey(functionId))
             {
                 result = true;
             }

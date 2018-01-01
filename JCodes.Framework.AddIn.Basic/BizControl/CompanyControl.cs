@@ -47,28 +47,21 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
         /// </summary>
         public void Init()
         {
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "1", typeof(CompanyControl));
             DataTable dt = DataTableHelper.CreateTable("ImageIndex|int,ID,PID,Name");
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "2", typeof(CompanyControl));
             List<OUInfo> list = new List<OUInfo>();
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "3", typeof(CompanyControl));
             if(Portal.gc.UserInRole(RoleInfo.SuperAdminName))
             {
-                LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "4", typeof(CompanyControl));
                 list = BLLFactory<OU>.Instance.GetGroupCompany();
-                LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "5", typeof(CompanyControl));
             }
             else
             {
                 try
                 {
-                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "6", typeof(CompanyControl));
                     OUInfo myCompanyInfo = BLLFactory<OU>.Instance.FindByID(Portal.gc.UserInfo.Company_ID);
                     if (myCompanyInfo != null)
                     {
                         list.Add(myCompanyInfo);
                     }
-                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "7", typeof(CompanyControl));
                 }
                 catch (Exception ex)
                 {
@@ -76,9 +69,7 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
                 }
             }
 
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "8", typeof(CompanyControl));
             DataRow dr = null;
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "9", typeof(CompanyControl));
             foreach (OUInfo info in list)
             {
                 dr = dt.NewRow();
@@ -88,32 +79,17 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
                 dr["Name"] = info.Name;
                 dt.Rows.Add(dr);
             }
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "10", typeof(CompanyControl));
-
-            ////增加一行空的
-            //dr = dt.NewRow();
-            //dr["ID"] = "0";
-            //dr["PID"] = "-1";
-            //dr["Name"] = "无";
-            //dt.Rows.InsertAt(dr, 0);
 
             //设置图形序号
 
             this.treeListLookUpEdit1TreeList.SelectImageList = this.imageList2;
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "11", typeof(CompanyControl));
             this.treeListLookUpEdit1TreeList.StateImageList = this.imageList2;
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "12", typeof(CompanyControl));
 
             this.txtCompany.Properties.TreeList.KeyFieldName = "ID";
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "13", typeof(CompanyControl));
             this.txtCompany.Properties.TreeList.ParentFieldName = "PID";
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "14", typeof(CompanyControl));
             this.txtCompany.Properties.DataSource = dt;
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "15", typeof(CompanyControl));
             this.txtCompany.Properties.ValueMember = "ID";
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "16", typeof(CompanyControl));
             this.txtCompany.Properties.DisplayMember = "Name";
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "17", typeof(CompanyControl));
         }
 
         /// <summary>

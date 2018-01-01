@@ -70,7 +70,7 @@
             this.MyAttachment.ShowUpload = true;
             this.MyAttachment.Size = new System.Drawing.Size(907, 606);
             this.MyAttachment.TabIndex = 0;
-            this.MyAttachment.UserId = "";
+            this.MyAttachment.UserId = 0;
             this.MyAttachment.Load += new System.EventHandler(this.MyAttachment_Load);
             // 
             // xtraTabPage2
@@ -92,7 +92,7 @@
             this.bizAttachment.ShowUpload = false;
             this.bizAttachment.Size = new System.Drawing.Size(907, 606);
             this.bizAttachment.TabIndex = 0;
-            this.bizAttachment.UserId = "";
+            this.bizAttachment.UserId = 0;
             // 
             // FrmAttachment
             // 

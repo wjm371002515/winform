@@ -173,7 +173,7 @@ namespace JCodes.Framework.AddIn.Security
                     //int id = Convert.ToInt32(node.Name);
                     try
                     {
-                        BLLFactory<Functions>.Instance.DeleteByUser(node.Name, LoginUserInfo.ID.ToString());
+                        BLLFactory<Functions>.Instance.DeleteByUser(node.Name, LoginUserInfo.ID);
                         RefreshTreeView();
                     }
                     catch (Exception ex)
@@ -200,7 +200,7 @@ namespace JCodes.Framework.AddIn.Security
                 {
                     try
                     {
-                        BLLFactory<Functions>.Instance.DeleteWithSubNode(node.Name, Portal.gc.UserInfo.ID.ToString());
+                        BLLFactory<Functions>.Instance.DeleteWithSubNode(node.Name, Portal.gc.UserInfo.ID);
                         RefreshTreeView();
                     }
                     catch (Exception ex)
@@ -253,8 +253,8 @@ namespace JCodes.Framework.AddIn.Security
                 if (info != null)
                 {
                     this.txtName.Text = info.Name;
-                    this.txtFunctionID.Text = info.ControlID;
-                    this.txtSortCode.Text = info.SortCode;
+                    this.txtFunctionID.Text = info.FunctionId;
+                    this.txtSeq.Text = info.Seq;
 
                     FunctionInfo info2 = BLLFactory<Functions>.Instance.FindByID(info.PID);
                     if (info2 != null)
@@ -276,9 +276,9 @@ namespace JCodes.Framework.AddIn.Security
         {
             info.Name = this.txtName.Text;
             info.PID = this.functionControl1.Value;
-            info.ControlID = this.txtFunctionID.Text;
-            info.SortCode = this.txtSortCode.Text;
-            info.CurrentLoginUserId = Portal.gc.UserInfo.ID.ToString();
+            info.FunctionId = this.txtFunctionID.Text;
+            info.Seq = this.txtSeq.Text;
+            info.CurrentLoginUserId = Portal.gc.UserInfo.ID;
             return info;
         }
 
@@ -354,8 +354,8 @@ namespace JCodes.Framework.AddIn.Security
                 FunctionInfo functionInfo = BLLFactory<Functions>.Instance.FindByID(pid);
 
                 if (functionInfo != null)
-                {                    
-                    string filter = string.Format("ControlID='{0}' and SystemType_ID='{1}'", this.txtFunctionID.Text, functionInfo.SystemType_ID);
+                {
+                    string filter = string.Format("FunctionId='{0}' and SystemType_ID='{1}'", this.txtFunctionID.Text, functionInfo.SystemType_ID);
                     bool isExist = BLLFactory<Functions>.Instance.IsExistRecord(filter);
                     if (isExist)
                     {
@@ -370,10 +370,10 @@ namespace JCodes.Framework.AddIn.Security
                     functionInfo = new FunctionInfo();
                     functionInfo.PID = "-1";
                     functionInfo.SystemType_ID = this.txtSystemType.GetComboBoxStrValue();
-                    functionInfo.ControlID = this.txtFunctionID.Text;
-                    functionInfo.SortCode = this.txtSortCode.Text;
+                    functionInfo.FunctionId = this.txtFunctionID.Text;
+                    functionInfo.Seq = this.txtSeq.Text;
 
-                    string filter = string.Format("ControlID='{0}' and SystemType_ID='{1}'", this.txtFunctionID.Text, functionInfo.SystemType_ID);
+                    string filter = string.Format("FunctionId='{0}' and SystemType_ID='{1}'", this.txtFunctionID.Text, functionInfo.SystemType_ID);
                     bool isExist = BLLFactory<Functions>.Instance.IsExistRecord(filter);
                     if (isExist)
                     {

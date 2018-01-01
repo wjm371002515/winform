@@ -23,7 +23,7 @@ namespace JCodes.Framework.Common.Framework
     /// <param name="operationType">操作类型：增加、修改、删除</param>
     /// <param name="note">操作的详细记录信息</param>
     /// <returns></returns>
-    public delegate bool OperationLogEventHandler(string userId, string tableName, string operationType, string note, DbTransaction trans = null); 
+    public delegate bool OperationLogEventHandler(Int32 userId, string tableName, string operationType, string note, DbTransaction trans = null); 
 
 	/// <summary>
 	/// 数据访问层的超级基类，所有数据库的数据访问基类都继承自这个超级基类，包括Oracle、SqlServer、Sqlite、MySql、Access等
@@ -1715,7 +1715,7 @@ namespace JCodes.Framework.Common.Framework
         /// <param name="userId">用户ID</param>
         /// <param name="trans">事务对象</param>
         /// <returns>执行成功返回<c>true</c>，否则为<c>false</c>。</returns>
-        public virtual bool DeleteByUser(object key, string userId, DbTransaction trans = null)
+        public virtual bool DeleteByUser(object key, Int32 userId, DbTransaction trans = null)
         {
             OperationLogOfDelete(key, userId, trans); //根据设置记录操作日志
 
@@ -1796,7 +1796,7 @@ namespace JCodes.Framework.Common.Framework
             if (OnOperationLog != null)
             {
                 string operationType = "增加";
-                string userId = obj.CurrentLoginUserId;
+                Int32 userId = obj.CurrentLoginUserId;
 
                 Hashtable recordField = GetHashByEntity(obj);
                 Dictionary<string, string> dictColumnNameAlias = GetColumnNameAlias();
@@ -1832,7 +1832,7 @@ namespace JCodes.Framework.Common.Framework
             if (OnOperationLog != null)
             {
                 string operationType = "修改";
-                string userId = obj.CurrentLoginUserId;
+                Int32 userId = obj.CurrentLoginUserId;
 
                 Hashtable recordField = GetHashByEntity(obj);
                 Dictionary<string, string> dictColumnNameAlias = GetColumnNameAlias();
@@ -1876,7 +1876,7 @@ namespace JCodes.Framework.Common.Framework
         /// <param name="id">记录ID</param>
         /// <param name="userId">用户ID</param>
         /// <param name="trans">事务对象</param>
-        protected virtual void OperationLogOfDelete(object id, string userId, DbTransaction trans = null)
+        protected virtual void OperationLogOfDelete(object id, Int32 userId, DbTransaction trans = null)
         {
             if (OnOperationLog != null)
             {

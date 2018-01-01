@@ -170,7 +170,7 @@ namespace JCodes.Framework.BLL
         /// </summary>
         /// <param name="userId">用户ID</param>
         /// <returns></returns>
-        public List<FileUploadInfo> GetAllByUser(string userId)
+        public List<FileUploadInfo> GetAllByUser(Int32 userId)
         {
             IFileUploads dal = baseDal as IFileUploads;
             return dal.GetAllByUser(userId);
@@ -183,7 +183,7 @@ namespace JCodes.Framework.BLL
         /// <param name="category">附件分类：个人附件，业务附件</param>
         /// <param name="pagerInfo">分页信息</param>
         /// <returns></returns>
-        public List<FileUploadInfo> GetAllByUser(string userId, string category, PagerInfo pagerInfo)
+        public List<FileUploadInfo> GetAllByUser(Int32 userId, string category, PagerInfo pagerInfo)
         {
             IFileUploads dal = baseDal as IFileUploads;
             return dal.GetAllByUser(userId, category, pagerInfo);
@@ -428,7 +428,7 @@ namespace JCodes.Framework.BLL
         /// </summary>
         /// <param name="key">记录ID</param>
         /// <returns></returns>
-        public override bool DeleteByUser(object key, string userId, DbTransaction trans = null)
+        public override bool DeleteByUser(object key, Int32 userId, DbTransaction trans = null)
         {
             //删除记录前，需要把文件移动到删除目录下面
             FileUploadInfo info = FindByID(key, trans);
@@ -468,7 +468,7 @@ namespace JCodes.Framework.BLL
         /// </summary>
         /// <param name="owerID">所属者的ID</param>
         /// <returns></returns>
-        public bool DeleteByOwerID(string owerID, string userId)
+        public bool DeleteByOwerID(string owerID, Int32 userId)
         {
             string condition = string.Format("Owner_ID ='{0}' ", owerID);
             List<FileUploadInfo> list = base.Find(condition);
@@ -484,7 +484,7 @@ namespace JCodes.Framework.BLL
         /// </summary>
         /// <param name="attachment_GUID">所属者的ID</param>
         /// <returns></returns>
-        public bool DeleteByAttachGUID(string attachment_GUID, string userId)
+        public bool DeleteByAttachGUID(string attachment_GUID, Int32 userId)
         {
             string condition = string.Format("AttachmentGUID ='{0}' ", attachment_GUID);
             List<FileUploadInfo> list = base.Find(condition);

@@ -1,0 +1,762 @@
+﻿@{
+    ViewBag.Title = "菜单信息";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*脚本引用放在此处可以实现自定义函数自动提示*@
+<script src="~/Scripts/CommonUtil.js"></script>
+
+<div class="portlet box green-meadow col-md-2">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-filter"></i>菜单列表
+        </div>
+    </div>
+
+    <div class="portlet-body flip-scroll">
+        <div class="row">
+            <div id="jstree_div"></div>
+        </div>
+    </div>
+</div>
+
+<div class="portlet box col-md-10">
+    <div class="portlet-body flip-scroll" style="width:99%">
+        <!-- BEGIN 数据查询-->
+        <div class="portlet box green-meadow">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-filter"></i>查询内容
+                </div>
+                <div class="tools">
+                    <button type="button" class="btn btn-circle btn-sm green" onclick="Refresh()">
+                        <i class="fa fa-search"></i>
+                        查 询
+                    </button>
+                    <button type="button" class="btn btn-circle btn-sm green" onclick="ShowExport()">
+                        <i class="fa fa-file-excel-o"></i>
+                        导 出
+                    </button>
+                    <a href="javascript:;" class="collapse" title="折叠内容"></a>
+                </div>
+            </div>
+
+            <div class="portlet-body flip-scroll">
+                <div class="row">
+                    <form class="form-horizontal" id="ffSearch">
+                        <div class="col-md-3 col-sm-3 col-xs-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">显示名称</label>
+                                <div class="col-md-8">
+                                    <input name="WHC_Name" type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">功能ID</label>
+                                <div class="col-md-8">
+                                    <input name="WHC_FunctionId" type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Web连接地址</label>
+                                <div class="col-md-8">
+                                    <input name="WHC_Url" type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Web菜单图标</label>
+                                <div class="col-md-8">
+                                    <input name="WHC_WebIcon" type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- END 数据查询-->
+        <!-- BEGIN 表格数据-->
+        <div class="portlet box green-meadow">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-cogs"></i>数据列表
+                </div>
+                <div class="tools">
+                    <button type="button" onclick="Add()" class="btn btn-circle btn-sm green-meadow">
+                        <i class="fa fa-plus"></i> 新增
+                    </button>
+                    <button type="button" onclick="EditView()" class="btn btn-circle btn-sm green-meadow">
+                        <i class="fa fa-pencil"></i> 修改
+                    </button>
+                    <button type="button" onclick="EditView('view')" class="btn btn-circle btn-sm green-meadow">
+                        <i class="fa fa-table"></i> 查看
+                    </button>
+                    <button type="button" onclick="Delete()" class="btn btn-circle btn-sm green-meadow">
+                        <i class="fa fa-minus"></i> 删除
+                    </button>
+                    <button type="button" onclick="Refresh()" class="btn btn-circle btn-sm green-meadow" data-toggle="modal">
+                        <i class="fa fa-refresh"></i> 刷新
+                    </button>
+                    <button type="button" class="fullscreen btn btn-circle btn-sm green-meadow" data-original-title="全屏">
+                        <i class="icon-size-fullscreen"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="portlet-body flip-scroll">
+                <div class="portlet-body">
+                    <div>
+                        <span>每页显示</span>
+                        <select id="rows" onchange="ChangeRows()">
+                            <option>10</option>
+                            <option>50</option>
+                            <option>100</option>
+                            <option>1000</option>
+                        </select>
+                        <span>条记录</span>&nbsp;&nbsp;
+                        <span>共有记录：</span><span id='totalCount' class="label label-success">0</span>条，总页数：<span id='totalPageCount' class="label label-success">0</span>页。
+                    </div>
+                    <hr />
+                    <table id="grid" class="table table-striped table-bordered table-hover" cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
+                        <thead id="grid_head">
+                            <tr>
+                                <th class="table-checkbox" style="width:40px"><input class="group-checkable" type="checkbox" onclick="selectAll(this)"></th>
+                                <th>显示名称</th>
+                                <th>排序</th>
+                                <th>功能ID</th>
+                                <th>菜单可见</th>
+                                <th>Web连接地址</th>
+                                <th>Web菜单图标</th>
+                                <th>系统编号</th>
+                                <th style="width:90px">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="grid_body"></tbody>
+                    </table>
+                    <div class="paging-toolbar">
+                        <ul id='grid_paging'></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--------------------------添加/修改信息的弹出层---------------------------->
+<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">
+                    <i class="icon-pencil"></i>
+                    <span id="lblAddTitle" style="font-weight:bold">添加信息</span>
+                </h4>
+            </div>
+            <form class="form-horizontal form-bordered form-row-stripped" id="ffAdd" action="">
+                <div class="modal-body">
+                    <div class="row">
+                        <!--父菜单,系统编号,显示名称,排序,功能ID,菜单可见,Web链接地址,Web图标（单击右侧设置图标）-->
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">父菜单<span class="required">*</span></label>
+                                <div class="input-icon col-md-8">
+                                    <i class="fa fa-file-text-o"></i>
+                                    <select id="PID" name="PID" class="form-control select2" required></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">系统编号<span class="required">*</span></label>
+                                <div class="input-icon col-md-8">
+                                    <i class="fa fa-file-text-o"></i>
+                                    <select id="SystemType_ID" name="SystemType_ID" class="form-control select2" placeholder="系统编号..." required></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">显示名称<span class="required">*</span></label>
+                                <div class="input-icon col-md-8">
+                                    <i class="fa fa-file-text-o"></i>
+                                    <input id="Name" name="Name" type="text" class="form-control" placeholder="显示名称..." required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">菜单是否可见</label>
+                                <div class="input-icon col-md-8">
+                                    <label>
+                                        <input type="hidden" id="hVisible" name="Visible" />
+                                        <input id="Visible" type="checkbox" class="icheck" data-checkbox="icheckbox_square-red" />不可见
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">排序</label>
+                                <div class="input-icon col-md-8">
+                                    <input id="Seq" name="Seq" type="text" class="form-control" placeholder="排序...">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">功能ID</label>
+                                <div class="input-icon col-md-8">
+                                    <input id="FunctionId" name="FunctionId" type="text" class="form-control" placeholder="功能ID...">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Web链接地址</label>
+                                <div class="input-icon col-md-8">
+                                    <input id="Url" name="Url" type="text" class="form-control" placeholder="Web链接地址...">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Web图标</label>
+                                <div class="input-icon col-md-8">
+                                    <input id="WebIcon" name="WebIcon" type="hidden" value="icon-screen-tablet" />
+                                    <span id="i_WebIcon" aria-hidden="true" class="icon-screen-tablet" style="font-size: 2.0em"></span>
+                                    <a href="javascript:;" class="btn btn-circle success" onclick="SelectIcon()">选择图标</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" id="ID" name="ID" />
+                    <button type="submit" class="btn blue">确定</button>
+                    <button type="button" class="btn green" data-dismiss="modal">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="view" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">
+                    <i class="icon-book-open"></i>
+                    <b>查看信息</b>
+                </h4>
+            </div>
+            <form class="form-horizontal form-bordered form-row-stripped" id="ffView" action="">
+                <input name="ID2" type="hidden" value="">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">系统编号</label>
+                                <div class="col-md-8">
+                                    <label id="SystemType_ID2" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">显示名称</label>
+                                <div class="col-md-8">
+                                    <label id="Name2" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">排序</label>
+                                <div class="col-md-8">
+                                    <label id="Seq2" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">功能</label>
+                                <div class="col-md-8">
+                                    <label id="FunctionId2" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">菜单可见</label>
+                                <div class="col-md-8">
+                                    <label id="Visible2" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Web链接地址</label>
+                                <div class="col-md-8">
+                                    <label id="Url2" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Web图标</label>
+                                <div class="col-md-8">
+                                    <label id="WebIcon2" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn green" data-dismiss="modal">关闭</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bs-modal-lg" id="icon" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">
+                    <i class="icon-book-open"></i>
+                    <b>查看图标信息</b>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="clearfix">
+                    <div class="btn-group btn-group-circle" data-toggle="buttons" id="btnIconType">
+                        <label class="btn green active" onclick="RefreshIcon()">
+                            <input type="radio" class="toggle" value="SimpleLine"> SimpleLine
+                        </label>
+                        <label class="btn green" onclick="RefreshIcon()">
+                            <input type="radio" class="toggle" value="FontAwesome"> FontAwesome
+                        </label>
+                        <label class="btn green" onclick="RefreshIcon()">
+                            <input type="radio" class="toggle" value="Glyphicons"> Glyphicons
+                        </label>
+                    </div>
+                </div>
+                <div class="portlet-body" id="icon_body">
+                </div>
+                <div class="paging-toolbar">
+                    <ul id='icon_paging'></ul>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn green" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section footerScript{
+    <script type="text/javascript">
+        var currentPage = 1, rows = 10; //分页参数：当前页，记录数
+        var gCondition = "";
+
+        var isAddOrEdit = 'add';//标识是新增还是编辑对话框弹出，用于删除附件的操作
+        var url;//新增或者更新的连接
+        var ID;//ID值，新增为空，编辑或者查看为具体ID
+
+        //页面初始化
+        $(function () {
+            initJsTree(); //初始化树
+
+            BindEvent();        //绑定事件处理
+            Search(currentPage);//初始化第一页数据
+            InitDictItem();     //初始化字典信息
+        });
+
+        //绑定左侧树形列表
+        function initJsTree() {
+            bindJsTree("jstree_div", "/Menu/GetMenuJsTreeJson");
+
+            //树控件的变化事件处理
+            $('#jstree_div').on("changed.jstree", function (e, data) {
+                var icon = data.node.icon;
+                if (icon != true && icon.indexOf("fa fa-home") >= 0) {
+                    loadDataWithSystemType(data.selected)
+                } else {
+                    loadData(data.selected);
+                }
+            });
+        }
+
+        function refreshTree(loaded) {
+            bindJsTree("jstree_div", "/Menu/GetMenuJsTreeJson", loaded);
+        }
+
+        //加载指定的对象数据
+        var clickId = "";
+        var systemtype = "";
+        function loadData(id) {
+            var condition = "WHC_PID=" + id;
+            SearchCondition(currentPage, condition);
+
+            clickId = id;
+        }
+        function loadDataWithSystemType(systemTypeId) {
+            var condition = "WHC_SystemType_ID=" + systemTypeId + "&WHC_PID=-1";
+            SearchCondition(currentPage, condition);
+
+            systemtype = systemTypeId;//顶级设置为-1
+        }
+
+        //根据条件查询并绑定结果
+        function Search(page) {
+            var condition = $("#ffSearch").serialize();
+            SearchCondition(page, condition);
+        }
+        function SearchCondition(page, condition) {
+            gCondition = condition;
+            url = "/Menu/FindWithPager?page=" + page + "&rows=" + rows;
+            $.getJSON(url + "&" + condition, function (data) {
+
+                $("#totalCount").text(data.total);
+                $("#totalPageCount").text(Math.ceil(data.total / rows));
+
+                $("#grid_body").html("");
+
+                $.each(data.rows, function (i, item) {
+                    //显示名称,图标,排序,功能ID,菜单可见,Web连接地址,Web菜单图标,系统编号,
+                    var tr = "<tr>";
+                    tr += "<td><input class='checkboxes' type=\"checkbox\" name=\"checkbox\" value=" + item.ID + "></td>";
+                    tr += "<td>" + item.Name + "</td>";
+                    tr += "<td>" + item.Seq + "</td>";
+                    tr += "<td>" + item.FunctionId + "</td>";
+
+                    if (item.Visible) {
+                        //tr += "<td>" + item.Visible + "</td>";
+                        tr += "<td><span class='label label-success'>可见</span></td>";
+                    } else {
+                        tr += "<td><span class='label label-danger'>不可见</span></td>";
+                    }
+                    tr += "<td>" + item.Url + "</td>";
+                    tr += "<td>" + item.WebIcon + "</td>";
+                    tr += "<td>" + item.SystemType_ID + "</td>";
+
+                    tr += getActionHtml(item.ID);
+
+                    tr += "</tr>";
+                    $("#grid_body").append(tr);
+                });
+
+                var element = $('#grid_paging');
+                if(data.total > 0) {
+                    var options = {
+                        bootstrapMajorVersion: 3,
+                        currentPage: page,
+                        numberOfPages: rows,
+                        totalPages: Math.ceil(data.total / rows),
+                        onPageChanged: function (event, oldPage, newPage) {
+                            SearchCondition(newPage, condition);  //页面变化时触发内容更新
+                        }
+                    }
+                    element.bootstrapPaginator(options);
+                } else {
+                    element.html("");
+                }
+            });
+        }
+
+        //设置一页显示多少条
+        function ChangeRows() {
+            rows = $("#rows").val();
+            Refresh();
+        }
+
+        //刷新列表
+        function Refresh() {
+            Search(currentPage, gCondition);
+        }
+
+        //初始化字典信息（下拉列表）
+        function InitDictItem() {
+            //BindDictItem("Titles", "职称");
+            //BindDictItem("Rank", "职务");
+
+            BindSelect("PID", "/Menu/GetDictJson");
+            BindSelect("SystemType_ID", "/SystemType/GetDictJson");
+        }
+
+        //实现删除数据的方法
+        function Delete() {
+            var ids = "";//得到用户选择的数据的ID
+            $("[name='checkbox']").each(function () {
+                if ($(this).is(':checked'))
+                    ids += $(this).val() + ",";
+            });
+            DeleteByIds(ids);
+        }
+
+        //删除指定的记录
+        function DeleteByIds(ids) {
+            if (ids != "") {
+                showDelete(function () {
+                    //最后去掉最后的逗号,
+                    ids = ids.replace(/,\s*$/, '');
+
+                    //然后发送异步请求的信息到后台删除数据
+                    var postData = { ids: ids };
+                    $.post("/Menu/DeletebyIds", postData, function (json) {
+                        var data = $.parseJSON(json);
+                        if (data.Success) {
+                            showTips("删除选定的记录成功");
+                            refreshTree(loadData(clickId));
+                        }
+                        else {
+                            showTips(data.ErrorMessage);
+                        }
+                    });
+                });
+            } else {
+                showTips("请选择你要删除的数据");
+            }
+        }
+
+        //弹出新增对话框
+        function Add() {
+            isAddOrEdit = 'add';//新增对话框标识
+            //CKEDITOR.instances.Content.setData('');  //清空编辑器的数据
+            $("#ffAdd")[0].reset();//清空上次输入
+
+            url = '/Menu/Insert';
+            $.get("/Menu/NewGuid?r=" + Math.random(), function (result) {
+                $("#ID").val(result);
+                ID = result;
+            });
+
+            //清空icheckbox的值
+            $("#Visible").iCheck('uncheck');
+            //清空Select2控件的值
+            $("#PID").select2("val", clickId);
+            $("#SystemType_ID").select2("val", systemtype);
+
+            $("#lblAddTitle").text("添加信息");
+            $("#add").modal("show");
+        }
+
+        //修改或查看明细信息（绑定显示数据）
+        function EditView(view) {
+            ID = "";//重置ID的值
+            $("[name='checkbox']").each(function () {
+                if ($(this).is(':checked')) {
+                    ID = $(this).val();//首先取出来用户选择的数据的ID
+                }
+            });
+            EditViewById(ID, view);
+        }
+
+        //编辑或者查看指定记录
+        function EditViewById(ID, view) {
+            if (ID == "") {
+                showTips("请选择一条记录");
+                return;
+            }
+
+            if (view == null) {
+                //处理修改的信息
+                $("#lblAddTitle").text("修改信息");
+                $("#add").modal("show");
+                url = '/Menu/Update?ID=' + ID;
+                //绑定修改详细信息的方法
+                BindEditInfo(ID);
+            }
+            else {
+                //处理查看详细
+                $("#view").modal("show");
+                //绑定查看详细信息方法
+                BindViewInfo(ID);
+            }
+        }
+
+        //绑定编辑详细信息的方法
+        function BindEditInfo(ID) {
+            //使用同步方式，使得联动的控件正常显示
+            $.ajaxSettings.async = false;
+
+            //首先用户发送一个异步请求去后台实现方法
+            $.getJSON("/Menu/FindByID?r=" + Math.random() + "&id=" + ID, function (info) {
+                $("#ID").val(info.ID);
+                $("#Name").val(info.Name);
+                $("#Url").val(info.Url);
+
+                $("#PID").select2("val", info.PID);
+                $("#SystemType_ID").select2("val", info.SystemType_ID);
+
+                $("#Seq").val(info.Seq);
+                $("#FunctionId").val(info.FunctionId);
+                if (info.Visible) {
+                    $("#Visible").iCheck('uncheck');
+                } else {
+                    $("#Visible").iCheck('check');
+                }
+                //设置隐藏域的值
+                $("#hVisible").val(info.Visible);
+
+                //设置图标样式
+                SetIconClass(info.WebIcon);
+
+                isAddOrEdit = 'edit';//新增对话框标识
+            });
+        }
+
+        //绑定查看详细信息的方法
+        function BindViewInfo(ID) {
+            //发送请求
+            $.getJSON("/Menu/FindByID?r=" + Math.random() + "&id=" + ID, function (info) {
+                $("#ID2").text(info.ID);
+                $("#Name2").text(info.Name);
+                $("#SystemType_ID2").text(info.SystemType_ID);
+                $("#Seq2").text(info.Seq);
+                $("#FunctionId2").text(info.FunctionId);
+                $("#Visible2").text(info.Visible);
+                $("#Url2").text(info.Url);
+                $("#SystemType_ID2").text(info.SystemType_ID);
+                $("#WebIcon2").text(info.WebIcon);
+            });
+        }
+
+        //显示导入界面
+        function ShowImport() {
+            $.showWindow({
+                title: '菜单信息-Excel数据导入',
+                useiframe: true,
+                width: 1024,
+                height: 700,
+                content: 'url:/Menu/Import',
+                buttons: [{
+                    text: '取消',
+                    iconCls: 'icon-cancel',
+                    handler: function (win) {
+                        win.close();
+                    }
+                }],
+                onLoad: function (win, content) {
+                    //window打开时调用，初始化form内容
+                    if (content) {
+                        //content.doInit(win);
+                    }
+                }
+            });
+        }
+
+        //导出Excel数据
+        function ShowExport() {
+            var url = "/Menu/Export";
+            var condition = $("#ffSearch").serialize();//获取条件
+
+            executeExport(url, condition);//执行导出
+        }
+
+        //绑定相关事件
+        function BindEvent() {
+            //代码触发对添加界面控件的验证
+            $("#add").validate();
+
+            //对iCheck控件的切换处理，修改隐藏值
+            $('#Visible').on('ifToggled', function (event) {
+                $("#hVisible").val($(this).is(':unchecked'));
+            });
+
+            //判断表单的信息是否通过验证
+            $("#ffAdd").validate({
+                meta: "validate",
+                submitHandler: function (form) {
+                    $("#add").modal("hide");
+
+                    //构造参数发送给后台
+                    var postData = $("#ffAdd").serializeArray();
+                    $.post(url, postData, function (json) {
+                        var data = $.parseJSON(json);
+                        if (data.Success) {
+                            //保存成功  1.关闭弹出层，2.刷新表格数据
+                            showTips("保存成功");
+                            //initJsTree();//刷新菜单树
+                            refreshTree(loadData(clickId));
+                        }
+                        else {
+                            showError("保存失败:" + data.ErrorMessage, 3000);
+                        }
+                    }).error(function () {
+                        showTips("您未被授权使用该功能，请联系管理员进行处理。");
+                    });
+                }
+            });
+        }
+
+
+        //图标查询
+        var iconCurrentPage = 1;
+        function IconSearch(page) {
+            var activeSourceType = $("#btnIconType").find("label.active").find("input").prop('value');
+            var condition = "WHC_SourceType=" + activeSourceType;//SimpleLine,FontAwesome,Glyphicons
+            IconSearchCondition(page, condition);
+        }
+
+        function IconSearchCondition(page, condition) {
+            var iconrows = 50;
+            var iconUrl = "../BootstrapIcon/FindWithPager?page=" + page + "&rows=" + iconrows;
+
+            $.getJSON(iconUrl + "&" + condition, function (data) {
+                $("#icon_body").html("");
+                $.each(data.rows, function (i, item) {
+                    var tr = "<a href=\"javascript:;\" onclick=\"GetIcon('" + item.ClassName + "')\" class=\"icon-btn\" title=\"" + item.DisplayName + "\">";
+                    tr += "    <i class=\"" + item.ClassName + " \" style=\"font-size: 2.2em\"></i>";//
+                    //tr += "<div>" + item.DisplayName + "</div>";
+                    tr += "</a>";
+                    $("#icon_body").append(tr);
+                });
+
+                var element = $('#icon_paging');
+                if(data.total > 0) {
+                    var options = {
+                        bootstrapMajorVersion: 3,
+                        currentPage: page,
+                        numberOfPages: iconrows,
+                        totalPages: Math.ceil(data.total / iconrows),
+                        onPageChanged: function (event, oldPage, newPage) {
+                            IconSearchCondition(newPage, condition);
+                        }
+                    }
+                    element.bootstrapPaginator(options);
+                } else {
+                    element.html("");
+                }
+            });
+        }
+        //刷新图标
+        function RefreshIcon() {
+            IconSearch(iconCurrentPage);
+        }
+
+        //选择图标事件
+        function SelectIcon() {
+            IconSearch(iconCurrentPage);
+            $("#icon").modal("show");
+        }
+        function GetIcon(classname) {
+            SetIconClass(classname);
+            $("#icon").modal("hide");
+        }
+        function SetIconClass(classname) {
+            $("#WebIcon").val(classname);
+            $("#i_WebIcon").attr("class", classname);
+        }
+    </script>
+}

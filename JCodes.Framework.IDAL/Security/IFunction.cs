@@ -1,6 +1,7 @@
 ﻿using JCodes.Framework.Common;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Entity;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -15,9 +16,9 @@ namespace JCodes.Framework.IDAL
 
         List<FunctionNodeInfo> GetTree(string systemType);
         List<FunctionNodeInfo> GetTreeByID(string mainID);
-        List<FunctionNodeInfo> GetTreeWithRole(string systemType, List<int> roleList);
+        List<FunctionNodeInfo> GetTreeWithRole(string systemType, List<Int32> roleList);
 
-        bool DeleteWithSubNode(string mainID, string userId);
+        bool DeleteWithSubNode(string mainID, Int32 userId);
 
         List<FunctionInfo> GetFunctionByPID(string PID);
 	}

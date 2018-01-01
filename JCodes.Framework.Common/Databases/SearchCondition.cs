@@ -55,6 +55,91 @@ namespace JCodes.Framework.Common.Databases
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="searchCondition"></param>
+        /// <param name="fieldName"></param>
+        /// <param name="fieldValue"></param>
+        /// <returns></returns>
+        public SearchCondition AddNumberCondition(string fieldName, string fieldValue)
+        {
+            SearchCondition searchCondition = null;
+            if (!string.IsNullOrEmpty(fieldValue))
+            {
+                bool isRangeValue = fieldValue.Contains("~");//判断是否为区间的值，否则使用Equal操作符
+                string[] itemArray = fieldValue.Split('~');
+                if (itemArray != null)
+                {
+                    decimal value = 0M;
+                    bool result = false;
+
+                    if (itemArray.Length > 0)
+                    {
+                        result = decimal.TryParse(itemArray[0].Trim(), out value);
+                        if (result)
+                        {
+                            if (isRangeValue)
+                            {
+                                searchCondition = AddCondition(fieldName, value, SqlOperator.MoreThanOrEqual);
+                            }
+                            else
+                            {
+                                searchCondition = AddCondition(fieldName, value, SqlOperator.Equal);
+                            }
+                        }
+                    }
+                    if (itemArray.Length > 1)
+                    {
+                        result = decimal.TryParse(itemArray[1].Trim(), out value);
+                        if (result)
+                        {
+                            searchCondition = AddCondition(fieldName, value, SqlOperator.LessThanOrEqual);
+                        }
+                    }
+                }
+            }
+            return searchCondition;
+        }
+
+        /// <summary>
+        /// 添加时间
+        /// </summary>
+        /// <param name="searchCondition"></param>
+        /// <param name="fieldName"></param>
+        /// <param name="fieldValue"></param>
+        /// <returns></returns>
+        public SearchCondition AddDateCondition(string fieldName, string fieldValue)
+        {
+            SearchCondition searchCondition = null;
+            if (!string.IsNullOrEmpty(fieldValue))
+            {
+                string[] itemArray = fieldValue.Split('~');
+                if (itemArray != null)
+                {
+                    DateTime value;
+                    bool result = false;
+                    if (itemArray.Length > 0)
+                    {
+                        result = DateTime.TryParse(itemArray[0].Trim(), out value);
+                        if (result)
+                        {
+                            searchCondition = AddCondition(fieldName, value, SqlOperator.MoreThanOrEqual);
+                        }
+                    }
+                    if (itemArray.Length > 1)
+                    {
+                        result = DateTime.TryParse(itemArray[1].Trim(), out value);
+                        if (result)
+                        {
+                            searchCondition = AddCondition(fieldName, value.AddDays(1), SqlOperator.LessThan);
+                        }
+                    }
+                }
+            }
+            return searchCondition;
+        }
+
+        /// <summary>
         /// 为查询添加条件
         /// <example>
         /// 用法一：

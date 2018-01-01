@@ -57,13 +57,11 @@ namespace JCodes.Framework.OracleDAL
             info.Url = reader.GetString("Url");
             info.WebIcon = reader.GetString("WebIcon");
             info.SystemType_ID = reader.GetString("SystemType_ID");
-            info.Creator = reader.GetString("Creator");
             info.Creator_ID = reader.GetString("Creator_ID");
             info.CreateTime = reader.GetDateTime("CreateTime");
-            info.Editor = reader.GetString("Editor");
             info.Editor_ID = reader.GetString("Editor_ID");
             info.EditTime = reader.GetDateTime("EditTime");
-            info.Deleted = reader.GetInt32("Deleted") > 0;
+            info.Is_Deleted = reader.GetInt32("Is_Deleted") > 0;
 
             return info;
         }
@@ -89,13 +87,11 @@ namespace JCodes.Framework.OracleDAL
             hash.Add("Url", info.Url);
             hash.Add("WebIcon", info.WebIcon);
             hash.Add("SystemType_ID", info.SystemType_ID);
-            hash.Add("Creator", info.Creator);
             hash.Add("Creator_ID", info.Creator_ID);
             hash.Add("CreateTime", info.CreateTime);
-            hash.Add("Editor", info.Editor);
             hash.Add("Editor_ID", info.Editor_ID);
             hash.Add("EditTime", info.EditTime);
-            hash.Add("Deleted", info.Deleted ? 1 : 0);
+            hash.Add("Is_Deleted", info.Is_Deleted ? 1 : 0);
 
             return hash;
         }
@@ -119,13 +115,11 @@ namespace JCodes.Framework.OracleDAL
             dict.Add("Url", "Web界面Url地址");
             dict.Add("WebIcon", "Web界面的菜单图标");
             dict.Add("SystemType_ID", "系统编号");
-            dict.Add("Creator", "创建人");
             dict.Add("Creator_ID", "创建人ID");
             dict.Add("CreateTime", "创建时间");
             dict.Add("Editor", "编辑人");
-            dict.Add("Editor_ID", "编辑人ID");
             dict.Add("EditTime", "编辑时间");
-            dict.Add("Deleted", "是否已删除");
+            dict.Add("Is_Deleted", "是否已删除");
             #endregion
 
             return dict;

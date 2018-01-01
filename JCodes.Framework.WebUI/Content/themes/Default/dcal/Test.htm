@@ -1,0 +1,38 @@
+<html>
+<head>
+<script language="javascript" src="WdatePicker.js"></script>
+</head>
+
+<body>
+<table class="tbsearch" id="tblsearch">
+<form name=frmMain method="get" action="">
+<tr>
+   <td align="left" style="padding-left:5px">
+     日期
+     <input type=text name="_pdate" value="2009-03-17" class="Wdate" size="13" onfocus="WdatePicker({skin:'whyGreen'})" readonly>
+     至
+     <input type=text name="_pdate2" value="2009-03-17" class="Wdate" size="13" onfocus="WdatePicker()" readonly>
+          
+   </td>
+</tr>
+<tr>
+   <td align="left" style="padding-left:5px">
+     日期
+     <input type=text name="_sdate" size="13" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})">
+     至
+     <input type=text name="_sdate2"  size="20" value="2010-01-13 11:50" onfocus="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd HH:mm'})">
+          
+   </td>
+</tr>
+
+<tr>
+   <td align="left" style="padding-left:5px">
+     出车开始时间：<input type=text id="time_out"name="time_out" value=""size="20" 
+       class="Wdate" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" >
+          
+   </td>
+</tr>
+</form>   
+</table>
+</body>
+</html>

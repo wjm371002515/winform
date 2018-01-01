@@ -49,7 +49,6 @@ namespace JCodes.Framework.WinFormUI
             BeginInvoke(new MethodInvoker(InitDemo));
         }
         List<Stream> fileStreams = new List<Stream>();
-        int i = 0;
         int projectIndex = 0;
         Cursor currentCursor;
         void InitDemo() {

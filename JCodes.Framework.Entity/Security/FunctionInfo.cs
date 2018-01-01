@@ -17,9 +17,9 @@ namespace JCodes.Framework.Entity
         private string m_ID = System.Guid.NewGuid().ToString(); //          
         private string m_PID = "-1"; //父ID          
         private string m_Name; //功能名称          
-        private string m_ControlID; //控制标识          
+        private string m_FunctionId; //功能ID    
         private string m_SystemType_ID; //系统编号          
-        private string m_SortCode; //排序码          
+        private string m_Seq; //排序码          
 
         #endregion
 
@@ -71,18 +71,18 @@ namespace JCodes.Framework.Entity
         }
 
         /// <summary>
-        /// 控制标识
+        /// 功能ID
         /// </summary>
         [DataMember]
-        public virtual string ControlID
+        public virtual string FunctionId
         {
             get
             {
-                return this.m_ControlID;
+                return this.m_FunctionId;
             }
             set
             {
-                this.m_ControlID = value;
+                this.m_FunctionId = value;
             }
         }
 
@@ -102,18 +102,18 @@ namespace JCodes.Framework.Entity
             }
         }
         /// <summary>
-        /// 排序码
+        /// 排序
         /// </summary>
-		[DataMember]
-        public virtual string SortCode
+        [DataMember]
+        public virtual string Seq
         {
             get
             {
-                return this.m_SortCode;
+                return this.m_Seq;
             }
             set
             {
-                this.m_SortCode = value;
+                this.m_Seq = value;
             }
         }
         #endregion
@@ -152,12 +152,12 @@ namespace JCodes.Framework.Entity
         /// <param name="functionInfo">FunctionInfo对象</param>
         public FunctionNodeInfo(FunctionInfo functionInfo)
         {
-            base.ControlID = functionInfo.ControlID;
+            base.FunctionId = functionInfo.FunctionId;
             base.ID = functionInfo.ID;
             base.Name = functionInfo.Name;
             base.PID = functionInfo.PID;
             base.SystemType_ID = functionInfo.SystemType_ID;
-            base.SortCode = functionInfo.SortCode;
+            base.Seq = functionInfo.Seq;
         }
     }
 }

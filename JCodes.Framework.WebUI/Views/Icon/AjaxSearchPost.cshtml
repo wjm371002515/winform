@@ -1,0 +1,148 @@
+﻿@{
+    ViewBag.Title = "系统图表库";
+}
+    <!DOCTYPE HTML>
+    <html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width" />
+        <title>系统图表库</title>
+        @using System.Web.Optimization;
+        @Scripts.Render("~/bundles/jquery")
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/jquerytools")
+        @Styles.Render("~/Content/jquerytools")
+        <!--常用的一些组件业务脚本函数-->
+        <script src="~/Scripts/ComponentUtil.js"></script>
+
+        <script type="text/javascript">
+            $(function () {
+                //InitDictItem();   //初始化字典信息
+                BindEvent();//绑定查询按钮事件
+
+                var iconSize = '@Request.QueryString["iconSize"]';
+                if(iconSize != undefined && iconSize != "")
+                {
+                    $("#IconSize").combobox('setValue', iconSize);
+                }
+            });
+
+            //初始化字典信息
+            function InitDictItem() {
+                //BindDictItem("Titles", "职称");
+                //BindDictItem("Rank", "职务");
+
+                //树控件的绑定操作
+                //$('#CustID').combotree({
+                //    url: '/Icon/GetTreeJson'
+                //});
+
+                //下拉列表绑定操作
+                //$('#CustID').combobox({
+                //    url: '/Icon/GetDictJson',
+                //    valueField: 'ID',
+                //    textField: 'FullName'
+                //});
+            }
+            
+            //绑定按钮的的点击事件
+            function BindEvent() {                
+                $("#btnGenerateCSS").click(function () {
+                    $.messager.confirm("操作确认", "您确认重新生成图标记录吗？", function (action) {
+                        if (action) {
+                            //图表尺寸
+                            var iconSize = $("#IconSize").combobox('getValue');
+                            //alert(iconSize);
+                            var postData = "";
+
+                            $.ajax({
+                                type: 'POST',
+                                url: '/Icon/GenerateIconCSS?iconSize=' + iconSize,
+                                dataType: 'json',
+                                data: postData,
+                                success: function (data) {
+                                    if (data.Success) {
+                                        showTips("操作成功");
+                                        location.reload();
+                                    }
+                                    else {
+                                        showError("操作失败：" + data.ErrorMessage, 3000);
+                                    }
+                                }
+                            });
+                        }
+                    });
+                });
+            }
+        </script>
+
+        <style>
+            table.view {
+                border: 1px solid #A8CFEB;
+                border-collapse: collapse;
+                margin-bottom: 5px;
+                width: 99%;
+                height: 99%;
+            }
+
+            .view th {
+                padding-left: 10px;
+                padding-right: 5px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                width: 100px;
+                border: 1px solid silver;
+                background-color: #F1F6FF;
+            }
+
+            .view td {
+                padding-left: 10px;
+                padding-right: 5px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                width: 150px;
+                border: 1px solid silver;
+                background-color: #FAFCFF;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="loading" style="display: none;"><img alt="数据正在加载中..." src="~/Content/images/loading02.gif" /></div>
+        <div class="easyui-layout" data-options="fit:true" id="tb">
+            <div data-options="region:'north'" style="padding:5px;height:70px">
+                <!-------------------------------搜索框----------------------------------->
+                <fieldset>
+                    <legend>功能操作</legend>
+                    @using (Html.BeginForm("AjaxSearchPost", "Icon", new RouteValueDictionary { { "id", "" } }, FormMethod.Get))
+                    {
+                        <span>尺寸：</span>
+                        <select class="easyui-combobox" id="IconSize" name="IconSize" style="width:100px">
+                            <option value="16">16×16</option>
+                            <option value="24">24×24</option>
+                            <option value="32">32×32</option>
+                        </select>
+                        <input type="submit" value="搜索(S)" accesskey="S" />
+                        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'" id="btnGenerateCSS">重新生成图表库</a>
+                    }
+                </fieldset>               
+            </div>
+            <div data-options="region:'center'" fit="true">
+                <div id="contents">
+                    @using Webdiyer.WebControls.Mvc;
+                    @model  PagedList<JCodes.Framework.Entity.IconInfo>
+                    @foreach (var item in Model)
+                    {
+                        <a href="javascript:void(0)" class="easyui-linkbutton" id="@item.ID" 
+                           data-options="plain:true,iconCls:'@item.IconCls',size:'large'"> </a>
+                    }
+                </div>
+                <div>
+                    <div style="float:left;width:50%">
+                        共 @Model.TotalPageCount 页 @Model.TotalItemCount 条记录，当前为第 @Model.CurrentPageIndex 页
+                    </div>
+                    @Html.Pager(Model, new PagerOptions { PageIndexParameterName = "id" }, new { style = "float:right", id = "badoopager" })
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

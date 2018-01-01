@@ -1,0 +1,201 @@
+﻿@{
+    ViewBag.Title = "用户删除记录";
+}
+
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>用户删除记录</title>
+    <meta name="viewport" content="width=device-width" />
+    @using System.Web.Optimization;
+    @Scripts.Render("~/bundles/jquery")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquerytools")
+    @Styles.Render("~/Content/jquerytools")
+
+    <!--常用的一些组件业务脚本函数,放置此处方便脚本提示-->
+    <script src="~/Scripts/ComponentUtil.js"></script>
+
+    <script type="text/javascript">
+        //初始化操作
+        function doInit(win) {
+            //var record = win.getData('record');
+            //$('#itemid').val(record.itemid);
+        }
+
+        //页面确认操作
+        function doOK(win) {
+            var grid = win.getData('datagrid');
+            if (grid != undefined) {
+                grid.datagrid('reload');
+            }
+
+            win.close();
+        }
+
+        $(function () {
+            var queryData = {
+                WHC_Deleted: "1"
+                @if(Session["IsSuperAdmin"] == null || (bool)Session["IsSuperAdmin"] == false) {
+                    @Html.Raw(",WHC_Company_ID:"+ Session["Company_ID"]);
+                }
+            };//可添加一些预设条件
+
+            InitGrid(queryData);//初始化Datagrid表格数据 
+        });
+
+        //实现对DataGird控件的绑定操作
+        function InitGrid(queryData) {
+            $('#grid').datagrid({   //定位到Table标签，Table标签的ID是grid
+                url: '/User/FindWithPager',   //指向后台的Action来获取当前用户的信息的Json格式的数据
+                title: '系统用户信息',
+                iconCls: 'icon-view',
+                height: 550,
+                width: function () { return document.body.clientWidth * 0.9 },//自动宽度
+                nowrap: true,
+                autoRowHeight: true,
+                striped: true,
+                collapsible: true,
+                pagination: true,
+                pageSize: 50,
+                pageList: [50, 100, 200],
+                rownumbers: true,
+                //sortName: 'ID',    //根据某个字段给easyUI排序
+                sortOrder: 'asc',
+                remoteSort: false,
+                //idField: 'ID', //不设置idField，翻页不会记录选择
+                queryParams: queryData,  //异步查询的参数
+                columns: [[
+	                { field: 'ck', checkbox: true },   //选择
+                     { title: 'ID', field: 'ID', width: 80, sortable: true },
+                     { title: '用户编码', field: 'HandNo', width: 80, sortable: true },
+                     { title: '用户名/登录名', field: 'Name', width: 120, sortable: true },
+                     { title: '真实姓名', field: 'FullName', width: 80, sortable: true },
+                     {
+                         title: '是否过期', field: 'IsExpire', width: 80, formatter: function (val, rowdata, index) {
+                             if (val) {
+                                 return '<a class="grid_unvisible" href="javascript:void(0)" >' + val + '</a>';
+                             } else {
+                                 return '<a class="grid_visible" href="javascript:void(0)" >' + val + '</a>';
+                             }
+                         }
+                     },
+                     {
+                         title: '是否删除', field: 'Deleted', width: 80, formatter: function (val, rowdata, index) {
+                             if (val) {
+                                 return '<a class="grid_deleted" href="javascript:void(0)" >' + val + '</a>';
+                             } else {
+                                 return '<a class="grid_normal" href="javascript:void(0)" >' + val + '</a>';
+                             }
+                         }
+                     },
+                     { title: '职务头衔', field: 'Title', width: 80, sortable: true },
+                     { title: '移动电话', field: 'MobilePhone', width: 120, sortable: true },
+                     { title: '办公电话', field: 'OfficePhone', width: 120, sortable: true },
+                     { title: '邮件地址', field: 'Email', width: 150, sortable: true },
+                     { title: '性别', field: 'Gender', width: 80, sortable: true },
+                     { title: 'QQ号码', field: 'QQ', width: 80, sortable: true },
+                     { title: '个性签名', field: 'Signature', width: 80, sortable: true },
+                     { title: '审核状态', field: 'AuditStatus', width: 80, sortable: true },
+                     { title: '备注', field: 'Note', width: 150, sortable: true }
+                ]],
+                onLoadSuccess: function () {
+                    $(".grid_visible").linkbutton({ text: '可用', plain: true, iconCls: 'icon-ok' });
+                    $(".grid_unvisible").linkbutton({ text: '过期', plain: true, iconCls: 'icon-stop' });
+
+                    $(".grid_normal").linkbutton({ text: '正常', plain: true, iconCls: 'icon-ok' });
+                    $(".grid_deleted").linkbutton({ text: '已删除', plain: true, iconCls: 'icon-stop' });
+                },
+
+                toolbar: [{
+                    id: 'btnDelete',
+                    text: '彻底删除',
+                    iconCls: 'icon-remove',
+                    handler: function () {
+                        Delete();//实现直接删除数据的方法
+                    }
+                }, '-', {
+                    id: 'btnReload',
+                    text: '刷新',
+                    iconCls: 'icon-reload',
+                    handler: function () {
+                        //实现刷新栏目中的数据
+                        $("#grid").datagrid("reload");
+                    }
+                }],
+                onDblClickRow: function (rowIndex, rowData) {
+                    $('#grid').datagrid('uncheckAll');
+                    $('#grid').datagrid('checkRow', rowIndex);
+                }
+            }).datagrid('followCustomHandle');
+            
+            var heightMargin =  20;
+            var widthMargin = $(document.body).width() - $("#tb").width();
+            // 第一次加载时和当窗口大小发生变化时，自动变化大小
+            $('#grid').resizeDataGrid(heightMargin, widthMargin, 0, 0);
+            $(window).resize(function () {
+                $('#grid').resizeDataGrid(heightMargin, widthMargin, 0, 0);
+            });
+        };
+
+        //实现删除数据的方法
+        function Delete() {
+            //得到用户选择的数据的ID
+            var rows = $("#grid").datagrid("getSelections");
+            if (rows.length >= 1) {
+                //遍历出用户选择的数据的信息，这就是用户用户选择删除的用户ID的信息
+                var ids = "";   //1,2,3,4,5
+                for (var i = 0; i < rows.length; i++) {
+                    ids += rows[i].ID + ",";
+                }
+                //最后去掉最后的那一个,
+                ids = ids.substring(0, ids.length - 1);
+                var postData = { Ids: ids };
+
+                //然后确认发送异步请求的信息到后台删除数据
+                $.messager.confirm("删除确认", "您确认彻底删除选定的记录吗（从数据库永久删除）？", function (action) {
+                    if (action) {
+                        $.ajax({
+                            type: 'POST',
+                            url: '/User/ConfirmDeleteByIds',
+                            dataType: 'json',
+                            data: postData,
+                            success: function (data) {
+                                if (data.Success) {
+                                    showTips("删除选定的记录成功");
+
+                                    $("#grid").datagrid("reload");
+                                    //当删除完成之后，第二次删除的时候还记得上次的信息，这样是不可以的，所以我们需要清除第一次的信息                                
+                                    rows.length = "";//第一种方法                                
+                                    $("#grid").datagrid("clearSelections");//第二种方法
+                                }
+                                else {
+                                    showError("操作失败：" + data.ErrorMessage);
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+            else {
+                $.messager.alert("提示", "请选择你要删除的数据");
+            }
+        }
+    </script>
+
+    <style>
+        table.view {border:1px solid #A8CFEB;border-collapse: collapse;margin-bottom:5px;vertical-align:top;height:98%;width:98%}
+        .view th{ padding-left:10px;padding-right:5px;padding-top:5px;padding-bottom:5px;height:23px;width: 150px;border: 1px solid silver;background-color:#F1F6FF;}
+        .view td{ padding-left:10px;padding-right:5px;padding-top:5px;padding-bottom:5px;height:23px;width: 150px;border: 1px solid silver;background-color:#FAFCFF;}
+    </style>
+</head>
+<body >
+
+    <div id="loading" style="display: none;"><img alt="数据正在加载中..." src="~/Content/images/loading02.gif" /></div>
+    <div id="tb" style="padding: 5px; height: auto">
+        <!-------------------------------详细信息展示表格----------------------------------->
+        <table id="grid" style="width: 940px" title="用户操作" data-options="iconCls:'icon-view'">
+        </table>
+    </div>
+</body>
+</html>

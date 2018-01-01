@@ -114,7 +114,7 @@
             this.txtValue.Location = new System.Drawing.Point(150, 67);
             this.txtValue.Name = "txtValue";
             this.txtValue.Size = new System.Drawing.Size(163, 29);
-            this.txtValue.TabIndex = 2;
+            this.txtValue.TabIndex = 1;
             // 
             // lblValue
             // 
@@ -163,7 +163,7 @@
             this.txtName.Location = new System.Drawing.Point(151, 101);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(163, 29);
-            this.txtName.TabIndex = 1;
+            this.txtName.TabIndex = 2;
             // 
             // FrmEditDictData
             // 

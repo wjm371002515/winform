@@ -46,12 +46,16 @@
     <Compile Include="Attachment\IFileUpload.cs" />
     <Compile Include="Contact\IAddress.cs" />
     <Compile Include="Contact\IAddressGroup.cs" />
+    <Compile Include="CRM\IContact.cs" />
+    <Compile Include="CRM\IContactGroup.cs" />
+    <Compile Include="CRM\ICustomer.cs" />
     <Compile Include="Dic\ICity.cs" />
     <Compile Include="Dic\IDictData.cs" />
     <Compile Include="Dic\IDictType.cs" />
     <Compile Include="Dic\IDistrict.cs" />
     <Compile Include="Dic\ISysparameter.cs" />
     <Compile Include="Dic\IProvince.cs" />
+    <Compile Include="General\IGeneralSql.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\IBlackIP.cs" />
     <Compile Include="Security\IFunction.cs" />
@@ -76,6 +80,12 @@
     <Compile Include="WareHouseMis\IClient.cs" />
     <Compile Include="WareHouseMis\ISupplier.cs" />
     <Compile Include="WareHouseMis\IWareHouse.cs" />
+    <Compile Include="WebMis\IBootstrapIcon.cs" />
+    <Compile Include="WebMis\IIcon.cs" />
+    <Compile Include="WebMis\IInformation.cs" />
+    <Compile Include="WebMis\IInformationStatus.cs" />
+    <Compile Include="WebMis\IPictureAlbum.cs" />
+    <Compile Include="WebMis\ITestUser.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JCodes.Framework.Common\JCodes.Framework.Common.csproj">
@@ -90,7 +100,8 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>echo "编译后处理的事情 JCodes.Framework.IDAL"</PostBuildEvent>
+    <PostBuildEvent>xcopy ..\jCodes\$(TargetFileName) ..\JCodes.Framework.WebUI\bin\ /y
+echo "编译后处理的事情 JCodes.Framework.IDAL"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

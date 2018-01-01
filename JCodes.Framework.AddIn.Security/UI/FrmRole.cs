@@ -390,6 +390,12 @@ namespace JCodes.Framework.AddIn.Security
             currentID = "";
             groupControl2.Text = Const.Add + "角色详细信息";
 
+            // 20171127 wjm 修复添加后立刻添加成员错误
+            btnEditOU.Enabled = false;
+            btnRemoveOU.Enabled = false;
+            btnEditUser.Enabled = false;
+            btnRemoveUser.Enabled = false;
+
             TreeNode node = this.treeView1.SelectedNode;
             if (node != null && node.Tag != null)
             {
@@ -412,7 +418,7 @@ namespace JCodes.Framework.AddIn.Security
             this.txtCompany.Text = "";
             this.txtCategory.Text = "";
             this.txtHandNo.Text = "";
-            this.txtSortCode.Text = "";
+            this.txtSeq.Text = "";
         }
 
         private void menu_Update_Click(object sender, EventArgs e)
@@ -438,7 +444,7 @@ namespace JCodes.Framework.AddIn.Security
                         currentID = info.ID.ToString();
                         this.txtName.Text = info.Name;
                         this.txtNote.Text = info.Note;
-                        this.txtSortCode.Text = info.SortCode;
+                        this.txtSeq.Text = info.Seq;
                         this.txtHandNo.Text = info.HandNo;
                         this.txtCategory.Text = info.Category;
                         this.txtCompany.Value = info.Company_ID;
@@ -446,7 +452,13 @@ namespace JCodes.Framework.AddIn.Security
                         RefreshUsers(info.ID);
                         RefreshFunctions(info.ID);
                         RefreshOUs(info.ID);
-                        RefreshTreeRoleData(info.ID);                        
+                        RefreshTreeRoleData(info.ID);                
+        
+                        // 20171127 wjm 修复添加后立刻添加成员错误
+                        btnEditOU.Enabled = true;
+                        btnRemoveOU.Enabled = true;
+                        btnEditUser.Enabled = true;
+                        btnRemoveUser.Enabled = true;
                     }
                 }
                 else if (e.Node.Text == "全部角色")
@@ -462,13 +474,13 @@ namespace JCodes.Framework.AddIn.Security
             info.CompanyName = this.txtCompany.Text;
             info.Company_ID = this.txtCompany.Value;
             info.HandNo = this.txtHandNo.Text;
-            info.SortCode = this.txtSortCode.Text;
+            info.Seq = this.txtSeq.Text;
             info.Category = this.txtCategory.Text;
             info.Editor = Portal.gc.UserInfo.FullName;
             info.Editor_ID = Portal.gc.UserInfo.ID.ToString();
             info.EditTime = DateTimeHelper.GetServerDateTime2();
 
-            info.CurrentLoginUserId = Portal.gc.UserInfo.ID.ToString();
+            info.CurrentLoginUserId = Portal.gc.UserInfo.ID;
             return info;
         }
 
@@ -528,7 +540,15 @@ namespace JCodes.Framework.AddIn.Security
                         info = SetRoleInfo(info);
                         BLLFactory<Role>.Instance.Update(info, info.ID.ToString());
 
+                        // 20171127 wjm 修复添加后立刻添加成员错误
+                        btnEditOU.Enabled = true;
+                        btnRemoveOU.Enabled = true;
+                        btnEditUser.Enabled = true;
+                        btnRemoveUser.Enabled = true;
+
                         RefreshTreeView();
+
+                        MessageDxUtil.ShowTips("添加角色成功,请选择角色后继续操作！");
                     }
                 }
                 catch (Exception ex)
@@ -566,7 +586,16 @@ namespace JCodes.Framework.AddIn.Security
                 try
                 {
                     BLLFactory<Role>.Instance.Insert(info);
+
+                    // 20171127 wjm 修复添加后立刻添加成员错误
+                    btnEditOU.Enabled = true;
+                    btnRemoveOU.Enabled = true;
+                    btnEditUser.Enabled = true;
+                    btnRemoveUser.Enabled = true;
+
                     RefreshTreeView();
+
+                    MessageDxUtil.ShowTips("添加角色成功,请选择角色后继续操作！");
                 }
                 catch (Exception ex)
                 {

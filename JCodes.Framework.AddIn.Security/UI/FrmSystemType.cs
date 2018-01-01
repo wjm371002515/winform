@@ -100,7 +100,7 @@ namespace JCodes.Framework.AddIn.Security
                 foreach (int iRow in rowSelected)
                 {
                     string ID = this.winGridView1.GridView1.GetRowCellDisplayText(iRow, "OID");
-                    BLLFactory<SystemType>.Instance.DeleteByUser(ID, LoginUserInfo.ID.ToString());
+                    BLLFactory<SystemType>.Instance.DeleteByUser(ID, LoginUserInfo.ID);
                 }
                 BindData();
             }

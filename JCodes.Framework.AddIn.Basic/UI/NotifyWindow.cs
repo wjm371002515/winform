@@ -103,7 +103,6 @@ namespace JCodes.Framework.AddIn.Basic
 		#region Protected Variables
 		protected bool closePressed = false, textPressed = false, titlePressed = false, closeHot = false, textHot = false, titleHot = false;
         protected Rectangle rClose, rText, rTitle, rDisplay, rScreen, rGlobClose, rGlobText, rGlobTitle, rGlobDisplay;
-        private System.ComponentModel.IContainer components;
 		protected System.Windows.Forms.Timer viewClock;
 		#endregion
 

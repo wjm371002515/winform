@@ -1,0 +1,740 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "政策法规";
+}
+
+@*脚本引用放在此处可以实现自定义函数自动提示*@
+<script src="~/Scripts/CommonUtil.js"></script>
+<style>
+    table.view {border:1px solid #A8CFEB;border-collapse: collapse;margin-bottom:5px;height:98%;width:98%}
+    .view th{ padding-left:10px;padding-right:5px;padding-top:5px;padding-bottom:5px;width: 50px;border: 1px solid silver;background-color:#F1F6FF;}
+    .view td{ padding-left:10px;padding-right:5px;padding-top:5px;padding-bottom:5px;border: 1px solid silver;background-color:#FAFCFF;}
+
+    .toolbar
+    {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 280px;
+        height: 45px;
+        border: 1px solid #A8CFEB;
+        background-color:#F0F6FF;
+        _margin: 0 16px 0 0;
+    }
+    .toolbar a{display:block;text-align:center;width:70px;float:left;height:40px;text-decoration:none;margin:0 5px;}
+    .toolbar a img{border:none;width:16px;height:16px;margin:5px 10px 4px 10px;}
+</style>
+
+<!-- BEGIN 数据查询-->
+<div class="portlet box green-meadow">
+    <div class="portlet-title">
+        <div class="caption"> <i class="fa fa-filter"></i>
+            查询内容
+        </div>
+        <div class="tools">
+            <button type="button" class="btn btn-circle btn-sm green" onclick="Refresh()">
+                <i class="fa fa-search"></i>
+                查 询
+            </button>
+            <a href="javascript:;" class="collapse" title="折叠内容"></a>
+        </div>
+    </div>
+
+    <div class="portlet-body flip-scroll">
+        <div class="row">
+            <form class="form-horizontal" id="ffSearch">
+                 <div class="col-md-3 col-sm-3 col-xs-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">标题</label>
+                        <div class="col-md-8">
+                            <input name="WHC_Title" type="text" class="form-control"/>
+                        </div>
+                    </div>
+                </div>
+                 <div class="col-md-3 col-sm-3 col-xs-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">内容</label>
+                        <div class="col-md-8">
+                            <input name="WHC_Content" type="text" class="form-control"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">项目类型</label>
+                        <div class="col-md-8">
+                            <select name="WHC_SubType" type="text" class="form-control select2">                                
+                                <option value="法律法规" selected>法律法规</option>
+                                <option value="指导性文件">指导性文件</option>
+                                <option value="指导性文件">行业规范</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                 <div class="col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label col-md-2">编辑时间</label>
+                        <div class=" input-group col-md-10">
+                            <input id="WHC_EditTime" type="date" class="form-control"/>                
+                            <span class="input-group-addon">~</span>
+                            <input id="WHC_EditTime2" type="date" class="form-control"/>
+                        </div>
+                </div>  
+            </form>
+        </div>
+    </div>
+</div>
+<!-- END 数据查询-->
+
+<!-- BEGIN 表格数据-->
+<div class="portlet box green-meadow">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-cogs"></i>
+            数据列表
+        </div>
+        <div class="tools">
+            <button type="button" onclick="Add()" class="btn btn-circle btn-sm green-meadow">
+                <i class="fa fa-plus"></i>
+                新增
+            </button>
+            <button type="button" onclick="EditView()" class="btn btn-circle btn-sm green-meadow">
+                <i class="fa fa-pencil"></i>
+                修改
+            </button>
+            <button type="button" onclick="EditView('view')" class="btn btn-circle btn-sm green-meadow">
+                <i class="fa fa-table"></i>
+                查看
+            </button>
+            <button type="button" onclick="Delete()" class="btn btn-circle btn-sm green-meadow">
+                <i class="fa fa-minus"></i>
+                删除
+            </button>
+            <button type="button" onclick="Refresh()" class="btn btn-circle btn-sm green-meadow" data-toggle="modal">
+                <i class="fa fa-refresh"></i>
+                刷新
+            </button>
+            <button type="button" class="fullscreen btn btn-circle btn-sm green-meadow" data-original-title="全屏">
+                <i class="icon-size-fullscreen"></i>
+            </button>
+        </div>
+    </div>
+    <div class="portlet-body flip-scroll">
+        <div class="portlet-body">
+            <div>
+                <span>每页显示</span>
+                <select id="rows" onchange="ChangeRows()">
+                    <option>10</option>
+                    <option>50</option>
+                    <option>100</option>
+                    <option>1000</option>
+                </select>
+                <span>条记录</span>&nbsp;&nbsp;
+                <span>共有记录：</span><span id='totalCount' class="label label-success">0</span>条，总页数：<span id='totalPageCount' class="label label-success">0</span>页。
+            </div>
+            <hr />
+            <table id="grid" class="table table-striped table-bordered table-hover" cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
+                <thead id="grid_head">
+                    <tr>
+                        <th class="table-checkbox" style="width:40px"><input class="group-checkable" type="checkbox" onclick="selectAll(this)"></th>
+                         <th>标题</th>
+                         <th>项目类型</th>
+                         <th>附件信息</th>
+                         <th>编辑者</th>
+                         <th>编辑时间</th>
+
+                        <th style="width:90px">操作</th>
+                    </tr>
+                </thead>
+                <tbody id="grid_body"></tbody>
+            </table>
+            <div class="paging-toolbar">
+                <ul id='grid_paging'></ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--------------------------添加/修改信息的弹出层---------------------------->
+<div id="add"  class="modal fade bs-modal-lg"tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">
+                    <i class="icon-pencil"></i>
+                    <span id="lblAddTitle" style="font-weight:bold">添加信息</span>
+                </h4>
+            </div>
+            <form class="form-horizontal form-bordered form-row-strippe" id="ffAdd" action="" data-toggle="validator" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="row">
+                         <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label col-md-2">标题</label>
+                                <div class="col-md-10">
+                                    <input id="Title" name="Title" type="text" class="form-control" placeholder="标题..."/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label col-md-2">标题</label>
+                                <div class="col-md-10">                                    
+                                    <select name="SubType" name="SubType"  type="text" class="form-control select2">
+                                        <option value="法律法规" selected>法律法规</option>
+                                        <option value="指导性文件">指导性文件</option>
+                                        <option value="指导性文件">行业规范</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label col-md-2">内容</label>
+                                <div class="col-md-10">
+                                    <textarea id="Content" name="Content" class="form-control" placeholder="内容..." rows="8"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label col-md-2">过期截止时间</label>
+                                <div class="col-md-10">
+                                    <input type="date" id="TimeOut" name="TimeOut" class="form-control" placeholder="过期截止时间..."/>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label col-md-2">附件信息</label>
+                                <div class="col-md-10">
+                                    <input id="Attachment_GUID" name="Attachment_GUID" type="hidden" class="form-control"/>
+                                    <input id="file_upload" name="file_upload" type="file" multiple="multiple">
+                                    <a href="javascript:void(0)" class="btn btn-primary" type="button" id="btnUpload" onclick="javascript: $('#file_upload').uploadify('upload', '*')">上传</a>
+                                    <a href="javascript:void(0)"  class="btn btn-primary" type="button" onclick="javascript: $('#file_upload').uploadify('cancel', '*')">取消</a>
+
+                                    <div id="fileQueue" class="fileQueue"></div>
+                                    <br /><hr style="width:98%"/>
+                                    <div id="div_files"></div>
+                                    <br />
+                                </div>
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+                <div class="modal-footer bg-info">
+                    <input type="hidden" value="政策法规" id="Category" name="Category" />
+                    <input type="hidden" id="ID" name="ID" />
+                    <button type="submit" class="btn blue">确定</button>
+                    <button type="button" class="btn green" data-dismiss="modal">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--------------------------查看信息的弹出层---------------------------->
+<div id="view" class="modal fade bs-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">
+                    <i class="icon-book-open"></i>
+                    <span style="font-weight:bold">查看信息</span>
+                </h4>
+            </div>
+            <form class="form-horizontal form-bordered form-row-strippe" id="ffView" action="">
+                <div class="modal-body">                    
+                    <div class="row">
+                        <div class="toolbar">
+                            <a href="#" onclick="javascript:Preview();"><img alt="打印预览" src="~/Content/images/print.gif" /><br />打印预览</a>
+                            <a href="#" onclick="javascript:PrintA();"><img alt="直接打印" src="~/Content/images/print.gif" /><br />直接打印</a>
+                            <a href="#" onclick="javascript:SaveAs();"><img alt="另存为" src="~/Content/images/saveas.gif" /><br />另存为</a>         
+                        </div>
+                        <div id="printContent">
+                            <table border="0" cellspacing="0" cellpadding="0" width="95%" height="40" align="center">
+                                <tbody>
+                                    <tr>
+                                        <td height="20" colspan="4" align="middle" valign="center">&nbsp; </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center" colspan="4">
+                                            <h3>
+                                                <label id="Title2" ></label>
+                                                <input type="hidden" value="政策法规" id="Category2" name="Category" />
+                                            </h3>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td height="35" colspan="4" align="right" valign="center">
+                                            项目类型： <label id="SubType2"></label>&nbsp;&nbsp;&nbsp;&nbsp;                               
+                                            发布者：<label id="Editor2" ></label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                            发布时间：<label id="EditTime2" ></label>&nbsp;
+                                            <input type="hidden" id="ID2" />
+                                        </td>
+                                    </tr>
+                                    <tr bgcolor="#cfcdbe">
+                                        <td height="1"></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr bgcolor="#f2efea">
+                                        <td height="4"></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td height="4"></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="t4" border="0" cellspacing="0" cellpadding="0" width="95%" height="28" align="center">
+                                <tbody>
+                                    <tr>
+                                        <td width="20px">&nbsp;
+                                        </td>
+                                        <td width="100%">
+                                            <table cellspacing="0" cellpadding="0" width="95%">
+                                                <tr>
+                                                    <td valign="top" align="left">
+                                                        <lable id="Content2" contenteditable="false"></lable>
+                                                        <br /><br />
+                                                        <hr />
+                                                        <input type="hidden" id="Attachment_GUID2" name="Attachment_GUID" />
+                                                        <br />
+                                                        <div id="div_files2"></div>
+                                                        <br />
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div> 
+                </div>
+                <div class="modal-footer bg-info">
+                    <input name="ID2" type="hidden" value="">
+                    <button type="button" class="btn green" data-dismiss="modal">关闭</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section footerScript {
+    <script>
+        function initEditor() {
+            $('#Content').ckeditor();
+        }
+    </script>
+
+   @*添加对LODOP控件的支持*@
+    <script type="text/javascript">
+        var LODOP; //声明为全局变量 
+
+        function Preview() {//正本打印
+            CreateLicenseData();
+            LODOP.SET_SHOW_MODE("PREVIEW_IN_BROWSE", 1);
+            LODOP.PREVIEW();
+        };
+        function PrintA() {
+            CreateLicenseData();
+            LODOP.PRINTA();
+        };
+        function Setup() {//正本打印维护
+            CreateLicenseData();
+            LODOP.PRINT_SETUP();
+        };
+        function Design() {//正本打印设计
+            CreateLicenseData();
+            LODOP.PRINT_DESIGN();
+        };
+
+        function CreateLicenseData() {
+            LODOP = getLodop();
+
+            LODOP.PRINT_INIT("政策法规");
+            var strBodyStyle = "<link type='text/css' rel='stylesheet' href='/Content/Themes/Default/style.css' /><style><!--table { border:1;background-color: #CBCBCC } td {background-color:#FFFFFE;border: 1; } th { background-color:#F1F1F3;padding-left:5px;border:1}--></style>";
+            var strFormHtml = strBodyStyle + "<body>" + document.getElementById("printContent").innerHTML + "</body>";
+            LODOP.ADD_PRINT_HTM(20, 40, 610, 900, strFormHtml);
+            LODOP.PREVIEW();
+        }
+        function SaveAs() {
+            var id = $('#ID2').val();
+            window.open('/Information/ExportWordById?id=' + id );
+        }
+</script>
+
+<script type="text/javascript">
+        var currentPage = 1, rows = 10; //分页参数：当前页，记录数
+
+        var isAddOrEdit = 'add';//标识是新增还是编辑对话框弹出，用于删除附件的操作
+        var url;//新增或者更新的连接
+        var ID;//ID值，新增为空，编辑或者查看为具体ID
+
+        //页面初始化
+        $(function () {
+            initEditor();
+            InitStyle();        //设置控件的样式
+            BindEvent();        //绑定事件处理
+            Search(currentPage);//初始化第一页数据
+            InitDictItem();     //初始化字典信息
+        });
+
+
+        //设置控件的样式
+        function InitStyle() {
+            
+            //统一设置icheck控件的样式
+            $('input[class=icheck]').iCheck({
+                checkboxClass: 'icheckbox_square-red',
+                radioClass: 'iradio_square-red',
+            });
+                         
+            //初始化fileinput控件（第一次初始化）
+            //initFileInput("file-Portrait", "/Information/EditPortrait");
+        }
+
+        //根据条件查询并绑定结果
+        function Search(page) {
+            //根据控件Name属性获取表单预设条件
+            var condition = $("#ffSearch").serialize();
+
+            //根据需要加上一些特殊条件
+            condition += "&WHC_Category=政策法规";
+            condition += "&WHC_EditTime=" + $("#WHC_EditTime").val() + "~" + $("#WHC_EditTime2").val(); //日期范围
+
+            SearchCondition(page, condition);
+        }
+        function SearchCondition(page, condition) {
+            //获取Json对象集合，并生成数据显示内容
+            url = "/Information/FindWithPager?page=" + page + "&rows=" + rows;
+            $.getJSON(url + "&" + condition, function (data) {
+                $("#totalCount").text(data.total);
+                $("#totalPageCount").text(Math.ceil(data.total / rows));
+
+                $("#grid_body").html("");
+
+                $.each(data.rows, function (i, item) {
+                    var tr = "<tr>";
+                    tr += "<td><input class='checkboxes' type=\"checkbox\" name=\"checkbox\" value=" + item.ID + "></td>";
+                     tr += "<td>" + item.Title + "</td>";
+                     tr += "<td>" + item.SubType + "</td>";
+                     tr += "<td>" + item.Attachment_GUID + "</td>";
+                     tr += "<td>" + item.Editor + "</td>";
+                     tr += "<td>" + item.EditTime + "</td>";
+  
+                    tr += getActionHtml(item.ID); //获取查看、编辑、删除操作代码
+
+                    tr += "</tr>";
+                    $("#grid_body").append(tr);
+                });
+
+                //设置分页属性及处理
+                var element = $('#grid_paging');
+                if(data.total > 0) {
+                    var options = {
+                        bootstrapMajorVersion: 3,
+                        currentPage: page,
+                        numberOfPages: rows,
+                        totalPages: Math.ceil(data.total / rows),
+                        onPageChanged: function (event, oldPage, newPage) {
+                            SearchCondition(newPage, condition);  //页面变化时触发内容更新
+                        }
+                    }
+                    element.bootstrapPaginator(options);
+                } else {
+                    element.html("");
+                }
+            });
+        }
+
+        //设置一页显示多少条
+        function ChangeRows() {
+            rows = $("#rows").val();
+            Refresh();
+        }
+
+        //刷新列表
+        function Refresh() {
+            Search(currentPage);
+        }
+
+        //初始化字典信息（下拉列表）
+        function InitDictItem() {
+            //部分赋值参考
+            
+            //绑定字典
+            //BindDictItem("Rank", "职务");            
+            //绑定树列表
+            //BindSelect("PID", "/Menu/GetDictJson");
+            
+            //绑定可选多个Tag
+            // $("#Hobby").select2({
+            //     tags: ["旅游", "爬山", "篮球", "足球", "乒乓球"]
+            // });
+            
+            //绑定添加界面的公司、部门（联动处理）
+            // BindSelect("Company_ID", "/User/GetMyCompanyDictJson?userId="+@Session["UserId"]);
+            // $("#Company_ID").on("change", function (e) {
+            //     var companyid = $("#Company_ID").val();
+            //     BindSelect("Dept_ID", "/User/GetDeptDictJson?parentId="+ companyid);
+            // });
+        }
+
+        //实现删除数据的方法
+        function Delete() {
+            var ids = "";//得到用户选择的数据的ID
+            $("[name='checkbox']").each(function () {
+                if ($(this).is(':checked')) {
+                    ids += $(this).val() + ",";
+                }
+            });
+
+            DeleteByIds(ids);
+        }
+
+        //删除指定的记录
+        function DeleteByIds(ids) {
+            if (ids != "") {
+                showDelete(function () {
+                    //最后去掉最后的逗号,
+                    ids = ids.replace(/,\s*$/, '');
+                    
+                    //然后发送异步请求的信息到后台删除数据
+                    var postData = { ids: ids };
+                    $.post("/Information/DeletebyIds", postData, function (json) {
+                        var data = $.parseJSON(json);
+                        if (data.Success) {
+                            showTips("删除选定的记录成功");
+                            Refresh();//刷新页面数据
+                        }
+                        else {
+                            showTips(data.ErrorMessage);
+                        }
+                    });
+                });
+            } else {
+                showTips("请选择你要删除的数据");
+            }
+        }
+
+        //弹出新增对话框
+        function Add() {
+            isAddOrEdit = 'add';//新增对话框标识
+            //CKEDITOR.instances.Content.setData('');  //清空编辑器的数据
+            $("#ffAdd")[0].reset();//清空上次输入
+            $('#ffAdd').validate().resetForm();//去除验证信息
+
+            CKEDITOR.instances.Content.setData('');//设置CKEditor控件的值 
+
+            //增加记录前，赋值ID
+            url = '/Information/Insert';
+            $.get("/Information/NewGuid?r=" + Math.random(), function (result) {
+                $("#ID").val(result);
+                ID = result;
+
+            });
+
+            //本页面的类型为【政策法规】，固定不变
+            $("#Category").val("政策法规");
+
+            //新增的时候，绑定附件显示
+            var guid = newGuid();
+            $("#Attachment_GUID").val(guid);
+            attachguid = guid;
+            ShowUpFiles(attachguid, "div_files");//更新列表
+
+            //初始化部分控件
+            //$('input[name="Gender"][value="男"]').iCheck('check');
+            //$("#PID").select2("val", "");
+            //$("#Hobby").select2('val', null);//清空下拉框
+
+            $("#lblAddTitle").text("添加信息");
+            $("#add").modal("show");
+        }
+
+        //修改或查看明细信息（绑定显示数据）
+        function EditView(view) {
+            ID = "";//重置ID的值
+            $("[name='checkbox']").each(function () {
+                if ($(this).is(':checked')) {
+                    ID = $(this).val();//首先取出来用户选择的数据的ID
+                }
+            });
+            
+            EditViewById(ID, view);
+        }
+
+        //编辑或者查看指定记录
+        function EditViewById(ID, view) {
+            if (ID == "") {
+                showTips("请选择一条记录");
+                return;
+            }
+
+            if (view == null) {
+                //处理修改的信息
+                $("#lblAddTitle").text("修改信息");
+                $("#add").modal("show");
+                url = '/Information/Update?ID=' + ID;
+                //绑定修改详细信息的方法
+                BindEditInfo(ID);
+            }
+            else {
+                //处理查看详细
+                $("#view").modal("show");
+                //绑定查看详细信息方法
+                BindViewInfo(ID);
+            }
+        }
+
+        //绑定编辑详细信息的方法
+        function BindEditInfo(ID) {
+            //使用同步方式，使得联动的控件正常显示
+            $.ajaxSettings.async = false;
+
+            $('#ffAdd').validate().resetForm();//去除验证信息
+
+            //首先用户发送一个异步请求去后台实现方法
+            $.getJSON("/Information/FindByID?r=" + Math.random() + "&id=" + ID, function (info) {
+                 $("#Title").val(info.Title);
+                 $("#Content").val(info.Content);
+                 $("#SubType").select2("val", info.SubType);               
+                 $("#TimeOut").val(getDateStr(info.TimeOut));
+
+                $("#Attachment_GUID").val(info.Attachment_GUID);
+                var guid = $("#Attachment_GUID").val();
+                if (guid == null || guid == "") {
+                    $("#Attachment_GUID").val(newGuid());//确保不为空
+                }
+                attachguid = $("#Attachment_GUID").val();//记录方便更新
+
+                ShowUpFiles(info.Attachment_GUID, "div_files");
+  
+                //参考赋值
+                //$("#Company_ID1").select2("val", info.Company_ID).trigger('change');//联动
+                //$("#PID1").select2("val", info.PID);//普通Select2
+                // var array = [info.Hobby];
+                // $("#Hobby").select2('val', array); //集合
+
+                // $("input[name='Gender']").iCheck('uncheck');
+                // $("input[name='Gender'][value='" + info.Gender + "']").iCheck('check');
+                // $("#BirthDate").val(getDateStr(info.BirthDate));
+
+                $("#ID").val(info.ID);
+                isAddOrEdit = 'edit';//新增对话框标识
+            });
+
+        }
+
+        //绑定查看详细信息的方法
+        function BindViewInfo(ID) {
+            //发送请求
+            $.getJSON("/Information/FindByID?r=" + Math.random() + "&id=" + ID, function (info) {
+                //$("#ID2").text(info.ID);
+
+                 $("#Title2").text(info.Title);
+                 $("#Content2").html(info.Content);
+                 $("#Attachment_GUID2").text(info.Attachment_GUID);
+                 $("#Editor2").text(info.Editor);
+                 $("#EditTime2").text(info.EditTime);
+                 $("#SubType2").text(info.SubType);
+
+                var guid = $("#Attachment_GUID2").text();
+                ViewUpFiles(guid, "div_files2");
+  
+                $.getJSON("/User/GetFullNameByID?userid=" + info.Creator, function (result) {
+                   $("#Creator2").text(result);
+                });
+                $.getJSON("/User/GetFullNameByID?userid=" + info.Editor, function (result) {
+                   $("#Editor2").text(result);
+                });
+            });
+        }
+
+        //显示导入界面
+        function ShowImport() {
+            $("#import").modal("show");
+        }
+
+        //导出Excel数据
+        function ShowExport() {
+            var url = "/Information/Export";
+            var condition = $("#ffSearch").serialize();//获取条件
+
+            executeExport(url, condition);//执行导出
+        }
+
+        //绑定相关事件
+        function BindEvent() {
+            //添加、编辑记录的窗体处理
+            formValidate("ffAdd", function (form) {
+                $("#add").modal("hide");
+                //构造参数发送给后台
+                var postData = $("#ffAdd").serializeArray();
+                $.post(url, postData, function (json) {
+                    var data = $.parseJSON(json);
+                    if (data.Success) {
+                        //可增加其他处理
+
+                        //保存成功  1.关闭弹出层，2.刷新表格数据
+                        showTips("保存成功");
+                        Refresh();
+                    }
+                    else {
+                        showError("保存失败:" + data.ErrorMessage, 3000);
+                    }
+                }).error(function () {
+                    showTips("您未被授权使用该功能，请联系管理员进行处理。");
+                });
+            });
+        }
+
+    </script>
+
+<script type="text/javascript">
+    $(function () {
+        //添加界面的附件管理
+        $('#file_upload').uploadify({
+            'swf': '/Content/JQueryTools/uploadify/uploadify.swf',  //FLash文件路径
+            'buttonText': '浏  览',                                 //按钮文本
+            'uploader': '/FileUpload/Upload',                       //处理ASHX页面
+            'queueID': 'fileQueue',                        //队列的ID
+            'queueSizeLimit': 10,                          //队列最多可上传文件数量，默认为999
+            'auto': false,                                 //选择文件后是否自动上传，默认为true
+            'multi': false,                                 //是否为多选，默认为true
+            'removeCompleted': true,                       //是否完成后移除序列，默认为true
+            'fileSizeLimit': '10MB',                       //单个文件大小，0为无限制，可接受KB,MB,GB等单位的字符串值
+            'fileTypeDesc': 'Image Files',                 //文件描述
+            'fileTypeExts': '*.gif; *.jpg; *.png; *.bmp;*.tif;*.doc;*.docx;*.xls;*.xlsx;*.ppt;*.pptx;*.zip;*.rar',  //上传的文件后缀过滤器
+            'onQueueComplete': function (event, data) {    //所有队列完成后事件
+                ShowUpFiles($("#Attachment_GUID").val(), "div_files");
+                showToast("上传完毕！");
+            },
+            'onUploadStart': function (file) {
+                $("#file_upload").uploadify("settings", 'formData', { 'folder': '政策法规', 'guid': $("#Attachment_GUID").val() }); //动态传参数
+            },
+            'onUploadError': function (event, queueId, fileObj, errorObj) {
+                //alert(errorObj.type + "：" + errorObj.info);
+            }
+        });
+    });
+
+    var attachguid = "";//用来记录附件组的ID，方便更新
+    function deleteAttach(id) {
+        DeleteAndRefreshAttach(id, attachguid, "div_files");
+    }
+
+</script>
+
+}

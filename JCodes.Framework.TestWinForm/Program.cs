@@ -1,23 +1,5 @@
-﻿using DevExpress.Utils;
-using JCodes.Framework.Common;
-using JCodes.Framework.Common.Files;
-using JCodes.Framework.Common.Network;
-using JCodes.Framework.CommonControl.Other;
-using JCodes.Framework.jCodesenum.BaseEnum;
-using JCodes.Framework.Test;
-using OAUS.Core;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Net;
-using System.Net.Sockets;
-using System.Runtime.InteropServices;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
-using TestCommons;
-using WHC.OrderWater.UI;
 
 namespace JCodes.Framework.TestWinForm
 {
@@ -80,7 +62,8 @@ namespace JCodes.Framework.TestWinForm
             // 权限管理系统
             //Application.Run(new TestSecurityMix_WCF_WIN.Form1());
             DevExpress.UserSkins.BonusSkins.Register();
-            Application.Run(new SyntaxHighlightModule());
+            //Application.Run(new SyntaxHighlightModule());
+            Application.Run(new JCodes.Framework.SmallTools.Test.FrmWinRarZip());
         }
     }
 }

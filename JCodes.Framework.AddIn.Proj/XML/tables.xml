@@ -1,30 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <datatype>
   <tabletype>
-    <item guid="3cbd37e9-c0ff-4fa1-9735-c30185310215" createdate="2017-01-01" name="分类1"></item>
-    <item guid="3cbd37e9-c0ff-4fa1-9735-c30185310216" createdate="2017-01-01" name="分类2"></item>
+    <item guid="97e68582-5454-445f-b542-8ce82316d4c2" createdate="2017-11-09" name="Basic(基础信息)" />
   </tabletype>
   <dataitem>
-    <item guid="2cbd37e9-c0ff-4fa1-9735-c30185310214">
-      <name>Table1</name>
-      <chineseName>测试表名1</chineseName>
-      <functionId>100001</functionId>
-      <typeguid>3cbd37e9-c0ff-4fa1-9735-c30185310215</typeguid>
-      <path>00001</path>
-    </item>
-    <item guid="2cbd37e9-c0ff-4fa1-9735-c30185310215">
-      <name>Table2</name>
-      <chineseName>测试表名2</chineseName>
-      <functionId>100002</functionId>
-      <typeguid>3cbd37e9-c0ff-4fa1-9735-c30185310215</typeguid>
-      <path>00001</path>
-    </item>
-    <item guid="2cbd37e9-c0ff-4fa1-9735-c30185310216">
-      <name>fundinfo</name>
-      <chineseName>测试表名3</chineseName>
-      <functionId>100003</functionId>
-      <typeguid>3cbd37e9-c0ff-4fa1-9735-c30185310215</typeguid>
-      <path>XML/fundinfo.table</path>
-    </item>
   </dataitem>
 </datatype>

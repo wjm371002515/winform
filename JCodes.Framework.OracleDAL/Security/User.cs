@@ -32,7 +32,7 @@ namespace JCodes.Framework.OracleDAL
             : base(OraclePortal.gc._securityTablePre+"User", "ID")
         {
             this.SeqName = string.Format("SEQ_{0}", tableName);//数值型主键，通过序列生成
-            this.sortField = "SortCode";
+            this.sortField = "Seq";
             this.isDescending = false;
         }
 
@@ -76,7 +76,7 @@ namespace JCodes.Framework.OracleDAL
             info.DeptName = reader.GetString("DeptName");
             info.Company_ID = reader.GetString("Company_ID");
             info.CompanyName = reader.GetString("CompanyName");
-            info.SortCode = reader.GetString("SortCode");
+            info.Seq = reader.GetString("Seq");
             info.Creator = reader.GetString("Creator");
             info.Creator_ID = reader.GetString("Creator_ID");
             info.CreateTime = reader.GetDateTime("CreateTime");
@@ -129,7 +129,7 @@ namespace JCodes.Framework.OracleDAL
             hash.Add("DeptName", info.DeptName);
             hash.Add("Company_ID", info.Company_ID);
             hash.Add("CompanyName", info.CompanyName);
-            hash.Add("SortCode", info.SortCode);
+            hash.Add("Seq", info.Seq);
             hash.Add("Creator", info.Creator);
             hash.Add("Creator_ID", info.Creator_ID);
             hash.Add("CreateTime", info.CreateTime);
@@ -180,7 +180,7 @@ namespace JCodes.Framework.OracleDAL
             dict.Add("DeptName", "默认部门名称");
             dict.Add("Company_ID", "所属公司ID");
             dict.Add("CompanyName", "所属公司名称");
-            dict.Add("SortCode", "排序码");
+            dict.Add("Seq", "排序");
             dict.Add("Creator", "创建人");
             dict.Add("Creator_ID", "创建人ID");
             dict.Add("CreateTime", "创建时间");
@@ -205,7 +205,7 @@ namespace JCodes.Framework.OracleDAL
         /// </summary>
         /// <param name="key">ID值</param>
         /// <returns></returns>
-        public override bool DeleteByUser(object key, string userId, DbTransaction trans = null)
+        public override bool DeleteByUser(object key, Int32 userId, DbTransaction trans = null)
         {
             UserInfo info = this.FindByID(key, trans);
             if (info != null)

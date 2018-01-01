@@ -1,0 +1,269 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Bootstrap图标信息";
+}
+
+@*脚本引用放在此处可以实现自定义函数自动提示*@
+<script src="~/Scripts/CommonUtil.js"></script>
+
+<div class="portlet box green-meadow col-md-2">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-filter"></i>图标分类
+        </div>
+    </div>
+
+    <div class="portlet-body flip-scroll">
+        <div class="row">
+            <div id="jstree_div"></div>
+        </div>
+    </div>
+</div>
+
+<div class="portlet box col-md-10">
+    <div class="portlet-body flip-scroll" style="width:99%">
+        <div class="portlet box green-meadow">
+            <div class="portlet-title">
+                <div class="caption"> <i class="fa fa-filter"></i>
+                    图标选择示例
+                </div>
+            </div>
+            <div class="portlet-body flip-scroll">
+                <div class="row">
+                    <form class="form-horizontal" id="ffIcon">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label col-md-1">Web图标</label>
+                                <div class="input-icon col-md-11">
+                                    <input id="WebIcon" name="WebIcon" type="hidden" value="icon-screen-tablet" />
+                                    <span id="i_WebIcon" aria-hidden="true" class="icon-screen-tablet" style="font-size: 2.0em"></span>
+                                    <span id="lbl_WebIcon">icon-screen-tablet</span>
+                                    &nbsp;&nbsp;
+                                    <button type="button" class="btn green" onclick="SelectIcon()">选择图标</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="portlet box green-meadow">
+            <div class="portlet-title">
+                <div class="caption"> <i class="fa fa-filter"></i>
+                    图标信息
+                </div>
+            </div>
+            <div class="portlet-body flip-scroll">
+                <div>
+                    <span>每页显示</span>
+                    <select id="rows" onchange="ChangeRows()">
+                        <option>50</option>
+                        <option selected>100</option>
+                        <option>200</option>
+                        <option>1000</option>
+                    </select>
+                    <span>条记录</span>&nbsp;&nbsp;
+                    <span>共有记录：</span><span id='totalCount' class="label label-success">0</span>条，总页数：<span id='totalPageCount' class="label label-success">0</span>页。
+                </div>
+                <hr />
+                <div class="row" style="padding-left:20px">
+                    <div class="portlet-body" id="grid_body"></div>
+                    <div class="paging-toolbar">
+                        <ul id='grid_paging'></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bs-modal-lg" id="icon" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">
+                    <i class="icon-book-open"></i>
+                    <b>查看图标信息</b>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="clearfix">
+                    <div class="btn-group btn-group-circle" data-toggle="buttons" id="btnIconType">
+                        <label class="btn green active" onclick="RefreshIcon()">
+                            <input type="radio" class="toggle" value="SimpleLine"> SimpleLine
+                        </label>
+                        <label class="btn green" onclick="RefreshIcon()">
+                            <input type="radio" class="toggle" value="FontAwesome"> FontAwesome
+                        </label>
+                        <label class="btn green" onclick="RefreshIcon()">
+                            <input type="radio" class="toggle" value="Glyphicons"> Glyphicons
+                        </label>
+                    </div>
+                </div>
+                <div class="portlet-body" id="icon_body">
+                </div>
+                <div class="paging-toolbar">
+                    <ul id='icon_paging'></ul>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn green" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section footerScript{
+    <script type="text/javascript">
+        var currentPage = 1, rows = 100; //分页参数：当前页，记录数
+
+        var isAddOrEdit = 'add';//标识是新增还是编辑对话框弹出，用于删除附件的操作
+        var url;//新增或者更新的连接
+        var ID;//ID值，新增为空，编辑或者查看为具体ID
+
+        //页面初始化
+        $(function () {
+            initJsTree();
+            Refresh();      //初始化第一页数据
+            InitDictItem();     //初始化字典信息
+        });
+
+        //绑定左侧树形列表
+        function initJsTree() {
+            bindJsTree("jstree_div", "/BootstrapIcon/GetSourceTypeJsTree");
+
+            //树控件的变化事件处理
+            $('#jstree_div').on("changed.jstree", function (e, data) {
+                var icon = data.node.icon;
+                loadData(data.selected);
+            });
+        }
+
+        //加载指定的对象数据
+        var clickId = "";
+        function loadData(id) {
+            var condition = "WHC_SourceType=" + id;
+            SearchCondition(currentPage, condition);
+
+            clickId = id;
+        }
+        
+        //图标查询
+        function Search(page) {
+            var condition = "WHC_SourceType=SimpleLine";//SimpleLine,FontAwesome,Glyphicons
+
+            SearchCondition(page, condition);
+        }
+        function SearchCondition(page, condition) {
+            var iconUrl = "/BootstrapIcon/FindWithPager?page=" + page + "&rows=" + rows;
+
+            $.getJSON(iconUrl + "&" + condition, function (data) {
+                $("#grid_body").html("");
+                $.each(data.rows, function (i, item) {
+                    var tr = "<a href=\"#\" class=\"icon-btn\" title=\"" + item.DisplayName + "\">";
+                    tr += "    <i class=\"" + item.ClassName + " \" style=\"font-size: 2.2em\"></i>";//
+                    //tr += "<div>" + item.DisplayName + "</div>";
+                    tr += "</a>";
+                    $("#grid_body").append(tr);
+                });
+
+                var element = $('#grid_paging');
+                if(data.total > 0) {
+                    var options = {
+                        bootstrapMajorVersion: 3,
+                        currentPage: page,
+                        numberOfPages: rows,
+                        totalPages: Math.ceil(data.total / rows),
+                        onPageChanged: function (event, oldPage, newPage) {
+                            SearchCondition(newPage, condition);
+                        }
+                    }
+                    element.bootstrapPaginator(options);
+                } else {
+                    element.html("");
+                }
+            });
+        }
+
+        //设置一页显示多少条
+        function ChangeRows() {
+            rows = $("#rows").val();
+            Refresh();
+        }
+
+        //刷新图标
+        function Refresh() {
+            Search(currentPage);
+        }
+
+        //初始化字典信息（下拉列表）
+        function InitDictItem() {
+            //BindDictItem("Titles", "职称");
+            //BindDictItem("Rank", "职务");            
+            //BindSelect("PID", "/Menu/GetDictJson");
+        }
+
+
+        //图标查询
+        var iconCurrentPage = 1;
+        function IconSearch(page) {
+            var activeSourceType = $("#btnIconType").find("label.active").find("input").prop('value');
+            var condition = "WHC_SourceType=" + activeSourceType;//SimpleLine,FontAwesome,Glyphicons
+            IconSearchCondition(page, condition);
+        }
+
+        function IconSearchCondition(page, condition) {
+            var iconrows = 50;
+            var iconUrl = "../BootstrapIcon/FindWithPager?page=" + page + "&rows=" + iconrows;
+
+            $.getJSON(iconUrl + "&" + condition, function (data) {
+                $("#icon_body").html("");
+                $.each(data.rows, function (i, item) {
+                    var tr = "<a href=\"javascript:;\" onclick=\"GetIcon('" + item.ClassName + "')\" class=\"icon-btn\" title=\"" + item.DisplayName + "\">";
+                    tr += "    <i class=\"" + item.ClassName + " \" style=\"font-size: 2.2em\"></i>";//
+                    //tr += "<div>" + item.DisplayName + "</div>";
+                    tr += "</a>";
+                    $("#icon_body").append(tr);
+                });
+
+                var element = $('#icon_paging');
+                if(data.total > 0) {
+                    var options = {
+                        bootstrapMajorVersion: 3,
+                        currentPage: page,
+                        numberOfPages: iconrows,
+                        totalPages: Math.ceil(data.total / iconrows),
+                        onPageChanged: function (event, oldPage, newPage) {
+                            IconSearchCondition(newPage, condition);
+                        }
+                    }
+                    element.bootstrapPaginator(options);
+                } else {
+                    element.html("");
+                }
+            });
+        }
+        //刷新图标
+        function RefreshIcon() {
+            IconSearch(iconCurrentPage);
+        }
+
+        //选择图标事件
+        function SelectIcon() {
+            IconSearch(iconCurrentPage);
+            $("#icon").modal("show");
+        }
+        function GetIcon(classname) {
+            SetIconClass(classname);
+            $("#icon").modal("hide");
+        }
+        function SetIconClass(classname) {
+            $("#WebIcon").val(classname);
+            $("#i_WebIcon").attr("class", classname);
+            $("#lbl_WebIcon").text(classname);
+        }
+
+    </script>
+}

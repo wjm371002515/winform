@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -90,10 +91,10 @@ namespace JCodes.Framework.Entity
             set { name = value; }
         }
 
-        private Int32 seq;
+        private string seq;
 
         [DisplayName("排序")]
-        public Int32 Seq
+        public string Seq
         {
             get { return seq; }
             set { seq = value; }
@@ -115,12 +116,7 @@ namespace JCodes.Framework.Entity
         /// <returns>System.Int32.</returns>
         public int CompareTo(DictDetailInfo other)
         {
-            if (other == null) return -1;
-            if (Seq > other.Seq)
-            {
-                return 1;
-            }
-            return -1;
+            return Seq.CompareTo(other.Seq);
         }
     }
 }

@@ -159,7 +159,7 @@ namespace JCodes.Framework.AddIn.Contact
 
             info.EditTime = DateTimeHelper.GetServerDateTime2();
             info.Editor = LoginUserInfo.ID.ToString();//当前用户
-            info.CurrentLoginUserId = LoginUserInfo.ID.ToString(); //记录当前登录的用户信息，供操作日志记录使用
+            info.CurrentLoginUserId = LoginUserInfo.ID; //记录当前登录的用户信息，供操作日志记录使用
         }
 
         /// <summary>

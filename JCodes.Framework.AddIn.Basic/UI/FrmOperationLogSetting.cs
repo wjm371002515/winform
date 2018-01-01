@@ -154,7 +154,7 @@ namespace JCodes.Framework.AddIn.Basic
             foreach (int iRow in rowSelected)
             {
                 string ID = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "ID");
-                BLLFactory<OperationLogSetting>.Instance.DeleteByUser(ID, LoginUserInfo.ID.ToString());
+                BLLFactory<OperationLogSetting>.Instance.DeleteByUser(ID, LoginUserInfo.ID);
             }
              
             BindData();

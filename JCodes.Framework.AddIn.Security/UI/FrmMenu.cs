@@ -125,7 +125,7 @@ namespace JCodes.Framework.AddIn.Security
             foreach (int iRow in rowSelected)
             {
                 string ID = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "ID");
-                BLLFactory<Menus>.Instance.DeleteByUser(ID, LoginUserInfo.ID.ToString());
+                BLLFactory<Menus>.Instance.DeleteByUser(ID, LoginUserInfo.ID);
             }
 
             BindData();

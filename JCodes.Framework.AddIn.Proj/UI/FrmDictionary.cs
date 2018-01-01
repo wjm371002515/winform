@@ -120,6 +120,16 @@ namespace JCodes.Framework.AddIn.Proj
                     this.treeView1.Nodes.Add(node);
 
                     List<DictInfo> lstNode = dictTypeInfoList.FindAll(new Predicate<DictInfo>(one => one.PID == dictInfo.ID));
+                    Comparison<DictInfo> comparison = new Comparison<DictInfo>((DictInfo x, DictInfo y) =>
+                    {
+                        if (x.ID < y.ID)
+                            return -1;
+                        else if (x.ID == y.ID)
+                            return 0;
+                        else
+                            return 1;
+                    });
+                    lstNode.Sort(comparison);
                     foreach (var nodeInfo in lstNode)
                     {
                         TreeNode childnode = new TreeNode(string.Format("{0}-{1}", nodeInfo.ID, nodeInfo.Name), 1, 1);
@@ -190,7 +200,7 @@ namespace JCodes.Framework.AddIn.Proj
                     XmlNodeList xnl0 = xe.ChildNodes;
                     dictDetailInfo.Value = Convert.ToInt32(xnl0.Item(0).InnerText);
                     dictDetailInfo.Name = xnl0.Item(1).InnerText;
-                    dictDetailInfo.Seq = Convert.ToInt32(xnl0.Item(2).InnerText);
+                    dictDetailInfo.Seq = xnl0.Item(2).InnerText;
                     dictDetailInfo.Remark = xnl0.Item(3).InnerText;
 
                     dictDetailInfoList.Add(dictDetailInfo);
@@ -310,7 +320,7 @@ namespace JCodes.Framework.AddIn.Proj
                                     // 再删除子节点本身
                                     xmldicthelper.DeleteByPathNode(string.Format("datatype/dataitem/item[pid=\"{0}\"]", selectedNode.Tag));
                                 }
-                                catch (Exception ex)
+                                catch
                                 {
                                     break;
                                 }
@@ -502,11 +512,12 @@ namespace JCodes.Framework.AddIn.Proj
                             // 创建文件
                             FileUtil.CreateFile(sqlfile);
                             // 添加文本信息
-                            FileUtil.AppendText(sqlfile, SqlGenerate.printHeaderInfo(fileName, "V1.3.2.1111", "Jimmy", "2017-09-01 13:22:11", "备注信息", "2017-07-01", lst), Encoding.Default);
+                            //FileUtil.AppendText(sqlfile, SqlServerGenerate.printHeaderInfo(fileName, "V1.3.2.1111", "Jimmy", "2017-09-01 13:22:11", "备注信息", "2017-07-01", lst), Encoding.Default);
+                            FileUtil.AppendText(sqlfile, SqlOperate.printHeaderInfo(projectInfo.DbType, fileName, "V1.3.2.1111", "Jimmy", "2017-09-01 13:22:11", "备注信息", "2017-07-01", lst), Encoding.Default);
 
-                            FileUtil.AppendText(sqlfile, SqlGenerate.printInitInfo("T_Basic_DictType"), Encoding.Default);
+                            //FileUtil.AppendText(sqlfile, SqlServerGenerate.printInitInfo("T_Basic_DictType"), Encoding.Default);
 
-                            FileUtil.AppendText(sqlfile, SqlGenerate.printInitInfo("T_Basic_DictData"), Encoding.Default);
+                            //FileUtil.AppendText(sqlfile, SqlServerGenerate.printInitInfo("T_Basic_DictData"), Encoding.Default);
 
                             // TODO 这里需要等表结果完成在做
 

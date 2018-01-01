@@ -54,7 +54,7 @@ namespace JCodes.Framework.AddIn.Test
                     for (System.Int32 i = 0; i < tabbedView.Documents.Count; i++)
                     {
                         // ÕÒµ½ Ñ¡ÖÐ
-                        if (tabbedView.Documents[i].Tag == key)
+                        if (string.Equals(tabbedView.Documents[i].Tag, key))
                         {
                             tabbedView.Controller.Activate(tabbedView.Documents[i]);
                             return;

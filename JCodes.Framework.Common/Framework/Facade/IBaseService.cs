@@ -351,7 +351,7 @@ namespace JCodes.Framework.Common.Framework.Facade
         /// <param name="key">指定对象的ID</param>
         /// <returns>执行成功返回<c>true</c>，否则为<c>false</c>。</returns>
         [OperationContract]
-        bool DeleteByUser(string key, string userId);
+        bool DeleteByUser(string key, Int32 userId);
 
         /// <summary>
         /// 根据指定对象的ID,从数据库中删除指定对象(用于整型主键)
@@ -359,7 +359,7 @@ namespace JCodes.Framework.Common.Framework.Facade
         /// <param name="key">指定对象的ID</param>
         /// <returns>执行成功返回<c>true</c>，否则为<c>false</c>。</returns>
         [OperationContract]
-        bool DeleteByUser2(int key, string userId);
+        bool DeleteByUser2(int key, Int32 userId);
 
         /// <summary>
         /// 根据指定对象的ID,从数据库中删除指定对象(用于字符主键)

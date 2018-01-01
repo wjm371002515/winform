@@ -830,7 +830,7 @@ namespace JCodes.Framework.Common.Framework.Facade
         /// </summary>
         /// <param name="key">指定对象的ID</param>
         /// <returns>执行成功返回<c>true</c>，否则为<c>false</c>。</returns>
-        public virtual bool DeleteByUser(string key, string userId)
+        public virtual bool DeleteByUser(string key, Int32 userId)
         {
             bool result = false;
             IBaseService<T> service = CreateClient();
@@ -848,7 +848,7 @@ namespace JCodes.Framework.Common.Framework.Facade
         /// </summary>
         /// <param name="key">指定对象的ID</param>
         /// <returns>执行成功返回<c>true</c>，否则为<c>false</c>。</returns>
-        public virtual bool DeleteByUser2(int key, string userId)
+        public virtual bool DeleteByUser2(int key, Int32 userId)
         {
             bool result = false;
             IBaseService<T> service = CreateClient();

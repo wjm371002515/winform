@@ -56,13 +56,11 @@ namespace JCodes.Framework.AccessDAL
             info.Url = reader.GetString("Url");
             info.WebIcon = reader.GetString("WebIcon");
             info.SystemType_ID = reader.GetString("SystemType_ID");
-            info.Creator = reader.GetString("Creator");
             info.Creator_ID = reader.GetString("Creator_ID");
             info.CreateTime = reader.GetDateTime("CreateTime");
-            info.Editor = reader.GetString("Editor");
             info.Editor_ID = reader.GetString("Editor_ID");
             info.EditTime = reader.GetDateTime("EditTime");
-            info.Deleted = reader.GetInt32("Deleted") > 0;
+            info.Is_Deleted = reader.GetInt32("Is_Deleted") > 0;
 
             return info;
         }
@@ -88,13 +86,11 @@ namespace JCodes.Framework.AccessDAL
             hash.Add("Url", info.Url);
             hash.Add("WebIcon", info.WebIcon);
             hash.Add("SystemType_ID", info.SystemType_ID);
-            hash.Add("Creator", info.Creator);
             hash.Add("Creator_ID", info.Creator_ID);
             hash.Add("CreateTime", info.CreateTime);
-            hash.Add("Editor", info.Editor);
             hash.Add("Editor_ID", info.Editor_ID);
             hash.Add("EditTime", info.EditTime);
-            hash.Add("Deleted", info.Deleted ? 1 : 0);
+            hash.Add("Is_Deleted", info.Is_Deleted ? 1 : 0);
 
             return hash;
         }
@@ -118,13 +114,11 @@ namespace JCodes.Framework.AccessDAL
             dict.Add("Url", "Web界面Url地址");
             dict.Add("WebIcon", "Web界面的菜单图标");
             dict.Add("SystemType_ID", "系统编号");
-            dict.Add("Creator", "创建人");
             dict.Add("Creator_ID", "创建人ID");
             dict.Add("CreateTime", "创建时间");
-            dict.Add("Editor", "编辑人");
             dict.Add("Editor_ID", "编辑人ID");
             dict.Add("EditTime", "编辑时间");
-            dict.Add("Deleted", "是否已删除");
+            dict.Add("Is_Deleted", "是否已删除");
             #endregion
 
             return dict;
@@ -140,8 +134,8 @@ namespace JCodes.Framework.AccessDAL
             string sql = string.Format("Select * From {0} Where Visible > 0 {1} Order By PID, Seq ", tableName, condition);
 
             DataTable dt = base.SqlTable(sql);
-            string sortCode = string.Format("{0} {1}", GetSafeFileName(sortField), isDescending ? "DESC" : "ASC");
-            DataRow[] dataRows = dt.Select(string.Format(" PID = '{0}' ", -1), sortCode);
+            string seq = string.Format("{0} {1}", GetSafeFileName(sortField), isDescending ? "DESC" : "ASC");
+            DataRow[] dataRows = dt.Select(string.Format(" PID = '{0}' ", -1), seq);
             for (int i = 0; i < dataRows.Length; i++)
             {
                 string id = dataRows[i]["ID"].ToString();

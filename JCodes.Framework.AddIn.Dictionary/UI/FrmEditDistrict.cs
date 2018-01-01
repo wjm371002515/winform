@@ -43,16 +43,11 @@ namespace JCodes.Framework.AddIn.Dictionary
         {
             if (!string.IsNullOrEmpty(ID))
             {
-                this.Text = "编辑 " + this.Text;
                 DistrictInfo info = BLLFactory<District>.Instance.FindByID(ID);
                 if (info != null)
                 {
                     this.txtDistrict.Text = info.DistrictName;
                 }
-            }
-            else
-            {
-                this.Text = "新建 " + this.Text;
             }
             this.txtCity.Focus();
         }
@@ -121,7 +116,7 @@ namespace JCodes.Framework.AddIn.Dictionary
             info.DistrictName = this.txtDistrict.Text;
             info.CityID = Convert.ToInt32(this.txtCity.Tag);
 
-            info.CurrentLoginUserId = LoginUserInfo.ID.ToString();
+            info.CurrentLoginUserId = LoginUserInfo.ID;
         }
 
         private void FrmEditCityDistrict_Load(object sender, EventArgs e)

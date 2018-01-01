@@ -1,0 +1,2103 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+    ViewBag.Title = "客户联系人";
+}
+
+@*脚本引用放在此处可以实现自定义函数自动提示*@
+<script src="~/Scripts/CommonUtil.js"></script>
+
+<div class="portlet box green-meadow col-md-2">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-filter"></i>用户分类
+        </div>
+        <div class="tools">
+            <button type="button" class="btn btn-circle btn-sm green" onclick="ContactGroup()">
+                <i class="fa fa-search"></i>
+                联系人分组
+            </button>
+        </div>
+    </div>
+    <div class="portlet-body flip-scroll">
+        <div class="row" style="padding-left:20px">
+            <div id="jstree_div"></div>
+        </div>    
+    </div>
+</div> 
+<div class="portlet box col-md-10">
+    <div class="portlet-body flip-scroll" style="width:99%">
+        <!-- BEGIN 数据查询-->
+        <div class="portlet box green-meadow">
+            <div class="portlet-title">
+                <div class="caption"> <i class="fa fa-filter"></i>
+                    查询内容
+                </div>
+                <div class="tools">
+                    <button type="button" class="btn btn-circle btn-sm green" onclick="Refresh()">
+                        <i class="fa fa-search"></i>
+                        查 询
+                    </button>
+                    <button type="button" class="btn btn-circle btn-sm green" onclick="ShowExport()">
+                        <i class="fa fa-file-excel-o"></i>
+                        导 出
+                    </button>
+                    <a href="javascript:;" class="collapse" title="折叠内容"></a>
+                </div>
+            </div>
+
+            <div class="portlet-body flip-scroll">
+                <div class="row">
+                    <form class="form-horizontal" id="ffSearch">
+                         <div class="col-md-3 col-sm-3 col-xs-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">姓名</label>
+                                <div class="col-md-8">
+                                    <input name="WHC_Name" type="text" class="form-control"/>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="col-md-3 col-sm-3 col-xs-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">办公电话</label>
+                                <div class="col-md-8">
+                                    <input name="WHC_OfficePhone" type="text" class="form-control"/>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="col-md-3 col-sm-3 col-xs-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">联系人手机</label>
+                                <div class="col-md-8">
+                                    <input name="WHC_Mobile" type="text" class="form-control"/>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="col-md-3 col-sm-3 col-xs-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">联系人地址</label>
+                                <div class="col-md-8">
+                                    <input name="WHC_Address" type="text" class="form-control"/>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="col-md-3 col-sm-3 col-xs-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">电子邮件</label>
+                                <div class="col-md-8">
+                                    <input name="WHC_Email" type="text" class="form-control"/>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="col-md-3 col-sm-3 col-xs-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">QQ号码</label>
+                                <div class="col-md-8">
+                                    <input name="WHC_Qq" type="text" class="form-control"/>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="col-md-3 col-sm-3 col-xs-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">备注</label>
+                                <div class="col-md-8">
+                                    <input name="WHC_Note" type="text" class="form-control"/>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="col-md-3 col-sm-3 col-xs-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">职务</label>
+                                <div class="col-md-8">
+                                    <input name="WHC_Rank" type="text" class="form-control"/>
+                                </div>
+                            </div>
+                        </div>    
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- END 数据查询-->
+
+        <!-- BEGIN 表格数据-->
+        <div class="portlet box green-meadow">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-cogs"></i>
+                    数据列表
+                </div>
+                <div class="tools">
+                    <button type="button" onclick="Add()" class="btn btn-circle btn-sm green-meadow">
+                        <i class="fa fa-plus"></i>
+                        新增
+                    </button>
+                    <button type="button" onclick="EditView()" class="btn btn-circle btn-sm green-meadow">
+                        <i class="fa fa-pencil"></i>
+                        修改
+                    </button>
+                    <button type="button" onclick="EditView('view')" class="btn btn-circle btn-sm green-meadow">
+                        <i class="fa fa-table"></i>
+                        查看
+                    </button>
+                    <button type="button" onclick="Delete()" class="btn btn-circle btn-sm green-meadow">
+                        <i class="fa fa-minus"></i>
+                        删除
+                    </button>
+                    <button type="button" onclick="Refresh()" class="btn btn-circle btn-sm green-meadow" data-toggle="modal">
+                        <i class="fa fa-refresh"></i>
+                        刷新
+                    </button>
+                    <button type="button" class="fullscreen btn btn-circle btn-sm green-meadow" data-original-title="全屏">
+                        <i class="icon-size-fullscreen"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="portlet-body flip-scroll">
+                <div class="portlet-body">
+                    <div>
+                        <span>每页显示</span>
+                        <select id="rows" onchange="ChangeRows()">
+                            <option>10</option>
+                            <option>50</option>
+                            <option>100</option>
+                            <option>1000</option>
+                        </select>
+                        <span>条记录</span>&nbsp;&nbsp;
+                        <span>共有记录：</span><span id='totalCount' class="label label-success">0</span>条，总页数：<span id='totalPageCount' class="label label-success">0</span>页。
+                    </div>
+                    <hr />
+                    <table id="grid" class="table table-striped table-bordered table-hover" cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
+                        <thead id="grid_head">
+                            <tr>
+                                <th class="table-checkbox" style="width:40px"><input class="group-checkable" type="checkbox" onclick="selectAll(this)"></th>
+                                 <th>客户名称</th>
+                                 <th>编号</th>
+                                 <th>姓名</th>
+                                 @*<th>身份证号码</th>*@
+                                 @*<th>出生日期</th>*@
+                                 <th>性别</th>
+                                 @*<th>办公电话</th>*@
+                                 @*<th>家庭电话</th>*@
+                                 @*<th>传真</th>*@
+                                 <th>联系人手机</th>
+                                 @*<th>联系人地址</th>*@
+                                 @*<th>邮政编码</th>*@
+                                 <th>电子邮件</th>
+                                 @*<th>QQ号码</th>*@
+                                 @*<th>备注</th>*@    
+                                <th style="width:90px">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="grid_body"></tbody>
+                    </table>
+                    <div class="paging-toolbar">
+                        <ul id='grid_paging'></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--------------------------添加/修改信息的弹出层---------------------------->
+<div id="add"  class="modal fade bs-modal-lg"tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">
+                    <i class="icon-pencil"></i>
+                    <span id="lblAddTitle" style="font-weight:bold">添加信息</span>
+                </h4>
+            </div>
+            <form class="form-horizontal form-bordered form-row-strippe" id="ffAdd" action="" data-toggle="validator" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#tab_2_1" data-toggle="tab">基础信息</a>
+                        </li>
+                        <li>
+                            <a href="#tab_2_2" data-toggle="tab">其他信息</a>
+                        </li>    
+                        <li>
+                            <a href="#tab_2_3" data-toggle="tab">联系人分组</a>
+                        </li>                      
+                        <li>
+                            <a href="#tab_2_4" data-toggle="tab">附件信息</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade active in" id="tab_2_1">
+                            <div class="row">
+                                 <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2">客户名称</label>
+                                        <div class=" input-group col-md-10">
+                                            <input style="width:300px;background-color:peachpuff" class="form-control" readonly="readonly" type="text" id="Customer_Name" name="Customer_Name"/>
+                                            <input id="Customer_ID" name="Customer_ID" type="hidden" class="form-control"/>
+                                            <a href="javascript:void(0)" type="button" id="btnSelectCustomer" class="btn btn-primary">选择客户</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">编号</label>
+                                        <div class="col-md-8">
+                                            <input id="HandNo" name="HandNo" type="text" class="form-control" placeholder="编号..."/>
+                                        </div>
+                                    </div>
+                                </div>                                
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">排序序号</label>
+                                        <div class="col-md-8">
+                                            <input id="Seq" name="Seq" type="text" class="form-control" placeholder="排序序号..."/>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">姓名</label>
+                                        <div class="col-md-8">
+                                            <input id="Name" name="Name" type="text" class="form-control" placeholder="姓名..."/>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">身份证号码</label>
+                                        <div class="col-md-8">
+                                            <input id="IDCarNo" name="IDCarNo" type="text" class="form-control" placeholder="身份证号码..."/>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">出生日期</label>
+                                        <div class="col-md-8">
+                                            <input id="Birthday" name="Birthday" type="date" class="form-control" placeholder="出生日期..."/>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">性别</label>
+                                        <div class="col-md-8">
+                                            <label class="icheck-inline">
+                                                <input type="radio" name="Sex" value="男" checked class="icheck" />
+                                                男
+                                            </label>
+                                            <label class="icheck-inline">
+                                                <input type="radio" name="Sex" value="女" class="icheck" />
+                                                女
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">办公电话</label>
+                                        <div class="col-md-8">
+                                            <input id="OfficePhone" name="OfficePhone" type="text" class="form-control" placeholder="办公电话..."/>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">家庭电话</label>
+                                        <div class="col-md-8">
+                                            <input id="HomePhone" name="HomePhone" type="text" class="form-control" placeholder="家庭电话..."/>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">传真</label>
+                                        <div class="col-md-8">
+                                            <input id="Fax" name="Fax" type="text" class="form-control" placeholder="传真..."/>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">联系人手机</label>
+                                        <div class="col-md-8">
+                                            <input id="Mobile" name="Mobile" type="text" class="form-control" placeholder="联系人手机..."/>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">联系人地址</label>
+                                        <div class="col-md-8">
+                                            <input id="Address" name="Address" type="text" class="form-control" placeholder="联系人地址..."/>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">邮政编码</label>
+                                        <div class="col-md-8">
+                                            <input id="ZipCode" name="ZipCode" type="text" class="form-control" placeholder="邮政编码..."/>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">电子邮件</label>
+                                        <div class="col-md-8">
+                                            <input id="Email" name="Email" type="text" class="form-control" placeholder="电子邮件..."/>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">QQ号码</label>
+                                        <div class="col-md-8">
+                                            <input id="QQ" name="Qq" type="text" class="form-control" placeholder="QQ号码..."/>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2">备注</label>
+                                        <div class="col-md-10">
+                                            <input id="Note" name="Note" type="text" class="form-control" placeholder="备注..." rows="5"/>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">重要级别</label>
+                                        <div class="col-md-8">
+                                            <select id="Importance" name="Importance" class="form-control select2" placeholder="重要级别..."></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">认可程度</label>
+                                        <div class="col-md-8">
+                                            <select id="Recognition" name="Recognition" class="form-control select2" placeholder="认可程度..."></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">关系</label>
+                                        <div class="col-md-8">
+                                            <select id="RelationShip" name="RelationShip" class="form-control select2" placeholder="关系..."></select>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2">负责需求</label>
+                                        <div class="col-md-10">
+                                            <select id="ResponseDemand" name="ResponseDemand" multiple="multiple" class="form-control select2" placeholder="负责需求..."></select>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2">关心重点</label>
+                                        <div class="col-md-10">
+                                            <select id="CareFocus" name="CareFocus" multiple="multiple"  class="form-control select2" placeholder="关心重点..."></select>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2">利益诉求</label>
+                                        <div class="col-md-10">
+                                            <select id="InterestDemand" name="InterestDemand" multiple="multiple"  class="form-control select2" placeholder="利益诉求..."></select>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="tab_2_2">
+                            <div class="row">
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">所在省份</label>
+                                        <div class="col-md-8">
+                                            <select id="Province" name="Province" class="form-control select2" placeholder="所在省份..."></select>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">城市</label>
+                                        <div class="col-md-8">
+                                            <select id="City" name="City" type="text" class="form-control select2" placeholder="城市..."></select>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">所在行政区</label>
+                                        <div class="col-md-8">
+                                            <select id="District" name="District" type="text" class="form-control select2" placeholder="所在行政区..."></select>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">籍贯</label>
+                                        <div class="col-md-8">
+                                            <input id="Hometown" name="Hometown" type="text" class="form-control" placeholder="籍贯..."/>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">家庭住址</label>
+                                        <div class="col-md-8">
+                                            <input id="HomeAddress" name="HomeAddress" type="text" class="form-control" placeholder="家庭住址..."/>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">民族</label>
+                                        <div class="col-md-8">
+                                            <select id="Nationality" name="Nationality" class="form-control select2" placeholder="民族..."></select>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">教育程度</label>
+                                        <div class="col-md-8">
+                                            <select id="Eduction" name="Eduction" class="form-control select2" placeholder="教育程度..."></select>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">毕业学校</label>
+                                        <div class="col-md-8">
+                                            <input id="GraduateSchool" name="GraduateSchool" type="text" class="form-control" placeholder="毕业学校..."/>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">政治面貌</label>
+                                        <div class="col-md-8">
+                                            <select id="Political" name="Political" class="form-control select2" placeholder="政治面貌..."></select>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">职业类型</label>
+                                        <div class="col-md-8">
+                                            <select id="JobType" name="JobType" class="form-control select2" placeholder="职业类型..."></select>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">职称</label>
+                                        <div class="col-md-8">
+                                            <select id="Titles" name="Titles" class="form-control select2" placeholder="职称..."></select>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">职务</label>
+                                        <div class="col-md-8">
+                                            <select id="Rank" name="Rank" class="form-control select2" placeholder="职务..."></select>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">所在部门</label>
+                                        <div class="col-md-8">
+                                            <input id="Department" name="Department" type="text" class="form-control" placeholder="所在部门..."/>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">爱好</label>
+                                        <div class="col-md-8">
+                                            <input id="Hobby" name="Hobby" class="form-control" placeholder="爱好..."/>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">属相</label>
+                                        <div class="col-md-8">
+                                            <select id="Animal" name="Animal" class="form-control select2" placeholder="属相..."></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">星座</label>
+                                        <div class="col-md-8">
+                                            <select id="Constellation" name="Constellation" class="form-control select2" placeholder="星座..."></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">婚姻状态</label>
+                                        <div class="col-md-8">
+                                            <select id="MarriageStatus" name="MarriageStatus" class="form-control select2" placeholder="婚姻状态..."></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">健康状况</label>
+                                        <div class="col-md-8">
+                                            <select id="HealthCondition" name="HealthCondition" class="form-control select2" placeholder="健康状况..."></select>
+                                        </div>
+                                    </div>
+                                </div>                                
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">体型</label>
+                                        <div class="col-md-8">
+                                            <select id="BodyType" name="BodyType" class="form-control select2" placeholder="体型..."></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">吸烟</label>
+                                        <div class="col-md-8">
+                                            <select id="Smoking" name="Smoking" type="text" class="form-control select2" placeholder="吸烟...">
+                                                <option>吸烟</option>
+                                                <option>不吸烟</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">喝酒</label>
+                                        <div class="col-md-8">
+                                            <select id="Drink" name="Drink" class="form-control select2" placeholder="喝酒...">
+                                                <option>喝酒</option>
+                                                <option>少喝酒</option>
+                                                <option>不喝酒</option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">身高</label>
+                                        <div class="col-md-8">
+                                            <input id="Height" name="Height" type="text" class="form-control" placeholder="身高..."/>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">体重</label>
+                                        <div class="col-md-8">
+                                            <input id="Weight" name="Weight" type="text" class="form-control" placeholder="体重..."/>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">视力</label>
+                                        <div class="col-md-8">
+                                            <input id="Vision" name="Vision" type="text" class="form-control" placeholder="视力..."/>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2">个人简述</label>
+                                        <div class="col-md-10">
+                                            <textarea id="Introduce" name="Introduce" class="form-control" placeholder="个人简述..." rows="3"></textarea>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="tab_2_3">
+                            <div class="portlet box blue">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class="fa fa-gift"></i>联系人分组
+                                    </div>
+                                    <div class="actions">
+                                        <a class="btn btn-icon-only btn-default btn-sm fullscreen" href="#" data-original-title="" title="">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="portlet-body">
+                                    <div class="scroller" style="height:500px" data-rail-visible="1" data-rail-color="yellow" data-handle-color="#a1b2bd">
+                                        <div id="jstree_group"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="tab_2_4">
+                            <div class="row">
+                                 <div class="col-md-12">
+                                    <input id="AttachGUID" name="AttachGUID" type="hidden" class="form-control" />
+                                    <br />
+                                    <input id="file_upload" name="file_upload" type="file" multiple="multiple">
+                                    <a href="javascript:void(0)" class="btn btn-primary" type="button" id="btnUpload" onclick="javascript: $('#file_upload').uploadify('upload', '*')">上传</a>
+                                    <a href="javascript:void(0)"  class="btn btn-primary" type="button" onclick="javascript: $('#file_upload').uploadify('cancel', '*')">取消</a>
+
+                                    <div id="fileQueue" class="fileQueue"></div>
+                                    <br /><hr style="width:98%"/>
+                                    <div id="div_files"></div>
+                                    <br />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer bg-info">
+                    <input type="hidden" id="ID" name="ID" />
+                    <button type="submit" class="btn blue">确定</button>
+                    <button type="button" class="btn green" data-dismiss="modal">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--------------------------查看信息的弹出层---------------------------->
+<div id="view" class="modal fade bs-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">
+                    <i class="icon-book-open"></i>
+                    <span style="font-weight:bold">查看信息</span>
+                </h4>
+            </div>
+            <form class="form-horizontal form-bordered form-row-strippe" id="ffView" action="">
+                <div class="modal-body">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#tab_3_1" data-toggle="tab">基础信息</a>
+                        </li>
+                         <li>
+                            <a href="#tab_3_2" data-toggle="tab">相关信息</a>
+                        </li>                        
+                        <li>
+                            <a href="#tab_3_3" data-toggle="tab">附件信息</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade active in" id="tab_3_1">
+                            <div class="row">
+                                 <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2">客户名称</label>
+                                        <div class="col-md-10">
+                                            <label id="Customer_ID2" name="Customer_ID" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">编号</label>
+                                        <div class="col-md-8">
+                                            <label id="HandNo2" name="HandNo" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">排序序号</label>
+                                        <div class="col-md-8">
+                                            <label id="Seq2" name="Seq" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">姓名</label>
+                                        <div class="col-md-8">
+                                            <label id="Name2" name="Name" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">身份证号码</label>
+                                        <div class="col-md-8">
+                                            <label id="IDCarNo2" name="IDCarNo" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">出生日期</label>
+                                        <div class="col-md-8">
+                                            <label id="Birthday2" name="Birthday" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">性别</label>
+                                        <div class="col-md-8">
+                                            <label id="Sex2" name="Sex" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">办公电话</label>
+                                        <div class="col-md-8">
+                                            <label id="OfficePhone2" name="OfficePhone" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">家庭电话</label>
+                                        <div class="col-md-8">
+                                            <label id="HomePhone2" name="HomePhone" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">传真</label>
+                                        <div class="col-md-8">
+                                            <label id="Fax2" name="Fax" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">联系人手机</label>
+                                        <div class="col-md-8">
+                                            <label id="Mobile2" name="Mobile" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">联系人地址</label>
+                                        <div class="col-md-8">
+                                            <label id="Address2" name="Address" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">邮政编码</label>
+                                        <div class="col-md-8">
+                                            <label id="ZipCode2" name="ZipCode" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">电子邮件</label>
+                                        <div class="col-md-8">
+                                            <label id="Email2" name="Email" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">QQ号码</label>
+                                        <div class="col-md-8">
+                                            <label id="QQ2" name="QQ" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">备注</label>
+                                        <div class="col-md-8">
+                                            <label id="Note2" name="Note" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">重要级别</label>
+                                        <div class="col-md-8">
+                                            <label id="Importance2" name="Importance" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">认可程度</label>
+                                        <div class="col-md-8">
+                                            <label id="Recognition2" name="Recognition" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">关系</label>
+                                        <div class="col-md-8">
+                                            <label id="RelationShip2" name="RelationShip" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">负责需求</label>
+                                        <div class="col-md-8">
+                                            <label id="ResponseDemand2" name="ResponseDemand" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">关心重点</label>
+                                        <div class="col-md-8">
+                                            <label id="CareFocus2" name="CareFocus" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">利益诉求</label>
+                                        <div class="col-md-8">
+                                            <label id="InterestDemand2" name="InterestDemand" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="tab_3_2">
+                            <div class="row">
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">所在省份</label>
+                                        <div class="col-md-8">
+                                            <label id="Province2" name="Province" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">城市</label>
+                                        <div class="col-md-8">
+                                            <label id="City2" name="City" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">所在行政区</label>
+                                        <div class="col-md-8">
+                                            <label id="District2" name="District" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">籍贯</label>
+                                        <div class="col-md-8">
+                                            <label id="Hometown2" name="Hometown" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">家庭住址</label>
+                                        <div class="col-md-8">
+                                            <label id="HomeAddress2" name="HomeAddress" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">民族</label>
+                                        <div class="col-md-8">
+                                            <label id="Nationality2" name="Nationality" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">教育程度</label>
+                                        <div class="col-md-8">
+                                            <label id="Eduction2" name="Eduction" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">毕业学校</label>
+                                        <div class="col-md-8">
+                                            <label id="GraduateSchool2" name="GraduateSchool" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">政治面貌</label>
+                                        <div class="col-md-8">
+                                            <label id="Political2" name="Political" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">职业类型</label>
+                                        <div class="col-md-8">
+                                            <label id="JobType2" name="JobType" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">职称</label>
+                                        <div class="col-md-8">
+                                            <label id="Titles2" name="Titles" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">职务</label>
+                                        <div class="col-md-8">
+                                            <label id="Rank2" name="Rank" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">所在部门</label>
+                                        <div class="col-md-8">
+                                            <label id="Department2" name="Department" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">爱好</label>
+                                        <div class="col-md-8">
+                                            <label id="Hobby2" name="Hobby" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">属相</label>
+                                        <div class="col-md-8">
+                                            <label id="Animal2" name="Animal" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">星座</label>
+                                        <div class="col-md-8">
+                                            <label id="Constellation2" name="Constellation" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">婚姻状态</label>
+                                        <div class="col-md-8">
+                                            <label id="MarriageStatus2" name="MarriageStatus" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">健康状况</label>
+                                        <div class="col-md-8">
+                                            <label id="HealthCondition2" name="HealthCondition" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">体型</label>
+                                        <div class="col-md-8">
+                                            <label id="BodyType2" name="BodyType" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">吸烟</label>
+                                        <div class="col-md-8">
+                                            <label id="Smoking2" name="Smoking" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">喝酒</label>
+                                        <div class="col-md-8">
+                                            <label id="Drink2" name="Drink" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">身高</label>
+                                        <div class="col-md-8">
+                                            <label id="Height2" name="Height" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">体重</label>
+                                        <div class="col-md-8">
+                                            <label id="Weight2" name="Weight" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">视力</label>
+                                        <div class="col-md-8">
+                                            <label id="Vision2" name="Vision" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">个人简述</label>
+                                        <div class="col-md-8">
+                                            <label id="Introduce2" name="Introduce" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="tab_3_3">
+                            <div class="row" style="height: 500px">    
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">附件信息</label>
+                                        <div class="col-md-8">
+                                            <input type="hidden" id="AttachGUID2" name="AttachGUID" />
+                                            <br />
+                                            <div id="div_files2"></div>
+                                            <br />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer bg-info">
+                    <input name="ID2" type="hidden" value="">
+                    <button type="button" class="btn green" data-dismiss="modal">关闭</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--选择客户数据操作层-->
+<div id="selectCustomer" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-full">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">选择客户</h4>
+            </div>
+            <div class="modal-body">
+                <!-- BEGIN 数据查询-->
+                <div class="portlet box green-meadow">
+                    <div class="portlet-title">
+                        <div class="caption"> <i class="fa fa-filter"></i>
+                            查询内容
+                        </div>
+                        <div class="tools">
+                            <button type="button" class="btn btn-circle btn-sm green" onclick="RefreshCustomer()">
+                                <i class="fa fa-search"></i>
+                                查 询
+                            </button>
+                            <a href="javascript:;" class="collapse" title="折叠内容"></a>
+                        </div>
+                    </div>
+
+                    <div class="portlet-body flip-scroll">
+                        <div class="row">
+                            <form class="form-horizontal" id="ffSearchCustomer">
+                                 <div class="col-md-3 col-sm-3 col-xs-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">客户编号</label>
+                                        <div class="col-md-8">
+                                            <input name="WHC_HandNo" type="text" class="form-control"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-3 col-sm-3 col-xs-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">客户名称</label>
+                                        <div class="col-md-8">
+                                            <input name="WHC_Name" type="text" class="form-control"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-3 col-sm-3 col-xs-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">客户简称</label>
+                                        <div class="col-md-8">
+                                            <input name="WHC_SimpleName" type="text" class="form-control"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-3 col-sm-3 col-xs-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">公司地址</label>
+                                        <div class="col-md-8">
+                                            <input name="WHC_Address" type="text" class="form-control"/>
+                                        </div>
+                                    </div>
+                                </div>    
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- END 数据查询-->
+
+                <!-- BEGIN 表格数据-->
+                <div class="portlet box green-meadow">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-cogs"></i>
+                            数据列表
+                        </div>
+                        <div class="tools">
+                            <button type="button" class="fullscreen btn btn-circle btn-sm green-meadow" data-original-title="全屏">
+                                <i class="icon-size-fullscreen"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="portlet-body flip-scroll">
+                        <div class="portlet-body">
+                            <div>
+                                <span>每页显示</span>
+                                <select id="Customerrows" onchange="ChangeRowsCustomer()">
+                                    <option>10</option>
+                                    <option>50</option>
+                                    <option>100</option>
+                                    <option>1000</option>
+                                </select>
+                                <span>条记录</span>&nbsp;&nbsp;
+                                <span>共有记录：</span><span id='totalCountCustomer' class="label label-success">0</span>条，总页数：<span id='totalPageCountCustomer' class="label label-success">0</span>页。
+                            </div>
+                            <hr />
+                            <table id="gridCustomer" class="table table-striped table-bordered table-hover" cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
+                                <thead id="grid_head">
+                                    <tr>
+                                        <th class="table-checkbox" style="width:40px">选择</th>
+                                         <th>客户编号</th>
+                                         <th>客户名称</th>
+                                         <th>客户简称</th>
+                                         <th>省份</th>
+                                         <th>城市</th>
+                                         <th>行政区</th>
+                                         <th>市场分区</th>
+                                         <th>客户类别</th>
+                                         <th>客户级别</th>
+                                         <th>信用等级</th>
+                                         <th>重要级别</th>
+                                         <th>公开与否</th>
+                                         <th>备注信息</th>
+                                         <th>客户阶段</th>
+                                         <th>客户状态</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="gridCustomer_body"></tbody>
+                            </table>
+                            <div class="paging-toolbar">
+                                <ul id='gridCustomer_paging'></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" onclick="ConfirmSelect()">确认选择</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--导入数据操作层-->
+<div id="import" class="modal fade bs-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">文件导入</h4>
+            </div>
+            <div class="modal-body">
+                <div style="text-align:right;padding:5px">
+                    <a href="~/Content/Template/Contact-模板.xls" onclick="javascript:Preview();">
+                        <img alt="文件导入-模板" src="~/Content/images/ico_excel.png" />
+                        <span style="font-size:larger;font-weight:200;color:red">Contact-模板.xls</span>
+                    </a>
+                </div>
+                <hr/>
+                <form id="ffImport" method="post">
+                    <div title="Excel导入操作" style="padding: 5px" data-options="iconCls:'icon-key'">
+                        <input class="easyui-validatebox" type="hidden" id="AttachGUID" name="AttachGUID" />    
+                        <input id="file_upload" name="file_upload" type="file" multiple="multiple">                    
+                        <a href="javascript:;" class="btn btn-primary" id="btnUpload" onclick="javascript: $('#file_upload').uploadify('upload', '*')">上传</a>
+                        <a href="javascript:;" class="btn btn-default" id="btnCancelUpload" onclick="javascript: $('#file_upload').uploadify('cancel', '*')">取消</a>
+
+                        <div id="fileQueue" class="fileQueue"></div>
+                        <br />                    
+                        <hr style="width:98%" />                    
+                        <div id="div_files"></div>
+                        <br />                    
+                    </div>
+                </form>
+
+                <!--数据显示表格-->
+                <table id="gridImport" class="table table-striped table-bordered table-hover" cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
+                    <thead id="gridImport_head">
+                        <tr>
+                            <th class="table-checkbox" style="width:40px"><input class="group-checkable" type="checkbox" onclick="selectAll(this)"></th>
+                             <th>客户ID</th>
+                             <th>编号</th>
+                             <th>姓名</th>
+                             <th>身份证号码</th>
+                             <th>出生日期</th>
+                             <th>性别</th>
+                             <th>办公电话</th>
+                             <th>家庭电话</th>
+                             <th>传真</th>
+                             <th>联系人手机</th>
+                             <th>联系人地址</th>
+                             <th>邮政编码</th>
+                             <th>电子邮件</th>
+                             <th>QQ号码</th>
+                             <th>备注</th>
+                             <th>排序序号</th>
+                             <th>附件组别ID</th>
+                             <th>所在省份</th>
+                             <th>城市</th>
+                             <th>所在行政区</th>
+                             <th>籍贯</th>
+                             <th>家庭住址</th>
+                             <th>民族</th>
+                             <th>教育程度</th>
+                             <th>毕业学校</th>
+                             <th>政治面貌</th>
+                             <th>职业类型</th>
+                             <th>职称</th>
+                             <th>职务</th>
+                             <th>所在部门</th>
+                             <th>爱好</th>
+                             <th>属相</th>
+                             <th>星座</th>
+                             <th>婚姻状态</th>
+                             <th>健康状况</th>
+                             <th>重要级别</th>
+                             <th>认可程度</th>
+                             <th>关系</th>
+                             <th>负责需求</th>
+                             <th>关心重点</th>
+                             <th>利益诉求</th>
+                             <th>体型</th>
+                             <th>吸烟</th>
+                             <th>喝酒</th>
+                             <th>身高</th>
+                             <th>体重</th>
+                             <th>视力</th>
+                             <th>个人简述</th>    
+                        </tr>
+                    </thead>
+                    <tbody id="gridImport_body"></tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" onclick="SaveImport()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section footerScript {
+
+<!-- 选择客户的处理脚本 -->
+<script type="text/javascript">
+        var currentPageCustomer = 1, customerRows = 10; //客户信息，分页参数：当前页，记录数
+        //页面初始化
+        $(function () {  
+            SearchCustomer(currentPageCustomer);//初始化第一页数据
+
+            //选定客户对话框
+            $("#btnSelectCustomer").click(function () {
+                $("#selectCustomer").modal("show");
+            });
+        });   
+
+        //根据条件查询并绑定结果
+        function SearchCustomer(page) {
+            //根据控件Name属性获取表单预设条件
+            var condition = $("#ffSearchCustomer").serialize();
+
+            //根据需要加上一些特殊条件
+            //condition += "&WHC_Age=" + $("#WHC_Age").val() + "~" + $("#WHC_Age2").val(); //数值范围
+            //condition += "&WHC_BirthDate=" + $("#WHC_BirthDate").val() + "~" + $("#WHC_BirthDate2").val(); //日期范围
+
+            SearchConditionCustomer(page, condition);
+        }
+        function SearchConditionCustomer(page, condition) {
+            //获取Json对象集合，并生成数据显示内容
+            url = "/Customer/FindWithPager?page=" + page + "&rows=" + customerRows;
+            $.getJSON(url + "&" + condition, function (data) {
+                $("#totalCountCustomer").text(data.total);
+                $("#totalPageCountCustomer").text(Math.ceil(data.total / customerRows));
+
+                $("#gridCustomer_body").html("");
+
+                $.each(data.rows, function (i, item) {
+                    var tr = "<tr>";
+                    tr += "<td><input class='checkboxes' type=\"checkbox\" name=\"checkbox\" value=" + item.ID + "></td>";
+                     tr += "<td>" + item.HandNo + "</td>";
+                     tr += "<td>" + item.Name + "</td>";
+                     tr += "<td>" + item.SimpleName + "</td>";
+                     tr += "<td>" + item.Province + "</td>";
+                     tr += "<td>" + item.City + "</td>";
+                     tr += "<td>" + item.District + "</td>";
+                     tr += "<td>" + item.Area + "</td>";
+                     tr += "<td>" + item.CustomerType + "</td>";
+                     tr += "<td>" + item.Grade + "</td>";
+                     tr += "<td>" + item.CreditStatus + "</td>";
+                     tr += "<td>" + item.Importance + "</td>";
+                     if (item.IsPublic) {
+                     // tr += "<td>" + item.IsPublic + "</td>";
+                        tr += "<td><span class='label label-success'>公开</span></td>";
+                    } else {
+                        tr += "<td><span class='label label-danger'>不公开</span></td>";
+                    }
+                     tr += "<td>" + item.Note + "</td>";
+                     tr += "<td>" + item.Stage + "</td>";
+                     tr += "<td>" + item.Status + "</td>";
+    
+                    // tr += getActionHtml(item.ID); //获取查看、编辑、删除操作代码
+
+                    tr += "</tr>";
+                    $("#gridCustomer_body").append(tr);
+                });
+
+                //设置分页属性及处理
+                var element = $('#gridCustomer_paging');
+                if(data.total > 0) {
+                    var options = {
+                        bootstrapMajorVersion: 3,
+                        currentPage: page,
+                        numberOfPages: customerRows,
+                        totalPages: Math.ceil(data.total / customerRows),
+                        onPageChanged: function (event, oldPage, newPage) {
+                            SearchCondition(newPage, condition);  //页面变化时触发内容更新
+                        }
+                    }
+                    element.bootstrapPaginator(options);
+                } else {
+                    element.html("");
+                }
+            });
+        }
+
+        //设置一页显示多少条
+        function ChangeRowsCustomer() {
+            rows = $("#Customerrows").val();
+            RefreshCustomer();
+        }
+
+        //刷新列表
+        function RefreshCustomer() {
+            SearchCustomer(currentPageCustomer);
+        }
+
+        //确认选择客户记录
+        function ConfirmSelect() {
+            var bodyTag = "#gridCustomer_body";
+            // var checkbox = $(bodyTag +" tr").find("td").find(".checkboxes");
+            var customerID = "";
+            var customerName = "";
+            $(bodyTag +" tr").each(function() {
+                //判断是否选中，选中的记录才导入数据库
+                var checkbox = $(this).find("td").find(".checkboxes");
+
+                if (checkbox!=undefined && $(checkbox).is(':checked')) {                  
+                    customerID = $(checkbox).val(); 
+
+                    var rows = [];
+                    $(this).find('td:not(:first-child)').each (function() {
+                        rows.push($(this).text());
+                    });    
+                    customerName = rows[1];
+                }
+            });  
+            // alert(customerName);
+            
+            if(customerID != "") {
+                //设置客户的名称和ID
+                $("#Customer_Name").val(customerName);
+                $("#Customer_ID").val(customerID);
+
+                $("#selectCustomer").modal("hide");
+            }
+        }
+</script>
+
+<!--主页面脚本处理-->
+<script type="text/javascript">
+        var currentPage = 1, rows = 10; //分页参数：当前页，记录数
+
+        var isAddOrEdit = 'add';//标识是新增还是编辑对话框弹出，用于删除附件的操作
+        var url;//新增或者更新的连接
+        var ID;//ID值，新增为空，编辑或者查看为具体ID
+
+        //页面初始化
+        $(function () {            
+            initJsTree(); //初始化树
+
+            InitStyle();        //设置控件的样式
+            BindEvent();        //绑定事件处理
+            Search(currentPage);//初始化第一页数据
+            InitDictItem();     //初始化字典信息
+        });
+
+        //绑定左侧树形列表
+        function initJsTree() {
+            bindJsTree("jstree_div", '/ContactGroup/GetGroupJsTreeJson?userid=@Session["UserId"]');
+
+            //树控件的变化事件处理
+            $('#jstree_div').on("changed.jstree", function (e, data) {
+                var icon = data.node.icon;
+                var id = data.node.id;
+                if(id == '#') {
+                    id = '';
+                }
+                loadData(id, data.node.text);
+            });
+        }
+
+        //加载指定的对象数据
+        var clickId = "";
+        function loadData(id, text) {
+            var customedCondition = "{ id: \"" + id +"\", groupname:\"" + text +"\", userid:\"" + @Session["UserId"] + "\" }";
+            var condition = "CustomedCondition=" + customedCondition;
+
+            SearchCondition(currentPage, condition);
+
+            clickId = id;
+        }
+
+        //设置控件的样式
+        function InitStyle() {
+            
+            //统一设置icheck控件的样式
+            $('input[class=icheck]').iCheck({
+                checkboxClass: 'icheckbox_square-red',
+                radioClass: 'iradio_square-red',
+            });
+
+            //增加数值的调整按钮样式
+            // $("#Age").TouchSpin({
+            //     buttondown_class: 'btn blue',
+            //     buttonup_class: 'btn blue',
+            //     min: 0,
+            //     max: 120,
+            //     stepinterval: 1,
+            //     maxboostedstep: 10,
+            //     prefix: ''
+            // });
+                         
+            //初始化fileinput控件（第一次初始化）
+            //initFileInput("file-Portrait", "/Contact/EditPortrait");
+        }
+
+        //根据条件查询并绑定结果
+        function Search(page) {
+            //根据控件Name属性获取表单预设条件
+            var condition = $("#ffSearch").serialize();
+
+            //根据需要加上一些特殊条件
+            //condition += "&WHC_Age=" + $("#WHC_Age").val() + "~" + $("#WHC_Age2").val(); //数值范围
+            //condition += "&WHC_BirthDate=" + $("#WHC_BirthDate").val() + "~" + $("#WHC_BirthDate2").val(); //日期范围
+
+            SearchCondition(page, condition);
+        }
+        function SearchCondition(page, condition) {
+            //获取Json对象集合，并生成数据显示内容
+            url = "/Contact/FindWithPager?page=" + page + "&rows=" + rows;
+            $.getJSON(url + "&" + condition, function (data) {
+                $("#totalCount").text(data.total);
+                $("#totalPageCount").text(Math.ceil(data.total / rows));
+
+                $("#grid_body").html("");
+
+                $.each(data.rows, function (i, item) {
+                    var tr = "<tr>";
+                    tr += "<td><input class='checkboxes' type=\"checkbox\" name=\"checkbox\" value=" + item.ID + "></td>";
+                     tr += "<td>" + item.Data1 + "</td>";
+                     tr += "<td>" + item.HandNo + "</td>";
+                     tr += "<td>" + item.Name + "</td>";
+                     //tr += "<td>" + item.IDCarNo + "</td>";
+                     //tr += "<td>" + getDateStr(item.Birthday) + "</td>";
+                     tr += "<td>" + item.Sex + "</td>";
+                     //tr += "<td>" + item.OfficePhone + "</td>";
+                     //tr += "<td>" + item.HomePhone + "</td>";
+                     //tr += "<td>" + item.Fax + "</td>";
+                     tr += "<td>" + item.Mobile + "</td>";
+                     //tr += "<td>" + item.Address + "</td>";
+                     //tr += "<td>" + item.ZipCode + "</td>";
+                     tr += "<td>" + item.Email + "</td>";
+                     //tr += "<td>" + item.Qq + "</td>";
+                     //tr += "<td>" + item.Note + "</td>";
+    
+                    tr += getActionHtml(item.ID); //获取查看、编辑、删除操作代码
+
+                    tr += "</tr>";
+                    $("#grid_body").append(tr);
+                });
+
+                //设置分页属性及处理
+                var element = $('#grid_paging');
+                if(data.total > 0) {
+                    var options = {
+                        bootstrapMajorVersion: 3,
+                        currentPage: page,
+                        numberOfPages: rows,
+                        totalPages: Math.ceil(data.total / rows),
+                        onPageChanged: function (event, oldPage, newPage) {
+                            SearchCondition(newPage, condition);  //页面变化时触发内容更新
+                        }
+                    }
+                    element.bootstrapPaginator(options);
+                } else {
+                    element.html("");
+                }
+            });
+        }
+
+        //设置一页显示多少条
+        function ChangeRows() {
+            rows = $("#rows").val();
+            Refresh();
+        }
+
+        //刷新列表
+        function Refresh() {
+            Search(currentPage);
+        }
+
+        //初始化字典信息（下拉列表）
+        function InitDictItem() {            
+            //绑定字典
+            BindDictItem("Titles", "职称");
+            BindDictItem("Rank", "职务");
+            BindDictItem("Importance", "重要级别");
+            BindDictItem("Recognition", "对公司认可程度");
+
+            BindDictItem("InterestDemand", "客户利益诉求");
+            BindDictItem("CareFocus", "客户关心重点");
+            BindDictItem("ResponseDemand", "负责需求");
+
+            BindDictItem("RelationShip", "与公司关系");
+            BindDictItem("Nationality", "民族");
+            BindDictItem("Political", "政治面貌");
+            BindDictItem("JobType", "职业类型");
+            BindDictItem("Eduction", "学历");
+            BindDictItem("Animal", "属相");
+            BindDictItem("Constellation", "星座");
+            BindDictItem("MarriageStatus", "婚姻状况");
+            BindDictItem("HealthCondition", "健康状况");
+            BindDictItem("BodyType", "体型");
+            
+            //绑定可选多个Tag
+            $("#Hobby").select2({
+                tags: ["旅游", "爬山", "篮球", "足球", "乒乓球"]
+            });
+            
+            // 绑定省份、城市、行政区（联动处理）
+            BindSelect("Province", "/Province/GetAllProvinceDictJson");
+            $("#Province").on("change", function (e) {
+                var provinceId = $("#Province").val();
+                BindSelect("City", "/City/GetCitysByProvinceIdDictJson?provinceId="+ provinceId);
+            });
+
+            $("#City").on("change", function (e) {
+                var cityId = $("#City").val();
+                BindSelect("District", "/District/GetDistrictByCityDictJson?cityId="+ cityId);
+            });
+        }
+
+        //实现删除数据的方法
+        function Delete() {
+            var ids = "";//得到用户选择的数据的ID
+            $("[name='checkbox']").each(function () {
+                if ($(this).is(':checked')) {
+                    ids += $(this).val() + ",";
+                }
+            });
+
+            DeleteByIds(ids);
+        }
+
+        //删除指定的记录
+        function DeleteByIds(ids) {
+            if (ids != "") {
+                showDelete(function () {
+                    //最后去掉最后的逗号,
+                    ids = ids.replace(/,\s*$/, '');
+
+                    //然后发送异步请求的信息到后台删除数据
+                    var postData = { ids: ids };
+                    $.post("/Contact/DeletebyIds", postData, function (json) {
+                        var data = $.parseJSON(json);
+                        if (data.Success) {
+                            showTips("删除选定的记录成功");
+                            Refresh();//刷新页面数据
+                        }
+                        else {
+                            showTips(data.ErrorMessage);
+                        }
+                    });
+                });
+            } else {
+                showTips("请选择你要删除的数据");
+            }
+        }
+
+        //初始化图像信息
+        function initPortrait(ctrlName, id) {
+            var control = $('#' + ctrlName); 
+            var imageurl = '/Contact/GetPortrait?id=' + id +'&r=' + Math.random();
+
+            //重要，需要更新控件的附加参数内容，以及图片初始化显示
+            control.fileinput('refresh', {
+                uploadExtraData: { id: id },
+                initialPreview: [ //预览图片的设置
+                    "<img src='" + imageurl + "' class='file-preview-image' alt='肖像图片' title='肖像图片'>",
+                ],
+             });
+        }
+
+        //绑定客户联系人分组
+        function BindContactGroup(id) {
+            var treeUrl = '/ContactGroup/GetMyContactGroupJsTree?contactid=' + id + "&userid=@Session["UserId"]";
+            bindJsTree("jstree_group", treeUrl, true);
+        }
+        //保存客户分组
+        function SaveContactGroup(id) {
+            var groupList = $('#jstree_group').jstree('get_selected');
+
+            //插入记录的时候，如何获取ID？
+            var posturl = "/Contact/ModifyContactGroup";
+            var postData = { contactId: id, groupIdList: groupList.join(',') };
+            $.post(posturl, postData, function (json) {
+                var data = $.parseJSON(json);
+                if (data.Success) {
+                    //showTips("保存联系人分组成功");
+                }
+                else {
+                    showError("保存联系人分组失败:" + data.ErrorMessage);                    
+                }
+            });
+        }
+
+        //弹出新增对话框
+        function Add() {
+            isAddOrEdit = 'add';//新增对话框标识
+            //CKEDITOR.instances.Content.setData('');  //清空编辑器的数据
+            $("#ffAdd")[0].reset();//清空上次输入
+            $('#ffAdd').validate().resetForm();//去除验证信息
+
+            //增加记录前，赋值ID
+            url = '/Contact/Insert';
+            $.get("/Contact/NewGuid?r=" + Math.random(), function (result) {
+                $("#ID").val(result);
+                ID = result;
+                BindContactGroup(ID);
+            });
+
+            var select2Ctrl = ["Titles", "Rank","Importance","Recognition","InterestDemand","CareFocus","ResponseDemand","RelationShip",
+            "Nationality","Political","JobType","Eduction","Animal","Constellation","MarriageStatus","HealthCondition","BodyType"];
+            $.each(select2Ctrl, function (i, item) {
+                var ctrl = $("#" + item);
+                ctrl.select2("val", "");
+            });
+
+            //显示可以选择客户
+            $("#btnSelectCustomer").show();
+
+            //新增的时候，绑定附件显示
+            var guid = newGuid();
+            $("#AttachGUID").val(guid);
+            attachguid = guid;
+            ShowUpFiles(attachguid, "div_files");//更新列表
+                       
+            //初始化部分控件
+            $('input[name="Sex"][value="男"]').iCheck('check');
+            //$("#PID").select2("val", "");
+            //$("#Hobby").select2('val', null);//清空下拉框
+
+            $("#lblAddTitle").text("添加信息");
+            $("#add").modal("show");
+        }
+
+        //修改或查看明细信息（绑定显示数据）
+        function EditView(view) {
+            ID = "";//重置ID的值
+            $("[name='checkbox']").each(function () {
+                if ($(this).is(':checked')) {
+                    ID = $(this).val();//首先取出来用户选择的数据的ID
+                }
+            });
+            
+            EditViewById(ID, view);
+        }
+
+        //编辑或者查看指定记录
+        function EditViewById(ID, view) {
+            if (ID == "") {
+                showTips("请选择一条记录");
+                return;
+            }
+
+            if (view == null) {
+                //处理修改的信息
+                $("#lblAddTitle").text("修改信息");
+                $("#add").modal("show");
+                url = '/Contact/Update?ID=' + ID;
+
+                $("#btnSelectCustomer").hide();
+                //绑定修改详细信息的方法
+                BindEditInfo(ID);
+                BindContactGroup(ID);
+            }
+            else {
+                //处理查看详细
+                $("#view").modal("show");
+                //绑定查看详细信息方法
+                BindViewInfo(ID);
+            }
+        }
+
+        //绑定编辑详细信息的方法
+        function BindEditInfo(ID) {
+            //使用同步方式，使得联动的控件正常显示
+            $.ajaxSettings.async = false;
+
+            $('#ffAdd').validate().resetForm();//去除验证信息
+
+            //首先用户发送一个异步请求去后台实现方法
+            $.getJSON("/Contact/FindByID?r=" + Math.random() + "&id=" + ID, function (info) {
+                 $("#Customer_ID").val(info.Customer_ID);
+                 $("#HandNo").val(info.HandNo);
+                 $("#Name").val(info.Name);
+                 $("#IDCarNo").val(info.IDCarNo);
+                 $("#Birthday").val(getDateStr(info.Birthday));
+                 // $("#Sex").val(info.Sex);
+                 $("#OfficePhone").val(info.OfficePhone);
+                 $("#HomePhone").val(info.HomePhone);
+                 $("#Fax").val(info.Fax);
+                 $("#Mobile").val(info.Mobile);
+                 $("#Address").val(info.Address);
+                 $("#ZipCode").val(info.ZipCode);
+                 $("#Email").val(info.Email);
+                 $("#QQ").val(info.Qq);
+                 $("#Note").val(info.Note);
+
+                 $("#Seq").val(info.Seq);
+                 $("#AttachGUID").val(info.AttachGUID);
+
+                 $("#Province").select2("val", info.Province).trigger('change');//联动
+                 $("#City").select2("val", info.City).trigger('change');//联动
+                 $("#District").select2("val", info.District);
+
+                 $("#Hometown").val(info.Hometown);
+                 $("#HomeAddress").val(info.HomeAddress);
+
+                 $("#Nationality").select2("val", info.Nationality);
+                 $("#Eduction").select2("val", info.Eduction);
+
+                 $("#GraduateSchool").val(info.GraduateSchool);
+                 $("#Political").select2("val", info.Political);
+                 $("#JobType").select2("val", info.JobType);
+                 $("#Titles").select2("val", info.Titles);
+                 $("#Rank").select2("val", info.Rank);
+
+                 $("#Department").val(info.Department);
+
+                 $("#Hobby").select2("val", info.Hobby.split(','));
+                 $("#Animal").select2("val", info.Animal);
+                 $("#Constellation").select2("val", info.Constellation);
+                 $("#MarriageStatus").select2("val", info.MarriageStatus);
+                 $("#HealthCondition").select2("val", info.HealthCondition);
+                 $("#Importance").select2("val", info.Importance);
+                 $("#Recognition").select2("val", info.Recognition);
+                 $("#RelationShip").select2("val", info.RelationShip);
+
+                 $("#ResponseDemand").select2("val", info.ResponseDemand.split(','));
+                 $("#CareFocus").select2("val", info.CareFocus.split(','));
+                 $("#InterestDemand").select2("val", info.InterestDemand.split(','));
+
+                 $("#BodyType").select2("val", info.BodyType);
+                 $("#Smoking").select2("val", info.Smoking);
+                 $("#Drink").select2("val", info.Drink);
+
+                 $("#Height").val(info.Height);
+                 $("#Weight").val(info.Weight);
+                 $("#Vision").val(info.Vision);
+                 $("#Introduce").val(info.Introduce);
+    
+                //参考赋值
+                //$("#Company_ID1").select2("val", info.Company_ID).trigger('change');//联动
+                //$("#PID1").select2("val", info.PID);//普通Select2
+
+                $("input[name='Sex']").iCheck('uncheck');
+                $("input[name='Sex'][value='" + info.Sex + "']").iCheck('check');
+
+                $.getJSON("/Customer/GetCustomerName?id=" + info.Customer_ID, function (result) {
+                    $("#Customer_Name").val(result);
+                });
+
+                //编辑的时候，更新显示附件列表
+                var guid = $("#AttachGUID").val();
+                if (guid == null || guid == "") {
+                    $("#AttachGUID").val(newGuid());//确保不为空
+                }
+                attachguid = $("#AttachGUID").val();//记录方便更新
+                ShowUpFiles(attachguid, "div_files");
+
+                $("#ID").val(info.ID);
+                isAddOrEdit = 'edit';//新增对话框标识
+            });
+
+        }
+
+        //绑定查看详细信息的方法
+        function BindViewInfo(ID) {
+            //发送请求
+            $.getJSON("/Contact/FindByID?r=" + Math.random() + "&id=" + ID, function (info) {
+                //$("#ID2").text(info.ID);
+
+                 $("#Customer_ID2").text(info.Customer_ID);
+                 $("#HandNo2").text(info.HandNo);
+                 $("#Name2").text(info.Name);
+                 $("#IDCarNo2").text(info.IDCarNo);
+                 $("#Birthday2").text(info.Birthday);
+                 $("#Sex2").text(info.Sex);
+                 $("#OfficePhone2").text(info.OfficePhone);
+                 $("#HomePhone2").text(info.HomePhone);
+                 $("#Fax2").text(info.Fax);
+                 $("#Mobile2").text(info.Mobile);
+                 $("#Address2").text(info.Address);
+                 $("#ZipCode2").text(info.ZipCode);
+                 $("#Email2").text(info.Email);
+                 $("#QQ2").text(info.Qq);
+                 $("#Note2").text(info.Note);
+                 $("#Seq2").text(info.Seq);
+                 $("#AttachGUID2").text(info.AttachGUID);
+
+                 $("#Province2").text(info.Province);
+                 $("#City2").text(info.City);
+                 $("#District2").text(info.District);
+
+                 $("#Hometown2").text(info.Hometown);
+                 $("#HomeAddress2").text(info.HomeAddress);
+                 $("#Nationality2").text(info.Nationality);
+                 $("#Eduction2").text(info.Eduction);
+                 $("#GraduateSchool2").text(info.GraduateSchool);
+                 $("#Political2").text(info.Political);
+                 $("#JobType2").text(info.JobType);
+                 $("#Titles2").text(info.Titles);
+                 $("#Rank2").text(info.Rank);
+                 $("#Department2").text(info.Department);
+                 $("#Hobby2").text(info.Hobby);
+                 $("#Animal2").text(info.Animal);
+                 $("#Constellation2").text(info.Constellation);
+                 $("#MarriageStatus2").text(info.MarriageStatus);
+                 $("#HealthCondition2").text(info.HealthCondition);
+                 $("#Importance2").text(info.Importance);
+                 $("#Recognition2").text(info.Recognition);
+                 $("#RelationShip2").text(info.RelationShip);
+                 $("#ResponseDemand2").text(info.ResponseDemand);
+                 $("#CareFocus2").text(info.CareFocus);
+                 $("#InterestDemand2").text(info.InterestDemand);
+                 $("#BodyType2").text(info.BodyType);
+                 $("#Smoking2").text(info.Smoking);
+                 $("#Drink2").text(info.Drink);
+                 $("#Height2").text(info.Height);
+                 $("#Weight2").text(info.Weight);
+                 $("#Vision2").text(info.Vision);
+                 $("#Introduce2").text(info.Introduce);
+                 $("#Creator2").text(info.Creator);
+                 $("#CreateTime2").text(info.CreateTime);
+                 $("#Editor2").text(info.Editor);
+                 $("#EditTime2").text(info.EditTime);
+                 $("#Deleted2").text(info.Deleted);
+                    
+                $.getJSON("/Customer/GetCustomerName?id=" + info.Customer_ID, function (result) {
+                    $("#Customer_ID2").text(result);
+                });
+
+                $.getJSON("/Province/GetName?id=" + info.Province, function (result) {
+                    $("#Province2").text(result);
+                });
+                $.getJSON("/City/GetName?id=" + info.City, function (result) {
+                    $("#City2").text(result);
+                });                
+                $.getJSON("/District/GetName?id=" + info.District, function (result) {
+                    $("#District2").text(result);
+                });
+
+                var guid = $("#AttachGUID2").text();
+                ViewUpFiles(guid, "div_files2");
+
+                //$.getJSON("/User/GetFullNameByID?userid=" + info.Creator, function (result) {
+                //    $("#Creator2").text(result);
+                //});
+                //$.getJSON("/User/GetFullNameByID?userid=" + info.Editor, function (result) {
+                //    $("#Editor2").text(result);
+                //});
+
+                //图片显示
+                // var imageUrl = '/User/GetPortrait?id=' + ID +'&r=' + Math.random();
+                // $("#Portrait2").attr('src', imageUrl);
+
+                //树形控件
+                // var treeUrl = '/Function/GetFunctionJsTreeJsonByUser?userId=' + info.ID;
+                // bindJsTree("jstree_function2", treeUrl);
+            });
+        }
+
+        //显示导入界面
+        function ShowImport() {
+            $("#import").modal("show");
+        }
+
+        //导出Excel数据
+        function ShowExport() {
+            var url = "/Contact/Export";
+            var condition = $("#ffSearch").serialize();//获取条件
+
+            executeExport(url, condition);//执行导出
+        }
+
+        //联系人分组管理界面
+        function ContactGroup() {
+            location.href= '/ContactGroup/index';
+        }
+
+        //绑定相关事件
+        function BindEvent() {
+            //添加、编辑记录的窗体处理
+            formValidate("ffAdd", function (form) {
+                $("#add").modal("hide");
+                //构造参数发送给后台
+                var id = $("#ID").val();
+                var postData = $("#ffAdd").serializeArray();
+                $.post(url, postData, function (json) {
+                    var data = $.parseJSON(json);
+                    if (data.Success) {
+                        //可增加其他处理
+                        SaveContactGroup(id);
+
+                        //保存成功  1.关闭弹出层，2.刷新表格数据
+                        showTips("保存成功");
+                        Refresh();
+                    }
+                    else {
+                        showError("保存失败:" + data.ErrorMessage, 3000);
+                    }
+                }).error(function () {
+                    showTips("您未被授权使用该功能，请联系管理员进行处理。");
+                });
+            });
+        }
+
+</script>
+
+<script type="text/javascript">
+    $(function () {
+        //添加界面的附件管理
+        $('#file_upload').uploadify({
+            'swf': '/Content/JQueryTools/uploadify/uploadify.swf',  //FLash文件路径
+            'buttonText': '浏  览',                                 //按钮文本
+            'uploader': '/FileUpload/Upload',                       //处理ASHX页面
+            'queueID': 'fileQueue',                        //队列的ID
+            'queueSizeLimit': 10,                          //队列最多可上传文件数量，默认为999
+            'auto': false,                                 //选择文件后是否自动上传，默认为true
+            'multi': false,                                 //是否为多选，默认为true
+            'removeCompleted': true,                       //是否完成后移除序列，默认为true
+            'fileSizeLimit': '10MB',                       //单个文件大小，0为无限制，可接受KB,MB,GB等单位的字符串值
+            'fileTypeDesc': 'Image Files',                 //文件描述
+            'fileTypeExts': '*.gif; *.jpg; *.png; *.bmp;*.tif;*.doc;*.docx;*.xls;*.xlsx;*.ppt;*.pptx;*.zip;*.rar',  //上传的文件后缀过滤器
+            'onQueueComplete': function (event, data) {    //所有队列完成后事件
+                ShowUpFiles($("#AttachGUID").val(), "div_files");
+                showToast("上传完毕！");
+            },
+            'onUploadStart': function (file) {
+                $("#file_upload").uploadify("settings", 'formData', { 'folder': '多媒体文件', 'guid': $("#AttachGUID").val() }); //动态传参数
+            },
+            'onUploadError': function (event, queueId, fileObj, errorObj) {
+                //alert(errorObj.type + "：" + errorObj.info);
+            }
+        });
+    });
+
+    var attachguid = "";//用来记录附件组的ID，方便更新
+    function deleteAttach(id) {
+        DeleteAndRefreshAttach(id, attachguid, "div_files");
+    }
+
+</script>
+
+}

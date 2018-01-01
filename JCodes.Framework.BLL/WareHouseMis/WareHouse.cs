@@ -24,7 +24,7 @@ namespace JCodes.Framework.BLL
             return base.Find(condition);
         }
 
-        public override bool DeleteByUser(object key, string userId, DbTransaction trans = null)
+        public override bool DeleteByUser(object key, Int32 userId, DbTransaction trans = null)
         {
             string condition = string.Format("ID ={0} and (Reserved = 0 or  Reserved is null)", key);
             return DeleteByCondition(condition, trans);

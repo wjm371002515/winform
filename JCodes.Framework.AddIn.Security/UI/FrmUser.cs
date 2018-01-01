@@ -606,7 +606,7 @@ namespace JCodes.Framework.AddIn.Security
             info.Gender = dr["性别"].ToString();
             info.MobilePhone = dr["移动电话"].ToString();
             info.Email = dr["邮件地址"].ToString();
-            info.CurrentLoginUserId = Portal.gc.UserInfo.ID.ToString();
+            info.CurrentLoginUserId = Portal.gc.UserInfo.ID;
             #region 可选字段
 
             if (dr.Table.Columns.Contains("是否过期"))
@@ -667,7 +667,7 @@ namespace JCodes.Framework.AddIn.Security
             }
             if (dr.Table.Columns.Contains("排序码"))
             {
-                info.SortCode = dr["排序码"].ToString();
+                info.Seq = dr["排序码"].ToString();
             } 
             #endregion
 
@@ -762,7 +762,7 @@ namespace JCodes.Framework.AddIn.Security
                     dr["自定义字段"] = list[i].CustomField;
                     dr["默认部门名称"] = list[i].DeptName;
                     dr["所属公司名称"] = list[i].CompanyName;
-                    dr["排序码"] = list[i].SortCode;
+                    dr["排序码"] = list[i].Seq;
                     dtNew.Rows.Add(dr);
                 }
 
@@ -876,7 +876,7 @@ namespace JCodes.Framework.AddIn.Security
                 return;
             }
 
-            if (MessageDxUtil.ShowYesNoAndTips("您确定重置选定记录的用户密码么？ \r\n重置后密码将设置为【12345678】") == DialogResult.No)
+            if (MessageDxUtil.ShowYesNoAndTips(string.Format("您确定重置选定记录的用户密码么？ \r\n重置后密码将设置为【{0}】", Const.defaultPwd)) == DialogResult.No)
             {
                 return;
             }

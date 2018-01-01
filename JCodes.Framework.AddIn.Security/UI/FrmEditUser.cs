@@ -160,7 +160,7 @@ namespace JCodes.Framework.AddIn.Security
                     txtAuditStatus.Text = info.AuditStatus;
                     txtNote.Text = info.Note;
                     txtCustomField.Text = info.CustomField;                   
-                    txtSortCode.Text = info.SortCode;
+                    txtSeq.Text = info.Seq;
                     txtCreator.Text = info.Creator;
                     txtCreateTime.SetDateTime(info.CreateTime);
                     txtIsExpire.Checked = info.IsExpire;
@@ -212,13 +212,13 @@ namespace JCodes.Framework.AddIn.Security
             info.DeptName = txtDept.Text;
             info.Company_ID = txtCompany.Value;
             info.CompanyName = txtCompany.Text;
-            info.SortCode = txtSortCode.Text;
+            info.Seq = txtSeq.Text;
             info.Editor = Portal.gc.UserInfo.FullName;
             info.Editor_ID = Portal.gc.UserInfo.ID.ToString();
             info.EditTime = DateTimeHelper.GetServerDateTime2();
             info.Deleted = txtDeleted.Checked;
 
-            info.CurrentLoginUserId = Portal.gc.UserInfo.ID.ToString();
+            info.CurrentLoginUserId = Portal.gc.UserInfo.ID;
         }
 
         /// <summary>

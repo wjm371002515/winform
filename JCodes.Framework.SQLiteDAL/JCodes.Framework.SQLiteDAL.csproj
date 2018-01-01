@@ -58,6 +58,9 @@
     <Compile Include="Attachment\FileUpload.cs" />
     <Compile Include="Contact\Address.cs" />
     <Compile Include="Contact\AddressGroup.cs" />
+    <Compile Include="CRM\Contact.cs" />
+    <Compile Include="CRM\ContactGroup.cs" />
+    <Compile Include="CRM\Customer.cs" />
     <Compile Include="Dic\City.cs" />
     <Compile Include="Dic\DictData.cs" />
     <Compile Include="Dic\DictType.cs" />
@@ -88,6 +91,8 @@
     <Compile Include="WareHouseMis\Client.cs" />
     <Compile Include="WareHouseMis\Supplier.cs" />
     <Compile Include="WareHouseMis\WareHouse.cs" />
+    <Compile Include="WebMis\Information.cs" />
+    <Compile Include="WebMis\InformationStatus.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -110,7 +115,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>echo "编译后处理的事情 JCodes.Framework.SQLiteDAL"</PostBuildEvent>
+    <PostBuildEvent>xcopy ..\jCodes\$(TargetFileName) ..\JCodes.Framework.WebUI\bin\ /y
+echo "编译后处理的事情 JCodes.Framework.SQLiteDAL"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

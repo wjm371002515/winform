@@ -91,9 +91,9 @@ namespace JCodes.Framework.AccessDAL
         /// </summary>
         /// <param name="userId">用户ID</param>
         /// <returns></returns>
-        public List<FileUploadInfo> GetAllByUser(string userId)
+        public List<FileUploadInfo> GetAllByUser(Int32 userId)
         {
-            if (!string.IsNullOrEmpty(userId))
+            if (userId != 0)
             {
                 string condition = string.Format("Editor ='{0}' ", userId);
                 return Find(condition);
@@ -111,7 +111,7 @@ namespace JCodes.Framework.AccessDAL
         /// <param name="category">附件分类：个人附件，业务附件</param>
         /// <param name="pagerInfo">分页信息</param>
         /// <returns></returns>
-        public List<FileUploadInfo> GetAllByUser(string userId, string category, PagerInfo pagerInfo)
+        public List<FileUploadInfo> GetAllByUser(Int32 userId, string category, PagerInfo pagerInfo)
         {
             SearchCondition cond = new SearchCondition();
             cond.AddCondition("Editor", userId, SqlOperator.Equal)

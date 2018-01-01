@@ -4,11 +4,18 @@
   </histories>
   <dataitem>
       <item guid="1111">
-        <name>2</name>
-        <chineseName>-1</chineseName>
-        <datatype>Asd</datatype>
-        <dictno>100000</dictno>
+        <name>fundId</name>
+        <chineseName>基金编号</chineseName>
+        <datatype>Number_6</datatype>
+        <dictno></dictno>
         <remark></remark>
       </item>
+    <item guid="2222">
+      <name>AssetId</name>
+      <chineseName>资产单元序号</chineseName>
+      <datatype>Number_6</datatype>
+      <dictno>4</dictno>
+      <remark></remark>
+    </item>
   </dataitem>
 </datatype>

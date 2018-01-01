@@ -39,17 +39,12 @@ namespace JCodes.Framework.AddIn.WareHouseManage
             //this.btnOK.Enabled = HasFunction("Stock/Setting");
             if (!string.IsNullOrEmpty(ID))
             {
-                this.Text = "编辑 " + this.Text;
                 StockInfo info = BLLFactory<Stock>.Instance.FindByID(ID);
                 if (info != null)
                 {
                     txtLowWarning.Text = info.LowWarning.ToString();
                     txtHighWarning.Text = info.HighWarning.ToString();
                 }
-            }
-            else
-            {
-                this.Text = "新建 " + this.Text;
             }
         }
 

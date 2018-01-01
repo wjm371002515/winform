@@ -29,7 +29,7 @@ namespace JCodes.Framework.SQLServerDAL
         public Functions()
             : base(SQLServerPortal.gc._securityTablePre + "Function", "ID")
         {
-            this.sortField = "SortCode";
+            this.sortField = "Seq";
             this.isDescending = false;
         }
 
@@ -48,9 +48,9 @@ namespace JCodes.Framework.SQLServerDAL
             info.ID = reader.GetString("ID");
             info.PID = reader.GetString("PID");
             info.Name = reader.GetString("Name");
-            info.ControlID = reader.GetString("ControlID");
+            info.FunctionId = reader.GetString("FunctionId");
             info.SystemType_ID = reader.GetString("SystemType_ID");
-            info.SortCode = reader.GetString("SortCode");
+            info.Seq = reader.GetString("Seq");
 
             return info;
         }
@@ -68,9 +68,9 @@ namespace JCodes.Framework.SQLServerDAL
             hash.Add("ID", info.ID);
             hash.Add("PID", info.PID);
             hash.Add("Name", info.Name);
-            hash.Add("ControlID", info.ControlID);
+            hash.Add("FunctionId", info.FunctionId);
             hash.Add("SystemType_ID", info.SystemType_ID);
-            hash.Add("SortCode", info.SortCode);
+            hash.Add("Seq", info.Seq);
 
             return hash;
         }
@@ -86,9 +86,9 @@ namespace JCodes.Framework.SQLServerDAL
             dict.Add("ID", "编号");            
             dict.Add("PID", "父ID");
             dict.Add("Name", "功能名称");
-            dict.Add("ControlID", "控制标识");
+            dict.Add("FunctionId", "功能ID");
             dict.Add("SystemType_ID", "系统编号");
-            dict.Add("SortCode", "排序码");
+            dict.Add("Seq", "排序");
             #endregion
 
             return dict;
@@ -99,7 +99,7 @@ namespace JCodes.Framework.SQLServerDAL
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public override bool DeleteByUser(object key, string userId, DbTransaction trans = null)
+        public override bool DeleteByUser(object key, Int32 userId, DbTransaction trans = null)
         {
             FunctionInfo info = this.FindByID(key, trans);
             if (info != null)
@@ -119,7 +119,7 @@ namespace JCodes.Framework.SQLServerDAL
         /// </summary>
         /// <param name="mainID">节点ID</param>
         /// <returns></returns>
-        public bool DeleteWithSubNode(string mainID, string userId)
+        public bool DeleteWithSubNode(string mainID, Int32 userId)
         {
             //只获取ID、PID所需字段，提高效率
             string sql = string.Format("Select ID,PID From {0} Order By PID ", tableName);
@@ -181,8 +181,8 @@ namespace JCodes.Framework.SQLServerDAL
 
             List<FunctionNodeInfo> arrReturn = new List<FunctionNodeInfo>();
             DataTable dt = base.SqlTable(sql);
-            string sortCode = string.Format("{0} {1}", GetSafeFileName(sortField), isDescending ? "DESC" : "ASC");
-            DataRow[] dataRows = dt.Select(string.Format(" PID = '{0}' ", -1), sortCode);
+            string seq = string.Format("{0} {1}", GetSafeFileName(sortField), isDescending ? "DESC" : "ASC");
+            DataRow[] dataRows = dt.Select(string.Format(" PID = '{0}' ", -1), seq);
             for (int i = 0; i < dataRows.Length; i++)
             {
                 string id = dataRows[i]["ID"].ToString();
@@ -210,8 +210,8 @@ namespace JCodes.Framework.SQLServerDAL
             string sql = string.Format("Select * From {0} {1} Order By PID, Name ", tableName, condition);
 
             DataTable dt = base.SqlTable(sql);
-            string sortCode = string.Format("{0} {1}", GetSafeFileName(sortField), isDescending ? "DESC" : "ASC");
-            DataRow[] dataRows = dt.Select(string.Format(" PID = '{0}' ", -1), sortCode);
+            string seq = string.Format("{0} {1}", GetSafeFileName(sortField), isDescending ? "DESC" : "ASC");
+            DataRow[] dataRows = dt.Select(string.Format(" PID = '{0}' ", -1), seq);
             for (int i = 0; i < dataRows.Length; i++)
             {
                 string id = dataRows[i]["ID"].ToString();
@@ -237,8 +237,8 @@ namespace JCodes.Framework.SQLServerDAL
                 WHERE RF.Role_ID IN ({1}) AND F.SystemType_ID = '{2}' Order By PID, Name ", SQLServerPortal.gc._securityTablePre, roleString, systemType);
 
                 DataTable dt = base.SqlTable(sql);
-                string sortCode = string.Format("{0} {1}", GetSafeFileName(sortField), isDescending ? "DESC" : "ASC");
-                DataRow[] dataRows = dt.Select(string.Format(" PID = '{0}' ", -1), sortCode);
+                string seq = string.Format("{0} {1}", GetSafeFileName(sortField), isDescending ? "DESC" : "ASC");
+                DataRow[] dataRows = dt.Select(string.Format(" PID = '{0}' ", -1), seq);
                 for (int i = 0; i < dataRows.Length; i++)
                 {
                     string id = dataRows[i]["ID"].ToString();
@@ -276,8 +276,8 @@ namespace JCodes.Framework.SQLServerDAL
             FunctionInfo menuInfo = this.FindByID(id);
             FunctionNodeInfo menuNodeInfo = new FunctionNodeInfo(menuInfo);
 
-            string sortCode = string.Format("{0} {1}", GetSafeFileName(sortField), isDescending ? "DESC" : "ASC");
-            DataRow[] dChildRows = dt.Select(string.Format(" PID='{0}'", id), sortCode);
+            string seq = string.Format("{0} {1}", GetSafeFileName(sortField), isDescending ? "DESC" : "ASC");
+            DataRow[] dChildRows = dt.Select(string.Format(" PID='{0}'", id), seq);
 
             for (int i = 0; i < dChildRows.Length; i++)
             {
@@ -295,7 +295,7 @@ namespace JCodes.Framework.SQLServerDAL
         public List<FunctionInfo> GetFunctionByPID(string PID)
         {
             string sql = string.Format(@"Select t.*,case pid when '-1' then '0' else pid end as parentId From {1} t 
-                                         Where  PID='{0}' Order By SortCode ", PID, tableName);
+                                         Where  PID='{0}' Order By Seq ", PID, tableName);
             return GetList(sql, null);
         }
     }

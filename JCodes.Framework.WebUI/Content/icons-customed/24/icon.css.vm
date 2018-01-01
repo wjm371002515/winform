@@ -1,0 +1,5 @@
+﻿#foreach($item in ${FileNameList})
+.${item.Text}{
+	background:url('${item.Value}') no-repeat;
+}
+#end ##endforeach

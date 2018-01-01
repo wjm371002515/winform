@@ -224,7 +224,7 @@ namespace JCodes.Framework.AddIn.Security
             this.txtNote.Text = "";
             this.txtAddress.Text = "";
             this.txtHandNo.Text = "";
-            //this.txtSortCode.Text = "";
+            this.txtSeq.Text = "";
             this.txtCreator.Text = Portal.gc.UserInfo.FullName;
             this.txtCreateTime.Text = DateTimeHelper.GetServerDateTime2().ToString();
             this.txtInnerPhone.Text = "";
@@ -244,7 +244,7 @@ namespace JCodes.Framework.AddIn.Security
             info.InnerPhone = this.txtInnerPhone.Text;
             info.OuterPhone = this.txtOuterPhone.Text;
             info.HandNo = this.txtHandNo.Text;
-            info.SortCode = this.txtSortCode.Text;
+            info.Seq = this.txtSeq.Text;
             info.Category = this.txtCategory.Text;
             info.Editor = Portal.gc.UserInfo.FullName;
             info.Editor_ID = Portal.gc.UserInfo.ID.ToString();
@@ -266,7 +266,7 @@ namespace JCodes.Framework.AddIn.Security
                     info.CompanyName = pInfo.CompanyName;
                 }
             }
-            info.CurrentLoginUserId = Portal.gc.UserInfo.ID.ToString();
+            info.CurrentLoginUserId = Portal.gc.UserInfo.ID;
             return info;
         }
 
@@ -314,7 +314,7 @@ namespace JCodes.Framework.AddIn.Security
                     this.txtName.Text = info.Name;
                     this.txtNote.Text = info.Note;
                     this.txtAddress.Text = info.Address;
-                    this.txtSortCode.Text = info.SortCode;
+                    this.txtSeq.Text = info.Seq;
                     this.txtHandNo.Text = info.HandNo;
                     this.txtOuterPhone.Text = info.OuterPhone;
                     this.txtInnerPhone.Text = info.InnerPhone;

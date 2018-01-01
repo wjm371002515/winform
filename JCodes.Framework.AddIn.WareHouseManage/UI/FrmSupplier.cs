@@ -109,7 +109,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
                 foreach (int iRow in rowSelected)
                 {
                     string ID = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "ID");
-                    BLLFactory<Supplier>.Instance.DeleteByUser(ID, LoginUserInfo.ID.ToString());
+                    BLLFactory<Supplier>.Instance.DeleteByUser(ID, LoginUserInfo.ID);
                 }
                 BindData();
             }
