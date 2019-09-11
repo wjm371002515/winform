@@ -51,10 +51,10 @@ namespace JCodes.Framework.Entity
             set { datatype = value; }
         }
 
-        private string dictno;
+        private Int32 dictno;
 
         [DisplayName("字典条目")]
-        public string DictNo
+        public Int32 DictNo
         {
             get { return dictno; }
             set { dictno = value; }

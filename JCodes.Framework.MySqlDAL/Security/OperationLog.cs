@@ -28,7 +28,7 @@ namespace JCodes.Framework.MySqlDAL
 		}
 		public OperationLog() : base(MySqlPortal.gc._securityTablePre+"OperationLog","ID")
         {
-            this.SortField = "CreateTime";
+            this.SortField = "CreatorTime";
             this.IsDescending = true;
 		}
 
@@ -44,18 +44,18 @@ namespace JCodes.Framework.MySqlDAL
 			OperationLogInfo info = new OperationLogInfo();
 			SmartDataReader reader = new SmartDataReader(dataReader);
 
-            info.ID = reader.GetString("ID");
-            info.User_ID = reader.GetInt32("User_ID");
-			info.LoginName = reader.GetString("LoginName");
-			info.FullName = reader.GetString("FullName");
-			info.Company_ID = reader.GetString("Company_ID");
-			info.CompanyName = reader.GetString("CompanyName");
-			info.TableName = reader.GetString("TableName");
-			info.OperationType = reader.GetString("OperationType");
-			info.Note = reader.GetString("Note");
-            info.IPAddress = reader.GetString("IPAddress");
-            info.MacAddress = reader.GetString("MacAddress");
-			info.CreateTime = reader.GetDateTime("CreateTime");
+            info.Id = reader.GetInt32("ID");
+            info.UserId = reader.GetInt32("User_ID");
+            info.LoginName = reader.GetString("LoginName");
+            info.FullName = reader.GetString("FullName");
+            info.CompanyId = reader.GetInt32("CompanyId");
+            info.CompanyName = reader.GetString("CompanyName");
+            info.TableName = reader.GetString("TableName");
+            info.OperationType = reader.GetString("OperationType");
+            info.Remark = reader.GetString("Remark");
+            info.IP = reader.GetString("IP");
+            info.Mac = reader.GetString("Mac");
+            info.CreatorTime = reader.GetDateTime("CreatorTime");     
 
 			return info;
 		}
@@ -69,19 +69,18 @@ namespace JCodes.Framework.MySqlDAL
 		{
 		    OperationLogInfo info = obj as OperationLogInfo;
 			Hashtable hash = new Hashtable();
-
-            hash.Add("ID", info.ID);
-			hash.Add("User_ID", info.User_ID);
- 			hash.Add("LoginName", info.LoginName);
- 			hash.Add("FullName", info.FullName);
- 			hash.Add("Company_ID", info.Company_ID);
- 			hash.Add("CompanyName", info.CompanyName);
- 			hash.Add("TableName", info.TableName);
- 			hash.Add("OperationType", info.OperationType);
- 			hash.Add("Note", info.Note);
-            hash.Add("IPAddress", info.IPAddress);
-            hash.Add("MacAddress", info.MacAddress);
- 			hash.Add("CreateTime", info.CreateTime);
+            hash.Add("Id", info.Id);
+            hash.Add("UserId", info.UserId);
+            hash.Add("LoginName", info.LoginName);
+            hash.Add("FullName", info.FullName);
+            hash.Add("CompanyId", info.CompanyId);
+            hash.Add("CompanyName", info.CompanyName);
+            hash.Add("TableName", info.TableName);
+            hash.Add("OperationType", info.OperationType);
+            hash.Add("Remark", info.Remark);
+            hash.Add("IP", info.IP);
+            hash.Add("Mac", info.Mac);
+            hash.Add("CreatorTime", info.CreatorTime);
  				
 			return hash;
 		}
@@ -94,19 +93,19 @@ namespace JCodes.Framework.MySqlDAL
         {
             Dictionary<string, string> dict = new Dictionary<string, string>();
             #region 添加别名解析
-             dict.Add("ID", "编号");
-             dict.Add("User_ID", "登录用户ID");
-             dict.Add("LoginName", "登录名");
-             dict.Add("FullName", "真实名称");
-             dict.Add("Company_ID", "所属公司ID");
-             dict.Add("CompanyName", "所属公司名称");
-             dict.Add("TableName", "操作表名称");
-             dict.Add("OperationType", "操作类型");
-             dict.Add("Note", "日志描述");
-             dict.Add("IPAddress", "IP地址");
-             dict.Add("MacAddress", "Mac地址");
-             dict.Add("CreateTime", "创建时间");
-             #endregion
+            dict.Add("Id", "编号");
+            dict.Add("UserId", "用户Id");
+            dict.Add("LoginName", "登录名");
+            dict.Add("FullName", "真实名");
+            dict.Add("CompanyId", "公司Id");
+            dict.Add("CompanyName", "公司名字");
+            dict.Add("TableName", "表名");
+            dict.Add("OperationType", "操作类型");
+            dict.Add("Remark", "备注");
+            dict.Add("IP", "IP地址");
+            dict.Add("Mac", "Mac地址");
+            dict.Add("CreatorTime", "创建时间");
+            #endregion
 
             return dict;
         }

@@ -270,7 +270,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-4">用户编码</label>
                                         <div class="input-icon col-md-8">                                    
-                                            <input id="HandNo" name="HandNo" type="text" class="form-control" placeholder="用户编码..." >
+                                            <input id="UserCode" name="UserCode" type="text" class="form-control" placeholder="用户编码..." >
                                         </div>
                                     </div>
                                 </div>
@@ -287,7 +287,7 @@
                                         <label class="control-label col-md-4">用户呢称</label>
                                         <div class="input-icon col-md-8">
                                             
-                                            <input id="Nickname" name="Nickname" type="text" class="form-control" placeholder="用户呢称...">
+                                            <input id="LoginName" name="LoginName" type="text" class="form-control" placeholder="用户呢称...">
                                         </div>
                                     </div>
                                 </div>
@@ -495,7 +495,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-4">用户编码</label>
                                         <div class="input-icon col-md-8">                                    
-                                            <input id="HandNo1" name="HandNo" type="text" class="form-control" placeholder="用户编码..." >
+                                            <input id="HandNo1" name="UserCode" type="text" class="form-control" placeholder="用户编码..." >
                                         </div>
                                     </div>
                                 </div>
@@ -512,7 +512,7 @@
                                         <label class="control-label col-md-4">用户呢称</label>
                                         <div class="input-icon col-md-8">
                                             
-                                            <input id="Nickname1" name="Nickname" type="text" class="form-control" placeholder="用户呢称...">
+                                            <input id="Nickname1" name="LoginName" type="text" class="form-control" placeholder="用户呢称...">
                                         </div>
                                     </div>
                                 </div>
@@ -778,7 +778,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-4">用户编码</label>
                                         <div class="col-md-8">                                    
-                                            <label id="HandNo2" name="HandNo" class="form-control" />
+                                            <label id="HandNo2" name="UserCode" class="form-control" />
                                         </div>
                                     </div>
                                 </div>
@@ -794,7 +794,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-4">用户呢称</label>
                                         <div class="col-md-8">                                            
-                                            <label id="Nickname2" name="Nickname" class="form-control" />
+                                            <label id="Nickname2" name="LoginName" class="form-control" />
                                         </div>
                                     </div>
                                 </div>
@@ -1184,7 +1184,7 @@
                     var tr = "<tr>";
                     tr += "<td><input class='checkboxes' type=\"checkbox\" name=\"checkbox\" value=" + item.ID + "></td>";
                     tr += "<td>" + item.ID + "</td>";
-                    tr += "<td>" + item.HandNo + "</td>";
+                    tr += "<td>" + item.UserCode + "</td>";
                     tr += "<td>" + item.Name + "</td>";
                     tr += "<td>" + item.FullName + "</td>";      
 
@@ -1430,10 +1430,10 @@
             $.getJSON("/User/FindByID?r=" + Math.random() + "&id=" + ID, function (info) {
                 
                 $("#ID1").val(info.ID);                
-                $("#HandNo1").val(info.HandNo);
+                $("#HandNo1").val(info.UserCode);
                 $("#Name1").val(info.Name);
                 $("#FullName1").val(info.FullName);
-                $("#Nickname1").val(info.Nickname);
+                $("#Nickname1").val(info.LoginName);
                 $("#Title1").val(info.Title);
                 $("#IdentityCard1").val(info.IdentityCard);
                 $("#MobilePhone1").val(info.MobilePhone);
@@ -1485,10 +1485,10 @@
             //发送请求
             $.getJSON("/User/FindByID?r=" + Math.random() + "&id=" + ID, function (info) {
                 $("#ID2").text(info.ID);
-                $("#HandNo2").text(info.HandNo);
+                $("#HandNo2").text(info.UserCode);
                 $("#Name2").text(info.Name);
                 $("#FullName2").text(info.FullName);
-                $("#Nickname2").text(info.Nickname);
+                $("#Nickname2").text(info.LoginName);
                 $("#Title2").text(info.Title);
                 $("#IdentityCard2").text(info.IdentityCard);
                 $("#MobilePhone2").text(info.MobilePhone);
@@ -1681,7 +1681,7 @@
                 $.each(data.rows, function (i, item) {
                     var tr = "<tr>";
                     tr += "<td><input class='checkboxes' type=\"checkbox\" name=\"checkbox\" ></td>";
-                    tr += "<td>" + item.HandNo + "</td>";
+                    tr += "<td>" + item.UserCode + "</td>";
                     tr += "<td>" + item.Name + "</td>";
                     tr += "<td>" + item.FullName + "</td>";   
                     tr += "<td>" + item.Title + "</td>";
@@ -1726,7 +1726,7 @@
                         // alert($(this).text());
                     });    
 
-                    list.push({ 'HandNo': rows[0],  'Name': rows[1], 'FullName': rows[2], 'Title': rows[3], 
+                    list.push({ 'UserCode': rows[0],  'Name': rows[1], 'FullName': rows[2], 'Title': rows[3], 
                         'MobilePhone': rows[4], 'OfficePhone': rows[5], 'Email': rows[6], 'Gender': rows[7], 
                         'QQ': rows[8], 'Note': rows[9] });
                     i++;

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Entity;
 using JCodes.Framework.IDAL;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.BLL
 {
@@ -22,10 +23,10 @@ namespace JCodes.Framework.BLL
         /// <summary>
         /// 根据用户，获取树形结构的分组列表
         /// </summary>
-        public List<AddressGroupNodeInfo> GetTree(string addressType, string creator = null)
+        public List<AddressGroupNodeInfo> GetTree(string addressType, Int32 ?creatorId = null)
         {
             IAddressGroup dal = baseDal as IAddressGroup;
-            return dal.GetTree(addressType, creator);
+            return dal.GetTree(addressType, creatorId);
         }
 
         /// <summary>
@@ -33,7 +34,7 @@ namespace JCodes.Framework.BLL
         /// </summary>
         /// <param name="contactId">联系人ID</param>
         /// <returns></returns>
-        public List<AddressGroupInfo> GetByContact(string contactId)
+        public List<AddressGroupInfo> GetByContact(Int32 contactId)
         {
             IAddressGroup dal = baseDal as IAddressGroup;
             return dal.GetByContact(contactId);
@@ -45,12 +46,12 @@ namespace JCodes.Framework.BLL
         /// <param name="addressType">通讯录类型，个人还是公共</param>
         /// <param name="creator">用户标识（用户登陆名称），如果是公共通讯录，可以为空</param>
         /// <returns></returns>
-        public List<AddressGroupInfo> GetAllWithAddressType(AddressType addressType, string creator = null)
+        public List<AddressGroupInfo> GetAllWithAddressType(AddressType addressType, Int32 ?creatorId = null)
         {
             string condition = "";
             if (addressType == AddressType.个人)
             {
-                condition = string.Format("AddressType = '{0}' and creator='{1}'", addressType.ToString(), creator);
+                condition = string.Format("AddressType = '{0}' and creator='{1}'", addressType.ToString(), creatorId);
             }
             else
             {

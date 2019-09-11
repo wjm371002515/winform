@@ -20,7 +20,7 @@ namespace JCodes.Framework.IDAL
         /// <param name="groupName">联系人分组的名称,如果联系人分组为空，那么返回未分组联系人列表</param>
         /// <param name="pagerInfo">分页条件</param>
         /// <returns></returns>
-        List<AddressInfo> FindByGroupName(string ownerUser, string groupName, PagerInfo pagerInfo = null);
+        List<AddressInfo> FindByGroupName(Int32 ownerUser, string groupName, PagerInfo pagerInfo = null);
                       
         /// <summary>
         /// 获取公共分组的联系人列表。根据联系人分组的名称，搜索属于该分组的联系人列表。
@@ -44,6 +44,6 @@ namespace JCodes.Framework.IDAL
         /// <param name="contactId">联系人ID</param>
         /// <param name="groupIdList">分组Id集合</param>
         /// <returns></returns>
-        bool ModifyAddressGroup(string contactId, List<string> groupIdList);
+        bool ModifyAddressGroup(Int32 contactId, List<string> groupIdList);
     }
 }

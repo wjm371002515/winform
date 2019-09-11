@@ -79,24 +79,24 @@ namespace JCodes.Framework.WebUI.Controllers
                     TestUserInfo info = new TestUserInfo();
 
                     info.Name = dr["姓名"].ToString();
-                    info.Mobile = dr["手机"].ToString();
+                    info.MobilePhone = dr["手机"].ToString();
                     info.Email = dr["邮箱"].ToString();
                     info.Homepage = dr["主页"].ToString();
                     info.Hobby = dr["兴趣爱好"].ToString();
-                    info.Gender = dr["性别"].ToString();
+                    info.Gender = dr["性别"].ToString().ToInt32();
                     info.Age = dr["年龄"].ToString().ToInt32();
                     converted = DateTime.TryParse(dr["出生日期"].ToString(), out dt);
                     if (converted && dt > dtDefault)
                     {
-                        info.BirthDate = dt;
+                        info.Birthday = dt;
                     }
                     info.Height = dr["身高"].ToString().ToDecimal();
-                    info.Note = dr["备注"].ToString();
+                    info.Remark = dr["备注"].ToString();
 
-                    info.Creator = CurrentUser.ID.ToString();
-                    info.CreateTime = DateTime.Now;
-                    info.Editor = CurrentUser.ID.ToString();
-                    info.EditTime = DateTime.Now;
+                    //info.Creator = CurrentUser.Id;
+                    info.CreatorTime = DateTime.Now;
+                    info.EditorId = CurrentUser.Id;
+                    info.LastUpdateTime = DateTime.Now;
 
                     list.Add(info);
                 }
@@ -128,10 +128,10 @@ namespace JCodes.Framework.WebUI.Controllers
                         foreach (TestUserInfo detail in list)
                         {
                             //detail.Seq = seq++;//增加1
-                            detail.CreateTime = DateTime.Now;
-                            detail.Creator = CurrentUser.ID.ToString();
-                            detail.Editor = CurrentUser.ID.ToString();
-                            detail.EditTime = DateTime.Now;
+                            detail.CreatorTime = DateTime.Now;
+                            detail.CreatorId = CurrentUser.Id;
+                            detail.EditorId = CurrentUser.Id;
+                            detail.LastUpdateTime = DateTime.Now;
 
                             BLLFactory<TestUser>.Instance.Insert(detail, trans);
                         }
@@ -190,15 +190,15 @@ namespace JCodes.Framework.WebUI.Controllers
                 dr = datatable.NewRow();
                 dr["序号"] = j++;
                 dr["姓名"] = list[i].Name;
-                dr["手机"] = list[i].Mobile;
+                dr["手机"] = list[i].MobilePhone;
                 dr["邮箱"] = list[i].Email;
                 dr["主页"] = list[i].Homepage;
                 dr["兴趣爱好"] = list[i].Hobby;
                 dr["性别"] = list[i].Gender;
                 dr["年龄"] = list[i].Age;
-                dr["出生日期"] = list[i].BirthDate;
+                dr["出生日期"] = list[i].Birthday;
                 dr["身高"] = list[i].Height;
-                dr["备注"] = list[i].Note;
+                dr["备注"] = list[i].Remark;
                 //如果为外键，可以在这里进行转义，如下例子
                 //dr["客户名称"] = BLLFactory<Customer>.Instance.GetCustomerName(list[i].Customer_ID);//转义为客户名称
 
@@ -223,11 +223,11 @@ namespace JCodes.Framework.WebUI.Controllers
         #region 写入数据前修改部分属性
         protected override void OnBeforeInsert(TestUserInfo info)
         {
-            info.ID = string.IsNullOrEmpty(info.ID) ? Guid.NewGuid().ToString() : info.ID;
+            //info.ID = string.IsNullOrEmpty(info.Id) ? Guid.NewGuid().ToString() : info.ID;
 
             //子类对参数对象进行修改
-            info.CreateTime = DateTime.Now;
-            info.Creator = CurrentUser.ID.ToString();
+            info.CreatorTime = DateTime.Now;
+            info.CreatorId = CurrentUser.Id;
             //info.Company_ID = CurrentUser.Company_ID;
             //info.Dept_ID = CurrentUser.Dept_ID;
         }
@@ -235,8 +235,8 @@ namespace JCodes.Framework.WebUI.Controllers
         protected override void OnBeforeUpdate(TestUserInfo info)
         {
             //子类对参数对象进行修改
-            info.Editor = CurrentUser.ID.ToString();
-            info.EditTime = DateTime.Now;
+            info.EditorId = CurrentUser.Id;
+            info.LastUpdateTime = DateTime.Now;
         }
         #endregion
 

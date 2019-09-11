@@ -81,6 +81,16 @@ namespace JCodes.Framework.Common
         /// </summary>
         public const string Divide = "/";
 
+        /// <summary>
+        /// 单引号
+        /// </summary>
+        public const string SingleQuotation = "'";
+
+        /// <summary>
+        /// 双个单引号
+        /// </summary>
+        public const string DuobleSingleQuotation = "''";
+
         // Browsing for directory.
         public const uint BIF_RETURNONLYFSDIRS = 0x0001;
         public const uint BIF_DONTGOBELOWDOMAIN = 0x0002;

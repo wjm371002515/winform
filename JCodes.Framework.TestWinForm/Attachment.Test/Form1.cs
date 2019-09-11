@@ -18,7 +18,7 @@ namespace TestAttachmentDx
         {
             InitializeComponent();
 
-            this.attachmentControl1.AttachmentGUID = TestGuid;//Guid.NewGuid().ToString();
+            this.attachmentControl1.AttachmentGid = TestGuid;//Guid.NewGuid().ToString();
         }
 
         private void btnAttachment_Click(object sender, EventArgs e)

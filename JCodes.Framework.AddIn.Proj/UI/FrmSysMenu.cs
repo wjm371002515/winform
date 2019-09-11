@@ -19,6 +19,7 @@ using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.Utils;
 using JCodes.Framework.Common;
 using DevExpress.XtraTreeList;
+using JCodes.Framework.Common.Extension;
 
 // 参考文档 http://www.cnblogs.com/a1656344531/archive/2012/11/28/2792863.html
 
@@ -31,7 +32,7 @@ namespace JCodes.Framework.AddIn.Proj
     {
         private XmlHelper xmlhelper = new XmlHelper(@"XML\menu.xml");
 
-        private List<string> lstName = new List<string>();
+        private Dictionary<string, string> lstName = new Dictionary<string, string>();
 
         private string xmlModel = "<id>{0}</id><pid>{1}</pid><name>{2}</name><icon>{3}</icon><seq>{4}</seq><functionid>{5}</functionid><visible>{6}</visible><winformtype>{7}</winformtype><url>{8}</url><webicon>{9}</webicon><systemtype_id>{10}</systemtype_id><creator_id>{11}</creator_id><createtime>{12}</createtime><editor_id>{13}</editor_id><edittime>{14}</edittime><is_deleted>{15}</is_deleted>";
 
@@ -82,7 +83,7 @@ namespace JCodes.Framework.AddIn.Proj
         /// </summary>
         private void BindData()
         {
-            XmlNodeList xmlNodeLst = xmlhelper.Read("datatype");
+            XmlNodeList xmlNodeLst = xmlhelper.Read("datatype/dataitem");
             List<SysMenuInfo> menuInfoList = new List<SysMenuInfo>();
             foreach (XmlNode xn1 in xmlNodeLst)
             {
@@ -92,29 +93,29 @@ namespace JCodes.Framework.AddIn.Proj
               
                 // 得到DataTypeInfo节点的所有子节点
                 XmlNodeList xnl0 = xe.ChildNodes;
-                menuInfo.ID = xnl0.Item(0).InnerText;
-                menuInfo.PID = xnl0.Item(1).InnerText;
+                menuInfo.Gid = xnl0.Item(0).InnerText;
+                menuInfo.Pgid = xnl0.Item(1).InnerText;
                 menuInfo.Name = xnl0.Item(2).InnerText;
                 menuInfo.Icon = xnl0.Item(3).InnerText;
                 menuInfo.Seq = xnl0.Item(4).InnerText;
-                menuInfo.FunctionId = xnl0.Item(5).InnerText;
-                menuInfo.Visible = xnl0.Item(6).InnerText == Const.One.ToString() ? true: false;
-                menuInfo.WinformType = xnl0.Item(7).InnerText;
+                menuInfo.AuthGid = xnl0.Item(5).InnerText;
+                menuInfo.IsVisable = xnl0.Item(6).InnerText == Const.Num_One.ToString() ? true : false;
+                menuInfo.WinformClass = xnl0.Item(7).InnerText;
                 menuInfo.Url = xnl0.Item(8).InnerText;
                 menuInfo.WebIcon = xnl0.Item(9).InnerText;
-                menuInfo.SystemType_ID = xnl0.Item(10).InnerText;
-                menuInfo.Creator_ID = xnl0.Item(11).InnerText;
+                menuInfo.SystemtypeId = xnl0.Item(10).InnerText;
+                menuInfo.CreatorId =  string.IsNullOrEmpty(xnl0.Item(11).InnerText) ? 0 : xnl0.Item(11).InnerText.ToInt32();
                 menuInfo.CreateTime = string.IsNullOrEmpty(xnl0.Item(12).InnerText) ? DateTimeHelper.GetServerDateTime2() : Convert.ToDateTime( xnl0.Item(12).InnerText);
-                menuInfo.Editor_ID = xnl0.Item(13).InnerText;
-                menuInfo.EditTime = string.IsNullOrEmpty(xnl0.Item(14).InnerText) ? DateTimeHelper.GetServerDateTime2() : Convert.ToDateTime(xnl0.Item(14).InnerText);
-                menuInfo.Is_Deleted = xnl0.Item(15).InnerText == Const.One.ToString() ? true : false;
+                menuInfo.EditorId = string.IsNullOrEmpty(xnl0.Item(13).InnerText) ? 0 : xnl0.Item(13).InnerText.ToInt32();
+                menuInfo.LastUpdateTime = string.IsNullOrEmpty(xnl0.Item(14).InnerText) ? DateTimeHelper.GetServerDateTime2() : Convert.ToDateTime(xnl0.Item(14).InnerText);
+                menuInfo.IsDelete = xnl0.Item(15).InnerText == Const.Num_One.ToString() ? true : false;
                 menuInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
 
                 menuInfoList.Add(menuInfo);
             }
 
-            treelstMenu.KeyFieldName = "ID";
-            treelstMenu.ParentFieldName = "PID";
+            treelstMenu.KeyFieldName = "Gid";
+            treelstMenu.ParentFieldName = "Pgid";
             treelstMenu.DataSource = menuInfoList;
 
             treelstMenu.Columns["lstInfo"].Visible = false;
@@ -134,20 +135,25 @@ namespace JCodes.Framework.AddIn.Proj
             List<SysMenuInfo> lstSysMenuInfo = treelstMenu.DataSource as List<SysMenuInfo>;
 
             // 查找重复的Name的值
-            List<String> tmpName = new List<string>();
+            Dictionary<string,string> tmpName = new Dictionary<string,string>();
             foreach (SysMenuInfo sysMenuInfo in lstSysMenuInfo)
             {
-                if (lstName.Contains(sysMenuInfo.Name))
+                if (lstName.ContainsKey(sysMenuInfo.Name) && lstName[sysMenuInfo.Name] == sysMenuInfo.Pgid)
                 {
-                    tmpName.Add(sysMenuInfo.Name);
+                    if (!tmpName.ContainsKey(sysMenuInfo.Name))
+                        tmpName.Add(sysMenuInfo.Name, sysMenuInfo.Pgid);
                 }
-                lstName.Add(sysMenuInfo.Name);
+                else
+                {
+                    if (!lstName.ContainsKey(sysMenuInfo.Name))
+                        lstName.Add(sysMenuInfo.Name, sysMenuInfo.Pgid);
+                }
             }
 
             foreach (SysMenuInfo sysMenuInfo in lstSysMenuInfo)
             {
                 // 判断重复的 类型名
-                if (tmpName.Contains(sysMenuInfo.Name))
+                if (tmpName.ContainsKey(sysMenuInfo.Name) && (tmpName[sysMenuInfo.Name] == sysMenuInfo.Pgid))
                 {
                     if (sysMenuInfo.lstInfo.ContainsKey("Name"))
                     {
@@ -196,35 +202,35 @@ namespace JCodes.Framework.AddIn.Proj
                     }
                 }
                 // 判断功能ID是否为空
-                if (string.IsNullOrEmpty(sysMenuInfo.FunctionId))
+                if (string.IsNullOrEmpty(sysMenuInfo.AuthGid))
                 {
-                    if (sysMenuInfo.lstInfo.ContainsKey("FunctionId"))
+                    if (sysMenuInfo.lstInfo.ContainsKey("AuthGid"))
                     {
-                        sysMenuInfo.lstInfo["FunctionId"].ErrorText = sysMenuInfo.lstInfo["FunctionId"].ErrorText + "\r\n功能ID不能为空";
-                        sysMenuInfo.lstInfo["FunctionId"].ErrorType = sysMenuInfo.lstInfo["FunctionId"].ErrorType >= DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical ? sysMenuInfo.lstInfo["FunctionId"].ErrorType : DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+                        sysMenuInfo.lstInfo["AuthGid"].ErrorText = sysMenuInfo.lstInfo["AuthGid"].ErrorText + "\r\n功能ID不能为空";
+                        sysMenuInfo.lstInfo["AuthGid"].ErrorType = sysMenuInfo.lstInfo["AuthGid"].ErrorType >= DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical ? sysMenuInfo.lstInfo["AuthGid"].ErrorType : DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
                     }
                     else
                     {
-                        sysMenuInfo.lstInfo.Add("FunctionId", new DevExpress.XtraEditors.DXErrorProvider.ErrorInfo("功能ID不能为空", DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical));
+                        sysMenuInfo.lstInfo.Add("AuthGid", new DevExpress.XtraEditors.DXErrorProvider.ErrorInfo("功能ID不能为空", DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical));
                         _errCount++;
                         // 20170901 wjm 调整key 和value的顺序
                         _errlst.Add(new CListItem("功能ID不能为空", "功能ID" + sysMenuInfo.Name));
                     }
                 }
                 // 判断系统编号是否为空
-                if (string.IsNullOrEmpty(sysMenuInfo.SystemType_ID))
+                if (string.IsNullOrEmpty(sysMenuInfo.AuthGid))
                 {
-                    if (sysMenuInfo.lstInfo.ContainsKey("SystemType_ID"))
+                    if (sysMenuInfo.lstInfo.ContainsKey("SystemtypeId"))
                     {
-                        sysMenuInfo.lstInfo["SystemType_ID"].ErrorText = sysMenuInfo.lstInfo["SystemType_ID"].ErrorText + "\r\n系统编号不能为空";
-                        sysMenuInfo.lstInfo["SystemType_ID"].ErrorType = sysMenuInfo.lstInfo["SystemType_ID"].ErrorType >= DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical ? sysMenuInfo.lstInfo["SystemType_ID"].ErrorType : DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+                        sysMenuInfo.lstInfo["SystemtypeId"].ErrorText = sysMenuInfo.lstInfo["SystemtypeId"].ErrorText + "\r\n系统编号不能为空";
+                        sysMenuInfo.lstInfo["SystemtypeId"].ErrorType = sysMenuInfo.lstInfo["SystemtypeId"].ErrorType >= DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical ? sysMenuInfo.lstInfo["SystemtypeId"].ErrorType : DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
                     }
                     else
                     {
-                        sysMenuInfo.lstInfo.Add("SystemType_ID", new DevExpress.XtraEditors.DXErrorProvider.ErrorInfo("系统编号不能为空", DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical));
+                        sysMenuInfo.lstInfo.Add("SystemtypeId", new DevExpress.XtraEditors.DXErrorProvider.ErrorInfo("系统编号不能为空", DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical));
                         _errCount++;
                         // 20170901 wjm 调整key 和value的顺序
-                        _errlst.Add(new CListItem("系统编号不能为空", "系统编号" + sysMenuInfo.SystemType_ID));
+                        _errlst.Add(new CListItem("系统编号不能为空", "系统编号" + sysMenuInfo.AuthGid));
                     }
                 }
             }
@@ -275,12 +281,12 @@ namespace JCodes.Framework.AddIn.Proj
         {
             if (treelstMenu.FocusedNode != null)
             {
-                string delID = treelstMenu.FocusedNode.GetValue("ID").ToString();
+                string delID = treelstMenu.FocusedNode.GetValue("Gid").ToString();
                 deleteNodeXML(treelstMenu.FocusedNode);
                 // 删除节点
                 xmlhelper = new XmlHelper(@"XML\menu.xml");
-                
-                xmlhelper.DeleteByPathNode("datatype/item[id=\"" + delID + "\"]");
+
+                xmlhelper.DeleteByPathNode("datatype/dataitem/item[id=\"" + delID + "\"]");
                 xmlhelper.Save(false);
 
                 treelstMenu.DeleteNode(treelstMenu.FocusedNode);
@@ -298,14 +304,14 @@ namespace JCodes.Framework.AddIn.Proj
                     var childNodes = nodes.Nodes;
                     for (Int32 i = 0; i < childNodes.Count; i++)
                     {
-                        string delID = childNodes[i].GetValue("ID").ToString();
+                        string delID = childNodes[i].GetValue("Gid").ToString();
 
                         // 递归
                         result = result & deleteNodeXML(childNodes[i]);
 
                         // 删除节点
                         xmlhelper = new XmlHelper(@"XML\menu.xml");
-                        xmlhelper.DeleteByPathNode("datatype/item[id=\"" + delID + "\"]");
+                        xmlhelper.DeleteByPathNode("datatype/dataitem/item[id=\"" + delID + "\"]");
                         xmlhelper.Save(false);
                     }
                 }
@@ -321,7 +327,7 @@ namespace JCodes.Framework.AddIn.Proj
 
         private void ErgodicNode(DevExpress.XtraTreeList.Nodes.TreeListNode nodes, string preStr, DataTable dt)
         {
-            if (nodes.Nodes.Count != Const.Zero)
+            if (nodes.Nodes.Count != Const.Num_Zero)
             {
                 for (Int32 i = 0; i < nodes.Nodes.Count; i++)
                 {
@@ -329,17 +335,17 @@ namespace JCodes.Framework.AddIn.Proj
                     row[0] = preStr + nodes.Nodes[i].GetValue("Name");
                     row[1] = nodes.Nodes[i].GetValue("Icon");
                     row[2] = nodes.Nodes[i].GetValue("Seq");
-                    row[3] = nodes.Nodes[i].GetValue("FunctionId");
-                    row[4] = Convert.ToBoolean(nodes.Nodes[i].GetValue("Visible")) ? "是" : "否"; ;
-                    row[5] = nodes.Nodes[i].GetValue("WinformType");
+                    row[3] = nodes.Nodes[i].GetValue("AuthGid");
+                    row[4] = Convert.ToBoolean(nodes.Nodes[i].GetValue("IsVisable")) ? "是" : "否"; ;
+                    row[5] = nodes.Nodes[i].GetValue("WinformClass");
                     row[6] = nodes.Nodes[i].GetValue("Url");
                     row[7] = nodes.Nodes[i].GetValue("WebIcon");
-                    row[8] = nodes.Nodes[i].GetValue("SystemType_ID");
-                    row[9] = nodes.Nodes[i].GetValue("Creator_ID");
+                    row[8] = nodes.Nodes[i].GetValue("SystemtypeId");
+                    row[9] = nodes.Nodes[i].GetValue("CreatorId");
                     row[10] = nodes.Nodes[i].GetValue("CreateTime");
-                    row[11] = nodes.Nodes[i].GetValue("Editor_ID");
-                    row[12] = nodes.Nodes[i].GetValue("EditTime");
-                    row[13] = Convert.ToBoolean(nodes.Nodes[i].GetValue("Is_Deleted")) ? "是" : "否";
+                    row[11] = nodes.Nodes[i].GetValue("EditorId");
+                    row[12] = nodes.Nodes[i].GetValue("LastUpdateTime");
+                    row[13] = Convert.ToBoolean(nodes.Nodes[i].GetValue("IsDelete")) ? "是" : "否";
 
                     dt.Rows.Add(row);
 
@@ -365,7 +371,7 @@ namespace JCodes.Framework.AddIn.Proj
         {
             DataTable dt = DataTableHelper.CreateTable("显示名称,图标,排序,功能ID,可见,Winform窗体类型,Web界面Url地址,Web界面的菜单图标,系统编号,创建人ID,创建时间,编辑人ID,编辑时间,已删除");
 
-            if (treelstMenu.Nodes.Count != Const.Zero)
+            if (treelstMenu.Nodes.Count != Const.Num_Zero)
             {
                 for (Int32 i = 0; i < treelstMenu.Nodes.Count; i++)
                 {
@@ -373,17 +379,17 @@ namespace JCodes.Framework.AddIn.Proj
                     row[0] = "" + treelstMenu.Nodes[i].GetValue("Name");
                     row[1] = treelstMenu.Nodes[i].GetValue("Icon");
                     row[2] = treelstMenu.Nodes[i].GetValue("Seq");
-                    row[3] = treelstMenu.Nodes[i].GetValue("FunctionId");
-                    row[4] = Convert.ToBoolean( treelstMenu.Nodes[i].GetValue("Visible") ) ? "是": "否";
-                    row[5] = treelstMenu.Nodes[i].GetValue("WinformType");
+                    row[3] = treelstMenu.Nodes[i].GetValue("AuthGi");
+                    row[4] = Convert.ToBoolean(treelstMenu.Nodes[i].GetValue("IsVisable")) ? "是" : "否";
+                    row[5] = treelstMenu.Nodes[i].GetValue("WinformClass");
                     row[6] = treelstMenu.Nodes[i].GetValue("Url");
                     row[7] = treelstMenu.Nodes[i].GetValue("WebIcon");
-                    row[8] = treelstMenu.Nodes[i].GetValue("SystemType_ID");
-                    row[9] = treelstMenu.Nodes[i].GetValue("Creator_ID");
+                    row[8] = treelstMenu.Nodes[i].GetValue("SystemtypeId");
+                    row[9] = treelstMenu.Nodes[i].GetValue("CreatorId");
                     row[10] = treelstMenu.Nodes[i].GetValue("CreateTime");
-                    row[11] = treelstMenu.Nodes[i].GetValue("Editor_ID");
-                    row[12] = treelstMenu.Nodes[i].GetValue("EditTime");
-                    row[13] = Convert.ToBoolean(treelstMenu.Nodes[i].GetValue("Is_Deleted")) ? "是" : "否";
+                    row[11] = treelstMenu.Nodes[i].GetValue("EditorId");
+                    row[12] = treelstMenu.Nodes[i].GetValue("LastUpdateTime");
+                    row[13] = Convert.ToBoolean(treelstMenu.Nodes[i].GetValue("IsDelete")) ? "是" : "否";
 
                     dt.Rows.Add(row);
 
@@ -414,7 +420,7 @@ namespace JCodes.Framework.AddIn.Proj
         /// <param name="e"></param>
         private void btnImport_Click(object sender, EventArgs e)
         {
-            if (treelstMenu.Nodes.Count != Const.Zero)
+            if (treelstMenu.Nodes.Count != Const.Num_Zero)
             {
                 if (MessageDxUtil.ShowYesNoAndTips("系统菜单有原始数据，此次导入会清空原始数据，是否继续？") == System.Windows.Forms.DialogResult.No)
                 {
@@ -443,37 +449,37 @@ namespace JCodes.Framework.AddIn.Proj
                 pushMenu.Add("-1");
 
                 // 先清除全部节点
-                Int32 rowCount = xmlhelper.Read("datatype").Count;
+                Int32 rowCount = xmlhelper.Read("datatype/dataitem").Count;
                 for (Int32 i = 0; i < rowCount; i++)
                 {
-                    xmlhelper.DeleteByPathNode("datatype/item");
+                    xmlhelper.DeleteByPathNode("datatype/dataitem/item");
                     xmlhelper.Save(false);
                 }
 
                 for (Int32 i = 0; i < dt.Rows.Count; i++)
                 {
                     var sysMenuInfo = new SysMenuInfo();
-                    sysMenuInfo.ID = Guid.NewGuid().ToString();
-                    sysMenuInfo.PID = pushMenu.Last<string>();
+                    sysMenuInfo.Gid = Guid.NewGuid().ToString();
+                    sysMenuInfo.Pgid = pushMenu.Last<string>();
                     sysMenuInfo.Name = dt.Rows[i][0].ToString().TrimStart('﹂');
                     sysMenuInfo.Icon = dt.Rows[i][1].ToString();
                     sysMenuInfo.Seq = dt.Rows[i][2].ToString();
-                    sysMenuInfo.FunctionId = dt.Rows[i][3].ToString();
-                    sysMenuInfo.Visible = dt.Rows[i][4].ToString() == "是" ? true : false;
-                    sysMenuInfo.WinformType = dt.Rows[i][5].ToString();
+                    sysMenuInfo.AuthGid = dt.Rows[i][3].ToString();
+                    sysMenuInfo.IsVisable = dt.Rows[i][4].ToString() == "是" ? true : false;
+                    sysMenuInfo.WinformClass = dt.Rows[i][5].ToString();
                     sysMenuInfo.Url = dt.Rows[i][6].ToString();
                     sysMenuInfo.WebIcon = dt.Rows[i][7].ToString();
-                    sysMenuInfo.SystemType_ID = dt.Rows[i][8].ToString();
-                    sysMenuInfo.Creator_ID = dt.Rows[i][9].ToString();
+                    sysMenuInfo.SystemtypeId = dt.Rows[i][8].ToString();
+                    sysMenuInfo.CreatorId = Convert.ToInt32(dt.Rows[i][9]);
                     sysMenuInfo.CreateTime = Convert.ToDateTime( dt.Rows[i][10]);
-                    sysMenuInfo.Editor_ID = dt.Rows[i][11].ToString();
-                    sysMenuInfo.EditTime = Convert.ToDateTime(dt.Rows[i][12]);
-                    sysMenuInfo.Is_Deleted = dt.Rows[i][13].ToString() == "是" ? true : false;
+                    sysMenuInfo.EditorId =Convert.ToInt32( dt.Rows[i][11]);
+                    sysMenuInfo.LastUpdateTime = Convert.ToDateTime(dt.Rows[i][12]);
+                    sysMenuInfo.IsDelete = dt.Rows[i][13].ToString() == "是" ? true : false;
                     sysMenuInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
 
                     if ((i + 1) < dt.Rows.Count && dt.Rows[i][0].ToString().LastIndexOf("﹂") < dt.Rows[i + 1][0].ToString().LastIndexOf("﹂"))
                     {
-                        pushMenu.Add(sysMenuInfo.ID);
+                        pushMenu.Add(sysMenuInfo.Gid);
                     }
 
                     // 返回到了某个父节点
@@ -489,7 +495,7 @@ namespace JCodes.Framework.AddIn.Proj
                     addRows++;
 
                     lstsysMenuInfo.Add(sysMenuInfo);
-                    xmlhelper.InsertElement("datatype", "item", string.Format(xmlModel, sysMenuInfo.ID, sysMenuInfo.PID, sysMenuInfo.Name, sysMenuInfo.Icon, sysMenuInfo.Seq, sysMenuInfo.FunctionId, sysMenuInfo.Visible == true ? Const.One.ToString() : Const.Zero.ToString(), sysMenuInfo.WinformType, sysMenuInfo.Url, sysMenuInfo.WebIcon, sysMenuInfo.SystemType_ID, sysMenuInfo.Creator_ID, sysMenuInfo.CreateTime, sysMenuInfo.Editor_ID, sysMenuInfo.EditTime, sysMenuInfo.Is_Deleted == true ? Const.One.ToString() : Const.Zero.ToString()));
+                    xmlhelper.InsertElement("datatype/dataitem", "item", string.Format(xmlModel, sysMenuInfo.Gid, sysMenuInfo.Pgid, sysMenuInfo.Name, sysMenuInfo.Icon, sysMenuInfo.Seq, sysMenuInfo.AuthGid, sysMenuInfo.IsVisable == true ? Const.Num_One.ToString() : Const.Num_Zero.ToString(), sysMenuInfo.WinformClass, sysMenuInfo.Url, sysMenuInfo.WebIcon, sysMenuInfo.SystemtypeId, sysMenuInfo.CreatorId, sysMenuInfo.CreateTime, sysMenuInfo.EditorId, sysMenuInfo.LastUpdateTime, sysMenuInfo.IsDelete == true ? Const.Num_One.ToString() : Const.Num_Zero.ToString()));
                     xmlhelper.Save(false);
                     
                 }
@@ -545,35 +551,35 @@ namespace JCodes.Framework.AddIn.Proj
         private void btnAddRoot_Click(object sender, EventArgs e)
         {
             SysMenuInfo menuInfo = new SysMenuInfo();
-            if (string.Equals(treelstMenu.FocusedNode.GetValue("PID").ToString(), Const.MinusOne.ToString()))
+            if (string.Equals(treelstMenu.FocusedNode.GetValue("Pgid").ToString(), Const.Num_MinusOne.ToString()))
             {
-                menuInfo.ID = Guid.NewGuid().ToString();
-                menuInfo.PID = Const.MinusOne.ToString();
-                menuInfo.Is_Deleted = false;
-                menuInfo.Visible = true;
+                menuInfo.Gid = Guid.NewGuid().ToString();
+                menuInfo.Pgid = Const.Num_MinusOne.ToString();
+                menuInfo.IsDelete = false;
+                menuInfo.IsVisable = true;
                 menuInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
                 treelstMenu.FocusedNode = treelstMenu.AppendNode(menuInfo, null);
-                treelstMenu.FocusedNode.SetValue("ID", menuInfo.ID);
-                treelstMenu.FocusedNode.SetValue("PID", menuInfo.PID);
-                treelstMenu.FocusedNode.SetValue("Is_Deleted", menuInfo.Is_Deleted);
-                treelstMenu.FocusedNode.SetValue("Visible", menuInfo.Visible);
+                treelstMenu.FocusedNode.SetValue("Gid", menuInfo.Gid);
+                treelstMenu.FocusedNode.SetValue("Pgid", menuInfo.Pgid);
+                treelstMenu.FocusedNode.SetValue("IsDelete", menuInfo.IsDelete);
+                treelstMenu.FocusedNode.SetValue("IsVisable", menuInfo.IsVisable);
                 treelstMenu.FocusedNode.SetValue("lstInfo", menuInfo.lstInfo);
             }
             else
             {
-                menuInfo.ID = Guid.NewGuid().ToString();
-                menuInfo.PID = treelstMenu.FocusedNode.GetValue("PID").ToString();
-                menuInfo.Is_Deleted = false;
-                menuInfo.Visible = true;
+                menuInfo.Gid = Guid.NewGuid().ToString();
+                menuInfo.Pgid = treelstMenu.FocusedNode.GetValue("Pgid").ToString();
+                menuInfo.IsDelete = false;
+                menuInfo.IsVisable = true;
                 menuInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
                 treelstMenu.FocusedNode = treelstMenu.AppendNode(menuInfo, treelstMenu.FocusedNode.ParentNode);
-                treelstMenu.FocusedNode.SetValue("ID", menuInfo.ID);
-                treelstMenu.FocusedNode.SetValue("PID", menuInfo.PID);
-                treelstMenu.FocusedNode.SetValue("Is_Deleted", menuInfo.Is_Deleted);
-                treelstMenu.FocusedNode.SetValue("Visible", menuInfo.Visible);
+                treelstMenu.FocusedNode.SetValue("Gid", menuInfo.Gid);
+                treelstMenu.FocusedNode.SetValue("Pgid", menuInfo.Pgid);
+                treelstMenu.FocusedNode.SetValue("IsDelete", menuInfo.IsDelete);
+                treelstMenu.FocusedNode.SetValue("IsVisable", menuInfo.IsVisable);
                 treelstMenu.FocusedNode.SetValue("lstInfo", menuInfo.lstInfo);
             }
-            xmlhelper.InsertElement("datatype", "item", string.Format(xmlModel, menuInfo.ID, menuInfo.PID, string.Empty, string.Empty, string.Empty, string.Empty, Const.One.ToString(), string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, Const.Zero.ToString()));
+            xmlhelper.InsertElement("datatype/dataitem", "item", string.Format(xmlModel, menuInfo.Gid, menuInfo.Pgid, string.Empty, string.Empty, string.Empty, string.Empty, Const.Num_One.ToString(), string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, Const.Num_Zero.ToString()));
             xmlhelper.Save(false);
         }
 
@@ -588,17 +594,17 @@ namespace JCodes.Framework.AddIn.Proj
             if (treelstMenu.FocusedNode != null)
             {
                 SysMenuInfo menuInfo = new SysMenuInfo();
-                menuInfo.ID = Guid.NewGuid().ToString();
-                menuInfo.PID = treelstMenu.FocusedNode.GetValue("ID").ToString();
-                menuInfo.Is_Deleted = false;
-                menuInfo.Visible = true;
+                menuInfo.Gid = Guid.NewGuid().ToString();
+                menuInfo.Pgid = treelstMenu.FocusedNode.GetValue("Gid").ToString();
+                menuInfo.IsDelete = false;
+                menuInfo.IsVisable = true;
                 menuInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
                 treelstMenu.FocusedNode = treelstMenu.AppendNode(null, treelstMenu.FocusedNode);
-                treelstMenu.FocusedNode.SetValue("ID", menuInfo.ID);
-                treelstMenu.FocusedNode.SetValue("PID", menuInfo.PID);
-                treelstMenu.FocusedNode.SetValue("Is_Deleted", menuInfo.Is_Deleted);
-                treelstMenu.FocusedNode.SetValue("Visible", menuInfo.Visible);
-                xmlhelper.InsertElement("datatype", "item", string.Format(xmlModel, menuInfo.ID, menuInfo.PID, string.Empty, string.Empty, string.Empty, string.Empty, Const.One.ToString(), string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, Const.Zero.ToString()));
+                treelstMenu.FocusedNode.SetValue("Gid", menuInfo.Gid);
+                treelstMenu.FocusedNode.SetValue("Pgid", menuInfo.Pgid);
+                treelstMenu.FocusedNode.SetValue("IsDelete", menuInfo.IsDelete);
+                treelstMenu.FocusedNode.SetValue("IsVisable", menuInfo.IsVisable);
+                xmlhelper.InsertElement("datatype/dataitem", "item", string.Format(xmlModel, menuInfo.Gid, menuInfo.Pgid, string.Empty, string.Empty, string.Empty, string.Empty, Const.Num_One.ToString(), string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, Const.Num_Zero.ToString()));
                 xmlhelper.Save(false);
             }
         }
@@ -615,14 +621,14 @@ namespace JCodes.Framework.AddIn.Proj
             {
                 // 放到之后去则与TargetNode 的节点的父节点一致
                 //Console.WriteLine(args.TargetNode.GetValue("PID"));
-                string dragId = args.Node.GetValue("ID").ToString();
+                string dragId = args.Node.GetValue("Gid").ToString();
                 xmlhelper = new XmlHelper(@"XML\menu.xml");
-                var xmlNodes = xmlhelper.Read("datatype");
+                var xmlNodes = xmlhelper.Read("datatype/dataitem");
                 for (Int32 i = 0; i < xmlNodes.Count; i++)
                 {
                     if (string.Equals(xmlNodes[i].ChildNodes[0].InnerText, dragId))
                     {
-                        xmlNodes[i].ChildNodes[1].InnerText = args.TargetNode.GetValue("PID").ToString();
+                        xmlNodes[i].ChildNodes[1].InnerText = args.TargetNode.GetValue("Pgid").ToString();
                         break;
                     }
                 }
@@ -631,14 +637,14 @@ namespace JCodes.Framework.AddIn.Proj
             {
                 // 放到目标节点之中，则父节点就是TargetNode;
                 //Console.WriteLine(args.TargetNode.GetValue("ID"));
-                string dragId = args.Node.GetValue("ID").ToString();
+                string dragId = args.Node.GetValue("Gid").ToString();
                 xmlhelper = new XmlHelper(@"XML\menu.xml");
-                var xmlNodes = xmlhelper.Read("datatype");
+                var xmlNodes = xmlhelper.Read("datatype/dataitem");
                 for (Int32 i = 0; i < xmlNodes.Count; i++)
                 {
                     if (string.Equals(xmlNodes[i].ChildNodes[0].InnerText, dragId))
                     {
-                        xmlNodes[i].ChildNodes[1].InnerText = args.TargetNode.GetValue("ID").ToString();
+                        xmlNodes[i].ChildNodes[1].InnerText = args.TargetNode.GetValue("Gid").ToString();
                         break;
                     }
                 }
@@ -653,9 +659,9 @@ namespace JCodes.Framework.AddIn.Proj
         /// <param name="e"></param>
         private void treelstMenu_CellValueChanged(object sender, DevExpress.XtraTreeList.CellValueChangedEventArgs e)
         {
-            string changId = treelstMenu.FocusedNode.GetValue("ID").ToString();
+            string changId = treelstMenu.FocusedNode.GetValue("Gid").ToString();
             xmlhelper = new XmlHelper(@"XML\menu.xml");
-            var xmlNodes = xmlhelper.Read("datatype");
+            var xmlNodes = xmlhelper.Read("datatype/dataitem");
             for (Int32 i = 0; i < xmlNodes.Count; i++)
             {
                 if (string.Equals(xmlNodes[i].ChildNodes[0].InnerText, changId))
@@ -672,13 +678,13 @@ namespace JCodes.Framework.AddIn.Proj
                         case "Seq":
                             idx = 4;
                             break;
-                        case "FunctionId":
+                        case "AuthGid":
                             idx = 5;
                             break;
-                        case "Visible":
+                        case "IsVisable":
                             idx = 6;
                             break;
-                        case "WinformType":
+                        case "WinformClass":
                             idx = 7;
                             break;
                         case "Url":
@@ -687,22 +693,22 @@ namespace JCodes.Framework.AddIn.Proj
                         case "WebIcon":
                             idx = 9;
                             break;
-                        case "SystemType_ID":
+                        case "SystemtypeId":
                             idx = 10;
                             break;
-                        case "Creator_ID":
+                        case "CreatorId":
                             idx = 11;
                             break;
                         case "CreateTime":
                             idx = 12;
                             break;
-                        case "Editor_ID":
+                        case "EditorId":
                             idx = 13;
                             break;
-                        case "EditTime":
+                        case "LastUpdateTime":
                             idx = 14;
                             break;
-                        case "Is_Deleted":
+                        case "IsDelete":
                             idx = 15;
                             break;
                     }

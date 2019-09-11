@@ -7,6 +7,7 @@ using JCodes.Framework.Common.Extension;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.Common;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.WebUI.Controllers
 {
@@ -33,7 +34,7 @@ namespace JCodes.Framework.WebUI.Controllers
             foreach(int id in ouList.ToDelimitedList<int>(","))
             {
                 OUInfo info = BLLFactory<OU>.Instance.FindByID(id);
-                if(info != null && info.Category == OUCategoryEnum.公司.ToString())
+                if(info != null && info.OuCode == OUCategoryEnum.公司.ToString())
                 {
                     companyList.Add(id);
                 }

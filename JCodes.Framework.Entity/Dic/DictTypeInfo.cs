@@ -10,13 +10,13 @@ namespace JCodes.Framework.Entity
     {    
         #region Field Members
 
-        private Int32 m_ID = 0;         
+        private Int32 m_Id = 0;         
         private string m_Name = ""; //字典类型名称          
         private string m_Remark = ""; //备注说明          
         private string m_Seq = ""; //排序          
-        private string m_Editor = ""; //编辑者          
+        private Int32 m_EditorId; //编辑者          
         private DateTime m_LastUpdated = System.DateTime.Now; //编辑时间   
-        private Int32 m_PID = 0;//字典大类
+        private Int32 m_Pid = 0;//字典大类
 
 
         #endregion
@@ -24,15 +24,15 @@ namespace JCodes.Framework.Entity
         #region Property Members
 
         [DataMember]
-        public virtual Int32 ID
+        public virtual Int32 Id
         {
             get
             {
-                return this.m_ID;
+                return this.m_Id;
             }
             set
             {
-                this.m_ID = value;
+                this.m_Id = value;
             }
         }
 
@@ -88,15 +88,15 @@ namespace JCodes.Framework.Entity
         /// 编辑者
         /// </summary>
         [DataMember]
-        public virtual string Editor
+        public virtual Int32 EditorId
         {
             get
             {
-                return this.m_Editor;
+                return this.m_EditorId;
             }
             set
             {
-                this.m_Editor = value;
+                this.m_EditorId = value;
             }
         }
 
@@ -120,10 +120,10 @@ namespace JCodes.Framework.Entity
         /// 字典大类
         /// </summary>
         [DataMember]
-        public Int32 PID
+        public Int32 Pid
         {
-            get { return m_PID; }
-            set { m_PID = value; }
+            get { return m_Pid; }
+            set { m_Pid = value; }
         }
 
         #endregion

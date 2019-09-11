@@ -1,203 +1,209 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using JCodes.Framework.Entity;
 
 namespace JCodes.Framework.Entity
 {
-    [Serializable]
-    [DataContract]
-    public class CouponCategoryInfo : BaseEntity
-    {
-        #region Field Members
-        private string m_ID = "";
-        private string m_HandNo = "";
-        private string m_Name = "";
-        private string m_BelongCompanys = "";
-        private string m_Creator = "";
-        private string m_Creator_ID = "";
-        private DateTime m_CreateTime = System.DateTime.Now;
-        private string m_Editor = "";
-        private string m_Editor_ID = "";
-        private DateTime? m_EditTime = null;
-        private Int32 m_Enabled = 1;
-        #endregion
+	/// <summary>
+	/// 优惠券分类信息
+	/// </summary>
+	[Serializable]
+	[DataContract]
+	public class CouponCategoryInfo : BaseEntity 
+	{
+		#region Field Members
 
-        #region Property Members
-        /// <summary>
-        /// 分类ID
-        /// </summary>
-        [DataMember]
-        public virtual string ID
-        {
-            get
-            {
-                return this.m_ID;
-            }
-            set
-            {
-                this.m_ID = value;
-            }
-        }
+		/// <summary>
+		/// ID序号
+		/// </summary>
+		private Int32 m_Id = 0;
 
-        /// <summary>
-        /// 分类编码
-        /// </summary>
-        [DataMember]
-        public virtual string HandNo
-        {
-            get
-            {
-                return this.m_HandNo;
-            }
-            set
-            {
-                this.m_HandNo = value;
-            }
-        }
+		/// <summary>
+		/// 通用编码
+		/// </summary>
+		private String m_GeneralCode = string.Empty;
 
-        /// <summary>
-        /// 分类名称
-        /// </summary>
-        [DataMember]
-        public virtual string Name
-        {
-            get
-            {
-                return this.m_Name;
-            }
-            set
-            {
-                this.m_Name = value;
-            }
-        }
+		/// <summary>
+		/// 名称
+		/// </summary>
+		private String m_Name = string.Empty;
 
-        /// <summary>
-        /// 允许哪些公司操作
-        /// </summary>
-        [DataMember]
-        public virtual string BelongCompanys
-        {
-            get
-            {
-                return this.m_BelongCompanys;
-            }
-            set
-            {
-                this.m_BelongCompanys = value;
-            }
-        }
+		/// <summary>
+		/// 公司列表
+		/// </summary>
+		private String m_CompanyLst = string.Empty;
 
-        /// <summary>
-        /// 创建人
-        /// </summary>
-        [DataMember]
-        public virtual string Creator
-        {
-            get
-            {
-                return this.m_Creator;
-            }
-            set
-            {
-                this.m_Creator = value;
-            }
-        }
+		/// <summary>
+		/// 创建人ID
+		/// </summary>
+		private Int32 m_CreatorId = 0;
 
-        /// <summary>
-        /// 创建人ID
-        /// </summary>
-        [DataMember]
-        public virtual string Creator_ID
-        {
-            get
-            {
-                return this.m_Creator_ID;
-            }
-            set
-            {
-                this.m_Creator_ID = value;
-            }
-        }
+		/// <summary>
+		/// 创建时间
+		/// </summary>
+		private DateTime m_CreatorTime = DateTime.Now;
 
-        /// <summary>
-        /// 创建时间
-        /// </summary>
-        [DataMember]
-        public virtual DateTime CreateTime
-        {
-            get
-            {
-                return this.m_CreateTime;
-            }
-            set
-            {
-                this.m_CreateTime = value;
-            }
-        }
+		/// <summary>
+		/// 编辑人ID
+		/// </summary>
+		private Int32 m_EditorId = 0;
 
-        /// <summary>
-        /// 编辑人
-        /// </summary>
-        [DataMember]
-        public virtual string Editor
-        {
-            get
-            {
-                return this.m_Editor;
-            }
-            set
-            {
-                this.m_Editor = value;
-            }
-        }
+		/// <summary>
+		/// 最后更新时间
+		/// </summary>
+		private DateTime m_LastUpdateTime = DateTime.Now;
 
-        /// <summary>
-        /// 编辑人ID
-        /// </summary>
-        [DataMember]
-        public virtual string Editor_ID
-        {
-            get
-            {
-                return this.m_Editor_ID;
-            }
-            set
-            {
-                this.m_Editor_ID = value;
-            }
-        }
+		/// <summary>
+		/// 是否禁用
+		/// </summary>
+		private Int16 m_IsForbid = 0;
+		#endregion
 
-        /// <summary>
-        /// 编辑时间
-        /// </summary>
-        [DataMember]
-        public virtual DateTime? EditTime
-        {
-            get
-            {
-                return this.m_EditTime;
-            }
-            set
-            {
-                this.m_EditTime = value;
-            }
-        }
+		#region Property Members
 
-        /// <summary>
-        /// 是否可用(0不可用，1可用)
-        /// </summary>
-        [DataMember]
-        public virtual Int32 Enabled
-        {
-            get
-            {
-                return this.m_Enabled;
-            }
-            set
-            {
-                this.m_Enabled = value;
-            }
-        }
-        #endregion
+		/// <summary>
+		/// ID序号
+		/// </summary>
+		[DataMember]
+		public virtual Int32 Id
+		{
+			get
+			{
+				return this.m_Id;
+			}
+			set
+			{
+				this.m_Id = value;
+			}
+		}
 
-    }
+		/// <summary>
+		/// 通用编码
+		/// </summary>
+		[DataMember]
+		public virtual String GeneralCode
+		{
+			get
+			{
+				return this.m_GeneralCode;
+			}
+			set
+			{
+				this.m_GeneralCode = value;
+			}
+		}
+
+		/// <summary>
+		/// 名称
+		/// </summary>
+		[DataMember]
+		public virtual String Name
+		{
+			get
+			{
+				return this.m_Name;
+			}
+			set
+			{
+				this.m_Name = value;
+			}
+		}
+
+		/// <summary>
+		/// 公司列表
+		/// </summary>
+		[DataMember]
+		public virtual String CompanyLst
+		{
+			get
+			{
+				return this.m_CompanyLst;
+			}
+			set
+			{
+				this.m_CompanyLst = value;
+			}
+		}
+
+		/// <summary>
+		/// 创建人ID
+		/// </summary>
+		[DataMember]
+		public virtual Int32 CreatorId
+		{
+			get
+			{
+				return this.m_CreatorId;
+			}
+			set
+			{
+				this.m_CreatorId = value;
+			}
+		}
+
+		/// <summary>
+		/// 创建时间
+		/// </summary>
+		[DataMember]
+		public virtual DateTime CreatorTime
+		{
+			get
+			{
+				return this.m_CreatorTime;
+			}
+			set
+			{
+				this.m_CreatorTime = value;
+			}
+		}
+
+		/// <summary>
+		/// 编辑人ID
+		/// </summary>
+		[DataMember]
+		public virtual Int32 EditorId
+		{
+			get
+			{
+				return this.m_EditorId;
+			}
+			set
+			{
+				this.m_EditorId = value;
+			}
+		}
+
+		/// <summary>
+		/// 最后更新时间
+		/// </summary>
+		[DataMember]
+		public virtual DateTime LastUpdateTime
+		{
+			get
+			{
+				return this.m_LastUpdateTime;
+			}
+			set
+			{
+				this.m_LastUpdateTime = value;
+			}
+		}
+
+		/// <summary>
+		/// 是否禁用
+		/// </summary>
+		[DataMember]
+		public virtual Int16 IsForbid
+		{
+			get
+			{
+				return this.m_IsForbid;
+			}
+			set
+			{
+				this.m_IsForbid = value;
+			}
+		}
+		#endregion
+	}
 }

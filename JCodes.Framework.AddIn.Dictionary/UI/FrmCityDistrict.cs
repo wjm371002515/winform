@@ -187,7 +187,7 @@ namespace JCodes.Framework.AddIn.Dictionary
                     FrmEditCity dlg = new FrmEditCity();
                     dlg.txtProvince.Text = info.ProvinceName;
                     dlg.txtProvince.Tag = info.ID;
-                    dlg.ID = selectedNode.Tag.ToString();
+                    dlg.Id = Convert.ToInt32( selectedNode.Tag);
                     dlg.OnDataSaved += new EventHandler(dlgCity_OnDataSaved);
                     dlg.ShowDialog();
                 }
@@ -208,7 +208,7 @@ namespace JCodes.Framework.AddIn.Dictionary
                 string message = "您确认要删除选定的记录吗";
                 if (MessageDxUtil.ShowYesNoAndWarning(message) == System.Windows.Forms.DialogResult.Yes)
                 {
-                    BLLFactory<City>.Instance.DeleteByUser(selectedNode.Tag.ToString(), LoginUserInfo.ID);
+                    BLLFactory<City>.Instance.DeleteByUser(selectedNode.Tag.ToString(), LoginUserInfo.Id);
                     BLLFactory<District>.Instance.DeleteByCondition(string.Format("CityID={0}", selectedNode.Tag.ToString()));
 
                     InitCityTree();
@@ -329,7 +329,7 @@ namespace JCodes.Framework.AddIn.Dictionary
                 FrmEditDistrict dlg = new FrmEditDistrict();
                 dlg.txtCity.Text = lblCityName.Text;
                 dlg.txtCity.Tag = lblCityName.Tag;
-                dlg.ID = ID;
+                dlg.Id = Convert.ToInt32(ID);
                 dlg.OnDataSaved += new EventHandler(District_OnDataSaved);
 
                 dlg.OnDataSaved += new EventHandler(dlg_OnDataSaved);
@@ -366,7 +366,7 @@ namespace JCodes.Framework.AddIn.Dictionary
             foreach (int iRow in rowSelected)
             {
                 string ID = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "ID");
-                BLLFactory<District>.Instance.DeleteByUser(ID, LoginUserInfo.ID);
+                BLLFactory<District>.Instance.DeleteByUser(ID, LoginUserInfo.Id);
             }
 
             BindData();

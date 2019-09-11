@@ -37,11 +37,11 @@ namespace JCodes.Framework.SQLServerDAL
 
         public List<CouponCategoryInfo> GetAllCouponCategory()
         {
-            string sql = string.Format(@"select ID, HandNo, Name, BelongCompanys, Creator, 
+            string sql = string.Format(@"select ID, UserCode, Name, BelongCompanys, Creator, 
 	                                            Creator_ID, CreateTime, Editor, Editor_ID, EditTime,
 	                                            Enabled
                                            from {0}CouponCategory t
-                                       order by HandNo", SQLServerPortal.gc._50GoTablePre);
+                                       order by UserCode", SQLServerPortal.gc._50GoTablePre);
             return base.GetList(sql, null);
         }
 
@@ -55,17 +55,15 @@ namespace JCodes.Framework.SQLServerDAL
             CouponCategoryInfo info = obj as CouponCategoryInfo;
             Hashtable hash = new Hashtable();
 
-            hash.Add("ID", info.ID);
-            hash.Add("HandNo", info.HandNo);
+            hash.Add("Id", info.Id);
+            hash.Add("GeneralCode", info.GeneralCode);
             hash.Add("Name", info.Name);
-            hash.Add("BelongCompanys", info.BelongCompanys);
-            hash.Add("Creator", info.Creator);
-            hash.Add("Creator_ID", info.Creator_ID);
-            hash.Add("CreateTime", info.CreateTime);
-            hash.Add("Editor", info.Editor);
-            hash.Add("Editor_ID", info.Editor_ID);
-            hash.Add("EditTime", info.EditTime);
-            hash.Add("Enabled", info.Enabled);
+            hash.Add("CompanyLst", info.CompanyLst);
+            hash.Add("CreatorId", info.CreatorId);
+            hash.Add("CreatorTime", info.CreatorTime);
+            hash.Add("EditorId", info.EditorId);
+            hash.Add("LastUpdateTime", info.LastUpdateTime);
+            hash.Add("IsForbid", info.IsForbid);
             return hash;
         }
     }

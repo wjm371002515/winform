@@ -158,7 +158,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">编号</label>
                                 <div class="col-md-8">
-                                    <input id="HandNo" name="HandNo" type="text" class="form-control" placeholder="编号..."/>
+                                    <input id="UserCode" name="UserCode" type="text" class="form-control" placeholder="编号..."/>
 
                                 </div>
                             </div>
@@ -220,7 +220,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">编号</label>
                                 <div class="col-md-8">
-                                    <label id="HandNo2" name="HandNo" class="form-control"></label>
+                                    <label id="HandNo2" name="UserCode" class="form-control"></label>
                                 </div>
                             </div>
                         </div>
@@ -374,7 +374,7 @@
                     var tr = "<tr>";
                     tr += "<td><input class='checkboxes' type=\"checkbox\" name=\"checkbox\" value=" + item.ID + "></td>";
                      tr += "<td>" + item.PID + "</td>";
-                     tr += "<td>" + item.HandNo + "</td>";
+                     tr += "<td>" + item.UserCode + "</td>";
                      tr += "<td>" + item.Name + "</td>";
                      tr += "<td>" + item.Note + "</td>";
         
@@ -542,7 +542,7 @@
             //首先用户发送一个异步请求去后台实现方法
             $.getJSON("/ContactGroup/FindByID?r=" + Math.random() + "&id=" + ID, function (info) {
                  $("#PID").val(info.PID);
-                 $("#HandNo").val(info.HandNo);
+                 $("#UserCode").val(info.UserCode);
                  $("#Name").val(info.Name);
                  $("#Note").val(info.Note);
         
@@ -569,7 +569,7 @@
                 //$("#ID2").text(info.ID);
 
                  $("#PID2").text(info.PID);
-                 $("#HandNo2").text(info.HandNo);
+                 $("#HandNo2").text(info.UserCode);
                  $("#Name2").text(info.Name);
                  $("#Note2").text(info.Note);
                  $("#Creator2").text(info.Creator);
@@ -720,7 +720,7 @@
                     var tr = "<tr>";
                     tr += "<td><input class='checkboxes' type=\"checkbox\" name=\"checkbox\" value=" + item.ID + "></td>";
                      tr += "<td>" + item.PID + "</td>";
-                     tr += "<td>" + item.HandNo + "</td>";
+                     tr += "<td>" + item.UserCode + "</td>";
                      tr += "<td>" + item.Name + "</td>";
                      tr += "<td>" + item.Note + "</td>";
         
@@ -748,7 +748,7 @@
                         // alert($(this).text());
                     });    
 
-                    list.push({ 'PID': rows[0],'HandNo': rows[1],'Name': rows[2],'Note': rows[3] });
+                    list.push({ 'PID': rows[0],'UserCode': rows[1],'Name': rows[2],'Note': rows[3] });
                     i++;
                 }
             });

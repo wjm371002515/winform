@@ -20,7 +20,7 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
         /// <summary>
         /// 附件组所属的记录ID，如属于某个主表记录的ID
         /// </summary>
-        public string OwerId = "";
+        public Int32 CreatorId = 0;
 
         /// <summary>
         /// 操作用户ID，当前登录用户
@@ -35,15 +35,15 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
         /// <summary>
         /// 设置附件组的GUID
         /// </summary>
-        private string m_AttachmentGUID = Guid.NewGuid().ToString();
+        private string m_AttachmentGid = Guid.NewGuid().ToString();
 
         [Browsable(true), Description("设置附件组的GUID")]
-        public string AttachmentGUID
+        public string AttachmentGid
         {
-            get { return m_AttachmentGUID; }
+            get { return m_AttachmentGid; }
             set
             {
-                m_AttachmentGUID = value;
+                m_AttachmentGid = value;
                 BindData();
             }
         }
@@ -65,12 +65,12 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
         /// 初始化相关参数
         /// </summary>
         /// <param name="attachmentDir">设置附件的存储目录分类</param>
-        /// <param name="owerId">附件组所属的记录ID，如属于某个主表记录的ID</param>
+        /// <param name="creatorId">附件组所属的记录ID，如属于某个主表记录的ID</param>
         /// <param name="userId">操作用户ID，当前登录用户</param>
-        public void Init(string attachmentDir, string owerId, Int32 userId)
+        public void Init(string attachmentDir, Int32 creatorId, Int32 userId)
         {
             this.AttachmentDirectory = attachmentDir;
-            this.OwerId = owerId;
+            this.CreatorId = creatorId;
             this.userId = userId;
         }
 
@@ -110,7 +110,7 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
                 MessageDxUtil.ShowTips("请设置附件的存储目录分类");
                 return;
             }
-            if (string.IsNullOrEmpty(m_AttachmentGUID))
+            if (string.IsNullOrEmpty(m_AttachmentGid))
             {
                 MessageDxUtil.ShowTips("请设置附件组的GUID");
                 return;
@@ -118,9 +118,9 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
 
             FrmAttachmentGroupView dlg = new FrmAttachmentGroupView();
             dlg.AttachmentDirectory = AttachmentDirectory;
-            dlg.AttachmentGUID = AttachmentGUID;
+            dlg.AttachmentGid = AttachmentGid;
             dlg.UserId = userId;
-            dlg.OwerId = OwerId;
+            dlg.CreatorId = CreatorId;
             dlg.OnDataSaved += new EventHandler(dlg_OnDataSaved);
             dlg.ShowDialog();
         }
@@ -141,9 +141,9 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
         private void BindData()
         {
             List<FileUploadInfo> list = new List<FileUploadInfo>();
-            if (!this.DesignMode && !string.IsNullOrEmpty(this.AttachmentGUID))
+            if (!this.DesignMode && !string.IsNullOrEmpty(this.AttachmentGid))
             {
-                list = BLLFactory<FileUpload>.Instance.GetByAttachGUID(this.AttachmentGUID);
+                list = BLLFactory<FileUpload>.Instance.GetByAttachGUID(this.AttachmentGid);
             }
             this.lblTips.Text = string.Format(TipsContent, list.Count);
         }

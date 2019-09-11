@@ -8,6 +8,7 @@ using System.Data;
 using System.Globalization;
 using System.Windows.Forms;
 using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.Common.Winform
 {

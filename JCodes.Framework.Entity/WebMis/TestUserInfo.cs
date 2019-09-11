@@ -14,7 +14,7 @@ namespace JCodes.Framework.Entity
         /// </summary>
         public TestUserInfo()
         {
-            this.ID = System.Guid.NewGuid().ToString();
+            this.Id = 0;
             this.Age = 0;
             this.Height = 0;
 
@@ -23,7 +23,7 @@ namespace JCodes.Framework.Entity
         #region Property Members
         
 		[DataMember]
-        public virtual string ID { get; set; }
+        public virtual Int32 Id { get; set; }
 
         /// <summary>
         /// 姓名
@@ -35,7 +35,7 @@ namespace JCodes.Framework.Entity
         /// 手机
         /// </summary>
         [DataMember]
-        public virtual string Mobile { get; set; }
+        public virtual string MobilePhone { get; set; }
 
         /// <summary>
         /// 邮箱
@@ -59,7 +59,7 @@ namespace JCodes.Framework.Entity
         /// 性别
         /// </summary>
 		[DataMember]
-        public virtual string Gender { get; set; }
+        public virtual Int32 Gender { get; set; }
 
         /// <summary>
         /// 年龄
@@ -71,7 +71,7 @@ namespace JCodes.Framework.Entity
         /// 出生日期
         /// </summary>
 		[DataMember]
-        public virtual DateTime BirthDate { get; set; }
+        public virtual DateTime Birthday { get; set; }
 
         /// <summary>
         /// 身高
@@ -89,31 +89,31 @@ namespace JCodes.Framework.Entity
         /// 备注
         /// </summary>
 		[DataMember]
-        public virtual string Note { get; set; }
+        public virtual string Remark { get; set; }
 
         /// <summary>
         /// 编辑人
         /// </summary>
 		[DataMember]
-        public virtual string Editor { get; set; }
+        public virtual Int32 EditorId { get; set; }
 
         /// <summary>
         /// 编辑时间
         /// </summary>
 		[DataMember]
-        public virtual DateTime EditTime { get; set; }
+        public virtual DateTime LastUpdateTime { get; set; }
 
         /// <summary>
         /// 创建人
         /// </summary>
 		[DataMember]
-        public virtual string Creator { get; set; }
+        public virtual Int32 CreatorId { get; set; }
 
         /// <summary>
         /// 创建时间
         /// </summary>
 		[DataMember]
-        public virtual DateTime CreateTime { get; set; }
+        public virtual DateTime CreatorTime { get; set; }
 
 
         #endregion

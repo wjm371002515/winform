@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>投票情况</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="/Content/themes/css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+    <link href="/Content/themes/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <!-- Sweet Alert -->
+    <link href="/Content/themes/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="/Content/themes/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="/Content/themes/css/plugins/chosen/chosen.css" rel="stylesheet">
+    <link href="/Content/themes/css/animate.min.css" rel="stylesheet">
+    <link href="/Content/themes/css/style.min.css?v=4.0.0" rel="stylesheet">
+    <base target="_blank">
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <!-- Panel Other -->
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <!-- Example Events -->
+                        <div class="example-wrap">
+                            <div class="example">
+                                <table id="ArbetTable"></table>
+                            </div>
+                        </div>
+                        <!-- End Example Events -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Panel Other -->
+    </div>
+
+    <script src="/Scripts/jquery.min.js?v=2.1.4"></script>
+    <script src="/Scripts/bootstrap.min.js?v=3.3.5"></script>
+    <script src="/Scripts/content.min.js?v=1.0.0"></script>
+    <script src="/Scripts/plugins/sweetalert/sweetalert.min.js"></script>
+    <script src="/Scripts/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="/Scripts/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+    <script src="/Scripts/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script src="/Scripts/plugins/chosen/chosen.jquery.js"></script>
+    <script src="/Scripts/plugins/suggest/bootstrap-suggest.min.js"></script>
+  
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //1.初始化Table
+            var oTable = new TableInit();
+            oTable.Init();
+
+            // 添加样式 .bootstrap-table add position:relative, top:-50px;
+            $(".bootstrap-table").css('position', 'relative').css('top', '-50px');
+        });
+        window.onload = function () {
+
+        }
+
+        var TableInit = function () {
+            var oTableInit = new Object();
+            //初始化Table
+            oTableInit.Init = function () {
+                var louzhuang = getQueryVariable("louzhuang");
+                $('#ArbetTable').bootstrapTable({
+                    url: '/Interface/GetAjaxDongnanhai2_detail?louzhuang=' + louzhuang,         //请求后台的URL（*）
+                    method: 'get',                      //请求方式（*）
+                    toolbar: '#toolbar',                //工具按钮用哪个容器
+                    striped: true,                      //是否显示行间隔色
+                    cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+                    pagination: true,                   //是否显示分页（*）
+                    sortable: false,                     //是否启用排序
+                    sortOrder: "asc",                   //排序方式
+                    sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
+                    pageNumber: 1,                       //初始化加载第一页，默认第一页
+                    pageSize: 220,                       //每页的记录行数（*）
+                    pageList: [220],        //可供选择的每页的行数（*）
+                    contentType: "application/x-www-form-urlencoded",
+                    showColumns: true,                  //是否显示所有的列
+                    showRefresh: true,                  //是否显示刷新按钮
+                    minimumCountColumns: 2,             //最少允许的列数
+                    clickToSelect: true,                //是否启用点击选中行
+                    uniqueId: "no",                     //每一行的唯一标识，一般为主键列
+                    cardView: false,                    //是否显示详细视图
+                    detailView: false,                   //是否显示父子表
+                    columns: [
+                    { field: 'houseNum', title: '房号' },
+                    { field: 'toupiao', title: '投票情况' },
+                    ],
+                    rowStyle: function (row, index) {
+                        style = "";
+                        if (index % 2 === 0) {//偶数行
+                            style = { css: { 'background': '#fafafa' } };
+                        } else {//奇数行
+                            style = { css: { 'background': '#efefef' } };
+                        }
+
+                        if (row.percentage < 50)
+                        {
+                            style = { css: { 'color': 'red' } };
+                        }
+                        return style;
+                    },//隔行变色
+                });
+
+            };
+            return oTableInit;
+        };
+
+        function getQueryVariable(variable) {
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i = 0; i < vars.length; i++) {
+                var pair = vars[i].split("=");
+                if (pair[0] == variable) { return pair[1]; }
+            }
+            return (false);
+        }
+    </script>
+</body>
+</html>

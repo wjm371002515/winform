@@ -70,24 +70,22 @@ namespace JCodes.Framework.WebUI.Controllers
                 int i = 1;
                 foreach (DataRow dr in table.Rows)
                 {
-                    bool converted = false;
                     DateTime dtDefault = Convert.ToDateTime("1900-01-01");
-                    DateTime dt;
                     MenuInfo info = new MenuInfo();
 
-                    info.PID = dr["父ID"].ToString();
+                    info.Pgid = dr["父ID"].ToString();
                     info.Name = dr["显示名称"].ToString();
                     info.Seq = dr["排序"].ToString();
-                    info.FunctionId = dr["功能ID"].ToString();
-                    info.Visible = dr["是否可见"].ToString().ToBoolean();
+                    info.AuthGid = dr["功能ID"].ToString();
+                    info.IsVisable = dr["是否可见"].ToString().ToBoolean();
                     info.Url = dr["Web界面Url地址"].ToString();
                     info.WebIcon = dr["Web界面的菜单图标"].ToString();
-                    info.SystemType_ID = dr["系统编号"].ToString();
+                    info.SystemtypeId = dr["系统编号"].ToString();
 
-                    info.Creator_ID = CurrentUser.ID.ToString();
+                    info.CreatorId = CurrentUser.Id;
                     info.CreateTime = DateTime.Now;
-                    info.Editor_ID = CurrentUser.ID.ToString();
-                    info.EditTime = DateTime.Now;
+                    info.EditorId = CurrentUser.Id;
+                    info.LastUpdateTime = DateTime.Now;
 
                     list.Add(info);
                 }
@@ -120,9 +118,9 @@ namespace JCodes.Framework.WebUI.Controllers
                         {
                             //detail.Seq = seq++;//增加1
                             detail.CreateTime = DateTime.Now;
-                            detail.Creator_ID = CurrentUser.ID.ToString();
-                            detail.Editor_ID = CurrentUser.ID.ToString();
-                            detail.EditTime = DateTime.Now;
+                            detail.CreatorId = CurrentUser.Id;
+                            detail.EditorId = CurrentUser.Id;
+                            detail.LastUpdateTime = DateTime.Now;
 
                             BLLFactory<Menus>.Instance.Insert(detail, trans);
                         }
@@ -180,14 +178,14 @@ namespace JCodes.Framework.WebUI.Controllers
             {
                 dr = datatable.NewRow();
                 dr["序号"] = j++;
-                dr["父ID"] = list[i].PID;
+                dr["父ID"] = list[i].Pgid;
                 dr["显示名称"] = list[i].Name;
                 dr["排序"] = list[i].Seq;
-                dr["功能ID"] = list[i].FunctionId;
-                dr["是否可见"] = list[i].Visible;
+                dr["功能ID"] = list[i].AuthGid;
+                dr["是否可见"] = list[i].IsVisable;
                 dr["Web界面Url地址"] = list[i].Url;
                 dr["Web界面的菜单图标"] = list[i].WebIcon;
-                dr["系统编号"] = list[i].SystemType_ID;
+                dr["系统编号"] = list[i].SystemtypeId;
 
                 datatable.Rows.Add(dr);
             }
@@ -210,33 +208,33 @@ namespace JCodes.Framework.WebUI.Controllers
         #region 写入数据前修改部分属性
         protected override void OnBeforeInsert(MenuInfo info)
         {
-            info.ID = string.IsNullOrEmpty(info.ID) ? Guid.NewGuid().ToString() : info.ID;
+            info.Gid = string.IsNullOrEmpty(info.Gid) ? Guid.NewGuid().ToString() : info.Gid;
 
             //子类对参数对象进行修改
             info.CreateTime = DateTime.Now;
-            info.Editor_ID = CurrentUser.ID.ToString();
+            info.EditorId = CurrentUser.Id;
 
             //由于界面上对父菜单的顶级选项为具体系统类型的OID，
             //在保存菜单数据到数据库前，需要转换为约定的-1，否则导致不能正常显示
-            bool isExistName = BLLFactory<SystemType>.Instance.IsExistKey("OID", info.PID);
+            bool isExistName = BLLFactory<SystemType>.Instance.IsExistKey("OID", info.Pgid);
             if (isExistName)
             {
-                info.PID = "-1";
+                info.Pgid= "-1";
             }
         }
 
         protected override void OnBeforeUpdate(MenuInfo info)
         {
             //子类对参数对象进行修改
-            info.Editor_ID = CurrentUser.ID.ToString();
-            info.EditTime = DateTime.Now;
+            info.EditorId = CurrentUser.Id;
+            info.LastUpdateTime = DateTime.Now;
 
             //由于界面上对父菜单的顶级选项为具体系统类型的OID，
             //在保存菜单数据到数据库前，需要转换为约定的-1，否则导致不能正常显示
-            bool isExistName = BLLFactory<SystemType>.Instance.IsExistKey("OID", info.PID);
+            bool isExistName = BLLFactory<SystemType>.Instance.IsExistKey("OID", info.Pgid);
             if (isExistName)
             {
-                info.PID = "-1";
+                info.Pgid = "-1";
             }
         }
         #endregion
@@ -278,7 +276,7 @@ namespace JCodes.Framework.WebUI.Controllers
             List<CListItem> itemList = new List<CListItem>();
             foreach (MenuInfo info in list)
             {
-                itemList.Add(new CListItem(info.ID, info.Name));
+                itemList.Add(new CListItem(info.Gid, info.Name));
             }
             itemList.Insert(0, new CListItem("-1", "无"));
             return Json(itemList, JsonRequestBehavior.AllowGet);
@@ -326,35 +324,35 @@ namespace JCodes.Framework.WebUI.Controllers
             int i = 0;
             foreach (MenuInfo info in list)
             {
-                if (!HasFunction(info.FunctionId))
+                if (!HasFunction(info.AuthGid))
                 {
                     continue;
                 }
                            
                 List<MenuData> treeList = new List<MenuData>();
-                List<MenuNodeInfo> nodeList = BLLFactory<Menus>.Instance.GetTreeByID(info.ID);
+                List<MenuNodeInfo> nodeList = BLLFactory<Menus>.Instance.GetTreeByID(info.Gid);
                 foreach (MenuNodeInfo nodeInfo in nodeList)
                 {
-                    if (!HasFunction(nodeInfo.FunctionId))
+                    if (!HasFunction(nodeInfo.AuthGid))
                     {
                         continue;
                     }
                                                                                                                                                                                   
-                    MenuData menuData = new MenuData(nodeInfo.ID, nodeInfo.Name, string.IsNullOrEmpty(nodeInfo.WebIcon) ? "icon-computer" : nodeInfo.WebIcon);
+                    MenuData menuData = new MenuData(nodeInfo.Gid, nodeInfo.Name, string.IsNullOrEmpty(nodeInfo.WebIcon) ? "icon-computer" : nodeInfo.WebIcon);
                     foreach (MenuNodeInfo subNodeInfo in nodeInfo.Children)
                     {
-                        if (!HasFunction(subNodeInfo.FunctionId))
+                        if (!HasFunction(subNodeInfo.AuthGid))
                         {
                             continue;
                         }
                         string icon = string.IsNullOrEmpty(subNodeInfo.WebIcon) ? "icon-organ" : subNodeInfo.WebIcon;
-                        menuData.menus.Add(new MenuData(subNodeInfo.ID, subNodeInfo.Name, icon, subNodeInfo.Url));
+                        menuData.menus.Add(new MenuData(subNodeInfo.Gid, subNodeInfo.Name, icon, subNodeInfo.Url));
                     }
                     treeList.Add(menuData);
                 }
 
                 //添加到字典里面，如果是第一个，默认用default名称
-                string dictName = (i++ == 0) ? "default" : info.ID;
+                string dictName = (i++ == 0) ? "default" : info.Gid;
                 dict.Add(dictName, treeList);
             }
 
@@ -404,7 +402,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 List<MenuNodeInfo> menuList = BLLFactory<Menus>.Instance.GetTree(systemType);
                 foreach (MenuNodeInfo info in menuList)
                 {
-                    JsTreeData item = new JsTreeData(info.ID, info.Name);
+                    JsTreeData item = new JsTreeData(info.Gid, info.Name);
                     pNode.children.Add(item);
                     SetFileIcon(info, item);
 
@@ -419,7 +417,7 @@ namespace JCodes.Framework.WebUI.Controllers
         {
             foreach (MenuNodeInfo info in list)
             {
-                JsTreeData item = new JsTreeData(info.ID, info.Name);
+                JsTreeData item = new JsTreeData(info.Gid, info.Name);
                 fnode.children.Add(item);
                 SetFileIcon(info, item);
 

@@ -11,6 +11,7 @@
     <AssemblyName>JCodes.Framework.TestWinForm</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -22,15 +23,17 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\jCodes\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Aspose.Cells">
@@ -51,6 +54,13 @@
     <Reference Include="DevExpress.XtraGrid.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraPrinting.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraRichEdit.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\JCodes.Framework.libs\SharpZipLib\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="LumiSoft.Net">
+      <HintPath>..\JCodes.Framework.libs\LumiSoft\LumiSoft.Net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
       <HintPath>..\JCodes.Framework.libs\Microsoft.Practices\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
     </Reference>
@@ -69,9 +79,30 @@
     <Reference Include="org.in2bits.MyXls">
       <HintPath>..\JCodes.Framework.libs\org.in2bits\org.in2bits.MyXls.dll</HintPath>
     </Reference>
+    <Reference Include="SevenZipSharp, Version=0.62.3757.29192, Culture=neutral, PublicKeyToken=20de82c62b055c88, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\jCodes\SevenZipSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.Common, Version=1.2.366.55040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\JCodes.Framework.libs\Spire.XLS-FE\Spire.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.License, Version=1.3.5.40, Culture=neutral, PublicKeyToken=b1144360237c8b3f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\JCodes.Framework.libs\Spire.XLS-FE\Spire.License.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.XLS, Version=7.9.0.55040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\JCodes.Framework.libs\Spire.XLS-FE\Spire.XLS.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
+    <Reference Include="System.Data.SQLite, Version=1.0.61.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\JCodes.Framework.libs\SQLite\System.Data.SQLite.dll</HintPath>
+    </Reference>
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Speech" />
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Data" />
@@ -84,6 +115,18 @@
     </Compile>
     <Compile Include="Attachment.Test\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Basic\ConvertTextFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Basic\ConvertTextFrm.Designer.cs">
+      <DependentUpon>ConvertTextFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Basic\InitDataFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Basic\InitDataFrm.Designer.cs">
+      <DependentUpon>InitDataFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="Common.Test\Form1.cs">
       <SubType>Form</SubType>
@@ -214,8 +257,30 @@
     <Compile Include="SmallTools.Test\FrmWinRarZip.designer.cs">
       <DependentUpon>FrmWinRarZip.cs</DependentUpon>
     </Compile>
+    <Compile Include="TcpDemo\TcpClient.cs" />
+    <Compile Include="TcpDemo\TcpServer.cs" />
+    <Compile Include="TempCommon\SqliteHelper.cs" />
+    <Compile Include="ZSJob\IPOdepthDealfrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZSJob\IPOdepthDealfrm.Designer.cs">
+      <DependentUpon>IPOdepthDealfrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ZSJob\AMSDownloadForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZSJob\AMSDownloadForm.Designer.cs">
+      <DependentUpon>AMSDownloadForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ZSZQ_IPO\ZSZQ_IPO.cs" />
     <EmbeddedResource Include="Attachment.Test\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Basic\ConvertTextFrm.resx">
+      <DependentUpon>ConvertTextFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Basic\InitDataFrm.resx">
+      <DependentUpon>InitDataFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Common.Test\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -282,6 +347,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Quanxian\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -289,8 +355,17 @@
     <EmbeddedResource Include="SmallTools.Test\FrmWinRarZip.resx">
       <DependentUpon>FrmWinRarZip.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ZSJob\IPOdepthDealfrm.resx">
+      <DependentUpon>IPOdepthDealfrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ZSJob\AMSDownloadForm.resx">
+      <DependentUpon>AMSDownloadForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="CommonUtil.Test\Templates\Advice.doc" />
     <None Include="CommonUtil.Test\Templates\Advice.xls" />
+    <Content Include="Files\网下利率询价及申购申请表汇总表.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -300,6 +375,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="ZSJob\App.config">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -314,6 +393,14 @@
     <ProjectReference Include="..\JCodes.Framework.AddIn.Dictionary\JCodes.Framework.AddIn.Dictionary.csproj">
       <Project>{84431db5-067b-4d33-a93e-f75ebd9c40fc}</Project>
       <Name>JCodes.Framework.AddIn.Dictionary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JCodes.Framework.AddIn.Proj\JCodes.Framework.AddIn.Proj.csproj">
+      <Project>{a9c9cc64-63d1-4820-b2f5-c8a599d729b3}</Project>
+      <Name>JCodes.Framework.AddIn.Proj</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JCodes.Framework.AddIn.SmallTools\JCodes.Framework.AddIn.SmallTools.csproj">
+      <Project>{4d2dc7d2-11f4-4699-b279-c923b635656a}</Project>
+      <Name>JCodes.Framework.AddIn.SmallTools</Name>
     </ProjectReference>
     <ProjectReference Include="..\JCodes.Framework.AddIn.Test\JCodes.Framework.AddIn.Test.csproj">
       <Project>{e4db049f-62b6-46ad-8eee-d03cc25540b8}</Project>
@@ -344,7 +431,9 @@
       <Name>JCodes.Framework.jCodesenum</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="TimsSync\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>echo "编译后处理的事情 JCodes.Framework.TestWinForm"</PostBuildEvent>

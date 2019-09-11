@@ -45,24 +45,7 @@ namespace JCodes.Framework.AccessDAL
             RoleInfo info = new RoleInfo();
             SmartDataReader reader = new SmartDataReader(dataReader);
 
-            info.ID = reader.GetInt32("ID");
-            info.PID = reader.GetInt32("PID");
-            info.HandNo = reader.GetString("HandNo");
-            info.Name = reader.GetString("Name");
-            info.Note = reader.GetString("Note");
-            info.Seq = reader.GetString("Seq");
-            info.Category = reader.GetString("Category");
-            info.Company_ID = reader.GetString("Company_ID");
-            info.CompanyName = reader.GetString("CompanyName");
-            info.Creator = reader.GetString("Creator");
-            info.Creator_ID = reader.GetString("Creator_ID");
-            info.CreateTime = reader.GetDateTime("CreateTime");
-            info.Editor = reader.GetString("Editor");
-            info.Editor_ID = reader.GetString("Editor_ID");
-            info.EditTime = reader.GetDateTime("EditTime");
-            info.Deleted = reader.GetInt32("Deleted") > 0;
-            info.Enabled = reader.GetInt32("Enabled") > 0;
-
+            
             return info;
         }
 
@@ -77,7 +60,7 @@ namespace JCodes.Framework.AccessDAL
             Hashtable hash = new Hashtable();
 
             hash.Add("PID", info.PID);
-            hash.Add("HandNo", info.HandNo);
+            hash.Add("UserCode", info.UserCode);
             hash.Add("Name", info.Name);
             hash.Add("Note", info.Note);
             hash.Add("Seq", info.Seq);
@@ -106,7 +89,7 @@ namespace JCodes.Framework.AccessDAL
             #region 添加别名解析
             dict.Add("ID", "编号");
             dict.Add("PID", "父ID");
-            dict.Add("HandNo", "角色编码");
+            dict.Add("UserCode", "角色编码");
             dict.Add("Name", "角色名称");
             dict.Add("Note", "备注");
             dict.Add("Seq", "排序");

@@ -26,7 +26,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\jCodes\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -55,7 +55,9 @@
     <Compile Include="Dic\IDistrict.cs" />
     <Compile Include="Dic\ISysparameter.cs" />
     <Compile Include="Dic\IProvince.cs" />
+    <Compile Include="Dongnanhai\IDongnanhaiVotes.cs" />
     <Compile Include="General\IGeneralSql.cs" />
+    <Compile Include="Machines\Machines.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\IBlackIP.cs" />
     <Compile Include="Security\IFunction.cs" />
@@ -96,11 +98,16 @@
       <Project>{22d7993c-a8c8-4306-90a4-96ff76a12c0a}</Project>
       <Name>JCodes.Framework.Entity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JCodes.Framework.Enum\JCodes.Framework.jCodesenum.csproj">
+      <Project>{bd86470b-26c1-4b51-b6a8-3f11cebb4950}</Project>
+      <Name>JCodes.Framework.jCodesenum</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy ..\jCodes\$(TargetFileName) ..\JCodes.Framework.WebUI\bin\ /y
+xcopy ..\jCodes\$(TargetFileName) ..\JCodes.Framework.WebDemo\bin\ /y
 echo "编译后处理的事情 JCodes.Framework.IDAL"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

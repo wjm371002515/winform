@@ -64,5 +64,14 @@ namespace JCodes.Framework.Entity
             get { return path; }
             set { path = value; }
         }
+
+        private string basicdatapath;
+
+        [DisplayName("基础数据文件路径")]
+        public string BasicdataPath
+        {
+            get { return basicdatapath; }
+            set { basicdatapath = value; }
+        }
     }
 }

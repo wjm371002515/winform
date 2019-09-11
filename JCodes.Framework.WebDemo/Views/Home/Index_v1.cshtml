@@ -1,0 +1,602 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>服务器列表</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="/Content/themes/css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+    <link href="/Content/themes/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <!-- Sweet Alert -->
+    <link href="/Content/themes/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="/Content/themes/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="/Content/themes/css/plugins/chosen/chosen.css" rel="stylesheet">
+    <link href="/Content/themes/css/animate.min.css" rel="stylesheet">
+    <link href="/Content/themes/css/style.min.css?v=4.0.0" rel="stylesheet">
+    <base target="_blank">
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <!-- Panel Other -->
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <!-- Example Events -->
+                        <div class="example-wrap">
+                            <div class="example">
+                                <div class="btn-group hidden-xs" id="exampleTableEventsToolbar" role="group" style="z-index:9999;">
+
+                                    <div class="input-group" style="width:150px; white-space: nowrap; float: left; margin-left:5px;">
+                                        <input type="text" class="form-control" id="IntranetId" placeholder="内网IP地址">
+                                        <div class="input-group-btn">
+                                            <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
+                                        </div>
+                                        <!-- /btn-group -->
+                                    </div>
+                                    <div class="input-group" style="width:150px; white-space: nowrap; float: left; margin-left:5px;">
+                                        <input type="text" class="form-control" id="WWIPId" placeholder="外网IP地址">
+                                        <div class="input-group-btn">
+                                            <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
+                                        </div>
+                                        <!-- /btn-group -->
+                                    </div>
+                                    <div class="input-group" style="width:150px; white-space: nowrap; float: left; margin-left:5px;">
+                                        <input type="text" class="form-control" id="JQRTId" placeholder="机器用途">
+                                        <div class="input-group-btn">
+                                            <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
+                                        </div>
+                                        <!-- /btn-group -->
+                                    </div>
+                                    <div class="input-group" style="width:150px; white-space: nowrap; float: left; margin-left:5px;">
+                                        <input type="text" class="form-control" id="GLYId" placeholder="管理人">
+                                        <div class="input-group-btn">
+                                            <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
+                                        </div>
+                                        <!-- /btn-group -->
+                                    </div>
+                                    <div class="input-group" style="width:150px; white-space: nowrap; float: left; margin-left:5px;">
+                                        <input type="text" class="form-control" id="ZGId" placeholder="主管">
+                                        <div class="input-group-btn">
+                                            <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
+                                        </div>
+                                        <!-- /btn-group -->
+                                    </div>
+
+                                    <button type="button" class="btn btn-w-m btn-primary" id="btn_search" style="margin-left: 3px; border-radius: 3px;">查询</button>
+                                    <a class="btn btn-w-m btn-primary" id="btn_add" style="margin-left: 3px; border-radius: 3px;" data-toggle="modal" data-target="#add_machine" href="javascript:void(0);" onclick="mod_ID('');">新增</a>
+</div>
+                                <table id="ArbetTable"></table>
+                                <!--table id="ArbetTable" data-height="400" data-mobile-responsive="true">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="state" data-checkbox="true"></th>
+                                            <th data-field="id">序号</th>
+                                            <th data-field="field1">机器用途</th>
+                                            <th data-field="field2">内网IP</th>
+                                            <th data-field="field3">内网服务端口</th>
+                                            <th data-field="field4">外网IP</th>
+                                            <th data-field="field5">外网服务端口</th>
+                                            <th data-field="field6">公网IP</th>
+                                            <th data-field="field7">公网服务端口</th>
+                                            <th data-field="field8">管理人</th>
+                                            <th data-field="field9">主管</th>
+                                            <th data-field="field10">应用版本</th>
+                                            <th data-field="field11">所属系统</th>
+                                            <th data-field="field12">系统版本</th>
+                                            <th data-field="field13">序列号</th>
+                                            <th data-field="field14">机器型号</th>
+                                            <th data-field="field15">过保日期</th>
+                                            <th data-field="field16">机柜</th>
+                                        </tr>
+                                    </thead>
+                                </table-->
+                            </div>
+                        </div>
+                        <!-- End Example Events -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Panel Other -->
+    </div>
+
+    <div class="modal fade" id="add_machine" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width: 700px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel"><span id="addmodtext">添加</span>服务器</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group colorpicker-component demo demo-auto">
+                        <div class="col-md-6">
+                            <input type="hidden" value="" id="mod_id">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label" style="top: 5px;">机器用途：</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="" class="form-control" placeholder="机器用途" value="机器用途" id="addJQRTId"> <span class="help-block m-b-none">&nbsp;</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label" style="top: 5px;">内网IP：</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="" class="form-control" placeholder="内网IP" value="内网IP" id="addNWIPId"> <span class="help-block m-b-none">&nbsp;</span>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label" style="top: 5px;">内网端口：</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="" class="form-control" placeholder="内网端口" value="内网端口" id="addNWFWDKId"> <span class="help-block m-b-none">&nbsp;</span>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label" style="top: 5px;">外网IP：</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="" class="form-control" placeholder="外网IP" value="外网IP" id="addWWIPId"> <span class="help-block m-b-none">&nbsp;</span>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label" style="top: 5px;">外网端口：</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="" class="form-control" placeholder="外网端口" value="外网端口" id="addWWFWDKId"> <span class="help-block m-b-none">&nbsp;</span>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label" style="top: 5px;" >公网IP：</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="" class="form-control" placeholder="公网IP" value="公网IP" id="addGWIPId"> <span class="help-block m-b-none">&nbsp;</span>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label" style="top: 5px;">公网端口：</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="" class="form-control" placeholder="公网端口" value="公网端口" id="addGWFWDKId"> <span class="help-block m-b-none">&nbsp;</span>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label" style="top: 5px;">管理员：</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="" class="form-control" placeholder="管理员" value="管理员" id="addGLYId"> <span class="help-block m-b-none">&nbsp;</span>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label" style="top: 5px;">主管：</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="" class="form-control" placeholder="主管" value="主管" id="addZGId"> <span class="help-block m-b-none">&nbsp;</span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label" style="top: 5px;">应用版本：</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="" class="form-control" placeholder="应用版本" value="应用版本" id="addYYBBId"> <span class="help-block m-b-none">&nbsp;</span>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label" style="top: 5px;">系统版本：</label>
+                                <div class="col-sm-8">
+                                    <!--input type="text" name="" class="form-control" placeholder="系统版本" value="系统版本" id=""> -->
+                                    <select data-placeholder="选择省份..." class="chosen-select" id="addXTBBId">
+                                        <option value="">请选择系统版本</option>
+                                    </select>
+                                    <span class="help-block m-b-none">&nbsp;</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label" style="top: 5px;">序列号：</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="" class="form-control" placeholder="硬件序列号" value="硬件序列号" id="addYJXLHId"> <span class="help-block m-b-none">&nbsp;</span>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label" style="top: 5px;">机器型号：</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="" class="form-control" placeholder="机器型号" value="机器型号" id="addJQXHId"> <span class="help-block m-b-none">&nbsp;</span>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label" style="top: 5px;">过保日期：</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="" class="form-control" placeholder="过保日期" value="过保日期" id="addGBRQId"> <span class="help-block m-b-none">&nbsp;</span>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label" style="top: 5px;">机柜位置：</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="" class="form-control" placeholder="机柜位置" value="机柜位置" id="addJGWZId"> <span class="help-block m-b-none">&nbsp;</span>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label" style="top: 5px;">文件来源：</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="" class="form-control" placeholder="文件来源" value="文件来源" id="addWJLYId"> <span class="help-block m-b-none">&nbsp;</span>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label" style="top: 5px;">表格类型：</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="" class="form-control" placeholder="表格类型" value="表格类型" id="addTABTYPEId"> <span class="help-block m-b-none">&nbsp;</span>
+                                </div>
+                            </div>
+                            <div class="form-group" id="txtMODIFYMARK">
+                                <label class="col-sm-4 control-label" style="top: 5px;">修改备注：</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="" class="form-control" placeholder="修改备注" value="修改备注" id="addMODIFYMARKId"> <span class="help-block m-b-none">&nbsp;</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="add_machine()">确认</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/Scripts/jquery.min.js?v=2.1.4"></script>
+    <script src="/Scripts/bootstrap.min.js?v=3.3.5"></script>
+    <script src="/Scripts/content.min.js?v=1.0.0"></script>
+    <script src="/Scripts/plugins/sweetalert/sweetalert.min.js"></script>
+    <script src="/Scripts/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="/Scripts/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+    <script src="/Scripts/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script src="/Scripts/plugins/chosen/chosen.jquery.js"></script>
+    <script src="/Scripts/plugins/suggest/bootstrap-suggest.min.js"></script>
+  
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //1.初始化Table
+            var oTable = new TableInit();
+            oTable.Init();
+
+            // 添加样式 .bootstrap-table add position:relative, top:-50px;
+            $(".bootstrap-table").css('position', 'relative').css('top', '-50px');
+
+            var IntranetIdBsSuggest = $("#IntranetId").bsSuggest({
+                url: "/Interface/GetAjaxIntranet?key=" + $("#IntranetId").val(),
+                indexId: 0,  //data.value 的第几个数据，作为input输入框的内容
+                indexKey: 0, //data.value 的第几个数据，作为input输入框的内容
+                idField: "NWIP",
+                keyField: "NWIP",
+                allowNoKeyword: false,
+                getDataMethod: "url",
+            }).on('onDataRequestSuccess', function (e, result) {
+                console.log('onDataRequestSuccess: ', result);
+            }).on('onSetSelectValue', function (e, keyword) {
+                console.log('onSetSelectValue: ', keyword);
+            });
+           
+            var WWIPIdBsSuggest = $("#WWIPId").bsSuggest({
+                url: "/Interface/GetAjaxWWIP?key=" + $("#WWIPId").val(),
+                indexId: 0,  //data.value 的第几个数据，作为input输入框的内容
+                indexKey: 0, //data.value 的第几个数据，作为input输入框的内容
+                idField: "WWIP",
+                keyField: "WWIP",
+                allowNoKeyword: false,
+                getDataMethod: "url",
+            }).on('onDataRequestSuccess', function (e, result) {
+                console.log('onDataRequestSuccess: ', result);
+            }).on('onSetSelectValue', function (e, keyword) {
+                console.log('onSetSelectValue: ', keyword);
+            });
+           
+            var JQRTIdBsSuggest = $("#JQRTId").bsSuggest({
+                url: "/Interface/GetAjaxJQRT?key=" + $("#JQRTId").val(),
+                indexId: 0,  //data.value 的第几个数据，作为input输入框的内容
+                indexKey: 0, //data.value 的第几个数据，作为input输入框的内容
+                idField: "JQRT",
+                keyField: "JQRT",
+                allowNoKeyword: false,
+                getDataMethod: "url",
+            }).on('onDataRequestSuccess', function (e, result) {
+                console.log('onDataRequestSuccess: ', result);
+            }).on('onSetSelectValue', function (e, keyword) {
+                console.log('onSetSelectValue: ', keyword);
+            });
+
+            var GLYIdBsSuggest = $("#GLYId").bsSuggest({
+                url: "/Interface/GetAjaxGLY?key=" + $("#GLYId").val(),
+                indexId: 0,  //data.value 的第几个数据，作为input输入框的内容
+                indexKey: 0, //data.value 的第几个数据，作为input输入框的内容
+                idField: "GLY",
+                keyField: "GLY",
+                allowNoKeyword: false,
+                getDataMethod: "url",
+            }).on('onDataRequestSuccess', function (e, result) {
+                console.log('onDataRequestSuccess: ', result);
+            }).on('onSetSelectValue', function (e, keyword) {
+                console.log('onSetSelectValue: ', keyword);
+            });
+
+            // 内网IP智能查询
+            var ZGIdBsSuggest = $("#ZGId").bsSuggest({
+                url: "/Interface/GetAjaxZG?key=" + $("#ZGId").val(),
+                indexId: 0,  //data.value 的第几个数据，作为input输入框的内容
+                indexKey: 0, //data.value 的第几个数据，作为input输入框的内容
+                idField: "ZG",
+                keyField: "ZG",
+                allowNoKeyword: false,
+                getDataMethod: "url",
+            }).on('onDataRequestSuccess', function (e, result) {
+                console.log('onDataRequestSuccess: ', result);
+            }).on('onSetSelectValue', function (e, keyword) {
+                console.log('onSetSelectValue: ', keyword);
+            });
+
+            $("#btn_search").bind("click", function () {
+                $('#ArbetTable').bootstrapTable('refresh');
+            });
+
+            $('#add_machine').on('hide.bs.modal', function () {
+                $("#addXTBBId").empty();
+                $('#addXTBBId').chosen("destroy");
+            });
+            
+            $('#add_machine').on('show.bs.modal', function () {
+                XTBBval = "";
+                if ($("#mod_id").val() == "" || undefined == $("#mod_id").val()) {
+                    $("#addmodtext").text("添加");
+                    $("#txtMODIFYMARK").hide();
+                }
+                else
+                {
+                    $("#addmodtext").text("修改");
+                    $("#txtMODIFYMARK").show();
+                    // 根据ID赋值 
+                    $.ajax({
+                        url: '/Interface/GetOneMachine?Id=' + $("#mod_id").val(),
+                        type: 'get',
+                        async: false,//同步请求
+                        dataType: 'text',
+                        success: function (resp) {
+                            json = JSON.parse(resp);
+                            if (0 == json.errCode) {
+                                //console.log(json.data.ID)
+                                $("#addJQRTId").val(json.data.JQRT);
+                                $("#addNWIPId").val(json.data.NWIP);
+                                $("#addNWFWDKId").val(json.data.NWFWDK);
+                                $("#addWWIPId").val(json.data.WWIP);
+                                $("#addWWFWDKId").val(json.data.WWFWDK);
+                                $("#addGWIPId").val(json.data.GWIP);
+                                $("#addGWFWDKId").val(json.data.GWFWDK);
+                                $("#addGLYId").val(json.data.GLY);
+                                $("#addZGId").val(json.data.ZG);
+                                $("#addYYBBId").val(json.data.YYBB);
+                                //$("#addXTBBId").val(json.data.XTBB);
+                                XTBBval = json.data.XTBB;
+                                $("#addYJXLHId").val(json.data.YJXLH);
+                                $("#addJQXHId").val(json.data.JQXH);
+                                $("#addGBRQId").val(json.data.GBRQ);
+                                $("#addJGWZId").val(json.data.JGWZ);
+                                $("#addWJLYId").val(json.data.WJLY);
+                                $("#addTABTYPEId").val(json.data.TABTYPE);
+                                $("#addMODIFYMARKId").val(json.data.MODIFYMARK);
+                            }
+                            else swal({ title: title, text: "错误码:" + json.errCode + ", 错误内容:" + json.errMsg, type: "error" });
+                        },
+                        error: function (resp) {
+                            swal({ title: "操作失败", text: "操作失败，服务器异常", type: "error" });
+                        }
+                    });
+                }
+
+                // 根据ID赋值 
+                $.ajax({
+                    url: '/Interface/GetDictData?Id=300001',
+                    type: 'get',
+                    async: false,//同步请求
+                    dataType: 'text',
+                    success: function (resp) {
+                        json = JSON.parse(resp);
+                        if (0 == json.errCode) {
+                            
+                            
+                            for (i = 0; i < json.data.length; i++) {
+                                console.log(XTBBval + "," + json.data[i].Gid + "     ," + json.data[i].Value);
+                                if (XTBBval == json.data[i].Gid)
+                                    $("#addXTBBId").append("<option value='" + json.data[i].Gid + "' selected=selected>" + json.data[i].Value + "</option>");
+                                else
+                                    $("#addXTBBId").append("<option value='" + json.data[i].Gid + "'>" + json.data[i].Value + "</option>");
+                            }
+                        }
+                        else swal({ title: title, text: "错误码:" + json.errCode + ", 错误内容:" + json.errMsg, type: "error" });
+                    },
+                    error: function (resp) {
+                        swal({ title: "操作失败", text: "操作失败，服务器异常", type: "error" });
+                    }
+                });
+
+                var config = {
+                    ".chosen-select": { width: "160px" },
+                    ".chosen-select-deselect": {
+                        allow_single_deselect: !0
+                    },
+                    ".chosen-select-no-single": {
+                        disable_search_threshold: 10
+                    },
+                    ".chosen-select-no-results": {
+                        no_results_text: "Oops, nothing found!"
+                    }
+                };
+                for (var selector in config) $(selector).chosen(config[selector]);
+               
+
+            })
+        });
+        window.onload = function () {
+
+        }
+
+        var TableInit = function () {
+            var oTableInit = new Object();
+            //初始化Table
+            oTableInit.Init = function () {
+                $('#ArbetTable').bootstrapTable({
+                    url: '/Interface/GetAjaxMachines',         //请求后台的URL（*）
+                    method: 'get',                      //请求方式（*）
+                    toolbar: '#toolbar',                //工具按钮用哪个容器
+                    striped: true,                      //是否显示行间隔色
+                    cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+                    pagination: true,                   //是否显示分页（*）
+                    sortable: false,                     //是否启用排序
+                    sortOrder: "asc",                   //排序方式
+                    queryParams: function (params) {
+                        return {
+                            limit: params.limit,
+                            offset: params.offset,
+                            NWIP: $("#IntranetId").val(),
+                            WWIP: $("#WWIPId").val(),
+                            JQRT: $("#JQRTId").val(),
+                            GLY: $("#GLYId").val(),
+                            ZG: $("#ZGId").val(),
+                        };
+                    },
+                    sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
+                    pageNumber: 1,                       //初始化加载第一页，默认第一页
+                    pageSize: 10,                       //每页的记录行数（*）
+                    pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
+                    contentType: "application/x-www-form-urlencoded",
+                    showColumns: true,                  //是否显示所有的列
+                    showRefresh: true,                  //是否显示刷新按钮
+                    minimumCountColumns: 2,             //最少允许的列数
+                    clickToSelect: true,                //是否启用点击选中行
+                    uniqueId: "no",                     //每一行的唯一标识，一般为主键列
+                    cardView: false,                    //是否显示详细视图
+                    detailView: false,                   //是否显示父子表
+                    columns: [
+                    { field: 'ID', title: '序号'}, 
+                    { field: 'JQRT', title: '机器用途' },
+                    { field: 'NWIP', title: '内网IP' },
+                    { field: 'NWFWDK', title: '内网服务端口' },
+                    { field: 'WWIP', title: '外网IP' },
+                    { field: 'WWFWDK', title: '外网服务端口' },
+                    { field: 'GWIP', title: '公网IP' },
+                    { field: 'GWFWDK', title: '公网服务端口' },
+                    { field: 'GLY', title: '管理人' },
+                    { field: 'ZG', title: '主管' },
+                    { field: 'YYBB', title: '应用版本' },
+                    { field: 'XTBB', title: '系统版本' },
+                    { field: 'YJXLH', title: '序列号' },
+                    { field: 'JQXH', title: '机器型号' },
+                    { field: 'GBRQ', title: '过保日期' },
+                    { field: 'JGWZ', title: '机柜' },
+                    { field: 'operate', title: '操作', formatter: operateFormatter },
+                    ],
+                    rowStyle: function (row, index) {
+                        style = "";
+                        if (index % 2 === 0) {//偶数行
+                            style = { css: { 'background': '#fafafa' } };
+                        } else {//奇数行
+                            style = { css: { 'background': '#efefef' } };
+                        }
+                        return style;
+                    },//隔行变色
+                });
+
+            };
+            return oTableInit;
+        };
+
+
+        function operateFormatter(value, row, index) {//赋予的参数
+            return [
+                '<a style="color: #337ab7; cursor: pointer;" data-toggle="modal" data-target="#add_machine" href="javascript:void(0);"  onclick="mod_ID(' + row.ID + ');">编辑</a>'
+            ].join('');
+        }
+
+        function mod_ID(id)
+        {
+            $("#mod_id").val(id);
+        }
+
+        function add_machine() {
+
+            $JQRT = $("#addJQRTId").val();
+            $NWIP = $("#addNWIPId").val();
+            $NWFWDK = $("#addNWFWDKId").val();
+            $WWIP = $("#addWWIPId").val();
+            $WWFWDK = $("#addWWFWDKId").val();
+            $GWIP = $("#addGWIPId").val();
+            $GWFWDK = $("#addGWFWDKId").val();
+            $GLY = $("#addGLYId").val();
+            $ZG = $("#addZGId").val();
+            $YYBB = $("#addYYBBId").val();
+            $XTBB = $("#addXTBBId").val();
+            $YJXLH = $("#addYJXLHId").val();
+            $JQXH = $("#addJQXHId").val();
+            $GBRQ = $("#addGBRQId").val();
+            $JGWZ = $("#addJGWZId").val();
+            $WJLY = $("#addWJLYId").val();
+            $TABTYPE = $("#addTABTYPEId").val();
+
+            data = "machine.JQRT=" + $JQRT + "&machine.NWIP=" + $NWIP + "&machine.NWFWDK=" + $NWFWDK + "&machine.WWIP=" + $WWIP + "&machine.WWFWDK=" + $WWFWDK + "&machine.GWIP=" + $GWIP
+                    + "&machine.GWFWDK=" + $GWFWDK + "&machine.GLY=" + $GLY + "&machine.ZG=" + $ZG + "&machine.YYBB=" + $YYBB + "&machine.XTBB=" + $XTBB + "&machine.YJXLH=" + $YJXLH
+                    + "&machine.JQXH=" + $JQXH + "&machine.GBRQ=" + $GBRQ + "&machine.JGWZ=" + $JGWZ + "&machine.WJLY=" + $WJLY + "&machine.TABTYPE=" + $TABTYPE;
+
+            if ($("#mod_id").val() == "" || undefined == $("#mod_id").val()) {
+                url = "/Interface/AddMachine";
+                title = "新增设备";
+                text = "您成功的添加了一条设备信息";
+            }
+            else {
+                url = "/Interface/ModMachine";
+                title = "修改设备";
+                text = "您成功的修改了一条设备信息";
+                $MODIFYMARK = $("#addMODIFYMARKId").val();
+                data = data + "&machine.ID=" + $("#mod_id").val() + "&machine.MODIFYMARK=" + $("#addMODIFYMARKId").val();
+
+            }
+            // 添加设备
+            $.ajax({
+                url: url,
+                type:'post',
+                async:false,//同步请求
+                data: data,
+                dataType:'text',
+                success: function (resp) {
+                    json = JSON.parse(resp);
+                    if (0 == json.errCode) { swal({ title: title, text: text, type: "success" }); $("#add_machine").modal('hide'); $('#ArbetTable').bootstrapTable('refresh'); }
+                    else swal({ title: title, text: "错误码:" + json.errCode + ", 错误内容:" + json.errMsg, type: "error" });
+                },
+                error: function (resp) {
+                    swal({ title: "操作失败", text: "操作失败，服务器异常", type: "error" });
+                }
+            });
+            
+        }
+    </script>
+</body>
+</html>

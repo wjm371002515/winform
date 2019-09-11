@@ -74,9 +74,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 int i = 1;
                 foreach (DataRow dr in table.Rows)
                 {
-                    bool converted = false;
                     DateTime dtDefault = Convert.ToDateTime("1900-01-01");
-                    DateTime dt;
 
                     string typeName = dr["字典大类"].ToString();
                     if (!string.IsNullOrEmpty(typeName))
@@ -85,15 +83,15 @@ namespace JCodes.Framework.WebUI.Controllers
                         if (typeInfo != null)
                         {
                             DictDataInfo info = new DictDataInfo();
-                            info.DictType_ID = typeInfo.ID;
+                            info.DicttypeID = typeInfo.Id;
 
                             info.Name = dr["字典名称"].ToString();
-                            info.Value = Convert.ToInt32( dr["字典值"]);
+                            info.Value = dr["字典值"].ToString();
                             info.Remark = dr["备注"].ToString();
                             info.Seq = dr["排序"].ToString();
 
-                            info.Editor = CurrentUser.ID.ToString();
-                            info.LastUpdated = DateTime.Now;
+                            info.EditorId = CurrentUser.Id;
+                            info.LastUpdateTime = DateTime.Now;
 
                             list.Add(info);
                         }
@@ -126,12 +124,12 @@ namespace JCodes.Framework.WebUI.Controllers
                         //int seq = 1;
                         foreach (DictDataInfo detail in list)
                         {
-                            DictTypeInfo typeInfo = BLLFactory<DictType>.Instance.FindSingle(string.Format("Name ='{0}'", detail.DictType_ID));
+                            DictTypeInfo typeInfo = BLLFactory<DictType>.Instance.FindSingle(string.Format("Name ='{0}'", detail.DicttypeID));
                             if (typeInfo != null)
                             {
                                 //detail.Seq = seq++;//增加1
-                                detail.Editor = CurrentUser.ID.ToString();
-                                detail.LastUpdated = DateTime.Now;
+                                detail.EditorId = CurrentUser.Id;
+                                detail.LastUpdateTime = DateTime.Now;
 
                                 BLLFactory<DictData>.Instance.Insert(detail, trans);
                             }
@@ -190,7 +188,7 @@ namespace JCodes.Framework.WebUI.Controllers
             {
                 dr = datatable.NewRow();
                 dr["序号"] = j++;
-                DictTypeInfo typeInfo = BLLFactory<DictType>.Instance.FindByID(list[i].DictType_ID);
+                DictTypeInfo typeInfo = BLLFactory<DictType>.Instance.FindByID(list[i].DicttypeID);
                 if (typeInfo != null)
                 {
                     dr["字典大类"] = typeInfo.Name;
@@ -223,15 +221,15 @@ namespace JCodes.Framework.WebUI.Controllers
         protected override void OnBeforeInsert(DictDataInfo info)
         {
             //留给子类对参数对象进行修改
-            info.Editor = CurrentUser.ID.ToString();
-            info.LastUpdated = DateTime.Now;
+            info.EditorId = CurrentUser.Id;
+            info.LastUpdateTime = DateTime.Now;
         }
 
         protected override void OnBeforeUpdate(DictDataInfo info)
         {
             //留给子类对参数对象进行修改
-            info.Editor = CurrentUser.ID.ToString();
-            info.LastUpdated = DateTime.Now;
+            info.EditorId = CurrentUser.Id;
+            info.LastUpdateTime = DateTime.Now;
         }
         #endregion
 
@@ -263,18 +261,18 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <summary>
         /// 批量添加字典数据操作
         /// </summary>
-        /// <param name="DictType_ID">字典类型</param>
+        /// <param name="DicttypeID">字典类型</param>
         /// <param name="Seq">排序开始或前缀</param>
         /// <param name="Data">批量插入的内容</param>
         /// <param name="SplitType">分开类型，分隔符分开（Split）还是行分割（Line）</param>
         /// <param name="Remark">备注</param>
         /// <returns></returns>
-        public ActionResult BatchInsert(string DictType_ID, string Seq, string Data, string SplitType, string Remark)
+        public ActionResult BatchInsert(string DicttypeID, string Seq, string Data, string SplitType, string Remark)
         {
             CommonResult result = new CommonResult();
-            if (string.IsNullOrEmpty(DictType_ID) || string.IsNullOrEmpty(Data))
+            if (string.IsNullOrEmpty(DicttypeID) || string.IsNullOrEmpty(Data))
             {
-                result.ErrorMessage = "DictType_ID或Data参数为空";
+                result.ErrorMessage = "DicttypeID或Data参数为空";
                 return ToJsonContent(result);
             }
 
@@ -315,7 +313,7 @@ namespace JCodes.Framework.WebUI.Controllers
                                             seq = string.Format("{0}{1}", strSeq, intSeq++);
                                         }
 
-                                        InsertDictData(DictType_ID, dictData, seq, Remark, trans);
+                                        InsertDictData(DicttypeID, dictData, seq, Remark, trans);
                                         #endregion
                                     }
                                 }
@@ -335,7 +333,7 @@ namespace JCodes.Framework.WebUI.Controllers
                                         seq = string.Format("{0}{1}", strSeq, intSeq++);
                                     }
 
-                                    InsertDictData(DictType_ID, strItem, seq, Remark, trans);
+                                    InsertDictData(DicttypeID, strItem, seq, Remark, trans);
                                 }
                                 #endregion
                             }
@@ -368,12 +366,12 @@ namespace JCodes.Framework.WebUI.Controllers
             if (!string.IsNullOrWhiteSpace(dictData))
             {
                 DictDataInfo info = new DictDataInfo();
-                info.Editor = CurrentUser.ID.ToString();
-                info.LastUpdated = DateTime.Now;
+                info.EditorId = CurrentUser.Id;
+                info.LastUpdateTime = DateTime.Now;
 
-                info.DictType_ID = Convert.ToInt32( dictTypeId);
+                info.DicttypeID = Convert.ToInt32(dictTypeId);
                 info.Name = dictData.Trim();
-                info.Value = Convert.ToInt32(dictData.Trim());
+                info.Value = dictData.Trim();
                 info.Remark = note;
                 info.Seq = seq;
 

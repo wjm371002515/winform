@@ -26,7 +26,7 @@ namespace JCodes.Framework.SQLServerDAL
             }
         }
         public Customer()
-            : base("T_CRM_Customer", "ID")
+            : base("T_CRM_Customer", "Id")
         {
             this.sortField = "CreateTime";
             this.isDescending = true;
@@ -44,17 +44,17 @@ namespace JCodes.Framework.SQLServerDAL
             CustomerInfo info = new CustomerInfo();
             SmartDataReader reader = new SmartDataReader(dataReader);
 
-            info.ID = reader.GetString("ID");
-            info.HandNo = reader.GetString("HandNo");
+            info.Id = reader.GetInt32("Id");
+            info.UserCode = reader.GetString("UserCode");
             info.Name = reader.GetString("Name");
-            info.SimpleName = reader.GetString("SimpleName");
-            info.Province = reader.GetString("Province");
-            info.City = reader.GetString("City");
-            info.District = reader.GetString("District");
+            info.FullName = reader.GetString("FullName");
+            info.ProvinceName = reader.GetString("ProvinceName");
+            info.CityName = reader.GetString("CityName");
+            info.DistrictName = reader.GetString("DistrictName");
             info.Area = reader.GetString("Area");
             info.Address = reader.GetString("Address");
             info.ZipCode = reader.GetString("ZipCode");
-            info.Telephone = reader.GetString("Telephone");
+            info.MobilePhone = reader.GetString("MobilePhone");
             info.Fax = reader.GetString("Fax");
             info.Contact = reader.GetString("Contact");
             info.ContactPhone = reader.GetString("ContactPhone");
@@ -86,21 +86,21 @@ namespace JCodes.Framework.SQLServerDAL
             info.Importance = reader.GetString("Importance");
             info.IsPublic = reader.GetInt32("IsPublic") > 0;
             info.Satisfaction = reader.GetInt32("Satisfaction");
-            info.Note = reader.GetString("Note");
+            info.Remark = reader.GetString("Remark");
             info.TransactionCount = reader.GetInt32("TransactionCount");
             info.TransactionTotal = reader.GetDecimal("TransactionTotal");
             info.TransactionFirstDay = reader.GetDateTime("TransactionFirstDay");
             info.TransactionLastDay = reader.GetDateTime("TransactionLastDay");
             info.LastContactDate = reader.GetDateTime("LastContactDate");
             info.Stage = reader.GetString("Stage");
-            info.Status = reader.GetString("Status");
-            info.Creator = reader.GetString("Creator");
-            info.CreateTime = reader.GetDateTime("CreateTime");
-            info.Editor = reader.GetString("Editor");
-            info.EditTime = reader.GetDateTime("EditTime");
-            info.Deleted = reader.GetInt32("Deleted") > 0;
-            info.Dept_ID = reader.GetString("Dept_ID");
-            info.Company_ID = reader.GetString("Company_ID");
+            info.AuditStatus = reader.GetInt32("AuditStatus");
+            info.CreatorId = reader.GetInt32("CreatorId");
+            info.CreatorTime = reader.GetDateTime("CreatorTime");
+            info.EditorId = reader.GetInt32("EditorId");
+            info.LastUpdateTime = reader.GetDateTime("LastUpdateTime");
+            info.IsDelete = reader.GetInt32("IsDelete");
+            info.DeptId = reader.GetInt32("DeptId");
+            info.CompanyId = reader.GetInt32("CompanyId");
             return info;
         }
 
@@ -114,17 +114,17 @@ namespace JCodes.Framework.SQLServerDAL
             CustomerInfo info = obj as CustomerInfo;
             Hashtable hash = new Hashtable();
 
-            hash.Add("ID", info.ID);
-            hash.Add("HandNo", info.HandNo);
+            hash.Add("Id", info.Id);
+            hash.Add("UserCode", info.UserCode);
             hash.Add("Name", info.Name);
-            hash.Add("SimpleName", info.SimpleName);
-            hash.Add("Province", info.Province);
-            hash.Add("City", info.City);
-            hash.Add("District", info.District);
+            hash.Add("FullName", info.FullName);
+            hash.Add("ProvinceName", info.ProvinceName);
+            hash.Add("CityName", info.CityName);
+            hash.Add("DistrictName", info.DistrictName);
             hash.Add("Area", info.Area);
             hash.Add("Address", info.Address);
             hash.Add("ZipCode", info.ZipCode);
-            hash.Add("Telephone", info.Telephone);
+            hash.Add("MobilePhone", info.MobilePhone);
             hash.Add("Fax", info.Fax);
             hash.Add("Contact", info.Contact);
             hash.Add("ContactPhone", info.ContactPhone);
@@ -156,21 +156,21 @@ namespace JCodes.Framework.SQLServerDAL
             hash.Add("Importance", info.Importance);
             hash.Add("IsPublic", info.IsPublic ? 1 : 0);
             hash.Add("Satisfaction", info.Satisfaction);
-            hash.Add("Note", info.Note);
+            hash.Add("Remark", info.Remark);
             hash.Add("TransactionCount", info.TransactionCount);
             hash.Add("TransactionTotal", info.TransactionTotal);
             hash.Add("TransactionFirstDay", info.TransactionFirstDay);
             hash.Add("TransactionLastDay", info.TransactionLastDay);
             hash.Add("LastContactDate", info.LastContactDate);
             hash.Add("Stage", info.Stage);
-            hash.Add("Status", info.Status);
-            hash.Add("Creator", info.Creator);
-            hash.Add("CreateTime", info.CreateTime);
-            hash.Add("Editor", info.Editor);
-            hash.Add("EditTime", info.EditTime);
-            hash.Add("Deleted", info.Deleted ? 1 : 0);
-            hash.Add("Dept_ID", info.Dept_ID);
-            hash.Add("Company_ID", info.Company_ID);
+            hash.Add("AuditStatus", info.AuditStatus);
+            hash.Add("CreatorId", info.CreatorId);
+            hash.Add("CreatorTime", info.CreatorTime);
+            hash.Add("EditorId", info.EditorId);
+            hash.Add("LastUpdateTime", info.LastUpdateTime);
+            hash.Add("IsDelete", info.IsDelete);
+            hash.Add("DeptId", info.DeptId);
+            hash.Add("CompanyId", info.CompanyId);
             return hash;
         }
 
@@ -183,9 +183,9 @@ namespace JCodes.Framework.SQLServerDAL
             Dictionary<string, string> dict = new Dictionary<string, string>();
             #region 添加别名解析
             dict.Add("ID", "编号");
-            dict.Add("HandNo", "客户编号");
+            dict.Add("UserCode", "客户编号");
             dict.Add("Name", "客户名称");
-            dict.Add("SimpleName", "客户简称");
+            dict.Add("FullName", "客户简称");
             dict.Add("Province", "所在省份");
             dict.Add("City", "城市");
             dict.Add("District", "所在行政区");

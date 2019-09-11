@@ -35,12 +35,17 @@ namespace JCodes.Framework.Common
         public const string SystemTypeID = "f8811525-3cbc-4092-92e0-04d449c0adb9";
 
         /// <summary>
-        /// 界面皮肤空间（菜单界面中的 WinformType）
+        /// 数据库表前缀
+        /// </summary>
+        public const string TablePre = "T_";
+
+        /// <summary>
+        /// 界面皮肤空间（菜单界面中的 WinformClass）
         /// </summary>
         public const string RgbiSkins = "RibbonGalleryBarItem";
 
         /// <summary>
-        /// 超链接指向http，本地的文本文件等（菜单界面中的 WinformType）
+        /// 超链接指向http，本地的文本文件等（菜单界面中的 WinformClass）
         /// </summary>
         public const string BtnLink = "Hyperlink";
 
@@ -103,6 +108,7 @@ namespace JCodes.Framework.Common
         /// 时间格式
         /// </summary>
         public const string TimeformatString = "hh:mm:ss";
+
 
 
         /// <summary>

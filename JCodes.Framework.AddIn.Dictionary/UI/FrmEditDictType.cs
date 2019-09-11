@@ -69,14 +69,14 @@ namespace JCodes.Framework.AddIn.Dictionary
                 }
             }
 
-            
-            if (result && string.IsNullOrEmpty(ID))
+
+            if (result && !string.IsNullOrEmpty(Id))
             {
                 Int32 NumId = Convert.ToInt32(Id);
                 DictTypeInfo dictTypeInfo = BLLFactory<DictType>.Instance.FindByID(NumId);
                 if (dictTypeInfo != null)
                 {
-                    MessageDxUtil.ShowTips(string.Format("已存在类别编号[{0}],类别名称[{1}]", dictTypeInfo.ID, dictTypeInfo.Name));
+                    MessageDxUtil.ShowTips(string.Format("已存在类别编号[{0}],类别名称[{1}]", dictTypeInfo.Id, dictTypeInfo.Name));
                     txtID.Focus();
                     result = false;
                 }
@@ -99,18 +99,18 @@ namespace JCodes.Framework.AddIn.Dictionary
                 this.txtParent.Tag = parentInfo.Name;
             }
 
-            if (!string.IsNullOrEmpty(ID))
+            if (Id > 0)
             {
-                DictTypeInfo info = BLLFactory<DictType>.Instance.FindByID(ID);
+                DictTypeInfo info = BLLFactory<DictType>.Instance.FindByID(Id);
                 if (info != null)
                 {
-                    this.txtID.Text = info.ID.ToString();
+                    this.txtID.Text = info.Id.ToString();
                     this.txtID.Enabled = false;
                     this.txtName.Text = info.Name;
                     this.txtNote.Text = info.Remark;
                     this.txtSeq.Text = info.Seq;
 
-                    if (info.PID == -1)
+                    if (info.Pid == -1)
                     {
                         this.chkTopItem.Checked = true;
                     }
@@ -158,14 +158,14 @@ namespace JCodes.Framework.AddIn.Dictionary
 
         public override bool SaveUpdated()
         {
-            DictTypeInfo info = BLLFactory<DictType>.Instance.FindByID(ID);
+            DictTypeInfo info = BLLFactory<DictType>.Instance.FindByID(Id);
             if (info != null)
             {
                 SetInfo(info);
                 try
                 {
                     #region 更新数据
-                    bool succeed = BLLFactory<DictType>.Instance.Update(info, info.ID.ToString());
+                    bool succeed = BLLFactory<DictType>.Instance.Update(info, info.Id);
                     if (succeed)
                     {
                         //可添加其他关联操作
@@ -186,19 +186,19 @@ namespace JCodes.Framework.AddIn.Dictionary
 
         private void SetInfo(DictTypeInfo info)
         {
-            info.ID = Convert.ToInt32(txtID.Text);
-            info.Editor = LoginUserInfo.ID.ToString();
+            info.Id = Convert.ToInt32(txtID.Text);
+            info.EditorId = LoginUserInfo.Id;
             info.LastUpdated = DateTimeHelper.GetServerDateTime2();
             info.Name = this.txtName.Text.Trim();
             info.Remark = this.txtNote.Text.Trim();
             info.Seq = this.txtSeq.Text;
-            info.PID = PID;
+            info.Pid = PID;
             if (this.chkTopItem.Checked)
             {
-                info.PID = -1;
+                info.Pid = -1;
             }
 
-            info.CurrentLoginUserId = LoginUserInfo.ID;
+            info.CurrentLoginUserId = LoginUserInfo.Id;
         }
 
         private void chkTopItem_CheckedChanged(object sender, EventArgs e)

@@ -57,7 +57,7 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
             {
                 try
                 {
-                    OUInfo myCompanyInfo = BLLFactory<OU>.Instance.FindByID(Portal.gc.UserInfo.Company_ID);
+                    OUInfo myCompanyInfo = BLLFactory<OU>.Instance.FindByID(Portal.gc.UserInfo.CompanyId);
                     if (myCompanyInfo != null)
                     {
                         list.Add(myCompanyInfo);
@@ -73,9 +73,9 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
             foreach (OUInfo info in list)
             {
                 dr = dt.NewRow();
-                dr["ImageIndex"] = Portal.gc.GetImageIndex(info.Category);
-                dr["ID"] = info.ID.ToString();
-                dr["PID"] = info.PID.ToString();
+                dr["ImageIndex"] = info.OuType;//Portal.gc.GetImageIndex(info.Category);
+                dr["ID"] = info.Id;
+                dr["PID"] = info.Pid;
                 dr["Name"] = info.Name;
                 dt.Rows.Add(dr);
             }

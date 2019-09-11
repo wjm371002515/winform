@@ -41,22 +41,22 @@ namespace JCodes.Framework.SQLServerDAL
             TestUserInfo info = new TestUserInfo();
             SmartDataReader reader = new SmartDataReader(dataReader);
 
-            info.ID = reader.GetString("ID");
+            info.Id = reader.GetInt32("Id");
             info.Name = reader.GetString("Name");
-            info.Mobile = reader.GetString("Mobile");
+            info.MobilePhone = reader.GetString("MobilePhone");
             info.Email = reader.GetString("Email");
             info.Homepage = reader.GetString("Homepage");
 			info.Hobby = reader.GetString("Hobby");
-			info.Gender = reader.GetString("Gender");
+            info.Gender = reader.GetInt32("Gender");
             info.Age = reader.GetInt32("Age");
-            info.BirthDate = reader.GetDateTime("BirthDate");
+            info.Birthday = reader.GetDateTime("Birthday");
             info.Height = reader.GetDecimal("Height");
             //info.Portrait = reader.GetBytes("Portrait");
-            info.Note = reader.GetString("Note");
-            info.Editor = reader.GetString("Editor");
-            info.EditTime = reader.GetDateTime("EditTime");
-            info.Creator = reader.GetString("Creator");
-            info.CreateTime = reader.GetDateTime("CreateTime");
+            info.Remark = reader.GetString("Note");
+            info.EditorId = reader.GetInt32("EditorId");
+            info.LastUpdateTime = reader.GetDateTime("LastUpdateTime");
+            info.CreatorId = reader.GetInt32("CreatorId");
+            info.CreatorTime = reader.GetDateTime("CreatorTime");
 
             return info;
         }
@@ -71,22 +71,22 @@ namespace JCodes.Framework.SQLServerDAL
             TestUserInfo info = obj as TestUserInfo;
             Hashtable hash = new Hashtable();
 
-            hash.Add("ID", info.ID);
+            hash.Add("Id", info.Id);
             hash.Add("Name", info.Name);
-            hash.Add("Mobile", info.Mobile);
+            hash.Add("MobilePhone", info.MobilePhone);
             hash.Add("Email", info.Email);
             hash.Add("Homepage", info.Homepage);
  			hash.Add("Hobby", info.Hobby);
  			hash.Add("Gender", info.Gender);
             hash.Add("Age", info.Age);
-            hash.Add("BirthDate", info.BirthDate);
+            hash.Add("Birthday", info.Birthday);
             hash.Add("Height", info.Height);
             //hash.Add("Portrait", info.Portrait);
-            hash.Add("Note", info.Note);
-            hash.Add("Editor", info.Editor);
-            hash.Add("EditTime", info.EditTime);
-            hash.Add("Creator", info.Creator);
-            hash.Add("CreateTime", info.CreateTime);
+            hash.Add("Remark", info.Remark);
+            hash.Add("EditorId", info.EditorId);
+            hash.Add("LastUpdateTime", info.LastUpdateTime);
+            hash.Add("CreatorId", info.CreatorId);
+            hash.Add("CreatorTime", info.CreatorTime);
 
             return hash;
         }
@@ -100,22 +100,22 @@ namespace JCodes.Framework.SQLServerDAL
             Dictionary<string, string> dict = new Dictionary<string, string>();
             #region 添加别名解析
             //dict.Add("ID", "编号");
-            dict.Add("ID", "");
+            dict.Add("Id", "");
             dict.Add("Name", "姓名");
-            dict.Add("Mobile", "手机");
+            dict.Add("MobilePhone", "手机");
             dict.Add("Email", "邮箱");
             dict.Add("Homepage", "主页");
-             dict.Add("Hobby", "兴趣爱好");
-             dict.Add("Gender", "性别");
+            dict.Add("Hobby", "兴趣爱好");
+            dict.Add("Gender", "性别");
             dict.Add("Age", "年龄");
-            dict.Add("BirthDate", "出生日期");
+            dict.Add("Birthday", "出生日期");
             dict.Add("Height", "身高");
             dict.Add("Portrait", "肖像");
-            dict.Add("Note", "备注");
-            dict.Add("Editor", "编辑人");
-            dict.Add("EditTime", "编辑时间");
-            dict.Add("Creator", "创建人");
-            dict.Add("CreateTime", "创建时间");
+            dict.Add("Remark", "备注");
+            dict.Add("EditorId", "编辑人");
+            dict.Add("LastUpdateTime", "编辑时间");
+            dict.Add("CreatorId", "创建人");
+            dict.Add("CreatorTime", "创建时间");
             #endregion
 
             return dict;

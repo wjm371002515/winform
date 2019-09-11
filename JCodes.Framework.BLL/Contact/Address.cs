@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Entity;
 using JCodes.Framework.IDAL;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.BLL
 {
@@ -26,7 +27,7 @@ namespace JCodes.Framework.BLL
         /// <param name="groupName">联系人分组的名称,如果联系人分组为空，那么返回未分组联系人列表</param>
         /// <param name="pagerInfo">分页条件</param>
         /// <returns></returns>
-        public List<AddressInfo> FindByGroupName(string ownerUser, string groupName, PagerInfo pagerInfo = null)
+        public List<AddressInfo> FindByGroupName(Int32 ownerUser, string groupName, PagerInfo pagerInfo = null)
         {
             IAddress dal = baseDal as IAddress;
             return dal.FindByGroupName(ownerUser, groupName, pagerInfo);
@@ -62,7 +63,7 @@ namespace JCodes.Framework.BLL
         /// <param name="contactId">联系人ID</param>
         /// <param name="groupIdList">分组Id集合</param>
         /// <returns></returns>
-        public bool ModifyAddressGroup(string contactId, List<string> groupIdList)
+        public bool ModifyAddressGroup(Int32 contactId, List<string> groupIdList)
         {
             IAddress dal = baseDal as IAddress;
             return dal.ModifyAddressGroup(contactId, groupIdList);

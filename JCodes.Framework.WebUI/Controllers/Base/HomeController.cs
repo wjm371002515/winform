@@ -41,7 +41,7 @@ namespace JCodes.Framework.WebUI.Controllers
         private string GetMenuItemString(MenuInfo info, int i)
         {
             string result = "";
-            if (HasFunction(info.FunctionId))
+            if (HasFunction(info.AuthGid))
             {
                 string url = info.Url;
                 if (url != null)
@@ -49,7 +49,7 @@ namespace JCodes.Framework.WebUI.Controllers
                     // url = url.Replace("#", "");
                 }
 
-                string menuId = (i == 0) ? "default" : info.ID.ToString();
+                string menuId = (i == 0) ? "default" : info.Gid;
 
                 if (!string.IsNullOrEmpty(url))
                 {

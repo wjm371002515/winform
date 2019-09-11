@@ -19,6 +19,8 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using JCodes.Framework.Common.Format;
+using JCodes.Framework.jCodesenum;
+using JCodes.Framework.Common.Extension;
 
 namespace JCodes.Framework.AddIn.Contact
 {
@@ -154,7 +156,7 @@ namespace JCodes.Framework.AddIn.Contact
             foreach (int iRow in rowSelected)
             {
                 string ID = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "ID");
-                BLLFactory<AddressGroup>.Instance.DeleteByUser(ID, LoginUserInfo.ID);
+                BLLFactory<AddressGroup>.Instance.DeleteByUser(ID, LoginUserInfo.Id);
             }
 
             BindData();
@@ -176,20 +178,20 @@ namespace JCodes.Framework.AddIn.Contact
                 return;
             }
 
-            string ID = this.winGridViewPager1.gridView1.GetFocusedRowCellDisplayText("ID");
-            List<string> IDList = new List<string>();
+            Int32 Id = this.winGridViewPager1.gridView1.GetFocusedRowCellDisplayText("ID").ToInt32();
+            List<Int32> IdList = new List<Int32>();
             for (int i = 0; i < this.winGridViewPager1.gridView1.RowCount; i++)
             {
-                string strTemp = this.winGridViewPager1.GridView1.GetRowCellDisplayText(i, "ID");
-                IDList.Add(strTemp);
+                Int32 intTemp = this.winGridViewPager1.GridView1.GetRowCellDisplayText(i, "ID").ToInt32();
+                IdList.Add(intTemp);
             }
 
-            if (!string.IsNullOrEmpty(ID))
+            if (Id > 0)
             {
                 FrmEditAddressGroup dlg = new FrmEditAddressGroup();
-                dlg.AddressType = this.AddressType;
-                dlg.ID = ID;
-                dlg.IDList = IDList;
+                dlg.addressType = this.AddressType;
+                dlg.Id = Id;
+                dlg.IdList = IdList;
                 dlg.OnDataSaved += new EventHandler(dlg_OnDataSaved);
                 dlg.InitFunction(LoginUserInfo, FunctionDict);//给子窗体赋值用户权限信息
 
@@ -267,13 +269,13 @@ namespace JCodes.Framework.AddIn.Contact
             if (condition == null)
             {
                 condition = new SearchCondition();
-                //condition.AddCondition("HandNo", this.txtHandNo.Text.Trim(), SqlOperator.Like);
+                //condition.AddCondition("UserCode", this.txtHandNo.Text.Trim(), SqlOperator.Like);
             }
             
             condition.AddCondition("AddressType", AddressType.ToString(), SqlOperator.Equal);
             if (AddressType == AddressType.个人)
             {                
-                condition.AddCondition("Creator", LoginUserInfo.ID.ToString(), SqlOperator.Equal);
+                condition.AddCondition("Creator", LoginUserInfo.Id, SqlOperator.Equal);
             }
 
             string where = condition.BuildConditionSql().Replace("Where", "");
@@ -320,7 +322,7 @@ namespace JCodes.Framework.AddIn.Contact
         private void btnAddNew_Click(object sender, EventArgs e)
         {
             FrmEditAddressGroup dlg = new FrmEditAddressGroup();
-            dlg.AddressType = this.AddressType;
+            dlg.addressType = this.AddressType;
             dlg.OnDataSaved += new EventHandler(dlg_OnDataSaved);
             dlg.InitFunction(LoginUserInfo, FunctionDict);//给子窗体赋值用户权限信息
 
@@ -357,11 +359,11 @@ namespace JCodes.Framework.AddIn.Contact
             //info.PID = "-1";
             info.Seq = dr["排序序号"].ToString();
             info.Name = dr["分组名称"].ToString();
-            info.Note = dr["备注"].ToString();
-            info.Creator = LoginUserInfo.ID.ToString();
-            info.CreateTime = DateTimeHelper.GetServerDateTime2();
-            info.Dept_ID = LoginUserInfo.DeptId;
-            info.Company_ID = LoginUserInfo.CompanyId;
+            info.Remark = dr["备注"].ToString();
+            info.CreatorId = LoginUserInfo.Id;
+            info.CreatorTime = DateTimeHelper.GetServerDateTime2();
+            info.DeptId = LoginUserInfo.DeptId;
+            info.CompanyId = LoginUserInfo.CompanyId;
 
             success = BLLFactory<AddressGroup>.Instance.Insert(info);
             return success;
@@ -386,7 +388,7 @@ namespace JCodes.Framework.AddIn.Contact
                     dr["序号"] = j++;
                     dr["排序序号"] = list[i].Seq;
                     dr["分组名称"] = list[i].Name;
-                    dr["备注"] = list[i].Note;
+                    dr["备注"] = list[i].Remark;
                     dtNew.Rows.Add(dr);
                 }
 

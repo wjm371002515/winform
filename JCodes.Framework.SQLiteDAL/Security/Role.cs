@@ -47,7 +47,7 @@ namespace JCodes.Framework.SQLiteDAL
 
             info.ID = reader.GetInt32("ID");
             info.PID = reader.GetInt32("PID");
-            info.HandNo = reader.GetString("HandNo");
+            info.UserCode = reader.GetString("UserCode");
             info.Name = reader.GetString("Name");
             info.Note = reader.GetString("Note");
             info.Seq = reader.GetString("Seq");
@@ -77,7 +77,7 @@ namespace JCodes.Framework.SQLiteDAL
             Hashtable hash = new Hashtable();
 
             hash.Add("PID", info.PID);
-            hash.Add("HandNo", info.HandNo);
+            hash.Add("UserCode", info.UserCode);
             hash.Add("Name", info.Name);
             hash.Add("Note", info.Note);
             hash.Add("Seq", info.Seq);
@@ -106,7 +106,7 @@ namespace JCodes.Framework.SQLiteDAL
             #region 添加别名解析
             dict.Add("ID", "编号");
             dict.Add("PID", "父ID");
-            dict.Add("HandNo", "角色编码");
+            dict.Add("UserCode", "角色编码");
             dict.Add("Name", "角色名称");
             dict.Add("Note", "备注");
             dict.Add("Seq", "排序");

@@ -153,7 +153,7 @@ namespace JCodes.Framework.CommonControl.Controls
                 return;
             }
 
-            var lst = cacheDictData.FindAll(s => s.DictType_ID == dictTypeId);
+            var lst = cacheDictData.FindAll(s => s.DicttypeID == dictTypeId);
             combo.Properties.BeginUpdate();//可以加快
             combo.Properties.Items.Clear();
             combo.Properties.Items.Add(new CDicKeyValue(Const.NoSeletValue, Const.NoSelectMsg));
@@ -267,7 +267,7 @@ namespace JCodes.Framework.CommonControl.Controls
                 return;
             }
 
-            var lst = cacheDictData.FindAll(s => s.DictType_ID == dictTypeId);
+            var lst = cacheDictData.FindAll(s => s.DicttypeID == dictTypeId);
             combo.Properties.BeginUpdate();//可以加快
             combo.Properties.Items.Clear();
             foreach (DicKeyValueInfo one in lst)
@@ -417,8 +417,6 @@ namespace JCodes.Framework.CommonControl.Controls
             }
         }
         #endregion
-
-
 
 
 

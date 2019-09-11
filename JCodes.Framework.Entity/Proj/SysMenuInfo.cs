@@ -16,22 +16,22 @@ namespace JCodes.Framework.Entity
     {    
         #region Field Members
 
-        private string m_ID = System.Guid.NewGuid().ToString(); //          
-        private string m_PID = "-1"; //父ID          
+        private string m_Gid = System.Guid.NewGuid().ToString(); //          
+        private string m_Pgid = "-1"; //父ID          
         private string m_Name; //显示名称          
         private string m_Icon; //图标          
         private string m_Seq; //排序          
-        private string m_FunctionId; //功能ID          
-        private bool m_Visible = true; //是否可见          
-        private string m_WinformType; //Winform窗体类型          
+        private string m_AuthGid; //功能ID          
+        private bool m_IsVisable = true; //是否可见          
+        private string m_WinformClass; //Winform窗体类型          
         private string m_Url; //Web界面Url地址          
         private string m_WebIcon; //Web界面的菜单图标          
-        private string m_SystemType_ID; //系统编号                  
-        private string m_Creator_ID; //创建人ID          
+        private string m_SystemtypeId; //系统编号                  
+        private Int32 m_CreatorId; //创建人ID          
         private DateTime m_CreateTime = System.DateTime.Now; //创建时间                   
-        private string m_Editor_ID; //编辑人ID          
-        private DateTime m_EditTime = System.DateTime.Now; //编辑时间          
-        private bool m_Is_Deleted = false; //是否已删除          
+        private Int32 m_EditorId; //编辑人ID          
+        private DateTime m_LastUpdateTime = System.DateTime.Now; //编辑时间          
+        private bool m_IsDelete = false; //是否已删除     
 
         #endregion
 
@@ -39,15 +39,15 @@ namespace JCodes.Framework.Entity
 
         [DisplayName("菜单ID")]
 		[DataMember]
-        public virtual string ID
+        public virtual string Gid
         {
             get
             {
-                return this.m_ID;
+                return this.m_Gid;
             }
             set
             {
-                this.m_ID = value;
+                this.m_Gid = value;
             }
         }
 
@@ -56,15 +56,15 @@ namespace JCodes.Framework.Entity
         /// </summary>
         [DisplayName("菜单父ID")]
 		[DataMember]
-        public virtual string PID
+        public virtual string Pgid
         {
             get
             {
-                return this.m_PID;
+                return this.m_Pgid;
             }
             set
             {
-                this.m_PID = value;
+                this.m_Pgid = value;
             }
         }
 
@@ -124,15 +124,15 @@ namespace JCodes.Framework.Entity
         /// </summary>
         [DisplayName("功能ID")]
 		[DataMember]
-        public virtual string FunctionId
+        public virtual string AuthGid
         {
             get
             {
-                return this.m_FunctionId;
+                return this.m_AuthGid;
             }
             set
             {
-                this.m_FunctionId = value;
+                this.m_AuthGid = value;
             }
         }
 
@@ -141,15 +141,15 @@ namespace JCodes.Framework.Entity
         /// </summary>
         [DisplayName("可见")]
 		[DataMember]
-        public virtual bool Visible
+        public virtual bool IsVisable
         {
             get
             {
-                return this.m_Visible;
+                return this.m_IsVisable;
             }
             set
             {
-                this.m_Visible = value;
+                this.m_IsVisable = value;
             }
         }
 
@@ -158,15 +158,15 @@ namespace JCodes.Framework.Entity
         /// </summary>
         [DisplayName("Winform窗体类型")]
 		[DataMember]
-        public virtual string WinformType
+        public virtual string WinformClass
         {
             get
             {
-                return this.m_WinformType;
+                return this.m_WinformClass;
             }
             set
             {
-                this.m_WinformType = value;
+                this.m_WinformClass = value;
             }
         }
 
@@ -209,15 +209,15 @@ namespace JCodes.Framework.Entity
         /// </summary>
         [DisplayName("系统编号")]
         [DataMember]
-        public virtual string SystemType_ID
+        public virtual string SystemtypeId
         {
             get
             {
-                return this.m_SystemType_ID;
+                return this.m_SystemtypeId;
             }
             set
             {
-                this.m_SystemType_ID = value;
+                this.m_SystemtypeId = value;
             }
         }
 
@@ -226,15 +226,15 @@ namespace JCodes.Framework.Entity
         /// </summary>
         [DisplayName("创建人ID")]
 		[DataMember]
-        public virtual string Creator_ID
+        public virtual Int32 CreatorId
         {
             get
             {
-                return this.m_Creator_ID;
+                return this.m_CreatorId;
             }
             set
             {
-                this.m_Creator_ID = value;
+                this.m_CreatorId = value;
             }
         }
 
@@ -260,15 +260,15 @@ namespace JCodes.Framework.Entity
         /// </summary>
         [DisplayName("编辑人ID")]
 		[DataMember]
-        public virtual string Editor_ID
+        public virtual Int32 EditorId
         {
             get
             {
-                return this.m_Editor_ID;
+                return this.m_EditorId;
             }
             set
             {
-                this.m_Editor_ID = value;
+                this.m_EditorId = value;
             }
         }
 
@@ -277,15 +277,15 @@ namespace JCodes.Framework.Entity
         /// </summary>
         [DisplayName("编辑时间")]
 		[DataMember]
-        public virtual DateTime EditTime
+        public virtual DateTime LastUpdateTime
         {
             get
             {
-                return this.m_EditTime;
+                return this.m_LastUpdateTime;
             }
             set
             {
-                this.m_EditTime = value;
+                this.m_LastUpdateTime = value;
             }
         }
 
@@ -294,15 +294,15 @@ namespace JCodes.Framework.Entity
         /// </summary>
         [DisplayName("已删除")]
 		[DataMember]
-        public virtual bool Is_Deleted
+        public virtual bool IsDelete
         {
             get
             {
-                return this.m_Is_Deleted;
+                return this.m_IsDelete;
             }
             set
             {
-                this.m_Is_Deleted = value;
+                this.m_IsDelete = value;
             }
         }
 

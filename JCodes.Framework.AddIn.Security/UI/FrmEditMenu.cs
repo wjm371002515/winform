@@ -93,23 +93,23 @@ namespace JCodes.Framework.AddIn.Security
 
 
 
-            if (!string.IsNullOrEmpty(ID))
+            if (Id > 0)
             {
                 #region 显示客户信息
-                MenuInfo info = BLLFactory<Menus>.Instance.FindByID(ID);
+                MenuInfo info = BLLFactory<Menus>.Instance.FindByID(Id);
 
                 if (info != null)
                 {
-                    this.menuControl1.Value = info.PID;
+                    this.menuControl1.Value = info.Pgid;
                     txtName.Text = info.Name;
                     txtIcon.Text = info.Icon;
                     txtSeq.Text = info.Seq;
-                    txtFunctionId.Text = info.FunctionId;
-                    txtVisible.Checked = info.Visible;
-                    txtWinformType.Text = info.WinformType;
+                    txtFunctionId.Text = info.AuthGid;
+                    txtVisible.Checked = info.IsVisable;
+                    txtWinformType.Text = info.WinformClass;
                     txtUrl.Text = info.Url;
                     txtWebIcon.Text = info.WebIcon;
-                    txtSystemType.SetComboBoxItem(info.SystemType_ID);//设置系统类型
+                    txtSystemType.SetComboBoxItem(info.SystemtypeId);//设置系统类型
                 }
                 #endregion           
             }
@@ -130,18 +130,18 @@ namespace JCodes.Framework.AddIn.Security
         /// <param name="info"></param>
         private void SetInfo(MenuInfo info)
         {
-            info.PID = this.menuControl1.Value;
+            info.Pgid = this.menuControl1.Value;
             info.Name = txtName.Text;
             info.Icon = txtIcon.Text;
             info.Seq = txtSeq.Text;
-            info.FunctionId = txtFunctionId.Text;
-            info.Visible = txtVisible.Checked;
-            info.WinformType = txtWinformType.Text;
+            info.AuthGid = txtFunctionId.Text;
+            info.IsVisable = txtVisible.Checked;
+            info.WinformClass = txtWinformType.Text;
             info.Url = txtUrl.Text;
             info.WebIcon = txtWebIcon.Text;
-            info.SystemType_ID = this.txtSystemType.GetComboBoxStrValue();
+            info.SystemtypeId = this.txtSystemType.GetComboBoxStrValue();
 
-            info.CurrentLoginUserId = Portal.gc.UserInfo.ID;
+            info.CurrentLoginUserId = Portal.gc.UserInfo.Id;
         }
 
         public override void ClearScreen()
@@ -178,11 +178,11 @@ namespace JCodes.Framework.AddIn.Security
                 {
                     if (this.menuControl1.Value == "-1")
                     {
-                        string PID = info.ID;//先记录原来的ID，作为PID
+                        string PID = info.Pgid;//先记录原来的ID，作为PID
 
                         //如果顶级菜单项目添加，同时添加一个二级菜单项目
-                        info.PID = PID;
-                        info.ID = Guid.NewGuid().ToString();
+                        info.Pgid = PID;
+                        info.Gid = Guid.NewGuid().ToString();
                         info.Seq = "001";
                         BLLFactory<Menus>.Instance.Insert(info);
                     }                    
@@ -205,10 +205,10 @@ namespace JCodes.Framework.AddIn.Security
         /// <returns></returns>
         public override bool SaveUpdated()
         {
-            MenuInfo info = BLLFactory<Menus>.Instance.FindByID(ID);
+            MenuInfo info = BLLFactory<Menus>.Instance.FindByID(Id);
             if (info != null)
             {
-                if (info.PID != this.menuControl1.Value && BLLFactory<Menus>.Instance.GetMenuByID(ID).Count <= 1)
+                if (info.Pgid != this.menuControl1.Value && BLLFactory<Menus>.Instance.GetMenuByID(Id.ToString()).Count <= 1)
                 {
                     MessageDxUtil.ShowError(Const.ForbidOperMsg);
                     return false;
@@ -219,7 +219,7 @@ namespace JCodes.Framework.AddIn.Security
                 try
                 {
                     #region 更新数据
-                    bool succeed = BLLFactory<Menus>.Instance.Update(info, info.ID.ToString());
+                    bool succeed = BLLFactory<Menus>.Instance.Update(info, info.Gid);
                     if (succeed)
                     {
                         //可添加其他关联操作

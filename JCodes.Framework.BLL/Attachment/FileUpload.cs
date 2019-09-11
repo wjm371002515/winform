@@ -71,7 +71,7 @@ namespace JCodes.Framework.BLL
                 else
                 {
                     //如果指定了基础路径，那么属于Winform本地程序复制链接，不需要文件上传,相对路径就是文件名
-                    relativeSavePath = info.FileName;
+                    relativeSavePath = info.Name;
                 }                
 
                 #endregion
@@ -192,24 +192,24 @@ namespace JCodes.Framework.BLL
         /// <summary>
         /// 获取指定附件组GUID的附件信息
         /// </summary>
-        /// <param name="attachmentGUID">附件组GUID</param>
+        /// <param name="attachmentGid">附件组GUID</param>
         /// <param name="pagerInfo">分页信息</param>
         /// <returns></returns>
-        public List<FileUploadInfo> GetByAttachGUID(string attachmentGUID, PagerInfo pagerInfo)
+        public List<FileUploadInfo> GetByAttachGUID(string attachmentGid, PagerInfo pagerInfo)
         {
             IFileUploads dal = baseDal as IFileUploads;
-            return dal.GetByAttachGUID(attachmentGUID, pagerInfo);
+            return dal.GetByAttachGUID(attachmentGid, pagerInfo);
         }
                         
         /// <summary>
         /// 获取指定附件组GUID的附件信息
         /// </summary>
-        /// <param name="attachmentGUID">附件组GUID</param>
+        /// <param name="attachmentGid">附件组GUID</param>
         /// <returns></returns>
-        public List<FileUploadInfo> GetByAttachGUID(string attachmentGUID)
+        public List<FileUploadInfo> GetByAttachGUID(string attachmentGid)
         {
             IFileUploads dal = baseDal as IFileUploads;
-            return dal.GetByAttachGUID(attachmentGUID);
+            return dal.GetByAttachGUID(attachmentGid);
         }
 
         /// <summary>
@@ -226,58 +226,58 @@ namespace JCodes.Framework.BLL
         /// <summary>
         /// 根据Owner获取对应的附件列表
         /// </summary>
-        /// <param name="ownerID">拥有者ID</param>
+        /// <param name="creatorId">拥有者ID</param>
         /// <returns></returns>
-        public List<FileUploadInfo> GetByOwner(string ownerID)
+        public List<FileUploadInfo> GetByOwner(string creatorId)
         {
-            string condition = string.Format("Owner_ID ='{0}' ", ownerID);
+            string condition = string.Format("CreatorId ='{0}' ", creatorId);
             return base.Find(condition);
         }
 
         /// <summary>
         /// 根据Owner获取对应的附件列表
         /// </summary>
-        /// <param name="ownerID">拥有者ID</param>
+        /// <param name="creatorId">拥有者ID</param>
         /// <returns></returns>
-        public List<FileUploadInfo> GetByOwner(string ownerID, PagerInfo pagerInfo)
+        public List<FileUploadInfo> GetByOwner(Int32 creatorId, PagerInfo pagerInfo)
         {
-            string condition = string.Format("Owner_ID ='{0}' ", ownerID);
+            string condition = string.Format("CreatorId ='{0}' ", creatorId);
             return base.FindWithPager(condition, pagerInfo);
         }
 
         /// <summary>
         /// 根据Owner获取对应的附件列表
         /// </summary>
-        /// <param name="ownerID">拥有者ID</param>
-        /// <param name="attachmentGUID">附件组GUID</param>
+        /// <param name="creatorId">拥有者ID</param>
+        /// <param name="attachmentGid">附件组GUID</param>
         /// <returns></returns>
-        public List<FileUploadInfo> GetByOwnerAndAttachGUID(string ownerID, string attachmentGUID)
+        public List<FileUploadInfo> GetByOwnerAndAttachGUID(string creatorId, string attachmentGid)
         {
-            string condition = string.Format("Owner_ID ='{0}' AND AttachmentGUID='{1}' ", ownerID, attachmentGUID);
+            string condition = string.Format("CreatorId ='{0}' AND AttachmentGid='{1}' ", creatorId, attachmentGid);
             return base.Find(condition);
         }
 
         /// <summary>
         /// 根据Owner获取对应的附件列表
         /// </summary>
-        /// <param name="ownerID">拥有者ID</param>
-        /// <param name="attachmentGUID">附件组GUID</param>
+        /// <param name="creatorId">拥有者ID</param>
+        /// <param name="attachmentGid">附件组GUID</param>
         /// <returns></returns>
-        public List<FileUploadInfo> GetByOwnerAndAttachGUID(string ownerID, string attachmentGUID, PagerInfo pagerInfo)
+        public List<FileUploadInfo> GetByOwnerAndAttachGUID(Int32 creatorId, string attachmentGid, PagerInfo pagerInfo)
         {
-            string condition = string.Format("Owner_ID ='{0}' AND AttachmentGUID='{1}' ", ownerID, attachmentGUID);
+            string condition = string.Format("CreatorId ='{0}' AND attachmentGid='{1}' ", creatorId, attachmentGid);
             return base.FindWithPager(condition, pagerInfo);
         }
 
         /// <summary>
         /// 根据附件组GUID获取对应的文件名列表，方便列出文件名
         /// </summary>
-        /// <param name="attachmentGUID">附件组GUID</param>
+        /// <param name="attachmentGid">附件组GUID</param>
         /// <returns>返回ID和文件名的列表</returns>
-        public Dictionary<string, string> GetFileNames(string attachmentGUID)
+        public Dictionary<string, string> GetFileNames(string attachmentGid)
         {
             IFileUploads dal = baseDal as IFileUploads;
-            return dal.GetFileNames(attachmentGUID);
+            return dal.GetFileNames(attachmentGid);
         }
 
         /// <summary>
@@ -312,8 +312,8 @@ namespace JCodes.Framework.BLL
             serverRealPath = GetRightFileName(serverRealPath, 1);
 
             //当文件已存在，而重新命名时，修改Filename及relativeSavePath
-            relativeSavePath = relativeSavePath.Substring(0, relativeSavePath.LastIndexOf(info.FileName)) +   FileUtil.GetFileName(serverRealPath);
-            info.FileName = FileUtil.GetFileName(serverRealPath);
+            relativeSavePath = relativeSavePath.Substring(0, relativeSavePath.LastIndexOf(info.Name)) +   FileUtil.GetFileName(serverRealPath);
+            info.Name = FileUtil.GetFileName(serverRealPath);
             
             //根据实际文件名创建文件
             FileUtil.CreateFile(serverRealPath, info.FileData);
@@ -336,8 +336,8 @@ namespace JCodes.Framework.BLL
         /// <returns></returns>
         public string GetFilePath(FileUploadInfo info)
         {
-            string fileName = info.FileName;
-            string category = info.Category;
+            string fileName = info.Name;
+            string category = info.CategoryCode;
 
             if (string.IsNullOrEmpty(category))
             {
@@ -364,16 +364,16 @@ namespace JCodes.Framework.BLL
         }
 
         /// <summary>
-        /// 根据attachmentGUID的参数获取对应的第一个文件路径
+        /// 根据attachmentGid的参数获取对应的第一个文件路径
         /// </summary>
-        /// <param name="attachmentGUID">附件的attachmentGUID</param>
+        /// <param name="attachmentGid">附件的attachmentGid</param>
         /// <returns></returns>
-        public string GetFirstFilePath(string attachmentGUID)
+        public string GetFirstFilePath(string attachmentGid)
         {
             string serverRealPath = "";
-            if (!string.IsNullOrEmpty(attachmentGUID))
+            if (!string.IsNullOrEmpty(attachmentGid))
             {
-                List<FileUploadInfo> fileList = BLLFactory<FileUpload>.Instance.GetByAttachGUID(attachmentGUID);
+                List<FileUploadInfo> fileList = BLLFactory<FileUpload>.Instance.GetByAttachGUID(attachmentGid);
                 if (fileList != null && fileList.Count > 0)
                 {
                     FileUploadInfo fileInfo = fileList[0];
@@ -448,7 +448,7 @@ namespace JCodes.Framework.BLL
                             string deletedPath = Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, Path.Combine(info.BasePath, "DeletedFiles"));
                             DirectoryUtil.AssertDirExist(deletedPath);
 
-                            string newFilePath = Path.Combine(deletedPath, info.FileName);
+                            string newFilePath = Path.Combine(deletedPath, info.Name);
                             newFilePath = GetRightFileName(newFilePath, 1);
                             File.Move(serverRealPath, newFilePath);
                         }
@@ -464,33 +464,33 @@ namespace JCodes.Framework.BLL
         }
 
         /// <summary>
-        /// 删除指定OwnerID的数据记录
+        /// 删除指定creatorId的数据记录
         /// </summary>
         /// <param name="owerID">所属者的ID</param>
         /// <returns></returns>
-        public bool DeleteByOwerID(string owerID, Int32 userId)
+        public bool DeleteByOwerID(string creatorId, Int32 userId)
         {
-            string condition = string.Format("Owner_ID ='{0}' ", owerID);
+            string condition = string.Format("CreatorId ='{0}' ", creatorId);
             List<FileUploadInfo> list = base.Find(condition);
             foreach (FileUploadInfo info in list)
             {
-                DeleteByUser(info.ID, userId);
+                DeleteByUser(info.Gid, userId);
             }
             return true;
         }
 
         /// <summary>
-        /// 删除指定Attachment_GUID的数据记录
+        /// 删除指定attachmentGid的数据记录
         /// </summary>
-        /// <param name="attachment_GUID">所属者的ID</param>
+        /// <param name="attachmentGid">所属者的ID</param>
         /// <returns></returns>
-        public bool DeleteByAttachGUID(string attachment_GUID, Int32 userId)
+        public bool DeleteByAttachGUID(string attachmentGid, Int32 userId)
         {
-            string condition = string.Format("AttachmentGUID ='{0}' ", attachment_GUID);
+            string condition = string.Format("attachmentGid ='{0}' ", attachmentGid);
             List<FileUploadInfo> list = base.Find(condition);
             foreach (FileUploadInfo info in list)
             {
-                DeleteByUser(info.ID, userId);
+                DeleteByUser(info.Gid, userId);
             }
             return true;
         }

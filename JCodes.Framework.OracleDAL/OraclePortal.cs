@@ -26,5 +26,7 @@ namespace JCodes.Framework.OracleDAL
         public string _contactTablePre = _appConfig.AppConfigGet("ContactTablePre");
 
         public string _wareHouseTablePre = _appConfig.AppConfigGet("WareHouseTablePre");
+
+        public string _zszqTablePre = _appConfig.AppConfigGet("ZSZQTablePre");
     }
 }

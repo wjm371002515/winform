@@ -29,7 +29,7 @@ namespace JCodes.Framework.SQLServerDAL
         public OperationLogSetting()
             : base(SQLServerPortal.gc._securityTablePre + "OperationLogSetting", "ID")
         {
-            this.SortField = "CreateTime";
+            this.SortField = "CreatorTime";
             this.IsDescending = true;
         }
 
@@ -45,19 +45,19 @@ namespace JCodes.Framework.SQLServerDAL
             OperationLogSettingInfo info = new OperationLogSettingInfo();
             SmartDataReader reader = new SmartDataReader(dataReader);
 
-            info.ID = reader.GetString("ID");
-            info.Forbid = reader.GetInt32("Forbid") > 0;
+            info.Id = reader.GetInt32("Id");
+            info.IsForbid = reader.GetInt32("IsForbid");
             info.TableName = reader.GetString("TableName");
-            info.InsertLog = reader.GetInt32("InsertLog") > 0;
-            info.DeleteLog = reader.GetInt32("DeleteLog") > 0;
-            info.UpdateLog = reader.GetInt32("UpdateLog") > 0;
-            info.Note = reader.GetString("Note");
-            info.Creator = reader.GetString("Creator");
-            info.Creator_ID = reader.GetString("Creator_ID");
-            info.CreateTime = reader.GetDateTime("CreateTime");
-            info.Editor = reader.GetString("Editor");
-            info.Editor_ID = reader.GetString("Editor_ID");
-            info.EditTime = reader.GetDateTime("EditTime");
+            info.IsInsertLog = reader.GetInt32("IsInsertLog");
+            info.IsDeleteLog = reader.GetInt32("IsDeleteLog");
+            info.IsUpdateLog = reader.GetInt32("IsUpdateLog");
+            info.Remark = reader.GetString("Remark");
+            //info.Creator = reader.GetString("Creator");
+            info.CreatorId = reader.GetInt32("CreatorId");
+            info.CreatorTime = reader.GetDateTime("CreatorTime");
+            //info.Editor = reader.GetString("Editor");
+            info.EditorId = reader.GetInt32("EditorId");
+            info.LastUpdateTime = reader.GetDateTime("LastUpdateTime");
 
             return info;
         }
@@ -72,19 +72,19 @@ namespace JCodes.Framework.SQLServerDAL
             OperationLogSettingInfo info = obj as OperationLogSettingInfo;
             Hashtable hash = new Hashtable();
 
-            hash.Add("ID", info.ID);
-            hash.Add("Forbid", info.Forbid ? 1 : 0);
+            hash.Add("Id", info.Id);
+            hash.Add("IsForbid", info.IsForbid);
             hash.Add("TableName", info.TableName);
-            hash.Add("InsertLog", info.InsertLog ? 1 : 0);
-            hash.Add("DeleteLog", info.DeleteLog ? 1 : 0);
-            hash.Add("UpdateLog", info.UpdateLog ? 1 : 0);
-            hash.Add("Note", info.Note);
-            hash.Add("Creator", info.Creator);
-            hash.Add("Creator_ID", info.Creator_ID);
-            hash.Add("CreateTime", info.CreateTime);
-            hash.Add("Editor", info.Editor);
-            hash.Add("Editor_ID", info.Editor_ID);
-            hash.Add("EditTime", info.EditTime);
+            hash.Add("IsInsertLog", info.IsInsertLog);
+            hash.Add("IsDeleteLog", info.IsDeleteLog);
+            hash.Add("IsUpdateLog", info.IsUpdateLog);
+            hash.Add("Remark", info.Remark);
+            //hash.Add("Creator", info.Creator);
+            hash.Add("CreatorId", info.CreatorId);
+            hash.Add("CreatorTime", info.CreatorTime);
+            //hash.Add("Editor", info.Editor);
+            hash.Add("EditorId", info.EditorId);
+            hash.Add("LastUpdateTime", info.LastUpdateTime);
 
             return hash;
         }
@@ -97,19 +97,19 @@ namespace JCodes.Framework.SQLServerDAL
         {
             Dictionary<string, string> dict = new Dictionary<string, string>();
             #region 添加别名解析
-            dict.Add("ID", "编号");
-            dict.Add("Forbid", "是否禁用");
+            dict.Add("Id", "编号");
+            dict.Add("IsForbid", "是否禁用");
             dict.Add("TableName", "数据库表");
-            dict.Add("InsertLog", "记录插入日志");
-            dict.Add("DeleteLog", "记录删除日志");
-            dict.Add("UpdateLog", "记录更新日志");
-            dict.Add("Note", "备注");
-            dict.Add("Creator", "创建人");
-            dict.Add("Creator_ID", "创建人ID");
-            dict.Add("CreateTime", "创建时间");
-            dict.Add("Editor", "编辑人");
-            dict.Add("Editor_ID", "编辑人ID");
-            dict.Add("EditTime", "编辑时间");
+            dict.Add("IsInsertLog", "记录插入日志");
+            dict.Add("IsDeleteLog", "记录删除日志");
+            dict.Add("IsUpdateLog", "记录更新日志");
+            dict.Add("Remark", "备注");
+            //dict.Add("Creator", "创建人");
+            dict.Add("CreatorId", "创建人ID");
+            dict.Add("CreatorTime", "创建时间");
+            //dict.Add("Editor", "编辑人");
+            dict.Add("EditorId", "编辑人ID");
+            dict.Add("LastUpdateTime", "编辑时间");
             #endregion
 
             return dict;

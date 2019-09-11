@@ -63,7 +63,7 @@ namespace JCodes.Framework.BLL
         /// </summary>
         /// <param name="id">客户ID</param>
         /// <returns></returns>
-        public string GetCustomerName(string id, DbTransaction trans = null)
+        public string GetCustomerNameById(Int32 id, DbTransaction trans = null)
         {
             //使用缓存减轻数据库查询压力
             System.Reflection.MethodBase method = System.Reflection.MethodBase.GetCurrentMethod();
@@ -125,7 +125,7 @@ namespace JCodes.Framework.BLL
         /// <returns></returns>
         public DataTable GetAllForLookup()
         {
-            string sql = string.Format("Select ID,Name,SimpleName,HandNo from T_CRM_Customer order by HandNo");
+            string sql = string.Format("Select ID,Name,SimpleName,UserCode from T_CRM_Customer order by UserCode");
             return baseDal.SqlTable(sql);
         }
 

@@ -1,6 +1,7 @@
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Entity;
 using JCodes.Framework.IDAL;
+using JCodes.Framework.jCodesenum;
 using System.Data;
 
 

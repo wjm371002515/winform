@@ -49,24 +49,24 @@ namespace JCodes.Framework.AddIn.Basic
             foreach(MenuNodeInfo firstInfo in menuList)
             {
                 //如果没有菜单的权限，则跳过
-                if (!Portal.gc.HasFunction(firstInfo.FunctionId)) continue;
+                if (!Portal.gc.HasFunction(firstInfo.AuthGid)) continue;
 
                 //添加页面（一级菜单）
                 RibbonPage page = new RibbonPage();
                 page.Text = firstInfo.Name;
-                page.Name = firstInfo.ID;
+                page.Name = firstInfo.Gid;
                 this.control.Pages.Insert(i++, page);
                 
                 if(firstInfo.Children.Count == 0) continue;
                 foreach(MenuNodeInfo secondInfo in firstInfo.Children)
                 {
                     //如果没有菜单的权限，则跳过
-                    if (!Portal.gc.HasFunction(secondInfo.FunctionId)) continue;
+                    if (!Portal.gc.HasFunction(secondInfo.AuthGid)) continue;
 
                     //添加RibbonPageGroup（二级菜单）
                     RibbonPageGroup group = new RibbonPageGroup();
                     group.Text = secondInfo.Name;
-                    group.Name = secondInfo.ID;
+                    group.Name = secondInfo.Gid;
                     //group.Glyph = LoadIcon(secondInfo.Icon);
                     //group.ImageIndex = 5;
                     page.Groups.Add(group);                
@@ -75,14 +75,14 @@ namespace JCodes.Framework.AddIn.Basic
                     foreach (MenuNodeInfo thirdInfo in secondInfo.Children)
                     {
                         //如果没有菜单的权限，则跳过
-                        if (!Portal.gc.HasFunction(thirdInfo.FunctionId)) continue;
+                        if (!Portal.gc.HasFunction(thirdInfo.AuthGid)) continue;
 
                         // 判断 WinformType 如果是 RgbiSkins 则表示皮肤
-                        if (thirdInfo.WinformType == Const.RgbiSkins)
+                        if (thirdInfo.WinformClass == Const.RgbiSkins)
                         {
                             RibbonGalleryBarItem rgbi = new RibbonGalleryBarItem();
                             var galleryItemGroup1 = new GalleryItemGroup();
-                            rgbi.Name = thirdInfo.ID;
+                            rgbi.Name = thirdInfo.Gid;
                             rgbi.Caption = thirdInfo.Name;
                             rgbi.Gallery.Groups.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItemGroup[] {
             galleryItemGroup1});
@@ -96,9 +96,9 @@ namespace JCodes.Framework.AddIn.Basic
                             button.LargeGlyph = LoadIcon(thirdInfo.Icon);
                             button.Glyph = LoadIcon(thirdInfo.Icon);
 
-                            button.Name = thirdInfo.ID;
+                            button.Name = thirdInfo.Gid;
                             button.Caption = thirdInfo.Name;
-                            button.Tag = thirdInfo.WinformType;
+                            button.Tag = thirdInfo.WinformClass;
                             button.ItemClick += (sender, e) =>
                             {
                                 if (button.Tag != null && !string.IsNullOrEmpty(button.Tag.ToString()))
@@ -121,7 +121,7 @@ namespace JCodes.Framework.AddIn.Basic
                                     MessageDxUtil.ShowTips(button.Caption);
                                 }
                             };
-                            if (thirdInfo.WinformType.Contains(Const.BeginGroup))
+                            if (thirdInfo.WinformClass.Contains(Const.BeginGroup))
                             {
                                 group.ItemLinks.Add(button, true);
                             }

@@ -15,6 +15,7 @@ using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.BLL;
 using JCodes.Framework.Common.Format;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn.Contact
 {
@@ -78,10 +79,10 @@ namespace JCodes.Framework.AddIn.Contact
         /// <param name="info"></param>
         private void SetInfo(AddressInfo info)
         {
-            info.Note = txtNote.Text;
-            info.EditTime = DateTimeHelper.GetServerDateTime2();
-            info.Editor = LoginUserInfo.ID.ToString();//当前用户
-            info.CurrentLoginUserId = LoginUserInfo.ID; //记录当前登录的用户信息，供操作日志记录使用
+            info.Remark = txtNote.Text;
+            info.LastUpdateTime = DateTimeHelper.GetServerDateTime2();
+            info.EditorId = LoginUserInfo.Id;//当前用户
+            info.CurrentLoginUserId = LoginUserInfo.Id; //记录当前登录的用户信息，供操作日志记录使用
         }
 
         /// <summary>
@@ -143,26 +144,26 @@ namespace JCodes.Framework.AddIn.Contact
                         if (paramList.Length >= 3)
                         {
                             info.Name = paramList[0];
-                            info.Sex = paramList[1];
-                            info.Mobile = paramList[2];
+                            info.Sex = Convert.ToInt32( paramList[1]);
+                            info.MobilePhone = paramList[2];
 
                             info.Email = GetParamValue(paramList, 3);
-                            info.QQ = GetParamValue(paramList, 4);
-                            info.Dept = GetParamValue(paramList, 5);
+                            //info.QQ = GetParamValue(paramList, 4);
+                            info.DeptName = GetParamValue(paramList, 5);
                             info.Position = GetParamValue(paramList, 6);
 
                             SetInfo(info);
-                            info.Creator = LoginUserInfo.ID.ToString();
-                            info.CreateTime = DateTimeHelper.GetServerDateTime2();
-                            info.Dept_ID = LoginUserInfo.DeptId;
-                            info.Company_ID = LoginUserInfo.CompanyId;
+                            info.CreatorId = LoginUserInfo.Id;
+                            info.CreatorTime = DateTimeHelper.GetServerDateTime2();
+                            info.DeptId = LoginUserInfo.DeptId;
+                            info.CompanyId = LoginUserInfo.CompanyId;
                             info.AddressType = AddressType;
 
                             bool succeed = BLLFactory<Address>.Instance.Insert(info);
                             if (succeed)
                             {
                                 //可添加其他关联操作
-                                SaveAddressGroup(info.ID);
+                                SaveAddressGroup(info.Id);
                             }
                         }
 
@@ -186,7 +187,7 @@ namespace JCodes.Framework.AddIn.Contact
         /// <returns></returns>
         public override bool SaveUpdated()
         {
-            AddressInfo info = BLLFactory<Address>.Instance.FindByID(ID);
+            AddressInfo info = BLLFactory<Address>.Instance.FindByID(Id);
             if (info != null)
             {
                 SetInfo(info);
@@ -194,11 +195,11 @@ namespace JCodes.Framework.AddIn.Contact
                 try
                 {
                     #region 更新数据
-                    bool succeed = BLLFactory<Address>.Instance.Update(info, info.ID);
+                    bool succeed = BLLFactory<Address>.Instance.Update(info, info.Id);
                     if (succeed)
                     {
                         //可添加其他关联操作
-                        SaveAddressGroup(info.ID);
+                        SaveAddressGroup(info.Id);
 
                         return true;
                     }
@@ -237,7 +238,7 @@ namespace JCodes.Framework.AddIn.Contact
             List<AddressGroupNodeInfo> groupList = new List<AddressGroupNodeInfo>();
             if (AddressType == AddressType.个人)
             {
-                groupList = BLLFactory<AddressGroup>.Instance.GetTree(AddressType.ToString(), LoginUserInfo.ID.ToString());
+                groupList = BLLFactory<AddressGroup>.Instance.GetTree(AddressType.ToString(), LoginUserInfo.Id);
             }
             else
             {
@@ -249,12 +250,12 @@ namespace JCodes.Framework.AddIn.Contact
             foreach (AddressGroupNodeInfo nodeInfo in groupList)
             {
                 // // 20170901 wjm 调整key 和value的顺序
-                this.checkedListContact.Items.Add(new CListItem(nodeInfo.ID, nodeInfo.Name), false);
+                this.checkedListContact.Items.Add(new CDicKeyValue(nodeInfo.Id, nodeInfo.Name), false);
             }
             this.checkedListContact.EndUpdate();
         }
 
-        private bool SaveAddressGroup(string contactId)
+        private bool SaveAddressGroup(Int32 contactId)
         {
             List<string> selectGroupIDList = new List<string>();
             foreach (DevExpress.XtraEditors.Controls.CheckedListBoxItem item in this.checkedListContact.CheckedItems)

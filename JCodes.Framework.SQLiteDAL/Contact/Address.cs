@@ -42,30 +42,30 @@ namespace JCodes.Framework.SQLiteDAL
             AddressInfo info = new AddressInfo();
             SmartDataReader reader = new SmartDataReader(dataReader);
 
-            info.ID = reader.GetString("ID");
+            info.Id = reader.GetInt32("Id");
             info.AddressType = Convert(reader.GetString("AddressType"));
             info.Name = reader.GetString("Name");
-            info.Sex = reader.GetString("Sex");
-            info.Birthdate = reader.GetDateTime("Birthdate");
-            info.Mobile = reader.GetString("Mobile");
+            info.Sex = reader.GetInt32("Sex");
+            info.Birthday = reader.GetDateTime("Birthday");
+            info.MobilePhone = reader.GetString("MobilePhone");
             info.Email = reader.GetString("Email");
-            info.QQ = reader.GetString("QQ");
-            info.HomeTelephone = reader.GetString("HomeTelephone");
-            info.OfficeTelephone = reader.GetString("OfficeTelephone");
+            info.QQ = reader.GetInt32("QQ");
+            info.HomePhone = reader.GetString("HomePhone");
+            info.OfficePhone = reader.GetString("OfficePhone");
             info.HomeAddress = reader.GetString("HomeAddress");
             info.OfficeAddress = reader.GetString("OfficeAddress");
             info.Fax = reader.GetString("Fax");
-            info.Company = reader.GetString("Company");
-            info.Dept = reader.GetString("Dept");
-			info.Position = reader.GetString("Position");
+            info.CompanyName = reader.GetString("CompanyName");
+            info.DeptName = reader.GetString("DeptName");
+            info.Position = reader.GetString("Position");
             info.Other = reader.GetString("Other");
-            info.Note = reader.GetString("Note");
-            info.Creator = reader.GetString("Creator");
-            info.CreateTime = reader.GetDateTime("CreateTime");
-            info.Editor = reader.GetString("Editor");
-            info.EditTime = reader.GetDateTime("EditTime");
-            info.Dept_ID = reader.GetString("Dept_ID");
-            info.Company_ID = reader.GetString("Company_ID");
+            info.Remark = reader.GetString("Remark");
+            info.CreatorId = reader.GetInt32("CreatorId");
+            info.CreatorTime = reader.GetDateTime("CreateTime");
+            info.EditorId = reader.GetInt32("EditorId");
+            info.LastUpdateTime = reader.GetDateTime("LastUpdateTime");
+            info.DeptId = reader.GetInt32("DeptId");
+            info.CompanyId = reader.GetInt32("CompanyId");
             return info;
         }
 
@@ -79,30 +79,30 @@ namespace JCodes.Framework.SQLiteDAL
             AddressInfo info = obj as AddressInfo;
             Hashtable hash = new Hashtable();
 
-            hash.Add("ID", info.ID);
+            hash.Add("Id", info.Id);
             hash.Add("AddressType", info.AddressType.ToString());
             hash.Add("Name", info.Name);
             hash.Add("Sex", info.Sex);
-            hash.Add("Birthdate", info.Birthdate);
-            hash.Add("Mobile", info.Mobile);
+            hash.Add("Birthday", info.Birthday);
+            hash.Add("MobilePhone", info.MobilePhone);
             hash.Add("Email", info.Email);
             hash.Add("QQ", info.QQ);
-            hash.Add("HomeTelephone", info.HomeTelephone);
-            hash.Add("OfficeTelephone", info.OfficeTelephone);
+            hash.Add("HomePhone", info.HomePhone);
+            hash.Add("OfficePhone", info.OfficePhone);
             hash.Add("HomeAddress", info.HomeAddress);
             hash.Add("OfficeAddress", info.OfficeAddress);
             hash.Add("Fax", info.Fax);
-            hash.Add("Company", info.Company);
-            hash.Add("Dept", info.Dept);
- 			hash.Add("Position", info.Position);
+            hash.Add("CompanyId", info.CompanyId);
+            hash.Add("DeptId", info.DeptId);
+            hash.Add("Position", info.Position);
             hash.Add("Other", info.Other);
-            hash.Add("Note", info.Note);
-            hash.Add("Creator", info.Creator);
-            hash.Add("CreateTime", info.CreateTime);
-            hash.Add("Editor", info.Editor);
-            hash.Add("EditTime", info.EditTime);
-            hash.Add("Dept_ID", info.Dept_ID);
-            hash.Add("Company_ID", info.Company_ID);
+            hash.Add("Remark", info.Remark);
+            hash.Add("CreatorId", info.CreatorId);
+            hash.Add("CreatorTime", info.CreatorTime);
+            hash.Add("EditorId", info.EditorId);
+            hash.Add("LastUpdateTime", info.LastUpdateTime);
+            hash.Add("DeptId", info.DeptId);
+            hash.Add("CompanyId", info.CompanyId);
             return hash;
         }
 
@@ -131,26 +131,26 @@ namespace JCodes.Framework.SQLiteDAL
             dict.Add("AddressType", "通讯录类型[个人,公司]");
             dict.Add("Name", "姓名");
             dict.Add("Sex", "性别");
-            dict.Add("Birthdate", "出生日期");
-            dict.Add("Mobile", "手机");
+            dict.Add("Birthday", "出生日期");
+            dict.Add("MobilePhone", "手机");
             dict.Add("Email", "电子邮箱");
             dict.Add("QQ", "QQ");
-            dict.Add("HomeTelephone", "家庭电话");
-            dict.Add("OfficeTelephone", "办公电话");
+            dict.Add("HomePhone", "家庭电话");
+            dict.Add("OfficePhone", "办公电话");
             dict.Add("HomeAddress", "家庭住址");
             dict.Add("OfficeAddress", "办公地址");
             dict.Add("Fax", "传真号码");
-            dict.Add("Company", "公司单位");
-            dict.Add("Dept", "部门");
-             dict.Add("Position", "职位");
+            dict.Add("CompanyId", "公司单位");
+            dict.Add("DeptId", "部门");
+            dict.Add("Position", "职位");
             dict.Add("Other", "其他");
-            dict.Add("Note", "备注");
-            dict.Add("Creator", "创建人");
-            dict.Add("CreateTime", "创建时间");
-            dict.Add("Editor", "编辑人");
-            dict.Add("EditTime", "编辑时间");
-            dict.Add("Dept_ID", "所属部门");
-            dict.Add("Company_ID", "所属公司");   
+            dict.Add("Remark", "备注");
+            dict.Add("CreatorId", "创建人");
+            dict.Add("CreatorTime", "创建时间");
+            dict.Add("EditorId", "编辑人");
+            dict.Add("LastUpdateTime", "编辑时间");
+            dict.Add("DeptId", "所属部门");
+            dict.Add("CompanyId", "所属公司");   
             #endregion
 
             return dict;
@@ -163,7 +163,7 @@ namespace JCodes.Framework.SQLiteDAL
         /// <param name="groupName">联系人分组的名称,如果联系人分组为空，那么返回未分组联系人列表</param>
         /// <param name="pagerInfo">分页条件</param>
         /// <returns></returns>
-        public List<AddressInfo> FindByGroupName(string ownerUser, string groupName, PagerInfo pagerInfo = null)
+        public List<AddressInfo> FindByGroupName(Int32 ownerUser, string groupName, PagerInfo pagerInfo = null)
         {
             //所属用户条件,非删除状态
             string condition = string.Format(" AND t.Creator='{0}' AND t.AddressType='个人' ", ownerUser);
@@ -246,7 +246,7 @@ namespace JCodes.Framework.SQLiteDAL
         /// <param name="contactId">联系人ID</param>
         /// <param name="groupIdList">客户分组Id集合</param>
         /// <returns></returns>
-        public bool ModifyAddressGroup(string contactId, List<string> groupIdList)
+        public bool ModifyAddressGroup(Int32 contactId, List<string> groupIdList)
         {
             bool result = false;
             DbTransaction trans = base.CreateTransaction();

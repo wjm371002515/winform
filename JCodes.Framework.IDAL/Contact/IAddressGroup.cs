@@ -16,13 +16,13 @@ namespace JCodes.Framework.IDAL
         /// <summary>
         /// 根据用户，获取树形结构的分组列表
         /// </summary>
-        List<AddressGroupNodeInfo> GetTree(string addressType, string creator = null);
+        List<AddressGroupNodeInfo> GetTree(string addressType, Int32 ?creatorId = null);
 
         /// <summary>
         /// 根据联系人ID，获取客户对应的分组集合
         /// </summary>
         /// <param name="contactId">联系人ID</param>
         /// <returns></returns>
-        List<AddressGroupInfo> GetByContact(string contactId);
+        List<AddressGroupInfo> GetByContact(Int32 contactId);
     }
 }

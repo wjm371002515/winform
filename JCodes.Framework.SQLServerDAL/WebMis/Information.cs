@@ -6,6 +6,7 @@ using JCodes.Framework.Entity;
 using JCodes.Framework.IDAL;
 using JCodes.Framework.Common.Framework.BaseDAL;
 using JCodes.Framework.Common.Databases;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.SQLServerDAL
 {
@@ -40,15 +41,15 @@ namespace JCodes.Framework.SQLServerDAL
 		{
 			InformationInfo info = new InformationInfo();
 			SmartDataReader reader = new SmartDataReader(dataReader);
-			
-			info.ID = reader.GetString("ID");
+
+            info.Id = reader.GetInt32("Id");
 			info.Title = reader.GetString("Title");
 			info.Content = reader.GetString("Content");
 			info.Attachment_GUID = reader.GetString("Attachment_GUID");
             info.Category = ConvertCategory(reader.GetString("CATEGORY"));
 			info.SubType = reader.GetString("SubType");
-			info.Editor = reader.GetString("Editor");
-			info.EditTime = reader.GetDateTime("EditTime");
+            info.EditorId = reader.GetInt32("EditorId");
+            info.LastUpdateTime = reader.GetDateTime("LastUpdateTime");
 			info.IsChecked = reader.GetInt32("IsChecked");
 			info.CheckUser = reader.GetString("CheckUser");
 			info.CheckTime = reader.GetDateTime("CheckTime");
@@ -66,16 +67,16 @@ namespace JCodes.Framework.SQLServerDAL
         protected override Hashtable GetHashByEntity(InformationInfo obj)
 		{
 		    InformationInfo info = obj as InformationInfo;
-			Hashtable hash = new Hashtable(); 
-			
-			hash.Add("ID", info.ID);
+			Hashtable hash = new Hashtable();
+
+            hash.Add("Id", info.Id);
  			hash.Add("Title", info.Title);
  			hash.Add("Content", info.Content);
  			hash.Add("Attachment_GUID", info.Attachment_GUID);
             hash.Add("Category", info.Category.ToString());
  			hash.Add("SubType", info.SubType);
- 			hash.Add("Editor", info.Editor);
- 			hash.Add("EditTime", info.EditTime);
+            hash.Add("EditorId", info.EditorId);
+            hash.Add("LastUpdateTime", info.LastUpdateTime);
  			hash.Add("IsChecked", info.IsChecked);
  			hash.Add("CheckUser", info.CheckUser);
  			hash.Add("CheckTime", info.CheckTime);

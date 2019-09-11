@@ -83,6 +83,15 @@
             this.xtraTabPage4 = new DevExpress.XtraTab.XtraTabPage();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridTime = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemCheckedComboBoxEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit();
+            this.gridDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
+            this.gridDateTime = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.repositoryItemTimeEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.lblprogressBar = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
@@ -122,6 +131,11 @@
             this.xtraTabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckedComboBoxEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTimeEdit1)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraTabControl1
@@ -140,12 +154,14 @@
             // 
             // xtraTabPage1
             // 
+            this.xtraTabPage1.Controls.Add(this.progressBar);
             this.xtraTabPage1.Controls.Add(this.meInfo);
             this.xtraTabPage1.Controls.Add(this.te);
             this.xtraTabPage1.Controls.Add(this.txtPwd);
             this.xtraTabPage1.Controls.Add(this.de);
             this.xtraTabPage1.Controls.Add(this.ck);
             this.xtraTabPage1.Controls.Add(this.lbltxtPwd);
+            this.xtraTabPage1.Controls.Add(this.lblprogressBar);
             this.xtraTabPage1.Controls.Add(this.lblInfo);
             this.xtraTabPage1.Controls.Add(this.lblteinfo);
             this.xtraTabPage1.Controls.Add(this.txtFloat);
@@ -693,6 +709,11 @@
             this.gridControl1.Location = new System.Drawing.Point(0, 0);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
+            this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemComboBox1,
+            this.repositoryItemDateEdit1,
+            this.repositoryItemTimeEdit1,
+            this.repositoryItemCheckedComboBoxEdit1});
             this.gridControl1.Size = new System.Drawing.Size(1044, 586);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -700,8 +721,102 @@
             // 
             // gridView1
             // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridTime,
+            this.gridDate,
+            this.gridDateTime});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            // 
+            // gridTime
+            // 
+            this.gridTime.Caption = "gridTime";
+            this.gridTime.ColumnEdit = this.repositoryItemCheckedComboBoxEdit1;
+            this.gridTime.DisplayFormat.FormatString = "{HHmmss}";
+            this.gridTime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.gridTime.Name = "gridTime";
+            this.gridTime.Visible = true;
+            this.gridTime.VisibleIndex = 0;
+            // 
+            // repositoryItemCheckedComboBoxEdit1
+            // 
+            this.repositoryItemCheckedComboBoxEdit1.AutoHeight = false;
+            this.repositoryItemCheckedComboBoxEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemCheckedComboBoxEdit1.Name = "repositoryItemCheckedComboBoxEdit1";
+            // 
+            // gridDate
+            // 
+            this.gridDate.Caption = "gridDate";
+            this.gridDate.ColumnEdit = this.repositoryItemDateEdit1;
+            this.gridDate.DisplayFormat.FormatString = "yyyyMMdd";
+            this.gridDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.gridDate.Name = "gridDate";
+            this.gridDate.Visible = true;
+            this.gridDate.VisibleIndex = 1;
+            // 
+            // repositoryItemDateEdit1
+            // 
+            this.repositoryItemDateEdit1.AutoHeight = false;
+            this.repositoryItemDateEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemDateEdit1.DisplayFormat.FormatString = "yyyyMMdd";
+            this.repositoryItemDateEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.repositoryItemDateEdit1.EditFormat.FormatString = "yyyyMMdd";
+            this.repositoryItemDateEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.repositoryItemDateEdit1.Mask.EditMask = "yyyyMMdd";
+            this.repositoryItemDateEdit1.Name = "repositoryItemDateEdit1";
+            // 
+            // gridDateTime
+            // 
+            this.gridDateTime.Caption = "gridDateTime";
+            this.gridDateTime.ColumnEdit = this.repositoryItemDateEdit1;
+            this.gridDateTime.DisplayFormat.FormatString = "{yyyy-MM-dd HH:mm:ss}";
+            this.gridDateTime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.gridDateTime.Name = "gridDateTime";
+            this.gridDateTime.Visible = true;
+            this.gridDateTime.VisibleIndex = 2;
+            // 
+            // repositoryItemComboBox1
+            // 
+            this.repositoryItemComboBox1.AutoHeight = false;
+            this.repositoryItemComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemComboBox1.Items.AddRange(new object[] {
+            "0-测试1",
+            "1-测试2",
+            "2-测试3"});
+            this.repositoryItemComboBox1.Name = "repositoryItemComboBox1";
+            // 
+            // repositoryItemTimeEdit1
+            // 
+            this.repositoryItemTimeEdit1.AutoHeight = false;
+            this.repositoryItemTimeEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemTimeEdit1.DisplayFormat.FormatString = "HHmmss";
+            this.repositoryItemTimeEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.repositoryItemTimeEdit1.EditFormat.FormatString = "HHmmss";
+            this.repositoryItemTimeEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.repositoryItemTimeEdit1.Name = "repositoryItemTimeEdit1";
+            // 
+            // progressBar
+            // 
+            this.progressBar.Location = new System.Drawing.Point(130, 438);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(265, 26);
+            this.progressBar.TabIndex = 82;
+            // 
+            // lblprogressBar
+            // 
+            this.lblprogressBar.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.lblprogressBar.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.lblprogressBar.Location = new System.Drawing.Point(4, 438);
+            this.lblprogressBar.Name = "lblprogressBar";
+            this.lblprogressBar.Size = new System.Drawing.Size(120, 22);
+            this.lblprogressBar.TabIndex = 65;
+            this.lblprogressBar.Text = "进度条:";
             // 
             // FrmControls
             // 
@@ -751,6 +866,11 @@
             this.xtraTabPage4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckedComboBoxEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTimeEdit1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -811,5 +931,14 @@
         private DevExpress.XtraTab.XtraTabPage xtraTabPage4;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridTime;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEdit1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridDate;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit repositoryItemTimeEdit1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridDateTime;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit repositoryItemCheckedComboBoxEdit1;
+        private System.Windows.Forms.ProgressBar progressBar;
+        private DevExpress.XtraEditors.LabelControl lblprogressBar;
     }
 }

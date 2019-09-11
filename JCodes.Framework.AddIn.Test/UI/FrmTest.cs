@@ -1,13 +1,5 @@
-﻿using DevExpress.Office.Utils;
-using JCodes.Framework.Common.Proj;
-using JCodes.Framework.Entity;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace JCodes.Framework.AddIn.Test
@@ -23,36 +15,38 @@ namespace JCodes.Framework.AddIn.Test
 
         private void Init_Data()
         {
-        }
-
-        private void 测试1ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //SqlOperate.printHeaderInfo();
-
-            MessageBox.Show("hello world");
+            List<TestGridViewEntity> lst = new List<TestGridViewEntity>();
+            lst.Add(new TestGridViewEntity(){ Column1 ="1", Column2 = "Jimmy", Column3=120033, Column4=20180101, Column5 = DateTime.Now });
+            gridControl1.DataSource = lst;
         }
     }
 
     public class TestGridViewEntity
     {
-        public string gridColumn1
+        public string Column1
         {
             get;
             set;
         }
-        public string gridColumn2
-        {
-            get;
-            set;
-        }
-
-        public string gridColumn3
+        public string Column2
         {
             get;
             set;
         }
 
-        public string gridColumn4
+        public Int32 Column3
+        {
+            get;
+            set;
+        }
+
+        public Int32 Column4
+        {
+            get;
+            set;
+        }
+
+        public DateTime Column5
         {
             get;
             set;

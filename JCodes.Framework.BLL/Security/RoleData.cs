@@ -89,7 +89,7 @@ namespace JCodes.Framework.BLL
             List<int> roleList = new List<int>();
             foreach (RoleInfo info in rolesByUser)
             {
-                roleList.Add(info.ID);
+                roleList.Add(info.Id);
             }
 
             //获取用户信息

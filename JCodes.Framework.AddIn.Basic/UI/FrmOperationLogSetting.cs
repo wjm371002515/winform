@@ -153,8 +153,8 @@ namespace JCodes.Framework.AddIn.Basic
             int[] rowSelected = this.winGridViewPager1.GridView1.GetSelectedRows();
             foreach (int iRow in rowSelected)
             {
-                string ID = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "ID");
-                BLLFactory<OperationLogSetting>.Instance.DeleteByUser(ID, LoginUserInfo.ID);
+                string ID = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "Id");
+                BLLFactory<OperationLogSetting>.Instance.DeleteByUser(ID, LoginUserInfo.Id);
             }
              
             BindData();
@@ -171,19 +171,19 @@ namespace JCodes.Framework.AddIn.Basic
                 return;
             }
 
-            string ID = this.winGridViewPager1.gridView1.GetFocusedRowCellDisplayText("ID");
-            List<string> IDList = new List<string>();
+            Int32 Id = this.winGridViewPager1.gridView1.GetFocusedRowCellDisplayText("ID").ToInt32();
+            List<Int32> IdList = new List<Int32>();
             for (int i = 0; i < this.winGridViewPager1.gridView1.RowCount; i++)
             {
-                string strTemp = this.winGridViewPager1.GridView1.GetRowCellDisplayText(i, "ID");
-                IDList.Add(strTemp);
+                Int32 intTemp = this.winGridViewPager1.GridView1.GetRowCellDisplayText(i, "ID").ToInt32();
+                IdList.Add(intTemp);
             }
 
-            if (!string.IsNullOrEmpty(ID))
+            if (Id > 0)
             {
                 FrmEditOperationLogSetting dlg = new FrmEditOperationLogSetting();
-                dlg.ID = ID;
-                dlg.IDList = IDList;
+                dlg.Id = Id;
+                dlg.IdList = IdList;
                 dlg.OnDataSaved += new EventHandler(dlg_OnDataSaved);
                 
                 if (DialogResult.OK == dlg.ShowDialog())

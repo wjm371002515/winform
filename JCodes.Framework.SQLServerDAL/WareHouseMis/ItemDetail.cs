@@ -123,7 +123,7 @@ namespace JCodes.Framework.SQLServerDAL
             dict.Add("Note", "备注");
             dict.Add("Quantity", "数量");
             dict.Add("Amount", "金额");
-            dict.Add("HandNo", "货单号");
+            dict.Add("UserCode", "货单号");
 
             #endregion
             return dict;

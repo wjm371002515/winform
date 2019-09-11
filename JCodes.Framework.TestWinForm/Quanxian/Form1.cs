@@ -91,7 +91,7 @@ namespace TestSecurityMix_WCF_WIN
                     if (info != null)
                     {
                         //获取该登陆用户的权限集合
-                        List<FunctionInfo> list = BLLFactory<Functions>.Instance.GetFunctionsByUser(info.ID, systemType);
+                        List<FunctionInfo> list = BLLFactory<Functions>.Instance.GetFunctionsByUser(info.Id, systemType);
                         if (list != null && list.Count > 0)
                         {
                             foreach (FunctionInfo functionInfo in list)

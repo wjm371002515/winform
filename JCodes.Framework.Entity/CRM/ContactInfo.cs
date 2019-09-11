@@ -11,7 +11,7 @@ namespace JCodes.Framework.Entity
     {    
         #region Field Members
 
-        private string m_ID = System.Guid.NewGuid().ToString(); //          
+        private Int32 m_Id;         
         private string m_HandNo; //编号          
         private string m_Name; //姓名          
         private string m_IDCarNo; //身份证号码          
@@ -59,27 +59,27 @@ namespace JCodes.Framework.Entity
         private string m_Weight; //体重          
         private string m_Vision; //视力          
         private string m_Introduce; //个人简述          
-        private string m_Creator; //创建人          
-        private DateTime m_CreateTime; //创建时间          
-        private string m_Editor; //编辑人          
+        private Int32 m_CreatorId; //创建人          
+        private DateTime m_CreatorTime; //创建时间          
+        private Int32 m_EditorId; //编辑人          
         private DateTime m_EditTime; //编辑时间          
         private bool m_Deleted = false; //是否已删除          
-        private string m_Dept_ID; //所属部门
-        private string m_Company_ID; //所属公司
+        private Int32 m_DeptId; //所属部门
+        private Int32 m_CompanyId; //所属公司
         #endregion
 
         #region Property Members
         
 		[DataMember]
-        public virtual string ID
+        public virtual Int32 Id
         {
             get
             {
-                return this.m_ID;
+                return this.m_Id;
             }
             set
             {
-                this.m_ID = value;
+                this.m_Id = value;
             }
         }
 
@@ -87,7 +87,7 @@ namespace JCodes.Framework.Entity
         /// 编号
         /// </summary>
 		[DataMember]
-        public virtual string HandNo
+        public virtual string UserCode
         {
             get
             {
@@ -839,15 +839,15 @@ namespace JCodes.Framework.Entity
         /// 创建人
         /// </summary>
 		[DataMember]
-        public virtual string Creator
+        public virtual Int32 CreatorId
         {
             get
             {
-                return this.m_Creator;
+                return this.m_CreatorId;
             }
             set
             {
-                this.m_Creator = value;
+                this.m_CreatorId = value;
             }
         }
 
@@ -855,15 +855,15 @@ namespace JCodes.Framework.Entity
         /// 创建时间
         /// </summary>
 		[DataMember]
-        public virtual DateTime CreateTime
+        public virtual DateTime CreatorTime
         {
             get
             {
-                return this.m_CreateTime;
+                return this.m_CreatorTime;
             }
             set
             {
-                this.m_CreateTime = value;
+                this.m_CreatorTime = value;
             }
         }
 
@@ -871,15 +871,15 @@ namespace JCodes.Framework.Entity
         /// 编辑人
         /// </summary>
 		[DataMember]
-        public virtual string Editor
+        public virtual Int32 EditorId
         {
             get
             {
-                return this.m_Editor;
+                return this.m_EditorId;
             }
             set
             {
-                this.m_Editor = value;
+                this.m_EditorId = value;
             }
         }
 
@@ -919,15 +919,15 @@ namespace JCodes.Framework.Entity
         /// 所属部门
         /// </summary>
         [DataMember]
-        public virtual string Dept_ID
+        public virtual Int32 DeptId
         {
             get
             {
-                return this.m_Dept_ID;
+                return this.m_DeptId;
             }
             set
             {
-                this.m_Dept_ID = value;
+                this.m_DeptId = value;
             }
         }
 
@@ -935,15 +935,15 @@ namespace JCodes.Framework.Entity
         /// 所属公司
         /// </summary>
         [DataMember]
-        public virtual string Company_ID
+        public virtual Int32 CompanyId
         {
             get
             {
-                return this.m_Company_ID;
+                return this.m_CompanyId;
             }
             set
             {
-                this.m_Company_ID = value;
+                this.m_CompanyId = value;
             }
         }
 

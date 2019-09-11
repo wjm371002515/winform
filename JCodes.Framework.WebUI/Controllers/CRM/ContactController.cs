@@ -96,8 +96,8 @@ namespace JCodes.Framework.WebUI.Controllers
                     DateTime dtDefault = Convert.ToDateTime("1900-01-01");
                     DateTime dt;
                     ContactInfo info = new ContactInfo();
-                    info.ID = customerInfo.ID;//客户ID
-                    info.HandNo = dr["编号"].ToString();
+                    info.Id = customerInfo.Id;//客户ID
+                    info.UserCode = dr["编号"].ToString();
                     info.Name = dr["姓名"].ToString();
                     info.IDCarNo = dr["身份证号码"].ToString();
                     converted = DateTime.TryParse(dr["出生日期"].ToString(), out dt);
@@ -148,13 +148,13 @@ namespace JCodes.Framework.WebUI.Controllers
                     info.Vision = dr["视力"].ToString();
                     info.Introduce = dr["个人简述"].ToString();
 
-                    info.Creator = CurrentUser.ID.ToString();
-                    info.CreateTime = DateTime.Now;
-                    info.Editor = CurrentUser.ID.ToString();
+                    info.CreatorId = CurrentUser.Id;
+                    info.CreatorTime = DateTime.Now;
+                    info.EditorId = CurrentUser.Id;
                     info.EditTime = DateTime.Now;
 
                     //增加一个特殊字段的转义
-                    info.Data1 = BLLFactory<Customer>.Instance.GetCustomerName(info.ID);
+                    info.Data1 = BLLFactory<Customer>.Instance.GetCustomerNameById(info.Id);
 
                     list.Add(info);
                 }
@@ -198,13 +198,13 @@ namespace JCodes.Framework.WebUI.Controllers
                         foreach (ContactInfo detail in list)
                         {
                             //detail.Seq = seq++;//增加1
-                            detail.CreateTime = DateTime.Now;
-                            detail.Creator = CurrentUser.ID.ToString();
-                            detail.Editor = CurrentUser.ID.ToString();
+                            detail.CreatorTime = DateTime.Now;
+                            detail.CreatorId = CurrentUser.Id;
+                            detail.EditorId = CurrentUser.Id;
                             detail.EditTime = DateTime.Now;
 
-                            detail.Company_ID = CurrentUser.Company_ID;
-                            detail.Dept_ID = CurrentUser.Dept_ID;
+                            detail.CompanyId = CurrentUser.CompanyId;
+                            detail.DeptId = CurrentUser.DeptId;
 
                             BLLFactory<Contact>.Instance.Insert(detail, trans);
                         }
@@ -280,8 +280,8 @@ namespace JCodes.Framework.WebUI.Controllers
             {
                 dr = datatable.NewRow();
                 dr["序号"] = j++;
-                dr["客户名称"] = BLLFactory<Customer>.Instance.GetCustomerName(list[i].ID);//转义为客户名称
-                dr["编号"] = list[i].HandNo;
+                dr["客户名称"] = BLLFactory<Customer>.Instance.GetCustomerNameById(list[i].Id);//转义为客户名称
+                dr["编号"] = list[i].UserCode;
                 dr["姓名"] = list[i].Name;
                 dr["身份证号码"] = list[i].IDCarNo;
                 dr["出生日期"] = list[i].Birthday;
@@ -351,16 +351,16 @@ namespace JCodes.Framework.WebUI.Controllers
         protected override void OnBeforeInsert(ContactInfo info)
         {
             //留给子类对参数对象进行修改
-            info.CreateTime = DateTime.Now;
-            info.Creator = CurrentUser.ID.ToString();
-            info.Company_ID = CurrentUser.Company_ID;
-            info.Dept_ID = CurrentUser.Dept_ID;
+            info.CreatorTime = DateTime.Now;
+            info.CreatorId = CurrentUser.Id;
+            info.CompanyId = CurrentUser.CompanyId;
+            info.DeptId = CurrentUser.DeptId;
         }
 
         protected override void OnBeforeUpdate(ContactInfo info)
         {
             //留给子类对参数对象进行修改
-            info.Editor = CurrentUser.ID.ToString();
+            info.EditorId = CurrentUser.Id;
             info.EditTime = DateTime.Now;
         }
         #endregion
@@ -411,7 +411,7 @@ namespace JCodes.Framework.WebUI.Controllers
             foreach (ContactInfo info in list)
             {
                 //增加一个特殊字段的转义
-                info.Data1 = BLLFactory<Customer>.Instance.GetCustomerName(info.ID);
+                info.Data1 = BLLFactory<Customer>.Instance.GetCustomerNameById(info.Id);
             }
 
             //Json格式的要求{total:22,rows:{}}

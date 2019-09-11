@@ -99,10 +99,10 @@ namespace JCodes.Framework.AddIn.WareHouseManage
         {
             InitDictItem();//数据字典加载（公用）
 
-            if (!string.IsNullOrEmpty(ID))
+            if (Id > 0)
             {
                 #region 显示客户信息
-                ItemDetailInfo info = BLLFactory<ItemDetail>.Instance.FindByID(ID);
+                ItemDetailInfo info = BLLFactory<ItemDetail>.Instance.FindByID(Id);
                 if (info != null)
                 {
                     this.txtItemNo.Properties.ReadOnly = true;
@@ -209,14 +209,14 @@ namespace JCodes.Framework.AddIn.WareHouseManage
         /// <returns></returns>
         public override bool SaveUpdated()
         {
-            bool exist = BLLFactory<ItemDetail>.Instance.CheckExist(this.txtItemNo.Text, ID);
+            bool exist = BLLFactory<ItemDetail>.Instance.CheckExist(this.txtItemNo.Text, Id);
             if (exist)
             {
                 MessageDxUtil.ShowTips("指定的备件编号已经存在，不能重复添加，请修改");
                 return false;
             }
 
-            ItemDetailInfo info = BLLFactory<ItemDetail>.Instance.FindByID(ID);
+            ItemDetailInfo info = BLLFactory<ItemDetail>.Instance.FindByID(Id);
             if (info != null)
             {
                 if (txtBelongWareHouse.Text != txtBelongWareHouse.Tag.ToString())

@@ -8,6 +8,7 @@ using JCodes.Framework.Common.Framework.BaseDAL;
 using JCodes.Framework.Entity;
 using JCodes.Framework.IDAL;
 using JCodes.Framework.Common.Databases;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.SQLServerDAL
 {
@@ -44,18 +45,18 @@ namespace JCodes.Framework.SQLServerDAL
 			AddressGroupInfo info = new AddressGroupInfo();
 			SmartDataReader reader = new SmartDataReader(dataReader);
 			
-			info.ID = reader.GetString("ID");
-			info.PID = reader.GetString("PID");
+			info.Id = reader.GetInt32("Id");
+            info.Pid = reader.GetInt32("Pid");
             info.AddressType = Convert(reader.GetString("AddressType"));
 			info.Name = reader.GetString("Name");
-			info.Note = reader.GetString("Note");
+            info.Remark = reader.GetString("Remark");
 			info.Seq = reader.GetString("Seq");
-			info.Creator = reader.GetString("Creator");
-			info.CreateTime = reader.GetDateTime("CreateTime");
-			info.Editor = reader.GetString("Editor");
-			info.EditTime = reader.GetDateTime("EditTime");
-            info.Dept_ID = reader.GetString("Dept_ID");
-            info.Company_ID = reader.GetString("Company_ID");			
+            info.CreatorId = reader.GetInt32("CreatorId");
+            info.CreatorTime = reader.GetDateTime("CreatorTime");
+            info.EditorId = reader.GetInt32("EditorId");
+            info.LastUpdateTime = reader.GetDateTime("LastUpdateTime");
+            info.DeptId = reader.GetInt32("DeptId");
+            info.CompanyId = reader.GetInt32("CompanyId");			
 			return info;
 		}
 
@@ -67,20 +68,20 @@ namespace JCodes.Framework.SQLServerDAL
         protected override Hashtable GetHashByEntity(AddressGroupInfo obj)
 		{
 		    AddressGroupInfo info = obj as AddressGroupInfo;
-			Hashtable hash = new Hashtable(); 
-			
-			hash.Add("ID", info.ID);
- 			hash.Add("PID", info.PID);
+			Hashtable hash = new Hashtable();
+
+            hash.Add("Id", info.Id);
+            hash.Add("Pid", info.Pid);
             hash.Add("AddressType", info.AddressType.ToString());
  			hash.Add("Name", info.Name);
- 			hash.Add("Note", info.Note);
+            hash.Add("Remark", info.Remark);
  			hash.Add("Seq", info.Seq);
- 			hash.Add("Creator", info.Creator);
- 			hash.Add("CreateTime", info.CreateTime);
- 			hash.Add("Editor", info.Editor);
- 			hash.Add("EditTime", info.EditTime);
-            hash.Add("Dept_ID", info.Dept_ID);
-            hash.Add("Company_ID", info.Company_ID); 				
+            hash.Add("CreatorId", info.CreatorId);
+            hash.Add("CreatorTime", info.CreatorTime);
+            hash.Add("EditorId", info.EditorId);
+            hash.Add("LastUpdateTime", info.LastUpdateTime);
+            hash.Add("DeptId", info.DeptId);
+            hash.Add("CompanyId", info.CompanyId); 				
 			return hash;
 		}
 
@@ -105,18 +106,18 @@ namespace JCodes.Framework.SQLServerDAL
         {
             Dictionary<string, string> dict = new Dictionary<string, string>();
             #region 添加别名解析
-            dict.Add("ID", "编号");
-            dict.Add("PID", "父ID");
+            dict.Add("Id", "编号");
+            dict.Add("Pid", "父ID");
             dict.Add("AddressType", "通讯录类型[个人,公司]");
             dict.Add("Name", "分组名称");
-            dict.Add("Note", "备注");
+            dict.Add("Remark", "备注");
             dict.Add("Seq", "排序序号");
-            dict.Add("Creator", "创建人");
-            dict.Add("CreateTime", "创建时间");
-            dict.Add("Editor", "编辑人");
-            dict.Add("EditTime", "编辑时间");
-            dict.Add("Dept_ID", "所属部门");
-            dict.Add("Company_ID", "所属公司");
+            dict.Add("CreatorId", "创建人");
+            dict.Add("CreatorTime", "创建时间");
+            dict.Add("EditorId", "编辑人");
+            dict.Add("LastUpdateTime", "编辑时间");
+            dict.Add("DeptId", "所属部门");
+            dict.Add("CompanyId", "所属公司");
 
             #endregion
 
@@ -126,9 +127,9 @@ namespace JCodes.Framework.SQLServerDAL
         /// <summary>
         /// 根据用户，获取树形结构的分组列表
         /// </summary>
-        public List<AddressGroupNodeInfo> GetTree(string addressType, string creator = null)
+        public List<AddressGroupNodeInfo> GetTree(string addressType, Int32 ?creatorId = null)
         {
-            string condition = !string.IsNullOrEmpty(creator) ? string.Format("AND Creator='{0}'", creator) : "";
+            string condition = creatorId > 0 ? string.Format("AND Creator='{0}'", creatorId) : "";
             List<AddressGroupNodeInfo> nodeList = new List<AddressGroupNodeInfo>();
             string sql = string.Format("Select * From {0} Where AddressType ='{1}' {2} Order By PID, SEQ ", tableName, addressType, condition);
 
@@ -164,7 +165,7 @@ namespace JCodes.Framework.SQLServerDAL
         /// </summary>
         /// <param name="contactId">联系人ID</param>
         /// <returns></returns>
-        public List<AddressGroupInfo> GetByContact(string contactId)
+        public List<AddressGroupInfo> GetByContact(Int32 contactId)
         {
             string sql = string.Format(@"Select t.* From {1} t inner join {0}AddressGroup_Address m 
             ON t.ID = m.Group_ID Where m.Address_ID = '{2}' ", SQLServerPortal.gc._contactTablePre, tableName, contactId);

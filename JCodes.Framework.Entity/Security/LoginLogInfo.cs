@@ -13,32 +13,32 @@ namespace JCodes.Framework.Entity
     {    
         #region Field Members
 
-        private int m_ID = 0; //          
-        private string m_User_ID; //登录用户ID          
+        private int m_Id = 0; //          
+        private Int32 m_UserId; //登录用户ID          
         private string m_LoginName; //登录名          
         private string m_FullName; //真实名称          
-        private string m_Company_ID; //所属公司ID          
+        private Int32 m_CompanyId; //所属公司ID          
         private string m_CompanyName; //所属公司名称          
-        private string m_Note; //日志描述          
-        private string m_IPAddress; //IP地址          
-        private string m_MacAddress; //Mac地址          
-        private DateTime m_LastUpdated; //更新时间          
-        private string m_SystemType_ID; //系统编号          
+        private string m_Remark; //日志描述          
+        private string m_IP; //IP地址          
+        private string m_Mac; //Mac地址          
+        private DateTime m_LastUpdateTime; //更新时间          
+        private string m_SystemtypeId; //系统编号          
 
         #endregion
 
         #region Property Members
         
 		[DataMember]
-        public virtual int ID
+        public virtual int Id
         {
             get
             {
-                return this.m_ID;
+                return this.m_Id;
             }
             set
             {
-                this.m_ID = value;
+                this.m_Id = value;
             }
         }
 
@@ -46,15 +46,15 @@ namespace JCodes.Framework.Entity
         /// 登录用户ID
         /// </summary>
 		[DataMember]
-        public virtual string User_ID
+        public virtual Int32 UserId
         {
             get
             {
-                return this.m_User_ID;
+                return this.m_UserId;
             }
             set
             {
-                this.m_User_ID = value;
+                this.m_UserId = value;
             }
         }
 
@@ -94,15 +94,15 @@ namespace JCodes.Framework.Entity
         /// 所属公司ID
         /// </summary>
 		[DataMember]
-        public virtual string Company_ID
+        public virtual Int32 CompanyId
         {
             get
             {
-                return this.m_Company_ID;
+                return this.m_CompanyId;
             }
             set
             {
-                this.m_Company_ID = value;
+                this.m_CompanyId = value;
             }
         }
 
@@ -126,15 +126,15 @@ namespace JCodes.Framework.Entity
         /// 日志描述
         /// </summary>
 		[DataMember]
-        public virtual string Note
+        public virtual string Remark
         {
             get
             {
-                return this.m_Note;
+                return this.m_Remark;
             }
             set
             {
-                this.m_Note = value;
+                this.m_Remark = value;
             }
         }
 
@@ -142,15 +142,15 @@ namespace JCodes.Framework.Entity
         /// IP地址
         /// </summary>
 		[DataMember]
-        public virtual string IPAddress
+        public virtual string IP
         {
             get
             {
-                return this.m_IPAddress;
+                return this.m_IP;
             }
             set
             {
-                this.m_IPAddress = value;
+                this.m_IP = value;
             }
         }
 
@@ -158,15 +158,15 @@ namespace JCodes.Framework.Entity
         /// Mac地址
         /// </summary>
 		[DataMember]
-        public virtual string MacAddress
+        public virtual string Mac
         {
             get
             {
-                return this.m_MacAddress;
+                return this.m_Mac;
             }
             set
             {
-                this.m_MacAddress = value;
+                this.m_Mac = value;
             }
         }
 
@@ -174,15 +174,15 @@ namespace JCodes.Framework.Entity
         /// 更新时间
         /// </summary>
 		[DataMember]
-        public virtual DateTime LastUpdated
+        public virtual DateTime LastUpdateTime
         {
             get
             {
-                return this.m_LastUpdated;
+                return this.m_LastUpdateTime;
             }
             set
             {
-                this.m_LastUpdated = value;
+                this.m_LastUpdateTime = value;
             }
         }
 
@@ -190,15 +190,15 @@ namespace JCodes.Framework.Entity
         /// 系统编号
         /// </summary>
         [DataMember]
-        public virtual string SystemType_ID
+        public virtual string SystemtypeId
         {
             get
             {
-                return this.m_SystemType_ID;
+                return this.m_SystemtypeId;
             }
             set
             {
-                this.m_SystemType_ID = value;
+                this.m_SystemtypeId = value;
             }
         }
 

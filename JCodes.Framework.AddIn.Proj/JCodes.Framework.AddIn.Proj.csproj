@@ -25,7 +25,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\jCodes\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -65,6 +65,36 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\FrmBasicEntity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmBasicEntity.Designer.cs">
+      <DependentUpon>FrmBasicEntity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmEditItemEntity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmEditItemEntity.Designer.cs">
+      <DependentUpon>FrmEditItemEntity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmGeneralSql.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmGeneralSql.designer.cs">
+      <DependentUpon>FrmGeneralSql.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmEditBasicDataItemName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmEditBasicDataItemName.Designer.cs">
+      <DependentUpon>FrmEditBasicDataItemName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmEditBasicDataGroupName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmEditBasicDataGroupName.Designer.cs">
+      <DependentUpon>FrmEditBasicDataGroupName.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\FrmSysFunction.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +118,18 @@
     </Compile>
     <Compile Include="UI\FrmEditGroupName.Designer.cs">
       <DependentUpon>FrmEditGroupName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmBaseDataManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmBaseDataManage.designer.cs">
+      <DependentUpon>FrmBaseDataManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmClassEntity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmClassEntity.designer.cs">
+      <DependentUpon>FrmClassEntity.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\FrmTables.cs">
       <SubType>Form</SubType>
@@ -158,6 +200,21 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="UI\FrmBasicEntity.resx">
+      <DependentUpon>FrmBasicEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmEditItemEntity.resx">
+      <DependentUpon>FrmEditItemEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmGeneralSql.resx">
+      <DependentUpon>FrmGeneralSql.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmEditBasicDataItemName.resx">
+      <DependentUpon>FrmEditBasicDataItemName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmEditBasicDataGroupName.resx">
+      <DependentUpon>FrmEditBasicDataGroupName.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\FrmSysFunction.resx">
       <DependentUpon>FrmSysFunction.cs</DependentUpon>
     </EmbeddedResource>
@@ -169,6 +226,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\FrmEditGroupName.resx">
       <DependentUpon>FrmEditGroupName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmBaseDataManage.resx">
+      <DependentUpon>FrmBaseDataManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmClassEntity.resx">
+      <DependentUpon>FrmClassEntity.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\FrmTables.resx">
       <DependentUpon>FrmTables.cs</DependentUpon>
@@ -260,7 +323,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>echo "编译后处理的事情 JCodes.Framework.AddIn.Proj"</PostBuildEvent>
+    <PostBuildEvent>xcopy ..\jCodes\$(TargetFileName) ..\JCodes.Framework.WebUI\bin\ /y
+xcopy ..\jCodes\$(TargetFileName) ..\JCodes.Framework.WebDemo\bin\ /y
+echo "编译后处理的事情 JCodes.Framework.AddIn.Proj"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -59,7 +59,7 @@ namespace JCodes.Framework.Entity
         }
 
         /// <summary>
-        /// 返回显示的内容
+        /// 显示内容
         /// </summary>
         /// <returns></returns>
         public override string ToString()

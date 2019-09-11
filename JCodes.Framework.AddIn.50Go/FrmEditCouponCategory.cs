@@ -30,16 +30,16 @@ namespace JCodes.Framework.AddIn._50Go
         /// </summary>
         public override void DisplayData()
         {
-            if (!string.IsNullOrEmpty(ID))
+            if (Id > 0)
             {
                 #region 显示客户信息
-                CouponCategoryInfo info = BLLFactory<CouponCategory>.Instance.FindByID(ID);
+                CouponCategoryInfo info = BLLFactory<CouponCategory>.Instance.FindByID(Id);
                 if (info != null)
                 {
-                    txtHandNo.Text = info.HandNo;
+                    txtHandNo.Text = info.GeneralCode;
                     txtName.Text = info.Name;
-                    txtCompany.Value = info.BelongCompanys;
-                    txtEnabled.SelectedIndex = info.Enabled;
+                    txtCompany.Value = info.CompanyLst;
+                    txtEnabled.SelectedIndex = info.IsForbid;
                 }
                 #endregion            
             }
@@ -51,7 +51,7 @@ namespace JCodes.Framework.AddIn._50Go
         /// <returns></returns>
         public override bool SaveUpdated()
         {
-            CouponCategoryInfo info = BLLFactory<CouponCategory>.Instance.FindByID(ID);
+            CouponCategoryInfo info = BLLFactory<CouponCategory>.Instance.FindByID(Id);
             if (info != null)
             {
                 SetInfo(info);
@@ -59,7 +59,7 @@ namespace JCodes.Framework.AddIn._50Go
                 try
                 {
                     #region 更新数据
-                    bool succeed = BLLFactory<CouponCategory>.Instance.Update(info, ID);
+                    bool succeed = BLLFactory<CouponCategory>.Instance.Update(info, Id);
                     if (succeed)
                     {
                         //可添加其他关联操作
@@ -84,7 +84,7 @@ namespace JCodes.Framework.AddIn._50Go
         public override bool SaveAddNew()
         {
             //检查不同ID是否还有其他相同关键字的记录
-            string condition = string.Format("HandNo ='{0}' ", txtHandNo.Text.Trim());
+            string condition = string.Format("UserCode ='{0}' ", txtHandNo.Text.Trim());
             bool exist = BLLFactory<CouponCategory>.Instance.IsExistRecord(condition);
             if (exist)
             {
@@ -120,22 +120,19 @@ namespace JCodes.Framework.AddIn._50Go
         private void SetInfo(CouponCategoryInfo Info)
         {
             // 如果没有ID值则为新增
-            if (string.IsNullOrEmpty(Info.ID))
+            if (Info.Id > 0)
             {
-                Info.ID = Guid.NewGuid().ToString();
-                Info.Creator = Portal.gc.UserInfo.FullName;
-                Info.Creator_ID = Portal.gc.UserInfo.ID.ToString();
-                Info.CreateTime = DateTimeHelper.GetServerDateTime2();
+                Info.CreatorId = Portal.gc.UserInfo.Id;
+                Info.CreatorTime = DateTimeHelper.GetServerDateTime2();
             }
-            Info.HandNo = txtHandNo.Text.Trim();
+            Info.GeneralCode = txtHandNo.Text.Trim();
             Info.Name = txtName.Text.Trim();
-            Info.BelongCompanys = txtCompany.Value;
-            Info.Enabled = txtEnabled.SelectedIndex;
-            if (!string.IsNullOrEmpty(Info.ID))
+            Info.CompanyLst = txtCompany.Value;
+            Info.IsForbid = (short)txtEnabled.SelectedIndex;
+            if (Info.Id > 0)
             {
-                Info.Editor = Portal.gc.UserInfo.FullName;
-                Info.Editor_ID = Portal.gc.UserInfo.ID.ToString();
-                Info.EditTime = DateTimeHelper.GetServerDateTime2();
+                Info.EditorId = Portal.gc.UserInfo.Id;
+                Info.LastUpdateTime = DateTimeHelper.GetServerDateTime2();
             }
         }
 

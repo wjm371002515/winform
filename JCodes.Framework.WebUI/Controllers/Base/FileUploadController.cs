@@ -212,14 +212,13 @@ namespace JCodes.Framework.WebUI.Controllers
                             {
                                 info.FileSize = info.FileData.Length;
                             }
-                            info.Category = folder;
-                            info.FileName = fileName;
+                            info.CategoryCode = folder;
+                            info.Name = fileName;
                             info.FileExtend = fileExtension;
-                            info.AttachmentGUID = guid;
+                            info.AttachmentGid = guid;
 
                             info.AddTime = DateTime.Now;
-                            info.Editor = CurrentUser.Name;//登录人
-                            //info.Owner_ID = OwerId;//所属主表记录ID
+                            info.EditorId = CurrentUser.Id;//登录人
 
                             result = BLLFactory<FileUpload>.Instance.Upload(info);
                             if (!result.Success)
@@ -255,7 +254,7 @@ namespace JCodes.Framework.WebUI.Controllers
             {
                 try
                 {
-                    result.Success = BLLFactory<FileUpload>.Instance.DeleteByUser(id, CurrentUser.ID);
+                    result.Success = BLLFactory<FileUpload>.Instance.DeleteByUser(id, CurrentUser.Id);
                 }
                 catch(Exception ex)
                 {
@@ -308,14 +307,14 @@ namespace JCodes.Framework.WebUI.Controllers
                 #region 构建附件展示的HTML代码
                 foreach (FileUploadInfo info in fileList)
                 {
-                    string fileName = info.FileName.Trim();
+                    string fileName = info.Name.Trim();
                     fileName = System.Web.HttpContext.Current.Server.UrlEncode(fileName);
 
                     sb.Append("<tr>");
-                    sb.AppendFormat("<td style='width:20px'> <img border='0' width='16px' height='16px' src='/Content/images/delete.gif' onclick=\"deleteAttach('{0}')\"/> </td> ", info.ID);
+                    sb.AppendFormat("<td style='width:20px'> <img border='0' width='16px' height='16px' src='/Content/images/delete.gif' onclick=\"deleteAttach('{0}')\"/> </td> ", info.Gid);
                     sb.AppendFormat(@"<td style='width:300px'> <li><span>[ 附件{0} ]</span>", seq++);
                     sb.AppendFormat(@"<img border='0' width='16px' height='16px' src='{0}' />", ConvertExtensionIcon(info.FileExtend.Trim('.')));
-                    sb.AppendFormat(@"<a onclick=""ShowAttach('{0}', '{1}')"">&nbsp;{2}</a></li> </td> ", info.ID, info.FileExtend.Trim('.').ToLower(), info.FileName);
+                    sb.AppendFormat(@"<a onclick=""ShowAttach('{0}', '{1}')"">&nbsp;{2}</a></li> </td> ", info.Gid, info.FileExtend.Trim('.').ToLower(), info.Name);
                     sb.Append("</tr>");
                 }
                 sb.Append("<tr><td colspan='2' style='height:20px'>&nbsp;</td></tr>");//增加一个空行
@@ -355,13 +354,13 @@ namespace JCodes.Framework.WebUI.Controllers
             {
                 foreach (FileUploadInfo info in fileList)
                 {
-                    string fileName = info.FileName.Trim();
+                    string fileName = info.Name.Trim();
                     fileName = System.Web.HttpContext.Current.Server.UrlEncode(fileName);
 
                     sb.Append("<tr>");
                     sb.AppendFormat(@"<td style='width:300px'> <li><span>[ 附件{0} ]</span>", seq++);
                     sb.AppendFormat(@"<img border='0' width='16px' height='16px' src='{0}' />", ConvertExtensionIcon(info.FileExtend.Trim('.')));
-                    sb.AppendFormat(@"<a onclick=""ShowAttach('{0}', '{1}')"">&nbsp;{2}</a></li> </td> ", info.ID, info.FileExtend.Trim('.').ToLower(), info.FileName);
+                    sb.AppendFormat(@"<a onclick=""ShowAttach('{0}', '{1}')"">&nbsp;{2}</a></li> </td> ", info.Gid, info.FileExtend.Trim('.').ToLower(), info.Name);
                     sb.Append("</tr>");
                 }
                 sb.Append("<tr><td colspan='2' style='height:20px'>&nbsp;</td></tr>");//增加一个空行
@@ -401,14 +400,14 @@ namespace JCodes.Framework.WebUI.Controllers
                 #region 构建附件展示的HTML代码
                 foreach (FileUploadInfo info in fileList)
                 {
-                    string fileName = info.FileName.Trim();
+                    string fileName = info.Name.Trim();
                     fileName = System.Web.HttpContext.Current.Server.UrlEncode(fileName);
 
                     sb.Append("<tr>");
-                    sb.AppendFormat("<td style='width:20px'> <img border='0' width='16px' height='16px' src='/Content/images/delete.gif' onclick=\"deleteAttach('{0}')\"/> </td> ", info.ID);
+                    sb.AppendFormat("<td style='width:20px'> <img border='0' width='16px' height='16px' src='/Content/images/delete.gif' onclick=\"deleteAttach('{0}')\"/> </td> ", info.Gid);
                     sb.AppendFormat(@"<td style='width:300px'> <li><span>[ 附件{0} ]</span>", seq++);
                     sb.AppendFormat(@"<img border='0' width='16px' height='16px' src='{0}' />", ConvertExtensionIcon(info.FileExtend.Trim('.')));
-                    sb.AppendFormat(@"<a onclick=""ShowAttach('{0}', '{1}')"">&nbsp;{2}</a></li> </td> ", info.ID, info.FileExtend.Trim('.').ToLower(), info.FileName);
+                    sb.AppendFormat(@"<a onclick=""ShowAttach('{0}', '{1}')"">&nbsp;{2}</a></li> </td> ", info.Gid, info.FileExtend.Trim('.').ToLower(), info.Name);
                     sb.Append("</tr>");
                 }
                 sb.Append("<tr><td colspan='2' style='height:20px'>&nbsp;</td></tr>");//增加一个空行
@@ -450,13 +449,13 @@ namespace JCodes.Framework.WebUI.Controllers
             {
                 foreach (FileUploadInfo info in fileList)
                 {
-                    string fileName = info.FileName.Trim();
+                    string fileName = info.Name.Trim();
                     fileName = System.Web.HttpContext.Current.Server.UrlEncode(fileName);
 
                     sb.Append("<tr>");
                     sb.AppendFormat(@"<td style='width:300px'> <li><span>[ 附件{0} ]</span>", seq++);
                     sb.AppendFormat(@"<img border='0' width='16px' height='16px' src='{0}' />", ConvertExtensionIcon(info.FileExtend.Trim('.')));
-                    sb.AppendFormat(@"<a onclick=""ShowAttach('{0}', '{1}')"">&nbsp;{2}</a></li> </td> ", info.ID, info.FileExtend.Trim('.').ToLower(), info.FileName);
+                    sb.AppendFormat(@"<a onclick=""ShowAttach('{0}', '{1}')"">&nbsp;{2}</a></li> </td> ", info.Gid, info.FileExtend.Trim('.').ToLower(), info.Name);
                     sb.Append("</tr>");
                 }
                 sb.Append("<tr><td colspan='2' style='height:20px'>&nbsp;</td></tr>");//增加一个空行
@@ -508,7 +507,7 @@ namespace JCodes.Framework.WebUI.Controllers
                     {
                         #region 动态第一次生成文件
                         //检查本地Office文件是否存在，如不存在，先生成文件，然后返回路径供查看
-                        string webPath = string.Format("/GenerateFiles/Office/{0}.htm", info.ID);
+                        string webPath = string.Format("/GenerateFiles/Office/{0}.htm", info.Gid);
                         string generateFilePath = Server.MapPath(webPath);
                         if (!FileUtil.FileIsExist(generateFilePath))
                         {

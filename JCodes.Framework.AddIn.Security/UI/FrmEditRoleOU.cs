@@ -51,15 +51,15 @@ namespace JCodes.Framework.AddIn.Security
             {
                 TreeNode deptNode = new TreeNode();
                 deptNode.Text = ouInfo.Name;
-                deptNode.Tag = ouInfo.ID;
-                deptNode.ImageIndex = Portal.gc.GetImageIndex(ouInfo.Category);
-                deptNode.SelectedImageIndex = Portal.gc.GetImageIndex(ouInfo.Category);
-                if (ouInfo.Deleted)
+                deptNode.Tag = ouInfo.Id;
+                deptNode.ImageIndex = ouInfo.OuType;// Portal.gc.GetImageIndex(ouInfo.Category);
+                deptNode.SelectedImageIndex = ouInfo.OuType; // Portal.gc.GetImageIndex(ouInfo.Category);
+                if (ouInfo.IsDelete == 0)
                 {
                     deptNode.ForeColor = Color.Red;
                     continue;//跳过不显示
                 }
-                deptNode.Checked = SelectOUDict.ContainsKey(ouInfo.ID);//选中的
+                deptNode.Checked = SelectOUDict.ContainsKey(ouInfo.Id);//选中的
                 treeNode.Nodes.Add(deptNode);
 
                 AddDept(ouInfo.Children, deptNode);
@@ -79,13 +79,13 @@ namespace JCodes.Framework.AddIn.Security
                 {
                     TreeNode topnode = new TreeNode();
                     topnode.Text = groupInfo.Name;
-                    topnode.Name = groupInfo.ID.ToString();
-                    topnode.Tag = groupInfo.ID;
-                    topnode.ImageIndex = Portal.gc.GetImageIndex(groupInfo.Category);
-                    topnode.SelectedImageIndex = Portal.gc.GetImageIndex(groupInfo.Category);
-                    topnode.Checked = SelectOUDict.ContainsKey(groupInfo.ID);//选中的
+                    topnode.Name = groupInfo.Id.ToString();
+                    topnode.Tag = groupInfo.Id;
+                    topnode.ImageIndex = groupInfo.OuType;// Portal.gc.GetImageIndex(groupInfo.Category);
+                    topnode.SelectedImageIndex = groupInfo.OuType;// Portal.gc.GetImageIndex(groupInfo.Category);
+                    topnode.Checked = SelectOUDict.ContainsKey(groupInfo.Id);//选中的
 
-                    List<OUNodeInfo> sublist = BLLFactory<OU>.Instance.GetTreeByID(groupInfo.ID);
+                    List<OUNodeInfo> sublist = BLLFactory<OU>.Instance.GetTreeByID(groupInfo.Id);
                     AddDept(sublist, topnode);
 
                     this.treeView1.Nodes.Add(topnode);

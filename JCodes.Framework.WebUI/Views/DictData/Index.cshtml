@@ -237,7 +237,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">字典大类</label>
                                 <div class="input-icon col-md-8">
-                                    <select id="DictType_ID" name="DictType_ID" type="text" class="form-control Select2" placeholder="字典大类..." required></select>
+                                    <select id="DicttypeID" name="DicttypeID" type="text" class="form-control Select2" placeholder="字典大类..." required></select>
                                 </div>
                             </div>
                         </div>
@@ -306,7 +306,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">字典大类</label>
                                 <div class="col-md-8">
-                                    <label id="DictType_ID2" name="DictType_ID" class="form-control"></label>
+                                    <label id="DicttypeID2" name="DicttypeID" class="form-control"></label>
                                 </div>
                             </div>
                         </div>
@@ -346,7 +346,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">编辑时间</label>
                                 <div class="col-md-8">
-                                    <label id="LastUpdated2" name="LastUpdated" class="form-control"></label>
+                                    <label id="LastUpdateTime2" name="LastUpdateTime" class="form-control"></label>
                                 </div>
                             </div>
                         </div>
@@ -380,7 +380,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">字典大类</label>
                                 <div class="input-icon col-md-8">
-                                    <select id="Batch_DictType_ID" name="DictType_ID" type="text" class="form-control Select2" placeholder="字典大类..." required></select>
+                                    <select id="Batch_DicttypeID" name="DicttypeID" type="text" class="form-control Select2" placeholder="字典大类..." required></select>
                                 </div>
                             </div>
                         </div>
@@ -522,7 +522,7 @@
         //加载指定的对象数据
         var clickId = "";
         function loadData(id) {
-            var condition = "WHC_DictType_ID=" + id;
+            var condition = "WHC_DicttypeID=" + id;
             SearchCondition(currentPage, condition);
 
             clickId = id;
@@ -565,7 +565,7 @@
                      tr += "<td>" + item.Value + "</td>";
                      tr += "<td>" + item.Remark + "</td>";
                      tr += "<td>" + item.Seq + "</td>";
-                      tr += "<td>" + item.LastUpdated + "</td>";
+                     tr += "<td>" + item.LastUpdateTime + "</td>";
   
                     tr += getActionHtml(item.ID); //获取查看、编辑、删除操作代码
 
@@ -610,8 +610,8 @@
             //绑定字典
             //BindDictItem("Rank", "职务");            
             //绑定树列表
-            BindSelect("DictType_ID", "/DictType/GetDictJson");            
-            BindSelect("Batch_DictType_ID", "/DictType/GetDictJson");
+            BindSelect("DicttypeID", "/DictType/GetDictJson");
+            BindSelect("Batch_DicttypeID", "/DictType/GetDictJson");
 
             BindSelect("type_PID", "/DictType/GetDictJson");
            
@@ -729,7 +729,7 @@
             $("#ffBatch")[0].reset();//清空上次输入
             $('#ffBatch').validate().resetForm();//去除验证信息
 
-            $("#Batch_DictType_ID").select2("val", clickId);
+            $("#Batch_DicttypeID").select2("val", clickId);
             $('input[name="SplitType"][value="Split"]').iCheck('check');
 
             $("#batch").modal("show");
@@ -752,7 +752,7 @@
 
             //初始化部分控件
             //$('input[name="Gender"][value="男"]').iCheck('check');
-            $("#DictType_ID").select2("val", clickId);
+            $("#DicttypeID").select2("val", clickId);
             //$("#Hobby").select2('val', null);//清空下拉框
 
             $("#lblAddTitle").text("添加信息");
@@ -807,9 +807,9 @@
                  $("#Value").val(info.Value);
                  $("#Remark").val(info.Remark);
                  $("#Seq").val(info.Seq);
-                 $("#LastUpdated").val(getDateStr(info.LastUpdated));
+                 $("#LastUpdateTime").val(getDateStr(info.LastUpdateTime));
   
-                $("#DictType_ID").select2("val", info.DictType_ID);//普通Select2
+                 $("#DicttypeID").select2("val", info.DicttypeID);//普通Select2
                 //参考赋值
                 //$("#Company_ID1").select2("val", info.Company_ID).trigger('change');//联动
                 // var array = [info.Hobby];
@@ -830,16 +830,16 @@
             //发送请求
             $.getJSON("/DictData/FindByID?r=" + Math.random() + "&id=" + ID, function (info) {
                  //$("#ID2").text(info.ID);
-                 // $("#DictType_ID2").text(info.DictType_ID);
+                // $("#DicttypeID2").text(info.DicttypeID);
                  $("#Name2").text(info.Name);
                  $("#Value2").text(info.Value);
                  $("#Remark2").text(info.Remark);
                  $("#Seq2").text(info.Seq);
                  $("#Editor2").text(info.Editor);
-                 $("#LastUpdated2").text(info.LastUpdated);
-                 $.getJSON("/DictType/FindByID?id=" + info.DictType_ID, function (newinfo) {
+                 $("#LastUpdateTime2").text(info.LastUpdateTime);
+                 $.getJSON("/DictType/FindByID?id=" + info.DicttypeID, function (newinfo) {
                     if (newinfo != 'undefined') {
-                        $("#DictType_ID2").text(newinfo.Name);
+                        $("#DicttypeID2").text(newinfo.Name);
                     }
                  });                 
   
@@ -1024,7 +1024,7 @@
                 $.each(data.rows, function (i, item) {
                     var tr = "<tr>";
                     tr += "<td><input class='checkboxes' type=\"checkbox\" name=\"checkbox\" value=" + item.ID + "></td>";
-                     tr += "<td>" + item.DictType_ID + "</td>";
+                    tr += "<td>" + item.DicttypeID + "</td>";
                      tr += "<td>" + item.Name + "</td>";
                      tr += "<td>" + item.Value + "</td>";
                      tr += "<td>" + item.Remark + "</td>";
@@ -1054,7 +1054,7 @@
                         // alert($(this).text());
                     });    
 
-                    list.push({ 'DictType_ID': rows[0],'Name': rows[1],'Value': rows[2],'Remark': rows[3],'Seq': rows[4],'LastUpdated': rows[5] });
+                    list.push({ 'DicttypeID': rows[0], 'Name': rows[1], 'Value': rows[2], 'Remark': rows[3], 'Seq': rows[4], 'LastUpdateTime': rows[5] });
                     i++;
                 }
             });

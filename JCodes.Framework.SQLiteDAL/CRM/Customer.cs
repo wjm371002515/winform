@@ -46,7 +46,7 @@ namespace JCodes.Framework.SQLiteDAL
             SmartDataReader reader = new SmartDataReader(dataReader);
 
             info.ID = reader.GetString("ID");
-            info.HandNo = reader.GetString("HandNo");
+            info.UserCode = reader.GetString("UserCode");
             info.Name = reader.GetString("Name");
             info.SimpleName = reader.GetString("SimpleName");
             info.Province = reader.GetString("Province");
@@ -116,7 +116,7 @@ namespace JCodes.Framework.SQLiteDAL
             Hashtable hash = new Hashtable();
 
             hash.Add("ID", info.ID);
-            hash.Add("HandNo", info.HandNo);
+            hash.Add("UserCode", info.UserCode);
             hash.Add("Name", info.Name);
             hash.Add("SimpleName", info.SimpleName);
             hash.Add("Province", info.Province);
@@ -184,7 +184,7 @@ namespace JCodes.Framework.SQLiteDAL
             Dictionary<string, string> dict = new Dictionary<string, string>();
             #region 添加别名解析
             dict.Add("ID", "编号");
-            dict.Add("HandNo", "客户编号");
+            dict.Add("UserCode", "客户编号");
             dict.Add("Name", "客户名称");
             dict.Add("SimpleName", "客户简称");
             dict.Add("Province", "所在省份");

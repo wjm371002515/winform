@@ -29,7 +29,7 @@ namespace JCodes.Framework.AccessDAL
         public LoginLog()
             : base(AccessPortal.gc._securityTablePre + "LoginLog", "ID")
         {
-            this.sortField = "LastUpdated";
+            this.sortField = "LastUpdateTime";
         }
 
         #endregion
@@ -44,18 +44,17 @@ namespace JCodes.Framework.AccessDAL
             LoginLogInfo info = new LoginLogInfo();
             SmartDataReader reader = new SmartDataReader(dataReader);
 
-            info.ID = reader.GetInt32("ID");
-            info.User_ID = reader.GetString("User_ID");
+            info.Id = reader.GetInt32("Id");
+            info.UserId = reader.GetInt32("UserId");
             info.LoginName = reader.GetString("LoginName");
             info.FullName = reader.GetString("FullName");
-            info.Company_ID = reader.GetString("Company_ID");
+            info.CompanyId = reader.GetInt32("CompanyId");
             info.CompanyName = reader.GetString("CompanyName");
-            info.Note = reader.GetString("Note");
-            info.IPAddress = reader.GetString("IPAddress");
-            info.MacAddress = reader.GetString("MacAddress");
-            info.LastUpdated = reader.GetDateTime("LastUpdated");
-            info.SystemType_ID = reader.GetString("SystemType_ID");
-
+            info.Remark = reader.GetString("Remark");
+            info.IP = reader.GetString("IP");
+            info.Mac = reader.GetString("Mac");
+            info.LastUpdateTime = reader.GetDateTime("LastUpdateTime");
+            info.SystemtypeId = reader.GetString("SystemtypeId");
             return info;
         }
 
@@ -69,16 +68,16 @@ namespace JCodes.Framework.AccessDAL
             LoginLogInfo info = obj as LoginLogInfo;
             Hashtable hash = new Hashtable();
 
-            hash.Add("User_ID", info.User_ID);
+            hash.Add("UserId", info.UserId);
             hash.Add("LoginName", info.LoginName);
             hash.Add("FullName", info.FullName);
-            hash.Add("Company_ID", info.Company_ID);
+            hash.Add("CompanyId", info.CompanyId);
             hash.Add("CompanyName", info.CompanyName);
-            hash.Add("Note", info.Note);
-            hash.Add("IPAddress", info.IPAddress);
-            hash.Add("MacAddress", info.MacAddress);
-            hash.Add("LastUpdated", info.LastUpdated);
-            hash.Add("SystemType_ID", info.SystemType_ID);
+            hash.Add("Remark", info.Remark);
+            hash.Add("IP", info.IP);
+            hash.Add("Mac", info.Mac);
+            hash.Add("LastUpdateTime", info.LastUpdateTime);
+            hash.Add("SystemtypeId", info.SystemtypeId);
 
             return hash;
         }
@@ -91,17 +90,17 @@ namespace JCodes.Framework.AccessDAL
         {
             Dictionary<string, string> dict = new Dictionary<string, string>();
             #region 添加别名解析
-            dict.Add("ID", "编号");
-            dict.Add("User_ID", "登录用户ID");
+            dict.Add("Id", "编号");
+            dict.Add("UserId", "用户Id");
             dict.Add("LoginName", "登录名");
-            dict.Add("FullName", "真实名称");
-            dict.Add("Company_ID", "所属公司ID");
-            dict.Add("CompanyName", "所属公司名称");
-            dict.Add("Note", "日志描述");
-            dict.Add("IPAddress", "IP地址");
-            dict.Add("MacAddress", "Mac地址");
-            dict.Add("LastUpdated", "更新时间");
-            dict.Add("SystemType_ID", "系统编号");
+            dict.Add("FullName", "真实名");
+            dict.Add("CompanyId", "公司Id");
+            dict.Add("CompanyName", "公司名字");
+            dict.Add("Remark", "备注");
+            dict.Add("IP", "IP地址");
+            dict.Add("Mac", "Mac地址");
+            dict.Add("LastUpdateTime", "最后更新时间");
+            dict.Add("SystemtypeId", "系统编号");
             #endregion
 
             return dict;
@@ -114,7 +113,7 @@ namespace JCodes.Framework.AccessDAL
         /// <returns></returns>
         public LoginLogInfo GetLastLoginInfo(string userId)
         {
-            string sql = string.Format("Select Top 2 * from {0} where User_ID='{1}' order by LastUpdated desc", tableName, userId);
+            string sql = string.Format("Select Top 2 * from {0} where UserId='{1}' order by LastUpdateTime desc", tableName, userId);
             List<LoginLogInfo> list = GetList(sql, null);
             if (list.Count == 2)
             {

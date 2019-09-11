@@ -252,37 +252,37 @@ namespace JCodes.Framework.WebUI.Controllers
             List<MenuInfo> list = BLLFactory<Menus>.Instance.GetTopMenu(Const.SystemTypeID);
             foreach (MenuInfo info in list)
             {
-                if (!HasFunction(info.FunctionId))
+                if (!HasFunction(info.AuthGid))
                 {
                     continue;
                 }
 
                 //一级
                 icon = info.WebIcon;
-                url = (!string.IsNullOrEmpty(info.Url) && info.Url.Trim() != "#") ? string.Format("{0}{1}tid={2}", info.Url, GetUrlJoiner(info.Url), info.ID) : "javascript:;";
-                sb = sb.AppendFormat(firstTemplate, url, icon, info.Name, info.ID);
+                url = (!string.IsNullOrEmpty(info.Url) && info.Url.Trim() != "#") ? string.Format("{0}{1}tid={2}", info.Url, GetUrlJoiner(info.Url), info.Gid) : "javascript:;";
+                sb = sb.AppendFormat(firstTemplate, url, icon, info.Name, info.Gid);
 
-                List<MenuNodeInfo> nodeList = BLLFactory<Menus>.Instance.GetTreeByID(info.ID);
+                List<MenuNodeInfo> nodeList = BLLFactory<Menus>.Instance.GetTreeByID(info.Gid);
                 if (nodeList.Count > 0)
                 {
                     sb = sb.Append(secondTemplateStart);//二级菜单如果有的话，增加一个标题内容
                 }
                 foreach (MenuNodeInfo nodeInfo in nodeList)
                 {
-                    if (!HasFunction(nodeInfo.FunctionId))
+                    if (!HasFunction(nodeInfo.AuthGid))
                     {
                         continue;
                     }
 
                     //二级
                     icon = nodeInfo.WebIcon;
-                    tmpUrl = string.Format("{0}{1}tid={2}", nodeInfo.Url, GetUrlJoiner(nodeInfo.Url), info.ID);
+                    tmpUrl = string.Format("{0}{1}tid={2}", nodeInfo.Url, GetUrlJoiner(nodeInfo.Url), info.Gid);
                     url = (!string.IsNullOrEmpty(nodeInfo.Url) && nodeInfo.Url.Trim() != "#") ? tmpUrl : "javascript:;";
                     sb = sb.AppendFormat(secondTemplate, icon, nodeInfo.Name);
                                         
                     foreach (MenuNodeInfo subNodeInfo in nodeInfo.Children)
                     {
-                        if (!HasFunction(subNodeInfo.FunctionId))
+                        if (!HasFunction(subNodeInfo.AuthGid))
                         {
                             continue;
                         }
@@ -290,9 +290,9 @@ namespace JCodes.Framework.WebUI.Controllers
                         //三级
                         icon = subNodeInfo.WebIcon;
                         //tid 为顶级分类id，sid 为第三级菜单id
-                        tmpUrl = string.Format("{0}{1}tid={2}&sid={3}", subNodeInfo.Url, GetUrlJoiner(subNodeInfo.Url), info.ID, subNodeInfo.ID);
+                        tmpUrl = string.Format("{0}{1}tid={2}&sid={3}", subNodeInfo.Url, GetUrlJoiner(subNodeInfo.Url), info.Gid, subNodeInfo.Gid);
                         url = (!string.IsNullOrEmpty(subNodeInfo.Url) && subNodeInfo.Url.Trim() != "#") ? tmpUrl : "javascript:;";
-                        sb = sb.AppendFormat(thirdTemplate, url, icon, subNodeInfo.Name, subNodeInfo.ID);
+                        sb = sb.AppendFormat(thirdTemplate, url, icon, subNodeInfo.Name, subNodeInfo.Gid);
                     }
                 }
                 if (nodeList.Count > 0)

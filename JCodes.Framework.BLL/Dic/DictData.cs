@@ -55,13 +55,13 @@ namespace JCodes.Framework.BLL
         public List<DicKeyValueInfo> GetDictByTypeID(Int32 dictTypeId)
         {
             List<DicKeyValueInfo> lst = GetAllDict();
-            return lst.FindAll(s => s.DictType_ID == dictTypeId);
+            return lst.FindAll(s => s.DicttypeID == dictTypeId);
         }
 
         public string GetDictName(Int32 dictTypeId, Int32 value)
         {
             List<DicKeyValueInfo> lst = GetAllDict();
-            return lst.Find(s => s.DictType_ID == dictTypeId && s.Value == value).Name;
+            return lst.Find(s => s.DicttypeID == dictTypeId && s.Value == value).Name;
         }
 
     }

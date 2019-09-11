@@ -224,7 +224,7 @@ namespace JCodes.Framework.AddIn.Security
             info.Name = this.txtName.Text;
             info.PID = this.functionControl1.Value;
             info.FunctionId = this.txtFunctionID.Text;
-            info.CurrentLoginUserId = Portal.gc.UserInfo.ID;
+            info.CurrentLoginUserId = Portal.gc.UserInfo.Id;
             return info;
         }
     }

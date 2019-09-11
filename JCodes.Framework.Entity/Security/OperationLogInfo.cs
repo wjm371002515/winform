@@ -12,33 +12,33 @@ namespace JCodes.Framework.Entity
     {    
         #region Field Members
 
-        private string m_ID = Guid.NewGuid().ToString(); //          
-        private Int32 m_User_ID; //登录用户ID          
+        private Int32 m_Id; //          
+        private Int32 m_UserId; //登录用户ID          
         private string m_LoginName; //登录名          
         private string m_FullName; //真实名称          
-        private string m_Company_ID; //所属公司ID          
+        private Int32 m_CompanyId; //所属公司ID          
         private string m_CompanyName; //所属公司名称          
         private string m_TableName; //操作表名称          
         private string m_OperationType; //操作类型          
-        private string m_Note; //日志描述          
-        private string m_IPAddress; //IP地址          
-        private string m_MacAddress; //Mac地址    
-        private DateTime m_CreateTime = System.DateTime.Now; //创建时间          
+        private string m_Remark; //日志描述          
+        private string m_IP; //IP地址          
+        private string m_Mac; //Mac地址    
+        private DateTime m_CreatorTime = System.DateTime.Now; //创建时间          
 
         #endregion
 
         #region Property Members
         
 		[DataMember]
-        public virtual string ID
+        public virtual Int32 Id
         {
             get
             {
-                return this.m_ID;
+                return this.m_Id;
             }
             set
             {
-                this.m_ID = value;
+                this.m_Id = value;
             }
         }
 
@@ -46,15 +46,15 @@ namespace JCodes.Framework.Entity
         /// 登录用户ID
         /// </summary>
 		[DataMember]
-        public virtual Int32 User_ID
+        public virtual Int32 UserId
         {
             get
             {
-                return this.m_User_ID;
+                return this.m_UserId;
             }
             set
             {
-                this.m_User_ID = value;
+                this.m_UserId = value;
             }
         }
 
@@ -94,15 +94,15 @@ namespace JCodes.Framework.Entity
         /// 所属公司ID
         /// </summary>
 		[DataMember]
-        public virtual string Company_ID
+        public virtual Int32 CompanyId
         {
             get
             {
-                return this.m_Company_ID;
+                return this.m_CompanyId;
             }
             set
             {
-                this.m_Company_ID = value;
+                this.m_CompanyId = value;
             }
         }
 
@@ -158,30 +158,30 @@ namespace JCodes.Framework.Entity
         /// 日志描述
         /// </summary>
 		[DataMember]
-        public virtual string Note
+        public virtual string Remark
         {
             get
             {
-                return this.m_Note;
+                return this.m_Remark;
             }
             set
             {
-                this.m_Note = value;
+                this.m_Remark = value;
             }
         }
         /// <summary>
         /// IP地址
         /// </summary>
         [DataMember]
-        public virtual string IPAddress
+        public virtual string IP
         {
             get
             {
-                return this.m_IPAddress;
+                return this.m_IP;
             }
             set
             {
-                this.m_IPAddress = value;
+                this.m_IP = value;
             }
         }
 
@@ -189,15 +189,15 @@ namespace JCodes.Framework.Entity
         /// Mac地址
         /// </summary>
         [DataMember]
-        public virtual string MacAddress
+        public virtual string Mac
         {
             get
             {
-                return this.m_MacAddress;
+                return this.m_Mac;
             }
             set
             {
-                this.m_MacAddress = value;
+                this.m_Mac = value;
             }
         }
 
@@ -205,15 +205,15 @@ namespace JCodes.Framework.Entity
         /// 创建时间
         /// </summary>
 		[DataMember]
-        public virtual DateTime CreateTime
+        public virtual DateTime CreatorTime
         {
             get
             {
-                return this.m_CreateTime;
+                return this.m_CreatorTime;
             }
             set
             {
-                this.m_CreateTime = value;
+                this.m_CreatorTime = value;
             }
         }
 

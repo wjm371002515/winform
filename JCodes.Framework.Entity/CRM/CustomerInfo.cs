@@ -11,17 +11,17 @@ namespace JCodes.Framework.Entity
     {    
         #region Field Members
 
-        private string m_ID = System.Guid.NewGuid().ToString(); //          
-        private string m_HandNo; //客户编号          
+        private Int32 m_Id; //          
+        private string m_UserCode; //客户编号          
         private string m_Name; //客户名称          
-        private string m_SimpleName; //客户简称          
-        private string m_Province; //所在省份          
-        private string m_City; //城市          
-        private string m_District; //所在行政区          
+        private string m_FullName; //客户简称          
+        private string m_ProvinceName; //所在省份          
+        private string m_CityName; //城市          
+        private string m_DistrictName; //所在行政区          
         private string m_Area; //市场分区          
         private string m_Address; //公司地址          
         private string m_ZipCode; //公司邮编          
-        private string m_Telephone; //办公电话          
+        private string m_MobilePhone; //办公电话          
         private string m_Fax; //传真号码          
         private string m_Contact; //主联系人          
         private string m_ContactPhone; //联系人电话          
@@ -53,35 +53,35 @@ namespace JCodes.Framework.Entity
         private string m_Importance; //重要级别          
         private bool m_IsPublic = false; //公开与否          
         private int m_Satisfaction = 0; //客户满意度          
-        private string m_Note; //备注信息               
+        private string m_Remark; //备注信息               
         private int m_TransactionCount = 0; //交易次数          
         private decimal m_TransactionTotal = 0; //交易金额          
         private DateTime m_TransactionFirstDay; //首次交易时间          
         private DateTime m_TransactionLastDay; //最近交易时间          
         private DateTime m_LastContactDate; //最近联系日期          
         private string m_Stage; //客户阶段          
-        private string m_Status; //客户状态          
-        private string m_Creator; //创建人/所属人员     
-        private DateTime m_CreateTime; //创建时间          
-        private string m_Editor; //编辑人          
-        private DateTime m_EditTime; //编辑时间          
-        private bool m_Deleted = false; //是否已删除          
-        private string m_Dept_ID; //所属部门
-        private string m_Company_ID; //所属公司
+        private Int32 m_AuditStatus; //客户状态          
+        private Int32 m_CreatorId; //创建人/所属人员     
+        private DateTime m_CreatorTime; //创建时间          
+        private Int32 m_EditorId; //编辑人          
+        private DateTime m_LastUpdateTime; //编辑时间          
+        private Int32 m_IsDelete; //是否已删除          
+        private Int32 m_DeptId; //所属部门
+        private Int32 m_CompanyId; //所属公司
         #endregion
 
         #region Property Members
         
 		[DataMember]
-        public virtual string ID
+        public virtual Int32 Id
         {
             get
             {
-                return this.m_ID;
+                return this.m_Id;
             }
             set
             {
-                this.m_ID = value;
+                this.m_Id = value;
             }
         }
 
@@ -89,15 +89,15 @@ namespace JCodes.Framework.Entity
         /// 客户编号
         /// </summary>
 		[DataMember]
-        public virtual string HandNo
+        public virtual string UserCode
         {
             get
             {
-                return this.m_HandNo;
+                return this.m_UserCode;
             }
             set
             {
-                this.m_HandNo = value;
+                this.m_UserCode = value;
             }
         }
 
@@ -121,15 +121,15 @@ namespace JCodes.Framework.Entity
         /// 客户简称
         /// </summary>
 		[DataMember]
-        public virtual string SimpleName
+        public virtual string FullName
         {
             get
             {
-                return this.m_SimpleName;
+                return this.m_FullName;
             }
             set
             {
-                this.m_SimpleName = value;
+                this.m_FullName = value;
             }
         }
 
@@ -137,15 +137,15 @@ namespace JCodes.Framework.Entity
         /// 所在省份
         /// </summary>
 		[DataMember]
-        public virtual string Province
+        public virtual string ProvinceName
         {
             get
             {
-                return this.m_Province;
+                return this.m_ProvinceName;
             }
             set
             {
-                this.m_Province = value;
+                this.m_ProvinceName = value;
             }
         }
 
@@ -153,15 +153,15 @@ namespace JCodes.Framework.Entity
         /// 城市
         /// </summary>
 		[DataMember]
-        public virtual string City
+        public virtual string CityName
         {
             get
             {
-                return this.m_City;
+                return this.m_CityName;
             }
             set
             {
-                this.m_City = value;
+                this.m_CityName = value;
             }
         }
 
@@ -169,15 +169,15 @@ namespace JCodes.Framework.Entity
         /// 所在行政区
         /// </summary>
 		[DataMember]
-        public virtual string District
+        public virtual string DistrictName
         {
             get
             {
-                return this.m_District;
+                return this.m_DistrictName;
             }
             set
             {
-                this.m_District = value;
+                this.m_DistrictName = value;
             }
         }
 
@@ -233,15 +233,15 @@ namespace JCodes.Framework.Entity
         /// 办公电话
         /// </summary>
 		[DataMember]
-        public virtual string Telephone
+        public virtual string MobilePhone
         {
             get
             {
-                return this.m_Telephone;
+                return this.m_MobilePhone;
             }
             set
             {
-                this.m_Telephone = value;
+                this.m_MobilePhone = value;
             }
         }
 
@@ -745,15 +745,15 @@ namespace JCodes.Framework.Entity
         /// 备注信息
         /// </summary>
 		[DataMember]
-        public virtual string Note
+        public virtual string Remark
         {
             get
             {
-                return this.m_Note;
+                return this.m_Remark;
             }
             set
             {
-                this.m_Note = value;
+                this.m_Remark = value;
             }
         }
 
@@ -857,15 +857,15 @@ namespace JCodes.Framework.Entity
         /// 客户状态
         /// </summary>
 		[DataMember]
-        public virtual string Status
+        public virtual Int32 AuditStatus
         {
             get
             {
-                return this.m_Status;
+                return this.m_AuditStatus;
             }
             set
             {
-                this.m_Status = value;
+                this.m_AuditStatus = value;
             }
         }
 
@@ -873,15 +873,15 @@ namespace JCodes.Framework.Entity
         /// 创建人/所属人员
         /// </summary>
 		[DataMember]
-        public virtual string Creator
+        public virtual Int32 CreatorId
         {
             get
             {
-                return this.m_Creator;
+                return this.m_CreatorId;
             }
             set
             {
-                this.m_Creator = value;
+                this.m_CreatorId = value;
             }
         }
 
@@ -889,15 +889,15 @@ namespace JCodes.Framework.Entity
         /// 创建时间
         /// </summary>
 		[DataMember]
-        public virtual DateTime CreateTime
+        public virtual DateTime CreatorTime
         {
             get
             {
-                return this.m_CreateTime;
+                return this.m_CreatorTime;
             }
             set
             {
-                this.m_CreateTime = value;
+                this.m_CreatorTime = value;
             }
         }
 
@@ -905,15 +905,15 @@ namespace JCodes.Framework.Entity
         /// 编辑人
         /// </summary>
 		[DataMember]
-        public virtual string Editor
+        public virtual Int32 EditorId
         {
             get
             {
-                return this.m_Editor;
+                return this.m_EditorId;
             }
             set
             {
-                this.m_Editor = value;
+                this.m_EditorId = value;
             }
         }
 
@@ -921,15 +921,15 @@ namespace JCodes.Framework.Entity
         /// 编辑时间
         /// </summary>
 		[DataMember]
-        public virtual DateTime EditTime
+        public virtual DateTime LastUpdateTime
         {
             get
             {
-                return this.m_EditTime;
+                return this.m_LastUpdateTime;
             }
             set
             {
-                this.m_EditTime = value;
+                this.m_LastUpdateTime = value;
             }
         }
 
@@ -937,15 +937,15 @@ namespace JCodes.Framework.Entity
         /// 是否已删除
         /// </summary>
 		[DataMember]
-        public virtual bool Deleted
+        public virtual Int32 IsDelete
         {
             get
             {
-                return this.m_Deleted;
+                return this.m_IsDelete;
             }
             set
             {
-                this.m_Deleted = value;
+                this.m_IsDelete = value;
             }
         }
 
@@ -953,15 +953,15 @@ namespace JCodes.Framework.Entity
         /// 所属部门
         /// </summary>
         [DataMember]
-        public virtual string Dept_ID
+        public virtual Int32 DeptId
         {
             get
             {
-                return this.m_Dept_ID;
+                return this.m_DeptId;
             }
             set
             {
-                this.m_Dept_ID = value;
+                this.m_DeptId = value;
             }
         }
 
@@ -969,15 +969,15 @@ namespace JCodes.Framework.Entity
         /// 所属公司
         /// </summary>
         [DataMember]
-        public virtual string Company_ID
+        public virtual Int32 CompanyId
         {
             get
             {
-                return this.m_Company_ID;
+                return this.m_CompanyId;
             }
             set
             {
-                this.m_Company_ID = value;
+                this.m_CompanyId = value;
             }
         }
 

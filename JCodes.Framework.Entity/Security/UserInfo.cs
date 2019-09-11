@@ -13,38 +13,39 @@ namespace JCodes.Framework.Entity
         public const int IdentityLen = 50;
 
         #region Fields
-        private int m_PID = -1; //父ID 
-        private string m_Nickname; //用户呢称          
-        private bool m_IsExpire = false; //是否过期          
-        private string m_Title; //职务头衔          
-        private string m_IdentityCard; //身份证号码          
+        private int m_Pid = -1; //父ID 
+        private string m_LoginName; //用户呢称          
+        private Int32 m_IsExpire; //是否过期   
+        private string m_Remark; //备注    
+        private string m_IdCard; //身份证号码          
         private string m_OfficePhone; //办公电话          
         private string m_HomePhone; //家庭电话          
         private string m_Address; //住址          
-        private string m_WorkAddr; //办公地址          
-        private string m_Gender; //性别          
+        private string m_WorkAddress; //办公地址          
+        private Int32 m_Gender; //性别          
         private DateTime m_Birthday; //出生日期          
-        private string m_Qq; //QQ号码          
+        private Int32 m_Qq; //QQ号码          
         private string m_Signature; //个性签名          
-        private string m_AuditStatus; //审核状态          
-        private byte[] m_Portrait; //个人图片          
-        private string m_Note; //备注          
-        private string m_CustomField; //自定义字段          
-        private string m_Dept_ID; //默认部门ID          
-        private string m_DeptName; //默认部门名称          
-        private string m_Company_ID; //所属公司ID          
-        private string m_CompanyName; //所属公司名称          
-        private string m_Seq; //排序          
-        private string m_Creator; //创建人          
-        private string m_Creator_ID; //创建人ID          
-        private DateTime m_CreateTime = System.DateTime.Now; //创建时间          
-        private string m_Editor; //编辑人          
-        private string m_Editor_ID; //编辑人ID          
-        private DateTime m_EditTime = System.DateTime.Now; //编辑时间          
-        private bool m_Deleted = false; //是否已删除    
-        private string m_CurrentLoginIP; //当前登录IP          
-        private DateTime m_CurrentLoginTime; //当前登录时间          
-        private string m_CurrentMacAddress; //当前Mac地址    
+        private Int32 m_AuditStatus; //审核状态          
+        private string m_Portrait; //个人图片                
+        private Int32 m_DeptId; //默认部门ID        
+        private Int32 m_CompanyId; //所属公司ID     
+        private string m_Seq; //排序                  
+        private Int32 m_CreatorId; //创建人ID          
+        private DateTime m_CreatorTime = System.DateTime.Now; //创建时间                
+        private Int32 m_EditorId; //编辑人ID          
+        private DateTime m_LastUpdateTime = System.DateTime.Now; //编辑时间          
+        private Int32 m_IsDelete; //是否已删除   
+        private string m_Question1;
+        private string m_Question2;
+        private string m_Question3;
+        private string m_Answer1;
+        private string m_Answer2;
+        private string m_Answer3;
+        private string m_LastLoginIp; //当前登录IP       
+        private string m_LastLoginMac; //
+        private DateTime m_LastLoginTime; //当前登录时间          
+        private DateTime m_LastChangePwdTime;// 最后修改密码时间 
         #endregion    
 
         #region Property Members
@@ -53,15 +54,15 @@ namespace JCodes.Framework.Entity
         /// 父ID
         /// </summary>
         [DataMember]
-        public virtual int PID
+        public virtual int Pid
         {
             get
             {
-                return this.m_PID;
+                return this.m_Pid;
             }
             set
             {
-                this.m_PID = value;
+                this.m_Pid = value;
             }
         }
 
@@ -69,15 +70,15 @@ namespace JCodes.Framework.Entity
         /// 用户呢称
         /// </summary>
         [DataMember]
-        public virtual string Nickname
+        public virtual string LoginName
         {
             get
             {
-                return this.m_Nickname;
+                return this.m_LoginName;
             }
             set
             {
-                this.m_Nickname = value;
+                this.m_LoginName = value;
             }
         }
 
@@ -85,7 +86,7 @@ namespace JCodes.Framework.Entity
         /// 是否过期
         /// </summary>
         [DataMember]
-        public virtual bool IsExpire
+        public virtual Int32 IsExpire
         {
             get
             {
@@ -98,34 +99,18 @@ namespace JCodes.Framework.Entity
         }
 
         /// <summary>
-        /// 职务头衔
-        /// </summary>
-        [DataMember]
-        public virtual string Title
-        {
-            get
-            {
-                return this.m_Title;
-            }
-            set
-            {
-                this.m_Title = value;
-            }
-        }
-
-        /// <summary>
         /// 身份证号码
         /// </summary>
         [DataMember]
-        public virtual string IdentityCard
+        public virtual string IdCard
         {
             get
             {
-                return this.m_IdentityCard;
+                return this.m_IdCard;
             }
             set
             {
-                this.m_IdentityCard = value;
+                this.m_IdCard = value;
             }
         }
 
@@ -182,15 +167,15 @@ namespace JCodes.Framework.Entity
         /// 办公地址
         /// </summary>
         [DataMember]
-        public virtual string WorkAddr
+        public virtual string WorkAddress
         {
             get
             {
-                return this.m_WorkAddr;
+                return this.m_WorkAddress;
             }
             set
             {
-                this.m_WorkAddr = value;
+                this.m_WorkAddress = value;
             }
         }
 
@@ -198,7 +183,7 @@ namespace JCodes.Framework.Entity
         /// 性别
         /// </summary>
         [DataMember]
-        public virtual string Gender
+        public virtual Int32 Gender
         {
             get
             {
@@ -230,7 +215,7 @@ namespace JCodes.Framework.Entity
         /// QQ号码
         /// </summary>
         [DataMember]
-        public virtual string QQ
+        public virtual Int32 QQ
         {
             get
             {
@@ -262,7 +247,7 @@ namespace JCodes.Framework.Entity
         /// 审核状态
         /// </summary>
         [DataMember]
-        public virtual string AuditStatus
+        public virtual Int32 AuditStatus
         {
             get
             {
@@ -278,7 +263,7 @@ namespace JCodes.Framework.Entity
         /// 个人图片
         /// </summary>
         [DataMember]
-        public virtual byte[] Portrait
+        public virtual string Portrait
         {
             get
             {
@@ -294,31 +279,15 @@ namespace JCodes.Framework.Entity
         /// 备注
         /// </summary>
         [DataMember]
-        public virtual string Note
+        public virtual string Remark
         {
             get
             {
-                return this.m_Note;
+                return this.m_Remark;
             }
             set
             {
-                this.m_Note = value;
-            }
-        }
-
-        /// <summary>
-        /// 自定义字段
-        /// </summary>
-        [DataMember]
-        public virtual string CustomField
-        {
-            get
-            {
-                return this.m_CustomField;
-            }
-            set
-            {
-                this.m_CustomField = value;
+                this.m_Remark = value;
             }
         }
 
@@ -326,31 +295,15 @@ namespace JCodes.Framework.Entity
         /// 默认部门ID
         /// </summary>
         [DataMember]
-        public virtual string Dept_ID
+        public virtual Int32 DeptId
         {
             get
             {
-                return this.m_Dept_ID;
+                return this.m_DeptId;
             }
             set
             {
-                this.m_Dept_ID = value;
-            }
-        }
-
-        /// <summary>
-        /// 默认部门名称
-        /// </summary>
-        [DataMember]
-        public virtual string DeptName
-        {
-            get
-            {
-                return this.m_DeptName;
-            }
-            set
-            {
-                this.m_DeptName = value;
+                this.m_DeptId = value;
             }
         }
 
@@ -358,31 +311,15 @@ namespace JCodes.Framework.Entity
         /// 所属公司ID
         /// </summary>
         [DataMember]
-        public virtual string Company_ID
+        public virtual Int32 CompanyId
         {
             get
             {
-                return this.m_Company_ID;
+                return this.m_CompanyId;
             }
             set
             {
-                this.m_Company_ID = value;
-            }
-        }
-
-        /// <summary>
-        /// 所属公司名称
-        /// </summary>
-        [DataMember]
-        public virtual string CompanyName
-        {
-            get
-            {
-                return this.m_CompanyName;
-            }
-            set
-            {
-                this.m_CompanyName = value;
+                this.m_CompanyId = value;
             }
         }
 
@@ -403,34 +340,18 @@ namespace JCodes.Framework.Entity
         }
 
         /// <summary>
-        /// 创建人
-        /// </summary>
-        [DataMember]
-        public virtual string Creator
-        {
-            get
-            {
-                return this.m_Creator;
-            }
-            set
-            {
-                this.m_Creator = value;
-            }
-        }
-
-        /// <summary>
         /// 创建人ID
         /// </summary>
         [DataMember]
-        public virtual string Creator_ID
+        public virtual Int32 CreatorId
         {
             get
             {
-                return this.m_Creator_ID;
+                return this.m_CreatorId;
             }
             set
             {
-                this.m_Creator_ID = value;
+                this.m_CreatorId = value;
             }
         }
 
@@ -438,31 +359,15 @@ namespace JCodes.Framework.Entity
         /// 创建时间
         /// </summary>
         [DataMember]
-        public virtual DateTime CreateTime
+        public virtual DateTime CreatorTime
         {
             get
             {
-                return this.m_CreateTime;
+                return this.m_CreatorTime;
             }
             set
             {
-                this.m_CreateTime = value;
-            }
-        }
-
-        /// <summary>
-        /// 编辑人
-        /// </summary>
-        [DataMember]
-        public virtual string Editor
-        {
-            get
-            {
-                return this.m_Editor;
-            }
-            set
-            {
-                this.m_Editor = value;
+                this.m_CreatorTime = value;
             }
         }
 
@@ -470,15 +375,15 @@ namespace JCodes.Framework.Entity
         /// 编辑人ID
         /// </summary>
         [DataMember]
-        public virtual string Editor_ID
+        public virtual Int32 EditorId
         {
             get
             {
-                return this.m_Editor_ID;
+                return this.m_EditorId;
             }
             set
             {
-                this.m_Editor_ID = value;
+                this.m_EditorId = value;
             }
         }
 
@@ -486,15 +391,15 @@ namespace JCodes.Framework.Entity
         /// 编辑时间
         /// </summary>
         [DataMember]
-        public virtual DateTime EditTime
+        public virtual DateTime LastUpdateTime
         {
             get
             {
-                return this.m_EditTime;
+                return this.m_LastUpdateTime;
             }
             set
             {
-                this.m_EditTime = value;
+                this.m_LastUpdateTime = value;
             }
         }
 
@@ -502,76 +407,179 @@ namespace JCodes.Framework.Entity
         /// 是否已删除
         /// </summary>
         [DataMember]
-        public virtual bool Deleted
+        public virtual Int32 IsDelete
         {
             get
             {
-                return this.m_Deleted;
+                return this.m_IsDelete;
             }
             set
             {
-                this.m_Deleted = value;
+                this.m_IsDelete = value;
             }
         }
 
         /// <summary>
-        /// 当前登录IP
+        /// 问题1
         /// </summary>
         [DataMember]
-        public virtual string CurrentLoginIP
+        public virtual string Question1
         {
             get
             {
-                return this.m_CurrentLoginIP;
+                return this.m_Question1;
             }
             set
             {
-                this.m_CurrentLoginIP = value;
+                this.m_Question1 = value;
             }
         }
 
         /// <summary>
-        /// 当前登录时间
+        /// 问题2
         /// </summary>
         [DataMember]
-        public virtual DateTime CurrentLoginTime
+        public virtual string Question2
         {
             get
             {
-                return this.m_CurrentLoginTime;
+                return this.m_Question2;
             }
             set
             {
-                this.m_CurrentLoginTime = value;
+                this.m_Question2 = value;
             }
         }
 
         /// <summary>
-        /// 当前Mac地址
+        /// 问题3
         /// </summary>
         [DataMember]
-        public virtual string CurrentMacAddress
+        public virtual string Question3
         {
             get
             {
-                return this.m_CurrentMacAddress;
+                return this.m_Question3;
             }
             set
             {
-                this.m_CurrentMacAddress = value;
+                this.m_Question3 = value;
+            }
+        }
+
+        /// <summary>
+        /// 回答1
+        /// </summary>
+        [DataMember]
+        public virtual string Answer1
+        {
+            get
+            {
+                return this.m_Answer1;
+            }
+            set
+            {
+                this.m_Answer1 = value;
+            }
+        }
+
+        /// <summary>
+        /// 回答2
+        /// </summary>
+        [DataMember]
+        public virtual string Answer2
+        {
+            get
+            {
+                return this.m_Answer2;
+            }
+            set
+            {
+                this.m_Answer2 = value;
+            }
+        }
+
+        /// <summary>
+        /// 回答3
+        /// </summary>
+        [DataMember]
+        public virtual string Answer3
+        {
+            get
+            {
+                return this.m_Answer3;
+            }
+            set
+            {
+                this.m_Answer3 = value;
+            }
+        }
+
+        /// <summary>
+        /// 最后登录IP
+        /// </summary>
+        [DataMember]
+        public virtual string LastLoginIp
+        {
+            get
+            {
+                return this.m_LastLoginIp;
+            }
+            set
+            {
+                this.m_LastLoginIp = value;
+            }
+        }
+
+        /// <summary>
+        /// 最后登录Mac
+        /// </summary>
+        [DataMember]
+        public virtual string LastLoginMac
+        {
+            get
+            {
+                return this.m_LastLoginMac;
+            }
+            set
+            {
+                this.m_LastLoginMac = value;
+            }
+        }
+
+        /// <summary>
+        /// 最后登录时间
+        /// </summary>
+        [DataMember]
+        public virtual DateTime LastLoginTime
+        {
+            get
+            {
+                return this.m_LastLoginTime;
+            }
+            set
+            {
+                this.m_LastLoginTime = value;
+            }
+        }
+
+        /// <summary>
+        /// 最后修改密码时间
+        /// </summary>
+        [DataMember]
+        public virtual DateTime LastChangePwdTime
+        {
+            get
+            {
+                return this.m_LastChangePwdTime;
+            }
+            set
+            {
+                this.m_LastChangePwdTime = value;
             }
         }
 
         #endregion
 
-    }
-
-    /// <summary>
-    /// 个人图片分类
-    /// </summary>
-    [Serializable]
-    public enum UserImageType
-    {
-        个人肖像, 身份证照片1, 身份证照片2, 名片1, 名片2
     }
 }

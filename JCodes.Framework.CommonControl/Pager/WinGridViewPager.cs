@@ -39,6 +39,7 @@ namespace JCodes.Framework.CommonControl.Pager
         /// 是否显示CheckBox列
         /// </summary>
         public bool ShowCheckBox { get; set; }
+        private int hotTrackRow = DevExpress.XtraGrid.GridControl.InvalidRowHandle;
 
         private object dataSource;//数据源
         private string displayColumns = "";//显示的列
@@ -167,6 +168,26 @@ namespace JCodes.Framework.CommonControl.Pager
                     {
                         AddColumnAlias(key, value[key]);
                     }
+                }
+            }
+        }
+
+        private int HotTrackRow
+        {
+            get { return hotTrackRow; }
+            set
+            {
+                if (hotTrackRow != value)
+                {
+                    int preHotTrackRow = hotTrackRow;
+                    hotTrackRow = value;
+                    gridView1.RefreshRow(preHotTrackRow);
+                    gridView1.RefreshRow(hotTrackRow);
+
+                    if (hotTrackRow >= 0)
+                        gridControl1.Cursor = Cursors.Hand;
+                    else
+                        gridControl1.Cursor = Cursors.Default;
                 }
             }
         }
@@ -829,10 +850,7 @@ namespace JCodes.Framework.CommonControl.Pager
 
         private void dataGridView1_MouseClick(object sender, MouseEventArgs e)
         {
-            if (OnGridViewMouseClick != null)
-            {
-                OnGridViewMouseClick(sender, e);
-            }
+
         }
 
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -933,5 +951,21 @@ namespace JCodes.Framework.CommonControl.Pager
             }
         }
 
+        private void gridView1_MouseMove(object sender, MouseEventArgs e)
+        {
+            GridView view = sender as GridView;
+            GridHitInfo info = view.CalcHitInfo(new Point(e.X, e.Y));
+
+            if (info.InRowCell)
+                HotTrackRow = info.RowHandle;
+            else
+                HotTrackRow = DevExpress.XtraGrid.GridControl.InvalidRowHandle;
+        }
+
+        private void gridView1_RowCellStyle(object sender, RowCellStyleEventArgs e)
+        {
+            if (e.RowHandle == HotTrackRow)
+                e.Appearance.BackColor = Color.PaleGoldenrod;
+        }
     }
 }

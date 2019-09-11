@@ -67,10 +67,10 @@ namespace JCodes.Framework.AddIn.Security
         {
             InitDictItem();//数据字典加载（公用）
 
-            if (!string.IsNullOrEmpty(ID))
+            if (Id > 0)
             {
                 #region 显示客户信息
-                SystemTypeInfo info = BLLFactory<SystemType>.Instance.FindByID(ID);
+                SystemTypeInfo info = BLLFactory<SystemType>.Instance.FindByID(Id);
                 if (info != null)
                 {
                     this.txtOid.Text = info.OID;
@@ -98,7 +98,7 @@ namespace JCodes.Framework.AddIn.Security
             info.CustomID = txtCustomID.Text;
             info.Authorize = txtAuthorize.Text;
             info.Note = txtNote.Text;
-            info.CurrentLoginUserId = Portal.gc.UserInfo.ID;
+            info.CurrentLoginUserId = Portal.gc.UserInfo.Id;
         }
 
         /// <summary>
@@ -145,7 +145,7 @@ namespace JCodes.Framework.AddIn.Security
         public override bool SaveUpdated()
         {
             //检查不同ID是否还有其他相同关键字的记录
-            string condition = string.Format("Name ='{0}' and OID <> '{1}' ", this.txtName.Text, ID);
+            string condition = string.Format("Name ='{0}' and OID <> '{1}' ", this.txtName.Text, Id);
             bool exist = BLLFactory<SystemType>.Instance.IsExistRecord(condition);
             if (exist)
             {
@@ -153,7 +153,7 @@ namespace JCodes.Framework.AddIn.Security
                 return false;
             }
 
-            SystemTypeInfo info = BLLFactory<SystemType>.Instance.FindByID(ID);
+            SystemTypeInfo info = BLLFactory<SystemType>.Instance.FindByID(Id);
             if (info != null)
             {
                 SetInfo(info);

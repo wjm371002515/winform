@@ -3,6 +3,8 @@ using JCodes.Framework.Common.Encrypt;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Entity;
 using JCodes.Framework.IDAL;
+using JCodes.Framework.jCodesenum;
+using JCodes.Framework.jCodesenum.BaseEnum;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -40,7 +42,7 @@ namespace JCodes.Framework.BLL
             if (adminSimpleUsers.Count == 1)
             {
                 SimpleUserInfo info = adminSimpleUsers[0];
-                if (Convert.ToInt32(key) == info.ID)
+                if (Convert.ToInt32(key) == info.Id)
                 {
                     throw new Exception("管理员角色至少需要包含一个用户！");
                 }
@@ -56,10 +58,10 @@ namespace JCodes.Framework.BLL
         internal void CancelExpire(int userID)
         {
             UserInfo info = this.FindByID(userID.ToString());
-            if (info.IsExpire)
+            if (info.IsExpire == (Int32)TestTODO.B)
             {
-                info.IsExpire = false;
-                this.Update(info, info.ID.ToString());
+                info.IsExpire = (Int32)TestTODO.A;
+                this.Update(info, info.Id);
             }
         }
 
@@ -129,7 +131,7 @@ namespace JCodes.Framework.BLL
         /// <returns></returns>
         public List<UserInfo> FindByDept(int ouID)
         {
-            string condition = string.Format("Dept_ID='{0}' ", ouID);
+            string condition = string.Format("DeptId='{0}' ", ouID);
             return base.Find(condition);
         }
 
@@ -140,7 +142,7 @@ namespace JCodes.Framework.BLL
         /// <returns></returns>
         public List<UserInfo> FindByCompany(string companyId)
         {
-            string condition = string.Format("Company_ID='{0}' ", companyId);
+            string condition = string.Format("CompanyId='{0}' ", companyId);
             return base.Find(condition);
         }
 
@@ -151,7 +153,7 @@ namespace JCodes.Framework.BLL
         /// <returns></returns>
         public List<SimpleUserInfo> FindSimpleUsersByCompany(string companyId)
         {
-            string condition = string.Format("Company_ID='{0}' ", companyId);
+            string condition = string.Format("CompanyId='{0}' ", companyId);
             return userDal.FindSimpleUsers(condition);
         }
 
@@ -162,7 +164,7 @@ namespace JCodes.Framework.BLL
         /// <returns></returns>
         public List<SimpleUserInfo> FindSimpleUsersByDept(int ouID)
         {
-            string condition = string.Format("Dept_ID='{0}' ", ouID);
+            string condition = string.Format("DeptId='{0}' ", ouID);
             return userDal.FindSimpleUsers(condition);
         }
 
@@ -226,7 +228,7 @@ namespace JCodes.Framework.BLL
             List<FunctionInfo> functionsByUser = null;
             if (userByName != null)
             {
-                functionsByUser = BLLFactory<Functions>.Instance.GetFunctionsByUser(userByName.ID, typeID);
+                functionsByUser = BLLFactory<Functions>.Instance.GetFunctionsByUser(userByName.Id, typeID);
             }
             return functionsByUser;
         }
@@ -269,7 +271,7 @@ namespace JCodes.Framework.BLL
                 userPassword = EncodeHelper.DesEncrypt(userPassword);
                 userByName.Password = userPassword;
 
-                result = userDal.Update(userByName, userByName.ID.ToString());
+                result = userDal.Update(userByName, userByName.Id);
                 if (result)
                 {
                     //记录用户修改密码日志
@@ -297,7 +299,7 @@ namespace JCodes.Framework.BLL
                 //string initPassword = EncryptHelper.ComputeHash("12345678", changeInfo.Name.ToLower());
                 string initPassword = EncodeHelper.DesEncrypt(Const.defaultPwd);
                 changeInfo.Password = initPassword;
-                result = userDal.Update(changeInfo, changeInfo.ID);
+                result = userDal.Update(changeInfo, changeInfo.Id);
 
                 if (result)
                 {
@@ -323,7 +325,7 @@ namespace JCodes.Framework.BLL
         public bool UserInRole(string userName, string roleName)
         {
             UserInfo userInfo = this.GetUserByName(userName);
-            foreach (RoleInfo info in BLLFactory<Role>.Instance.GetRolesByUser(userInfo.ID))
+            foreach (RoleInfo info in BLLFactory<Role>.Instance.GetRolesByUser(userInfo.Id))
             {
                 if (info.Name == roleName)
                 {
@@ -342,7 +344,7 @@ namespace JCodes.Framework.BLL
         public bool UserInRoleById(int userId, string roleName)
         {
             UserInfo userInfo = this.FindByID(userId);
-            foreach (RoleInfo info in BLLFactory<Role>.Instance.GetRolesByUser(userInfo.ID))
+            foreach (RoleInfo info in BLLFactory<Role>.Instance.GetRolesByUser(userInfo.Id))
             {
                 if (info.Name == roleName)
                 {
@@ -395,9 +397,9 @@ namespace JCodes.Framework.BLL
 
             string identity = "";
             UserInfo userInfo = this.GetUserByName(userName);
-            if (userInfo != null && !userInfo.IsExpire && !userInfo.Deleted)
+            if (userInfo != null && userInfo.IsExpire == (Int32)TestTODO.A && userInfo.IsDelete == (Int32)TestTODO.A)
             {
-                bool ipAccess = BLLFactory<BlackIP>.Instance.ValidateIPAccess(ip, userInfo.ID);
+                bool ipAccess = BLLFactory<BlackIP>.Instance.ValidateIPAccess(ip, userInfo.Id);
                 if (ipAccess)
                 {
                     //userPassword = EncryptHelper.ComputeHash(userPassword, userName.ToLower());
@@ -406,7 +408,7 @@ namespace JCodes.Framework.BLL
                     if (userPassword == userInfo.Password)
                     {
                         //更新用户的登录时间和IP地址
-                        this.userDal.UpdateUserLoginData(userInfo.ID, ip, macAddr);
+                        this.userDal.UpdateUserLoginData(userInfo.Id, ip, macAddr);
 
                         //identity = EncryptHelper.EncryptStr(userName + Convert.ToString(Convert.ToChar(1)) + userPassword, systemType);
                         identity = EncodeHelper.DesEncrypt(userName + Convert.ToString(Convert.ToChar(1)) + userPassword);

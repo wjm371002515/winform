@@ -31,7 +31,7 @@ namespace JCodes.Framework.AddIn.Proj
     {
         private XmlHelper xmlhelper = new XmlHelper(@"XML\function.xml");
 
-        private List<string> lstName = new List<string>();
+        private Dictionary<string, string> lstName = new Dictionary<string, string>();
 
         private string xmlModel = "<id>{0}</id><pid>{1}</pid><name>{2}</name><functionid>{3}</functionid><systemtype_id>{4}</systemtype_id><seq>{5}</seq>";
 
@@ -124,20 +124,25 @@ namespace JCodes.Framework.AddIn.Proj
             List<SysFunctionInfo> lstSysFunctionInfo = treelstFunction.DataSource as List<SysFunctionInfo>;
 
             // 查找重复的Name的值
-            List<String> tmpName = new List<string>();
+            Dictionary<string, string> tmpName = new Dictionary<string, string>();
             foreach (SysFunctionInfo sysFunctionInfo in lstSysFunctionInfo)
             {
-                if (lstName.Contains(sysFunctionInfo.Name))
+                if (lstName.ContainsKey(sysFunctionInfo.Name) && lstName[sysFunctionInfo.Name] == sysFunctionInfo.PID)
                 {
-                    tmpName.Add(sysFunctionInfo.Name);
+                    if (!tmpName.ContainsKey(sysFunctionInfo.Name))
+                        tmpName.Add(sysFunctionInfo.Name, sysFunctionInfo.PID);
                 }
-                lstName.Add(sysFunctionInfo.Name);
+                else
+                {
+                    if (!lstName.ContainsKey(sysFunctionInfo.Name))
+                        lstName.Add(sysFunctionInfo.Name, sysFunctionInfo.PID);
+                }
             }
 
             foreach (SysFunctionInfo sysFunctionInfo in lstSysFunctionInfo)
             {
                 // 判断重复的 类型名
-                if (tmpName.Contains(sysFunctionInfo.Name))
+                if (tmpName.ContainsKey(sysFunctionInfo.Name) && (tmpName[sysFunctionInfo.Name] == sysFunctionInfo.PID))
                 {
                     if (sysFunctionInfo.lstInfo.ContainsKey("Name"))
                     {
@@ -311,7 +316,7 @@ namespace JCodes.Framework.AddIn.Proj
 
         private void ErgodicNode(DevExpress.XtraTreeList.Nodes.TreeListNode nodes, string preStr, DataTable dt)
         {
-            if (nodes.Nodes.Count != Const.Zero)
+            if (nodes.Nodes.Count != Const.Num_Zero)
             {
                 for (Int32 i = 0; i < nodes.Nodes.Count; i++)
                 {
@@ -345,7 +350,7 @@ namespace JCodes.Framework.AddIn.Proj
         {
             DataTable dt = DataTableHelper.CreateTable("显示名称,功能ID,系统编号,排序");
 
-            if (treelstFunction.Nodes.Count != Const.Zero)
+            if (treelstFunction.Nodes.Count != Const.Num_Zero)
             {
                 for (Int32 i = 0; i < treelstFunction.Nodes.Count; i++)
                 {
@@ -384,7 +389,7 @@ namespace JCodes.Framework.AddIn.Proj
         /// <param name="e"></param>
         private void btnImport_Click(object sender, EventArgs e)
         {
-            if (treelstFunction.Nodes.Count != Const.Zero)
+            if (treelstFunction.Nodes.Count != Const.Num_Zero)
             {
                 if (MessageDxUtil.ShowYesNoAndTips("系统功能有原始数据，此次导入会清空原始数据，是否继续？") == System.Windows.Forms.DialogResult.No)
                 {
@@ -505,10 +510,10 @@ namespace JCodes.Framework.AddIn.Proj
         private void btnAddRoot_Click(object sender, EventArgs e)
         {
             SysFunctionInfo functionInfo = new SysFunctionInfo();
-            if (string.Equals(treelstFunction.FocusedNode.GetValue("PID").ToString(), Const.MinusOne.ToString()))
+            if (string.Equals(treelstFunction.FocusedNode.GetValue("PID").ToString(), Const.Num_MinusOne.ToString()))
             {
                 functionInfo.ID = Guid.NewGuid().ToString();
-                functionInfo.PID = Const.MinusOne.ToString();
+                functionInfo.PID = Const.Num_MinusOne.ToString();
                 functionInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
                 treelstFunction.FocusedNode = treelstFunction.AppendNode(functionInfo, null);
                 treelstFunction.FocusedNode.SetValue("ID", functionInfo.ID);

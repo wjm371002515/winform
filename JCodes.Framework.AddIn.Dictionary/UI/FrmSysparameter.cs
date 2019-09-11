@@ -116,7 +116,7 @@ namespace JCodes.Framework.AddIn.Dictionary
                         te.Height = Const.TextEditHeight;
                         te.Text = Value;
                         te.Left = _currPosition_X;
-                        te.Top = _currPosition_Y + Const.Three;
+                        te.Top = _currPosition_Y + Const.Num_Three;
                         te.Tag = Name;             // 控件的tag 保存其中文名
                         te.TabIndex = ID;          // 控件的TabIndex 保存其数据库中的ID
                         te.Name = string.Format("ctl{0}", ID);
@@ -153,7 +153,7 @@ namespace JCodes.Framework.AddIn.Dictionary
                         te.Height = Const.TextEditHeight;
                         te.Text = Value;
                         te.Left = _currPosition_X;
-                        te.Top = _currPosition_Y + Const.Three;
+                        te.Top = _currPosition_Y + Const.Num_Three;
                         te.Tag = Name;             // 控件的tag 保存其中文名
                         te.TabIndex = ID;          // 控件的TabIndex 保存其数据库中的ID
                         te.Name = string.Format("ctl{0}", ID);
@@ -194,7 +194,7 @@ namespace JCodes.Framework.AddIn.Dictionary
                         cbb.BindDictItems(DicNo);
                         if (!string.IsNullOrEmpty(Value)) cbb.SetComboBoxItem(Convert.ToInt32(Value));
                         cbb.Left = _currPosition_X;
-                        cbb.Top = _currPosition_Y + Const.Three;
+                        cbb.Top = _currPosition_Y + Const.Num_Three;
                         cbb.Tag = Name;
                         cbb.TabIndex = ID;
                         cbb.Enter += (sender, e) =>
@@ -235,7 +235,7 @@ namespace JCodes.Framework.AddIn.Dictionary
                         ccbb.BindDictItems(DicNo);
                         ccbb.SetComboBoxItem(Value);
                         ccbb.Left = _currPosition_X;
-                        ccbb.Top = _currPosition_Y + Const.Three;
+                        ccbb.Top = _currPosition_Y + Const.Num_Three;
                         ccbb.Tag = Name;
                         ccbb.TabIndex = ID;
                         ccbb.Enter += (sender, e) =>
@@ -272,9 +272,9 @@ namespace JCodes.Framework.AddIn.Dictionary
 
                         ck.Width = Const.TextEditWidth;
                         ck.Height = Const.TextEditHeight;
-                        ck.Checked = Value == Convert.ToString(Const.One) ? true : false;
+                        ck.Checked = Value == Convert.ToString(Const.Num_One) ? true : false;
                         ck.Left = _currPosition_X;
-                        ck.Top = _currPosition_Y + Const.Three;
+                        ck.Top = _currPosition_Y + Const.Num_Three;
                         ck.Tag = Name;             // 控件的tag 保存其中文名
                         ck.TabIndex = ID;          // 控件的TabIndex 保存其数据库中的ID
                         ck.Name = string.Format("ctl{0}", ID);
@@ -309,7 +309,7 @@ namespace JCodes.Framework.AddIn.Dictionary
                         de.Height = Const.TextEditHeight;
                         if (!string.IsNullOrEmpty(Value)) de.SetDateTime(Convert.ToDateTime(Value));
                         de.Left = _currPosition_X;
-                        de.Top = _currPosition_Y + Const.Three;
+                        de.Top = _currPosition_Y + Const.Num_Three;
                         de.Tag = Name;             // 控件的tag 保存其中文名
                         de.TabIndex = ID;          // 控件的TabIndex 保存其数据库中的ID
                         de.Name = string.Format("ctl{0}", ID);
@@ -350,7 +350,7 @@ namespace JCodes.Framework.AddIn.Dictionary
                         te.Height = Const.TextEditHeight;
                         te.Text = Value;
                         te.Left = _currPosition_X;
-                        te.Top = _currPosition_Y + Const.Three;
+                        te.Top = _currPosition_Y + Const.Num_Three;
                         te.Tag = Name;             // 控件的tag 保存其中文名
                         te.TabIndex = ID;          // 控件的TabIndex 保存其数据库中的ID
                         te.Properties.PasswordChar = '*';
@@ -387,7 +387,7 @@ namespace JCodes.Framework.AddIn.Dictionary
                         te.Height = Const.TextEditHeight;
                         te.Text = Value;
                         te.Left = _currPosition_X;
-                        te.Top = _currPosition_Y + Const.Three;
+                        te.Top = _currPosition_Y + Const.Num_Three;
                         te.Tag = Name;             // 控件的tag 保存其中文名
                         te.TabIndex = ID;          // 控件的TabIndex 保存其数据库中的ID
                         te.Name = string.Format("ctl{0}", ID);
@@ -421,7 +421,7 @@ namespace JCodes.Framework.AddIn.Dictionary
                         time.Height = Const.TextEditHeight;
                         if (!string.IsNullOrEmpty(Value)) time.SetTime(Convert.ToDateTime(Value));
                         time.Left = _currPosition_X;
-                        time.Top = _currPosition_Y + Const.Three;
+                        time.Top = _currPosition_Y + Const.Num_Three;
                         time.Tag = Name;             // 控件的tag 保存其中文名
                         time.TabIndex = ID;          // 控件的TabIndex 保存其数据库中的ID
                         time.Name = string.Format("ctl{0}", ID);
@@ -496,9 +496,9 @@ namespace JCodes.Framework.AddIn.Dictionary
                 {
                     i.sysId = sysId;
                     i.Value = newValue;
-                    i.Editor = LoginUserInfo.ID.ToString();
+                    i.Editor = LoginUserInfo.Id.ToString();
                     i.EditorTime = DateTimeHelper.GetServerDateTime2(); //创建时间   
-                    i.CurrentLoginUserId = Portal.gc.UserInfo.ID;
+                    i.CurrentLoginUserId = Portal.gc.UserInfo.Id;
                     isExist = true;
                     break;
                 }
@@ -510,9 +510,9 @@ namespace JCodes.Framework.AddIn.Dictionary
                 info.ID = Id;
                 info.sysId = sysId;
                 info.Value = newValue;
-                info.Editor = LoginUserInfo.ID.ToString();
+                info.Editor = LoginUserInfo.Id.ToString();
                 info.EditorTime = DateTimeHelper.GetServerDateTime2(); //创建时间   
-                info.CurrentLoginUserId = Portal.gc.UserInfo.ID;
+                info.CurrentLoginUserId = Portal.gc.UserInfo.Id;
                 _info.Add(info);
             }
         }

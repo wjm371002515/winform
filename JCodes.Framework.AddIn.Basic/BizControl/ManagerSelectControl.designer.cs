@@ -102,7 +102,7 @@
             // gridColumn1
             // 
             this.gridColumn1.Caption = "用户编码";
-            this.gridColumn1.FieldName = "HandNo";
+            this.gridColumn1.FieldName = "UserCode";
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 2;

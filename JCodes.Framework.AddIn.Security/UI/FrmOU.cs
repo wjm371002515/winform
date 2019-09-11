@@ -18,12 +18,13 @@ using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.Common.Extension;
 using JCodes.Framework.Common.Format;
 using JCodes.Framework.AddIn.Basic;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn.Security
 {
     public partial class FrmOU : BaseDock
     {
-        private string currentID = string.Empty;
+        private Int32 currentID;
 
         public FrmOU()
         {
@@ -69,17 +70,17 @@ namespace JCodes.Framework.AddIn.Security
             foreach (OUInfo groupInfo in list)
             {
                 //不显示删除的机构
-                if (groupInfo != null && !groupInfo.Deleted)
+                if (groupInfo != null && groupInfo.IsDelete == 0)
                 {
                     TreeNode topnode = new TreeNode();
                     topnode.Text = groupInfo.Name;
-                    topnode.Name = groupInfo.ID.ToString();
-                    topnode.Tag = groupInfo.ID;
-                    topnode.ImageIndex = Portal.gc.GetImageIndex(groupInfo.Category);
-                    topnode.SelectedImageIndex = Portal.gc.GetImageIndex(groupInfo.Category);
+                    topnode.Name = groupInfo.Id.ToString();
+                    topnode.Tag = groupInfo.Id;
+                    topnode.ImageIndex = groupInfo.OuType;//Portal.gc.GetImageIndex(groupInfo.OuType);
+                    topnode.SelectedImageIndex = groupInfo.OuType;// Portal.gc.GetImageIndex(groupInfo.OuType);
                     this.treeView1.Nodes.Add(topnode);
 
-                    List<OUNodeInfo> sublist = BLLFactory<OU>.Instance.GetTreeByID(groupInfo.ID);
+                    List<OUNodeInfo> sublist = BLLFactory<OU>.Instance.GetTreeByID(groupInfo.Id);
                     AddOUNode(sublist, topnode);
                 }
             }
@@ -95,15 +96,16 @@ namespace JCodes.Framework.AddIn.Security
             {
                 TreeNode ouNode = new TreeNode();
                 ouNode.Text = ouInfo.Name;
-                ouNode.Name = ouInfo.ID.ToString();
-                ouNode.Tag = ouInfo.ID;
-                if (ouInfo.Deleted)
+                ouNode.Name = ouInfo.Id.ToString();
+                ouNode.Tag = ouInfo.Id;
+                // TODO
+                if (ouInfo.IsDelete != 0)
                 {
                     ouNode.ForeColor = Color.Red;
                     continue;//跳过不显示
                 }
-                ouNode.ImageIndex = Portal.gc.GetImageIndex(ouInfo.Category);
-                ouNode.SelectedImageIndex = Portal.gc.GetImageIndex(ouInfo.Category);
+                ouNode.ImageIndex = ouInfo.OuType;//Portal.gc.GetImageIndex(ouInfo.Category);
+                ouNode.SelectedImageIndex = ouInfo.OuType;//Portal.gc.GetImageIndex(ouInfo.Category);
                 parentNode.Nodes.Add(ouNode);
 
                 AddOUNode(ouInfo.Children, ouNode);
@@ -117,7 +119,7 @@ namespace JCodes.Framework.AddIn.Security
             List<RoleInfo> list = BLLFactory<Role>.Instance.GetRolesByOU(id);
             foreach (RoleInfo info in list)
             {
-                CListItem item = new CListItem(info.ID.ToString(), info.Name);
+                CDicKeyValue item = new CDicKeyValue(info.Id, info.Name);
                 this.lvwRole.Items.Add(item);
             }
             if (this.lvwRole.Items.Count > 0)
@@ -130,10 +132,10 @@ namespace JCodes.Framework.AddIn.Security
         /// <summary>
         /// 记录用户的选择情况
         /// </summary>
-        Dictionary<string, string> SelectUserDict = new Dictionary<string, string>();
+        Dictionary<Int32, string> SelectUserDict = new Dictionary<Int32, string>();
         private void RefreshUsers(int id)
         {
-            SelectUserDict = new Dictionary<string, string>();
+            SelectUserDict = new Dictionary<Int32, string>();
 
             this.lvwUser.BeginUpdate();
             this.lvwUser.Items.Clear();
@@ -141,12 +143,12 @@ namespace JCodes.Framework.AddIn.Security
             foreach (SimpleUserInfo info in list)
             {
                 string name = string.Format("{0}（{1}）", info.FullName, info.Name);
-                CListItem item = new CListItem(info.ID.ToString(), name);
+                CDicKeyValue item = new CDicKeyValue(info.Id, name);
                 this.lvwUser.Items.Add(item);
 
-                if (!SelectUserDict.ContainsKey(info.ID.ToString()))
+                if (!SelectUserDict.ContainsKey(info.Id))
                 {
-                    SelectUserDict.Add(info.ID.ToString(), name);
+                    SelectUserDict.Add(info.Id, name);
                 }
             }
             if (this.lvwUser.Items.Count > 0)
@@ -207,7 +209,6 @@ namespace JCodes.Framework.AddIn.Security
 
             ClearInput();
             groupControl2.Text = Const.Add + "组织机构详细信息";
-            currentID = "";
 
             TreeNode node = this.treeView1.SelectedNode;
             if (node != null && node.Tag != null)
@@ -221,9 +222,9 @@ namespace JCodes.Framework.AddIn.Security
         private void ClearInput()
         {
             this.txtName.Text = "";
-            this.txtNote.Text = "";
+            this.txtRemark.Text = "";
             this.txtAddress.Text = "";
-            this.txtHandNo.Text = "";
+            this.txtOuCode.Text = "";
             this.txtSeq.Text = "";
             this.txtCreator.Text = Portal.gc.UserInfo.FullName;
             this.txtCreateTime.Text = DateTimeHelper.GetServerDateTime2().ToString();
@@ -239,34 +240,31 @@ namespace JCodes.Framework.AddIn.Security
         private OUInfo SetOUInfo(OUInfo info)
         {
             info.Name = this.txtName.Text;
-            info.Note = this.txtNote.Text;
+            info.Remark = this.txtRemark.Text;
             info.Address = this.txtAddress.Text;
             info.InnerPhone = this.txtInnerPhone.Text;
-            info.OuterPhone = this.txtOuterPhone.Text;
-            info.HandNo = this.txtHandNo.Text;
+            info.OutPhone = this.txtOuterPhone.Text;
+            info.OuCode = this.txtOuCode.Text;
             info.Seq = this.txtSeq.Text;
-            info.Category = this.txtCategory.Text;
-            info.Editor = Portal.gc.UserInfo.FullName;
-            info.Editor_ID = Portal.gc.UserInfo.ID.ToString();
-            info.EditTime = DateTimeHelper.GetServerDateTime2();
-            info.PID = this.cmbUpperOU.Value.ToString().ToInt32();
+            info.OuType = Convert.ToInt32(this.txtCategory.Text);
+            info.EditorId = Portal.gc.UserInfo.Id;
+            info.LastUpdateTime = DateTimeHelper.GetServerDateTime2();
+            info.Pid = this.cmbUpperOU.Value.ToString().ToInt32();
 
-            OUInfo pInfo = BLLFactory<OU>.Instance.FindByID(info.PID);
+            OUInfo pInfo = BLLFactory<OU>.Instance.FindByID(info.Pid);
             if (pInfo != null)
             {   
                 //pInfo.Category == "集团" ||
-                if ( pInfo.Category == "公司")
+                if ( pInfo.OuType == 0)
                 {
-                    info.Company_ID = pInfo.ID.ToString();
-                    info.CompanyName = pInfo.Name;
+                    info.CompanyId = pInfo.Id;
                 }
-                else if (pInfo.Category == "部门" || pInfo.Category == "工作组")
+                else if (pInfo.OuType == 1 || pInfo.OuType == 2)
                 {
-                    info.Company_ID = pInfo.Company_ID;
-                    info.CompanyName = pInfo.CompanyName;
+                    info.CompanyId = pInfo.CompanyId;
                 }
             }
-            info.CurrentLoginUserId = Portal.gc.UserInfo.ID;
+            info.CurrentLoginUserId = Portal.gc.UserInfo.Id;
             return info;
         }
 
@@ -303,37 +301,37 @@ namespace JCodes.Framework.AddIn.Security
         {
             if (e.Node != null)
             {
-                string id = e.Node.Name;
-                OUInfo info = BLLFactory<OU>.Instance.FindByID(id);
+                Int32 Id = Convert.ToInt32( e.Node.Name);
+                OUInfo info = BLLFactory<OU>.Instance.FindByID(Id);
 
                 if (info != null)
                 {
                     groupControl2.Text = Const.Edit + "组织机构详细信息";
-                    currentID = id.ToString();
+                    currentID = Id;
 
                     this.txtName.Text = info.Name;
-                    this.txtNote.Text = info.Note;
+                    this.txtRemark.Text = info.Remark;
                     this.txtAddress.Text = info.Address;
                     this.txtSeq.Text = info.Seq;
-                    this.txtHandNo.Text = info.HandNo;
-                    this.txtOuterPhone.Text = info.OuterPhone;
+                    this.txtOuCode.Text = info.OuCode;
+                    this.txtOuterPhone.Text = info.OutPhone;
                     this.txtInnerPhone.Text = info.InnerPhone;
-                    this.txtCategory.Text = info.Category;
-                    this.txtCreator.Text = info.Creator;
-                    this.txtCreateTime.Text = info.CreateTime.ToString();
+                    this.txtCategory.Text = info.OuType.ToString();
+                    this.txtCreator.Text = info.CreatorId.ToString();
+                    this.txtCreateTime.Text = info.CreatorTime.ToString();
 
                     //由于选择的节点不同，因此根据用户选择的最顶级机构ID进行初始化，才能列出指定机构下的层次关系
                     TreeNode topTreeNode = GetNodeTopParent(e.Node);
                     if(topTreeNode != null && topTreeNode.Tag != null)
                     {
                         string topOuId = topTreeNode.Tag.ToString();
-                        this.cmbUpperOU.ParentOuID = topOuId;
+                        this.cmbUpperOU.ParentOuID = topOuId.ToInt32();
                         this.cmbUpperOU.Init();
                     }
-                    OUInfo info2 = BLLFactory<OU>.Instance.FindByID(info.PID);
+                    OUInfo info2 = BLLFactory<OU>.Instance.FindByID(info.Pid);
                     if (info2 != null)
                     {
-                        this.cmbUpperOU.Value = info.PID.ToString();
+                        this.cmbUpperOU.Value = info.Pid.ToString();
                     }
                     else
                     {
@@ -341,7 +339,7 @@ namespace JCodes.Framework.AddIn.Security
                     }
 
                     //如果是公司管理员，不能编辑公司的信息
-                    if (Portal.gc.UserInfo.Company_ID == currentID &&
+                    if (Portal.gc.UserInfo.CompanyId == currentID &&
                         Portal.gc.UserInRole(RoleInfo.CompanyAdminName))
                     {
                         this.btnSave.Enabled = false;
@@ -351,7 +349,7 @@ namespace JCodes.Framework.AddIn.Security
                         this.btnSave.Enabled = true;
                     }
 
-                    int intID = Convert.ToInt32(id);
+                    int intID = Convert.ToInt32(Id);
                     RefreshUsers(intID);
                     RefreshRoles(intID);
                 }
@@ -360,7 +358,7 @@ namespace JCodes.Framework.AddIn.Security
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(currentID) && !HasFunction("OU/edit"))
+            if (currentID == 0 && !HasFunction("OU/edit"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -382,7 +380,7 @@ namespace JCodes.Framework.AddIn.Security
 
             #endregion
 
-            if (!string.IsNullOrEmpty(currentID))
+            if (currentID > 0)
             {                
                 try
                 {
@@ -399,7 +397,7 @@ namespace JCodes.Framework.AddIn.Security
                     #endregion
 
                     OUInfo info = BLLFactory<OU>.Instance.FindByID(currentID);
-                    if (info.PID != cmbUpperOU.Value.ToString().ToInt32() && BLLFactory<OU>.Instance.Find(string.Format("PID={0}", currentID)).Count <= 1)
+                    if (info.Pid != cmbUpperOU.Value.ToString().ToInt32() && BLLFactory<OU>.Instance.Find(string.Format("PID={0}", currentID)).Count <= 1)
                     {
                         MessageDxUtil.ShowError(Const.ForbidOperMsg);
                         return;
@@ -410,7 +408,7 @@ namespace JCodes.Framework.AddIn.Security
                     if (info != null)
                     {
                         info = SetOUInfo(info);
-                        BLLFactory<OU>.Instance.Update(info, info.ID.ToString());
+                        BLLFactory<OU>.Instance.Update(info, info.Id);
 
                         RefreshTreeView();
                     }
@@ -436,9 +434,8 @@ namespace JCodes.Framework.AddIn.Security
 
                 OUInfo info = new OUInfo();
                 info = SetOUInfo(info);
-                info.Creator = Portal.gc.UserInfo.FullName;
-                info.Creator_ID = Portal.gc.UserInfo.ID.ToString();
-                info.CreateTime = DateTimeHelper.GetServerDateTime2();
+                info.CreatorId = Portal.gc.UserInfo.Id;
+                info.CreatorTime = DateTimeHelper.GetServerDateTime2();
 
                 try
                 {
@@ -460,23 +457,23 @@ namespace JCodes.Framework.AddIn.Security
         /// </summary>
         /// <param name="oldDict">旧的列表</param>
         /// <param name="newDict">新的选择列表</param>
-        private void GetUserDictChangs(Dictionary<string, string> oldDict, Dictionary<string, string> newDict)
+        private void GetUserDictChangs(Dictionary<Int32, string> oldDict, Dictionary<Int32, string> newDict)
         {
             addedUserList = new List<int>();
             deletedUserList = new List<int>();
-            foreach (string key in oldDict.Keys)
+            foreach (Int32 key in oldDict.Keys)
             {
                 if (!newDict.ContainsKey(key))
                 {
-                    deletedUserList.Add(key.ToInt32());
+                    deletedUserList.Add(key);
                 }
             }
 
-            foreach (string key in newDict.Keys)
+            foreach (Int32 key in newDict.Keys)
             {
                 if (!oldDict.ContainsKey(key))
                 {
-                    addedUserList.Add(key.ToInt32());
+                    addedUserList.Add(key);
                 }
             }
         }
@@ -493,14 +490,14 @@ namespace JCodes.Framework.AddIn.Security
 
                     foreach (int id in deletedUserList)
                     {
-                        BLLFactory<OU>.Instance.RemoveUser(id, currentID.ToInt32());
+                        BLLFactory<OU>.Instance.RemoveUser(id, currentID);
                     }
                     foreach (int id in addedUserList)
                     {
-                        BLLFactory<OU>.Instance.AddUser(id, currentID.ToInt32());
+                        BLLFactory<OU>.Instance.AddUser(id, currentID);
                     }
 
-                    this.RefreshUsers(currentID.ToInt32());
+                    this.RefreshUsers(currentID);
                 }
             }
             else
@@ -523,7 +520,7 @@ namespace JCodes.Framework.AddIn.Security
                 if (userItem != null)
                 {
                     int userId = Convert.ToInt32(userItem.Value);
-                    if (!string.IsNullOrEmpty(currentID))
+                    if (currentID > 0)
                     {
                         int ouID = Convert.ToInt32(currentID);
                         DeleteUser(ouID, userId);

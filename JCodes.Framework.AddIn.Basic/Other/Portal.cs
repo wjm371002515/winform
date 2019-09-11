@@ -20,6 +20,7 @@ using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.CommonControl.Other;
 using DevExpress.Utils;
 using JCodes.Framework.Common.Files;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn.Basic
 {
@@ -53,17 +54,16 @@ namespace JCodes.Framework.AddIn.Basic
         public LoginUserInfo ConvertToLoginUser(UserInfo info)
         {
             LoginUserInfo loginInfo = new LoginUserInfo();
-            loginInfo.ID = info.ID;
+            loginInfo.Id = info.Id;
             loginInfo.Name = info.Name;
             loginInfo.FullName = info.FullName;
-            loginInfo.IdentityCard = info.IdentityCard;
+            loginInfo.IdCard = info.IdCard;
             loginInfo.MobilePhone = info.MobilePhone;
             loginInfo.QQ = info.QQ;
             loginInfo.Email = info.Email;
             loginInfo.Gender = info.Gender;
-
-            loginInfo.DeptId = info.Dept_ID;
-            loginInfo.CompanyId = info.Company_ID;
+            loginInfo.DeptId = info.DeptId;
+            loginInfo.CompanyId = info.CompanyId;
             return loginInfo;
         }
 
@@ -224,7 +224,7 @@ namespace JCodes.Framework.AddIn.Basic
             }
             else
             {
-                groupInfo = BLLFactory<OU>.Instance.FindByID(UserInfo.Company_ID);//公司管理员取公司节点
+                groupInfo = BLLFactory<OU>.Instance.FindByID(UserInfo.CompanyId);//公司管理员取公司节点
                 list.Add(groupInfo);
             }
             return list;

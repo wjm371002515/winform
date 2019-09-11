@@ -17,7 +17,7 @@ namespace JCodes.Framework.CommonControl.BaseUI
     {
         public event PostionChangedEventHandler PositionChanged;
         private int m_CurrentIndex = 0;//当前的位置
-        public List<string> IDList = new List<string>();
+        public List<Int32> IdList = new List<Int32>();
 
         /// <summary>
         /// 获取或设置索引值
@@ -53,7 +53,7 @@ namespace JCodes.Framework.CommonControl.BaseUI
 
         private void btnLast_Click(object sender, EventArgs e)
         {
-            ChangePosition(IDList.Count - 1);
+            ChangePosition(IdList.Count - 1);
         }
 
         private void EnableControl(bool enable)
@@ -66,7 +66,7 @@ namespace JCodes.Framework.CommonControl.BaseUI
 
         private void ChangePosition(int newPos)
         {
-            int count = IDList.Count;
+            int count = IdList.Count;
             if (count == 0)
             {
                 EnableControl(false);

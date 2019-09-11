@@ -48,8 +48,8 @@
           <DataField>Data3</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="HandNo">
-          <DataField>HandNo</DataField>
+        <Field Name="UserCode">
+          <DataField>UserCode</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="ID">
@@ -307,14 +307,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="HandNo">
+                    <Textbox Name="UserCode">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!HandNo.Value</Value>
+                              <Value>=Fields!UserCode.Value</Value>
                               <Style>
                                 <FontFamily>新宋体</FontFamily>
                               </Style>
@@ -325,7 +325,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>HandNo</rd:DefaultName>
+                      <rd:DefaultName>UserCode</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>

@@ -34,7 +34,7 @@ namespace JCodes.Framework.BLL
         /// <returns></returns>
         public override List<OUInfo> GetAll(DbTransaction trans = null)
         {
-            string condition = string.Format(" Deleted = 0");
+            string condition = string.Format(" IsDelete = 0");
             return base.Find(condition, trans);
         }
 
@@ -68,7 +68,7 @@ namespace JCodes.Framework.BLL
                 }
                 else
                 {
-                    groupInfo = this.FindByID(userInfo.Company_ID);//公司管理员取公司节点
+                    groupInfo = this.FindByID(userInfo.CompanyId);//公司管理员取公司节点
                     list.Add(groupInfo);
                 }
             }
@@ -81,7 +81,7 @@ namespace JCodes.Framework.BLL
         /// <returns></returns>
         public List<OUInfo> GetAllCompany(int groupId)
         {
-            string condition = string.Format("Category='公司' AND PID={0} ", groupId);
+            string condition = string.Format("OuType='公司' AND PID={0} ", groupId);
             return Find(condition);
         }
 
@@ -91,7 +91,7 @@ namespace JCodes.Framework.BLL
         /// <returns></returns>
         public List<OUInfo> GetGroupCompany()
         {
-            string condition = string.Format("Category='公司' or Category='集团' ");
+            string condition = string.Format("OuType='公司' or Category='集团' ");
             return Find(condition);
         }
 
@@ -111,7 +111,7 @@ namespace JCodes.Framework.BLL
                 {
                     OUNodeInfo groupNodeInfo = new OUNodeInfo(groupOU);
 
-                    List<OUInfo> companyList = GetAllCompany(groupOU.ID);
+                    List<OUInfo> companyList = GetAllCompany(groupOU.Id);
                     foreach (OUInfo info in companyList)
                     {
                         groupNodeInfo.Children.Add(new OUNodeInfo(info));
@@ -203,7 +203,7 @@ namespace JCodes.Framework.BLL
                 if (adminSimpleUsers.Count == 1)
                 {
                     SimpleUserInfo info = (SimpleUserInfo)adminSimpleUsers[0];
-                    if (userID == info.ID)
+                    if (userID == info.Id)
                     {
                         throw new Exception("管理员角色至少需要包含一个用户！");
                     }
@@ -280,13 +280,13 @@ namespace JCodes.Framework.BLL
         private OUInfo GetCompanyInfo(int ouId)
         {
             OUInfo info = BLLFactory<OU>.Instance.FindByID(ouId);
-            if (info.Category == "公司")
+            if (info.OuType == 1)
             {
                 return info;
             }
             else
             {
-                return GetCompanyInfo(info.PID);
+                return GetCompanyInfo(info.Pid);
             }
         }
     }

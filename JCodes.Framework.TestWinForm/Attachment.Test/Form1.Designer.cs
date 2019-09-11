@@ -49,7 +49,7 @@
             // 
             // attachmentControl1
             // 
-            this.attachmentControl1.AttachmentGUID = null;
+            this.attachmentControl1.AttachmentGid = null;
             this.attachmentControl1.Location = new System.Drawing.Point(24, 105);
             this.attachmentControl1.Name = "attachmentControl1";
             this.attachmentControl1.Size = new System.Drawing.Size(264, 27);

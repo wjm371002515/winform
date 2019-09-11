@@ -19,6 +19,7 @@ using JCodes.Framework.Common.Files;
 using JCodes.Framework.Common.Office;
 using JCodes.Framework.Common.Winform;
 using JCodes.Framework.CommonControl.Controls;
+using JCodes.Framework.Common.Extension;
 
 namespace JCodes.Framework.AddIn.Basic
 {
@@ -84,9 +85,9 @@ namespace JCodes.Framework.AddIn.Basic
                 }
 
                 //可特殊设置特别的宽度
-                winGridViewPager1.gridView1.SetGridColumWidth("MacAddress", 150);
-                winGridViewPager1.gridView1.SetGridColumWidth("CreateTime", 150);
-                winGridViewPager1.gridView1.SetGridColumWidth("Note", 200);
+                winGridViewPager1.gridView1.SetGridColumWidth("Mac", 150);
+                winGridViewPager1.gridView1.SetGridColumWidth("CreatorTime", 150);
+                winGridViewPager1.gridView1.SetGridColumWidth("Remark", 200);
             }
         }
 
@@ -142,8 +143,8 @@ namespace JCodes.Framework.AddIn.Basic
             int[] rowSelected = this.winGridViewPager1.GridView1.GetSelectedRows();
             foreach (int iRow in rowSelected)
             {
-                string ID = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "ID");
-                BLLFactory<OperationLog>.Instance.DeleteByUser(ID, LoginUserInfo.ID);
+                string ID = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "Id");
+                BLLFactory<OperationLog>.Instance.DeleteByUser(ID, LoginUserInfo.Id);
             }
              
             BindData();
@@ -160,19 +161,19 @@ namespace JCodes.Framework.AddIn.Basic
                 return;
             }
 
-            string ID = this.winGridViewPager1.gridView1.GetFocusedRowCellDisplayText("ID");
-            List<string> IDList = new List<string>();
+            Int32 Id = this.winGridViewPager1.gridView1.GetFocusedRowCellDisplayText("Id").ToInt32();
+            List<Int32> IdList = new List<Int32>();
             for (int i = 0; i < this.winGridViewPager1.gridView1.RowCount; i++)
             {
-                string strTemp = this.winGridViewPager1.GridView1.GetRowCellDisplayText(i, "ID");
-                IDList.Add(strTemp);
+                Int32 intTemp = this.winGridViewPager1.GridView1.GetRowCellDisplayText(i, "Id").ToInt32();
+                IdList.Add(intTemp);
             }
 
-            if (!string.IsNullOrEmpty(ID))
+            if (Id > 0)
             {
                 FrmEditOperationLog dlg = new FrmEditOperationLog();
-                dlg.ID = ID;
-                dlg.IDList = IDList;
+                dlg.Id = Id;
+                dlg.IdList = IdList;
                 dlg.OnDataSaved += new EventHandler(dlg_OnDataSaved);
                 
                 if (DialogResult.OK == dlg.ShowDialog())
@@ -220,12 +221,12 @@ namespace JCodes.Framework.AddIn.Basic
             condition.AddCondition("LoginName", this.txtLoginName.Text.Trim(), SqlOperator.Like);
             condition.AddCondition("TableName", this.txtTableName.Text.Trim(), SqlOperator.Like);
             condition.AddCondition("OperationType", this.txtOperationType.Text.Trim(), SqlOperator.Like);
-            condition.AddDateCondition("CreateTime", this.txtCreateTime1, this.txtCreateTime2); //日期类型
+            condition.AddDateCondition("CreatorTime", this.txtCreateTime1, this.txtCreateTime2); //日期类型
 
             //如果是公司管理员，增加公司标识
             if (Portal.gc.UserInRole(RoleInfo.CompanyAdminName))
             {
-                condition.AddCondition("Company_ID", Portal.gc.UserInfo.Company_ID, SqlOperator.Equal);
+                condition.AddCondition("CompanyId", Portal.gc.UserInfo.CompanyId, SqlOperator.Equal);
             }
 
             string where = condition.BuildConditionSql().Replace("Where", "");
@@ -236,7 +237,7 @@ namespace JCodes.Framework.AddIn.Basic
             }
 
             // 增加系统可以访问的公司部门的权限
-            where += " and (Company_ID " + canOptCompanyID + ")";
+            where += " and (CompanyId " + canOptCompanyID + ")";
             return where;
         }
         
@@ -251,7 +252,7 @@ namespace JCodes.Framework.AddIn.Basic
             }
 
         	//entity
-            this.winGridViewPager1.DisplayColumns = "LoginName,FullName,CompanyName,TableName,OperationType,IPAddress,MacAddress,CreateTime";
+            this.winGridViewPager1.DisplayColumns = "LoginName,FullName,CompanyName,TableName,OperationType,IP,Mac,CreatorTime";
             this.winGridViewPager1.ColumnNameAlias = BLLFactory<OperationLog>.Instance.GetColumnNameAlias();//字段列显示名称转义
 
             string where = GetConditionSql();
@@ -312,18 +313,18 @@ namespace JCodes.Framework.AddIn.Basic
                 {
                     dr = dtNew.NewRow();
                     dr["序号"] = j++;
-                     dr["登录用户ID"] = list[i].User_ID;
-                     dr["登录名"] = list[i].LoginName;
-                     dr["真实名称"] = list[i].FullName;
-                     dr["所属公司ID"] = list[i].Company_ID;
-                     dr["所属公司名称"] = list[i].CompanyName;
-                     dr["操作表名称"] = list[i].TableName;
-                     dr["操作类型"] = list[i].OperationType;
-                     dr["日志描述"] = list[i].Note;
-                     dr["IP地址"] = list[i].IPAddress;
-                     dr["Mac地址"] = list[i].MacAddress;
-                     dr["创建时间"] = list[i].CreateTime;
-                     dtNew.Rows.Add(dr);
+                    dr["用户Id"] = list[i].UserId;
+                    dr["登录名"] = list[i].LoginName;
+                    dr["真实名称"] = list[i].FullName;
+                    dr["公司Id"] = list[i].CompanyId;
+                    dr["公司名字"] = list[i].CompanyName;
+                    dr["表名"] = list[i].TableName;
+                    dr["操作类型"] = list[i].OperationType;
+                    dr["备注"] = list[i].Remark;
+                    dr["IP地址"] = list[i].IP;
+                    dr["Mac地址"] = list[i].Mac;
+                    dr["创建时间"] = list[i].CreatorTime;
+                    dtNew.Rows.Add(dr);
                 }
 
                 try

@@ -34,7 +34,7 @@ namespace JCodes.Framework.AddIn.Basic
         /// <summary>
         /// 指定附件对应的GUID
         /// </summary>
-        public string AttachmentGUID = Guid.NewGuid().ToString();
+        public string AttachmentGid = Guid.NewGuid().ToString();
 
         /// <summary>
         /// 附件的编辑人
@@ -44,7 +44,7 @@ namespace JCodes.Framework.AddIn.Basic
         /// <summary>
         /// 附件组所属的记录ID，如属于某个主表记录的ID
         /// </summary>
-        public string OwerId = "";
+        public Int32 CreatorId = 0;
 
         private List<string> fileList = new List<string>();
         private Dictionary<string, string> fileStatus = new Dictionary<string, string>();
@@ -127,13 +127,13 @@ namespace JCodes.Framework.AddIn.Basic
                             info.FileData = FileUtil.FileToBytes(file);
                         }
 
-                        info.FileName = FileUtil.GetFileName(file);
-                        info.Category = this.AttachmentDirectory;
+                        info.Name = FileUtil.GetFileName(file);
+                        info.CategoryCode = this.AttachmentDirectory;
                         info.FileExtend = FileUtil.GetExtension(file);
                         info.FileSize = FileUtil.GetFileSize(file);
-                        info.Editor = UserId.ToString();//登录人
-                        info.Owner_ID = OwerId;//所属主表记录ID
-                        info.AttachmentGUID = AttachmentGUID;
+                        info.EditorId = UserId;//登录人
+                        info.CreatorId = CreatorId;//所属主表记录ID
+                        info.AttachmentGid = AttachmentGid;
 
                         CommonResult result = BLLFactory<FileUpload>.Instance.Upload(info);
                         if (!result.Success)

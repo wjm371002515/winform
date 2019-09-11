@@ -26,7 +26,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\jCodes\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -44,10 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="50Go\Coupon.cs" />
     <Compile Include="50Go\CouponCategoryInfo.cs" />
+    <Compile Include="50Go\CouponInfo.cs" />
     <Compile Include="Attachment\FileUploadInfo.cs" />
     <Compile Include="BaseEntity\BaseEntity.cs" />
+    <Compile Include="Common\TableEntity.cs" />
     <Compile Include="Common\CListItem.cs" />
     <Compile Include="Common\CommonResult.cs" />
     <Compile Include="Common\EasyTreeData.cs" />
@@ -68,12 +69,15 @@
     <Compile Include="Dic\DistrictInfo.cs" />
     <Compile Include="Dic\ProvinceInfo.cs" />
     <Compile Include="Dic\SysparameterInfo.cs" />
+    <Compile Include="Machines\IntelVote.cs" />
+    <Compile Include="Machines\Machines.cs" />
     <Compile Include="Pager.Entity\PagerInfo.cs" />
     <Compile Include="Proj\ErrornoInfo.cs" />
     <Compile Include="Proj\ConstantInfo.cs" />
     <Compile Include="Proj\SysFunctionInfo.cs" />
     <Compile Include="Proj\SysMenuInfo.cs" />
     <Compile Include="Proj\StdFieldComboBox.cs" />
+    <Compile Include="Proj\DiyFieldInfo.cs" />
     <Compile Include="Proj\TableIndexsInfo.cs" />
     <Compile Include="Proj\TableFieldsInfo.cs" />
     <Compile Include="Proj\TablesInfo.cs" />
@@ -86,7 +90,6 @@
     <Compile Include="Proj\DefaultTypeInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\BlackIPInfo.cs" />
-    <Compile Include="Security\CategoryEnum.cs" />
     <Compile Include="Security\FunctionInfo.cs" />
     <Compile Include="Security\LoginLogInfo.cs" />
     <Compile Include="Security\LoginResult.cs" />
@@ -103,7 +106,6 @@
     <Compile Include="SmallTools\MCaiwuInfo.cs" />
     <Compile Include="SmallTools\MIPOInfo.cs" />
     <Compile Include="SmallTools\MFileInfo.cs" />
-    <Compile Include="WareHouseMis\EnumClass.cs" />
     <Compile Include="WareHouseMis\ItemDetailInfo.cs" />
     <Compile Include="WareHouseMis\PurchaseDetailInfo.cs" />
     <Compile Include="WareHouseMis\PurchaseHeaderInfo.cs" />
@@ -134,7 +136,9 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>echo "编译后处理的事情 JCodes.Framework.Entity"</PostBuildEvent>
+    <PostBuildEvent>xcopy ..\jCodes\$(TargetFileName) ..\JCodes.Framework.WebUI\bin\ /y
+xcopy ..\jCodes\$(TargetFileName) ..\JCodes.Framework.WebDemo\bin\ /y
+echo "编译后处理的事情 JCodes.Framework.Entity"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

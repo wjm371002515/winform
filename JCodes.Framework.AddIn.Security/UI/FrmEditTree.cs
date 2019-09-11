@@ -13,12 +13,12 @@ using JCodes.Framework.CommonControl;
 using JCodes.Framework.CommonControl.BaseUI;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Common.Extension;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn.Security
 {
     public partial class FrmEditTree : BaseDock
     {
-        public enum DisplayTreeType  { OU, Role, User, Function }
         public DisplayTreeType DisplayType;
         public string RoleID = string.Empty;//在Role中查看其他相关信息的时候
         public string OUID = string.Empty;//在OU中查看用户列表的时候
@@ -65,16 +65,16 @@ namespace JCodes.Framework.AddIn.Security
 
                     foreach (OUInfo info in chechedList)
                     {
-                        if (!checkedDict.ContainsKey(info.ID.ToString()))
+                        if (!checkedDict.ContainsKey(info.Id.ToString()))
                         {
-                            checkedDict.Add(info.ID.ToString(), new CListItem(info.PID.ToString(), info.Name));
+                            checkedDict.Add(info.Id.ToString(), new CListItem(info.Pid.ToString(), info.Name));
                         }
                     }
                     foreach (OUInfo info in list)
                     {
-                        if (!treeDict.ContainsKey(info.ID.ToString()))
+                        if (!treeDict.ContainsKey(info.Id.ToString()))
                         {
-                            treeDict.Add(info.ID.ToString(), new CListItem(info.PID.ToString(), info.Name));
+                            treeDict.Add(info.Id.ToString(), new CListItem(info.Pid.ToString(), info.Name));
                         }
                     } 
                     #endregion
@@ -96,16 +96,16 @@ namespace JCodes.Framework.AddIn.Security
 
                     foreach (RoleInfo info in chechedList)
                     {
-                        if (!checkedDict.ContainsKey(info.ID.ToString()))
+                        if (!checkedDict.ContainsKey(info.Id.ToString()))
                         {
-                            checkedDict.Add(info.ID.ToString(), new CListItem("-1", info.Name));
+                            checkedDict.Add(info.Id.ToString(), new CListItem("-1", info.Name));
                         }
                     }
                     foreach (RoleInfo info in list)
                     {
-                        if (!treeDict.ContainsKey(info.ID.ToString()))
+                        if (!treeDict.ContainsKey(info.Id.ToString()))
                         {
-                            treeDict.Add(info.ID.ToString(), new CListItem("-1", info.Name));
+                            treeDict.Add(info.Id.ToString(), new CListItem("-1", info.Name));
                         }
                     } 
                     #endregion
@@ -131,18 +131,18 @@ namespace JCodes.Framework.AddIn.Security
 
                     foreach (UserInfo info in chechedList)
                     {
-                        if (!checkedDict.ContainsKey(info.ID.ToString()))
+                        if (!checkedDict.ContainsKey(info.Id.ToString()))
                         {
                             string name = string.Format("{0}（{1}）", info.Name, info.FullName);
-                            checkedDict.Add(info.ID.ToString(), new CListItem(info.PID.ToString(), name));
+                            checkedDict.Add(info.Id.ToString(), new CListItem(info.Pid.ToString(), name));
                         }
                     }
                     foreach (UserInfo info in list)
                     {
-                        if (!treeDict.ContainsKey(info.ID.ToString()))
+                        if (!treeDict.ContainsKey(info.Id.ToString()))
                         {
                             string name = string.Format("{0}（{1}）", info.Name, info.FullName);
-                            treeDict.Add(info.ID.ToString(), new CListItem(info.PID.ToString(), name));
+                            treeDict.Add(info.Id.ToString(), new CListItem(info.Pid.ToString(), name));
                         }
                     } 
                     #endregion

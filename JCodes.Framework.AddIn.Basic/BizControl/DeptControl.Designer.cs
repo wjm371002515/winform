@@ -95,7 +95,7 @@
             // treeListColumn4
             // 
             this.treeListColumn4.Caption = "机构编码";
-            this.treeListColumn4.FieldName = "HandNo";
+            this.treeListColumn4.FieldName = "UserCode";
             this.treeListColumn4.Name = "treeListColumn4";
             this.treeListColumn4.Visible = true;
             this.treeListColumn4.VisibleIndex = 2;

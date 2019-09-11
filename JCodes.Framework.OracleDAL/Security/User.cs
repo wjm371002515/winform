@@ -29,7 +29,7 @@ namespace JCodes.Framework.OracleDAL
             }
         }
         public User()
-            : base(OraclePortal.gc._securityTablePre+"User", "ID")
+            : base(OraclePortal.gc._securityTablePre+"User", "Id")
         {
             this.SeqName = string.Format("SEQ_{0}", tableName);//数值型主键，通过序列生成
             this.sortField = "Seq";
@@ -48,46 +48,46 @@ namespace JCodes.Framework.OracleDAL
             UserInfo info = new UserInfo();
             SmartDataReader reader = new SmartDataReader(dataReader);
 
-            info.ID = reader.GetInt32("ID");
-            info.PID = reader.GetInt32("PID");
-            info.HandNo = reader.GetString("HandNo");
+            info.Id = reader.GetInt32("Id");
+            info.UserCode = reader.GetString("UserCode");
             info.Name = reader.GetString("Name");
-            info.Password = reader.GetString("Password");
             info.FullName = reader.GetString("FullName");
-            info.Nickname = reader.GetString("Nickname");
-            info.IsExpire = reader.GetBoolean("IsExpire");
-            info.Title = reader.GetString("Title");
-            info.IdentityCard = reader.GetString("IdentityCard");
+            info.Password = reader.GetString("Password");
             info.MobilePhone = reader.GetString("MobilePhone");
+            info.Email = reader.GetString("Email");
+            info.Pid = reader.GetInt32("Pid");
+            info.LoginName = reader.GetString("LoginName");
+            info.IsExpire = reader.GetInt32("IsExpire");
+            info.Remark = reader.GetString("Remark");
+            info.IdCard = reader.GetString("IdCard");
             info.OfficePhone = reader.GetString("OfficePhone");
             info.HomePhone = reader.GetString("HomePhone");
-            info.Email = reader.GetString("Email");
             info.Address = reader.GetString("Address");
-            info.WorkAddr = reader.GetString("WorkAddr");
-            info.Gender = reader.GetString("Gender");
+            info.WorkAddress = reader.GetString("WorkAddress");
+            info.Gender = reader.GetInt32("Gender");
             info.Birthday = reader.GetDateTime("Birthday");
-            info.QQ = reader.GetString("QQ");
+            info.QQ = reader.GetInt32("QQ");
             info.Signature = reader.GetString("Signature");
-            info.AuditStatus = reader.GetString("AuditStatus");
-            //info.Portrait = reader.GetBytes("Portrait");
-            info.Note = reader.GetString("Note");
-            info.CustomField = reader.GetString("CustomField");
-            info.Dept_ID = reader.GetString("Dept_ID");
-            info.DeptName = reader.GetString("DeptName");
-            info.Company_ID = reader.GetString("Company_ID");
-            info.CompanyName = reader.GetString("CompanyName");
+            info.AuditStatus = reader.GetInt32("AuditStatus");
+            info.Portrait = reader.GetBytes("Portrait");
+            info.DeptId = reader.GetInt32("DeptId");
+            info.CompanyId = reader.GetInt32("CompanyId");
             info.Seq = reader.GetString("Seq");
-            info.Creator = reader.GetString("Creator");
-            info.Creator_ID = reader.GetString("Creator_ID");
+            info.CreatorId = reader.GetInt32("CreatorId");
             info.CreateTime = reader.GetDateTime("CreateTime");
-            info.Editor = reader.GetString("Editor");
-            info.Editor_ID = reader.GetString("Editor_ID");
+            info.EditorId = reader.GetInt32("EditorId");
             info.EditTime = reader.GetDateTime("EditTime");
-            info.Deleted = reader.GetInt32("Deleted") > 0;
-			info.CurrentLoginIP = reader.GetString("CurrentLoginIP");
-			info.CurrentLoginTime = reader.GetDateTime("CurrentLoginTime");
-			info.CurrentMacAddress = reader.GetString("CurrentMacAddress");
-
+            info.IsDelete = reader.GetInt32("IsDelete");
+            info.Question1 = reader.GetString("Question1");
+            info.Question2 = reader.GetString("Question2");
+            info.Question3 = reader.GetString("Question3");
+            info.Answer1 = reader.GetString("Answer1");
+            info.Answer2 = reader.GetString("Answer2");
+            info.Answer3 = reader.GetString("Answer3");
+            info.LastLoginIp = reader.GetString("LastLoginIp");
+            info.LastLoginMac = reader.GetString("LastLoginMac");
+            info.LastLoginTime = reader.GetDateTime("LastLoginTime");
+            info.LastChangePwdTime = reader.GetDateTime("LastChangePwdTime");
             return info;
         }
 
@@ -101,45 +101,44 @@ namespace JCodes.Framework.OracleDAL
             UserInfo info = obj as UserInfo;
             Hashtable hash = new Hashtable();
 
-            hash.Add("ID", info.ID);
-            hash.Add("PID", info.PID);
-            hash.Add("HandNo", info.HandNo);
+            hash.Add("UserCode", info.UserCode);
             hash.Add("Name", info.Name);
-            hash.Add("Password", info.Password);
             hash.Add("FullName", info.FullName);
-            hash.Add("Nickname", info.Nickname);
-            hash.Add("IsExpire", info.IsExpire);
-            hash.Add("Title", info.Title);
-            hash.Add("IdentityCard", info.IdentityCard);
+            hash.Add("Password", info.Password);
             hash.Add("MobilePhone", info.MobilePhone);
+            hash.Add("Email", info.Email);
+            hash.Add("LoginName", info.LoginName);
+            hash.Add("Pid", info.Pid);
+            hash.Add("Remark", info.Remark);
+            hash.Add("IdCard", info.IdCard);
             hash.Add("OfficePhone", info.OfficePhone);
             hash.Add("HomePhone", info.HomePhone);
-            hash.Add("Email", info.Email);
             hash.Add("Address", info.Address);
-            hash.Add("WorkAddr", info.WorkAddr);
+            hash.Add("WorkAddress", info.WorkAddress);
             hash.Add("Gender", info.Gender);
             hash.Add("Birthday", info.Birthday);
             hash.Add("QQ", info.QQ);
             hash.Add("Signature", info.Signature);
             hash.Add("AuditStatus", info.AuditStatus);
-            //hash.Add("Portrait", info.Portrait);
-            hash.Add("Note", info.Note);
-            hash.Add("CustomField", info.CustomField);
-            hash.Add("Dept_ID", info.Dept_ID);
-            hash.Add("DeptName", info.DeptName);
-            hash.Add("Company_ID", info.Company_ID);
-            hash.Add("CompanyName", info.CompanyName);
+            hash.Add("Portrait", info.Portrait);
+            hash.Add("DeptId", info.DeptId);
+            hash.Add("CompanyId", info.CompanyId);
             hash.Add("Seq", info.Seq);
-            hash.Add("Creator", info.Creator);
-            hash.Add("Creator_ID", info.Creator_ID);
+            hash.Add("CreatorId", info.CreatorId);
             hash.Add("CreateTime", info.CreateTime);
-            hash.Add("Editor", info.Editor);
-            hash.Add("Editor_ID", info.Editor_ID);
+            hash.Add("EditorId", info.EditorId);
             hash.Add("EditTime", info.EditTime);
-            hash.Add("Deleted", info.Deleted ? 1 : 0);
-            hash.Add("CurrentLoginIP", info.CurrentLoginIP);
-            hash.Add("CurrentLoginTime", info.CurrentLoginTime);
-            hash.Add("CurrentMacAddress", info.CurrentMacAddress);
+            hash.Add("IsDelete", info.IsDelete);
+            hash.Add("Question1", info.Question1);
+            hash.Add("Question2", info.Question2);
+            hash.Add("Question3", info.Question3);
+            hash.Add("Answer1", info.Answer1);
+            hash.Add("Answer2", info.Answer2);
+            hash.Add("Answer3", info.Answer3);
+            hash.Add("LastLoginIp", info.LastLoginIp);
+            hash.Add("LastLoginMac", info.LastLoginMac);
+            hash.Add("LastLoginTime", info.LastLoginTime);
+            hash.Add("LastChangePwdTime", info.LastChangePwdTime);
 
             return hash;
         }
@@ -152,49 +151,45 @@ namespace JCodes.Framework.OracleDAL
         {
             Dictionary<string, string> dict = new Dictionary<string, string>();
             #region 添加别名解析
-            dict.Add("ID", "编号");
-            dict.Add("PID", "父ID");
-            dict.Add("HandNo", "用户编码");
-            dict.Add("Name", "用户名/登录名");
-            dict.Add("Password", "用户密码");
-            dict.Add("FullName", "用户全名");
-            dict.Add("Nickname", "用户呢称");
-            dict.Add("IsExpire", "是否过期");
-            dict.Add("Title", "职务头衔");
-            dict.Add("IdentityCard", "身份证号码");
-            dict.Add("MobilePhone", "移动电话");
+            dict.Add("Id", "ID序号");
+            dict.Add("Pid", "父节点ID序号");
+            dict.Add("UserCode", "用户编码");
+            dict.Add("Name", "名称");
+            dict.Add("FullName", "真实名");
+            dict.Add("Password", "密码");
+            dict.Add("Email", "Email邮箱");
+            dict.Add("LoginName", "登录名");
+            dict.Add("Remark", "备注");
+            dict.Add("IdCard", "身份证");
             dict.Add("OfficePhone", "办公电话");
             dict.Add("HomePhone", "家庭电话");
-            dict.Add("Email", "邮件地址");
+            dict.Add("MobilePhone", "移动电话");
             dict.Add("Address", "住址");
-            dict.Add("WorkAddr", "办公地址");
+            dict.Add("WorkAddress", "工作地址");
             dict.Add("Gender", "性别");
             dict.Add("Birthday", "出生日期");
             dict.Add("Qq", "QQ号码");
             dict.Add("Signature", "个性签名");
             dict.Add("AuditStatus", "审核状态");
             dict.Add("Portrait", "个人图片");
-            dict.Add("Note", "备注");
-            dict.Add("CustomField", "自定义字段");
-            dict.Add("Dept_ID", "默认部门ID");
             dict.Add("DeptName", "默认部门名称");
-            dict.Add("Company_ID", "所属公司ID");
-            dict.Add("CompanyName", "所属公司名称");
+            dict.Add("CompanyID", "所属公司ID");
             dict.Add("Seq", "排序");
-            dict.Add("Creator", "创建人");
-            dict.Add("Creator_ID", "创建人ID");
+            dict.Add("CreatorId", "创建人ID");
             dict.Add("CreateTime", "创建时间");
-            dict.Add("Editor", "编辑人");
-            dict.Add("Editor_ID", "编辑人ID");
+            dict.Add("EditorId", "编辑人ID");
             dict.Add("EditTime", "编辑时间");
-            dict.Add("Deleted", "是否已删除");
-            dict.Add("Question", "密保：提示问题");
-            dict.Add("Answer", "密保:问题答案");
-            dict.Add("LastLoginIP", "最后登录IP");
-            dict.Add("LastLoginTime", "最后登录时间");
-            dict.Add("CurrentLoginIP", "当前登录IP");
-            dict.Add("CurrentLoginTime", "当前登录时间");
-            dict.Add("LastPasswordTime", "最后修改密码日期");
+            dict.Add("IsDelete", "是否已删除");
+            dict.Add("Question1", "问题1");
+            dict.Add("Question2", "问题2");
+            dict.Add("Question3", "问题3");
+            dict.Add("Answer1", "回答1");
+            dict.Add("Answer2", "回答2");
+            dict.Add("Answer3", "回答3");
+            dict.Add("LastLoginIp", "最后登录IP");
+            dict.Add("LastLoginMac", "最后登录Mac");
+            dict.Add("LastLoginTime", "最后登录日期");
+            dict.Add("LastChangePwdTime", "最后修改密码时间");
             #endregion
 
             return dict;
@@ -210,7 +205,7 @@ namespace JCodes.Framework.OracleDAL
             UserInfo info = this.FindByID(key, trans);
             if (info != null)
             {
-                string sql = string.Format("UPDATE {2} SET PID={0} Where PID={1}", info.PID, key, tableName);
+                string sql = string.Format("UPDATE {2} SET PID={0} Where PID={1}", info.Pid, key, tableName);
                 SqlExecute(sql, trans);
 
                 sql = string.Format("Delete From {1} Where ID ={0} ", key, tableName);
@@ -236,11 +231,11 @@ namespace JCodes.Framework.OracleDAL
                 while (reader.Read())
                 {
                     SimpleUserInfo info = new SimpleUserInfo();
-                    info.ID = dr.GetInt32("ID");
+                    info.Id = dr.GetInt32("Id");
                     info.Name = dr.GetString("Name");
                     info.Password = dr.GetString("Password");
                     info.FullName = dr.GetString("FullName");
-                    info.HandNo = dr.GetString("HandNo");
+                    info.UserCode = dr.GetString("UserCode");
                     info.MobilePhone = dr.GetString("MobilePhone");
                     info.Email = dr.GetString("Email");
                     list.Add(info);
@@ -263,7 +258,7 @@ namespace JCodes.Framework.OracleDAL
             }
 
             //串连条件语句为一个完整的Sql语句
-            string sql = string.Format("Select ID,Name,Password,FullName,HandNo,MobilePhone,Email From {0} Where Deleted = 0 ", tableName);
+            string sql = string.Format("Select ID,Name,Password,FullName,UserCode,MobilePhone,Email From {0} Where IsDelete = 0 ", tableName);
             if (!string.IsNullOrEmpty(condition))
             {
                 sql += string.Format(" AND {0} ", condition);
@@ -300,15 +295,15 @@ namespace JCodes.Framework.OracleDAL
         /// <returns></returns>
         public List<SimpleUserInfo> GetSimpleUsersByOU(int ouID)
         {
-            string sql = string.Format(@"Select ID,Name,Password,FullName,HandNo,MobilePhone,Email From {1} 
-            Inner Join {0}OU_User ON {1}.ID=User_ID Where Deleted = 0 AND {0}OU_User.OU_ID = {2}", OraclePortal.gc._securityTablePre, tableName, ouID);
+            string sql = string.Format(@"Select ID,Name,Password,FullName,UserCode,MobilePhone,Email From {1} 
+            Inner Join {0}OU_User ON {1}.ID=User_ID Where IsDelete = 0 AND {0}OU_User.OU_ID = {2}", OraclePortal.gc._securityTablePre, tableName, ouID);
             return FillSimpleUsers(sql);
         }
 
         public List<SimpleUserInfo> GetSimpleUsersByRole(int roleID)
         {
-            string sql = string.Format(@"Select ID,Name,Password,FullName,HandNo,MobilePhone,Email From {1} 
-            INNER JOIN {0}User_Role ON {1}.ID=User_ID Where Deleted = 0 AND {0}User_Role.Role_ID ={2} ",OraclePortal.gc._securityTablePre, tableName, roleID);
+            string sql = string.Format(@"Select ID,Name,Password,FullName,UserCode,MobilePhone,Email From {1} 
+            INNER JOIN {0}User_Role ON {1}.ID=User_ID Where IsDelete = 0 AND {0}User_Role.Role_ID ={2} ", OraclePortal.gc._securityTablePre, tableName, roleID);
 
             return this.FillSimpleUsers(sql);
         }
@@ -316,14 +311,14 @@ namespace JCodes.Framework.OracleDAL
         public List<UserInfo> GetUsersByOU(int ouID)
         {
             string sql = string.Format(@"SELECT * FROM {1} INNER JOIN {0}OU_User On {1}.ID={0}OU_User.User_ID 
-            WHERE Deleted = 0 AND {0}OU_User.OU_ID ={2} ", OraclePortal.gc._securityTablePre, tableName, ouID);
+            WHERE IsDelete = 0 AND {0}OU_User.OU_ID ={2} ", OraclePortal.gc._securityTablePre, tableName, ouID);
             return GetList(sql, null);
         }
 
         public List<UserInfo> GetUsersByRole(int roleID)
         {
             string sql = string.Format(@"SELECT * FROM {1} INNER JOIN {0}User_Role On {1}.ID={0}User_Role.User_ID 
-            WHERE Deleted = 0 AND {0}User_Role.Role_ID = {2}", OraclePortal.gc._securityTablePre, tableName, roleID);
+            WHERE IsDelete = 0 AND {0}User_Role.Role_ID = {2}", OraclePortal.gc._securityTablePre, tableName, roleID);
             return this.GetList(sql, null);
         }
 
@@ -431,7 +426,7 @@ namespace JCodes.Framework.OracleDAL
         public bool SetDeletedFlag(object id, bool deleted = true, DbTransaction trans = null)
         {
             int intDeleted = deleted ? 1 : 0;
-            string sql = string.Format("Update {0} Set Deleted={1} Where ID = {2} ", tableName, intDeleted, id);
+            string sql = string.Format("Update {0} Set IsDelete={1} Where ID = {2} ", tableName, intDeleted, id);
             return SqlExecute(sql, trans) > 0;
         }
 

@@ -61,11 +61,11 @@
             // MyAttachment
             // 
             this.MyAttachment.AttachmentDirectory = "业务附件";
-            this.MyAttachment.AttachmentGUID = null;
+            this.MyAttachment.AttachmentGid = null;
             this.MyAttachment.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MyAttachment.Location = new System.Drawing.Point(0, 0);
             this.MyAttachment.Name = "MyAttachment";
-            this.MyAttachment.OwerId = null;
+            this.MyAttachment.CreatorId = 0;
             this.MyAttachment.ShowDelete = true;
             this.MyAttachment.ShowUpload = true;
             this.MyAttachment.Size = new System.Drawing.Size(907, 606);
@@ -83,11 +83,11 @@
             // bizAttachment
             // 
             this.bizAttachment.AttachmentDirectory = "业务附件";
-            this.bizAttachment.AttachmentGUID = null;
+            this.bizAttachment.AttachmentGid = null;
             this.bizAttachment.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bizAttachment.Location = new System.Drawing.Point(0, 0);
             this.bizAttachment.Name = "bizAttachment";
-            this.bizAttachment.OwerId = null;
+            this.bizAttachment.CreatorId = 0;
             this.bizAttachment.ShowDelete = false;
             this.bizAttachment.ShowUpload = false;
             this.bizAttachment.Size = new System.Drawing.Size(907, 606);

@@ -33,7 +33,7 @@ namespace JCodes.Framework.AddIn.Proj
 
         private List<string> lstName = new List<string>();
 
-        private string xmlModel = "<name>{0}</name><chineseName>{1}</chineseName><oracle>{2}</oracle><mysql>{3}</mysql><db2>{4}</db2><sqlserver>{5}</sqlserver><sqlite>{6}</sqlite><access>{7}</access>";
+        private string xmlModel = "<name>{0}</name><chineseName>{1}</chineseName><oracle>{2}</oracle><mysql>{3}</mysql><db2>{4}</db2><sqlserver>{5}</sqlserver><sqlite>{6}</sqlite><access>{7}</access><cshort>{8}</cshort>";
 
         private Int32 _errCount = 0;
         private List<CListItem> _errlst = new List<CListItem>();
@@ -80,7 +80,7 @@ namespace JCodes.Framework.AddIn.Proj
             else
             {
                 // 查询事件 模糊查询
-                string filter = string.Format("Name Like '%{0}%' or ChineseName Like '%{0}%' or Oracle Like '%{0}%' or  Mysql Like '%{0}%' or  DB2 Like '%{0}%' or  SqlServer Like '%{0}%' or Sqlite Like '%{0}%' or Access Like '%{0}%'", txtSearch.Text);
+                string filter = string.Format("Name Like '%{0}%' or ChineseName Like '%{0}%' or Oracle Like '%{0}%' or  Mysql Like '%{0}%' or  DB2 Like '%{0}%' or  SqlServer Like '%{0}%' or Sqlite Like '%{0}%' or Access Like '%{0}%' or CShort Like '%{0}%'", txtSearch.Text);
                 gridView1.ActiveFilterString = filter;
             }
             
@@ -111,6 +111,7 @@ namespace JCodes.Framework.AddIn.Proj
                 dataTypeInfo.SqlServer = xnl0.Item(5).InnerText;
                 dataTypeInfo.Sqlite = xnl0.Item(6).InnerText;
                 dataTypeInfo.Access = xnl0.Item(7).InnerText;
+                dataTypeInfo.CShort = xnl0.Item(8).InnerText;
                 dataTypeInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
 
                 dataTypeInfoList.Add(dataTypeInfo);
@@ -317,6 +318,21 @@ namespace JCodes.Framework.AddIn.Proj
                         _errlst.Add(new CListItem("Access不能为空", "Access" + dataTypeInfo.Name));
                     }
                 }
+                if (string.IsNullOrEmpty(dataTypeInfo.CShort))
+                {
+                    if (dataTypeInfo.lstInfo.ContainsKey("CShort"))
+                    {
+                        dataTypeInfo.lstInfo["CShort"].ErrorText = dataTypeInfo.lstInfo["CShort"].ErrorText + "\r\nCShort不能为空";
+                        dataTypeInfo.lstInfo["CShort"].ErrorType = dataTypeInfo.lstInfo["CShort"].ErrorType >= DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical ? dataTypeInfo.lstInfo["CShort"].ErrorType : DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+                    }
+                    else
+                    {
+                        dataTypeInfo.lstInfo.Add("CShort", new DevExpress.XtraEditors.DXErrorProvider.ErrorInfo("CShort不能为空", DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical));
+                        _errCount++;
+                        // 20170901 wjm 调整key 和value的顺序
+                        _errlst.Add(new CListItem("CShort不能为空", "CShort" + dataTypeInfo.Name));
+                    }
+                }
             }
         }
 
@@ -356,16 +372,6 @@ namespace JCodes.Framework.AddIn.Proj
             barInfoText.Caption = string.Format("{0} 条提示信息", _infoCount);
         }
 
-        private void gridView1_DoubleClick(object sender, EventArgs e)
-        {
-            gridView1.OptionsBehavior.Editable = true;
-        }
-
-        private void gridView1_BeforeLeaveRow(object sender, DevExpress.XtraGrid.Views.Base.RowAllowEventArgs e)
-        {
-            gridView1.OptionsBehavior.Editable = false;
-        }
-
         private void gridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
 
@@ -401,6 +407,9 @@ namespace JCodes.Framework.AddIn.Proj
                 case "Access":
                     idx = 7;
                     break;
+                case "CShort":
+                    idx = 8;
+                    break;
             }
             
            if (idx == -1)
@@ -433,7 +442,7 @@ namespace JCodes.Framework.AddIn.Proj
             datatypeInfo.GUID = System.Guid.NewGuid().ToString();
             datatypeInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
 
-            xmlhelper.InsertElement("datatype", "item", "guid", datatypeInfo.GUID, string.Format(xmlModel, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty));
+            xmlhelper.InsertElement("datatype", "item", "guid", datatypeInfo.GUID, string.Format(xmlModel, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty));
             xmlhelper.Save(false);
 
             (gridView1.DataSource as List<DefaultTypeInfo>).Insert(gridView1.RowCount - 1, datatypeInfo);
@@ -451,7 +460,7 @@ namespace JCodes.Framework.AddIn.Proj
             var datatypeInfo = new DefaultTypeInfo();
             datatypeInfo.GUID = System.Guid.NewGuid().ToString();
             datatypeInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
-            xmlhelper.InsertElement("item", "guid", datatypeInfo.GUID, string.Format(xmlModel, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty), xmlNodeLst.Item(0).ParentNode);
+            xmlhelper.InsertElement("item", "guid", datatypeInfo.GUID, string.Format(xmlModel, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty), xmlNodeLst.Item(0).ParentNode);
             xmlhelper.Save(false);
 
             (gridView1.DataSource as List<DefaultTypeInfo>).Insert(gridView1.FocusedRowHandle, datatypeInfo);
@@ -503,6 +512,7 @@ namespace JCodes.Framework.AddIn.Proj
             tmpdataTypeInfo.SqlServer = cudataTypeInfo.SqlServer;
             tmpdataTypeInfo.Sqlite = cudataTypeInfo.Sqlite;
             tmpdataTypeInfo.Access = cudataTypeInfo.Access;
+            tmpdataTypeInfo.CShort = cudataTypeInfo.CShort;
             tmpdataTypeInfo.lstInfo = cudataTypeInfo.lstInfo;
 
             // 更新内容
@@ -515,6 +525,7 @@ namespace JCodes.Framework.AddIn.Proj
             cudataTypeInfo.SqlServer = predataTypeInfo.SqlServer;
             cudataTypeInfo.Sqlite = predataTypeInfo.Sqlite;
             cudataTypeInfo.Access = predataTypeInfo.Access;
+            cudataTypeInfo.CShort = predataTypeInfo.CShort;
             cudataTypeInfo.lstInfo = predataTypeInfo.lstInfo;
 
             predataTypeInfo.GUID = tmpdataTypeInfo.GUID;
@@ -526,6 +537,7 @@ namespace JCodes.Framework.AddIn.Proj
             predataTypeInfo.SqlServer = tmpdataTypeInfo.SqlServer;
             predataTypeInfo.Sqlite = tmpdataTypeInfo.Sqlite;
             predataTypeInfo.Access = tmpdataTypeInfo.Access;
+            predataTypeInfo.CShort = tmpdataTypeInfo.CShort;
             predataTypeInfo.lstInfo = tmpdataTypeInfo.lstInfo;
 
             // 更细XML内容
@@ -568,6 +580,7 @@ namespace JCodes.Framework.AddIn.Proj
             tmpdataTypeInfo.SqlServer = cudataTypeInfo.SqlServer;
             tmpdataTypeInfo.Sqlite = cudataTypeInfo.Sqlite;
             tmpdataTypeInfo.Access = cudataTypeInfo.Access;
+            tmpdataTypeInfo.CShort = cudataTypeInfo.CShort;
             tmpdataTypeInfo.lstInfo = cudataTypeInfo.lstInfo;
 
             // 更新内容
@@ -580,6 +593,7 @@ namespace JCodes.Framework.AddIn.Proj
             cudataTypeInfo.SqlServer = nextdataTypeInfo.SqlServer;
             cudataTypeInfo.Sqlite = nextdataTypeInfo.Sqlite;
             cudataTypeInfo.Access = nextdataTypeInfo.Access;
+            cudataTypeInfo.CShort = nextdataTypeInfo.CShort;
             cudataTypeInfo.lstInfo = nextdataTypeInfo.lstInfo;
 
             nextdataTypeInfo.GUID = tmpdataTypeInfo.GUID;
@@ -591,6 +605,7 @@ namespace JCodes.Framework.AddIn.Proj
             nextdataTypeInfo.SqlServer = tmpdataTypeInfo.SqlServer;
             nextdataTypeInfo.Sqlite = tmpdataTypeInfo.Sqlite;
             nextdataTypeInfo.Access = tmpdataTypeInfo.Access;
+            nextdataTypeInfo.CShort = tmpdataTypeInfo.CShort;
             nextdataTypeInfo.lstInfo = tmpdataTypeInfo.lstInfo;
 
             // 更细XML内容
@@ -629,6 +644,7 @@ namespace JCodes.Framework.AddIn.Proj
                 row[5] = lst[i].SqlServer;
                 row[6] = lst[i].Sqlite;
                 row[7] = lst[i].Access;
+                row[8] = lst[i].CShort;
                 dt.Rows.Add(row);
             }
 
@@ -682,8 +698,9 @@ namespace JCodes.Framework.AddIn.Proj
                         datatypeInfo.SqlServer = dt.Rows[i][5].ToString();
                         datatypeInfo.Sqlite = dt.Rows[i][6].ToString();
                         datatypeInfo.Access = dt.Rows[i][7].ToString();
-                    
-                        xmlhelper.InsertElement("datatype", "item", "guid", datatypeInfo.GUID, string.Format(xmlModel, dt.Rows[i][0].ToString(), dt.Rows[i][1].ToString(), dt.Rows[i][2].ToString(), dt.Rows[i][3].ToString(), dt.Rows[i][4].ToString(), dt.Rows[i][5].ToString(), dt.Rows[i][6].ToString(), dt.Rows[i][7].ToString()));
+                        datatypeInfo.CShort = dt.Rows[i][8].ToString();
+
+                        xmlhelper.InsertElement("datatype", "item", "guid", datatypeInfo.GUID, string.Format(xmlModel, dt.Rows[i][0].ToString(), dt.Rows[i][1].ToString(), dt.Rows[i][2].ToString(), dt.Rows[i][3].ToString(), dt.Rows[i][4].ToString(), dt.Rows[i][5].ToString(), dt.Rows[i][6].ToString(), dt.Rows[i][7].ToString(), dt.Rows[i][8].ToString()));
 
                         (gridView1.DataSource as List<DefaultTypeInfo>).Insert(gridView1.RowCount - 1, datatypeInfo);
                         addRows++;

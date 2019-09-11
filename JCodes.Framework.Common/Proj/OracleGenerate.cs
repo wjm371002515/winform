@@ -33,5 +33,30 @@ namespace JCodes.Framework.Common.Proj
         {
             throw new NotImplementedException();
         }
+
+        public string initTableDataInfo(string tableEnglishName, string tableChineseName, object objTable)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string initDictTypeInfo(string tableEnglishName, string tableChineseName, object objTable)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string initDictDataInfo(string tableEnglishName, string tableChineseName, object objTable)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string initMenuInfo(string tableEnglishName, string tableChineseName, object objTable)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string initFunctionInfo(string tableEnglishName, string tableChineseName, object objTable)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

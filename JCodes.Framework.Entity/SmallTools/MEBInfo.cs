@@ -132,15 +132,26 @@ namespace JCodes.Framework.Entity.SmallTools
             get { return _systemId; }
         }
 
-        // 退款汇入行省份地市
+        // 退款汇入行省份
         private string _bankProvince;
         /// <summary>
-        /// 退款汇入行省份地市
+        /// 退款汇入行省份
         /// </summary>
         public string BankProvince
         {
             set { _bankProvince = value; }
             get { return _bankProvince; }
+        }
+
+        // 退款汇入行地市
+        private string _bankCity;
+        /// <summary>
+        /// 退款汇入行地市
+        /// </summary>
+        public string BankCity
+        {
+            set { _bankCity = value; }
+            get { return _bankCity; }
         }
 
         private string _ident;

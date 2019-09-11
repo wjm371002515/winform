@@ -29,12 +29,12 @@ namespace JCodes.Framework.Entity
 
         public DictTypeNodeInfo(DictTypeInfo typeInfo)
 		{
-			base.ID = typeInfo.ID;
-            base.Name = typeInfo.ID+"_"+typeInfo.Name;
+			base.Id = typeInfo.Id;
+            base.Name = typeInfo.Id+"_"+typeInfo.Name;
 			base.Remark = typeInfo.Remark;
 			base.Seq = typeInfo.Seq;
-			base.PID = typeInfo.PID;
-			base.Editor = typeInfo.Editor;
+			base.Pid = typeInfo.Pid;
+			base.EditorId = typeInfo.EditorId;
             base.LastUpdated = typeInfo.LastUpdated;
 		}
     }

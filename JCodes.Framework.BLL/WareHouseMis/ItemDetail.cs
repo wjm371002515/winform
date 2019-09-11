@@ -79,9 +79,9 @@ namespace JCodes.Framework.BLL
         /// <param name="itemNo"></param>
         /// <param name="ID"></param>
         /// <returns></returns>
-        public bool CheckExist(string itemNo, string ID)
+        public bool CheckExist(string itemNo, Int32 Id)
         {
-            string condition = string.Format("ItemNo ='{0}' and ID <> {1} ", itemNo, ID);
+            string condition = string.Format("ItemNo ='{0}' and ID <> {1} ", itemNo, Id);
             return IsExistRecord(condition);
         }
 

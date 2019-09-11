@@ -14,6 +14,16 @@ namespace JCodes.Framework.Common.Proj
 
         string initTableInfo(string tableEnglishName, string tableChineseName, Boolean existHistable, object objFields, object objIndexs, object dictFieldType);
 
+        string initTableDataInfo(string tableEnglishName, string tableChineseName, object objTable);
+
+        string initDictTypeInfo(string tableEnglishName, string tableChineseName, object objTable);
+
+        string initDictDataInfo(string tableEnglishName, string tableChineseName, object objTable);
+
+        string initMenuInfo(string tableEnglishName, string tableChineseName, object objTable);
+
+        string initFunctionInfo(string tableEnglishName, string tableChineseName, object objTable);
+
         string getStrLength(Int32 num, string str);
     }
 }

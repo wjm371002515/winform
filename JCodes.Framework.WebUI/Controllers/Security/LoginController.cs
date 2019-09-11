@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using System;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.WebUI.Controllers
 {
@@ -98,9 +99,9 @@ namespace JCodes.Framework.WebUI.Controllers
                         Session["UserInfo"] = info;
 
                         Session["FullName"] = info.FullName;
-                        Session["UserID"] = info.ID;
-                        Session["Company_ID"] = info.Company_ID;
-                        Session["Dept_ID"] = info.Dept_ID;
+                        Session["UserID"] = info.Id;
+                        Session["Company_ID"] = info.CompanyId;
+                        Session["Dept_ID"] = info.DeptId;
                         bool isSuperAdmin = BLLFactory<User>.Instance.UserInRole(info.Name, RoleInfo.SuperAdminName);//判断是否超级管理员
                         Session["IsSuperAdmin"] = isSuperAdmin;
 
@@ -108,7 +109,7 @@ namespace JCodes.Framework.WebUI.Controllers
 
                         #region 取得用户的授权信息，并存储在Session中
 
-                        List<FunctionInfo> functionList = BLLFactory<Functions>.Instance.GetFunctionsByUser(info.ID, Const.SystemTypeID);
+                        List<FunctionInfo> functionList = BLLFactory<Functions>.Instance.GetFunctionsByUser(info.Id, Const.SystemTypeID);
                         Dictionary<string, string> functionDict = new Dictionary<string, string>();
                         foreach (FunctionInfo functionInfo in functionList)
                         {

@@ -15,6 +15,7 @@ using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.Common;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.Common.Format;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn.Contact
 {
@@ -23,7 +24,7 @@ namespace JCodes.Framework.AddIn.Contact
         /// <summary>
         /// 通讯录类型
         /// </summary>
-        public AddressType AddressType = AddressType.个人;
+        public AddressType addressType = AddressType.个人;
 
         /// <summary>
         /// 上级ID
@@ -62,16 +63,16 @@ namespace JCodes.Framework.AddIn.Contact
         {
 			//初始化代码
             //绑定下拉列表
-            List<AddressGroupInfo> comboList = BLLFactory<AddressGroup>.Instance.GetAllWithAddressType(AddressType, LoginUserInfo.ID.ToString());
+            List<AddressGroupInfo> comboList = BLLFactory<AddressGroup>.Instance.GetAllWithAddressType(addressType, LoginUserInfo.Id);
 
             BLLFactory<AddressGroup>.Instance.GetAll();
-            comboList = CollectionHelper<AddressGroupInfo>.Fill("-1", 0, comboList, "PID", "ID", "Name");
+            comboList = CollectionHelper<AddressGroupInfo>.Fill("-1", 0, comboList, "PID", "Id", "Name");
             this.txtPID.Properties.Items.Clear();
             foreach (AddressGroupInfo info in comboList)
             {
-                this.txtPID.Properties.Items.Add(new CListItem(info.ID, info.Name));
+                this.txtPID.Properties.Items.Add(new CDicKeyValue(info.Id, info.Name));
             }
-            this.txtPID.Properties.Items.Insert(0, new CListItem("-1", "无"));
+            this.txtPID.Properties.Items.Insert(0, new CDicKeyValue(-1, "无"));
             if (this.txtPID.Properties.Items.Count == 1)
             {
                 this.txtPID.SelectedIndex = 0;
@@ -85,18 +86,18 @@ namespace JCodes.Framework.AddIn.Contact
         {
             InitDictItem();//数据字典加载（公用）
 
-            if (!string.IsNullOrEmpty(ID))
+            if (Id > 0)
             {
                 #region 显示信息
-                AddressGroupInfo info = BLLFactory<AddressGroup>.Instance.FindByID(ID);
+                AddressGroupInfo info = BLLFactory<AddressGroup>.Instance.FindByID(Id);
                 if (info != null)
                 {
-                    txtPID.SetComboBoxItem(info.PID);
+                    txtPID.SetComboBoxItem(info.Pid);
                     txtSeq.Text = info.Seq;
                     txtName.Text = info.Name;
-                    txtNote.Text = info.Note;
-                    txtEditor.Text = info.Editor;
-                    txtEditTime.SetDateTime(info.EditTime);
+                    txtNote.Text = info.Remark;
+                    txtEditor.Text = info.EditorId.ToString();
+                    txtEditTime.SetDateTime(info.LastUpdateTime);
                 }
                 #endregion          
             }
@@ -132,14 +133,14 @@ namespace JCodes.Framework.AddIn.Contact
         /// <param name="info"></param>
         private void SetInfo(AddressGroupInfo info)
         {
-            info.PID = txtPID.GetComboBoxStrValue();
+            info.Pid = txtPID.SelectedIndex;//txtPID.GetComboBoxStrValue();
             info.Seq = txtSeq.Text;
             info.Name = txtName.Text;
-            info.Note = txtNote.Text;
+            info.Remark = txtNote.Text;
 
-            info.EditTime = DateTimeHelper.GetServerDateTime2();
-            info.Editor = LoginUserInfo.ID.ToString();//当前用户
-            info.CurrentLoginUserId = LoginUserInfo.ID; //记录当前登录的用户信息，供操作日志记录使用
+            info.LastUpdateTime = DateTimeHelper.GetServerDateTime2();
+            info.EditorId = LoginUserInfo.Id;//当前用户
+            info.CurrentLoginUserId = LoginUserInfo.Id; //记录当前登录的用户信息，供操作日志记录使用
         }
          
         /// <summary>
@@ -150,11 +151,11 @@ namespace JCodes.Framework.AddIn.Contact
         {
             AddressGroupInfo info = new AddressGroupInfo();
             SetInfo(info);
-            info.Creator = LoginUserInfo.ID.ToString();
-            info.CreateTime = DateTimeHelper.GetServerDateTime2();
-            info.Dept_ID = LoginUserInfo.DeptId;
-            info.Company_ID = LoginUserInfo.CompanyId;
-            info.AddressType = this.AddressType;
+            info.CreatorId = LoginUserInfo.Id;
+            info.CreatorTime = DateTimeHelper.GetServerDateTime2();
+            info.DeptId = LoginUserInfo.DeptId;
+            info.CompanyId = LoginUserInfo.CompanyId;
+            info.AddressType = this.addressType;
 
             try
             {
@@ -183,7 +184,7 @@ namespace JCodes.Framework.AddIn.Contact
         /// <returns></returns>
         public override bool SaveUpdated()
         {
-            AddressGroupInfo info = BLLFactory<AddressGroup>.Instance.FindByID(ID);
+            AddressGroupInfo info = BLLFactory<AddressGroup>.Instance.FindByID(Id);
             if (info != null)
             {
                 SetInfo(info);
@@ -191,7 +192,7 @@ namespace JCodes.Framework.AddIn.Contact
                 try
                 {
                     #region 更新数据
-                    bool succeed = BLLFactory<AddressGroup>.Instance.Update(info, info.ID);
+                    bool succeed = BLLFactory<AddressGroup>.Instance.Update(info, info.Id);
                     if (succeed)
                     {
                         //可添加其他关联操作

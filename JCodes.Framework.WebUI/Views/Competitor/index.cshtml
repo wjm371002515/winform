@@ -170,7 +170,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">编号</label>
                                 <div class="col-md-8">
-                                    <input id="HandNo" name="HandNo" type="text" class="form-control" placeholder="编号..."/>
+                                    <input id="UserCode" name="UserCode" type="text" class="form-control" placeholder="编号..."/>
 
                                 </div>
                             </div>
@@ -345,7 +345,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">编号</label>
                                 <div class="col-md-8">
-                                    <label id="HandNo2" name="HandNo" class="form-control"></label>
+                                    <label id="HandNo2" name="UserCode" class="form-control"></label>
                                 </div>
                             </div>
                         </div>
@@ -622,7 +622,7 @@
                 $.each(data.rows, function (i, item) {
                     var tr = "<tr>";
                     tr += "<td><input class='checkboxes' type=\"checkbox\" name=\"checkbox\" value=" + item.ID + "></td>";
-                     tr += "<td>" + item.HandNo + "</td>";
+                     tr += "<td>" + item.UserCode + "</td>";
                      tr += "<td>" + item.Name + "</td>";
                      tr += "<td>" + item.SimpleName + "</td>";
                      tr += "<td>" + item.Data1 + "</td>";//item.Province
@@ -822,7 +822,7 @@
 
             //首先用户发送一个异步请求去后台实现方法
             $.getJSON("/Competitor/FindByID?r=" + Math.random() + "&id=" + ID, function (info) {
-                 $("#HandNo").val(info.HandNo);
+                 $("#UserCode").val(info.UserCode);
                  $("#Name").val(info.Name);
                  $("#SimpleName").val(info.SimpleName);
                  $("#Address").val(info.Address);
@@ -863,7 +863,7 @@
             $.getJSON("/Competitor/FindByID?r=" + Math.random() + "&id=" + ID, function (info) {
                 //$("#ID2").text(info.ID);
 
-                 $("#HandNo2").text(info.HandNo);
+                 $("#HandNo2").text(info.UserCode);
                  $("#Name2").text(info.Name);
                  $("#SimpleName2").text(info.SimpleName);
                  $("#Province2").text(info.Province);
@@ -1030,7 +1030,7 @@
                 $.each(data.rows, function (i, item) {
                     var tr = "<tr>";
                     tr += "<td><input class='checkboxes' type=\"checkbox\" name=\"checkbox\" value=" + item.ID + "></td>";
-                     tr += "<td>" + item.HandNo + "</td>";
+                     tr += "<td>" + item.UserCode + "</td>";
                      tr += "<td>" + item.Name + "</td>";
                      tr += "<td>" + item.SimpleName + "</td>";
                      tr += "<td>" + item.Province + "</td>";
@@ -1072,7 +1072,7 @@
                         // alert($(this).text());
                     });    
 
-                    list.push({ 'HandNo': rows[0],'Name': rows[1],'SimpleName': rows[2],'Province': rows[3],'City': rows[4],'District': rows[5],'Address': rows[6],'ZipCode': rows[7],'Telephone': rows[8],'Fax': rows[9],'Contact': rows[10],'ContactPhone': rows[11],'ContactMobile': rows[12],'Email': rows[13],'QQ': rows[14],'WebSite': rows[15],'Note': rows[16] });
+                    list.push({ 'UserCode': rows[0],'Name': rows[1],'SimpleName': rows[2],'Province': rows[3],'City': rows[4],'District': rows[5],'Address': rows[6],'ZipCode': rows[7],'Telephone': rows[8],'Fax': rows[9],'Contact': rows[10],'ContactPhone': rows[11],'ContactMobile': rows[12],'Email': rows[13],'QQ': rows[14],'WebSite': rows[15],'Note': rows[16] });
                     i++;
                 }
             });

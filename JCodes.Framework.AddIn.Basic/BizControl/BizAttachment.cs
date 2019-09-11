@@ -29,7 +29,7 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
         /// <summary>
         /// 附件组所属的记录ID，如属于某个主表记录的ID
         /// </summary>
-        public string OwerId { get; set; }
+        public Int32 CreatorId { get; set; }
 
         /// <summary>
         /// 用户ID
@@ -46,12 +46,12 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
         }
 
         [Browsable(true), Description("设置附件组的GUID")]
-        public string AttachmentGUID
+        public string AttachmentGid
         {
-            get { return m_AttachmentGUID; }
+            get { return m_AttachmentGid; }
             set
             {
-                m_AttachmentGUID = value;
+                m_AttachmentGid = value;
                 BindData();
             }
         }
@@ -83,7 +83,7 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
         }
 
         /// <summary>
-        /// 是否使用Owner的方式对数据进行过滤，如果为True，则获取属于OwerId的所有记录
+        /// 是否使用Owner的方式对数据进行过滤，如果为True，则获取属于CreatorId的所有记录
         /// </summary>
         public bool ShowOwnerData { get; set; }
 
@@ -96,7 +96,7 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
         private bool m_ShowUpload = true;// 是否显示上传按钮
         private bool m_ShowDelete = true;// 是否显示删除按钮
         private string m_AttachmentDirectory = "业务附件";// 设置附件的存储目录分类
-        private string m_AttachmentGUID;// 设置附件组的GUID
+        private string m_AttachmentGid;// 设置附件组的GUID
 
         public BizAttachment()
         {
@@ -111,12 +111,12 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
         /// 初始化相关参数
         /// </summary>
         /// <param name="attachmentDir">设置附件的存储目录分类</param>
-        /// <param name="owerId">附件组所属的记录ID，如属于某个主表记录的ID</param>
+        /// <param name="creatorId">附件组所属的记录ID，如属于某个主表记录的ID</param>
         /// <param name="userId">操作用户ID，当前登录用户</param>
-        public void Init(string attachmentDir, string owerId, Int32 userId)
+        public void Init(string attachmentDir, Int32 creatorId, Int32 userId)
         {
             this.AttachmentDirectory = attachmentDir;
-            this.OwerId = owerId;
+            this.CreatorId = creatorId;
             this.UserId = userId;
         }
 
@@ -124,9 +124,9 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
         {
             FrmUploadFile dlg = new FrmUploadFile();
             dlg.UserId = this.UserId;
-            dlg.OwerId = this.OwerId;
+            dlg.CreatorId = this.CreatorId;
             dlg.AttachmentDirectory = this.AttachmentDirectory;
-            dlg.AttachmentGUID = this.AttachmentGUID;
+            dlg.AttachmentGid = this.AttachmentGid;
             dlg.OnDataSaved += new EventHandler(dlg_OnDataSaved);
             dlg.Show();
         }
@@ -194,7 +194,7 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
                             FileUploadInfo fileInfo = BLLFactory<FileUpload>.Instance.Download(id);
                             if (fileInfo != null && fileInfo.FileData != null)
                             {
-                                string filePath = Path.Combine(path, fileInfo.FileName);
+                                string filePath = Path.Combine(path, fileInfo.Name);
                                 FileUtil.CreateFile(filePath, fileInfo.FileData);
                             }
                         }
@@ -246,20 +246,20 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
                 List<FileUploadInfo> fileList = new List<FileUploadInfo>();
                 if (ShowOwnerData)
                 {
-                    if (!string.IsNullOrEmpty(this.AttachmentGUID))
+                    if (!string.IsNullOrEmpty(this.AttachmentGid))
                     {
-                        fileList = BLLFactory<FileUpload>.Instance.GetByOwnerAndAttachGUID(this.OwerId, this.AttachmentGUID, this.pager1.PagerInfo);
+                        fileList = BLLFactory<FileUpload>.Instance.GetByOwnerAndAttachGUID(this.CreatorId, this.AttachmentGid, this.pager1.PagerInfo);
                     }
                     else
                     {
-                        fileList = BLLFactory<FileUpload>.Instance.GetByOwner(this.OwerId, this.pager1.PagerInfo);
+                        fileList = BLLFactory<FileUpload>.Instance.GetByOwner(this.CreatorId, this.pager1.PagerInfo);
                     }
                 }
                 else
                 {
-                    if (!string.IsNullOrEmpty(this.AttachmentGUID))
+                    if (!string.IsNullOrEmpty(this.AttachmentGid))
                     {
-                        fileList = BLLFactory<FileUpload>.Instance.GetByAttachGUID(this.AttachmentGUID, this.pager1.PagerInfo);
+                        fileList = BLLFactory<FileUpload>.Instance.GetByAttachGUID(this.AttachmentGid, this.pager1.PagerInfo);
                     }
                     else
                     {
@@ -271,7 +271,7 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
                 System.Drawing.Icon icon = null;
                 foreach (FileUploadInfo fileInfo in fileList)
                 {
-                    string file = fileInfo.FileName;
+                    string file = fileInfo.Name;
                     string extension = FileUtil.GetExtension(file);
 
                     #region 取缩略图存到 imageList1 的操作
@@ -281,7 +281,7 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
                     {
                         try
                         {
-                            FileUploadInfo tmpInfo = BLLFactory<FileUpload>.Instance.Download(fileInfo.ID, 48, 48);
+                            FileUploadInfo tmpInfo = BLLFactory<FileUpload>.Instance.Download(fileInfo.Gid, 48, 48);
                             if (tmpInfo != null && tmpInfo.FileData != null)
                             {
                                 this.imageList1.Images.Add(ImageHelper.BitmapFromBytes(tmpInfo.FileData));
@@ -324,13 +324,13 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
 
                 foreach (FileUploadInfo fileInfo in fileList)
                 {
-                    ListViewItem item = listView1.Items.Add(fileInfo.FileName);
+                    ListViewItem item = listView1.Items.Add(fileInfo.Name);
 
                     double fileSize = ConvertHelper.ToDouble(fileInfo.FileSize / 1024, 1);
                     item.SubItems.Add(fileSize.ToString("#,#KB"));
                     item.SubItems.Add(fileInfo.AddTime.ToShortDateString());
-                    item.ImageIndex = GetImageKey(fileInfo.FileName);
-                    item.Tag = fileInfo.ID;
+                    item.ImageIndex = GetImageKey(fileInfo.Name);
+                    item.Tag = fileInfo.Gid;
                 }
                 listView1.Refresh();
             }

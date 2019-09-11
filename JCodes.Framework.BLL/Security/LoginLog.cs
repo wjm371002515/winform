@@ -33,7 +33,7 @@ namespace JCodes.Framework.BLL
         /// <param name="ip">IP地址</param>
         /// <param name="macAddr">Mac地址</param>
         /// <param name="note">备注说明</param>
-        public void AddLoginLog(UserInfo info, string systemType, string ip, string macAddr, string note)
+        public void AddLoginLog(UserInfo info, string systemtypeId, string ip, string mac, string remark)
         {
             if (info == null) return;
 
@@ -41,19 +41,19 @@ namespace JCodes.Framework.BLL
             try
             {
                 LoginLogInfo logInfo = new LoginLogInfo();
-                logInfo.IPAddress = ip;
-                logInfo.MacAddress = macAddr;
-                logInfo.LastUpdated = DateTimeHelper.GetServerDateTime2();
-                logInfo.Note = note;
-                logInfo.SystemType_ID = systemType;
-                
-                logInfo.User_ID = info.ID.ToString();
+                logInfo.IP = ip;
+                logInfo.Mac = mac;
+                logInfo.LastUpdateTime = DateTimeHelper.GetServerDateTime2();
+                logInfo.Remark = remark;
+                logInfo.SystemtypeId = systemtypeId;
+                logInfo.Id = info.Id;
                 logInfo.FullName = info.FullName;
                 logInfo.LoginName = info.Name;
-                logInfo.Company_ID = info.Company_ID;
-                logInfo.CompanyName = info.CompanyName;
+                logInfo.CompanyId = info.CompanyId;
+                // TODO
+                //logInfo.CompanyName = info.CompanyName;
 
-                logInfo.CurrentLoginUserId = info.ID;
+                logInfo.CurrentLoginUserId = info.Id;
                 BLLFactory<LoginLog>.Instance.Insert(logInfo);
             }
             catch (Exception ex)
@@ -69,10 +69,10 @@ namespace JCodes.Framework.BLL
         /// <param name="shopGuid">商店GUID</param>
         /// <param name="LastUpdated">最后更新日前</param>
         /// <returns></returns>
-        public List<LoginLogInfo> GetList(DateTime LastUpdated)
+        public List<LoginLogInfo> GetList(DateTime LastUpdateTime)
         {
             SearchCondition search = new SearchCondition();
-            search.AddCondition("LastUpdated", LastUpdated, SqlOperator.MoreThanOrEqual);
+            search.AddCondition("LastUpdateTime", LastUpdateTime, SqlOperator.MoreThanOrEqual);
             string condition = search.BuildConditionSql().Replace("Where", "");
             return Find(condition);
         }
@@ -87,12 +87,12 @@ namespace JCodes.Framework.BLL
             {
                 foreach (LoginLogInfo info in infoList)
                 {
-                    LoginLogInfo tempInfo = baseDal.FindByID(info.ID);
+                    LoginLogInfo tempInfo = baseDal.FindByID(info.Id);
                     if (tempInfo != null)
                     {
-                        if (tempInfo.LastUpdated < info.LastUpdated)
+                        if (tempInfo.LastUpdateTime < info.LastUpdateTime)
                         {
-                            baseDal.Update(info, info.ID.ToString());
+                            baseDal.Update(info, info.Id);
                         }
                     }
                     else
@@ -109,7 +109,7 @@ namespace JCodes.Framework.BLL
         public void DeleteMonthLog()
         {
             SearchCondition search = new SearchCondition();
-            search.AddCondition("LastUpdated", DateTimeHelper.GetServerDateTime2().AddDays(-30), SqlOperator.LessThanOrEqual);
+            search.AddCondition("LastUpdateTime", DateTimeHelper.GetServerDateTime2().AddDays(-30), SqlOperator.LessThanOrEqual);
             string condition = search.BuildConditionSql().Replace("Where", "");
             baseDal.DeleteByCondition(condition);
         }

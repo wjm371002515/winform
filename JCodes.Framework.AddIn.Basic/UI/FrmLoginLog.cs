@@ -63,12 +63,12 @@ namespace JCodes.Framework.AddIn.Basic
 
         void gridView1_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
         {
-            if (e.Column.FieldName == "LastUpdated")
+            if (e.Column.FieldName == "LastUpdateTime")
             {
                 e.Column.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
             }
         }
-
+        
         /// <summary>
         /// 对显示的字段内容进行转义
         /// </summary>
@@ -99,11 +99,11 @@ namespace JCodes.Framework.AddIn.Basic
 
                 //可特殊设置特别的宽度
                 winGridViewPager1.gridView1.SetGridColumWidth("ID", 60);
-                winGridViewPager1.gridView1.SetGridColumWidth("User_ID", 80);
+                winGridViewPager1.gridView1.SetGridColumWidth("UserId", 80);
                 winGridViewPager1.gridView1.SetGridColumWidth("LoginName", 60);
-                winGridViewPager1.gridView1.SetGridColumWidth("Company_ID", 80);
-                winGridViewPager1.gridView1.SetGridColumWidth("Note", 200);
-                winGridViewPager1.gridView1.SetGridColumWidth("LastUpdated", 150);
+                winGridViewPager1.gridView1.SetGridColumWidth("CompanyId", 80);
+                winGridViewPager1.gridView1.SetGridColumWidth("Remark", 200);
+                winGridViewPager1.gridView1.SetGridColumWidth("LastUpdateTime", 150);
             }
         }
 
@@ -151,8 +151,8 @@ namespace JCodes.Framework.AddIn.Basic
             int[] rowSelected = this.winGridViewPager1.GridView1.GetSelectedRows();
             foreach (int iRow in rowSelected)
             {
-                string ID = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "ID");
-                BLLFactory<LoginLog>.Instance.DeleteByUser(ID, LoginUserInfo.ID);
+                string ID = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "Id");
+                BLLFactory<LoginLog>.Instance.DeleteByUser(ID, LoginUserInfo.Id);
             }
             BindData();
         }
@@ -191,29 +191,29 @@ namespace JCodes.Framework.AddIn.Basic
             SearchCondition condition = new SearchCondition();
             condition.AddCondition("LoginName", this.txtLoginName.Text, SqlOperator.Like);
             condition.AddCondition("FullName", this.txtRealName.Text, SqlOperator.Like);
-            condition.AddCondition("Note", this.txtNote.Text, SqlOperator.Like);
-            condition.AddCondition("IPAddress", this.txtIPAddress.Text, SqlOperator.Like);
-            condition.AddCondition("MacAddress", this.txtMacAddress.Text, SqlOperator.Like);
+            condition.AddCondition("Remark", this.txtNote.Text, SqlOperator.Like);
+            condition.AddCondition("IP", this.txtIPAddress.Text, SqlOperator.Like);
+            condition.AddCondition("Mac", this.txtMacAddress.Text, SqlOperator.Like);
 
             if (dateTimePicker1.Text.Length > 0)
             {
-                condition.AddCondition("LastUpdated", Convert.ToDateTime(dateTimePicker1.DateTime.ToString("yyyy-MM-dd")), SqlOperator.MoreThanOrEqual);
+                condition.AddCondition("LastUpdateTime", Convert.ToDateTime(dateTimePicker1.DateTime.ToString("yyyy-MM-dd")), SqlOperator.MoreThanOrEqual);
             }
             if (dateTimePicker2.Text.Length > 0)
             {
-                condition.AddCondition("LastUpdated", Convert.ToDateTime(dateTimePicker2.DateTime.AddDays(1).ToString("yyyy-MM-dd")), SqlOperator.LessThanOrEqual);
+                condition.AddCondition("LastUpdateTime", Convert.ToDateTime(dateTimePicker2.DateTime.AddDays(1).ToString("yyyy-MM-dd")), SqlOperator.LessThanOrEqual);
             }
 
             string systemType = this.txtSystemType.GetComboBoxStrValue();
             if (!string.IsNullOrEmpty(systemType))
             {
-                condition.AddCondition("SystemType_ID", systemType, SqlOperator.Equal);
+                condition.AddCondition("SystemtypeId", systemType, SqlOperator.Equal);
             }
 
             //如果是公司管理员，增加公司标识
             if (Portal.gc.UserInRole(RoleInfo.CompanyAdminName))
             {
-                condition.AddCondition("Company_ID", Portal.gc.UserInfo.Company_ID, SqlOperator.Equal);
+                condition.AddCondition("CompanyId", Portal.gc.UserInfo.CompanyId, SqlOperator.Equal);
             }
 
             string where = condition.BuildConditionSql().Replace("Where", "");
@@ -223,7 +223,7 @@ namespace JCodes.Framework.AddIn.Basic
                 where = treeConditionSql;
             }
             // 增加系统可以访问的公司部门的权限
-            where += " and (Company_ID " + canOptCompanyID + ")";
+            where += " and (CompanyId " + canOptCompanyID + ")";
 
             return where;
         }
@@ -234,18 +234,8 @@ namespace JCodes.Framework.AddIn.Basic
         private void BindData()
         {
             #region 添加别名解析
-            this.winGridViewPager1.DisplayColumns = "ID,User_ID,LoginName,FullName,Company_ID,CompanyName,Note,IPAddress,MacAddress,SystemType_ID,LastUpdated";
+            this.winGridViewPager1.DisplayColumns = "ID,UserId,LoginName,FullName,CompanyId,CompanyName,Remark,IP,Mac,SystemtypeId,LastUpdateTime";
             this.winGridViewPager1.ColumnNameAlias = BLLFactory<LoginLog>.Instance.GetColumnNameAlias();//字段列显示名称转义
-            //this.winGridViewPager1.AddColumnAlias("ID", "编号");
-            //this.winGridViewPager1.AddColumnAlias("User_ID", "登录用户ID");
-            //this.winGridViewPager1.AddColumnAlias("LoginName", "登录名");
-            //this.winGridViewPager1.AddColumnAlias("FullName", "真实名称");
-            //this.winGridViewPager1.AddColumnAlias("Note", "日志描述");
-            //this.winGridViewPager1.AddColumnAlias("IPAddress", "IP地址");
-            //this.winGridViewPager1.AddColumnAlias("MacAddress", "Mac地址");
-            //this.winGridViewPager1.AddColumnAlias("LastUpdated", "记录日期");
-            //this.winGridViewPager1.AddColumnAlias("SystemType_ID", "系统类型");
-
             #endregion
 
             string where = GetConditionSql();
@@ -317,16 +307,16 @@ namespace JCodes.Framework.AddIn.Basic
                 {
                     dr = dtNew.NewRow();
                     dr["序号"] = j++;
-                    dr["登录用户ID"] = list[i].User_ID;
+                    dr["用户Id"] = list[i].UserId;
                     dr["登录名"] = list[i].LoginName;
-                    dr["真实名称"] = list[i].FullName;
-                    dr["所属公司ID"] = list[i].Company_ID;
-                    dr["所属公司名称"] = list[i].CompanyName;
-                    dr["日志描述"] = list[i].Note;
-                    dr["IP地址"] = list[i].IPAddress;
-                    dr["Mac地址"] = list[i].MacAddress;
-                    dr["更新时间"] = list[i].LastUpdated;
-                    dr["系统编号"] = list[i].SystemType_ID;
+                    dr["真实名"] = list[i].FullName;
+                    dr["公司Id"] = list[i].CompanyId;
+                    dr["公司名字"] = list[i].CompanyName;
+                    dr["备注"] = list[i].Remark;
+                    dr["IP地址"] = list[i].IP;
+                    dr["Mac地址"] = list[i].Mac;
+                    dr["最后更新时间"] = list[i].LastUpdateTime;
+                    dr["系统编号"] = list[i].SystemtypeId;
                     dtNew.Rows.Add(dr);
                 }
 
@@ -364,17 +354,17 @@ namespace JCodes.Framework.AddIn.Basic
             foreach (OUInfo groupInfo in list)
             {
                 //不显示删除的机构
-                if (groupInfo != null && !groupInfo.Deleted)
+                if (groupInfo != null && groupInfo.IsDelete == 0)
                 {
                     TreeNode topnode = new TreeNode();
                     topnode.Text = groupInfo.Name;
-                    topnode.Name = groupInfo.ID.ToString();
-                    topnode.Tag = string.Format("Company_ID = {0} and SystemType_ID = '{1}'", groupInfo.ID, Portal.gc.SystemType);
-                    topnode.ImageIndex = Portal.gc.GetImageIndex(groupInfo.Category);
-                    topnode.SelectedImageIndex = Portal.gc.GetImageIndex(groupInfo.Category);
+                    topnode.Name = groupInfo.Id.ToString();
+                    topnode.Tag = string.Format("CompanyId = {0} and SystemtypeId = '{1}'", groupInfo.Id, Portal.gc.SystemType);
+                    topnode.ImageIndex = groupInfo.OuType;//Portal.gc.GetImageIndex(groupInfo.OuType);
+                    topnode.SelectedImageIndex = groupInfo.OuType;//Portal.gc.GetImageIndex(groupInfo.OuType);
                     this.treeView1.Nodes.Add(topnode);
 
-                    List<OUNodeInfo> sublist = BLLFactory<OU>.Instance.GetTreeByID(groupInfo.ID);
+                    List<OUNodeInfo> sublist = BLLFactory<OU>.Instance.GetTreeByID(groupInfo.Id);
                     AddOUNode(sublist, topnode);
                 }
             }
@@ -390,15 +380,15 @@ namespace JCodes.Framework.AddIn.Basic
             {
                 TreeNode ouNode = new TreeNode();
                 ouNode.Text = ouInfo.Name;
-                ouNode.Name = ouInfo.ID.ToString();
-                ouNode.Tag = string.Format("Company_ID = {0} and SystemType_ID = '{1}'", ouInfo.ID, Portal.gc.SystemType);
-                if (ouInfo.Deleted)
+                ouNode.Name = ouInfo.Id.ToString();
+                ouNode.Tag = string.Format("CompanyId = {0} and SystemtypeId = '{1}'", ouInfo.Id, Portal.gc.SystemType);
+                if (ouInfo.IsDelete == 0)
                 {
                     ouNode.ForeColor = Color.Red;
                     continue;//跳过不显示
                 }
-                ouNode.ImageIndex = Portal.gc.GetImageIndex(ouInfo.Category);
-                ouNode.SelectedImageIndex = Portal.gc.GetImageIndex(ouInfo.Category);
+                ouNode.ImageIndex = ouInfo.OuType;//Portal.gc.GetImageIndex(ouInfo.Category);
+                ouNode.SelectedImageIndex = ouInfo.OuType;//Portal.gc.GetImageIndex(ouInfo.Category);
                 parentNode.Nodes.Add(ouNode);
             }
         }

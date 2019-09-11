@@ -82,7 +82,7 @@ namespace JCodes.Framework.AddIn._50Go
             foreach (int iRow in rowSelected)
             {
                 string ID = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "ID");
-                BLLFactory<Coupon>.Instance.DeleteByUser(ID, LoginUserInfo.ID);
+                BLLFactory<Coupon>.Instance.DeleteByUser(ID, LoginUserInfo.Id);
             }
             BindData();
         }
@@ -105,7 +105,7 @@ namespace JCodes.Framework.AddIn._50Go
 
             FrmGenerateCoupon dlg = new FrmGenerateCoupon();
             dlg.Text = Const.Edit + dlg.Text;
-            dlg.ID = ID;
+            dlg.Id = Convert.ToInt32( ID);
             dlg.OnDataSaved += new EventHandler(winGridViewPager1_OnRefresh);
             if (DialogResult.OK == dlg.ShowDialog())
             {
@@ -161,20 +161,18 @@ namespace JCodes.Framework.AddIn._50Go
                 {
                     dr = dtNew.NewRow();
                     dr["序号"] = j++;
-                    dr["优惠券序列号"] = list[i].ID;
-                    dr["分类名称"] = list[i].CouponCategory_Name;
-                    dr["操作公司"] = list[i].Company_Name;
-                    dr["创建人"] = list[i].Creator;
-                    dr["创建人ID"] = list[i].Creator_ID;
-                    dr["创建时间"] = list[i].CreateTime;
-                    dr["使用人"] = list[i].Editor;
-                    dr["使用人ID"] = list[i].Editor_ID;
-                    dr["使用时间"] = list[i].EditTime;
+                    dr["优惠券序列号"] = list[i].Id;
+                    dr["分类名称"] = list[i].CouponCategoryName;
+                    dr["操作公司"] = list[i].CompanyId;
+                    dr["创建人"] = list[i].CreatorId;
+                    dr["创建时间"] = list[i].CreatorTime;
+                    dr["使用人"] = list[i].EditorId;
+                    dr["使用时间"] = list[i].LastUpdateTime;
                     dr["联系电话"] = list[i].MobilePhone;
-                    dr["联系人"] = list[i].FullName;
+                    dr["联系人"] = list[i].Contacts;
                     dr["有效开始日期"] = list[i].StartTime;
                     dr["有效结束日期"] = list[i].EndTime;
-                    dr["是否使用"] = list[i].DELETED == 0?"否":"是";
+                    dr["是否使用"] = list[i].IsDelete == Const.Num_One ? "是" : "否";
                     dtNew.Rows.Add(dr);
                 }
 
@@ -307,7 +305,7 @@ namespace JCodes.Framework.AddIn._50Go
             foreach (var couponCategory in lst)
             {
                 // 20170901 wjm 调整key 和value的顺序
-                this.txtCategory.Properties.Items.Add(new CListItem(couponCategory.ID, couponCategory.HandNo + "-" + couponCategory.Name));
+                this.txtCategory.Properties.Items.Add(new CListItem(couponCategory.Id.ToString(), couponCategory.GeneralCode + "-" + couponCategory.Name));
             }
 
             #region 添加别名解析
@@ -367,8 +365,8 @@ namespace JCodes.Framework.AddIn._50Go
             List<CouponCategoryInfo> couponCategoryList = BLLFactory<CouponCategory>.Instance.GetAllCouponCategory();
             foreach (CouponCategoryInfo couponCategory in couponCategoryList)
             {
-                TreeNode treeNode = new TreeNode(couponCategory.HandNo + "-" + couponCategory.Name, 1, 1);
-                treeNode.Tag = couponCategory.ID;
+                TreeNode treeNode = new TreeNode(couponCategory.GeneralCode + "-" + couponCategory.Name, 1, 1);
+                treeNode.Tag = couponCategory.Id.ToString();
                 treeView1.Nodes.Add(treeNode);
             }
 
@@ -401,7 +399,7 @@ namespace JCodes.Framework.AddIn._50Go
             }
 
             FrmEditCouponCategory dlg = new FrmEditCouponCategory();
-            dlg.ID = e.Node.Tag.ToString();
+            dlg.Id = Convert.ToInt32(e.Node.Tag);
             dlg.Text = Const.Edit + dlg.Text;
             dlg.OnDataSaved += new EventHandler(menuTree_Refresh_Click);
             if (DialogResult.OK == dlg.ShowDialog())

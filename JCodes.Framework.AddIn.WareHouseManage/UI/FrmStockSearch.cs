@@ -575,7 +575,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
 
                 if (!string.IsNullOrEmpty(ID) && StockQuantity == 0)
                 {
-                    BLLFactory<Stock>.Instance.DeleteByUser(ID, LoginUserInfo.ID);
+                    BLLFactory<Stock>.Instance.DeleteByUser(ID, LoginUserInfo.Id);
                 }
             }
 

@@ -18,7 +18,7 @@ namespace JCodes.Framework.Entity
         private Int32 id;
 
         [DisplayName("编号")]
-        public Int32 ID
+        public Int32 Id
         {
             get { return id; }
             set { id = value; }
@@ -27,7 +27,7 @@ namespace JCodes.Framework.Entity
         private Int32 pid;
 
         [DisplayName("父节点编号")]
-        public Int32 PID
+        public Int32 Pid
         {
             get { return pid; }
             set { pid = value; }
@@ -59,7 +59,7 @@ namespace JCodes.Framework.Entity
         public int CompareTo(DictInfo other)
         {
             if (other == null) return -1;
-            if (ID > other.ID)
+            if (Id > other.Id)
             {
                 return 1;
             }

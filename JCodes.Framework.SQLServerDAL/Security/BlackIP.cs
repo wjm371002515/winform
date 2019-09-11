@@ -9,6 +9,7 @@ using JCodes.Framework.Entity;
 using JCodes.Framework.IDAL;
 using JCodes.Framework.Common.Framework.BaseDAL;
 using JCodes.Framework.Common.Databases;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.SQLServerDAL
 {
@@ -52,10 +53,10 @@ namespace JCodes.Framework.SQLServerDAL
             info.IPEnd = reader.GetString("IPEnd");
             info.Note = reader.GetString("Note");
             info.Creator = reader.GetString("Creator");
-            info.Creator_ID = reader.GetString("Creator_ID");
+            info.CreatorId = reader.GetInt32("CreatorId");
             info.CreateTime = reader.GetDateTime("CreateTime");
             info.Editor = reader.GetString("Editor");
-            info.Editor_ID = reader.GetString("Editor_ID");
+            info.EditorId = reader.GetInt32("EditorId");
             info.EditTime = reader.GetDateTime("EditTime");
 
             return info;
@@ -79,10 +80,10 @@ namespace JCodes.Framework.SQLServerDAL
             hash.Add("IPEnd", info.IPEnd);
             hash.Add("Note", info.Note);
             hash.Add("Creator", info.Creator);
-            hash.Add("Creator_ID", info.Creator_ID);
+            hash.Add("CreatorId", info.CreatorId);
             hash.Add("CreateTime", info.CreateTime);
             hash.Add("Editor", info.Editor);
-            hash.Add("Editor_ID", info.Editor_ID);
+            hash.Add("EditorId", info.EditorId);
             hash.Add("EditTime", info.EditTime);
 
             return hash;

@@ -17,6 +17,7 @@ using System.Linq;
 using System.Drawing;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.Utils;
+using JCodes.Framework.Common.Extension;
 
 // 参考文档 http://www.cnblogs.com/a1656344531/archive/2012/11/28/2792863.html
 
@@ -109,10 +110,10 @@ namespace JCodes.Framework.AddIn.Proj
                 dataTypeInfo.Name = xnl0.Item(0).InnerText;
                 dataTypeInfo.ChineseName = xnl0.Item(1).InnerText;
                 dataTypeInfo.DataType = xnl0.Item(2).InnerText;
-                dataTypeInfo.DictNo = xnl0.Item(3).InnerText;
+                dataTypeInfo.DictNo = xnl0.Item(3).InnerText.ToInt32();
                 if (dictTypeInfoList != null)
                 { 
-                    var dictType = dictTypeInfoList.Find(new Predicate<DictInfo>(dictinfo => dictinfo.ID.ToString() == dataTypeInfo.DictNo));
+                    var dictType = dictTypeInfoList.Find(new Predicate<DictInfo>(dictinfo => dictinfo.Id == dataTypeInfo.DictNo));
                     if (dictType != null) dataTypeInfo.DictNameLst = dictType.Remark;
                 }
                 dataTypeInfo.Remark = xnl0.Item(4).InnerText;
@@ -267,7 +268,7 @@ namespace JCodes.Framework.AddIn.Proj
                 }
 
                 // 增加校验，如果数据字段不存在则报错
-                if (!string.IsNullOrEmpty(dataTypeInfo.DictNo) && dictTypeInfoList.Find(new Predicate<DictInfo>(dictinfo => dictinfo.ID.ToString() == dataTypeInfo.DictNo)) == null)
+                if (dataTypeInfo.DictNo > 0 && dictTypeInfoList.Find(new Predicate<DictInfo>(dictinfo => dictinfo.Id == dataTypeInfo.DictNo)) == null)
                 {
                     if (dataTypeInfo.lstInfo.ContainsKey("DictNo"))
                     {
@@ -321,16 +322,6 @@ namespace JCodes.Framework.AddIn.Proj
             barInfoText.Caption = string.Format("{0} 条提示信息", _infoCount);
         }
 
-        private void gridView1_DoubleClick(object sender, EventArgs e)
-        {
-            gridView1.OptionsBehavior.Editable = true;
-        }
-
-        private void gridView1_BeforeLeaveRow(object sender, DevExpress.XtraGrid.Views.Base.RowAllowEventArgs e)
-        {
-            gridView1.OptionsBehavior.Editable = false;
-        }
-
         private void gridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
             // xmlhelper.Read("bookstore/book[@ISBN=\"7-111-19149-6\"]") Attributes 的属性
@@ -370,7 +361,7 @@ namespace JCodes.Framework.AddIn.Proj
             {
 
 
-                var dictType = dictTypeInfoList.Find(new Predicate<DictInfo>(dictinfo => dictinfo.ID.ToString() == e.Value.ToString()));
+                var dictType = dictTypeInfoList.Find(new Predicate<DictInfo>(dictinfo => dictinfo.Id == e.Value.ToString().ToInt32()));
 
                 // 找到选中行的GUID值
                 (gridView1.GetFocusedRow() as StdFieldInfo).DictNameLst = dictType.Remark;
@@ -624,7 +615,7 @@ namespace JCodes.Framework.AddIn.Proj
                         datatypeInfo.Name = dt.Rows[i][0].ToString();
                         datatypeInfo.ChineseName = dt.Rows[i][1].ToString();
                         datatypeInfo.DataType = dt.Rows[i][2].ToString();
-                        datatypeInfo.DictNo =  dt.Rows[i][3].ToString();
+                        datatypeInfo.DictNo =  dt.Rows[i][3].ToString().ToInt32();
                         datatypeInfo.Remark = dt.Rows[i][5].ToString();
 
                         xmlhelper.InsertElement("datatype/dataitem", "item", "guid", datatypeInfo.GUID, string.Format(xmlModel, dt.Rows[i][0].ToString(), dt.Rows[i][1].ToString(), dt.Rows[i][2].ToString(), dt.Rows[i][3].ToString(), dt.Rows[i][5].ToString()));
@@ -701,13 +692,13 @@ namespace JCodes.Framework.AddIn.Proj
 
                 // 得到DataTypeInfo节点的所有子节点
                 XmlNodeList xnl0 = xe.ChildNodes;
-                dictInfo.ID = Convert.ToInt32(xnl0.Item(0).InnerText);
-                dictInfo.PID = Convert.ToInt32(xnl0.Item(1).InnerText);
+                dictInfo.Id = Convert.ToInt32(xnl0.Item(0).InnerText);
+                dictInfo.Pid = Convert.ToInt32(xnl0.Item(1).InnerText);
                 dictInfo.Name = xnl0.Item(2).InnerText;
 
                 StringBuilder sb = new StringBuilder();
 
-                XmlNodeList xmlNodeLst2 = xmldicthelper.Read(string.Format("datatype/dataitem/item[id=\"{0}\"]/subdic", dictInfo.ID));
+                XmlNodeList xmlNodeLst2 = xmldicthelper.Read(string.Format("datatype/dataitem/item[id=\"{0}\"]/subdic", dictInfo.Id));
 
                 List<DictDetailInfo> dictDetailInfoList = new List<DictDetailInfo>();
                 foreach (XmlNode xn12 in xmlNodeLst2)

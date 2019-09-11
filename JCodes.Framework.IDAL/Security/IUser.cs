@@ -1,6 +1,7 @@
 ﻿using JCodes.Framework.Common;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Entity;
+using JCodes.Framework.jCodesenum;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;

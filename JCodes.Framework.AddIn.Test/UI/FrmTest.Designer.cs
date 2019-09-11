@@ -28,140 +28,150 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
-            this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
-            this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
-            this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
-            this.测试1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.测试2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu();
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
-            this.xtraTabControl1.SuspendLayout();
-            this.xtraTabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.SuspendLayout();
-            this.xtraTabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
-            this.contextMenuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
+            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gcColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemTimeEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit();
+            this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
+            this.repositoryItemDateEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTimeEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2.CalendarTimeProperties)).BeginInit();
             this.SuspendLayout();
             // 
-            // xtraTabControl1
+            // gridControl1
             // 
-            this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.xtraTabControl1.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom;
-            this.xtraTabControl1.Location = new System.Drawing.Point(0, 0);
-            this.xtraTabControl1.Name = "xtraTabControl1";
-            this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
-            this.xtraTabControl1.Size = new System.Drawing.Size(1206, 784);
-            this.xtraTabControl1.TabIndex = 0;
-            this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
-            this.xtraTabPage1,
-            this.xtraTabPage2});
+            this.gridControl1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControl1.Location = new System.Drawing.Point(0, 0);
+            this.gridControl1.MainView = this.gridView1;
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemTimeEdit1,
+            this.repositoryItemDateEdit1,
+            this.repositoryItemDateEdit2});
+            this.gridControl1.Size = new System.Drawing.Size(1206, 784);
+            this.gridControl1.TabIndex = 0;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
             // 
-            // xtraTabPage1
+            // gridView1
             // 
-            this.xtraTabPage1.Controls.Add(this.splitContainer1);
-            this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(1200, 747);
-            this.xtraTabPage1.Text = "xtraTabPage1";
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gcColumn1,
+            this.gcColumn2,
+            this.gcColumn3,
+            this.gcColumn4,
+            this.gcColumn5});
+            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.Name = "gridView1";
             // 
-            // splitContainer1
+            // gcColumn1
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            this.splitContainer1.Size = new System.Drawing.Size(1200, 747);
-            this.splitContainer1.SplitterDistance = 413;
-            this.splitContainer1.TabIndex = 0;
+            this.gcColumn1.Caption = "字段1";
+            this.gcColumn1.FieldName = "Column1";
+            this.gcColumn1.Name = "gcColumn1";
+            this.gcColumn1.Visible = true;
+            this.gcColumn1.VisibleIndex = 0;
             // 
-            // xtraTabPage2
+            // gcColumn2
             // 
-            this.xtraTabPage2.Controls.Add(this.navBarControl1);
-            this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(1200, 747);
-            this.xtraTabPage2.Text = "xtraTabPage2";
+            this.gcColumn2.Caption = "字段2";
+            this.gcColumn2.FieldName = "Column2";
+            this.gcColumn2.Name = "gcColumn2";
+            this.gcColumn2.Visible = true;
+            this.gcColumn2.VisibleIndex = 1;
             // 
-            // navBarControl1
+            // gcColumn3
             // 
-            this.navBarControl1.ActiveGroup = this.navBarGroup1;
-            this.navBarControl1.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
-            this.navBarGroup1});
-            this.navBarControl1.Location = new System.Drawing.Point(11, 11);
-            this.navBarControl1.Name = "navBarControl1";
-            this.navBarControl1.OptionsNavPane.ExpandedWidth = 317;
-            this.navBarControl1.Size = new System.Drawing.Size(317, 487);
-            this.navBarControl1.TabIndex = 0;
-            this.navBarControl1.Text = "navBarControl1";
+            this.gcColumn3.Caption = "字段3";
+            this.gcColumn3.ColumnEdit = this.repositoryItemTimeEdit1;
+            this.gcColumn3.FieldName = "Column3";
+            this.gcColumn3.Name = "gcColumn3";
+            this.gcColumn3.Visible = true;
+            this.gcColumn3.VisibleIndex = 2;
             // 
-            // navBarGroup1
+            // gcColumn4
             // 
-            this.navBarGroup1.Caption = "navBarGroup1";
-            this.navBarGroup1.Expanded = true;
-            this.navBarGroup1.Name = "navBarGroup1";
+            this.gcColumn4.Caption = "字段4";
+            this.gcColumn4.ColumnEdit = this.repositoryItemDateEdit1;
+            this.gcColumn4.FieldName = "Column4";
+            this.gcColumn4.Name = "gcColumn4";
+            this.gcColumn4.Visible = true;
+            this.gcColumn4.VisibleIndex = 3;
             // 
-            // contextMenuStrip1
+            // gcColumn5
             // 
-            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.测试1ToolStripMenuItem,
-            this.测试2ToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(128, 60);
+            this.gcColumn5.Caption = "字段5";
+            this.gcColumn5.ColumnEdit = this.repositoryItemDateEdit2;
+            this.gcColumn5.FieldName = "Column5";
+            this.gcColumn5.Name = "gcColumn5";
+            this.gcColumn5.Visible = true;
+            this.gcColumn5.VisibleIndex = 4;
             // 
-            // 测试1ToolStripMenuItem
+            // repositoryItemTimeEdit1
             // 
-            this.测试1ToolStripMenuItem.Name = "测试1ToolStripMenuItem";
-            this.测试1ToolStripMenuItem.Size = new System.Drawing.Size(127, 28);
-            this.测试1ToolStripMenuItem.Text = "测试1";
-            this.测试1ToolStripMenuItem.Click += new System.EventHandler(this.测试1ToolStripMenuItem_Click);
+            this.repositoryItemTimeEdit1.AutoHeight = false;
+            this.repositoryItemTimeEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemTimeEdit1.Name = "repositoryItemTimeEdit1";
             // 
-            // 测试2ToolStripMenuItem
+            // repositoryItemDateEdit1
             // 
-            this.测试2ToolStripMenuItem.Name = "测试2ToolStripMenuItem";
-            this.测试2ToolStripMenuItem.Size = new System.Drawing.Size(127, 28);
-            this.测试2ToolStripMenuItem.Text = "测试2";
+            this.repositoryItemDateEdit1.AutoHeight = false;
+            this.repositoryItemDateEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemDateEdit1.Name = "repositoryItemDateEdit1";
             // 
-            // popupMenu1
+            // repositoryItemDateEdit2
             // 
-            this.popupMenu1.Name = "popupMenu1";
+            this.repositoryItemDateEdit2.AutoHeight = false;
+            this.repositoryItemDateEdit2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemDateEdit2.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemDateEdit2.Name = "repositoryItemDateEdit2";
             // 
             // FrmTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1206, 784);
-            this.Controls.Add(this.xtraTabControl1);
+            this.Controls.Add(this.gridControl1);
             this.Name = "FrmTest";
             this.Text = "FrmTest";
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
-            this.xtraTabControl1.ResumeLayout(false);
-            this.xtraTabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
-            this.xtraTabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
-            this.contextMenuStrip1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTimeEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private DevExpress.XtraNavBar.NavBarControl navBarControl1;
-        private DevExpress.XtraNavBar.NavBarGroup navBarGroup1;
-        private DevExpress.XtraBars.PopupMenu popupMenu1;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem 测试1ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 测试2ToolStripMenuItem;
+        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Columns.GridColumn gcColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gcColumn2;
+        private DevExpress.XtraGrid.Columns.GridColumn gcColumn3;
+        private DevExpress.XtraGrid.Columns.GridColumn gcColumn4;
+        private DevExpress.XtraGrid.Columns.GridColumn gcColumn5;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit repositoryItemTimeEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEdit2;
     }
 }

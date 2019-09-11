@@ -10,34 +10,34 @@ namespace JCodes.Framework.Entity
     [DataContract]
     public class SimpleUserInfo : BaseEntity
     {
-        private int m_ID = 0;
-        private string m_HandNo; //用户编码   
+        private int m_Id = 0;
+        private string m_UserCode; //用户编码   
         private string m_Name = "";//用户名/登录名 
-        private string m_Password = "";//用户密码
         private string m_FullName = "";//用户全名
+        private string m_Password = "";//用户密码
         private string m_MobilePhone; //移动电话          
         private string m_Email; //邮件地址          
 
         [DataMember]
-        public virtual int ID
+        public virtual int Id
         {
-            get { return m_ID; }
-            set { m_ID = value; }
+            get { return m_Id; }
+            set { m_Id = value; }
         }
 
         /// <summary>
         /// 用户编码
         /// </summary>
         [DataMember]
-        public virtual string HandNo
+        public virtual string UserCode
         {
             get
             {
-                return this.m_HandNo;
+                return this.m_UserCode;
             }
             set
             {
-                this.m_HandNo = value;
+                this.m_UserCode = value;
             }
         }
 

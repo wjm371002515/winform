@@ -41,9 +41,9 @@ namespace JCodes.Framework.AddIn.Dictionary
         }
         public override void DisplayData()
         {
-            if (!string.IsNullOrEmpty(ID))
+            if (Id > 0)
             {
-                DistrictInfo info = BLLFactory<District>.Instance.FindByID(ID);
+                DistrictInfo info = BLLFactory<District>.Instance.FindByID(Id);
                 if (info != null)
                 {
                     this.txtDistrict.Text = info.DistrictName;
@@ -94,7 +94,7 @@ namespace JCodes.Framework.AddIn.Dictionary
                 try
                 {
                     #region 更新数据
-                    bool succeed = BLLFactory<District>.Instance.Update(info, ID);
+                    bool succeed = BLLFactory<District>.Instance.Update(info, Id);
                     if (succeed)
                     {
                         //可添加其他关联操作
@@ -116,14 +116,14 @@ namespace JCodes.Framework.AddIn.Dictionary
             info.DistrictName = this.txtDistrict.Text;
             info.CityID = Convert.ToInt32(this.txtCity.Tag);
 
-            info.CurrentLoginUserId = LoginUserInfo.ID;
+            info.CurrentLoginUserId = LoginUserInfo.Id;
         }
 
         private void FrmEditCityDistrict_Load(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(ID))
+            if (Id > 0)
             {
-                DistrictInfo info = BLLFactory<District>.Instance.FindByID(ID);
+                DistrictInfo info = BLLFactory<District>.Instance.FindByID(Id);
                 if (info != null)
                 {
                     this.txtDistrict.Text = info.DistrictName;

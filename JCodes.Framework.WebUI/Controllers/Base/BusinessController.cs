@@ -14,6 +14,7 @@ using JCodes.Framework.Common.Databases;
 using JCodes.Framework.Common.Format;
 using JCodes.Framework.BLL;
 using JCodes.Framework.Common.Extension;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.WebUI.Controllers
 {
@@ -766,7 +767,7 @@ namespace JCodes.Framework.WebUI.Controllers
             {
                 if (!string.IsNullOrEmpty(id))
                 {
-                    result.Success = baseBLL.DeleteByUser(id, CurrentUser.ID);
+                    result.Success = baseBLL.DeleteByUser(id, CurrentUser.Id);
                 }
             }
             catch (Exception ex)
@@ -928,7 +929,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         protected List<OUInfo> GetMyTopGroup(UserInfo userInfo)
         {
-            return BLLFactory<OU>.Instance.GetMyTopGroup(userInfo.ID);
+            return BLLFactory<OU>.Instance.GetMyTopGroup(userInfo.Id);
         }
 
         /// <summary>

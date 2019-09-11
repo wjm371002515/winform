@@ -153,26 +153,26 @@ namespace JCodes.Framework.AddIn.WareHouseManage
             foreach (int iRow in rowSelected)
             {
                 string ID = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "ID");
-                BLLFactory<ItemDetail>.Instance.DeleteByUser(ID, LoginUserInfo.ID);
+                BLLFactory<ItemDetail>.Instance.DeleteByUser(ID, LoginUserInfo.Id);
             }
             BindData();
         }
 
         private void winGridViewPager1_OnEditSelected(object sender, EventArgs e)
         {
-            string ID = this.winGridViewPager1.gridView1.GetFocusedRowCellDisplayText("ID");
-            List<string> IDList = new List<string>();
+            Int32 Id = this.winGridViewPager1.gridView1.GetFocusedRowCellDisplayText("ID").ToInt32();
+            List<Int32> IdList = new List<Int32>();
             for (int i = 0; i < this.winGridViewPager1.gridView1.RowCount; i++)
             {
-                string strTemp = this.winGridViewPager1.GridView1.GetRowCellDisplayText(i, "ID");
-                IDList.Add(strTemp);
+                Int32 intTemp = this.winGridViewPager1.GridView1.GetRowCellDisplayText(i, "ID").ToInt32();
+                IdList.Add(intTemp);
             }
 
-            if (!string.IsNullOrEmpty(ID))
+            if (Id > 0)
             {
                 FrmEditItemDetail dlg = new FrmEditItemDetail();
-                dlg.ID = ID;
-                dlg.IDList = IDList;                
+                dlg.Id = Id;
+                dlg.IdList = IdList;                
                 dlg.InitFunction(this.LoginUserInfo, this.FunctionDict);//初始化权限控制信息
                 dlg.OnDataSaved += new EventHandler(dlg_OnDataSaved);
                 if (DialogResult.OK == dlg.ShowDialog())

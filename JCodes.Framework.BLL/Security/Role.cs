@@ -37,9 +37,9 @@ namespace JCodes.Framework.BLL
         /// </summary>
         /// <param name="companyId">公司ID（机构ID）</param>
         /// <returns></returns>
-        public List<RoleInfo> GetRolesByCompany(string companyId)
+        public List<RoleInfo> GetRolesByCompanyId(Int32 companyId)
         {
-            string condition = string.Format("Company_ID='{0}' and Deleted = 0 ", companyId);
+            string condition = string.Format("CompanyId='{0}' and IsDelete = 0 ", companyId);
             return Find(condition);
         }
 
@@ -159,7 +159,7 @@ namespace JCodes.Framework.BLL
                 RoleInfo roleByName = FindSingle(condition, trans);
 				if (roleByName != null)
 				{
-					m_AdminID = roleByName.ID;//保存ID作为管理员角色参考
+					m_AdminID = roleByName.Id;//保存ID作为管理员角色参考
 				}
 			}
 		}
@@ -176,7 +176,7 @@ namespace JCodes.Framework.BLL
             List<int> list = new List<int>();
 			foreach (OUInfo info in oUsByRole)
 			{
-				list.Add(info.ID);
+				list.Add(info.Id);
 			}
 			return list;
 		}
@@ -195,7 +195,7 @@ namespace JCodes.Framework.BLL
 			{
 				foreach (OUInfo info in BLLFactory<OU>.Instance.GetOUsByRole(m_AdminID))
 				{
-                    List<SimpleUserInfo> simpleUsersByOU = BLLFactory<User>.Instance.GetSimpleUsersByOU(info.ID);
+                    List<SimpleUserInfo> simpleUsersByOU = BLLFactory<User>.Instance.GetSimpleUsersByOU(info.Id);
 					if (simpleUsersByOU.Count > 0)
 					{
 						simpleUsersByRole.Add(simpleUsersByOU[0]);
@@ -225,7 +225,7 @@ namespace JCodes.Framework.BLL
             string condition = string.Format("Name='{0}' ", roleName);
             if (!string.IsNullOrEmpty(companyId))
             {
-                condition += string.Format(" And Company_ID='{0}' ", companyId);
+                condition += string.Format(" And CompanyId='{0}' ", companyId);
             }
 			return this.roleDal.FindSingle(condition, trans);
 		}
@@ -262,18 +262,18 @@ namespace JCodes.Framework.BLL
             List<int> list = new List<int>();
 			foreach (RoleInfo info in rolesByUser)
 			{
-                list.Add(info.ID);
+                list.Add(info.Id);
 			}
 
             //包含部门中间表的角色
             foreach (OUInfo ouInfo in BLLFactory<OU>.Instance.GetOUsByUser(userID))
 			{
-				foreach (RoleInfo roleInfo in this.roleDal.GetRolesByOU(ouInfo.ID))
+				foreach (RoleInfo roleInfo in this.roleDal.GetRolesByOU(ouInfo.Id))
 				{
-                    if (!list.Contains(roleInfo.ID))
+                    if (!list.Contains(roleInfo.Id))
 					{
 						rolesByUser.Add(roleInfo);
-                        list.Add(roleInfo.ID);
+                        list.Add(roleInfo.Id);
 					}
 				}
 			}
@@ -282,12 +282,12 @@ namespace JCodes.Framework.BLL
             UserInfo userInfo = BLLFactory<User>.Instance.FindByID(userID);
             if (userInfo != null)
             {
-                foreach (RoleInfo roleInfo in  roleDal.GetRolesByOU(userInfo.Dept_ID.ToInt32()))
+                foreach (RoleInfo roleInfo in  roleDal.GetRolesByOU(userInfo.DeptId))
                 {
-                    if (!list.Contains(roleInfo.ID))
+                    if (!list.Contains(roleInfo.Id))
                     {
                         rolesByUser.Add(roleInfo);
-                        list.Add(roleInfo.ID);
+                        list.Add(roleInfo.Id);
                     }
                 }
             }
@@ -327,7 +327,7 @@ namespace JCodes.Framework.BLL
                         List<OUInfo> oUsByRole = BLLFactory<OU>.Instance.GetOUsByRole(m_AdminID);
 						foreach (OUInfo info in oUsByRole)
 						{
-                            if ((info.ID != ouID) && (BLLFactory<User>.Instance.GetSimpleUsersByOU(info.ID).Count > 0))
+                            if ((info.Id != ouID) && (BLLFactory<User>.Instance.GetSimpleUsersByOU(info.Id).Count > 0))
 							{
 								flag = true;
 								break;
@@ -363,7 +363,7 @@ namespace JCodes.Framework.BLL
         /// <returns></returns>
         public override bool Update(RoleInfo obj, object primaryKeyValue, DbTransaction trans = null)
 		{
-			if (obj.ID == m_AdminID)
+			if (obj.Id == m_AdminID)
 			{
 				obj.Name = RoleInfo.SuperAdminName;
 			}

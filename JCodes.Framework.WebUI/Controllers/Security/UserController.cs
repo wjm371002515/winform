@@ -18,6 +18,7 @@ using System.Web.Mvc;
 using JCodes.Framework.Common.Extension;
 using JCodes.Framework.Common.Network;
 using JCodes.Framework.Common.Device;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.WebUI.Controllers
 {
@@ -80,22 +81,21 @@ namespace JCodes.Framework.WebUI.Controllers
                 int i = 1;
                 foreach (DataRow dr in table.Rows)
                 {
-                    bool converted = false;
                     DateTime dtDefault = Convert.ToDateTime("1900-01-01");
                     DateTime dt;
                     UserInfo info = new UserInfo();
 
                     //用户编码,用户名/登录名,真实姓名,职务头衔,移动电话,办公电话,邮件地址,性别,QQ号码,备注
-                    info.HandNo = dr["用户编码"].ToString();
+                    info.UserCode = dr["用户编码"].ToString();
                     info.Name = dr["用户名/登录名"].ToString();
                     info.FullName = dr["真实姓名"].ToString();
-                    info.Title = dr["职务头衔"].ToString();
                     info.MobilePhone = dr["移动电话"].ToString();
                     info.OfficePhone = dr["办公电话"].ToString();
                     info.Email = dr["邮件地址"].ToString();
-                    info.Gender = dr["性别"].ToString();
-                    info.QQ = dr["QQ号码"].ToString();
-                    info.Note = dr["备注"].ToString();
+                    // TODO
+                    //info.Gender = dr["性别"].ToString();
+                    //info.QQ = dr["QQ号码"].ToString();
+                    info.Remark = dr["备注"].ToString();
 
                     //converted = DateTime.TryParse(dr["出生日期"].ToString(), out dt);
                     //if (converted && dt > dtDefault)
@@ -103,10 +103,10 @@ namespace JCodes.Framework.WebUI.Controllers
                     //    info.BirthDate = dt;
                     //}
 
-                    info.Creator = CurrentUser.ID.ToString();
-                    info.CreateTime = DateTime.Now;
-                    info.Editor = CurrentUser.ID.ToString();
-                    info.EditTime = DateTime.Now;
+                    info.CreatorId = CurrentUser.Id;
+                    info.CreatorTime = DateTime.Now;
+                    info.EditorId = CurrentUser.Id;
+                    info.LastUpdateTime = DateTime.Now;
 
                     list.Add(info);
                 }
@@ -124,7 +124,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <param name="companyid">所属公司</param>
         /// <param name="deptid">所属部门</param>
         /// <returns></returns>
-        public ActionResult SaveExcelData(List<UserInfo> list, string companyid, string deptid)
+        public ActionResult SaveExcelData(List<UserInfo> list, Int32 CompanyId, Int32 DeptId)
         {
             CommonResult result = new CommonResult();
             if (list != null && list.Count > 0)
@@ -144,16 +144,16 @@ namespace JCodes.Framework.WebUI.Controllers
                             bool isExist = BLLFactory<User>.Instance.IsExistRecord(filter);
                             if (!isExist)
                             {
-                                detail.Company_ID = companyid;
-                                detail.CompanyName = BLLFactory<OU>.Instance.GetName(companyid.ToInt32());
-                                detail.Dept_ID = deptid;
-                                detail.DeptName = BLLFactory<OU>.Instance.GetName(deptid.ToInt32());
+                                detail.CompanyId = CompanyId;
+                                //detail.CompanyName = BLLFactory<OU>.Instance.GetName(companyid.ToInt32());
+                                detail.DeptId = DeptId;
+                                //detail.DeptName = BLLFactory<OU>.Instance.GetName(deptid.ToInt32());
 
                                 //detail.Seq = seq++;//增加1
-                                detail.CreateTime = DateTime.Now;
-                                detail.Creator = CurrentUser.ID.ToString();
-                                detail.Editor = CurrentUser.ID.ToString();
-                                detail.EditTime = DateTime.Now;
+                                detail.CreatorId = CurrentUser.Id;
+                                detail.CreatorTime = DateTime.Now;
+                                detail.EditorId = CurrentUser.Id;
+                                detail.LastUpdateTime = DateTime.Now;
 
                                 BLLFactory<User>.Instance.Insert(detail, trans);
                             }
@@ -218,16 +218,15 @@ namespace JCodes.Framework.WebUI.Controllers
                 //用户编码,用户名/登录名,真实姓名,职务头衔,移动电话,办公电话,邮件地址,性别,QQ号码,备注
                 dr = datatable.NewRow();
                 dr["序号"] = j++;
-                dr["用户编码"] = list[i].HandNo;
+                dr["用户编码"] = list[i].UserCode;
                 dr["用户名/登录名"] = list[i].Name;
                 dr["真实姓名"] = list[i].FullName;
-                dr["职务头衔"] = list[i].Title;
                 dr["移动电话"] = list[i].MobilePhone;
                 dr["办公电话"] = list[i].OfficePhone;
                 dr["邮件地址"] = list[i].Email;
                 dr["性别"] = list[i].Gender;
                 dr["QQ号码"] = list[i].QQ;
-                dr["备注"] = list[i].Note;
+                dr["备注"] = list[i].Remark;
 
                 //如果为外键，可以在这里进行转义，如下例子
                 //dr["客户名称"] = BLLFactory<Customer>.Instance.GetCustomerName(list[i].Customer_ID);//转义为客户名称
@@ -254,22 +253,17 @@ namespace JCodes.Framework.WebUI.Controllers
         protected override void OnBeforeInsert(UserInfo info)
         {
             //留给子类对参数对象进行修改
-            info.CreateTime = DateTime.Now;
-            info.Creator = CurrentUser.FullName;
-            info.Creator_ID = CurrentUser.ID.ToString();
-
-            info.Company_ID = CurrentUser.Company_ID;
-            info.CompanyName = BLLFactory<OU>.Instance.GetName(CurrentUser.Company_ID.ToInt32());
-            info.Dept_ID = CurrentUser.Dept_ID;
-            info.DeptName = BLLFactory<OU>.Instance.GetName(CurrentUser.Dept_ID.ToInt32());
+            info.CreatorTime = DateTime.Now;
+            info.CreatorId = CurrentUser.Id;
+            info.CompanyId = CurrentUser.CompanyId;
+            info.DeptId = CurrentUser.DeptId;
         }
 
         protected override void OnBeforeUpdate(UserInfo info)
         {
             //留给子类对参数对象进行修改
-            info.Editor = CurrentUser.FullName;
-            info.Editor_ID = CurrentUser.ID.ToString();
-            info.EditTime = DateTime.Now;
+            info.EditorId = CurrentUser.Id;
+            info.LastUpdateTime = DateTime.Now;
         }
         #endregion
 
@@ -408,11 +402,12 @@ namespace JCodes.Framework.WebUI.Controllers
                 List<OUInfo> list = BLLFactory<OU>.Instance.GetMyTopGroup(userId);
                 foreach (OUInfo groupInfo in list)
                 {
-                    if (groupInfo != null && !groupInfo.Deleted)
+                    if (groupInfo != null && groupInfo.IsDelete == 0)
                     {
-                        List<OUNodeInfo> sublist = BLLFactory<OU>.Instance.GetTreeByID(groupInfo.ID);
+                        List<OUNodeInfo> sublist = BLLFactory<OU>.Instance.GetTreeByID(groupInfo.Id);
 
-                        JsTreeData treeData = new JsTreeData(groupInfo.ID, groupInfo.Name, GetBootstrapIcon(groupInfo.Category));
+                        //JsTreeData treeData = new JsTreeData(groupInfo.Id, groupInfo.Name, GetBootstrapIcon(groupInfo.OuType));
+                        JsTreeData treeData = new JsTreeData(groupInfo.Id, groupInfo.Name);
                         GetJsTreeDataWithOUNode(sublist, treeData);
 
                         content.Append(base.ToJson(treeData));
@@ -427,7 +422,8 @@ namespace JCodes.Framework.WebUI.Controllers
             List<JsTreeData> result = new List<JsTreeData>();
             foreach (OUNodeInfo ouInfo in list)
             {
-                JsTreeData treeData = new JsTreeData(ouInfo.ID, ouInfo.Name, GetBootstrapIcon(ouInfo.Category));
+                // JsTreeData treeData = new JsTreeData(ouInfo.ID, ouInfo.Name, GetBootstrapIcon(ouInfo.Category));
+                JsTreeData treeData = new JsTreeData(ouInfo.Id, ouInfo.Name);
                 GetJsTreeDataWithOUNode(ouInfo.Children, treeData);
 
                 result.Add(treeData);
@@ -442,7 +438,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult GetMyDeptDictJson(int userId)
         {
-            List<CListItem> itemList = new List<CListItem>();
+            List<CDicKeyValue> itemList = new List<CDicKeyValue>();
 
             StringBuilder content = new StringBuilder();
             UserInfo userInfo = BLLFactory<User>.Instance.FindByID(userId);
@@ -451,16 +447,16 @@ namespace JCodes.Framework.WebUI.Controllers
                 List<OUInfo> list = BLLFactory<OU>.Instance.GetMyTopGroup(userId);
                 foreach (OUInfo groupInfo in list)
                 {
-                    if (groupInfo != null && !groupInfo.Deleted)
+                    if (groupInfo != null && groupInfo.IsDelete == 0)
                     {
-                        List<OUInfo> allList = BLLFactory<OU>.Instance.GetAllOUsByParent(groupInfo.ID); 
+                        List<OUInfo> allList = BLLFactory<OU>.Instance.GetAllOUsByParent(groupInfo.Id); 
                         allList.Insert(0, groupInfo);
-                        allList = CollectionHelper<OUInfo>.Fill(groupInfo.ID, 0, allList, "PID", "ID", "Name");
+                        allList = CollectionHelper<OUInfo>.Fill(groupInfo.Id, 0, allList, "Pid", "Id", "Name");
 
-                        itemList.Add(new CListItem(groupInfo.ID.ToString(), groupInfo.Name));
+                        itemList.Add(new CDicKeyValue(groupInfo.Id, groupInfo.Name));
                         foreach (OUInfo info in allList)
                         {
-                            itemList.Add(new CListItem(info.ID.ToString(), info.Name));
+                            itemList.Add(new CDicKeyValue(info.Id, info.Name));
                         }
                     }
                 }
@@ -498,7 +494,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 }
                 else
                 {
-                    OUInfo myCompanyInfo = BLLFactory<OU>.Instance.FindByID(userInfo.Company_ID);
+                    OUInfo myCompanyInfo = BLLFactory<OU>.Instance.FindByID(userInfo.CompanyId);
                     if (myCompanyInfo != null)
                     {
                         list.Add(new OUNodeInfo(myCompanyInfo));
@@ -508,7 +504,8 @@ namespace JCodes.Framework.WebUI.Controllers
                 if (list.Count > 0)
                 {
                     OUNodeInfo info = list[0];//无论是集团还是公司，节点只有一个
-                    JsTreeData node = new JsTreeData(info.ID, info.Name, GetBootstrapIcon(info.Category));
+                    //JsTreeData node = new JsTreeData(info.ID, info.Name, GetBootstrapIcon(info.Category));
+                    JsTreeData node = new JsTreeData(info.Id, info.Name);
                     GetJsTreeDataWithOUNode(info.Children, node);
                     treeList.Add(node);
                 }
@@ -524,7 +521,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult GetMyCompanyDictJson(int userId)
         {
-            List<CListItem> itemList = new List<CListItem>();
+            List<CDicKeyValue> itemList = new List<CDicKeyValue>();
 
             UserInfo userInfo = BLLFactory<User>.Instance.FindByID(userId);
             if (userInfo != null)
@@ -536,7 +533,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 }
                 else
                 {
-                    OUInfo myCompanyInfo = BLLFactory<OU>.Instance.FindByID(userInfo.Company_ID);
+                    OUInfo myCompanyInfo = BLLFactory<OU>.Instance.FindByID(userInfo.CompanyId);
                     if (myCompanyInfo != null)
                     {
                         list.Add(new OUNodeInfo(myCompanyInfo));
@@ -545,10 +542,10 @@ namespace JCodes.Framework.WebUI.Controllers
 
                 foreach (OUNodeInfo info in list)
                 {
-                    itemList.Add(new CListItem(info.ID.ToString(), info.Name));
+                    itemList.Add(new CDicKeyValue(info.Id, info.Name));
                     foreach(OUNodeInfo subInfo in info.Children)
                     {
-                        itemList.Add(new CListItem(subInfo.ID.ToString(), "    " + subInfo.Name ));
+                        itemList.Add(new CDicKeyValue(subInfo.Id, "    " + subInfo.Name));
                     }
                 }
             }
@@ -571,9 +568,9 @@ namespace JCodes.Framework.WebUI.Controllers
                 OUInfo groupInfo = BLLFactory<OU>.Instance.FindByID(parentId);
                 if (groupInfo != null)
                 {
-                    List<OUNodeInfo> list = BLLFactory<OU>.Instance.GetTreeByID(groupInfo.ID);
+                    List<OUNodeInfo> list = BLLFactory<OU>.Instance.GetTreeByID(groupInfo.Id);
 
-                    JsTreeData treeData = new JsTreeData(groupInfo.ID, groupInfo.Name, "fa fa-users icon-state-warning icon-lg");
+                    JsTreeData treeData = new JsTreeData(groupInfo.Id, groupInfo.Name, "fa fa-users icon-state-warning icon-lg");
                     GetJsTreeDataWithOUNode(list, treeData);
 
                     treeList.Add(treeData);
@@ -590,20 +587,20 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult GetDeptDictJson(string parentId)
         {
-            List<CListItem> itemList = new List<CListItem>();
+            List<CDicKeyValue> itemList = new List<CDicKeyValue>();
 
             if (!string.IsNullOrEmpty(parentId) && parentId != "null")
             {
                 OUInfo groupInfo = BLLFactory<OU>.Instance.FindByID(parentId);
                 if (groupInfo != null)
                 {
-                    itemList.Add(new CListItem(groupInfo.ID.ToString(), groupInfo.Name));
+                    itemList.Add(new CDicKeyValue(groupInfo.Id, groupInfo.Name));
 
-                    List<OUInfo> list = BLLFactory<OU>.Instance.GetAllOUsByParent(groupInfo.ID);
-                    list = CollectionHelper<OUInfo>.Fill(groupInfo.ID, 0, list, "PID", "ID", "Name");
+                    List<OUInfo> list = BLLFactory<OU>.Instance.GetAllOUsByParent(groupInfo.Id);
+                    list = CollectionHelper<OUInfo>.Fill(groupInfo.Id, 0, list, "PID", "ID", "Name");
                     foreach (OUInfo info in list)
                     {
-                        itemList.Add(new CListItem(info.ID.ToString(), info.Name));
+                        itemList.Add(new CDicKeyValue(info.Id, info.Name));
                     }
                 }
             }
@@ -624,7 +621,7 @@ namespace JCodes.Framework.WebUI.Controllers
             List<UserInfo> list = BLLFactory<User>.Instance.FindByDept(deptId);
             foreach (UserInfo info in list)
             {
-                treeList.Add(new JsTreeData(info.ID, info.FullName, "fa fa-user icon-state-warning icon-lg"));
+                treeList.Add(new JsTreeData(info.Id, info.FullName, "fa fa-user icon-state-warning icon-lg"));
             }
 
             return ToJsonContent(treeList);
@@ -637,13 +634,13 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult GetUserDictJson(int deptId)
         {
-            List<CListItem> itemList = new List<CListItem>();
-            itemList.Insert(0, new CListItem("-1", "无"));
+            List<CDicKeyValue> itemList = new List<CDicKeyValue>();
+            itemList.Insert(0, new CDicKeyValue(-1, "无"));
 
             List<UserInfo> list = BLLFactory<User>.Instance.FindByDept(deptId);
             foreach (UserInfo info in list)
             {
-                itemList.Add(new CListItem(info.ID.ToString(), info.FullName));
+                itemList.Add(new CDicKeyValue(info.Id, info.FullName));
             }
 
             return ToJsonContent(itemList);
@@ -691,11 +688,11 @@ namespace JCodes.Framework.WebUI.Controllers
         {
             string condition = "";
             //增加对角色、部门、公司的判断
-            string deptId = Request["Dept_ID"] ?? "";    
+            string deptId = Request["DeptId"] ?? "";    
 
             if (!string.IsNullOrEmpty(deptId))
             {
-                condition = string.Format("Dept_ID = {0} or Company_ID ={0}", deptId);
+                condition = string.Format("DeptId = {0} or CompanyId ={0}", deptId);
             }
             else
             {
@@ -711,7 +708,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public override ActionResult FindWithPager()
         {
-            string roleId = Request["Role_ID"] ?? "";
+            string roleId = Request["RoldId"] ?? "";
             if (!string.IsNullOrEmpty(roleId))
             {
                 //检查用户是否有权限，否则抛出MyDenyAccessException异常
@@ -790,7 +787,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         protected override bool Update(string id, UserInfo info)
         {
-            string filter = string.Format("Name='{0}' and ID <>'{1}'", info.Name, info.ID);
+            string filter = string.Format("Name='{0}' and ID <>'{1}'", info.Name, info.Id);
             bool isExist = BLLFactory<User>.Instance.IsExistRecord(filter);
             if (isExist)
             {
@@ -816,10 +813,10 @@ namespace JCodes.Framework.WebUI.Controllers
             List<OUInfo> ouList = BLLFactory<OU>.Instance.GetTopGroup();
             foreach (OUInfo info in ouList)
             {
-                List<OUInfo> companyList = BLLFactory<OU>.Instance.GetAllCompany(info.ID);
+                List<OUInfo> companyList = BLLFactory<OU>.Instance.GetAllCompany(info.Id);
                 foreach (OUInfo companyInfo in companyList)
                 {
-                    string condition = string.Format("Company_ID={0} AND Deleted=0", companyInfo.ID);
+                    string condition = string.Format("CompanyId={0} AND IsDelete=0", companyInfo.Id);
                     int count = BLLFactory<User>.Instance.GetRecordCount(condition);
                     if (!dict.ContainsKey(companyInfo.Name))
                     {

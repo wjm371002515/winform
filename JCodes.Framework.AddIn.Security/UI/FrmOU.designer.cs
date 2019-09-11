@@ -44,7 +44,7 @@ namespace JCodes.Framework.AddIn.Security
             this.menu_ExpandAll = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_Collapse = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.txtNote = new DevExpress.XtraEditors.MemoEdit();
+            this.txtRemark = new DevExpress.XtraEditors.MemoEdit();
             this.label3 = new System.Windows.Forms.Label();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.label12 = new System.Windows.Forms.Label();
@@ -66,7 +66,7 @@ namespace JCodes.Framework.AddIn.Security
             this.txtCreator = new DevExpress.XtraEditors.TextEdit();
             this.txtOuterPhone = new DevExpress.XtraEditors.TextEdit();
             this.txtSeq = new DevExpress.XtraEditors.TextEdit();
-            this.txtHandNo = new DevExpress.XtraEditors.TextEdit();
+            this.txtOuCode = new DevExpress.XtraEditors.TextEdit();
             this.label11 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -80,7 +80,7 @@ namespace JCodes.Framework.AddIn.Security
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.contextMenuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNote.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRemark.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
@@ -92,7 +92,7 @@ namespace JCodes.Framework.AddIn.Security
             ((System.ComponentModel.ISupportInitialize)(this.txtCreator.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOuterPhone.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSeq.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtHandNo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtOuCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCategory.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             this.groupControl3.SuspendLayout();
@@ -196,14 +196,14 @@ namespace JCodes.Framework.AddIn.Security
             // 
             // txtNote
             // 
-            this.txtNote.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtRemark.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNote.Location = new System.Drawing.Point(93, 435);
-            this.txtNote.MinimumSize = new System.Drawing.Size(0, 50);
-            this.txtNote.Name = "txtNote";
-            this.txtNote.Size = new System.Drawing.Size(301, 225);
-            this.txtNote.TabIndex = 3;
+            this.txtRemark.Location = new System.Drawing.Point(93, 435);
+            this.txtRemark.MinimumSize = new System.Drawing.Size(0, 50);
+            this.txtRemark.Name = "txtNote";
+            this.txtRemark.Size = new System.Drawing.Size(301, 225);
+            this.txtRemark.TabIndex = 3;
             // 
             // label3
             // 
@@ -347,13 +347,13 @@ namespace JCodes.Framework.AddIn.Security
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupControl2.Controls.Add(this.cmbUpperOU);
-            this.groupControl2.Controls.Add(this.txtNote);
+            this.groupControl2.Controls.Add(this.txtRemark);
             this.groupControl2.Controls.Add(this.txtCreateTime);
             this.groupControl2.Controls.Add(this.txtInnerPhone);
             this.groupControl2.Controls.Add(this.txtCreator);
             this.groupControl2.Controls.Add(this.txtOuterPhone);
             this.groupControl2.Controls.Add(this.txtSeq);
-            this.groupControl2.Controls.Add(this.txtHandNo);
+            this.groupControl2.Controls.Add(this.txtOuCode);
             this.groupControl2.Controls.Add(this.label11);
             this.groupControl2.Controls.Add(this.txtName);
             this.groupControl2.Controls.Add(this.label8);
@@ -438,12 +438,12 @@ namespace JCodes.Framework.AddIn.Security
             // 
             // txtHandNo
             // 
-            this.txtHandNo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtOuCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtHandNo.Location = new System.Drawing.Point(93, 107);
-            this.txtHandNo.Name = "txtHandNo";
-            this.txtHandNo.Size = new System.Drawing.Size(301, 20);
-            this.txtHandNo.TabIndex = 0;
+            this.txtOuCode.Location = new System.Drawing.Point(93, 107);
+            this.txtOuCode.Name = "txtHandNo";
+            this.txtOuCode.Size = new System.Drawing.Size(301, 20);
+            this.txtOuCode.TabIndex = 0;
             // 
             // label11
             // 
@@ -588,7 +588,7 @@ namespace JCodes.Framework.AddIn.Security
             this.Text = "组织机构管理";
             this.Load += new System.EventHandler(this.FrmOU_Load);
             this.contextMenuStrip1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.txtNote.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRemark.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
@@ -601,7 +601,7 @@ namespace JCodes.Framework.AddIn.Security
             ((System.ComponentModel.ISupportInitialize)(this.txtCreator.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOuterPhone.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSeq.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtHandNo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtOuCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCategory.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
             this.groupControl3.ResumeLayout(false);
@@ -625,7 +625,7 @@ namespace JCodes.Framework.AddIn.Security
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem menu_Delete;
         private System.Windows.Forms.ToolStripMenuItem menu_Add;
-        private DevExpress.XtraEditors.MemoEdit txtNote;
+        private DevExpress.XtraEditors.MemoEdit txtRemark;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ToolStripMenuItem menu_Update;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
@@ -641,7 +641,7 @@ namespace JCodes.Framework.AddIn.Security
         private DevExpress.XtraEditors.GroupControl groupControl2;
         private DevExpress.XtraEditors.GroupControl groupControl3;
         private DevExpress.XtraEditors.GroupControl groupControl4;
-        private DevExpress.XtraEditors.TextEdit txtHandNo;
+        private DevExpress.XtraEditors.TextEdit txtOuCode;
         private System.Windows.Forms.Label label4;
         private DevExpress.XtraEditors.TextEdit txtSeq;
         private System.Windows.Forms.Label label5;

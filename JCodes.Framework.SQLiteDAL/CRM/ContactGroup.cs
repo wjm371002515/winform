@@ -24,7 +24,7 @@ namespace JCodes.Framework.SQLiteDAL
 		}
 		public ContactGroup() : base("T_CRM_ContactGroup","ID")
         {
-            this.sortField = "HandNo";
+            this.sortField = "UserCode";
             this.isDescending = false;
         }
 
@@ -42,7 +42,7 @@ namespace JCodes.Framework.SQLiteDAL
 			
 			info.ID = reader.GetString("ID");
 			info.PID = reader.GetString("PID");
-			info.HandNo = reader.GetString("HandNo");
+			info.UserCode = reader.GetString("UserCode");
 			info.Name = reader.GetString("Name");
 			info.Note = reader.GetString("Note");
 			info.Creator = reader.GetString("Creator");
@@ -66,7 +66,7 @@ namespace JCodes.Framework.SQLiteDAL
 			
 			hash.Add("ID", info.ID);
  			hash.Add("PID", info.PID);
- 			hash.Add("HandNo", info.HandNo);
+ 			hash.Add("UserCode", info.UserCode);
  			hash.Add("Name", info.Name);
  			hash.Add("Note", info.Note);
  			hash.Add("Creator", info.Creator);
@@ -88,7 +88,7 @@ namespace JCodes.Framework.SQLiteDAL
             #region 添加别名解析
             dict.Add("ID", "编号");
             dict.Add("PID", "上级ID");
-            dict.Add("HandNo", "编号");
+            dict.Add("UserCode", "编号");
             dict.Add("Name", "分组名称");
             dict.Add("Note", "备注");
             dict.Add("Creator", "创建人");
@@ -109,7 +109,7 @@ namespace JCodes.Framework.SQLiteDAL
         {
             string condition = !string.IsNullOrEmpty(creator) ? string.Format("AND Creator='{0}'", creator) : "";
             List<ContactGroupNodeInfo> nodeList = new List<ContactGroupNodeInfo>();
-            string sql = string.Format("Select * From {0} Where 1=1 {1} Order By PID, HandNo ", tableName, condition);
+            string sql = string.Format("Select * From {0} Where 1=1 {1} Order By PID, UserCode ", tableName, condition);
 
             DataTable dt = base.SqlTable(sql);
             DataRow[] dataRows = dt.Select(string.Format(" PID = '{0}' ", -1));

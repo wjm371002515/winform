@@ -24,7 +24,7 @@ namespace JCodes.Framework.SQLServerDAL
 		}
 		public ContactGroup() : base("T_CRM_ContactGroup","ID")
         {
-            this.sortField = "HandNo";
+            this.sortField = "UserCode";
             this.isDescending = false;
         }
 
@@ -39,18 +39,18 @@ namespace JCodes.Framework.SQLServerDAL
 		{
 			ContactGroupInfo info = new ContactGroupInfo();
 			SmartDataReader reader = new SmartDataReader(dataReader);
-			
-			info.ID = reader.GetString("ID");
-			info.PID = reader.GetString("PID");
-			info.HandNo = reader.GetString("HandNo");
+
+            info.Id = reader.GetInt32("Id");
+            info.Pid = reader.GetInt32("Pid");
+			info.UserCode = reader.GetString("UserCode");
 			info.Name = reader.GetString("Name");
-			info.Note = reader.GetString("Note");
-			info.Creator = reader.GetString("Creator");
-			info.CreateTime = reader.GetDateTime("CreateTime");
-			info.Editor = reader.GetString("Editor");
-			info.EditTime = reader.GetDateTime("EditTime");
-            info.Dept_ID = reader.GetString("Dept_ID");
-            info.Company_ID = reader.GetString("Company_ID");			
+            info.Remark = reader.GetString("Remark");
+            info.CreatorId = reader.GetInt32("CreatorId");
+            info.CreatorTime = reader.GetDateTime("CreatorTime");
+            info.EditorId = reader.GetInt32("EditorId");
+            info.LastUpdateTime = reader.GetDateTime("LastUpdateTime");
+            info.DeptId = reader.GetInt32("DeptId");
+            info.CompanyId = reader.GetInt32("CompanyId");			
 			return info;
 		}
 
@@ -62,19 +62,19 @@ namespace JCodes.Framework.SQLServerDAL
         protected override Hashtable GetHashByEntity(ContactGroupInfo obj)
 		{
 		    ContactGroupInfo info = obj as ContactGroupInfo;
-			Hashtable hash = new Hashtable(); 
-			
-			hash.Add("ID", info.ID);
- 			hash.Add("PID", info.PID);
- 			hash.Add("HandNo", info.HandNo);
+			Hashtable hash = new Hashtable();
+
+            hash.Add("Id", info.Id);
+            hash.Add("Pid", info.Pid);
+ 			hash.Add("UserCode", info.UserCode);
  			hash.Add("Name", info.Name);
- 			hash.Add("Note", info.Note);
- 			hash.Add("Creator", info.Creator);
- 			hash.Add("CreateTime", info.CreateTime);
- 			hash.Add("Editor", info.Editor);
- 			hash.Add("EditTime", info.EditTime);
-             hash.Add("Dept_ID", info.Dept_ID);
-            hash.Add("Company_ID", info.Company_ID);				
+            hash.Add("Remark", info.Remark);
+            hash.Add("CreatorId", info.CreatorId);
+            hash.Add("CreatorTime", info.CreatorTime);
+            hash.Add("EditorId", info.EditorId);
+            hash.Add("LastUpdateTime", info.LastUpdateTime);
+            hash.Add("DeptId", info.DeptId);
+            hash.Add("CompanyId", info.CompanyId);				
 			return hash;
 		}
 
@@ -86,17 +86,17 @@ namespace JCodes.Framework.SQLServerDAL
         {
             Dictionary<string, string> dict = new Dictionary<string, string>();
             #region 添加别名解析
-            dict.Add("ID", "编号");
-            dict.Add("PID", "上级ID");
-            dict.Add("HandNo", "编号");
+            dict.Add("Id", "编号");
+            dict.Add("Pid", "上级ID");
+            dict.Add("UserCode", "编号");
             dict.Add("Name", "分组名称");
-            dict.Add("Note", "备注");
-            dict.Add("Creator", "创建人");
-            dict.Add("CreateTime", "创建时间");
-            dict.Add("Editor", "编辑人");
-            dict.Add("EditTime", "编辑时间");
-            dict.Add("Dept_ID", "所属部门");
-            dict.Add("Company_ID", "所属公司");
+            dict.Add("Remark", "备注");
+            dict.Add("CreatorId", "创建人");
+            dict.Add("CreatorTime", "创建时间");
+            dict.Add("EditorId", "编辑人");
+            dict.Add("LastUpdateTime", "编辑时间");
+            dict.Add("DeptId", "所属部门");
+            dict.Add("CompanyId", "所属公司");
             #endregion
 
             return dict;
@@ -109,7 +109,7 @@ namespace JCodes.Framework.SQLServerDAL
         {
             string condition = !string.IsNullOrEmpty(creator) ? string.Format("AND Creator='{0}'", creator) : "";
             List<ContactGroupNodeInfo> nodeList = new List<ContactGroupNodeInfo>();
-            string sql = string.Format("Select * From {0} Where 1=1 {1} Order By PID, HandNo ", tableName, condition);
+            string sql = string.Format("Select * From {0} Where 1=1 {1} Order By PID, UserCode ", tableName, condition);
 
             DataTable dt = base.SqlTable(sql);
             DataRow[] dataRows = dt.Select(string.Format(" PID = '{0}' ", -1));

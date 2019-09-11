@@ -46,7 +46,7 @@ namespace JCodes.Framework.TestWinForm
                     Application.Run(new TestCommons.Form1(WaitBeforeLogin));
                 }).Start();
             }*/
-            //Application.Run(new Form1());
+            //Application.Run(new JCodes.Framework.Test.Form1());
 
             // 分页控件
             //Application.Run(new TestDictionary.Form1());
@@ -63,7 +63,10 @@ namespace JCodes.Framework.TestWinForm
             //Application.Run(new TestSecurityMix_WCF_WIN.Form1());
             DevExpress.UserSkins.BonusSkins.Register();
             //Application.Run(new SyntaxHighlightModule());
-            Application.Run(new JCodes.Framework.SmallTools.Test.FrmWinRarZip());
+            //Application.Run(new JCodes.Framework.SmallTools.Test.FrmWinRarZip());
+            Application.Run(new JCodes.Framework.TestWinForm.Basic.InitDataFrm());
+            //Application.Run(new JCodes.Framework.Test.IPOdepthDealfrm());
+            //Application.Run(new JCodes.Framework.AddIn.SmallTools.xlsDataDeal());
         }
     }
 }

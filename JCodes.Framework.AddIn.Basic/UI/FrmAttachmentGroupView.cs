@@ -25,7 +25,7 @@ namespace JCodes.Framework.AddIn.Basic
         /// <summary>
         /// 附件组所属的记录ID，如属于某个主表记录的ID
         /// </summary>
-        public string OwerId = "";
+        public Int32 CreatorId = 0;
 
         /// <summary>
         /// 操作用户ID，当前登录用户
@@ -40,7 +40,7 @@ namespace JCodes.Framework.AddIn.Basic
         /// <summary>
         /// 设置附件组的GUID
         /// </summary>
-        public string AttachmentGUID;
+        public string AttachmentGid;
 
         /// <summary>
         /// 是否显示上传按钮
@@ -85,9 +85,9 @@ namespace JCodes.Framework.AddIn.Basic
         {
             FrmUploadFile dlg = new FrmUploadFile();
             dlg.UserId = UserId;
-            dlg.OwerId = OwerId;
+            dlg.CreatorId = CreatorId;
             dlg.AttachmentDirectory = this.AttachmentDirectory;
-            dlg.AttachmentGUID = this.AttachmentGUID;
+            dlg.AttachmentGid = this.AttachmentGid;
             dlg.OnDataSaved += new EventHandler(dlg_OnDataSaved);
             dlg.Show();
         }
@@ -116,7 +116,7 @@ namespace JCodes.Framework.AddIn.Basic
                     string id = item.Tag.ToString();
                     try
                     {
-                        sucess = BLLFactory<FileUpload>.Instance.DeleteByUser(id, LoginUserInfo.ID);
+                        sucess = BLLFactory<FileUpload>.Instance.DeleteByUser(id, LoginUserInfo.Id);
                     }
                     catch (Exception ex)
                     {
@@ -159,7 +159,7 @@ namespace JCodes.Framework.AddIn.Basic
                             FileUploadInfo fileInfo = BLLFactory<FileUpload>.Instance.Download(id);
                             if (fileInfo != null && fileInfo.FileData != null)
                             {
-                                string filePath = Path.Combine(path, fileInfo.FileName);
+                                string filePath = Path.Combine(path, fileInfo.Name);
                                 FileUtil.CreateFile(filePath, fileInfo.FileData);
                             }
                         }
@@ -200,13 +200,13 @@ namespace JCodes.Framework.AddIn.Basic
             this.imageList2.Images.Clear();
             imageDict.Clear();//刷新需要清除
 
-            List<FileUploadInfo> fileList = BLLFactory<FileUpload>.Instance.GetByAttachGUID(this.AttachmentGUID);
+            List<FileUploadInfo> fileList = BLLFactory<FileUpload>.Instance.GetByAttachGUID(this.AttachmentGid);
 
             int k = 0;
             System.Drawing.Icon icon = null;
             foreach (FileUploadInfo fileInfo in fileList)
             {
-                string file = fileInfo.FileName;
+                string file = fileInfo.Name;
                 string extension = FileUtil.GetExtension(file);
 
                 #region 取缩略图存到 imageList1 的操作
@@ -216,7 +216,7 @@ namespace JCodes.Framework.AddIn.Basic
                 {
                     try
                     {
-                        FileUploadInfo tmpInfo = BLLFactory<FileUpload>.Instance.Download(fileInfo.ID, 48, 48);
+                        FileUploadInfo tmpInfo = BLLFactory<FileUpload>.Instance.Download(fileInfo.Gid, 48, 48);
                         if (tmpInfo != null && tmpInfo.FileData != null)
                         {
                             this.imageList1.Images.Add(ImageHelper.BitmapFromBytes(tmpInfo.FileData));
@@ -258,13 +258,13 @@ namespace JCodes.Framework.AddIn.Basic
 
             foreach (FileUploadInfo fileInfo in fileList)
             {
-                ListViewItem item = listView1.Items.Add(fileInfo.FileName);
+                ListViewItem item = listView1.Items.Add(fileInfo.Name);
 
                 double fileSize = ConvertHelper.ToDouble(fileInfo.FileSize / 1024, 1);
                 item.SubItems.Add(fileSize.ToString("#,#KB"));
                 item.SubItems.Add(fileInfo.AddTime.ToShortDateString());
-                item.ImageIndex = GetImageKey(fileInfo.FileName);
-                item.Tag = fileInfo.ID;
+                item.ImageIndex = GetImageKey(fileInfo.Name);
+                item.Tag = fileInfo.Gid;
             }
         }
 
@@ -416,7 +416,7 @@ namespace JCodes.Framework.AddIn.Basic
                     if (item != null && item.Tag != null)
                     {
                         string id = item.Tag.ToString();
-                        sucess = BLLFactory<FileUpload>.Instance.DeleteByUser(id, LoginUserInfo.ID);
+                        sucess = BLLFactory<FileUpload>.Instance.DeleteByUser(id, LoginUserInfo.Id);
                     }
                 }
             }

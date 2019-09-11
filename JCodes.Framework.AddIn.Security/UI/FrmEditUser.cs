@@ -40,7 +40,7 @@ namespace JCodes.Framework.AddIn.Security
         {
             if (!string.IsNullOrEmpty(this.txtCompany.Value))
             {
-                txtDept.ParentOuID = this.txtCompany.Value;
+                txtDept.ParentOuID = this.txtCompany.Value.ToInt32();
                 txtDept.Init();
             }
         }
@@ -58,11 +58,11 @@ namespace JCodes.Framework.AddIn.Security
             //初始化代码
             this.cmbManager.Properties.BeginUpdate();
             this.cmbManager.Properties.Items.Clear();
-            this.cmbManager.Properties.Items.Add(new CListItem("-1", "无"));
+            this.cmbManager.Properties.Items.Add(new CDicKeyValue(-1, "无"));
             List<UserInfo> list = BLLFactory<User>.Instance.FindByDept(DeptID);
             foreach (UserInfo info in list)
             {
-                this.cmbManager.Properties.Items.Add(new CListItem(info.ID.ToString(), info.FullName));
+                this.cmbManager.Properties.Items.Add(new CDicKeyValue(info.Id, info.FullName));
             }
             this.cmbManager.Properties.EndUpdate();
         }
@@ -120,51 +120,51 @@ namespace JCodes.Framework.AddIn.Security
         {
             InitDictItem();//数据字典加载（公用）
 
-            if (!string.IsNullOrEmpty(ID))
+            if (Id > 0)
             {
                 #region 显示信息
-                UserInfo info = BLLFactory<User>.Instance.FindByID(ID);
+                UserInfo info = BLLFactory<User>.Instance.FindByID(Id);
                 if (info != null)
                 {
                     tempInfo = info;//重新给临时对象赋值，使之指向存在的记录对象
 
-                    RefreshOUs(info.ID);
-                    RefreshRoles(info.ID);
-                    RefreshFunction(info.ID);
+                    RefreshOUs(info.Id);
+                    RefreshRoles(info.Id);
+                    RefreshFunction(info.Id);
 
                     //如果是管理员，不能设置为过期
                     bool isAdmin = BLLFactory<User>.Instance.UserInRole(info.Name, RoleInfo.SuperAdminName);
                     this.txtIsExpire.Enabled = !isAdmin;
                     this.txtDeleted.Enabled = !isAdmin;
 
-                    this.cmbManager.SetComboBoxItem(info.PID.ToString());
-                    this.txtCompany.Value = info.Company_ID;
-                    this.txtDept.Value = info.Dept_ID;
+                    this.cmbManager.SetComboBoxItem(info.Pid.ToString());
+                    this.txtCompany.Value = info.CompanyId.ToString();
+                    this.txtDept.Value = info.DeptId.ToString();
 
-                    txtHandNo.Text = info.HandNo;
+                    txtHandNo.Text = info.UserCode;
                     txtName.Text = info.Name;
                     txtFullName.Text = info.FullName;
-                    txtNickname.Text = info.Nickname;
-                    txtTitle.Text = info.Title;
-                    txtIdentityCard.Text = info.IdentityCard;
+                    txtNickname.Text = info.LoginName;
+                    //txtTitle.Text = info.Title;
+                    txtIdentityCard.Text = info.IdCard;
                     txtMobilePhone.Text = info.MobilePhone;
                     txtOfficePhone.Text = info.OfficePhone;
                     txtHomePhone.Text = info.HomePhone;
                     txtEmail.Text = info.Email;
                     txtAddress.Text = info.Address;
-                    txtWorkAddr.Text = info.WorkAddr;
-                    txtGender.Text = info.Gender;
+                    txtWorkAddr.Text = info.WorkAddress;
+                    txtGender.Text = info.Gender.ToString();
                     txtBirthday.SetDateTime(info.Birthday);
-                    txtQq.Text = info.QQ;
+                    txtQq.Text = info.QQ.ToString();
                     txtSignature.Text = info.Signature;
-                    txtAuditStatus.Text = info.AuditStatus;
-                    txtNote.Text = info.Note;
-                    txtCustomField.Text = info.CustomField;                   
+                    txtAuditStatus.Text = info.AuditStatus.ToString();
+                    txtNote.Text = info.Remark;
+                    //txtCustomField.Text = info.CustomField;                   
                     txtSeq.Text = info.Seq;
-                    txtCreator.Text = info.Creator;
-                    txtCreateTime.SetDateTime(info.CreateTime);
-                    txtIsExpire.Checked = info.IsExpire;
-                    txtDeleted.Checked = info.Deleted;
+                    txtCreator.Text = info.CreatorId.ToString();
+                    txtCreateTime.SetDateTime(info.CreatorTime);
+                    txtIsExpire.Checked = info.IsExpire == 0 ? true : false;
+                    txtDeleted.Checked = info.IsDelete == 0 ? true : false;
                 }
                 #endregion            
             }
@@ -187,38 +187,38 @@ namespace JCodes.Framework.AddIn.Security
         /// <param name="info"></param>
         private void SetInfo(UserInfo info)
         {
-            info.PID = this.cmbManager.GetComboBoxStrValue().ToInt32();
-            info.HandNo = txtHandNo.Text;
+            info.Pid = this.cmbManager.GetComboBoxStrValue().ToInt32();
+            info.UserCode = txtHandNo.Text;
             info.Name = txtName.Text;
             info.FullName = txtFullName.Text;
-            info.Nickname = txtNickname.Text;
-            info.IsExpire = txtIsExpire.Checked;
-            info.Title = txtTitle.Text;
-            info.IdentityCard = txtIdentityCard.Text;
+            info.LoginName = txtNickname.Text;
+            info.IsExpire = txtIsExpire.Checked ? 0: 1;
+            //info.t = txtTitle.Text;
+            info.IdCard = txtIdentityCard.Text;
             info.MobilePhone = txtMobilePhone.Text;
             info.OfficePhone = txtOfficePhone.Text;
             info.HomePhone = txtHomePhone.Text;
             info.Email = txtEmail.Text;
             info.Address = txtAddress.Text;
-            info.WorkAddr = txtWorkAddr.Text;
-            info.Gender = txtGender.Text;
+            info.WorkAddress = txtWorkAddr.Text;
+            info.Gender = txtGender.Text.ToInt32();
             info.Birthday = txtBirthday.DateTime;
-            info.QQ = txtQq.Text;
+            info.QQ = txtQq.Text.ToInt32();
             info.Signature = txtSignature.Text;
-            info.AuditStatus = txtAuditStatus.Text;
-            info.Note = txtNote.Text;
-            info.CustomField = txtCustomField.Text;
-            info.Dept_ID = txtDept.Value;
-            info.DeptName = txtDept.Text;
-            info.Company_ID = txtCompany.Value;
-            info.CompanyName = txtCompany.Text;
+            info.AuditStatus = txtAuditStatus.Text.ToInt32();
+            info.Remark = txtNote.Text;
+            //info.CustomField = txtCustomField.Text;
+            info.DeptId = txtDept.Value.ToInt32();
+            //info.DeptName = txtDept.Text;
+            info.CompanyId = txtCompany.Value.ToInt32();
+            //info.CompanyName = txtCompany.Text;
             info.Seq = txtSeq.Text;
-            info.Editor = Portal.gc.UserInfo.FullName;
-            info.Editor_ID = Portal.gc.UserInfo.ID.ToString();
-            info.EditTime = DateTimeHelper.GetServerDateTime2();
-            info.Deleted = txtDeleted.Checked;
+            //info.Editor = Portal.gc.UserInfo.FullName;
+            info.EditorId = Portal.gc.UserInfo.Id;
+            info.LastLoginTime = DateTimeHelper.GetServerDateTime2();
+            info.IsDelete = txtDeleted.Checked ? 0 : 1;
 
-            info.CurrentLoginUserId = Portal.gc.UserInfo.ID;
+            info.CurrentLoginUserId = Portal.gc.UserInfo.Id;
         }
 
         /// <summary>
@@ -229,9 +229,9 @@ namespace JCodes.Framework.AddIn.Security
         {
             UserInfo info = tempInfo;//必须使用存在的局部变量，因为部分信息可能被附件使用
             SetInfo(info);
-            info.Creator = Portal.gc.UserInfo.FullName;
-            info.Creator_ID = Portal.gc.UserInfo.ID.ToString();
-            info.CreateTime = DateTimeHelper.GetServerDateTime2();
+            //info = Portal.gc.UserInfo.FullName;
+            info.CreatorId = Portal.gc.UserInfo.Id;
+            info.CreatorTime = DateTimeHelper.GetServerDateTime2();
 
             try
             {
@@ -260,7 +260,7 @@ namespace JCodes.Framework.AddIn.Security
         /// <returns></returns>
         public override bool SaveUpdated()
         {
-            UserInfo info = BLLFactory<User>.Instance.FindByID(ID);
+            UserInfo info = BLLFactory<User>.Instance.FindByID(Id);
             if (info != null)
             {
                 SetInfo(info);
@@ -268,7 +268,7 @@ namespace JCodes.Framework.AddIn.Security
                 try
                 {
                     #region 更新数据
-                    bool succeed = BLLFactory<User>.Instance.Update(info, info.ID);
+                    bool succeed = BLLFactory<User>.Instance.Update(info, info.Id);
                     if (succeed)
                     {
                         //可添加其他关联操作

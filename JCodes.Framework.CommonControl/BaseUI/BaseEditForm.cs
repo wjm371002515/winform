@@ -18,8 +18,8 @@ namespace JCodes.Framework.CommonControl.BaseUI
     /// </summary>
     public partial class BaseEditForm : BaseDock
     {
-        public string ID = string.Empty;  // 记录主键
-        public List<string> IDList = new List<string>();//所有待展示的ID列表
+        public Int32 Id;  // 记录主键
+        public List<Int32> IdList = new List<Int32>();//所有待展示的ID列表
 
         public BaseEditForm()
         {
@@ -30,7 +30,7 @@ namespace JCodes.Framework.CommonControl.BaseUI
 
         private void dataNavigator1_PositionChanged(object sender, EventArgs e)
         {
-            this.ID = IDList[this.dataNavigator1.CurrentIndex];
+            this.Id = IdList[this.dataNavigator1.CurrentIndex];
             DisplayData();
         }
 
@@ -41,12 +41,12 @@ namespace JCodes.Framework.CommonControl.BaseUI
             // 特殊处理 如果是当前用户信息 则修改此值
             if (base.Name == "FrmEditUser" && base.ParentForm != null && base.ParentForm.Name == "MainForm")
             {
-                ID = LoginUserInfo.ID.ToString();
+                Id = LoginUserInfo.Id;
             }
 
             if (!this.DesignMode)
             {
-                if (!string.IsNullOrEmpty(ID))
+                if (Id>0)
                 {
                     if (!this.Text.Contains("编辑"))
                     {
@@ -62,9 +62,9 @@ namespace JCodes.Framework.CommonControl.BaseUI
                     }
                 }
 
-                this.dataNavigator1.IDList = IDList;
-                this.dataNavigator1.CurrentIndex = IDList.IndexOf(ID);
-                if (IDList == null || IDList.Count == 0)
+                this.dataNavigator1.IdList = IdList;
+                //this.dataNavigator1.CurrentIndex = Convert.ToInt32( IDList.IndexOf(Id));
+                if (IdList == null || IdList.Count == 0)
                 {
                     this.dataNavigator1.Visible = false;
                     DisplayData();//CurrentIndex = -1的时候需要主动调用
@@ -101,7 +101,7 @@ namespace JCodes.Framework.CommonControl.BaseUI
         /// </summary>
         public virtual void ClearScreen()
         {
-            this.ID = "";////需要设置为空，表示新增
+            this.Id = 0;////需要设置为空，表示新增
             ClearControlValue(this);
             this.FormOnLoad();
         }
@@ -136,7 +136,6 @@ namespace JCodes.Framework.CommonControl.BaseUI
                 case "MemoExEdit":
                     ctrl.Text = "";
                     break;
-
                 case "SpinEdit":
                     ((SpinEdit)ctrl).Value = 0M;
                     break;
@@ -163,7 +162,7 @@ namespace JCodes.Framework.CommonControl.BaseUI
         public virtual bool SaveEntity()
         {
             bool result = false;
-            if(!string.IsNullOrEmpty(ID))
+            if(Id>0)
             {
                 //编辑的保存
                 result = SaveUpdated();
@@ -270,11 +269,11 @@ namespace JCodes.Framework.CommonControl.BaseUI
                 {
                     return this.SelectNextControl(this.ActiveControl, false, true, true, true);
                 }
-                //if (keyData == Keys.Enter)
-                //{
-                //    System.Windows.Forms.SendKeys.Send("{TAB}");
-                //    return true;
-                //}
+                if (keyData == Keys.Enter)
+                {
+                    System.Windows.Forms.SendKeys.Send("{TAB}");
+                    return true;
+                }
                 //if (keyData == Keys.Down)
                 //{
                 //    System.Windows.Forms.SendKeys.Send("{TAB}");

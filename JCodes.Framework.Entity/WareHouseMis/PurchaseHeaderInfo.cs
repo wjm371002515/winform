@@ -40,7 +40,7 @@ namespace JCodes.Framework.Entity
         /// <summary>
         /// 进货编号
         /// </summary>
-        public virtual string HandNo
+        public virtual string UserCode
         {
             get
             {

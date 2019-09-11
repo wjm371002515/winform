@@ -59,9 +59,9 @@ namespace JCodes.Framework.AddIn.Dictionary
         }
         public override void DisplayData()
         {
-            if (!string.IsNullOrEmpty(ID))
+            if (Id > 0)
             {
-                CityInfo info = BLLFactory<City>.Instance.FindByID(ID);
+                CityInfo info = BLLFactory<City>.Instance.FindByID(Id);
                 if (info != null)
                 {
                     this.txtCity.Text = info.CityName;
@@ -113,7 +113,7 @@ namespace JCodes.Framework.AddIn.Dictionary
                 try
                 {
                     #region 更新数据
-                    bool succeed = BLLFactory<City>.Instance.Update(info, ID);
+                    bool succeed = BLLFactory<City>.Instance.Update(info, Id);
                     if (succeed)
                     {
                         //可添加其他关联操作
@@ -135,7 +135,7 @@ namespace JCodes.Framework.AddIn.Dictionary
             info.CityName = this.txtCity.Text;
             info.ProvinceID = Convert.ToInt32(this.txtProvince.Tag.ToString());
             info.ZipCode = txtZipCode.Text;
-            info.CurrentLoginUserId = LoginUserInfo.ID;
+            info.CurrentLoginUserId = LoginUserInfo.Id;
         }
     }
 }

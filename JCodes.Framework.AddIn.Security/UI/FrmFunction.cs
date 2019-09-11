@@ -134,7 +134,7 @@ namespace JCodes.Framework.AddIn.Security
                 {
                     displayName = string.Format("{0}({1})", info.Name, info.CompanyName);
                 }
-                CListItem item = new CListItem(info.ID.ToString(), displayName );
+                CListItem item = new CListItem(info.Id.ToString(), displayName );
                 this.lvwRole.Items.Add(item);
             }
             if (this.lvwRole.Items.Count > 0)
@@ -173,7 +173,7 @@ namespace JCodes.Framework.AddIn.Security
                     //int id = Convert.ToInt32(node.Name);
                     try
                     {
-                        BLLFactory<Functions>.Instance.DeleteByUser(node.Name, LoginUserInfo.ID);
+                        BLLFactory<Functions>.Instance.DeleteByUser(node.Name, LoginUserInfo.Id);
                         RefreshTreeView();
                     }
                     catch (Exception ex)
@@ -200,7 +200,7 @@ namespace JCodes.Framework.AddIn.Security
                 {
                     try
                     {
-                        BLLFactory<Functions>.Instance.DeleteWithSubNode(node.Name, Portal.gc.UserInfo.ID);
+                        BLLFactory<Functions>.Instance.DeleteWithSubNode(node.Name, Portal.gc.UserInfo.Id);
                         RefreshTreeView();
                     }
                     catch (Exception ex)
@@ -278,7 +278,7 @@ namespace JCodes.Framework.AddIn.Security
             info.PID = this.functionControl1.Value;
             info.FunctionId = this.txtFunctionID.Text;
             info.Seq = this.txtSeq.Text;
-            info.CurrentLoginUserId = Portal.gc.UserInfo.ID;
+            info.CurrentLoginUserId = Portal.gc.UserInfo.Id;
             return info;
         }
 

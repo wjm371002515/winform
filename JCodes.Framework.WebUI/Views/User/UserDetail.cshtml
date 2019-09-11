@@ -90,7 +90,7 @@ ViewBag.Title = "当前用户信息";
                                 <div class="form-group">
                                     <label class="control-label col-md-4">用户编码</label>
                                     <div class="col-md-8">                                    
-                                        <label id="HandNo_global" name="HandNo" class="form-control" />
+                                        <label id="HandNo_global" name="UserCode" class="form-control" />
                                     </div>
                                 </div>
                             </div>
@@ -106,7 +106,7 @@ ViewBag.Title = "当前用户信息";
                                 <div class="form-group">
                                     <label class="control-label col-md-4">用户呢称</label>
                                     <div class="col-md-8">                                            
-                                        <label id="Nickname_global" name="Nickname" class="form-control" />
+                                        <label id="Nickname_global" name="LoginName" class="form-control" />
                                     </div>
                                 </div>
                             </div>
@@ -277,10 +277,10 @@ ViewBag.Title = "当前用户信息";
         //发送请求
         $.getJSON("/User/FindByID?r=" + Math.random() + "&id=" + ID, function (info) {
             $("#ID_global").text(info.ID);
-            $("#HandNo_global").text(info.HandNo);
+            $("#HandNo_global").text(info.UserCode);
             $("#Name_global").text(info.Name);
             $("#FullName_global").text(info.FullName);
-            $("#Nickname_global").text(info.Nickname);
+            $("#Nickname_global").text(info.LoginName);
             $("#Title_global").text(info.Title);
             $("#IdentityCard_global").text(info.IdentityCard);
             $("#MobilePhone_global").text(info.MobilePhone);

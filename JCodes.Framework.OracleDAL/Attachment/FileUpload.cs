@@ -46,18 +46,19 @@ namespace JCodes.Framework.OracleDAL
 		{
 			FileUploadInfo info = new FileUploadInfo();
 			SmartDataReader reader = new SmartDataReader(dataReader);
-			
-			info.ID = reader.GetString("ID");
-			info.AttachmentGUID = reader.GetString("ATTACHMENTGUID");
-			info.FileName = reader.GetString("FILENAME");
-			info.BasePath = reader.GetString("BASEPATH");
-			info.SavePath = reader.GetString("SAVEPATH");
-			info.Category = reader.GetString("CATEGORY");
-			info.FileSize = reader.GetInt32("FILESIZE");
-			info.FileExtend = reader.GetString("FILEEXTEND");
-            info.Editor = reader.GetString("EDITOR");
-			info.AddTime = reader.GetDateTime("ADDTIME");
-			info.DeleteFlag = reader.GetInt32("DELETEFLAG");
+
+            info.Gid = reader.GetString("Gid");
+            info.CreatorId = reader.GetInt32("CreatorId");
+            info.AttachmentGid = reader.GetString("AttachmentGid");
+            info.Name = reader.GetString("Name");
+            info.BasePath = reader.GetString("BasePath");
+            info.SavePath = reader.GetString("SavePath");
+            info.CategoryCode = reader.GetString("CategoryCode");
+            info.FileSize = reader.GetInt32("FileSize");
+            info.FileExtend = reader.GetString("FileExtend");
+            info.EditorId = reader.GetInt32("EditorId");
+            info.AddTime = reader.GetDateTime("AddTime");
+            info.IsDelete = reader.GetInt16("IsDelete");
 			
 			return info;
 		}
@@ -70,19 +71,20 @@ namespace JCodes.Framework.OracleDAL
         protected override Hashtable GetHashByEntity(FileUploadInfo obj)
 		{
 		    FileUploadInfo info = obj as FileUploadInfo;
-			Hashtable hash = new Hashtable(); 
-			
-			hash.Add("ID", info.ID);
- 			hash.Add("ATTACHMENTGUID", info.AttachmentGUID);
- 			hash.Add("FILENAME", info.FileName);
- 			hash.Add("BASEPATH", info.BasePath);
- 			hash.Add("SAVEPATH", info.SavePath);
- 			hash.Add("CATEGORY", info.Category);
- 			hash.Add("FILESIZE", info.FileSize);
- 			hash.Add("FILEEXTEND", info.FileExtend);
- 			hash.Add("EDITOR", info.Editor);
- 			hash.Add("ADDTIME", info.AddTime);
- 			hash.Add("DELETEFLAG", info.DeleteFlag);
+			Hashtable hash = new Hashtable();
+
+            hash.Add("Gid", info.Gid);
+            hash.Add("CreatorId", info.CreatorId);
+            hash.Add("AttachmentGid", info.AttachmentGid);
+            hash.Add("Name", info.Name);
+            hash.Add("BasePath", info.BasePath);
+            hash.Add("SavePath", info.SavePath);
+            hash.Add("CategoryCode", info.CategoryCode);
+            hash.Add("FileSize", info.FileSize);
+            hash.Add("FileExtend", info.FileExtend);
+            hash.Add("EditorId", info.EditorId);
+            hash.Add("AddTime", info.AddTime);
+            hash.Add("IsDelete", info.IsDelete);
  				
 			return hash;
 		}

@@ -7,6 +7,7 @@ using JCodes.Framework.Common;
 using JCodes.Framework.Entity;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Common.Format;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.BLL
 {
@@ -344,48 +345,5 @@ namespace JCodes.Framework.BLL
 
             return result;
         }
-    }
-
-    public enum StatisticValueType
-    {
-        /// <summary>
-        /// 本月结存数量
-        /// </summary>
-        CurrentCount,
-
-        /// <summary>
-        /// 本月入库数量
-        /// </summary>
-        CurrentInCount,
-
-        /// <summary>
-        /// 本月出库数量
-        /// </summary>
-        CurrentOutCount,
-
-        /// <summary>
-        /// 上月结存数量
-        /// </summary>
-        LastCount,
-
-        /// <summary>
-        /// 本月入库金额
-        /// </summary>
-        CurrentInMoney,
-
-        /// <summary>
-        /// 本月结存金额
-        /// </summary>
-        CurrentMoney,
-
-        /// <summary>
-        /// 本月出库金额
-        /// </summary>
-        CurrentOutMoney,
-
-        /// <summary>
-        /// 上月结存金额
-        /// </summary>
-        LastMoney
     }
 }

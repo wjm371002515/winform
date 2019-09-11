@@ -110,7 +110,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
                 foreach (int iRow in rowSelected)
                 {
                     string ID = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "ID");
-                    BLLFactory<WareHouse>.Instance.DeleteByUser(ID, LoginUserInfo.ID);
+                    BLLFactory<WareHouse>.Instance.DeleteByUser(ID, LoginUserInfo.Id);
                 }
                 BindData();
             }
@@ -128,7 +128,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
             foreach (int iRow in rowSelected)
             {
                 FrmEditWareHouse dlg = new FrmEditWareHouse();
-                dlg.ID = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "ID");
+                dlg.Id = Convert.ToInt32( this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "ID"));
                 dlg.OnDataSaved += new EventHandler(dlg_OnDataSaved);
                 dlg.InitFunction(this.LoginUserInfo, this.FunctionDict);//初始化权限控制信息
 

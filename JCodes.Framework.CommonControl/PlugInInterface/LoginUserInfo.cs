@@ -13,17 +13,17 @@ namespace JCodes.Framework.CommonControl.PlugInInterface
         /// <summary>
         /// 用户ID
         /// </summary>
-        public int ID { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// 所属部门ID
         /// </summary>
-        public string DeptId { get; set; }
+        public Int32 DeptId { get; set; }
 
         /// <summary>
         /// 所属公司ID
         /// </summary>
-        public string CompanyId { get; set; }
+        public Int32 CompanyId { get; set; }
 
         /// <summary>
         /// 用户登陆名称
@@ -38,12 +38,12 @@ namespace JCodes.Framework.CommonControl.PlugInInterface
         /// <summary>
         /// 用户性别
         /// </summary>
-        public string Gender  { get; set; }
+        public Int32 Gender  { get; set; }
 
         /// <summary>
         /// 身份证号码
         /// </summary>
-        public string IdentityCard { get; set; }
+        public string IdCard { get; set; }
 
         /// <summary>
         /// 移动电话   
@@ -58,7 +58,7 @@ namespace JCodes.Framework.CommonControl.PlugInInterface
         /// <summary>
         /// QQ
         /// </summary>
-        public string QQ { get; set; }
+        public Int32 QQ { get; set; }
 
     }
 }

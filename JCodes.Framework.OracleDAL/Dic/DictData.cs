@@ -46,14 +46,14 @@ namespace JCodes.Framework.OracleDAL
         {
             DictDataInfo dictDataInfo = new DictDataInfo();
             SmartDataReader reader = new SmartDataReader(dataReader);
-            dictDataInfo.ID = reader.GetString("ID");
-            dictDataInfo.DictType_ID = reader.GetInt32("DictType_ID");
-            dictDataInfo.Value = reader.GetInt32("Value");
+            dictDataInfo.Gid = reader.GetString("Gid");
+            dictDataInfo.DicttypeID = reader.GetInt32("DicttypeID");
+            dictDataInfo.Value = reader.GetString("Value");
             dictDataInfo.Name = reader.GetString("Name");
             dictDataInfo.Remark = reader.GetString("Remark");
             dictDataInfo.Seq = reader.GetString("Seq");
-            dictDataInfo.Editor = reader.GetString("Editor");
-            dictDataInfo.LastUpdated = reader.GetDateTime("LastUpdated");
+            dictDataInfo.EditorId = reader.GetInt32("EditorId");
+            dictDataInfo.LastUpdateTime = reader.GetDateTime("LastUpdateTime");
 
             return dictDataInfo;
         }
@@ -67,14 +67,14 @@ namespace JCodes.Framework.OracleDAL
         {
             DictDataInfo info = obj as DictDataInfo;
             Hashtable hash = new Hashtable();
-            hash.Add("ID", info.ID);
-            hash.Add("DictType_ID", info.DictType_ID);
+            hash.Add("Gid", info.Gid);
+            hash.Add("DicttypeID", info.DicttypeID);
             hash.Add("Name", info.Name);
             hash.Add("Value", info.Value);
             hash.Add("Remark", info.Remark);
             hash.Add("Seq", info.Seq);
-            hash.Add("Editor", info.Editor);
-            hash.Add("LastUpdated", info.LastUpdated);
+            hash.Add("EditorId", info.EditorId);
+            hash.Add("LastUpdateTime", info.LastUpdateTime);
 
             return hash;
         }
@@ -86,7 +86,7 @@ namespace JCodes.Framework.OracleDAL
         /// <returns></returns>
         public List<DictDataInfo> FindByTypeID(Int32 dictTypeId)
         {
-            string condition = string.Format("DictType_ID={0} ", dictTypeId);
+            string condition = string.Format("DicttypeID={0} ", dictTypeId);
             return Find(condition);
         }
 
@@ -100,10 +100,10 @@ namespace JCodes.Framework.OracleDAL
             {
                 while (dr.Read())
                 {
-                    Int32 dictType_ID = Convert.ToInt32(dr["DictType_ID"]);
+                    Int32 dicttypeID = Convert.ToInt32(dr["DicttypeID"]);
                     Int32 value = Convert.ToInt32(dr["Value"]);
                     string name = dr["Name"].ToString();
-                    list.Add(new DicKeyValueInfo() { DictType_ID = dictType_ID, Value = value, Name = name });
+                    list.Add(new DicKeyValueInfo() { DicttypeID = dicttypeID, Value = value, Name = name });
                 }
             }
             return list;
@@ -115,7 +115,7 @@ namespace JCodes.Framework.OracleDAL
         /// <returns></returns>
         public List<DicKeyValueInfo> GetAllDict()
         {
-            string sql = string.Format("select d.DictType_ID,d.Name,d.Value from {0}DictData d inner join {0}DictType t on d.DictType_ID = t.ID order by d.{1} {2}",
+            string sql = string.Format("select d.DicttypeID,d.Name,d.Value from {0}DictData d inner join {0}DictType t on d.DicttypeID = t.ID order by d.{1} {2}",
                 OraclePortal.gc._basicTablePre, sortField, IsDescending ? "DESC" : "ASC");
 
             return GetDictBySql(sql);

@@ -77,7 +77,7 @@ namespace JCodes.Framework.BLL
             string roleIDs = ",";
             foreach (RoleInfo info in rolesByUser)
             {
-                roleIDs = roleIDs + info.ID + ",";
+                roleIDs = roleIDs + info.Id + ",";
             }
             roleIDs = roleIDs.Trim(',');//移除前后的逗号
 
@@ -101,7 +101,7 @@ namespace JCodes.Framework.BLL
             string roleIDs = ",";
             foreach (RoleInfo info in rolesByUser)
             {
-                roleIDs = roleIDs + info.ID + ",";
+                roleIDs = roleIDs + info.Id + ",";
             }
             roleIDs = roleIDs.Trim(',');//移除前后的逗号
 
@@ -148,7 +148,7 @@ namespace JCodes.Framework.BLL
             List<int> roleList = new List<int>();
             foreach (RoleInfo info in rolesByUser)
             {
-                roleList.Add(info.ID);
+                roleList.Add(info.Id);
             }
 
             return GetTreeWithRole(systemType, roleList);

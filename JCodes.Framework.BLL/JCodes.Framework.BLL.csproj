@@ -26,7 +26,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\jCodes\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -57,7 +57,9 @@
     <Compile Include="Dic\District.cs" />
     <Compile Include="Dic\Sysparameter.cs" />
     <Compile Include="Dic\Province.cs" />
+    <Compile Include="Dongnanhai\DongnanhaiVotes.cs" />
     <Compile Include="General\GeneralSql.cs" />
+    <Compile Include="Machines\Machines.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\BlackIP.cs" />
     <Compile Include="Security\Function.cs" />
@@ -114,7 +116,9 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>echo "编译后处理的事情 JCodes.Framework.BLL"</PostBuildEvent>
+    <PostBuildEvent>xcopy ..\jCodes\$(TargetFileName) ..\JCodes.Framework.WebUI\bin\ /y
+xcopy ..\jCodes\$(TargetFileName) ..\JCodes.Framework.WebDemo\bin\ /y
+echo "编译后处理的事情 JCodes.Framework.BLL"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

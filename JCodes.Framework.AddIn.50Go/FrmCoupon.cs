@@ -94,13 +94,14 @@ namespace JCodes.Framework.AddIn._50Go
                 return;
             }
 
-            string ID = this.winGridViewPager1.gridView1.GetFocusedRowCellDisplayText("ID");
+            string ID = this.winGridViewPager1.gridView1.GetFocusedRowCellDisplayText("Id");
 
             if (this.winGridViewPager1.gridView1.RowCount == 0 || this.winGridViewPager1.gridView1.RowCount > 1)
                 return;
             
             // 直接更新编辑人和状态;
-            BLLFactory<Coupon>.Instance.UseCoupon(ID, Portal.gc.UserInfo.Creator, Portal.gc.UserInfo.Creator_ID, DateTimeHelper.GetServerDateTime2());
+            // TODO 
+            //BLLFactory<Coupon>.Instance.UseCoupon(ID, Portal.gc.UserInfo.CreatorId, Portal.gc.UserInfo.CreatorId, DateTimeHelper.GetServerDateTime2());
 
             MessageDxUtil.ShowYesNoAndTips("操作成功");
        
@@ -113,7 +114,7 @@ namespace JCodes.Framework.AddIn._50Go
 
             // 检查权限
             // 如果此操作员不是这个公司下面的
-            if (couponInfo.Company_ID != Portal.gc.UserInfo.Company_ID)
+            if (couponInfo.CompanyId != Convert.ToInt32( Portal.gc.UserInfo.CompanyId))
             { 
                 // 再次确认此操作员是否挂在集团下面 TODO 暂时不允许这么大的人操作
                 MessageDxUtil.ShowTips("此操作员不允许跨公司使用优惠券");
@@ -127,7 +128,7 @@ namespace JCodes.Framework.AddIn._50Go
                 return false;
             }
             // 是否使用
-            if (couponInfo.DELETED == 1)
+            if (couponInfo.IsDelete == Const.Num_One)
             {
                 MessageDxUtil.ShowTips("此优惠券已被使用，不可以重复使用");
                 return false;

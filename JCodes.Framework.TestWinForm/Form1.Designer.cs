@@ -40,6 +40,7 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.colorPickEdit1 = new DevExpress.XtraEditors.ColorPickEdit();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchControl1.Properties)).BeginInit();
@@ -165,11 +166,21 @@
             this.colorPickEdit1.Size = new System.Drawing.Size(100, 28);
             this.colorPickEdit1.TabIndex = 9;
             // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Location = new System.Drawing.Point(13, 254);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(124, 34);
+            this.simpleButton1.TabIndex = 10;
+            this.simpleButton1.Text = "测试";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(836, 535);
+            this.Controls.Add(this.simpleButton1);
             this.Controls.Add(this.colorPickEdit1);
             this.Controls.Add(this.maskedTextBox1);
             this.Controls.Add(this.richTextBox1);
@@ -206,6 +217,7 @@
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.MaskedTextBox maskedTextBox1;
         private DevExpress.XtraEditors.ColorPickEdit colorPickEdit1;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
     }
 }
 

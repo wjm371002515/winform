@@ -12,42 +12,38 @@ namespace JCodes.Framework.Entity
     public class OUInfo : BaseEntity
     { 
         #region Field Members
-
-        private int m_ID = 0; //          
-        private int m_PID = -1; //父ID          
-        private string m_HandNo; //机构编码          
+        private int m_Id = 0; //          
+        private int m_Pid = -1; //父ID          
+        private string m_OuCode; //机构编码          
         private string m_Name; //机构名称          
         private string m_Seq; //排序码          
-        private string m_Category; //机构分类          
+        private Int32 m_OuType; //机构分类          
         private string m_Address; //机构地址          
-        private string m_OuterPhone; //外线电话          
+        private string m_OutPhone; //外线电话          
         private string m_InnerPhone; //内线电话          
-        private string m_Note; //备注                 
-        private string m_Creator; //创建人          
-        private string m_Creator_ID; //创建人ID          
-        private DateTime m_CreateTime = System.DateTime.Now; //创建时间          
-        private string m_Editor; //编辑人          
-        private string m_Editor_ID; //编辑人ID          
-        private DateTime m_EditTime = System.DateTime.Now; //编辑时间          
-        private bool m_Deleted = false; //是否已删除          
-        private bool m_Enabled = true; //有效标志   
-        private string m_Company_ID; //所属公司ID          
-        private string m_CompanyName; //所属公司名称          
+        private string m_Remark; //备注                        
+        private Int32 m_CreatorId; //创建人ID          
+        private DateTime m_CreatorTime = System.DateTime.Now; //创建时间                  
+        private Int32 m_EditorId; //编辑人ID          
+        private DateTime m_LastUpdateTime = System.DateTime.Now; //编辑时间          
+        private Int32 m_IsDelete; //是否已删除          
+        private Int32 m_IsForbid; //有效标志   
+        private Int32 m_CompanyId; //所属公司ID          
 
         #endregion     
 
         #region Property Members
 
         [DataMember]
-        public virtual int ID
+        public virtual int Id
         {
             get
             {
-                return this.m_ID;
+                return this.m_Id;
             }
             set
             {
-                this.m_ID = value;
+                this.m_Id = value;
             }
         }
 
@@ -55,15 +51,15 @@ namespace JCodes.Framework.Entity
         /// 父ID
         /// </summary>
         [DataMember]
-        public virtual int PID
+        public virtual int Pid
         {
             get
             {
-                return this.m_PID;
+                return this.m_Pid;
             }
             set
             {
-                this.m_PID = value;
+                this.m_Pid = value;
             }
         }
 
@@ -71,15 +67,15 @@ namespace JCodes.Framework.Entity
         /// 机构编码
         /// </summary>
 		[DataMember]
-        public virtual string HandNo
+        public virtual string OuCode
         {
             get
             {
-                return this.m_HandNo;
+                return this.m_OuCode;
             }
             set
             {
-                this.m_HandNo = value;
+                this.m_OuCode = value;
             }
         }
 
@@ -119,15 +115,15 @@ namespace JCodes.Framework.Entity
         /// 机构分类
         /// </summary>
 		[DataMember]
-        public virtual string Category
+        public virtual Int32 OuType
         {
             get
             {
-                return this.m_Category;
+                return this.m_OuType;
             }
             set
             {
-                this.m_Category = value;
+                this.m_OuType = value;
             }
         }
 
@@ -151,15 +147,15 @@ namespace JCodes.Framework.Entity
         /// 外线电话
         /// </summary>
 		[DataMember]
-        public virtual string OuterPhone
+        public virtual string OutPhone
         {
             get
             {
-                return this.m_OuterPhone;
+                return this.m_OutPhone;
             }
             set
             {
-                this.m_OuterPhone = value;
+                this.m_OutPhone = value;
             }
         }
 
@@ -183,31 +179,15 @@ namespace JCodes.Framework.Entity
         /// 备注
         /// </summary>
         [DataMember]
-        public virtual string Note
+        public virtual string Remark
         {
             get
             {
-                return this.m_Note;
+                return this.m_Remark;
             }
             set
             {
-                this.m_Note = value;
-            }
-        }
-
-        /// <summary>
-        /// 创建人
-        /// </summary>
-		[DataMember]
-        public virtual string Creator
-        {
-            get
-            {
-                return this.m_Creator;
-            }
-            set
-            {
-                this.m_Creator = value;
+                this.m_Remark = value;
             }
         }
 
@@ -215,15 +195,15 @@ namespace JCodes.Framework.Entity
         /// 创建人ID
         /// </summary>
 		[DataMember]
-        public virtual string Creator_ID
+        public virtual Int32 CreatorId
         {
             get
             {
-                return this.m_Creator_ID;
+                return this.m_CreatorId;
             }
             set
             {
-                this.m_Creator_ID = value;
+                this.m_CreatorId = value;
             }
         }
 
@@ -231,31 +211,15 @@ namespace JCodes.Framework.Entity
         /// 创建时间
         /// </summary>
 		[DataMember]
-        public virtual DateTime CreateTime
+        public virtual DateTime CreatorTime
         {
             get
             {
-                return this.m_CreateTime;
+                return this.m_CreatorTime;
             }
             set
             {
-                this.m_CreateTime = value;
-            }
-        }
-
-        /// <summary>
-        /// 编辑人
-        /// </summary>
-		[DataMember]
-        public virtual string Editor
-        {
-            get
-            {
-                return this.m_Editor;
-            }
-            set
-            {
-                this.m_Editor = value;
+                this.m_CreatorTime = value;
             }
         }
 
@@ -263,15 +227,15 @@ namespace JCodes.Framework.Entity
         /// 编辑人ID
         /// </summary>
 		[DataMember]
-        public virtual string Editor_ID
+        public virtual Int32 EditorId
         {
             get
             {
-                return this.m_Editor_ID;
+                return this.m_EditorId;
             }
             set
             {
-                this.m_Editor_ID = value;
+                this.m_EditorId = value;
             }
         }
 
@@ -279,15 +243,15 @@ namespace JCodes.Framework.Entity
         /// 编辑时间
         /// </summary>
 		[DataMember]
-        public virtual DateTime EditTime
+        public virtual DateTime LastUpdateTime
         {
             get
             {
-                return this.m_EditTime;
+                return this.m_LastUpdateTime;
             }
             set
             {
-                this.m_EditTime = value;
+                this.m_LastUpdateTime = value;
             }
         }
 
@@ -295,15 +259,15 @@ namespace JCodes.Framework.Entity
         /// 是否已删除
         /// </summary>
 		[DataMember]
-        public virtual bool Deleted
+        public virtual Int32 IsDelete
         {
             get
             {
-                return this.m_Deleted;
+                return this.m_IsDelete;
             }
             set
             {
-                this.m_Deleted = value;
+                this.m_IsDelete = value;
             }
         }
 
@@ -311,15 +275,15 @@ namespace JCodes.Framework.Entity
         /// 有效标志
         /// </summary>
 		[DataMember]
-        public virtual bool Enabled
+        public virtual Int32 IsForbid
         {
             get
             {
-                return this.m_Enabled;
+                return this.m_IsForbid;
             }
             set
             {
-                this.m_Enabled = value;
+                this.m_IsForbid = value;
             }
         }
 
@@ -327,34 +291,17 @@ namespace JCodes.Framework.Entity
         /// 所属公司ID
         /// </summary>
         [DataMember]
-        public virtual string Company_ID
+        public virtual Int32 CompanyId
         {
             get
             {
-                return this.m_Company_ID;
+                return this.m_CompanyId;
             }
             set
             {
-                this.m_Company_ID = value;
+                this.m_CompanyId = value;
             }
         }
-
-        /// <summary>
-        /// 所属公司名称
-        /// </summary>
-        [DataMember]
-        public virtual string CompanyName
-        {
-            get
-            {
-                return this.m_CompanyName;
-            }
-            set
-            {
-                this.m_CompanyName = value;
-            }
-        }
-
         #endregion
 
     }
@@ -392,26 +339,23 @@ namespace JCodes.Framework.Entity
         /// <param name="info">OUInfo对象</param>
         public OUNodeInfo(OUInfo info)
         {
-            base.ID = info.ID;
-            base.PID = info.PID;
-            base.HandNo = info.HandNo;
+            base.Id = info.Id;
+            base.Pid = info.Pid;
+            base.OuCode = info.OuCode;
             base.Name = info.Name;
             base.Seq = info.Seq;
-            base.Category = info.Category;
+            base.OuType = info.OuType;
             base.Address = info.Address;
-            base.OuterPhone = info.OuterPhone;
+            base.OutPhone = info.OutPhone;
             base.InnerPhone = info.InnerPhone;
-            base.Note = info.Note;
-            base.Creator = info.Creator;
-            base.Creator_ID = info.Creator_ID;
-            base.CreateTime = info.CreateTime;
-            base.Editor = info.Editor;
-            base.Editor_ID = info.Editor_ID;
-            base.EditTime = info.EditTime;
-            base.Deleted = info.Deleted;
-            base.Enabled = info.Enabled;
-            base.Company_ID = info.Company_ID;
-            base.CompanyName = info.CompanyName;              
+            base.Remark = info.Remark;
+            base.CreatorId = info.CreatorId;
+            base.CreatorTime = info.CreatorTime;
+            base.EditorId = info.EditorId;
+            base.LastUpdateTime = info.LastUpdateTime;
+            base.IsDelete = info.IsDelete;
+            base.IsForbid = info.IsForbid;
+            base.CompanyId = info.CompanyId;
         }
     }
 }

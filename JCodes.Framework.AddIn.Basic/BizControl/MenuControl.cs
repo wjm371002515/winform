@@ -60,11 +60,11 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
             {
                 dr = dt.NewRow();
                 dr["ImageIndex"] = 0;
-                dr["ID"] = info.ID.ToString();
-                dr["PID"] = info.PID.ToString();
+                dr["Gid"] = info.Gid.ToString();
+                dr["Pgid"] = info.Pgid.ToString();
                 dr["Name"] = info.Name;
-                dr["FunctionId"] = info.FunctionId;
-                dr["SystemType_ID"] = info.SystemType_ID;
+                dr["AuthGid"] = info.AuthGid;
+                dr["SystemtypeId"] = info.SystemtypeId;
                 dr["Seq"] = info.Seq;
                 dt.Rows.Add(dr);
             }

@@ -10,6 +10,7 @@ using System.Text;
 using Microsoft.Reporting.WebForms;
 using Microsoft.ReportingServices.Interfaces;
 using System.Windows.Forms;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.WebUI.Common
 {

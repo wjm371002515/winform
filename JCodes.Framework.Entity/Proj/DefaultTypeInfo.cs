@@ -96,6 +96,15 @@ namespace JCodes.Framework.Entity
             set { access = value; }
         }
 
+        private string cshort;
+
+        [DisplayName("CShort")]
+        public string CShort
+        {
+            get { return cshort; }
+            set { cshort = value; }
+        }
+
         /// <summary>
         /// 用来保存行数据中字段名，错误信息
         /// </summary>

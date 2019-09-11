@@ -60,9 +60,9 @@ namespace JCodes.Framework.AddIn.WareHouseManage
 
         public override void DisplayData()
         {
-            if (!string.IsNullOrEmpty(ID))
+            if (Id > 0)
             {
-                SupplierInfo info = BLLFactory<Supplier>.Instance.FindByID(ID);
+                SupplierInfo info = BLLFactory<Supplier>.Instance.FindByID(Id);
                 if (info != null)
                 {
                     txtCode.Text = info.Code;
@@ -125,7 +125,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
         /// <returns></returns>
         public override bool SaveUpdated()
         {
-            SupplierInfo info = BLLFactory<Supplier>.Instance.FindByID(ID);
+            SupplierInfo info = BLLFactory<Supplier>.Instance.FindByID(Id);
             if (info != null)
             {
                 SetInfo(info);

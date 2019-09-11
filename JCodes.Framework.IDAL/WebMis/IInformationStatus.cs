@@ -1,5 +1,6 @@
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Entity;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.IDAL
 {

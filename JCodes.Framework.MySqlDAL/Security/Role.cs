@@ -45,23 +45,23 @@ namespace JCodes.Framework.MySqlDAL
             RoleInfo info = new RoleInfo();
             SmartDataReader reader = new SmartDataReader(dataReader);
 
-            info.ID = reader.GetInt32("ID");
-            info.PID = reader.GetInt32("PID");
-            info.HandNo = reader.GetString("HandNo");
+            info.Id = reader.GetInt32("Id");
+            info.Pid = reader.GetInt32("Pid");
+            info.RoleCode = reader.GetString("RoleCode");
             info.Name = reader.GetString("Name");
-            info.Note = reader.GetString("Note");
+            info.Remark = reader.GetString("Remark");
             info.Seq = reader.GetString("Seq");
-            info.Category = reader.GetString("Category");
-            info.Company_ID = reader.GetString("Company_ID");
+            info.RoleType = reader.GetInt32("RoleType");
+            info.CompanyId = reader.GetInt32("CompanyId");
             info.CompanyName = reader.GetString("CompanyName");
-            info.Creator = reader.GetString("Creator");
-            info.Creator_ID = reader.GetString("Creator_ID");
-            info.CreateTime = reader.GetDateTime("CreateTime");
-            info.Editor = reader.GetString("Editor");
-            info.Editor_ID = reader.GetString("Editor_ID");
-            info.EditTime = reader.GetDateTime("EditTime");
-            info.Deleted = reader.GetInt32("Deleted") > 0;
-            info.Enabled = reader.GetInt32("Enabled") > 0;
+            //info.Creator = reader.GetString("Creator");
+            info.CreatorId = reader.GetInt32("CreatorId");
+            info.CreatorTime = reader.GetDateTime("CreatorTime");
+            //info.Editor = reader.GetString("Editor");
+            info.EditorId = reader.GetInt32("EditorId");
+            info.LastUpdateTime = reader.GetDateTime("LastUpdateTime");
+            info.IsDelete = reader.GetInt32("IsDelete");
+            info.IsForbid = reader.GetInt32("IsForbid");
 
             return info;
         }
@@ -76,22 +76,22 @@ namespace JCodes.Framework.MySqlDAL
             RoleInfo info = obj as RoleInfo;
             Hashtable hash = new Hashtable();
 
-            hash.Add("PID", info.PID);
-            hash.Add("HandNo", info.HandNo);
+            hash.Add("Pid", info.Pid);
+            hash.Add("RoleCode", info.RoleCode);
             hash.Add("Name", info.Name);
-            hash.Add("Note", info.Note);
+            hash.Add("Remark", info.Remark);
             hash.Add("Seq", info.Seq);
-            hash.Add("Category", info.Category);
-            hash.Add("Company_ID", info.Company_ID);
+            hash.Add("RoleType", info.RoleType);
+            hash.Add("CompanyId", info.CompanyId);
             hash.Add("CompanyName", info.CompanyName);
-            hash.Add("Creator", info.Creator);
-            hash.Add("Creator_ID", info.Creator_ID);
-            hash.Add("CreateTime", info.CreateTime);
-            hash.Add("Editor", info.Editor);
-            hash.Add("Editor_ID", info.Editor_ID);
-            hash.Add("EditTime", info.EditTime);
-            hash.Add("Deleted", info.Deleted ? 1 : 0);
-            hash.Add("Enabled", info.Enabled ? 1 : 0);
+            //hash.Add("Creator", info.Creator);
+            hash.Add("CreatorId", info.CreatorId);
+            hash.Add("CreatorTime", info.CreatorTime);
+            //hash.Add("Editor", info.Editor);
+            hash.Add("EditorId", info.EditorId);
+            hash.Add("LastUpdateTime", info.LastUpdateTime);
+            hash.Add("IsDelete", info.IsDelete);
+            hash.Add("IsForbid", info.IsForbid);
 
             return hash;
         }
@@ -104,23 +104,23 @@ namespace JCodes.Framework.MySqlDAL
         {
             Dictionary<string, string> dict = new Dictionary<string, string>();
             #region 添加别名解析
-            dict.Add("ID", "编号");
-            dict.Add("PID", "父ID");
-            dict.Add("HandNo", "角色编码");
+            dict.Add("Id", "编号");
+            dict.Add("Pid", "父ID");
+            dict.Add("RoleCode", "角色编码");
             dict.Add("Name", "角色名称");
-            dict.Add("Note", "备注");
+            dict.Add("Remark", "备注");
             dict.Add("Seq", "排序");
-            dict.Add("Category", "角色分类");
-            dict.Add("Company_ID", "所属公司ID");
+            dict.Add("RoleType", "角色分类");
+            dict.Add("CompanyId", "所属公司ID");
             dict.Add("CompanyName", "所属公司名称");
-            dict.Add("Creator", "创建人");
-            dict.Add("Creator_ID", "创建人ID");
-            dict.Add("CreateTime", "创建时间");
-            dict.Add("Editor", "编辑人");
-            dict.Add("Editor_ID", "编辑人ID");
-            dict.Add("EditTime", "编辑时间");
-            dict.Add("Deleted", "是否已删除");
-            dict.Add("Enabled", "有效标志");
+            //dict.Add("Creator", "创建人");
+            dict.Add("CreatorId", "创建人ID");
+            dict.Add("CreatorTime", "创建时间");
+            // dict.Add("Editor", "编辑人");
+            dict.Add("EditorId", "编辑人ID");
+            dict.Add("LastUpdateTime", "编辑时间");
+            dict.Add("IsDelete", "是否已删除");
+            dict.Add("IsForbid", "有效标志");
             #endregion
 
             return dict;

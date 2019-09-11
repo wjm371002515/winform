@@ -64,7 +64,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
             this.winGridView2.OnRefresh += new EventHandler(winGridView1_OnRefresh);
 
             this.winGridView2.BestFitColumnWith = false;
-            this.winGridView2.DisplayColumns = "HandNo,ItemNo,ItemName,MapNo,Specification,Material,ItemBigType,ItemType,Unit,Price,Quantity,Amount,Source,StoragePos,UsagePos,WareHouse";
+            this.winGridView2.DisplayColumns = "UserCode,ItemNo,ItemName,MapNo,Specification,Material,ItemBigType,ItemType,Unit,Price,Quantity,Amount,Source,StoragePos,UsagePos,WareHouse";
             this.winGridView2.ColumnNameAlias = BLLFactory<ItemDetail>.Instance.GetColumnNameAlias();
             this.winGridView2.gridView1.DataSourceChanged += new EventHandler(gridView2_DataSourceChanged);
             this.winGridView2.gridView1.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(gridView2_CustomColumnDisplayText);
@@ -216,7 +216,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
             if (!string.IsNullOrEmpty(headID))
             {
                 this.winGridView2.PrintTitle = this.AppInfo.AppUnit + " -- " + string.Format("出库单[{0}]的备件列表", headID);
-                this.winGridView2.DisplayColumns = "HandNo,ItemNo,ItemName,MapNo,Specification,Material,ItemBigType,ItemType,Unit,Price,Quantity,Amount,Source,StoragePos,UsagePos,WareHouse";
+                this.winGridView2.DisplayColumns = "UserCode,ItemNo,ItemName,MapNo,Specification,Material,ItemBigType,ItemType,Unit,Price,Quantity,Amount,Source,StoragePos,UsagePos,WareHouse";
 
                 DataTable dt = BLLFactory<PurchaseDetail>.Instance.GetPurchaseDetailReportByID(Convert.ToInt32(headID));
                 this.winGridView2.DataSource = dt.DefaultView;
@@ -257,11 +257,11 @@ namespace JCodes.Framework.AddIn.WareHouseManage
 
         private void BindData()
         {
-            this.winGridView1.DisplayColumns = "ID,HandNo,OperationType,PickingPeople,WareHouse,Dept,Note,CreateDate,Creator";
+            this.winGridView1.DisplayColumns = "ID,UserCode,OperationType,PickingPeople,WareHouse,Dept,Note,CreateDate,Creator";
 
             #region 添加别名解析
             this.winGridView1.AddColumnAlias("ID", "编号");
-            this.winGridView1.AddColumnAlias("HandNo", "货单编号");
+            this.winGridView1.AddColumnAlias("UserCode", "货单编号");
             this.winGridView1.AddColumnAlias("OperationType", "入库/出库");
             this.winGridView1.AddColumnAlias("PickingPeople", "客户商");
             this.winGridView1.AddColumnAlias("WareHouse", "仓库名称");
@@ -352,8 +352,8 @@ namespace JCodes.Framework.AddIn.WareHouseManage
             {
                 PurchaseDetailInfo detailInfo = lvwDetail.gridView1.GetRow(i) as PurchaseDetailInfo;
                 // 把出库的持仓和金额转为负数
-                detailInfo.Amount = Const.MinusOne * detailInfo.Amount;
-                detailInfo.Quantity = Const.MinusOne * detailInfo.Quantity;
+                detailInfo.Amount = Const.Num_MinusOne * detailInfo.Amount;
+                detailInfo.Quantity = Const.Num_MinusOne * detailInfo.Quantity;
                 if (detailInfo != null)
                 {
                     bool isInit = BLLFactory<Stock>.Instance.CheckIsInitedWareHouse(this.txtWareHouse.GetComboBoxStrValue(), detailInfo.ItemNo);
@@ -414,7 +414,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
                 PurchaseHeaderInfo headInfo = new PurchaseHeaderInfo();
                 headInfo.CreateDate = txtCreateDate.DateTime;
                 headInfo.Creator = this.txtCreator.Text;
-                headInfo.HandNo = this.txtHandNo.Text;
+                headInfo.UserCode = this.txtHandNo.Text;
                 headInfo.PickingPeople = this.txtPickingPeople.GetComboBoxStrValue();
                 headInfo.Note = this.txtNote.Text;
                 headInfo.OperationType = "出库";
@@ -622,7 +622,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
                 return;
 
             #region 构造数据列表
-            //HandNo,ItemNo,ItemName,MapNo,Specification,Material,ItemBigType,ItemType,Unit,Price,Quantity,Amount,Source,StoragePos,UsagePos,d.WareHouse,d.Dept
+            //UserCode,ItemNo,ItemName,MapNo,Specification,Material,ItemBigType,ItemType,Unit,Price,Quantity,Amount,Source,StoragePos,UsagePos,d.WareHouse,d.Dept
             string columns = "货单号,项目编号,项目名称,图号,规格型号,材质,备件属类,备件类别,单位,单价|decimal,数量|int,金额|decimal,来源,库位,使用位置,库房,部门";
             DataTable dtDetail = DataTableHelper.CreateTable(columns);
 
@@ -684,7 +684,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
             PurchaseHeaderInfo headInfo = new PurchaseHeaderInfo();
             headInfo.CreateDate = txtCreateDate.DateTime;
             headInfo.Creator = this.txtCreator.Text;
-            headInfo.HandNo = this.txtHandNo.Text;
+            headInfo.UserCode = this.txtHandNo.Text;
             headInfo.PickingPeople = this.txtPickingPeople.Text;
             headInfo.Note = this.txtNote.Text;
             headInfo.OperationType = "出库";

@@ -40,5 +40,14 @@ namespace JCodes.Framework.Entity
             get { return name; }
             set { name = value; }
         }
+
+        private string basicdata;
+
+        [DisplayName("是否基础数据")]
+        public string BasicData
+        {
+            get { return basicdata; }
+            set { basicdata = value; }
+        }
     }
 }

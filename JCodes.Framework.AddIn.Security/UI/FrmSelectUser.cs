@@ -26,11 +26,11 @@ namespace JCodes.Framework.AddIn.Security
 {
     public partial class FrmSelectUser : BaseDock
     {
-        private Dictionary<string, string> m_SelectUserDict = new Dictionary<string,string>();
+        private Dictionary<Int32, string> m_SelectUserDict = new Dictionary<Int32, string>();
         /// <summary>
         /// 选择的角色/人员/部门/业务相关人员的字典数据（实际数据）
         /// </summary>
-        public Dictionary<string, string> SelectUserDict
+        public Dictionary<Int32, string> SelectUserDict
         {
             get
             {
@@ -38,7 +38,7 @@ namespace JCodes.Framework.AddIn.Security
             }
             set
             {
-                m_SelectUserDict = new Dictionary<string, string>(value);
+                m_SelectUserDict = new Dictionary<Int32, string>(value);
             }
         }
 
@@ -101,7 +101,7 @@ namespace JCodes.Framework.AddIn.Security
             }
 
             //entity
-            this.winGridView1.DisplayColumns = "HandNo,Name,FullName,Title,MobilePhone,OfficePhone,Email,Gender,QQ,Note";
+            this.winGridView1.DisplayColumns = "UserCode,Name,FullName,Title,MobilePhone,OfficePhone,Email,Gender,QQ,Note";
             this.winGridView1.ColumnNameAlias = BLLFactory<User>.Instance.GetColumnNameAlias();//字段列显示名称转义
 
             this.winGridView1.DataSource = new SortableBindingList<UserInfo>(list);
@@ -113,13 +113,13 @@ namespace JCodes.Framework.AddIn.Security
         private void RefreshSelectItems()
         {
             this.flowLayoutPanel1.Controls.Clear();
-            foreach (string key in SelectUserDict.Keys)
+            foreach (Int32 key in SelectUserDict.Keys)
             {
                 string info = SelectUserDict[key];
                 if (!string.IsNullOrEmpty(info))
                 {
                     UserNameControl control = new UserNameControl();
-                    control.BindData(key, info);
+                    control.BindData(key.ToString(), info);
                     control.OnDeleteItem += new UserNameControl.DeleteEventHandler(control_OnDeleteItem);
                     this.flowLayoutPanel1.Controls.Add(control);
                 }
@@ -127,11 +127,11 @@ namespace JCodes.Framework.AddIn.Security
             this.lblItemCount.Text = string.Format("当前选择【{0}】项目", SelectUserDict.Keys.Count);
         }
 
-        void control_OnDeleteItem(string ID)
+        void control_OnDeleteItem(string Id)
         {
-            if (SelectUserDict.ContainsKey(ID))
+            if (SelectUserDict.ContainsKey(Id.ToInt32()))
             {
-                SelectUserDict.Remove(ID);
+                SelectUserDict.Remove(Id.ToInt32());
                 RefreshSelectItems();
             }
         }
@@ -156,12 +156,12 @@ namespace JCodes.Framework.AddIn.Security
                 {
                     TreeNode topnode = new TreeNode();
                     topnode.Text = groupInfo.Name;
-                    topnode.Name = groupInfo.ID.ToString();
-                    topnode.Tag = groupInfo.ID;
-                    topnode.ImageIndex = Portal.gc.GetImageIndex(groupInfo.Category);
-                    topnode.SelectedImageIndex = Portal.gc.GetImageIndex(groupInfo.Category);
+                    topnode.Name = groupInfo.Id.ToString();
+                    topnode.Tag = groupInfo.Id;
+                    topnode.ImageIndex = groupInfo.OuType; //Portal.gc.GetImageIndex(groupInfo.Category);
+                    topnode.SelectedImageIndex = groupInfo.OuType; //Portal.gc.GetImageIndex(groupInfo.Category);
 
-                    List<OUNodeInfo> sublist = BLLFactory<OU>.Instance.GetTreeByID(groupInfo.ID);
+                    List<OUNodeInfo> sublist = BLLFactory<OU>.Instance.GetTreeByID(groupInfo.Id);
                     AddDept(sublist, topnode);
 
                     this.treeDept.Nodes.Add(topnode);
@@ -177,10 +177,10 @@ namespace JCodes.Framework.AddIn.Security
             {
                 TreeNode deptNode = new TreeNode();
                 deptNode.Text = ouInfo.Name;
-                deptNode.Tag = ouInfo.ID;
-                deptNode.ImageIndex = Portal.gc.GetImageIndex(ouInfo.Category);
-                deptNode.SelectedImageIndex = Portal.gc.GetImageIndex(ouInfo.Category);
-                if (ouInfo.Deleted)
+                deptNode.Tag = ouInfo.Id;
+                deptNode.ImageIndex = ouInfo.OuType; //Portal.gc.GetImageIndex(ouInfo.Category);
+                deptNode.SelectedImageIndex = ouInfo.OuType;// Portal.gc.GetImageIndex(ouInfo.Category);
+                if (ouInfo.IsDelete == 0)
                 {
                     deptNode.ForeColor = Color.Red;
                     continue;//跳过不显示
@@ -204,12 +204,12 @@ namespace JCodes.Framework.AddIn.Security
                     TreeNode topnode = AddOUNode(groupInfo);
                     AddRole(groupInfo, topnode);
 
-                    if (groupInfo.Category == "集团")
+                    if (groupInfo.OuType == 0)
                     {
-                        List<OUInfo> sublist = BLLFactory<OU>.Instance.GetAllCompany(groupInfo.ID);
+                        List<OUInfo> sublist = BLLFactory<OU>.Instance.GetAllCompany(groupInfo.IsDelete);
                         foreach (OUInfo info in sublist)
                         {
-                            if (!info.Deleted)
+                            if (info.IsDelete == 0)
                             {
                                 TreeNode ouNode = AddOUNode(info, topnode);
                                 AddRole(info, ouNode);
@@ -228,14 +228,14 @@ namespace JCodes.Framework.AddIn.Security
         {
             TreeNode ouNode = new TreeNode();
             ouNode.Text = ouInfo.Name;
-            ouNode.Name = ouInfo.ID.ToString();
+            ouNode.Name = ouInfo.Id.ToString();
             ouNode.Tag = ouInfo;//机构信息放到Tag里面
-            if (ouInfo.Deleted)
+            if (ouInfo.IsDelete == 0)
             {
                 ouNode.ForeColor = Color.Red;
             }
-            ouNode.ImageIndex = Portal.gc.GetImageIndex(ouInfo.Category);
-            ouNode.SelectedImageIndex = Portal.gc.GetImageIndex(ouInfo.Category);
+            ouNode.ImageIndex = ouInfo.OuType; //Portal.gc.GetImageIndex(ouInfo.Category);
+            ouNode.SelectedImageIndex = ouInfo.OuType;// Portal.gc.GetImageIndex(ouInfo.Category);
 
             if (parentNode != null)
             {
@@ -247,15 +247,15 @@ namespace JCodes.Framework.AddIn.Security
 
         private void AddRole(OUInfo ouInfo, TreeNode treeNode)
         {
-            List<RoleInfo> roleList = BLLFactory<Role>.Instance.GetRolesByCompany(ouInfo.ID.ToString());
+            List<RoleInfo> roleList = BLLFactory<Role>.Instance.GetRolesByCompanyId(ouInfo.Id);
             foreach (RoleInfo roleInfo in roleList)
             {
                 TreeNode roleNode = new TreeNode();
                 roleNode.Text = roleInfo.Name;
-                roleNode.Tag = roleInfo.ID;
+                roleNode.Tag = roleInfo.Id;
                 roleNode.ImageIndex = 5;
                 roleNode.SelectedImageIndex = 5;
-                if (ouInfo.Deleted)
+                if (ouInfo.IsDelete == 0)
                 {
                     roleNode.ForeColor = Color.Red;
                     continue;//跳过不显示
@@ -267,7 +267,7 @@ namespace JCodes.Framework.AddIn.Security
 
         private void btnClearAll_Click(object sender, EventArgs e)
         {
-            this.SelectUserDict = new Dictionary<string, string>();
+            this.SelectUserDict = new Dictionary<Int32, string>();
             RefreshSelectItems();
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
         }
@@ -311,9 +311,9 @@ namespace JCodes.Framework.AddIn.Security
                 string FullName = this.winGridView1.GridView1.GetRowCellDisplayText(rowIndex, "FullName");
                 string displayname = string.Format("{0}（{1}）", FullName, Name);
 
-                if (!this.SelectUserDict.ContainsKey(ID))
+                if (!this.SelectUserDict.ContainsKey(ID.ToInt32()))
                 {
-                    this.SelectUserDict.Add(ID, displayname);
+                    this.SelectUserDict.Add(ID.ToInt32(), displayname);
                 }
             }
 

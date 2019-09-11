@@ -1,5 +1,4 @@
 ﻿using JCodes.Framework.Common;
-using JCodes.Framework.Common.Databases;
 using JCodes.Framework.Common.Files;
 using JCodes.Framework.Common.Format;
 using JCodes.Framework.CommonControl.BaseUI;
@@ -8,6 +7,7 @@ using JCodes.Framework.Entity;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using System;
 using System.Xml;
+using JCodes.Framework.Common.Extension;
 
 namespace JCodes.Framework.AddIn.Proj
 {
@@ -47,10 +47,10 @@ namespace JCodes.Framework.AddIn.Proj
                 result = false;
             }
 
-            string Id = txtValue.Text;
+            Int32 Id = txtValue.Text.ToInt32();
             if (result)
             {
-                if (!ValidateUtil.IsNumeric(Id))
+                if (Id == 0)
                 {
                     MessageDxUtil.ShowWarning(lblValue.Text.Replace(Const.MsgCheckSign, string.Empty) + Const.MsgErrFormatByNum);
                     txtValue.Focus();
@@ -59,7 +59,7 @@ namespace JCodes.Framework.AddIn.Proj
             }
 
             // 检查对应的值是否已经存在数据库了
-            if (result && string.IsNullOrEmpty(ID))
+            if (result && Id == 0)
             {
                 XmlHelper xmldicthelper = new XmlHelper(@"XML\dict.xml");
                 XmlNodeList xmlNodeLst = xmldicthelper.Read(string.Format("datatype/dataitem/item[id=\"{0}\"]/subdic", this.txtDictType.Tag));
@@ -87,7 +87,7 @@ namespace JCodes.Framework.AddIn.Proj
 
         public override void DisplayData()
         {
-            if (!string.IsNullOrEmpty(ID))
+            if (Id > 0)
             {
                 this.txtValue.Enabled = false;
 
@@ -101,10 +101,10 @@ namespace JCodes.Framework.AddIn.Proj
 
                     // 得到DataTypeInfo节点的所有子节点
                     XmlNodeList xnl0 = xe.ChildNodes;
-                    if (string.Equals(ID, xnl0.Item(0).InnerText))
+                    if (xnl0.Item(0).InnerText.ToInt32() == Id)
                     {
                         this.txtDictType.Enabled = false;
-                        this.txtValue.Text = ID.ToString();
+                        this.txtValue.Text = Id.ToString();
                         this.txtName.Text = xnl0.Item(1).InnerText;
                         this.txtSeq.Text = xnl0.Item(2).InnerText;
                         this.txtNote.Text = xnl0.Item(3).InnerText; 
@@ -118,15 +118,14 @@ namespace JCodes.Framework.AddIn.Proj
 
         private void SetInfo(DictDataInfo info)
         {
-            info.DictType_ID = Convert.ToInt32(this.txtDictType.Tag);
-            info.Value = Convert.ToInt32(this.txtValue.Text.Trim());
+            info.DicttypeID = this.txtDictType.Tag.ToString().ToInt32();
+            info.Value = this.txtValue.Text.Trim();
             info.Name = this.txtName.Text.Trim();
             info.Seq = this.txtSeq.Text;
             info.Remark = this.txtNote.Text.Trim();
-            info.Editor = LoginUserInfo.ID.ToString();
-            info.LastUpdated = DateTimeHelper.GetServerDateTime2();
-
-            info.CurrentLoginUserId = LoginUserInfo.ID;
+            //info.EditorId = LoginUserInfo.Id;
+            //info.CurrentLoginUserId = LoginUserInfo.Id;
+            info.LastUpdateTime = DateTimeHelper.GetServerDateTime2();
         }
 
         public override void ClearScreen()
@@ -166,9 +165,9 @@ namespace JCodes.Framework.AddIn.Proj
         {
             DictDataInfo info = new DictDataInfo();
             XmlHelper xmldicthelper = new XmlHelper(@"XML\dict.xml");
-            XmlNodeList xmlNodeLst = xmldicthelper.Read(string.Format("datatype/dataitem/item[id=\"{0}\"]/subdic/item[value=\"{1}\"]", txtDictType.Tag, ID));
+            XmlNodeList xmlNodeLst = xmldicthelper.Read(string.Format("datatype/dataitem/item[id=\"{0}\"]/subdic/item[value=\"{1}\"]", txtDictType.Tag, Id));
 
-            info.Value = Convert.ToInt32(ID);
+            info.Value = Id.ToString();
             info.Name = xmlNodeLst[1].ChildNodes.Item(0) == null ? string.Empty : xmlNodeLst[1].ChildNodes.Item(0).InnerText;
             info.Seq = xmlNodeLst[2].ChildNodes.Item(0) == null ? string.Empty : xmlNodeLst[2].ChildNodes.Item(0).InnerText;
             info.Remark = xmlNodeLst[3].ChildNodes.Item(0) == null ? string.Empty : xmlNodeLst[3].ChildNodes.Item(0).InnerText;
@@ -179,9 +178,9 @@ namespace JCodes.Framework.AddIn.Proj
                 try
                 {
                     #region 更新数据
-                    xmldicthelper.Replace(string.Format("datatype/dataitem/item[id=\"{0}\"]/subdic/item[value=\"{1}\"]/name", txtDictType.Tag, ID), info.Name);
-                    xmldicthelper.Replace(string.Format("datatype/dataitem/item[id=\"{0}\"]/subdic/item[value=\"{1}\"]/seq", txtDictType.Tag, ID), info.Seq);
-                    xmldicthelper.Replace(string.Format("datatype/dataitem/item[id=\"{0}\"]/subdic/item[value=\"{1}\"]/remark", txtDictType.Tag, ID), info.Remark);
+                    xmldicthelper.Replace(string.Format("datatype/dataitem/item[id=\"{0}\"]/subdic/item[value=\"{1}\"]/name", txtDictType.Tag, Id), info.Name);
+                    xmldicthelper.Replace(string.Format("datatype/dataitem/item[id=\"{0}\"]/subdic/item[value=\"{1}\"]/seq", txtDictType.Tag, Id), info.Seq);
+                    xmldicthelper.Replace(string.Format("datatype/dataitem/item[id=\"{0}\"]/subdic/item[value=\"{1}\"]/remark", txtDictType.Tag, Id), info.Remark);
                     xmldicthelper.Save(false);
                     return true;
                     #endregion

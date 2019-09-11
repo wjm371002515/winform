@@ -1,10 +1,9 @@
+using JCodes.Framework.jCodesenum;
 using System;
 using System.Runtime.Serialization;
 
 namespace JCodes.Framework.Entity
 {
-    public enum InformationCategory { 通知公告, 政策法规, 行业动态, 图片新闻, 其他 };
-
     /// <summary>
     /// 政策法规公告动态
     /// </summary>
@@ -13,14 +12,14 @@ namespace JCodes.Framework.Entity
     {    
         #region Field Members
 
-        private string m_ID = System.Guid.NewGuid().ToString(); //          
+        private Int32 m_Id; //          
         private string m_Title; //标题          
         private string m_Content; //内容          
         private string m_Attachment_GUID = System.Guid.NewGuid().ToString(); //附件GUID          
         private InformationCategory m_Category = InformationCategory.其他; //大类名称          
         private string m_SubType; //子类名称          
-        private string m_Editor; //编辑者          
-        private DateTime m_EditTime = DateTime.Now; //编辑时间          
+        private Int32 m_EditorId; //编辑者          
+        private DateTime m_LastUpdateTime = DateTime.Now; //编辑时间          
         private int m_IsChecked = 0; //是否审批通过          
         private string m_CheckUser; //审批者          
         private DateTime m_CheckTime; //审批时间          
@@ -32,15 +31,15 @@ namespace JCodes.Framework.Entity
         #region Property Members
         
 		[DataMember]
-        public virtual string ID
+        public virtual Int32 Id
         {
             get
             {
-                return this.m_ID;
+                return this.m_Id;
             }
             set
             {
-                this.m_ID = value;
+                this.m_Id = value;
             }
         }
 
@@ -128,15 +127,15 @@ namespace JCodes.Framework.Entity
         /// 编辑者
         /// </summary>
 		[DataMember]
-        public virtual string Editor
+        public virtual Int32 EditorId
         {
             get
             {
-                return this.m_Editor;
+                return this.m_EditorId;
             }
             set
             {
-                this.m_Editor = value;
+                this.m_EditorId = value;
             }
         }
 
@@ -144,15 +143,15 @@ namespace JCodes.Framework.Entity
         /// 编辑时间
         /// </summary>
 		[DataMember]
-        public virtual DateTime EditTime
+        public virtual DateTime LastUpdateTime
         {
             get
             {
-                return this.m_EditTime;
+                return this.m_LastUpdateTime;
             }
             set
             {
-                this.m_EditTime = value;
+                this.m_LastUpdateTime = value;
             }
         }
 

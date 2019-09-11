@@ -17,17 +17,17 @@ namespace JCodes.Framework.WebUI.Controllers
         protected override void OnBeforeInsert(ContactGroupInfo info)
         {
             //留给子类对参数对象进行修改
-            info.CreateTime = DateTime.Now;
-            info.Creator = CurrentUser.ID.ToString();
-            info.Company_ID = CurrentUser.Company_ID;
-            info.Dept_ID = CurrentUser.Dept_ID;
+            info.CreatorTime = DateTime.Now;
+            info.CreatorId = CurrentUser.Id;
+            info.CompanyId = CurrentUser.CompanyId;
+            info.DeptId = CurrentUser.DeptId;
         }
 
         protected override void OnBeforeUpdate(ContactGroupInfo info)
         {
             //留给子类对参数对象进行修改
-            info.Editor = CurrentUser.ID.ToString();
-            info.EditTime = DateTime.Now;
+            info.EditorId = CurrentUser.Id;
+            info.LastUpdateTime = DateTime.Now;
         }
         #endregion
 
@@ -40,8 +40,8 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult GetDictJson(string creator)
         {
-            List<CListItem> treeList = new List<CListItem>();
-            CListItem topNode = new CListItem( "-1", "无");
+            List<CDicKeyValue> treeList = new List<CDicKeyValue>();
+            CDicKeyValue topNode = new CDicKeyValue(-1, "无");
             treeList.Add(topNode);
 
             List<ContactGroupNodeInfo> groupList = BLLFactory<ContactGroup>.Instance.GetTree(creator);
@@ -49,11 +49,11 @@ namespace JCodes.Framework.WebUI.Controllers
 
             return ToJsonContent(treeList);
         }
-        private void AddGroupDict(List<ContactGroupNodeInfo> nodeList, List<CListItem> treeList)
+        private void AddGroupDict(List<ContactGroupNodeInfo> nodeList, List<CDicKeyValue> treeList)
         {
             foreach (ContactGroupNodeInfo nodeInfo in nodeList)
             {
-                CListItem subNode = new CListItem(nodeInfo.ID, nodeInfo.Name);
+                CDicKeyValue subNode = new CDicKeyValue(nodeInfo.Id, nodeInfo.Name);
                 treeList.Add(subNode);
 
                 AddGroupDict(nodeInfo.Children, treeList);
@@ -84,10 +84,10 @@ namespace JCodes.Framework.WebUI.Controllers
         public ActionResult GetMyContactGroupJsTree(string contactId, string userId)
         {
             List<ContactGroupInfo> myGroupList = BLLFactory<ContactGroup>.Instance.GetByContact(contactId);
-            List<string> groupIdList = new List<string>();
+            List<Int32> groupIdList = new List<Int32>();
             foreach (ContactGroupInfo info in myGroupList)
             {
-                groupIdList.Add(info.ID);
+                groupIdList.Add(info.Id);
             }
 
             List<ContactGroupNodeInfo> groupList = BLLFactory<ContactGroup>.Instance.GetTree(userId);
@@ -95,8 +95,8 @@ namespace JCodes.Framework.WebUI.Controllers
             List<JsTreeData> treeList = new List<JsTreeData>();
             foreach (ContactGroupNodeInfo nodeInfo in groupList)
             {
-                bool check = groupIdList.Contains(nodeInfo.ID);
-                JsTreeData treeData = new JsTreeData(nodeInfo.ID, nodeInfo.Name);
+                bool check = groupIdList.Contains(nodeInfo.Id);
+                JsTreeData treeData = new JsTreeData(nodeInfo.Id.ToString(), nodeInfo.Name);
                 treeData.state  = new JsTreeState(true, check);
 
                 treeList.Add(treeData);
@@ -112,7 +112,7 @@ namespace JCodes.Framework.WebUI.Controllers
         {
             foreach (ContactGroupNodeInfo nodeInfo in nodeList)
             {
-                JsTreeData subNode = new JsTreeData(nodeInfo.ID, nodeInfo.Name, "fa fa-user icon-state-warning icon-lg");
+                JsTreeData subNode = new JsTreeData(nodeInfo.Id, nodeInfo.Name, "fa fa-user icon-state-warning icon-lg");
                 treeNode.children.Add(subNode);
 
                 AddContactGroupJsTree(nodeInfo.Children, subNode);

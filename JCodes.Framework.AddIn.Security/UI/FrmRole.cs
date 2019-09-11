@@ -18,6 +18,7 @@ using JCodes.Framework.Common.Framework;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.Common.Extension;
 using JCodes.Framework.AddIn.Basic;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn.Security
 {
@@ -83,17 +84,17 @@ namespace JCodes.Framework.AddIn.Security
             List<OUInfo> list = Portal.gc.GetMyTopGroup();
             foreach (OUInfo groupInfo in list)
             {
-                if (groupInfo != null && !groupInfo.Deleted)
+                if (groupInfo != null && groupInfo.IsDelete == 0)
                 {
                     TreeNode topnode = AddOUNode(groupInfo);
                     AddRole(groupInfo, topnode);
 
-                    if (groupInfo.Category == "集团")
+                    if (groupInfo.OuType == 0)
                     {
-                        List<OUInfo> sublist = BLLFactory<OU>.Instance.GetAllCompany(groupInfo.ID);
+                        List<OUInfo> sublist = BLLFactory<OU>.Instance.GetAllCompany(groupInfo.Id);
                         foreach (OUInfo info in sublist)
                         {
-                            if (!info.Deleted)
+                            if (info.IsDelete == 0)
                             {
                                 TreeNode ouNode = AddOUNode(info, topnode);
                                 AddRole(info, ouNode);
@@ -112,14 +113,14 @@ namespace JCodes.Framework.AddIn.Security
         {
             TreeNode ouNode = new TreeNode();
             ouNode.Text = ouInfo.Name;
-            ouNode.Name = ouInfo.ID.ToString();
+            ouNode.Name = ouInfo.Id.ToString();
             ouNode.Tag = ouInfo;//机构信息放到Tag里面
-            if (ouInfo.Deleted)
+            if (ouInfo.IsDelete == 0)
             {
                 ouNode.ForeColor = Color.Red;
             }
-            ouNode.ImageIndex = Portal.gc.GetImageIndex(ouInfo.Category);
-            ouNode.SelectedImageIndex = Portal.gc.GetImageIndex(ouInfo.Category);
+            ouNode.ImageIndex = ouInfo.OuType; //Portal.gc.GetImageIndex(ouInfo.Category);
+            ouNode.SelectedImageIndex = ouInfo.OuType; //Portal.gc.GetImageIndex(ouInfo.Category);
 
             if (parentNode != null)
             {
@@ -131,7 +132,7 @@ namespace JCodes.Framework.AddIn.Security
 
         private void AddRole(OUInfo ouInfo, TreeNode treeNode)
         {
-            List<RoleInfo> roleList = BLLFactory<Role>.Instance.GetRolesByCompany(ouInfo.ID.ToString());
+            List<RoleInfo> roleList = BLLFactory<Role>.Instance.GetRolesByCompanyId(ouInfo.Id);
             foreach (RoleInfo roleInfo in roleList)
             {
                 TreeNode roleNode = new TreeNode();
@@ -139,7 +140,7 @@ namespace JCodes.Framework.AddIn.Security
                 roleNode.Tag = roleInfo;//角色信息放到Tag里面
                 roleNode.ImageIndex = 3;
                 roleNode.SelectedImageIndex = 3;
-                if (ouInfo.Deleted)
+                if (ouInfo.IsDelete == 0)
                 {
                     roleNode.ForeColor = Color.Red;
                     continue;//跳过不显示
@@ -231,7 +232,7 @@ namespace JCodes.Framework.AddIn.Security
                 }
                 else
                 {
-                    allNode = BLLFactory<Functions>.Instance.GetFunctionNodesByUser(Portal.gc.UserInfo.ID, typeInfo.OID);
+                    allNode = BLLFactory<Functions>.Instance.GetFunctionNodesByUser(Portal.gc.UserInfo.Id, typeInfo.OID);
                 }
                 AddFunctionNode(parentNode, allNode);
             }
@@ -275,23 +276,23 @@ namespace JCodes.Framework.AddIn.Security
         /// <summary>
         /// 记录用户的选择情况
         /// </summary>
-        Dictionary<string, string> SelectUserDict = new Dictionary<string, string>();
+        Dictionary<Int32, string> SelectUserDict = new Dictionary<Int32, string>();
         private void RefreshUsers(int roleId)
         {
             this.lvwUser.BeginUpdate();
             this.lvwUser.Items.Clear();//清空列表
 
-            SelectUserDict = new Dictionary<string, string>();
+            SelectUserDict = new Dictionary<Int32, string>();
             List<UserInfo> list = BLLFactory<User>.Instance.GetUsersByRole(roleId);
             foreach (UserInfo info in list)
             {
                 string name = string.Format("{0}（{1}）", info.FullName, info.Name);
-                CListItem item = new CListItem(info.ID.ToString(), name);
+                CDicKeyValue item = new CDicKeyValue(info.Id, name);
                 this.lvwUser.Items.Add(item);
 
-                if (!SelectUserDict.ContainsKey(info.ID.ToString()))
+                if (!SelectUserDict.ContainsKey(info.Id))
                 {
-                    SelectUserDict.Add(info.ID.ToString(), name);
+                    SelectUserDict.Add(info.Id, name);
                 }
             }
             if (this.lvwUser.Items.Count > 0)
@@ -309,7 +310,7 @@ namespace JCodes.Framework.AddIn.Security
             List<OUInfo> list = BLLFactory<OU>.Instance.GetOUsByRole(roleId);
             foreach (OUInfo info in list)
             {
-                CListItem item = new CListItem( info.ID.ToString(), info.Name);
+                CDicKeyValue item = new CDicKeyValue(info.Id, info.Name);
                 this.lvwOU.Items.Add(item);
             }
             if (this.lvwOU.Items.Count > 0)
@@ -362,7 +363,7 @@ namespace JCodes.Framework.AddIn.Security
                     {
                         try
                         {
-                            BLLFactory<Role>.Instance.SetDeletedFlag(roleInfo.ID);//假删除
+                            BLLFactory<Role>.Instance.SetDeletedFlag(roleInfo.Id);//假删除
                             RefreshTreeView();
                         }
                         catch (Exception ex)
@@ -402,7 +403,7 @@ namespace JCodes.Framework.AddIn.Security
                 OUInfo ouInfo = node.Tag as OUInfo;//转换为机构对象
                 if (ouInfo != null)
                 {
-                    this.txtCompany.Value = ouInfo.ID.ToString();
+                    this.txtCompany.Value = ouInfo.Id.ToString();
                 }
             }
             this.txtName.Focus();
@@ -441,18 +442,18 @@ namespace JCodes.Framework.AddIn.Security
                     if (info != null)
                     {
                         groupControl2.Text = Const.Edit + "角色详细信息";
-                        currentID = info.ID.ToString();
+                        currentID = info.Id.ToString();
                         this.txtName.Text = info.Name;
-                        this.txtNote.Text = info.Note;
+                        this.txtNote.Text = info.Remark;
                         this.txtSeq.Text = info.Seq;
-                        this.txtHandNo.Text = info.HandNo;
-                        this.txtCategory.Text = info.Category;
-                        this.txtCompany.Value = info.Company_ID;
+                        this.txtHandNo.Text = info.RoleCode;
+                        this.txtCategory.Text = info.RoleType.ToString();
+                        this.txtCompany.Value = info.CompanyId.ToString();
 
-                        RefreshUsers(info.ID);
-                        RefreshFunctions(info.ID);
-                        RefreshOUs(info.ID);
-                        RefreshTreeRoleData(info.ID);                
+                        RefreshUsers(info.Id);
+                        RefreshFunctions(info.Id);
+                        RefreshOUs(info.Id);
+                        RefreshTreeRoleData(info.Id);                
         
                         // 20171127 wjm 修复添加后立刻添加成员错误
                         btnEditOU.Enabled = true;
@@ -470,17 +471,16 @@ namespace JCodes.Framework.AddIn.Security
         private RoleInfo SetRoleInfo(RoleInfo info)
         {
             info.Name = this.txtName.Text;
-            info.Note = this.txtNote.Text;
+            info.Remark = this.txtNote.Text;
             info.CompanyName = this.txtCompany.Text;
-            info.Company_ID = this.txtCompany.Value;
-            info.HandNo = this.txtHandNo.Text;
+            info.CompanyId = this.txtCompany.Value.ToInt32();
+            info.RoleCode = this.txtHandNo.Text;
             info.Seq = this.txtSeq.Text;
-            info.Category = this.txtCategory.Text;
-            info.Editor = Portal.gc.UserInfo.FullName;
-            info.Editor_ID = Portal.gc.UserInfo.ID.ToString();
-            info.EditTime = DateTimeHelper.GetServerDateTime2();
-
-            info.CurrentLoginUserId = Portal.gc.UserInfo.ID;
+            info.RoleType = this.txtCategory.Text.ToInt32();
+            //info.Editor = Portal.gc.UserInfo.FullName;
+            info.EditorId = Portal.gc.UserInfo.Id;
+            info.LastUpdateTime = DateTimeHelper.GetServerDateTime2();
+            info.CurrentLoginUserId = Portal.gc.UserInfo.Id;
             return info;
         }
 
@@ -538,7 +538,7 @@ namespace JCodes.Framework.AddIn.Security
                     if (info != null)
                     {
                         info = SetRoleInfo(info);
-                        BLLFactory<Role>.Instance.Update(info, info.ID.ToString());
+                        BLLFactory<Role>.Instance.Update(info, info.Id);
 
                         // 20171127 wjm 修复添加后立刻添加成员错误
                         btnEditOU.Enabled = true;
@@ -579,9 +579,9 @@ namespace JCodes.Framework.AddIn.Security
 
                 RoleInfo info = new RoleInfo();
                 info = SetRoleInfo(info);
-                info.Creator = Portal.gc.UserInfo.FullName;
-                info.Creator_ID = Portal.gc.UserInfo.ID.ToString();
-                info.CreateTime = DateTimeHelper.GetServerDateTime2();
+                //info.Creator = Portal.gc.UserInfo.FullName;
+                info.CreatorId = Portal.gc.UserInfo.Id;
+                info.CreatorTime = DateTimeHelper.GetServerDateTime2();
 
                 try
                 {
@@ -630,23 +630,23 @@ namespace JCodes.Framework.AddIn.Security
         /// </summary>
         /// <param name="oldDict">旧的列表</param>
         /// <param name="newDict">新的选择列表</param>
-        private void GetUserDictChanges(Dictionary<string, string> oldDict, Dictionary<string, string> newDict)
+        private void GetUserDictChanges(Dictionary<Int32, string> oldDict, Dictionary<Int32, string> newDict)
         {
             addedUserList = new List<int>();
             deletedUserList = new List<int>();
-            foreach (string key in oldDict.Keys)
+            foreach (Int32 key in oldDict.Keys)
             {
                 if (!newDict.ContainsKey(key))
                 {
-                    deletedUserList.Add(key.ToInt32());
+                    deletedUserList.Add(key);
                 }
             }
 
-            foreach (string key in newDict.Keys)
+            foreach (Int32 key in newDict.Keys)
             {
                 if (!oldDict.ContainsKey(key))
                 {
-                    addedUserList.Add(key.ToInt32());
+                    addedUserList.Add(key);
                 }
             }
         }
@@ -732,9 +732,9 @@ namespace JCodes.Framework.AddIn.Security
                 Dictionary<int, int> ouDict = new Dictionary<int, int>();
                 foreach (OUInfo info in list)
                 {
-                    if (!ouDict.ContainsKey(info.ID))
+                    if (!ouDict.ContainsKey(info.Id))
                     {
-                        ouDict.Add(info.ID, info.ID);
+                        ouDict.Add(info.Id, info.Id);
                     }
                 }
 
@@ -785,7 +785,7 @@ namespace JCodes.Framework.AddIn.Security
             {
                 FrmEditTree dlg = new FrmEditTree();
                 dlg.RoleID = currentID;
-                dlg.DisplayType = FrmEditTree.DisplayTreeType.Function;
+                dlg.DisplayType = DisplayTreeType.Function;
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     RefreshFunctions(Convert.ToInt32(currentID));
@@ -883,15 +883,15 @@ namespace JCodes.Framework.AddIn.Security
             {
                 TreeNode deptNode = new TreeNode();
                 deptNode.Text = ouInfo.Name;
-                deptNode.Tag = ouInfo.ID;
-                deptNode.ImageIndex = Portal.gc.GetImageIndex(ouInfo.Category);
-                deptNode.SelectedImageIndex = Portal.gc.GetImageIndex(ouInfo.Category);
-                if (ouInfo.Deleted)
+                deptNode.Tag = ouInfo.Id;
+                deptNode.ImageIndex = ouInfo.OuType; // Portal.gc.GetImageIndex(ouInfo.Category);
+                deptNode.SelectedImageIndex = ouInfo.OuType; //Portal.gc.GetImageIndex(ouInfo.Category);
+                if (ouInfo.IsDelete == 0)
                 {
                     deptNode.ForeColor = Color.Red;
                     continue;//跳过不显示
                 }
-                deptNode.Checked = roleDataDict.ContainsKey(ouInfo.ID);//选中的
+                deptNode.Checked = roleDataDict.ContainsKey(ouInfo.Id);//选中的
                 treeNode.Nodes.Add(deptNode);
 
                 AddRoleDataDept(ouInfo.Children, deptNode);
@@ -939,13 +939,13 @@ namespace JCodes.Framework.AddIn.Security
                 {
                     TreeNode topnode = new TreeNode();
                     topnode.Text = groupInfo.Name;
-                    topnode.Name = groupInfo.ID.ToString();
-                    topnode.Tag = groupInfo.ID;
-                    topnode.ImageIndex = Portal.gc.GetImageIndex(groupInfo.Category);
-                    topnode.SelectedImageIndex = Portal.gc.GetImageIndex(groupInfo.Category);
-                    topnode.Checked = roleDataDict.ContainsKey(groupInfo.ID);//选中的
+                    topnode.Name = groupInfo.Id.ToString();
+                    topnode.Tag = groupInfo.Id;
+                    topnode.ImageIndex = groupInfo.OuType; //Portal.gc.GetImageIndex(groupInfo.Category);
+                    topnode.SelectedImageIndex = groupInfo.OuType; //Portal.gc.GetImageIndex(groupInfo.Category);
+                    topnode.Checked = roleDataDict.ContainsKey(groupInfo.Id);//选中的
 
-                    List<OUNodeInfo> sublist = BLLFactory<OU>.Instance.GetTreeByID(groupInfo.ID);
+                    List<OUNodeInfo> sublist = BLLFactory<OU>.Instance.GetTreeByID(groupInfo.Id);
                     AddRoleDataDept(sublist, topnode);
 
                     this.treeRoleData.Nodes.Add(topnode);

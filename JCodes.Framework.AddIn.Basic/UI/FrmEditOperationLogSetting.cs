@@ -71,24 +71,24 @@ namespace JCodes.Framework.AddIn.Basic
         {
             InitDictItem();//数据字典加载（公用）
 
-            if (!string.IsNullOrEmpty(ID))
+            if (Id > 0)
             {
                 #region 显示信息
-                OperationLogSettingInfo info = BLLFactory<OperationLogSetting>.Instance.FindByID(ID);
+                OperationLogSettingInfo info = BLLFactory<OperationLogSetting>.Instance.FindByID(Id);
                 if (info != null)
                 {
                     tempInfo = info;//重新给临时对象赋值，使之指向存在的记录对象
 
-                    txtForbid.Checked = info.Forbid;
+                    txtForbid.Checked = (info.IsForbid == 0);
                     txtTableName.Text = info.TableName;
-                    txtInsertLog.Checked = info.InsertLog;
-                    txtDeleteLog.Checked = info.DeleteLog;
-                    txtUpdateLog.Checked = info.UpdateLog;
-                    txtNote.Text = info.Note;
-                    txtCreator.Text = info.Creator;
-                    txtCreateTime.SetDateTime(info.CreateTime);
-                    txtEditor.Text = info.Editor;
-                    txtEditTime.SetDateTime(info.EditTime);
+                    txtInsertLog.Checked = (info.IsInsertLog ==0);
+                    txtDeleteLog.Checked = (info.IsDeleteLog == 0);
+                    txtUpdateLog.Checked = (info.IsUpdateLog == 0);
+                    txtNote.Text = info.Remark;
+                    txtCreator.Text = info.CreatorId.ToString();
+                    txtCreateTime.SetDateTime(info.CreatorTime);
+                    txtEditor.Text = info.EditorId.ToString();
+                    txtEditTime.SetDateTime(info.LastUpdateTime);
                 }
                 #endregion            
             }
@@ -114,17 +114,17 @@ namespace JCodes.Framework.AddIn.Basic
         /// <param name="info"></param>
         private void SetInfo(OperationLogSettingInfo info)
         {
-            info.Forbid = txtForbid.Checked;
+            info.IsForbid = txtForbid.Checked ? 0 : 1;
             info.TableName = txtTableName.Text;
-            info.InsertLog = txtInsertLog.Checked;
-            info.DeleteLog = txtDeleteLog.Checked;
-            info.UpdateLog = txtUpdateLog.Checked;
-            info.Note = txtNote.Text;
-            info.Editor = Portal.gc.UserInfo.FullName;
-            info.Editor_ID = Portal.gc.UserInfo.ID.ToString();
-            info.EditTime = txtCreateTime.DateTime;
+            info.IsInsertLog = txtInsertLog.Checked ? 0 : 1;
+            info.IsDeleteLog = txtDeleteLog.Checked ? 0 : 1;
+            info.IsUpdateLog = txtUpdateLog.Checked ? 0 : 1;
+            info.Remark = txtNote.Text;
+            //info.Editor = Portal.gc.UserInfo.FullName;
+            info.EditorId = Portal.gc.UserInfo.Id;
+            info.LastUpdateTime = txtCreateTime.DateTime;
 
-            info.CurrentLoginUserId = Portal.gc.UserInfo.ID;
+            info.CurrentLoginUserId = Portal.gc.UserInfo.Id;
         }
 
         /// <summary>
@@ -135,9 +135,9 @@ namespace JCodes.Framework.AddIn.Basic
         {
             OperationLogSettingInfo info = tempInfo;//必须使用存在的局部变量，因为部分信息可能被附件使用
             SetInfo(info);
-            info.Creator = Portal.gc.UserInfo.FullName;
-            info.Creator_ID = Portal.gc.UserInfo.ID.ToString();
-            info.CreateTime = txtCreateTime.DateTime;
+            //info.Creator = Portal.gc.UserInfo.FullName;
+            info.CreatorId = Portal.gc.UserInfo.Id;
+            info.CreatorTime = txtCreateTime.DateTime;
 
             try
             {
@@ -174,7 +174,7 @@ namespace JCodes.Framework.AddIn.Basic
         public override bool SaveUpdated()
         {
             //检查不同ID是否还有其他相同关键字的记录
-            string condition = string.Format("TableName ='{0}' and ID <> '{1}' ", this.txtTableName.Text, ID);
+            string condition = string.Format("TableName ='{0}' and ID <> '{1}' ", this.txtTableName.Text, Id);
             bool exist = BLLFactory<OperationLogSetting>.Instance.IsExistRecord(condition);
             if (exist)
             {
@@ -182,7 +182,7 @@ namespace JCodes.Framework.AddIn.Basic
                 return false;
             }
 
-            OperationLogSettingInfo info = BLLFactory<OperationLogSetting>.Instance.FindByID(ID);
+            OperationLogSettingInfo info = BLLFactory<OperationLogSetting>.Instance.FindByID(Id);
             if (info != null)
             {
                 SetInfo(info);
@@ -190,7 +190,7 @@ namespace JCodes.Framework.AddIn.Basic
                 try
                 {
                     #region 更新数据
-                    bool succeed = BLLFactory<OperationLogSetting>.Instance.Update(info, info.ID);
+                    bool succeed = BLLFactory<OperationLogSetting>.Instance.Update(info, info.Id);
                     if (succeed)
                     {
                         //可添加其他关联操作

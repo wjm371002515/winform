@@ -1,233 +1,292 @@
-using System;
-using System.Xml.Serialization;
+﻿using System;
 using System.Runtime.Serialization;
+using JCodes.Framework.Entity;
 
 namespace JCodes.Framework.Entity
 {
-    [DataContract]
-    [Serializable]
-    public class FileUploadInfo : BaseEntity
-    {    
-        #region Field Members
+	/// <summary>
+	/// 文件上传信息
+	/// </summary>
+	[Serializable]
+	[DataContract]
+	public class FileUploadInfo : BaseEntity 
+	{
+		#region Field Members
 
-        private string m_ID = System.Guid.NewGuid().ToString();
-        private string m_Owner_ID; //附件组所属记录ID        
-        private string m_AttachmentGUID; //附件GUID          
-        private string m_FileName; //文件名          
-        private string m_BasePath; //基础路径          
-        private string m_SavePath; //文件保存相对路径          
-        private string m_Category; //文件分类          
-        private int m_FileSize = 0; //文件大小          
-        private string m_FileExtend; //文件扩展名          
-        private string m_Editor; //所属用户          
-        private DateTime m_AddTime = System.DateTime.Now; //添加时间          
-        private int m_DeleteFlag = 0; //删除标志，1为删除，0为正常 
-        private byte[] m_FileData; //文件流
+		/// <summary>
+		/// GUID对应的ID序号
+		/// </summary>
+		private String m_Gid = string.Empty;
 
-        #endregion
+		/// <summary>
+		/// 创建人ID
+		/// </summary>
+		private Int32 m_CreatorId = 0;
 
-        #region Property Members
-        
+		/// <summary>
+		/// 附件GUID
+		/// </summary>
+		private String m_AttachmentGid = string.Empty;
+
+		/// <summary>
+		/// 名称
+		/// </summary>
+		private String m_Name = string.Empty;
+
+		/// <summary>
+		/// 基础路径
+		/// </summary>
+		private String m_BasePath = string.Empty;
+
+		/// <summary>
+		/// 文件保存相对路径
+		/// </summary>
+		private String m_SavePath = string.Empty;
+
+		/// <summary>
+		/// 分类编码
+		/// </summary>
+		private String m_CategoryCode = string.Empty;
+
+		/// <summary>
+		/// 文件大小
+		/// </summary>
+		private Int32 m_FileSize = 0;
+
+		/// <summary>
+		/// 文件扩展名
+		/// </summary>
+		private String m_FileExtend = string.Empty;
+
+		/// <summary>
+		/// 编辑人ID
+		/// </summary>
+		private Int32 m_EditorId = 0;
+
+		/// <summary>
+		/// 添加时间
+		/// </summary>
+		private DateTime m_AddTime = DateTime.Now;
+
+		/// <summary>
+		/// 是否删除
+		/// </summary>
+		private Int16 m_IsDelete = 0;
+		#endregion
+
+		#region Property Members
+
+		/// <summary>
+		/// GUID对应的ID序号
+		/// </summary>
 		[DataMember]
-        public virtual string ID
-        {
-            get
-            {
-                return this.m_ID;
-            }
-            set
-            {
-                this.m_ID = value;
-            }
-        }
+		public virtual String Gid
+		{
+			get
+			{
+				return this.m_Gid;
+			}
+			set
+			{
+				this.m_Gid = value;
+			}
+		}
 
-        /// <summary>
-        /// 拥有者ID  
-        /// </summary>
-        [DataMember]
-        public string Owner_ID
-        {
-            get { return m_Owner_ID; }
-            set { m_Owner_ID = value; }
-        }
-
-        /// <summary>
-        /// 附件GUID
-        /// </summary>
+		/// <summary>
+		/// 创建人ID
+		/// </summary>
 		[DataMember]
-        public virtual string AttachmentGUID
-        {
-            get
-            {
-                return this.m_AttachmentGUID;
-            }
-            set
-            {
-                this.m_AttachmentGUID = value;
-            }
-        }
+		public virtual Int32 CreatorId
+		{
+			get
+			{
+				return this.m_CreatorId;
+			}
+			set
+			{
+				this.m_CreatorId = value;
+			}
+		}
 
-        /// <summary>
-        /// 文件名
-        /// </summary>
+		/// <summary>
+		/// 附件GUID
+		/// </summary>
 		[DataMember]
-        public virtual string FileName
-        {
-            get
-            {
-                return this.m_FileName;
-            }
-            set
-            {
-                this.m_FileName = value;
-            }
-        }
+		public virtual String AttachmentGid
+		{
+			get
+			{
+				return this.m_AttachmentGid;
+			}
+			set
+			{
+				this.m_AttachmentGid = value;
+			}
+		}
 
-        /// <summary>
-        /// 基础路径
-        /// </summary>
+		/// <summary>
+		/// 名称
+		/// </summary>
 		[DataMember]
-        public virtual string BasePath
-        {
-            get
-            {
-                return this.m_BasePath;
-            }
-            set
-            {
-                this.m_BasePath = value;
-            }
-        }
+		public virtual String Name
+		{
+			get
+			{
+				return this.m_Name;
+			}
+			set
+			{
+				this.m_Name = value;
+			}
+		}
 
-        /// <summary>
-        /// 文件保存相对路径
-        /// </summary>
+		/// <summary>
+		/// 基础路径
+		/// </summary>
 		[DataMember]
-        public virtual string SavePath
-        {
-            get
-            {
-                return this.m_SavePath;
-            }
-            set
-            {
-                this.m_SavePath = value;
-            }
-        }
+		public virtual String BasePath
+		{
+			get
+			{
+				return this.m_BasePath;
+			}
+			set
+			{
+				this.m_BasePath = value;
+			}
+		}
 
-        /// <summary>
-        /// 文件分类
-        /// </summary>
+		/// <summary>
+		/// 文件保存相对路径
+		/// </summary>
 		[DataMember]
-        public virtual string Category
-        {
-            get
-            {
-                return this.m_Category;
-            }
-            set
-            {
-                this.m_Category = value;
-            }
-        }
+		public virtual String SavePath
+		{
+			get
+			{
+				return this.m_SavePath;
+			}
+			set
+			{
+				this.m_SavePath = value;
+			}
+		}
 
-        /// <summary>
-        /// 文件大小
-        /// </summary>
+		/// <summary>
+		/// 分类编码
+		/// </summary>
 		[DataMember]
-        public virtual int FileSize
-        {
-            get
-            {
-                return this.m_FileSize;
-            }
-            set
-            {
-                this.m_FileSize = value;
-            }
-        }
+		public virtual String CategoryCode
+		{
+			get
+			{
+				return this.m_CategoryCode;
+			}
+			set
+			{
+				this.m_CategoryCode = value;
+			}
+		}
 
-        /// <summary>
-        /// 文件扩展名
-        /// </summary>
+		/// <summary>
+		/// 文件大小
+		/// </summary>
 		[DataMember]
-        public virtual string FileExtend
-        {
-            get
-            {
-                return this.m_FileExtend;
-            }
-            set
-            {
-                this.m_FileExtend = value;
-            }
-        }
+		public virtual Int32 FileSize
+		{
+			get
+			{
+				return this.m_FileSize;
+			}
+			set
+			{
+				this.m_FileSize = value;
+			}
+		}
 
-        /// <summary>
-        /// 所属用户
-        /// </summary>
+		/// <summary>
+		/// 文件扩展名
+		/// </summary>
 		[DataMember]
-        public virtual string Editor
-        {
-            get
-            {
-                return this.m_Editor;
-            }
-            set
-            {
-                this.m_Editor = value;
-            }
-        }
+		public virtual String FileExtend
+		{
+			get
+			{
+				return this.m_FileExtend;
+			}
+			set
+			{
+				this.m_FileExtend = value;
+			}
+		}
 
-        /// <summary>
-        /// 添加时间
-        /// </summary>
+		/// <summary>
+		/// 编辑人ID
+		/// </summary>
 		[DataMember]
-        public virtual DateTime AddTime
-        {
-            get
-            {
-                return this.m_AddTime;
-            }
-            set
-            {
-                this.m_AddTime = value;
-            }
-        }
+		public virtual Int32 EditorId
+		{
+			get
+			{
+				return this.m_EditorId;
+			}
+			set
+			{
+				this.m_EditorId = value;
+			}
+		}
 
-        /// <summary>
-        /// 删除标志，1为删除，0为正常
-        /// </summary>
+		/// <summary>
+		/// 添加时间
+		/// </summary>
 		[DataMember]
-        public virtual int DeleteFlag
-        {
-            get
-            {
-                return this.m_DeleteFlag;
-            }
-            set
-            {
-                this.m_DeleteFlag = value;
-            }
-        }
+		public virtual DateTime AddTime
+		{
+			get
+			{
+				return this.m_AddTime;
+			}
+			set
+			{
+				this.m_AddTime = value;
+			}
+		}
 
-        /// <summary>
-        /// 文件流数据
-        /// </summary>
-        [DataMember]
-        public byte[] FileData
-        {
-            get
-            {
-                return this.m_FileData;
-            }
-            set
-            {
-                this.m_FileData = value;
-            }
-        }
+		/// <summary>
+		/// 是否删除
+		/// </summary>
+		[DataMember]
+		public virtual Int16 IsDelete
+		{
+			get
+			{
+				return this.m_IsDelete;
+			}
+			set
+			{
+				this.m_IsDelete = value;
+			}
+		}
 
-        #endregion
-
-    }
+		/// <summary>
+		/// 文件流
+		/// </summary>
+		private byte[] m_FileData;
+		/// <summary>
+		/// 文件流数据
+		/// </summary>
+		[DataMember]
+		public byte[] FileData
+		{
+			get
+			{
+				return this.m_FileData;
+			}
+			set
+			{
+				this.m_FileData = value;
+			}
+		}
+		#endregion
+	}
 }

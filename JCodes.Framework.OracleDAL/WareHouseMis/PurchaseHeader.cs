@@ -45,7 +45,7 @@ namespace JCodes.Framework.OracleDAL
 			SmartDataReader reader = new SmartDataReader(dataReader);
 			
 			info.ID = reader.GetInt32("ID");
-			info.HandNo = reader.GetString("HandNo");
+			info.UserCode = reader.GetString("UserCode");
 			info.OperationType = reader.GetString("OperationType");
 			info.Manufacture = reader.GetString("Manufacture");
 			info.WareHouse = reader.GetString("WareHouse");
@@ -70,7 +70,7 @@ namespace JCodes.Framework.OracleDAL
 			Hashtable hash = new Hashtable();
 
             hash.Add("ID", info.ID);
- 			hash.Add("HandNo", info.HandNo);
+ 			hash.Add("UserCode", info.UserCode);
  			hash.Add("OperationType", info.OperationType);
  			hash.Add("Manufacture", info.Manufacture);
  			hash.Add("WareHouse", info.WareHouse);
@@ -134,7 +134,7 @@ namespace JCodes.Framework.OracleDAL
 
         public DataTable GetPurchaseReport(string condition)
         {
-            string sql = string.Format(@"Select h.ID,h.HandNo,h.OperationType,h.Manufacture,h.WareHouse,d.Dept,h.CostCenter,h.Note,h.CreateDate,h.Creator,h.PickingPeople  
+            string sql = string.Format(@"Select h.ID,h.UserCode,h.OperationType,h.Manufacture,h.WareHouse,d.Dept,h.CostCenter,h.Note,h.CreateDate,h.Creator,h.PickingPeople  
             from {0}PurchaseHeader h inner join {0}PurchaseDetail d on h.ID = d.PurchaseHead_ID {1} order by h.CreateDate", OraclePortal.gc._wareHouseTablePre, condition);
             return this.SqlTable(sql);
         }

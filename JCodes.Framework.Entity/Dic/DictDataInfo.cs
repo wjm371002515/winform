@@ -4,36 +4,37 @@ using System.Runtime.Serialization;
 
 namespace JCodes.Framework.Entity
 {
+    // 20180219 wjm 手工调整类对象
     [Serializable]
     [DataContract]
     public class DictDataInfo : BaseEntity
     {    
         #region Field Members
-        private string m_ID = Guid.NewGuid().ToString();
-        private Int32 m_DictType_ID = 0; //字典类型名称        
-        private Int32 m_Value = 0; //字典值内容  
-        private string m_Name = ""; //字典显示名称          
-        private string m_Remark = ""; //备注信息          
-        private string m_Seq = ""; //排序          
-        private string m_Editor = ""; //编辑者          
-        private DateTime m_LastUpdated = System.DateTime.Now; //编辑时间          
+        private string m_Gid = Guid.NewGuid().ToString();
+        private Int32 m_DicttypeID = 0; //字典类型名称        
+        private string m_Value = string.Empty; //字典值内容  
+        private string m_Name = string.Empty; //字典显示名称          
+        private string m_Remark = string.Empty; //备注信息          
+        private string m_Seq = string.Empty; //排序          
+        private Int32 m_EditorId = 0; //编辑者          
+        private DateTime m_LastUpdateTime = System.DateTime.Now; //编辑时间          
 
         #endregion
 
         #region Property Members
         /// <summary>
-        /// ID编码
+        /// GID编码
         /// </summary>
         [DataMember]
-        public virtual string ID
+        public virtual string Gid
         {
             get
             {
-                return this.m_ID;
+                return this.m_Gid;
             }
             set
             {
-                this.m_ID = value;
+                this.m_Gid = value;
             }
         }
 
@@ -41,15 +42,15 @@ namespace JCodes.Framework.Entity
         /// 字典类型名称
         /// </summary>
         [DataMember]
-        public virtual Int32 DictType_ID
+        public virtual Int32 DicttypeID
         {
             get
             {
-                return this.m_DictType_ID;
+                return this.m_DicttypeID;
             }
             set
             {
-                this.m_DictType_ID = value;
+                this.m_DicttypeID = value;
             }
         }
 
@@ -57,7 +58,7 @@ namespace JCodes.Framework.Entity
         /// 字典值内容
         /// </summary>
         [DataMember]
-        public virtual Int32 Value
+        public virtual string Value
         {
             get
             {
@@ -121,15 +122,15 @@ namespace JCodes.Framework.Entity
         /// 编辑者
         /// </summary>
         [DataMember]
-        public virtual string Editor
+        public virtual Int32 EditorId
         {
             get
             {
-                return this.m_Editor;
+                return this.m_EditorId;
             }
             set
             {
-                this.m_Editor = value;
+                this.m_EditorId = value;
             }
         }
 
@@ -137,19 +138,17 @@ namespace JCodes.Framework.Entity
         /// 编辑时间
         /// </summary>
         [DataMember]
-        public virtual DateTime LastUpdated
+        public virtual DateTime LastUpdateTime
         {
             get
             {
-                return this.m_LastUpdated;
+                return this.m_LastUpdateTime;
             }
             set
             {
-                this.m_LastUpdated = value;
+                this.m_LastUpdateTime = value;
             }
         }
-
-
         #endregion
 
     }

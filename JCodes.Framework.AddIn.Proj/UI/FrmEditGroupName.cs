@@ -36,9 +36,9 @@ namespace JCodes.Framework.AddIn.Proj
         public override void DisplayData()
         {
             btnAdd.Visible = false;
-            if (!string.IsNullOrEmpty(ID))
+            if (!string.IsNullOrEmpty(this.Tag.ToString()))
             {
-                txtGuid.Text = ID;
+                txtGuid.Text = this.Tag.ToString();
 
                 XmlHelper xmltableshelper = new XmlHelper(@"XML\tables.xml");
                 XmlNodeList xmlNodeLst = xmltableshelper.Read(string.Format("datatype/tabletype"));
@@ -49,8 +49,7 @@ namespace JCodes.Framework.AddIn.Proj
 
                     // 得到DataTypeInfo节点的所有子节点
                     XmlNodeList xnl0 = xe.ChildNodes;
-
-                    if (ID == xe.Attributes["guid"].Value)
+                    if (string.Equals(xe.Attributes["guid"].Value, this.Tag))
                     {
                         txtGroupName.Text = xe.Attributes["name"].Value;
                         txtCreateDate.Text = xe.Attributes["createdate"].Value;
@@ -91,12 +90,13 @@ namespace JCodes.Framework.AddIn.Proj
                 objElement.SetAttribute("guid", info.GUID);
                 objElement.SetAttribute("createdate", info.CreateDate);
                 objElement.SetAttribute("name", info.Name);
+                objElement.SetAttribute("basicdata", "0");
                 objElement.InnerXml = string.Empty;
                 objNode.AppendChild(objElement);
               
                 xmltableshelper.Save();
                 strGroupName = txtGroupName.Text.Trim();
-                ID = info.GUID;
+                this.Tag = info.GUID;
 
                 return true;
                 #endregion
@@ -130,7 +130,7 @@ namespace JCodes.Framework.AddIn.Proj
                         // 得到DataTypeInfo节点的所有子节点
                         XmlNodeList xnl0 = xe.ChildNodes;
 
-                        if (ID == xe.Attributes["guid"].Value)
+                        if ( string.Equals(xe.Attributes["guid"].Value, this.Tag) )
                         {
                             xe.Attributes["name"].Value = txtGroupName.Text;
                         }

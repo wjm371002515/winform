@@ -22,10 +22,11 @@ namespace JCodes.Framework.AddIn.Proj
         public string strChineseName = string.Empty;
 
         public string strGuid = string.Empty;
+        public string strGroupGuid = string.Empty;
 
-        private string tablesModel = "<name>{0}</name><chineseName>{1}</chineseName><functionId>{2}</functionId><typeguid>{3}</typeguid><path>{4}</path>";
+        private string tablesModel = "<name>{0}</name><chineseName>{1}</chineseName><functionId>{2}</functionId><typeguid>{3}</typeguid><path>{4}</path><basicdatapath></basicdatapath>";
 
-        private string tablesDetailModel = "<?xml version=\"1.0\" encoding=\"utf-8\"?><datatype><histories></histories><basicinfo><item guid=\"{0}\"><functionId>{1}</functionId><name>{2}</name><chineseName>{3}</chineseName><existhistable>{4}</existhistable><dbtype>{5}</dbtype><version>{6}</version><lasttime>{7}</lasttime><remark>{8}</remark></item></basicinfo><fieldsinfo></fieldsinfo><indexsinfo></indexsinfo></datatype>";
+        private string tablesDetailModel = "<?xml version=\"1.0\" encoding=\"utf-8\"?><datatype><histories></histories><basicinfo><item guid=\"{0}\"><functionId>{1}</functionId><name>{2}</name><chineseName>{3}</chineseName><existhistable>{4}</existhistable><version>{5}</version><lasttime>{6}</lasttime><remark>{7}</remark></item></basicinfo><fieldsinfo></fieldsinfo><indexsinfo></indexsinfo></datatype>";
 
         /// <summary>
         /// 临时保存Name的值，用于修改英文名后重命名table文件
@@ -70,7 +71,7 @@ namespace JCodes.Framework.AddIn.Proj
             }
 
             // 检查新增的表是否已经存在
-            if (string.IsNullOrEmpty(ID))
+            if (!string.IsNullOrEmpty(strGuid))
             {
                 XmlHelper xmltableshelper = new XmlHelper(@"XML\tables.xml");
                 XmlNodeList xmlNodeLst = xmltableshelper.Read(string.Format("datatype/dataitem"));
@@ -126,10 +127,11 @@ namespace JCodes.Framework.AddIn.Proj
                 typeGuidList.Add(new CListItem(xe.Attributes["guid"].Value, xe.Attributes["name"].Value));
             }
             cbbTypeGuid.BindDictItems(typeGuidList);
+            cbbTypeGuid.SetComboBoxItem(strGroupGuid);
 
-            if (!string.IsNullOrEmpty(ID))
+            if (!string.IsNullOrEmpty(strGuid))
             {
-                txtGUID.Text = ID;
+                txtGUID.Text = strGuid;
 
                 XmlNodeList xmlNodeLst = xmltableshelper.Read(string.Format("datatype/dataitem"));
                 foreach (XmlNode xn1 in xmlNodeLst)
@@ -140,7 +142,7 @@ namespace JCodes.Framework.AddIn.Proj
                     // 得到DataTypeInfo节点的所有子节点
                     XmlNodeList xnl0 = xe.ChildNodes;
 
-                    if (ID == xe.Attributes["guid"].Value)
+                    if (string.Equals(xe.Attributes["guid"].Value, strGuid))
                     {
                         txtTableName.Text = xnl0.Item(0).InnerText;
                         txtChineseName.Text = xnl0.Item(1).InnerText;
@@ -155,7 +157,7 @@ namespace JCodes.Framework.AddIn.Proj
             else
             {
                 txtGUID.Text = Guid.NewGuid().ToString();
-                cbbTypeGuid.SetComboBoxItem(strGuid);
+                //cbbTypeGuid.SetComboBoxItem(txtGUID.Text);
             }
             this.txtTableName.Focus();
         }
@@ -179,34 +181,19 @@ namespace JCodes.Framework.AddIn.Proj
             try
             {
                 #region 新增数据
-                // 获取数据库数据类型
-                XmlHelper xmlprojhelper = new XmlHelper(@"XML\project.xml");
-                XmlNodeList xmlprejectNodeLst = xmlprojhelper.Read("datatype");
-
-                if (xmlprejectNodeLst.Count == 0)
-                    return false;
-
-                XmlNode xn1project = xmlprejectNodeLst[0];
-                // 将节点转换为元素，便于得到节点的属性值
-                XmlElement xeproject = (XmlElement)xn1project;
-
-                // 得到DataTypeInfo节点的所有子节点
-                XmlNodeList xnl0project = xeproject.ChildNodes;
-               
-                string DbType = xnl0project.Item(4).InnerText;
-
+                
                 XmlHelper xmltableshelper = new XmlHelper(@"XML\tables.xml");
                 xmltableshelper.InsertElement("datatype/dataitem", "item", "guid", info.GUID, string.Format(tablesModel, info.Name, info.ChineseName, info.FunctionId, info.TypeGuid, info.Path));
 
                 xmltableshelper.Save();
 
                 // 新增表名.table文件
-                FileUtil.AppendText(string.Format(@"XML\{0}.table", info.Name), string.Format(tablesDetailModel, System.Guid.NewGuid(), info.FunctionId, info.Name, info.ChineseName, Const.Zero, DbType, "1.0.0.0", DateTimeHelper.GetServerDateTime(), string.Empty), Encoding.UTF8);
+                FileUtil.AppendText(string.Format(@"XML\{0}.table", info.Name), string.Format(tablesDetailModel, System.Guid.NewGuid(), info.FunctionId, info.Name, info.ChineseName, Const.Num_Zero, "1.0.0.0", DateTimeHelper.GetServerDateTime(), string.Empty), Encoding.UTF8);
 
                 strItemName = info.Name;
                 strFunction = info.FunctionId;
                 strChineseName = info.ChineseName;
-                ID = info.GUID;
+                strGuid = info.GUID;
                 return true;
                 #endregion
             }
@@ -228,18 +215,24 @@ namespace JCodes.Framework.AddIn.Proj
                 // 获取数据库数据类型
                 XmlHelper xmltableshelper = new XmlHelper(@"XML\tables.xml");
                 // 更新操作
-                xmltableshelper.Replace(string.Format("datatype/dataitem/item[@guid=\"{0}\"]/name", ID), info.Name);
-                xmltableshelper.Replace(string.Format("datatype/dataitem/item[@guid=\"{0}\"]/chineseName", ID), info.ChineseName);
-                xmltableshelper.Replace(string.Format("datatype/dataitem/item[@guid=\"{0}\"]/functionId", ID), info.FunctionId);
-                xmltableshelper.Replace(string.Format("datatype/dataitem/item[@guid=\"{0}\"]/typeguid", ID), info.TypeGuid);
-                xmltableshelper.Replace(string.Format("datatype/dataitem/item[@guid=\"{0}\"]/path", ID), info.Path);
+                xmltableshelper.Replace(string.Format("datatype/dataitem/item[@guid=\"{0}\"]/name", strGuid), info.Name);
+                xmltableshelper.Replace(string.Format("datatype/dataitem/item[@guid=\"{0}\"]/chineseName", strGuid), info.ChineseName);
+                xmltableshelper.Replace(string.Format("datatype/dataitem/item[@guid=\"{0}\"]/functionId", strGuid), info.FunctionId);
+                xmltableshelper.Replace(string.Format("datatype/dataitem/item[@guid=\"{0}\"]/typeguid", strGuid), info.TypeGuid);
+                xmltableshelper.Replace(string.Format("datatype/dataitem/item[@guid=\"{0}\"]/path", strGuid), info.Path);
                 xmltableshelper.Save();
 
                 if (!string.Equals(tmpName, info.Name))
                 {
-                    // 重命名
+                    // 表结构重命名
                     if (FileUtil.IsExistFile(string.Format(@"XML\{0}.table", tmpName)))
                         System.IO.File.Move(string.Format(@"XML\{0}.table", tmpName), string.Format(@"XML\{0}.table", info.Name));
+                    // 基础数据重命名
+                    if (FileUtil.IsExistFile(string.Format(@"XML\{0}.basicdata", tmpName)))
+                    {
+                        xmltableshelper.Replace(string.Format("datatype/dataitem/item[@guid=\"{0}\"]/basicdatapath", strGuid), string.Format(@"XML\{0}.basicdata", info.Name));
+                        System.IO.File.Move(string.Format(@"XML\{0}.basicdata", tmpName), string.Format(@"XML\{0}.basicdata", info.Name));
+                    }
                 }
 
                 // 新增表名.table文件
@@ -252,7 +245,7 @@ namespace JCodes.Framework.AddIn.Proj
                 strItemName = info.Name;
                 strFunction = info.FunctionId;
                 strChineseName = info.ChineseName;
-                ID = info.GUID;
+                strGuid = info.GUID;
                 return true;
                 #endregion
             }
@@ -268,7 +261,7 @@ namespace JCodes.Framework.AddIn.Proj
             info.TypeGuid = (cbbTypeGuid.SelectedItem as CListItem).Value;
             info.Path = string.Format(@"XML\{0}.table", info.Name);
             // 如果是新增 则赋值路径
-            if (string.IsNullOrEmpty(ID))
+            if (!string.IsNullOrEmpty(strGuid))
             {
                 // 删除table文件
                 if (FileUtil.FileIsExist(info.Path))

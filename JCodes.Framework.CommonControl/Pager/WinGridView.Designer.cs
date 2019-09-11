@@ -66,19 +66,19 @@
             this.menu_Export,
             this.menu_ColumnWidth});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(268, 319);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(263, 286);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(264, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(259, 6);
             this.toolStripSeparator1.Visible = false;
             // 
             // menu_Add
             // 
             this.menu_Add.Image = ((System.Drawing.Image)(resources.GetObject("menu_Add.Image")));
             this.menu_Add.Name = "menu_Add";
-            this.menu_Add.Size = new System.Drawing.Size(267, 30);
+            this.menu_Add.Size = new System.Drawing.Size(262, 30);
             this.menu_Add.Text = "新建(&N)";
             this.menu_Add.Click += new System.EventHandler(this.menu_Add_Click);
             // 
@@ -86,7 +86,7 @@
             // 
             this.menu_Edit.Image = ((System.Drawing.Image)(resources.GetObject("menu_Edit.Image")));
             this.menu_Edit.Name = "menu_Edit";
-            this.menu_Edit.Size = new System.Drawing.Size(267, 30);
+            this.menu_Edit.Size = new System.Drawing.Size(262, 30);
             this.menu_Edit.Text = "编辑选定项(&E)";
             this.menu_Edit.Click += new System.EventHandler(this.menu_Edit_Click);
             // 
@@ -94,7 +94,7 @@
             // 
             this.menu_Delete.Image = ((System.Drawing.Image)(resources.GetObject("menu_Delete.Image")));
             this.menu_Delete.Name = "menu_Delete";
-            this.menu_Delete.Size = new System.Drawing.Size(267, 30);
+            this.menu_Delete.Size = new System.Drawing.Size(262, 30);
             this.menu_Delete.Text = "删除选定项(&D)";
             this.menu_Delete.Click += new System.EventHandler(this.menu_Delete_Click);
             // 
@@ -102,20 +102,20 @@
             // 
             this.menu_Refresh.Image = ((System.Drawing.Image)(resources.GetObject("menu_Refresh.Image")));
             this.menu_Refresh.Name = "menu_Refresh";
-            this.menu_Refresh.Size = new System.Drawing.Size(267, 30);
+            this.menu_Refresh.Size = new System.Drawing.Size(262, 30);
             this.menu_Refresh.Text = "刷新列表(&R)";
             this.menu_Refresh.Click += new System.EventHandler(this.menu_Refresh_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(264, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(259, 6);
             // 
             // menu_CopyInfo
             // 
             this.menu_CopyInfo.Image = ((System.Drawing.Image)(resources.GetObject("menu_CopyInfo.Image")));
             this.menu_CopyInfo.Name = "menu_CopyInfo";
-            this.menu_CopyInfo.Size = new System.Drawing.Size(267, 30);
+            this.menu_CopyInfo.Size = new System.Drawing.Size(262, 30);
             this.menu_CopyInfo.Text = "复制选定行信息(&C)";
             this.menu_CopyInfo.Click += new System.EventHandler(this.menu_CopyInfo_Click);
             // 
@@ -123,7 +123,7 @@
             // 
             this.menu_SetColumn.Image = ((System.Drawing.Image)(resources.GetObject("menu_SetColumn.Image")));
             this.menu_SetColumn.Name = "menu_SetColumn";
-            this.menu_SetColumn.Size = new System.Drawing.Size(267, 30);
+            this.menu_SetColumn.Size = new System.Drawing.Size(262, 30);
             this.menu_SetColumn.Text = "设置表格显示列(&S)";
             this.menu_SetColumn.Click += new System.EventHandler(this.menu_SetColumn_Click);
             // 
@@ -131,7 +131,7 @@
             // 
             this.menu_Print.Image = ((System.Drawing.Image)(resources.GetObject("menu_Print.Image")));
             this.menu_Print.Name = "menu_Print";
-            this.menu_Print.Size = new System.Drawing.Size(267, 30);
+            this.menu_Print.Size = new System.Drawing.Size(262, 30);
             this.menu_Print.Text = "打印列表(&P)";
             this.menu_Print.Click += new System.EventHandler(this.menu_Print_Click);
             // 
@@ -139,20 +139,21 @@
             // 
             this.menu_Export.Image = ((System.Drawing.Image)(resources.GetObject("menu_Export.Image")));
             this.menu_Export.Name = "menu_Export";
-            this.menu_Export.Size = new System.Drawing.Size(267, 30);
+            this.menu_Export.Size = new System.Drawing.Size(262, 30);
             this.menu_Export.Text = "导出数据(&E)";
             this.menu_Export.Click += new System.EventHandler(this.menu_Export_Click);
             // 
             // menu_ColumnWidth
             // 
             this.menu_ColumnWidth.Name = "menu_ColumnWidth";
-            this.menu_ColumnWidth.Size = new System.Drawing.Size(267, 30);
+            this.menu_ColumnWidth.Size = new System.Drawing.Size(262, 30);
             this.menu_ColumnWidth.Text = "设置固定宽度显示(&W)";
             this.menu_ColumnWidth.Click += new System.EventHandler(this.menu_ColumnWidth_Click);
             // 
             // gridControl1
             // 
             this.gridControl1.ContextMenuStrip = this.contextMenuStrip1;
+            this.gridControl1.Cursor = System.Windows.Forms.Cursors.Default;
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridControl1.Location = new System.Drawing.Point(0, 0);
             this.gridControl1.MainView = this.gridView1;
@@ -186,6 +187,8 @@
             this.gridView1.OptionsView.ShowGroupExpandCollapseButtons = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridView1_CustomDrawRowIndicator);
+            this.gridView1.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridView1_RowCellStyle);
+            this.gridView1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.gridView1_MouseMove);
             // 
             // toolTipController1
             // 

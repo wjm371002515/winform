@@ -77,16 +77,16 @@ namespace JCodes.Framework.AddIn.Dictionary
         private void AddTree(TreeNode pNode, DictTypeNodeInfo info)
         {
             TreeNode node = null;
-            if (info.PID == -1)
+            if (info.Pid == -1)
             {
                 node = new TreeNode(info.Name, 1, 1);
-                node.Tag = info.ID;
+                node.Tag = info.Id;
                 this.treeView1.Nodes.Add(node);
             }
             else
             {
                 node = new TreeNode(info.Name, 1, 1);
-                node.Tag = info.ID;
+                node.Tag = info.Id;
                 pNode.Nodes.Add(node);
             }
 
@@ -159,8 +159,8 @@ namespace JCodes.Framework.AddIn.Dictionary
                 if (info != null)
                 {
                     FrmEditDictType dlg = new FrmEditDictType();
-                    dlg.ID = typeId.ToString();
-                    dlg.PID = info.PID;
+                    dlg.Id = typeId;
+                    dlg.PID = info.Pid;
                     dlg.OnDataSaved += new EventHandler(dlg_OnDataTreeSaved);
                     if (dlg.ShowDialog() == DialogResult.OK)
                     {
@@ -193,9 +193,9 @@ namespace JCodes.Framework.AddIn.Dictionary
 
                         foreach (Int32 key in dict.Keys)
                         {
-                            BLLFactory<DictType>.Instance.DeleteByUser(key, LoginUserInfo.ID);
+                            BLLFactory<DictType>.Instance.DeleteByUser(key, LoginUserInfo.Id);
 
-                            string condition = string.Format("DictType_ID={0}", key);
+                            string condition = string.Format("DicttypeID={0}", key);
                             BLLFactory<DictData>.Instance.DeleteByCondition(condition);
                         }
 
@@ -238,8 +238,8 @@ namespace JCodes.Framework.AddIn.Dictionary
                     DictTypeInfo dragTypeInfo = BLLFactory<DictType>.Instance.FindByID(dragTypeId);
                     if (dragTypeInfo != null)
                     {
-                        dragTypeInfo.PID = Convert.ToInt32(dropTypeId);
-                        BLLFactory<DictType>.Instance.Update(dragTypeInfo, dragTypeInfo.ID);
+                        dragTypeInfo.Pid = Convert.ToInt32(dropTypeId);
+                        BLLFactory<DictType>.Instance.Update(dragTypeInfo, dragTypeInfo.Id);
                     }
                 }
                 catch (Exception ex)
@@ -282,7 +282,7 @@ namespace JCodes.Framework.AddIn.Dictionary
                 {
                     try
                     {
-                        BLLFactory<DictData>.Instance.DeleteByCondition(string.Format("DictType_ID='{0}'", typeId));
+                        BLLFactory<DictData>.Instance.DeleteByCondition(string.Format("DicttypeID='{0}'", typeId));
                         InitTreeView();
                         BindData();
                     }
@@ -335,11 +335,11 @@ namespace JCodes.Framework.AddIn.Dictionary
                 return;
             }
 
-            string ID = this.winGridViewPager1.gridView1.GetFocusedRowCellDisplayText("ID");
+            string ID = this.winGridViewPager1.gridView1.GetFocusedRowCellDisplayText("Id");
             if (!string.IsNullOrEmpty(ID))
             {
                 FrmEditDictData dlg = new FrmEditDictData();
-                dlg.ID = ID;
+                dlg.Id = Convert.ToInt32(ID);
                 dlg.OnDataSaved += new EventHandler(dlg_OnDataSaved);
                 if (DialogResult.OK == dlg.ShowDialog())
                 {
@@ -364,8 +364,8 @@ namespace JCodes.Framework.AddIn.Dictionary
             int[] rowSelected = this.winGridViewPager1.GridView1.GetSelectedRows();
             foreach (int iRow in rowSelected)
             {
-                string ID = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "ID");
-                BLLFactory<DictData>.Instance.DeleteByUser(ID, LoginUserInfo.ID);
+                string ID = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "Id");
+                BLLFactory<DictData>.Instance.DeleteByUser(ID, LoginUserInfo.Id);
             }
             BindData();
         }
@@ -420,7 +420,7 @@ namespace JCodes.Framework.AddIn.Dictionary
             SearchCondition conditon = new SearchCondition();
             if (lblDictType.Tag != null)
             {
-                conditon.AddCondition("DictType_ID", Convert.ToInt32(this.lblDictType.Tag), SqlOperator.Equal);
+                conditon.AddCondition("DicttypeID", Convert.ToInt32(this.lblDictType.Tag), SqlOperator.Equal);
             }
             string sql = conditon.BuildConditionSql().Replace("Where", "");
             return sql;
@@ -430,13 +430,13 @@ namespace JCodes.Framework.AddIn.Dictionary
         {
             #region 添加别名解析
             this.winGridViewPager1.DisplayColumns = "Value,Name,Seq,Remark,EditTime";
-            this.winGridViewPager1.AddColumnAlias("ID", "编号");
-            this.winGridViewPager1.AddColumnAlias("DictType_ID", "字典大类");
+            this.winGridViewPager1.AddColumnAlias("GID", "编号");
+            this.winGridViewPager1.AddColumnAlias("DicttypeID", "字典大类");
             this.winGridViewPager1.AddColumnAlias("Name", "项目名称");
             this.winGridViewPager1.AddColumnAlias("Value", "项目值");
             this.winGridViewPager1.AddColumnAlias("Seq", "字典排序");
             this.winGridViewPager1.AddColumnAlias("Remark", "备注");
-            this.winGridViewPager1.AddColumnAlias("Editor", "修改用户");
+            this.winGridViewPager1.AddColumnAlias("EditorId", "修改用户");
             this.winGridViewPager1.AddColumnAlias("EditTime", "更新日期");
             #endregion
 

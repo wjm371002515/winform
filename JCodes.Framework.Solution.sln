@@ -63,6 +63,30 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JCodes.Framework.AddIn.Proj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JCodes.Framework.WebUI", "JCodes.Framework.WebUI\JCodes.Framework.WebUI.csproj", "{B7790423-E7D9-4A7D-882F-DB8A92F7C101}"
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "JCodes.Framework.WebService", "http://localhost:40565", "{24A67E1E-8C6C-4C94-A99B-9B3F417A87FB}"
+	ProjectSection(WebsiteProperties) = preProject
+		UseIISExpress = "true"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_40565"
+		Debug.AspNetCompiler.PhysicalPath = "JCodes.Framework.WebService\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_40565\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_40565"
+		Release.AspNetCompiler.PhysicalPath = "JCodes.Framework.WebService\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_40565\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "JCodes.Framework.WebService\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JCodes.Framework.WebDemo", "JCodes.Framework.WebDemo\JCodes.Framework.WebDemo.csproj", "{C24CB42F-B207-4769-94C4-381ECD6A5098}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -165,6 +189,14 @@ Global
 		{B7790423-E7D9-4A7D-882F-DB8A92F7C101}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7790423-E7D9-4A7D-882F-DB8A92F7C101}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7790423-E7D9-4A7D-882F-DB8A92F7C101}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24A67E1E-8C6C-4C94-A99B-9B3F417A87FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24A67E1E-8C6C-4C94-A99B-9B3F417A87FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24A67E1E-8C6C-4C94-A99B-9B3F417A87FB}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{24A67E1E-8C6C-4C94-A99B-9B3F417A87FB}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{C24CB42F-B207-4769-94C4-381ECD6A5098}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C24CB42F-B207-4769-94C4-381ECD6A5098}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C24CB42F-B207-4769-94C4-381ECD6A5098}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C24CB42F-B207-4769-94C4-381ECD6A5098}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -184,6 +216,8 @@ Global
 		{76BAFEED-850D-43F1-A544-719C406C679F} = {5D315992-9220-472E-92B2-D6CEE8C6B1A5}
 		{A9C9CC64-63D1-4820-B2F5-C8A599D729B3} = {5D315992-9220-472E-92B2-D6CEE8C6B1A5}
 		{B7790423-E7D9-4A7D-882F-DB8A92F7C101} = {5D315992-9220-472E-92B2-D6CEE8C6B1A5}
+		{24A67E1E-8C6C-4C94-A99B-9B3F417A87FB} = {5D315992-9220-472E-92B2-D6CEE8C6B1A5}
+		{C24CB42F-B207-4769-94C4-381ECD6A5098} = {5D315992-9220-472E-92B2-D6CEE8C6B1A5}
 		{2EC4520F-5197-4E3F-B689-7023A98623E0} = {B3836A3D-DB43-4A38-9FEB-A78420EBC11B}
 		{A7F8FAE9-0036-45CE-97B6-F21E144807C8} = {64731720-F3E1-4EA5-9BB0-1EDB7A006D7A}
 		{B10441F3-9C12-46EC-BDB7-768AEF8EC863} = {64731720-F3E1-4EA5-9BB0-1EDB7A006D7A}

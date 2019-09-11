@@ -2,6 +2,7 @@ using System;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
 using System.Collections.Generic;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.Entity
 {
@@ -14,17 +15,17 @@ namespace JCodes.Framework.Entity
         #region Field Members
 
         private AddressType m_AddressType = AddressType.个人; //通讯录类型[个人,公司]          
-        private string m_ID = System.Guid.NewGuid().ToString(); //          
-        private string m_PID = "-1"; //父ID          
+        private Int32 m_Id; //          
+        private Int32 m_Pid; //父ID          
         private string m_Name; //分组名称          
-        private string m_Note; //备注          
+        private string m_Remark; //备注          
         private string m_Seq; //排序序号          
-        private string m_Creator; //创建人          
-        private DateTime m_CreateTime; //创建时间          
-        private string m_Editor; //编辑人          
-        private DateTime m_EditTime; //编辑时间          
-        private string m_Dept_ID; //所属部门
-        private string m_Company_ID; //所属公司
+        private Int32 m_CreatorId; //创建人          
+        private DateTime m_CreatorTime; //创建时间          
+        private Int32 m_EditorId; //编辑人          
+        private DateTime m_LastUpdateTime; //编辑时间          
+        private Int32 m_DeptId; //所属部门
+        private Int32 m_CompanyId; //所属公司
 
         #endregion
 
@@ -47,15 +48,15 @@ namespace JCodes.Framework.Entity
         }
 
 		[DataMember]
-        public virtual string ID
+        public virtual Int32 Id
         {
             get
             {
-                return this.m_ID;
+                return this.m_Id;
             }
             set
             {
-                this.m_ID = value;
+                this.m_Id = value;
             }
         }
 
@@ -63,15 +64,15 @@ namespace JCodes.Framework.Entity
         /// 父ID
         /// </summary>
 		[DataMember]
-        public virtual string PID
+        public virtual Int32 Pid
         {
             get
             {
-                return this.m_PID;
+                return this.m_Pid;
             }
             set
             {
-                this.m_PID = value;
+                this.m_Pid = value;
             }
         }
 
@@ -95,15 +96,15 @@ namespace JCodes.Framework.Entity
         /// 备注
         /// </summary>
 		[DataMember]
-        public virtual string Note
+        public virtual string Remark
         {
             get
             {
-                return this.m_Note;
+                return this.m_Remark;
             }
             set
             {
-                this.m_Note = value;
+                this.m_Remark = value;
             }
         }
 
@@ -127,15 +128,15 @@ namespace JCodes.Framework.Entity
         /// 创建人
         /// </summary>
 		[DataMember]
-        public virtual string Creator
+        public virtual Int32 CreatorId
         {
             get
             {
-                return this.m_Creator;
+                return this.m_CreatorId;
             }
             set
             {
-                this.m_Creator = value;
+                this.m_CreatorId = value;
             }
         }
 
@@ -143,15 +144,15 @@ namespace JCodes.Framework.Entity
         /// 创建时间
         /// </summary>
 		[DataMember]
-        public virtual DateTime CreateTime
+        public virtual DateTime CreatorTime
         {
             get
             {
-                return this.m_CreateTime;
+                return this.m_CreatorTime;
             }
             set
             {
-                this.m_CreateTime = value;
+                this.m_CreatorTime = value;
             }
         }
 
@@ -159,15 +160,15 @@ namespace JCodes.Framework.Entity
         /// 编辑人
         /// </summary>
 		[DataMember]
-        public virtual string Editor
+        public virtual Int32 EditorId
         {
             get
             {
-                return this.m_Editor;
+                return this.m_EditorId;
             }
             set
             {
-                this.m_Editor = value;
+                this.m_EditorId = value;
             }
         }
 
@@ -175,15 +176,15 @@ namespace JCodes.Framework.Entity
         /// 编辑时间
         /// </summary>
 		[DataMember]
-        public virtual DateTime EditTime
+        public virtual DateTime LastUpdateTime
         {
             get
             {
-                return this.m_EditTime;
+                return this.m_LastUpdateTime;
             }
             set
             {
-                this.m_EditTime = value;
+                this.m_LastUpdateTime = value;
             }
         }
         
@@ -191,15 +192,15 @@ namespace JCodes.Framework.Entity
         /// 所属部门
         /// </summary>
         [DataMember]
-        public virtual string Dept_ID
+        public virtual Int32 DeptId
         {
             get
             {
-                return this.m_Dept_ID;
+                return this.m_DeptId;
             }
             set
             {
-                this.m_Dept_ID = value;
+                this.m_DeptId = value;
             }
         }
 
@@ -207,15 +208,15 @@ namespace JCodes.Framework.Entity
         /// 所属公司
         /// </summary>
         [DataMember]
-        public virtual string Company_ID
+        public virtual Int32 CompanyId
         {
             get
             {
-                return this.m_Company_ID;
+                return this.m_CompanyId;
             }
             set
             {
-                this.m_Company_ID = value;
+                this.m_CompanyId = value;
             }
         }
         #endregion
@@ -253,17 +254,17 @@ namespace JCodes.Framework.Entity
         public AddressGroupNodeInfo(AddressGroupInfo info)
         {
             base.AddressType = info.AddressType;
-            base.ID = info.ID;
+            base.Id = info.Id;
             base.Seq = info.Seq;
             base.Name = info.Name;
-            base.PID = info.PID;
-            base.Note = info.Note;
-            base.Editor = info.Editor;
-            base.EditTime = info.EditTime;
-            base.Creator = info.Creator;
-            base.CreateTime = info.CreateTime;
-            base.Dept_ID = info.Dept_ID;
-            base.Company_ID = info.Company_ID;
+            base.Pid = info.Pid;
+            base.Remark = info.Remark;
+            base.EditorId = info.EditorId;
+            base.LastUpdateTime = info.LastUpdateTime;
+            base.CreatorId = info.CreatorId;
+            base.CreatorTime = info.CreatorTime;
+            base.DeptId = info.DeptId;
+            base.CompanyId = info.CompanyId;
         }
     }
 }

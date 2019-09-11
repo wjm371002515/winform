@@ -29,15 +29,15 @@ namespace JCodes.Framework.WebUI.Controllers
         protected override void OnBeforeInsert(InformationInfo info)
         {
             //留给子类对参数对象进行修改
-            info.Editor = CurrentUser.ID.ToString();
-            info.EditTime = DateTime.Now;
+            info.EditorId = CurrentUser.Id;
+            info.LastUpdateTime = DateTime.Now;
         }
 
         protected override void OnBeforeUpdate(InformationInfo info)
         {
             //留给子类对参数对象进行修改
-            info.Editor = CurrentUser.ID.ToString();
-            info.EditTime = DateTime.Now;
+            info.EditorId = CurrentUser.Id;
+            info.LastUpdateTime = DateTime.Now;
         }
         #endregion
 
@@ -82,12 +82,12 @@ namespace JCodes.Framework.WebUI.Controllers
             {
                 foreach (FileUploadInfo info in fileList)
                 {
-                    string fileName = info.FileName.Trim();
+                    string fileName = info.Name.Trim();
                     fileName = System.Web.HttpContext.Current.Server.UrlEncode(fileName);
 
                     sb.AppendFormat(@"<li><span>[ 附件{0} ]</span>", seq++);
                     sb.AppendFormat(@"<img border='0' width='16px' height='16px' src='/Content/Themes/Default/file_extension/{0}.png' />", info.FileExtend.Trim('.'));
-                    sb.AppendFormat(@"<a href='/{0}?ext={1}' target='_blank'>&nbsp;{2}</a></li>", GetFilePath(info), info.FileExtend.Trim('.'), info.FileName);
+                    sb.AppendFormat(@"<a href='/{0}?ext={1}' target='_blank'>&nbsp;{2}</a></li>", GetFilePath(info), info.FileExtend.Trim('.'), info.Name);
                 }
             }
             else
@@ -107,8 +107,8 @@ namespace JCodes.Framework.WebUI.Controllers
         [ValidateInput(false)]
         public override ActionResult Insert(InformationInfo info)
         {
-            info.Editor = CurrentUser.Name;
-            info.EditTime = DateTime.Now;
+            info.EditorId = CurrentUser.Id;
+            info.LastUpdateTime = DateTime.Now;
 
             return base.Insert(info);
         }
@@ -249,8 +249,8 @@ namespace JCodes.Framework.WebUI.Controllers
 
                 //使用书签方式替换
                 SetBookmark(ref doc, "Title", info.Title);
-                SetBookmark(ref doc, "Editor", info.Editor);
-                SetBookmark(ref doc, "EditTime", info.EditTime.ToString());
+                SetBookmark(ref doc, "EditorId", info.EditorId.ToString());
+                SetBookmark(ref doc, "LastUpdateTime", info.LastUpdateTime.ToString("yyyy-MM-dd"));
                 SetBookmark(ref doc, "SubType", info.SubType);
                 
                 //SetBookmark(ref doc, "Content", info.Content);

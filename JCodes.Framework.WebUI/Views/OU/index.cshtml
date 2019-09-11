@@ -93,7 +93,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3">机构编码</label>
                                         <div class="col-md-9">
-                                            <input id="HandNo1" name="HandNo" type="text" class="form-control" placeholder="机构编码..."/>
+                                            <input id="HandNo1" name="UserCode" type="text" class="form-control" placeholder="机构编码..."/>
 
                                         </div>
                                     </div>
@@ -257,7 +257,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">机构编码</label>
                                 <div class="col-md-8">
-                                    <input id="HandNo" name="HandNo" type="text" class="form-control" placeholder="机构编码..."/>
+                                    <input id="UserCode" name="UserCode" type="text" class="form-control" placeholder="机构编码..."/>
 
                                 </div>
                             </div>
@@ -560,7 +560,7 @@
             //首先用户发送一个异步请求去后台实现方法
             $.getJSON("/Ou/FindByID?r=" + Math.random() + "&id=" + ID, function (info) {
                  $("#PID1").select2("val", info.PID);//普通Select2
-                 $("#HandNo1").val(info.HandNo);
+                 $("#HandNo1").val(info.UserCode);
                  $("#Name1").val(info.Name);
                  $("#SortCode1").val(info.SortCode);
                  $("#Category1").select2("val", info.Category);
@@ -972,7 +972,7 @@
                     var tr = "<tr>";
                     tr += "<td><input class='checkboxes' type=\"checkbox\" name=\"checkbox\" value=" + item.ID + "></td>";
                     tr += "<td>" + item.ID + "</td>";
-                    tr += "<td>" + item.HandNo + "</td>";
+                    tr += "<td>" + item.UserCode + "</td>";
                     tr += "<td>" + item.Name + "</td>";
                     tr += "<td>" + item.FullName + "</td>";      
 
@@ -1104,7 +1104,7 @@
                     var tr = "<tr>";
                     tr += "<td><input class='checkboxes' type=\"checkbox\" name=\"checkbox\" value=" + item.ID + "></td>";
                      tr += "<td>" + item.PID + "</td>";
-                     tr += "<td>" + item.HandNo + "</td>";
+                     tr += "<td>" + item.UserCode + "</td>";
                      tr += "<td>" + item.Name + "</td>";
                      tr += "<td>" + item.SortCode + "</td>";
                      tr += "<td>" + item.Category + "</td>";
@@ -1137,7 +1137,7 @@
                         // alert($(this).text());
                     });    
 
-                    list.push({ 'PID': rows[0],'HandNo': rows[1],'Name': rows[2],'SortCode': rows[3],'Category': rows[4],'Address': rows[5],'OuterPhone': rows[6],'InnerPhone': rows[7],'Note': rows[8] });
+                    list.push({ 'PID': rows[0],'UserCode': rows[1],'Name': rows[2],'SortCode': rows[3],'Category': rows[4],'Address': rows[5],'OuterPhone': rows[6],'InnerPhone': rows[7],'Note': rows[8] });
                     i++;
                 }
             });

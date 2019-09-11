@@ -44,7 +44,7 @@ namespace JCodes.Framework.MySqlDAL
 			SmartDataReader reader = new SmartDataReader(dataReader);
 			
 			purchaseHeaderInfo.ID = reader.GetInt32("ID");
-			purchaseHeaderInfo.HandNo = reader.GetString("HandNo");
+			purchaseHeaderInfo.UserCode = reader.GetString("UserCode");
 			purchaseHeaderInfo.OperationType = reader.GetString("OperationType");
 			purchaseHeaderInfo.Manufacture = reader.GetString("Manufacture");
 			purchaseHeaderInfo.WareHouse = reader.GetString("WareHouse");
@@ -68,7 +68,7 @@ namespace JCodes.Framework.MySqlDAL
 		    PurchaseHeaderInfo info = obj as PurchaseHeaderInfo;
 			Hashtable hash = new Hashtable(); 
 			
- 			hash.Add("HandNo", info.HandNo);
+ 			hash.Add("UserCode", info.UserCode);
  			hash.Add("OperationType", info.OperationType);
  			hash.Add("Manufacture", info.Manufacture);
  			hash.Add("WareHouse", info.WareHouse);
@@ -132,7 +132,7 @@ namespace JCodes.Framework.MySqlDAL
 
         public DataTable GetPurchaseReport(string condition)
         {
-            string sql = string.Format(@"Select h.ID,h.HandNo,h.OperationType,h.Manufacture,h.WareHouse,d.Dept,h.CostCenter,h.Note,h.CreateDate,h.Creator,h.PickingPeople  
+            string sql = string.Format(@"Select h.ID,h.UserCode,h.OperationType,h.Manufacture,h.WareHouse,d.Dept,h.CostCenter,h.Note,h.CreateDate,h.Creator,h.PickingPeople  
             from {0}PurchaseHeader h inner join {0}PurchaseDetail d on h.ID = d.PurchaseHead_ID {1} order by h.CreateDate", MySqlPortal.gc._wareHouseTablePre, condition);
             return this.SqlTable(sql);
         }

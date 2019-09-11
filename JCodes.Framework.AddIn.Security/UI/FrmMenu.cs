@@ -18,6 +18,7 @@ using JCodes.Framework.CommonControl.Pager.Others;
 using JCodes.Framework.Common.Files;
 using JCodes.Framework.Common.Office;
 using JCodes.Framework.CommonControl.Controls;
+using JCodes.Framework.Common.Extension;
 
 namespace JCodes.Framework.AddIn.Security
 {
@@ -64,8 +65,8 @@ namespace JCodes.Framework.AddIn.Security
                 winGridViewPager1.gridView1.SetGridColumWidth("Name", 150);
                 winGridViewPager1.gridView1.SetGridColumWidth("Icon", 200);
                 winGridViewPager1.gridView1.SetGridColumWidth("Seq", 80);
-                winGridViewPager1.gridView1.SetGridColumWidth("Visible", 80);
-                winGridViewPager1.gridView1.SetGridColumWidth("WinformType", 400);
+                winGridViewPager1.gridView1.SetGridColumWidth("IsVisable", 80);
+                winGridViewPager1.gridView1.SetGridColumWidth("WinformClass", 400);
                 winGridViewPager1.gridView1.SetGridColumWidth("WebIcon", 200);
                 winGridViewPager1.gridView1.SetGridColumWidth("Url", 200);
                 winGridViewPager1.gridView1.SetGridColumWidth("Note", 200);
@@ -125,7 +126,7 @@ namespace JCodes.Framework.AddIn.Security
             foreach (int iRow in rowSelected)
             {
                 string ID = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "ID");
-                BLLFactory<Menus>.Instance.DeleteByUser(ID, LoginUserInfo.ID);
+                BLLFactory<Menus>.Instance.DeleteByUser(ID, LoginUserInfo.Id);
             }
 
             BindData();
@@ -142,19 +143,19 @@ namespace JCodes.Framework.AddIn.Security
                 return;
             }
 
-            string ID = this.winGridViewPager1.gridView1.GetFocusedRowCellDisplayText("ID");
-            List<string> IDList = new List<string>();
+            Int32 Id = this.winGridViewPager1.gridView1.GetFocusedRowCellDisplayText("ID").ToInt32();
+            List<Int32> IdList = new List<Int32>();
             for (int i = 0; i < this.winGridViewPager1.gridView1.RowCount; i++)
             {
-                string strTemp = this.winGridViewPager1.GridView1.GetRowCellDisplayText(i, "ID");
-                IDList.Add(strTemp);
+                Int32 intTemp = this.winGridViewPager1.GridView1.GetRowCellDisplayText(i, "ID").ToInt32();
+                IdList.Add(intTemp);
             }
 
-            if (!string.IsNullOrEmpty(ID))
+            if (Id > 0)
             {
                 FrmEditMenu dlg = new FrmEditMenu();
-                dlg.ID = ID;
-                dlg.IDList = IDList;
+                dlg.Id = Id;
+                dlg.IdList = IdList;
                 dlg.OnDataSaved += new EventHandler(dlg_OnDataSaved);
                 if (DialogResult.OK == dlg.ShowDialog())
                 {
@@ -286,8 +287,8 @@ namespace JCodes.Framework.AddIn.Security
                     MenuNodeInfo menuInfo = node.Tag as MenuNodeInfo;
                     if (menuInfo != null)
                     {
-                        selectId = menuInfo.ID;
-                        systemType = menuInfo.SystemType_ID;
+                        selectId = menuInfo.Gid;
+                        systemType = menuInfo.SystemtypeId;
                     }
                 }
                 else
@@ -335,16 +336,16 @@ namespace JCodes.Framework.AddIn.Security
                 {
                     dr = dtNew.NewRow();
                     dr["序号"] = j++;
-                    dr["父ID"] = list[i].PID;
+                    dr["父ID"] = list[i].Pgid;
                     dr["显示名称"] = list[i].Name;
                     dr["图标"] = list[i].Icon;
                     dr["排序"] = list[i].Seq;
-                    dr["功能ID"] = list[i].FunctionId;
-                    dr["菜单可见"] = list[i].Visible;
-                    dr["Winform窗体类型"] = list[i].WinformType;
+                    dr["功能ID"] = list[i].AuthGid;
+                    dr["菜单可见"] = list[i].IsVisable;
+                    dr["Winform窗体类型"] = list[i].WinformClass;
                     dr["Web界面的菜单图标"] = list[i].WebIcon;
                     dr["Web界面Url地址"] = list[i].Url;
-                    dr["系统编号"] = list[i].SystemType_ID;
+                    dr["系统编号"] = list[i].SystemtypeId;
                     dtNew.Rows.Add(dr);
                 }
 
@@ -400,7 +401,7 @@ namespace JCodes.Framework.AddIn.Security
                 foreach (MenuNodeInfo info in menuList)
                 {
                     TreeNode item = new TreeNode();
-                    item.Name = info.ID;
+                    item.Name = info.Pgid;
                     item.Text = info.Name;//一级菜单节点
                     item.Tag = info;//对菜单而言，记录其MenuNodeInfo到Tag中，作为判断依据
                     item.ImageIndex = 1;
@@ -421,7 +422,7 @@ namespace JCodes.Framework.AddIn.Security
             foreach (MenuNodeInfo info in list)
             {
                 TreeNode item = new TreeNode();
-                item.Name = info.ID;
+                item.Name = info.Pgid;
                 item.Text = info.Name;//二、三级菜单节点
                 item.Tag = info;//对菜单而言，记录其MenuNodeInfo到Tag中，作为判断依据
                 int index = (fnode.ImageIndex + 1 > 3) ? 3 : fnode.ImageIndex + 1;
@@ -441,7 +442,7 @@ namespace JCodes.Framework.AddIn.Security
                 if (e.Node.Tag != null)
                 {
                     string menuId = e.Node.Name;
-                    treeConditionSql = string.Format("PID='{0}' ", menuId);
+                    treeConditionSql = string.Format("Pgid='{0}' ", menuId);
                     BindData();
                 }
                 else
@@ -461,7 +462,7 @@ namespace JCodes.Framework.AddIn.Security
         private void SelectTreeItem()
         {
             //当鼠标在指定的菜单项上移动的时候，同时调整树形菜单的位置
-            string ID = this.winGridViewPager1.gridView1.GetFocusedRowCellDisplayText("ID");
+            string ID = this.winGridViewPager1.gridView1.GetFocusedRowCellDisplayText("Pgid");
             if (!string.IsNullOrEmpty(ID))
             {
                 TreeNode node = FindNode(this.treeView1.Nodes, ID);
@@ -479,7 +480,7 @@ namespace JCodes.Framework.AddIn.Security
                 if (node.Tag != null)
                 {
                     MenuNodeInfo info = node.Tag as MenuNodeInfo;
-                    if (info != null && info.ID == menuId)
+                    if (info != null && info.Gid == menuId)
                     {
                         return node;
                     }

@@ -44,7 +44,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::JCodes.Framework.CommonControl.Properties.Resources.logo_108;
+            this.pictureBox1.Image = global::JCodes.Framework.CommonControl.Properties.Resource.logo_108;
             this.pictureBox1.Location = new System.Drawing.Point(18, 18);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";

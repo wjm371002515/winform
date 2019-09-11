@@ -242,7 +242,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-4">编号</label>
                                         <div class="col-md-8">
-                                            <input id="HandNo" name="HandNo" type="text" class="form-control" placeholder="编号..."/>
+                                            <input id="UserCode" name="UserCode" type="text" class="form-control" placeholder="编号..."/>
                                         </div>
                                     </div>
                                 </div>                                
@@ -741,7 +741,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-4">编号</label>
                                         <div class="col-md-8">
-                                            <label id="HandNo2" name="HandNo" class="form-control"></label>
+                                            <label id="HandNo2" name="UserCode" class="form-control"></label>
                                         </div>
                                     </div>
                                 </div>
@@ -1404,7 +1404,7 @@
                 $.each(data.rows, function (i, item) {
                     var tr = "<tr>";
                     tr += "<td><input class='checkboxes' type=\"checkbox\" name=\"checkbox\" value=" + item.ID + "></td>";
-                     tr += "<td>" + item.HandNo + "</td>";
+                     tr += "<td>" + item.UserCode + "</td>";
                      tr += "<td>" + item.Name + "</td>";
                      tr += "<td>" + item.SimpleName + "</td>";
                      tr += "<td>" + item.Province + "</td>";
@@ -1585,7 +1585,7 @@
                     var tr = "<tr>";
                     tr += "<td><input class='checkboxes' type=\"checkbox\" name=\"checkbox\" value=" + item.ID + "></td>";
                      tr += "<td>" + item.Data1 + "</td>";
-                     tr += "<td>" + item.HandNo + "</td>";
+                     tr += "<td>" + item.UserCode + "</td>";
                      tr += "<td>" + item.Name + "</td>";
                      //tr += "<td>" + item.IDCarNo + "</td>";
                      //tr += "<td>" + getDateStr(item.Birthday) + "</td>";
@@ -1839,7 +1839,7 @@
             //首先用户发送一个异步请求去后台实现方法
             $.getJSON("/Contact/FindByID?r=" + Math.random() + "&id=" + ID, function (info) {
                  $("#Customer_ID").val(info.Customer_ID);
-                 $("#HandNo").val(info.HandNo);
+                 $("#UserCode").val(info.UserCode);
                  $("#Name").val(info.Name);
                  $("#IDCarNo").val(info.IDCarNo);
                  $("#Birthday").val(getDateStr(info.Birthday));
@@ -1929,7 +1929,7 @@
                 //$("#ID2").text(info.ID);
 
                  $("#Customer_ID2").text(info.Customer_ID);
-                 $("#HandNo2").text(info.HandNo);
+                 $("#HandNo2").text(info.UserCode);
                  $("#Name2").text(info.Name);
                  $("#IDCarNo2").text(info.IDCarNo);
                  $("#Birthday2").text(info.Birthday);

@@ -13,6 +13,7 @@ using System.Data.Common;
 using System.Text;
 using System.Web.Mvc;
 using JCodes.Framework.Common.Extension;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.WebUI.Controllers
 {
@@ -75,30 +76,23 @@ namespace JCodes.Framework.WebUI.Controllers
                 int i = 1;
                 foreach (DataRow dr in table.Rows)
                 {
-                    bool converted = false;
                     DateTime dtDefault = Convert.ToDateTime("1900-01-01");
-                    DateTime dt;
                     OUInfo info = new OUInfo();
 
-                    info.PID = dr["父ID"].ToString().ToInt32();
-                    info.HandNo = dr["机构编码"].ToString();
+                    info.Pid = dr["父ID"].ToString().ToInt32();
+                    info.OuCode = dr["机构编码"].ToString();
                     info.Name = dr["机构名称"].ToString();
                     info.Seq = dr["排序"].ToString();
-                    info.Category = dr["机构分类"].ToString();
+                    info.OuType = dr["机构分类"].ToString().ToInt32();
                     info.Address = dr["机构地址"].ToString();
-                    info.OuterPhone = dr["外线电话"].ToString();
+                    info.OutPhone = dr["外线电话"].ToString();
                     info.InnerPhone = dr["内线电话"].ToString();
-                    info.Note = dr["备注"].ToString();
-
-                    info.Company_ID = CurrentUser.Company_ID;
-                    info.CompanyName = CurrentUser.CompanyName;
-
-                    info.Creator = CurrentUser.FullName.ToString();
-                    info.Creator = CurrentUser.ID.ToString();
-                    info.CreateTime = DateTime.Now;
-                    info.Editor = CurrentUser.FullName.ToString();
-                    info.Editor_ID = CurrentUser.ID.ToString();
-                    info.EditTime = DateTime.Now;
+                    info.Remark = dr["备注"].ToString();
+                    info.CompanyId = CurrentUser.CompanyId;
+                    info.CreatorId = CurrentUser.Id;
+                    info.CreatorTime = DateTime.Now;
+                    info.EditorId = CurrentUser.Id;
+                    info.LastUpdateTime = DateTime.Now;
 
                     list.Add(info);
                 }
@@ -130,15 +124,13 @@ namespace JCodes.Framework.WebUI.Controllers
                         foreach (OUInfo detail in list)
                         {
                             //detail.Seq = seq++;//增加1
-                            detail.Company_ID = CurrentUser.Company_ID;
-                            detail.CompanyName = CurrentUser.CompanyName;
+                            detail.CompanyId = CurrentUser.CompanyId;
+                            //detail.CompanyName = CurrentUser.CompanyName;
 
-                            detail.Creator = CurrentUser.FullName.ToString();
-                            detail.Creator = CurrentUser.ID.ToString();
-                            detail.CreateTime = DateTime.Now;
-                            detail.Editor = CurrentUser.FullName.ToString();
-                            detail.Editor_ID = CurrentUser.ID.ToString();
-                            detail.EditTime = DateTime.Now;
+                            detail.CreatorId = CurrentUser.Id;
+                            detail.CreatorTime = DateTime.Now;
+                            detail.EditorId = CurrentUser.Id;
+                            detail.LastUpdateTime = DateTime.Now;
 
                             BLLFactory<OU>.Instance.Insert(detail, trans);
                         }
@@ -196,15 +188,15 @@ namespace JCodes.Framework.WebUI.Controllers
             {
                 dr = datatable.NewRow();
                 dr["序号"] = j++;
-                dr["父ID"] = list[i].PID;
-                dr["机构编码"] = list[i].HandNo;
+                dr["父ID"] = list[i].Pid;
+                dr["机构编码"] = list[i].OuCode;
                 dr["机构名称"] = list[i].Name;
                 dr["排序"] = list[i].Seq;
-                dr["机构分类"] = list[i].Category;
+                dr["机构分类"] = list[i].OuType;
                 dr["机构地址"] = list[i].Address;
-                dr["外线电话"] = list[i].OuterPhone;
+                dr["外线电话"] = list[i].OutPhone;
                 dr["内线电话"] = list[i].InnerPhone;
-                dr["备注"] = list[i].Note;
+                dr["备注"] = list[i].Remark;
                 //如果为外键，可以在这里进行转义，如下例子
                 //dr["客户名称"] = BLLFactory<Customer>.Instance.GetCustomerName(list[i].Customer_ID);//转义为客户名称
 
@@ -232,12 +224,10 @@ namespace JCodes.Framework.WebUI.Controllers
             //info.ID = string.IsNullOrEmpty(info.ID) ? Guid.NewGuid().ToString() : info.ID;
 
             //子类对参数对象进行修改
-            info.Creator = CurrentUser.FullName.ToString();
-            info.Creator = CurrentUser.ID.ToString();
-            info.CreateTime = DateTime.Now;
-            info.Editor = CurrentUser.FullName.ToString();
-            info.Editor_ID = CurrentUser.ID.ToString();
-            info.EditTime = DateTime.Now;
+            info.CreatorId = CurrentUser.Id;
+            info.CreatorTime = DateTime.Now;
+            info.EditorId = CurrentUser.Id;
+            info.LastUpdateTime = DateTime.Now;
         }
 
         protected override void OnBeforeUpdate(OUInfo info)
@@ -246,9 +236,8 @@ namespace JCodes.Framework.WebUI.Controllers
             //info.Creator = CurrentUser.FullName.ToString();
             //info.Creator = CurrentUser.ID.ToString();
             //info.CreateTime = DateTime.Now;
-            info.Editor = CurrentUser.FullName.ToString();
-            info.Editor_ID = CurrentUser.ID.ToString();
-            info.EditTime = DateTime.Now;
+            info.EditorId = CurrentUser.Id;
+            info.LastUpdateTime = DateTime.Now;
         }
         #endregion
 
@@ -295,11 +284,11 @@ namespace JCodes.Framework.WebUI.Controllers
 
         public ActionResult GetListItems()
         {
-            List<CListItem> listItem = new List<CListItem>();
+            List<CDicKeyValue> listItem = new List<CDicKeyValue>();
             List<OUInfo> list = BLLFactory<OU>.Instance.GetAll();
             foreach (OUInfo info in list)
             {
-                listItem.Add(new CListItem(info.ID.ToString(), info.Name));
+                listItem.Add(new CDicKeyValue(info.Id, info.Name));
             }
             return Json(listItem, JsonRequestBehavior.AllowGet);
         }
@@ -406,23 +395,20 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <param name="info"></param>
         private void SetCommonInfo(OUInfo info)
         {
-            info.Editor = CurrentUser.FullName;
-            info.Editor_ID = CurrentUser.ID.ToString();
-            info.EditTime = DateTime.Now;
+            info.EditorId = CurrentUser.Id;
+            info.LastUpdateTime = DateTime.Now;
 
-            OUInfo pInfo = BLLFactory<OU>.Instance.FindByID(info.PID);
+            OUInfo pInfo = BLLFactory<OU>.Instance.FindByID(info.Pid);
             if (pInfo != null)
             {
                 //pInfo.Category == "集团" ||
-                if (pInfo.Category == "公司")
+                if (pInfo.OuType == 0)
                 {
-                    info.Company_ID = pInfo.ID.ToString();
-                    info.CompanyName = pInfo.Name;
+                    info.CompanyId = pInfo.Id;
                 }
-                else if (pInfo.Category == "部门" || pInfo.Category == "工作组")
+                else if (pInfo.OuType == 1 || pInfo.OuType == 2)
                 {
-                    info.Company_ID = pInfo.Company_ID;
-                    info.CompanyName = pInfo.CompanyName;
+                    info.CompanyId = pInfo.CompanyId;
                 }
             }
         }
@@ -437,7 +423,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 try
                 {
                     SetCommonInfo(info);
-                    string filter = string.Format("Name='{0}' and Company_ID='{1}'", info.Name, info.Company_ID);
+                    string filter = string.Format("Name='{0}' and CompanyId='{1}'", info.Name, info.CompanyId);
                     bool isExist = BLLFactory<OU>.Instance.IsExistRecord(filter);
                     if (isExist)
                     {
@@ -445,9 +431,8 @@ namespace JCodes.Framework.WebUI.Controllers
                     }
                     else
                     {
-                        info.CreateTime = DateTime.Now;
-                        info.Creator = CurrentUser.FullName;
-                        info.Creator_ID = CurrentUser.ID.ToString();
+                        info.CreatorId = CurrentUser.Id;
+                        info.CreatorTime = DateTime.Now;
                         SetCommonInfo(info);
 
                         result.Success = baseBLL.Insert(info);
@@ -471,16 +456,15 @@ namespace JCodes.Framework.WebUI.Controllers
             if (info != null)
             {
                 SetCommonInfo(info);
-                string filter = string.Format("Name='{0}' and Company_ID='{1}'", info.Name, info.Company_ID);
+                string filter = string.Format("Name='{0}' and CompanyId='{1}'", info.Name, info.CompanyId);
                 bool isExist = BLLFactory<OU>.Instance.IsExistRecord(filter);
                 if (isExist)
                 {
                     throw new ArgumentException("指定机构名称重复，请重新输入！");
                 }
 
-                info.CreateTime = DateTime.Now;
-                info.Creator = CurrentUser.FullName;
-                info.Creator_ID = CurrentUser.ID.ToString();
+                info.CreatorId = CurrentUser.Id;
+                info.CreatorTime = DateTime.Now;
                 SetCommonInfo(info);
 
                 result = baseBLL.Insert2(info);
@@ -496,7 +480,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         protected override bool Update(string id, OUInfo info)
         {
-            string filter = string.Format("Name='{0}' and ID <>{1} and Company_ID='{2}'", info.Name, info.ID, info.Company_ID);
+            string filter = string.Format("Name='{0}' and Id <>{1} and CompanyId='{2}'", info.Name, info.Id, info.CompanyId);
             bool isExist = BLLFactory<OU>.Instance.IsExistRecord(filter);
             if (isExist)
             {
@@ -529,9 +513,9 @@ namespace JCodes.Framework.WebUI.Controllers
             StringBuilder content = new StringBuilder();
             foreach (OUInfo model in nodeList)
             {
-                int ParentID = (model.PID == -1 ? 0 : model.PID);
-                string subMenu = this.GetTreeJson(model.ID, folderIcon, leafIcon);
-                string parentMenu = string.Format("{{ \"id\":{0}, \"pId\":{1}, \"name\":\"{2}\" ", model.ID, ParentID, model.Name);
+                int ParentID = (model.Pid == -1 ? 0 : model.Pid);
+                string subMenu = this.GetTreeJson(model.Id, folderIcon, leafIcon);
+                string parentMenu = string.Format("{{ \"id\":{0}, \"pId\":{1}, \"name\":\"{2}\" ", model.Id, ParentID, model.Name);
                 if (string.IsNullOrEmpty(subMenu))
                 {
                     if (!string.IsNullOrEmpty(leafIcon))
@@ -573,10 +557,10 @@ namespace JCodes.Framework.WebUI.Controllers
             List<OUInfo> ouList = BLLFactory<OU>.Instance.GetTopGroup();
             foreach (OUInfo info in ouList)
             {
-                List<OUInfo> companyList = BLLFactory<OU>.Instance.GetAllCompany(info.ID);
+                List<OUInfo> companyList = BLLFactory<OU>.Instance.GetAllCompany(info.Id);
                 foreach (OUInfo companyInfo in companyList)
                 {
-                    string condition = string.Format("Company_ID='{0}' AND Deleted=0", companyInfo.ID);
+                    string condition = string.Format("Company_ID='{0}' AND Deleted=0", companyInfo.Id);
                     int count = BLLFactory<OU>.Instance.GetRecordCount(condition);
                     if (!dict.ContainsKey(companyInfo.Name))
                     {

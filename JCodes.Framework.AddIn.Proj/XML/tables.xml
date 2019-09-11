@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <datatype>
   <tabletype>
-    <item guid="97e68582-5454-445f-b542-8ce82316d4c2" createdate="2017-11-09" name="Basic(基础信息)" />
+    <item guid="97e68582-5454-445f-b542-8ce82316d4c2" createdate="2017-11-09" name="Basic(基础信息)" basicdata="1" />
   </tabletype>
   <dataitem>
   </dataitem>

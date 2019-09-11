@@ -43,8 +43,8 @@ namespace JCodes.Framework.SQLServerDAL
             ContactInfo info = new ContactInfo();
             SmartDataReader reader = new SmartDataReader(dataReader);
 
-            info.ID = reader.GetString("ID");
-            info.HandNo = reader.GetString("HandNo");
+            info.Id = reader.GetInt32("Id");
+            info.UserCode = reader.GetString("UserCode");
             info.Name = reader.GetString("Name");
             info.IDCarNo = reader.GetString("IDCarNo");
             info.Birthday = reader.GetDateTime("Birthday");
@@ -91,13 +91,13 @@ namespace JCodes.Framework.SQLServerDAL
             info.Weight = reader.GetString("Weight");
             info.Vision = reader.GetString("Vision");
             info.Introduce = reader.GetString("Introduce");
-            info.Creator = reader.GetString("Creator");
-            info.CreateTime = reader.GetDateTime("CreateTime");
-            info.Editor = reader.GetString("Editor");
+            info.CreatorId = reader.GetInt32("CreatorId");
+            info.CreatorTime = reader.GetDateTime("CreatorTime");
+            info.EditorId = reader.GetInt32("EditorId");
             info.EditTime = reader.GetDateTime("EditTime");
             info.Deleted = reader.GetInt32("Deleted") > 0;
-            info.Dept_ID = reader.GetString("Dept_ID");
-            info.Company_ID = reader.GetString("Company_ID");
+            info.DeptId = reader.GetInt32("DeptId");
+            info.CompanyId = reader.GetInt32("CompanyId");
             return info;
         }
 
@@ -111,8 +111,8 @@ namespace JCodes.Framework.SQLServerDAL
             ContactInfo info = obj as ContactInfo;
             Hashtable hash = new Hashtable();
 
-            hash.Add("ID", info.ID);
-            hash.Add("HandNo", info.HandNo);
+            hash.Add("Id", info.Id);
+            hash.Add("UserCode", info.UserCode);
             hash.Add("Name", info.Name);
             hash.Add("IDCarNo", info.IDCarNo);
             hash.Add("Birthday", info.Birthday);
@@ -159,13 +159,13 @@ namespace JCodes.Framework.SQLServerDAL
             hash.Add("Weight", info.Weight);
             hash.Add("Vision", info.Vision);
             hash.Add("Introduce", info.Introduce);
-            hash.Add("Creator", info.Creator);
-            hash.Add("CreateTime", info.CreateTime);
-            hash.Add("Editor", info.Editor);
+            hash.Add("Creator", info.CreatorId);
+            hash.Add("CreateTime", info.CreatorTime);
+            hash.Add("Editor", info.EditorId);
             hash.Add("EditTime", info.EditTime);
             hash.Add("Deleted", info.Deleted ? 1 : 0);
-            hash.Add("Dept_ID", info.Dept_ID);
-            hash.Add("Company_ID", info.Company_ID);
+            hash.Add("Dept_ID", info.DeptId);
+            hash.Add("Company_ID", info.CompanyId);
             return hash;
         }
 
@@ -178,7 +178,7 @@ namespace JCodes.Framework.SQLServerDAL
             Dictionary<string, string> dict = new Dictionary<string, string>();
             #region 添加别名解析
             dict.Add("ID", "编号");
-            dict.Add("HandNo", "编号");
+            dict.Add("UserCode", "编号");
             dict.Add("Name", "姓名");
             dict.Add("IDCarNo", "身份证号码");
             dict.Add("Birthday", "出生日期");

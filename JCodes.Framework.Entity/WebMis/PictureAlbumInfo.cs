@@ -14,20 +14,19 @@ namespace JCodes.Framework.Entity
         /// </summary>
 	    public PictureAlbumInfo()
 		{
-            this.ID= System.Guid.NewGuid().ToString();
-         
+            this.Id=0;
 		}
 
         #region Property Members
         
 		[DataMember]
-        public virtual string ID { get; set; }
+        public virtual Int32 Id { get; set; }
 
         /// <summary>
         /// 父ID
         /// </summary>
 		[DataMember]
-        public virtual string PID { get; set; }
+        public virtual Int32 Pid { get; set; }
 
         /// <summary>
         /// 名称
@@ -39,31 +38,31 @@ namespace JCodes.Framework.Entity
         /// 备注
         /// </summary>
 		[DataMember]
-        public virtual string Note { get; set; }
+        public virtual string Remark { get; set; }
 
         /// <summary>
         /// 编辑人
         /// </summary>
 		[DataMember]
-        public virtual string Editor { get; set; }
+        public virtual Int32 EditorId { get; set; }
 
         /// <summary>
         /// 编辑时间
         /// </summary>
 		[DataMember]
-        public virtual DateTime EditTime { get; set; }
+        public virtual DateTime LastUpdateTime { get; set; }
 
         /// <summary>
         /// 创建人
         /// </summary>
 		[DataMember]
-        public virtual string Creator { get; set; }
+        public virtual Int32 CreatorId { get; set; }
 
         /// <summary>
         /// 创建时间
         /// </summary>
 		[DataMember]
-        public virtual DateTime CreateTime { get; set; }
+        public virtual DateTime CreatorTime { get; set; }
 
 
         #endregion

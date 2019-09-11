@@ -8,7 +8,7 @@ namespace JCodes.Framework.Entity
     public class DicKeyValueInfo
     {
         #region Field Members
-        private Int32 m_DictType_ID = 0; //字典类型名称        
+        private Int32 m_DicttypeID = 0; //字典类型名称        
         private Int32 m_Value = 0; //字典值内容  
         private string m_Name = ""; //字典显示名称          
         #endregion
@@ -18,15 +18,15 @@ namespace JCodes.Framework.Entity
         /// 字典类型名称
         /// </summary>
         [DataMember]
-        public virtual Int32 DictType_ID
+        public virtual Int32 DicttypeID
         {
             get
             {
-                return this.m_DictType_ID;
+                return this.m_DicttypeID;
             }
             set
             {
-                this.m_DictType_ID = value;
+                this.m_DicttypeID = value;
             }
         }
 

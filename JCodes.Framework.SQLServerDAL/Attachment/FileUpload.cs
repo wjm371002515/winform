@@ -46,19 +46,19 @@ namespace JCodes.Framework.SQLServerDAL
 		{
 			FileUploadInfo info = new FileUploadInfo();
 			SmartDataReader reader = new SmartDataReader(dataReader);
-			
-			info.ID = reader.GetString("ID");
-            info.Owner_ID = reader.GetString("Owner_ID");
-			info.AttachmentGUID = reader.GetString("AttachmentGUID");
-			info.FileName = reader.GetString("FileName");
+
+            info.Gid = reader.GetString("Gid");
+            info.CreatorId = reader.GetInt32("CreatorId");
+            info.AttachmentGid = reader.GetString("AttachmentGid");
+            info.Name = reader.GetString("Name");
 			info.BasePath = reader.GetString("BasePath");
 			info.SavePath = reader.GetString("SavePath");
-			info.Category = reader.GetString("Category");
+            info.CategoryCode = reader.GetString("CategoryCode");
 			info.FileSize = reader.GetInt32("FileSize");
 			info.FileExtend = reader.GetString("FileExtend");
-            info.Editor = reader.GetString("Editor");
+            info.EditorId = reader.GetInt32("EditorId");
 			info.AddTime = reader.GetDateTime("AddTime");
-			info.DeleteFlag = reader.GetInt32("DeleteFlag");
+            info.IsDelete = reader.GetInt16("IsDelete");
 			
 			return info;
 		}
@@ -71,20 +71,20 @@ namespace JCodes.Framework.SQLServerDAL
         protected override Hashtable GetHashByEntity(FileUploadInfo obj)
 		{
 		    FileUploadInfo info = obj as FileUploadInfo;
-			Hashtable hash = new Hashtable(); 
-			
-			hash.Add("ID", info.ID);
-            hash.Add("Owner_ID", info.Owner_ID);
- 			hash.Add("AttachmentGUID", info.AttachmentGUID);
- 			hash.Add("FileName", info.FileName);
+			Hashtable hash = new Hashtable();
+
+            hash.Add("Gid", info.Gid);
+            hash.Add("CreatorId", info.CreatorId);
+            hash.Add("AttachmentGid", info.AttachmentGid);
+            hash.Add("Name", info.Name);
  			hash.Add("BasePath", info.BasePath);
  			hash.Add("SavePath", info.SavePath);
- 			hash.Add("Category", info.Category);
+            hash.Add("CategoryCode", info.CategoryCode);
  			hash.Add("FileSize", info.FileSize);
  			hash.Add("FileExtend", info.FileExtend);
- 			hash.Add("Editor", info.Editor);
+            hash.Add("EditorId", info.EditorId);
  			hash.Add("AddTime", info.AddTime);
- 			hash.Add("DeleteFlag", info.DeleteFlag);
+            hash.Add("IsDelete", info.IsDelete);
  				
 			return hash;
 		}

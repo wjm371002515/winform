@@ -18,14 +18,14 @@ namespace JCodes.Framework.WebUI.Controllers
         protected override void OnBeforeInsert(DictTypeInfo info)
         {
             //留给子类对参数对象进行修改
-            info.Editor = CurrentUser.ID.ToString();
+            info.EditorId = CurrentUser.Id;
             info.LastUpdated = DateTime.Now;
         }
 
         protected override void OnBeforeUpdate(DictTypeInfo info)
         {
             //留给子类对参数对象进行修改
-            info.Editor = CurrentUser.ID.ToString();
+            info.EditorId = CurrentUser.Id;
             info.LastUpdated = DateTime.Now;
         }
         #endregion
@@ -39,13 +39,13 @@ namespace JCodes.Framework.WebUI.Controllers
             List<DictTypeInfo> list = baseBLL.GetAll();
             list = CollectionHelper<DictTypeInfo>.Fill("-1", 0, list, "PID", "ID", "Name");
 
-            List<CListItem> itemList = new List<CListItem>();
+            List<CDicKeyValue> itemList = new List<CDicKeyValue>();
             foreach (DictTypeInfo info in list)
             {
                 // 已调整
-                itemList.Add(new CListItem(info.ID.ToString(), info.Name));
+                itemList.Add(new CDicKeyValue(info.Id, info.Name));
             }
-            itemList.Add(new CListItem("-1", "无"));
+            itemList.Add(new CDicKeyValue(-1, "无"));
 
             return Json(itemList, JsonRequestBehavior.AllowGet);
         }
@@ -61,8 +61,8 @@ namespace JCodes.Framework.WebUI.Controllers
             List<DictTypeInfo> typeList = BLLFactory<DictType>.Instance.Find("PID='-1' ");
             foreach (DictTypeInfo info in typeList)
             {
-                TreeData node = new TreeData(info.ID, info.PID, info.Name);
-                GetTreeJson(info.ID.ToString(), node);
+                TreeData node = new TreeData(info.Id, info.Pid, info.Name);
+                GetTreeJson(info.Id.ToString(), node);
 
                 treeList.Add(node);
             }
@@ -73,17 +73,17 @@ namespace JCodes.Framework.WebUI.Controllers
         /// 递归获取树形信息
         /// </summary>
         /// <returns></returns>
-        private void GetTreeJson(string PID, TreeData treeNode)
+        private void GetTreeJson(string Pid, TreeData treeNode)
         {
-            string condition = string.Format("PID='{0}' ", PID);
+            string condition = string.Format("PID='{0}' ", Pid);
             List<DictTypeInfo> nodeList = BLLFactory<DictType>.Instance.Find(condition);
             StringBuilder content = new StringBuilder();
 
             foreach (DictTypeInfo model in nodeList)
             {
-                TreeData node = new TreeData(model.ID, model.PID, model.Name);
+                TreeData node = new TreeData(model.Id, model.Pid, model.Name);
                 treeNode.children.Add(node);
-                GetTreeJson(model.ID.ToString(), node);
+                GetTreeJson(model.Id.ToString(), node);
             }
         } 
         #endregion
@@ -100,8 +100,8 @@ namespace JCodes.Framework.WebUI.Controllers
             List<DictTypeInfo> typeList = BLLFactory<DictType>.Instance.Find("PID='-1' ");
             foreach (DictTypeInfo info in typeList)
             {
-                JsTreeData node = new JsTreeData(info.ID, info.Name, "fa fa-file icon-state-warning icon-lg");
-                GetJsTreeJson(info.ID.ToString(), node);
+                JsTreeData node = new JsTreeData(info.Id, info.Name, "fa fa-file icon-state-warning icon-lg");
+                GetJsTreeJson(info.Id.ToString(), node);
 
                 treeList.Add(node);
             }
@@ -120,10 +120,10 @@ namespace JCodes.Framework.WebUI.Controllers
 
             foreach (DictTypeInfo model in nodeList)
             {
-                JsTreeData node = new JsTreeData(model.ID, model.Name, "fa fa-file icon-state-warning icon-lg");
+                JsTreeData node = new JsTreeData(model.Id, model.Name, "fa fa-file icon-state-warning icon-lg");
                 treeNode.children.Add(node);
 
-                GetJsTreeJson(model.ID.ToString(), node);
+                GetJsTreeJson(model.Id.ToString(), node);
             }
         }
         #endregion

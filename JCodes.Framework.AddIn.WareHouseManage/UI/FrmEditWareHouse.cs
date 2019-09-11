@@ -59,9 +59,9 @@ namespace JCodes.Framework.AddIn.WareHouseManage
 
         public override void DisplayData()
         {
-            if (!string.IsNullOrEmpty(ID))
+            if (Id > 0)
             {
-                WareHouseInfo info = BLLFactory<WareHouse>.Instance.FindByID(ID);
+                WareHouseInfo info = BLLFactory<WareHouse>.Instance.FindByID(Id);
                 if (info != null)
                 {
                     txtName.Text = info.Name;
@@ -105,7 +105,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
         /// <returns></returns>
         public override bool SaveUpdated()
         {
-            WareHouseInfo info = BLLFactory<WareHouse>.Instance.FindByID(ID);
+            WareHouseInfo info = BLLFactory<WareHouse>.Instance.FindByID(Id);
             if (info != null)
             {
                 SetInfo(info);

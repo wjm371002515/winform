@@ -76,10 +76,5 @@ namespace JCodes.Framework.AddIn.Test
                 ((DevExpress.XtraEditors.CheckedComboBoxEdit)sender).SelectAll();
             }
         }
-
-        private void gridView1_ValidatingEditor(object sender, DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventArgs e)
-        {
-
-        }
     }
 }

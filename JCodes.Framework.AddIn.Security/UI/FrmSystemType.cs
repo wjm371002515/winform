@@ -100,7 +100,7 @@ namespace JCodes.Framework.AddIn.Security
                 foreach (int iRow in rowSelected)
                 {
                     string ID = this.winGridView1.GridView1.GetRowCellDisplayText(iRow, "OID");
-                    BLLFactory<SystemType>.Instance.DeleteByUser(ID, LoginUserInfo.ID);
+                    BLLFactory<SystemType>.Instance.DeleteByUser(ID, LoginUserInfo.Id);
                 }
                 BindData();
             }
@@ -118,7 +118,7 @@ namespace JCodes.Framework.AddIn.Security
             foreach (int iRow in rowSelected)
             {
                 FrmEditSystemType dlg = new FrmEditSystemType();
-                dlg.ID = this.winGridView1.GridView1.GetRowCellDisplayText(iRow, "OID");
+                dlg.Id = Convert.ToInt32( this.winGridView1.GridView1.GetRowCellDisplayText(iRow, "OID"));
                 if (DialogResult.OK == dlg.ShowDialog())
                 {
                     BindData();

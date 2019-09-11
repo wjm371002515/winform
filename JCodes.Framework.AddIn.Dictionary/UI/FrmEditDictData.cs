@@ -66,16 +66,16 @@ namespace JCodes.Framework.AddIn.Dictionary
             }
 
             // 检查对应的值是否已经存在数据库了
-            if (result && string.IsNullOrEmpty(ID))
+            if (result && !string.IsNullOrEmpty(Id))
             {
                 SearchCondition condition = new SearchCondition();
-                condition.AddCondition("DictType_ID", Convert.ToInt32(this.txtDictType.Tag), SqlOperator.Equal);
+                condition.AddCondition("DicttypeID", Convert.ToInt32(this.txtDictType.Tag), SqlOperator.Equal);
                 condition.AddCondition("Value", Convert.ToInt32(Id), SqlOperator.Equal);
                 string where = condition.BuildConditionSql().Replace("Where", "");
                 var lst = BLLFactory<DictData>.Instance.Find(where);
                 if (lst.Count > 0)
                 {
-                    MessageDxUtil.ShowTips(string.Format("已存在此值域数据[字典大类编号:{0},字典值:{1},字典名称:{2}]", lst[0].DictType_ID, lst[0].Value, lst[0].Name));
+                    MessageDxUtil.ShowTips(string.Format("已存在此值域数据[字典大类编号:{0},字典值:{1},字典名称:{2}]", lst[0].DicttypeID, lst[0].Value, lst[0].Name));
                     this.txtValue.Focus();
                     result = false;
                 }
@@ -87,15 +87,15 @@ namespace JCodes.Framework.AddIn.Dictionary
 
         public override void DisplayData()
         {
-            if (!string.IsNullOrEmpty(ID))
+            if (Id > 0)
             {
-                DictDataInfo info = BLLFactory<DictData>.Instance.FindByID(ID);
+                DictDataInfo info = BLLFactory<DictData>.Instance.FindByID(Id);
                 if (info != null)
                 {
-                    DictTypeInfo typeInfo = BLLFactory<DictType>.Instance.FindByID(info.DictType_ID.ToString());
+                    DictTypeInfo typeInfo = BLLFactory<DictType>.Instance.FindByID(info.DicttypeID.ToString());
 
                     this.txtDictType.Text = typeInfo.Name;
-                    this.txtDictType.Tag = typeInfo.ID;
+                    this.txtDictType.Tag = typeInfo.Id;
                     this.txtDictType.Enabled = false;
 
                     this.txtName.Text = info.Name;
@@ -110,15 +110,15 @@ namespace JCodes.Framework.AddIn.Dictionary
 
         private void SetInfo(DictDataInfo info)
         {
-            info.DictType_ID = Convert.ToInt32(this.txtDictType.Tag);
-            info.Value = Convert.ToInt32(this.txtValue.Text.Trim());
+            info.DicttypeID = Convert.ToInt32(this.txtDictType.Tag);
+            info.Value = this.txtValue.Text.Trim();
             info.Name = this.txtName.Text.Trim();
             info.Seq = this.txtSeq.Text;
             info.Remark = this.txtNote.Text.Trim();
-            info.Editor = LoginUserInfo.ID.ToString();
-            info.LastUpdated = DateTimeHelper.GetServerDateTime2();
+            info.EditorId = LoginUserInfo.Id;
+            info.LastUpdateTime = DateTimeHelper.GetServerDateTime2();
 
-            info.CurrentLoginUserId = LoginUserInfo.ID;
+            info.CurrentLoginUserId = LoginUserInfo.Id;
         }
 
         public override void ClearScreen()
@@ -159,14 +159,14 @@ namespace JCodes.Framework.AddIn.Dictionary
 
         public override bool SaveUpdated()
         {
-            DictDataInfo info = BLLFactory<DictData>.Instance.FindByID(ID);
+            DictDataInfo info = BLLFactory<DictData>.Instance.FindByID(Id);
             if (info != null)
             {
                 SetInfo(info);
                 try
                 {
                     #region 更新数据
-                    bool succeed = BLLFactory<DictData>.Instance.Update(info, info.ID.ToString());
+                    bool succeed = BLLFactory<DictData>.Instance.Update(info, info.Gid);
                     if (succeed)
                     {
                         //可添加其他关联操作

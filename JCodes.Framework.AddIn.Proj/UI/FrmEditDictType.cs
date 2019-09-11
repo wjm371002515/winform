@@ -1,23 +1,21 @@
 ﻿using JCodes.Framework.Common;
 using JCodes.Framework.Common.Files;
 using JCodes.Framework.Common.Format;
-using JCodes.Framework.Common.Framework;
 using JCodes.Framework.CommonControl.BaseUI;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.Entity;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using System;
-using System.Collections.Generic;
 using System.Xml;
+using JCodes.Framework.Common.Extension;
 
 namespace JCodes.Framework.AddIn.Proj
 {
     public partial class FrmEditDictType : BaseEditForm
     {
-        public Int32 PID = -1;
-
+        public Int32 Pid = -1;
+        private Int32 parentPid = -1;
         private string parentStr = string.Empty;
-        private Int32 parentPID = -1;
 
         private string dicttypeModel = @"<id>{0}</id><pid>{1}</pid><name>{2}</name><remark>{3}</remark><subdic>{4}</subdic>";
 
@@ -51,10 +49,10 @@ namespace JCodes.Framework.AddIn.Proj
                 result = false;
             }
 
-            string Id = txtID.Text;
+            Int32 Id = txtID.Text.ToInt32();
             if (result)
             {
-                if (!ValidateUtil.IsNumeric(Id))
+                if (Id == 0)
                 {
                     MessageDxUtil.ShowWarning(txtID.Text.Replace(Const.MsgCheckSign, string.Empty) + Const.MsgErrFormatByNum);
                     txtID.Focus();
@@ -62,10 +60,8 @@ namespace JCodes.Framework.AddIn.Proj
                 }
             }
 
-            if (result && string.IsNullOrEmpty(ID))
+            if (result && Id == 0)
             {
-                Int32 NumId = Convert.ToInt32(Id);
-
                 #region 加载数据字典大项
                 XmlHelper xmldicthelper = new XmlHelper(@"XML\dict.xml");
                 XmlNodeList xmlNodeLst = xmldicthelper.Read("datatype/dataitem");
@@ -78,14 +74,14 @@ namespace JCodes.Framework.AddIn.Proj
                     // 得到DataTypeInfo节点的所有子节点
                     XmlNodeList xnl0 = xe.ChildNodes;
 
-                    if (NumId == Convert.ToInt32(xnl0.Item(0).InnerText))
+                    if (Id == xnl0.Item(0).InnerText.ToString().ToInt32())
                     {
-                         MessageDxUtil.ShowTips(string.Format("已存在类别编号[{0}],类别名称[{1}]",NumId , xnl0.Item(2).InnerText));
+                        MessageDxUtil.ShowTips(string.Format("已存在类别编号[{0}],类别名称[{1}]", Id, xnl0.Item(2).InnerText));
                         txtID.Focus();
                         result = false;
                     }
 
-                    if (PID != -1 && Convert.ToInt32(this.txtParent.Tag) >= 1)
+                    if (Pid != -1 && this.txtParent.Tag.ToString().ToInt32() >= 1)
                     {
                         MessageDxUtil.ShowTips("数据类型只允许2级目录");
                         txtID.Focus();
@@ -119,34 +115,34 @@ namespace JCodes.Framework.AddIn.Proj
                 // 得到DataTypeInfo节点的所有子节点
                 XmlNodeList xnl0 = xe.ChildNodes;
 
-                if (PID != -1 && PID == Convert.ToInt32(xnl0.Item(0).InnerText))
+                if (Pid != -1 && Pid == xnl0.Item(0).InnerText.ToString().ToInt32())
                 {
                     this.txtParent.Text = string.Format("{0}-{1}", xnl0.Item(0).InnerText, xnl0.Item(2).InnerText);
                     // 保存上一个节点的PID 值
                     this.txtParent.Tag = xnl0.Item(1).InnerText;
                 }
 
-                if (string.Equals(ID,  xnl0.Item(0).InnerText))
+                if (xnl0.Item(0).InnerText.ToString().ToInt32() == Id)
                 {
                     info = new DictTypeInfo();
-                    info.ID = Convert.ToInt32(xnl0.Item(0).InnerText);
-                    info.PID = Convert.ToInt32(xnl0.Item(1).InnerText);
+                    info.Id = xnl0.Item(0).InnerText.ToString().ToInt32();
+                    info.Pid = xnl0.Item(1).InnerText.ToString().ToInt32();
                     info.Name = xnl0.Item(2).InnerText;
                     info.Remark = xnl0.Item(3).InnerText;
                 }
             }
 
-            if (!string.IsNullOrEmpty(ID))
+            if (Id > 0)
             {
                 this.chkTopItem.Enabled = false;
                 if (info != null)
                 {
-                    this.txtID.Text = info.ID.ToString();
+                    this.txtID.Text = info.Id.ToString();
                     this.txtID.Enabled = false;
                     this.txtName.Text = info.Name;
                     this.txtNote.Text = info.Remark;
 
-                    if (info.PID == -1)
+                    if (info.Pid == -1)
                     {
                         this.chkTopItem.Checked = true;
                     }
@@ -174,7 +170,7 @@ namespace JCodes.Framework.AddIn.Proj
             {
                 #region 新增数据
                 XmlHelper xmldicthelper = new XmlHelper(@"XML\dict.xml");
-                xmldicthelper.InsertElement("datatype/dataitem", "item", string.Format(dicttypeModel, info.ID, info.PID, info.Name, info.Remark, string.Empty));
+                xmldicthelper.InsertElement("datatype/dataitem", "item", string.Format(dicttypeModel, info.Id, info.Pid, info.Name, info.Remark, string.Empty));
                 xmldicthelper.Save(false);
                 return true;
                 #endregion
@@ -191,10 +187,10 @@ namespace JCodes.Framework.AddIn.Proj
         {
             DictTypeInfo info = new DictTypeInfo();
             XmlHelper xmldicthelper = new XmlHelper(@"XML\dict.xml");
-            XmlNodeList xmlNodeLst = xmldicthelper.Read(string.Format("datatype/dataitem/item[id=\"{0}\"]", ID));
+            XmlNodeList xmlNodeLst = xmldicthelper.Read(string.Format("datatype/dataitem/item[id=\"{0}\"]", Id));
            
-            info.ID = Convert.ToInt32(xmlNodeLst[0].ChildNodes.Item(0).InnerText);
-            info.PID = Convert.ToInt32(xmlNodeLst[1].ChildNodes.Item(0).InnerText);
+            info.Id = xmlNodeLst[0].ChildNodes.Item(0).InnerText.ToString().ToInt32();
+            info.Pid = xmlNodeLst[1].ChildNodes.Item(0).InnerText.ToString().ToInt32();
             info.Name = xmlNodeLst[2].ChildNodes.Item(0) == null ? string.Empty : xmlNodeLst[2].ChildNodes.Item(0).InnerText;
             info.Seq = xmlNodeLst[0].ChildNodes.Item(0) == null ? string.Empty : xmlNodeLst[0].ChildNodes.Item(0).InnerText;
             info.Remark = xmlNodeLst[3].ChildNodes.Item(0) == null ? string.Empty : xmlNodeLst[3].ChildNodes.Item(0).InnerText;
@@ -205,9 +201,9 @@ namespace JCodes.Framework.AddIn.Proj
                 try
                 {
                     #region 更新数据
-                    xmldicthelper.Replace(string.Format("datatype/dataitem/item[id=\"{0}\"]/pid", ID), info.PID.ToString());
-                    xmldicthelper.Replace(string.Format("datatype/dataitem/item[id=\"{0}\"]/name", ID), info.Name);
-                    xmldicthelper.Replace(string.Format("datatype/dataitem/item[id=\"{0}\"]/remark", ID), info.Remark);
+                    xmldicthelper.Replace(string.Format("datatype/dataitem/item[id=\"{0}\"]/pid", Id), info.Pid.ToString());
+                    xmldicthelper.Replace(string.Format("datatype/dataitem/item[id=\"{0}\"]/name", Id), info.Name);
+                    xmldicthelper.Replace(string.Format("datatype/dataitem/item[id=\"{0}\"]/remark", Id), info.Remark);
                     xmldicthelper.Save(false);
                     return true;
                     #endregion
@@ -224,18 +220,17 @@ namespace JCodes.Framework.AddIn.Proj
 
         private void SetInfo(DictTypeInfo info)
         {
-            info.ID = Convert.ToInt32(txtID.Text);
-            info.Editor = LoginUserInfo.ID.ToString();
+            info.Id = txtID.Text.ToInt32();
+            //info.EditorId = LoginUserInfo.Id;
+            //info.CurrentLoginUserId = LoginUserInfo.Id;
             info.LastUpdated = DateTimeHelper.GetServerDateTime2();
             info.Name = this.txtName.Text.Trim();
             info.Remark = this.txtNote.Text.Trim();
-            info.PID = PID;
+            info.Pid = Pid;
             if (this.chkTopItem.Checked)
             {
-                info.PID = -1;
-            }
-
-            info.CurrentLoginUserId = LoginUserInfo.ID;
+                info.Pid = -1;
+            } 
         }
 
         private void chkTopItem_CheckedChanged(object sender, EventArgs e)
@@ -243,14 +238,14 @@ namespace JCodes.Framework.AddIn.Proj
             if (this.chkTopItem.Checked || this.txtParent.Tag == null)
             {
                 parentStr = this.txtParent.Text ;
-                parentPID = Convert.ToInt32(txtParent.Tag);
+                parentPid = txtParent.Tag.ToString().ToInt32();
                 this.txtParent.Text = "无(顶级项目)";
                 this.txtParent.Tag = "-1";
             }
             else
             {
                 this.txtParent.Text = parentStr;
-                this.txtParent.Tag = parentPID.ToString();
+                this.txtParent.Tag = parentPid.ToString();
             }
         }
 

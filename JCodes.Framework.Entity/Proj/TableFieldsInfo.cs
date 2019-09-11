@@ -45,6 +45,15 @@ namespace JCodes.Framework.Entity
             set { fieldType = value; }
         }
 
+        private Int32 dictno;
+
+        [DisplayName("数据字典")]
+        public Int32 DictNo
+        {
+            get { return dictno; }
+            set { dictno = value; }
+        }
+
         private string fieldInfo;
 
         [DisplayName("字段说明")]

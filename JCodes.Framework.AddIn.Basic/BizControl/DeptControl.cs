@@ -22,7 +22,7 @@ namespace JCodes.Framework.AddIn.UI.BizControl
     /// </summary>
     public partial class DeptControl : XtraUserControl
     {
-        public string ParentOuID = "-1";
+        public Int32 ParentOuID = -1;
 
         /// <summary>
         /// 选择的值发生变化的时候
@@ -54,7 +54,7 @@ namespace JCodes.Framework.AddIn.UI.BizControl
                 {
                     if (ouInfo != null)
                     {
-                        this.ParentOuID = ouInfo.ID.ToString();
+                        this.ParentOuID = ouInfo.Id;
                     }
                 }
 
@@ -68,12 +68,12 @@ namespace JCodes.Framework.AddIn.UI.BizControl
         public void Init()
         { 
             //InitUpperOU
-            DataTable dt = DataTableHelper.CreateTable("ImageIndex|int,ID,PID,Name,HandNo,Category,Address,Note");
+            DataTable dt = DataTableHelper.CreateTable("ImageIndex|int,ID,PID,Name,UserCode,Category,Address,Note");
             DataRow dr = null;
 
-            if (!string.IsNullOrEmpty(ParentOuID))
+            if (ParentOuID > -1)
             {
-                List<OUInfo> list = BLLFactory<OU>.Instance.GetAllOUsByParent(ParentOuID.ToInt32());
+                List<OUInfo> list = BLLFactory<OU>.Instance.GetAllOUsByParent(ParentOuID);
                 OUInfo parentInfo = BLLFactory<OU>.Instance.FindByID(ParentOuID);
                 if (parentInfo != null)
                 {
@@ -83,14 +83,14 @@ namespace JCodes.Framework.AddIn.UI.BizControl
                 foreach (OUInfo info in list)
                 {
                     dr = dt.NewRow();
-                    dr["ImageIndex"] = Portal.gc.GetImageIndex(info.Category);
-                    dr["ID"] = info.ID.ToString();
-                    dr["PID"] = info.PID.ToString();
+                    dr["ImageIndex"] = info.OuType;//Portal.gc.GetImageIndex(info.Category);
+                    dr["Id"] = info.Id;
+                    dr["PID"] = info.Pid;
                     dr["Name"] = info.Name;
-                    dr["HandNo"] = info.HandNo;
-                    dr["Category"] = info.Category;
+                    dr["OuCode"] = info.OuCode;
+                    dr["OuType"] = info.OuType;
                     dr["Address"] = info.Address;
-                    dr["Note"] = info.Note;
+                    dr["Remark"] = info.Remark;
 
                     dt.Rows.Add(dr);
                 }

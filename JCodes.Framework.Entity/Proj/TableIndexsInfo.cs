@@ -36,31 +36,18 @@ namespace JCodes.Framework.Entity
             set { indexFieldLst = value; }
         }
 
-        private Boolean unique;
+        private string constrainttype;
 
-        [DisplayName("唯一")]
-        public Boolean Unique
+        /// <summary>
+        /// 0 - 主键
+        /// 1 - 索引
+        /// 2 - 唯一索引
+        /// </summary>
+        [DisplayName("约束类型")]
+        public string ConstraintType
         {
-            get { return unique; }
-            set { unique = value; }
-        }
-
-        private Boolean index;
-
-        [DisplayName("索引")]
-        public Boolean Index
-        {
-            get { return index; }
-            set { index = value; }
-        }
-
-        private Boolean primary;
-
-        [DisplayName("主键")]
-        public Boolean Primary
-        {
-            get { return primary; }
-            set { primary = value; }
+            get { return constrainttype; }
+            set { constrainttype = value; }
         }
 
         #region IDXDataErrorInfo Members

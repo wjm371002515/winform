@@ -16,6 +16,7 @@ using System.Runtime.InteropServices;
 using JCodes.Framework.Common;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn.Basic
 {
@@ -95,8 +96,6 @@ namespace JCodes.Framework.AddIn.Basic
 		/// </summary>
 		public int ActualWidth;
 
-		public enum BackgroundStyles { BackwardDiagonalGradient, ForwardDiagonalGradient, HorizontalGradient, VerticalGradient, Solid };
-		public enum ClockStates { Opening, Closing, Showing, None };
 		public ClockStates ClockState;
 		#endregion
 

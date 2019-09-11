@@ -13,6 +13,7 @@ using JCodes.Framework.CommonControl;
 using JCodes.Framework.Entity;
 using JCodes.Framework.CommonControl.BaseUI;
 using JCodes.Framework.AddIn.Basic.BizControl;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn.WareHouseManage
 {

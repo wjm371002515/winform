@@ -301,16 +301,6 @@ namespace JCodes.Framework.AddIn.Proj
             barInfoText.Caption = string.Format("{0} 条提示信息", _infoCount);
         }
 
-        private void gridView1_DoubleClick(object sender, EventArgs e)
-        {
-            gridView1.OptionsBehavior.Editable = true;
-        }
-
-        private void gridView1_BeforeLeaveRow(object sender, DevExpress.XtraGrid.Views.Base.RowAllowEventArgs e)
-        {
-            gridView1.OptionsBehavior.Editable = false;
-        }
-
         private void gridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
 

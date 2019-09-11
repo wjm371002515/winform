@@ -11,6 +11,7 @@ using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.Common.Format;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Common.Extension;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.WebUI.Controllers
 {
@@ -79,23 +80,23 @@ namespace JCodes.Framework.WebUI.Controllers
                     DateTime dt;
                     AddressGroupInfo info = new AddressGroupInfo();
 
-                    info.PID = dr["父ID"].ToString();
+                    info.Pid = Convert.ToInt32( dr["父ID"] );
                     info.AddressType = EnumHelper.GetInstance<AddressType>(dr["通讯录类型"].ToString());
                     info.Name = dr["分组名称"].ToString();
-                    info.Note = dr["备注"].ToString();
+                    info.Remark = dr["备注"].ToString();
                     info.Seq = dr["排序序号"].ToString();
-                    info.Creator = dr["创建人"].ToString();
+                    info.CreatorId = Convert.ToInt32( dr["创建人"]);
                     converted = DateTime.TryParse(dr["创建时间"].ToString(), out dt);
                     if (converted && dt > dtDefault)
                     {
-                        info.CreateTime = dt;
+                        info.CreatorTime = dt;
                     }
-                    info.Dept_ID = CurrentUser.Dept_ID;
-                    info.Company_ID = CurrentUser.Company_ID;
-                    info.Creator = CurrentUser.ID.ToString();
-                    info.CreateTime = DateTime.Now;
-                    info.Editor = CurrentUser.ID.ToString();
-                    info.EditTime = DateTime.Now;
+                    info.DeptId = CurrentUser.DeptId;
+                    info.CompanyId = CurrentUser.CompanyId;
+                    info.CreatorId = CurrentUser.Id;
+                    info.CreatorTime = DateTime.Now;
+                    info.EditorId = CurrentUser.Id;
+                    info.LastUpdateTime = DateTime.Now;
 
                     list.Add(info);
                 }
@@ -127,10 +128,10 @@ namespace JCodes.Framework.WebUI.Controllers
                         foreach (AddressGroupInfo detail in list)
                         {
                             //detail.Seq = seq++;//增加1
-                            detail.CreateTime = DateTime.Now;
-                            detail.Creator = CurrentUser.ID.ToString();
-                            detail.Editor = CurrentUser.ID.ToString();
-                            detail.EditTime = DateTime.Now;
+                            detail.CreatorTime = DateTime.Now;
+                            detail.CreatorId = CurrentUser.Id;
+                            detail.EditorId = CurrentUser.Id;
+                            detail.LastUpdateTime = DateTime.Now;
 
                             BLLFactory<AddressGroup>.Instance.Insert(detail, trans);
                         }
@@ -188,13 +189,13 @@ namespace JCodes.Framework.WebUI.Controllers
             {
                 dr = datatable.NewRow();
                 dr["序号"] = j++;
-                dr["父ID"] = list[i].PID;
+                dr["父ID"] = list[i].Pid;
                 dr["通讯录类型[个人,公司]"] = list[i].AddressType;
                 dr["分组名称"] = list[i].Name;
-                dr["备注"] = list[i].Note;
+                dr["备注"] = list[i].Remark;
                 dr["排序序号"] = list[i].Seq;
-                dr["创建人"] = list[i].Creator;
-                dr["创建时间"] = list[i].CreateTime;
+                dr["创建人"] = list[i].CreatorId;
+                dr["创建时间"] = list[i].CreatorTime;
                 //如果为外键，可以在这里进行转义，如下例子
                 //dr["客户名称"] = BLLFactory<Customer>.Instance.GetCustomerName(list[i].Customer_ID);//转义为客户名称
 
@@ -220,17 +221,17 @@ namespace JCodes.Framework.WebUI.Controllers
         protected override void OnBeforeInsert(AddressGroupInfo info)
         {
             //留给子类对参数对象进行修改
-            info.CreateTime = DateTime.Now;
-            info.Creator = CurrentUser.ID.ToString();
-            info.Company_ID = CurrentUser.Company_ID;
-            info.Dept_ID = CurrentUser.Dept_ID;
+            info.CreatorTime = DateTime.Now;
+            info.CreatorId = CurrentUser.Id;
+            info.CompanyId = CurrentUser.CompanyId;
+            info.DeptId = CurrentUser.DeptId;
         }
 
         protected override void OnBeforeUpdate(AddressGroupInfo info)
         {
             //留给子类对参数对象进行修改
-            info.Editor = CurrentUser.ID.ToString();
-            info.EditTime = DateTime.Now;
+            info.EditorId = CurrentUser.Id;
+            info.LastUpdateTime = DateTime.Now;
         } 
         #endregion
         
@@ -244,11 +245,11 @@ namespace JCodes.Framework.WebUI.Controllers
             List<AddressGroupInfo> list = baseBLL.FindWithPager(where, pagerInfo);
             foreach (AddressGroupInfo info in list)
             {
-                info.PID = BLLFactory<AddressGroup>.Instance.GetFieldValue(info.PID, "Name");
+                info.Pid = BLLFactory<AddressGroup>.Instance.GetFieldValue(info.Pid, "Name").ToInt32();
                 info.Data1 = info.AddressType.ToString();
-                if (!string.IsNullOrEmpty(info.Creator))
+                if (info.CreatorId > 0)
                 {
-                    info.Creator = BLLFactory<User>.Instance.GetFullNameByID(info.Creator.ToInt32());
+                    //info. = BLLFactory<User>.Instance.GetFullNameByID(info.Creator.ToInt32());
                 }
             }
 
@@ -282,7 +283,7 @@ namespace JCodes.Framework.WebUI.Controllers
         {
             foreach (AddressGroupNodeInfo nodeInfo in nodeList)
             {
-                CListItem subNode = new CListItem(nodeInfo.Name, nodeInfo.ID);
+                CListItem subNode = new CListItem(nodeInfo.Name, nodeInfo.Id.ToString());
                 treeList.Add(subNode);
 
                 AddGroupDict(nodeInfo.Children, treeList);
@@ -318,15 +319,15 @@ namespace JCodes.Framework.WebUI.Controllers
             }
         }
 
-        public ActionResult GetAddressGroupJsTree(string userId, string contactId, string addressType)
+        public ActionResult GetAddressGroupJsTree(Int32 userId, Int32 contactId, string addressType)
         {
-            List<string> groupIdList = new List<string>();
-            if (!string.IsNullOrEmpty(contactId))
+            List<Int32> groupIdList = new List<Int32>();
+            if (contactId > 0)
             {
                 List<AddressGroupInfo> myGroupList = BLLFactory<AddressGroup>.Instance.GetByContact(contactId);
                 foreach (AddressGroupInfo info in myGroupList)
                 {
-                    groupIdList.Add(info.ID);
+                    groupIdList.Add(info.Id);
                 }
             }
 
@@ -345,8 +346,8 @@ namespace JCodes.Framework.WebUI.Controllers
             List<JsTreeData> treeList = new List<JsTreeData>();
             foreach (AddressGroupNodeInfo nodeInfo in groupList)
             {
-                bool check = groupIdList.Contains(nodeInfo.ID);
-                JsTreeData pNode = new JsTreeData(nodeInfo.ID, nodeInfo.Name, "");
+                bool check = groupIdList.Contains(nodeInfo.Id);
+                JsTreeData pNode = new JsTreeData(nodeInfo.Id, nodeInfo.Name, "");
                 pNode.state = new JsTreeState(true, check);
                 treeList.Add(pNode);
             }

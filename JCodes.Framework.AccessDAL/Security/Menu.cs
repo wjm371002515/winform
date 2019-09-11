@@ -27,7 +27,7 @@ namespace JCodes.Framework.AccessDAL
             }
         }
         public Menus()
-            : base(AccessPortal.gc._securityTablePre + "Menu", "ID")
+            : base(AccessPortal.gc._securityTablePre + "Menu", "Gid")
         {
             this.sortField = "Seq";
             this.isDescending = false;
@@ -45,22 +45,22 @@ namespace JCodes.Framework.AccessDAL
             MenuInfo info = new MenuInfo();
             SmartDataReader reader = new SmartDataReader(dataReader);
 
-            info.ID = reader.GetString("ID");
-            info.PID = reader.GetString("PID");
+            info.Gid = reader.GetString("Gid");
+            info.Pgid = reader.GetString("Pgid");
             info.Name = reader.GetString("Name");
             info.Icon = reader.GetString("Icon");
             info.Seq = reader.GetString("Seq");
-            info.FunctionId = reader.GetString("FunctionId");
-            info.Visible = reader.GetInt32("Visible") > 0;
-            info.WinformType = reader.GetString("WinformType");
+            info.AuthGid = reader.GetString("AuthGid");
+            info.IsVisable = reader.GetInt32("IsVisable") > 0;
+            info.WinformClass = reader.GetString("WinformClass");
             info.Url = reader.GetString("Url");
             info.WebIcon = reader.GetString("WebIcon");
-            info.SystemType_ID = reader.GetString("SystemType_ID");
-            info.Creator_ID = reader.GetString("Creator_ID");
+            info.SystemtypeId = reader.GetString("SystemtypeId");
+            info.CreatorId = reader.GetInt32("CreatorId");
             info.CreateTime = reader.GetDateTime("CreateTime");
-            info.Editor_ID = reader.GetString("Editor_ID");
-            info.EditTime = reader.GetDateTime("EditTime");
-            info.Is_Deleted = reader.GetInt32("Is_Deleted") > 0;
+            info.EditorId = reader.GetInt32("EditorId");
+            info.LastUpdateTime = reader.GetDateTime("LastUpdateTime");
+            info.IsDelete = reader.GetInt32("IsDelete") > 0;
 
             return info;
         }
@@ -75,22 +75,22 @@ namespace JCodes.Framework.AccessDAL
             MenuInfo info = obj as MenuInfo;
             Hashtable hash = new Hashtable();
 
-            hash.Add("ID", info.ID);
-            hash.Add("PID", info.PID);
+            hash.Add("Gid", info.Gid);
+            hash.Add("Pgid", info.Pgid);
             hash.Add("Name", info.Name);
             hash.Add("Icon", info.Icon);
             hash.Add("Seq", info.Seq);
-            hash.Add("FunctionId", info.FunctionId);
-            hash.Add("Visible", info.Visible ? 1 : 0);
-            hash.Add("WinformType", info.WinformType);
+            hash.Add("AuthGid", info.AuthGid);
+            hash.Add("IsVisable", info.IsVisable ? 1 : 0);
+            hash.Add("WinformClass", info.WinformClass);
             hash.Add("Url", info.Url);
             hash.Add("WebIcon", info.WebIcon);
-            hash.Add("SystemType_ID", info.SystemType_ID);
-            hash.Add("Creator_ID", info.Creator_ID);
+            hash.Add("SystemtypeId", info.SystemtypeId);
+            hash.Add("CreatorId", info.CreatorId);
             hash.Add("CreateTime", info.CreateTime);
-            hash.Add("Editor_ID", info.Editor_ID);
-            hash.Add("EditTime", info.EditTime);
-            hash.Add("Is_Deleted", info.Is_Deleted ? 1 : 0);
+            hash.Add("EditorId", info.EditorId);
+            hash.Add("LastUpdateTime", info.LastUpdateTime);
+            hash.Add("IsDelete", info.IsDelete ? 1 : 0);
 
             return hash;
         }
@@ -103,22 +103,22 @@ namespace JCodes.Framework.AccessDAL
         {
             Dictionary<string, string> dict = new Dictionary<string, string>();
             #region 添加别名解析
-            dict.Add("ID", "编号");            
-            dict.Add("PID", "父ID");
+            dict.Add("Gid", "编号");
+            dict.Add("Pgid", "父ID");
             dict.Add("Name", "显示名称");
             dict.Add("Icon", "图标");
             dict.Add("Seq", "排序");
-            dict.Add("FunctionId", "功能ID");
-            dict.Add("Visible", "是否可见");
-            dict.Add("WinformType", "Winform窗体类型");
+            dict.Add("AuthGid", "功能ID");
+            dict.Add("IsVisable", "是否可见");
+            dict.Add("WinformClass", "Winform窗体类型");
             dict.Add("Url", "Web界面Url地址");
             dict.Add("WebIcon", "Web界面的菜单图标");
-            dict.Add("SystemType_ID", "系统编号");
-            dict.Add("Creator_ID", "创建人ID");
+            dict.Add("SystemtypeId", "系统编号");
+            dict.Add("CreatorId", "创建人ID");
             dict.Add("CreateTime", "创建时间");
-            dict.Add("Editor_ID", "编辑人ID");
-            dict.Add("EditTime", "编辑时间");
-            dict.Add("Is_Deleted", "是否已删除");
+            dict.Add("EditorId", "编辑人ID");
+            dict.Add("LastUpdateTime", "编辑时间");
+            dict.Add("IsDelete", "是否已删除");
             #endregion
 
             return dict;
@@ -129,9 +129,9 @@ namespace JCodes.Framework.AccessDAL
         /// </summary>
         public List<MenuNodeInfo> GetTree(string systemType)
         {
-            string condition = !string.IsNullOrEmpty(systemType) ? string.Format("AND SystemType_ID='{0}'", systemType) : "";
+            string condition = !string.IsNullOrEmpty(systemType) ? string.Format("AND SystemtypeId='{0}'", systemType) : "";
             List<MenuNodeInfo> arrReturn = new List<MenuNodeInfo>();
-            string sql = string.Format("Select * From {0} Where Visible > 0 {1} Order By PID, Seq ", tableName, condition);
+            string sql = string.Format("Select * From {0} Where IsVisable > 0 {1} Order By Pgid, Seq ", tableName, condition);
 
             DataTable dt = base.SqlTable(sql);
             string seq = string.Format("{0} {1}", GetSafeFileName(sortField), isDescending ? "DESC" : "ASC");
@@ -151,8 +151,8 @@ namespace JCodes.Framework.AccessDAL
         /// </summary>
         public List<MenuInfo> GetAllMenu(string systemType)
         {
-            string condition = !string.IsNullOrEmpty(systemType) ? string.Format("Where SystemType_ID='{0}'", systemType) : "";
-            string sql = string.Format("Select * From {0} {1} Order By PID, Seq ", tableName, condition);
+            string condition = !string.IsNullOrEmpty(systemType) ? string.Format("Where SystemtypeId='{0}'", systemType) : "";
+            string sql = string.Format("Select * From {0} {1} Order By SystemtypeId, Seq ", tableName, condition);
             return GetList(sql, null);
         }
 
@@ -162,11 +162,11 @@ namespace JCodes.Framework.AccessDAL
             MenuNodeInfo menuNodeInfo = new MenuNodeInfo(menuInfo);
 
             string sort = string.Format("{0} {1}", GetSafeFileName(sortField), isDescending ? "DESC" : "ASC");
-            DataRow[] dChildRows = dt.Select(string.Format(" PID='{0}'", id), sort);
+            DataRow[] dChildRows = dt.Select(string.Format(" Pgid='{0}'", id), sort);
 
             for (int i = 0; i < dChildRows.Length; i++)
             {
-                string childId = dChildRows[i]["ID"].ToString();
+                string childId = dChildRows[i]["Gid"].ToString();
                 MenuNodeInfo childNodeInfo = GetNode(childId, dt);
                 menuNodeInfo.Children.Add(childNodeInfo);
             }
@@ -178,8 +178,8 @@ namespace JCodes.Framework.AccessDAL
         /// </summary>
         public List<MenuInfo> GetTopMenu(string systemType)
         {
-            string condition = !string.IsNullOrEmpty(systemType) ? string.Format("AND SystemType_ID='{0}'", systemType) : "";
-            string sql = string.Format("Select * From {0} Where Visible > 0 and PID='-1' {1} Order By Seq  ", tableName, condition);
+            string condition = !string.IsNullOrEmpty(systemType) ? string.Format("AND SystemtypeId='{0}'", systemType) : "";
+            string sql = string.Format("Select * From {0} Where IsVisable > 0 and Pgid='-1' {1} Order By Seq  ", tableName, condition);
             return GetList(sql, null);
         }
 
@@ -190,14 +190,14 @@ namespace JCodes.Framework.AccessDAL
         public List<MenuNodeInfo> GetTreeByID(string mainMenuID)
         {
             List<MenuNodeInfo> arrReturn = new List<MenuNodeInfo>();
-            string sql = string.Format("Select * From {0} Where Visible > 0 Order By PID, Seq ", tableName);
+            string sql = string.Format("Select * From {0} Where IsVisable > 0 Order By Pgid, Seq ", tableName);
 
             DataTable dt = SqlTable(sql);
             string sort = string.Format("{0} {1}", GetSafeFileName(sortField), isDescending ? "DESC" : "ASC");
-            DataRow[] dataRows = dt.Select(string.Format(" PID = '{0}'", mainMenuID), sort);
+            DataRow[] dataRows = dt.Select(string.Format(" Pgid = '{0}'", mainMenuID), sort);
             for (int i = 0; i < dataRows.Length; i++)
             {
-                string id = dataRows[i]["ID"].ToString();
+                string id = dataRows[i]["Gid"].ToString();
                 MenuNodeInfo menuNodeInfo = GetNode(id, dt);
                 arrReturn.Add(menuNodeInfo);
             }
@@ -211,8 +211,8 @@ namespace JCodes.Framework.AccessDAL
         /// <param name="PID">菜单父ID</param>
         public List<MenuInfo> GetMenuByID(string PID)
         {
-            string sql = string.Format(@"Select t.*,case pid when '-1' then '0' else pid end as parentId From {1} t 
-                                         Where  PID='{0}' Order By Seq ", PID, tableName);
+            string sql = string.Format(@"Select t.*,case Pgid when '-1' then '0' else Pgid end as parentId From {1} t 
+                                         Where  Pgid='{0}' Order By Seq ", PID, tableName);
             return GetList(sql, null);
         }
     }

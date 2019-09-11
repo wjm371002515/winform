@@ -18,6 +18,7 @@ using JCodes.Framework.Common.Format;
 using JCodes.Framework.Common.Extension;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.AddIn.Basic;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn.Security
 {
@@ -103,10 +104,10 @@ namespace JCodes.Framework.AddIn.Security
         {
             InitDictItem();//数据字典加载（公用）
 
-            if (!string.IsNullOrEmpty(ID))
+            if (Id > 0)
             {
                 #region 显示信息
-                BlackIPInfo info = BLLFactory<BlackIP>.Instance.FindByID(ID);
+                BlackIPInfo info = BLLFactory<BlackIP>.Instance.FindByID(Id);
                 if (info != null)
                 {
                     tempInfo = info;//重新给临时对象赋值，使之指向存在的记录对象
@@ -150,10 +151,10 @@ namespace JCodes.Framework.AddIn.Security
             info.IPEnd = txtIPEnd.Text;
             info.Note = txtNote.Text;
             info.Editor = Portal.gc.UserInfo.FullName;
-            info.Editor_ID = Portal.gc.UserInfo.ID.ToString();
+            info.EditorId = Portal.gc.UserInfo.Id;
             info.EditTime = DateTimeHelper.GetServerDateTime2();
 
-            info.CurrentLoginUserId = Portal.gc.UserInfo.ID; //记录当前登录的用户信息，供操作日志记录使用
+            info.CurrentLoginUserId = Portal.gc.UserInfo.Id; //记录当前登录的用户信息，供操作日志记录使用
         }
 
         /// <summary>
@@ -165,7 +166,7 @@ namespace JCodes.Framework.AddIn.Security
             BlackIPInfo info = tempInfo;//必须使用存在的局部变量，因为部分信息可能被附件使用
             SetInfo(info);
             info.Creator = Portal.gc.UserInfo.FullName;
-            info.Creator_ID = Portal.gc.UserInfo.ID.ToString();
+            info.CreatorId = Portal.gc.UserInfo.Id;
             info.CreateTime = DateTimeHelper.GetServerDateTime2();
 
             try
@@ -196,7 +197,7 @@ namespace JCodes.Framework.AddIn.Security
         public override bool SaveUpdated()
         {
 
-            BlackIPInfo info = BLLFactory<BlackIP>.Instance.FindByID(ID);
+            BlackIPInfo info = BLLFactory<BlackIP>.Instance.FindByID(Id);
             if (info != null)
             {
                 SetInfo(info);
@@ -229,10 +230,10 @@ namespace JCodes.Framework.AddIn.Security
         /// <summary>
         /// 记录用户的选择情况
         /// </summary>
-        Dictionary<string, string> SelectUserDict = new Dictionary<string, string>();
+        Dictionary<Int32, string> SelectUserDict = new Dictionary<Int32, string>();
         private void RefreshUsers()
         {
-            SelectUserDict = new Dictionary<string, string>();
+            SelectUserDict = new Dictionary<Int32, string>();
 
             this.lvwUser.BeginUpdate();
             this.lvwUser.Items.Clear();
@@ -241,12 +242,12 @@ namespace JCodes.Framework.AddIn.Security
             {
                 string name = string.Format("{0}（{1}）", info.FullName, info.Name);
                 // 20170901 wjm 调整key 和value的顺序
-                CListItem item = new CListItem(info.ID.ToString(), name);
+                CDicKeyValue item = new CDicKeyValue(info.Id, name);
                 this.lvwUser.Items.Add(item);
 
-                if (!SelectUserDict.ContainsKey(info.ID.ToString()))
+                if (!SelectUserDict.ContainsKey(info.Id))
                 {
-                    SelectUserDict.Add(info.ID.ToString(), name);
+                    SelectUserDict.Add(info.Id, name);
                 }
             }
             if (this.lvwUser.Items.Count > 0)
@@ -264,23 +265,23 @@ namespace JCodes.Framework.AddIn.Security
         /// </summary>
         /// <param name="oldDict">旧的列表</param>
         /// <param name="newDict">新的选择列表</param>
-        private void GetUserDictChangs(Dictionary<string, string> oldDict, Dictionary<string, string> newDict)
+        private void GetUserDictChangs(Dictionary<Int32, string> oldDict, Dictionary<Int32, string> newDict)
         {
             addedUserList = new List<int>();
             deletedUserList = new List<int>();
-            foreach (string key in oldDict.Keys)
+            foreach (Int32 key in oldDict.Keys)
             {
                 if (!newDict.ContainsKey(key))
                 {
-                    deletedUserList.Add(key.ToInt32());
+                    deletedUserList.Add(key);
                 }
             }
 
-            foreach (string key in newDict.Keys)
+            foreach (Int32 key in newDict.Keys)
             {
                 if (!oldDict.ContainsKey(key))
                 {
-                    addedUserList.Add(key.ToInt32());
+                    addedUserList.Add(key);
                 }
             }
         }

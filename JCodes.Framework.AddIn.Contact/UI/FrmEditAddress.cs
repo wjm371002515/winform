@@ -15,6 +15,7 @@ using JCodes.Framework.CommonControl.Controls;
 using JCodes.Framework.Common;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.Common.Format;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn.Contact
 {
@@ -70,34 +71,34 @@ namespace JCodes.Framework.AddIn.Contact
         {
             InitDictItem();//数据字典加载（公用）
 
-            if (!string.IsNullOrEmpty(ID))
+            if (Id > 0)
             {
                 #region 显示信息
-                AddressInfo info = BLLFactory<Address>.Instance.FindByID(ID);
+                AddressInfo info = BLLFactory<Address>.Instance.FindByID(Id);
                 if (info != null)
                 {
                     tempInfo = info;//重新给临时对象赋值，使之指向存在的记录对象
 
                     txtName.Text = info.Name;
-                    txtSex.Text = info.Sex;
-                    txtBirthdate.SetDateTime(info.Birthdate);
-                    txtMobile.Text = info.Mobile;
+                    txtSex.Text = info.Sex.ToString();
+                    txtBirthdate.SetDateTime(info.Birthday);
+                    txtMobile.Text = info.MobilePhone;
                     txtEmail.Text = info.Email;
-                    txtQQ.Text = info.QQ;
-                    txtHomeTelephone.Text = info.HomeTelephone;
-                    txtOfficeTelephone.Text = info.OfficeTelephone;
+                    txtQQ.Text = info.QQ.ToString();
+                    txtHomeTelephone.Text = info.HomePhone;
+                    txtOfficeTelephone.Text = info.OfficePhone;
                     txtHomeAddress.Text = info.HomeAddress;
                     txtOfficeAddress.Text = info.OfficeAddress;
                     txtFax.Text = info.Fax;
-                    txtCompany.Text = info.Company;
-                    txtDept.Text = info.Dept;
+                    txtCompany.Text = info.CompanyName;
+                    txtDept.Text = info.DeptName;
                     txtPosition.Text = info.Position;
                     txtOther.Text = info.Other;
-                    txtNote.Text = info.Note;
-                    txtCreator.Text = info.Creator;
-                    txtCreateTime.SetDateTime(info.CreateTime);
-                    txtEditor.Text = info.Editor;
-                    txtEditTime.SetDateTime(info.EditTime);
+                    txtNote.Text = info.Remark;
+                    txtCreator.Text = info.CreatorId.ToString();
+                    txtCreateTime.SetDateTime(info.CreatorTime);
+                    txtEditor.Text = info.EditorId.ToString();
+                    txtEditTime.SetDateTime(info.LastUpdateTime);
                 }
                 #endregion
             }
@@ -141,25 +142,25 @@ namespace JCodes.Framework.AddIn.Contact
         private void SetInfo(AddressInfo info)
         {
             info.Name = txtName.Text;
-            info.Sex = txtSex.Text;
-            info.Birthdate = txtBirthdate.DateTime;
-            info.Mobile = txtMobile.Text;
+            //info.Sex = txtSex.Text;
+            info.Birthday = txtBirthdate.DateTime;
+            info.MobilePhone = txtMobile.Text;
             info.Email = txtEmail.Text;
-            info.QQ = txtQQ.Text;
-            info.HomeTelephone = txtHomeTelephone.Text;
-            info.OfficeTelephone = txtOfficeTelephone.Text;
+            info.QQ = Convert.ToInt32( txtQQ.Text);
+            info.HomePhone = txtHomeTelephone.Text;
+            info.OfficePhone = txtOfficeTelephone.Text;
             info.HomeAddress = txtHomeAddress.Text;
             info.OfficeAddress = txtOfficeAddress.Text;
             info.Fax = txtFax.Text;
-            info.Company = txtCompany.Text;
-            info.Dept = txtDept.Text;
+            info.CompanyName = txtCompany.Text;
+            info.DeptName = txtDept.Text;
             info.Position = txtPosition.Text;
             info.Other = txtOther.Text;
-            info.Note = txtNote.Text;
+            info.Remark = txtNote.Text;
 
-            info.EditTime = DateTimeHelper.GetServerDateTime2();
-            info.Editor = LoginUserInfo.ID.ToString();//当前用户
-            info.CurrentLoginUserId = LoginUserInfo.ID; //记录当前登录的用户信息，供操作日志记录使用
+            info.LastUpdateTime = DateTimeHelper.GetServerDateTime2();
+            info.EditorId = LoginUserInfo.Id;//当前用户
+            info.CurrentLoginUserId = LoginUserInfo.Id; //记录当前登录的用户信息，供操作日志记录使用
         }
 
         /// <summary>
@@ -170,10 +171,10 @@ namespace JCodes.Framework.AddIn.Contact
         {
             AddressInfo info = tempInfo;//必须使用存在的局部变量，因为部分信息可能被附件使用
             SetInfo(info);
-            info.Creator = LoginUserInfo.ID.ToString();
-            info.CreateTime = DateTimeHelper.GetServerDateTime2();
-            info.Dept_ID = LoginUserInfo.DeptId;
-            info.Company_ID = LoginUserInfo.CompanyId;
+            info.CreatorId = LoginUserInfo.Id;
+            info.LastUpdateTime = DateTimeHelper.GetServerDateTime2();
+            info.DeptId = LoginUserInfo.DeptId;
+            info.CompanyId = LoginUserInfo.CompanyId;
             info.AddressType = this.AddressType;//限定类型
 
             try
@@ -204,7 +205,7 @@ namespace JCodes.Framework.AddIn.Contact
         /// <returns></returns>
         public override bool SaveUpdated()
         {
-            AddressInfo info = BLLFactory<Address>.Instance.FindByID(ID);
+            AddressInfo info = BLLFactory<Address>.Instance.FindByID(Id);
             if (info != null)
             {
                 SetInfo(info);
@@ -212,7 +213,7 @@ namespace JCodes.Framework.AddIn.Contact
                 try
                 {
                     #region 更新数据
-                    bool succeed = BLLFactory<Address>.Instance.Update(info, info.ID);
+                    bool succeed = BLLFactory<Address>.Instance.Update(info, info.Id);
                     if (succeed)
                     {
                         //可添加其他关联操作
@@ -252,17 +253,17 @@ namespace JCodes.Framework.AddIn.Contact
         /// </summary>
         private void BindAddressGroup()
         {
-            List<AddressGroupInfo> myGroupList = BLLFactory<AddressGroup>.Instance.GetByContact(tempInfo.ID);
-            List<string> groupIdList = new List<string>();
+            List<AddressGroupInfo> myGroupList = BLLFactory<AddressGroup>.Instance.GetByContact(tempInfo.Id);
+            List<Int32> groupIdList = new List<Int32>();
             foreach (AddressGroupInfo info in myGroupList)
             {
-                groupIdList.Add(info.ID);
+                groupIdList.Add(info.Id);
             }
 
             List<AddressGroupNodeInfo> groupList = new List<AddressGroupNodeInfo>();
-            if (AddressType == Entity.AddressType.个人)
+            if (AddressType == AddressType.个人)
             {
-                groupList = BLLFactory<AddressGroup>.Instance.GetTree(AddressType.ToString(), LoginUserInfo.ID.ToString());
+                groupList = BLLFactory<AddressGroup>.Instance.GetTree(AddressType.ToString(), LoginUserInfo.Id);
             }
             else
             {
@@ -273,8 +274,8 @@ namespace JCodes.Framework.AddIn.Contact
             this.checkedListContact.Items.Clear();
             foreach (AddressGroupNodeInfo nodeInfo in groupList)
             {
-                bool check = groupIdList.Contains(nodeInfo.ID);
-                this.checkedListContact.Items.Add(new CListItem(nodeInfo.ID, nodeInfo.Name), check);
+                bool check = groupIdList.Contains(nodeInfo.Id);
+                this.checkedListContact.Items.Add(new CDicKeyValue(nodeInfo.Id, nodeInfo.Name), check);
             }
             this.checkedListContact.EndUpdate();
         }
@@ -291,7 +292,7 @@ namespace JCodes.Framework.AddIn.Contact
                 }
             }
 
-            bool result = BLLFactory<Address>.Instance.ModifyAddressGroup(tempInfo.ID, selectGroupIDList);
+            bool result = BLLFactory<Address>.Instance.ModifyAddressGroup(tempInfo.Id, selectGroupIDList);
             return result;
         }
 

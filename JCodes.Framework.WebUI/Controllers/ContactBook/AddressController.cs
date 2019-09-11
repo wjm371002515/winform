@@ -11,6 +11,7 @@ using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.Common.Databases;
 using JCodes.Framework.Common.Format;
 using JCodes.Framework.Common.Extension;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.WebUI.Controllers
 {
@@ -81,37 +82,37 @@ namespace JCodes.Framework.WebUI.Controllers
 
                     info.AddressType = EnumHelper.GetInstance<AddressType>( dr["通讯录类型"].ToString());
                     info.Name = dr["姓名"].ToString();
-                    info.Sex = dr["性别"].ToString();
+                    info.Sex = Convert.ToInt32( dr["性别"]);
                     converted = DateTime.TryParse(dr["出生日期"].ToString(), out dt);
                     if (converted && dt > dtDefault)
                     {
-                        info.Birthdate = dt;
+                        info.Birthday = dt;
                     }
-                    info.Mobile = dr["手机"].ToString();
+                    info.MobilePhone = dr["手机"].ToString();
                     info.Email = dr["电子邮箱"].ToString();
-                    info.QQ = dr["QQ"].ToString();
-                    info.HomeTelephone = dr["家庭电话"].ToString();
-                    info.OfficeTelephone = dr["办公电话"].ToString();
+                    info.QQ = Convert.ToInt32( dr["QQ"]);
+                    info.HomePhone = dr["家庭电话"].ToString();
+                    info.OfficePhone = dr["办公电话"].ToString();
                     info.HomeAddress = dr["家庭住址"].ToString();
                     info.OfficeAddress = dr["办公地址"].ToString();
                     info.Fax = dr["传真号码"].ToString();
-                    info.Company = dr["公司单位"].ToString();
-                    info.Dept = dr["部门"].ToString();
+                    info.CompanyName = dr["公司单位"].ToString();
+                    info.DeptName = dr["部门"].ToString();
                     info.Other = dr["其他"].ToString();
-                    info.Note = dr["备注"].ToString();
-                    info.Creator = dr["创建人"].ToString();
+                    info.Remark = dr["备注"].ToString();
+                    info.CreatorId = Convert.ToInt32( dr["创建人"]);
                     converted = DateTime.TryParse(dr["创建时间"].ToString(), out dt);
                     if (converted && dt > dtDefault)
                     {
-                        info.CreateTime = dt;
+                        info.CreatorTime = dt;
                     }
-                    info.Dept_ID = dr["所属部门"].ToString();
-                    info.Company_ID = dr["所属公司"].ToString();
+                    info.DeptId = Convert.ToInt32( dr["所属部门"]);
+                    info.CompanyId = Convert.ToInt32( dr["所属公司"]);
 
-                    info.Creator = CurrentUser.ID.ToString();
-                    info.CreateTime = DateTime.Now;
-                    info.Editor = CurrentUser.ID.ToString();
-                    info.EditTime = DateTime.Now;
+                    info.CreatorId = CurrentUser.Id;
+                    info.CreatorTime = DateTime.Now;
+                    info.EditorId = CurrentUser.Id;
+                    info.LastUpdateTime = DateTime.Now;
 
                     list.Add(info);
                 }
@@ -143,10 +144,10 @@ namespace JCodes.Framework.WebUI.Controllers
                         foreach (AddressInfo detail in list)
                         {
                             //detail.Seq = seq++;//增加1
-                            detail.CreateTime = DateTime.Now;
-                            detail.Creator = CurrentUser.ID.ToString();
-                            detail.Editor = CurrentUser.ID.ToString();
-                            detail.EditTime = DateTime.Now;
+                            detail.CreatorTime = DateTime.Now;
+                            detail.CreatorId = CurrentUser.Id;
+                            detail.EditorId = CurrentUser.Id;
+                            detail.LastUpdateTime = DateTime.Now;
 
                             BLLFactory<Address>.Instance.Insert(detail, trans);
                         }
@@ -207,23 +208,23 @@ namespace JCodes.Framework.WebUI.Controllers
                 dr["通讯录类型[个人,公司]"] = list[i].AddressType;
                 dr["姓名"] = list[i].Name;
                 dr["性别"] = list[i].Sex;
-                dr["出生日期"] = list[i].Birthdate;
-                dr["手机"] = list[i].Mobile;
+                dr["出生日期"] = list[i].Birthday;
+                dr["手机"] = list[i].MobilePhone;
                 dr["电子邮箱"] = list[i].Email;
                 dr["QQ"] = list[i].QQ;
-                dr["家庭电话"] = list[i].HomeTelephone;
-                dr["办公电话"] = list[i].OfficeTelephone;
+                dr["家庭电话"] = list[i].HomePhone;
+                dr["办公电话"] = list[i].OfficePhone;
                 dr["家庭住址"] = list[i].HomeAddress;
                 dr["办公地址"] = list[i].OfficeAddress;
                 dr["传真号码"] = list[i].Fax;
-                dr["公司单位"] = list[i].Company;
-                dr["部门"] = list[i].Dept;
+                dr["公司单位"] = list[i].CompanyName;
+                dr["部门"] = list[i].DeptName;
                 dr["其他"] = list[i].Other;
-                dr["备注"] = list[i].Note;
-                dr["创建人"] = list[i].Creator;
-                dr["创建时间"] = list[i].CreateTime;
-                dr["所属部门"] = list[i].Dept_ID;
-                dr["所属公司"] = list[i].Company_ID;
+                dr["备注"] = list[i].Remark;
+                dr["创建人"] = list[i].CreatorId;
+                dr["创建时间"] = list[i].CreatorTime;
+                dr["所属部门"] = list[i].DeptId;
+                dr["所属公司"] = list[i].CompanyId;
                 //如果为外键，可以在这里进行转义，如下例子
                 //dr["客户名称"] = BLLFactory<Customer>.Instance.GetCustomerName(list[i].Customer_ID);//转义为客户名称
 
@@ -249,17 +250,17 @@ namespace JCodes.Framework.WebUI.Controllers
         protected override void OnBeforeInsert(AddressInfo info)
         {
             //留给子类对参数对象进行修改
-            info.CreateTime = DateTime.Now;
-            info.Creator = CurrentUser.ID.ToString();
-            info.Company_ID = CurrentUser.Company_ID;
-            info.Dept_ID = CurrentUser.Dept_ID;
+            info.CreatorTime = DateTime.Now;
+            info.CreatorId = CurrentUser.Id;
+            info.CompanyId = CurrentUser.CompanyId;
+            info.DeptId = CurrentUser.DeptId;
         }
 
         protected override void OnBeforeUpdate(AddressInfo info)
         {
             //留给子类对参数对象进行修改
-            info.Editor = CurrentUser.ID.ToString();
-            info.EditTime = DateTime.Now;
+            info.EditorId = CurrentUser.Id;
+            info.LastUpdateTime = DateTime.Now;
         }
         #endregion
 		
@@ -331,12 +332,12 @@ namespace JCodes.Framework.WebUI.Controllers
                     }
                     else if (CustomedCondition == "ungroup")
                     {
-                        list = BLLFactory<Address>.Instance.FindByGroupName(CurrentUser.ID.ToString(), null, pagerInfo);
+                        list = BLLFactory<Address>.Instance.FindByGroupName(CurrentUser.Id, null, pagerInfo);
                     }
                     else
                     {
                         string groupName = CustomedCondition;
-                        list = BLLFactory<Address>.Instance.FindByGroupName(CurrentUser.ID.ToString(), groupName, pagerInfo);
+                        list = BLLFactory<Address>.Instance.FindByGroupName(CurrentUser.Id, groupName, pagerInfo);
                     }
                 } 
                 #endregion
@@ -353,7 +354,7 @@ namespace JCodes.Framework.WebUI.Controllers
             return ToJsonContentDate(result);
         }
 
-        public ActionResult ModifyAddressGroup(string id, string groupIdList)
+        public ActionResult ModifyAddressGroup(Int32 Id, string groupIdList)
         {
             List<string> idList = new List<string>();
             if (!string.IsNullOrEmpty(groupIdList))
@@ -364,7 +365,7 @@ namespace JCodes.Framework.WebUI.Controllers
             CommonResult result = new CommonResult();
             try
             {
-                result.Success = BLLFactory<Address>.Instance.ModifyAddressGroup(id, idList);
+                result.Success = BLLFactory<Address>.Instance.ModifyAddressGroup(Id, idList);
             }
             catch (Exception ex)
             {

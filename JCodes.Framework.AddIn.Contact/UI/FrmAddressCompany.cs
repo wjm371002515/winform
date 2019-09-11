@@ -20,6 +20,8 @@ using JCodes.Framework.CommonControl.AdvanceSearch;
 using JCodes.Framework.CommonControl.Controls;
 using JCodes.Framework.BLL;
 using JCodes.Framework.Common.Format;
+using JCodes.Framework.jCodesenum;
+using JCodes.Framework.Common.Extension;
 
 namespace JCodes.Framework.AddIn.Contact
 {
@@ -165,7 +167,7 @@ namespace JCodes.Framework.AddIn.Contact
             foreach (int iRow in rowSelected)
             {
                 string ID = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "ID");
-                BLLFactory<Address>.Instance.DeleteByUser(ID, LoginUserInfo.ID);
+                BLLFactory<Address>.Instance.DeleteByUser(ID, LoginUserInfo.Id);
             }
 
             BindData();
@@ -182,20 +184,20 @@ namespace JCodes.Framework.AddIn.Contact
                 return;
             }
 
-            string ID = this.winGridViewPager1.gridView1.GetFocusedRowCellDisplayText("ID");
-            List<string> IDList = new List<string>();
+            Int32 Id = this.winGridViewPager1.gridView1.GetFocusedRowCellDisplayText("ID").ToInt32();
+            List<Int32> IdList = new List<Int32>();
             for (int i = 0; i < this.winGridViewPager1.gridView1.RowCount; i++)
             {
-                string strTemp = this.winGridViewPager1.GridView1.GetRowCellDisplayText(i, "ID");
-                IDList.Add(strTemp);
+                Int32 strTemp = this.winGridViewPager1.GridView1.GetRowCellDisplayText(i, "ID").ToInt32();
+                IdList.Add(strTemp);
             }
 
-            if (!string.IsNullOrEmpty(ID))
+            if (Id > 0)
             {
                 FrmEditAddress dlg = new FrmEditAddress();
-                dlg.ID = ID;
+                dlg.Id = Id;
                 dlg.AddressType = AddressType.公共;
-                dlg.IDList = IDList;
+                dlg.IdList = IdList;
                 dlg.OnDataSaved += new EventHandler(dlg_OnDataSaved);
                 dlg.InitFunction(LoginUserInfo, FunctionDict);//给子窗体赋值用户权限信息
 
@@ -427,32 +429,32 @@ namespace JCodes.Framework.AddIn.Contact
             AddressInfo info = new AddressInfo();
             info.AddressType = AddressType.公共;
             info.Name = dr["姓名"].ToString();
-            info.Sex = dr["性别"].ToString();
+            info.Sex = Convert.ToInt32(dr["性别"]);
             converted = DateTime.TryParse(dr["出生日期"].ToString(), out dt);
             if (converted && dt > dtDefault)
             {
-                info.Birthdate = dt;
+                info.Birthday = dt;
             }
-            info.Mobile = dr["手机"].ToString();
+            info.MobilePhone = dr["手机"].ToString();
             info.Email = dr["电子邮箱"].ToString();
-            info.QQ = dr["QQ"].ToString();
-            info.HomeTelephone = dr["家庭电话"].ToString();
-            info.OfficeTelephone = dr["办公电话"].ToString();
+            info.QQ = Convert.ToInt32( dr["QQ"]);
+            info.HomePhone = dr["家庭电话"].ToString();
+            info.OfficePhone = dr["办公电话"].ToString();
             info.HomeAddress = dr["家庭住址"].ToString();
             info.OfficeAddress = dr["办公地址"].ToString();
             info.Fax = dr["传真号码"].ToString();
-            info.Company = dr["公司单位"].ToString();
-            info.Dept = dr["部门"].ToString();
+            info.CompanyName = dr["公司单位"].ToString();
+            info.DeptName = dr["部门"].ToString();
             info.Position = dr["职位"].ToString();
             info.Other = dr["其他"].ToString();
-            info.Note = dr["备注"].ToString();
+            info.Remark = dr["备注"].ToString();
 
-            info.Creator = LoginUserInfo.ID.ToString();
-            info.CreateTime = DateTimeHelper.GetServerDateTime2();
-            info.Editor = LoginUserInfo.ID.ToString();
-            info.EditTime = DateTimeHelper.GetServerDateTime2();
-            info.Dept_ID = LoginUserInfo.DeptId;
-            info.Company_ID = LoginUserInfo.CompanyId;
+            info.CreatorId = LoginUserInfo.Id;
+            info.CreatorTime = DateTimeHelper.GetServerDateTime2();
+            info.EditorId = LoginUserInfo.Id;
+            info.LastUpdateTime = DateTimeHelper.GetServerDateTime2();
+            info.DeptId = LoginUserInfo.DeptId;
+            info.CompanyId = LoginUserInfo.CompanyId;
 
             success = BLLFactory<Address>.Instance.Insert(info);
             return success;
@@ -476,7 +478,7 @@ namespace JCodes.Framework.AddIn.Contact
                     if (selectedNode.Text != "所有联系人" && selectedNode.Text != "未分组联系人")
                     {
                         string groupName = this.treeView1.SelectedNode.Text;
-                        list = BLLFactory<Address>.Instance.FindByGroupName(LoginUserInfo.ID.ToString(), groupName);
+                        list = BLLFactory<Address>.Instance.FindByGroupName(LoginUserInfo.Id, groupName);
                     }
                 }
                 else
@@ -493,22 +495,22 @@ namespace JCodes.Framework.AddIn.Contact
                     dr["序号"] = j++;
                     dr["姓名"] = list[i].Name;
                     dr["性别"] = list[i].Sex;
-                    dr["出生日期"] = list[i].Birthdate;
-                    dr["手机"] = list[i].Mobile;
+                    dr["出生日期"] = list[i].Birthday;
+                    dr["手机"] = list[i].MobilePhone;
                     dr["电子邮箱"] = list[i].Email;
                     dr["QQ"] = list[i].QQ;
-                    dr["家庭电话"] = list[i].HomeTelephone;
-                    dr["办公电话"] = list[i].OfficeTelephone;
+                    dr["家庭电话"] = list[i].HomePhone;
+                    dr["办公电话"] = list[i].OfficePhone;
                     dr["家庭住址"] = list[i].HomeAddress;
                     dr["办公地址"] = list[i].OfficeAddress;
                     dr["传真号码"] = list[i].Fax;
-                    dr["公司单位"] = list[i].Company;
-                    dr["部门"] = list[i].Dept;
+                    dr["公司单位"] = list[i].CompanyName;
+                    dr["部门"] = list[i].DeptName;
                     dr["职位"] = list[i].Position;
                     dr["其他"] = list[i].Other;
-                    dr["备注"] = list[i].Note;
-                    dr["创建人"] = list[i].Creator;
-                    dr["创建时间"] = list[i].CreateTime;
+                    dr["备注"] = list[i].Remark;
+                    dr["创建人"] = list[i].CreatorId;
+                    dr["创建时间"] = list[i].CreatorTime;
                     dtNew.Rows.Add(dr);
                 }
 

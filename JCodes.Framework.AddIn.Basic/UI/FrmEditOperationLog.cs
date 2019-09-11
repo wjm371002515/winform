@@ -37,9 +37,6 @@ namespace JCodes.Framework.AddIn.Basic
         {
             bool result = true;//默认是可以通过
 
-            #region MyRegion
-            #endregion
-
             return result;
         }
 
@@ -58,24 +55,24 @@ namespace JCodes.Framework.AddIn.Basic
         {
             InitDictItem();//数据字典加载（公用）
 
-            if (!string.IsNullOrEmpty(ID))
+            if (Id > 0)
             {
                 #region 显示信息
-                OperationLogInfo info = BLLFactory<OperationLog>.Instance.FindByID(ID);
+                OperationLogInfo info = BLLFactory<OperationLog>.Instance.FindByID(Id);
                 if (info != null)
                 {
                     tempInfo = info;//重新给临时对象赋值，使之指向存在的记录对象
-                    txtUser_ID.Text = info.User_ID.ToString();
+                    txtUser_ID.Text = info.UserId.ToString();
                     txtLoginName.Text = info.LoginName;
                     txtFullName.Text = info.FullName;
-                    txtCompany_ID.Text = info.Company_ID;
+                    txtCompany_ID.Text = info.CompanyId.ToString();
                     txtCompanyName.Text = info.CompanyName;
                     txtTableName.Text = info.TableName;
                     txtOperationType.Text = info.OperationType;
-                    txtNote.Text = info.Note;
-                    txtIPAddress.Text = info.IPAddress;
-                    txtMacAddress.Text = info.MacAddress;
-                    txtCreateTime.SetDateTime(info.CreateTime);
+                    txtNote.Text = info.Remark;
+                    txtIPAddress.Text = info.IP;
+                    txtMacAddress.Text = info.Mac;
+                    txtCreateTime.SetDateTime(info.CreatorTime);
                 }
                 #endregion          
             }
@@ -98,10 +95,10 @@ namespace JCodes.Framework.AddIn.Basic
             info.CompanyName = txtCompanyName.Text;
             info.TableName = txtTableName.Text;
             info.OperationType = txtOperationType.Text;
-            info.Note = txtNote.Text;
-            info.MacAddress = this.txtMacAddress.Text;
-            info.IPAddress = this.txtIPAddress.Text;
-            info.CreateTime = txtCreateTime.DateTime;
+            info.Remark = txtNote.Text;
+            info.Mac = this.txtMacAddress.Text;
+            info.IP = this.txtIPAddress.Text;
+            info.CreatorTime = txtCreateTime.DateTime;
         }
 
         /// <summary>
@@ -141,7 +138,7 @@ namespace JCodes.Framework.AddIn.Basic
         public override bool SaveUpdated()
         {
 
-            OperationLogInfo info = BLLFactory<OperationLog>.Instance.FindByID(ID);
+            OperationLogInfo info = BLLFactory<OperationLog>.Instance.FindByID(Id);
             if (info != null)
             {
                 SetInfo(info);
@@ -149,7 +146,7 @@ namespace JCodes.Framework.AddIn.Basic
                 try
                 {
                     #region 更新数据
-                    bool succeed = BLLFactory<OperationLog>.Instance.Update(info, info.ID);
+                    bool succeed = BLLFactory<OperationLog>.Instance.Update(info, info.Id);
                     if (succeed)
                     {
                         //可添加其他关联操作

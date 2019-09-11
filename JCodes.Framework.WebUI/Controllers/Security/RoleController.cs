@@ -12,6 +12,7 @@ using JCodes.Framework.Common.Extension;
 using JCodes.Framework.Common.Databases;
 using JCodes.Framework.Common;
 using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.WebUI.Controllers
 {
@@ -77,26 +78,24 @@ namespace JCodes.Framework.WebUI.Controllers
                 int i = 1;
                 foreach (DataRow dr in table.Rows)
                 {
-                    bool converted = false;
                     DateTime dtDefault = Convert.ToDateTime("1900-01-01");
-                    DateTime dt;
                     RoleInfo info = new RoleInfo();
 
-                    info.PID = dr["父ID"].ToString().ToInt32();
-                    info.HandNo = dr["角色编码"].ToString();
+                    info.Pid = dr["父ID"].ToString().ToInt32();
+                    info.RoleCode = dr["角色编码"].ToString();
                     info.Name = dr["角色名称"].ToString();
-                    info.Note = dr["备注"].ToString();
+                    info.Remark = dr["备注"].ToString();
                     info.Seq = dr["排序"].ToString();
-                    info.Category = dr["角色分类"].ToString();
+                    info.RoleType = dr["角色分类"].ToString().ToInt32();
 
-                    info.Company_ID = CurrentUser.Company_ID;
-                    info.CompanyName = CurrentUser.CompanyName;
-                    info.Creator = CurrentUser.FullName.ToString();
-                    info.Creator_ID = CurrentUser.ID.ToString();
-                    info.CreateTime = DateTime.Now;
-                    info.Editor = CurrentUser.FullName.ToString();
-                    info.Editor_ID = CurrentUser.ID.ToString();
-                    info.EditTime = DateTime.Now;
+                    info.CompanyId = CurrentUser.CompanyId;
+                    //info.CompanyName = CurrentUser.com;
+                    //info.Creator = CurrentUser.FullName.ToString();
+                    info.CreatorId = CurrentUser.Id;
+                    info.CreatorTime = DateTime.Now;
+                    //info.Editor = CurrentUser.FullName.ToString();
+                    info.EditorId = CurrentUser.Id;
+                    info.LastUpdateTime = DateTime.Now;
 
                     list.Add(info);
                 }
@@ -128,14 +127,14 @@ namespace JCodes.Framework.WebUI.Controllers
                         foreach (RoleInfo info in list)
                         {
                             //detail.Seq = seq++;//增加1
-                            info.Company_ID = CurrentUser.Company_ID;
-                            info.CompanyName = CurrentUser.CompanyName;
-                            info.Creator = CurrentUser.FullName.ToString();
-                            info.Creator_ID = CurrentUser.ID.ToString();
-                            info.CreateTime = DateTime.Now;
-                            info.Editor = CurrentUser.FullName.ToString();
-                            info.Editor_ID = CurrentUser.ID.ToString();
-                            info.EditTime = DateTime.Now;
+                            info.CompanyId = CurrentUser.CompanyId;
+                            //info.CompanyName = CurrentUser.CompanyName;
+                            //info.Creator = CurrentUser.FullName.ToString();
+                            info.CreatorId = CurrentUser.Id;
+                            info.CreatorTime = DateTime.Now;
+                            //info.Editor = CurrentUser.FullName.ToString();
+                            info.EditorId = CurrentUser.Id;
+                            info.LastUpdateTime = DateTime.Now;
 
                             BLLFactory<Role>.Instance.Insert(info, trans);
                         }
@@ -193,12 +192,12 @@ namespace JCodes.Framework.WebUI.Controllers
             {
                 dr = datatable.NewRow();
                 dr["序号"] = j++;
-                dr["父ID"] = list[i].PID;
-                dr["角色编码"] = list[i].HandNo;
+                dr["父ID"] = list[i].Pid;
+                dr["角色编码"] = list[i].RoleCode;
                 dr["角色名称"] = list[i].Name;
-                dr["备注"] = list[i].Note;
+                dr["备注"] = list[i].Remark;
                 dr["排序"] = list[i].Seq;
-                dr["角色分类"] = list[i].Category;
+                dr["角色分类"] = list[i].RoleType;
 
                 //如果为外键，可以在这里进行转义，如下例子
                 //dr["客户名称"] = BLLFactory<Customer>.Instance.GetCustomerName(list[i].Customer_ID);//转义为客户名称
@@ -229,12 +228,12 @@ namespace JCodes.Framework.WebUI.Controllers
             //子类对参数对象进行修改
             //info.Company_ID = CurrentUser.Company_ID;
             //info.CompanyName = CurrentUser.CompanyName;
-            info.Creator = CurrentUser.FullName.ToString();
-            info.Creator_ID = CurrentUser.ID.ToString();
-            info.CreateTime = DateTime.Now;
-            info.Editor = CurrentUser.FullName.ToString();
-            info.Editor_ID = CurrentUser.ID.ToString();
-            info.EditTime = DateTime.Now;
+            //info.Creator = CurrentUser.FullName.ToString();
+            info.CreatorId = CurrentUser.Id;
+            info.CreatorTime = DateTime.Now;
+            //info.Editor = CurrentUser.FullName.ToString();
+            info.EditorId = CurrentUser.Id;
+            info.LastUpdateTime = DateTime.Now;
         }
 
         protected override void OnBeforeUpdate(RoleInfo info)
@@ -245,9 +244,9 @@ namespace JCodes.Framework.WebUI.Controllers
             //info.Creator = CurrentUser.FullName.ToString();
             //info.Creator_ID = CurrentUser.ID.ToString();
             //info.CreateTime = DateTime.Now;
-            info.Editor = CurrentUser.FullName.ToString();
-            info.Editor_ID = CurrentUser.ID.ToString();
-            info.EditTime = DateTime.Now;
+            //info.Editor = CurrentUser.FullName.ToString();
+            info.EditorId = CurrentUser.Id;
+            info.LastUpdateTime = DateTime.Now;
         }
         #endregion
 
@@ -501,11 +500,11 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <param name="info"></param>
         private void SetCommonInfo(RoleInfo info)
         {
-            info.Editor = CurrentUser.FullName;
-            info.Editor_ID = CurrentUser.ID.ToString();
-            info.EditTime = DateTime.Now;
+            //info.Editor = CurrentUser.FullName;
+            info.EditorId = CurrentUser.Id;
+            info.LastUpdateTime = DateTime.Now;
 
-            OUInfo companyInfo = BLLFactory<OU>.Instance.FindByID(info.Company_ID);
+            OUInfo companyInfo = BLLFactory<OU>.Instance.FindByID(info.CompanyId);
             if (companyInfo != null)
             {
                 info.CompanyName = companyInfo.Name;
@@ -519,7 +518,7 @@ namespace JCodes.Framework.WebUI.Controllers
             CommonResult result = new CommonResult();
             if (info != null)
             {
-                string filter = string.Format("Name='{0}'  and Company_ID={1}", info.Name, info.Company_ID);
+                string filter = string.Format("Name='{0}'  and Company_ID={1}", info.Name, info.CompanyId);
                 bool isExist = BLLFactory<Role>.Instance.IsExistRecord(filter);
                 if (isExist)
                 {
@@ -529,9 +528,9 @@ namespace JCodes.Framework.WebUI.Controllers
                 {
                     try
                     {
-                        info.CreateTime = DateTime.Now;
-                        info.Creator = CurrentUser.FullName;
-                        info.Creator_ID = CurrentUser.ID.ToString();
+                        info.CreatorTime = DateTime.Now;
+                        //info.Creator = CurrentUser.FullName;
+                        info.CreatorId = CurrentUser.Id;
                         SetCommonInfo(info);
 
                         result.Success = baseBLL.Insert(info);
@@ -555,16 +554,16 @@ namespace JCodes.Framework.WebUI.Controllers
             int result = -1;
             if (info != null)
             {
-                string filter = string.Format("Name='{0}' and Company_ID={1}", info.Name, info.Company_ID);
+                string filter = string.Format("Name='{0}' and Company_ID={1}", info.Name, info.CompanyId);
                 bool isExist = BLLFactory<Role>.Instance.IsExistRecord(filter);
                 if (isExist)
                 {
                     throw new ArgumentException("指定角色名称重复，请重新输入！");
                 }
 
-                info.CreateTime = DateTime.Now;
-                info.Creator = CurrentUser.FullName;
-                info.Creator_ID = CurrentUser.ID.ToString();
+                info.CreatorTime = DateTime.Now;
+                ///info.Creator = CurrentUser.FullName;
+                info.CreatorId = CurrentUser.Id;
                 SetCommonInfo(info);
                 result = baseBLL.Insert2(info);
             }
@@ -579,7 +578,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         protected override bool Update(string id, RoleInfo info)
         {
-            string filter = string.Format("Name='{0}' and ID <>'{1}' and Company_ID={2}", info.Name, info.ID, info.Company_ID);
+            string filter = string.Format("Name='{0}' and ID <>'{1}' and CompanyId={2}", info.Name, info.Id, info.CompanyId);
             bool isExist = BLLFactory<Role>.Instance.IsExistRecord(filter);
             if (isExist)
             {
@@ -602,22 +601,24 @@ namespace JCodes.Framework.WebUI.Controllers
             UserInfo userInfo = BLLFactory<User>.Instance.FindByID(userId);
             if (userInfo != null)
             {
-                List<OUInfo> list = BLLFactory<OU>.Instance.GetMyTopGroup(CurrentUser.ID);
+                List<OUInfo> list = BLLFactory<OU>.Instance.GetMyTopGroup(CurrentUser.Id);
                 foreach (OUInfo groupInfo in list)
                 {
-                    if (groupInfo != null && !groupInfo.Deleted)
+                    if (groupInfo != null && groupInfo.IsDelete == 0)
                     {
-                        JsTreeData topnode = new JsTreeData("dept" + groupInfo.ID, groupInfo.Name, GetBootstrapIcon(groupInfo.Category));
+                        //JsTreeData topnode = new JsTreeData("dept" + groupInfo.Id, groupInfo.Name, GetBootstrapIcon(groupInfo.OuType));
+                        JsTreeData topnode = new JsTreeData("dept" + groupInfo.Id, groupInfo.Name);
                         AddJsRole(groupInfo, topnode);
 
-                        if (groupInfo.Category == "集团")
+                        if (groupInfo.OuType == 0)
                         {
-                            List<OUInfo> sublist = BLLFactory<OU>.Instance.GetAllCompany(groupInfo.ID);
+                            List<OUInfo> sublist = BLLFactory<OU>.Instance.GetAllCompany(groupInfo.Id);
                             foreach (OUInfo info in sublist)
                             {
-                                if (!info.Deleted)
+                                if (info.IsDelete == 0)
                                 {
-                                    JsTreeData companyNode = new JsTreeData("dept" + info.ID, info.Name, GetBootstrapIcon(info.Category));
+                                    //JsTreeData companyNode = new JsTreeData("dept" + info.Id, info.Name, GetBootstrapIcon(info.OuType));
+                                    JsTreeData companyNode = new JsTreeData("dept" + info.Id, info.Name);
                                     topnode.children.Add(companyNode);
 
                                     AddJsRole(info, companyNode);
@@ -636,10 +637,10 @@ namespace JCodes.Framework.WebUI.Controllers
 
         private void AddJsRole(OUInfo ouInfo, JsTreeData treeNode)
         {
-            List<RoleInfo> roleList = BLLFactory<Role>.Instance.GetRolesByCompany(ouInfo.ID.ToString());
+            List<RoleInfo> roleList = BLLFactory<Role>.Instance.GetRolesByCompanyId(ouInfo.Id);
             foreach (RoleInfo roleInfo in roleList)
             {
-                JsTreeData roleNode = new JsTreeData("role" + roleInfo.ID, roleInfo.Name, "fa fa-user icon-state-info icon-lg");
+                JsTreeData roleNode = new JsTreeData("role" + roleInfo.Id, roleInfo.Name, "fa fa-user icon-state-info icon-lg");
                 treeNode.children.Add(roleNode);
             }
         }

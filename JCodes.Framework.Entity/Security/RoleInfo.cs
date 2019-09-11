@@ -21,38 +21,36 @@ namespace JCodes.Framework.Entity
         public const string CompanyAdminName = "系统管理员";
 
         #region Field Members
-        private int m_ID = 0; //          
-        private int m_PID = -1; //父ID          
-        private string m_HandNo; //角色编码          
+        private int m_Id = 0; //          
+        private int m_Pid = -1; //父ID          
+        private string m_RoleCode; //角色编码          
         private string m_Name; //角色名称          
-        private string m_Note; //备注          
+        private string m_Remark; //备注          
         private string m_Seq; //排序码          
-        private string m_Category; //角色分类          
-        private string m_Company_ID; //所属公司ID          
-        private string m_CompanyName; //所属公司名称          
-        private string m_Creator; //创建人          
-        private string m_Creator_ID; //创建人ID          
-        private DateTime m_CreateTime = System.DateTime.Now; //创建时间          
-        private string m_Editor; //编辑人          
-        private string m_Editor_ID; //编辑人ID          
-        private DateTime m_EditTime = System.DateTime.Now; //编辑时间          
-        private bool m_Deleted = false; //是否已删除          
-        private bool m_Enabled = true; //有效标志          
+        private Int32 m_RoleType; //角色分类          
+        private Int32 m_CompanyId; //所属公司ID          
+        private string m_CompanyName; //所属公司名称                   
+        private Int32 m_CreatorId; //创建人ID          
+        private DateTime m_CreatorTime = System.DateTime.Now; //创建时间                
+        private Int32 m_EditorId; //编辑人ID          
+        private DateTime m_LastUpdateTime = System.DateTime.Now; //编辑时间          
+        private Int32 m_IsDelete; //是否已删除          
+        private Int32 m_IsForbid; //有效标志          
 
         #endregion
 
         #region Property Members
 
         [DataMember]
-        public virtual int ID
+        public virtual int Id
         {
             get
             {
-                return this.m_ID;
+                return this.m_Id;
             }
             set
             {
-                this.m_ID = value;
+                this.m_Id = value;
             }
         }
 
@@ -60,15 +58,15 @@ namespace JCodes.Framework.Entity
         /// 父ID
         /// </summary>
 		[DataMember]
-        public virtual int PID
+        public virtual int Pid
         {
             get
             {
-                return this.m_PID;
+                return this.m_Pid;
             }
             set
             {
-                this.m_PID = value;
+                this.m_Pid = value;
             }
         }
 
@@ -76,15 +74,15 @@ namespace JCodes.Framework.Entity
         /// 角色编码
         /// </summary>
 		[DataMember]
-        public virtual string HandNo
+        public virtual string RoleCode
         {
             get
             {
-                return this.m_HandNo;
+                return this.m_RoleCode;
             }
             set
             {
-                this.m_HandNo = value;
+                this.m_RoleCode = value;
             }
         }
 
@@ -108,15 +106,15 @@ namespace JCodes.Framework.Entity
         /// 备注
         /// </summary>
         [DataMember]
-        public virtual string Note
+        public virtual string Remark
         {
             get
             {
-                return this.m_Note;
+                return this.m_Remark;
             }
             set
             {
-                this.m_Note = value;
+                this.m_Remark = value;
             }
         }
 
@@ -140,15 +138,15 @@ namespace JCodes.Framework.Entity
         /// 角色分类
         /// </summary>
 		[DataMember]
-        public virtual string Category
+        public virtual Int32 RoleType
         {
             get
             {
-                return this.m_Category;
+                return this.m_RoleType;
             }
             set
             {
-                this.m_Category = value;
+                this.m_RoleType = value;
             }
         }
 
@@ -156,15 +154,15 @@ namespace JCodes.Framework.Entity
         /// 所属公司ID
         /// </summary>
 		[DataMember]
-        public virtual string Company_ID
+        public virtual Int32 CompanyId
         {
             get
             {
-                return this.m_Company_ID;
+                return this.m_CompanyId;
             }
             set
             {
-                this.m_Company_ID = value;
+                this.m_CompanyId = value;
             }
         }
 
@@ -188,31 +186,15 @@ namespace JCodes.Framework.Entity
         /// 创建人
         /// </summary>
 		[DataMember]
-        public virtual string Creator
+        public virtual Int32 CreatorId
         {
             get
             {
-                return this.m_Creator;
+                return this.m_CreatorId;
             }
             set
             {
-                this.m_Creator = value;
-            }
-        }
-
-        /// <summary>
-        /// 创建人ID
-        /// </summary>
-		[DataMember]
-        public virtual string Creator_ID
-        {
-            get
-            {
-                return this.m_Creator_ID;
-            }
-            set
-            {
-                this.m_Creator_ID = value;
+                this.m_CreatorId = value;
             }
         }
 
@@ -220,31 +202,15 @@ namespace JCodes.Framework.Entity
         /// 创建时间
         /// </summary>
 		[DataMember]
-        public virtual DateTime CreateTime
+        public virtual DateTime CreatorTime
         {
             get
             {
-                return this.m_CreateTime;
+                return this.m_CreatorTime;
             }
             set
             {
-                this.m_CreateTime = value;
-            }
-        }
-
-        /// <summary>
-        /// 编辑人
-        /// </summary>
-		[DataMember]
-        public virtual string Editor
-        {
-            get
-            {
-                return this.m_Editor;
-            }
-            set
-            {
-                this.m_Editor = value;
+                this.m_CreatorTime = value;
             }
         }
 
@@ -252,15 +218,15 @@ namespace JCodes.Framework.Entity
         /// 编辑人ID
         /// </summary>
 		[DataMember]
-        public virtual string Editor_ID
+        public virtual Int32 EditorId
         {
             get
             {
-                return this.m_Editor_ID;
+                return this.m_EditorId;
             }
             set
             {
-                this.m_Editor_ID = value;
+                this.m_EditorId = value;
             }
         }
 
@@ -268,15 +234,15 @@ namespace JCodes.Framework.Entity
         /// 编辑时间
         /// </summary>
 		[DataMember]
-        public virtual DateTime EditTime
+        public virtual DateTime LastUpdateTime
         {
             get
             {
-                return this.m_EditTime;
+                return this.m_LastUpdateTime;
             }
             set
             {
-                this.m_EditTime = value;
+                this.m_LastUpdateTime = value;
             }
         }
 
@@ -284,15 +250,15 @@ namespace JCodes.Framework.Entity
         /// 是否已删除
         /// </summary>
 		[DataMember]
-        public virtual bool Deleted
+        public virtual Int32 IsDelete
         {
             get
             {
-                return this.m_Deleted;
+                return this.m_IsDelete;
             }
             set
             {
-                this.m_Deleted = value;
+                this.m_IsDelete = value;
             }
         }
 
@@ -300,15 +266,15 @@ namespace JCodes.Framework.Entity
         /// 有效标志
         /// </summary>
 		[DataMember]
-        public virtual bool Enabled
+        public virtual Int32 IsForbid
         {
             get
             {
-                return this.m_Enabled;
+                return this.m_IsForbid;
             }
             set
             {
-                this.m_Enabled = value;
+                this.m_IsForbid = value;
             }
         }
 

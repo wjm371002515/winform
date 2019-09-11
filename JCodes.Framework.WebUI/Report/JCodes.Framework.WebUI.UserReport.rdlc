@@ -580,7 +580,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!HandNo.Value</Value>
+                              <Value>=Fields!UserCode.Value</Value>
                               <Style>
                                 <FontFamily>新宋体</FontFamily>
                               </Style>
@@ -858,8 +858,8 @@
           <DataField>PID</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="HandNo">
-          <DataField>HandNo</DataField>
+        <Field Name="UserCode">
+          <DataField>UserCode</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="Name">
@@ -874,8 +874,8 @@
           <DataField>FullName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="Nickname">
-          <DataField>Nickname</DataField>
+        <Field Name="LoginName">
+          <DataField>LoginName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="IsExpire">

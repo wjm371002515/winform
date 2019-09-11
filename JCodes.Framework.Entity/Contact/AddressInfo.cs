@@ -1,6 +1,7 @@
 using System;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.Entity
 {
@@ -12,44 +13,45 @@ namespace JCodes.Framework.Entity
     {    
         #region Field Members
 
-        private string m_ID = System.Guid.NewGuid().ToString(); //          
+        private Int32 m_Id; //          
         private AddressType m_AddressType =  AddressType.个人; //通讯录类型[个人,公司]          
         private string m_Name; //姓名          
-        private string m_Sex; //性别          
-        private DateTime m_Birthdate; //出生日期          
-        private string m_Mobile; //手机          
+        private Int32 m_Sex; //性别          
+        private DateTime m_Birthday; //出生日期          
+        private string m_MobilePhone; //手机          
         private string m_Email; //电子邮箱          
-        private string m_QQ; //QQ          
-        private string m_HomeTelephone; //家庭电话          
-        private string m_OfficeTelephone; //办公电话          
+        private Int32 m_QQ; //QQ          
+        private string m_HomePhone; //家庭电话          
+        private string m_OfficePhone; //办公电话          
         private string m_HomeAddress; //家庭住址          
         private string m_OfficeAddress; //办公地址          
         private string m_Fax; //传真号码          
-        private string m_Company; //公司单位          
-        private string m_Dept; //部门          
+        private string m_CompanyName; //公司单位          
+        private string m_DeptName; //部门    
+        private string m_Position;// 职位
         private string m_Other; //其他          
-        private string m_Note; //备注          
-        private string m_Creator; //创建人          
-        private DateTime m_CreateTime; //创建时间          
-        private string m_Editor; //编辑人          
-        private DateTime m_EditTime; //编辑时间          
-        private string m_Dept_ID; //所属部门
-        private string m_Company_ID; //所属公司
+        private string m_Remark; //备注          
+        private Int32 m_CreatorId; //创建人          
+        private DateTime m_CreatorTime; //创建时间          
+        private Int32 m_EditorId; //编辑人          
+        private DateTime m_LastUpdateTime; //编辑时间          
+        private Int32 m_DeptId; //所属部门
+        private Int32 m_CompanyId; //所属公司
 
         #endregion
 
         #region Property Members
         
 		[DataMember]
-        public virtual string ID
+        public virtual Int32 Id
         {
             get
             {
-                return this.m_ID;
+                return this.m_Id;
             }
             set
             {
-                this.m_ID = value;
+                this.m_Id = value;
             }
         }
 
@@ -89,7 +91,7 @@ namespace JCodes.Framework.Entity
         /// 性别
         /// </summary>
 		[DataMember]
-        public virtual string Sex
+        public virtual Int32 Sex
         {
             get
             {
@@ -105,15 +107,15 @@ namespace JCodes.Framework.Entity
         /// 出生日期
         /// </summary>
 		[DataMember]
-        public virtual DateTime Birthdate
+        public virtual DateTime Birthday
         {
             get
             {
-                return this.m_Birthdate;
+                return this.m_Birthday;
             }
             set
             {
-                this.m_Birthdate = value;
+                this.m_Birthday = value;
             }
         }
 
@@ -121,15 +123,15 @@ namespace JCodes.Framework.Entity
         /// 手机
         /// </summary>
 		[DataMember]
-        public virtual string Mobile
+        public virtual string MobilePhone
         {
             get
             {
-                return this.m_Mobile;
+                return this.m_MobilePhone;
             }
             set
             {
-                this.m_Mobile = value;
+                this.m_MobilePhone = value;
             }
         }
 
@@ -153,7 +155,7 @@ namespace JCodes.Framework.Entity
         /// QQ
         /// </summary>
 		[DataMember]
-        public virtual string QQ
+        public virtual Int32 QQ
         {
             get
             {
@@ -169,15 +171,15 @@ namespace JCodes.Framework.Entity
         /// 家庭电话
         /// </summary>
 		[DataMember]
-        public virtual string HomeTelephone
+        public virtual string HomePhone
         {
             get
             {
-                return this.m_HomeTelephone;
+                return this.m_HomePhone;
             }
             set
             {
-                this.m_HomeTelephone = value;
+                this.m_HomePhone = value;
             }
         }
 
@@ -185,15 +187,15 @@ namespace JCodes.Framework.Entity
         /// 办公电话
         /// </summary>
 		[DataMember]
-        public virtual string OfficeTelephone
+        public virtual string OfficePhone
         {
             get
             {
-                return this.m_OfficeTelephone;
+                return this.m_OfficePhone;
             }
             set
             {
-                this.m_OfficeTelephone = value;
+                this.m_OfficePhone = value;
             }
         }
 
@@ -249,15 +251,15 @@ namespace JCodes.Framework.Entity
         /// 公司单位
         /// </summary>
 		[DataMember]
-        public virtual string Company
+        public virtual string CompanyName
         {
             get
             {
-                return this.m_Company;
+                return this.m_CompanyName;
             }
             set
             {
-                this.m_Company = value;
+                this.m_CompanyName = value;
             }
         }
 
@@ -265,15 +267,15 @@ namespace JCodes.Framework.Entity
         /// 部门
         /// </summary>
 		[DataMember]
-        public virtual string Dept
+        public virtual string DeptName
         {
             get
             {
-                return this.m_Dept;
+                return this.m_DeptName;
             }
             set
             {
-                this.m_Dept = value;
+                this.m_DeptName = value;
             }
         }
 
@@ -281,7 +283,11 @@ namespace JCodes.Framework.Entity
         /// 职位
         /// </summary>
         [DataMember]
-        public virtual string Position { get; set; }
+        public virtual string Position { 
+            get { return this.m_Position; }
+            set { this.m_Position = value;  } 
+        
+        }
 
         /// <summary>
         /// 其他
@@ -303,15 +309,15 @@ namespace JCodes.Framework.Entity
         /// 备注
         /// </summary>
 		[DataMember]
-        public virtual string Note
+        public virtual string Remark
         {
             get
             {
-                return this.m_Note;
+                return this.m_Remark;
             }
             set
             {
-                this.m_Note = value;
+                this.m_Remark = value;
             }
         }
 
@@ -319,15 +325,15 @@ namespace JCodes.Framework.Entity
         /// 创建人
         /// </summary>
 		[DataMember]
-        public virtual string Creator
+        public virtual Int32 CreatorId
         {
             get
             {
-                return this.m_Creator;
+                return this.m_CreatorId;
             }
             set
             {
-                this.m_Creator = value;
+                this.m_CreatorId = value;
             }
         }
 
@@ -335,15 +341,15 @@ namespace JCodes.Framework.Entity
         /// 创建时间
         /// </summary>
 		[DataMember]
-        public virtual DateTime CreateTime
+        public virtual DateTime CreatorTime
         {
             get
             {
-                return this.m_CreateTime;
+                return this.m_CreatorTime;
             }
             set
             {
-                this.m_CreateTime = value;
+                this.m_CreatorTime = value;
             }
         }
 
@@ -351,15 +357,15 @@ namespace JCodes.Framework.Entity
         /// 编辑人
         /// </summary>
 		[DataMember]
-        public virtual string Editor
+        public virtual Int32 EditorId
         {
             get
             {
-                return this.m_Editor;
+                return this.m_EditorId;
             }
             set
             {
-                this.m_Editor = value;
+                this.m_EditorId = value;
             }
         }
 
@@ -367,15 +373,15 @@ namespace JCodes.Framework.Entity
         /// 编辑时间
         /// </summary>
 		[DataMember]
-        public virtual DateTime EditTime
+        public virtual DateTime LastUpdateTime
         {
             get
             {
-                return this.m_EditTime;
+                return this.m_LastUpdateTime;
             }
             set
             {
-                this.m_EditTime = value;
+                this.m_LastUpdateTime = value;
             }
         }
 
@@ -383,15 +389,15 @@ namespace JCodes.Framework.Entity
         /// 所属部门
         /// </summary>
         [DataMember]
-        public virtual string Dept_ID
+        public virtual Int32 DeptId
         {
             get
             {
-                return this.m_Dept_ID;
+                return this.m_DeptId;
             }
             set
             {
-                this.m_Dept_ID = value;
+                this.m_DeptId = value;
             }
         }
 
@@ -399,24 +405,18 @@ namespace JCodes.Framework.Entity
         /// 所属公司
         /// </summary>
         [DataMember]
-        public virtual string Company_ID
+        public virtual Int32 CompanyId
         {
             get
             {
-                return this.m_Company_ID;
+                return this.m_CompanyId;
             }
             set
             {
-                this.m_Company_ID = value;
+                this.m_CompanyId = value;
             }
         }
 
         #endregion
-
     }
-
-    /// <summary>
-    /// 通讯录类型
-    /// </summary>
-    public enum AddressType { 个人, 公共}
 }

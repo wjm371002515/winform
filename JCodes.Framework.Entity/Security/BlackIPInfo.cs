@@ -20,10 +20,10 @@ namespace JCodes.Framework.Entity
         private string m_IPEnd; //IP结束地址          
         private string m_Note; //备注          
         private string m_Creator; //创建人          
-        private string m_Creator_ID; //创建人ID          
+        private Int32 m_CreatorId; //创建人ID          
         private DateTime m_CreateTime = System.DateTime.Now; //创建时间          
         private string m_Editor; //编辑人          
-        private string m_Editor_ID; //编辑人ID          
+        private Int32 m_EditorId; //编辑人ID          
         private DateTime m_EditTime = System.DateTime.Now; //编辑时间          
 
         #endregion
@@ -159,15 +159,15 @@ namespace JCodes.Framework.Entity
         /// 创建人ID
         /// </summary>
 		[DataMember]
-        public virtual string Creator_ID
+        public virtual Int32 CreatorId
         {
             get
             {
-                return this.m_Creator_ID;
+                return this.m_CreatorId;
             }
             set
             {
-                this.m_Creator_ID = value;
+                this.m_CreatorId = value;
             }
         }
 
@@ -207,15 +207,15 @@ namespace JCodes.Framework.Entity
         /// 编辑人ID
         /// </summary>
 		[DataMember]
-        public virtual string Editor_ID
+        public virtual Int32 EditorId
         {
             get
             {
-                return this.m_Editor_ID;
+                return this.m_EditorId;
             }
             set
             {
-                this.m_Editor_ID = value;
+                this.m_EditorId = value;
             }
         }
 

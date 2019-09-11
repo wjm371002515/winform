@@ -12,6 +12,8 @@ using JCodes.Framework.AddIn.Basic;
 using System.Text;
 using JCodes.Framework.Common.Proj;
 using JCodes.Framework.Common.Format;
+using JCodes.Framework.Common.Office;
+using JCodes.Framework.Common.Extension;
 
 namespace JCodes.Framework.AddIn.Proj
 {
@@ -24,6 +26,9 @@ namespace JCodes.Framework.AddIn.Proj
         private List<DictInfo> dictTypeInfoList = null;
 
         private ProjectInfo projectInfo = null;
+
+        private Dictionary<string, string> guidGroup = new Dictionary<string, string>();
+        private Dictionary<string, string> tableGroup = new Dictionary<string, string>();
 
         public FrmDictionary()
         {
@@ -65,8 +70,8 @@ namespace JCodes.Framework.AddIn.Proj
              
                 // 得到DataTypeInfo节点的所有子节点
                 XmlNodeList xnl0 = xe.ChildNodes;
-                dictInfo.ID = Convert.ToInt32(xnl0.Item(0).InnerText);
-                dictInfo.PID = Convert.ToInt32(xnl0.Item(1).InnerText);
+                dictInfo.Id = xnl0.Item(0).InnerText.ToInt32();
+                dictInfo.Pid = xnl0.Item(1).InnerText.ToInt32();
                 dictInfo.Name = xnl0.Item(2).InnerText;
                 dictInfo.Remark = xnl0.Item(3).InnerText;
 
@@ -102,6 +107,36 @@ namespace JCodes.Framework.AddIn.Proj
 
             #endregion
 
+            #region 读取Table.xml 配置信息
+            XmlHelper xmltableshelper = new XmlHelper(@"XML\tables.xml");
+            XmlNodeList xmlNodeLst2 = xmltableshelper.Read("datatype/tabletype");
+            guidGroup.Clear();
+            tableGroup.Clear();
+            foreach (XmlNode xn1 in xmlNodeLst2)
+            {
+                // 将节点转换为元素，便于得到节点的属性值
+                XmlElement xe = (XmlElement)xn1;
+
+                // 获取字符串中的英文字母 [a-zA-Z]+
+                string GroupEnglishName = CRegex.GetText(xe.GetAttribute("name").ToString(), "[a-zA-Z]+", 0);
+
+                guidGroup.Add(xe.GetAttribute("guid").ToString(), string.Format("{0}{1}_", Const.TablePre, GroupEnglishName));
+            }
+
+            XmlNodeList xmlNodeLst3 = xmltableshelper.Read("datatype/dataitem");
+            foreach (XmlNode xn1 in xmlNodeLst3)
+            {
+                // 将节点转换为元素，便于得到节点的属性值
+                XmlElement xe = (XmlElement)xn1;
+                // 得到Type和ISBN两个属性的属性值
+
+                // 得到ConstantInfo节点的所有子节点
+                XmlNodeList xnl0 = xe.ChildNodes;
+
+                tableGroup.Add(xnl0.Item(0).InnerText, guidGroup[xnl0.Item(3).InnerText]);
+            }
+            #endregion
+
         }
 
         private void InitTreeView()
@@ -111,20 +146,20 @@ namespace JCodes.Framework.AddIn.Proj
             // 只支持2级分级
             if (dictTypeInfoList != null)
             {
-                List<DictInfo> lst = dictTypeInfoList.FindAll(new Predicate<DictInfo>(dictinfo => dictinfo.PID == -1));
+                List<DictInfo> lst = dictTypeInfoList.FindAll(new Predicate<DictInfo>(dictinfo => dictinfo.Pid == -1));
                 lst.Sort();
                 foreach (var dictInfo in lst)
                 {
-                    TreeNode node = new TreeNode(string.Format("{0}-{1}", dictInfo.ID, dictInfo.Name), 1, 1);
-                    node.Tag = dictInfo.ID;
+                    TreeNode node = new TreeNode(string.Format("{0}-{1}", dictInfo.Id, dictInfo.Name), 1, 1);
+                    node.Tag = dictInfo.Id;
                     this.treeView1.Nodes.Add(node);
 
-                    List<DictInfo> lstNode = dictTypeInfoList.FindAll(new Predicate<DictInfo>(one => one.PID == dictInfo.ID));
+                    List<DictInfo> lstNode = dictTypeInfoList.FindAll(new Predicate<DictInfo>(one => one.Pid == dictInfo.Id));
                     Comparison<DictInfo> comparison = new Comparison<DictInfo>((DictInfo x, DictInfo y) =>
                     {
-                        if (x.ID < y.ID)
+                        if (x.Id < y.Id)
                             return -1;
-                        else if (x.ID == y.ID)
+                        else if (x.Id == y.Id)
                             return 0;
                         else
                             return 1;
@@ -132,8 +167,8 @@ namespace JCodes.Framework.AddIn.Proj
                     lstNode.Sort(comparison);
                     foreach (var nodeInfo in lstNode)
                     {
-                        TreeNode childnode = new TreeNode(string.Format("{0}-{1}", nodeInfo.ID, nodeInfo.Name), 1, 1);
-                        childnode.Tag = nodeInfo.ID;
+                        TreeNode childnode = new TreeNode(string.Format("{0}-{1}", nodeInfo.Id, nodeInfo.Name), 1, 1);
+                        childnode.Tag = nodeInfo.Id;
                         node.Nodes.Add(childnode);
                     }
                 }
@@ -174,13 +209,13 @@ namespace JCodes.Framework.AddIn.Proj
         {
             #region 添加别名解析
             this.winGridViewPager1.DisplayColumns = "Value,Name,Seq,Remark,EditTime";
-            this.winGridViewPager1.AddColumnAlias("ID", "编号");
-            this.winGridViewPager1.AddColumnAlias("DictType_ID", "字典大类");
+            this.winGridViewPager1.AddColumnAlias("GID", "编号");
+            this.winGridViewPager1.AddColumnAlias("DicttypeID", "字典大类");
             this.winGridViewPager1.AddColumnAlias("Name", "项目名称");
             this.winGridViewPager1.AddColumnAlias("Value", "项目值");
             this.winGridViewPager1.AddColumnAlias("Seq", "字典排序");
             this.winGridViewPager1.AddColumnAlias("Remark", "备注");
-            this.winGridViewPager1.AddColumnAlias("Editor", "修改用户");
+            this.winGridViewPager1.AddColumnAlias("EditorId", "修改用户");
             this.winGridViewPager1.AddColumnAlias("EditTime", "更新日期");
             #endregion
 
@@ -219,7 +254,7 @@ namespace JCodes.Framework.AddIn.Proj
         private void menu_AddType_Click(object sender, EventArgs e)
         {
             FrmEditDictType dlg = new FrmEditDictType();
-            dlg.PID = GetParentNodeIndex();
+            dlg.Pid = GetParentNodeIndex();
             dlg.OnDataSaved += new EventHandler(dlg_OnDataTreeSaved);
             if (dlg.ShowDialog() == DialogResult.OK)
             {
@@ -266,9 +301,9 @@ namespace JCodes.Framework.AddIn.Proj
                     // 得到DataTypeInfo节点的所有子节点
                     XmlNodeList xnl0 = xe.ChildNodes;
 
-                    if (typeId == Convert.ToInt32(xnl0.Item(0).InnerText))
+                    if (typeId == xnl0.Item(0).InnerText.ToInt32())
                     {
-                        tmpPID = Convert.ToInt32(xnl0.Item(1).InnerText);
+                        tmpPID = xnl0.Item(1).InnerText.ToInt32();
                         break;
                     }
                 }
@@ -277,8 +312,8 @@ namespace JCodes.Framework.AddIn.Proj
                 if (tmpPID != 0)
                 {
                     FrmEditDictType dlg = new FrmEditDictType();
-                    dlg.ID = typeId.ToString();
-                    dlg.PID = tmpPID;
+                    dlg.Id = typeId;
+                    dlg.Pid = tmpPID;
                     dlg.OnDataSaved += new EventHandler(dlg_OnDataTreeSaved);
                     if (dlg.ShowDialog() == DialogResult.OK)
                     {
@@ -299,7 +334,7 @@ namespace JCodes.Framework.AddIn.Proj
             TreeNode selectedNode = this.treeView1.SelectedNode;
             if (selectedNode != null && selectedNode.Tag != null)
             {
-                Int32 typeId = Convert.ToInt32(selectedNode.Tag);
+                Int32 typeId = selectedNode.Tag.ToString().ToInt32();
 
                 string message = string.Format("您确定要删除节点：{0}，删除将子节点及其数据均一并删除，请谨慎操作。", selectedNode.Text);
                 if (MessageDxUtil.ShowYesNoAndWarning(message) == DialogResult.Yes)
@@ -370,14 +405,14 @@ namespace JCodes.Framework.AddIn.Proj
 
         private void winGridViewPager1_OnEditSelected(object sender, EventArgs e)
         {
-            string ID = this.winGridViewPager1.gridView1.GetFocusedRowCellDisplayText("Value");
+            Int32 Id = this.winGridViewPager1.gridView1.GetFocusedRowCellDisplayText("Value").ToInt32();
 
-            if (!string.IsNullOrEmpty(ID))
+            if (Id > 0)
             {
                 FrmEditDictData dlg = new FrmEditDictData();
                 dlg.txtDictType.Text = this.lblDictType.Text;
                 dlg.txtDictType.Tag = this.lblDictType.Tag;
-                dlg.ID = ID;
+                dlg.Id = Id;
                 dlg.OnDataSaved += new EventHandler(dlg_OnDataSaved);
                 if (DialogResult.OK == dlg.ShowDialog())
                 {
@@ -466,7 +501,8 @@ namespace JCodes.Framework.AddIn.Proj
         /// <param name="e"></param>
         private void btnExport_Click(object sender, EventArgs e)
         {
-
+            // TODO 
+            MessageDxUtil.ShowTips("生成脚本成功");
         }
 
         /// <summary>
@@ -491,44 +527,67 @@ namespace JCodes.Framework.AddIn.Proj
                 }
 
                 // 操控进度条
-                var progressBar = (this.MdiParent as MainForm).progressBar;
-                string fileName = "Dict.Sql";
-                string sqlfile = projectInfo.OutputPath + "\\" + fileName;
-                StringBuilder sb = new StringBuilder();
+                //var progressBar = (this.MdiParent as MainForm).progressBar;
+                //progressBar.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
 
-                switch (projectInfo.DbType)
+                if (FileUtil.IsExistFile(projectInfo.OutputPath + "\\Dict.sql"))
+                    FileUtil.DeleteFile(projectInfo.OutputPath + "\\Dict.sql");
+
+                FileUtil.CreateFile(projectInfo.OutputPath + "\\Dict.sql");
+
+                #region 处理每个Table脚本
+                XmlHelper xmldicthelper = new XmlHelper(@"XML\dict.xml");
+                XmlNodeList xmlNodeLst2 = xmldicthelper.Read("datatype/dataitem");
+                List<DictInfo> dictTypeInfoList2 = new List<DictInfo>();
+                List<DictDataInfo> dictDetailInfoList = new List<DictDataInfo>();
+                foreach (XmlNode xn1 in xmlNodeLst2)
                 {
-                    case "Oracle": break;
-                    case "Mysql": break;
-                    case "DB2": break;
-                    case "SqlServer":
+                    DictInfo dictInfo = new DictInfo();
+                    // 将节点转换为元素，便于得到节点的属性值
+                    XmlElement xe = (XmlElement)xn1;
+
+                    // 得到DataTypeInfo节点的所有子节点
+                    XmlNodeList xnl0 = xe.ChildNodes;
+                    dictInfo.Id = Convert.ToInt32(xnl0.Item(0).InnerText);
+                    dictInfo.Pid = Convert.ToInt32(xnl0.Item(1).InnerText);
+                    dictInfo.Name = xnl0.Item(2).InnerText;
+                    dictInfo.Remark = xnl0.Item(3).InnerText;
+
+                    if (!string.IsNullOrEmpty(xnl0.Item(4).InnerXml))
+                    {
+                        System.Xml.XmlDocument doc = new System.Xml.XmlDocument();//新建对象
+                        doc.LoadXml("<tmp>" + xnl0.Item(4).InnerXml + "</tmp>");//符合xml格式的字符串
+                        var nodes = doc.DocumentElement.ChildNodes;
+                        foreach (var node in nodes)
                         {
-                            #region 对于SqlServer 脚本的处理
-                            if (FileUtil.IsExistFile(sqlfile))
-                                FileUtil.DeleteFile(sqlfile);
-                            List<ModRecordInfo> lst = new List<ModRecordInfo>();
-                            lst.Add(new ModRecordInfo() { ModDate = DateTimeHelper.GetServerDateTime2(), ModVersion = new Version("1.0.0.0").ToString(), ModOrderId = "M1234567890", Proposer = "测试递申人", Programmer = "测试修改人", ModContent = "这里是修改内容", ModReason = "修改原因", Remark = "备注信息" });
+                            DictDataInfo dicdetailInfo = new DictDataInfo();
+                            var dNode = ((XmlElement)node).ChildNodes;
+                            dicdetailInfo.Value = dNode.Item(0).InnerText;
+                            dicdetailInfo.Name = dNode.Item(1).InnerText;
+                            dicdetailInfo.Seq = dNode.Item(2).InnerText;
+                            dicdetailInfo.Remark = dNode.Item(3).InnerText;
+                            dicdetailInfo.DicttypeID = dictInfo.Id;
 
-                            // 创建文件
-                            FileUtil.CreateFile(sqlfile);
-                            // 添加文本信息
-                            //FileUtil.AppendText(sqlfile, SqlServerGenerate.printHeaderInfo(fileName, "V1.3.2.1111", "Jimmy", "2017-09-01 13:22:11", "备注信息", "2017-07-01", lst), Encoding.Default);
-                            FileUtil.AppendText(sqlfile, SqlOperate.printHeaderInfo(projectInfo.DbType, fileName, "V1.3.2.1111", "Jimmy", "2017-09-01 13:22:11", "备注信息", "2017-07-01", lst), Encoding.Default);
-
-                            //FileUtil.AppendText(sqlfile, SqlServerGenerate.printInitInfo("T_Basic_DictType"), Encoding.Default);
-
-                            //FileUtil.AppendText(sqlfile, SqlServerGenerate.printInitInfo("T_Basic_DictData"), Encoding.Default);
-
-                            // TODO 这里需要等表结果完成在做
-
-
-                            break;
-                            #endregion
+                            dictDetailInfoList.Add(dicdetailInfo);
                         }
-                       
-                    case "Sqlite": break;
-                    case "Access": break;
+                    }
+
+                    dictTypeInfoList2.Add(dictInfo);
                 }
+
+                // T_Basic_DictType
+                // T_Basic_DictData
+                FileUtil.AppendText(projectInfo.OutputPath + "\\Dict.sql", JCodes.Framework.Common.Proj.SqlOperate.initDictTypeInfo(projectInfo.DbType, tableGroup["DictType"] + "DictType", "数据字典类型", dictTypeInfoList2), Encoding.Default);
+
+                //progressBar.EditValue = 50;
+
+                FileUtil.AppendText(projectInfo.OutputPath + "\\Dict.sql", JCodes.Framework.Common.Proj.SqlOperate.initDictDataInfo(projectInfo.DbType, tableGroup["DictData"] + "DictData", "数据字典明细", dictDetailInfoList), Encoding.Default);
+
+                //progressBar.EditValue = 100;
+                #endregion
+
+                MessageDxUtil.ShowTips("生成脚本成功");
+                //progressBar.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             }
         }
 
@@ -602,20 +661,8 @@ namespace JCodes.Framework.AddIn.Proj
             this.gridViewModrecord.OnAddNew += new EventHandler(gridViewModrecord_OnAddNew);
             this.gridViewModrecord.OnDeleteSelected += new EventHandler(gridViewModrecord_OnDeleteSelected);
             this.gridViewModrecord.OnRefresh += new EventHandler(gridViewModrecord_OnRefresh);
-            this.gridViewModrecord.GridView1.DoubleClick += new EventHandler(gridViewModrecordgridView1_DoubleClick);
-            this.gridViewModrecord.GridView1.BeforeLeaveRow += gridViewModrecordgridView1_BeforeLeaveRow;
             this.gridViewModrecord.GridView1.CellValueChanged += gridViewModrecordgridView1_CellValueChanged;
             this.gridViewModrecord.GridView1.ValidatingEditor += gridViewModrecordgridView1_ValidatingEditor;
-        }
-
-        private void gridViewModrecordgridView1_DoubleClick(object sender, EventArgs e)
-        {
-            this.gridViewModrecord.GridView1.OptionsBehavior.Editable = true;
-        }
-
-        private void gridViewModrecordgridView1_BeforeLeaveRow(object sender, DevExpress.XtraGrid.Views.Base.RowAllowEventArgs e)
-        {
-            this.gridViewModrecord.GridView1.OptionsBehavior.Editable = false;
         }
 
         private void gridViewModrecordgridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)

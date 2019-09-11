@@ -45,13 +45,13 @@ namespace JCodes.Framework.SQLServerDAL
 			DictTypeInfo dictTypeInfo = new DictTypeInfo();
 			SmartDataReader reader = new SmartDataReader(dataReader);
 
-            dictTypeInfo.ID = reader.GetInt32("ID");
+            dictTypeInfo.Id = reader.GetInt32("Id");
 			dictTypeInfo.Name = reader.GetString("Name");
 			dictTypeInfo.Remark = reader.GetString("Remark");
 			dictTypeInfo.Seq = reader.GetString("Seq");
-            dictTypeInfo.Editor = reader.GetString("Editor");
+            dictTypeInfo.EditorId = reader.GetInt32("EditorId");
 			dictTypeInfo.LastUpdated = reader.GetDateTime("LastUpdated");
-            dictTypeInfo.PID = reader.GetInt32("PID");
+            dictTypeInfo.Pid = reader.GetInt32("Pid");
 			
 			return dictTypeInfo;
 		}
@@ -64,15 +64,15 @@ namespace JCodes.Framework.SQLServerDAL
         protected override Hashtable GetHashByEntity(DictTypeInfo obj)
 		{
 		    DictTypeInfo info = obj as DictTypeInfo;
-			Hashtable hash = new Hashtable(); 
-			
- 			hash.Add("ID", info.ID);
+			Hashtable hash = new Hashtable();
+
+            hash.Add("Id", info.Id);
  			hash.Add("Name", info.Name);
  			hash.Add("Remark", info.Remark);
  			hash.Add("Seq", info.Seq);
- 			hash.Add("Editor", info.Editor);
+            hash.Add("EditorId", info.EditorId);
  			hash.Add("LastUpdated", info.LastUpdated);
-            hash.Add("PID", info.PID);
+            hash.Add("Pid", info.Pid);
  				
 			return hash;
 		}

@@ -45,23 +45,19 @@ namespace JCodes.Framework.SQLServerDAL
         {
             CouponInfo info = obj as CouponInfo;
             Hashtable hash = new Hashtable();
-
-            hash.Add("ID", info.ID);
-            hash.Add("CouponCategory_ID", info.CouponCategory_ID);
-            hash.Add("CouponCategory_Name", info.CouponCategory_Name);
-            hash.Add("Company_ID", info.Company_ID);
-            hash.Add("Company_Name", info.Company_Name);
-            hash.Add("Creator", info.Creator);
-            hash.Add("Creator_ID", info.Creator_ID);
-            hash.Add("CreateTime", info.CreateTime);
-            hash.Add("Editor", info.Editor);
-            hash.Add("Editor_ID", info.Editor_ID);
-            hash.Add("EditTime", info.EditTime);
+            hash.Add("Id", info.Id);
+            hash.Add("CouponCategoryID", info.CouponCategoryID);
+            hash.Add("CouponCategoryName", info.CouponCategoryName);
+            hash.Add("CompanyId", info.CompanyId);
+            hash.Add("CreatorId", info.CreatorId);
+            hash.Add("CreatorTime", info.CreatorTime);
+            hash.Add("EditorId", info.EditorId);
+            hash.Add("LastUpdateTime", info.LastUpdateTime);
             hash.Add("MobilePhone", info.MobilePhone);
-            hash.Add("FullName", info.FullName);
+            hash.Add("Contacts", info.Contacts);
             hash.Add("StartTime", info.StartTime);
             hash.Add("EndTime", info.EndTime);
-            hash.Add("DELETED", info.DELETED);
+            hash.Add("IsDelete", info.IsDelete);
             return hash;
         }
 

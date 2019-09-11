@@ -212,7 +212,7 @@ namespace JCodes.Framework.AddIn.Basic
             Dictionary<string, string> functionDict = new Dictionary<string, string>();
             UserInfo info = Portal.gc.UserInfo;
 
-            List<FunctionInfo> list = BLLFactory<Functions>.Instance.GetFunctionsByUser(info.ID, Portal.gc.SystemType);
+            List<FunctionInfo> list = BLLFactory<Functions>.Instance.GetFunctionsByUser(info.Id, Portal.gc.SystemType);
             if (list != null && list.Count > 0)
             {
                 functionDict.Clear();
@@ -227,8 +227,8 @@ namespace JCodes.Framework.AddIn.Basic
             #endregion
 
             #region 获取角色对应的用户操作部门及公司范围
-            List<int> companyLst = BLLFactory<RoleData>.Instance.GetBelongCompanysByUser(info.ID);
-            List<int> deptLst = BLLFactory<RoleData>.Instance.GetBelongDeptsByUser(info.ID);
+            List<int> companyLst = BLLFactory<RoleData>.Instance.GetBelongCompanysByUser(info.Id);
+            List<int> deptLst = BLLFactory<RoleData>.Instance.GetBelongDeptsByUser(info.Id);
             StringBuilder companysb = new StringBuilder();
             StringBuilder deptsb = new StringBuilder();
             companysb.Append(" in (");
@@ -259,7 +259,7 @@ namespace JCodes.Framework.AddIn.Basic
             // 并保持到缓存中
             Cache.Instance["LoginUserInfo"] = Portal.gc.ConvertToLoginUser(info);
             Cache.Instance["FunctionDict"] = functionDict;
-            Cache.Instance["RoleList"] = BLLFactory<Role>.Instance.GetRolesByUser(info.ID);
+            Cache.Instance["RoleList"] = BLLFactory<Role>.Instance.GetRolesByUser(info.Id);
             Cache.Instance["canOptCompanyID"] = companysb.ToString();
             Cache.Instance["canOptDeptId"] = deptsb.ToString();
             Cache.Instance["DictData"] = BLLFactory<DictData>.Instance.GetAllDict();

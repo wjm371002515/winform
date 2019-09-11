@@ -72,19 +72,18 @@ namespace JCodes.Framework.WebUI.Controllers
                 int i = 1;
                 foreach (DataRow dr in table.Rows)
                 {
-                    bool converted = false;
                     DateTime dtDefault = Convert.ToDateTime("1900-01-01");
                     DateTime dt;
                     PictureAlbumInfo info = new PictureAlbumInfo();
 
-                    info.PID = dr["父ID"].ToString();
+                    info.Pid = Convert.ToInt32( dr["父ID"]);
                     info.Name = dr["名称"].ToString();
-                    info.Note = dr["备注"].ToString();
+                    info.Remark = dr["备注"].ToString();
 
-                    info.Creator = CurrentUser.ID.ToString();
-                    info.CreateTime = DateTime.Now;
-                    info.Editor = CurrentUser.ID.ToString();
-                    info.EditTime = DateTime.Now;
+                    info.CreatorId = CurrentUser.Id;
+                    info.CreatorTime = DateTime.Now;
+                    info.EditorId = CurrentUser.Id;
+                    info.LastUpdateTime = DateTime.Now;
 
                     list.Add(info);
                 }
@@ -116,10 +115,10 @@ namespace JCodes.Framework.WebUI.Controllers
                         foreach (PictureAlbumInfo detail in list)
                         {
                             //detail.Seq = seq++;//增加1
-                            detail.CreateTime = DateTime.Now;
-                            detail.Creator = CurrentUser.ID.ToString();
-                            detail.Editor = CurrentUser.ID.ToString();
-                            detail.EditTime = DateTime.Now;
+                            detail.CreatorTime = DateTime.Now;
+                            detail.CreatorId = CurrentUser.Id;
+                            detail.EditorId = CurrentUser.Id;
+                            detail.LastUpdateTime = DateTime.Now;
 
                             BLLFactory<PictureAlbum>.Instance.Insert(detail, trans);
                         }
@@ -177,11 +176,11 @@ namespace JCodes.Framework.WebUI.Controllers
             {
                 dr = datatable.NewRow();
                 dr["序号"] = j++;                
-                 dr["父ID"] = list[i].PID;
-                 dr["名称"] = list[i].Name;
-                 dr["备注"] = list[i].Note;
-                   dr["创建人"] = list[i].Creator;
-                 dr["创建时间"] = list[i].CreateTime;
+                dr["父ID"] = list[i].Pid;
+                dr["名称"] = list[i].Name;
+                dr["备注"] = list[i].Remark;
+                dr["创建人"] = list[i].CreatorId;
+                dr["创建时间"] = list[i].CreatorTime;
                  //如果为外键，可以在这里进行转义，如下例子
                 //dr["客户名称"] = BLLFactory<Customer>.Instance.GetCustomerName(list[i].Customer_ID);//转义为客户名称
 
@@ -209,10 +208,10 @@ namespace JCodes.Framework.WebUI.Controllers
             //info.ID = string.IsNullOrEmpty(info.ID) ? Guid.NewGuid().ToString() : info.ID;
             
             //子类对参数对象进行修改
-            info.Creator = CurrentUser.ID.ToString();
-            info.CreateTime = DateTime.Now;
-            info.Editor = CurrentUser.ID.ToString();
-            info.EditTime = DateTime.Now;
+            info.CreatorId = CurrentUser.Id;
+            info.CreatorTime = DateTime.Now;
+            info.EditorId = CurrentUser.Id;
+            info.LastUpdateTime = DateTime.Now;
 
             //info.Company_ID = CurrentUser.Company_ID;
             //info.Dept_ID = CurrentUser.Dept_ID;
@@ -221,8 +220,8 @@ namespace JCodes.Framework.WebUI.Controllers
         protected override void OnBeforeUpdate(PictureAlbumInfo info)
         {
             //子类对参数对象进行修改
-            info.Editor = CurrentUser.ID.ToString();
-            info.EditTime = DateTime.Now;
+            info.EditorId = CurrentUser.Id;
+            info.LastUpdateTime = DateTime.Now;
         } 
         #endregion
 
@@ -267,10 +266,10 @@ namespace JCodes.Framework.WebUI.Controllers
                 List<PictureAlbumInfo> list = BLLFactory<PictureAlbum>.Instance.Find(condition);
                 foreach(PictureAlbumInfo info in list)
                 {
-                    bool isParent = (info.PID == "-1");
+                    bool isParent = (info.Pid == -1);
                     string icon =isParent ? "fa fa-home icon-state-warning icon-lg" : "fa fa-folder icon-state-success icon-lg";
-                    string parent = isParent ? "#" : info.PID;
-                    JsTreeTable tree = new JsTreeTable(info.ID, info.Name, icon, parent);
+                    string parent = isParent ? "#" : info.Pid.ToString();
+                    JsTreeTable tree = new JsTreeTable(info.Id.ToString(), info.Name, icon, parent);
                     jsTable.Add(tree);
                 }
                 result = ToJsonContent(jsTable);
@@ -288,12 +287,12 @@ namespace JCodes.Framework.WebUI.Controllers
             List<PictureAlbumInfo> list = baseBLL.GetAll();
             list = CollectionHelper<PictureAlbumInfo>.Fill("-1", 0, list, "PID", "ID", "Name");
 
-            List<CListItem> itemList = new List<CListItem>();
+            List<CDicKeyValue> itemList = new List<CDicKeyValue>();
             foreach (PictureAlbumInfo info in list)
             {
-                itemList.Add(new CListItem(info.ID,info.Name));
+                itemList.Add(new CDicKeyValue(info.Id, info.Name));
             }
-            itemList.Insert(0, new CListItem("-1", "无"));
+            itemList.Insert(0, new CDicKeyValue(-1, "无"));
             return Json(itemList, JsonRequestBehavior.AllowGet);
         }
 

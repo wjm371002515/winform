@@ -157,7 +157,6 @@
     <Compile Include="Commons\NVelocityHelper.cs" />
     <Compile Include="Commons\PaginiationHelperExtensions.cs" />
     <Compile Include="Commons\Permission.cs" />
-    <Compile Include="Commons\Report\FileManagerStatus.cs" />
     <Compile Include="Commons\Report\FileManagerWrapper.cs" />
     <Compile Include="Commons\Report\LocalReportPrinter.cs" />
     <Compile Include="Commons\Report\ProcessingThread.cs" />
@@ -8533,12 +8532,6 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Report\JCodes.Framework.WebUI.UserReport.rdlc" />

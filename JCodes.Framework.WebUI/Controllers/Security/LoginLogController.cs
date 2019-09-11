@@ -76,20 +76,20 @@ namespace JCodes.Framework.WebUI.Controllers
                     DateTime dt;
                     LoginLogInfo info = new LoginLogInfo();
 
-                    info.User_ID = dr["登录用户ID"].ToString();
+                    info.UserId = Convert.ToInt32( dr["登录用户ID"]);
                     info.LoginName = dr["登录名"].ToString();
                     info.FullName = dr["真实名称"].ToString();
-                    info.Company_ID = dr["所属公司ID"].ToString();
+                    info.CompanyId = Convert.ToInt32( dr["所属公司ID"]);
                     info.CompanyName = dr["所属公司名称"].ToString();
-                    info.Note = dr["日志描述"].ToString();
-                    info.IPAddress = dr["IP地址"].ToString();
-                    info.MacAddress = dr["Mac地址"].ToString();
+                    info.Remark = dr["日志描述"].ToString();
+                    info.IP = dr["IP地址"].ToString();
+                    info.Mac = dr["Mac地址"].ToString();
                     converted = DateTime.TryParse(dr["更新时间"].ToString(), out dt);
                     if (converted && dt > dtDefault)
                     {
-                        info.LastUpdated = dt;
+                        info.LastUpdateTime = dt;
                     }
-                    info.SystemType_ID = dr["系统编号"].ToString();
+                    info.SystemtypeId = dr["系统编号"].ToString();
 
                     list.Add(info);
                 }
@@ -182,16 +182,16 @@ namespace JCodes.Framework.WebUI.Controllers
             {
                 dr = datatable.NewRow();
                 dr["序号"] = j++;
-                dr["登录用户ID"] = list[i].User_ID;
+                dr["用户Id"] = list[i].UserId;
                 dr["登录名"] = list[i].LoginName;
-                dr["真实名称"] = list[i].FullName;
-                dr["所属公司ID"] = list[i].Company_ID;
-                dr["所属公司名称"] = list[i].CompanyName;
-                dr["日志描述"] = list[i].Note;
-                dr["IP地址"] = list[i].IPAddress;
-                dr["Mac地址"] = list[i].MacAddress;
-                dr["更新时间"] = list[i].LastUpdated;
-                dr["系统编号"] = list[i].SystemType_ID;
+                dr["真实名"] = list[i].FullName;
+                dr["公司Id"] = list[i].CompanyId;
+                dr["公司名字"] = list[i].CompanyName;
+                dr["备注"] = list[i].Remark;
+                dr["IP地址"] = list[i].IP;
+                dr["Mac地址"] = list[i].Mac;
+                dr["最后更新时间"] = list[i].LastUpdateTime;
+                dr["系统编号"] = list[i].SystemtypeId;
                 //如果为外键，可以在这里进行转义，如下例子
                 //dr["客户名称"] = BLLFactory<Customer>.Instance.GetCustomerName(list[i].Customer_ID);//转义为客户名称
 
@@ -277,15 +277,15 @@ namespace JCodes.Framework.WebUI.Controllers
             List<OUInfo> companyList = new List<OUInfo>();
             if (BLLFactory<User>.Instance.UserInRole(CurrentUser.Name, RoleInfo.SuperAdminName))
             {
-                List<OUInfo> list = BLLFactory<OU>.Instance.GetMyTopGroup(CurrentUser.ID);
+                List<OUInfo> list = BLLFactory<OU>.Instance.GetMyTopGroup(CurrentUser.Id);
                 foreach (OUInfo groupInfo in list)
                 {
-                    companyList.AddRange(BLLFactory<OU>.Instance.GetAllCompany(groupInfo.ID));
+                    companyList.AddRange(BLLFactory<OU>.Instance.GetAllCompany(groupInfo.Id));
                 }
             }
             else
             {
-                OUInfo myCompanyInfo = BLLFactory<OU>.Instance.FindByID(CurrentUser.Company_ID);
+                OUInfo myCompanyInfo = BLLFactory<OU>.Instance.FindByID(CurrentUser.CompanyId);
                 if (myCompanyInfo != null)
                 {
                     companyList.Add(myCompanyInfo);
@@ -296,11 +296,11 @@ namespace JCodes.Framework.WebUI.Controllers
             string belongCompany = "-1,";
             foreach (OUInfo info in companyList)
             {
-                belongCompany += string.Format("{0},", info.ID);
+                belongCompany += string.Format("{0},", info.Id);
 
                 //添加公司节点
-                JsTreeData subNode = new JsTreeData(info.ID, info.Name, "fa fa-sitemap icon-state-warning icon-lg");
-                subNode.id = string.Format("Company_ID='{0}' ", info.ID);
+                JsTreeData subNode = new JsTreeData(info.Id, info.Name, "fa fa-sitemap icon-state-warning icon-lg");
+                subNode.id = string.Format("CompanyId='{0}' ", info.Id);
                 companyNode.children.Add(subNode);
 
                 //下面在添加系统类型节点
@@ -308,17 +308,17 @@ namespace JCodes.Framework.WebUI.Controllers
                 foreach (SystemTypeInfo typeInfo in typeList)
                 {
                     JsTreeData typeNode = new JsTreeData(typeInfo.OID, typeInfo.Name, "fa fa-home icon-state-danger icon-lg");
-                    typeNode.id = string.Format("Company_ID='{0}' AND SystemType_ID='{1}' ", info.ID, typeInfo.OID);
+                    typeNode.id = string.Format("CompanyId='{0}' AND SystemtypeId='{1}' ", info.Id, typeInfo.OID);
                     subNode.children.Add(typeNode);
                 }
 
                 JsTreeData securityNode = new JsTreeData("Security", "权限管理系统", "fa fa-key icon-state-info icon-lg");
-                securityNode.id = string.Format("Company_ID='{0}' AND SystemType_ID='{1}' ", info.ID, "Security");
+                securityNode.id = string.Format("CompanyId='{0}' AND SystemtypeId='{1}' ", info.Id, "Security");
                 subNode.children.Add(securityNode);
             }
             //修改全部为所属公司的ID
             belongCompany = belongCompany.Trim(',');
-            topNode.id = string.Format("Company_ID in ({0})", belongCompany);
+            topNode.id = string.Format("CompanyId in ({0})", belongCompany);
 
             return ToJsonContent(treeList);
         }

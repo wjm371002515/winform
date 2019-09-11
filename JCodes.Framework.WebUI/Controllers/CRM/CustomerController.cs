@@ -77,16 +77,16 @@ namespace JCodes.Framework.WebUI.Controllers
                     DateTime dt;
                     CustomerInfo info = new CustomerInfo();
 
-                    info.HandNo = dr["客户编号"].ToString();
+                    info.UserCode = dr["客户编号"].ToString();
                     info.Name = dr["客户名称"].ToString();
-                    info.SimpleName = dr["客户简称"].ToString();
-                    info.Province = dr["所在省份"].ToString();
-                    info.City = dr["城市"].ToString();
-                    info.District = dr["所在行政区"].ToString();
+                    info.FullName = dr["客户简称"].ToString();
+                    info.ProvinceName = dr["所在省份"].ToString();
+                    info.CityName = dr["城市"].ToString();
+                    info.DistrictName = dr["所在行政区"].ToString();
                     info.Area = dr["市场分区"].ToString();
                     info.Address = dr["公司地址"].ToString();
                     info.ZipCode = dr["公司邮编"].ToString();
-                    info.Telephone = dr["办公电话"].ToString();
+                    info.MobilePhone = dr["办公电话"].ToString();
                     info.Fax = dr["传真号码"].ToString();
                     info.Contact = dr["主联系人"].ToString();
                     info.ContactPhone = dr["联系人电话"].ToString();
@@ -117,16 +117,16 @@ namespace JCodes.Framework.WebUI.Controllers
                     //info.Importance = dr["重要级别"].ToString();
                     //info.IsPublic = dr["公开与否"].ToString().ToBoolean();
                     //info.Satisfaction = dr["客户满意度"].ToString().ToInt32();
-                    info.Note = dr["备注信息"].ToString();
+                    info.Remark = dr["备注信息"].ToString();
                     //info.Stage = dr["客户阶段"].ToString();
                     //info.Status = dr["客户状态"].ToString();
 
-                    info.Dept_ID = CurrentUser.Dept_ID;
-                    info.Company_ID = CurrentUser.Company_ID;
-                    info.Creator = CurrentUser.ID.ToString();
-                    info.CreateTime = DateTime.Now;
-                    info.Editor = CurrentUser.ID.ToString();
-                    info.EditTime = DateTime.Now;
+                    info.DeptId = CurrentUser.DeptId;
+                    info.CompanyId = CurrentUser.CompanyId;
+                    info.CreatorId = CurrentUser.Id;
+                    info.CreatorTime = DateTime.Now;
+                    info.EditorId = CurrentUser.Id;
+                    info.LastUpdateTime = DateTime.Now;
 
                     list.Add(info);
                 }
@@ -158,13 +158,13 @@ namespace JCodes.Framework.WebUI.Controllers
                         foreach (CustomerInfo detail in list)
                         {
                             //detail.Seq = seq++;//增加1
-                            detail.CreateTime = DateTime.Now;
-                            detail.Creator = CurrentUser.ID.ToString();
-                            detail.Editor = CurrentUser.ID.ToString();
-                            detail.EditTime = DateTime.Now;
+                            detail.CreatorTime = DateTime.Now;
+                            detail.CreatorId = CurrentUser.Id;
+                            detail.EditorId = CurrentUser.Id;
+                            detail.LastUpdateTime = DateTime.Now;
 
-                            detail.Dept_ID = CurrentUser.Dept_ID;
-                            detail.Company_ID = CurrentUser.Company_ID;
+                            detail.DeptId = CurrentUser.DeptId;
+                            detail.CompanyId = CurrentUser.CompanyId;
 
                             BLLFactory<Customer>.Instance.Insert(detail, trans);
                         }
@@ -222,16 +222,16 @@ namespace JCodes.Framework.WebUI.Controllers
             {
                 dr = datatable.NewRow();
                 dr["序号"] = j++;
-                dr["客户编号"] = list[i].HandNo;
+                dr["客户编号"] = list[i].UserCode;
                 dr["客户名称"] = list[i].Name;
-                dr["客户简称"] = list[i].SimpleName;
-                dr["所在省份"] = list[i].Province;
-                dr["城市"] = list[i].City;
-                dr["所在行政区"] = list[i].District;
+                dr["客户简称"] = list[i].FullName;
+                dr["所在省份"] = list[i].ProvinceName;
+                dr["城市"] = list[i].CityName;
+                dr["所在行政区"] = list[i].DistrictName;
                 dr["市场分区"] = list[i].Area;
                 dr["公司地址"] = list[i].Address;
                 dr["公司邮编"] = list[i].ZipCode;
-                dr["办公电话"] = list[i].Telephone;
+                dr["办公电话"] = list[i].MobilePhone;
                 dr["传真号码"] = list[i].Fax;
                 dr["主联系人"] = list[i].Contact;
                 dr["联系人电话"] = list[i].ContactPhone;
@@ -262,9 +262,9 @@ namespace JCodes.Framework.WebUI.Controllers
                 dr["重要级别"] = list[i].Importance;
                 dr["公开与否"] = list[i].IsPublic;
                 dr["客户满意度"] = list[i].Satisfaction;
-                dr["备注信息"] = list[i].Note;
+                dr["备注信息"] = list[i].Remark;
                 dr["客户阶段"] = list[i].Stage;
-                dr["客户状态"] = list[i].Status;
+                dr["客户状态"] = list[i].AuditStatus;
 
                 //如果为外键，可以在这里进行转义，如下例子
                 //dr["客户名称"] = BLLFactory<Customer>.Instance.GetCustomerName(list[i].Customer_ID);//转义为客户名称
@@ -291,17 +291,17 @@ namespace JCodes.Framework.WebUI.Controllers
         protected override void OnBeforeInsert(CustomerInfo info)
         {
             //留给子类对参数对象进行修改
-            info.CreateTime = DateTime.Now;
-            info.Creator = CurrentUser.ID.ToString();
-            info.Company_ID = CurrentUser.Company_ID;
-            info.Dept_ID = CurrentUser.Dept_ID;
+            info.CreatorTime = DateTime.Now;
+            info.CreatorId = CurrentUser.Id;
+            info.CompanyId = CurrentUser.CompanyId;
+            info.DeptId = CurrentUser.DeptId;
         }
 
         protected override void OnBeforeUpdate(CustomerInfo info)
         {
             //留给子类对参数对象进行修改
-            info.Editor = CurrentUser.ID.ToString();
-            info.EditTime = DateTime.Now;
+            info.EditorId = CurrentUser.Id;
+            info.LastUpdateTime = DateTime.Now;
         }
         #endregion
 
@@ -335,9 +335,9 @@ namespace JCodes.Framework.WebUI.Controllers
             return View("SelectCustomer");
         }
 
-        public ActionResult GetCustomerName(string id)
+        public ActionResult GetCustomerNameById(Int32 id)
         {
-            string name = BLLFactory<Customer>.Instance.GetCustomerName(id);
+            string name = BLLFactory<Customer>.Instance.GetCustomerNameById(id);
             return ToJsonContent(name);
         }
     }
