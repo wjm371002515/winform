@@ -429,7 +429,7 @@ namespace JCodes.Framework.AddIn.Contact
             AddressInfo info = new AddressInfo();
             info.AddressType = AddressType.公共;
             info.Name = dr["姓名"].ToString();
-            info.Sex = Convert.ToInt32(dr["性别"]);
+            info.Gender = Convert.ToInt16(dr["性别"]);
             converted = DateTime.TryParse(dr["出生日期"].ToString(), out dt);
             if (converted && dt > dtDefault)
             {
@@ -445,7 +445,7 @@ namespace JCodes.Framework.AddIn.Contact
             info.Fax = dr["传真号码"].ToString();
             info.CompanyName = dr["公司单位"].ToString();
             info.DeptName = dr["部门"].ToString();
-            info.Position = dr["职位"].ToString();
+            info.WorkPosition = dr["职位"].ToString();
             info.Other = dr["其他"].ToString();
             info.Remark = dr["备注"].ToString();
 
@@ -494,7 +494,7 @@ namespace JCodes.Framework.AddIn.Contact
                     dr = dtNew.NewRow();
                     dr["序号"] = j++;
                     dr["姓名"] = list[i].Name;
-                    dr["性别"] = list[i].Sex;
+                    dr["性别"] = list[i].Gender;
                     dr["出生日期"] = list[i].Birthday;
                     dr["手机"] = list[i].MobilePhone;
                     dr["电子邮箱"] = list[i].Email;
@@ -506,7 +506,7 @@ namespace JCodes.Framework.AddIn.Contact
                     dr["传真号码"] = list[i].Fax;
                     dr["公司单位"] = list[i].CompanyName;
                     dr["部门"] = list[i].DeptName;
-                    dr["职位"] = list[i].Position;
+                    dr["职位"] = list[i].WorkPosition;
                     dr["其他"] = list[i].Other;
                     dr["备注"] = list[i].Remark;
                     dr["创建人"] = list[i].CreatorId;

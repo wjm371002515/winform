@@ -40,7 +40,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult CheckExcelColumns(string guid)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
 
             try
             {
@@ -48,7 +48,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 if (dt != null)
                 {
                     //检查列表是否包含必须的字段
-                    result.Success = DataTableHelper.ContainAllColumns(dt, columnString);
+                    result.ErrorCode = DataTableHelper.ContainAllColumns(dt, columnString)?0:1;
                 }
             }
             catch (Exception ex)
@@ -78,11 +78,9 @@ namespace JCodes.Framework.WebUI.Controllers
             if (table != null)
             {
                 #region 数据转换
-                int i = 1;
                 foreach (DataRow dr in table.Rows)
                 {
                     DateTime dtDefault = Convert.ToDateTime("1900-01-01");
-                    DateTime dt;
                     UserInfo info = new UserInfo();
 
                     //用户编码,用户名/登录名,真实姓名,职务头衔,移动电话,办公电话,邮件地址,性别,QQ号码,备注
@@ -126,7 +124,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult SaveExcelData(List<UserInfo> list, Int32 CompanyId, Int32 DeptId)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             if (list != null && list.Count > 0)
             {
                 #region 采用事务进行数据提交
@@ -164,7 +162,7 @@ namespace JCodes.Framework.WebUI.Controllers
                             }
                         }
                         trans.Commit();
-                        result.Success = isAllImported;
+                        result.ErrorCode = isAllImported?0:1;
                     }
                     catch (Exception ex)
                     {
@@ -285,15 +283,15 @@ namespace JCodes.Framework.WebUI.Controllers
         public virtual ActionResult ConfirmDeleteByIds(string ids)
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.DeleteKey);
+            base.CheckAuthorized(authorizeKeyInfo.DeleteKey);
 
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             try
             {
                 if (!string.IsNullOrEmpty(ids))
                 {
                     string condition = string.Format("ID in ({0}) ", ids);
-                    result.Success = baseBLL.DeleteByCondition(condition);
+                    result.ErrorCode = baseBLL.DeleteByCondition(condition)?0:1;
                 }
             }
             catch (Exception ex)
@@ -311,7 +309,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult ResetPassword(string id)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             try
             {
                 if (string.IsNullOrEmpty(id))
@@ -329,7 +327,7 @@ namespace JCodes.Framework.WebUI.Controllers
                         bool tempBool = BLLFactory<User>.Instance.ModifyPassword(info.Name, defaultPassword, Const.SystemTypeID, ip, macAddr);
                         if (tempBool)
                         {
-                            result.Success = true;
+                            result.ErrorCode = 0;
                         }
                         else
                         {
@@ -355,7 +353,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult ModifyPass(string name, string oldpass, string newpass)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             try
             {
                 // TODO 这里要修改为Request IP
@@ -371,7 +369,7 @@ namespace JCodes.Framework.WebUI.Controllers
                     bool tempBool = BLLFactory<User>.Instance.ModifyPassword(name, newpass, Const.SystemTypeID, ip, macAddr);
                     if (tempBool)
                     {
-                        result.Success = true;
+                        result.ErrorCode = 0;
                     }
                     else
                     {
@@ -488,7 +486,7 @@ namespace JCodes.Framework.WebUI.Controllers
             if (userInfo != null)
             {
                 List<OUNodeInfo> list = new List<OUNodeInfo>();
-                if (BLLFactory<User>.Instance.UserInRole(userInfo.Name, RoleInfo.SuperAdminName))
+                /*if (BLLFactory<User>.Instance.UserInRole(userInfo.Name, RoleInfo.SuperAdminName))
                 {
                     list = BLLFactory<OU>.Instance.GetGroupCompanyTree();
                 }
@@ -499,7 +497,7 @@ namespace JCodes.Framework.WebUI.Controllers
                     {
                         list.Add(new OUNodeInfo(myCompanyInfo));
                     }
-                }
+                }*/
 
                 if (list.Count > 0)
                 {
@@ -527,7 +525,7 @@ namespace JCodes.Framework.WebUI.Controllers
             if (userInfo != null)
             {
                 List<OUNodeInfo> list = new List<OUNodeInfo>();
-                if (BLLFactory<User>.Instance.UserInRole(userInfo.Name, RoleInfo.SuperAdminName))
+                /*if (BLLFactory<User>.Instance.UserInRole(userInfo.Name, RoleInfo.SuperAdminName))
                 {
                     list = BLLFactory<OU>.Instance.GetGroupCompanyTree();
                 }
@@ -538,7 +536,7 @@ namespace JCodes.Framework.WebUI.Controllers
                     {
                         list.Add(new OUNodeInfo(myCompanyInfo));
                     }
-                }
+                }*/
 
                 foreach (OUNodeInfo info in list)
                 {
@@ -712,7 +710,7 @@ namespace JCodes.Framework.WebUI.Controllers
             if (!string.IsNullOrEmpty(roleId))
             {
                 //检查用户是否有权限，否则抛出MyDenyAccessException异常
-                base.CheckAuthorized(AuthorizeKey.ListKey);
+                base.CheckAuthorized(authorizeKeyInfo.ListKey);
                 List<UserInfo> list = BLLFactory<User>.Instance.GetUsersByRole(roleId.ToInt32());
 
                 //Json格式的要求{total:22,rows:{}}
@@ -728,11 +726,11 @@ namespace JCodes.Framework.WebUI.Controllers
 
         public override ActionResult Insert(UserInfo info)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             try
             {
                 //检查用户是否有权限，否则抛出MyDenyAccessException异常
-                base.CheckAuthorized(AuthorizeKey.InsertKey);
+                base.CheckAuthorized(authorizeKeyInfo.InsertKey);
 
                 string filter = string.Format("Name='{0}' ", info.Name);
                 bool isExist = BLLFactory<User>.Instance.IsExistRecord(filter);
@@ -743,7 +741,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 else
                 {
                     OnBeforeInsert(info);
-                    result.Success = baseBLL.Insert(info);
+                    result.ErrorCode = baseBLL.Insert(info)?0:1;
                 }
             }
             catch (Exception ex)
@@ -756,11 +754,11 @@ namespace JCodes.Framework.WebUI.Controllers
 
         public override ActionResult Insert2(UserInfo info)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             try
             {
                 //检查用户是否有权限，否则抛出MyDenyAccessException异常
-                base.CheckAuthorized(AuthorizeKey.InsertKey);
+                base.CheckAuthorized(authorizeKeyInfo.InsertKey);
 
                 string filter = string.Format("Name='{0}' ", info.Name);
                 bool isExist = BLLFactory<User>.Instance.IsExistRecord(filter);
@@ -935,7 +933,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult EditPortrait(int id)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
 
             try
             {
@@ -946,7 +944,7 @@ namespace JCodes.Framework.WebUI.Controllers
                     if (info != null)
                     {
                         var fileData = ReadFileBytes(files[0]);
-                        result.Success = BLLFactory<User>.Instance.UpdatePersonImageBytes(UserImageType.个人肖像, id, fileData);
+                        result.ErrorCode = BLLFactory<User>.Instance.UpdatePersonImageBytes(UserImageType.个人肖像, id, fileData)?0:1;
                     }
                 }
             }

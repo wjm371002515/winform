@@ -85,7 +85,7 @@
     <Compile Include="WareHouseMis\ReportMonthlyCostDetail.cs" />
     <Compile Include="WareHouseMis\ReportMonthlyDetail.cs" />
     <Compile Include="WareHouseMis\ReportMonthlyHeader.cs" />
-    <Compile Include="WareHouseMis\Stock.cs" />
+    <Compile Include="WareHouseMis\Ware.cs" />
     <Compile Include="WareHouseMis\Client.cs" />
     <Compile Include="WareHouseMis\Supplier.cs" />
     <Compile Include="WareHouseMis\WareHouse.cs" />

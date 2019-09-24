@@ -20,7 +20,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// </summary>
         public InformationController() : base()
         {
-            base.AuthorizeKey.InsertKey = "Information/Add";
+            base.authorizeKeyInfo.InsertKey = "Information/Add";
             //base.AuthorizeKey.UpdateKey = "Information/Edit";  
             //base.AuthorizeKey.DeleteKey = "Information/Delete";
         }
@@ -53,7 +53,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 InformationInfo info = list[i];
                 if (info != null)
                 {
-                    info.Attachment_GUID = GetAttachmentHtml(info.Attachment_GUID);
+                    info.AttachmentGid = GetAttachmentHtml(info.AttachmentGid);
                 }
             }
 
@@ -133,9 +133,9 @@ namespace JCodes.Framework.WebUI.Controllers
                 foreach (string id in idArray)
                 {
                     InformationInfo info = baseBLL.FindByID(id);
-                    if (info != null && !string.IsNullOrEmpty(info.Attachment_GUID))
+                    if (info != null && !string.IsNullOrEmpty(info.AttachmentGid))
                     {
-                        BLLFactory<FileUpload>.Instance.DeleteByAttachGUID(info.Attachment_GUID, CurrentUser.CurrentLoginUserId);
+                        BLLFactory<FileUpload>.Instance.DeleteByAttachGUID(info.AttachmentGid, CurrentUser.CurrentLoginUserId);
                     }
                 }
             }
@@ -248,10 +248,10 @@ namespace JCodes.Framework.WebUI.Controllers
                 #endregion
 
                 //使用书签方式替换
-                SetBookmark(ref doc, "Title", info.Title);
+                SetBookmark(ref doc, "InformationTitle", info.InformationTitle);
                 SetBookmark(ref doc, "EditorId", info.EditorId.ToString());
                 SetBookmark(ref doc, "LastUpdateTime", info.LastUpdateTime.ToString("yyyy-MM-dd"));
-                SetBookmark(ref doc, "SubType", info.SubType);
+                SetBookmark(ref doc, "InformationSubType", info.InformationSubType.ToString());
                 
                 //SetBookmark(ref doc, "Content", info.Content);
                 //对于HTML内容，需要通过InsertHtml方式进行写入
@@ -260,10 +260,10 @@ namespace JCodes.Framework.WebUI.Controllers
                 if (bookmark != null)
                 {
                     builder.MoveToBookmark(bookmark.Name);
-                    builder.InsertHtml(info.Content);
-                }                
-                
-                doc.Save(System.Web.HttpContext.Current.Response, info.Title, Aspose.Words.ContentDisposition.Attachment,
+                    builder.InsertHtml(info.CustomContent);
+                }
+
+                doc.Save(System.Web.HttpContext.Current.Response, info.InformationTitle, Aspose.Words.ContentDisposition.Attachment,
                     Aspose.Words.Saving.SaveOptions.CreateSaveOptions(Aspose.Words.SaveFormat.Doc));
 
                 HttpResponseBase response = ControllerContext.HttpContext.Response;

@@ -40,13 +40,13 @@ namespace JCodes.Framework.BLL
         /// 返回所有库房
         /// </summary>
         /// <returns></returns>
-        public List<CListItem> GetAllWareHouse()
+        public List<CDicKeyValue> GetAllWareHouse()
         {
-            List<CListItem> itemList = new List<CListItem>();
+            List<CDicKeyValue> itemList = new List<CDicKeyValue>();
             List<WareHouseInfo> wareList = BLLFactory<WareHouse>.Instance.GetAll();
             foreach (WareHouseInfo wareInfo in wareList)
             {
-                itemList.Add(new CListItem(wareInfo.ID.ToString(), wareInfo.Name));
+                itemList.Add(new CDicKeyValue(wareInfo.Id, wareInfo.Name));
             }
             return itemList;
         }

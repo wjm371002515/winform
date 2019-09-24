@@ -10,7 +10,7 @@ using JCodes.Framework.Common.Framework;
 
 namespace JCodes.Framework.BLL
 {
-	public class Stock : BaseBLL<StockInfo>
+    public class Stock : BaseBLL<WareInfo>
     {
         public Stock() : base()
         {
@@ -24,7 +24,7 @@ namespace JCodes.Framework.BLL
         /// <returns></returns>
         public DataTable GetCurrentStockReport(string condition)
         {
-            IStock dal = baseDal as IStock;
+            IWare dal = baseDal as IWare;
             return dal.GetCurrentStockReport(condition);
         }
 
@@ -35,7 +35,7 @@ namespace JCodes.Framework.BLL
         /// <returns></returns>
         public int GetCurrentStockReportCount(string condition)
         {
-            IStock dal = baseDal as IStock;
+            IWare dal = baseDal as IWare;
             return dal.GetCurrentStockReportCount(condition);
         }
 
@@ -59,10 +59,10 @@ namespace JCodes.Framework.BLL
         /// <param name="quantity">期初数量</param>
         /// <param name="wareHouse">库房名称</param>
         /// <returns></returns>
-        public bool InitStockQuantity(ItemDetailInfo detailInfo, int quantity, string wareHouse)
+        public bool InitStockQuantity(ItemDetailInfo detailInfo, int quantity, Int32 wareHouseId)
         {
-             IStock dal = baseDal as IStock;
-             return dal.InitStockQuantity(detailInfo, quantity, wareHouse);
+             IWare dal = baseDal as IWare;
+             return dal.InitStockQuantity(detailInfo, quantity, wareHouseId);
         }
 
         /// <summary>
@@ -72,10 +72,10 @@ namespace JCodes.Framework.BLL
         /// <param name="itemName">备件名称</param>
         /// <param name="quantity">库存属类</param>
         /// <returns></returns>
-        public bool AddStockQuantiy(string ItemNo, string itemName, int quantity, string wareHouse)
+        public bool AddStockQuantiy(string ItemNo, string itemName, int quantity, Int32 wareHouseId)
         {
-            IStock dal = baseDal as IStock;
-            return dal.AddStockQuantiy(ItemNo, itemName, quantity, wareHouse);
+            IWare dal = baseDal as IWare;
+            return dal.AddStockQuantiy(ItemNo, itemName, quantity, wareHouseId);
         }
 
         /// <summary>
@@ -87,11 +87,11 @@ namespace JCodes.Framework.BLL
         {
             bool result = false;
             string condition = string.Format("WareHouse='{0}' ", wareHouse);
-            IStock dal = baseDal as IStock;
-            List<StockInfo> stockList = dal.Find(condition);
-            foreach (StockInfo info in stockList)
+            IWare dal = baseDal as IWare;
+            List<WareInfo> stockList = dal.Find(condition);
+            foreach (WareInfo info in stockList)
             {
-                if (info.HighWarning > 0 && info.StockQuantity >= info.HighWarning)
+                if (info.HighAmountWarning > 0 && info.Amount >= info.HighAmountWarning)
                 {
                     result = true;
                 }
@@ -108,11 +108,11 @@ namespace JCodes.Framework.BLL
         {
             bool result = false;
             string condition = string.Format("WareHouse='{0}' ", wareHouse);
-            IStock dal = baseDal as IStock;
-            List<StockInfo> stockList = dal.Find(condition);
-            foreach (StockInfo info in stockList)
+            IWare dal = baseDal as IWare;
+            List<WareInfo> stockList = dal.Find(condition);
+            foreach (WareInfo info in stockList)
             {
-                if (info.LowWarning > 0 && info.StockQuantity <= info.LowWarning)
+                if (info.LowAmountWarning > 0 && info.Amount <= info.LowAmountWarning)
                 {
                     result = true;
                 }
@@ -125,7 +125,7 @@ namespace JCodes.Framework.BLL
         /// 根据备件编号获取库房信息
         /// </summary>
         /// <returns></returns>
-        public StockInfo FindByItemNo(string itemNo, string wareHouse)
+        public WareInfo FindByItemNo(string itemNo, string wareHouse)
         {
             string condition = string.Format("ItemNo ='{0}' AND WareHouse='{1}'", itemNo, wareHouse);
             return baseDal.FindSingle(condition);
@@ -135,7 +135,7 @@ namespace JCodes.Framework.BLL
         /// 根据备件编号获取库房信息
         /// </summary>
         /// <returns></returns>
-        public StockInfo FindByItemNo(string itemNo)
+        public WareInfo FindByItemNo(string itemNo)
         {
             string condition = string.Format("ItemNo ='{0}' ", itemNo);
             return baseDal.FindSingle(condition);
@@ -148,10 +148,10 @@ namespace JCodes.Framework.BLL
         public int GetStockQuantity(string itemNo, string wareHouse)
         {
             int result = 0;
-            StockInfo stockInfo = FindByItemNo(itemNo, wareHouse);
-            if (stockInfo != null)
+            WareInfo wareInfo = FindByItemNo(itemNo, wareHouse);
+            if (wareInfo != null)
             {
-                result = stockInfo.StockQuantity;
+                result = wareInfo.Amount;
             }
             return result;
         }
@@ -163,7 +163,7 @@ namespace JCodes.Framework.BLL
         /// <returns></returns>
         public DataTable GetItemStockQuantityReport(string condition, string fieldName)
         {
-            IStock dal = baseDal as IStock;
+            IWare dal = baseDal as IWare;
             return dal.GetItemStockQuantityReport(condition, fieldName);
         }
     }

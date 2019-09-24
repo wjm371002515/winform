@@ -55,7 +55,7 @@ namespace JCodes.Framework.AddIn.Basic
             foreach (SystemTypeInfo info in systemList)
             {
                 // 20170901 wjm 调整key 和value的顺序
-                this.txtSystemType.Properties.Items.Add(new CListItem(info.OID, info.Name));
+                this.txtSystemType.Properties.Items.Add(new CListItem(info.Gid, info.Name));
             }
             // 20170901 wjm 调整key 和value的顺序
             this.txtSystemType.Properties.Items.Add(new CListItem(string.Empty, "所有"));
@@ -211,10 +211,10 @@ namespace JCodes.Framework.AddIn.Basic
             }
 
             //如果是公司管理员，增加公司标识
-            if (Portal.gc.UserInRole(RoleInfo.CompanyAdminName))
+            /*if (Portal.gc.UserInRole(RoleInfo.CompanyAdminName))
             {
                 condition.AddCondition("CompanyId", Portal.gc.UserInfo.CompanyId, SqlOperator.Equal);
-            }
+            }*/
 
             string where = condition.BuildConditionSql().Replace("Where", "");
             //如果是单击节点得到的条件，则使用树列表的，否则使用查询条件的
@@ -311,7 +311,7 @@ namespace JCodes.Framework.AddIn.Basic
                     dr["登录名"] = list[i].LoginName;
                     dr["真实名"] = list[i].FullName;
                     dr["公司Id"] = list[i].CompanyId;
-                    dr["公司名字"] = list[i].CompanyName;
+                    //dr["公司名字"] = list[i].CompanyName;
                     dr["备注"] = list[i].Remark;
                     dr["IP地址"] = list[i].IP;
                     dr["Mac地址"] = list[i].Mac;

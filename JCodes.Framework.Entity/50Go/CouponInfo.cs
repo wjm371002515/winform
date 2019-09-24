@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Runtime.Serialization;
-using JCodes.Framework.Entity;
+using System.ComponentModel;
 
 namespace JCodes.Framework.Entity
 {
 	/// <summary>
-	/// 优惠券信息
+	/// 优惠券信息(CouponInfo)
+	/// 对象号: 100001
+	/// 备注信息: 
 	/// </summary>
 	[Serializable]
 	[DataContract]
-	public class CouponInfo : BaseEntity 
+	public partial class CouponInfo : BaseEntity
 	{
 		#region Field Members
 
@@ -21,7 +23,7 @@ namespace JCodes.Framework.Entity
 		/// <summary>
 		/// 优惠券分类
 		/// </summary>
-		private Int32 m_CouponCategoryID = 0;
+		private Int32 m_CouponCategoryId = 0;
 
 		/// <summary>
 		/// 优惠券分类名字
@@ -34,7 +36,7 @@ namespace JCodes.Framework.Entity
 		private Int32 m_CompanyId = 0;
 
 		/// <summary>
-		/// 创建人ID
+		/// 创建人编号
 		/// </summary>
 		private Int32 m_CreatorId = 0;
 
@@ -44,7 +46,7 @@ namespace JCodes.Framework.Entity
 		private DateTime m_CreatorTime = DateTime.Now;
 
 		/// <summary>
-		/// 编辑人ID
+		/// 编辑人编号
 		/// </summary>
 		private Int32 m_EditorId = 0;
 
@@ -85,6 +87,7 @@ namespace JCodes.Framework.Entity
 		/// ID序号
 		/// </summary>
 		[DataMember]
+		[DisplayName("ID序号")]
 		public virtual Int32 Id
 		{
 			get
@@ -101,15 +104,16 @@ namespace JCodes.Framework.Entity
 		/// 优惠券分类
 		/// </summary>
 		[DataMember]
-		public virtual Int32 CouponCategoryID
+		[DisplayName("优惠券分类")]
+		public virtual Int32 CouponCategoryId
 		{
 			get
 			{
-				return this.m_CouponCategoryID;
+				return this.m_CouponCategoryId;
 			}
 			set
 			{
-				this.m_CouponCategoryID = value;
+				this.m_CouponCategoryId = value;
 			}
 		}
 
@@ -117,6 +121,7 @@ namespace JCodes.Framework.Entity
 		/// 优惠券分类名字
 		/// </summary>
 		[DataMember]
+		[DisplayName("优惠券分类名字")]
 		public virtual String CouponCategoryName
 		{
 			get
@@ -133,6 +138,7 @@ namespace JCodes.Framework.Entity
 		/// 公司Id
 		/// </summary>
 		[DataMember]
+		[DisplayName("公司Id")]
 		public virtual Int32 CompanyId
 		{
 			get
@@ -146,9 +152,10 @@ namespace JCodes.Framework.Entity
 		}
 
 		/// <summary>
-		/// 创建人ID
+		/// 创建人编号
 		/// </summary>
 		[DataMember]
+		[DisplayName("创建人编号")]
 		public virtual Int32 CreatorId
 		{
 			get
@@ -165,6 +172,7 @@ namespace JCodes.Framework.Entity
 		/// 创建时间
 		/// </summary>
 		[DataMember]
+		[DisplayName("创建时间")]
 		public virtual DateTime CreatorTime
 		{
 			get
@@ -178,9 +186,10 @@ namespace JCodes.Framework.Entity
 		}
 
 		/// <summary>
-		/// 编辑人ID
+		/// 编辑人编号
 		/// </summary>
 		[DataMember]
+		[DisplayName("编辑人编号")]
 		public virtual Int32 EditorId
 		{
 			get
@@ -197,6 +206,7 @@ namespace JCodes.Framework.Entity
 		/// 最后更新时间
 		/// </summary>
 		[DataMember]
+		[DisplayName("最后更新时间")]
 		public virtual DateTime LastUpdateTime
 		{
 			get
@@ -213,6 +223,7 @@ namespace JCodes.Framework.Entity
 		/// 手机
 		/// </summary>
 		[DataMember]
+		[DisplayName("手机")]
 		public virtual String MobilePhone
 		{
 			get
@@ -229,6 +240,7 @@ namespace JCodes.Framework.Entity
 		/// 联系人
 		/// </summary>
 		[DataMember]
+		[DisplayName("联系人")]
 		public virtual String Contacts
 		{
 			get
@@ -245,6 +257,7 @@ namespace JCodes.Framework.Entity
 		/// 开始时间
 		/// </summary>
 		[DataMember]
+		[DisplayName("开始时间")]
 		public virtual DateTime StartTime
 		{
 			get
@@ -261,6 +274,7 @@ namespace JCodes.Framework.Entity
 		/// 结束时间
 		/// </summary>
 		[DataMember]
+		[DisplayName("结束时间")]
 		public virtual DateTime EndTime
 		{
 			get
@@ -277,6 +291,7 @@ namespace JCodes.Framework.Entity
 		/// 是否删除
 		/// </summary>
 		[DataMember]
+		[DisplayName("是否删除")]
 		public virtual Int16 IsDelete
 		{
 			get

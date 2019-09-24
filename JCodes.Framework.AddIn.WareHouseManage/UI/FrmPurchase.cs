@@ -358,11 +358,11 @@ namespace JCodes.Framework.AddIn.WareHouseManage
                         {
                             ItemDetailInfo itemInfo = new ItemDetailInfo();
                             itemInfo.ItemNo = detailInfo.ItemNo;
-                            itemInfo.ItemName = detailInfo.ItemName;
-                            itemInfo.ItemBigType = detailInfo.ItemBigType;
+                            itemInfo.Name = detailInfo.Name;
+                            itemInfo.ItemBigtype = detailInfo.ItemBigtype;
                             itemInfo.ItemType = detailInfo.ItemType;
 
-                            BLLFactory<Stock>.Instance.InitStockQuantity(itemInfo, 0, this.txtWareHouse.GetComboBoxStrValue());
+                            BLLFactory<Stock>.Instance.InitStockQuantity(itemInfo, 0, this.txtWareHouse.GetComboBoxStrValue().ToInt32());
                         }
                     }
                 }
@@ -402,15 +402,15 @@ namespace JCodes.Framework.AddIn.WareHouseManage
             try
             {
                 PurchaseHeaderInfo headInfo = new PurchaseHeaderInfo();
-                headInfo.CreateDate = txtCreateDate.DateTime;
-                headInfo.Creator = this.txtCreator.Text;
-                headInfo.UserCode = this.txtHandNo.Text;
+                headInfo.CreatorTime = txtCreateDate.DateTime;
+                headInfo.CreatorId = this.txtCreator.Text.ToInt32();
+                headInfo.OrderNo = this.txtHandNo.Text;
                 headInfo.Manufacture = this.txtManufacture.GetComboBoxStrValue();
-                headInfo.Note = this.txtNote.Text;
+                headInfo.Remark = this.txtNote.Text;
                 headInfo.OperationType = "入库";
-                headInfo.WareHouse = this.txtWareHouse.GetComboBoxStrValue();
-                headInfo.CreateYear = DateTimeHelper.GetServerDateTime2().Year;
-                headInfo.CreateMonth = DateTimeHelper.GetServerDateTime2().Month;
+                headInfo.WareHouseId = this.txtWareHouse.GetComboBoxStrValue().ToInt32();
+                headInfo.CreatorYear = DateTimeHelper.GetServerDateTime2().Year;
+                headInfo.CreatorMonth = (short)DateTimeHelper.GetServerDateTime2().Month;
 
                 int headId = BLLFactory<PurchaseHeader>.Instance.Insert2(headInfo);
                 if (headId > 0)
@@ -420,7 +420,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
                         PurchaseDetailInfo detailInfo = lvwDetail.gridView1.GetRow(i) as PurchaseDetailInfo;
                         if (detailInfo != null)
                         {
-                            detailInfo.PurchaseHead_ID = headId;
+                            detailInfo.PurchaseHeadId = headId;
                             BLLFactory<PurchaseDetail>.Instance.Insert(detailInfo);
                             AddStockQuantity(detailInfo);//增加库存
                         }
@@ -452,24 +452,24 @@ namespace JCodes.Framework.AddIn.WareHouseManage
         private void AddStockQuantity(PurchaseDetailInfo detailInfo)
         {
             //先更新库存的价格为加权价格
-            StockInfo stockInfo = BLLFactory<Stock>.Instance.FindByItemNo(detailInfo.ItemNo, this.txtWareHouse.GetComboBoxStrValue());
-            if (stockInfo != null)
+            WareInfo wareInfo = BLLFactory<Stock>.Instance.FindByItemNo(detailInfo.ItemNo, this.txtWareHouse.GetComboBoxStrValue());
+            if (wareInfo != null)
             {
-                int oldQuantity = stockInfo.StockQuantity;
-                decimal oldPrice = 0M;
+                int oldQuantity = wareInfo.Amount;
+                double oldPrice = 0;
                 ItemDetailInfo info = BLLFactory<ItemDetail>.Instance.FindByItemNo(detailInfo.ItemNo);
                 if (info != null)
                 {
                     oldPrice = info.Price;
-                    decimal newPrice = ((Convert.ToInt32(detailInfo.Quantity) * detailInfo.Price) + (oldQuantity * oldPrice)) / (Convert.ToInt32(detailInfo.Quantity) + oldQuantity);
+                    double newPrice = ((Convert.ToInt32(detailInfo.Amount) * detailInfo.Price) + (oldQuantity * oldPrice)) / (Convert.ToInt32(detailInfo.Amount) + oldQuantity);
                     
-                    info.Price = newPrice;
-                    BLLFactory<ItemDetail>.Instance.Update(info, info.ID.ToString());
+                    info.Price = (double)newPrice;
+                    BLLFactory<ItemDetail>.Instance.Update(info, info.Id);
                 }
             }
 
-            BLLFactory<Stock>.Instance.AddStockQuantiy(detailInfo.ItemNo, detailInfo.ItemName,
-                Convert.ToInt32(detailInfo.Quantity), this.txtWareHouse.GetComboBoxStrValue());
+            BLLFactory<Stock>.Instance.AddStockQuantiy(detailInfo.ItemNo, detailInfo.Name,
+                Convert.ToInt32(detailInfo.Amount), this.txtWareHouse.GetComboBoxStrValue().ToInt32());
         }
 
         private void ClearContent()
@@ -528,7 +528,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
                 if (info != null)
                 {
                     row = dt.NewRow();
-                    row["流水号"] = this.txtHandNo.Text;
+                   /* row["流水号"] = this.txtHandNo.Text;
                     row["备注"] = this.txtNote.Text;
                     row["供货商"] = this.txtManufacture.Text;
                     row["操作员"] = this.txtCreator.Text;
@@ -548,7 +548,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
                     row["来源"] = info.Source;
                     row["库位"] = info.StoragePos;
                     row["部门"] = info.Dept;
-                    row["使用位置"] = info.UsagePos;
+                    row["使用位置"] = info.UsagePos;*/
                     dt.Rows.Add(row);
                 }
             } 
@@ -672,15 +672,15 @@ namespace JCodes.Framework.AddIn.WareHouseManage
         private void btnPrintBill_Click(object sender, EventArgs e)
         {
             PurchaseHeaderInfo headInfo = new PurchaseHeaderInfo();
-            headInfo.CreateDate = txtCreateDate.DateTime;
-            headInfo.Creator = this.txtCreator.Text;
-            headInfo.UserCode = this.txtHandNo.Text;
+            headInfo.CreatorTime = txtCreateDate.DateTime;
+            headInfo.CreatorId = this.txtCreator.Text.ToInt32();
+            headInfo.OrderNo = this.txtHandNo.Text;
             headInfo.Manufacture = this.txtManufacture.Text;
-            headInfo.Note = this.txtNote.Text;
+            headInfo.Remark = this.txtNote.Text;
             headInfo.OperationType = "入库";
-            headInfo.WareHouse = this.txtWareHouse.GetComboBoxStrValue();
-            headInfo.CreateYear = DateTimeHelper.GetServerDateTime2().Year;
-            headInfo.CreateMonth = DateTimeHelper.GetServerDateTime2().Month;
+            headInfo.WareHouseId = this.txtWareHouse.GetComboBoxStrValue().ToInt32();
+            headInfo.CreatorYear = DateTimeHelper.GetServerDateTime2().Year;
+            headInfo.CreatorMonth = (short)DateTimeHelper.GetServerDateTime2().Month;
 
             List<PurchaseDetailInfo> detailList = new List<PurchaseDetailInfo>();
             for (int i = 0; i < this.lvwDetail.gridView1.RowCount; i++)
@@ -688,16 +688,16 @@ namespace JCodes.Framework.AddIn.WareHouseManage
                 PurchaseDetailInfo detailInfo = lvwDetail.gridView1.GetRow(i) as PurchaseDetailInfo;
                 if (detailInfo != null)
                 {
-                    StockInfo stockInfo = BLLFactory<Stock>.Instance.FindByItemNo(detailInfo.ItemNo, this.txtWareHouse.GetComboBoxStrValue());
-                    if (stockInfo != null)
+                    WareInfo wareInfo = BLLFactory<Stock>.Instance.FindByItemNo(detailInfo.ItemNo, this.txtWareHouse.GetComboBoxStrValue());
+                    if (wareInfo != null)
                     {
-                        int oldQuantity = stockInfo.StockQuantity;
-                        decimal oldPrice = 0M;
+                        int oldQuantity = wareInfo.Amount;
+                        double oldPrice = 0;
                         ItemDetailInfo info = BLLFactory<ItemDetail>.Instance.FindByItemNo(detailInfo.ItemNo);
                         if (info != null)
                         {
                             oldPrice = info.Price;
-                            decimal newPrice = ((Convert.ToInt32(detailInfo.Quantity) * detailInfo.Price) + (oldQuantity * oldPrice)) / (Convert.ToInt32(detailInfo.Quantity) + oldQuantity);
+                            double newPrice = ((Convert.ToInt32(detailInfo.Amount) * detailInfo.Price) + (oldQuantity * oldPrice)) / (Convert.ToInt32(detailInfo.Amount) + oldQuantity);
 
                             detailInfo.Price = newPrice;
                         }

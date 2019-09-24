@@ -43,7 +43,7 @@ namespace JCodes.Framework.SQLServerDAL
 			ProvinceInfo provinceInfo = new ProvinceInfo();
 			SmartDataReader reader = new SmartDataReader(dataReader);
 
-            provinceInfo.ID = reader.GetInt32("ID");
+            provinceInfo.Id = reader.GetInt32("Id");
 			provinceInfo.ProvinceName = reader.GetString("ProvinceName");
 			
 			return provinceInfo;

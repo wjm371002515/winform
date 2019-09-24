@@ -1,107 +1,176 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using System.ComponentModel;
 
 namespace JCodes.Framework.Entity
 {
-    /// <summary>
-    /// 可用于传递的用户简单信息
-    /// </summary>
-    [Serializable]
-    [DataContract]
-    public class SimpleUserInfo : BaseEntity
-    {
-        private int m_Id = 0;
-        private string m_UserCode; //用户编码   
-        private string m_Name = "";//用户名/登录名 
-        private string m_FullName = "";//用户全名
-        private string m_Password = "";//用户密码
-        private string m_MobilePhone; //移动电话          
-        private string m_Email; //邮件地址          
+	/// <summary>
+	/// 可用于传递的用户简单信息(SimpleUserInfo)
+	/// 对象号: 100064
+	/// 备注信息: 
+	/// </summary>
+	[Serializable]
+	[DataContract]
+	public partial class SimpleUserInfo : BaseEntity
+	{
+		#region Field Members
 
-        [DataMember]
-        public virtual int Id
-        {
-            get { return m_Id; }
-            set { m_Id = value; }
-        }
+		/// <summary>
+		/// ID序号
+		/// </summary>
+		private Int32 m_Id = 0;
 
-        /// <summary>
-        /// 用户编码
-        /// </summary>
-        [DataMember]
-        public virtual string UserCode
-        {
-            get
-            {
-                return this.m_UserCode;
-            }
-            set
-            {
-                this.m_UserCode = value;
-            }
-        }
+		/// <summary>
+		/// 用户编码
+		/// </summary>
+		private String m_UserCode = string.Empty;
 
-        /// <summary>
-        /// 用户名/登录名
-        /// </summary>
-        [DataMember]
-        public virtual string Name
-        {
-            get { return this.m_Name; }
-            set { this.m_Name = value; }
-        }
+		/// <summary>
+		/// 名称
+		/// </summary>
+		private String m_Name = string.Empty;
 
-        /// <summary>
-        /// 用户密码
-        /// </summary>
-        [DataMember]
-        public virtual string Password
-        {
-            get { return this.m_Password; }
-            set { this.m_Password = value; }
-        }
+		/// <summary>
+		/// 真实名
+		/// </summary>
+		private String m_FullName = string.Empty;
 
-        /// <summary>
-        /// 用户全名
-        /// </summary>
-        [DataMember]
-        public virtual string FullName
-        {
-            get { return this.m_FullName; }
-            set { this.m_FullName = value; }
-        }
+		/// <summary>
+		/// 密码
+		/// </summary>
+		private String m_Password = string.Empty;
 
-        /// <summary>
-        /// 移动电话
-        /// </summary>
-        [DataMember]
-        public virtual string MobilePhone
-        {
-            get
-            {
-                return this.m_MobilePhone;
-            }
-            set
-            {
-                this.m_MobilePhone = value;
-            }
-        }
+		/// <summary>
+		/// 手机
+		/// </summary>
+		private String m_MobilePhone = string.Empty;
 
+		/// <summary>
+		/// Email邮箱
+		/// </summary>
+		private String m_Email = string.Empty;
+		#endregion
 
-        /// <summary>
-        /// 邮件地址
-        /// </summary>
-        [DataMember]
-        public virtual string Email
-        {
-            get
-            {
-                return this.m_Email;
-            }
-            set
-            {
-                this.m_Email = value;
-            }
-        }
-    }
+		#region Property Members
+
+		/// <summary>
+		/// ID序号
+		/// </summary>
+		[DataMember]
+		[DisplayName("ID序号")]
+		public virtual Int32 Id
+		{
+			get
+			{
+				return this.m_Id;
+			}
+			set
+			{
+				this.m_Id = value;
+			}
+		}
+
+		/// <summary>
+		/// 用户编码
+		/// </summary>
+		[DataMember]
+		[DisplayName("用户编码")]
+		public virtual String UserCode
+		{
+			get
+			{
+				return this.m_UserCode;
+			}
+			set
+			{
+				this.m_UserCode = value;
+			}
+		}
+
+		/// <summary>
+		/// 名称
+		/// </summary>
+		[DataMember]
+		[DisplayName("名称")]
+		public virtual String Name
+		{
+			get
+			{
+				return this.m_Name;
+			}
+			set
+			{
+				this.m_Name = value;
+			}
+		}
+
+		/// <summary>
+		/// 真实名
+		/// </summary>
+		[DataMember]
+		[DisplayName("真实名")]
+		public virtual String FullName
+		{
+			get
+			{
+				return this.m_FullName;
+			}
+			set
+			{
+				this.m_FullName = value;
+			}
+		}
+
+		/// <summary>
+		/// 密码
+		/// </summary>
+		[DataMember]
+		[DisplayName("密码")]
+		public virtual String Password
+		{
+			get
+			{
+				return this.m_Password;
+			}
+			set
+			{
+				this.m_Password = value;
+			}
+		}
+
+		/// <summary>
+		/// 手机
+		/// </summary>
+		[DataMember]
+		[DisplayName("手机")]
+		public virtual String MobilePhone
+		{
+			get
+			{
+				return this.m_MobilePhone;
+			}
+			set
+			{
+				this.m_MobilePhone = value;
+			}
+		}
+
+		/// <summary>
+		/// Email邮箱
+		/// </summary>
+		[DataMember]
+		[DisplayName("Email邮箱")]
+		public virtual String Email
+		{
+			get
+			{
+				return this.m_Email;
+			}
+			set
+			{
+				this.m_Email = value;
+			}
+		}
+		#endregion
+	}
 }

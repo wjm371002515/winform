@@ -108,10 +108,10 @@ namespace JCodes.Framework.Common.Proj
             {
                 foreach (TableFieldsInfo tablefieldInfo in fieldsLst)
                 {
-                    if (dicts.ContainsKey(tablefieldInfo.FieldType))
-                        sbFields.Append(string.Format("\r\n\t[{0}] {1} {2},", tablefieldInfo.FieldName, dicts[tablefieldInfo.FieldType], tablefieldInfo.IsNull ? string.Empty : "NOT NULL"));
+                    if (dicts.ContainsKey(tablefieldInfo.DataType))
+                        sbFields.Append(string.Format("\r\n\t[{0}] {1} {2},", tablefieldInfo.FieldName, dicts[tablefieldInfo.DataType], tablefieldInfo.IsNull == 0 ? string.Empty : "NOT NULL"));
                     else
-                        sbFields.Append(string.Format("\r\n\t[{0}] {1} {2},", tablefieldInfo.FieldName, "不存在的数据类型请检查", tablefieldInfo.IsNull ? string.Empty : "NOT NULL"));
+                        sbFields.Append(string.Format("\r\n\t[{0}] {1} {2},", tablefieldInfo.FieldName, "不存在的数据类型请检查", tablefieldInfo.IsNull == 0 ? string.Empty : "NOT NULL"));
                 }
             }
 
@@ -247,7 +247,7 @@ namespace JCodes.Framework.Common.Proj
                     string remark = dict.Remark;
                     if (remark.Contains(Const.SingleQuotation))
                         remark = remark.Replace(Const.SingleQuotation, Const.DuobleSingleQuotation);
-                    sbResult.Append(string.Format("INSERT [{0}] ([Gid], [DictTypeId], [Value], [Name], [Remark], [Seq], [EditorId], [LastUpdateTime]) VALUES (NEWID(), {1}, {2}, N'{3}', N'{4}', N'{5}', '1', GETDATE())\r\n", tableEnglishName, dict.DicttypeID, dict.Value, dict.Name, remark, dict.Seq));
+                    sbResult.Append(string.Format("INSERT [{0}] ([Gid], [DictTypeId], [Value], [Name], [Remark], [Seq], [EditorId], [LastUpdateTime]) VALUES (NEWID(), {1}, {2}, N'{3}', N'{4}', N'{5}', '1', GETDATE())\r\n", tableEnglishName, dict.DicttypeId, dict.DicttypeValue, dict.Name, remark, dict.Seq));
                 }
             }
 
@@ -309,7 +309,7 @@ namespace JCodes.Framework.Common.Proj
             {
                 foreach (var functionInfo in functionInfolst)
                 {
-                    sbResult.Append(string.Format("INSERT [{0}] ([Gid], [Pgid], [Name], [AuthGid], [SystemtypeId], [Seq]) VALUES (N'{1}',  N'{2}', N'{3}', N'{4}', N'{5}', N'{6}');\r\n", tableEnglishName, functionInfo.ID, functionInfo.PID, functionInfo.Name, functionInfo.FunctionId, functionInfo.SystemType_ID, functionInfo.Seq));
+                    sbResult.Append(string.Format("INSERT [{0}] ([Gid], [Pgid], [Name], [AuthGid], [SystemtypeId], [Seq]) VALUES (N'{1}',  N'{2}', N'{3}', N'{4}', N'{5}', N'{6}');\r\n", tableEnglishName, functionInfo.Gid, functionInfo.Pgid, functionInfo.Name, functionInfo.DllPath, functionInfo.SystemtypeId, functionInfo.Seq));
                 }
             }
 

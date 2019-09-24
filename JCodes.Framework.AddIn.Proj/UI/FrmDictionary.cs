@@ -91,18 +91,18 @@ namespace JCodes.Framework.AddIn.Proj
             // 将节点转换为元素，便于得到节点的属性值
             XmlElement xeproject = (XmlElement)xn1project;
             // 得到Type和ISBN两个属性的属性值
-            projectInfo.GUID = xeproject.GetAttribute("guid").ToString();
+            projectInfo.Gid = xeproject.GetAttribute("gid").ToString();
             // 得到DataTypeInfo节点的所有子节点
             XmlNodeList xnl0project = xeproject.ChildNodes;
             projectInfo.Name = xnl0project.Item(0).InnerText;
             projectInfo.Version = xnl0project.Item(1).InnerText;
-            projectInfo.Contract =  xnl0project.Item(2).InnerText;
+            projectInfo.Contacts =  xnl0project.Item(2).InnerText;
             projectInfo.Remark =  xnl0project.Item(3).InnerText;
             projectInfo.DbType = xnl0project.Item(4).InnerText;
             projectInfo.DicttypeTable = xnl0project.Item(5).InnerText;
             projectInfo.DictdataTable = xnl0project.Item(6).InnerText;
             projectInfo.ErrTable = xnl0project.Item(7).InnerText;
-            projectInfo.LastTime = xnl0project.Item(8).InnerText;
+            projectInfo.LastUpdateTime = Convert.ToDateTime( xnl0project.Item(8).InnerText);
             projectInfo.OutputPath = xnl0project.Item(9).InnerText;
 
             #endregion
@@ -120,7 +120,7 @@ namespace JCodes.Framework.AddIn.Proj
                 // 获取字符串中的英文字母 [a-zA-Z]+
                 string GroupEnglishName = CRegex.GetText(xe.GetAttribute("name").ToString(), "[a-zA-Z]+", 0);
 
-                guidGroup.Add(xe.GetAttribute("guid").ToString(), string.Format("{0}{1}_", Const.TablePre, GroupEnglishName));
+                guidGroup.Add(xe.GetAttribute("gid").ToString(), string.Format("{0}{1}_", Const.TablePre, GroupEnglishName));
             }
 
             XmlNodeList xmlNodeLst3 = xmltableshelper.Read("datatype/dataitem");
@@ -233,7 +233,7 @@ namespace JCodes.Framework.AddIn.Proj
 
                     // 得到DataTypeInfo节点的所有子节点
                     XmlNodeList xnl0 = xe.ChildNodes;
-                    dictDetailInfo.Value = Convert.ToInt32(xnl0.Item(0).InnerText);
+                    dictDetailInfo.IntValue = Convert.ToInt32(xnl0.Item(0).InnerText);
                     dictDetailInfo.Name = xnl0.Item(1).InnerText;
                     dictDetailInfo.Seq = xnl0.Item(2).InnerText;
                     dictDetailInfo.Remark = xnl0.Item(3).InnerText;
@@ -562,11 +562,11 @@ namespace JCodes.Framework.AddIn.Proj
                         {
                             DictDataInfo dicdetailInfo = new DictDataInfo();
                             var dNode = ((XmlElement)node).ChildNodes;
-                            dicdetailInfo.Value = dNode.Item(0).InnerText;
+                            dicdetailInfo.DicttypeValue = dNode.Item(0).InnerText.ToInt32();
                             dicdetailInfo.Name = dNode.Item(1).InnerText;
                             dicdetailInfo.Seq = dNode.Item(2).InnerText;
                             dicdetailInfo.Remark = dNode.Item(3).InnerText;
-                            dicdetailInfo.DicttypeID = dictInfo.Id;
+                            dicdetailInfo.DicttypeId = dictInfo.Id;
 
                             dictDetailInfoList.Add(dicdetailInfo);
                         }
@@ -616,7 +616,7 @@ namespace JCodes.Framework.AddIn.Proj
         {
             #region 添加别名解析
             this.gridViewModrecord.DisplayColumns = "ModDate,ModVersion,ModOrderId,Proposer,Programmer,ModContent,ModReason,Remark";
-            this.gridViewModrecord.AddColumnAlias("GUID", "GUID");
+            this.gridViewModrecord.AddColumnAlias("Gid", "GUID");
             this.gridViewModrecord.AddColumnAlias("ModDate", "修改日期");
             this.gridViewModrecord.AddColumnAlias("ModVersion", "修改版本");
             this.gridViewModrecord.AddColumnAlias("ModOrderId", "修改单号");
@@ -635,7 +635,7 @@ namespace JCodes.Framework.AddIn.Proj
                 // 将节点转换为元素，便于得到节点的属性值
                 XmlElement xe = (XmlElement)xn1;
                 // 得到Type和ISBN两个属性的属性值
-                modRecordInfo.GUID = xe.GetAttribute("guid").ToString();
+                modRecordInfo.Gid = xe.GetAttribute("gid").ToString();
                 modRecordInfo.ModDate = Convert.ToDateTime(xe.GetAttribute("moddate"));
                 modRecordInfo.ModVersion = new Version(xe.GetAttribute("modversion")).ToString();
                 modRecordInfo.ModOrderId = xe.GetAttribute("modorderId");
@@ -650,7 +650,7 @@ namespace JCodes.Framework.AddIn.Proj
             modRecordInfoLst.Sort();
 
             gridViewModrecord.DataSource = modRecordInfoLst;
-            gridViewModrecord.gridView1.Columns["GUID"].Visible = false;
+            gridViewModrecord.gridView1.Columns["Gid"].Visible = false;
             gridViewModrecord.gridView1.Columns["ModDate"].ColumnEdit = repositoryItemDateEdit1;
         }
 
@@ -670,7 +670,7 @@ namespace JCodes.Framework.AddIn.Proj
             var modrecordInfo = this.gridViewModrecord.GridView1.GetRow(e.RowHandle) as ModRecordInfo;
             string idx = string.Empty;
 
-            this.gridViewModrecord.AddColumnAlias("GUID", "GUID");
+            this.gridViewModrecord.AddColumnAlias("Gid", "GUID");
             this.gridViewModrecord.AddColumnAlias("ModDate", "修改日期");
             this.gridViewModrecord.AddColumnAlias("ModVersion", "修改版本");
             this.gridViewModrecord.AddColumnAlias("ModOrderId", "修改单号");
@@ -682,8 +682,8 @@ namespace JCodes.Framework.AddIn.Proj
 
             switch (e.Column.ToString())
             {
-                case "GUID":
-                    idx = "guid";
+                case "Gid":
+                    idx = "gid";
                     break;
                 case "修改日期":
                     idx = "moddate";
@@ -717,7 +717,7 @@ namespace JCodes.Framework.AddIn.Proj
             XmlNodeList xmlNodeLst = xmldicthelper.Read("datatype/histories");
             foreach(XmlElement element in xmlNodeLst)
             {
-                if (string.Equals(element.Attributes["guid"].Value, modrecordInfo.GUID))
+                if (string.Equals(element.Attributes["gid"].Value, modrecordInfo.Gid))
                 {
                     if (string.Equals(e.Column.ColumnType.Name, "DateTime"))
                     {
@@ -827,7 +827,7 @@ namespace JCodes.Framework.AddIn.Proj
             XmlNode objNode = objXmlDoc.SelectSingleNode("datatype/histories");
 
             ModRecordInfo modrecoreInfo = new ModRecordInfo();
-            modrecoreInfo.GUID = Guid.NewGuid().ToString();
+            modrecoreInfo.Gid = Guid.NewGuid().ToString();
             modrecoreInfo.ModDate = DateTimeHelper.GetServerDateTime2();
             // 没有修改版本记录则默认使用1.0.0.0 开始
             if (objNode.LastChild == null)
@@ -845,7 +845,7 @@ namespace JCodes.Framework.AddIn.Proj
             modrecoreInfo.Remark = string.Empty;
 
             XmlElement objElement = objXmlDoc.CreateElement("item");
-            objElement.SetAttribute("guid", modrecoreInfo.GUID);
+            objElement.SetAttribute("gid", modrecoreInfo.Gid);
             objElement.SetAttribute("moddate", modrecoreInfo.ModDate.ToString("yyyy-MM-dd HH:mm:ss"));
             objElement.SetAttribute("modversion", modrecoreInfo.ModVersion.ToString());
             objElement.SetAttribute("modorderId", modrecoreInfo.ModOrderId);
@@ -872,10 +872,10 @@ namespace JCodes.Framework.AddIn.Proj
             int[] rowSelected = this.gridViewModrecord.GridView1.GetSelectedRows();
             foreach (int iRow in rowSelected)
             {
-                string guid = this.gridViewModrecord.GridView1.GetRowCellDisplayText(iRow, "GUID");
+                string gid = this.gridViewModrecord.GridView1.GetRowCellDisplayText(iRow, "Gid");
 
                 // 再删除子节点本身
-                xmldicthelper.DeleteByPathNode(string.Format("datatype/histories/item[@guid=\"{0}\"]", guid));
+                xmldicthelper.DeleteByPathNode(string.Format("datatype/histories/item[@gid=\"{0}\"]", gid));
                 xmldicthelper.Save(false);
             }
             gridViewModrecord_OnRefresh(null, null);

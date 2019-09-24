@@ -16,6 +16,7 @@ using JCodes.Framework.Common.Framework;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.CommonControl.Controls;
 using JCodes.Framework.AddIn.Basic;
+using JCodes.Framework.Common.Extension;
 
 namespace JCodes.Framework.AddIn.Security
 {
@@ -51,7 +52,7 @@ namespace JCodes.Framework.AddIn.Security
             List<SystemTypeInfo> systemList = BLLFactory<SystemType>.Instance.GetAll();
             foreach (SystemTypeInfo info in systemList)
             {
-                this.txtSystemType.Properties.Items.Add(new CListItem(info.OID, info.Name));
+                this.txtSystemType.Properties.Items.Add(new CListItem(info.Gid, info.Name));
             }
             if (this.txtSystemType.Properties.Items.Count == 1)
             {
@@ -70,21 +71,21 @@ namespace JCodes.Framework.AddIn.Security
             {
                 TreeNode pNode = new TreeNode();
                 pNode.Text = typeInfo.Name;//系统类型节点
-                pNode.Name = typeInfo.OID;
+                pNode.Name = typeInfo.Gid;
                 pNode.ImageIndex = 0;
                 pNode.SelectedImageIndex = 0;
                 this.treeView1.Nodes.Add(pNode);
 
-                string systemType = typeInfo.OID;//系统标识ID
+                string systemType = typeInfo.Gid;//系统标识ID
 
                 //绑定树控件
                 List<FunctionNodeInfo> funList = BLLFactory<Functions>.Instance.GetTree(systemType);
                 foreach (FunctionNodeInfo info in funList)
                 {
                     TreeNode item = new TreeNode();
-                    item.Name = info.ID.ToString();
+                    item.Name = info.Gid;
                     item.Text = info.Name;//一级菜单节点
-                    item.Tag = info.ID;//info;//记录其info到Tag中，作为判断依据
+                    item.Tag = info.Gid;//info;//记录其info到Tag中，作为判断依据
                     item.ImageIndex = 1;
                     item.SelectedImageIndex = 1;
                     pNode.Nodes.Add(item);
@@ -103,9 +104,9 @@ namespace JCodes.Framework.AddIn.Security
             foreach (FunctionNodeInfo info in list)
             {
                 TreeNode item = new TreeNode();
-                item.Name = info.ID.ToString();
+                item.Name = info.Gid;
                 item.Text = info.Name;//二、三级菜单节点
-                item.Tag = info.ID;//info;//记录其FunctionNodeInfo到Tag中，作为判断依据
+                item.Tag = info.Gid;//info;//记录其FunctionNodeInfo到Tag中，作为判断依据
                 item.ImageIndex = 1;
                 item.SelectedImageIndex = 1;
                 fnode.Nodes.Add(item);
@@ -253,18 +254,18 @@ namespace JCodes.Framework.AddIn.Security
                 if (info != null)
                 {
                     this.txtName.Text = info.Name;
-                    this.txtFunctionID.Text = info.FunctionId;
+                    this.txtFunctionID.Text = info.DllPath;
                     this.txtSeq.Text = info.Seq;
 
-                    FunctionInfo info2 = BLLFactory<Functions>.Instance.FindByID(info.PID);
+                    FunctionInfo info2 = BLLFactory<Functions>.Instance.FindByID(info.Pgid);
                     if (info2 != null)
                     {
-                        functionControl1.Value = info.PID;
+                        functionControl1.Value = info.Pgid;
                     }
                     else
                     {
                         functionControl1.Value = "-1";                        
-                        txtSystemType.SetComboBoxItem(info.SystemType_ID);//设置系统类型
+                        txtSystemType.SetComboBoxItem(info.SystemtypeId);//设置系统类型
                     }
 
                     RefreshRoles(currentID);
@@ -275,8 +276,8 @@ namespace JCodes.Framework.AddIn.Security
         private FunctionInfo SetFunction(FunctionInfo info)
         {
             info.Name = this.txtName.Text;
-            info.PID = this.functionControl1.Value;
-            info.FunctionId = this.txtFunctionID.Text;
+            info.Pgid = this.functionControl1.Value;
+            info.DllPath = this.txtFunctionID.Text;
             info.Seq = this.txtSeq.Text;
             info.CurrentLoginUserId = Portal.gc.UserInfo.Id;
             return info;
@@ -328,7 +329,7 @@ namespace JCodes.Framework.AddIn.Security
                     // 合法操作检查
                     FunctionInfo info = BLLFactory<Functions>.Instance.FindByID(currentID);
 
-                    if (info.PID != functionControl1.Value && BLLFactory<Functions>.Instance.GetFunctionByPID(currentID).Count <= 1)
+                    if (info.Pgid != functionControl1.Value && BLLFactory<Functions>.Instance.GetFunctionByPID(currentID).Count <= 1)
                     {
                         MessageDxUtil.ShowError(Const.ForbidOperMsg);
                         return;
@@ -337,7 +338,7 @@ namespace JCodes.Framework.AddIn.Security
                     if (info != null)
                     {
                         info = SetFunction(info);
-                        BLLFactory<Functions>.Instance.Update(info, info.ID.ToString());
+                        BLLFactory<Functions>.Instance.Update(info, info.Gid);
 
                         RefreshTreeView();
                     }
@@ -355,7 +356,7 @@ namespace JCodes.Framework.AddIn.Security
 
                 if (functionInfo != null)
                 {
-                    string filter = string.Format("FunctionId='{0}' and SystemType_ID='{1}'", this.txtFunctionID.Text, functionInfo.SystemType_ID);
+                    string filter = string.Format("FunctionId='{0}' and SystemType_ID='{1}'", this.txtFunctionID.Text, functionInfo.SystemtypeId);
                     bool isExist = BLLFactory<Functions>.Instance.IsExistRecord(filter);
                     if (isExist)
                     {
@@ -368,12 +369,12 @@ namespace JCodes.Framework.AddIn.Security
                 {
                     //当新建系统类型的时候
                     functionInfo = new FunctionInfo();
-                    functionInfo.PID = "-1";
-                    functionInfo.SystemType_ID = this.txtSystemType.GetComboBoxStrValue();
-                    functionInfo.FunctionId = this.txtFunctionID.Text;
+                    functionInfo.Pgid = "-1";
+                    functionInfo.SystemtypeId = this.txtSystemType.GetComboBoxStrValue();
+                    functionInfo.DllPath = this.txtFunctionID.Text;
                     functionInfo.Seq = this.txtSeq.Text;
 
-                    string filter = string.Format("FunctionId='{0}' and SystemType_ID='{1}'", this.txtFunctionID.Text, functionInfo.SystemType_ID);
+                    string filter = string.Format("FunctionId='{0}' and SystemType_ID='{1}'", this.txtFunctionID.Text, functionInfo.SystemtypeId);
                     bool isExist = BLLFactory<Functions>.Instance.IsExistRecord(filter);
                     if (isExist)
                     {
@@ -385,7 +386,7 @@ namespace JCodes.Framework.AddIn.Security
 
                 FunctionInfo info = new FunctionInfo();
                 info = SetFunction(info);
-                info.SystemType_ID = functionInfo.SystemType_ID;//和父节点的SystemType_ID一样。
+                info.SystemtypeId = functionInfo.SystemtypeId;//和父节点的SystemType_ID一样。
 
                 try
                 {

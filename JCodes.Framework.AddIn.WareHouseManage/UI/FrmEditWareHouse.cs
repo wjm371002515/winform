@@ -7,6 +7,7 @@ using JCodes.Framework.CommonControl.BaseUI;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.BLL;
+using JCodes.Framework.Common.Extension;
 
 namespace JCodes.Framework.AddIn.WareHouseManage
 {
@@ -26,9 +27,9 @@ namespace JCodes.Framework.AddIn.WareHouseManage
         {
             info.Name = txtName.Text;
             info.Address = txtAddress.Text;
-            info.Manager = txtManager.Text;
-            info.Phone = txtPhone.Text;
-            info.Note = txtNote.Text;
+            info.UserId = txtManager.Text.ToInt32();
+            info.MobilePhone = txtPhone.Text;
+            info.Remark = txtNote.Text;
         }
 
         /// <summary>
@@ -66,10 +67,10 @@ namespace JCodes.Framework.AddIn.WareHouseManage
                 {
                     txtName.Text = info.Name;
                     txtAddress.Text = info.Address;
-                    txtNote.Text = info.Note;
-                    txtManager.Text = info.Manager;
-                    txtManager.Tag = info.Manager;
-                    txtPhone.Text = info.Phone;
+                    txtNote.Text = info.Remark;
+                    txtManager.Text = info.UserId.ToString();
+                    txtManager.Tag = info.UserId;
+                    txtPhone.Text = info.MobilePhone;
                 }
             }
         }
@@ -112,7 +113,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
 
                 try
                 {
-                    bool succeed = BLLFactory<WareHouse>.Instance.Update(info, info.ID.ToString());
+                    bool succeed = BLLFactory<WareHouse>.Instance.Update(info, info.Id);
                     if (succeed)
                     {
                         return true;

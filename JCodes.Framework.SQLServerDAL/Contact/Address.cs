@@ -46,7 +46,7 @@ namespace JCodes.Framework.SQLServerDAL
             info.Id = reader.GetInt32("Id");
             info.AddressType = Convert(reader.GetString("AddressType"));
             info.Name = reader.GetString("Name");
-            info.Sex = reader.GetInt32("Sex");
+            info.Gender = reader.GetInt16("Gender");
             info.Birthday = reader.GetDateTime("Birthday");
             info.MobilePhone = reader.GetString("MobilePhone");
             info.Email = reader.GetString("Email");
@@ -58,7 +58,7 @@ namespace JCodes.Framework.SQLServerDAL
             info.Fax = reader.GetString("Fax");
             info.CompanyName = reader.GetString("CompanyName");
             info.DeptName = reader.GetString("DeptName");
-			info.Position = reader.GetString("Position");
+            info.WorkPosition = reader.GetString("WorkPosition");
             info.Other = reader.GetString("Other");
             info.Remark = reader.GetString("Remark");
             info.CreatorId = reader.GetInt32("CreatorId");
@@ -83,7 +83,7 @@ namespace JCodes.Framework.SQLServerDAL
             hash.Add("Id", info.Id);
             hash.Add("AddressType", info.AddressType.ToString());
             hash.Add("Name", info.Name);
-            hash.Add("Sex", info.Sex);
+            hash.Add("Sex", info.Gender);
             hash.Add("Birthday", info.Birthday);
             hash.Add("MobilePhone", info.MobilePhone);
             hash.Add("Email", info.Email);
@@ -95,7 +95,7 @@ namespace JCodes.Framework.SQLServerDAL
             hash.Add("Fax", info.Fax);
             hash.Add("CompanyName", info.CompanyName);
             hash.Add("DeptName", info.DeptName);
- 			hash.Add("Position", info.Position);
+            hash.Add("WorkPosition", info.WorkPosition);
             hash.Add("Other", info.Other);
             hash.Add("Remark", info.Remark);
             hash.Add("CreatorId", info.CreatorId);
@@ -131,7 +131,7 @@ namespace JCodes.Framework.SQLServerDAL
             dict.Add("Id", "编号");
             dict.Add("AddressType", "通讯录类型[个人,公司]");
             dict.Add("Name", "姓名");
-            dict.Add("Sex", "性别");
+            dict.Add("Gender", "性别");
             dict.Add("Birthday", "出生日期");
             dict.Add("MobilePhone", "手机");
             dict.Add("Email", "电子邮箱");

@@ -378,15 +378,15 @@ namespace JCodes.Framework.AddIn.WareHouseManage
 
         private void InitWareHouseInfo(TreeNode node)
         {
-            List<CListItem> wareHouseList = BLLFactory<WareHouse>.Instance.GetAllWareHouse();
-            foreach (CListItem item in wareHouseList)
+            List<CDicKeyValue> wareHouseList = BLLFactory<WareHouse>.Instance.GetAllWareHouse();
+            foreach (CDicKeyValue item in wareHouseList)
             {
                 string condition = string.Format(" where t.WareHouse = '{0}' ", item.Value);
                 int count = BLLFactory<Stock>.Instance.GetCurrentStockReportCount(condition);
                 string displayText = string.Format("{0}({1})", item.Value, count);
 
                 TreeNode subNode = new TreeNode(displayText, 1, 1);
-                subNode.Tag = new CustomTreeData(CustomTreeType.Ware, item.Value);
+                subNode.Tag = new CustomTreeData(CustomTreeType.Ware, item.Value.ToString());
 
                 node.Nodes.Add(subNode);
             }
@@ -474,14 +474,14 @@ namespace JCodes.Framework.AddIn.WareHouseManage
                 string ID = this.winGridView1.gridView1.GetRowCellDisplayText(iRow, "ID");
                 if (!string.IsNullOrEmpty(ID))
                 {
-                    StockInfo info = BLLFactory<Stock>.Instance.FindByID(ID);
+                    WareInfo info = BLLFactory<Stock>.Instance.FindByID(ID);
                     if (info != null)
                     {
                         FrmStockAlert dlg = new FrmStockAlert();
                         dlg.ID = ID;
-                        dlg.WareHouse = info.WareHouse;
+                        dlg.WareHouse = info.WareHouseId.ToString();
                         dlg.ItemNo = info.ItemNo;
-                        dlg.ItemName = info.ItemName;
+                        dlg.ItemName = info.Name;
                         if (DialogResult.OK == dlg.ShowDialog())
                         {
                             BindData();
@@ -503,12 +503,12 @@ namespace JCodes.Framework.AddIn.WareHouseManage
                 string ID = this.winGridView1.gridView1.GetRowCellDisplayText(iRow, "ID");
                 if (!string.IsNullOrEmpty(ID))
                 {
-                    StockInfo info = BLLFactory<Stock>.Instance.FindByID(ID);
+                    WareInfo info = BLLFactory<Stock>.Instance.FindByID(ID);
                     if (info != null)
                     {
                         FrmEditStock dlg = new FrmEditStock();
                         dlg.ID = ID;
-                        dlg.WareHouse = info.WareHouse;
+                        dlg.WareHouse = info.WareHouseId.ToString();
                         dlg.InitFunction(this.LoginUserInfo, this.FunctionDict);//初始化权限控制信息
                         if (DialogResult.OK == dlg.ShowDialog())
                         {
@@ -594,8 +594,8 @@ namespace JCodes.Framework.AddIn.WareHouseManage
             this.treeView1.Nodes.Clear();
 
             TreeNode WareHouseNode = new TreeNode("仓库列表", 1, 1);
-            List<CListItem> warehouseList = BLLFactory<WareHouse>.Instance.GetAllWareHouse();
-            foreach (CListItem item in warehouseList)
+            List<CDicKeyValue> warehouseList = BLLFactory<WareHouse>.Instance.GetAllWareHouse();
+            foreach (CDicKeyValue item in warehouseList)
             {
                 TreeNode subNode = new TreeNode(item.Text, 1, 1);
                 subNode.Tag = string.Format("{0}='{1}' ", "t.WareHouse", item.Value);

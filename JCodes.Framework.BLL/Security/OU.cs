@@ -61,7 +61,8 @@ namespace JCodes.Framework.BLL
             if (userInfo != null)
             {
                 OUInfo groupInfo = null;
-                if (BLLFactory<User>.Instance.UserInRoleById(userId, RoleInfo.SuperAdminName))
+                // TODO
+                /*if (BLLFactory<User>.Instance.UserInRoleById(userId, RoleInfo.SuperAdminName))
                 {
                     //超级管理员取集团节点
                     list.AddRange(GetTopGroup());
@@ -70,7 +71,7 @@ namespace JCodes.Framework.BLL
                 {
                     groupInfo = this.FindByID(userInfo.CompanyId);//公司管理员取公司节点
                     list.Add(groupInfo);
-                }
+                }*/
             }
             return list;
         }
@@ -140,10 +141,11 @@ namespace JCodes.Framework.BLL
         /// <param name="ouID">机构ID</param>
         public void AddUser(int userID, int ouID)
         {
+            /* TODO
             if (this.OUInRole(ouID, RoleInfo.SuperAdminName))
             {
                 BLLFactory<User>.Instance.CancelExpire(userID);
-            }
+            }*/
 
             this.ouDal.AddUser(userID, ouID);
         }
@@ -197,6 +199,7 @@ namespace JCodes.Framework.BLL
         /// <param name="ouID">机构ID</param>
         public void RemoveUser(int userID, int ouID)
         {
+            /* TODO
             if (this.OUInRole(ouID, RoleInfo.SuperAdminName))
             {
                 List<SimpleUserInfo> adminSimpleUsers = BLLFactory<Role>.Instance.GetAdminSimpleUsers();
@@ -208,7 +211,7 @@ namespace JCodes.Framework.BLL
                         throw new Exception("管理员角色至少需要包含一个用户！");
                     }
                 }
-            }
+            }*/
             ouDal.RemoveUser(userID, ouID);
         }
                         

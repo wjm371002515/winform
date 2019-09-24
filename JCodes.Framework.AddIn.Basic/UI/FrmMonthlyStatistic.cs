@@ -44,11 +44,11 @@ namespace JCodes.Framework.AddIn.Basic
         private ReportMonthlyHeaderInfo GetMainHeader()
         {
             ReportMonthlyHeaderInfo headerInfo = new ReportMonthlyHeaderInfo();
-            headerInfo.CreateDate = DateTimeHelper.GetServerDateTime2();
-            headerInfo.Creator = LoginUserInfo.FullName;
-            headerInfo.ReportMonth = DateTimeHelper.GetServerDateTime2().Month;
+            headerInfo.CreatorTime = DateTimeHelper.GetServerDateTime2();
+            headerInfo.CreatorId = LoginUserInfo.Id;
+            headerInfo.ReportMonth = (short)DateTimeHelper.GetServerDateTime2().Month;
             headerInfo.ReportYear = DateTimeHelper.GetServerDateTime2().Year;
-            headerInfo.YearMonth = DateTimeHelper.GetServerDateTime2().ToString("yyyy年MM月");
+            //headerInfo.YearMonth = DateTimeHelper.GetServerDateTime2().ToString("yyyy年MM月");
             return headerInfo;
         }
 
@@ -114,11 +114,11 @@ namespace JCodes.Framework.AddIn.Basic
                 foreach (WareHouseInfo wareInfo in wareList)
                 {
                     ReportMonthlyDetailInfo detailInfo = new ReportMonthlyDetailInfo();
-                    detailInfo.Header_ID = headerID;
+                    detailInfo.ReportHeaderId = headerID;
                     detailInfo.ReportYear = DateTimeHelper.GetServerDateTime2().Year;
-                    detailInfo.ReportMonth = DateTimeHelper.GetServerDateTime2().Month;
-                    detailInfo.YearMonth = DateTimeHelper.GetServerDateTime2().ToString("yyyy年MM月");
-                    detailInfo.ItemName = wareInfo.Name;//项目名称为库房名称
+                    detailInfo.ReportMonth = (short)DateTimeHelper.GetServerDateTime2().Month;
+                    //detailInfo.YearMonth = DateTimeHelper.GetServerDateTime2().ToString("yyyy年MM月");
+                    detailInfo.Name = wareInfo.Name;//项目名称为库房名称
                     detailInfo.CurrentCount = BLLFactory<ReportMonthlyDetail>.Instance.GetEachWareCount(StatisticValueType.CurrentCount, wareInfo.Name);
                     detailInfo.CurrentInCount = BLLFactory<ReportMonthlyDetail>.Instance.GetEachWareCount(StatisticValueType.CurrentInCount, wareInfo.Name);
                     detailInfo.CurrentInMoney = BLLFactory<ReportMonthlyDetail>.Instance.GetEachWareMoney(StatisticValueType.CurrentInMoney, wareInfo.Name);

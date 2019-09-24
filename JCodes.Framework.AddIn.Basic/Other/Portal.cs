@@ -217,7 +217,7 @@ namespace JCodes.Framework.AddIn.Basic
         {
             List<OUInfo> list = new List<OUInfo>();
             OUInfo groupInfo = null;
-            if (UserInRole(RoleInfo.SuperAdminName))
+            /*if (UserInRole(RoleInfo.SuperAdminName))
             {
                 //超级管理员取集团节点
                 list.AddRange(BLLFactory<OU>.Instance.GetTopGroup());
@@ -226,7 +226,7 @@ namespace JCodes.Framework.AddIn.Basic
             {
                 groupInfo = BLLFactory<OU>.Instance.FindByID(UserInfo.CompanyId);//公司管理员取公司节点
                 list.Add(groupInfo);
-            }
+            }*/
             return list;
         }
 

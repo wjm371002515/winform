@@ -1,55 +1,132 @@
-using System;
+﻿using System;
 using System.Runtime.Serialization;
+using System.ComponentModel;
 
 namespace JCodes.Framework.Entity
 {
-    /// <summary>
-    /// 系统图表库
-    /// </summary>
-    [DataContract]
-    public class IconInfo : BaseEntity
-    {
-        /// <summary>
-        /// 默认构造函数（需要初始化属性的在此处理）
-        /// </summary>
-        public IconInfo()
-        {
-            this.ID = System.Guid.NewGuid().ToString();
-            this.IconSize = 16;
-            this.CreateTime = DateTime.Now;
-        }
+	/// <summary>
+	/// 系统图表库(IconInfo)
+	/// 对象号: 100084
+	/// 备注信息: 
+	/// </summary>
+	[Serializable]
+	[DataContract]
+	public partial class IconInfo : BaseEntity
+	{
+		#region Field Members
 
-        #region Property Members
+		/// <summary>
+		/// ID序号
+		/// </summary>
+		private Int32 m_Id = 0;
 
-        [DataMember]
-        public virtual string ID { get; set; }
+		/// <summary>
+		/// Icon样式名称
+		/// </summary>
+		private String m_IconCls = string.Empty;
 
-        /// <summary>
-        /// 样式名称
-        /// </summary>
-        [DataMember]
-        public virtual string IconCls { get; set; }
+		/// <summary>
+		/// Icon中URL地址
+		/// </summary>
+		private String m_IconUrl = string.Empty;
 
-        /// <summary>
-        /// URL地址
-        /// </summary>
-        [DataMember]
-        public virtual string IconUrl { get; set; }
+		/// <summary>
+		/// Icon尺寸
+		/// </summary>
+		private Int32 m_IconSize = 0;
 
-        /// <summary>
-        /// 尺寸
-        /// </summary>
-        [DataMember]
-        public virtual int IconSize { get; set; }
+		/// <summary>
+		/// 创建时间
+		/// </summary>
+		private DateTime m_CreatorTime = DateTime.Now;
+		#endregion
 
-        /// <summary>
-        /// 创建时间
-        /// </summary>
-        [DataMember]
-        public virtual DateTime CreateTime { get; set; }
+		#region Property Members
 
+		/// <summary>
+		/// ID序号
+		/// </summary>
+		[DataMember]
+		[DisplayName("ID序号")]
+		public virtual Int32 Id
+		{
+			get
+			{
+				return this.m_Id;
+			}
+			set
+			{
+				this.m_Id = value;
+			}
+		}
 
-        #endregion
+		/// <summary>
+		/// Icon样式名称
+		/// </summary>
+		[DataMember]
+		[DisplayName("Icon样式名称")]
+		public virtual String IconCls
+		{
+			get
+			{
+				return this.m_IconCls;
+			}
+			set
+			{
+				this.m_IconCls = value;
+			}
+		}
 
-    }
+		/// <summary>
+		/// Icon中URL地址
+		/// </summary>
+		[DataMember]
+		[DisplayName("Icon中URL地址")]
+		public virtual String IconUrl
+		{
+			get
+			{
+				return this.m_IconUrl;
+			}
+			set
+			{
+				this.m_IconUrl = value;
+			}
+		}
+
+		/// <summary>
+		/// Icon尺寸
+		/// </summary>
+		[DataMember]
+		[DisplayName("Icon尺寸")]
+		public virtual Int32 IconSize
+		{
+			get
+			{
+				return this.m_IconSize;
+			}
+			set
+			{
+				this.m_IconSize = value;
+			}
+		}
+
+		/// <summary>
+		/// 创建时间
+		/// </summary>
+		[DataMember]
+		[DisplayName("创建时间")]
+		public virtual DateTime CreatorTime
+		{
+			get
+			{
+				return this.m_CreatorTime;
+			}
+			set
+			{
+				this.m_CreatorTime = value;
+			}
+		}
+		#endregion
+	}
 }

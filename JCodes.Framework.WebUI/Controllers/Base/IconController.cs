@@ -100,7 +100,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult GenerateIconCSS(int iconSize = 16)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
 
             string realPath = Server.MapPath("~/Content/icons-customed/" + iconSize);
             if (Directory.Exists(realPath))
@@ -121,7 +121,7 @@ namespace JCodes.Framework.WebUI.Controllers
                     string outputFilePath = helper.ExecuteFile();
                     if (!string.IsNullOrEmpty(outputFilePath))
                     {
-                        result.Success = true;
+                        result.ErrorCode = 0;
 
                         //写入数据库
                         bool write = BLLFactory<Icon>.Instance.BatchAddIcon(list, iconSize);

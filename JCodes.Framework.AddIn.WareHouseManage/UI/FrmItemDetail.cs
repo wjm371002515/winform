@@ -253,7 +253,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
             foreach (ItemDetailInfo info in list)
             {
                 dr = dt.NewRow();
-                dr["ID"] = info.ID;
+                /*dr["ID"] = info.ID;
                 dr["ItemBigType"] = info.ItemBigType;
                 dr["ItemName"] = info.ItemName;
                 dr["ItemNo"] = info.ItemNo;
@@ -269,13 +269,13 @@ namespace JCodes.Framework.AddIn.WareHouseManage
                 dr["Unit"] = info.Unit;
                 dr["UsagePos"] = info.UsagePos;
                 dr["WareHouse"] = info.WareHouse;
-                dr["Dept"] = info.Dept;
+                dr["Dept"] = info.Dept;*/
 
-                StockInfo stockInfo = BLLFactory<Stock>.Instance.FindByItemNo(info.ItemNo);
+                WareInfo wareInfo = BLLFactory<Stock>.Instance.FindByItemNo(info.ItemNo);
                 int quantity = 0;
-                if (stockInfo != null)
+                if (wareInfo != null)
                 {
-                    quantity = stockInfo.StockQuantity;
+                    quantity = wareInfo.Amount;
                 }
                 dr["StockQuantity"] = quantity;
                 dt.Rows.Add(dr);
@@ -327,8 +327,9 @@ namespace JCodes.Framework.AddIn.WareHouseManage
                 dlg.AddColumnListItem("Specification", BLLFactory<ItemDetail>.Instance.GetFieldList("Specification"));
                 dlg.AddColumnListItem("Unit", BLLFactory<ItemDetail>.Instance.GetFieldList("Unit"));
 
-                List<CListItem> wareList = BLLFactory<WareHouse>.Instance.GetAllWareHouse();
-                dlg.AddColumnListItem("WareHouse", wareList);
+                List<CDicKeyValue> wareList = BLLFactory<WareHouse>.Instance.GetAllWareHouse();
+                // TODO
+                //dlg.AddColumnListItem("WareHouse", wareList);
                 #endregion
 
                 dlg.ConditionChanged += new FrmAdvanceSearch.ConditionChangedEventHandler(dlg_ConditionChanged);

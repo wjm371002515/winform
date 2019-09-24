@@ -49,7 +49,7 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
         {
             DataTable dt = DataTableHelper.CreateTable("ImageIndex|int,ID,PID,Name");
             List<OUInfo> list = new List<OUInfo>();
-            if(Portal.gc.UserInRole(RoleInfo.SuperAdminName))
+            /*if(Portal.gc.UserInRole(RoleInfo.SuperAdminName))
             {
                 list = BLLFactory<OU>.Instance.GetGroupCompany();
             }
@@ -67,7 +67,7 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
                 {
                     MessageDxUtil.ShowWarning(ex.Message);
                 }
-            }
+            }*/
 
             DataRow dr = null;
             foreach (OUInfo info in list)

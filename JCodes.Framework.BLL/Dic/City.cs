@@ -25,9 +25,9 @@ namespace JCodes.Framework.BLL
         /// </summary>
         /// <param name="provinceID">Ê¡·ÝID</param>
         /// <returns></returns>
-        public List<CityInfo> GetCitysByProvinceID(string provinceID)
+        public List<CityInfo> GetCitysByProvinceId(Int32 provinceId)
         {
-            string condition = string.Format("ProvinceID ={0} ", provinceID);
+            string condition = string.Format("ProvinceId ={0} ", provinceId);
             return baseDal.Find(condition);
         }
 

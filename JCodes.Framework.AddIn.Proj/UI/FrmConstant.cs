@@ -33,7 +33,7 @@ namespace JCodes.Framework.AddIn.Proj
 
         private List<string> lstName = new List<string>();
 
-        private string xmlModel = "<name>{0}</name><value>{1}</value><remark>{2}</remark>";
+        private string xmlModel = "<name>{0}</name><constantvalue>{1}</constantvalue><remark>{2}</remark>";
 
         private Int32 _errCount = 0;
         private List<CListItem> _errlst = new List<CListItem>();
@@ -80,7 +80,7 @@ namespace JCodes.Framework.AddIn.Proj
             else
             {
                 // 查询事件 模糊查询
-                string filter = string.Format("Name Like '%{0}%' or Value Like '%{0}%' or Remark Like '%{0}%'", txtSearch.Text);
+                string filter = string.Format("Name Like '%{0}%' or ConstantValue Like '%{0}%' or Remark Like '%{0}%'", txtSearch.Text);
                 gridView1.ActiveFilterString = filter;
             }
             
@@ -99,12 +99,12 @@ namespace JCodes.Framework.AddIn.Proj
                 // 将节点转换为元素，便于得到节点的属性值
                 XmlElement xe = (XmlElement)xn1;
                 // 得到Type和ISBN两个属性的属性值
-                constantInfo.GUID = xe.GetAttribute("guid").ToString();
+                constantInfo.Gid = xe.GetAttribute("gid").ToString();
 
                 // 得到ConstantInfo节点的所有子节点
                 XmlNodeList xnl0 = xe.ChildNodes;
                 constantInfo.Name = xnl0.Item(0).InnerText;
-                constantInfo.Value = xnl0.Item(1).InnerText;
+                constantInfo.ConstantValue = xnl0.Item(1).InnerText;
                 constantInfo.Remark = xnl0.Item(2).InnerText;
                 constantInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
 
@@ -115,7 +115,7 @@ namespace JCodes.Framework.AddIn.Proj
             constantInfoList.Add(new ConstantInfo());
             gridControl1.DataSource = constantInfoList;
 
-            gridView1.Columns["GUID"].Visible = false;
+            gridView1.Columns["gid"].Visible = false;
             gridView1.Columns["lstInfo"].Visible = false;
         }
 
@@ -134,7 +134,7 @@ namespace JCodes.Framework.AddIn.Proj
             List<String> tmpName = new List<string>();
             foreach (ConstantInfo constantInfo in lstConstantInfo)
             {
-                if (string.IsNullOrEmpty(constantInfo.GUID))
+                if (string.IsNullOrEmpty(constantInfo.Gid))
                     continue;
 
                 if (lstName.Contains(constantInfo.Name))
@@ -147,7 +147,7 @@ namespace JCodes.Framework.AddIn.Proj
 
             foreach (ConstantInfo constantInfo in lstConstantInfo)
             {
-                if (string.IsNullOrEmpty(constantInfo.GUID))
+                if (string.IsNullOrEmpty(constantInfo.Gid))
                     continue;
 
                 // 判断重复的 类型名
@@ -203,16 +203,16 @@ namespace JCodes.Framework.AddIn.Proj
                     }
                 }
                 // 判断名称是否为空
-                if (string.IsNullOrEmpty(constantInfo.Value))
+                if (string.IsNullOrEmpty(constantInfo.ConstantValue))
                 {
-                    if (constantInfo.lstInfo.ContainsKey("Value"))
+                    if (constantInfo.lstInfo.ContainsKey("ConstantValue"))
                     {
-                        constantInfo.lstInfo["Value"].ErrorText = constantInfo.lstInfo["Value"].ErrorText + "\r\n常量值不能为空";
-                        constantInfo.lstInfo["Value"].ErrorType = constantInfo.lstInfo["Value"].ErrorType >= DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical ? constantInfo.lstInfo["Value"].ErrorType : DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+                        constantInfo.lstInfo["ConstantValue"].ErrorText = constantInfo.lstInfo["ConstantValue"].ErrorText + "\r\n常量值不能为空";
+                        constantInfo.lstInfo["ConstantValue"].ErrorType = constantInfo.lstInfo["ConstantValue"].ErrorType >= DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical ? constantInfo.lstInfo["ConstantValue"].ErrorType : DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
                     }
                     else
                     {
-                        constantInfo.lstInfo.Add("Value", new DevExpress.XtraEditors.DXErrorProvider.ErrorInfo("常量值不能为空", DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical));
+                        constantInfo.lstInfo.Add("ConstantValue", new DevExpress.XtraEditors.DXErrorProvider.ErrorInfo("常量值不能为空", DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical));
                         _errCount++;
                         // 20170901 wjm 调整key 和value的顺序
                         _errlst.Add(new CListItem("常量值不能为空", "常量值" + constantInfo.Name));
@@ -240,7 +240,7 @@ namespace JCodes.Framework.AddIn.Proj
 
             foreach (ConstantInfo constantInfo in lstConstantInfo)
             {
-                if (string.IsNullOrEmpty(constantInfo.GUID))
+                if (string.IsNullOrEmpty(constantInfo.Gid))
                     continue;
 
                 constantInfo.lstInfo.Clear();
@@ -262,7 +262,7 @@ namespace JCodes.Framework.AddIn.Proj
 
             // xmlhelper.Read("bookstore/book[@ISBN=\"7-111-19149-6\"]") Attributes 的属性
             // xmlhelper.Read("bookstore/book[title=\"计算机硬件技术基础\"]") 内部节点
-            XmlNodeList xmlNodeLst = xmlhelper.Read("datatype/item[@guid=\"" + tmpconstantInfo.GUID + "\"]");
+            XmlNodeList xmlNodeLst = xmlhelper.Read("datatype/item[@gid=\"" + tmpconstantInfo.Gid + "\"]");
             Int32 idx = -1;
 
             switch (e.Column.ToString())
@@ -289,7 +289,7 @@ namespace JCodes.Framework.AddIn.Proj
 
         private void gridView1_CellValueChanging(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
-            if (string.IsNullOrEmpty((gridView1.GetFocusedRow() as ConstantInfo).GUID) && (gridView1.FocusedRowHandle + 1 == gridView1.RowCount))
+            if (string.IsNullOrEmpty((gridView1.GetFocusedRow() as ConstantInfo).Gid) && (gridView1.FocusedRowHandle + 1 == gridView1.RowCount))
             {
                 btnAdd_Click(null, null);
             }
@@ -305,10 +305,10 @@ namespace JCodes.Framework.AddIn.Proj
         private void btnAdd_Click(object sender, EventArgs e)
         {
             var constantInfo = new ConstantInfo();
-            constantInfo.GUID = System.Guid.NewGuid().ToString();
+            constantInfo.Gid = System.Guid.NewGuid().ToString();
             constantInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
 
-            xmlhelper.InsertElement("datatype", "item", "guid", constantInfo.GUID, string.Format(xmlModel, string.Empty, string.Empty, string.Empty));
+            xmlhelper.InsertElement("datatype", "item", "gid", constantInfo.Gid, string.Format(xmlModel, string.Empty, string.Empty, string.Empty));
             xmlhelper.Save(false);
 
             (gridView1.DataSource as List<ConstantInfo>).Insert(gridView1.RowCount - 1, constantInfo);
@@ -322,11 +322,11 @@ namespace JCodes.Framework.AddIn.Proj
         /// <param name="e"></param>
         private void btnInsert_Click(object sender, EventArgs e)
         {
-            XmlNodeList xmlNodeLst = xmlhelper.Read("datatype/item[@guid=\"" + (gridView1.GetFocusedRow() as ConstantInfo).GUID + "\"]");
+            XmlNodeList xmlNodeLst = xmlhelper.Read("datatype/item[@gid=\"" + (gridView1.GetFocusedRow() as ConstantInfo).Gid + "\"]");
             var constantInfo = new ConstantInfo();
-            constantInfo.GUID = System.Guid.NewGuid().ToString();
+            constantInfo.Gid = System.Guid.NewGuid().ToString();
             constantInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
-            xmlhelper.InsertElement("item", "guid", constantInfo.GUID, string.Format(xmlModel, string.Empty, string.Empty, string.Empty), xmlNodeLst.Item(0).ParentNode);
+            xmlhelper.InsertElement("item", "gid", constantInfo.Gid, string.Format(xmlModel, string.Empty, string.Empty, string.Empty), xmlNodeLst.Item(0).ParentNode);
             xmlhelper.Save(false);
 
             (gridView1.DataSource as List<ConstantInfo>).Insert(gridView1.FocusedRowHandle, constantInfo);
@@ -341,10 +341,10 @@ namespace JCodes.Framework.AddIn.Proj
         private void btnDel_Click(object sender, EventArgs e)
         {
             // 20170824 如果是最后一行空行则不再继续操作
-            if (string.IsNullOrEmpty((gridView1.GetFocusedRow() as ConstantInfo).GUID))
+            if (string.IsNullOrEmpty((gridView1.GetFocusedRow() as ConstantInfo).Gid))
                 return;
 
-            xmlhelper.DeleteByPathNode("datatype/item[@guid=\"" + gridView1.GetRowCellDisplayText(gridView1.FocusedRowHandle, "GUID") + "\"]");
+            xmlhelper.DeleteByPathNode("datatype/item[@gid=\"" + gridView1.GetRowCellDisplayText(gridView1.FocusedRowHandle, "gid") + "\"]");
             xmlhelper.Save(false);
 
             // 20170924 wjm 删除lstName 对应的值保存导入的时候缓存问题
@@ -368,35 +368,35 @@ namespace JCodes.Framework.AddIn.Proj
             ConstantInfo preconstantInfo = gridView1.GetRow(gridView1.FocusedRowHandle - 1) as ConstantInfo;
             // 深拷贝
             ConstantInfo tmpconstantInfo = new ConstantInfo();
-            tmpconstantInfo.GUID = cuconstantInfo.GUID;
+            tmpconstantInfo.Gid = cuconstantInfo.Gid;
             tmpconstantInfo.Name = cuconstantInfo.Name;
-            tmpconstantInfo.Value = cuconstantInfo.Value;
+            tmpconstantInfo.ConstantValue = cuconstantInfo.ConstantValue;
             tmpconstantInfo.Remark = cuconstantInfo.Remark;
             tmpconstantInfo.lstInfo = cuconstantInfo.lstInfo;
 
             // 更新内容
-            cuconstantInfo.GUID = preconstantInfo.GUID;
+            cuconstantInfo.Gid = preconstantInfo.Gid;
             cuconstantInfo.Name = preconstantInfo.Name;
-            cuconstantInfo.Value = preconstantInfo.Value;
+            cuconstantInfo.ConstantValue = preconstantInfo.ConstantValue;
             cuconstantInfo.Remark = preconstantInfo.Remark;
             cuconstantInfo.lstInfo = preconstantInfo.lstInfo;
 
-            preconstantInfo.GUID = tmpconstantInfo.GUID;
+            preconstantInfo.Gid = tmpconstantInfo.Gid;
             preconstantInfo.Name = tmpconstantInfo.Name;
-            preconstantInfo.Value = tmpconstantInfo.Value;
+            preconstantInfo.ConstantValue = tmpconstantInfo.ConstantValue;
             preconstantInfo.Remark = tmpconstantInfo.Remark;
             preconstantInfo.lstInfo = tmpconstantInfo.lstInfo;
 
             // 更细XML内容
-            string cuXMLStr = xmlhelper.ReadInnerXML("datatype/item[@guid=\"" + cuconstantInfo.GUID + "\"]");
-            string preXMLStr = xmlhelper.ReadInnerXML("datatype/item[@guid=\"" + preconstantInfo.GUID + "\"]");
-            xmlhelper.Replace("datatype/item[@guid=\"" + cuconstantInfo.GUID + "\"]", preXMLStr);
-            xmlhelper.Replace("datatype/item[@guid=\"" + preconstantInfo.GUID + "\"]", cuXMLStr);
-            // 更新GUID
-            var cuattribute = xmlhelper.Read("datatype/item[@guid=\"" + cuconstantInfo.GUID + "\"]").Item(0).ParentNode.Attributes["guid"];
-            var preattribute = xmlhelper.Read("datatype/item[@guid=\"" + preconstantInfo.GUID + "\"]").Item(0).ParentNode.Attributes["guid"];
-            cuattribute.Value = preconstantInfo.GUID;
-            preattribute.Value = cuconstantInfo.GUID;
+            string cuXMLStr = xmlhelper.ReadInnerXML("datatype/item[@gid=\"" + cuconstantInfo.Gid + "\"]");
+            string preXMLStr = xmlhelper.ReadInnerXML("datatype/item[@gid=\"" + preconstantInfo.Gid + "\"]");
+            xmlhelper.Replace("datatype/item[@gid=\"" + cuconstantInfo.Gid + "\"]", preXMLStr);
+            xmlhelper.Replace("datatype/item[@gid=\"" + preconstantInfo.Gid + "\"]", cuXMLStr);
+            // 更新gid
+            var cuattribute = xmlhelper.Read("datatype/item[@gid=\"" + cuconstantInfo.Gid + "\"]").Item(0).ParentNode.Attributes["gid"];
+            var preattribute = xmlhelper.Read("datatype/item[@gid=\"" + preconstantInfo.Gid + "\"]").Item(0).ParentNode.Attributes["gid"];
+            cuattribute.Value = preconstantInfo.Gid;
+            preattribute.Value = cuconstantInfo.Gid;
             xmlhelper.Save(false);
 
             gridView1.RefreshData();
@@ -418,35 +418,35 @@ namespace JCodes.Framework.AddIn.Proj
 
             // 深拷贝
             ConstantInfo tmpconstantInfo = new ConstantInfo();
-            tmpconstantInfo.GUID = cuconstantInfo.GUID;
+            tmpconstantInfo.Gid = cuconstantInfo.Gid;
             tmpconstantInfo.Name = cuconstantInfo.Name;
-            tmpconstantInfo.Value = cuconstantInfo.Value;
+            tmpconstantInfo.ConstantValue = cuconstantInfo.ConstantValue;
             tmpconstantInfo.Remark = cuconstantInfo.Remark;
             tmpconstantInfo.lstInfo = cuconstantInfo.lstInfo;
 
             // 更新内容
-            cuconstantInfo.GUID = nextconstantInfo.GUID;
+            cuconstantInfo.Gid = nextconstantInfo.Gid;
             cuconstantInfo.Name = nextconstantInfo.Name;
-            cuconstantInfo.Value = nextconstantInfo.Value;
+            cuconstantInfo.ConstantValue = nextconstantInfo.ConstantValue;
             cuconstantInfo.Remark = nextconstantInfo.Remark;
             cuconstantInfo.lstInfo = nextconstantInfo.lstInfo;
 
-            nextconstantInfo.GUID = tmpconstantInfo.GUID;
+            nextconstantInfo.Gid = tmpconstantInfo.Gid;
             nextconstantInfo.Name = tmpconstantInfo.Name;
-            nextconstantInfo.Value = tmpconstantInfo.Value;
+            nextconstantInfo.ConstantValue = tmpconstantInfo.ConstantValue;
             nextconstantInfo.Remark = tmpconstantInfo.Remark;
             nextconstantInfo.lstInfo = tmpconstantInfo.lstInfo;
 
             // 更细XML内容
-            string cuXMLStr = xmlhelper.ReadInnerXML("datatype/item[@guid=\"" + cuconstantInfo.GUID + "\"]");
-            string preXMLStr = xmlhelper.ReadInnerXML("datatype/item[@guid=\"" + nextconstantInfo.GUID + "\"]");
-            xmlhelper.Replace("datatype/item[@guid=\"" + cuconstantInfo.GUID + "\"]", preXMLStr);
-            xmlhelper.Replace("datatype/item[@guid=\"" + nextconstantInfo.GUID + "\"]", cuXMLStr);
-            // 更新GUID
-            var cuattribute = xmlhelper.Read("datatype/item[@guid=\"" + cuconstantInfo.GUID + "\"]").Item(0).ParentNode.Attributes["guid"];
-            var nextattribute = xmlhelper.Read("datatype/item[@guid=\"" + nextconstantInfo.GUID + "\"]").Item(0).ParentNode.Attributes["guid"];
-            cuattribute.Value = nextconstantInfo.GUID;
-            nextattribute.Value = cuconstantInfo.GUID;
+            string cuXMLStr = xmlhelper.ReadInnerXML("datatype/item[@gid=\"" + cuconstantInfo.Gid + "\"]");
+            string preXMLStr = xmlhelper.ReadInnerXML("datatype/item[@gid=\"" + nextconstantInfo.Gid + "\"]");
+            xmlhelper.Replace("datatype/item[@gid=\"" + cuconstantInfo.Gid + "\"]", preXMLStr);
+            xmlhelper.Replace("datatype/item[@gid=\"" + nextconstantInfo.Gid + "\"]", cuXMLStr);
+            // 更新gid
+            var cuattribute = xmlhelper.Read("datatype/item[@gid=\"" + cuconstantInfo.Gid + "\"]").Item(0).ParentNode.Attributes["gid"];
+            var nextattribute = xmlhelper.Read("datatype/item[@gid=\"" + nextconstantInfo.Gid + "\"]").Item(0).ParentNode.Attributes["gid"];
+            cuattribute.Value = nextconstantInfo.Gid;
+            nextattribute.Value = cuconstantInfo.Gid;
             xmlhelper.Save(false);
 
             gridView1.RefreshData();
@@ -466,7 +466,7 @@ namespace JCodes.Framework.AddIn.Proj
             {
                 DataRow row = dt.NewRow();
                 row[0] = lst[i].Name;
-                row[1] = lst[i].Value;
+                row[1] = lst[i].ConstantValue;
                 row[2] = lst[i].Remark;
                 dt.Rows.Add(row);
             }
@@ -512,12 +512,12 @@ namespace JCodes.Framework.AddIn.Proj
                     if (!lstName.Contains(dt.Rows[i][0].ToString()))
                     {
                         var constantInfo = new ConstantInfo();
-                        constantInfo.GUID = System.Guid.NewGuid().ToString();
+                        constantInfo.Gid = System.Guid.NewGuid().ToString();
                         constantInfo.Name = dt.Rows[i][0].ToString();
-                        constantInfo.Value = dt.Rows[i][1].ToString();
+                        constantInfo.ConstantValue = dt.Rows[i][1].ToString();
                         constantInfo.Remark = dt.Rows[i][2].ToString();
 
-                        xmlhelper.InsertElement("datatype", "item", "guid", constantInfo.GUID, string.Format(xmlModel, dt.Rows[i][0].ToString(), dt.Rows[i][1].ToString(), dt.Rows[i][2].ToString()));
+                        xmlhelper.InsertElement("datatype", "item", "gid", constantInfo.Gid, string.Format(xmlModel, dt.Rows[i][0].ToString(), dt.Rows[i][1].ToString(), dt.Rows[i][2].ToString()));
 
                         (gridView1.DataSource as List<ConstantInfo>).Insert(gridView1.RowCount - 1, constantInfo);
                         addRows++;

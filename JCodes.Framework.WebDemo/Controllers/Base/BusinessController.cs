@@ -109,15 +109,15 @@ namespace JCodes.Framework.WebDemo.Controllers
         public virtual ActionResult Insert(T info)
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.InsertKey);
+            base.CheckAuthorized(authorizeKeyInfo.InsertKey);
 
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             if (info != null)
             {
                 try
                 {
                     OnBeforeInsert(info);
-                    result.Success = baseBLL.Insert(info);
+                    result.ErrorCode = baseBLL.Insert(info)?0:1;
                 }
                 catch(Exception ex)
                 {
@@ -135,16 +135,16 @@ namespace JCodes.Framework.WebDemo.Controllers
         /// <returns>执行成功返回新增记录的自增长ID。</returns>
         public virtual ActionResult Insert2(T info)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             result.Data1 = "-1";
 
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.InsertKey);
+            base.CheckAuthorized(authorizeKeyInfo.InsertKey);
 
             if (info != null)
             {
                 OnBeforeInsert(info);
-                result.Success = true;
+                result.ErrorCode = 0;
                 result.Data1 = baseBLL.Insert2(info).ToString();
             }
 
@@ -160,7 +160,7 @@ namespace JCodes.Framework.WebDemo.Controllers
         public virtual ActionResult Update(string id, FormCollection formValues)
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.UpdateKey);
+            base.CheckAuthorized(authorizeKeyInfo.UpdateKey);
 
             T obj = baseBLL.FindByID(id);
             if (obj != null)
@@ -183,10 +183,10 @@ namespace JCodes.Framework.WebDemo.Controllers
                 }
             }
 
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             try
             {
-                result.Success = Update(id, obj);
+                result.ErrorCode = Update(id, obj)?0:1;
             }
             catch (Exception ex)
             {
@@ -218,16 +218,16 @@ namespace JCodes.Framework.WebDemo.Controllers
         public virtual ActionResult InsertUpdate(T info, string id)
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.InsertKey);
+            base.CheckAuthorized(authorizeKeyInfo.InsertKey);
 
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             try
             {
                 //同时对写入、更新进行处理
                 OnBeforeInsert(info);
                 OnBeforeUpdate(info);
 
-                result.Success = baseBLL.InsertUpdate(info, id);
+                result.ErrorCode = baseBLL.InsertUpdate(info, id)?0:1;
             }
             catch (Exception ex)
             {
@@ -247,13 +247,13 @@ namespace JCodes.Framework.WebDemo.Controllers
         public virtual ActionResult InsertIfNew(T info, string id)
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.InsertKey);
+            base.CheckAuthorized(authorizeKeyInfo.InsertKey);
 
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             try
             {
                 OnBeforeInsert(info);
-                result.Success = baseBLL.InsertIfNew(info, id);
+                result.ErrorCode = baseBLL.InsertIfNew(info, id)?0:1;
             }
             catch (Exception ex)
             {
@@ -271,7 +271,7 @@ namespace JCodes.Framework.WebDemo.Controllers
         public virtual ActionResult FindByID(string id)
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.ViewKey);
+            base.CheckAuthorized(authorizeKeyInfo.ViewKey);
 
             ActionResult result = Content("");
             T info = baseBLL.FindByID(id);
@@ -291,7 +291,7 @@ namespace JCodes.Framework.WebDemo.Controllers
         public virtual ActionResult FindSingle(string condition)
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.ViewKey);
+            base.CheckAuthorized(authorizeKeyInfo.ViewKey);
 
             ActionResult result = Content("");
             T info = baseBLL.FindSingle(condition);
@@ -311,7 +311,7 @@ namespace JCodes.Framework.WebDemo.Controllers
         public virtual ActionResult FindSingle2(string condition, string orderBy)
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.ViewKey);
+            base.CheckAuthorized(authorizeKeyInfo.ViewKey);
 
             ActionResult result = Content("");
             T info = baseBLL.FindSingle(condition, orderBy);
@@ -329,7 +329,7 @@ namespace JCodes.Framework.WebDemo.Controllers
         public virtual ActionResult FindFirst()
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.ViewKey);
+            base.CheckAuthorized(authorizeKeyInfo.ViewKey);
 
             ActionResult result = Content("");
             T info = baseBLL.FindFirst();
@@ -347,7 +347,7 @@ namespace JCodes.Framework.WebDemo.Controllers
         public virtual ActionResult FindLast()
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.ViewKey);
+            base.CheckAuthorized(authorizeKeyInfo.ViewKey);
 
             ActionResult result = Content("");
             T info = baseBLL.FindLast();
@@ -370,7 +370,7 @@ namespace JCodes.Framework.WebDemo.Controllers
         public virtual ActionResult FindByIDs(string ids)
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.ListKey);
+            base.CheckAuthorized(authorizeKeyInfo.ListKey);
 
             ActionResult result = Content("");
             if (!string.IsNullOrEmpty(ids))
@@ -389,7 +389,7 @@ namespace JCodes.Framework.WebDemo.Controllers
         public virtual ActionResult Find(string condition)
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.ListKey);
+            base.CheckAuthorized(authorizeKeyInfo.ListKey);
 
             ActionResult result = Content("");
             if (!string.IsNullOrEmpty(condition))
@@ -409,7 +409,7 @@ namespace JCodes.Framework.WebDemo.Controllers
         public virtual ActionResult Find2(string condition, string orderBy)
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.ListKey);
+            base.CheckAuthorized(authorizeKeyInfo.ListKey);
 
             ActionResult result = Content("");
             if (!string.IsNullOrEmpty(condition) && !string.IsNullOrEmpty(orderBy))
@@ -576,7 +576,7 @@ namespace JCodes.Framework.WebDemo.Controllers
         public virtual ActionResult FindWithPager()
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.ListKey);
+            base.CheckAuthorized(authorizeKeyInfo.ListKey);
 
             string where = GetPagerCondition();
             PagerInfo pagerInfo = GetPagerInfo();
@@ -595,7 +595,7 @@ namespace JCodes.Framework.WebDemo.Controllers
         public virtual ActionResult GetAll()
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.ListKey);
+            base.CheckAuthorized(authorizeKeyInfo.ListKey);
 
             List<T> list = baseBLL.GetAll();
             return ToJsonContentDate(list);
@@ -609,7 +609,7 @@ namespace JCodes.Framework.WebDemo.Controllers
         public virtual ActionResult GetAll2(string orderBy)
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.ListKey);
+            base.CheckAuthorized(authorizeKeyInfo.ListKey);
 
             ActionResult result = Content("");
             if (!string.IsNullOrEmpty(orderBy))
@@ -628,7 +628,7 @@ namespace JCodes.Framework.WebDemo.Controllers
         public virtual ActionResult GetAllWithPager()
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.ListKey);
+            base.CheckAuthorized(authorizeKeyInfo.ListKey);
 
             PagerInfo pagerInfo = GetPagerInfo();
             List<T> list = baseBLL.GetAll(pagerInfo);
@@ -647,7 +647,7 @@ namespace JCodes.Framework.WebDemo.Controllers
         public virtual ActionResult GetFieldList(string fieldName)
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.ListKey);
+            base.CheckAuthorized(authorizeKeyInfo.ListKey);
 
             ActionResult result = Content("");
             if (!string.IsNullOrEmpty(fieldName))
@@ -666,7 +666,7 @@ namespace JCodes.Framework.WebDemo.Controllers
         public virtual ActionResult GetFieldListByCondition(string fieldName, string condition)
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.ListKey);
+            base.CheckAuthorized(authorizeKeyInfo.ListKey);
 
             ActionResult result = Content("");
             if (!string.IsNullOrEmpty(fieldName))
@@ -712,12 +712,12 @@ namespace JCodes.Framework.WebDemo.Controllers
         /// <returns>如果存在返回True，否则False</returns>
         public virtual ActionResult IsExistRecord(string condition)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             try
             {
                 if (!string.IsNullOrEmpty(condition))
                 {
-                    result.Success = baseBLL.IsExistRecord(condition);
+                    result.ErrorCode = baseBLL.IsExistRecord(condition)?0:1;
                 }
             }
             catch (Exception ex)
@@ -736,12 +736,12 @@ namespace JCodes.Framework.WebDemo.Controllers
         /// <returns>存在则返回<c>true</c>，否则为<c>false</c>。</returns>
         public virtual ActionResult IsExistKey(string fieldName, string key)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             try
             {
                 if (!string.IsNullOrEmpty(fieldName) && !string.IsNullOrEmpty(key))
                 {
-                    result.Success = baseBLL.IsExistKey(fieldName, key);
+                    result.ErrorCode = baseBLL.IsExistKey(fieldName, key)?0:1;
                 }
             }
             catch (Exception ex)
@@ -760,14 +760,14 @@ namespace JCodes.Framework.WebDemo.Controllers
         public virtual ActionResult Delete(string id)
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.DeleteKey);
+            base.CheckAuthorized(authorizeKeyInfo.DeleteKey);
 
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             try
             {
                 if (!string.IsNullOrEmpty(id))
                 {
-                    result.Success = baseBLL.DeleteByUser(id, CurrentUser.Id);
+                    result.ErrorCode = baseBLL.DeleteByUser(id, CurrentUser.Id)?0:1;
                 }
             }
             catch (Exception ex)
@@ -786,9 +786,9 @@ namespace JCodes.Framework.WebDemo.Controllers
         public virtual ActionResult DeleteByIds(string ids)
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.DeleteKey);
+            base.CheckAuthorized(authorizeKeyInfo.DeleteKey);
 
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             try
             {
                 if (!string.IsNullOrEmpty(ids))
@@ -801,7 +801,7 @@ namespace JCodes.Framework.WebDemo.Controllers
                             baseBLL.DeleteByUser(strId, CurrentUser.CurrentLoginUserId);
                         }
                     }
-                    result.Success = true;
+                    result.ErrorCode = 0;
                 }
             }
             catch (Exception ex)
@@ -820,14 +820,14 @@ namespace JCodes.Framework.WebDemo.Controllers
         public virtual ActionResult DeleteByCondition(string condition)
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.DeleteKey);
+            base.CheckAuthorized(authorizeKeyInfo.DeleteKey);
 
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             try
             {
                 if (!string.IsNullOrEmpty(condition))
                 {
-                    result.Success = baseBLL.DeleteByCondition(condition);
+                    result.ErrorCode = baseBLL.DeleteByCondition(condition)?0:1;
                 }
             }
             catch (Exception ex)

@@ -135,8 +135,8 @@ namespace JCodes.Framework.AddIn.Basic
                         info.CreatorId = CreatorId;//所属主表记录ID
                         info.AttachmentGid = AttachmentGid;
 
-                        CommonResult result = BLLFactory<FileUpload>.Instance.Upload(info);
-                        if (!result.Success)
+                        ReturnResult result = BLLFactory<FileUpload>.Instance.Upload(info);
+                        if (result.ErrorCode != 0)
                         {
                             sucess = false;
                             lastError = result.ErrorMessage;

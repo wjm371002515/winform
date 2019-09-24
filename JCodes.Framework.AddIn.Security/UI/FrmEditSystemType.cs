@@ -73,11 +73,11 @@ namespace JCodes.Framework.AddIn.Security
                 SystemTypeInfo info = BLLFactory<SystemType>.Instance.FindByID(Id);
                 if (info != null)
                 {
-                    this.txtOid.Text = info.OID;
+                    this.txtOid.Text = info.Gid;
                     txtName.Text = info.Name;
-                    txtCustomID.Text = info.CustomID;
-                    txtAuthorize.Text = info.Authorize;
-                    txtNote.Text = info.Note;
+                    txtCustomID.Text = info.ConsumerCode;
+                    txtAuthorize.Text = info.Licence;
+                    txtNote.Text = info.Remark;
 
                     this.txtOid.Enabled = false;
                 }
@@ -95,9 +95,9 @@ namespace JCodes.Framework.AddIn.Security
         private void SetInfo(SystemTypeInfo info)
         {
             info.Name = txtName.Text;
-            info.CustomID = txtCustomID.Text;
-            info.Authorize = txtAuthorize.Text;
-            info.Note = txtNote.Text;
+            info.ConsumerCode = txtCustomID.Text;
+            info.Licence = txtAuthorize.Text;
+            info.Remark = txtNote.Text;
             info.CurrentLoginUserId = Portal.gc.UserInfo.Id;
         }
 
@@ -114,7 +114,7 @@ namespace JCodes.Framework.AddIn.Security
             {
                 #region 新增数据
                 //检查是否还有其他相同关键字的记录
-                bool exist = BLLFactory<SystemType>.Instance.IsExistKey("OID", info.OID);
+                bool exist = BLLFactory<SystemType>.Instance.IsExistKey("Gid", info.Gid);
                 if (exist)
                 {
                     MessageDxUtil.ShowTips("指定的【系统标识】已经存在，不能重复添加，请修改");
@@ -161,7 +161,7 @@ namespace JCodes.Framework.AddIn.Security
                 try
                 {
                     #region 更新数据
-                    bool succeed = BLLFactory<SystemType>.Instance.Update(info, info.OID);
+                    bool succeed = BLLFactory<SystemType>.Instance.Update(info, info.Gid);
                     if (succeed)
                     {
                         //可添加其他关联操作

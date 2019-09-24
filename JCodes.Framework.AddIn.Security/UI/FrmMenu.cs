@@ -388,12 +388,12 @@ namespace JCodes.Framework.AddIn.Security
             {
                 TreeNode pNode = new TreeNode();
                 pNode.Text = typeInfo.Name;//系统类型节点
-                pNode.Name = typeInfo.OID;
+                pNode.Name = typeInfo.Gid;
                 pNode.ImageIndex = 0;
                 pNode.SelectedImageIndex = 0;
                 this.treeView1.Nodes.Add(pNode);
 
-                string systemType = typeInfo.OID;//系统标识ID
+                string systemType = typeInfo.Gid;//系统标识ID
 
                 //绑定树控件
                 //一般情况下，对Ribbon样式而言，一级菜单表示RibbonPage；二级菜单表示PageGroup;三级菜单才是BarButtonItem最终的菜单项。

@@ -98,13 +98,13 @@ namespace JCodes.Framework.AddIn.Proj
                 // 将节点转换为元素，便于得到节点的属性值
                 XmlElement xe = (XmlElement)xn1;
                 // 得到Type和ISBN两个属性的属性值
-                errornoInfo.GUID = xe.GetAttribute("guid").ToString();
+                errornoInfo.Gid = xe.GetAttribute("gid").ToString();
 
                 // 得到ErrornoInfo节点的所有子节点
                 XmlNodeList xnl0 = xe.ChildNodes;
                 errornoInfo.Name = xnl0.Item(0).InnerText;
                 errornoInfo.ChineseName = xnl0.Item(1).InnerText;
-                errornoInfo.LogLevel = xnl0.Item(2).InnerText;
+                errornoInfo.LogLevel = Convert.ToInt16( xnl0.Item(2).InnerText);
                 errornoInfo.Remark = xnl0.Item(3).InnerText;
                 errornoInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
 
@@ -139,7 +139,7 @@ namespace JCodes.Framework.AddIn.Proj
             repositoryItemLookUpEditStdType.DataSource = errTypeInfoList;
             #endregion
 
-            gridView1.Columns["GUID"].Visible = false;
+            gridView1.Columns["Gid"].Visible = false;
             gridView1.Columns["lstInfo"].Visible = false;
             gridView1.Columns["LogLevel"].ColumnEdit = repositoryItemLookUpEditStdType;
         }
@@ -159,7 +159,7 @@ namespace JCodes.Framework.AddIn.Proj
             List<String> tmpName = new List<string>();
             foreach (ErrornoInfo errornoInfo in lstErrornoInfo)
             {
-                if (string.IsNullOrEmpty(errornoInfo.GUID))
+                if (string.IsNullOrEmpty(errornoInfo.Gid))
                     continue;
 
                 if (lstName.Contains(errornoInfo.Name))
@@ -172,7 +172,7 @@ namespace JCodes.Framework.AddIn.Proj
 
             foreach (ErrornoInfo errornoInfo in lstErrornoInfo)
             {
-                if (string.IsNullOrEmpty(errornoInfo.GUID))
+                if (string.IsNullOrEmpty(errornoInfo.Gid))
                     continue;
 
                 // 判断重复的 错误号
@@ -246,7 +246,7 @@ namespace JCodes.Framework.AddIn.Proj
                 }
 
                 // 错误提示说明
-                if (string.IsNullOrEmpty(errornoInfo.LogLevel))
+                /*if (string.IsNullOrEmpty(errornoInfo.LogLevel))
                 {
                     if (errornoInfo.lstInfo.ContainsKey("LogLevel"))
                     {
@@ -260,7 +260,7 @@ namespace JCodes.Framework.AddIn.Proj
                         // 20170901 wjm 调整key 和value的顺序
                         _errlst.Add(new CListItem("错误级别不能为空", "错误级别" + errornoInfo.Name));
                     }
-                }
+                }*/
             }
         }
 
@@ -283,7 +283,7 @@ namespace JCodes.Framework.AddIn.Proj
 
             foreach (ErrornoInfo errornoInfo in lstErrornoInfo)
             {
-                if (string.IsNullOrEmpty(errornoInfo.GUID))
+                if (string.IsNullOrEmpty(errornoInfo.Gid))
                     continue;
 
                 errornoInfo.lstInfo.Clear();
@@ -305,7 +305,7 @@ namespace JCodes.Framework.AddIn.Proj
 
             // xmlhelper.Read("bookstore/book[@ISBN=\"7-111-19149-6\"]") Attributes 的属性
             // xmlhelper.Read("bookstore/book[title=\"计算机硬件技术基础\"]") 内部节点
-            XmlNodeList xmlNodeLst = xmlhelper.Read("datatype/item[@guid=\"" + tmperrornoInfo.GUID + "\"]");
+            XmlNodeList xmlNodeLst = xmlhelper.Read("datatype/item[@gid=\"" + tmperrornoInfo.Gid + "\"]");
             Int32 idx = -1;
 
             switch (e.Column.ToString())
@@ -335,7 +335,7 @@ namespace JCodes.Framework.AddIn.Proj
 
         private void gridView1_CellValueChanging(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
-            if (string.IsNullOrEmpty((gridView1.GetFocusedRow() as ErrornoInfo).GUID) && (gridView1.FocusedRowHandle + 1 == gridView1.RowCount))
+            if (string.IsNullOrEmpty((gridView1.GetFocusedRow() as ErrornoInfo).Gid) && (gridView1.FocusedRowHandle + 1 == gridView1.RowCount))
             {
                 btnAdd_Click(null, null);
             }
@@ -351,10 +351,10 @@ namespace JCodes.Framework.AddIn.Proj
         private void btnAdd_Click(object sender, EventArgs e)
         {
             var errornoInfo = new ErrornoInfo();
-            errornoInfo.GUID = System.Guid.NewGuid().ToString();
+            errornoInfo.Gid = System.Guid.NewGuid().ToString();
             errornoInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
 
-            xmlhelper.InsertElement("datatype", "item", "guid", errornoInfo.GUID, string.Format(xmlModel, string.Empty, string.Empty, string.Empty, string.Empty));
+            xmlhelper.InsertElement("datatype", "item", "gid", errornoInfo.Gid, string.Format(xmlModel, string.Empty, string.Empty, string.Empty, string.Empty));
             xmlhelper.Save(false);
 
             (gridView1.DataSource as List<ErrornoInfo>).Insert(gridView1.RowCount - 1, errornoInfo);
@@ -368,11 +368,11 @@ namespace JCodes.Framework.AddIn.Proj
         /// <param name="e"></param>
         private void btnInsert_Click(object sender, EventArgs e)
         {
-            XmlNodeList xmlNodeLst = xmlhelper.Read("datatype/item[@guid=\"" + (gridView1.GetFocusedRow() as ErrornoInfo).GUID + "\"]");
+            XmlNodeList xmlNodeLst = xmlhelper.Read("datatype/item[@gid=\"" + (gridView1.GetFocusedRow() as ErrornoInfo).Gid + "\"]");
             var errornoInfo = new ErrornoInfo();
-            errornoInfo.GUID = System.Guid.NewGuid().ToString();
+            errornoInfo.Gid = System.Guid.NewGuid().ToString();
             errornoInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
-            xmlhelper.InsertElement("item", "guid", errornoInfo.GUID, string.Format(xmlModel, string.Empty, string.Empty, string.Empty, string.Empty), xmlNodeLst.Item(0).ParentNode);
+            xmlhelper.InsertElement("item", "gid", errornoInfo.Gid, string.Format(xmlModel, string.Empty, string.Empty, string.Empty, string.Empty), xmlNodeLst.Item(0).ParentNode);
             xmlhelper.Save(false);
 
             (gridView1.DataSource as List<ErrornoInfo>).Insert(gridView1.FocusedRowHandle, errornoInfo);
@@ -387,10 +387,10 @@ namespace JCodes.Framework.AddIn.Proj
         private void btnDel_Click(object sender, EventArgs e)
         {
             // 20170824 如果是最后一行空行则不再继续操作
-            if (string.IsNullOrEmpty((gridView1.GetFocusedRow() as ErrornoInfo).GUID))
+            if (string.IsNullOrEmpty((gridView1.GetFocusedRow() as ErrornoInfo).Gid))
                 return;
 
-            xmlhelper.DeleteByPathNode("datatype/item[@guid=\"" + gridView1.GetRowCellDisplayText(gridView1.FocusedRowHandle, "GUID") + "\"]");
+            xmlhelper.DeleteByPathNode("datatype/item[@gid=\"" + gridView1.GetRowCellDisplayText(gridView1.FocusedRowHandle, "Gid") + "\"]");
             xmlhelper.Save(false);
 
             // 20170924 wjm 删除lstName 对应的值保存导入的时候缓存问题
@@ -413,7 +413,7 @@ namespace JCodes.Framework.AddIn.Proj
             ErrornoInfo preerrornoInfo = gridView1.GetRow(gridView1.FocusedRowHandle - 1) as ErrornoInfo;
             // 深拷贝
             ErrornoInfo tmperrornoInfo = new ErrornoInfo();
-            tmperrornoInfo.GUID = cuerrornoInfo.GUID;
+            tmperrornoInfo.Gid = cuerrornoInfo.Gid;
             tmperrornoInfo.Name = cuerrornoInfo.Name;
             tmperrornoInfo.ChineseName = cuerrornoInfo.ChineseName;
             tmperrornoInfo.LogLevel = cuerrornoInfo.LogLevel;
@@ -421,14 +421,14 @@ namespace JCodes.Framework.AddIn.Proj
             tmperrornoInfo.lstInfo = cuerrornoInfo.lstInfo;
 
             // 更新内容
-            cuerrornoInfo.GUID = preerrornoInfo.GUID;
+            cuerrornoInfo.Gid = preerrornoInfo.Gid;
             cuerrornoInfo.Name = preerrornoInfo.Name;
             cuerrornoInfo.ChineseName = preerrornoInfo.ChineseName;
             cuerrornoInfo.LogLevel = preerrornoInfo.LogLevel;
             cuerrornoInfo.Remark = preerrornoInfo.Remark;
             cuerrornoInfo.lstInfo = preerrornoInfo.lstInfo;
 
-            preerrornoInfo.GUID = tmperrornoInfo.GUID;
+            preerrornoInfo.Gid = tmperrornoInfo.Gid;
             preerrornoInfo.Name = tmperrornoInfo.Name;
             preerrornoInfo.ChineseName = tmperrornoInfo.ChineseName;
             preerrornoInfo.LogLevel = tmperrornoInfo.LogLevel;
@@ -436,15 +436,15 @@ namespace JCodes.Framework.AddIn.Proj
             preerrornoInfo.lstInfo = tmperrornoInfo.lstInfo;
 
             // 更细XML内容
-            string cuXMLStr = xmlhelper.ReadInnerXML("datatype/item[@guid=\"" + cuerrornoInfo.GUID + "\"]");
-            string preXMLStr = xmlhelper.ReadInnerXML("datatype/item[@guid=\"" + preerrornoInfo.GUID + "\"]");
-            xmlhelper.Replace("datatype/item[@guid=\"" + cuerrornoInfo.GUID + "\"]", preXMLStr);
-            xmlhelper.Replace("datatype/item[@guid=\"" + preerrornoInfo.GUID + "\"]", cuXMLStr);
+            string cuXMLStr = xmlhelper.ReadInnerXML("datatype/item[@gid=\"" + cuerrornoInfo.Gid + "\"]");
+            string preXMLStr = xmlhelper.ReadInnerXML("datatype/item[@gid=\"" + preerrornoInfo.Gid + "\"]");
+            xmlhelper.Replace("datatype/item[@gid=\"" + cuerrornoInfo.Gid + "\"]", preXMLStr);
+            xmlhelper.Replace("datatype/item[@gid=\"" + preerrornoInfo.Gid + "\"]", cuXMLStr);
             // 更新GUID
-            var cuattribute = xmlhelper.Read("datatype/item[@guid=\"" + cuerrornoInfo.GUID + "\"]").Item(0).ParentNode.Attributes["guid"];
-            var preattribute = xmlhelper.Read("datatype/item[@guid=\"" + preerrornoInfo.GUID + "\"]").Item(0).ParentNode.Attributes["guid"];
-            cuattribute.Value = preerrornoInfo.GUID;
-            preattribute.Value = cuerrornoInfo.GUID;
+            var cuattribute = xmlhelper.Read("datatype/item[@gid=\"" + cuerrornoInfo.Gid + "\"]").Item(0).ParentNode.Attributes["gid"];
+            var preattribute = xmlhelper.Read("datatype/item[@gid=\"" + preerrornoInfo.Gid + "\"]").Item(0).ParentNode.Attributes["gid"];
+            cuattribute.Value = preerrornoInfo.Gid;
+            preattribute.Value = cuerrornoInfo.Gid;
             xmlhelper.Save(false);
 
             gridView1.RefreshData();
@@ -466,7 +466,7 @@ namespace JCodes.Framework.AddIn.Proj
 
             // 深拷贝
             ErrornoInfo tmperrornoInfo = new ErrornoInfo();
-            tmperrornoInfo.GUID = cuerrornoInfo.GUID;
+            tmperrornoInfo.Gid = cuerrornoInfo.Gid;
             tmperrornoInfo.Name = cuerrornoInfo.Name;
             tmperrornoInfo.ChineseName = cuerrornoInfo.ChineseName;
             tmperrornoInfo.LogLevel = cuerrornoInfo.LogLevel;
@@ -474,14 +474,14 @@ namespace JCodes.Framework.AddIn.Proj
             tmperrornoInfo.lstInfo = cuerrornoInfo.lstInfo;
 
             // 更新内容
-            cuerrornoInfo.GUID = nexterrornoInfo.GUID;
+            cuerrornoInfo.Gid = nexterrornoInfo.Gid;
             cuerrornoInfo.Name = nexterrornoInfo.Name;
             cuerrornoInfo.ChineseName = nexterrornoInfo.ChineseName;
             cuerrornoInfo.LogLevel = nexterrornoInfo.LogLevel;
             cuerrornoInfo.Remark = nexterrornoInfo.Remark;
             cuerrornoInfo.lstInfo = nexterrornoInfo.lstInfo;
 
-            nexterrornoInfo.GUID = tmperrornoInfo.GUID;
+            nexterrornoInfo.Gid = tmperrornoInfo.Gid;
             nexterrornoInfo.Name = tmperrornoInfo.Name;
             nexterrornoInfo.ChineseName = tmperrornoInfo.ChineseName;
             nexterrornoInfo.LogLevel = tmperrornoInfo.LogLevel;
@@ -489,15 +489,15 @@ namespace JCodes.Framework.AddIn.Proj
             nexterrornoInfo.lstInfo = tmperrornoInfo.lstInfo;
 
             // 更细XML内容
-            string cuXMLStr = xmlhelper.ReadInnerXML("datatype/item[@guid=\"" + cuerrornoInfo.GUID + "\"]");
-            string preXMLStr = xmlhelper.ReadInnerXML("datatype/item[@guid=\"" + nexterrornoInfo.GUID + "\"]");
-            xmlhelper.Replace("datatype/item[@guid=\"" + cuerrornoInfo.GUID + "\"]", preXMLStr);
-            xmlhelper.Replace("datatype/item[@guid=\"" + nexterrornoInfo.GUID + "\"]", cuXMLStr);
-            // 更新GUID
-            var cuattribute = xmlhelper.Read("datatype/item[@guid=\"" + cuerrornoInfo.GUID + "\"]").Item(0).ParentNode.Attributes["guid"];
-            var nextattribute = xmlhelper.Read("datatype/item[@guid=\"" + nexterrornoInfo.GUID + "\"]").Item(0).ParentNode.Attributes["guid"];
-            cuattribute.Value = nexterrornoInfo.GUID;
-            nextattribute.Value = cuerrornoInfo.GUID;
+            string cuXMLStr = xmlhelper.ReadInnerXML("datatype/item[@gid=\"" + cuerrornoInfo.Gid + "\"]");
+            string preXMLStr = xmlhelper.ReadInnerXML("datatype/item[@gid=\"" + nexterrornoInfo.Gid + "\"]");
+            xmlhelper.Replace("datatype/item[@gid=\"" + cuerrornoInfo.Gid + "\"]", preXMLStr);
+            xmlhelper.Replace("datatype/item[@gid=\"" + nexterrornoInfo.Gid + "\"]", cuXMLStr);
+            // 更新 Gid
+            var cuattribute = xmlhelper.Read("datatype/item[@gid=\"" + cuerrornoInfo.Gid + "\"]").Item(0).ParentNode.Attributes["gid"];
+            var nextattribute = xmlhelper.Read("datatype/item[@gid=\"" + nexterrornoInfo.Gid + "\"]").Item(0).ParentNode.Attributes["gid"];
+            cuattribute.Value = nexterrornoInfo.Gid;
+            nextattribute.Value = cuerrornoInfo.Gid;
             xmlhelper.Save(false);
 
             gridView1.RefreshData();
@@ -518,7 +518,7 @@ namespace JCodes.Framework.AddIn.Proj
                 DataRow row = dt.NewRow();
                 row[0] = lst[i].Name;
                 row[1] = lst[i].ChineseName;
-                row[2] = IntToErrInfo(lst[i].LogLevel);
+                row[2] = Convert.ToInt16( IntToErrInfo(lst[i].LogLevel) );
                 row[3] = lst[i].Remark;
                 dt.Rows.Add(row);
             }
@@ -564,13 +564,13 @@ namespace JCodes.Framework.AddIn.Proj
                     if (!lstName.Contains(dt.Rows[i][0].ToString()))
                     {
                         var errornoInfo = new ErrornoInfo();
-                        errornoInfo.GUID = System.Guid.NewGuid().ToString();
+                        errornoInfo.Gid = System.Guid.NewGuid().ToString();
                         errornoInfo.Name = dt.Rows[i][0].ToString();
                         errornoInfo.ChineseName = dt.Rows[i][1].ToString();
-                        errornoInfo.LogLevel = ErrInfoToInt( dt.Rows[i][2].ToString()).ToString();
+                        errornoInfo.LogLevel = Convert.ToInt16( ErrInfoToInt(dt.Rows[i][2].ToString()));
                         errornoInfo.Remark = dt.Rows[i][3].ToString();
 
-                        xmlhelper.InsertElement("datatype", "item", "guid", errornoInfo.GUID, string.Format(xmlModel, dt.Rows[i][0].ToString(), dt.Rows[i][1].ToString(), dt.Rows[i][2].ToString(), dt.Rows[i][3].ToString()));
+                        xmlhelper.InsertElement("datatype", "item", "gid", errornoInfo.Gid, string.Format(xmlModel, dt.Rows[i][0].ToString(), dt.Rows[i][1].ToString(), dt.Rows[i][2].ToString(), dt.Rows[i][3].ToString()));
 
                         (gridView1.DataSource as List<ErrornoInfo>).Insert(gridView1.RowCount - 1, errornoInfo);
                         addRows++;
@@ -625,19 +625,9 @@ namespace JCodes.Framework.AddIn.Proj
             InitView();
         }
 
-        private string IntToErrInfo(string strerridx)
+        private string IntToErrInfo(Int16 strerridx)
         {
             string result = string.Empty;
-            if (string.IsNullOrEmpty(strerridx))
-            {
-                return result;
-            }
-
-            if (!ValidateUtil.IsNumeric(strerridx))
-            {
-                return result;
-            }
-            Int32 erridx = Convert.ToInt32(strerridx);
 
             // 1 - LOG_LEVEL_EMERG
             // 2 - LOG_LEVEL_ALERT
@@ -648,7 +638,7 @@ namespace JCodes.Framework.AddIn.Proj
             // 7 - LOG_LEVEL_INFO
             // 8 - LOG_LEVEL_DEBUG
             // 9 - LOG_LEVEL_SQL 
-            switch (erridx)
+            switch (strerridx)
             {
                 case 1:
                     result = "LOG_LEVEL_EMERG";

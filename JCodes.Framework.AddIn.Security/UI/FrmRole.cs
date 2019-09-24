@@ -183,14 +183,14 @@ namespace JCodes.Framework.AddIn.Security
             //增加一个字典方便快速选择
             foreach (FunctionInfo info in list)
             {
-                if (!dictFunction.ContainsKey(info.ID))
+                if (!dictFunction.ContainsKey(info.Gid))
                 {
-                    dictFunction.Add(info.ID, info.ID);
+                    dictFunction.Add(info.Gid, info.Gid);
                 }
             }
                 
             //如果是公司管理员一级，不能修改自己角色的权限（避免误操作，不再显示）
-            bool isSuperAdmin = BLLFactory<User>.Instance.UserInRole(Portal.gc.UserInfo.Name, RoleInfo.SuperAdminName);
+            /*bool isSuperAdmin = BLLFactory<User>.Instance.UserInRole(Portal.gc.UserInfo.Name, RoleInfo.SuperAdminName);
             TreeNode selectNode = this.treeView1.SelectedNode;
             if (selectNode != null && selectNode.Text.Equals(RoleInfo.CompanyAdminName) && !isSuperAdmin)
             {
@@ -199,7 +199,7 @@ namespace JCodes.Framework.AddIn.Security
             else
             {
                 this.treeFunction.CheckBoxes = true;
-            }
+            }*/
 
             //判断角色具有哪些功能，更新勾选项
             foreach (TreeNode node in this.treeFunction.Nodes)
@@ -213,7 +213,7 @@ namespace JCodes.Framework.AddIn.Security
         /// </summary>
         private void InitTreeFunction()
         {
-            bool isSuperAdmin = BLLFactory<User>.Instance.UserInRole(Portal.gc.UserInfo.Name, RoleInfo.SuperAdminName);
+            
             this.treeFunction.BeginUpdate();
             this.treeFunction.Nodes.Clear();
 
@@ -221,19 +221,20 @@ namespace JCodes.Framework.AddIn.Security
             List<SystemTypeInfo> typeList = BLLFactory<SystemType>.Instance.GetAll();
             foreach (SystemTypeInfo typeInfo in typeList)
             {
-                TreeNode parentNode = this.treeFunction.Nodes.Add(typeInfo.OID, typeInfo.Name, 0, 0);
+                TreeNode parentNode = this.treeFunction.Nodes.Add(typeInfo.Gid, typeInfo.Name, 0, 0);
 
                 //如果是超级管理员，不根据角色获取，否则根据角色获取对应的分配权限
                 //也就是说，公司管理员只能分配自己被授权的功能，而超级管理员不受限制
                 List<FunctionNodeInfo> allNode = new List<FunctionNodeInfo>();
+                /*bool isSuperAdmin = BLLFactory<User>.Instance.UserInRole(Portal.gc.UserInfo.Name, RoleInfo.SuperAdminName);
                 if (isSuperAdmin)
                 {
-                    allNode = BLLFactory<Functions>.Instance.GetTree(typeInfo.OID);
+                    allNode = BLLFactory<Functions>.Instance.GetTree(typeInfo.Gid);
                 }
                 else
                 {
-                    allNode = BLLFactory<Functions>.Instance.GetFunctionNodesByUser(Portal.gc.UserInfo.Id, typeInfo.OID);
-                }
+                    allNode = BLLFactory<Functions>.Instance.GetFunctionNodesByUser(Portal.gc.UserInfo.Id, typeInfo.Gid);
+                }*/
                 AddFunctionNode(parentNode, allNode);
             }
             this.treeFunction.ExpandAll();
@@ -248,7 +249,7 @@ namespace JCodes.Framework.AddIn.Security
             foreach (FunctionNodeInfo info in list)
             {
                 TreeNode subNode = new TreeNode(info.Name, 1, 1);
-                subNode.Tag = info.ID;
+                subNode.Tag = info.Gid;
                 node.Nodes.Add(subNode);
 
                 AddFunctionNode(subNode, info.Children);
@@ -353,11 +354,11 @@ namespace JCodes.Framework.AddIn.Security
                 RoleInfo roleInfo = node.Tag as RoleInfo;
                 if (roleInfo != null)
                 {
-                    if (RoleInfo.SuperAdminName.Equals(node.Text, StringComparison.OrdinalIgnoreCase))
+                    /*if (RoleInfo.SuperAdminName.Equals(node.Text, StringComparison.OrdinalIgnoreCase))
                     {
                         MessageDxUtil.ShowWarning("保留角色不能删除");
                         return;
-                    }
+                    }*/
 
                     if (MessageDxUtil.ShowYesNoAndTips("您确认删除吗?") == DialogResult.Yes)
                     {
@@ -476,7 +477,7 @@ namespace JCodes.Framework.AddIn.Security
             info.CompanyId = this.txtCompany.Value.ToInt32();
             info.RoleCode = this.txtHandNo.Text;
             info.Seq = this.txtSeq.Text;
-            info.RoleType = this.txtCategory.Text.ToInt32();
+            info.RoleType = Convert.ToInt16( this.txtCategory.Text);
             //info.Editor = Portal.gc.UserInfo.FullName;
             info.EditorId = Portal.gc.UserInfo.Id;
             info.LastUpdateTime = DateTimeHelper.GetServerDateTime2();
@@ -514,11 +515,11 @@ namespace JCodes.Framework.AddIn.Security
                 if (node != null && node.Tag != null)
                 {
                     RoleInfo roleInfo = node.Tag as RoleInfo;
-                    if (roleInfo != null && RoleInfo.SuperAdminName.Equals(roleInfo.Name, StringComparison.OrdinalIgnoreCase))
+                    /*if (roleInfo != null && RoleInfo.SuperAdminName.Equals(roleInfo.Name, StringComparison.OrdinalIgnoreCase))
                     {
                         MessageDxUtil.ShowWarning("保留角色不能修改");
                         return;
-                    }
+                    }*/
                 }
 
                 try
@@ -559,12 +560,12 @@ namespace JCodes.Framework.AddIn.Security
             }
             else
             {
-                if (this.txtName.Text.Trim() == RoleInfo.SuperAdminName)
+                /*if (this.txtName.Text.Trim() == RoleInfo.SuperAdminName)
                 {
                     MessageDxUtil.ShowTips("超级管理员为保留名称，不能新增使用");
                     this.txtName.Focus();
                     return;
-                }
+                }*/
 
                 #region 排重检查
                 string filter = string.Format("Name='{0}' AND Company_ID='{1}' ", this.txtName.Text, this.txtCompany.Value);

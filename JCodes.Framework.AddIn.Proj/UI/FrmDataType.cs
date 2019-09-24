@@ -99,7 +99,7 @@ namespace JCodes.Framework.AddIn.Proj
                 // 将节点转换为元素，便于得到节点的属性值
                 XmlElement xe = (XmlElement)xn1;
                 // 得到Type和ISBN两个属性的属性值
-                dataTypeInfo.GUID = xe.GetAttribute("guid").ToString();
+                dataTypeInfo.Gid = xe.GetAttribute("gid").ToString();
 
                 // 得到DataTypeInfo节点的所有子节点
                 XmlNodeList xnl0 = xe.ChildNodes;
@@ -137,7 +137,7 @@ namespace JCodes.Framework.AddIn.Proj
             dataTypeInfoList.Add(new DataTypeInfo());
             gridControl1.DataSource = dataTypeInfoList;
 
-            gridView1.Columns["GUID"].Visible = false;
+            gridView1.Columns["gid"].Visible = false;
             gridView1.Columns["lstInfo"].Visible = false;
             gridView1.Columns["StdType"].ColumnEdit = repositoryItemLookUpEditStdType;
             gridView1.Columns["Length"].ColumnEdit = repositoryItemSpinEditLength;
@@ -159,7 +159,7 @@ namespace JCodes.Framework.AddIn.Proj
             List<String> tmpName = new List<string>();
             foreach (DataTypeInfo dataTypeInfo in lstDataTypeInfo)
             {
-                if (string.IsNullOrEmpty(dataTypeInfo.GUID))
+                if (string.IsNullOrEmpty(dataTypeInfo.Gid))
                     continue;
 
                 if (lstName.Contains(dataTypeInfo.Name))
@@ -172,7 +172,7 @@ namespace JCodes.Framework.AddIn.Proj
 
             foreach (DataTypeInfo dataTypeInfo in lstDataTypeInfo)
             {
-                if (string.IsNullOrEmpty(dataTypeInfo.GUID))
+                if (string.IsNullOrEmpty(dataTypeInfo.Gid))
                     continue;
 
                 // 判断重复的 类型名
@@ -297,7 +297,7 @@ namespace JCodes.Framework.AddIn.Proj
 
             foreach (DataTypeInfo dataTypeInfo in lstDataTypeInfo)
             {
-                if (string.IsNullOrEmpty(dataTypeInfo.GUID))
+                if (string.IsNullOrEmpty(dataTypeInfo.Gid))
                     continue;
 
                 dataTypeInfo.lstInfo.Clear();
@@ -319,7 +319,7 @@ namespace JCodes.Framework.AddIn.Proj
 
             // xmlhelper.Read("bookstore/book[@ISBN=\"7-111-19149-6\"]") Attributes 的属性
             // xmlhelper.Read("bookstore/book[title=\"计算机硬件技术基础\"]") 内部节点
-            XmlNodeList xmlNodeLst = xmlhelper.Read("datatype/item[@guid=\"" + tmpdataTypeInfo.GUID + "\"]");
+            XmlNodeList xmlNodeLst = xmlhelper.Read("datatype/item[@gid=\"" + tmpdataTypeInfo.Gid + "\"]");
             Int32 idx = -1;
 
             switch (e.Column.ToString())
@@ -355,7 +355,7 @@ namespace JCodes.Framework.AddIn.Proj
 
         private void gridView1_CellValueChanging(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
-            if (string.IsNullOrEmpty((gridView1.GetFocusedRow() as DataTypeInfo).GUID) && (gridView1.FocusedRowHandle + 1 == gridView1.RowCount))
+            if (string.IsNullOrEmpty((gridView1.GetFocusedRow() as DataTypeInfo).Gid) && (gridView1.FocusedRowHandle + 1 == gridView1.RowCount))
             {
                 btnAdd_Click(null, null);
             }
@@ -371,10 +371,10 @@ namespace JCodes.Framework.AddIn.Proj
         private void btnAdd_Click(object sender, EventArgs e)
         {
             var datatypeInfo = new DataTypeInfo();
-            datatypeInfo.GUID = System.Guid.NewGuid().ToString();
+            datatypeInfo.Gid = System.Guid.NewGuid().ToString();
             datatypeInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
 
-            xmlhelper.InsertElement("datatype", "item", "guid", datatypeInfo.GUID, string.Format(xmlModel, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty));
+            xmlhelper.InsertElement("datatype", "item", "gid", datatypeInfo.Gid, string.Format(xmlModel, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty));
             xmlhelper.Save(false);
 
             (gridView1.DataSource as List<DataTypeInfo>).Insert(gridView1.RowCount - 1, datatypeInfo);
@@ -388,11 +388,11 @@ namespace JCodes.Framework.AddIn.Proj
         /// <param name="e"></param>
         private void btnInsert_Click(object sender, EventArgs e)
         {
-            XmlNodeList xmlNodeLst = xmlhelper.Read("datatype/item[@guid=\"" + (gridView1.GetFocusedRow() as DataTypeInfo).GUID + "\"]");
+            XmlNodeList xmlNodeLst = xmlhelper.Read("datatype/item[@gid=\"" + (gridView1.GetFocusedRow() as DataTypeInfo).Gid + "\"]");
             var datatypeInfo = new DataTypeInfo();
-            datatypeInfo.GUID = System.Guid.NewGuid().ToString();
+            datatypeInfo.Gid = System.Guid.NewGuid().ToString();
             datatypeInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
-            xmlhelper.InsertElement("item", "guid", datatypeInfo.GUID, string.Format(xmlModel, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty), xmlNodeLst.Item(0).ParentNode);
+            xmlhelper.InsertElement("item", "gid", datatypeInfo.Gid, string.Format(xmlModel, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty), xmlNodeLst.Item(0).ParentNode);
             xmlhelper.Save(false);
 
             (gridView1.DataSource as List<DataTypeInfo>).Insert(gridView1.FocusedRowHandle, datatypeInfo);
@@ -408,10 +408,10 @@ namespace JCodes.Framework.AddIn.Proj
         {
             // 20171106 wjm 修复没有数据行删除数据报错问题
             // 20170824 如果是最后一行空行则不再继续操作
-            if (gridView1.GetFocusedRow() as DataTypeInfo == null || string.IsNullOrEmpty((gridView1.GetFocusedRow() as DataTypeInfo).GUID))
+            if (gridView1.GetFocusedRow() as DataTypeInfo == null || string.IsNullOrEmpty((gridView1.GetFocusedRow() as DataTypeInfo).Gid))
                 return;
 
-            xmlhelper.DeleteByPathNode("datatype/item[@guid=\"" + gridView1.GetRowCellDisplayText(gridView1.FocusedRowHandle, "GUID") + "\"]");
+            xmlhelper.DeleteByPathNode("datatype/item[@gid=\"" + gridView1.GetRowCellDisplayText(gridView1.FocusedRowHandle, "Gid") + "\"]");
             xmlhelper.Save(false);
 
             // 20170924 wjm 删除lstName 对应的值保存导入的时候缓存问题
@@ -435,7 +435,7 @@ namespace JCodes.Framework.AddIn.Proj
             DataTypeInfo predataTypeInfo = gridView1.GetRow(gridView1.FocusedRowHandle - 1) as DataTypeInfo;
             // 深拷贝
             DataTypeInfo tmpdataTypeInfo = new DataTypeInfo();
-            tmpdataTypeInfo.GUID = cudataTypeInfo.GUID;
+            tmpdataTypeInfo.Gid = cudataTypeInfo.Gid;
             tmpdataTypeInfo.Name = cudataTypeInfo.Name;
             tmpdataTypeInfo.ChineseName = cudataTypeInfo.ChineseName;
             tmpdataTypeInfo.StdType = cudataTypeInfo.StdType;
@@ -445,7 +445,7 @@ namespace JCodes.Framework.AddIn.Proj
             tmpdataTypeInfo.lstInfo = cudataTypeInfo.lstInfo;
 
             // 更新内容
-            cudataTypeInfo.GUID = predataTypeInfo.GUID;
+            cudataTypeInfo.Gid = predataTypeInfo.Gid;
             cudataTypeInfo.Name = predataTypeInfo.Name;
             cudataTypeInfo.ChineseName = predataTypeInfo.ChineseName;
             cudataTypeInfo.StdType = predataTypeInfo.StdType;
@@ -454,7 +454,7 @@ namespace JCodes.Framework.AddIn.Proj
             cudataTypeInfo.Remark = predataTypeInfo.Remark;
             cudataTypeInfo.lstInfo = predataTypeInfo.lstInfo;
 
-            predataTypeInfo.GUID = tmpdataTypeInfo.GUID;
+            predataTypeInfo.Gid = tmpdataTypeInfo.Gid;
             predataTypeInfo.Name = tmpdataTypeInfo.Name;
             predataTypeInfo.ChineseName = tmpdataTypeInfo.ChineseName;
             predataTypeInfo.StdType = tmpdataTypeInfo.StdType;
@@ -464,15 +464,15 @@ namespace JCodes.Framework.AddIn.Proj
             predataTypeInfo.lstInfo = tmpdataTypeInfo.lstInfo;
 
             // 更细XML内容
-            string cuXMLStr = xmlhelper.ReadInnerXML("datatype/item[@guid=\"" + cudataTypeInfo.GUID + "\"]");
-            string preXMLStr = xmlhelper.ReadInnerXML("datatype/item[@guid=\"" + predataTypeInfo.GUID + "\"]");
-            xmlhelper.Replace("datatype/item[@guid=\"" + cudataTypeInfo.GUID + "\"]", preXMLStr);
-            xmlhelper.Replace("datatype/item[@guid=\"" + predataTypeInfo.GUID + "\"]", cuXMLStr);
-            // 更新GUID
-            var cuattribute = xmlhelper.Read("datatype/item[@guid=\"" + cudataTypeInfo.GUID + "\"]").Item(0).ParentNode.Attributes["guid"];
-            var preattribute = xmlhelper.Read("datatype/item[@guid=\"" + predataTypeInfo.GUID + "\"]").Item(0).ParentNode.Attributes["guid"];
-            cuattribute.Value = predataTypeInfo.GUID;
-            preattribute.Value = cudataTypeInfo.GUID;
+            string cuXMLStr = xmlhelper.ReadInnerXML("datatype/item[@gid=\"" + cudataTypeInfo.Gid + "\"]");
+            string preXMLStr = xmlhelper.ReadInnerXML("datatype/item[@gid=\"" + predataTypeInfo.Gid + "\"]");
+            xmlhelper.Replace("datatype/item[@gid=\"" + cudataTypeInfo.Gid + "\"]", preXMLStr);
+            xmlhelper.Replace("datatype/item[@gid=\"" + predataTypeInfo.Gid + "\"]", cuXMLStr);
+            // 更新Gid
+            var cuattribute = xmlhelper.Read("datatype/item[@gid=\"" + cudataTypeInfo.Gid + "\"]").Item(0).ParentNode.Attributes["gid"];
+            var preattribute = xmlhelper.Read("datatype/item[@gid=\"" + predataTypeInfo.Gid + "\"]").Item(0).ParentNode.Attributes["gid"];
+            cuattribute.Value = predataTypeInfo.Gid;
+            preattribute.Value = cudataTypeInfo.Gid;
             xmlhelper.Save(false);
 
             gridView1.RefreshData();
@@ -494,7 +494,7 @@ namespace JCodes.Framework.AddIn.Proj
 
             // 深拷贝
             DataTypeInfo tmpdataTypeInfo = new DataTypeInfo();
-            tmpdataTypeInfo.GUID = cudataTypeInfo.GUID;
+            tmpdataTypeInfo.Gid = cudataTypeInfo.Gid;
             tmpdataTypeInfo.Name = cudataTypeInfo.Name;
             tmpdataTypeInfo.ChineseName = cudataTypeInfo.ChineseName;
             tmpdataTypeInfo.StdType = cudataTypeInfo.StdType;
@@ -504,7 +504,7 @@ namespace JCodes.Framework.AddIn.Proj
             tmpdataTypeInfo.lstInfo = cudataTypeInfo.lstInfo;
 
             // 更新内容
-            cudataTypeInfo.GUID = nextdataTypeInfo.GUID;
+            cudataTypeInfo.Gid = nextdataTypeInfo.Gid;
             cudataTypeInfo.Name = nextdataTypeInfo.Name;
             cudataTypeInfo.ChineseName = nextdataTypeInfo.ChineseName;
             cudataTypeInfo.StdType = nextdataTypeInfo.StdType;
@@ -513,7 +513,7 @@ namespace JCodes.Framework.AddIn.Proj
             cudataTypeInfo.Remark = nextdataTypeInfo.Remark;
             cudataTypeInfo.lstInfo = nextdataTypeInfo.lstInfo;
 
-            nextdataTypeInfo.GUID = tmpdataTypeInfo.GUID;
+            nextdataTypeInfo.Gid = tmpdataTypeInfo.Gid;
             nextdataTypeInfo.Name = tmpdataTypeInfo.Name;
             nextdataTypeInfo.ChineseName = tmpdataTypeInfo.ChineseName;
             nextdataTypeInfo.StdType = tmpdataTypeInfo.StdType;
@@ -523,15 +523,15 @@ namespace JCodes.Framework.AddIn.Proj
             nextdataTypeInfo.lstInfo = tmpdataTypeInfo.lstInfo;
 
             // 更细XML内容
-            string cuXMLStr = xmlhelper.ReadInnerXML("datatype/item[@guid=\"" + cudataTypeInfo.GUID + "\"]");
-            string preXMLStr = xmlhelper.ReadInnerXML("datatype/item[@guid=\"" + nextdataTypeInfo.GUID + "\"]");
-            xmlhelper.Replace("datatype/item[@guid=\"" + cudataTypeInfo.GUID + "\"]", preXMLStr);
-            xmlhelper.Replace("datatype/item[@guid=\"" + nextdataTypeInfo.GUID + "\"]", cuXMLStr);
-            // 更新GUID
-            var cuattribute = xmlhelper.Read("datatype/item[@guid=\"" + cudataTypeInfo.GUID + "\"]").Item(0).ParentNode.Attributes["guid"];
-            var nextattribute = xmlhelper.Read("datatype/item[@guid=\"" + nextdataTypeInfo.GUID + "\"]").Item(0).ParentNode.Attributes["guid"];
-            cuattribute.Value = nextdataTypeInfo.GUID;
-            nextattribute.Value = cudataTypeInfo.GUID;
+            string cuXMLStr = xmlhelper.ReadInnerXML("datatype/item[@gid=\"" + cudataTypeInfo.Gid + "\"]");
+            string preXMLStr = xmlhelper.ReadInnerXML("datatype/item[@gid=\"" + nextdataTypeInfo.Gid + "\"]");
+            xmlhelper.Replace("datatype/item[@gid=\"" + cudataTypeInfo.Gid + "\"]", preXMLStr);
+            xmlhelper.Replace("datatype/item[@gid=\"" + nextdataTypeInfo.Gid + "\"]", cuXMLStr);
+            // 更新gid
+            var cuattribute = xmlhelper.Read("datatype/item[@gid=\"" + cudataTypeInfo.Gid + "\"]").Item(0).ParentNode.Attributes["gid"];
+            var nextattribute = xmlhelper.Read("datatype/item[@gid=\"" + nextdataTypeInfo.Gid + "\"]").Item(0).ParentNode.Attributes["gid"];
+            cuattribute.Value = nextdataTypeInfo.Gid;
+            nextattribute.Value = cudataTypeInfo.Gid;
             xmlhelper.Save(false);
 
             gridView1.RefreshData();
@@ -600,15 +600,15 @@ namespace JCodes.Framework.AddIn.Proj
                     if (!lstName.Contains(dt.Rows[i][0].ToString()))
                     {
                         var datatypeInfo = new DataTypeInfo();
-                        datatypeInfo.GUID = System.Guid.NewGuid().ToString();
+                        datatypeInfo.Gid = System.Guid.NewGuid().ToString();
                         datatypeInfo.Name = dt.Rows[i][0].ToString();
                         datatypeInfo.ChineseName = dt.Rows[i][1].ToString();
                         datatypeInfo.StdType = dt.Rows[i][2].ToString();
                         datatypeInfo.Length = dt.Rows[i][3].ToString();
                         datatypeInfo.Precision = dt.Rows[i][4].ToString();
                         datatypeInfo.Remark = dt.Rows[i][5].ToString();
-                    
-                        xmlhelper.InsertElement("datatype", "item", "guid", datatypeInfo.GUID, string.Format(xmlModel, dt.Rows[i][0].ToString(), dt.Rows[i][1].ToString(), dt.Rows[i][2].ToString(), dt.Rows[i][3].ToString(), dt.Rows[i][4].ToString(), dt.Rows[i][5].ToString(), dt.Rows[i][6].ToString(), dt.Rows[i][7].ToString()));
+
+                        xmlhelper.InsertElement("datatype", "item", "gid", datatypeInfo.Gid, string.Format(xmlModel, dt.Rows[i][0].ToString(), dt.Rows[i][1].ToString(), dt.Rows[i][2].ToString(), dt.Rows[i][3].ToString(), dt.Rows[i][4].ToString(), dt.Rows[i][5].ToString(), dt.Rows[i][6].ToString(), dt.Rows[i][7].ToString()));
 
                         (gridView1.DataSource as List<DataTypeInfo>).Insert(gridView1.RowCount - 1, datatypeInfo);
                         addRows++;

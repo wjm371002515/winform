@@ -155,12 +155,13 @@ namespace JCodes.Framework.BLL
 		{
 			if (m_AdminID == -99)
 			{
+                /* TODO
                 string condition = string.Format("Name='{0}' ", RoleInfo.SuperAdminName);//超级管理员唯一性，不用公司区分
                 RoleInfo roleByName = FindSingle(condition, trans);
 				if (roleByName != null)
 				{
 					m_AdminID = roleByName.Id;//保存ID作为管理员角色参考
-				}
+				}*/
 			}
 		}
 
@@ -363,10 +364,11 @@ namespace JCodes.Framework.BLL
         /// <returns></returns>
         public override bool Update(RoleInfo obj, object primaryKeyValue, DbTransaction trans = null)
 		{
-			if (obj.Id == m_AdminID)
+            // TODO
+			/*if (obj.Id == m_AdminID)
 			{
 				obj.Name = RoleInfo.SuperAdminName;
-			}
+			}*/
             return base.Update(obj, primaryKeyValue, trans);
 		}
                        

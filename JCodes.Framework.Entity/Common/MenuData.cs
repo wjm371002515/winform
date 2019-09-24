@@ -1,80 +1,151 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Runtime.Serialization;
-
+using System.ComponentModel;
+using System.Collections.Generic;
 namespace JCodes.Framework.Entity
 {
-    /// <summary>
-    /// 定义菜单Json的相关数据，方便控制器生成Json数据进行传递
-    /// </summary>
-    [DataContract]
-    [Serializable]
-    public class MenuData
-    {
-        /// <summary>
-        /// ID
-        /// </summary>
-        [DataMember]
-        public string menuid { get; set; }
+	/// <summary>
+	/// 定义菜单Json的相关数据，方便控制器生成Json数据进行传递(MenuData)
+	/// 对象号: 100026
+	/// 备注信息: 
+	/// </summary>
+	[Serializable]
+	[DataContract]
+	public partial class MenuData
+	{
+		#region Field Members
 
-        /// <summary>
-        /// 节点名称
-        /// </summary>
-        [DataMember]
-        public string menuname { get; set; }
-                  
-        /// <summary>
-        /// 图标样式
-        /// </summary>
-        [DataMember]
-        public string icon { get; set; }
-      
-        /// <summary>
-        /// url地址
-        /// </summary>
-        [DataMember(EmitDefaultValue = false)]
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string url  { get; set; }
+		/// <summary>
+		/// GUID对应的ID序号
+		/// </summary>
+		private String m_Gid = string.Empty;
 
-        /// <summary>
-        /// 子节点集合
-        /// </summary>
-        [DataMember(EmitDefaultValue = false)]
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public List<MenuData> menus { get; set; }
-        
-        /// <summary>
-        /// 默认构造函数
-        /// </summary>
-        public MenuData() 
-        {
-            this.menus = new List<MenuData>();
-            this.icon = "icon-view";
-        }
+		/// <summary>
+		/// 名称
+		/// </summary>
+		private String m_Name = string.Empty;
 
-        /// <summary>
-        /// 常用构造函数
-        /// </summary>
-        public MenuData(string menuid, string menuname, string icon = "icon-view", string url=null)
-            : this()
-        {
-            this.menuid = menuid;
-            this.menuname = menuname;
-            this.icon = icon;
-            this.url = url;
-        }
+		/// <summary>
+		/// icon图标路径
+		/// </summary>
+		private String m_Icon = string.Empty;
 
-        /// <summary>
-        /// 常用构造函数
-        /// </summary>
-        public MenuData(int menuid, string menuname, string icon = "icon-view", string url = null)
-            : this()
-        {
-            this.menuid = menuid.ToString();
-            this.menuname = menuname;
-            this.icon = icon;
-            this.url = url;
-        }
-    }
+		/// <summary>
+		/// URL地址
+		/// </summary>
+		private String m_Url = string.Empty;
+
+		/// <summary>
+		/// 子节点集合
+		/// </summary>
+		private List<MenuData> m_menus = new List<MenuData>();
+		#endregion
+
+		#region Property Members
+
+		/// <summary>
+		/// GUID对应的ID序号
+		/// </summary>
+		[DataMember]
+		[DisplayName("GUID对应的ID序号")]
+		public virtual String Gid
+		{
+			get
+			{
+				return this.m_Gid;
+			}
+			set
+			{
+				this.m_Gid = value;
+			}
+		}
+
+		/// <summary>
+		/// 名称
+		/// </summary>
+		[DataMember]
+		[DisplayName("名称")]
+		public virtual String Name
+		{
+			get
+			{
+				return this.m_Name;
+			}
+			set
+			{
+				this.m_Name = value;
+			}
+		}
+
+		/// <summary>
+		/// icon图标路径
+		/// </summary>
+		[DataMember]
+		[DisplayName("icon图标路径")]
+		public virtual String Icon
+		{
+			get
+			{
+				return this.m_Icon;
+			}
+			set
+			{
+				this.m_Icon = value;
+			}
+		}
+
+		/// <summary>
+		/// URL地址
+		/// </summary>
+		[DataMember]
+		[DisplayName("URL地址")]
+		public virtual String Url
+		{
+			get
+			{
+				return this.m_Url;
+			}
+			set
+			{
+				this.m_Url = value;
+			}
+		}
+
+		/// <summary>
+		/// 子节点集合
+		/// </summary>
+		[DataMember]
+		public virtual List<MenuData> menus
+		{
+			get
+			{
+				return this.m_menus;
+			}
+			set
+			{
+				this.m_menus = value;
+			}
+		}
+
+		/// <summary>
+		/// 无参构造函数
+		/// </summary>
+		public  MenuData() 
+		{
+			this.menus = new List<MenuData>();
+            this.m_Icon = "icon-view";
+		}
+
+		/// <summary>
+		/// 带参构造函数
+		/// </summary>
+		public  MenuData(string menuid, string menuname, string icon = "icon-view", string url=null):this()
+		{
+			this.m_Gid = menuid;
+            this.m_Name = menuname;
+            this.m_Icon = icon;
+            this.m_Url = url;
+		}
+		#endregion
+	}
 }

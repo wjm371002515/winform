@@ -54,6 +54,7 @@ namespace JCodes.Framework.AddIn.Proj
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.repositoryItemLookUpEditStdType = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.barErrText = new DevExpress.XtraBars.BarStaticItem();
@@ -64,7 +65,6 @@ namespace JCodes.Framework.AddIn.Proj
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.repositoryItemLookUpEditStdType = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearch.Properties)).BeginInit();
@@ -82,8 +82,8 @@ namespace JCodes.Framework.AddIn.Proj
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditStdType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnInsert
@@ -378,12 +378,12 @@ namespace JCodes.Framework.AddIn.Proj
             this.gridControl1.Location = new System.Drawing.Point(11, 67);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
+            this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemLookUpEditStdType});
             this.gridControl1.Size = new System.Drawing.Size(981, 573);
             this.gridControl1.TabIndex = 13;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
-            this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemLookUpEditStdType});
             // 
             // gridView1
             // 
@@ -406,6 +406,19 @@ namespace JCodes.Framework.AddIn.Proj
             this.gridView1.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView1_CellValueChanged);
             this.gridView1.CellValueChanging += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView1_CellValueChanging);
             this.gridView1.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.gridView1_ValidateRow);
+            // 
+            // repositoryItemLookUpEditStdType
+            // 
+            this.repositoryItemLookUpEditStdType.AutoHeight = false;
+            this.repositoryItemLookUpEditStdType.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUpEditStdType.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Text", "字段类型")});
+            this.repositoryItemLookUpEditStdType.DisplayMember = "Text";
+            this.repositoryItemLookUpEditStdType.DropDownRows = 10;
+            this.repositoryItemLookUpEditStdType.Name = "repositoryItemLookUpEditStdType";
+            this.repositoryItemLookUpEditStdType.PopupWidth = 220;
+            this.repositoryItemLookUpEditStdType.ValueMember = "Value";
             // 
             // barManager1
             // 
@@ -439,19 +452,6 @@ namespace JCodes.Framework.AddIn.Proj
             this.bar3.OptionsBar.DrawDragBorder = false;
             this.bar3.OptionsBar.UseWholeRow = true;
             this.bar3.Text = "Status bar";
-            // 
-            // repositoryItemLookUpEditStdType
-            // 
-            this.repositoryItemLookUpEditStdType.AutoHeight = false;
-            this.repositoryItemLookUpEditStdType.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemLookUpEditStdType.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Text", "字段类型")});
-            this.repositoryItemLookUpEditStdType.DisplayMember = "Text";
-            this.repositoryItemLookUpEditStdType.DropDownRows = 10;
-            this.repositoryItemLookUpEditStdType.Name = "repositoryItemLookUpEditStdType";
-            this.repositoryItemLookUpEditStdType.PopupWidth = 220;
-            this.repositoryItemLookUpEditStdType.ValueMember = "Value";
             // 
             // barErrText
             // 
@@ -553,8 +553,8 @@ namespace JCodes.Framework.AddIn.Proj
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditStdType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             this.ResumeLayout(false);
 
 }

@@ -46,7 +46,7 @@ namespace JCodes.Framework.SQLServerDAL
             CouponInfo info = obj as CouponInfo;
             Hashtable hash = new Hashtable();
             hash.Add("Id", info.Id);
-            hash.Add("CouponCategoryID", info.CouponCategoryID);
+            hash.Add("CouponCategoryId", info.CouponCategoryId);
             hash.Add("CouponCategoryName", info.CouponCategoryName);
             hash.Add("CompanyId", info.CompanyId);
             hash.Add("CreatorId", info.CreatorId);

@@ -1,422 +1,550 @@
-using System;
-using System.Xml.Serialization;
+﻿using System;
 using System.Runtime.Serialization;
+using System.ComponentModel;
 using JCodes.Framework.jCodesenum;
-
 namespace JCodes.Framework.Entity
 {
-    /// <summary>
-    /// 通讯录联系人
-    /// </summary>
-    [DataContract]
-    public class AddressInfo : BaseEntity
-    {    
-        #region Field Members
+	/// <summary>
+	/// 通讯录联系人(AddressInfo)
+	/// 对象号: 100009
+	/// 备注信息: 
+	/// </summary>
+	[Serializable]
+	[DataContract]
+	public partial class AddressInfo : BaseEntity
+	{
+		#region Field Members
 
-        private Int32 m_Id; //          
-        private AddressType m_AddressType =  AddressType.个人; //通讯录类型[个人,公司]          
-        private string m_Name; //姓名          
-        private Int32 m_Sex; //性别          
-        private DateTime m_Birthday; //出生日期          
-        private string m_MobilePhone; //手机          
-        private string m_Email; //电子邮箱          
-        private Int32 m_QQ; //QQ          
-        private string m_HomePhone; //家庭电话          
-        private string m_OfficePhone; //办公电话          
-        private string m_HomeAddress; //家庭住址          
-        private string m_OfficeAddress; //办公地址          
-        private string m_Fax; //传真号码          
-        private string m_CompanyName; //公司单位          
-        private string m_DeptName; //部门    
-        private string m_Position;// 职位
-        private string m_Other; //其他          
-        private string m_Remark; //备注          
-        private Int32 m_CreatorId; //创建人          
-        private DateTime m_CreatorTime; //创建时间          
-        private Int32 m_EditorId; //编辑人          
-        private DateTime m_LastUpdateTime; //编辑时间          
-        private Int32 m_DeptId; //所属部门
-        private Int32 m_CompanyId; //所属公司
+		/// <summary>
+		/// ID序号
+		/// </summary>
+		private Int32 m_Id = 0;
 
-        #endregion
+		/// <summary>
+		/// 名称
+		/// </summary>
+		private String m_Name = string.Empty;
 
-        #region Property Members
-        
+		/// <summary>
+		/// 性别
+		/// </summary>
+		private Int16 m_Gender = 0;
+
+		/// <summary>
+		/// 生日
+		/// </summary>
+		private DateTime m_Birthday = DateTime.Now;
+
+		/// <summary>
+		/// 手机
+		/// </summary>
+		private String m_MobilePhone = string.Empty;
+
+		/// <summary>
+		/// Email邮箱
+		/// </summary>
+		private String m_Email = string.Empty;
+
+		/// <summary>
+		/// QQ号
+		/// </summary>
+		private Int32 m_QQ = 0;
+
+		/// <summary>
+		/// 家庭电话
+		/// </summary>
+		private String m_HomePhone = string.Empty;
+
+		/// <summary>
+		/// 办公电话
+		/// </summary>
+		private String m_OfficePhone = string.Empty;
+
+		/// <summary>
+		/// 家庭地址
+		/// </summary>
+		private String m_HomeAddress = string.Empty;
+
+		/// <summary>
+		/// 办公地址
+		/// </summary>
+		private String m_OfficeAddress = string.Empty;
+
+		/// <summary>
+		/// 传真号码
+		/// </summary>
+		private String m_Fax = string.Empty;
+
+		/// <summary>
+		/// 公司名字
+		/// </summary>
+		private String m_CompanyName = string.Empty;
+
+		/// <summary>
+		/// 部门名字
+		/// </summary>
+		private String m_DeptName = string.Empty;
+
+		/// <summary>
+		/// 工作职位
+		/// </summary>
+		private String m_WorkPosition = string.Empty;
+
+		/// <summary>
+		/// 备注
+		/// </summary>
+		private String m_Remark = string.Empty;
+
+		/// <summary>
+		/// 创建人编号
+		/// </summary>
+		private Int32 m_CreatorId = 0;
+
+		/// <summary>
+		/// 创建时间
+		/// </summary>
+		private DateTime m_CreatorTime = DateTime.Now;
+
+		/// <summary>
+		/// 编辑人编号
+		/// </summary>
+		private Int32 m_EditorId = 0;
+
+		/// <summary>
+		/// 最后更新时间
+		/// </summary>
+		private DateTime m_LastUpdateTime = DateTime.Now;
+
+		/// <summary>
+		/// 部门Id
+		/// </summary>
+		private Int32 m_DeptId = 0;
+
+		/// <summary>
+		/// 公司Id
+		/// </summary>
+		private Int32 m_CompanyId = 0;
+
+		/// <summary>
+		/// 其他
+		/// </summary>
+		private String m_Other = string.Empty;
+
+		/// <summary>
+		/// 通讯录类型
+		/// </summary>
+		private AddressType m_AddressType;
+		#endregion
+
+		#region Property Members
+
+		/// <summary>
+		/// ID序号
+		/// </summary>
 		[DataMember]
-        public virtual Int32 Id
-        {
-            get
-            {
-                return this.m_Id;
-            }
-            set
-            {
-                this.m_Id = value;
-            }
-        }
+		[DisplayName("ID序号")]
+		public virtual Int32 Id
+		{
+			get
+			{
+				return this.m_Id;
+			}
+			set
+			{
+				this.m_Id = value;
+			}
+		}
 
-        /// <summary>
-        /// 通讯录类型[个人,公司]
-        /// </summary>
+		/// <summary>
+		/// 名称
+		/// </summary>
 		[DataMember]
-        public virtual AddressType AddressType
-        {
-            get
-            {
-                return this.m_AddressType;
-            }
-            set
-            {
-                this.m_AddressType = value;
-            }
-        }
+		[DisplayName("名称")]
+		public virtual String Name
+		{
+			get
+			{
+				return this.m_Name;
+			}
+			set
+			{
+				this.m_Name = value;
+			}
+		}
 
-        /// <summary>
-        /// 姓名
-        /// </summary>
+		/// <summary>
+		/// 性别
+		/// </summary>
 		[DataMember]
-        public virtual string Name
-        {
-            get
-            {
-                return this.m_Name;
-            }
-            set
-            {
-                this.m_Name = value;
-            }
-        }
+		[DisplayName("性别")]
+		public virtual Int16 Gender
+		{
+			get
+			{
+				return this.m_Gender;
+			}
+			set
+			{
+				this.m_Gender = value;
+			}
+		}
 
-        /// <summary>
-        /// 性别
-        /// </summary>
+		/// <summary>
+		/// 生日
+		/// </summary>
 		[DataMember]
-        public virtual Int32 Sex
-        {
-            get
-            {
-                return this.m_Sex;
-            }
-            set
-            {
-                this.m_Sex = value;
-            }
-        }
+		[DisplayName("生日")]
+		public virtual DateTime Birthday
+		{
+			get
+			{
+				return this.m_Birthday;
+			}
+			set
+			{
+				this.m_Birthday = value;
+			}
+		}
 
-        /// <summary>
-        /// 出生日期
-        /// </summary>
+		/// <summary>
+		/// 手机
+		/// </summary>
 		[DataMember]
-        public virtual DateTime Birthday
-        {
-            get
-            {
-                return this.m_Birthday;
-            }
-            set
-            {
-                this.m_Birthday = value;
-            }
-        }
+		[DisplayName("手机")]
+		public virtual String MobilePhone
+		{
+			get
+			{
+				return this.m_MobilePhone;
+			}
+			set
+			{
+				this.m_MobilePhone = value;
+			}
+		}
 
-        /// <summary>
-        /// 手机
-        /// </summary>
+		/// <summary>
+		/// Email邮箱
+		/// </summary>
 		[DataMember]
-        public virtual string MobilePhone
-        {
-            get
-            {
-                return this.m_MobilePhone;
-            }
-            set
-            {
-                this.m_MobilePhone = value;
-            }
-        }
+		[DisplayName("Email邮箱")]
+		public virtual String Email
+		{
+			get
+			{
+				return this.m_Email;
+			}
+			set
+			{
+				this.m_Email = value;
+			}
+		}
 
-        /// <summary>
-        /// 电子邮箱
-        /// </summary>
+		/// <summary>
+		/// QQ号
+		/// </summary>
 		[DataMember]
-        public virtual string Email
-        {
-            get
-            {
-                return this.m_Email;
-            }
-            set
-            {
-                this.m_Email = value;
-            }
-        }
+		[DisplayName("QQ号")]
+		public virtual Int32 QQ
+		{
+			get
+			{
+				return this.m_QQ;
+			}
+			set
+			{
+				this.m_QQ = value;
+			}
+		}
 
-        /// <summary>
-        /// QQ
-        /// </summary>
+		/// <summary>
+		/// 家庭电话
+		/// </summary>
 		[DataMember]
-        public virtual Int32 QQ
-        {
-            get
-            {
-                return this.m_QQ;
-            }
-            set
-            {
-                this.m_QQ = value;
-            }
-        }
+		[DisplayName("家庭电话")]
+		public virtual String HomePhone
+		{
+			get
+			{
+				return this.m_HomePhone;
+			}
+			set
+			{
+				this.m_HomePhone = value;
+			}
+		}
 
-        /// <summary>
-        /// 家庭电话
-        /// </summary>
+		/// <summary>
+		/// 办公电话
+		/// </summary>
 		[DataMember]
-        public virtual string HomePhone
-        {
-            get
-            {
-                return this.m_HomePhone;
-            }
-            set
-            {
-                this.m_HomePhone = value;
-            }
-        }
+		[DisplayName("办公电话")]
+		public virtual String OfficePhone
+		{
+			get
+			{
+				return this.m_OfficePhone;
+			}
+			set
+			{
+				this.m_OfficePhone = value;
+			}
+		}
 
-        /// <summary>
-        /// 办公电话
-        /// </summary>
+		/// <summary>
+		/// 家庭地址
+		/// </summary>
 		[DataMember]
-        public virtual string OfficePhone
-        {
-            get
-            {
-                return this.m_OfficePhone;
-            }
-            set
-            {
-                this.m_OfficePhone = value;
-            }
-        }
+		[DisplayName("家庭地址")]
+		public virtual String HomeAddress
+		{
+			get
+			{
+				return this.m_HomeAddress;
+			}
+			set
+			{
+				this.m_HomeAddress = value;
+			}
+		}
 
-        /// <summary>
-        /// 家庭住址
-        /// </summary>
+		/// <summary>
+		/// 办公地址
+		/// </summary>
 		[DataMember]
-        public virtual string HomeAddress
-        {
-            get
-            {
-                return this.m_HomeAddress;
-            }
-            set
-            {
-                this.m_HomeAddress = value;
-            }
-        }
+		[DisplayName("办公地址")]
+		public virtual String OfficeAddress
+		{
+			get
+			{
+				return this.m_OfficeAddress;
+			}
+			set
+			{
+				this.m_OfficeAddress = value;
+			}
+		}
 
-        /// <summary>
-        /// 办公地址
-        /// </summary>
+		/// <summary>
+		/// 传真号码
+		/// </summary>
 		[DataMember]
-        public virtual string OfficeAddress
-        {
-            get
-            {
-                return this.m_OfficeAddress;
-            }
-            set
-            {
-                this.m_OfficeAddress = value;
-            }
-        }
+		[DisplayName("传真号码")]
+		public virtual String Fax
+		{
+			get
+			{
+				return this.m_Fax;
+			}
+			set
+			{
+				this.m_Fax = value;
+			}
+		}
 
-        /// <summary>
-        /// 传真号码
-        /// </summary>
+		/// <summary>
+		/// 公司名字
+		/// </summary>
 		[DataMember]
-        public virtual string Fax
-        {
-            get
-            {
-                return this.m_Fax;
-            }
-            set
-            {
-                this.m_Fax = value;
-            }
-        }
+		[DisplayName("公司名字")]
+		public virtual String CompanyName
+		{
+			get
+			{
+				return this.m_CompanyName;
+			}
+			set
+			{
+				this.m_CompanyName = value;
+			}
+		}
 
-        /// <summary>
-        /// 公司单位
-        /// </summary>
+		/// <summary>
+		/// 部门名字
+		/// </summary>
 		[DataMember]
-        public virtual string CompanyName
-        {
-            get
-            {
-                return this.m_CompanyName;
-            }
-            set
-            {
-                this.m_CompanyName = value;
-            }
-        }
+		[DisplayName("部门名字")]
+		public virtual String DeptName
+		{
+			get
+			{
+				return this.m_DeptName;
+			}
+			set
+			{
+				this.m_DeptName = value;
+			}
+		}
 
-        /// <summary>
-        /// 部门
-        /// </summary>
+		/// <summary>
+		/// 工作职位
+		/// </summary>
 		[DataMember]
-        public virtual string DeptName
-        {
-            get
-            {
-                return this.m_DeptName;
-            }
-            set
-            {
-                this.m_DeptName = value;
-            }
-        }
+		[DisplayName("工作职位")]
+		public virtual String WorkPosition
+		{
+			get
+			{
+				return this.m_WorkPosition;
+			}
+			set
+			{
+				this.m_WorkPosition = value;
+			}
+		}
 
-        /// <summary>
-        /// 职位
-        /// </summary>
-        [DataMember]
-        public virtual string Position { 
-            get { return this.m_Position; }
-            set { this.m_Position = value;  } 
-        
-        }
-
-        /// <summary>
-        /// 其他
-        /// </summary>
+		/// <summary>
+		/// 备注
+		/// </summary>
 		[DataMember]
-        public virtual string Other
-        {
-            get
-            {
-                return this.m_Other;
-            }
-            set
-            {
-                this.m_Other = value;
-            }
-        }
+		[DisplayName("备注")]
+		public virtual String Remark
+		{
+			get
+			{
+				return this.m_Remark;
+			}
+			set
+			{
+				this.m_Remark = value;
+			}
+		}
 
-        /// <summary>
-        /// 备注
-        /// </summary>
+		/// <summary>
+		/// 创建人编号
+		/// </summary>
 		[DataMember]
-        public virtual string Remark
-        {
-            get
-            {
-                return this.m_Remark;
-            }
-            set
-            {
-                this.m_Remark = value;
-            }
-        }
+		[DisplayName("创建人编号")]
+		public virtual Int32 CreatorId
+		{
+			get
+			{
+				return this.m_CreatorId;
+			}
+			set
+			{
+				this.m_CreatorId = value;
+			}
+		}
 
-        /// <summary>
-        /// 创建人
-        /// </summary>
+		/// <summary>
+		/// 创建时间
+		/// </summary>
 		[DataMember]
-        public virtual Int32 CreatorId
-        {
-            get
-            {
-                return this.m_CreatorId;
-            }
-            set
-            {
-                this.m_CreatorId = value;
-            }
-        }
+		[DisplayName("创建时间")]
+		public virtual DateTime CreatorTime
+		{
+			get
+			{
+				return this.m_CreatorTime;
+			}
+			set
+			{
+				this.m_CreatorTime = value;
+			}
+		}
 
-        /// <summary>
-        /// 创建时间
-        /// </summary>
+		/// <summary>
+		/// 编辑人编号
+		/// </summary>
 		[DataMember]
-        public virtual DateTime CreatorTime
-        {
-            get
-            {
-                return this.m_CreatorTime;
-            }
-            set
-            {
-                this.m_CreatorTime = value;
-            }
-        }
+		[DisplayName("编辑人编号")]
+		public virtual Int32 EditorId
+		{
+			get
+			{
+				return this.m_EditorId;
+			}
+			set
+			{
+				this.m_EditorId = value;
+			}
+		}
 
-        /// <summary>
-        /// 编辑人
-        /// </summary>
+		/// <summary>
+		/// 最后更新时间
+		/// </summary>
 		[DataMember]
-        public virtual Int32 EditorId
-        {
-            get
-            {
-                return this.m_EditorId;
-            }
-            set
-            {
-                this.m_EditorId = value;
-            }
-        }
+		[DisplayName("最后更新时间")]
+		public virtual DateTime LastUpdateTime
+		{
+			get
+			{
+				return this.m_LastUpdateTime;
+			}
+			set
+			{
+				this.m_LastUpdateTime = value;
+			}
+		}
 
-        /// <summary>
-        /// 编辑时间
-        /// </summary>
+		/// <summary>
+		/// 部门Id
+		/// </summary>
 		[DataMember]
-        public virtual DateTime LastUpdateTime
-        {
-            get
-            {
-                return this.m_LastUpdateTime;
-            }
-            set
-            {
-                this.m_LastUpdateTime = value;
-            }
-        }
+		[DisplayName("部门Id")]
+		public virtual Int32 DeptId
+		{
+			get
+			{
+				return this.m_DeptId;
+			}
+			set
+			{
+				this.m_DeptId = value;
+			}
+		}
 
-        /// <summary>
-        /// 所属部门
-        /// </summary>
-        [DataMember]
-        public virtual Int32 DeptId
-        {
-            get
-            {
-                return this.m_DeptId;
-            }
-            set
-            {
-                this.m_DeptId = value;
-            }
-        }
+		/// <summary>
+		/// 公司Id
+		/// </summary>
+		[DataMember]
+		[DisplayName("公司Id")]
+		public virtual Int32 CompanyId
+		{
+			get
+			{
+				return this.m_CompanyId;
+			}
+			set
+			{
+				this.m_CompanyId = value;
+			}
+		}
 
-        /// <summary>
-        /// 所属公司
-        /// </summary>
-        [DataMember]
-        public virtual Int32 CompanyId
-        {
-            get
-            {
-                return this.m_CompanyId;
-            }
-            set
-            {
-                this.m_CompanyId = value;
-            }
-        }
+		/// <summary>
+		/// 其他
+		/// </summary>
+		[DataMember]
+		[DisplayName("其他")]
+		public virtual String Other
+		{
+			get
+			{
+				return this.m_Other;
+			}
+			set
+			{
+				this.m_Other = value;
+			}
+		}
 
-        #endregion
-    }
+		/// <summary>
+		/// 通讯录类型
+		/// [个人,公司]
+		/// </summary>
+		[DataMember]
+		public virtual AddressType AddressType
+		{
+			get
+			{
+				return this.m_AddressType;
+			}
+			set
+			{
+				this.m_AddressType = value;
+			}
+		}
+		#endregion
+	}
 }

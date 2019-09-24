@@ -12,7 +12,7 @@ namespace JCodes.Framework.IDAL
 	/// <summary>
 	/// IStock 的摘要说明。
 	/// </summary>
-	public interface IStock : IBaseDAL<StockInfo>
+    public interface IWare : IBaseDAL<WareInfo>
 	{
         /// <summary>
         /// 初始化库房信息
@@ -21,7 +21,7 @@ namespace JCodes.Framework.IDAL
         /// <param name="quantity">期初数量</param>
         /// <param name="wareHouse">库房名称</param>
         /// <returns></returns>
-        bool InitStockQuantity(ItemDetailInfo detailInfo, int quantity, string wareHouse);
+        bool InitStockQuantity(ItemDetailInfo detailInfo, int quantity, Int32 wareHouseId);
 
         /// <summary>
         /// 增加库存
@@ -31,7 +31,7 @@ namespace JCodes.Framework.IDAL
         /// <param name="quantity">库存属类</param>
         /// <param name="wareHouse">库房名称</param>
         /// <returns></returns>
-        bool AddStockQuantiy(string ItemNo, string itemName, int quantity, string wareHouse);
+        bool AddStockQuantiy(string ItemNo, string itemName, int quantity, Int32 wareHouseId);
 
         /// <summary>
         /// 增加库存
@@ -41,7 +41,7 @@ namespace JCodes.Framework.IDAL
         /// <param name="quantity">库存属类</param>
         /// <param name="wareHouse">库房名称</param>
         /// <returns></returns>
-        bool AddStockQuantiy(string ItemNo, string itemName, int quantity, string wareHouse, DbTransaction trans);
+        bool AddStockQuantiy(string ItemNo, string itemName, int quantity, Int32 wareHouseId, DbTransaction trans);
                         
         /// <summary>
         /// 获取备件名称的库存数量列表

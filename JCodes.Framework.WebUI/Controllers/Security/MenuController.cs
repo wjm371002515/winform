@@ -29,7 +29,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult CheckExcelColumns(string guid)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
 
             try
             {
@@ -37,7 +37,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 if (dt != null)
                 {
                     //检查列表是否包含必须的字段
-                    result.Success = DataTableHelper.ContainAllColumns(dt, columnString);
+                    result.ErrorCode = DataTableHelper.ContainAllColumns(dt, columnString)?0:1;
                 }
             }
             catch (Exception ex)
@@ -67,7 +67,6 @@ namespace JCodes.Framework.WebUI.Controllers
             if (table != null)
             {
                 #region 数据转换
-                int i = 1;
                 foreach (DataRow dr in table.Rows)
                 {
                     DateTime dtDefault = Convert.ToDateTime("1900-01-01");
@@ -77,13 +76,13 @@ namespace JCodes.Framework.WebUI.Controllers
                     info.Name = dr["显示名称"].ToString();
                     info.Seq = dr["排序"].ToString();
                     info.AuthGid = dr["功能ID"].ToString();
-                    info.IsVisable = dr["是否可见"].ToString().ToBoolean();
+                    info.IsVisable = Convert.ToInt16( dr["是否可见"] );
                     info.Url = dr["Web界面Url地址"].ToString();
                     info.WebIcon = dr["Web界面的菜单图标"].ToString();
                     info.SystemtypeId = dr["系统编号"].ToString();
 
                     info.CreatorId = CurrentUser.Id;
-                    info.CreateTime = DateTime.Now;
+                    info.CreatorTime = DateTime.Now;
                     info.EditorId = CurrentUser.Id;
                     info.LastUpdateTime = DateTime.Now;
 
@@ -103,7 +102,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult SaveExcelData(List<MenuInfo> list)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             if (list != null && list.Count > 0)
             {
                 #region 采用事务进行数据提交
@@ -117,7 +116,7 @@ namespace JCodes.Framework.WebUI.Controllers
                         foreach (MenuInfo detail in list)
                         {
                             //detail.Seq = seq++;//增加1
-                            detail.CreateTime = DateTime.Now;
+                            detail.CreatorTime = DateTime.Now;
                             detail.CreatorId = CurrentUser.Id;
                             detail.EditorId = CurrentUser.Id;
                             detail.LastUpdateTime = DateTime.Now;
@@ -125,7 +124,7 @@ namespace JCodes.Framework.WebUI.Controllers
                             BLLFactory<Menus>.Instance.Insert(detail, trans);
                         }
                         trans.Commit();
-                        result.Success = true;
+                        result.ErrorCode = 0;
                     }
                     catch (Exception ex)
                     {
@@ -211,7 +210,7 @@ namespace JCodes.Framework.WebUI.Controllers
             info.Gid = string.IsNullOrEmpty(info.Gid) ? Guid.NewGuid().ToString() : info.Gid;
 
             //子类对参数对象进行修改
-            info.CreateTime = DateTime.Now;
+            info.CreatorTime = DateTime.Now;
             info.EditorId = CurrentUser.Id;
 
             //由于界面上对父菜单的顶级选项为具体系统类型的OID，
@@ -242,7 +241,7 @@ namespace JCodes.Framework.WebUI.Controllers
         public override ActionResult FindWithPager()
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.ListKey);
+            base.CheckAuthorized(authorizeKeyInfo.ListKey);
 
             string where = GetPagerCondition();
             PagerInfo pagerInfo = GetPagerInfo();
@@ -393,10 +392,10 @@ namespace JCodes.Framework.WebUI.Controllers
             List<SystemTypeInfo> typeList = BLLFactory<SystemType>.Instance.GetAll();
             foreach (SystemTypeInfo typeInfo in typeList)
             {
-                JsTreeData pNode = new JsTreeData(typeInfo.OID, typeInfo.Name, "fa fa-home icon-state-warning icon-lg");
+                JsTreeData pNode = new JsTreeData(typeInfo.Gid, typeInfo.Name, "fa fa-home icon-state-warning icon-lg");
                 treeList.Add(pNode);
 
-                string systemType = typeInfo.OID;//系统标识ID
+                string systemType = typeInfo.Gid;//系统标识ID
 
                 //一般情况下，对Ribbon样式而言，一级菜单表示RibbonPage；二级菜单表示PageGroup;三级菜单才是BarButtonItem最终的菜单项。
                 List<MenuNodeInfo> menuList = BLLFactory<Menus>.Instance.GetTree(systemType);
@@ -428,7 +427,7 @@ namespace JCodes.Framework.WebUI.Controllers
         {
             if (info.Children.Count == 0)
             {
-                item.icon = "fa fa-file icon-state-warning icon-lg";
+                item.Icon = "fa fa-file icon-state-warning icon-lg";
             }
         } 
         #endregion

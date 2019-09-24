@@ -38,14 +38,14 @@ namespace JCodes.Framework.SQLServerDAL
 			PictureAlbumInfo info = new PictureAlbumInfo();
 			SmartDataReader reader = new SmartDataReader(dataReader);
 
-            info.Id = reader.GetInt32("Id");
+            /*info.Id = reader.GetInt32("Id");
             info.Pid = reader.GetInt32("Pid");
 			info.Name = reader.GetString("Name");
             info.Remark = reader.GetString("Remark");
             info.EditorId = reader.GetInt32("EditorId");
             info.LastUpdateTime = reader.GetDateTime("LastUpdateTime");
             info.CreatorId = reader.GetInt32("CreatorId");
-            info.CreatorTime = reader.GetDateTime("CreatorTime");
+            info.CreatorTime = reader.GetDateTime("CreatorTime");*/
 			
 			return info;
 		}
@@ -60,14 +60,14 @@ namespace JCodes.Framework.SQLServerDAL
 		    PictureAlbumInfo info = obj as PictureAlbumInfo;
 			Hashtable hash = new Hashtable();
 
-            hash.Add("Id", info.Id);
+            /*hash.Add("Id", info.Id);
             hash.Add("Pid", info.Pid);
  			hash.Add("Name", info.Name);
             hash.Add("Remark", info.Remark);
             hash.Add("EditorId", info.EditorId);
             hash.Add("LastUpdateTime", info.LastUpdateTime);
             hash.Add("CreatorId", info.CreatorId);
-            hash.Add("CreatorTime", info.CreatorTime);
+            hash.Add("CreatorTime", info.CreatorTime);*/
  				
 			return hash;
 		}
@@ -80,7 +80,7 @@ namespace JCodes.Framework.SQLServerDAL
         {
             Dictionary<string, string> dict = new Dictionary<string, string>();
             #region 添加别名解析
-            //dict.Add("ID", "编号");
+           /* //dict.Add("ID", "编号");
             dict.Add("Id", "");
             dict.Add("Pid", "父ID");
             dict.Add("Name", "名称");
@@ -88,7 +88,7 @@ namespace JCodes.Framework.SQLServerDAL
             dict.Add("EditorId", "编辑人");
             dict.Add("LastUpdateTime", "编辑时间");
             dict.Add("CreatorId", "创建人");
-            dict.Add("CreatorTime", "创建时间");
+            dict.Add("CreatorTime", "创建时间");*/
             #endregion
 
             return dict;

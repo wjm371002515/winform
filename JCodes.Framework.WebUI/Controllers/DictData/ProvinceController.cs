@@ -31,7 +31,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult CheckExcelColumns(string guid)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
 
             try
             {
@@ -39,7 +39,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 if (dt != null)
                 {
                     //检查列表是否包含必须的字段
-                    result.Success = DataTableHelper.ContainAllColumns(dt, columnString);
+                    result.ErrorCode = DataTableHelper.ContainAllColumns(dt, columnString)?0:1;
                 }
             }
             catch (Exception ex)
@@ -69,12 +69,9 @@ namespace JCodes.Framework.WebUI.Controllers
             if (table != null)
             {
                 #region 数据转换
-                int i = 1;
                 foreach (DataRow dr in table.Rows)
                 {
-                    bool converted = false;
-                    DateTime dtDefault = Convert.ToDateTime("1900-01-01");
-                    DateTime dt;                    
+                    DateTime dtDefault = Convert.ToDateTime("1900-01-01");                
                     ProvinceInfo info = new ProvinceInfo();
                     
                      info.ProvinceName = dr["省份名称"].ToString();
@@ -100,7 +97,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult SaveExcelData(List<ProvinceInfo> list)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             if (list != null && list.Count > 0)
             {
                 #region 采用事务进行数据提交
@@ -122,7 +119,7 @@ namespace JCodes.Framework.WebUI.Controllers
                             BLLFactory<Province>.Instance.Insert(detail, trans);
                         }
                         trans.Commit();
-                        result.Success = true;
+                        result.ErrorCode = 0;
                     }
                     catch (Exception ex)
                     {
@@ -220,7 +217,7 @@ namespace JCodes.Framework.WebUI.Controllers
         public override ActionResult FindWithPager()
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.ListKey);
+            base.CheckAuthorized(authorizeKeyInfo.ListKey);
 
             string where = GetPagerCondition();
             PagerInfo pagerInfo = GetPagerInfo();
@@ -255,7 +252,7 @@ namespace JCodes.Framework.WebUI.Controllers
             List<ProvinceInfo> provinceList = BLLFactory<Province>.Instance.GetAll();
             foreach (ProvinceInfo info in provinceList)
             {
-                JsTreeData item = new JsTreeData(info.ID, info.ProvinceName, "fa fa-file icon-state-warning icon-lg");
+                JsTreeData item = new JsTreeData(info.Id, info.ProvinceName, "fa fa-file icon-state-warning icon-lg");
                 pNode.children.Add(item);
             }
             return ToJsonContent(treeList);
@@ -267,12 +264,12 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult GetAllProvinceDictJson()
         {
-            List<CListItem> treeList = new List<CListItem>();
+            List<CDicKeyValue> treeList = new List<CDicKeyValue>();
 
             List<ProvinceInfo> provinceList = BLLFactory<Province>.Instance.GetAll();
             foreach (ProvinceInfo info in provinceList)
             {
-                CListItem item = new CListItem(info.ID.ToString(), info.ProvinceName);
+                CDicKeyValue item = new CDicKeyValue(info.Id, info.ProvinceName);
                 treeList.Add(item);
             }
             return ToJsonContent(treeList);
@@ -283,12 +280,12 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult GetAllProvinceNameDictJson()
         {
-            List<CListItem> treeList = new List<CListItem>();
+            List<CDicKeyValue> treeList = new List<CDicKeyValue>();
 
             List<ProvinceInfo> provinceList = BLLFactory<Province>.Instance.GetAll();
             foreach (ProvinceInfo info in provinceList)
             {
-                CListItem item = new CListItem(info.ID.ToString(), info.ProvinceName);
+                CDicKeyValue item = new CDicKeyValue(info.Id, info.ProvinceName);
                 treeList.Add(item);
             }
             return ToJsonContent(treeList);

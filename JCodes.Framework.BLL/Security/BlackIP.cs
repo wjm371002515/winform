@@ -28,27 +28,27 @@ namespace JCodes.Framework.BLL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public List<SimpleUserInfo> GetSimpleUserByBlackIP(string id)
+        public List<SimpleUserInfo> GetSimpleUserByBlackIP(Int32 id)
         {
             IBlackIP dal = baseDal as IBlackIP;
             string userIdList = "-1," + dal.GetUserIdList(id);
 
             return BLLFactory<User>.Instance.GetSimpleUsers(userIdList.Trim(','));
         }
-        
-        public void AddUser(int userID, string blackID)
+
+        public void AddUser(Int32 userID, Int32 blackID)
         {
             IBlackIP dal = baseDal as IBlackIP;
             dal.AddUser(userID, blackID);
         }
 
-        public void RemoveUser(int userID, string blackID)
+        public void RemoveUser(Int32 userID, Int32 blackID)
         {
             IBlackIP dal = baseDal as IBlackIP;
             dal.RemoveUser(userID, blackID);
         }
 
-        public void RemoveUserByBlackId(string blackID)
+        public void RemoveUserByBlackId(Int32 blackID)
         {
             IBlackIP dal = baseDal as IBlackIP;
             dal.RemoveUserByBlackId(blackID);

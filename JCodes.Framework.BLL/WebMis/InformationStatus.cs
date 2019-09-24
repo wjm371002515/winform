@@ -2,6 +2,7 @@ using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Entity;
 using JCodes.Framework.IDAL;
 using JCodes.Framework.jCodesenum;
+using System;
 
 namespace JCodes.Framework.BLL
 {
@@ -22,10 +23,10 @@ namespace JCodes.Framework.BLL
         /// <param name="InfoType">信息类型</param>
         /// <param name="InfoID">信息主键ID</param>
         /// <param name="Status">状态</param>
-        public void SetStatus(string UserID, InformationCategory InfoType, string InfoID, int Status)
+        public void SetStatus(Int32 userId, Int32 InfoType, Int32 InfoId, Int32 Status)
         {
             IInformationStatus dal = baseDal as IInformationStatus;
-            dal.SetStatus(UserID, InfoType, InfoID, Status);
+            dal.SetStatus(userId, InfoType, InfoId, Status);
         }
 
         /// <summary>

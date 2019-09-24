@@ -1,106 +1,214 @@
-﻿using DevExpress.XtraEditors.DXErrorProvider;
-using System;
-using System.Collections.Generic;
+﻿using System;
+using System.Runtime.Serialization;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-
+using DevExpress.XtraEditors.DXErrorProvider;
+using System.Collections.Generic;
 namespace JCodes.Framework.Entity
 {
-    public class DataTypeInfo : IDXDataErrorInfo
-    {
-        public DataTypeInfo()
-        { }
+	/// <summary>
+	/// 数据类型(DataTypeInfo)
+	/// 对象号: 100039
+	/// 备注信息: 
+	/// </summary>
+	[Serializable]
+	[DataContract]
+	public partial class DataTypeInfo : IDXDataErrorInfo
+	{
+		#region Field Members
 
-        private string guid;
+		/// <summary>
+		/// GUID对应的ID序号
+		/// </summary>
+		private String m_Gid = string.Empty;
 
-        [DisplayName("GUID")]
-        public string GUID
-        {
-            get { return guid; }
-            set { guid = value; }
-        }
+		/// <summary>
+		/// 名称
+		/// </summary>
+		private String m_Name = string.Empty;
 
-        /// <summary>
-        /// 类型名
-        /// </summary>
-        private string name;
+		/// <summary>
+		/// 中文名称
+		/// </summary>
+		private String m_ChineseName = string.Empty;
 
-        [DisplayName("类型名")]
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
+		/// <summary>
+		/// 标准类型
+		/// </summary>
+		private String m_StdType = string.Empty;
 
-        private string chineseName;
+		/// <summary>
+		/// 长度
+		/// </summary>
+		private String m_Length = string.Empty;
 
-        [DisplayName("类型名称")]
-        public string ChineseName
-        {
-            get { return chineseName; }
-            set { chineseName = value; }
-        }
+		/// <summary>
+		/// 精度
+		/// </summary>
+		private String m_Precision = string.Empty;
 
-        private string stdType;
+		/// <summary>
+		/// 备注
+		/// </summary>
+		private String m_Remark = string.Empty;
 
-        [DisplayName("标准类型")]
-        public string StdType
-        {
-            get { return stdType; }
-            set { stdType = value; }
-        }
+		/// <summary>
+		/// 用来保存行数据中字段名，错误信息
+		/// </summary>
+		private Dictionary<string, ErrorInfo> m_lstInfo;
+		#endregion
 
-        private string length;
+		#region Property Members
 
-        [DisplayName("长度")]
-        public string Length
-        {
-            get { return length; }
-            set { length = value; }
-        }
+		/// <summary>
+		/// GUID对应的ID序号
+		/// </summary>
+		[DataMember]
+		[DisplayName("GUID对应的ID序号")]
+		public virtual String Gid
+		{
+			get
+			{
+				return this.m_Gid;
+			}
+			set
+			{
+				this.m_Gid = value;
+			}
+		}
 
-        private string precision;
+		/// <summary>
+		/// 名称
+		/// </summary>
+		[DataMember]
+		[DisplayName("名称")]
+		public virtual String Name
+		{
+			get
+			{
+				return this.m_Name;
+			}
+			set
+			{
+				this.m_Name = value;
+			}
+		}
 
-        [DisplayName("精度")]
-        public string Precision
-        {
-            get { return precision; }
-            set { precision = value; }
-        }
+		/// <summary>
+		/// 中文名称
+		/// </summary>
+		[DataMember]
+		[DisplayName("中文名称")]
+		public virtual String ChineseName
+		{
+			get
+			{
+				return this.m_ChineseName;
+			}
+			set
+			{
+				this.m_ChineseName = value;
+			}
+		}
 
-        private string remark;
+		/// <summary>
+		/// 标准类型
+		/// </summary>
+		[DataMember]
+		[DisplayName("标准类型")]
+		public virtual String StdType
+		{
+			get
+			{
+				return this.m_StdType;
+			}
+			set
+			{
+				this.m_StdType = value;
+			}
+		}
 
-        [DisplayName("备注")]
-        public string Remark
-        {
-            get { return remark; }
-            set { remark = value; }
-        }
+		/// <summary>
+		/// 长度
+		/// </summary>
+		[DataMember]
+		[DisplayName("长度")]
+		public virtual String Length
+		{
+			get
+			{
+				return this.m_Length;
+			}
+			set
+			{
+				this.m_Length = value;
+			}
+		}
 
-        /// <summary>
-        /// 用来保存行数据中字段名，错误信息
-        /// </summary>
-        public Dictionary<string, ErrorInfo> lstInfo
-        {
-            get;
-            set;
-        }
+		/// <summary>
+		/// 精度
+		/// </summary>
+		[DataMember]
+		[DisplayName("精度")]
+		public virtual String Precision
+		{
+			get
+			{
+				return this.m_Precision;
+			}
+			set
+			{
+				this.m_Precision = value;
+			}
+		}
 
-        #region IDXDataErrorInfo Members
-        //<gridControl1>
-        void IDXDataErrorInfo.GetPropertyError(string propertyName, ErrorInfo info)
-        {
-            // 添加自定义错误
-            if (lstInfo != null && lstInfo.Count > 0 && lstInfo.ContainsKey(propertyName) && !string.IsNullOrEmpty(lstInfo[propertyName].ErrorText))
-            {
-                info.ErrorText = lstInfo[propertyName].ErrorText;
-                info.ErrorType = lstInfo[propertyName].ErrorType;
-            }
-        }
-        void IDXDataErrorInfo.GetError(ErrorInfo info) { }
-        //</gridControl1>
+		/// <summary>
+		/// 备注
+		/// </summary>
+		[DataMember]
+		[DisplayName("备注")]
+		public virtual String Remark
+		{
+			get
+			{
+				return this.m_Remark;
+			}
+			set
+			{
+				this.m_Remark = value;
+			}
+		}
 
-        #endregion
-    }
+		/// <summary>
+		/// 用来保存行数据中字段名，错误信息
+		/// </summary>
+		[DataMember]
+		public virtual Dictionary<string, ErrorInfo> lstInfo
+		{
+			get
+			{
+				return this.m_lstInfo;
+			}
+			set
+			{
+				this.m_lstInfo = value;
+			}
+		}
+
+		/// <summary>
+		/// 添加自定义错误
+		/// </summary>
+		void IDXDataErrorInfo.GetPropertyError(string propertyName, ErrorInfo info)
+		{
+			
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		void IDXDataErrorInfo.GetError(ErrorInfo info)
+		{
+			
+		}
+		#endregion
+	}
 }

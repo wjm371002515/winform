@@ -1,132 +1,176 @@
-using System;
-using System.Xml.Serialization;
+﻿using System;
 using System.Runtime.Serialization;
+using System.ComponentModel;
 
 namespace JCodes.Framework.Entity
 {
-    [Serializable]
-    [DataContract]
-    public class DictTypeInfo : BaseEntity
-    {    
-        #region Field Members
+	/// <summary>
+	/// 字典类型信息(DictTypeInfo)
+	/// 对象号: 100017
+	/// 备注信息: 
+	/// </summary>
+	[Serializable]
+	[DataContract]
+	public partial class DictTypeInfo : BaseEntity
+	{
+		#region Field Members
 
-        private Int32 m_Id = 0;         
-        private string m_Name = ""; //字典类型名称          
-        private string m_Remark = ""; //备注说明          
-        private string m_Seq = ""; //排序          
-        private Int32 m_EditorId; //编辑者          
-        private DateTime m_LastUpdated = System.DateTime.Now; //编辑时间   
-        private Int32 m_Pid = 0;//字典大类
+		/// <summary>
+		/// ID序号
+		/// </summary>
+		private Int32 m_Id = 0;
 
+		/// <summary>
+		/// 名称
+		/// </summary>
+		private String m_Name = string.Empty;
 
-        #endregion
+		/// <summary>
+		/// 备注
+		/// </summary>
+		private String m_Remark = string.Empty;
 
-        #region Property Members
+		/// <summary>
+		/// 排序
+		/// </summary>
+		private String m_Seq = string.Empty;
 
-        [DataMember]
-        public virtual Int32 Id
-        {
-            get
-            {
-                return this.m_Id;
-            }
-            set
-            {
-                this.m_Id = value;
-            }
-        }
+		/// <summary>
+		/// 编辑人编号
+		/// </summary>
+		private Int32 m_EditorId = 0;
 
-        /// <summary>
-        /// 字典类型名称
-        /// </summary>
-        [DataMember]
-        public virtual string Name
-        {
-            get
-            {
-                return this.m_Name;
-            }
-            set
-            {
-                this.m_Name = value;
-            }
-        }
+		/// <summary>
+		/// 最后更新时间
+		/// </summary>
+		private DateTime m_LastUpdateTime = DateTime.Now;
 
-        /// <summary>
-        /// 备注说明
-        /// </summary>
-        [DataMember]
-        public virtual string Remark
-        {
-            get
-            {
-                return this.m_Remark;
-            }
-            set
-            {
-                this.m_Remark = value;
-            }
-        }
+		/// <summary>
+		/// 父节点ID序号
+		/// </summary>
+		private Int32 m_Pid = 0;
+		#endregion
 
-        /// <summary>
-        /// 排序
-        /// </summary>
-        [DataMember]
-        public virtual string Seq
-        {
-            get
-            {
-                return this.m_Seq;
-            }
-            set
-            {
-                this.m_Seq = value;
-            }
-        }
+		#region Property Members
 
-        /// <summary>
-        /// 编辑者
-        /// </summary>
-        [DataMember]
-        public virtual Int32 EditorId
-        {
-            get
-            {
-                return this.m_EditorId;
-            }
-            set
-            {
-                this.m_EditorId = value;
-            }
-        }
+		/// <summary>
+		/// ID序号
+		/// </summary>
+		[DataMember]
+		[DisplayName("ID序号")]
+		public virtual Int32 Id
+		{
+			get
+			{
+				return this.m_Id;
+			}
+			set
+			{
+				this.m_Id = value;
+			}
+		}
 
-        /// <summary>
-        /// 编辑时间
-        /// </summary>
-        [DataMember]
-        public virtual DateTime LastUpdated
-        {
-            get
-            {
-                return this.m_LastUpdated;
-            }
-            set
-            {
-                this.m_LastUpdated = value;
-            }
-        }
+		/// <summary>
+		/// 名称
+		/// </summary>
+		[DataMember]
+		[DisplayName("名称")]
+		public virtual String Name
+		{
+			get
+			{
+				return this.m_Name;
+			}
+			set
+			{
+				this.m_Name = value;
+			}
+		}
 
-        /// <summary>
-        /// 字典大类
-        /// </summary>
-        [DataMember]
-        public Int32 Pid
-        {
-            get { return m_Pid; }
-            set { m_Pid = value; }
-        }
+		/// <summary>
+		/// 备注
+		/// </summary>
+		[DataMember]
+		[DisplayName("备注")]
+		public virtual String Remark
+		{
+			get
+			{
+				return this.m_Remark;
+			}
+			set
+			{
+				this.m_Remark = value;
+			}
+		}
 
-        #endregion
+		/// <summary>
+		/// 排序
+		/// </summary>
+		[DataMember]
+		[DisplayName("排序")]
+		public virtual String Seq
+		{
+			get
+			{
+				return this.m_Seq;
+			}
+			set
+			{
+				this.m_Seq = value;
+			}
+		}
 
-    }
+		/// <summary>
+		/// 编辑人编号
+		/// </summary>
+		[DataMember]
+		[DisplayName("编辑人编号")]
+		public virtual Int32 EditorId
+		{
+			get
+			{
+				return this.m_EditorId;
+			}
+			set
+			{
+				this.m_EditorId = value;
+			}
+		}
+
+		/// <summary>
+		/// 最后更新时间
+		/// </summary>
+		[DataMember]
+		[DisplayName("最后更新时间")]
+		public virtual DateTime LastUpdateTime
+		{
+			get
+			{
+				return this.m_LastUpdateTime;
+			}
+			set
+			{
+				this.m_LastUpdateTime = value;
+			}
+		}
+
+		/// <summary>
+		/// 父节点ID序号
+		/// </summary>
+		[DataMember]
+		[DisplayName("父节点ID序号")]
+		public virtual Int32 Pid
+		{
+			get
+			{
+				return this.m_Pid;
+			}
+			set
+			{
+				this.m_Pid = value;
+			}
+		}
+		#endregion
+	}
 }

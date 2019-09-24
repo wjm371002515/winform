@@ -114,7 +114,7 @@ namespace JCodes.Framework.AddIn.Dictionary
         private void SetInfo(DistrictInfo info)
         {
             info.DistrictName = this.txtDistrict.Text;
-            info.CityID = Convert.ToInt32(this.txtCity.Tag);
+            info.CityId = Convert.ToInt32(this.txtCity.Tag);
 
             info.CurrentLoginUserId = LoginUserInfo.Id;
         }

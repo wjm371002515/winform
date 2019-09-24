@@ -462,7 +462,7 @@ namespace JCodes.Framework.AddIn.Proj
                         // 将节点转换为元素，便于得到节点的属性值
                         XmlElement xe = (XmlElement)xn1;
                         // 得到Type和ISBN两个属性的属性值
-                        dataTypeInfo.GUID = xe.GetAttribute("guid").ToString();
+                        dataTypeInfo.Gid= xe.GetAttribute("gid").ToString();
 
                         // 得到DataTypeInfo节点的所有子节点
                         XmlNodeList xnl0 = xe.ChildNodes;
@@ -572,7 +572,7 @@ namespace JCodes.Framework.AddIn.Proj
                             // 将节点转换为元素，便于得到节点的属性值
                             XmlElement xe = (XmlElement)xn1;
 
-                            tablefieldInfo.GUID = xe.GetAttribute("guid").ToString();
+                            tablefieldInfo.Gid = xe.GetAttribute("gid").ToString();
 
                             // 得到DataTypeInfo节点的所有子节点
                             XmlNodeList xnl0 = xe.ChildNodes;
@@ -583,13 +583,13 @@ namespace JCodes.Framework.AddIn.Proj
                                 {
                                     tablefieldInfo.FieldName = stdFieldInfoList[i].Name;
                                     tablefieldInfo.ChineseName = stdFieldInfoList[i].ChineseName;
-                                    tablefieldInfo.FieldType = stdFieldInfoList[i].DataType;
+                                    tablefieldInfo.DataType = stdFieldInfoList[i].DataType;
                                     tablefieldInfo.FieldInfo = stdFieldInfoList[i].DictNameLst;
                                     break;
                                 }
                             }
 
-                            tablefieldInfo.IsNull = xnl0.Item(1).InnerText == "0" ? false : true;
+                            tablefieldInfo.IsNull = (short)(xnl0.Item(1).InnerText == "0" ? 0 : 1);
                             tablefieldInfo.Remark = xnl0.Item(2).InnerText;
                             tablefieldInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
                             FieldsInfoLst.Add(tablefieldInfo);
@@ -612,13 +612,13 @@ namespace JCodes.Framework.AddIn.Proj
 
                             // 将节点转换为元素，便于得到节点的属性值
                             XmlElement xe = (XmlElement)xn1;
-                            tableindexsInfo.GUID = xe.GetAttribute("guid").ToString();
+                            tableindexsInfo.Gid = xe.GetAttribute("gid").ToString();
 
                             // 得到DataTypeInfo节点的所有子节点
                             XmlNodeList xnl0 = xe.ChildNodes;
                             tableindexsInfo.IndexName = xnl0.Item(0).InnerText;
                             tableindexsInfo.IndexFieldLst = xnl0.Item(1).InnerText;
-                            tableindexsInfo.ConstraintType = constrainttypelst[xnl0.Item(2).InnerText];
+                            tableindexsInfo.ConstraintType = Convert.ToInt16( constrainttypelst[xnl0.Item(2).InnerText] );
                             tableindexsInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
                             IndexsInfoLst.Add(tableindexsInfo);
                         }
@@ -742,11 +742,11 @@ namespace JCodes.Framework.AddIn.Proj
                             {
                                 DictDataInfo dicdetailInfo = new DictDataInfo();
                                 var dNode = ((XmlElement)node).ChildNodes;
-                                dicdetailInfo.Value = dNode.Item(0).InnerText;
+                                dicdetailInfo.DicttypeValue = dNode.Item(0).InnerText.ToInt32();
                                 dicdetailInfo.Name = dNode.Item(1).InnerText;
                                 dicdetailInfo.Seq = dNode.Item(2).InnerText;
                                 dicdetailInfo.Remark = dNode.Item(3).InnerText;
-                                dicdetailInfo.DicttypeID = dictInfo.Id;
+                                dicdetailInfo.DicttypeId = dictInfo.Id;
 
                                 dictDetailInfoList.Add(dicdetailInfo);
                             }
@@ -793,16 +793,16 @@ namespace JCodes.Framework.AddIn.Proj
                         menuinfo.Icon = xnl0.Item(3).InnerText;
                         menuinfo.Seq = xnl0.Item(4).InnerText;
                         menuinfo.AuthGid = xnl0.Item(5).InnerText;
-                        menuinfo.IsVisable = Convert.ToInt32(xnl0.Item(6).InnerText) == Const.Num_Zero ? false : true;
+                        menuinfo.IsVisable = Convert.ToInt16(xnl0.Item(6).InnerText);
                         menuinfo.WinformClass = xnl0.Item(7).InnerText;
                         menuinfo.Url = xnl0.Item(8).InnerText;
                         menuinfo.WebIcon = xnl0.Item(9).InnerText;
                         menuinfo.SystemtypeId = xnl0.Item(10).InnerText;
                         menuinfo.CreatorId = Convert.ToInt32( xnl0.Item(11).InnerText);
-                        menuinfo.CreateTime = Convert.ToDateTime( xnl0.Item(12).InnerText);
+                        menuinfo.CreatorTime = Convert.ToDateTime( xnl0.Item(12).InnerText);
                         menuinfo.EditorId = Convert.ToInt32(xnl0.Item(13).InnerText);
                         menuinfo.LastUpdateTime  = Convert.ToDateTime( xnl0.Item(14).InnerText);
-                        menuinfo.IsDelete = Convert.ToInt32(xnl0.Item(15).InnerText) == Const.Num_Zero ? false : true;
+                        menuinfo.IsDelete = Convert.ToInt16(xnl0.Item(15).InnerText);
                         menuInfolst.Add(menuinfo);
                     }
 
@@ -830,11 +830,11 @@ namespace JCodes.Framework.AddIn.Proj
 
                         // 得到DataTypeInfo节点的所有子节点
                         XmlNodeList xnl0 = xe.ChildNodes;
-                        functioninfo.ID = xnl0.Item(0).InnerText;
-                        functioninfo.PID = xnl0.Item(1).InnerText;
+                        functioninfo.Gid = xnl0.Item(0).InnerText;
+                        functioninfo.Pgid = xnl0.Item(1).InnerText;
                         functioninfo.Name = xnl0.Item(2).InnerText;
-                        functioninfo.FunctionId = xnl0.Item(3).InnerText;
-                        functioninfo.SystemType_ID = xnl0.Item(4).InnerText;
+                        functioninfo.DllPath = xnl0.Item(3).InnerText;
+                        functioninfo.SystemtypeId = xnl0.Item(4).InnerText;
                         functioninfo.Seq = xnl0.Item(5).InnerText;
                         functionInfolst.Add(functioninfo);
                     }

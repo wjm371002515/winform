@@ -47,7 +47,7 @@ namespace JCodes.Framework.SQLServerDAL
         {
             UserInfo info = new UserInfo();
             SmartDataReader reader = new SmartDataReader(dataReader);
-            info.Id = reader.GetInt32("Id");
+            /*info.Id = reader.GetInt32("Id");
             info.UserCode = reader.GetString("UserCode");
             info.Name = reader.GetString("Name");
             info.FullName = reader.GetString("FullName");
@@ -86,7 +86,7 @@ namespace JCodes.Framework.SQLServerDAL
             info.LastLoginIp = reader.GetString("LastLoginIp");
             info.LastLoginMac = reader.GetString("LastLoginMac");
             info.LastLoginTime = reader.GetDateTime("LastLoginTime");
-            info.LastChangePwdTime = reader.GetDateTime("LastChangePwdTime");
+            info.LastChangePwdTime = reader.GetDateTime("LastChangePwdTime");*/
 
             return info;
         }
@@ -101,7 +101,7 @@ namespace JCodes.Framework.SQLServerDAL
             UserInfo info = obj as UserInfo;
             Hashtable hash = new Hashtable();
 
-            hash.Add("UserCode", info.UserCode);
+            /*hash.Add("UserCode", info.UserCode);
             hash.Add("Name", info.Name);
             hash.Add("FullName", info.FullName);
             hash.Add("Password", info.Password);
@@ -138,7 +138,7 @@ namespace JCodes.Framework.SQLServerDAL
             hash.Add("LastLoginIp", info.LastLoginIp);
             hash.Add("LastLoginMac", info.LastLoginMac);
             hash.Add("LastLoginTime", info.LastLoginTime);
-            hash.Add("LastChangePwdTime", info.LastChangePwdTime);
+            hash.Add("LastChangePwdTime", info.LastChangePwdTime);*/
 
             return hash;
         }
@@ -151,7 +151,7 @@ namespace JCodes.Framework.SQLServerDAL
         {
             Dictionary<string, string> dict = new Dictionary<string, string>();
             #region 添加别名解析
-            dict.Add("Id", "ID序号");
+            /*dict.Add("Id", "ID序号");
             dict.Add("Pid", "父节点ID序号");
             dict.Add("UserCode", "用户编码");
             dict.Add("Name", "名称");
@@ -189,7 +189,7 @@ namespace JCodes.Framework.SQLServerDAL
             dict.Add("LastLoginIp", "最后登录IP");
             dict.Add("LastLoginMac", "最后登录Mac");
             dict.Add("LastLoginTime", "最后登录日期");
-            dict.Add("LastChangePwdTime", "最后修改密码时间");
+            dict.Add("LastChangePwdTime", "最后修改密码时间");*/
             #endregion
 
             return dict;

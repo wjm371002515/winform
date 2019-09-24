@@ -1,126 +1,144 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Runtime.Serialization;
-
+using System.ComponentModel;
+using System.Collections.Generic;
 namespace JCodes.Framework.Entity
 {
-    /// <summary>
-    /// 用于各个模块传递的联系信息
-    /// </summary>
-    [DataContract]
-    public class NotifyContactInfo
-    {
-        /// <summary>
-        /// ID
-        /// </summary>
-        [DataMember]
-        public string ID { get; set; }
+	/// <summary>
+	/// 用于各个模块传递的联系信息(NotifyContactInfo)
+	/// 对象号: 100027
+	/// 备注信息: 
+	/// </summary>
+	[Serializable]
+	[DataContract]
+	public partial class NotifyContactInfo
+	{
+		#region Field Members
 
-        /// <summary>
-        /// 联系名称
-        /// </summary>
-        [DataMember]
-        public string ContactName { get; set; }
+		/// <summary>
+		/// ID序号
+		/// </summary>
+		private Int32 m_Id = 0;
 
-        /// <summary>
-        /// 手机号码
-        /// </summary>
-        [DataMember]
-        public string Mobile { get; set; }
+		/// <summary>
+		/// 联系人
+		/// </summary>
+		private String m_Contacts = string.Empty;
 
-        /// <summary>
-        /// 电子邮件
-        /// </summary>
-        [DataMember]
-        public string Email { get; set; }
+		/// <summary>
+		/// 手机
+		/// </summary>
+		private String m_MobilePhone = string.Empty;
 
-        /// <summary>
-        /// 备注信息
-        /// </summary>
-        [DataMember]
-        public string Note { get; set; }
+		/// <summary>
+		/// Email邮箱
+		/// </summary>
+		private String m_Email = string.Empty;
 
-        /// <summary>
-        /// 默认构造函数
-        /// </summary>
-        public NotifyContactInfo() { }
+		/// <summary>
+		/// 备注
+		/// </summary>
+		private String m_Remark = string.Empty;
+		#endregion
 
-        /// <summary>
-        /// 带参数构造函数
-        /// </summary>
-        public NotifyContactInfo(string id, string contactName, string mobile, string email = "", string note = "")
-        {
-            this.ID = id;
-            this.ContactName = contactName;
-            this.Mobile = mobile;
+		#region Property Members
+
+		/// <summary>
+		/// ID序号
+		/// </summary>
+		[DataMember]
+		[DisplayName("ID序号")]
+		public virtual Int32 Id
+		{
+			get
+			{
+				return this.m_Id;
+			}
+			set
+			{
+				this.m_Id = value;
+			}
+		}
+
+		/// <summary>
+		/// 联系人
+		/// </summary>
+		[DataMember]
+		[DisplayName("联系人")]
+		public virtual String Contacts
+		{
+			get
+			{
+				return this.m_Contacts;
+			}
+			set
+			{
+				this.m_Contacts = value;
+			}
+		}
+
+		/// <summary>
+		/// 手机
+		/// </summary>
+		[DataMember]
+		[DisplayName("手机")]
+		public virtual String MobilePhone
+		{
+			get
+			{
+				return this.m_MobilePhone;
+			}
+			set
+			{
+				this.m_MobilePhone = value;
+			}
+		}
+
+		/// <summary>
+		/// Email邮箱
+		/// </summary>
+		[DataMember]
+		[DisplayName("Email邮箱")]
+		public virtual String Email
+		{
+			get
+			{
+				return this.m_Email;
+			}
+			set
+			{
+				this.m_Email = value;
+			}
+		}
+
+		/// <summary>
+		/// 备注
+		/// </summary>
+		[DataMember]
+		[DisplayName("备注")]
+		public virtual String Remark
+		{
+			get
+			{
+				return this.m_Remark;
+			}
+			set
+			{
+				this.m_Remark = value;
+			}
+		}
+
+		/// <summary>
+		/// 带参构造函数
+		/// </summary>
+		public  NotifyContactInfo(Int32 id, string contactName, string mobile, string email = "", string remark = "")
+		{
+			this.Id = id;
+            this.Contacts = contactName;
+            this.MobilePhone = mobile;
             this.Email = email;
-            this.Note = note;
-        }
-    }
-    
-    /// <summary>
-    /// 用于各个模块传递的分组联系人信息
-    /// </summary>
-    [DataContract]
-    public class NotifyGroupInfo
-    {
-        /// <summary>
-        /// 通讯录分类
-        /// </summary>
-        [DataMember]
-        public string Category { get; set; }
-
-        /// <summary>
-        /// 联系人列表
-        /// </summary>
-        [DataMember]
-        public List<NotifyContactInfo> ContactList { get; set; }
-
-        /// <summary>
-        /// 默认构造函数
-        /// </summary>
-        public NotifyGroupInfo()
-        {
-            this.ContactList = new List<NotifyContactInfo>();
-        }
-    }
-    
-    /// <summary>
-    /// 用于各个模块传递的分组联系人信息节点
-    /// </summary>
-    [DataContract]
-    public class NotifyNodeInfo : NotifyGroupInfo
-    {
-        private List<NotifyNodeInfo> m_Children = new List<NotifyNodeInfo>();
-
-        /// <summary>
-        /// 子分组实体类对象集合
-        /// </summary>
-        [DataMember]
-        public List<NotifyNodeInfo> Children
-        {
-            get { return m_Children; }
-            set { m_Children = value; }
-        }
-
-        /// <summary>
-        /// 默认构造函数
-        /// </summary>
-        public NotifyNodeInfo()
-        {
-            this.m_Children = new List<NotifyNodeInfo>();
-        }
-
-        /// <summary>
-        /// 参数构造函数
-        /// </summary>
-        /// <param name="info">NotifyGroupInfo对象</param>
-        public NotifyNodeInfo(NotifyGroupInfo info)
-        {
-            base.Category = info.Category;
-            base.ContactList = info.ContactList;
-        }
-    }
+            this.Remark = remark;
+		}
+		#endregion
+	}
 }

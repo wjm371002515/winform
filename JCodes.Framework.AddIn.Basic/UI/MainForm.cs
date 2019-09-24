@@ -218,10 +218,10 @@ namespace JCodes.Framework.AddIn.Basic
                 functionDict.Clear();
                 foreach (FunctionInfo functionInfo in list)
                 {
-                    if (!functionDict.ContainsKey(functionInfo.FunctionId))
+                    /*if (!functionDict.ContainsKey(functionInfo.FunctionId))
                     {
                         functionDict.Add(functionInfo.FunctionId, functionInfo.Name);
-                    }
+                    }*/
                 }
             }
             #endregion

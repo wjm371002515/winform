@@ -34,7 +34,7 @@ namespace JCodes.Framework.AddIn.Proj
 
         private Dictionary<string, string> lstName = new Dictionary<string, string>();
 
-        private string xmlModel = "<id>{0}</id><pid>{1}</pid><name>{2}</name><icon>{3}</icon><seq>{4}</seq><functionid>{5}</functionid><visible>{6}</visible><winformtype>{7}</winformtype><url>{8}</url><webicon>{9}</webicon><systemtype_id>{10}</systemtype_id><creator_id>{11}</creator_id><createtime>{12}</createtime><editor_id>{13}</editor_id><edittime>{14}</edittime><is_deleted>{15}</is_deleted>";
+        private string xmlModel = "<gid>{0}</gid><pgid>{1}</pgid><name>{2}</name><icon>{3}</icon><seq>{4}</seq><authgid>{5}</authgid><isvisable>{6}</isvisable><winformclass>{7}</winformclass><url>{8}</url><webicon>{9}</webicon><systemtypeid>{10}</systemtypeid><creatorid>{11}</creatorid><creatortime>{12}</creatortime><editorid>{13}</editorid><lastupdatetime>{14}</lastupdatetime><isdelete>{15}</isdelete>";
 
         private Int32 _errCount = 0;
         private List<CListItem> _errlst = new List<CListItem>();
@@ -99,16 +99,16 @@ namespace JCodes.Framework.AddIn.Proj
                 menuInfo.Icon = xnl0.Item(3).InnerText;
                 menuInfo.Seq = xnl0.Item(4).InnerText;
                 menuInfo.AuthGid = xnl0.Item(5).InnerText;
-                menuInfo.IsVisable = xnl0.Item(6).InnerText == Const.Num_One.ToString() ? true : false;
+                menuInfo.IsVisable = (short)(xnl0.Item(6).InnerText == Const.Num_One.ToString() ? 1 : 0);
                 menuInfo.WinformClass = xnl0.Item(7).InnerText;
                 menuInfo.Url = xnl0.Item(8).InnerText;
                 menuInfo.WebIcon = xnl0.Item(9).InnerText;
                 menuInfo.SystemtypeId = xnl0.Item(10).InnerText;
                 menuInfo.CreatorId =  string.IsNullOrEmpty(xnl0.Item(11).InnerText) ? 0 : xnl0.Item(11).InnerText.ToInt32();
-                menuInfo.CreateTime = string.IsNullOrEmpty(xnl0.Item(12).InnerText) ? DateTimeHelper.GetServerDateTime2() : Convert.ToDateTime( xnl0.Item(12).InnerText);
+                menuInfo.CreatorTime = string.IsNullOrEmpty(xnl0.Item(12).InnerText) ? DateTimeHelper.GetServerDateTime2() : Convert.ToDateTime( xnl0.Item(12).InnerText);
                 menuInfo.EditorId = string.IsNullOrEmpty(xnl0.Item(13).InnerText) ? 0 : xnl0.Item(13).InnerText.ToInt32();
                 menuInfo.LastUpdateTime = string.IsNullOrEmpty(xnl0.Item(14).InnerText) ? DateTimeHelper.GetServerDateTime2() : Convert.ToDateTime(xnl0.Item(14).InnerText);
-                menuInfo.IsDelete = xnl0.Item(15).InnerText == Const.Num_One.ToString() ? true : false;
+                menuInfo.IsDelete = (short)(xnl0.Item(15).InnerText == Const.Num_One.ToString() ? 1 : 0);
                 menuInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
 
                 menuInfoList.Add(menuInfo);
@@ -465,16 +465,16 @@ namespace JCodes.Framework.AddIn.Proj
                     sysMenuInfo.Icon = dt.Rows[i][1].ToString();
                     sysMenuInfo.Seq = dt.Rows[i][2].ToString();
                     sysMenuInfo.AuthGid = dt.Rows[i][3].ToString();
-                    sysMenuInfo.IsVisable = dt.Rows[i][4].ToString() == "是" ? true : false;
+                    sysMenuInfo.IsVisable = (short)(dt.Rows[i][4].ToString() == "是" ? 1 : 0);
                     sysMenuInfo.WinformClass = dt.Rows[i][5].ToString();
                     sysMenuInfo.Url = dt.Rows[i][6].ToString();
                     sysMenuInfo.WebIcon = dt.Rows[i][7].ToString();
                     sysMenuInfo.SystemtypeId = dt.Rows[i][8].ToString();
                     sysMenuInfo.CreatorId = Convert.ToInt32(dt.Rows[i][9]);
-                    sysMenuInfo.CreateTime = Convert.ToDateTime( dt.Rows[i][10]);
+                    sysMenuInfo.CreatorTime = Convert.ToDateTime( dt.Rows[i][10]);
                     sysMenuInfo.EditorId =Convert.ToInt32( dt.Rows[i][11]);
                     sysMenuInfo.LastUpdateTime = Convert.ToDateTime(dt.Rows[i][12]);
-                    sysMenuInfo.IsDelete = dt.Rows[i][13].ToString() == "是" ? true : false;
+                    sysMenuInfo.IsDelete = (short)(dt.Rows[i][13].ToString() == "是" ? 1 : 0);
                     sysMenuInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
 
                     if ((i + 1) < dt.Rows.Count && dt.Rows[i][0].ToString().LastIndexOf("﹂") < dt.Rows[i + 1][0].ToString().LastIndexOf("﹂"))
@@ -495,7 +495,7 @@ namespace JCodes.Framework.AddIn.Proj
                     addRows++;
 
                     lstsysMenuInfo.Add(sysMenuInfo);
-                    xmlhelper.InsertElement("datatype/dataitem", "item", string.Format(xmlModel, sysMenuInfo.Gid, sysMenuInfo.Pgid, sysMenuInfo.Name, sysMenuInfo.Icon, sysMenuInfo.Seq, sysMenuInfo.AuthGid, sysMenuInfo.IsVisable == true ? Const.Num_One.ToString() : Const.Num_Zero.ToString(), sysMenuInfo.WinformClass, sysMenuInfo.Url, sysMenuInfo.WebIcon, sysMenuInfo.SystemtypeId, sysMenuInfo.CreatorId, sysMenuInfo.CreateTime, sysMenuInfo.EditorId, sysMenuInfo.LastUpdateTime, sysMenuInfo.IsDelete == true ? Const.Num_One.ToString() : Const.Num_Zero.ToString()));
+                    xmlhelper.InsertElement("datatype/dataitem", "item", string.Format(xmlModel, sysMenuInfo.Gid, sysMenuInfo.Pgid, sysMenuInfo.Name, sysMenuInfo.Icon, sysMenuInfo.Seq, sysMenuInfo.AuthGid, sysMenuInfo.IsVisable, sysMenuInfo.WinformClass, sysMenuInfo.Url, sysMenuInfo.WebIcon, sysMenuInfo.SystemtypeId, sysMenuInfo.CreatorId, sysMenuInfo.CreatorTime, sysMenuInfo.EditorId, sysMenuInfo.LastUpdateTime, sysMenuInfo.IsDelete));
                     xmlhelper.Save(false);
                     
                 }
@@ -555,8 +555,8 @@ namespace JCodes.Framework.AddIn.Proj
             {
                 menuInfo.Gid = Guid.NewGuid().ToString();
                 menuInfo.Pgid = Const.Num_MinusOne.ToString();
-                menuInfo.IsDelete = false;
-                menuInfo.IsVisable = true;
+                menuInfo.IsDelete = 0;
+                menuInfo.IsVisable = 1;
                 menuInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
                 treelstMenu.FocusedNode = treelstMenu.AppendNode(menuInfo, null);
                 treelstMenu.FocusedNode.SetValue("Gid", menuInfo.Gid);
@@ -569,8 +569,8 @@ namespace JCodes.Framework.AddIn.Proj
             {
                 menuInfo.Gid = Guid.NewGuid().ToString();
                 menuInfo.Pgid = treelstMenu.FocusedNode.GetValue("Pgid").ToString();
-                menuInfo.IsDelete = false;
-                menuInfo.IsVisable = true;
+                menuInfo.IsDelete = 0;
+                menuInfo.IsVisable = 1;
                 menuInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
                 treelstMenu.FocusedNode = treelstMenu.AppendNode(menuInfo, treelstMenu.FocusedNode.ParentNode);
                 treelstMenu.FocusedNode.SetValue("Gid", menuInfo.Gid);
@@ -596,8 +596,8 @@ namespace JCodes.Framework.AddIn.Proj
                 SysMenuInfo menuInfo = new SysMenuInfo();
                 menuInfo.Gid = Guid.NewGuid().ToString();
                 menuInfo.Pgid = treelstMenu.FocusedNode.GetValue("Gid").ToString();
-                menuInfo.IsDelete = false;
-                menuInfo.IsVisable = true;
+                menuInfo.IsDelete = 0;
+                menuInfo.IsVisable = 1;
                 menuInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
                 treelstMenu.FocusedNode = treelstMenu.AppendNode(null, treelstMenu.FocusedNode);
                 treelstMenu.FocusedNode.SetValue("Gid", menuInfo.Gid);

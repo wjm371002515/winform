@@ -160,7 +160,7 @@ namespace JCodes.Framework.CommonControl.AdvanceSearch
                     List<CListItem> list = new List<CListItem>();
                     foreach (string item in listItems)
                     {
-                        list.Add(new CListItem(item));
+                        list.Add(new CListItem(item, item));
                     }
                     listItemDict.Add(key.ToUpper(), list);
                 }
@@ -188,7 +188,7 @@ namespace JCodes.Framework.CommonControl.AdvanceSearch
                             str = str.Trim();
                             if (!string.IsNullOrEmpty(str))
                             {
-                                list.Add(new CListItem(str));
+                                list.Add(new CListItem(str, str));
                             }
                         }
                     }

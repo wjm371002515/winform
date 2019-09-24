@@ -107,7 +107,7 @@ namespace JCodes.Framework.AddIn._50Go
                 if (info != null)
                 {
                     txtID.Text = Id.ToString();
-                    CouponCategoryInfo info2 = BLLFactory<CouponCategory>.Instance.FindByID(info.CouponCategoryID);
+                    CouponCategoryInfo info2 = BLLFactory<CouponCategory>.Instance.FindByID(info.CouponCategoryId);
                     if (info2 != null)
                     {
                         txtCategory.SelectedText = info2.GeneralCode + "-" + info2.Name;
@@ -147,8 +147,8 @@ namespace JCodes.Framework.AddIn._50Go
                 info.CreatorId = Portal.gc.UserInfo.Id;
                 info.CreatorTime = DateTimeHelper.GetServerDateTime2();
             }
-            info.CouponCategoryID = Convert.ToInt32((txtCategory.SelectedItem as CListItem).Value);
-            CouponCategoryInfo couponCategoryInfo = BLLFactory<CouponCategory>.Instance.FindByID(info.CouponCategoryID);
+            info.CouponCategoryId = Convert.ToInt32((txtCategory.SelectedItem as CListItem).Value);
+            CouponCategoryInfo couponCategoryInfo = BLLFactory<CouponCategory>.Instance.FindByID(info.CouponCategoryId);
             if (couponCategoryInfo != null)
             {
                 info.CouponCategoryName = couponCategoryInfo.Name;

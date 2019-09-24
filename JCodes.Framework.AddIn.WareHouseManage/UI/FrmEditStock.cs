@@ -31,7 +31,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
         {
             if (!string.IsNullOrEmpty(ID))
             {
-                StockInfo info = BLLFactory<Stock>.Instance.FindByID(ID);
+                WareInfo info = BLLFactory<Stock>.Instance.FindByID(ID);
                 if (info != null)
                 {
                     try
@@ -40,18 +40,18 @@ namespace JCodes.Framework.AddIn.WareHouseManage
                         if (detailInfo != null)
                         {
                             txtItemNo.Text = info.ItemNo;
-                            txtItemName.Text = info.ItemName;
-                            txtStockQuantity.Text = info.StockQuantity.ToString();
-                            txtStockMoney.Text = (info.StockQuantity * detailInfo.Price).ToString("f2");
-                            txtHighWarning.Text = info.HighWarning.ToString();
-                            txtLowWarning.Text = info.LowWarning.ToString();
-                            txtNote.Text = info.Note;
-                            txtItemType.Text = info.ItemType;
-                            txtBigType.Text = info.ItemBigType;
+                            txtItemName.Text = info.Name;
+                            txtStockQuantity.Text = info.Amount.ToString();
+                            txtStockMoney.Text = (info.Amount * detailInfo.Price).ToString("f2");
+                            txtHighWarning.Text = info.HighAmountWarning.ToString();
+                            txtLowWarning.Text = info.LowAmountWarning.ToString();
+                            txtNote.Text = info.Remark;
+                            txtItemType.Text = info.ItemType.ToString();
+                            txtBigType.Text = info.ItemBigtype.ToString();
                             txtManufacturer.Text = detailInfo.Manufacture;
                             txtMapNo.Text = detailInfo.MapNo;
                             txtSpecification.Text = detailInfo.Specification;
-                            txtWareHouse.Text = info.WareHouse;
+                            txtWareHouse.Text = info.WareHouseId.ToString();
                         }
                     }
                     catch (Exception ex)
@@ -69,28 +69,28 @@ namespace JCodes.Framework.AddIn.WareHouseManage
             }
         }
 
-        private void SetInfo(StockInfo info)
+        private void SetInfo(WareInfo info)
         {
             //info.ItemNo = txtItemNo.Text;
-            info.StockQuantity = Convert.ToInt32(txtStockQuantity.Text);
-            //info.StockMoney = Convert.ToDecimal(txtStockMoney.Text);
-            info.LowWarning = Convert.ToInt32(txtLowWarning.Text);
-            info.HighWarning = Convert.ToInt32(txtHighWarning.Text);
-            info.Note = txtNote.Text;
+            info.Amount = Convert.ToInt32(txtStockQuantity.Text);
+            info.Balance = Convert.ToDouble(txtStockMoney.Text);
+            info.LowAmountWarning = Convert.ToInt32(txtLowWarning.Text);
+            info.HighAmountWarning = Convert.ToInt32(txtHighWarning.Text);
+            info.Remark = txtNote.Text;
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(ID))
             {
-                StockInfo info = BLLFactory<Stock>.Instance.FindByID(ID);
+                WareInfo info = BLLFactory<Stock>.Instance.FindByID(ID);
                 if (info != null)
                 {
                     SetInfo(info);
 
                     try
                     {
-                        bool succeed = BLLFactory<Stock>.Instance.Update(info, info.ID.ToString());
+                        bool succeed = BLLFactory<Stock>.Instance.Update(info, info.Id);
                         if (succeed)
                         {
                             MessageDxUtil.ShowTips("保存成功");
@@ -106,7 +106,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
             }
             else
             {
-                StockInfo info = new StockInfo();
+                WareInfo info = new WareInfo();
                 SetInfo(info);
 
                 try
@@ -128,7 +128,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
 
         private void txtStockQuantity_Validated(object sender, EventArgs e)
         {
-            StockInfo info = BLLFactory<Stock>.Instance.FindByID(ID);
+            WareInfo info = BLLFactory<Stock>.Instance.FindByID(ID);
             if (info != null)
             {
                 try

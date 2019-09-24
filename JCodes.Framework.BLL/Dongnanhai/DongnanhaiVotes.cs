@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using JCodes.Framework.IDAL;
 using JCodes.Framework.Common.Framework;
-using JCodes.Framework.Entity.Machines;
 using System;
+using JCodes.Framework.Entity;
 
 namespace JCodes.Framework.BLL
 {

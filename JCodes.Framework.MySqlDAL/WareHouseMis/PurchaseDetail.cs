@@ -43,7 +43,7 @@ namespace JCodes.Framework.MySqlDAL
 			PurchaseDetailInfo purchaseDetailInfo = new PurchaseDetailInfo();
 			SmartDataReader reader = new SmartDataReader(dataReader);
 			
-			purchaseDetailInfo.ID = reader.GetInt32("ID");
+			/*purchaseDetailInfo.ID = reader.GetInt32("ID");
 			purchaseDetailInfo.PurchaseHead_ID = reader.GetInt32("PurchaseHead_ID");
 			purchaseDetailInfo.OperationType = reader.GetString("OperationType");
 			purchaseDetailInfo.ItemNo = reader.GetString("ItemNo");
@@ -61,7 +61,7 @@ namespace JCodes.Framework.MySqlDAL
 			purchaseDetailInfo.StoragePos = reader.GetString("StoragePos");
 			purchaseDetailInfo.UsagePos = reader.GetString("UsagePos");
             purchaseDetailInfo.WareHouse = reader.GetString("WareHouse");
-            purchaseDetailInfo.Dept = reader.GetString("Dept");
+            purchaseDetailInfo.Dept = reader.GetString("Dept");*/
 
 			return purchaseDetailInfo;
 		}
@@ -76,7 +76,7 @@ namespace JCodes.Framework.MySqlDAL
 		    PurchaseDetailInfo info = obj as PurchaseDetailInfo;
 			Hashtable hash = new Hashtable(); 
 			
- 			hash.Add("PurchaseHead_ID", info.PurchaseHead_ID);
+ 			/*hash.Add("PurchaseHead_ID", info.PurchaseHead_ID);
  			hash.Add("OperationType", info.OperationType);
  			hash.Add("ItemNo", info.ItemNo);
  			hash.Add("ItemName", info.ItemName);
@@ -93,7 +93,7 @@ namespace JCodes.Framework.MySqlDAL
  			hash.Add("StoragePos", info.StoragePos);
  			hash.Add("UsagePos", info.UsagePos);
             hash.Add("WareHouse", info.WareHouse);
-            hash.Add("Dept", info.Dept);
+            hash.Add("Dept", info.Dept);*/
 
 			return hash;
 		}

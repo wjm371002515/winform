@@ -1,122 +1,123 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 
 namespace JCodes.Framework.Entity
 {
-    public class DictInfo : IComparable<DictInfo>
-    {
-        public DictInfo()
-        { }
-        
-        /// <summary>
-        /// 类型名
-        /// </summary>
-        private Int32 id;
+	/// <summary>
+	/// 字典信息(DictInfo)
+	/// 对象号: 100041
+	/// 备注信息: 
+	/// </summary>
+	[Serializable]
+	[DataContract]
+	public partial class DictInfo : IComparable<DictInfo>
+	{
+		#region Field Members
 
-        [DisplayName("编号")]
-        public Int32 Id
-        {
-            get { return id; }
-            set { id = value; }
-        }
+		/// <summary>
+		/// ID序号
+		/// </summary>
+		private Int32 m_Id = 0;
 
-        private Int32 pid;
+		/// <summary>
+		/// 父节点ID序号
+		/// </summary>
+		private Int32 m_Pid = 0;
 
-        [DisplayName("父节点编号")]
-        public Int32 Pid
-        {
-            get { return pid; }
-            set { pid = value; }
-        }
+		/// <summary>
+		/// 名称
+		/// </summary>
+		private String m_Name = string.Empty;
 
-        private string name;
+		/// <summary>
+		/// 备注
+		/// </summary>
+		private String m_Remark = string.Empty;
+		#endregion
 
-        [DisplayName("名字")]
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
+		#region Property Members
 
-        private string remark;
+		/// <summary>
+		/// ID序号
+		/// </summary>
+		[DataMember]
+		[DisplayName("ID序号")]
+		public virtual Int32 Id
+		{
+			get
+			{
+				return this.m_Id;
+			}
+			set
+			{
+				this.m_Id = value;
+			}
+		}
 
-        [DisplayName("备注")]
-        public string Remark
-        {
-            get { return remark; }
-            set { remark = value; }
-        }
+		/// <summary>
+		/// 父节点ID序号
+		/// </summary>
+		[DataMember]
+		[DisplayName("父节点ID序号")]
+		public virtual Int32 Pid
+		{
+			get
+			{
+				return this.m_Pid;
+			}
+			set
+			{
+				this.m_Pid = value;
+			}
+		}
 
-        /// <summary>
-        /// Compares to.
-        /// </summary>
-        /// <param name="other">The other.</param>
-        /// <returns>System.Int32.</returns>
-        public int CompareTo(DictInfo other)
-        {
-            if (other == null) return -1;
+		/// <summary>
+		/// 名称
+		/// </summary>
+		[DataMember]
+		[DisplayName("名称")]
+		public virtual String Name
+		{
+			get
+			{
+				return this.m_Name;
+			}
+			set
+			{
+				this.m_Name = value;
+			}
+		}
+
+		/// <summary>
+		/// 备注
+		/// </summary>
+		[DataMember]
+		[DisplayName("备注")]
+		public virtual String Remark
+		{
+			get
+			{
+				return this.m_Remark;
+			}
+			set
+			{
+				this.m_Remark = value;
+			}
+		}
+
+		/// <summary>
+		/// Compares to.
+		/// </summary>
+		public Int32 CompareTo(DictInfo other)
+		{
+			if (other == null) return -1;
             if (Id > other.Id)
             {
                 return 1;
             }
             return -1;
-        }
-    }
-
-    public class DictDetailInfo : IComparable<DictDetailInfo>
-    {
-
-        public DictDetailInfo()
-        { }
-
-        private Int32 _value;
-
-        [DisplayName("值")]
-        public Int32 Value
-        {
-            get { return _value; }
-            set { _value = value; }
-        }
-
-        private string name;
-
-        [DisplayName("名称")]
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
-
-        private string seq;
-
-        [DisplayName("排序")]
-        public string Seq
-        {
-            get { return seq; }
-            set { seq = value; }
-        }
-
-        private string remark;
-
-        [DisplayName("名称")]
-        public string Remark
-        {
-            get { return remark; }
-            set { remark = value; }
-        }
-
-        /// <summary>
-        /// Compares to.
-        /// </summary>
-        /// <param name="other">The other.</param>
-        /// <returns>System.Int32.</returns>
-        public int CompareTo(DictDetailInfo other)
-        {
-            return Seq.CompareTo(other.Seq);
-        }
-    }
+		}
+		#endregion
+	}
 }

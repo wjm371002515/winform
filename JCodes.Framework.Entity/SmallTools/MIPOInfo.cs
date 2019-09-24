@@ -1,181 +1,274 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.Serialization;
+using System.ComponentModel;
 
 namespace JCodes.Framework.Entity
 {
-    /// <summary>
-    /// 客户基本信息
-    /// </summary>
-    public class MIPOInfo{
-        /// <summary>
-        /// 委托序号
-        /// </summary>
-        private string _wtxh;
+	/// <summary>
+	/// 客户基本信息(MIPOInfo)
+	/// 对象号: 100091
+	/// 备注信息: 
+	/// </summary>
+	[Serializable]
+	[DataContract]
+	public partial class MIPOInfo
+	{
+		#region Field Members
 
-        /// <summary>
-        /// 委托序号
-        /// </summary>
-        public string WTXH
-        {
-            get { return _wtxh; }
-            set { _wtxh = value; }
-        }
+		/// <summary>
+		/// 委托序号
+		/// </summary>
+		private string m_WTXH;
 
-        /// <summary>
-        /// 发行流水号
-        /// </summary>
-        private string _fxlsh;
+		/// <summary>
+		/// 发行流水号
+		/// </summary>
+		private string m_FXLSH;
 
-        /// <summary>
-        /// 发行流水号
-        /// </summary>
-        public string FXLSH
-        {
-            get { return _fxlsh; }
-            set { _fxlsh = value; }
-        }
+		/// <summary>
+		/// 询价对象名称
+		/// </summary>
+		private string m_XJDXMC;
 
-        /// <summary>
-        /// 询价对象名称
-        /// </summary>
-        private string _xjdxmc;
+		/// <summary>
+		/// 配售对象ID
+		/// </summary>
+		private string m_PSDXID;
 
-        /// <summary>
-        /// 询价对象名称
-        /// </summary>
-        public string XJDXMC
-        {
-            get { return _xjdxmc; }
-            set { _xjdxmc = value; }
-        }
+		/// <summary>
+		/// 配售对象名称
+		/// </summary>
+		private string m_PSDXMC;
 
-        /// <summary>
-        /// 配售对象ID
-        /// </summary>
-        private string _psdxID;
+		/// <summary>
+		/// 配售对象类型
+		/// </summary>
+		private string m_PSDXLX;
 
-        /// <summary>
-        /// 配售对象ID
-        /// </summary>
-        public string PSDXID
-        {
-            get { return _psdxID; }
-            set { _psdxID = value; }
-        }
+		/// <summary>
+		/// 证券代码
+		/// </summary>
+		private string m_ZQDM;
 
-        /// <summary>
-        /// 配售对象名称
-        /// </summary>
-        private string _psdxmc;
+		/// <summary>
+		/// 申购数量
+		/// </summary>
+		private string m_SGSL;
 
-        /// <summary>
-        /// 配售对象名称
-        /// </summary>
-        public string PSDXMC
-        {
-            get { return _psdxmc; }
-            set { _psdxmc = value; }
-        }
+		/// <summary>
+		/// 申购价格
+		/// </summary>
+		private string m_SGJG;
 
-        /// <summary>
-        /// 配售对象类型
-        /// </summary>
-        private string _psdxlx;
+		/// <summary>
+		/// 发行价格
+		/// </summary>
+		private string m_FXJG;
 
-        /// <summary>
-        /// 配售对象类型
-        /// </summary>
-        public string PSDXLX
-        {
-            get { return _psdxlx; }
-            set { _psdxlx = value; }
-        }
+		/// <summary>
+		/// 无内容
+		/// </summary>
+		private string m_REMARK1;
 
-        /// <summary>
-        /// 证券代码
-        /// </summary>
-        private string _zqdm;
+		/// <summary>
+		/// 无内容2
+		/// </summary>
+		private string m_REMARK2;
+		#endregion
 
-        /// <summary>
-        /// 证券代码
-        /// </summary>
-        public string ZQDM
-        {
-            get { return _zqdm; }
-            set { _zqdm = value; }
-        }
+		#region Property Members
 
-        /// <summary>
-        /// 申购数量
-        /// </summary>
-        private string _sgsl;
+		/// <summary>
+		/// 委托序号
+		/// </summary>
+		[DataMember]
+		public virtual string WTXH
+		{
+			get
+			{
+				return this.m_WTXH;
+			}
+			set
+			{
+				this.m_WTXH = value;
+			}
+		}
 
-        /// <summary>
-        /// 申购数量
-        /// </summary>
-        public string SGSL
-        {
-            get { return _sgsl; }
-            set { _sgsl = value; }
-        }
+		/// <summary>
+		/// 发行流水号
+		/// </summary>
+		[DataMember]
+		public virtual string FXLSH
+		{
+			get
+			{
+				return this.m_FXLSH;
+			}
+			set
+			{
+				this.m_FXLSH = value;
+			}
+		}
 
-        /// <summary>
-        /// 申购价格
-        /// </summary>
-        private string _sgjg;
+		/// <summary>
+		/// 询价对象名称
+		/// </summary>
+		[DataMember]
+		public virtual string XJDXMC
+		{
+			get
+			{
+				return this.m_XJDXMC;
+			}
+			set
+			{
+				this.m_XJDXMC = value;
+			}
+		}
 
-        /// <summary>
-        /// 申购价格
-        /// </summary>
-        public string SGJG
-        {
-            get { return _sgjg; }
-            set { _sgjg = value; }
-        }
+		/// <summary>
+		/// 配售对象ID
+		/// </summary>
+		[DataMember]
+		public virtual string PSDXID
+		{
+			get
+			{
+				return this.m_PSDXID;
+			}
+			set
+			{
+				this.m_PSDXID = value;
+			}
+		}
 
-        /// <summary>
-        /// 发行价格
-        /// </summary>
-        private string _fxjg;
+		/// <summary>
+		/// 配售对象名称
+		/// </summary>
+		[DataMember]
+		public virtual string PSDXMC
+		{
+			get
+			{
+				return this.m_PSDXMC;
+			}
+			set
+			{
+				this.m_PSDXMC = value;
+			}
+		}
 
-        /// <summary>
-        /// 发行价格
-        /// </summary>
-        public string FXJG
-        {
-            get { return _fxjg; }
-            set { _fxjg = value; }
-        }
+		/// <summary>
+		/// 配售对象类型
+		/// </summary>
+		[DataMember]
+		public virtual string PSDXLX
+		{
+			get
+			{
+				return this.m_PSDXLX;
+			}
+			set
+			{
+				this.m_PSDXLX = value;
+			}
+		}
 
-        /// <summary>
-        /// 无内容
-        /// </summary>
-        private string _remark1;
+		/// <summary>
+		/// 证券代码
+		/// </summary>
+		[DataMember]
+		public virtual string ZQDM
+		{
+			get
+			{
+				return this.m_ZQDM;
+			}
+			set
+			{
+				this.m_ZQDM = value;
+			}
+		}
 
-        /// <summary>
-        /// 无内容
-        /// </summary>
-        public string REMARK1
-        {
-            get { return _remark1; }
-            set { _remark1 = value; }
-        }
+		/// <summary>
+		/// 申购数量
+		/// </summary>
+		[DataMember]
+		public virtual string SGSL
+		{
+			get
+			{
+				return this.m_SGSL;
+			}
+			set
+			{
+				this.m_SGSL = value;
+			}
+		}
 
-        /// <summary>
-        /// 无内容2
-        /// </summary>
-        private string _remark2;
+		/// <summary>
+		/// 申购价格
+		/// </summary>
+		[DataMember]
+		public virtual string SGJG
+		{
+			get
+			{
+				return this.m_SGJG;
+			}
+			set
+			{
+				this.m_SGJG = value;
+			}
+		}
 
-        /// <summary>
-        /// 无内容2
-        /// </summary>
-        public string REMARK2
-        {
-            get { return _remark2; }
-            set { _remark2 = value; }
-        }
-    }
+		/// <summary>
+		/// 发行价格
+		/// </summary>
+		[DataMember]
+		public virtual string FXJG
+		{
+			get
+			{
+				return this.m_FXJG;
+			}
+			set
+			{
+				this.m_FXJG = value;
+			}
+		}
+
+		/// <summary>
+		/// 无内容
+		/// </summary>
+		[DataMember]
+		public virtual string REMARK1
+		{
+			get
+			{
+				return this.m_REMARK1;
+			}
+			set
+			{
+				this.m_REMARK1 = value;
+			}
+		}
+
+		/// <summary>
+		/// 无内容2
+		/// </summary>
+		[DataMember]
+		public virtual string REMARK2
+		{
+			get
+			{
+				return this.m_REMARK2;
+			}
+			set
+			{
+				this.m_REMARK2 = value;
+			}
+		}
+		#endregion
+	}
 }

@@ -1,161 +1,198 @@
-using System;
-using System.Xml.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
+using System.ComponentModel;
 
 namespace JCodes.Framework.Entity
 {
-    [Serializable]
-    public class ReportMonthlyCostDetailInfo : BaseEntity
-    {    
-        #region Field Members
+	/// <summary>
+	/// 月费用成本明细报表信息(ReportMonthlyCostDetailInfo)
+	/// 对象号: 100076
+	/// 备注信息: 
+	/// </summary>
+	[Serializable]
+	[DataContract]
+	public partial class ReportMonthlyCostDetailInfo : BaseEntity
+	{
+		#region Field Members
 
-        private int m_ID = 0;         
-        private int m_Header_ID = 0; //报表头ID          
-        private int m_ReportYear = 0; //报表年份          
-        private int m_ReportMonth = 0; //报表月份          
-        private string m_YearMonth = ""; //报表年月          
-        private string m_DeptName = ""; //部门项目          
-        private string m_ItemType = ""; //备件类别          
-        private decimal m_TotalMoney = 0; //总金额          
-        private string m_ReportCode = ""; //额外的数据分类码          
+		/// <summary>
+		/// ID序号
+		/// </summary>
+		private Int32 m_Id = 0;
 
-        #endregion
+		/// <summary>
+		/// 报表头编号
+		/// </summary>
+		private Int32 m_ReportHeaderId = 0;
 
-        #region Property Members
-        
-        public virtual int ID
-        {
-            get
-            {
-                return this.m_ID;
-            }
-            set
-            {
-                this.m_ID = value;
-            }
-        }
+		/// <summary>
+		/// 报表年份
+		/// </summary>
+		private Int32 m_ReportYear = 0;
 
-        /// <summary>
-        /// 报表头ID
-        /// </summary>
-        public virtual int Header_ID
-        {
-            get
-            {
-                return this.m_Header_ID;
-            }
-            set
-            {
-                this.m_Header_ID = value;
-            }
-        }
+		/// <summary>
+		/// 报表月份
+		/// </summary>
+		private Int16 m_ReportMonth = 0;
 
-        /// <summary>
-        /// 报表年份
-        /// </summary>
-        public virtual int ReportYear
-        {
-            get
-            {
-                return this.m_ReportYear;
-            }
-            set
-            {
-                this.m_ReportYear = value;
-            }
-        }
+		/// <summary>
+		/// 部门Id
+		/// </summary>
+		private Int32 m_DeptId = 0;
 
-        /// <summary>
-        /// 报表月份
-        /// </summary>
-        public virtual int ReportMonth
-        {
-            get
-            {
-                return this.m_ReportMonth;
-            }
-            set
-            {
-                this.m_ReportMonth = value;
-            }
-        }
+		/// <summary>
+		/// 备件类别
+		/// </summary>
+		private Int32 m_ItemType = 0;
 
-        /// <summary>
-        /// 报表年月
-        /// </summary>
-        public virtual string YearMonth
-        {
-            get
-            {
-                return this.m_YearMonth;
-            }
-            set
-            {
-                this.m_YearMonth = value;
-            }
-        }
+		/// <summary>
+		/// 金额
+		/// </summary>
+		private Double m_Balance = 0.0;
 
-        /// <summary>
-        /// 部门项目
-        /// </summary>
-        public virtual string DeptName
-        {
-            get
-            {
-                return this.m_DeptName;
-            }
-            set
-            {
-                this.m_DeptName = value;
-            }
-        }
+		/// <summary>
+		/// 报表代码
+		/// </summary>
+		private String m_ReportCode = string.Empty;
+		#endregion
 
-        /// <summary>
-        /// 备件类别
-        /// </summary>
-        public virtual string ItemType
-        {
-            get
-            {
-                return this.m_ItemType;
-            }
-            set
-            {
-                this.m_ItemType = value;
-            }
-        }
+		#region Property Members
 
-        /// <summary>
-        /// 总金额
-        /// </summary>
-        public virtual decimal TotalMoney
-        {
-            get
-            {
-                return this.m_TotalMoney;
-            }
-            set
-            {
-                this.m_TotalMoney = value;
-            }
-        }
+		/// <summary>
+		/// ID序号
+		/// </summary>
+		[DataMember]
+		[DisplayName("ID序号")]
+		public virtual Int32 Id
+		{
+			get
+			{
+				return this.m_Id;
+			}
+			set
+			{
+				this.m_Id = value;
+			}
+		}
 
-        /// <summary>
-        /// 额外的数据分类码
-        /// </summary>
-        public virtual string ReportCode
-        {
-            get
-            {
-                return this.m_ReportCode;
-            }
-            set
-            {
-                this.m_ReportCode = value;
-            }
-        }
+		/// <summary>
+		/// 报表头编号
+		/// </summary>
+		[DataMember]
+		[DisplayName("报表头编号")]
+		public virtual Int32 ReportHeaderId
+		{
+			get
+			{
+				return this.m_ReportHeaderId;
+			}
+			set
+			{
+				this.m_ReportHeaderId = value;
+			}
+		}
 
+		/// <summary>
+		/// 报表年份
+		/// </summary>
+		[DataMember]
+		[DisplayName("报表年份")]
+		public virtual Int32 ReportYear
+		{
+			get
+			{
+				return this.m_ReportYear;
+			}
+			set
+			{
+				this.m_ReportYear = value;
+			}
+		}
 
-        #endregion
+		/// <summary>
+		/// 报表月份
+		/// </summary>
+		[DataMember]
+		[DisplayName("报表月份")]
+		public virtual Int16 ReportMonth
+		{
+			get
+			{
+				return this.m_ReportMonth;
+			}
+			set
+			{
+				this.m_ReportMonth = value;
+			}
+		}
 
-    }
+		/// <summary>
+		/// 部门Id
+		/// </summary>
+		[DataMember]
+		[DisplayName("部门Id")]
+		public virtual Int32 DeptId
+		{
+			get
+			{
+				return this.m_DeptId;
+			}
+			set
+			{
+				this.m_DeptId = value;
+			}
+		}
+
+		/// <summary>
+		/// 备件类别
+		/// </summary>
+		[DataMember]
+		[DisplayName("备件类别")]
+		public virtual Int32 ItemType
+		{
+			get
+			{
+				return this.m_ItemType;
+			}
+			set
+			{
+				this.m_ItemType = value;
+			}
+		}
+
+		/// <summary>
+		/// 金额
+		/// </summary>
+		[DataMember]
+		[DisplayName("金额")]
+		public virtual Double Balance
+		{
+			get
+			{
+				return this.m_Balance;
+			}
+			set
+			{
+				this.m_Balance = value;
+			}
+		}
+
+		/// <summary>
+		/// 报表代码
+		/// </summary>
+		[DataMember]
+		[DisplayName("报表代码")]
+		public virtual String ReportCode
+		{
+			get
+			{
+				return this.m_ReportCode;
+			}
+			set
+			{
+				this.m_ReportCode = value;
+			}
+		}
+		#endregion
+	}
 }

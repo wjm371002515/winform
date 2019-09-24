@@ -1,56 +1,66 @@
-using System;
-using System.Xml.Serialization;
+﻿using System;
 using System.Runtime.Serialization;
+using System.ComponentModel;
 
 namespace JCodes.Framework.Entity
 {
-    [Serializable]
-    [DataContract]
-    public class ProvinceInfo : BaseEntity
-    {    
-        #region Field Members
+	/// <summary>
+	/// 省份信息(ProvinceInfo)
+	/// 对象号: 100020
+	/// 备注信息: 
+	/// </summary>
+	[Serializable]
+	[DataContract]
+	public partial class ProvinceInfo : BaseEntity
+	{
+		#region Field Members
 
-        private int m_ID = 0;         
-        private string m_ProvinceName = "";         
+		/// <summary>
+		/// ID序号
+		/// </summary>
+		private Int32 m_Id = 0;
 
-        #endregion
+		/// <summary>
+		/// 省份名称
+		/// </summary>
+		private String m_ProvinceName = string.Empty;
+		#endregion
 
-        #region Property Members
+		#region Property Members
 
-        /// <summary>
-        /// ʡ��ID
-        /// </summary>
-        [DataMember]
-        public virtual int ID
-        {
-            get
-            {
-                return this.m_ID;
-            }
-            set
-            {
-                this.m_ID = value;
-            }
-        }
+		/// <summary>
+		/// ID序号
+		/// </summary>
+		[DataMember]
+		[DisplayName("ID序号")]
+		public virtual Int32 Id
+		{
+			get
+			{
+				return this.m_Id;
+			}
+			set
+			{
+				this.m_Id = value;
+			}
+		}
 
-        /// <summary>
-        /// ʡ������
-        /// </summary>
-        [DataMember]
-        public virtual string ProvinceName
-        {
-            get
-            {
-                return this.m_ProvinceName;
-            }
-            set
-            {
-                this.m_ProvinceName = value;
-            }
-        }
-
-
-        #endregion
-
-    }
+		/// <summary>
+		/// 省份名称
+		/// </summary>
+		[DataMember]
+		[DisplayName("省份名称")]
+		public virtual String ProvinceName
+		{
+			get
+			{
+				return this.m_ProvinceName;
+			}
+			set
+			{
+				this.m_ProvinceName = value;
+			}
+		}
+		#endregion
+	}
 }

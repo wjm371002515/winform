@@ -61,18 +61,18 @@ namespace JCodes.Framework.AddIn.UI.BizControl
             {
                 dr = dt.NewRow();
                 dr["ImageIndex"] = 0;
-                dr["ID"] = info.ID.ToString();
-                dr["PID"] = info.PID.ToString();
+                dr["Gid"] = info.Gid;
+                dr["Pgid"] = info.Pgid;
                 dr["Name"] = info.Name;
-                dr["FunctionId"] = info.FunctionId;
-                dr["SystemType_ID"] = info.SystemType_ID;
+                dr["DllPath"] = info.DllPath;
+                dr["SystemtypeId"] = info.SystemtypeId;
                 dr["Seq"] = info.Seq;
                 dt.Rows.Add(dr);
             }
             //增加一行空的
             dr = dt.NewRow();
-            dr["ID"] = "0"; //使用0代替-1，避免出现节点的嵌套显示，因为-1已经作为了一般节点的顶级标识
-            dr["PID"] = "-1";
+            dr["Gid"] = "0"; //使用0代替-1，避免出现节点的嵌套显示，因为-1已经作为了一般节点的顶级标识
+            dr["Pgid"] = "-1";
             dr["Name"] = "无";
             dt.Rows.InsertAt(dr, 0);
 
@@ -80,10 +80,10 @@ namespace JCodes.Framework.AddIn.UI.BizControl
             this.treeListLookUpEdit1TreeList.SelectImageList = this.imageList2;
             this.treeListLookUpEdit1TreeList.StateImageList = this.imageList2;
 
-            this.txtFunction.Properties.TreeList.KeyFieldName = "ID";
-            this.txtFunction.Properties.TreeList.ParentFieldName = "PID";
+            this.txtFunction.Properties.TreeList.KeyFieldName = "Gid";
+            this.txtFunction.Properties.TreeList.ParentFieldName = "Pgid";
             this.txtFunction.Properties.DataSource = dt;
-            this.txtFunction.Properties.ValueMember = "ID";
+            this.txtFunction.Properties.ValueMember = "Gid";
             this.txtFunction.Properties.DisplayMember = "Name";
         }
 

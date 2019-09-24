@@ -80,7 +80,7 @@ namespace JCodes.Framework.AddIn.Contact
                     tempInfo = info;//重新给临时对象赋值，使之指向存在的记录对象
 
                     txtName.Text = info.Name;
-                    txtSex.Text = info.Sex.ToString();
+                    txtSex.Text = info.Gender.ToString();
                     txtBirthdate.SetDateTime(info.Birthday);
                     txtMobile.Text = info.MobilePhone;
                     txtEmail.Text = info.Email;
@@ -92,7 +92,7 @@ namespace JCodes.Framework.AddIn.Contact
                     txtFax.Text = info.Fax;
                     txtCompany.Text = info.CompanyName;
                     txtDept.Text = info.DeptName;
-                    txtPosition.Text = info.Position;
+                    txtPosition.Text = info.WorkPosition;
                     txtOther.Text = info.Other;
                     txtNote.Text = info.Remark;
                     txtCreator.Text = info.CreatorId.ToString();
@@ -154,7 +154,7 @@ namespace JCodes.Framework.AddIn.Contact
             info.Fax = txtFax.Text;
             info.CompanyName = txtCompany.Text;
             info.DeptName = txtDept.Text;
-            info.Position = txtPosition.Text;
+            info.WorkPosition = txtPosition.Text;
             info.Other = txtOther.Text;
             info.Remark = txtNote.Text;
 

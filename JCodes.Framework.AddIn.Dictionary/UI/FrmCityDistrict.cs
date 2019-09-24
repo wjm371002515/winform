@@ -15,6 +15,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using JCodes.Framework.Common.Extension;
 
 namespace JCodes.Framework.AddIn.Dictionary
 {
@@ -58,7 +59,7 @@ namespace JCodes.Framework.AddIn.Dictionary
             foreach (ProvinceInfo info in provinceList)
             {
                 TreeNode node = new TreeNode(info.ProvinceName);
-                node.Tag = info.ID;
+                node.Tag = info.Id;
 
                 this.treeProvince.Nodes.Add(node);
             }
@@ -101,11 +102,11 @@ namespace JCodes.Framework.AddIn.Dictionary
                 this.treeCity.Nodes.Clear();
                 this.treeCity.BeginUpdate();
 
-                List<CityInfo> cityList = BLLFactory<City>.Instance.GetCitysByProvinceID(selectedNode.Tag.ToString());
+                List<CityInfo> cityList = BLLFactory<City>.Instance.GetCitysByProvinceId(selectedNode.Tag.ToString().ToInt32());
                 foreach (CityInfo info in cityList)
                 {
                     TreeNode node = new TreeNode(info.ZipCode+"_"+info.CityName, 1, 1);
-                    node.Tag = info.ID;
+                    node.Tag = info.Id;
                     this.treeCity.Nodes.Add(node);
                 }
 
@@ -159,7 +160,7 @@ namespace JCodes.Framework.AddIn.Dictionary
             {
                 FrmEditCity dlg = new FrmEditCity();
                 dlg.txtProvince.Text = info.ProvinceName;
-                dlg.txtProvince.Tag = info.ID;
+                dlg.txtProvince.Tag = info.Id;
                 dlg.OnDataSaved += new EventHandler(dlgCity_OnDataSaved);
                 dlg.ShowDialog();
             }
@@ -186,7 +187,7 @@ namespace JCodes.Framework.AddIn.Dictionary
                 {
                     FrmEditCity dlg = new FrmEditCity();
                     dlg.txtProvince.Text = info.ProvinceName;
-                    dlg.txtProvince.Tag = info.ID;
+                    dlg.txtProvince.Tag = info.Id;
                     dlg.Id = Convert.ToInt32( selectedNode.Tag);
                     dlg.OnDataSaved += new EventHandler(dlgCity_OnDataSaved);
                     dlg.ShowDialog();

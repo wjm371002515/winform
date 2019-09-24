@@ -1,89 +1,110 @@
-using System;
-using System.Xml.Serialization;
+ï»¿using System;
 using System.Runtime.Serialization;
+using System.ComponentModel;
 
 namespace JCodes.Framework.Entity
 {
-    [Serializable]
-    [DataContract]
-    public class CityInfo : BaseEntity
-    {    
-        #region Field Members
+	/// <summary>
+	/// åŸå¸‚ä¿¡æ¯(CityInfo)
+	/// å¯¹è±¡å·: 100014
+	/// å¤‡æ³¨ä¿¡æ¯: 
+	/// </summary>
+	[Serializable]
+	[DataContract]
+	public partial class CityInfo : BaseEntity
+	{
+		#region Field Members
 
-        private int m_ID = 0;         
-        private string m_CityName;         
-        private string m_ZipCode;
-        private int m_ProvinceID = 0;         
+		/// <summary>
+		/// IDåºå·
+		/// </summary>
+		private Int32 m_Id = 0;
 
-        #endregion
+		/// <summary>
+		/// åŸå¸‚åå­—
+		/// </summary>
+		private String m_CityName = string.Empty;
 
-        #region Property Members
+		/// <summary>
+		/// é‚®æ”¿ç¼–ç 
+		/// </summary>
+		private String m_ZipCode = string.Empty;
 
-        /// <summary>
-        /// ³ÇÊĞID
-        /// </summary>
-        [DataMember]
-        public virtual int ID
-        {
-            get
-            {
-                return this.m_ID;
-            }
-            set
-            {
-                this.m_ID = value;
-            }
-        }
+		/// <summary>
+		/// çœä»½Id
+		/// </summary>
+		private Int32 m_ProvinceId = 0;
+		#endregion
 
-        /// <summary>
-        /// ³ÇÊĞÃû³Æ
-        /// </summary>
-        [DataMember]
-        public virtual string CityName
-        {
-            get
-            {
-                return this.m_CityName;
-            }
-            set
-            {
-                this.m_CityName = value;
-            }
-        }
+		#region Property Members
 
-        /// <summary>
-        /// ÓÊÕş±àÂë
-        /// </summary>
-        [DataMember]
-        public virtual string ZipCode
-        {
-            get
-            {
-                return this.m_ZipCode;
-            }
-            set
-            {
-                this.m_ZipCode = value;
-            }
-        }
+		/// <summary>
+		/// IDåºå·
+		/// </summary>
+		[DataMember]
+		[DisplayName("IDåºå·")]
+		public virtual Int32 Id
+		{
+			get
+			{
+				return this.m_Id;
+			}
+			set
+			{
+				this.m_Id = value;
+			}
+		}
 
-        /// <summary>
-        /// ËùÊôÊ¡·İID
-        /// </summary>
-        [DataMember]
-        public virtual int ProvinceID
-        {
-            get
-            {
-                return this.m_ProvinceID;
-            }
-            set
-            {
-                this.m_ProvinceID = value;
-            }
-        }
+		/// <summary>
+		/// åŸå¸‚åå­—
+		/// </summary>
+		[DataMember]
+		[DisplayName("åŸå¸‚åå­—")]
+		public virtual String CityName
+		{
+			get
+			{
+				return this.m_CityName;
+			}
+			set
+			{
+				this.m_CityName = value;
+			}
+		}
 
-        #endregion
+		/// <summary>
+		/// é‚®æ”¿ç¼–ç 
+		/// </summary>
+		[DataMember]
+		[DisplayName("é‚®æ”¿ç¼–ç ")]
+		public virtual String ZipCode
+		{
+			get
+			{
+				return this.m_ZipCode;
+			}
+			set
+			{
+				this.m_ZipCode = value;
+			}
+		}
 
-    }
+		/// <summary>
+		/// çœä»½Id
+		/// </summary>
+		[DataMember]
+		[DisplayName("çœä»½Id")]
+		public virtual Int32 ProvinceId
+		{
+			get
+			{
+				return this.m_ProvinceId;
+			}
+			set
+			{
+				this.m_ProvinceId = value;
+			}
+		}
+		#endregion
+	}
 }

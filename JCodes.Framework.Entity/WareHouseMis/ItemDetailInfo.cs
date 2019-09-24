@@ -1,320 +1,440 @@
-using System;
-using System.Xml.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
+using System.ComponentModel;
 
 namespace JCodes.Framework.Entity
 {
-    [Serializable]
-    public class ItemDetailInfo : BaseEntity
-    {    
-        #region Field Members
+	/// <summary>
+	/// 设备详细信息(ItemDetailInfo)
+	/// 对象号: 100071
+	/// 备注信息: 
+	/// </summary>
+	[Serializable]
+	[DataContract]
+	public partial class ItemDetailInfo : BaseEntity
+	{
+		#region Field Members
 
-        private int m_ID = 0;         
-        private string m_ItemNo = ""; //备件编号          
-        private string m_ItemName = ""; //备件名称       
-        private string m_Manufacture = ""; //供应商   
-        private string m_MapNo = ""; //图号          
-        private string m_Specification = ""; //规格型号          
-        private string m_Material = ""; //材质          
-        private string m_ItemBigType = ""; //备件属类          
-        private string m_ItemType = ""; //备件类别          
-        private string m_Unit = ""; //单位          
-        private decimal m_Price = 0; //单价          
-        private string m_Source = ""; //来源          
-        private string m_StoragePos = ""; //库位          
-        private string m_UsagePos = ""; //使用位置        
-        private string m_Note = ""; //备注     
-        private string m_WareHouse = ""; //库房编号          
-        private string m_Dept = ""; //部门    
-        private Int32 m_Quantity = 0;// 数量
-        private double m_Amount = 0; //金额
-        
-        #endregion
+		/// <summary>
+		/// ID序号
+		/// </summary>
+		private Int32 m_Id = 0;
 
-        #region Property Members
-        
-        public virtual int ID
-        {
-            get
-            {
-                return this.m_ID;
-            }
-            set
-            {
-                this.m_ID = value;
-            }
-        }
+		/// <summary>
+		/// 设备编号
+		/// </summary>
+		private String m_ItemNo = string.Empty;
 
-        /// <summary>
-        /// 备件编号
-        /// </summary>
-        public virtual string ItemNo
-        {
-            get
-            {
-                return this.m_ItemNo;
-            }
-            set
-            {
-                this.m_ItemNo = value;
-            }
-        }
+		/// <summary>
+		/// 名称
+		/// </summary>
+		private String m_Name = string.Empty;
 
-        /// <summary>
-        /// 备件名称
-        /// </summary>
-        public virtual string ItemName
-        {
-            get
-            {
-                return this.m_ItemName;
-            }
-            set
-            {
-                this.m_ItemName = value;
-            }
-        }
+		/// <summary>
+		/// 供应商
+		/// </summary>
+		private String m_Manufacture = string.Empty;
 
-        /// <summary>
-        /// 供应商
-        /// </summary>
-        public virtual string Manufacture
-        {
-            get
-            {
-                return this.m_Manufacture;
-            }
-            set
-            {
-                this.m_Manufacture = value;
-            }
-        }
+		/// <summary>
+		/// 图号
+		/// </summary>
+		private String m_MapNo = string.Empty;
 
-        /// <summary>
-        /// 图号
-        /// </summary>
-        public virtual string MapNo
-        {
-            get
-            {
-                return this.m_MapNo;
-            }
-            set
-            {
-                this.m_MapNo = value;
-            }
-        }
+		/// <summary>
+		/// 规格型号
+		/// </summary>
+		private String m_Specification = string.Empty;
 
-        /// <summary>
-        /// 规格型号
-        /// </summary>
-        public virtual string Specification
-        {
-            get
-            {
-                return this.m_Specification;
-            }
-            set
-            {
-                this.m_Specification = value;
-            }
-        }
+		/// <summary>
+		/// 材质 
+		/// </summary>
+		private String m_Material = string.Empty;
 
-        /// <summary>
-        /// 材质
-        /// </summary>
-        public virtual string Material
-        {
-            get
-            {
-                return this.m_Material;
-            }
-            set
-            {
-                this.m_Material = value;
-            }
-        }
+		/// <summary>
+		/// 备件属类
+		/// </summary>
+		private Int32 m_ItemBigtype = 0;
 
-        /// <summary>
-        /// 备件属类
-        /// </summary>
-        public virtual string ItemBigType
-        {
-            get
-            {
-                return this.m_ItemBigType;
-            }
-            set
-            {
-                this.m_ItemBigType = value;
-            }
-        }
+		/// <summary>
+		/// 备件类别
+		/// </summary>
+		private Int32 m_ItemType = 0;
 
-        /// <summary>
-        /// 备件类别
-        /// </summary>
-        public virtual string ItemType
-        {
-            get
-            {
-                return this.m_ItemType;
-            }
-            set
-            {
-                this.m_ItemType = value;
-            }
-        }
+		/// <summary>
+		/// 备件单位
+		/// </summary>
+		private Int32 m_ItemUnit = 0;
 
-        /// <summary>
-        /// 单位
-        /// </summary>
-        public virtual string Unit
-        {
-            get
-            {
-                return this.m_Unit;
-            }
-            set
-            {
-                this.m_Unit = value;
-            }
-        }
+		/// <summary>
+		/// 单价
+		/// </summary>
+		private Double m_Price = 0.0;
 
-        /// <summary>
-        /// 单价
-        /// </summary>
-        public virtual decimal Price
-        {
-            get
-            {
-                return this.m_Price;
-            }
-            set
-            {
-                this.m_Price = value;
-            }
-        }
+		/// <summary>
+		/// 设备来源
+		/// </summary>
+		private String m_ItemSource = string.Empty;
 
-        /// <summary>
-        /// 来源
-        /// </summary>
-        public virtual string Source
-        {
-            get
-            {
-                return this.m_Source;
-            }
-            set
-            {
-                this.m_Source = value;
-            }
-        }
+		/// <summary>
+		/// 库位
+		/// </summary>
+		private String m_StoragePos = string.Empty;
 
-        /// <summary>
-        /// 库位
-        /// </summary>
-        public virtual string StoragePos
-        {
-            get
-            {
-                return this.m_StoragePos;
-            }
-            set
-            {
-                this.m_StoragePos = value;
-            }
-        }
+		/// <summary>
+		/// 使用位置
+		/// </summary>
+		private String m_UsagePos = string.Empty;
 
-        /// <summary>
-        /// 使用位置
-        /// </summary>
-        public virtual string UsagePos
-        {
-            get
-            {
-                return this.m_UsagePos;
-            }
-            set
-            {
-                this.m_UsagePos = value;
-            }
-        }
+		/// <summary>
+		/// 备注
+		/// </summary>
+		private String m_Remark = string.Empty;
 
-        /// <summary>
-        /// 备注
-        /// </summary>
-        public virtual string Note
-        {
-            get
-            {
-                return this.m_Note;
-            }
-            set
-            {
-                this.m_Note = value;
-            }
-        }
+		/// <summary>
+		/// 库房编号
+		/// </summary>
+		private Int32 m_WareHouseId = 0;
 
-        /// <summary>
-        /// 库房编号
-        /// </summary>
-        public virtual string WareHouse
-        {
-            get
-            {
-                return this.m_WareHouse;
-            }
-            set
-            {
-                this.m_WareHouse = value;
-            }
-        }
+		/// <summary>
+		/// 部门Id
+		/// </summary>
+		private Int32 m_DeptId = 0;
 
-        /// <summary>
-        /// 部门
-        /// </summary>
-        public virtual string Dept
-        {
-            get
-            {
-                return this.m_Dept;
-            }
-            set
-            {
-                this.m_Dept = value;
-            }
-        }
+		/// <summary>
+		/// 数量
+		/// </summary>
+		private Int32 m_Amount = 0;
 
-        /// <summary>
-        /// 数量
-        /// </summary>
-        public virtual Int32 Quantity
-        {
-            get
-            {
-                return this.m_Quantity;
-            }
-            set
-            {
-                this.m_Quantity = value;
-            }
-        }
+		/// <summary>
+		/// 金额
+		/// </summary>
+		private Double m_Balance = 0.0;
+		#endregion
 
-        /// <summary>
-        /// 金额
-        /// </summary>
-        public virtual double Amount
-        {
-            get
-            {
-                return this.m_Amount;
-            }
-            set
-            {
-                this.m_Amount = value;
-            }
-        }
+		#region Property Members
 
-        #endregion
+		/// <summary>
+		/// ID序号
+		/// </summary>
+		[DataMember]
+		[DisplayName("ID序号")]
+		public virtual Int32 Id
+		{
+			get
+			{
+				return this.m_Id;
+			}
+			set
+			{
+				this.m_Id = value;
+			}
+		}
 
-    }
+		/// <summary>
+		/// 设备编号
+		/// </summary>
+		[DataMember]
+		[DisplayName("设备编号")]
+		public virtual String ItemNo
+		{
+			get
+			{
+				return this.m_ItemNo;
+			}
+			set
+			{
+				this.m_ItemNo = value;
+			}
+		}
+
+		/// <summary>
+		/// 名称
+		/// </summary>
+		[DataMember]
+		[DisplayName("名称")]
+		public virtual String Name
+		{
+			get
+			{
+				return this.m_Name;
+			}
+			set
+			{
+				this.m_Name = value;
+			}
+		}
+
+		/// <summary>
+		/// 供应商
+		/// </summary>
+		[DataMember]
+		[DisplayName("供应商")]
+		public virtual String Manufacture
+		{
+			get
+			{
+				return this.m_Manufacture;
+			}
+			set
+			{
+				this.m_Manufacture = value;
+			}
+		}
+
+		/// <summary>
+		/// 图号
+		/// </summary>
+		[DataMember]
+		[DisplayName("图号")]
+		public virtual String MapNo
+		{
+			get
+			{
+				return this.m_MapNo;
+			}
+			set
+			{
+				this.m_MapNo = value;
+			}
+		}
+
+		/// <summary>
+		/// 规格型号
+		/// </summary>
+		[DataMember]
+		[DisplayName("规格型号")]
+		public virtual String Specification
+		{
+			get
+			{
+				return this.m_Specification;
+			}
+			set
+			{
+				this.m_Specification = value;
+			}
+		}
+
+		/// <summary>
+		/// 材质 
+		/// </summary>
+		[DataMember]
+		[DisplayName("材质 ")]
+		public virtual String Material
+		{
+			get
+			{
+				return this.m_Material;
+			}
+			set
+			{
+				this.m_Material = value;
+			}
+		}
+
+		/// <summary>
+		/// 备件属类
+		/// </summary>
+		[DataMember]
+		[DisplayName("备件属类")]
+		public virtual Int32 ItemBigtype
+		{
+			get
+			{
+				return this.m_ItemBigtype;
+			}
+			set
+			{
+				this.m_ItemBigtype = value;
+			}
+		}
+
+		/// <summary>
+		/// 备件类别
+		/// </summary>
+		[DataMember]
+		[DisplayName("备件类别")]
+		public virtual Int32 ItemType
+		{
+			get
+			{
+				return this.m_ItemType;
+			}
+			set
+			{
+				this.m_ItemType = value;
+			}
+		}
+
+		/// <summary>
+		/// 备件单位
+		/// </summary>
+		[DataMember]
+		[DisplayName("备件单位")]
+		public virtual Int32 ItemUnit
+		{
+			get
+			{
+				return this.m_ItemUnit;
+			}
+			set
+			{
+				this.m_ItemUnit = value;
+			}
+		}
+
+		/// <summary>
+		/// 单价
+		/// </summary>
+		[DataMember]
+		[DisplayName("单价")]
+		public virtual Double Price
+		{
+			get
+			{
+				return this.m_Price;
+			}
+			set
+			{
+				this.m_Price = value;
+			}
+		}
+
+		/// <summary>
+		/// 设备来源
+		/// </summary>
+		[DataMember]
+		[DisplayName("设备来源")]
+		public virtual String ItemSource
+		{
+			get
+			{
+				return this.m_ItemSource;
+			}
+			set
+			{
+				this.m_ItemSource = value;
+			}
+		}
+
+		/// <summary>
+		/// 库位
+		/// </summary>
+		[DataMember]
+		[DisplayName("库位")]
+		public virtual String StoragePos
+		{
+			get
+			{
+				return this.m_StoragePos;
+			}
+			set
+			{
+				this.m_StoragePos = value;
+			}
+		}
+
+		/// <summary>
+		/// 使用位置
+		/// </summary>
+		[DataMember]
+		[DisplayName("使用位置")]
+		public virtual String UsagePos
+		{
+			get
+			{
+				return this.m_UsagePos;
+			}
+			set
+			{
+				this.m_UsagePos = value;
+			}
+		}
+
+		/// <summary>
+		/// 备注
+		/// </summary>
+		[DataMember]
+		[DisplayName("备注")]
+		public virtual String Remark
+		{
+			get
+			{
+				return this.m_Remark;
+			}
+			set
+			{
+				this.m_Remark = value;
+			}
+		}
+
+		/// <summary>
+		/// 库房编号
+		/// </summary>
+		[DataMember]
+		[DisplayName("库房编号")]
+		public virtual Int32 WareHouseId
+		{
+			get
+			{
+				return this.m_WareHouseId;
+			}
+			set
+			{
+				this.m_WareHouseId = value;
+			}
+		}
+
+		/// <summary>
+		/// 部门Id
+		/// </summary>
+		[DataMember]
+		[DisplayName("部门Id")]
+		public virtual Int32 DeptId
+		{
+			get
+			{
+				return this.m_DeptId;
+			}
+			set
+			{
+				this.m_DeptId = value;
+			}
+		}
+
+		/// <summary>
+		/// 数量
+		/// </summary>
+		[DataMember]
+		[DisplayName("数量")]
+		public virtual Int32 Amount
+		{
+			get
+			{
+				return this.m_Amount;
+			}
+			set
+			{
+				this.m_Amount = value;
+			}
+		}
+
+		/// <summary>
+		/// 金额
+		/// </summary>
+		[DataMember]
+		[DisplayName("金额")]
+		public virtual Double Balance
+		{
+			get
+			{
+				return this.m_Balance;
+			}
+			set
+			{
+				this.m_Balance = value;
+			}
+		}
+		#endregion
+	}
 }

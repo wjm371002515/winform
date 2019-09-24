@@ -12,6 +12,7 @@ using JCodes.Framework.Common;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.BLL;
 using JCodes.Framework.Common.Databases;
+using JCodes.Framework.Common.Extension;
 
 namespace JCodes.Framework.WebUI.Controllers
 {
@@ -33,7 +34,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult CheckExcelColumns(string guid)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
 
             try
             {
@@ -41,7 +42,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 if (dt != null)
                 {
                     //检查列表是否包含必须的字段
-                    result.Success = DataTableHelper.ContainAllColumns(dt, columnString);
+                    result.ErrorCode = DataTableHelper.ContainAllColumns(dt, columnString)?0:1;
                 }
             }
             catch (Exception ex)
@@ -71,18 +72,15 @@ namespace JCodes.Framework.WebUI.Controllers
             if (table != null)
             {
                 #region 数据转换
-                int i = 1;
                 foreach (DataRow dr in table.Rows)
                 {
-                    bool converted = false;
                     DateTime dtDefault = Convert.ToDateTime("1900-01-01");
-                    DateTime dt;
                     FunctionInfo info = new FunctionInfo();
 
-                    info.PID = dr["父ID"].ToString();
+                    info.Pgid = dr["父ID"].ToString();
                     info.Name = dr["功能名称"].ToString();
-                    info.FunctionId = dr["控制标识"].ToString();
-                    info.SystemType_ID = dr["系统编号"].ToString();
+                    info.DllPath = dr["控制标识"].ToString();
+                    info.SystemtypeId = dr["系统编号"].ToString();
                     info.Seq = dr["排序"].ToString();
 
                     list.Add(info);
@@ -101,7 +99,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult SaveExcelData(List<FunctionInfo> list)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             if (list != null && list.Count > 0)
             {
                 #region 采用事务进行数据提交
@@ -119,7 +117,7 @@ namespace JCodes.Framework.WebUI.Controllers
                             BLLFactory<Functions>.Instance.Insert(detail, trans);
                         }
                         trans.Commit();
-                        result.Success = true;
+                        result.ErrorCode = 0;
                     }
                     catch (Exception ex)
                     {
@@ -172,10 +170,10 @@ namespace JCodes.Framework.WebUI.Controllers
             {
                 dr = datatable.NewRow();
                 dr["序号"] = j++;
-                dr["父ID"] = list[i].PID;
+                dr["父ID"] = list[i].Pgid;
                 dr["功能名称"] = list[i].Name;
-                dr["控制标识"] = list[i].FunctionId;
-                dr["系统编号"] = list[i].SystemType_ID;
+                dr["控制标识"] = list[i].DllPath;
+                dr["系统编号"] = list[i].SystemtypeId;
                 dr["排序"] = list[i].Seq;
                 //如果为外键，可以在这里进行转义，如下例子
                 //dr["客户名称"] = BLLFactory<Customer>.Instance.GetCustomerName(list[i].Customer_ID);//转义为客户名称
@@ -221,7 +219,7 @@ namespace JCodes.Framework.WebUI.Controllers
         public override ActionResult FindWithPager()
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.ListKey);
+            base.CheckAuthorized(authorizeKeyInfo.ListKey);
 
             string where = GetPagerCondition();
             PagerInfo pagerInfo = GetPagerInfo();
@@ -287,14 +285,14 @@ namespace JCodes.Framework.WebUI.Controllers
         public override ActionResult Insert(FunctionInfo info)
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.InsertKey);
+            base.CheckAuthorized(authorizeKeyInfo.InsertKey);
 
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             if (info != null)
             {
                 try
                 {
-                    string filter = string.Format("ControlID='{0}' and SystemType_ID='{1}' ", info.FunctionId, info.SystemType_ID);
+                    string filter = string.Format("ControlID='{0}' and SystemtypeId='{1}' ", info.DllPath, info.SystemtypeId);
                     bool isExist = BLLFactory<Functions>.Instance.IsExistRecord(filter);
                     if (isExist)
                     {
@@ -307,7 +305,7 @@ namespace JCodes.Framework.WebUI.Controllers
                         //info.Creator_ID = CurrentUser.ID.ToString();
                         SetCommonInfo(info);
 
-                        result.Success = baseBLL.Insert(info);
+                        result.ErrorCode = baseBLL.Insert(info)?0:1;
                     }
                 }
                 catch (Exception ex)
@@ -321,7 +319,7 @@ namespace JCodes.Framework.WebUI.Controllers
 
         public override ActionResult Insert2(FunctionInfo info)
         {
-            string filter = string.Format("ControlID='{0}' and SystemType_ID='{1}' ", info.FunctionId, info.SystemType_ID);
+            string filter = string.Format("ControlID='{0}' and SystemtypeId='{1}' ", info.DllPath, info.SystemtypeId);
             bool isExist = BLLFactory<Functions>.Instance.IsExistRecord(filter);
             if (isExist)
             {
@@ -344,8 +342,8 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         protected override bool Update(string id, FunctionInfo info)
         {
-            string filter = string.Format("ControlID='{0}' and SystemType_ID='{1}' and ID <>'{2}'",
-                info.FunctionId, info.SystemType_ID, info.ID);
+            string filter = string.Format("ControlID='{0}' and SystemtypeId='{1}' and Gid <>'{2}'",
+                info.DllPath, info.SystemtypeId, info.Gid);
             bool isExist = BLLFactory<Functions>.Instance.IsExistRecord(filter);
             if (isExist)
             {
@@ -377,7 +375,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 }
             }
 
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             using (DbTransaction trans = BLLFactory<Functions>.Instance.CreateTransaction())
             {
                 try
@@ -395,7 +393,7 @@ namespace JCodes.Framework.WebUI.Controllers
                             {
                                 subInfo = CreateSubFunction(mainInfo);
                                 subInfo.Seq = (seqIndex++).ToString("D2");
-                                subInfo.FunctionId = string.Format("{0}/Add", mainInfo.FunctionId);
+                                //subInfo.FunctionId = string.Format("{0}/Add", mainInfo.FunctionId);
                                 subInfo.Name = string.Format("添加{0}", mainInfo.Name);
 
                                 BLLFactory<Functions>.Instance.Insert(subInfo, trans);
@@ -404,7 +402,7 @@ namespace JCodes.Framework.WebUI.Controllers
                             {
                                 subInfo = CreateSubFunction(mainInfo);
                                 subInfo.Seq = (seqIndex++).ToString("D2");
-                                subInfo.FunctionId = string.Format("{0}/Delete", mainInfo.FunctionId);
+                                //subInfo.FunctionId = string.Format("{0}/Delete", mainInfo.FunctionId);
                                 subInfo.Name = string.Format("删除{0}", mainInfo.Name);
                                 BLLFactory<Functions>.Instance.Insert(subInfo, trans);
                             }
@@ -412,7 +410,7 @@ namespace JCodes.Framework.WebUI.Controllers
                             {
                                 subInfo = CreateSubFunction(mainInfo);
                                 subInfo.Seq = (seqIndex++).ToString("D2");
-                                subInfo.FunctionId = string.Format("{0}/Edit", mainInfo.FunctionId);
+                                //subInfo.FunctionId = string.Format("{0}/Edit", mainInfo.FunctionId);
                                 subInfo.Name = string.Format("修改{0}", mainInfo.Name);
                                 BLLFactory<Functions>.Instance.Insert(subInfo, trans);
                             }
@@ -420,7 +418,7 @@ namespace JCodes.Framework.WebUI.Controllers
                             {
                                 subInfo = CreateSubFunction(mainInfo);
                                 subInfo.Seq = (seqIndex++).ToString("D2");
-                                subInfo.FunctionId = string.Format("{0}/View", mainInfo.FunctionId);
+                                //subInfo.FunctionId = string.Format("{0}/View", mainInfo.FunctionId);
                                 subInfo.Name = string.Format("查看{0}", mainInfo.Name);
                                 BLLFactory<Functions>.Instance.Insert(subInfo, trans);
                             }
@@ -428,7 +426,7 @@ namespace JCodes.Framework.WebUI.Controllers
                             {
                                 subInfo = CreateSubFunction(mainInfo);
                                 subInfo.Seq = (seqIndex++).ToString("D2");
-                                subInfo.FunctionId = string.Format("{0}/Import", mainInfo.FunctionId);
+                                //subInfo.FunctionId = string.Format("{0}/Import", mainInfo.FunctionId);
                                 subInfo.Name = string.Format("导入{0}", mainInfo.Name);
                                 BLLFactory<Functions>.Instance.Insert(subInfo, trans);
                             }
@@ -436,14 +434,14 @@ namespace JCodes.Framework.WebUI.Controllers
                             {
                                 subInfo = CreateSubFunction(mainInfo);
                                 subInfo.Seq = (seqIndex++).ToString("D2");
-                                subInfo.FunctionId = string.Format("{0}/Export", mainInfo.FunctionId);
+                                //subInfo.FunctionId = string.Format("{0}/Export", mainInfo.FunctionId);
                                 subInfo.Name = string.Format("导出{0}", mainInfo.Name);
                                 BLLFactory<Functions>.Instance.Insert(subInfo, trans);
                             }
                             #endregion
 
                             trans.Commit();
-                            result.Success = true;
+                            result.ErrorCode = 0;
                         }
                     }
                 }
@@ -463,8 +461,8 @@ namespace JCodes.Framework.WebUI.Controllers
         private FunctionInfo CreateSubFunction(FunctionInfo mainInfo)
         {
             FunctionInfo subInfo = new FunctionInfo();
-            subInfo.PID = mainInfo.ID;
-            subInfo.SystemType_ID = mainInfo.SystemType_ID;
+            subInfo.Pgid = mainInfo.Pgid;
+            subInfo.SystemtypeId = mainInfo.SystemtypeId;
             return subInfo;
         }
 
@@ -480,15 +478,15 @@ namespace JCodes.Framework.WebUI.Controllers
             List<SystemTypeInfo> typeList = BLLFactory<SystemType>.Instance.GetAll();
             foreach (SystemTypeInfo typeInfo in typeList)
             {
-                JsTreeData pNode = new JsTreeData(typeInfo.OID, typeInfo.Name);
+                JsTreeData pNode = new JsTreeData(typeInfo.Gid, typeInfo.Name);
                 treeList.Add(pNode);
 
-                string systemType = typeInfo.OID;//系统标识ID
+                string systemType = typeInfo.Gid;//系统标识ID
                 //绑定树控件
                 List<FunctionNodeInfo> functionList = BLLFactory<Functions>.Instance.GetTree(systemType);
                 foreach (FunctionNodeInfo info in functionList)
                 {
-                    JsTreeData item = new JsTreeData(info.ID, info.Name, "fa fa-key icon-state-danger icon-lg");
+                    JsTreeData item = new JsTreeData(info.Gid, info.Name, "fa fa-key icon-state-danger icon-lg");
                     pNode.children.Add(item);
 
                     AddJsTreeChildNode(info.Children, item);
@@ -501,7 +499,7 @@ namespace JCodes.Framework.WebUI.Controllers
         {
             foreach (FunctionNodeInfo info in list)
             {
-                JsTreeData item = new JsTreeData(info.ID, info.Name, "fa fa-key icon-state-danger icon-lg");
+                JsTreeData item = new JsTreeData(info.Gid, info.Name, "fa fa-key icon-state-danger icon-lg");
                 fnode.children.Add(item);
 
                 AddJsTreeChildNode(info.Children, item);
@@ -518,15 +516,15 @@ namespace JCodes.Framework.WebUI.Controllers
             List<SystemTypeInfo> typeList = BLLFactory<SystemType>.Instance.GetAll();
             foreach (SystemTypeInfo typeInfo in typeList)
             {
-                CListItem pNode = new CListItem(typeInfo.OID, typeInfo.Name);
+                CListItem pNode = new CListItem(typeInfo.Gid, typeInfo.Name);
                 treeList.Add(pNode);
 
-                string condition = string.Format("SystemType_ID='{0}'", typeInfo.OID);//系统标识ID
+                string condition = string.Format("SystemType_ID='{0}'", typeInfo.Gid);//系统标识ID
                 List<FunctionInfo> functionList = BLLFactory<Functions>.Instance.Find(condition);
                 functionList = CollectionHelper<FunctionInfo>.Fill("-1", 0, functionList, "PID", "ID", "Name");
                 foreach (FunctionInfo info in functionList)
                 {
-                    treeList.Add(new CListItem(info.ID, info.Name));
+                    treeList.Add(new CListItem(info.Gid, info.Name));
                 }
             }
 
@@ -536,7 +534,7 @@ namespace JCodes.Framework.WebUI.Controllers
         {
             foreach (FunctionNodeInfo info in list)
             {
-                CListItem item = new CListItem(info.ID, info.Name);
+                CListItem item = new CListItem(info.Gid, info.Name);
                 treeList.Add(item);
 
                 AddDictChildNode(info.Children, treeList);
@@ -556,8 +554,8 @@ namespace JCodes.Framework.WebUI.Controllers
             List<SystemTypeInfo> typeList = BLLFactory<SystemType>.Instance.GetAll();
             foreach (SystemTypeInfo typeInfo in typeList)
             {
-                JsTreeData parentNode = new JsTreeData(typeInfo.OID, typeInfo.Name, "fa fa-sitemap  icon-state-warning icon-lg");
-                List<FunctionNodeInfo> list = BLLFactory<Functions>.Instance.GetFunctionNodesByUser(userId, typeInfo.OID);
+                JsTreeData parentNode = new JsTreeData(typeInfo.Gid, typeInfo.Name, "fa fa-sitemap  icon-state-warning icon-lg");
+                List<FunctionNodeInfo> list = BLLFactory<Functions>.Instance.GetFunctionNodesByUser(userId, typeInfo.Gid);
                 AddJsTreeeFunctionNode(parentNode, list);
 
                 treeList.Add(parentNode);
@@ -574,7 +572,7 @@ namespace JCodes.Framework.WebUI.Controllers
         {
             foreach (FunctionNodeInfo info in list)
             {
-                JsTreeData subNode = new JsTreeData(info.ID, info.Name, info.Children.Count > 0 ? "fa fa-users icon-state-info icon-lg" : "fa fa-key icon-state-danger icon-lg");
+                JsTreeData subNode = new JsTreeData(info.Gid, info.Name, info.Children.Count > 0 ? "fa fa-users icon-state-info icon-lg" : "fa fa-key icon-state-danger icon-lg");
                 node.children.Add(subNode);
 
                 AddJsTreeeFunctionNode(subNode, info.Children);
@@ -594,24 +592,24 @@ namespace JCodes.Framework.WebUI.Controllers
             UserInfo userInfo = BLLFactory<User>.Instance.FindByID(userId);
             if (userInfo != null)
             {
-                isSuperAdmin = BLLFactory<User>.Instance.UserInRole(userInfo.Name, RoleInfo.SuperAdminName);
+                //isSuperAdmin = BLLFactory<User>.Instance.UserInRole(userInfo.Name, RoleInfo.SuperAdminName);
             }
 
             List<SystemTypeInfo> typeList = BLLFactory<SystemType>.Instance.GetAll();
             foreach (SystemTypeInfo typeInfo in typeList)
             {
-                JsTreeData parentNode = new JsTreeData(typeInfo.OID, typeInfo.Name);
+                JsTreeData parentNode = new JsTreeData(typeInfo.Gid, typeInfo.Name);
 
                 //如果是超级管理员，不根据角色获取，否则根据角色获取对应的分配权限
                 //也就是说，公司管理员只能分配自己被授权的功能，而超级管理员不受限制
                 List<FunctionNodeInfo> allNode = new List<FunctionNodeInfo>();
                 if (isSuperAdmin)
                 {
-                    allNode = BLLFactory<Functions>.Instance.GetTree(typeInfo.OID);
+                    allNode = BLLFactory<Functions>.Instance.GetTree(typeInfo.Gid);
                 }
                 else
                 {
-                    allNode = BLLFactory<Functions>.Instance.GetFunctionNodesByUser(userId, typeInfo.OID);
+                    allNode = BLLFactory<Functions>.Instance.GetFunctionNodesByUser(userId, typeInfo.Gid);
                 }
 
                 AddJsTreeeFunctionNode(parentNode, allNode);

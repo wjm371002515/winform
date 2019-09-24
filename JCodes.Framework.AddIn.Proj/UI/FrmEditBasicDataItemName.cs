@@ -54,7 +54,7 @@ namespace JCodes.Framework.AddIn.Proj
                 // 配置的这个节点 basicdata 为1时才加载数据
                 if (string.Equals(strGuid, xnl0.Item(3).InnerText) && string.IsNullOrEmpty(xnl0.Item(5).InnerText))
                 {
-                    lst.Add(new CListItem(xe.GetAttribute("guid").ToString(), string.Format("{0}-({1} {2})", xnl0.Item(2).InnerText, xnl0.Item(1).InnerText, xnl0.Item(0).InnerText)));
+                    lst.Add(new CListItem(xe.GetAttribute("gid").ToString(), string.Format("{0}-({1} {2})", xnl0.Item(2).InnerText, xnl0.Item(1).InnerText, xnl0.Item(0).InnerText)));
                 }
             }
             #endregion
@@ -80,7 +80,7 @@ namespace JCodes.Framework.AddIn.Proj
             {
                 #region 新增数据
                 XmlHelper xmltableshelper = new XmlHelper(@"XML\tables.xml");
-                xmltableshelper.Replace(string.Format("datatype/dataitem/item[@guid=\"{0}\"]/basicdatapath", info.GUID), info.BasicdataPath);
+                xmltableshelper.Replace(string.Format("datatype/dataitem/item[@gid=\"{0}\"]/basicdatapath", info.Gid), info.BasicdataPath);
                 xmltableshelper.Save();
 
                 if (FileUtil.FileIsExist(info.BasicdataPath))
@@ -112,7 +112,7 @@ namespace JCodes.Framework.AddIn.Proj
 
         private void SetInfo(TablesInfo info)
         {
-            info.GUID = cbbItemName.GetComboBoxStrValue();
+            info.Gid = cbbItemName.GetComboBoxStrValue();
             info.Name = cbbItemName.SelectedText.Split('(')[1].Split(' ')[1].TrimEnd(')');
             info.BasicdataPath = string.Format(@"XML\{0}.basicdata", info.Name);
         }

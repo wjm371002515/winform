@@ -833,28 +833,6 @@ namespace TestCommons
                 LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(Form1));
                 MessageDxUtil.ShowError(ex.Message); 
             }
-
-            return;
-            email = new EmailHelper("smtp.163.com", "wuhuacong2013@163.com", "123abc");
-            email.Subject = "伍华聪的图片附件测试邮件";
-            string embedFile = Path.Combine(Application.StartupPath, "cityroad.jpg");
-            email.Body = string.Format("测试邮件正文内容<img src=\"{0}\" title='测试图片' /> <IMG src=\"C:\\Example.jpg\"> ", embedFile);
-            email.IsHtml = true;
-            email.From = "wuhuacong2013@163.com";
-            email.FromName = "wuhuacong2013";
-            email.AddRecipient("6966254@qq.com");
-            email.AddAttachment(Path.Combine(Application.StartupPath, "ringin.wav"));//.AddAttachment("C:\\test.txt");
-
-            try
-            {
-                bool success = email.SendEmail();
-                MessageDxUtil.ShowTips(success ? "发送成功" : "发送失败"); 
-            }
-            catch (Exception ex)
-            {
-                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(Form1));
-                MessageDxUtil.ShowError(ex.Message); 
-            }
         }
 
         private void btnNetWork_Click(object sender, EventArgs e)

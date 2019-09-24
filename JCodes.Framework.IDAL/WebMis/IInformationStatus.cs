@@ -1,6 +1,7 @@
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Entity;
 using JCodes.Framework.jCodesenum;
+using System;
 
 namespace JCodes.Framework.IDAL
 {
@@ -16,7 +17,7 @@ namespace JCodes.Framework.IDAL
         /// <param name="InfoType">信息类型</param>
         /// <param name="InfoID">信息主键ID</param>
         /// <param name="Status">状态</param>
-        void SetStatus(string UserID, InformationCategory InfoType, string InfoID, int Status);
+        void SetStatus(Int32 userId, Int32 infoType, Int32 InfoID, Int32 dealStatus);
 
         /// <summary>
         /// 匹配状态

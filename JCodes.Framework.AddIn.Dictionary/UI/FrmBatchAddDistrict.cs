@@ -34,7 +34,7 @@ namespace JCodes.Framework.AddIn.Dictionary
             {
                 DistrictInfo info = new DistrictInfo();
                 info.DistrictName = dictData;
-                info.CityID = Convert.ToInt32(this.txtCity.Tag.ToString());
+                info.CityId = Convert.ToInt32(this.txtCity.Tag.ToString());
 
                 bool succeed = BLLFactory<District>.Instance.Insert(info, trans);
             }

@@ -42,7 +42,7 @@ namespace JCodes.Framework.MySqlDAL
 			ItemDetailInfo itemDetailInfo = new ItemDetailInfo();
 			SmartDataReader reader = new SmartDataReader(dataReader);
 			
-			itemDetailInfo.ID = reader.GetInt32("ID");
+			/*itemDetailInfo.ID = reader.GetInt32("ID");
 			itemDetailInfo.ItemNo = reader.GetString("ItemNo");
 			itemDetailInfo.ItemName = reader.GetString("ItemName");
             itemDetailInfo.Manufacture = reader.GetString("Manufacture");
@@ -58,7 +58,7 @@ namespace JCodes.Framework.MySqlDAL
 			itemDetailInfo.UsagePos = reader.GetString("UsagePos");
 			itemDetailInfo.Note = reader.GetString("Note");
             itemDetailInfo.WareHouse = reader.GetString("WareHouse");
-            itemDetailInfo.Dept = reader.GetString("Dept");
+            itemDetailInfo.Dept = reader.GetString("Dept");*/
 			
 			return itemDetailInfo;
 		}
@@ -73,7 +73,7 @@ namespace JCodes.Framework.MySqlDAL
 		    ItemDetailInfo info = obj as ItemDetailInfo;
 			Hashtable hash = new Hashtable(); 
 			
- 			hash.Add("ItemNo", info.ItemNo);
+ 			/*hash.Add("ItemNo", info.ItemNo);
  			hash.Add("ItemName", info.ItemName);
             hash.Add("Manufacture", info.Manufacture);
  			hash.Add("MapNo", info.MapNo);
@@ -89,7 +89,7 @@ namespace JCodes.Framework.MySqlDAL
  			hash.Add("Note", info.Note);
             hash.Add("WareHouse", info.WareHouse);
             hash.Add("Dept", info.Dept);
- 				
+ 				*/
 			return hash;
 		}
 
@@ -102,7 +102,7 @@ namespace JCodes.Framework.MySqlDAL
             Dictionary<string, string> dict = new Dictionary<string, string>();
             #region 添加别名解析
 
-            dict.Add("ID", "编号");
+            /*dict.Add("ID", "编号");
             dict.Add("ItemNo", "项目编号");
             dict.Add("ItemName", "项目名称");
             dict.Add("Manufacture", "供货商");
@@ -122,7 +122,7 @@ namespace JCodes.Framework.MySqlDAL
             dict.Add("Note", "备注");
             dict.Add("Quantity", "数量");
             dict.Add("Amount", "金额");
-            dict.Add("UserCode", "货单号");
+            dict.Add("UserCode", "货单号");*/
 
             #endregion
             return dict;

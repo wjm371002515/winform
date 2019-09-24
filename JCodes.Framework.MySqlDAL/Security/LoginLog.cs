@@ -44,7 +44,7 @@ namespace JCodes.Framework.MySqlDAL
             LoginLogInfo info = new LoginLogInfo();
             SmartDataReader reader = new SmartDataReader(dataReader);
 
-            info.Id = reader.GetInt32("Id");
+            /*info.Id = reader.GetInt32("Id");
             info.UserId = reader.GetInt32("UserId");
             info.LoginName = reader.GetString("LoginName");
             info.FullName = reader.GetString("FullName");
@@ -54,7 +54,7 @@ namespace JCodes.Framework.MySqlDAL
             info.IP = reader.GetString("IP");
             info.Mac = reader.GetString("Mac");
             info.LastUpdateTime = reader.GetDateTime("LastUpdateTime");
-            info.SystemtypeId = reader.GetString("SystemtypeId");
+            info.SystemtypeId = reader.GetString("SystemtypeId");*/
 
             return info;
         }
@@ -69,7 +69,7 @@ namespace JCodes.Framework.MySqlDAL
             LoginLogInfo info = obj as LoginLogInfo;
             Hashtable hash = new Hashtable();
 
-            hash.Add("UserId", info.UserId);
+            /*hash.Add("UserId", info.UserId);
             hash.Add("LoginName", info.LoginName);
             hash.Add("FullName", info.FullName);
             hash.Add("CompanyId", info.CompanyId);
@@ -78,7 +78,7 @@ namespace JCodes.Framework.MySqlDAL
             hash.Add("IP", info.IP);
             hash.Add("Mac", info.Mac);
             hash.Add("LastUpdateTime", info.LastUpdateTime);
-            hash.Add("SystemtypeId", info.SystemtypeId);
+            hash.Add("SystemtypeId", info.SystemtypeId);*/
 
             return hash;
         }
@@ -91,7 +91,7 @@ namespace JCodes.Framework.MySqlDAL
         {
             Dictionary<string, string> dict = new Dictionary<string, string>();
             #region 添加别名解析
-            dict.Add("ID", "编号");
+            /*dict.Add("ID", "编号");
             dict.Add("UserId", "用户Id");
             dict.Add("LoginName", "登录名");
             dict.Add("FullName", "真实名");
@@ -101,7 +101,7 @@ namespace JCodes.Framework.MySqlDAL
             dict.Add("IP", "IP地址");
             dict.Add("Mac", "Mac地址");
             dict.Add("LastUpdateTime", "最后更新时间");
-            dict.Add("SystemtypeId", "系统编号");
+            dict.Add("SystemtypeId", "系统编号");*/
             #endregion
             return dict;
         }

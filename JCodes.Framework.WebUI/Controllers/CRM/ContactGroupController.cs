@@ -95,9 +95,9 @@ namespace JCodes.Framework.WebUI.Controllers
             List<JsTreeData> treeList = new List<JsTreeData>();
             foreach (ContactGroupNodeInfo nodeInfo in groupList)
             {
-                bool check = groupIdList.Contains(nodeInfo.Id);
+                Int16 check = (short)(groupIdList.Contains(nodeInfo.Id) ? 1 : 0);
                 JsTreeData treeData = new JsTreeData(nodeInfo.Id.ToString(), nodeInfo.Name);
-                treeData.state  = new JsTreeState(true, check);
+                treeData.JsTreeStatus = new JsTreeStatus((short)1, check);
 
                 treeList.Add(treeData);
             }

@@ -43,7 +43,7 @@ namespace JCodes.Framework.MySqlDAL
 			ReportMonthlyCostDetailInfo reportMonthlyCostDetailInfo = new ReportMonthlyCostDetailInfo();
 			SmartDataReader reader = new SmartDataReader(dataReader);
 			
-			reportMonthlyCostDetailInfo.ID = reader.GetInt32("ID");
+			/*reportMonthlyCostDetailInfo.ID = reader.GetInt32("ID");
 			reportMonthlyCostDetailInfo.Header_ID = reader.GetInt32("Header_ID");
 			reportMonthlyCostDetailInfo.ReportYear = reader.GetInt32("ReportYear");
 			reportMonthlyCostDetailInfo.ReportMonth = reader.GetInt32("ReportMonth");
@@ -51,7 +51,7 @@ namespace JCodes.Framework.MySqlDAL
 			reportMonthlyCostDetailInfo.DeptName = reader.GetString("DeptName");
 			reportMonthlyCostDetailInfo.ItemType = reader.GetString("ItemType");
 			reportMonthlyCostDetailInfo.TotalMoney = reader.GetDecimal("TotalMoney");
-			reportMonthlyCostDetailInfo.ReportCode = reader.GetString("ReportCode");
+			reportMonthlyCostDetailInfo.ReportCode = reader.GetString("ReportCode");*/
 			
 			return reportMonthlyCostDetailInfo;
 		}
@@ -66,7 +66,7 @@ namespace JCodes.Framework.MySqlDAL
 		    ReportMonthlyCostDetailInfo info = obj as ReportMonthlyCostDetailInfo;
 			Hashtable hash = new Hashtable(); 
 			
- 			hash.Add("Header_ID", info.Header_ID);
+ 			/*hash.Add("Header_ID", info.Header_ID);
  			hash.Add("ReportYear", info.ReportYear);
  			hash.Add("ReportMonth", info.ReportMonth);
  			hash.Add("YearMonth", info.YearMonth);
@@ -74,7 +74,7 @@ namespace JCodes.Framework.MySqlDAL
  			hash.Add("ItemType", info.ItemType);
  			hash.Add("TotalMoney", info.TotalMoney);
  			hash.Add("ReportCode", info.ReportCode);
- 				
+ 				*/
 			return hash;
 		}
 

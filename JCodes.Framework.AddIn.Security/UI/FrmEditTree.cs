@@ -168,18 +168,18 @@ namespace JCodes.Framework.AddIn.Security
 
                     foreach (FunctionInfo info in chechedList)
                     {
-                        if (!checkedDict.ContainsKey(info.ID))
+                        if (!checkedDict.ContainsKey(info.Gid))
                         {
                             // 20170901 wjm 调整key 和value的顺序
-                            checkedDict.Add(info.ID, new CListItem( info.PID.ToString(), info.Name));
+                            checkedDict.Add(info.Gid, new CListItem(info.Pgid, info.Name));
                         }
                     }
                     foreach (FunctionInfo info in list)
                     {
-                        if (!treeDict.ContainsKey(info.ID))
+                        if (!treeDict.ContainsKey(info.Gid))
                         {
                             // 20170901 wjm 调整key 和value的顺序
-                            treeDict.Add(info.ID, new CListItem(info.PID.ToString(), info.Name));
+                            treeDict.Add(info.Gid, new CListItem(info.Pgid, info.Name));
                         }
                     } 
                     #endregion

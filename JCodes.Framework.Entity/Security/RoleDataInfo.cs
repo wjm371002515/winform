@@ -1,123 +1,132 @@
-using System;
-using System.Xml.Serialization;
+﻿using System;
 using System.Runtime.Serialization;
+using System.ComponentModel;
 
 namespace JCodes.Framework.Entity
 {
-    /// <summary>
-    /// 角色的数据权限
-    /// </summary>
-    [DataContract]
-    public class RoleDataInfo : BaseEntity
-    {    
-        #region Field Members
+	/// <summary>
+	/// 角色的数据权限(RoleDataInfo)
+	/// 对象号: 100062
+	/// 备注信息: 
+	/// </summary>
+	[Serializable]
+	[DataContract]
+	public partial class RoleDataInfo : BaseEntity
+	{
+		#region Field Members
 
-        private string m_ID = System.Guid.NewGuid().ToString(); //          
-        private int m_Role_ID = 0; //角色ID          
-        private string m_BelongCompanys; //所属公司          
-        private string m_BelongDepts; //所属部门          
-        private string m_ExcludeDepts; //排除部门          
-        private string m_Note; //备注          
+		/// <summary>
+		/// ID序号
+		/// </summary>
+		private Int32 m_Id = 0;
 
-        #endregion
+		/// <summary>
+		/// 角色Id
+		/// </summary>
+		private Int16 m_RoleId = 0;
 
-        #region Property Members
-        
+		/// <summary>
+		/// 公司列表
+		/// </summary>
+		private String m_CompanyLst = string.Empty;
+
+		/// <summary>
+		/// 部门列表
+		/// </summary>
+		private String m_DeptLst = string.Empty;
+
+		/// <summary>
+		/// 备注
+		/// </summary>
+		private String m_Remark = string.Empty;
+		#endregion
+
+		#region Property Members
+
+		/// <summary>
+		/// ID序号
+		/// </summary>
 		[DataMember]
-        public virtual string ID
-        {
-            get
-            {
-                return this.m_ID;
-            }
-            set
-            {
-                this.m_ID = value;
-            }
-        }
+		[DisplayName("ID序号")]
+		public virtual Int32 Id
+		{
+			get
+			{
+				return this.m_Id;
+			}
+			set
+			{
+				this.m_Id = value;
+			}
+		}
 
-        /// <summary>
-        /// 角色ID
-        /// </summary>
+		/// <summary>
+		/// 角色Id
+		/// </summary>
 		[DataMember]
-        public virtual int Role_ID
-        {
-            get
-            {
-                return this.m_Role_ID;
-            }
-            set
-            {
-                this.m_Role_ID = value;
-            }
-        }
+		[DisplayName("角色Id")]
+		public virtual Int16 RoleId
+		{
+			get
+			{
+				return this.m_RoleId;
+			}
+			set
+			{
+				this.m_RoleId = value;
+			}
+		}
 
-        /// <summary>
-        /// 所属公司
-        /// </summary>
+		/// <summary>
+		/// 公司列表
+		/// </summary>
 		[DataMember]
-        public virtual string BelongCompanys
-        {
-            get
-            {
-                return this.m_BelongCompanys;
-            }
-            set
-            {
-                this.m_BelongCompanys = value;
-            }
-        }
+		[DisplayName("公司列表")]
+		public virtual String CompanyLst
+		{
+			get
+			{
+				return this.m_CompanyLst;
+			}
+			set
+			{
+				this.m_CompanyLst = value;
+			}
+		}
 
-        /// <summary>
-        /// 所属部门
-        /// </summary>
+		/// <summary>
+		/// 部门列表
+		/// </summary>
 		[DataMember]
-        public virtual string BelongDepts
-        {
-            get
-            {
-                return this.m_BelongDepts;
-            }
-            set
-            {
-                this.m_BelongDepts = value;
-            }
-        }
+		[DisplayName("部门列表")]
+		public virtual String DeptLst
+		{
+			get
+			{
+				return this.m_DeptLst;
+			}
+			set
+			{
+				this.m_DeptLst = value;
+			}
+		}
 
-        /// <summary>
-        /// 排除部门
-        /// </summary>
+		/// <summary>
+		/// 备注
+		/// </summary>
 		[DataMember]
-        public virtual string ExcludeDepts
-        {
-            get
-            {
-                return this.m_ExcludeDepts;
-            }
-            set
-            {
-                this.m_ExcludeDepts = value;
-            }
-        }
-
-        /// <summary>
-        /// 备注
-        /// </summary>
-		[DataMember]
-        public virtual string Note
-        {
-            get
-            {
-                return this.m_Note;
-            }
-            set
-            {
-                this.m_Note = value;
-            }
-        }
-
-
-        #endregion
-
-    }
+		[DisplayName("备注")]
+		public virtual String Remark
+		{
+			get
+			{
+				return this.m_Remark;
+			}
+			set
+			{
+				this.m_Remark = value;
+			}
+		}
+		#endregion
+	}
 }

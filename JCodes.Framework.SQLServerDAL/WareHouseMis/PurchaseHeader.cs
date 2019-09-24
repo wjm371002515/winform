@@ -43,18 +43,18 @@ namespace JCodes.Framework.SQLServerDAL
 			PurchaseHeaderInfo purchaseHeaderInfo = new PurchaseHeaderInfo();
 			SmartDataReader reader = new SmartDataReader(dataReader);
 			
-			purchaseHeaderInfo.ID = reader.GetInt32("ID");
-			purchaseHeaderInfo.UserCode = reader.GetString("UserCode");
-			purchaseHeaderInfo.OperationType = reader.GetString("OperationType");
-			purchaseHeaderInfo.Manufacture = reader.GetString("Manufacture");
-			purchaseHeaderInfo.WareHouse = reader.GetString("WareHouse");
-            purchaseHeaderInfo.CostCenter = reader.GetString("CostCenter");
-			purchaseHeaderInfo.Note = reader.GetString("Note");
-			purchaseHeaderInfo.CreateDate = reader.GetDateTime("CreateDate");
-			purchaseHeaderInfo.Creator = reader.GetString("Creator");
-            purchaseHeaderInfo.CreateYear = reader.GetInt32("CreateYear");
-            purchaseHeaderInfo.CreateMonth = reader.GetInt32("CreateMonth");
-            purchaseHeaderInfo.PickingPeople = reader.GetString("PickingPeople");			
+            //purchaseHeaderInfo.ID = reader.GetInt32("ID");
+            //purchaseHeaderInfo.UserCode = reader.GetString("UserCode");
+            //purchaseHeaderInfo.OperationType = reader.GetString("OperationType");
+            //purchaseHeaderInfo.Manufacture = reader.GetString("Manufacture");
+            //purchaseHeaderInfo.WareHouse = reader.GetString("WareHouse");
+            //purchaseHeaderInfo.CostCenter = reader.GetString("CostCenter");
+            //purchaseHeaderInfo.Note = reader.GetString("Note");
+            //purchaseHeaderInfo.CreateDate = reader.GetDateTime("CreateDate");
+            //purchaseHeaderInfo.Creator = reader.GetString("Creator");
+            //purchaseHeaderInfo.CreateYear = reader.GetInt32("CreateYear");
+            //purchaseHeaderInfo.CreateMonth = reader.GetInt32("CreateMonth");
+            //purchaseHeaderInfo.PickingPeople = reader.GetString("PickingPeople");			
 			return purchaseHeaderInfo;
 		}
 
@@ -68,17 +68,17 @@ namespace JCodes.Framework.SQLServerDAL
 		    PurchaseHeaderInfo info = obj as PurchaseHeaderInfo;
 			Hashtable hash = new Hashtable(); 
 			
- 			hash.Add("UserCode", info.UserCode);
- 			hash.Add("OperationType", info.OperationType);
- 			hash.Add("Manufacture", info.Manufacture);
- 			hash.Add("WareHouse", info.WareHouse);
-            hash.Add("CostCenter", info.CostCenter);
- 			hash.Add("Note", info.Note);
- 			hash.Add("CreateDate", info.CreateDate);
- 			hash.Add("Creator", info.Creator);
-            hash.Add("CreateYear", info.CreateYear);
-            hash.Add("CreateMonth", info.CreateMonth);
-            hash.Add("PickingPeople", info.PickingPeople);
+            //hash.Add("UserCode", info.UserCode);
+            //hash.Add("OperationType", info.OperationType);
+            //hash.Add("Manufacture", info.Manufacture);
+            //hash.Add("WareHouse", info.WareHouse);
+            //hash.Add("CostCenter", info.CostCenter);
+            //hash.Add("Note", info.Note);
+            //hash.Add("CreateDate", info.CreateDate);
+            //hash.Add("Creator", info.Creator);
+            //hash.Add("CreateYear", info.CreateYear);
+            //hash.Add("CreateMonth", info.CreateMonth);
+            //hash.Add("PickingPeople", info.PickingPeople);
  				
 			return hash;
 		}

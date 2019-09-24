@@ -118,8 +118,8 @@ namespace JCodes.Framework.AddIn.Proj
 
         private void SetInfo(DictDataInfo info)
         {
-            info.DicttypeID = this.txtDictType.Tag.ToString().ToInt32();
-            info.Value = this.txtValue.Text.Trim();
+            info.DicttypeId = this.txtDictType.Tag.ToString().ToInt32();
+            info.DicttypeValue = this.txtValue.Text.Trim().ToInt32();
             info.Name = this.txtName.Text.Trim();
             info.Seq = this.txtSeq.Text;
             info.Remark = this.txtNote.Text.Trim();
@@ -148,7 +148,7 @@ namespace JCodes.Framework.AddIn.Proj
             {
                 #region 新增数据
                 XmlHelper xmldicthelper = new XmlHelper(@"XML\dict.xml");
-                xmldicthelper.InsertElement(string.Format("datatype/dataitem/item[id=\"{0}\"]/subdic", this.txtDictType.Tag), "item", string.Format("<value>{0}</value><name>{1}</name><seq>{2}</seq><remark>{3}</remark>", info.Value, info.Name, info.Seq, info.Remark));
+                xmldicthelper.InsertElement(string.Format("datatype/dataitem/item[id=\"{0}\"]/subdic", this.txtDictType.Tag), "item", string.Format("<value>{0}</value><name>{1}</name><seq>{2}</seq><remark>{3}</remark>", info.DicttypeValue, info.Name, info.Seq, info.Remark));
                 xmldicthelper.Save(false);
                 return true;
                 #endregion
@@ -167,7 +167,7 @@ namespace JCodes.Framework.AddIn.Proj
             XmlHelper xmldicthelper = new XmlHelper(@"XML\dict.xml");
             XmlNodeList xmlNodeLst = xmldicthelper.Read(string.Format("datatype/dataitem/item[id=\"{0}\"]/subdic/item[value=\"{1}\"]", txtDictType.Tag, Id));
 
-            info.Value = Id.ToString();
+            info.DicttypeValue = Id;
             info.Name = xmlNodeLst[1].ChildNodes.Item(0) == null ? string.Empty : xmlNodeLst[1].ChildNodes.Item(0).InnerText;
             info.Seq = xmlNodeLst[2].ChildNodes.Item(0) == null ? string.Empty : xmlNodeLst[2].ChildNodes.Item(0).InnerText;
             info.Remark = xmlNodeLst[3].ChildNodes.Item(0) == null ? string.Empty : xmlNodeLst[3].ChildNodes.Item(0).InnerText;

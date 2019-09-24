@@ -1,60 +1,132 @@
-﻿using DevExpress.XtraEditors.DXErrorProvider;
-using System;
-using System.Collections.Generic;
+﻿using System;
+using System.Runtime.Serialization;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 
 namespace JCodes.Framework.Entity
 {
-    public class StdFieldComboBox
-    {
-        /// <summary>
-        /// 字段名
-        /// </summary>
-        private string name;
+	/// <summary>
+	/// 标准字段下拉框(StdFieldComboBox)
+	/// 对象号: 100047
+	/// 备注信息: 
+	/// </summary>
+	[Serializable]
+	[DataContract]
+	public partial class StdFieldComboBox
+	{
+		#region Field Members
 
-        [DisplayName("字段名")]
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
+		/// <summary>
+		/// 名称
+		/// </summary>
+		private String m_Name = string.Empty;
 
-        private string chineseName;
+		/// <summary>
+		/// 中文名称
+		/// </summary>
+		private String m_ChineseName = string.Empty;
 
-        [DisplayName("字段名称")]
-        public string ChineseName
-        {
-            get { return chineseName; }
-            set { chineseName = value; }
-        }
+		/// <summary>
+		/// 字段类型
+		/// </summary>
+		private String m_DataType = string.Empty;
 
-        private string datatype;
+		/// <summary>
+		/// 字典条目
+		/// </summary>
+		private Int32 m_DictNo = 0;
 
-        [DisplayName("字段类型")]
-        public string DataType
-        {
-            get { return datatype; }
-            set { datatype = value; }
-        }
+		/// <summary>
+		/// 字典条目说明
+		/// </summary>
+		private String m_DictNameLst = string.Empty;
+		#endregion
 
-        private Int32 dictno;
+		#region Property Members
 
-        [DisplayName("字典条目")]
-        public Int32 DictNo
-        {
-            get { return dictno; }
-            set { dictno = value; }
-        }
+		/// <summary>
+		/// 名称
+		/// </summary>
+		[DataMember]
+		[DisplayName("名称")]
+		public virtual String Name
+		{
+			get
+			{
+				return this.m_Name;
+			}
+			set
+			{
+				this.m_Name = value;
+			}
+		}
 
-        private string dictnamelst;
+		/// <summary>
+		/// 中文名称
+		/// </summary>
+		[DataMember]
+		[DisplayName("中文名称")]
+		public virtual String ChineseName
+		{
+			get
+			{
+				return this.m_ChineseName;
+			}
+			set
+			{
+				this.m_ChineseName = value;
+			}
+		}
 
-        [DisplayName("字典条目说明")]
-        public string DictNameLst
-        {
-            get { return dictnamelst; }
-            set { dictnamelst = value; }
-        }
-    }
+		/// <summary>
+		/// 字段类型
+		/// </summary>
+		[DataMember]
+		[DisplayName("字段类型")]
+		public virtual String DataType
+		{
+			get
+			{
+				return this.m_DataType;
+			}
+			set
+			{
+				this.m_DataType = value;
+			}
+		}
+
+		/// <summary>
+		/// 字典条目
+		/// </summary>
+		[DataMember]
+		[DisplayName("字典条目")]
+		public virtual Int32 DictNo
+		{
+			get
+			{
+				return this.m_DictNo;
+			}
+			set
+			{
+				this.m_DictNo = value;
+			}
+		}
+
+		/// <summary>
+		/// 字典条目说明
+		/// </summary>
+		[DataMember]
+		[DisplayName("字典条目说明")]
+		public virtual String DictNameLst
+		{
+			get
+			{
+				return this.m_DictNameLst;
+			}
+			set
+			{
+				this.m_DictNameLst = value;
+			}
+		}
+		#endregion
+	}
 }

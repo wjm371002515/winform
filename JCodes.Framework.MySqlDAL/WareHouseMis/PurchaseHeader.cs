@@ -43,7 +43,7 @@ namespace JCodes.Framework.MySqlDAL
 			PurchaseHeaderInfo purchaseHeaderInfo = new PurchaseHeaderInfo();
 			SmartDataReader reader = new SmartDataReader(dataReader);
 			
-			purchaseHeaderInfo.ID = reader.GetInt32("ID");
+			/*purchaseHeaderInfo.ID = reader.GetInt32("ID");
 			purchaseHeaderInfo.UserCode = reader.GetString("UserCode");
 			purchaseHeaderInfo.OperationType = reader.GetString("OperationType");
 			purchaseHeaderInfo.Manufacture = reader.GetString("Manufacture");
@@ -54,7 +54,7 @@ namespace JCodes.Framework.MySqlDAL
 			purchaseHeaderInfo.Creator = reader.GetString("Creator");
             purchaseHeaderInfo.CreateYear = reader.GetInt32("CreateYear");
             purchaseHeaderInfo.CreateMonth = reader.GetInt32("CreateMonth");
-            purchaseHeaderInfo.PickingPeople = reader.GetString("PickingPeople");			
+            purchaseHeaderInfo.PickingPeople = reader.GetString("PickingPeople");			*/
 			return purchaseHeaderInfo;
 		}
 
@@ -68,7 +68,7 @@ namespace JCodes.Framework.MySqlDAL
 		    PurchaseHeaderInfo info = obj as PurchaseHeaderInfo;
 			Hashtable hash = new Hashtable(); 
 			
- 			hash.Add("UserCode", info.UserCode);
+ 			/*hash.Add("UserCode", info.UserCode);
  			hash.Add("OperationType", info.OperationType);
  			hash.Add("Manufacture", info.Manufacture);
  			hash.Add("WareHouse", info.WareHouse);
@@ -78,7 +78,7 @@ namespace JCodes.Framework.MySqlDAL
  			hash.Add("Creator", info.Creator);
             hash.Add("CreateYear", info.CreateYear);
             hash.Add("CreateMonth", info.CreateMonth);
-            hash.Add("PickingPeople", info.PickingPeople);
+            hash.Add("PickingPeople", info.PickingPeople);*/
  				
 			return hash;
 		}

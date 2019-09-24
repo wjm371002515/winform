@@ -15,6 +15,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using JCodes.Framework.Common.Extension;
 
 namespace JCodes.Framework.AddIn.Dictionary
 {
@@ -133,7 +134,7 @@ namespace JCodes.Framework.AddIn.Dictionary
         private void SetInfo(CityInfo info)
         {
             info.CityName = this.txtCity.Text;
-            info.ProvinceID = Convert.ToInt32(this.txtProvince.Tag.ToString());
+            info.ProvinceId = this.txtProvince.Tag.ToString().ToInt32();
             info.ZipCode = txtZipCode.Text;
             info.CurrentLoginUserId = LoginUserInfo.Id;
         }

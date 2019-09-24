@@ -43,7 +43,7 @@ namespace JCodes.Framework.MySqlDAL
 			ReportMonthlyDetailInfo reportMonthlyDetailInfo = new ReportMonthlyDetailInfo();
 			SmartDataReader reader = new SmartDataReader(dataReader);
 			
-			reportMonthlyDetailInfo.ID = reader.GetInt32("ID");
+			/*reportMonthlyDetailInfo.ID = reader.GetInt32("ID");
 			reportMonthlyDetailInfo.Header_ID = reader.GetInt32("Header_ID");
 			reportMonthlyDetailInfo.ReportYear = reader.GetInt32("ReportYear");
 			reportMonthlyDetailInfo.ReportMonth = reader.GetInt32("ReportMonth");
@@ -58,7 +58,7 @@ namespace JCodes.Framework.MySqlDAL
 			reportMonthlyDetailInfo.CurrentCount = reader.GetInt32("CurrentCount");
 			reportMonthlyDetailInfo.CurrentMoney = reader.GetDecimal("CurrentMoney");
             reportMonthlyDetailInfo.ReportCode = reader.GetString("ReportCode");
-			
+			*/
 			return reportMonthlyDetailInfo;
 		}
 
@@ -72,7 +72,7 @@ namespace JCodes.Framework.MySqlDAL
 		    ReportMonthlyDetailInfo info = obj as ReportMonthlyDetailInfo;
 			Hashtable hash = new Hashtable(); 
 			
- 			hash.Add("Header_ID", info.Header_ID);
+ 			/*hash.Add("Header_ID", info.Header_ID);
  			hash.Add("ReportYear", info.ReportYear);
  			hash.Add("ReportMonth", info.ReportMonth);
  			hash.Add("YearMonth", info.YearMonth);
@@ -85,7 +85,7 @@ namespace JCodes.Framework.MySqlDAL
  			hash.Add("CurrentOutMoney", info.CurrentOutMoney);
  			hash.Add("CurrentCount", info.CurrentCount);
  			hash.Add("CurrentMoney", info.CurrentMoney);
-            hash.Add("ReportCode", info.ReportCode);
+            hash.Add("ReportCode", info.ReportCode);*/
  				
 			return hash;
 		}

@@ -25,7 +25,7 @@ namespace JCodes.Framework.MySqlDAL
 				return new City();
 			}
 		}
-		public City() : base(MySqlPortal.gc._basicTablePre+"City","ID")
+		public City() : base(MySqlPortal.gc._basicTablePre+"City","Id")
 		{
             IsDescending = false;
 		}
@@ -41,11 +41,11 @@ namespace JCodes.Framework.MySqlDAL
 		{
 			CityInfo cityInfo = new CityInfo();
 			SmartDataReader reader = new SmartDataReader(dataReader);
-			
-			cityInfo.ID = reader.GetInt32("ID");
+
+            cityInfo.Id = reader.GetInt32("Id");
 			cityInfo.CityName = reader.GetString("CityName");
 			cityInfo.ZipCode = reader.GetString("ZipCode");
-            cityInfo.ProvinceID = reader.GetInt32("ProvinceID");
+            cityInfo.ProvinceId = reader.GetInt32("ProvinceId");
 			
 			return cityInfo;
 		}
@@ -62,7 +62,7 @@ namespace JCodes.Framework.MySqlDAL
 			
  			hash.Add("CityName", info.CityName);
  			hash.Add("ZipCode", info.ZipCode);
- 			hash.Add("ProvinceID", info.ProvinceID);
+            hash.Add("ProvinceId", info.ProvinceId);
  				
 			return hash;
 		}

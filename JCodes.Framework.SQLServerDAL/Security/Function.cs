@@ -27,7 +27,7 @@ namespace JCodes.Framework.SQLServerDAL
             }
         }
         public Functions()
-            : base(SQLServerPortal.gc._securityTablePre + "Function", "ID")
+            : base(SQLServerPortal.gc._securityTablePre + "Function", "Gid")
         {
             this.sortField = "Seq";
             this.isDescending = false;
@@ -44,13 +44,12 @@ namespace JCodes.Framework.SQLServerDAL
         {
             FunctionInfo info = new FunctionInfo();
             SmartDataReader reader = new SmartDataReader(dataReader);
-
-            info.ID = reader.GetString("ID");
+            /*info.ID = reader.GetString("ID");
             info.PID = reader.GetString("PID");
             info.Name = reader.GetString("Name");
             info.FunctionId = reader.GetString("FunctionId");
             info.SystemType_ID = reader.GetString("SystemType_ID");
-            info.Seq = reader.GetString("Seq");
+            info.Seq = reader.GetString("Seq");*/
 
             return info;
         }
@@ -65,12 +64,12 @@ namespace JCodes.Framework.SQLServerDAL
             FunctionInfo info = obj as FunctionInfo;
             Hashtable hash = new Hashtable();
 
-            hash.Add("ID", info.ID);
+            /*hash.Add("ID", info.ID);
             hash.Add("PID", info.PID);
             hash.Add("Name", info.Name);
             hash.Add("FunctionId", info.FunctionId);
             hash.Add("SystemType_ID", info.SystemType_ID);
-            hash.Add("Seq", info.Seq);
+            hash.Add("Seq", info.Seq);*/
 
             return hash;
         }
@@ -83,12 +82,12 @@ namespace JCodes.Framework.SQLServerDAL
         {
             Dictionary<string, string> dict = new Dictionary<string, string>();
             #region 添加别名解析
-            dict.Add("ID", "编号");            
+            /*dict.Add("ID", "编号");            
             dict.Add("PID", "父ID");
             dict.Add("Name", "功能名称");
             dict.Add("FunctionId", "功能ID");
             dict.Add("SystemType_ID", "系统编号");
-            dict.Add("Seq", "排序");
+            dict.Add("Seq", "排序");*/
             #endregion
 
             return dict;
@@ -104,7 +103,7 @@ namespace JCodes.Framework.SQLServerDAL
             FunctionInfo info = this.FindByID(key, trans);
             if (info != null)
             {
-                string sql = string.Format("UPDATE {2} SET PID='{0}' Where PID='{1}' ", info.PID, key, tableName);
+                string sql = string.Format("UPDATE {2} SET Pgid='{0}' Where Pgid='{1}' ", info.Pgid, key, tableName);
                 SqlExecute(sql, trans);
 
                 base.DeleteByUser(key, userId, trans);

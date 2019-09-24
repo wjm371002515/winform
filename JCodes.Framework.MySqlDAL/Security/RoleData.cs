@@ -43,12 +43,12 @@ namespace JCodes.Framework.MySqlDAL
 			RoleDataInfo info = new RoleDataInfo();
 			SmartDataReader reader = new SmartDataReader(dataReader);
 			
-			info.ID = reader.GetString("ID");
+			/*info.ID = reader.GetString("ID");
 			info.Role_ID = reader.GetInt32("Role_ID");
 			info.BelongCompanys = reader.GetString("BelongCompanys");
 			info.BelongDepts = reader.GetString("BelongDepts");
 			info.ExcludeDepts = reader.GetString("ExcludeDepts");
-			info.Note = reader.GetString("Note");
+			info.Note = reader.GetString("Note");*/
 			
 			return info;
 		}
@@ -62,13 +62,13 @@ namespace JCodes.Framework.MySqlDAL
 		{
 		    RoleDataInfo info = obj as RoleDataInfo;
 			Hashtable hash = new Hashtable(); 
-			
+			/*
 			hash.Add("ID", info.ID);
  			hash.Add("Role_ID", info.Role_ID);
  			hash.Add("BelongCompanys", info.BelongCompanys);
  			hash.Add("BelongDepts", info.BelongDepts);
  			hash.Add("ExcludeDepts", info.ExcludeDepts);
- 			hash.Add("Note", info.Note);
+ 			hash.Add("Note", info.Note);*/
  				
 			return hash;
 		}
@@ -81,13 +81,13 @@ namespace JCodes.Framework.MySqlDAL
         {
             Dictionary<string, string> dict = new Dictionary<string, string>();
             #region 添加别名解析
-            //dict.Add("ID", "编号");
+            /*dict.Add("ID", "编号");
             dict.Add("ID", "");
              dict.Add("Role_ID", "角色ID");
              dict.Add("BelongCompanys", "所属公司");
              dict.Add("BelongDepts", "所属部门");
              dict.Add("ExcludeDepts", "排除部门");
-             dict.Add("Note", "备注");
+             dict.Add("Note", "备注");*/
              #endregion
 
             return dict;

@@ -6,6 +6,7 @@ using JCodes.Framework.Entity;
 using JCodes.Framework.IDAL;
 using JCodes.Framework.Common.Databases;
 using JCodes.Framework.jCodesenum;
+using System;
 
 namespace JCodes.Framework.SQLServerDAL
 {
@@ -39,11 +40,11 @@ namespace JCodes.Framework.SQLServerDAL
 			InformationStatusInfo info = new InformationStatusInfo();
 			SmartDataReader reader = new SmartDataReader(dataReader);
 			
-			info.ID = reader.GetString("ID");
+			/*info.ID = reader.GetString("ID");
 			info.Category = reader.GetString("Category");
 			info.Information_ID = reader.GetString("Information_ID");
 			info.Status = reader.GetInt32("Status");
-			info.User_ID = reader.GetString("User_ID");
+			info.User_ID = reader.GetString("User_ID");*/
 			
 			return info;
 		}
@@ -58,11 +59,11 @@ namespace JCodes.Framework.SQLServerDAL
 		    InformationStatusInfo info = obj as InformationStatusInfo;
 			Hashtable hash = new Hashtable(); 
 			
-			hash.Add("ID", info.ID);
+			/*hash.Add("ID", info.ID);
  			hash.Add("Category", info.Category);
  			hash.Add("Information_ID", info.Information_ID);
  			hash.Add("Status", info.Status);
- 			hash.Add("User_ID", info.User_ID);
+ 			hash.Add("User_ID", info.User_ID);*/
  				
 			return hash;
 		}
@@ -76,11 +77,11 @@ namespace JCodes.Framework.SQLServerDAL
             Dictionary<string, string> dict = new Dictionary<string, string>();
             #region 添加别名解析
             //dict.Add("ID", "编号");
-            dict.Add("ID", "");
+            /*dict.Add("ID", "");
             dict.Add("Category", "信息类型");
             dict.Add("Information_ID", "信息ID");
             dict.Add("Status", "阅读状态");
-            dict.Add("User_ID", "用户ID");
+            dict.Add("User_ID", "用户ID");*/
             #endregion
 
             return dict;
@@ -93,22 +94,22 @@ namespace JCodes.Framework.SQLServerDAL
         /// <param name="InfoType">信息类型</param>
         /// <param name="InfoID">信息主键ID</param>
         /// <param name="Status">状态</param>
-        public void SetStatus(string UserID, InformationCategory InfoType, string InfoID, int Status)
+        public void SetStatus(Int32 userId, Int32 infoType, Int32 InfoID, Int32 dealStatus)
         {
-            if (!IsExistRecord(string.Format("USER_ID='{0}' and Category='{1}' and Information_ID='{2}'", UserID, InfoType, InfoID)))
+            if (!IsExistRecord(string.Format("USER_ID='{0}' and Category='{1}' and Information_ID='{2}'", userId, infoType, InfoID)))
             {
                 InformationStatusInfo info = new InformationStatusInfo();
-                info.User_ID = UserID;
-                info.Category = InfoType.ToString();
-                info.Information_ID = InfoID;
-                info.Status = Status;
+                info.UserId = userId;
+                info.InformationCategory = (short)infoType;
+                info.InformationId = InfoID;
+                info.DealStatus = (short)dealStatus;
                 base.Insert(info);
             }
             else
             {
-                InformationStatusInfo info = FindSingle(string.Format("USER_ID='{0}' and Category='{1}' and Information_ID='{2}'", UserID, InfoType, InfoID));
-                info.Status = Status;
-                base.Update(info, info.ID);
+                InformationStatusInfo info = FindSingle(string.Format("USER_ID='{0}' and Category='{1}' and Information_ID='{2}'", userId, infoType, InfoID));
+                info.DealStatus = (short)dealStatus;
+                base.Update(info, info.Id);
             }
         }
 

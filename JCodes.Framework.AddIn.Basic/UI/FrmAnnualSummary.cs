@@ -49,8 +49,8 @@ namespace JCodes.Framework.AddIn.Basic
         private ReportAnnualCostHeaderInfo GetAnnualMainHeader()
         {
             ReportAnnualCostHeaderInfo headerInfo = new ReportAnnualCostHeaderInfo();
-            headerInfo.CreateDate = DateTimeHelper.GetServerDateTime2();
-            headerInfo.Creator = LoginUserInfo.FullName;
+            headerInfo.CreatorTime = DateTimeHelper.GetServerDateTime2();
+            headerInfo.CreatorId = LoginUserInfo.Id;
             headerInfo.ReportYear = DateTimeHelper.GetServerDateTime2().Year;
             return headerInfo;
         }

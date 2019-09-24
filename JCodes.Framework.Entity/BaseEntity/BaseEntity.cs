@@ -1,39 +1,114 @@
-using System;
-using System.Xml.Serialization;
+ï»¿using System;
 using System.Runtime.Serialization;
+using System.ComponentModel;
 
 namespace JCodes.Framework.Entity
 {
 	/// <summary>
-	/// ¿ò¼ÜÊµÌåÀàµÄ»ùÀà
+	/// æ¡†æ¶å®ä½“ç±»çš„åŸºç±»(BaseEntity)
+	/// å¯¹è±¡å·: 100004
+	/// å¤‡æ³¨ä¿¡æ¯: 
 	/// </summary>
-    [DataContract]
-    public class BaseEntity
-    {
-        /// <summary>
-        /// µ±Ç°µÇÂ¼ÓÃ»§ID¡£¸Ã×Ö¶Î²»±£´æµ½Êı¾İ±íÖĞ£¬Ö»ÓÃÓÚ¼ÇÂ¼ÓÃ»§µÄ²Ù×÷ÈÕÖ¾¡£
-        /// </summary>
-        [DataMember]
-        public Int32 CurrentLoginUserId { get; set; }
+	[Serializable]
+	[DataContract]
+	public partial class BaseEntity
+	{
+		#region Field Members
 
-        #region ÔÚÊµÌåÀà´æ´¢Ò»Ğ©ÌØÊâµÄÊı¾İ
-        /// <summary>
-        /// ÓÃÀ´¸øÊµÌåÀà´«µİÒ»Ğ©¶îÍâµÄÊı¾İ£¬ÈçÍâ¼üµÄ×ªÒåµÈ£¬¸Ã×Ö¶Î²»±£´æµ½Êı¾İ±íÖĞ
-        /// </summary>
-        [DataMember]
-        public string Data1 { get; set; }
+		/// <summary>
+		/// ç™»é™†ç”¨æˆ·ID
+		/// </summary>
+		private Int32 m_CurrentLoginUserId = 0;
 
-        /// <summary>
-        /// ÓÃÀ´¸øÊµÌåÀà´«µİÒ»Ğ©¶îÍâµÄÊı¾İ£¬ÈçÍâ¼üµÄ×ªÒåµÈ£¬¸Ã×Ö¶Î²»±£´æµ½Êı¾İ±íÖĞ
-        /// </summary>
-        [DataMember]
-        public string Data2 { get; set; }
+		/// <summary>
+		/// é¢å¤–æ•°æ®1
+		/// </summary>
+		private String m_Data1 = string.Empty;
 
-        /// <summary>
-        /// ÓÃÀ´¸øÊµÌåÀà´«µİÒ»Ğ©¶îÍâµÄÊı¾İ£¬ÈçÍâ¼üµÄ×ªÒåµÈ£¬¸Ã×Ö¶Î²»±£´æµ½Êı¾İ±íÖĞ
-        /// </summary>
-        [DataMember]
-        public string Data3 { get; set; } 
-        #endregion
-    }
+		/// <summary>
+		/// é¢å¤–æ•°æ®2
+		/// </summary>
+		private String m_Data2 = string.Empty;
+
+		/// <summary>
+		/// é¢å¤–æ•°æ®3
+		/// </summary>
+		private String m_Data3 = string.Empty;
+		#endregion
+
+		#region Property Members
+
+		/// <summary>
+		/// ç™»é™†ç”¨æˆ·ID
+		/// å½“å‰ç™»å½•ç”¨æˆ·IDã€‚è¯¥å­—æ®µä¸ä¿å­˜åˆ°æ•°æ®è¡¨ä¸­ï¼Œåªç”¨äºè®°å½•ç”¨æˆ·çš„æ“ä½œæ—¥å¿—ã€‚
+		/// </summary>
+		[DataMember]
+		[DisplayName("ç™»é™†ç”¨æˆ·ID")]
+		public virtual Int32 CurrentLoginUserId
+		{
+			get
+			{
+				return this.m_CurrentLoginUserId;
+			}
+			set
+			{
+				this.m_CurrentLoginUserId = value;
+			}
+		}
+
+		/// <summary>
+		/// é¢å¤–æ•°æ®1
+		/// ç”¨æ¥ç»™å®ä½“ç±»ä¼ é€’ä¸€äº›é¢å¤–çš„æ•°æ®ï¼Œå¦‚å¤–é”®çš„è½¬ä¹‰ç­‰ï¼Œè¯¥å­—æ®µä¸ä¿å­˜åˆ°æ•°æ®è¡¨ä¸­
+		/// </summary>
+		[DataMember]
+		[DisplayName("é¢å¤–æ•°æ®1")]
+		public virtual String Data1
+		{
+			get
+			{
+				return this.m_Data1;
+			}
+			set
+			{
+				this.m_Data1 = value;
+			}
+		}
+
+		/// <summary>
+		/// é¢å¤–æ•°æ®2
+		/// ç”¨æ¥ç»™å®ä½“ç±»ä¼ é€’ä¸€äº›é¢å¤–çš„æ•°æ®ï¼Œå¦‚å¤–é”®çš„è½¬ä¹‰ç­‰ï¼Œè¯¥å­—æ®µä¸ä¿å­˜åˆ°æ•°æ®è¡¨ä¸­
+		/// </summary>
+		[DataMember]
+		[DisplayName("é¢å¤–æ•°æ®2")]
+		public virtual String Data2
+		{
+			get
+			{
+				return this.m_Data2;
+			}
+			set
+			{
+				this.m_Data2 = value;
+			}
+		}
+
+		/// <summary>
+		/// é¢å¤–æ•°æ®3
+		/// ç”¨æ¥ç»™å®ä½“ç±»ä¼ é€’ä¸€äº›é¢å¤–çš„æ•°æ®ï¼Œå¦‚å¤–é”®çš„è½¬ä¹‰ç­‰ï¼Œè¯¥å­—æ®µä¸ä¿å­˜åˆ°æ•°æ®è¡¨ä¸­
+		/// </summary>
+		[DataMember]
+		[DisplayName("é¢å¤–æ•°æ®3")]
+		public virtual String Data3
+		{
+			get
+			{
+				return this.m_Data3;
+			}
+			set
+			{
+				this.m_Data3 = value;
+			}
+		}
+		#endregion
+	}
 }

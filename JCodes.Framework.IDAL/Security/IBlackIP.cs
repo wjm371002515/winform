@@ -20,13 +20,13 @@ namespace JCodes.Framework.IDAL
         /// </summary>
         /// <param name="id">黑名单ID</param>
         /// <returns></returns>
-        string GetUserIdList(string id);
+        string GetUserIdList(Int32 id);
 
-        void AddUser(int userID, string blackID);
-        
-        void RemoveUser(int userID, string blackID);
+        void AddUser(Int32 userID, Int32 blackID);
 
-        void RemoveUserByBlackId(string blackID);
+        void RemoveUser(Int32 userID, Int32 blackID);
+
+        void RemoveUserByBlackId(Int32 blackID);
                        
         /// <summary>
         /// 根据用户ID和授权类型获取列表

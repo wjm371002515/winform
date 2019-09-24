@@ -32,7 +32,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult CheckExcelColumns(string guid)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
 
             try
             {
@@ -40,7 +40,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 if (dt != null)
                 {
                     //检查列表是否包含必须的字段
-                    result.Success = DataTableHelper.ContainAllColumns(dt, columnString);
+                    result.ErrorCode = DataTableHelper.ContainAllColumns(dt, columnString)?0:1;
                 }
             }
             catch (Exception ex)
@@ -70,16 +70,13 @@ namespace JCodes.Framework.WebUI.Controllers
             if (table != null)
             {
                 #region 数据转换
-                int i = 1;
                 foreach (DataRow dr in table.Rows)
                 {
-                    bool converted = false;
                     DateTime dtDefault = Convert.ToDateTime("1900-01-01");
-                    DateTime dt;
                     DistrictInfo info = new DistrictInfo();
 
                     info.DistrictName = dr["行政区名称"].ToString();
-                    info.CityID = dr["城市ID"].ToString().ToInt32();
+                    info.CityId = dr["城市ID"].ToString().ToInt32();
 
                     //info.Creator = CurrentUser.ID.ToString();
                     //info.CreateTime = DateTime.Now;
@@ -102,7 +99,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult SaveExcelData(List<DistrictInfo> list)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             if (list != null && list.Count > 0)
             {
                 #region 采用事务进行数据提交
@@ -124,7 +121,7 @@ namespace JCodes.Framework.WebUI.Controllers
                             BLLFactory<District>.Instance.Insert(detail, trans);
                         }
                         trans.Commit();
-                        result.Success = true;
+                        result.ErrorCode = 0;
                     }
                     catch (Exception ex)
                     {
@@ -178,7 +175,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 dr = datatable.NewRow();
                 dr["序号"] = j++;
                 dr["行政区名称"] = list[i].DistrictName;
-                dr["城市ID"] = list[i].CityID;
+                dr["城市ID"] = list[i].CityId;
                 //如果为外键，可以在这里进行转义，如下例子
                 //dr["客户名称"] = BLLFactory<Customer>.Instance.GetCustomerName(list[i].Customer_ID);//转义为客户名称
 
@@ -223,7 +220,7 @@ namespace JCodes.Framework.WebUI.Controllers
         public override ActionResult FindWithPager()
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.ListKey);
+            base.CheckAuthorized(authorizeKeyInfo.ListKey);
 
             string where = GetPagerCondition();
             PagerInfo pagerInfo = GetPagerInfo();
@@ -253,8 +250,8 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult GetDistrictByCityNameDictJson(string cityName)
         {
-            List<CListItem> treeList = new List<CListItem>();
-            CListItem pNode = new CListItem("-1", "选择记录");
+            List<CDicKeyValue> treeList = new List<CDicKeyValue>();
+            CDicKeyValue pNode = new CDicKeyValue(-1, "选择记录");
             treeList.Add(pNode);
 
             if (!string.IsNullOrEmpty(cityName))
@@ -262,7 +259,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 List<DistrictInfo> districtList = BLLFactory<District>.Instance.GetDistrictByCityName(cityName);
                 foreach (DistrictInfo info in districtList)
                 {
-                    CListItem item = new CListItem(info.ID.ToString(), info.DistrictName);
+                    CDicKeyValue item = new CDicKeyValue(info.Id, info.DistrictName);
                     treeList.Add(item);
                 }
             }
@@ -277,8 +274,8 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult GetDistrictByCityDictJson(string cityId)
         {
-            List<CListItem> treeList = new List<CListItem>();
-            CListItem pNode = new CListItem("-1", "选择记录");
+            List<CDicKeyValue> treeList = new List<CDicKeyValue>();
+            CDicKeyValue pNode = new CDicKeyValue(-1, "选择记录");
             treeList.Add(pNode);
 
             if (!string.IsNullOrEmpty(cityId))
@@ -286,7 +283,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 List<DistrictInfo> districtList = BLLFactory<District>.Instance.GetDistrictByCity(cityId);
                 foreach (DistrictInfo info in districtList)
                 {
-                    CListItem item = new CListItem(info.ID.ToString(), info.DistrictName);
+                    CDicKeyValue item = new CDicKeyValue(info.Id, info.DistrictName);
                     treeList.Add(item);
                 }
             }

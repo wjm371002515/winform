@@ -45,7 +45,7 @@ namespace JCodes.Framework.MySqlDAL
             MenuInfo info = new MenuInfo();
             SmartDataReader reader = new SmartDataReader(dataReader);
 
-            info.Gid = reader.GetString("Gid");
+            /*info.Gid = reader.GetString("Gid");
             info.Pgid = reader.GetString("Pgid");
             info.Name = reader.GetString("Name");
             info.Icon = reader.GetString("Icon");
@@ -60,7 +60,7 @@ namespace JCodes.Framework.MySqlDAL
             info.CreateTime = reader.GetDateTime("CreateTime");
             info.EditorId = reader.GetInt32("EditorId");
             info.LastUpdateTime = reader.GetDateTime("LastUpdateTime");
-            info.IsDelete = reader.GetInt32("IsDelete") > 0;
+            info.IsDelete = reader.GetInt32("IsDelete") > 0;*/
 
             return info;
         }
@@ -75,7 +75,7 @@ namespace JCodes.Framework.MySqlDAL
             MenuInfo info = obj as MenuInfo;
             Hashtable hash = new Hashtable();
 
-            hash.Add("Gid", info.Gid);
+            /*hash.Add("Gid", info.Gid);
             hash.Add("Pgid", info.Pgid);
             hash.Add("Name", info.Name);
             hash.Add("Icon", info.Icon);
@@ -90,7 +90,7 @@ namespace JCodes.Framework.MySqlDAL
             hash.Add("CreateTime", info.CreateTime);
             hash.Add("EditorId", info.EditorId);
             hash.Add("LastUpdateTime", info.LastUpdateTime);
-            hash.Add("IsDelete", info.IsDelete ? 1 : 0);
+            hash.Add("IsDelete", info.IsDelete ? 1 : 0);*/
 
             return hash;
         }
@@ -103,7 +103,7 @@ namespace JCodes.Framework.MySqlDAL
         {
             Dictionary<string, string> dict = new Dictionary<string, string>();
             #region 添加别名解析
-            dict.Add("Gid", "编号");
+            /*dict.Add("Gid", "编号");
             dict.Add("Pgid", "父ID");
             dict.Add("Name", "显示名称");
             dict.Add("Icon", "图标");
@@ -118,7 +118,7 @@ namespace JCodes.Framework.MySqlDAL
             dict.Add("CreateTime", "创建时间");
             dict.Add("EditorId", "编辑人ID");
             dict.Add("LastUpdateTime", "编辑时间");
-            dict.Add("IsDelete", "是否已删除");
+            dict.Add("IsDelete", "是否已删除");*/
             #endregion
 
             return dict;

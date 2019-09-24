@@ -34,7 +34,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult CheckExcelColumns(string guid)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
 
             try
             {
@@ -42,7 +42,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 if (dt != null)
                 {
                     //检查列表是否包含必须的字段
-                    result.Success = DataTableHelper.ContainAllColumns(dt, columnString);
+                    result.ErrorCode = DataTableHelper.ContainAllColumns(dt, columnString)?0:1;
                 }
             }
             catch (Exception ex)
@@ -72,7 +72,6 @@ namespace JCodes.Framework.WebUI.Controllers
             if (table != null)
             {
                 #region 数据转换
-                int i = 1;
                 foreach (DataRow dr in table.Rows)
                 {
                     bool converted = false;
@@ -82,7 +81,7 @@ namespace JCodes.Framework.WebUI.Controllers
 
                     info.AddressType = EnumHelper.GetInstance<AddressType>( dr["通讯录类型"].ToString());
                     info.Name = dr["姓名"].ToString();
-                    info.Sex = Convert.ToInt32( dr["性别"]);
+                    info.Gender = Convert.ToInt16(dr["性别"]);
                     converted = DateTime.TryParse(dr["出生日期"].ToString(), out dt);
                     if (converted && dt > dtDefault)
                     {
@@ -130,7 +129,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult SaveExcelData(List<AddressInfo> list)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             if (list != null && list.Count > 0)
             {
                 #region 采用事务进行数据提交
@@ -152,7 +151,7 @@ namespace JCodes.Framework.WebUI.Controllers
                             BLLFactory<Address>.Instance.Insert(detail, trans);
                         }
                         trans.Commit();
-                        result.Success = true;
+                        result.ErrorCode = 0;
                     }
                     catch (Exception ex)
                     {
@@ -207,7 +206,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 dr["序号"] = j++;
                 dr["通讯录类型[个人,公司]"] = list[i].AddressType;
                 dr["姓名"] = list[i].Name;
-                dr["性别"] = list[i].Sex;
+                dr["性别"] = list[i].Gender;
                 dr["出生日期"] = list[i].Birthday;
                 dr["手机"] = list[i].MobilePhone;
                 dr["电子邮箱"] = list[i].Email;
@@ -267,7 +266,7 @@ namespace JCodes.Framework.WebUI.Controllers
        public override ActionResult FindWithPager()
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.ListKey);
+            base.CheckAuthorized(authorizeKeyInfo.ListKey);
 
             string where = GetPagerCondition();
             PagerInfo pagerInfo = GetPagerInfo();
@@ -297,7 +296,7 @@ namespace JCodes.Framework.WebUI.Controllers
         public ActionResult FindByAddressGroup(string addressType)
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.ListKey);
+            base.CheckAuthorized(authorizeKeyInfo.ListKey);
                         
             List<AddressInfo> list = new List<AddressInfo>();
             AddressType type = (addressType == "public") ? AddressType.公共 : AddressType.个人;
@@ -362,10 +361,10 @@ namespace JCodes.Framework.WebUI.Controllers
                 idList = groupIdList.ToDelimitedList<string>(",");
             }
 
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             try
             {
-                result.Success = BLLFactory<Address>.Instance.ModifyAddressGroup(Id, idList);
+                result.ErrorCode = BLLFactory<Address>.Instance.ModifyAddressGroup(Id, idList)?0:1;
             }
             catch (Exception ex)
             {

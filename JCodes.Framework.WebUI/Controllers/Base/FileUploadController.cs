@@ -159,7 +159,7 @@ namespace JCodes.Framework.WebUI.Controllers
         public virtual ActionResult FindWithPager()
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.ListKey);
+            base.CheckAuthorized(authorizeKeyInfo.ListKey);
 
             string where = GetPagerCondition();
             PagerInfo pagerInfo = GetPagerInfo();
@@ -182,7 +182,7 @@ namespace JCodes.Framework.WebUI.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Upload(string guid, string folder)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
 
             HttpFileCollectionBase files = HttpContext.Request.Files;
             if (files != null)
@@ -221,7 +221,7 @@ namespace JCodes.Framework.WebUI.Controllers
                             info.EditorId = CurrentUser.Id;//登录人
 
                             result = BLLFactory<FileUpload>.Instance.Upload(info);
-                            if (!result.Success)
+                            if (result.ErrorCode != 0)
                             {
                                 LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, "上传文件失败:" + result.ErrorMessage, typeof(FileUploadController));
                             }
@@ -249,12 +249,12 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult Delete(string id)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             if (!string.IsNullOrEmpty(id))
             {
                 try
                 {
-                    result.Success = BLLFactory<FileUpload>.Instance.DeleteByUser(id, CurrentUser.Id);
+                    result.ErrorCode = BLLFactory<FileUpload>.Instance.DeleteByUser(id, CurrentUser.Id)?0:1;
                 }
                 catch(Exception ex)
                 {

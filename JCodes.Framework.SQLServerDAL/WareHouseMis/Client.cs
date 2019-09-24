@@ -45,12 +45,12 @@ namespace JCodes.Framework.SQLServerDAL
             ClientInfo info = new ClientInfo();
 			SmartDataReader reader = new SmartDataReader(dataReader);
 
-            info.ID = reader.GetInt32("ID");
+            /*info.ID = reader.GetInt32("ID");
             info.Name = reader.GetString("Name");
             info.Code = reader.GetString("Code");
             info.Phone = reader.GetString("Phone");
             info.Address = reader.GetString("Address");
-            info.Note = reader.GetString("Note");
+            info.Note = reader.GetString("Note");*/
             return info;
 		}
 
@@ -64,11 +64,11 @@ namespace JCodes.Framework.SQLServerDAL
             ClientInfo info = obj as ClientInfo;
 			Hashtable hash = new Hashtable(); 
 			
- 			hash.Add("Name", info.Name);
-            hash.Add("Code", info.Code);
- 			hash.Add("Phone", info.Phone);
- 			hash.Add("Address", info.Address);
- 			hash.Add("Note", info.Note);
+            //hash.Add("Name", info.Name);
+            //hash.Add("Code", info.Code);
+            //hash.Add("Phone", info.Phone);
+            //hash.Add("Address", info.Address);
+            //hash.Add("Note", info.Note);
  				
 			return hash;
 		}

@@ -1,6 +1,7 @@
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Entity;
 using JCodes.Framework.jCodesenum;
+using System;
 using System.Data;
 
 namespace JCodes.Framework.IDAL
@@ -17,6 +18,6 @@ namespace JCodes.Framework.IDAL
         /// <param name="userId">当前用户ID</param>
         /// <param name="infoType">信息类型</param>
         /// <returns></returns>
-        DataTable GetMyInformation(int userId, InformationCategory infoType);
+        DataTable GetMyInformation(int userId, Int32 infoType);
     }
 }

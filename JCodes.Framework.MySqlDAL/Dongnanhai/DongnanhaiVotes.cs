@@ -8,7 +8,6 @@ using JCodes.Framework.IDAL;
 using JCodes.Framework.Common;
 using JCodes.Framework.Common.Framework.BaseDAL;
 using JCodes.Framework.Common.Databases;
-using JCodes.Framework.Entity.Machines;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 
 namespace JCodes.Framework.MySqlDAL

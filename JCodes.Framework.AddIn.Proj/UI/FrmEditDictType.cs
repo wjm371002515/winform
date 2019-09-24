@@ -223,7 +223,7 @@ namespace JCodes.Framework.AddIn.Proj
             info.Id = txtID.Text.ToInt32();
             //info.EditorId = LoginUserInfo.Id;
             //info.CurrentLoginUserId = LoginUserInfo.Id;
-            info.LastUpdated = DateTimeHelper.GetServerDateTime2();
+            info.LastUpdateTime = DateTimeHelper.GetServerDateTime2();
             info.Name = this.txtName.Text.Trim();
             info.Remark = this.txtNote.Text.Trim();
             info.Pid = Pid;

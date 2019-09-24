@@ -49,8 +49,8 @@ namespace JCodes.Framework.SQLServerDAL
             foreach (var sysparameterInfo in info)
             {
                 // 记录修改操作
-                OperationLogOfUpdate(sysparameterInfo, sysparameterInfo.ID, null);//根据设置记录操作日志
-                string sql = string.Format("UPDATE {0}Sysparameter set value='{1}', Editor='{2}', EditorTime='{3}'  where ID={4} and sysId={5}", SQLServerPortal.gc._basicTablePre, sysparameterInfo.Value, sysparameterInfo.Editor, sysparameterInfo.EditorTime, sysparameterInfo.ID, sysparameterInfo.sysId);
+                OperationLogOfUpdate(sysparameterInfo, sysparameterInfo.Id, null);//根据设置记录操作日志
+                string sql = string.Format("UPDATE {0}Sysparameter set value='{1}', Editor='{2}', EditorTime='{3}'  where ID={4} and sysId={5}", SQLServerPortal.gc._basicTablePre, sysparameterInfo.SysValue, sysparameterInfo.EditorId, sysparameterInfo.LastUpdateTime, sysparameterInfo.Id, sysparameterInfo.SysId);
                 DbCommand dbCommand = db.GetSqlStringCommand(sql);
                 row_count += db.ExecuteNonQuery(dbCommand);
             }
@@ -68,17 +68,17 @@ namespace JCodes.Framework.SQLServerDAL
             SmartDataReader reader = new SmartDataReader(dataReader);
 
             // ID, sysId, Name, Value, Control_type, Dic_no, Numlen, Remark, Seq, Editor, EditorTime 
-            sysparameterInfo.ID = reader.GetInt32("ID");
-            sysparameterInfo.sysId = reader.GetInt32("sysId");
+            sysparameterInfo.Id = reader.GetInt32("Id");
+            sysparameterInfo.SysId = (short)reader.GetInt32("SysId");
             sysparameterInfo.Name = reader.GetString("Name");
-            sysparameterInfo.Value = reader.GetString("Value");
+            sysparameterInfo.SysValue = reader.GetString("SysValue");
             sysparameterInfo.ControlType = reader.GetInt16("Control_type");
             sysparameterInfo.DicNo = reader.GetInt32("Dic_no");
-            sysparameterInfo.Numlen = reader.GetInt32("Numlen");
+            sysparameterInfo.NumLen = reader.GetInt32("NumLen");
             sysparameterInfo.Remark = reader.GetString("Remark");
             sysparameterInfo.Seq = reader.GetString("Seq");
-            sysparameterInfo.Editor = reader.GetString("Editor");
-            sysparameterInfo.EditorTime = reader.GetDateTime("EditorTime");
+            sysparameterInfo.EditorId = reader.GetInt32("EditorId");
+            sysparameterInfo.LastUpdateTime = reader.GetDateTime("LastUpdateTime");
 
             return sysparameterInfo;
         }
@@ -93,11 +93,11 @@ namespace JCodes.Framework.SQLServerDAL
             SysparameterInfo info = obj as SysparameterInfo;
             Hashtable hash = new Hashtable();
 
-            hash.Add("ID", info.ID);
-            hash.Add("sysId", info.sysId);
-            hash.Add("Value", info.Value);
-            hash.Add("Editor", info.Editor);
-            hash.Add("EditorTime", info.EditorTime);
+            hash.Add("Id", info.Id);
+            hash.Add("SysId", info.SysId);
+            hash.Add("SysValue", info.SysValue);
+            hash.Add("EditorId", info.EditorId);
+            hash.Add("LastUpdateTime", info.LastUpdateTime);
 
             return hash;
         }
@@ -114,11 +114,11 @@ namespace JCodes.Framework.SQLServerDAL
             #region 添加别名解析
             dict.Add("SysId", "参数类型");
             dict.Add("Name", "参数名称");
-            dict.Add("Value", "参数值");
+            dict.Add("SysValue", "参数值");
             dict.Add("Remark", "备注");
             dict.Add("Seq", "排序");
-            dict.Add("Editor", "编辑人");
-            dict.Add("EditorTime", "编辑时间");
+            dict.Add("EditorId", "编辑人");
+            dict.Add("LastUpdateTime", " 更新时间");
             #endregion
 
             return dict;

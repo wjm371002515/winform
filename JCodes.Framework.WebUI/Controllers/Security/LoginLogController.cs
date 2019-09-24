@@ -30,7 +30,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult CheckExcelColumns(string guid)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
 
             try
             {
@@ -38,7 +38,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 if (dt != null)
                 {
                     //检查列表是否包含必须的字段
-                    result.Success = DataTableHelper.ContainAllColumns(dt, columnString);
+                    result.ErrorCode = DataTableHelper.ContainAllColumns(dt, columnString)?0:1;
                 }
             }
             catch (Exception ex)
@@ -68,7 +68,6 @@ namespace JCodes.Framework.WebUI.Controllers
             if (table != null)
             {
                 #region 数据转换
-                int i = 1;
                 foreach (DataRow dr in table.Rows)
                 {
                     bool converted = false;
@@ -80,7 +79,7 @@ namespace JCodes.Framework.WebUI.Controllers
                     info.LoginName = dr["登录名"].ToString();
                     info.FullName = dr["真实名称"].ToString();
                     info.CompanyId = Convert.ToInt32( dr["所属公司ID"]);
-                    info.CompanyName = dr["所属公司名称"].ToString();
+                    //info.CompanyName = dr["所属公司名称"].ToString();
                     info.Remark = dr["日志描述"].ToString();
                     info.IP = dr["IP地址"].ToString();
                     info.Mac = dr["Mac地址"].ToString();
@@ -107,7 +106,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult SaveExcelData(List<LoginLogInfo> list)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             if (list != null && list.Count > 0)
             {
                 #region 采用事务进行数据提交
@@ -129,7 +128,7 @@ namespace JCodes.Framework.WebUI.Controllers
                             BLLFactory<LoginLog>.Instance.Insert(detail, trans);
                         }
                         trans.Commit();
-                        result.Success = true;
+                        result.ErrorCode = 0;
                     }
                     catch (Exception ex)
                     {
@@ -186,7 +185,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 dr["登录名"] = list[i].LoginName;
                 dr["真实名"] = list[i].FullName;
                 dr["公司Id"] = list[i].CompanyId;
-                dr["公司名字"] = list[i].CompanyName;
+                //dr["公司名字"] = list[i].CompanyName;
                 dr["备注"] = list[i].Remark;
                 dr["IP地址"] = list[i].IP;
                 dr["Mac地址"] = list[i].Mac;
@@ -236,7 +235,7 @@ namespace JCodes.Framework.WebUI.Controllers
         public override ActionResult FindWithPager()
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.ListKey);
+            base.CheckAuthorized(authorizeKeyInfo.ListKey);
 
             string where = GetPagerCondition();
             PagerInfo pagerInfo = GetPagerInfo();
@@ -275,7 +274,7 @@ namespace JCodes.Framework.WebUI.Controllers
 
             #region 获取机构列表
             List<OUInfo> companyList = new List<OUInfo>();
-            if (BLLFactory<User>.Instance.UserInRole(CurrentUser.Name, RoleInfo.SuperAdminName))
+            /*if (BLLFactory<User>.Instance.UserInRole(CurrentUser.Name, RoleInfo.SuperAdminName))
             {
                 List<OUInfo> list = BLLFactory<OU>.Instance.GetMyTopGroup(CurrentUser.Id);
                 foreach (OUInfo groupInfo in list)
@@ -290,7 +289,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 {
                     companyList.Add(myCompanyInfo);
                 }
-            } 
+            } */
             #endregion
 
             string belongCompany = "-1,";
@@ -300,25 +299,25 @@ namespace JCodes.Framework.WebUI.Controllers
 
                 //添加公司节点
                 JsTreeData subNode = new JsTreeData(info.Id, info.Name, "fa fa-sitemap icon-state-warning icon-lg");
-                subNode.id = string.Format("CompanyId='{0}' ", info.Id);
+                subNode.Gid = string.Format("CompanyId='{0}' ", info.Id);
                 companyNode.children.Add(subNode);
 
                 //下面在添加系统类型节点
                 List<SystemTypeInfo> typeList = BLLFactory<SystemType>.Instance.GetAll();
                 foreach (SystemTypeInfo typeInfo in typeList)
                 {
-                    JsTreeData typeNode = new JsTreeData(typeInfo.OID, typeInfo.Name, "fa fa-home icon-state-danger icon-lg");
-                    typeNode.id = string.Format("CompanyId='{0}' AND SystemtypeId='{1}' ", info.Id, typeInfo.OID);
+                    JsTreeData typeNode = new JsTreeData(typeInfo.Gid, typeInfo.Name, "fa fa-home icon-state-danger icon-lg");
+                    typeNode.Gid = string.Format("CompanyId='{0}' AND SystemtypeId='{1}' ", info.Id, typeInfo.Gid);
                     subNode.children.Add(typeNode);
                 }
 
                 JsTreeData securityNode = new JsTreeData("Security", "权限管理系统", "fa fa-key icon-state-info icon-lg");
-                securityNode.id = string.Format("CompanyId='{0}' AND SystemtypeId='{1}' ", info.Id, "Security");
+                securityNode.Gid = string.Format("CompanyId='{0}' AND SystemtypeId='{1}' ", info.Id, "Security");
                 subNode.children.Add(securityNode);
             }
             //修改全部为所属公司的ID
             belongCompany = belongCompany.Trim(',');
-            topNode.id = string.Format("CompanyId in ({0})", belongCompany);
+            topNode.Gid = string.Format("CompanyId in ({0})", belongCompany);
 
             return ToJsonContent(treeList);
         }

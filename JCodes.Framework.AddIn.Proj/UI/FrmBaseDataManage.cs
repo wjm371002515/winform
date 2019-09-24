@@ -120,14 +120,14 @@ namespace JCodes.Framework.AddIn.Proj
                 {
                     TablesTypeInfo tablesTypeInfo = new TablesTypeInfo();
                     // 得到Type和ISBN两个属性的属性值
-                    tablesTypeInfo.GUID = xe.GetAttribute("guid").ToString();
-                    tablesTypeInfo.CreateDate = xe.GetAttribute("createdate").ToString();
+                    tablesTypeInfo.Gid = xe.GetAttribute("gid").ToString();
+                    tablesTypeInfo.CreatorTime = Convert.ToDateTime(xe.GetAttribute("creatortime"));
                     tablesTypeInfo.Name = xe.GetAttribute("name").ToString();
 
                     // 获取字符串中的英文字母 [a-zA-Z]+
                     string GroupEnglishName = CRegex.GetText(tablesTypeInfo.Name, "[a-zA-Z]+", 0);
 
-                    guidGroup.Add(tablesTypeInfo.GUID, string.Format("{0}{1}_", Const.TablePre, GroupEnglishName));
+                    guidGroup.Add(tablesTypeInfo.Gid, string.Format("{0}{1}_", Const.TablePre, GroupEnglishName));
                     tablesTypeInfoList.Add(tablesTypeInfo);
                 }
             }
@@ -146,12 +146,12 @@ namespace JCodes.Framework.AddIn.Proj
                 if (!string.IsNullOrEmpty(xnl0.Item(5).InnerText))
                 {
                     TablesInfo tablesInfo = new TablesInfo();
-                    tablesInfo.GUID = xe.GetAttribute("guid").ToString();
+                    tablesInfo.Gid = xe.GetAttribute("gid").ToString();
                     tablesInfo.Name = xnl0.Item(0).InnerText;
                     tablesInfo.ChineseName = xnl0.Item(1).InnerText;
-                    tablesInfo.FunctionId = xnl0.Item(2).InnerText;
+                    tablesInfo.FunctionId = xnl0.Item(2).InnerText.ToInt32();
                     tablesInfo.TypeGuid = xnl0.Item(3).InnerText;
-                    tablesInfo.Path = xnl0.Item(4).InnerText;
+                    tablesInfo.SavePath = xnl0.Item(4).InnerText;
                     tablesInfo.BasicdataPath = xnl0.Item(5).InnerText;
 
                     tableGroup.Add(tablesInfo.Name, guidGroup[tablesInfo.TypeGuid]);
@@ -166,17 +166,17 @@ namespace JCodes.Framework.AddIn.Proj
             {
                 NavBarGroup standardGroup = navBar.Groups.Add();
                 standardGroup.Caption = tablesTypeInfo.Name;
-                standardGroup.Tag = tablesTypeInfo.GUID;
+                standardGroup.Tag = tablesTypeInfo.Gid;
                 standardGroup.Expanded = true;
 
                 foreach (var tablesInfo in tablesInfoList)
                 {
-                    if (string.Equals(tablesTypeInfo.GUID, tablesInfo.TypeGuid))
+                    if (string.Equals(tablesTypeInfo.Gid, tablesInfo.TypeGuid))
                     {
                         NavBarItem item = new NavBarItem();
                         item.Caption = string.Format("{0}-({1} {2})", tablesInfo.FunctionId, tablesInfo.ChineseName, tablesInfo.Name);
                         // 临时调整为表名
-                        item.Tag = tablesInfo.GUID;
+                        item.Tag = tablesInfo.Gid;
                         item.Name = tablesInfo.Name;
                         item.Hint = tablesInfo.ChineseName;
                         item.LinkClicked += Item_LinkClicked;
@@ -234,7 +234,7 @@ namespace JCodes.Framework.AddIn.Proj
             var objXmlDoc = xmltableshelper.GetXmlDoc();
 
             // 修改大的分类basicdata
-            objXmlDoc.SelectSingleNode(string.Format("datatype/tabletype/item[@guid=\"{0}\"]", selectedGroup.Tag)).Attributes["basicdata"].InnerText = "0";
+            objXmlDoc.SelectSingleNode(string.Format("datatype/tabletype/item[@gid=\"{0}\"]", selectedGroup.Tag)).Attributes["basicdata"].InnerText = "0";
 
             // 再删除子节点本身
             XmlNodeList nodelst = objXmlDoc.SelectNodes(string.Format("datatype/dataitem/item[typeguid=\"{0}\"]/basicdatapath", selectedGroup.Tag));
@@ -313,7 +313,7 @@ namespace JCodes.Framework.AddIn.Proj
 
             xmltableshelper = new XmlHelper(@"XML\tables.xml");
 
-            xmltableshelper.Replace(string.Format("datatype/dataitem/item[@guid=\"{0}\"]/basicdatapath", selectedLink.Item.Tag), string.Empty);
+            xmltableshelper.Replace(string.Format("datatype/dataitem/item[@gid=\"{0}\"]/basicdatapath", selectedLink.Item.Tag), string.Empty);
             xmltableshelper.Save(false);
             // 删除table文件
             if (FileUtil.IsExistFile(string.Format(@"XML\{0}.basicdata", selectedLink.Item.Name)))
@@ -350,16 +350,16 @@ namespace JCodes.Framework.AddIn.Proj
 
             dt = new DataTable();
             Dictionary<string, TableFieldsInfo> dic = new Dictionary<string, TableFieldsInfo>();
-            dt.Columns.Add("guid");
+            dt.Columns.Add("gid");
             TableFieldsInfo f = new TableFieldsInfo();
-            f.FieldName = "guid";
+            f.FieldName = "gid";
             f.ChineseName = "GUID";
-            f.FieldType = string.Empty;
+            f.DataType = string.Empty;
             f.DictNo = 0;
             f.FieldInfo = string.Empty;
-            f.IsNull = false;
+            f.IsNull = 0;
             f.Remark = string.Empty;
-            dic.Add("guid", f);
+            dic.Add("gid", f);
             // 添加英文表头
 
             XmlHelper stdfieldxmlHelper = new XmlHelper(@"XML\stdfield.xml");
@@ -406,14 +406,14 @@ namespace JCodes.Framework.AddIn.Proj
                     {
                         field.FieldName = stdFieldInfoList[i].Name;
                         field.ChineseName = stdFieldInfoList[i].ChineseName;
-                        field.FieldType = stdFieldInfoList[i].DataType;
+                        field.DataType = stdFieldInfoList[i].DataType;
                         field.DictNo = stdFieldInfoList[i].DictNo;
                         field.FieldInfo = stdFieldInfoList[i].DictNameLst;
                         break;
                     }
                 }
 
-                field.IsNull = xnl0.Item(1).InnerText == "0" ? false : true;
+                field.IsNull = (short)( xnl0.Item(1).InnerText == "0" ? 0 : 1);
                 field.Remark = xnl0.Item(2).InnerText;
 
                 dic.Add(xnl0.Item(0).InnerText, field);
@@ -491,13 +491,13 @@ namespace JCodes.Framework.AddIn.Proj
                 gc.VisibleIndex = idx++;
                 gc.FieldName = key;
                 
-                if (string.Equals(dic[key].FieldName, "guid"))
+                if (string.Equals(dic[key].FieldName, "gid"))
                 {
                     gc.Visible = false;
                 }
 
                 // 假如存在数据字典，且数据字典为整型(FieldType包含Number)或者为字符型(FieldType为Char)
-                if (dic[key].DictNo > 0 && (dic[key].FieldType.Contains("Number") || string.Equals(dic[key].FieldType, "Char")))
+                if (dic[key].DictNo > 0 && (dic[key].DataType.Contains("Number") || string.Equals(dic[key].DataType, "Char")))
                 {
                     RepositoryItemLookUpEdit rilu = new RepositoryItemLookUpEdit();
                     ((System.ComponentModel.ISupportInitialize)(rilu)).BeginInit();
@@ -534,7 +534,7 @@ namespace JCodes.Framework.AddIn.Proj
 
                 // 假如存在数据字典，且数据字典为字符型 
                 // 取值方法gridViewFields.GetRowCellValue(0, "EditorId")
-                if (dic[key].DictNo > 0 && dic[key].FieldType.Contains("Char_"))
+                if (dic[key].DictNo > 0 && dic[key].DataType.Contains("Char_"))
                 {
 
                     RepositoryItemCheckedComboBoxEdit riccbe = new RepositoryItemCheckedComboBoxEdit();
@@ -641,7 +641,7 @@ namespace JCodes.Framework.AddIn.Proj
                 List<String> tmp = new List<string>();
                 foreach (XmlAttribute a in xe.Attributes)
                 {
-                    if (dt.Columns[a.Name] == null && !string.Equals(a.Name, "guid"))
+                    if (dt.Columns[a.Name] == null && !string.Equals(a.Name, "gid"))
                         tmp.Add(a.Name);
                 }
                 foreach(var s in tmp)
@@ -760,7 +760,7 @@ namespace JCodes.Framework.AddIn.Proj
                     // 将节点转换为元素，便于得到节点的属性值
                     XmlElement xe = (XmlElement)xn1;
                     // 得到Type和ISBN两个属性的属性值
-                    dataTypeInfo.GUID = xe.GetAttribute("guid").ToString();
+                    dataTypeInfo.Gid = xe.GetAttribute("gid").ToString();
 
                     // 得到DataTypeInfo节点的所有子节点
                     XmlNodeList xnl0 = xe.ChildNodes;
@@ -928,12 +928,12 @@ namespace JCodes.Framework.AddIn.Proj
             XmlElement objElement = objXmlDoc.CreateElement("item");
             DataRow dr = dt.NewRow();
             
-            objElement.SetAttribute("guid", guid);
-            dr["guid"] = guid;
+            objElement.SetAttribute("gid", guid);
+            dr["gid"] = guid;
 
             foreach (DataColumn s in dt.Columns)
             {
-                if (string.Equals(s.ColumnName.ToLower(), "guid"))
+                if (string.Equals(s.ColumnName.ToLower(), "gid"))
                     continue;
 
                 objElement.SetAttribute(s.ColumnName.ToLower(), string.Empty);
@@ -957,7 +957,7 @@ namespace JCodes.Framework.AddIn.Proj
             if (gridViewFields.GetFocusedRow() == null || string.IsNullOrEmpty(gridViewFields.GetFocusedDataRow()[0].ToString()))
                 return;
             XmlHelper xmldatahelper = new XmlHelper(gridViewFields.Name);
-            xmldatahelper.DeleteByPathNode("datatype/dataitem/item[@guid=\"" + gridViewFields.GetFocusedDataRow()[0].ToString() + "\"]");
+            xmldatahelper.DeleteByPathNode("datatype/dataitem/item[@gid=\"" + gridViewFields.GetFocusedDataRow()[0].ToString() + "\"]");
             xmldatahelper.Save();
 
             dt.Rows.RemoveAt(gridViewFields.FocusedRowHandle);
@@ -975,7 +975,7 @@ namespace JCodes.Framework.AddIn.Proj
             }
 
             XmlHelper xmldatahelper = new XmlHelper(gridViewFields.Name);
-            xmldatahelper.GetXmlDoc().SelectSingleNode("datatype/dataitem/item[@guid=\"" + rowGuid + "\"]").Attributes[e.Column.FieldName.ToLower()].Value = e.Value.ToString();
+            xmldatahelper.GetXmlDoc().SelectSingleNode("datatype/dataitem/item[@gid=\"" + rowGuid + "\"]").Attributes[e.Column.FieldName.ToLower()].Value = e.Value.ToString();
             xmldatahelper.Save();
 
             dt.Rows[e.RowHandle][e.Column.FieldName.ToLower()] = e.Value.ToString();

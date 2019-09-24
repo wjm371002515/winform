@@ -25,7 +25,7 @@ namespace JCodes.Framework.MySqlDAL
 				return new Province();
 			}
 		}
-		public Province() : base(MySqlPortal.gc._basicTablePre+"Province","ID")
+		public Province() : base(MySqlPortal.gc._basicTablePre+"Province","Id")
 		{
             IsDescending = false;
 		}
@@ -42,7 +42,7 @@ namespace JCodes.Framework.MySqlDAL
 			ProvinceInfo provinceInfo = new ProvinceInfo();
 			SmartDataReader reader = new SmartDataReader(dataReader);
 
-            provinceInfo.ID = reader.GetInt32("ID");
+            provinceInfo.Id = reader.GetInt32("Id");
 			provinceInfo.ProvinceName = reader.GetString("ProvinceName");
 			
 			return provinceInfo;

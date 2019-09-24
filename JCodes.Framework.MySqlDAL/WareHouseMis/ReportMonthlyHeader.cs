@@ -43,7 +43,7 @@ namespace JCodes.Framework.MySqlDAL
 			ReportMonthlyHeaderInfo reportMonthlyHeaderInfo = new ReportMonthlyHeaderInfo();
 			SmartDataReader reader = new SmartDataReader(dataReader);
 			
-			reportMonthlyHeaderInfo.ID = reader.GetInt32("ID");
+			/*reportMonthlyHeaderInfo.ID = reader.GetInt32("ID");
 			reportMonthlyHeaderInfo.ReportType = reader.GetInt32("ReportType");
 			reportMonthlyHeaderInfo.ReportTitle = reader.GetString("ReportTitle");
 			reportMonthlyHeaderInfo.ReportYear = reader.GetInt32("ReportYear");
@@ -51,7 +51,7 @@ namespace JCodes.Framework.MySqlDAL
 			reportMonthlyHeaderInfo.YearMonth = reader.GetString("YearMonth");
 			reportMonthlyHeaderInfo.CreateDate = reader.GetDateTime("CreateDate");
 			reportMonthlyHeaderInfo.Creator = reader.GetString("Creator");
-			reportMonthlyHeaderInfo.Note = reader.GetString("Note");
+			reportMonthlyHeaderInfo.Note = reader.GetString("Note");*/
 			
 			return reportMonthlyHeaderInfo;
 		}
@@ -65,7 +65,7 @@ namespace JCodes.Framework.MySqlDAL
 		{
 		    ReportMonthlyHeaderInfo info = obj as ReportMonthlyHeaderInfo;
 			Hashtable hash = new Hashtable(); 
-			
+			/*
  			hash.Add("ReportType", info.ReportType);
  			hash.Add("ReportTitle", info.ReportTitle);
  			hash.Add("ReportYear", info.ReportYear);
@@ -74,7 +74,7 @@ namespace JCodes.Framework.MySqlDAL
  			hash.Add("CreateDate", info.CreateDate);
  			hash.Add("Creator", info.Creator);
  			hash.Add("Note", info.Note);
- 				
+ 				*/
 			return hash;
 		}
 

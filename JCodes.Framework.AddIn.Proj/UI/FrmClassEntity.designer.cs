@@ -252,14 +252,14 @@ namespace JCodes.Framework.AddIn.Proj
             // 
             this.toolStripMenuItem_AddIndex.Name = "toolStripMenuItem_AddIndex";
             this.toolStripMenuItem_AddIndex.Size = new System.Drawing.Size(152, 28);
-            this.toolStripMenuItem_AddIndex.Text = "新增索引";
+            this.toolStripMenuItem_AddIndex.Text = "新增自定义字段";
             this.toolStripMenuItem_AddIndex.Click += toolStripMenuItem_AddIndex_Click;
             // 
             // toolStripMenuItem_DelIndex
             // 
             this.toolStripMenuItem_DelIndex.Name = "toolStripMenuItem_DelIndex";
             this.toolStripMenuItem_DelIndex.Size = new System.Drawing.Size(152, 28);
-            this.toolStripMenuItem_DelIndex.Text = "删除索引";
+            this.toolStripMenuItem_DelIndex.Text = "删除自定义字段";
             this.toolStripMenuItem_DelIndex.Click += toolStripMenuItem_DelIndex_Click;
             // 
             // FrmClassEntity

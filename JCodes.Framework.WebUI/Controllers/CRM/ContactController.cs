@@ -39,7 +39,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult CheckExcelColumns(string guid)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
 
             try
             {
@@ -47,7 +47,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 if (dt != null)
                 {
                     //检查列表是否包含必须的字段
-                    result.Success = DataTableHelper.ContainAllColumns(dt, columnString);
+                    result.ErrorCode = DataTableHelper.ContainAllColumns(dt, columnString)?0:1;
                 }
             }
             catch (Exception ex)
@@ -77,7 +77,6 @@ namespace JCodes.Framework.WebUI.Controllers
             if (table != null)
             {
                 #region 数据转换
-                int i = 1;
                 foreach (DataRow dr in table.Rows)
                 {
                     string customerName = dr["客户名称"].ToString();
@@ -96,62 +95,62 @@ namespace JCodes.Framework.WebUI.Controllers
                     DateTime dtDefault = Convert.ToDateTime("1900-01-01");
                     DateTime dt;
                     ContactInfo info = new ContactInfo();
-                    info.Id = customerInfo.Id;//客户ID
-                    info.UserCode = dr["编号"].ToString();
-                    info.Name = dr["姓名"].ToString();
-                    info.IDCarNo = dr["身份证号码"].ToString();
-                    converted = DateTime.TryParse(dr["出生日期"].ToString(), out dt);
-                    if (converted && dt > dtDefault)
-                    {
-                        info.Birthday = dt;
-                    }
-                    info.Sex = dr["性别"].ToString();
-                    info.OfficePhone = dr["办公电话"].ToString();
-                    info.HomePhone = dr["家庭电话"].ToString();
-                    info.Fax = dr["传真"].ToString();
-                    info.Mobile = dr["联系人手机"].ToString();
-                    info.Address = dr["联系人地址"].ToString();
-                    info.ZipCode = dr["邮政编码"].ToString();
-                    info.Email = dr["电子邮件"].ToString();
-                    info.QQ = dr["QQ号码"].ToString();
-                    info.Note = dr["备注"].ToString();
-                    info.Seq = dr["排序序号"].ToString();
-                    info.Province = dr["所在省份"].ToString();
-                    info.City = dr["城市"].ToString();
-                    info.District = dr["所在行政区"].ToString();
-                    info.Hometown = dr["籍贯"].ToString();
-                    info.HomeAddress = dr["家庭住址"].ToString();
-                    info.Nationality = dr["民族"].ToString();
-                    info.Eduction = dr["教育程度"].ToString();
-                    info.GraduateSchool = dr["毕业学校"].ToString();
-                    info.Political = dr["政治面貌"].ToString();
-                    info.JobType = dr["职业类型"].ToString();
-                    info.Titles = dr["职称"].ToString();
-                    info.Rank = dr["职务"].ToString();
-                    info.Department = dr["所在部门"].ToString();
-                    info.Hobby = dr["爱好"].ToString();
-                    info.Animal = dr["属相"].ToString();
-                    info.Constellation = dr["星座"].ToString();
-                    info.MarriageStatus = dr["婚姻状态"].ToString();
-                    info.HealthCondition = dr["健康状况"].ToString();
-                    info.Importance = dr["重要级别"].ToString();
-                    info.Recognition = dr["认可程度"].ToString();
-                    info.RelationShip = dr["关系"].ToString();
-                    info.ResponseDemand = dr["负责需求"].ToString();
-                    info.CareFocus = dr["关心重点"].ToString();
-                    info.InterestDemand = dr["利益诉求"].ToString();
-                    info.BodyType = dr["体型"].ToString();
-                    info.Smoking = dr["吸烟"].ToString();
-                    info.Drink = dr["喝酒"].ToString();
-                    info.Height = dr["身高"].ToString();
-                    info.Weight = dr["体重"].ToString();
-                    info.Vision = dr["视力"].ToString();
-                    info.Introduce = dr["个人简述"].ToString();
+                    /*info.Id = customerInfo.Id;//客户ID
+                   info.UserCode = dr["编号"].ToString();
+                   info.Name = dr["姓名"].ToString();
+                   info.IDCarNo = dr["身份证号码"].ToString();
+                   converted = DateTime.TryParse(dr["出生日期"].ToString(), out dt);
+                   if (converted && dt > dtDefault)
+                   {
+                       info.Birthday = dt;
+                   }
+                   info.Gender = dr["性别"].ToString().ToInt32();
+                   info.OfficePhone = dr["办公电话"].ToString();
+                   info.HomePhone = dr["家庭电话"].ToString();
+                   info.Fax = dr["传真"].ToString();
+                   info.MobilePhone = dr["联系人手机"].ToString();
+                   info.Address = dr["联系人地址"].ToString();
+                   info.ZipCode = dr["邮政编码"].ToString();
+                   info.Email = dr["电子邮件"].ToString();
+                   info.QQ = dr["QQ号码"].ToString();
+                   info.Note = dr["备注"].ToString();
+                   info.Seq = dr["排序序号"].ToString();
+                   info.Province = dr["所在省份"].ToString();
+                   info.City = dr["城市"].ToString();
+                   info.District = dr["所在行政区"].ToString();
+                   info.NativePlace = dr["籍贯"].ToString();
+                   info.HomeAddress = dr["家庭住址"].ToString();
+                   info.Nationality = dr["民族"].ToString();
+                   info.Eduction = dr["教育程度"].ToString();
+                   info.GraduateSchool = dr["毕业学校"].ToString();
+                   info.Political = dr["政治面貌"].ToString();
+                   info.JobType = dr["职业类型"].ToString();
+                   info.Titles = dr["职称"].ToString();
+                   info.Rank = dr["职务"].ToString();
+                   info.Department = dr["所在部门"].ToString();
+                   info.Hobby = dr["爱好"].ToString();
+                   info.Animal = dr["属相"].ToString();
+                   info.Constellation = dr["星座"].ToString();
+                   info.MarriageStatus = dr["婚姻状态"].ToString();
+                   info.HealthCondition = dr["健康状况"].ToString();
+                   info.Importance = dr["重要级别"].ToString();
+                   info.Recognition = dr["认可程度"].ToString();
+                   info.RelationShip = dr["关系"].ToString();
+                   info.ResponseDemand = dr["负责需求"].ToString();
+                   info.CareFocus = dr["关心重点"].ToString();
+                   info.InterestDemand = dr["利益诉求"].ToString();
+                   info.BodyType = dr["体型"].ToString();
+                   info.Smoking = dr["吸烟"].ToString();
+                   info.Drink = dr["喝酒"].ToString();
+                   info.Height = dr["身高"].ToString();
+                   info.Weight = dr["体重"].ToString();
+                   info.Vision = dr["视力"].ToString();
+                   info.Introduce = dr["个人简述"].ToString();
 
-                    info.CreatorId = CurrentUser.Id;
-                    info.CreatorTime = DateTime.Now;
-                    info.EditorId = CurrentUser.Id;
-                    info.EditTime = DateTime.Now;
+                   info.CreatorId = CurrentUser.Id;
+                   info.CreatorTime = DateTime.Now;
+                   info.EditorId = CurrentUser.Id;
+                   info.EditTime = DateTime.Now;*/
 
                     //增加一个特殊字段的转义
                     info.Data1 = BLLFactory<Customer>.Instance.GetCustomerNameById(info.Id);
@@ -184,7 +183,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult SaveExcelData(List<ContactInfo> list)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             if (list != null && list.Count > 0)
             {
                 #region 采用事务进行数据提交
@@ -201,7 +200,7 @@ namespace JCodes.Framework.WebUI.Controllers
                             detail.CreatorTime = DateTime.Now;
                             detail.CreatorId = CurrentUser.Id;
                             detail.EditorId = CurrentUser.Id;
-                            detail.EditTime = DateTime.Now;
+                            detail.LastUpdateTime = DateTime.Now;
 
                             detail.CompanyId = CurrentUser.CompanyId;
                             detail.DeptId = CurrentUser.DeptId;
@@ -209,7 +208,7 @@ namespace JCodes.Framework.WebUI.Controllers
                             BLLFactory<Contact>.Instance.Insert(detail, trans);
                         }
                         trans.Commit();
-                        result.Success = true;
+                        result.ErrorCode = 0;
                     }
                     catch (Exception ex)
                     {
@@ -278,18 +277,18 @@ namespace JCodes.Framework.WebUI.Controllers
             int j = 1;
             for (int i = 0; i < list.Count; i++)
             {
-                dr = datatable.NewRow();
+                /*dr = datatable.NewRow();
                 dr["序号"] = j++;
                 dr["客户名称"] = BLLFactory<Customer>.Instance.GetCustomerNameById(list[i].Id);//转义为客户名称
                 dr["编号"] = list[i].UserCode;
                 dr["姓名"] = list[i].Name;
                 dr["身份证号码"] = list[i].IDCarNo;
                 dr["出生日期"] = list[i].Birthday;
-                dr["性别"] = list[i].Sex;
+                dr["性别"] = list[i].Gender.ToString();
                 dr["办公电话"] = list[i].OfficePhone;
                 dr["家庭电话"] = list[i].HomePhone;
                 dr["传真"] = list[i].Fax;
-                dr["联系人手机"] = list[i].Mobile;
+                dr["联系人手机"] = list[i].MobilePhone;
                 dr["联系人地址"] = list[i].Address;
                 dr["邮政编码"] = list[i].ZipCode;
                 dr["电子邮件"] = list[i].Email;
@@ -299,7 +298,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 dr["所在省份"] = list[i].Province;
                 dr["城市"] = list[i].City;
                 dr["所在行政区"] = list[i].District;
-                dr["籍贯"] = list[i].Hometown;
+                dr["籍贯"] = list[i].NativePlace;
                 dr["家庭住址"] = list[i].HomeAddress;
                 dr["民族"] = list[i].Nationality;
                 dr["教育程度"] = list[i].Eduction;
@@ -328,7 +327,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 dr["视力"] = list[i].Vision;
                 dr["个人简述"] = list[i].Introduce;
 
-                datatable.Rows.Add(dr);
+                datatable.Rows.Add(dr);*/
             } 
             #endregion
 
@@ -361,14 +360,14 @@ namespace JCodes.Framework.WebUI.Controllers
         {
             //留给子类对参数对象进行修改
             info.EditorId = CurrentUser.Id;
-            info.EditTime = DateTime.Now;
+            info.LastUpdateTime = DateTime.Now;
         }
         #endregion
 
         public override ActionResult FindWithPager()
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.ListKey);
+            base.CheckAuthorized(authorizeKeyInfo.ListKey);
 
             string where = GetPagerCondition();
             PagerInfo pagerInfo = GetPagerInfo();
@@ -434,10 +433,10 @@ namespace JCodes.Framework.WebUI.Controllers
                 idList = groupIdList.ToDelimitedList<string>(",");
             }
 
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             try
             {
-                result.Success = BLLFactory<Contact>.Instance.ModifyContactGroup(contactId, idList);
+                result.ErrorCode = BLLFactory<Contact>.Instance.ModifyContactGroup(contactId, idList)?0:1;
             }
             catch (Exception ex)
             {

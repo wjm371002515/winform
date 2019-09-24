@@ -1,7 +1,6 @@
 ﻿using JCodes.Framework.BLL;
 using JCodes.Framework.Common.Format;
 using JCodes.Framework.Entity;
-using JCodes.Framework.Entity.Machines;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -271,9 +270,9 @@ namespace JCodes.Framework.WebDemo.Controllers
         {
             List<IntelVoteDetailInfo> intelVoteDetailInfolst = new List<IntelVoteDetailInfo>();
             // 新增统计全部功能https://ynzx.zgwyzxw.cn/my/AlreadyVote/650/299/%E9%92%B1%E5%A1%98%E4%B8%9C%E5%8D%97%E5%AE%B6%E5%9B%AD/statistics
-            string totaldetail = "https://ynzx.zgwyzxw.cn/my/AlreadyVote/650/299/%E9%92%B1%E5%A1%98%E4%B8%9C%E5%8D%97%E5%AE%B6%E5%9B%AD/statistics";
+            //string totaldetail = "https://ynzx.zgwyzxw.cn/my/AlreadyVote/650/299/%E9%92%B1%E5%A1%98%E4%B8%9C%E5%8D%97%E5%AE%B6%E5%9B%AD/statistics";
             string totalurl = "https://ynzx.zgwyzxw.cn/index.php/home/Votestatistics/getAllVote";
-            string totalxiaoquName = "钱塘东南家园";
+            //string totalxiaoquName = "钱塘东南家园";
             HttpWebRequest totalrequest = (HttpWebRequest)HttpWebRequest.Create(totalurl);
             string totalcontent = "areas_id=650&vote_id=299";
             byte[] totalbs = Encoding.UTF8.GetBytes(totalcontent);
@@ -580,16 +579,14 @@ namespace JCodes.Framework.WebDemo.Controllers
             INSERT INTO  `sq_codeany`.`onethink_dongnanhaiVotes` (`fanghao` ,`util` ,`zhuang` ,`yuan` , `ceng` , `flag`) VALUES ('2704',  '1',  '8',  '钱塘东南家园', '27', '0');
             */
             DongnanhaiVotes dongnanhaiVotes = new DongnanhaiVotes();
-            dongnanhaiVotes.UpdateFlag("0201", "1", "8", "钱塘东南家园", 3);
-            return null;
             List<DongnanhaiVotesInfo> lst =  dongnanhaiVotes.GetVotesBylouzhuang(louzhuang.ToString());
 
             // start 网上查询数据
              List<IntelVoteDetailInfo> intelVoteDetailInfolst = new List<IntelVoteDetailInfo>();
             // 新增统计全部功能https://ynzx.zgwyzxw.cn/my/AlreadyVote/650/299/%E9%92%B1%E5%A1%98%E4%B8%9C%E5%8D%97%E5%AE%B6%E5%9B%AD/statistics
-            string totaldetail = "https://ynzx.zgwyzxw.cn/my/AlreadyVote/650/299/%E9%92%B1%E5%A1%98%E4%B8%9C%E5%8D%97%E5%AE%B6%E5%9B%AD/statistics";
+            //string totaldetail = "https://ynzx.zgwyzxw.cn/my/AlreadyVote/650/299/%E9%92%B1%E5%A1%98%E4%B8%9C%E5%8D%97%E5%AE%B6%E5%9B%AD/statistics";
             string totalurl = "https://ynzx.zgwyzxw.cn/index.php/home/Votestatistics/getAllVote";
-            string totalxiaoquName = "钱塘东南家园";
+            //string totalxiaoquName = "钱塘东南家园";
             HttpWebRequest totalrequest = (HttpWebRequest)HttpWebRequest.Create(totalurl);
             string totalcontent = "areas_id=650&vote_id=299";
             byte[] totalbs = Encoding.UTF8.GetBytes(totalcontent);

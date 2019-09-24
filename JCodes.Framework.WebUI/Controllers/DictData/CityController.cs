@@ -31,7 +31,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult CheckExcelColumns(string guid)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
 
             try
             {
@@ -39,7 +39,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 if (dt != null)
                 {
                     //检查列表是否包含必须的字段
-                    result.Success = DataTableHelper.ContainAllColumns(dt, columnString);
+                    result.ErrorCode = DataTableHelper.ContainAllColumns(dt, columnString)?0:1;
                 }
             }
             catch (Exception ex)
@@ -69,17 +69,14 @@ namespace JCodes.Framework.WebUI.Controllers
             if (table != null)
             {
                 #region 数据转换
-                int i = 1;
                 foreach (DataRow dr in table.Rows)
                 {
-                    bool converted = false;
-                    DateTime dtDefault = Convert.ToDateTime("1900-01-01");
-                    DateTime dt;                    
+                    DateTime dtDefault = Convert.ToDateTime("1900-01-01");                 
                     CityInfo info = new CityInfo();
                     
                      info.CityName = dr["城市名称"].ToString();
                       info.ZipCode = dr["邮编"].ToString();
-                      info.ProvinceID = dr["省份ID"].ToString().ToInt32();
+                      info.ProvinceId = dr["省份ID"].ToString().ToInt32();
   
                     //info.Creator = CurrentUser.ID.ToString();
                     //info.CreateTime = DateTime.Now;
@@ -102,7 +99,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult SaveExcelData(List<CityInfo> list)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             if (list != null && list.Count > 0)
             {
                 #region 采用事务进行数据提交
@@ -124,7 +121,7 @@ namespace JCodes.Framework.WebUI.Controllers
                             BLLFactory<City>.Instance.Insert(detail, trans);
                         }
                         trans.Commit();
-                        result.Success = true;
+                        result.ErrorCode = 0;
                     }
                     catch (Exception ex)
                     {
@@ -179,7 +176,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 dr["序号"] = j++;                
                  dr["城市名称"] = list[i].CityName;
                  dr["邮编"] = list[i].ZipCode;
-                 dr["省份ID"] = list[i].ProvinceID;
+                 dr["省份ID"] = list[i].ProvinceId;
                  //如果为外键，可以在这里进行转义，如下例子
                 //dr["客户名称"] = BLLFactory<Customer>.Instance.GetCustomerName(list[i].Customer_ID);//转义为客户名称
 
@@ -224,7 +221,7 @@ namespace JCodes.Framework.WebUI.Controllers
         public override ActionResult FindWithPager()
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.ListKey);
+            base.CheckAuthorized(authorizeKeyInfo.ListKey);
 
             string where = GetPagerCondition();
             PagerInfo pagerInfo = GetPagerInfo();
@@ -262,10 +259,10 @@ namespace JCodes.Framework.WebUI.Controllers
             {
                 JsTreeData item = new JsTreeData("", info.ProvinceName, "fa fa-file icon-state-warning icon-lg");
 
-                List<CityInfo> cityList = BLLFactory<City>.Instance.GetCitysByProvinceID(info.ID.ToString());
+                List<CityInfo> cityList = BLLFactory<City>.Instance.GetCitysByProvinceId(info.Id);
                 foreach (CityInfo cityInfo in cityList)
                 {
-                    JsTreeData subItem = new JsTreeData(cityInfo.ID, cityInfo.CityName, "fa fa-file icon-state-warning icon-lg");
+                    JsTreeData subItem = new JsTreeData(cityInfo.Id, cityInfo.CityName, "fa fa-file icon-state-warning icon-lg");
                     item.children.Add(subItem);
                 }
 
@@ -279,20 +276,20 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult GetAllProvinceCityDictJson()
         {
-            List<CListItem> treeList = new List<CListItem>();
-            CListItem pNode = new CListItem("-1","选择记录");
+            List<CDicKeyValue> treeList = new List<CDicKeyValue>();
+            CDicKeyValue pNode = new CDicKeyValue(-1, "选择记录");
             treeList.Add(pNode);
 
             List<ProvinceInfo> provinceList = BLLFactory<Province>.Instance.GetAll();
             foreach (ProvinceInfo info in provinceList)
             {
-                CListItem item = new CListItem("", info.ProvinceName);
+                CDicKeyValue item = new CDicKeyValue(0, info.ProvinceName);
                 treeList.Add(item);
 
-                List<CityInfo> cityList = BLLFactory<City>.Instance.GetCitysByProvinceID(info.ID.ToString());
+                List<CityInfo> cityList = BLLFactory<City>.Instance.GetCitysByProvinceId(info.Id);
                 foreach (CityInfo cityInfo in cityList)
                 {
-                    CListItem subItem = new CListItem(cityInfo.ID.ToString(), cityInfo.CityName);
+                    CDicKeyValue subItem = new CDicKeyValue(cityInfo.Id, cityInfo.CityName);
                     treeList.Add(subItem);
                 }
 
@@ -305,18 +302,18 @@ namespace JCodes.Framework.WebUI.Controllers
         /// </summary>
         /// <param name="provinceId">省份ID</param>
         /// <returns></returns>
-        public ActionResult GetCitysByProvinceIdDictJson(string provinceId)
+        public ActionResult GetCitysByProvinceIdDictJson(Int32 provinceId)
         {
-            List<CListItem> treeList = new List<CListItem>();
-            CListItem pNode = new CListItem("-1", "选择记录");
+            List<CDicKeyValue> treeList = new List<CDicKeyValue>();
+            CDicKeyValue pNode = new CDicKeyValue(-1, "选择记录");
             treeList.Add(pNode);
 
-            if (!string.IsNullOrEmpty(provinceId))
+            if (provinceId > 0)
             {
-                List<CityInfo> cityList = BLLFactory<City>.Instance.GetCitysByProvinceID(provinceId);
+                List<CityInfo> cityList = BLLFactory<City>.Instance.GetCitysByProvinceId(provinceId);
                 foreach (CityInfo info in cityList)
                 {
-                    CListItem item = new CListItem(info.ID.ToString(), info.CityName);
+                    CDicKeyValue item = new CDicKeyValue(info.Id, info.CityName);
                     treeList.Add(item);
                 }
             }
@@ -331,8 +328,8 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult GetCitysByProvinceNameDictJson(string provinceName)
         {
-            List<CListItem> treeList = new List<CListItem>();
-            CListItem pNode = new CListItem("-1", "选择记录");
+            List<CDicKeyValue> treeList = new List<CDicKeyValue>();
+            CDicKeyValue pNode = new CDicKeyValue(-1, "选择记录");
             treeList.Add(pNode);
 
             if (!string.IsNullOrEmpty(provinceName))
@@ -340,7 +337,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 List<CityInfo> cityList = BLLFactory<City>.Instance.GetCitysByProvinceName(provinceName);
                 foreach (CityInfo info in cityList)
                 {
-                    CListItem item = new CListItem(info.ID.ToString(), info.CityName);
+                    CDicKeyValue item = new CDicKeyValue(info.Id, info.CityName);
                     treeList.Add(item);
                 }
             }

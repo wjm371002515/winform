@@ -34,9 +34,9 @@ namespace JCodes.Framework.BLL
 
             foreach (RoleDataInfo roleDataInfo in roleDataList)
             {
-                if (!string.IsNullOrEmpty(roleDataInfo.BelongCompanys))
+                if (!string.IsNullOrEmpty(roleDataInfo.CompanyLst))
                 {
-                    List<int> tmpList = roleDataInfo.BelongCompanys.ToDelimitedList<int>(",");
+                    List<int> tmpList = roleDataInfo.CompanyLst.ToDelimitedList<int>(",");
                     foreach (int id in tmpList)
                     {
                         if (!companyList.Contains(id))
@@ -61,9 +61,9 @@ namespace JCodes.Framework.BLL
 
             foreach (RoleDataInfo roleDataInfo in roleDataList)
             {
-                if (!string.IsNullOrEmpty(roleDataInfo.BelongDepts))
+                if (!string.IsNullOrEmpty(roleDataInfo.DeptLst))
                 {
-                    List<int> tmpList = roleDataInfo.BelongDepts.ToDelimitedList<int>(",");
+                    List<int> tmpList = roleDataInfo.DeptLst.ToDelimitedList<int>(",");
                     foreach (int id in tmpList)
                     {
                         if (!deptList.Contains(id))
@@ -103,12 +103,12 @@ namespace JCodes.Framework.BLL
                 if (info != null)
                 {
                     #region 替换所在部门和所在公司的值
-                    if (!string.IsNullOrEmpty(info.BelongCompanys))
+                    if (!string.IsNullOrEmpty(info.CompanyLst))
                     {
                         //不重复出现的公司列表
                         List<int> notDuplicatedCompanyList = new List<int>();
 
-                        List<int> companyList = info.BelongCompanys.ToDelimitedList<int>(",");
+                        List<int> companyList = info.CompanyLst.ToDelimitedList<int>(",");
                         for (int i = 0; i < companyList.Count; i++)
                         {
                             // 20170610 wujm 这里不需要对其做转换反而会造成权限不对
@@ -122,14 +122,14 @@ namespace JCodes.Framework.BLL
                                 notDuplicatedCompanyList.Add(companyList[i]);
                             }
                         }
-                        info.BelongCompanys = string.Join(",", notDuplicatedCompanyList);
+                        info.CompanyLst = string.Join(",", notDuplicatedCompanyList);
                     }
-                    if (!string.IsNullOrEmpty(info.BelongDepts))
+                    if (!string.IsNullOrEmpty(info.DeptLst))
                     {
                         //不重复出现的部门列表
                         List<int> notDuplicatedDeptList = new List<int>();
 
-                        List<int> deptList = info.BelongDepts.ToDelimitedList<int>(",");
+                        List<int> deptList = info.DeptLst.ToDelimitedList<int>(",");
                         for (int i = 0; i < deptList.Count; i++)
                         {
                             // 20170610 wujm 这里不需要对其做转换反而会造成权限不对
@@ -144,7 +144,7 @@ namespace JCodes.Framework.BLL
                             }
                         }
 
-                        info.BelongDepts = string.Join(",", deptList);
+                        info.DeptLst = string.Join(",", deptList);
                     } 
                     #endregion
 
@@ -178,17 +178,17 @@ namespace JCodes.Framework.BLL
             RoleDataInfo info = FindByRoleId(roleId);
             if (info != null)
             {
-                info.BelongCompanys = belongCompanys;
-                info.BelongDepts = belongDepts;
+                info.CompanyLst = belongCompanys;
+                info.DeptLst = belongDepts;
 
-                result = baseDal.Update(info, info.ID);
+                result = baseDal.Update(info, info.Id);
             }
             else
             {
                 info = new RoleDataInfo();
-                info.Role_ID = roleId;
-                info.BelongCompanys = belongCompanys;
-                info.BelongDepts = belongDepts;
+                info.RoleId = (short)roleId;
+                info.CompanyLst = belongCompanys;
+                info.DeptLst = belongDepts;
 
                 result = baseDal.Insert(info);
             }
@@ -208,9 +208,9 @@ namespace JCodes.Framework.BLL
             if (roleDataInfo != null)
             {
                 //包含公司
-                if (!string.IsNullOrEmpty(roleDataInfo.BelongCompanys))
+                if (!string.IsNullOrEmpty(roleDataInfo.CompanyLst))
                 {
-                    List<int> companyList = roleDataInfo.BelongCompanys.ToDelimitedList<int>(",");
+                    List<int> companyList = roleDataInfo.CompanyLst.ToDelimitedList<int>(",");
                     foreach (int id in companyList)
                     {
                         if (!dict.ContainsKey(id))
@@ -220,9 +220,9 @@ namespace JCodes.Framework.BLL
                     }
                 }
                 //包含部门
-                if (!string.IsNullOrEmpty(roleDataInfo.BelongDepts))
+                if (!string.IsNullOrEmpty(roleDataInfo.DeptLst))
                 {
-                    List<int> deptList = roleDataInfo.BelongDepts.ToDelimitedList<int>(",");
+                    List<int> deptList = roleDataInfo.DeptLst.ToDelimitedList<int>(",");
                     foreach (int id in deptList)
                     {
                         if (!dict.ContainsKey(id))

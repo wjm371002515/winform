@@ -1,242 +1,264 @@
-using System;
-using System.Xml.Serialization;
+﻿using System;
 using System.Runtime.Serialization;
+using System.ComponentModel;
 
 namespace JCodes.Framework.Entity
 {
-    /// <summary>
-    /// 登陆系统的黑白名单列表
-    /// </summary>
-    [DataContract]
-    public class BlackIPInfo : BaseEntity
-    {    
-        #region Field Members
+	/// <summary>
+	/// 黑白名单列表(BlackIPInfo)
+	/// 对象号: 100055
+	/// 备注信息: 
+	/// </summary>
+	[Serializable]
+	[DataContract]
+	public partial class BlackIPInfo : BaseEntity
+	{
+		#region Field Members
 
-        private string m_ID = System.Guid.NewGuid().ToString(); //          
-        private string m_Name; //显示名称                 
-        private int m_AuthorizeType = 0; //授权类型          
-        private bool m_Forbid = false; //是否禁用          
-        private string m_IPStart; //IP起始地址          
-        private string m_IPEnd; //IP结束地址          
-        private string m_Note; //备注          
-        private string m_Creator; //创建人          
-        private Int32 m_CreatorId; //创建人ID          
-        private DateTime m_CreateTime = System.DateTime.Now; //创建时间          
-        private string m_Editor; //编辑人          
-        private Int32 m_EditorId; //编辑人ID          
-        private DateTime m_EditTime = System.DateTime.Now; //编辑时间          
+		/// <summary>
+		/// ID序号
+		/// </summary>
+		private Int32 m_Id = 0;
 
-        #endregion
+		/// <summary>
+		/// 名称
+		/// </summary>
+		private String m_Name = string.Empty;
 
-        #region Property Members
-        
+		/// <summary>
+		/// 授权类型
+		/// </summary>
+		private Int16 m_AuthorizeType = 0;
+
+		/// <summary>
+		/// 是否禁用
+		/// </summary>
+		private Int16 m_IsForbid = 0;
+
+		/// <summary>
+		/// IP起始地址
+		/// </summary>
+		private String m_IPStart = string.Empty;
+
+		/// <summary>
+		/// IP结束地址
+		/// </summary>
+		private String m_IPEnd = string.Empty;
+
+		/// <summary>
+		/// 备注
+		/// </summary>
+		private String m_Remark = string.Empty;
+
+		/// <summary>
+		/// 创建人编号
+		/// </summary>
+		private Int32 m_CreatorId = 0;
+
+		/// <summary>
+		/// 创建时间
+		/// </summary>
+		private DateTime m_CreatorTime = DateTime.Now;
+
+		/// <summary>
+		/// 编辑人编号
+		/// </summary>
+		private Int32 m_EditorId = 0;
+
+		/// <summary>
+		/// 最后更新时间
+		/// </summary>
+		private DateTime m_LastUpdateTime = DateTime.Now;
+		#endregion
+
+		#region Property Members
+
+		/// <summary>
+		/// ID序号
+		/// </summary>
 		[DataMember]
-        public virtual string ID
-        {
-            get
-            {
-                return this.m_ID;
-            }
-            set
-            {
-                this.m_ID = value;
-            }
-        }
+		[DisplayName("ID序号")]
+		public virtual Int32 Id
+		{
+			get
+			{
+				return this.m_Id;
+			}
+			set
+			{
+				this.m_Id = value;
+			}
+		}
 
-        /// <summary>
-        /// 显示名称
-        /// </summary>
+		/// <summary>
+		/// 名称
+		/// </summary>
 		[DataMember]
-        public virtual string Name
-        {
-            get
-            {
-                return this.m_Name;
-            }
-            set
-            {
-                this.m_Name = value;
-            }
-        }
+		[DisplayName("名称")]
+		public virtual String Name
+		{
+			get
+			{
+				return this.m_Name;
+			}
+			set
+			{
+				this.m_Name = value;
+			}
+		}
 
-        /// <summary>
-        /// 授权类型[0为黑名单，1为白名单 ）
-        /// </summary>
+		/// <summary>
+		/// 授权类型
+		/// </summary>
 		[DataMember]
-        public virtual int AuthorizeType
-        {
-            get
-            {
-                return this.m_AuthorizeType;
-            }
-            set
-            {
-                this.m_AuthorizeType = value;
-            }
-        }
+		[DisplayName("授权类型")]
+		public virtual Int16 AuthorizeType
+		{
+			get
+			{
+				return this.m_AuthorizeType;
+			}
+			set
+			{
+				this.m_AuthorizeType = value;
+			}
+		}
 
-        /// <summary>
-        /// 是否禁用
-        /// </summary>
+		/// <summary>
+		/// 是否禁用
+		/// </summary>
 		[DataMember]
-        public virtual bool Forbid
-        {
-            get
-            {
-                return this.m_Forbid;
-            }
-            set
-            {
-                this.m_Forbid = value;
-            }
-        }
+		[DisplayName("是否禁用")]
+		public virtual Int16 IsForbid
+		{
+			get
+			{
+				return this.m_IsForbid;
+			}
+			set
+			{
+				this.m_IsForbid = value;
+			}
+		}
 
-        /// <summary>
-        /// IP起始地址
-        /// </summary>
+		/// <summary>
+		/// IP起始地址
+		/// </summary>
 		[DataMember]
-        public virtual string IPStart
-        {
-            get
-            {
-                return this.m_IPStart;
-            }
-            set
-            {
-                this.m_IPStart = value;
-            }
-        }
+		[DisplayName("IP起始地址")]
+		public virtual String IPStart
+		{
+			get
+			{
+				return this.m_IPStart;
+			}
+			set
+			{
+				this.m_IPStart = value;
+			}
+		}
 
-        /// <summary>
-        /// IP结束地址
-        /// </summary>
+		/// <summary>
+		/// IP结束地址
+		/// </summary>
 		[DataMember]
-        public virtual string IPEnd
-        {
-            get
-            {
-                return this.m_IPEnd;
-            }
-            set
-            {
-                this.m_IPEnd = value;
-            }
-        }
+		[DisplayName("IP结束地址")]
+		public virtual String IPEnd
+		{
+			get
+			{
+				return this.m_IPEnd;
+			}
+			set
+			{
+				this.m_IPEnd = value;
+			}
+		}
 
-        /// <summary>
-        /// 备注
-        /// </summary>
+		/// <summary>
+		/// 备注
+		/// </summary>
 		[DataMember]
-        public virtual string Note
-        {
-            get
-            {
-                return this.m_Note;
-            }
-            set
-            {
-                this.m_Note = value;
-            }
-        }
+		[DisplayName("备注")]
+		public virtual String Remark
+		{
+			get
+			{
+				return this.m_Remark;
+			}
+			set
+			{
+				this.m_Remark = value;
+			}
+		}
 
-        /// <summary>
-        /// 创建人
-        /// </summary>
+		/// <summary>
+		/// 创建人编号
+		/// </summary>
 		[DataMember]
-        public virtual string Creator
-        {
-            get
-            {
-                return this.m_Creator;
-            }
-            set
-            {
-                this.m_Creator = value;
-            }
-        }
+		[DisplayName("创建人编号")]
+		public virtual Int32 CreatorId
+		{
+			get
+			{
+				return this.m_CreatorId;
+			}
+			set
+			{
+				this.m_CreatorId = value;
+			}
+		}
 
-        /// <summary>
-        /// 创建人ID
-        /// </summary>
+		/// <summary>
+		/// 创建时间
+		/// </summary>
 		[DataMember]
-        public virtual Int32 CreatorId
-        {
-            get
-            {
-                return this.m_CreatorId;
-            }
-            set
-            {
-                this.m_CreatorId = value;
-            }
-        }
+		[DisplayName("创建时间")]
+		public virtual DateTime CreatorTime
+		{
+			get
+			{
+				return this.m_CreatorTime;
+			}
+			set
+			{
+				this.m_CreatorTime = value;
+			}
+		}
 
-        /// <summary>
-        /// 创建时间
-        /// </summary>
+		/// <summary>
+		/// 编辑人编号
+		/// </summary>
 		[DataMember]
-        public virtual DateTime CreateTime
-        {
-            get
-            {
-                return this.m_CreateTime;
-            }
-            set
-            {
-                this.m_CreateTime = value;
-            }
-        }
+		[DisplayName("编辑人编号")]
+		public virtual Int32 EditorId
+		{
+			get
+			{
+				return this.m_EditorId;
+			}
+			set
+			{
+				this.m_EditorId = value;
+			}
+		}
 
-        /// <summary>
-        /// 编辑人
-        /// </summary>
+		/// <summary>
+		/// 最后更新时间
+		/// </summary>
 		[DataMember]
-        public virtual string Editor
-        {
-            get
-            {
-                return this.m_Editor;
-            }
-            set
-            {
-                this.m_Editor = value;
-            }
-        }
-
-        /// <summary>
-        /// 编辑人ID
-        /// </summary>
-		[DataMember]
-        public virtual Int32 EditorId
-        {
-            get
-            {
-                return this.m_EditorId;
-            }
-            set
-            {
-                this.m_EditorId = value;
-            }
-        }
-
-        /// <summary>
-        /// 编辑时间
-        /// </summary>
-		[DataMember]
-        public virtual DateTime EditTime
-        {
-            get
-            {
-                return this.m_EditTime;
-            }
-            set
-            {
-                this.m_EditTime = value;
-            }
-        }
-
-
-        #endregion
-
-    }
+		[DisplayName("最后更新时间")]
+		public virtual DateTime LastUpdateTime
+		{
+			get
+			{
+				return this.m_LastUpdateTime;
+			}
+			set
+			{
+				this.m_LastUpdateTime = value;
+			}
+		}
+		#endregion
+	}
 }

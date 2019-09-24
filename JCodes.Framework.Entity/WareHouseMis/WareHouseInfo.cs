@@ -1,113 +1,154 @@
-using System;
-using System.Xml.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
+using System.ComponentModel;
 
 namespace JCodes.Framework.Entity
 {
-    [Serializable]
-    public class WareHouseInfo : BaseEntity
-    {    
-        #region Field Members
+	/// <summary>
+	/// 仓库信息(WareHouseInfo)
+	/// 对象号: 100081
+	/// 备注信息: 
+	/// </summary>
+	[Serializable]
+	[DataContract]
+	public partial class WareHouseInfo : BaseEntity
+	{
+		#region Field Members
 
-        private int m_ID = 0;         
-        private string m_Name = ""; //仓库名称          
-        private string m_Manager = ""; //仓库负责人          
-        private string m_Phone = ""; //联系电话          
-        private string m_Address = ""; //仓库地址          
-        private string m_Note = ""; //备注          
+		/// <summary>
+		/// ID序号
+		/// </summary>
+		private Int32 m_Id = 0;
 
-        #endregion
+		/// <summary>
+		/// 名称
+		/// </summary>
+		private String m_Name = string.Empty;
 
-        #region Property Members
-        
-        public virtual int ID
-        {
-            get
-            {
-                return this.m_ID;
-            }
-            set
-            {
-                this.m_ID = value;
-            }
-        }
+		/// <summary>
+		/// 用户Id
+		/// </summary>
+		private Int32 m_UserId = 0;
 
-        /// <summary>
-        /// 仓库名称
-        /// </summary>
-        public virtual string Name
-        {
-            get
-            {
-                return this.m_Name;
-            }
-            set
-            {
-                this.m_Name = value;
-            }
-        }
+		/// <summary>
+		/// 手机
+		/// </summary>
+		private String m_MobilePhone = string.Empty;
 
-        /// <summary>
-        /// 仓库负责人
-        /// </summary>
-        public virtual string Manager
-        {
-            get
-            {
-                return this.m_Manager;
-            }
-            set
-            {
-                this.m_Manager = value;
-            }
-        }
+		/// <summary>
+		/// 地址
+		/// </summary>
+		private String m_Address = string.Empty;
 
-        /// <summary>
-        /// 联系电话
-        /// </summary>
-        public virtual string Phone
-        {
-            get
-            {
-                return this.m_Phone;
-            }
-            set
-            {
-                this.m_Phone = value;
-            }
-        }
+		/// <summary>
+		/// 备注
+		/// </summary>
+		private String m_Remark = string.Empty;
+		#endregion
 
-        /// <summary>
-        /// 仓库地址
-        /// </summary>
-        public virtual string Address
-        {
-            get
-            {
-                return this.m_Address;
-            }
-            set
-            {
-                this.m_Address = value;
-            }
-        }
+		#region Property Members
 
-        /// <summary>
-        /// 备注
-        /// </summary>
-        public virtual string Note
-        {
-            get
-            {
-                return this.m_Note;
-            }
-            set
-            {
-                this.m_Note = value;
-            }
-        }
+		/// <summary>
+		/// ID序号
+		/// </summary>
+		[DataMember]
+		[DisplayName("ID序号")]
+		public virtual Int32 Id
+		{
+			get
+			{
+				return this.m_Id;
+			}
+			set
+			{
+				this.m_Id = value;
+			}
+		}
 
+		/// <summary>
+		/// 名称
+		/// </summary>
+		[DataMember]
+		[DisplayName("名称")]
+		public virtual String Name
+		{
+			get
+			{
+				return this.m_Name;
+			}
+			set
+			{
+				this.m_Name = value;
+			}
+		}
 
-        #endregion
+		/// <summary>
+		/// 用户Id
+		/// </summary>
+		[DataMember]
+		[DisplayName("用户Id")]
+		public virtual Int32 UserId
+		{
+			get
+			{
+				return this.m_UserId;
+			}
+			set
+			{
+				this.m_UserId = value;
+			}
+		}
 
-    }
+		/// <summary>
+		/// 手机
+		/// </summary>
+		[DataMember]
+		[DisplayName("手机")]
+		public virtual String MobilePhone
+		{
+			get
+			{
+				return this.m_MobilePhone;
+			}
+			set
+			{
+				this.m_MobilePhone = value;
+			}
+		}
+
+		/// <summary>
+		/// 地址
+		/// </summary>
+		[DataMember]
+		[DisplayName("地址")]
+		public virtual String Address
+		{
+			get
+			{
+				return this.m_Address;
+			}
+			set
+			{
+				this.m_Address = value;
+			}
+		}
+
+		/// <summary>
+		/// 备注
+		/// </summary>
+		[DataMember]
+		[DisplayName("备注")]
+		public virtual String Remark
+		{
+			get
+			{
+				return this.m_Remark;
+			}
+			set
+			{
+				this.m_Remark = value;
+			}
+		}
+		#endregion
+	}
 }

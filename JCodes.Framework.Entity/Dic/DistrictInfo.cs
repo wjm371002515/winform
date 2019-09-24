@@ -1,73 +1,88 @@
-using System;
-using System.Xml.Serialization;
+ï»¿using System;
 using System.Runtime.Serialization;
+using System.ComponentModel;
 
 namespace JCodes.Framework.Entity
 {
-    [Serializable]
-    [DataContract]
-    public class DistrictInfo : BaseEntity
-    {    
-        #region Field Members
+	/// <summary>
+	/// åœ°åŒºä¿¡æ¯(DistrictInfo)
+	/// å¯¹è±¡å·: 100019
+	/// å¤‡æ³¨ä¿¡æ¯: 
+	/// </summary>
+	[Serializable]
+	[DataContract]
+	public partial class DistrictInfo : BaseEntity
+	{
+		#region Field Members
 
-        private int m_ID = 0;         
-        private string m_DistrictName;
-        private int m_CityID = 0;         
+		/// <summary>
+		/// IDåºå·
+		/// </summary>
+		private Int32 m_Id = 0;
 
-        #endregion
+		/// <summary>
+		/// è¡Œæ”¿åŒºåˆ’
+		/// </summary>
+		private String m_DistrictName = string.Empty;
 
-        #region Property Members
+		/// <summary>
+		/// åŸå¸‚Id
+		/// </summary>
+		private Int32 m_CityId = 0;
+		#endregion
 
-        /// <summary>
-        /// ĞĞÕşÇøID
-        /// </summary>
-        [DataMember]
-        public virtual int ID
-        {
-            get
-            {
-                return this.m_ID;
-            }
-            set
-            {
-                this.m_ID = value;
-            }
-        }
+		#region Property Members
 
-        /// <summary>
-        /// ĞĞÕşÇøÃû³Æ
-        /// </summary>
-        [DataMember]
-        public virtual string DistrictName
-        {
-            get
-            {
-                return this.m_DistrictName;
-            }
-            set
-            {
-                this.m_DistrictName = value;
-            }
-        }
+		/// <summary>
+		/// IDåºå·
+		/// </summary>
+		[DataMember]
+		[DisplayName("IDåºå·")]
+		public virtual Int32 Id
+		{
+			get
+			{
+				return this.m_Id;
+			}
+			set
+			{
+				this.m_Id = value;
+			}
+		}
 
-        /// <summary>
-        /// ËùÊô³ÇÊĞID
-        /// </summary>
-        [DataMember]
-        public virtual int CityID
-        {
-            get
-            {
-                return this.m_CityID;
-            }
-            set
-            {
-                this.m_CityID = value;
-            }
-        }
+		/// <summary>
+		/// è¡Œæ”¿åŒºåˆ’
+		/// </summary>
+		[DataMember]
+		[DisplayName("è¡Œæ”¿åŒºåˆ’")]
+		public virtual String DistrictName
+		{
+			get
+			{
+				return this.m_DistrictName;
+			}
+			set
+			{
+				this.m_DistrictName = value;
+			}
+		}
 
-
-        #endregion
-
-    }
+		/// <summary>
+		/// åŸå¸‚Id
+		/// </summary>
+		[DataMember]
+		[DisplayName("åŸå¸‚Id")]
+		public virtual Int32 CityId
+		{
+			get
+			{
+				return this.m_CityId;
+			}
+			set
+			{
+				this.m_CityId = value;
+			}
+		}
+		#endregion
+	}
 }

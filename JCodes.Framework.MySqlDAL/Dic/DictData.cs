@@ -44,8 +44,8 @@ namespace JCodes.Framework.MySqlDAL
             DictDataInfo dictDataInfo = new DictDataInfo();
             SmartDataReader reader = new SmartDataReader(dataReader);
             dictDataInfo.Gid = reader.GetString("Gid");
-            dictDataInfo.DicttypeID = reader.GetInt32("DicttypeID");
-            dictDataInfo.Value = reader.GetString("Value");
+            dictDataInfo.DicttypeId = reader.GetInt32("DicttypeId");
+            dictDataInfo.DicttypeValue = reader.GetInt32("DicttypeValue");
             dictDataInfo.Name = reader.GetString("Name");
             dictDataInfo.Remark = reader.GetString("Remark");
             dictDataInfo.Seq = reader.GetString("Seq");
@@ -65,9 +65,9 @@ namespace JCodes.Framework.MySqlDAL
             DictDataInfo info = obj as DictDataInfo;
             Hashtable hash = new Hashtable();
             hash.Add("Gid", info.Gid);
-            hash.Add("DicttypeID", info.DicttypeID);
+            hash.Add("DicttypeId", info.DicttypeId);
             hash.Add("Name", info.Name);
-            hash.Add("Value", info.Value);
+            hash.Add("DicttypeValue", info.DicttypeValue);
             hash.Add("Remark", info.Remark);
             hash.Add("Seq", info.Seq);
             hash.Add("EditorId", info.EditorId);
@@ -100,7 +100,7 @@ namespace JCodes.Framework.MySqlDAL
                     Int32 dicttypeID = Convert.ToInt32(dr["DicttypeID"]);
                     Int32 value = Convert.ToInt32(dr["Value"]);
                     string name = dr["Name"].ToString();
-                    list.Add(new DicKeyValueInfo() { DicttypeID = dicttypeID, Value = value, Name = name });
+                    list.Add(new DicKeyValueInfo() { DicttypeId = dicttypeID, DicttypeValue = value, Name = name });
                 }
             }
             return list;

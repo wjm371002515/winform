@@ -25,11 +25,11 @@ namespace JCodes.Framework.AddIn.WareHouseManage
 
         private void SetInfo(SupplierInfo info)
         {
-            info.Code = txtCode.Text;
+            info.ConsumerCode = txtCode.Text;
             info.Name = txtName.Text;
-            info.Phone = txtPhone.Text;
+            info.MobilePhone = txtPhone.Text;
             info.Address = txtAddress.Text;
-            info.Note = txtNote.Text;
+            info.Remark = txtNote.Text;
         }
 
         /// <summary>
@@ -65,11 +65,11 @@ namespace JCodes.Framework.AddIn.WareHouseManage
                 SupplierInfo info = BLLFactory<Supplier>.Instance.FindByID(Id);
                 if (info != null)
                 {
-                    txtCode.Text = info.Code;
+                    txtCode.Text = info.ConsumerCode;
                     txtName.Text = info.Name;
-                    txtPhone.Text = info.Phone;
+                    txtPhone.Text = info.MobilePhone;
                     txtAddress.Text = info.Address;
-                    txtNote.Text = info.Note;
+                    txtNote.Text = info.Remark;
                 }
             }
         }
@@ -132,7 +132,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
 
                 try
                 {
-                    bool succeed = BLLFactory<Supplier>.Instance.Update(info, info.ID.ToString());
+                    bool succeed = BLLFactory<Supplier>.Instance.Update(info, info.Id);
                     if (succeed)
                     {
                         return true;

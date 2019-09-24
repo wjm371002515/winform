@@ -27,7 +27,7 @@ namespace JCodes.Framework.MySqlDAL
 			}
 		}
         public ReportAnnualCostDetail()
-            : base(MySqlPortal.gc._wareHouseTablePre + "ReportAnnualCostDetail", "ID")
+            : base(MySqlPortal.gc._wareHouseTablePre + "ReportAnnualCostDetail", "Id")
 		{
 		}
 
@@ -43,7 +43,7 @@ namespace JCodes.Framework.MySqlDAL
 			ReportAnnualCostDetailInfo reportAnnualCostDetailInfo = new ReportAnnualCostDetailInfo();
 			SmartDataReader reader = new SmartDataReader(dataReader);
 			
-			reportAnnualCostDetailInfo.ID = reader.GetInt32("ID");
+			/*reportAnnualCostDetailInfo.ID = reader.GetInt32("ID");
 			reportAnnualCostDetailInfo.Header_ID = reader.GetInt32("Header_ID");
 			reportAnnualCostDetailInfo.ReportYear = reader.GetInt32("ReportYear");
 			reportAnnualCostDetailInfo.ItemType = reader.GetString("ItemType");
@@ -61,7 +61,7 @@ namespace JCodes.Framework.MySqlDAL
             reportAnnualCostDetailInfo.Eleven = reader.GetDecimal("Eleven");
             reportAnnualCostDetailInfo.Twelve = reader.GetDecimal("Twelve");
             reportAnnualCostDetailInfo.Total = reader.GetDecimal("Total");
-			reportAnnualCostDetailInfo.ReportCode = reader.GetString("ReportCode");
+			reportAnnualCostDetailInfo.ReportCode = reader.GetString("ReportCode");*/
 			
 			return reportAnnualCostDetailInfo;
 		}
@@ -76,7 +76,7 @@ namespace JCodes.Framework.MySqlDAL
 		    ReportAnnualCostDetailInfo info = obj as ReportAnnualCostDetailInfo;
 			Hashtable hash = new Hashtable(); 
 			
- 			hash.Add("Header_ID", info.Header_ID);
+ 			/*hash.Add("Header_ID", info.Header_ID);
  			hash.Add("ReportYear", info.ReportYear);
  			hash.Add("ItemType", info.ItemType);
  			hash.Add("CostCenterOrDept", info.CostCenterOrDept);
@@ -93,7 +93,7 @@ namespace JCodes.Framework.MySqlDAL
             hash.Add("Eleven", info.Eleven);
             hash.Add("Twelve", info.Twelve);
             hash.Add("Total", info.Total);
- 			hash.Add("ReportCode", info.ReportCode);
+ 			hash.Add("ReportCode", info.ReportCode);*/
  				
 			return hash;
 		}

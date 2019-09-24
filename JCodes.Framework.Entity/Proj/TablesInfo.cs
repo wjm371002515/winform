@@ -1,77 +1,176 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 
 namespace JCodes.Framework.Entity
 {
-    public class TablesInfo
-    {
-        public TablesInfo()
-        { }
+	/// <summary>
+	/// 表信息(TablesInfo)
+	/// 对象号: 100053
+	/// 备注信息: 
+	/// </summary>
+	[Serializable]
+	[DataContract]
+	public partial class TablesInfo
+	{
+		#region Field Members
 
-        private string guid;
+		/// <summary>
+		/// GUID对应的ID序号
+		/// </summary>
+		private String m_Gid = string.Empty;
 
-        [DisplayName("GUID")]
-        public string GUID
-        {
-            get { return guid; }
-            set { guid = value; }
-        }
+		/// <summary>
+		/// 名称
+		/// </summary>
+		private String m_Name = string.Empty;
 
-        private string name;
+		/// <summary>
+		/// 中文名称
+		/// </summary>
+		private String m_ChineseName = string.Empty;
 
-        [DisplayName("表名")]
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
+		/// <summary>
+		/// 功能号
+		/// </summary>
+		private Int32 m_FunctionId = 0;
 
-        private string chineseName;
+		/// <summary>
+		/// 类型GUID
+		/// </summary>
+		private String m_TypeGuid = string.Empty;
 
-        [DisplayName("中文表名")]
-        public string ChineseName
-        {
-            get { return chineseName; }
-            set { chineseName = value; }
-        }
+		/// <summary>
+		/// 文件保存相对路径
+		/// </summary>
+		private String m_SavePath = string.Empty;
 
-        private string functionId;
+		/// <summary>
+		/// 基础数据文件路径
+		/// </summary>
+		private String m_BasicdataPath = string.Empty;
+		#endregion
 
-        [DisplayName("功能号")]
-        public string FunctionId
-        {
-            get { return functionId; }
-            set { functionId = value; }
-        }
+		#region Property Members
 
-        private string typeguid;
+		/// <summary>
+		/// GUID对应的ID序号
+		/// </summary>
+		[DataMember]
+		[DisplayName("GUID对应的ID序号")]
+		public virtual String Gid
+		{
+			get
+			{
+				return this.m_Gid;
+			}
+			set
+			{
+				this.m_Gid = value;
+			}
+		}
 
-        [DisplayName("类型GUID")]
-        public string TypeGuid
-        {
-            get { return typeguid; }
-            set { typeguid = value; }
-        }
+		/// <summary>
+		/// 名称
+		/// </summary>
+		[DataMember]
+		[DisplayName("名称")]
+		public virtual String Name
+		{
+			get
+			{
+				return this.m_Name;
+			}
+			set
+			{
+				this.m_Name = value;
+			}
+		}
 
-        private string path;
+		/// <summary>
+		/// 中文名称
+		/// </summary>
+		[DataMember]
+		[DisplayName("中文名称")]
+		public virtual String ChineseName
+		{
+			get
+			{
+				return this.m_ChineseName;
+			}
+			set
+			{
+				this.m_ChineseName = value;
+			}
+		}
 
-        [DisplayName("路径")]
-        public string Path
-        {
-            get { return path; }
-            set { path = value; }
-        }
+		/// <summary>
+		/// 功能号
+		/// </summary>
+		[DataMember]
+		[DisplayName("功能号")]
+		public virtual Int32 FunctionId
+		{
+			get
+			{
+				return this.m_FunctionId;
+			}
+			set
+			{
+				this.m_FunctionId = value;
+			}
+		}
 
-        private string basicdatapath;
+		/// <summary>
+		/// 类型GUID
+		/// </summary>
+		[DataMember]
+		[DisplayName("类型GUID")]
+		public virtual String TypeGuid
+		{
+			get
+			{
+				return this.m_TypeGuid;
+			}
+			set
+			{
+				this.m_TypeGuid = value;
+			}
+		}
 
-        [DisplayName("基础数据文件路径")]
-        public string BasicdataPath
-        {
-            get { return basicdatapath; }
-            set { basicdatapath = value; }
-        }
-    }
+		/// <summary>
+		/// 文件保存相对路径
+		/// </summary>
+		[DataMember]
+		[DisplayName("文件保存相对路径")]
+		public virtual String SavePath
+		{
+			get
+			{
+				return this.m_SavePath;
+			}
+			set
+			{
+				this.m_SavePath = value;
+			}
+		}
+
+		/// <summary>
+		/// 基础数据文件路径
+		/// </summary>
+		[DataMember]
+		[DisplayName("基础数据文件路径")]
+		public virtual String BasicdataPath
+		{
+			get
+			{
+				return this.m_BasicdataPath;
+			}
+			set
+			{
+				this.m_BasicdataPath = value;
+			}
+		}
+		#endregion
+	}
 }

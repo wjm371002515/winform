@@ -224,8 +224,8 @@ namespace JCodes.Framework.AddIn.WareHouseManage
             // 计算总数量和总金额
             foreach(var purchaseDetail in detailDict.Values)
             {
-                allQuantity += purchaseDetail.Quantity;
-                amountMoney = amountMoney + purchaseDetail.Price * Convert.ToInt32(purchaseDetail.Quantity);
+                allQuantity += purchaseDetail.Amount;
+                amountMoney = amountMoney + (decimal)purchaseDetail.Price * Convert.ToInt32(purchaseDetail.Amount);
                 lst.Add(purchaseDetail);
             }
 
@@ -247,31 +247,31 @@ namespace JCodes.Framework.AddIn.WareHouseManage
 
             #region 构造入库信息
             PurchaseDetailInfo detailInfo = new PurchaseDetailInfo();
-            detailInfo.Amount = itemDetailInfo.Price * count;
-            detailInfo.ItemName = itemDetailInfo.ItemName;
+            detailInfo.Amount = (Int32)itemDetailInfo.Price * count;
+            detailInfo.Name = itemDetailInfo.Name;
             detailInfo.ItemNo = itemDetailInfo.ItemNo;
-            detailInfo.OperationType = "入库";
-            detailInfo.ItemBigType = itemDetailInfo.ItemBigType;
+            //detailInfo.Operationtype = "入库";
+            detailInfo.ItemBigtype = itemDetailInfo.ItemBigtype;
             detailInfo.ItemType = itemDetailInfo.ItemType;
             detailInfo.MapNo = itemDetailInfo.MapNo;
             detailInfo.Material = itemDetailInfo.Material;
-            detailInfo.Source = itemDetailInfo.Source;
+            detailInfo.ItemSource = itemDetailInfo.ItemSource;
             detailInfo.Specification = itemDetailInfo.Specification;
             detailInfo.StoragePos = itemDetailInfo.StoragePos;
             detailInfo.UsagePos = itemDetailInfo.UsagePos;
             detailInfo.Price = itemDetailInfo.Price;
-            detailInfo.Quantity = count;
-            detailInfo.Unit = itemDetailInfo.Unit;
-            detailInfo.WareHouse = itemDetailInfo.WareHouse;
-            detailInfo.Dept = itemDetailInfo.Dept;
+            detailInfo.Amount = count;
+            detailInfo.ItemUnit = itemDetailInfo.ItemUnit;
+            detailInfo.WareHouseId = itemDetailInfo.WareHouseId;
+            detailInfo.DeptId = itemDetailInfo.DeptId;
 
             #endregion
 
             if (detailDict.ContainsKey(itemDetailInfo.ItemNo))
             {
                 PurchaseDetailInfo tempInfo = detailDict[itemDetailInfo.ItemNo];
-                tempInfo.Amount += itemDetailInfo.Price * count;
-                tempInfo.Quantity += count;
+                tempInfo.Amount += (Int32)itemDetailInfo.Price * count;
+                tempInfo.Amount += count;
             }
             else
             {
@@ -337,23 +337,23 @@ namespace JCodes.Framework.AddIn.WareHouseManage
             {
                 FrmSetPurchaseQuantity dlg = new FrmSetPurchaseQuantity();
                 dlg.txtItemNo.Text = info.ItemNo;
-                dlg.txtItemName.Text = info.ItemName;
-                dlg.txtQuantity.Text = info.Quantity.ToString();
+                dlg.txtItemName.Text = info.Name;
+                dlg.txtQuantity.Text = info.Amount.ToString();
                 dlg.txtPrice.Text = info.Price.ToString("f2");
 
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     int quntity = Convert.ToInt32(dlg.txtQuantity.Text);
-                    decimal price = Convert.ToDecimal(dlg.txtPrice.Text);
+                    double price = Convert.ToDouble(dlg.txtPrice.Text);
 
                     info.Price = price;
-                    info.Quantity = quntity;
+                    info.Amount = quntity;
                     lvwGoods.Refresh();
 
                     //入库的时候，数量，单价可以修改，因此需要重新获取单价信息，作为标准单价
                     PurchaseDetailInfo tempInfo = detailDict[info.ItemNo];
-                    tempInfo.Amount = price * quntity;
-                    tempInfo.Quantity = quntity;
+                    tempInfo.Amount = (Int32)price * quntity;
+                    tempInfo.Amount = quntity;
                     tempInfo.Price = price;
 
                     ShowGoodDetailView();

@@ -45,7 +45,7 @@ namespace JCodes.Framework.MySqlDAL
             RoleInfo info = new RoleInfo();
             SmartDataReader reader = new SmartDataReader(dataReader);
 
-            info.Id = reader.GetInt32("Id");
+            /*info.Id = reader.GetInt32("Id");
             info.Pid = reader.GetInt32("Pid");
             info.RoleCode = reader.GetString("RoleCode");
             info.Name = reader.GetString("Name");
@@ -61,7 +61,7 @@ namespace JCodes.Framework.MySqlDAL
             info.EditorId = reader.GetInt32("EditorId");
             info.LastUpdateTime = reader.GetDateTime("LastUpdateTime");
             info.IsDelete = reader.GetInt32("IsDelete");
-            info.IsForbid = reader.GetInt32("IsForbid");
+            info.IsForbid = reader.GetInt32("IsForbid");*/
 
             return info;
         }
@@ -76,7 +76,7 @@ namespace JCodes.Framework.MySqlDAL
             RoleInfo info = obj as RoleInfo;
             Hashtable hash = new Hashtable();
 
-            hash.Add("Pid", info.Pid);
+            /*hash.Add("Pid", info.Pid);
             hash.Add("RoleCode", info.RoleCode);
             hash.Add("Name", info.Name);
             hash.Add("Remark", info.Remark);
@@ -91,7 +91,7 @@ namespace JCodes.Framework.MySqlDAL
             hash.Add("EditorId", info.EditorId);
             hash.Add("LastUpdateTime", info.LastUpdateTime);
             hash.Add("IsDelete", info.IsDelete);
-            hash.Add("IsForbid", info.IsForbid);
+            hash.Add("IsForbid", info.IsForbid);*/
 
             return hash;
         }
@@ -104,7 +104,7 @@ namespace JCodes.Framework.MySqlDAL
         {
             Dictionary<string, string> dict = new Dictionary<string, string>();
             #region 添加别名解析
-            dict.Add("Id", "编号");
+            /*dict.Add("Id", "编号");
             dict.Add("Pid", "父ID");
             dict.Add("RoleCode", "角色编码");
             dict.Add("Name", "角色名称");
@@ -120,7 +120,7 @@ namespace JCodes.Framework.MySqlDAL
             dict.Add("EditorId", "编辑人ID");
             dict.Add("LastUpdateTime", "编辑时间");
             dict.Add("IsDelete", "是否已删除");
-            dict.Add("IsForbid", "有效标志");
+            dict.Add("IsForbid", "有效标志");*/
             #endregion
 
             return dict;

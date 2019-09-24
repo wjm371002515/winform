@@ -1,110 +1,233 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-
+using System.Collections.Generic;
 namespace JCodes.Framework.Entity
 {
-    public class ModRecordInfo : IComparable<ModRecordInfo>
-    {
-        public ModRecordInfo()
-        { }
+	/// <summary>
+	/// 修改记录信息(ModRecordInfo)
+	/// 对象号: 100045
+	/// 备注信息: 
+	/// </summary>
+	[Serializable]
+	[DataContract]
+	public partial class ModRecordInfo : IComparable<ModRecordInfo>
+	{
+		#region Field Members
 
-        private string guid;
+		/// <summary>
+		/// GUID对应的ID序号
+		/// </summary>
+		private String m_Gid = string.Empty;
 
-        [DisplayName("GUID")]
-        public string GUID
-        {
-            get { return guid; }
-            set { guid = value; }
-        }
+		/// <summary>
+		/// 修改日期
+		/// </summary>
+		private DateTime m_ModDate = DateTime.Now;
 
-        private DateTime modDate;
+		/// <summary>
+		/// 修改版本
+		/// </summary>
+		private String m_ModVersion = string.Empty;
 
-        [DisplayName("修改日期")]
-        public DateTime ModDate
-        {
-            get { return modDate; }
-            set { modDate = value; }
-        }
+		/// <summary>
+		/// 修改单号
+		/// </summary>
+		private String m_ModOrderId = string.Empty;
 
-        private string modVersion;
+		/// <summary>
+		/// 申请人
+		/// </summary>
+		private String m_Proposer = string.Empty;
 
-        [DisplayName("修改版本")]
-        public string ModVersion
-        {
-            get { return modVersion; }
-            set { modVersion = value; }
-        }
+		/// <summary>
+		/// 修改人
+		/// </summary>
+		private String m_Programmer = string.Empty;
 
-        private string modOrderId;
+		/// <summary>
+		/// 修改内容
+		/// </summary>
+		private String m_ModContent = string.Empty;
 
-        [DisplayName("修改单号")]
-        public string ModOrderId
-        {
-            get { return modOrderId; }
-            set { modOrderId = value; }
-        }
+		/// <summary>
+		/// 修改原因
+		/// </summary>
+		private String m_ModReason = string.Empty;
 
-        private string proposer;
+		/// <summary>
+		/// 备注
+		/// </summary>
+		private String m_Remark = string.Empty;
+		#endregion
 
-        [DisplayName("申请人")]
-        public string Proposer
-        {
-            get { return proposer; }
-            set { proposer = value; }
-        }
+		#region Property Members
 
-        private string programmer;
+		/// <summary>
+		/// GUID对应的ID序号
+		/// </summary>
+		[DataMember]
+		[DisplayName("GUID对应的ID序号")]
+		public virtual String Gid
+		{
+			get
+			{
+				return this.m_Gid;
+			}
+			set
+			{
+				this.m_Gid = value;
+			}
+		}
 
-        [DisplayName("修改人")]
-        public string Programmer
-        {
-            get { return programmer; }
-            set { programmer = value; }
-        }
+		/// <summary>
+		/// 修改日期
+		/// </summary>
+		[DataMember]
+		[DisplayName("修改日期")]
+		public virtual DateTime ModDate
+		{
+			get
+			{
+				return this.m_ModDate;
+			}
+			set
+			{
+				this.m_ModDate = value;
+			}
+		}
 
-        private string modContent;
+		/// <summary>
+		/// 修改版本
+		/// </summary>
+		[DataMember]
+		[DisplayName("修改版本")]
+		public virtual String ModVersion
+		{
+			get
+			{
+				return this.m_ModVersion;
+			}
+			set
+			{
+				this.m_ModVersion = value;
+			}
+		}
 
-        [DisplayName("修改内容")]
-        public string ModContent
-        {
-            get { return modContent; }
-            set { modContent = value; }
-        }
+		/// <summary>
+		/// 修改单号
+		/// </summary>
+		[DataMember]
+		[DisplayName("修改单号")]
+		public virtual String ModOrderId
+		{
+			get
+			{
+				return this.m_ModOrderId;
+			}
+			set
+			{
+				this.m_ModOrderId = value;
+			}
+		}
 
-        private string modReason;
+		/// <summary>
+		/// 申请人
+		/// </summary>
+		[DataMember]
+		[DisplayName("申请人")]
+		public virtual String Proposer
+		{
+			get
+			{
+				return this.m_Proposer;
+			}
+			set
+			{
+				this.m_Proposer = value;
+			}
+		}
 
-        [DisplayName("修改原因")]
-        public string ModReason
-        {
-            get { return modReason; }
-            set { modReason = value; }
-        }
+		/// <summary>
+		/// 修改人
+		/// </summary>
+		[DataMember]
+		[DisplayName("修改人")]
+		public virtual String Programmer
+		{
+			get
+			{
+				return this.m_Programmer;
+			}
+			set
+			{
+				this.m_Programmer = value;
+			}
+		}
 
-        private string remark;
+		/// <summary>
+		/// 修改内容
+		/// </summary>
+		[DataMember]
+		[DisplayName("修改内容")]
+		public virtual String ModContent
+		{
+			get
+			{
+				return this.m_ModContent;
+			}
+			set
+			{
+				this.m_ModContent = value;
+			}
+		}
 
-        [DisplayName("备注")]
-        public string Remark
-        {
-            get { return remark; }
-            set { remark = value; }
-        }
+		/// <summary>
+		/// 修改原因
+		/// </summary>
+		[DataMember]
+		[DisplayName("修改原因")]
+		public virtual String ModReason
+		{
+			get
+			{
+				return this.m_ModReason;
+			}
+			set
+			{
+				this.m_ModReason = value;
+			}
+		}
 
-        /// <summary>
-        /// Compares to.
-        /// </summary>
-        /// <param name="other">The other.</param>
-        /// <returns>System.Int32.</returns>
-        public int CompareTo(ModRecordInfo other)
-        {
-            if (other == null) return -1;
+		/// <summary>
+		/// 备注
+		/// </summary>
+		[DataMember]
+		[DisplayName("备注")]
+		public virtual String Remark
+		{
+			get
+			{
+				return this.m_Remark;
+			}
+			set
+			{
+				this.m_Remark = value;
+			}
+		}
+
+		/// <summary>
+		/// Compares to.
+		/// </summary>
+		public Int32 CompareTo(ModRecordInfo other)
+		{
+			if (other == null) return -1;
             if (ModDate > other.ModDate)
             {
                 return -1;
             }
             return 1;
-        }
-    }
+		}
+		#endregion
+	}
 }

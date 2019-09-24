@@ -14,7 +14,7 @@ using JCodes.Framework.Common.Extension;
 
 namespace JCodes.Framework.WebUI.Controllers
 {
-    public class TestUserController : BusinessController<TestUser, TestUserInfo>
+    /*public class TestUserController : BusinessController<TestUser, TestUserInfo>
     {
         public TestUserController() : base()
         {
@@ -32,7 +32,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult CheckExcelColumns(string guid)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
 
             try
             {
@@ -40,7 +40,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 if (dt != null)
                 {
                     //检查列表是否包含必须的字段
-                    result.Success = DataTableHelper.ContainAllColumns(dt, columnString);
+                    result.ErrorCode = DataTableHelper.ContainAllColumns(dt, columnString)?0:1;
                 }
             }
             catch (Exception ex)
@@ -70,7 +70,6 @@ namespace JCodes.Framework.WebUI.Controllers
             if (table != null)
             {
                 #region 数据转换
-                int i = 1;
                 foreach (DataRow dr in table.Rows)
                 {
                     bool converted = false;
@@ -114,7 +113,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult SaveExcelData(List<TestUserInfo> list)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             if (list != null && list.Count > 0)
             {
                 #region 采用事务进行数据提交
@@ -136,7 +135,7 @@ namespace JCodes.Framework.WebUI.Controllers
                             BLLFactory<TestUser>.Instance.Insert(detail, trans);
                         }
                         trans.Commit();
-                        result.Success = true;
+                        result.ErrorCode = 0;
                     }
                     catch (Exception ex)
                     {
@@ -272,7 +271,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult EditPortrait(string id)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
 
             try
             {
@@ -283,7 +282,7 @@ namespace JCodes.Framework.WebUI.Controllers
                     if (info != null)
                     {
                         var fileData = ReadFileBytes(files[0]);
-                        result.Success = BLLFactory<TestUser>.Instance.UpdatePersonImageBytes(id, fileData);
+                        result.ErrorCode = BLLFactory<TestUser>.Instance.UpdatePersonImageBytes(id, fileData)?0:1;
                     }
                 }
             }
@@ -312,5 +311,5 @@ namespace JCodes.Framework.WebUI.Controllers
             return result;
         }
 
-    }
+    }*/
 }

@@ -49,7 +49,7 @@ namespace JCodes.Framework.AddIn.Proj
 
                     // 得到DataTypeInfo节点的所有子节点
                     XmlNodeList xnl0 = xe.ChildNodes;
-                    if (string.Equals(xe.Attributes["guid"].Value, this.Tag))
+                    if (string.Equals(xe.Attributes["gid"].Value, this.Tag))
                     {
                         txtGroupName.Text = xe.Attributes["name"].Value;
                         txtCreateDate.Text = xe.Attributes["createdate"].Value;
@@ -87,8 +87,8 @@ namespace JCodes.Framework.AddIn.Proj
                 var objXmlDoc = xmltableshelper.GetXmlDoc();
                 XmlNode objNode = objXmlDoc.SelectSingleNode("datatype/tabletype");
                 XmlElement objElement = objXmlDoc.CreateElement("item");
-                objElement.SetAttribute("guid", info.GUID);
-                objElement.SetAttribute("createdate", info.CreateDate);
+                objElement.SetAttribute("gid", info.Gid);
+                objElement.SetAttribute("creatortime", info.CreatorTime.ToString("yyyyMMdd HHmmss"));
                 objElement.SetAttribute("name", info.Name);
                 objElement.SetAttribute("basicdata", "0");
                 objElement.InnerXml = string.Empty;
@@ -96,7 +96,7 @@ namespace JCodes.Framework.AddIn.Proj
               
                 xmltableshelper.Save();
                 strGroupName = txtGroupName.Text.Trim();
-                this.Tag = info.GUID;
+                this.Tag = info.Gid;
 
                 return true;
                 #endregion
@@ -130,7 +130,7 @@ namespace JCodes.Framework.AddIn.Proj
                         // 得到DataTypeInfo节点的所有子节点
                         XmlNodeList xnl0 = xe.ChildNodes;
 
-                        if ( string.Equals(xe.Attributes["guid"].Value, this.Tag) )
+                        if ( string.Equals(xe.Attributes["gid"].Value, this.Tag) )
                         {
                             xe.Attributes["name"].Value = txtGroupName.Text;
                         }
@@ -151,9 +151,9 @@ namespace JCodes.Framework.AddIn.Proj
 
         private void SetInfo(TablesTypeInfo info)
         {
-            info.GUID = txtGuid.Text.Trim();
+            info.Gid = txtGuid.Text.Trim();
             info.Name = txtGroupName.Text.Trim();
-            info.CreateDate = txtCreateDate.Text.Trim();
+            info.CreatorTime = Convert.ToDateTime( txtCreateDate.Text );
         }
     }
 }

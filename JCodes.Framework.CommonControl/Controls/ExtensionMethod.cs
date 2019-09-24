@@ -153,13 +153,13 @@ namespace JCodes.Framework.CommonControl.Controls
                 return;
             }
 
-            var lst = cacheDictData.FindAll(s => s.DicttypeID == dictTypeId);
+            var lst = cacheDictData.FindAll(s => s.DicttypeId == dictTypeId);
             combo.Properties.BeginUpdate();//可以加快
             combo.Properties.Items.Clear();
             combo.Properties.Items.Add(new CDicKeyValue(Const.NoSeletValue, Const.NoSelectMsg));
             foreach (var one in lst)
             {
-                combo.Properties.Items.Add(new CDicKeyValue(one.Value, one.Name));
+                combo.Properties.Items.Add(new CDicKeyValue(one.DicttypeValue, one.Name));
             }
 
             if (defaultValue != null)
@@ -267,12 +267,12 @@ namespace JCodes.Framework.CommonControl.Controls
                 return;
             }
 
-            var lst = cacheDictData.FindAll(s => s.DicttypeID == dictTypeId);
+            var lst = cacheDictData.FindAll(s => s.DicttypeId == dictTypeId);
             combo.Properties.BeginUpdate();//可以加快
             combo.Properties.Items.Clear();
             foreach (DicKeyValueInfo one in lst)
             {
-                dataSourcre.Add(new CheckedListBoxItem() { Value = one.Value, Description = one.Value + Const.Minus + one.Name });
+                dataSourcre.Add(new CheckedListBoxItem() { Value = one.DicttypeValue, Description = one.DicttypeValue + Const.Minus + one.Name });
             }
             combo.Properties.Items.AddRange(dataSourcre.ToArray());
 

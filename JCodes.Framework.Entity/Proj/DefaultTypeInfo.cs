@@ -1,133 +1,285 @@
-﻿using DevExpress.XtraEditors.DXErrorProvider;
-using System;
-using System.Collections.Generic;
+﻿using System;
+using System.Runtime.Serialization;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-
+using DevExpress.XtraEditors.DXErrorProvider;
+using System.Collections.Generic;
 namespace JCodes.Framework.Entity
 {
-    public class DefaultTypeInfo : IDXDataErrorInfo
-    {
-        public DefaultTypeInfo()
-        { }
+	/// <summary>
+	/// 默认数据类型(DefaultTypeInfo)
+	/// 对象号: 100040
+	/// 备注信息: 
+	/// </summary>
+	[Serializable]
+	[DataContract]
+	public partial class DefaultTypeInfo : IDXDataErrorInfo
+	{
+		#region Field Members
 
-        private string guid;
+		/// <summary>
+		/// GUID对应的ID序号
+		/// </summary>
+		private String m_Gid = string.Empty;
 
-        [DisplayName("GUID")]
-        public string GUID
-        {
-            get { return guid; }
-            set { guid = value; }
-        }
+		/// <summary>
+		/// 名称
+		/// </summary>
+		private String m_Name = string.Empty;
 
-        /// <summary>
-        /// 类型名
-        /// </summary>
-        private string name;
+		/// <summary>
+		/// 中文名称
+		/// </summary>
+		private String m_ChineseName = string.Empty;
 
-        [DisplayName("类型名")]
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
+		/// <summary>
+		/// Oracle
+		/// </summary>
+		private String m_Oracle = string.Empty;
 
-        private string chineseName;
+		/// <summary>
+		/// Mysql
+		/// </summary>
+		private String m_Mysql = string.Empty;
 
-        [DisplayName("名称")]
-        public string ChineseName
-        {
-            get { return chineseName; }
-            set { chineseName = value; }
-        }
-        
-        private string oracle;
+		/// <summary>
+		/// DB2
+		/// </summary>
+		private String m_DB2 = string.Empty;
 
-        [DisplayName("Oracle")]
-        public string Oracle
-        {
-            get { return oracle; }
-            set { oracle = value; }
-        }
+		/// <summary>
+		/// SqlServer
+		/// </summary>
+		private String m_SqlServer = string.Empty;
 
-        private string mysql;
+		/// <summary>
+		/// Sqlite
+		/// </summary>
+		private String m_Sqlite = string.Empty;
 
-        [DisplayName("Mysql")]
-        public string Mysql
-        {
-            get { return mysql; }
-            set { mysql = value; }
-        }
+		/// <summary>
+		/// Access
+		/// </summary>
+		private String m_Access = string.Empty;
 
-        private string db2;
+		/// <summary>
+		/// CShort
+		/// </summary>
+		private String m_CShort = string.Empty;
 
-        [DisplayName("DB2")]
-        public string DB2
-        {
-            get { return db2; }
-            set { db2 = value; }
-        }
+		/// <summary>
+		/// 用来保存行数据中字段名，错误信息
+		/// </summary>
+		private Dictionary<string, ErrorInfo> m_lstInfo;
+		#endregion
 
-        private string sqlserver;
+		#region Property Members
 
-        [DisplayName("SqlServer")]
-        public string SqlServer
-        {
-            get { return sqlserver; }
-            set { sqlserver = value; }
-        }
+		/// <summary>
+		/// GUID对应的ID序号
+		/// </summary>
+		[DataMember]
+		[DisplayName("GUID对应的ID序号")]
+		public virtual String Gid
+		{
+			get
+			{
+				return this.m_Gid;
+			}
+			set
+			{
+				this.m_Gid = value;
+			}
+		}
 
-        private string sqlite;
+		/// <summary>
+		/// 名称
+		/// </summary>
+		[DataMember]
+		[DisplayName("名称")]
+		public virtual String Name
+		{
+			get
+			{
+				return this.m_Name;
+			}
+			set
+			{
+				this.m_Name = value;
+			}
+		}
 
-        [DisplayName("Sqlite")]
-        public string Sqlite
-        {
-            get { return sqlite; }
-            set { sqlite = value; }
-        }
+		/// <summary>
+		/// 中文名称
+		/// </summary>
+		[DataMember]
+		[DisplayName("中文名称")]
+		public virtual String ChineseName
+		{
+			get
+			{
+				return this.m_ChineseName;
+			}
+			set
+			{
+				this.m_ChineseName = value;
+			}
+		}
 
-        private string access;
+		/// <summary>
+		/// Oracle
+		/// </summary>
+		[DataMember]
+		[DisplayName("Oracle")]
+		public virtual String Oracle
+		{
+			get
+			{
+				return this.m_Oracle;
+			}
+			set
+			{
+				this.m_Oracle = value;
+			}
+		}
 
-        [DisplayName("Access")]
-        public string Access
-        {
-            get { return access; }
-            set { access = value; }
-        }
+		/// <summary>
+		/// Mysql
+		/// </summary>
+		[DataMember]
+		[DisplayName("Mysql")]
+		public virtual String Mysql
+		{
+			get
+			{
+				return this.m_Mysql;
+			}
+			set
+			{
+				this.m_Mysql = value;
+			}
+		}
 
-        private string cshort;
+		/// <summary>
+		/// DB2
+		/// </summary>
+		[DataMember]
+		[DisplayName("DB2")]
+		public virtual String DB2
+		{
+			get
+			{
+				return this.m_DB2;
+			}
+			set
+			{
+				this.m_DB2 = value;
+			}
+		}
 
-        [DisplayName("CShort")]
-        public string CShort
-        {
-            get { return cshort; }
-            set { cshort = value; }
-        }
+		/// <summary>
+		/// SqlServer
+		/// </summary>
+		[DataMember]
+		[DisplayName("SqlServer")]
+		public virtual String SqlServer
+		{
+			get
+			{
+				return this.m_SqlServer;
+			}
+			set
+			{
+				this.m_SqlServer = value;
+			}
+		}
 
-        /// <summary>
-        /// 用来保存行数据中字段名，错误信息
-        /// </summary>
-        public Dictionary<string, ErrorInfo> lstInfo
-        {
-            get;
-            set;
-        }
+		/// <summary>
+		/// Sqlite
+		/// </summary>
+		[DataMember]
+		[DisplayName("Sqlite")]
+		public virtual String Sqlite
+		{
+			get
+			{
+				return this.m_Sqlite;
+			}
+			set
+			{
+				this.m_Sqlite = value;
+			}
+		}
 
-        #region IDXDataErrorInfo Members
-        //<gridControl1>
-        void IDXDataErrorInfo.GetPropertyError(string propertyName, ErrorInfo info)
-        {
-            // 添加自定义错误
+		/// <summary>
+		/// Access
+		/// </summary>
+		[DataMember]
+		[DisplayName("Access")]
+		public virtual String Access
+		{
+			get
+			{
+				return this.m_Access;
+			}
+			set
+			{
+				this.m_Access = value;
+			}
+		}
+
+		/// <summary>
+		/// CShort
+		/// </summary>
+		[DataMember]
+		[DisplayName("CShort")]
+		public virtual String CShort
+		{
+			get
+			{
+				return this.m_CShort;
+			}
+			set
+			{
+				this.m_CShort = value;
+			}
+		}
+
+		/// <summary>
+		/// 用来保存行数据中字段名，错误信息
+		/// </summary>
+		[DataMember]
+		public virtual Dictionary<string, ErrorInfo> lstInfo
+		{
+			get
+			{
+				return this.m_lstInfo;
+			}
+			set
+			{
+				this.m_lstInfo = value;
+			}
+		}
+
+		/// <summary>
+		/// 添加自定义错误
+		/// </summary>
+		void IDXDataErrorInfo.GetPropertyError(string propertyName, ErrorInfo info)
+		{
+			 // 添加自定义错误
             if (lstInfo != null && lstInfo.Count > 0 && lstInfo.ContainsKey(propertyName) && !string.IsNullOrEmpty(lstInfo[propertyName].ErrorText))
             {
                 info.ErrorText = lstInfo[propertyName].ErrorText;
                 info.ErrorType = lstInfo[propertyName].ErrorType;
             }
-        }
-        void IDXDataErrorInfo.GetError(ErrorInfo info) { }
-        //</gridControl1>
+		}
 
-        #endregion
-    }
+		/// <summary>
+		/// 
+		/// </summary>
+		void IDXDataErrorInfo.GetError(ErrorInfo info)
+		{
+			
+		}
+		#endregion
+	}
 }

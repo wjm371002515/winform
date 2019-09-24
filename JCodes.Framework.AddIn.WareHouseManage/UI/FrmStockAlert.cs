@@ -28,10 +28,10 @@ namespace JCodes.Framework.AddIn.WareHouseManage
             InitializeComponent();
         }
 
-        private void SetInfo(StockInfo info)
+        private void SetInfo(WareInfo info)
         {
-            info.LowWarning = Convert.ToInt32(txtLowWarning.Text);
-            info.HighWarning = Convert.ToInt32(txtHighWarning.Text);
+            info.LowAmountWarning = Convert.ToInt32(txtLowWarning.Text);
+            info.HighAmountWarning = Convert.ToInt32(txtHighWarning.Text);
         }
 
         private void FrmStockAlert_Load(object sender, EventArgs e)
@@ -39,11 +39,11 @@ namespace JCodes.Framework.AddIn.WareHouseManage
             //this.btnOK.Enabled = HasFunction("Stock/Setting");
             if (!string.IsNullOrEmpty(ID))
             {
-                StockInfo info = BLLFactory<Stock>.Instance.FindByID(ID);
+                WareInfo info = BLLFactory<Stock>.Instance.FindByID(ID);
                 if (info != null)
                 {
-                    txtLowWarning.Text = info.LowWarning.ToString();
-                    txtHighWarning.Text = info.HighWarning.ToString();
+                    txtLowWarning.Text = info.LowAmountWarning.ToString();
+                    txtHighWarning.Text = info.HighAmountWarning.ToString();
                 }
             }
         }
@@ -52,14 +52,14 @@ namespace JCodes.Framework.AddIn.WareHouseManage
         {
             if (!string.IsNullOrEmpty(ID))
             {
-                StockInfo info = BLLFactory<Stock>.Instance.FindByID(ID);
+                WareInfo info = BLLFactory<Stock>.Instance.FindByID(ID);
                 if (info != null)
                 {
                     SetInfo(info);
 
                     try
                     {
-                        bool succeed = BLLFactory<Stock>.Instance.Update(info, info.ID.ToString());
+                        bool succeed = BLLFactory<Stock>.Instance.Update(info, info.Id);
                         if (succeed)
                         {
                             MessageDxUtil.ShowTips("保存成功");

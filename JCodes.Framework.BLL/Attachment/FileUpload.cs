@@ -33,9 +33,9 @@ namespace JCodes.Framework.BLL
         /// </summary>
         /// <param name="info">文件信息（包含流数据）</param>
         /// <returns></returns>
-        public CommonResult Upload(FileUploadInfo info)
+        public ReturnResult Upload(FileUploadInfo info)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
 
             try
             {
@@ -86,7 +86,7 @@ namespace JCodes.Framework.BLL
                         bool success = base.Insert(info);
                         if (success)
                         {
-                            result.Success = success;
+                            result.ErrorCode = 0;
                         }
                         else
                         {

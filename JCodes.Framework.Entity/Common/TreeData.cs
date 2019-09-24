@@ -1,83 +1,184 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-
+using System.ComponentModel;
+using System.Collections.Generic;
 namespace JCodes.Framework.Entity
 {
-    /// <summary>
-    /// 定义zTree的相关数据，方便控制器生成Json数据进行传递
-    /// </summary>
-    [DataContract]
-    [Serializable]
-    public class TreeData
-    {
-        /// <summary>
-        /// ID
-        /// </summary>
-        [DataMember]
-        public string id { get; set; }
+	/// <summary>
+	/// 定义zTree的相关数据，方便控制器生成Json数据进行传递(TreeData)
+	/// 对象号: 100030
+	/// 备注信息: 
+	/// </summary>
+	[Serializable]
+	[DataContract]
+	public partial class TreeData
+	{
+		#region Field Members
 
-        /// <summary>
-        /// 父ID
-        /// </summary>
-        [DataMember]
-        public string pid { get; set; }
+		/// <summary>
+		/// GUID对应的ID序号
+		/// </summary>
+		private String m_Gid = string.Empty;
 
-        /// <summary>
-        /// 节点名称
-        /// </summary>
-        [DataMember]
-        public string name { get; set; }
+		/// <summary>
+		/// 父节点GUID对应的ID序号
+		/// </summary>
+		private String m_Pgid = string.Empty;
 
-        /// <summary>
-        /// 节点图标
-        /// </summary>
-        [DataMember]
-        public string icon { get; set; }
+		/// <summary>
+		/// 名称
+		/// </summary>
+		private String m_Name = string.Empty;
 
-        /// <summary>
-        /// 子节点集合
-        /// </summary>
-        [DataMember]
-        public List<TreeData> children { get; set; }
-        
-        /// <summary>
-        /// 是否展开
-        /// </summary>
-        [DataMember]
-        public bool open  { get; set; }
+		/// <summary>
+		/// icon图标路径
+		/// </summary>
+		private String m_Icon = string.Empty;
 
-        /// <summary>
-        /// 默认构造函数
-        /// </summary>
-        public TreeData() 
-        {
-            this.children = new List<TreeData>();
-            this.open = true;
-        }
+		/// <summary>
+		/// 是否打开
+		/// </summary>
+		private Int16 m_IsOpened = 0;
 
-        /// <summary>
-        /// 常用构造函数
-        /// </summary>
-        public TreeData(string id, string pid, string name, string icon = "") : this()
-        {
-            this.id = id;
-            this.pid = pid;
-            this.name = name;
-            this.icon = icon;
-        }
+		/// <summary>
+		/// 子节点集合
+		/// </summary>
+		private List<TreeData> m_children = new List<TreeData>();
+		#endregion
 
-        /// <summary>
-        /// 常用构造函数
-        /// </summary>
-        public TreeData(int id, int pid, string name, string icon = "") : this()
-        {
-            this.id = id.ToString();
-            this.pid = pid.ToString();
-            this.name = name;
-            this.icon = icon;
-        }
-    }
+		#region Property Members
+
+		/// <summary>
+		/// GUID对应的ID序号
+		/// </summary>
+		[DataMember]
+		[DisplayName("GUID对应的ID序号")]
+		public virtual String Gid
+		{
+			get
+			{
+				return this.m_Gid;
+			}
+			set
+			{
+				this.m_Gid = value;
+			}
+		}
+
+		/// <summary>
+		/// 父节点GUID对应的ID序号
+		/// </summary>
+		[DataMember]
+		[DisplayName("父节点GUID对应的ID序号")]
+		public virtual String Pgid
+		{
+			get
+			{
+				return this.m_Pgid;
+			}
+			set
+			{
+				this.m_Pgid = value;
+			}
+		}
+
+		/// <summary>
+		/// 名称
+		/// </summary>
+		[DataMember]
+		[DisplayName("名称")]
+		public virtual String Name
+		{
+			get
+			{
+				return this.m_Name;
+			}
+			set
+			{
+				this.m_Name = value;
+			}
+		}
+
+		/// <summary>
+		/// icon图标路径
+		/// </summary>
+		[DataMember]
+		[DisplayName("icon图标路径")]
+		public virtual String Icon
+		{
+			get
+			{
+				return this.m_Icon;
+			}
+			set
+			{
+				this.m_Icon = value;
+			}
+		}
+
+		/// <summary>
+		/// 是否打开
+		/// </summary>
+		[DataMember]
+		[DisplayName("是否打开")]
+		public virtual Int16 IsOpened
+		{
+			get
+			{
+				return this.m_IsOpened;
+			}
+			set
+			{
+				this.m_IsOpened = value;
+			}
+		}
+
+		/// <summary>
+		/// 子节点集合
+		/// </summary>
+		[DataMember]
+		public virtual List<TreeData> children
+		{
+			get
+			{
+				return this.m_children;
+			}
+			set
+			{
+				this.m_children = value;
+			}
+		}
+
+		/// <summary>
+		/// 无参构造函数
+		/// </summary>
+		public  TreeData()
+		{
+			this.children = new List<TreeData>();
+            this.IsOpened = 0;
+		}
+
+		/// <summary>
+		/// 带参构造函数
+		/// </summary>
+		public  TreeData(string id, string pid, string name, string icon = "") : this()
+		{
+			this.m_Gid = id;
+            this.m_Pgid = pid;
+            this.Name = name;
+            this.Icon = icon;
+		}
+
+		/// <summary>
+		/// 带参构造函数
+		/// </summary>
+		public  TreeData(int id, int pid, string name, string icon = "") : this()
+		{
+			this.m_Gid = id.ToString();
+            this.m_Pgid = pid.ToString();
+            this.Name = name;
+            this.Icon = icon;
+		}
+		#endregion
+	}
 }

@@ -1,130 +1,89 @@
-using System;
-using System.Text;
-using System.Collections.Generic;
+ï»¿using System;
 using System.Runtime.Serialization;
+using System.ComponentModel;
 using System.Text.RegularExpressions;
-
 namespace JCodes.Framework.Entity
 {
-    /// <summary>
-    /// ¿ò¼ÜÓÃÀ´¼ÇÂ¼×Öµä¼üÖµµÄÀà£¬ÓÃÓÚComoboxµÈ¿Ø¼ş¶ÔÏóµÄÖµ´«µİ ¿ÉÄÜÒª±»È¡Ïû
-    /// </summary>
-    [Serializable]
-    [DataContract]
-    public class CListItem
-    {
-        /// <summary>
-        /// ²ÎÊı»¯¹¹ÔìCListItem¶ÔÏó
-        /// 20170901 wjm µ÷Õûkey ºÍvalueµÄË³Ğò
-        /// </summary>
-        /// <param name="text">ÏÔÊ¾µÄÄÚÈİ</param>
-        /// <param name="value">Êµ¼ÊµÄÖµÄÚÈİ</param>
-        public CListItem(string value, string text)
-        {
-            this._text = text;
-            this._value = value;
-        }
+	/// <summary>
+	/// å­—ç¬¦ä¸²é”®å€¼å¯¹(CListItem)
+	/// å¯¹è±¡å·: 100005
+	/// å¤‡æ³¨ä¿¡æ¯: 
+	/// </summary>
+	[Serializable]
+	[DataContract]
+	public partial class CListItem
+	{
+		#region Field Members
 
-        /// <summary>
-        /// ²ÎÊı»¯¹¹ÔìCListItem¶ÔÏó
-        /// </summary>
-        /// <param name="text">ÏÔÊ¾µÄÄÚÈİ</param>
-        public CListItem(string text)
-        {
-            this._text = text;
-            this._value = text;
-        }
+		/// <summary>
+		/// é”®
+		/// </summary>
+		private String m_Value = string.Empty;
 
-        private string _text;
-        private string _value;
+		/// <summary>
+		/// å€¼
+		/// </summary>
+		private String m_Text = string.Empty;
+		#endregion
 
-        /// <summary>
-        /// ÏÔÊ¾ÄÚÈİ
-        /// </summary>
-        [DataMember]
-        public string Text
-        {
-            get { return _text; }
-            set { _text = value; }
-        }
+		#region Property Members
 
-        /// <summary>
-        /// Êµ¼ÊÖµÄÚÈİ
-        /// </summary>
-        [DataMember]
-        public string Value
-        {
-            get { return this._value; }
-            set { this._value = value; }
-        }
+		/// <summary>
+		/// é”®
+		/// </summary>
+		[DataMember]
+		public virtual String Value
+		{
+			get
+			{
+				return this.m_Value;
+			}
+			set
+			{
+				this.m_Value = value;
+			}
+		}
 
-        /// <summary>
-        /// ÏÔÊ¾ÄÚÈİ
-        /// </summary>
-        /// <returns></returns>
-        public override string ToString()
-        {
-            if (Regex.IsMatch(_value, "[A-F0-9]{8}(-[A-F0-9]{4}){3}-[A-F0-9]{12}|[A-F0-9]{32}", RegexOptions.IgnoreCase))
+		/// <summary>
+		/// å€¼
+		/// </summary>
+		[DataMember]
+		public virtual String Text
+		{
+			get
+			{
+				return this.m_Text;
+			}
+			set
+			{
+				this.m_Text = value;
+			}
+		}
+
+		/// <summary>
+		/// æ˜¾ç¤ºå†…å®¹
+		/// </summary>
+		public override string ToString()
+		{
+			if (Regex.IsMatch(this.m_Value, "[A-F0-9]{8}(-[A-F0-9]{4}){3}-[A-F0-9]{12}|[A-F0-9]{32}", RegexOptions.IgnoreCase))
             {
-                return _text;
+                return this.m_Text;
             }
             else
             {
-                return string.Format("{0}-{1}",_value, _text);
+                return string.Format("{0}-{1}", m_Value, m_Text);
             }
-        }
+		}
 
-    }
-
-    /// <summary>
-    /// ¿ò¼ÜÓÃÀ´¼ÇÂ¼×Öµä¼üÖµµÄÀà£¬ÓÃÓÚComoboxµÈ¿Ø¼ş¶ÔÏóµÄÖµ´«µİ
-    /// </summary>
-    [Serializable]
-    [DataContract]
-    public class CDicKeyValue
-    {
-        /// <summary>
-        /// ²ÎÊı»¯¹¹ÔìCListItem¶ÔÏó
-        /// </summary>
-        /// <param name="text">ÏÔÊ¾µÄÄÚÈİ</param>
-        /// <param name="value">Êµ¼ÊµÄÖµÄÚÈİ</param>
-        public CDicKeyValue(Int32 value, string text)
-        {
-            this._text = text;
-            this._value = value;
-        }
-
-        private string _text;
-        private Int32 _value;
-
-        /// <summary>
-        /// ÏÔÊ¾ÄÚÈİ
-        /// </summary>
-        [DataMember]
-        public string Text
-        {
-            get { return _text; }
-            set { _text = value; }
-        }
-
-        /// <summary>
-        /// Êµ¼ÊÖµÄÚÈİ
-        /// </summary>
-        [DataMember]
-        public Int32 Value
-        {
-            get { return this._value; }
-            set { this._value = value; }
-        }
-
-        /// <summary>
-        /// ·µ»ØÏÔÊ¾µÄÄÚÈİ
-        /// </summary>
-        /// <returns></returns>
-        public override string ToString()
-        {
-            return string.Format("{0}-{1}", _value, _text);
-        }
-
-    }
+		/// <summary>
+		/// å‚æ•°åŒ–æ„é€ CListItemå¯¹è±¡
+		/// 20170901 wjm è°ƒæ•´key å’Œvalueçš„é¡ºåº
+		/// </summary>
+		public  CListItem(string value, string text)
+		{
+			 this.m_Text = text;
+            this.m_Value = value;
+		}
+		#endregion
+	}
 }

@@ -246,7 +246,7 @@ namespace JCodes.Framework.AddIn.Security
             info.OutPhone = this.txtOuterPhone.Text;
             info.OuCode = this.txtOuCode.Text;
             info.Seq = this.txtSeq.Text;
-            info.OuType = Convert.ToInt32(this.txtCategory.Text);
+            info.OuType = Convert.ToInt16(this.txtCategory.Text);
             info.EditorId = Portal.gc.UserInfo.Id;
             info.LastUpdateTime = DateTimeHelper.GetServerDateTime2();
             info.Pid = this.cmbUpperOU.Value.ToString().ToInt32();
@@ -339,7 +339,7 @@ namespace JCodes.Framework.AddIn.Security
                     }
 
                     //如果是公司管理员，不能编辑公司的信息
-                    if (Portal.gc.UserInfo.CompanyId == currentID &&
+                    /*if (Portal.gc.UserInfo.CompanyId == currentID &&
                         Portal.gc.UserInRole(RoleInfo.CompanyAdminName))
                     {
                         this.btnSave.Enabled = false;
@@ -347,7 +347,7 @@ namespace JCodes.Framework.AddIn.Security
                     else
                     {
                         this.btnSave.Enabled = true;
-                    }
+                    }*/
 
                     int intID = Convert.ToInt32(Id);
                     RefreshUsers(intID);

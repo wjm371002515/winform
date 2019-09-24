@@ -9,6 +9,7 @@ using JCodes.Framework.Common.Databases;
 using JCodes.Framework.Common;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.Common.Framework;
+using JCodes.Framework.Common.Extension;
 
 namespace JCodes.Framework.WebUI.Controllers
 {
@@ -33,7 +34,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult CheckExcelColumns(string guid)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
 
             try
             {
@@ -41,7 +42,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 if (dt != null)
                 {
                     //检查列表是否包含必须的字段
-                    result.Success = DataTableHelper.ContainAllColumns(dt, columnString);
+                    result.ErrorCode = DataTableHelper.ContainAllColumns(dt, columnString)?0:1;
                 }
             }
             catch (Exception ex)
@@ -71,7 +72,6 @@ namespace JCodes.Framework.WebUI.Controllers
             if (table != null)
             {
                 #region 数据转换
-                int i = 1;
                 foreach (DataRow dr in table.Rows)
                 {
                     DateTime dtDefault = Convert.ToDateTime("1900-01-01");
@@ -83,10 +83,10 @@ namespace JCodes.Framework.WebUI.Controllers
                         if (typeInfo != null)
                         {
                             DictDataInfo info = new DictDataInfo();
-                            info.DicttypeID = typeInfo.Id;
+                            info.DicttypeId = typeInfo.Id;
 
                             info.Name = dr["字典名称"].ToString();
-                            info.Value = dr["字典值"].ToString();
+                            info.DicttypeValue = dr["字典值"].ToString().ToInt32();
                             info.Remark = dr["备注"].ToString();
                             info.Seq = dr["排序"].ToString();
 
@@ -111,7 +111,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult SaveExcelData(List<DictDataInfo> list)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             if (list != null && list.Count > 0)
             {
                 #region 采用事务进行数据提交
@@ -124,7 +124,7 @@ namespace JCodes.Framework.WebUI.Controllers
                         //int seq = 1;
                         foreach (DictDataInfo detail in list)
                         {
-                            DictTypeInfo typeInfo = BLLFactory<DictType>.Instance.FindSingle(string.Format("Name ='{0}'", detail.DicttypeID));
+                            DictTypeInfo typeInfo = BLLFactory<DictType>.Instance.FindSingle(string.Format("Name ='{0}'", detail.DicttypeId));
                             if (typeInfo != null)
                             {
                                 //detail.Seq = seq++;//增加1
@@ -135,7 +135,7 @@ namespace JCodes.Framework.WebUI.Controllers
                             }
                         }
                         trans.Commit();
-                        result.Success = true;
+                        result.ErrorCode = 0;
                     }
                     catch (Exception ex)
                     {
@@ -188,13 +188,13 @@ namespace JCodes.Framework.WebUI.Controllers
             {
                 dr = datatable.NewRow();
                 dr["序号"] = j++;
-                DictTypeInfo typeInfo = BLLFactory<DictType>.Instance.FindByID(list[i].DicttypeID);
+                DictTypeInfo typeInfo = BLLFactory<DictType>.Instance.FindByID(list[i].DicttypeId);
                 if (typeInfo != null)
                 {
                     dr["字典大类"] = typeInfo.Name;
                 }
                 dr["字典名称"] = list[i].Name;
-                dr["字典值"] = list[i].Value;
+                dr["字典值"] = list[i].DicttypeValue;
                 dr["备注"] = list[i].Remark;
                 dr["排序"] = list[i].Seq;
 
@@ -236,7 +236,7 @@ namespace JCodes.Framework.WebUI.Controllers
         public override ActionResult FindWithPager()
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.ListKey);
+            base.CheckAuthorized(authorizeKeyInfo.ListKey);
 
             string where = GetPagerCondition();
             PagerInfo pagerInfo = GetPagerInfo();
@@ -269,7 +269,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult BatchInsert(string DicttypeID, string Seq, string Data, string SplitType, string Remark)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             if (string.IsNullOrEmpty(DicttypeID) || string.IsNullOrEmpty(Data))
             {
                 result.ErrorMessage = "DicttypeID或Data参数为空";
@@ -341,7 +341,7 @@ namespace JCodes.Framework.WebUI.Controllers
                         #endregion
 
                         trans.Commit();
-                        result.Success = true;
+                        result.ErrorCode = 0;
                     }
                     catch (Exception ex)
                     {
@@ -369,9 +369,9 @@ namespace JCodes.Framework.WebUI.Controllers
                 info.EditorId = CurrentUser.Id;
                 info.LastUpdateTime = DateTime.Now;
 
-                info.DicttypeID = Convert.ToInt32(dictTypeId);
+                info.DicttypeId = Convert.ToInt32(dictTypeId);
                 info.Name = dictData.Trim();
-                info.Value = dictData.Trim();
+                info.DicttypeValue = dictData.Trim().ToInt32();
                 info.Remark = note;
                 info.Seq = seq;
 

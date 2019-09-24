@@ -28,9 +28,9 @@ namespace JCodes.Framework.SQLServerDAL
             }
         }
         public BlackIP()
-            : base(SQLServerPortal.gc._securityTablePre + "BlackIP", "ID")
+            : base(SQLServerPortal.gc._securityTablePre + "BlackIP", "Id")
         {
-            this.sortField = "CreateTime";
+            this.sortField = "CreatorTime";
         }
 
         #endregion
@@ -45,7 +45,7 @@ namespace JCodes.Framework.SQLServerDAL
             BlackIPInfo info = new BlackIPInfo();
             SmartDataReader reader = new SmartDataReader(dataReader);
 
-            info.ID = reader.GetString("ID");
+            /*info.ID = reader.GetString("ID");
             info.Name = reader.GetString("Name");
             info.AuthorizeType = reader.GetInt32("AuthorizeType");
             info.Forbid = reader.GetInt32("Forbid") > 0;
@@ -57,7 +57,7 @@ namespace JCodes.Framework.SQLServerDAL
             info.CreateTime = reader.GetDateTime("CreateTime");
             info.Editor = reader.GetString("Editor");
             info.EditorId = reader.GetInt32("EditorId");
-            info.EditTime = reader.GetDateTime("EditTime");
+            info.EditTime = reader.GetDateTime("EditTime");*/
 
             return info;
         }
@@ -72,7 +72,7 @@ namespace JCodes.Framework.SQLServerDAL
             BlackIPInfo info = obj as BlackIPInfo;
             Hashtable hash = new Hashtable();
 
-            hash.Add("ID", info.ID);
+            /*hash.Add("ID", info.ID);
             hash.Add("Name", info.Name);
             hash.Add("AuthorizeType", info.AuthorizeType);
             hash.Add("Forbid", info.Forbid ? 1 : 0);
@@ -84,7 +84,7 @@ namespace JCodes.Framework.SQLServerDAL
             hash.Add("CreateTime", info.CreateTime);
             hash.Add("Editor", info.Editor);
             hash.Add("EditorId", info.EditorId);
-            hash.Add("EditTime", info.EditTime);
+            hash.Add("EditTime", info.EditTime);*/
 
             return hash;
         }
@@ -97,7 +97,7 @@ namespace JCodes.Framework.SQLServerDAL
         {
             Dictionary<string, string> dict = new Dictionary<string, string>();
             #region 添加别名解析
-            dict.Add("ID", "编号");            
+            /*dict.Add("ID", "编号");            
             dict.Add("Name", "显示名称");
             dict.Add("AuthorizeType", "授权类型");
             dict.Add("Forbid", "是否禁用");
@@ -109,7 +109,7 @@ namespace JCodes.Framework.SQLServerDAL
             dict.Add("CreateTime", "创建时间");
             dict.Add("Editor", "编辑人");
             dict.Add("Editor_ID", "编辑人ID");
-            dict.Add("EditTime", "编辑时间");
+            dict.Add("EditTime", "编辑时间");*/
             #endregion
 
             return dict;
@@ -120,14 +120,14 @@ namespace JCodes.Framework.SQLServerDAL
         /// </summary>
         /// <param name="id">黑名单ID</param>
         /// <returns></returns>
-        public string GetUserIdList(string id)
+        public string GetUserIdList(Int32 id)
         {
             string sql = string.Format(@"SELECT USER_ID FROM {0}BLACKIP_USER m INNER JOIN {0}BLACKIP t
             ON m.BLACKIP_ID=t.ID WHERE t.ID = '{1}' ", SQLServerPortal.gc._securityTablePre, id);
             return SqlValueList(sql);
         }
 
-        public void AddUser(int userID, string blackID)
+        public void AddUser(Int32 userID, Int32 blackID)
         {
             string commandText = string.Format("INSERT INTO {0}BLACKIP_USER(User_ID, BLACKIP_ID) VALUES({1}, '{2}')", SQLServerPortal.gc._securityTablePre, userID, blackID);
             Database db = CreateDatabase();
@@ -135,7 +135,7 @@ namespace JCodes.Framework.SQLServerDAL
             db.ExecuteNonQuery(command);
         }
 
-        public void RemoveUser(int userID, string blackID)
+        public void RemoveUser(Int32 userID, Int32 blackID)
         {
             string commandText = string.Format("DELETE FROM {0}BLACKIP_USER WHERE User_ID={1} AND BLACKIP_ID='{2}'", SQLServerPortal.gc._securityTablePre, userID, blackID);
             Database db = CreateDatabase();
@@ -143,7 +143,7 @@ namespace JCodes.Framework.SQLServerDAL
             db.ExecuteNonQuery(command);
         }
 
-        public void RemoveUserByBlackId(string blackID)
+        public void RemoveUserByBlackId(Int32 blackID)
         {
             string commandText = string.Format("DELETE FROM {0}BLACKIP_USER WHERE BLACKIP_ID='{1}'", SQLServerPortal.gc._securityTablePre, blackID);
             Database db = CreateDatabase();

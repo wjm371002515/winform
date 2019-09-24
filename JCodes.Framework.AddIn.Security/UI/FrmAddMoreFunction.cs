@@ -16,6 +16,7 @@ using JCodes.Framework.Common.Framework;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.CommonControl.Controls;
 using JCodes.Framework.AddIn.Basic;
+using JCodes.Framework.Common.Extension;
 
 namespace JCodes.Framework.AddIn.Security
 {
@@ -92,7 +93,7 @@ namespace JCodes.Framework.AddIn.Security
 
             if (functionInfo != null)
             {
-                string filter = string.Format("FunctionId='{0}' and SystemType_ID='{1}'", this.txtFunctionID.Text, functionInfo.SystemType_ID);
+                string filter = string.Format("FunctionId='{0}' and SystemType_ID='{1}'", this.txtFunctionID.Text, functionInfo.SystemtypeId);
                 bool isExist = BLLFactory<Functions>.Instance.IsExistRecord(filter);
                 if (isExist)
                 {
@@ -105,11 +106,11 @@ namespace JCodes.Framework.AddIn.Security
             {
                 //当新建系统类型的时候
                 functionInfo = new FunctionInfo();
-                functionInfo.PID = "-1";
-                functionInfo.SystemType_ID = this.txtSystemType.Text;
-                functionInfo.FunctionId = this.txtFunctionID.Text;
+                functionInfo.Gid = "-1";
+                functionInfo.SystemtypeId = this.txtSystemType.Text;
+                functionInfo.DllPath = this.txtFunctionID.Text;
 
-                string filter = string.Format("FunctionId='{0}' and SystemType_ID='{1}'", this.txtFunctionID.Text, functionInfo.SystemType_ID);
+                string filter = string.Format("FunctionId='{0}' and SystemType_ID='{1}'", this.txtFunctionID.Text, functionInfo.SystemtypeId);
                 bool isExist = BLLFactory<Functions>.Instance.IsExistRecord(filter);
                 if (isExist)
                 {
@@ -121,7 +122,7 @@ namespace JCodes.Framework.AddIn.Security
 
             FunctionInfo mainInfo = new FunctionInfo();
             mainInfo = SetFunction(mainInfo);
-            mainInfo.SystemType_ID = functionInfo.SystemType_ID;//和父节点的SystemType_ID一样。
+            mainInfo.SystemtypeId = functionInfo.SystemtypeId;//和父节点的SystemType_ID一样。
             using (DbTransaction trans = BLLFactory<Functions>.Instance.CreateTransaction())
             {
                 try
@@ -139,7 +140,7 @@ namespace JCodes.Framework.AddIn.Security
                             {
                                 subInfo = CreateSubFunction(mainInfo);
                                 subInfo.Seq = (seqIndex++).ToString("D2");
-                                subInfo.FunctionId = string.Format("{0}/Add", mainInfo.FunctionId);
+                                //subInfo.FunctionId = string.Format("{0}/Add", mainInfo.FunctionId);
                                 subInfo.Name = string.Format("添加{0}", mainInfo.Name);
 
                                 BLLFactory<Functions>.Instance.Insert(subInfo, trans);
@@ -148,7 +149,7 @@ namespace JCodes.Framework.AddIn.Security
                             {
                                 subInfo = CreateSubFunction(mainInfo);
                                 subInfo.Seq = (seqIndex++).ToString("D2");
-                                subInfo.FunctionId = string.Format("{0}/Delete", mainInfo.FunctionId);
+                                //subInfo.FunctionId = string.Format("{0}/Delete", mainInfo.FunctionId);
                                 subInfo.Name = string.Format("删除{0}", mainInfo.Name);
                                 BLLFactory<Functions>.Instance.Insert(subInfo, trans);
                             }
@@ -156,7 +157,7 @@ namespace JCodes.Framework.AddIn.Security
                             {
                                 subInfo = CreateSubFunction(mainInfo);
                                 subInfo.Seq = (seqIndex++).ToString("D2");
-                                subInfo.FunctionId = string.Format("{0}/Edit", mainInfo.FunctionId);
+                                //subInfo.FunctionId = string.Format("{0}/Edit", mainInfo.FunctionId);
                                 subInfo.Name = string.Format("修改{0}", mainInfo.Name);
                                 BLLFactory<Functions>.Instance.Insert(subInfo, trans);
                             }
@@ -164,7 +165,7 @@ namespace JCodes.Framework.AddIn.Security
                             {
                                 subInfo = CreateSubFunction(mainInfo);
                                 subInfo.Seq = (seqIndex++).ToString("D2");
-                                subInfo.FunctionId = string.Format("{0}/View", mainInfo.FunctionId);
+                                //subInfo.FunctionId = string.Format("{0}/View", mainInfo.FunctionId);
                                 subInfo.Name = string.Format("查看{0}", mainInfo.Name);
                                 BLLFactory<Functions>.Instance.Insert(subInfo, trans);
                             }
@@ -172,7 +173,7 @@ namespace JCodes.Framework.AddIn.Security
                             {
                                 subInfo = CreateSubFunction(mainInfo);
                                 subInfo.Seq = (seqIndex++).ToString("D2");
-                                subInfo.FunctionId = string.Format("{0}/Import", mainInfo.FunctionId);
+                                //subInfo.FunctionId = string.Format("{0}/Import", mainInfo.FunctionId);
                                 subInfo.Name = string.Format("导入{0}", mainInfo.Name);
                                 BLLFactory<Functions>.Instance.Insert(subInfo, trans);
                             }
@@ -180,7 +181,7 @@ namespace JCodes.Framework.AddIn.Security
                             {
                                 subInfo = CreateSubFunction(mainInfo);
                                 subInfo.Seq = (seqIndex++).ToString("D2");
-                                subInfo.FunctionId = string.Format("{0}/Export", mainInfo.FunctionId);
+                                //subInfo.FunctionId = string.Format("{0}/Export", mainInfo.FunctionId);
                                 subInfo.Name = string.Format("导出{0}", mainInfo.Name);
                                 BLLFactory<Functions>.Instance.Insert(subInfo, trans);
                             }
@@ -214,16 +215,16 @@ namespace JCodes.Framework.AddIn.Security
         private FunctionInfo CreateSubFunction(FunctionInfo mainInfo)
         {
             FunctionInfo subInfo = new FunctionInfo();
-            subInfo.PID = mainInfo.ID;
-            subInfo.SystemType_ID = mainInfo.SystemType_ID;
+            subInfo.Pgid = mainInfo.Gid;
+            subInfo.SystemtypeId = mainInfo.SystemtypeId;
             return subInfo;
         }
 
         private FunctionInfo SetFunction(FunctionInfo info)
         {
             info.Name = this.txtName.Text;
-            info.PID = this.functionControl1.Value;
-            info.FunctionId = this.txtFunctionID.Text;
+            info.Pgid = this.functionControl1.Value;
+            info.DllPath = this.txtFunctionID.Text;
             info.CurrentLoginUserId = Portal.gc.UserInfo.Id;
             return info;
         }

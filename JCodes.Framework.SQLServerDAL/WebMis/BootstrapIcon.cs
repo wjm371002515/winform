@@ -40,11 +40,11 @@ namespace JCodes.Framework.SQLServerDAL
 			BootstrapIconInfo info = new BootstrapIconInfo();
 			SmartDataReader reader = new SmartDataReader(dataReader);
 			
-			info.ID = reader.GetString("ID");
+			/*info.ID = reader.GetString("ID");
 			info.DisplayName = reader.GetString("DisplayName");
 			info.ClassName = reader.GetString("ClassName");
 			info.SourceType = reader.GetString("SourceType");
-			info.CreateTime = reader.GetDateTime("CreateTime");
+			info.CreateTime = reader.GetDateTime("CreateTime");*/
 			
 			return info;
 		}
@@ -59,11 +59,11 @@ namespace JCodes.Framework.SQLServerDAL
 		    BootstrapIconInfo info = obj as BootstrapIconInfo;
 			Hashtable hash = new Hashtable(); 
 			
-			hash.Add("ID", info.ID);
+			/*hash.Add("ID", info.ID);
  			hash.Add("DisplayName", info.DisplayName);
  			hash.Add("ClassName", info.ClassName);
  			hash.Add("SourceType", info.SourceType);
- 			hash.Add("CreateTime", info.CreateTime);
+ 			hash.Add("CreateTime", info.CreateTime);*/
  				
 			return hash;
 		}
@@ -77,11 +77,11 @@ namespace JCodes.Framework.SQLServerDAL
             Dictionary<string, string> dict = new Dictionary<string, string>();
             #region 添加别名解析
             //dict.Add("ID", "编号");
-            dict.Add("ID", "");
+            /*dict.Add("ID", "");
              dict.Add("DisplayName", "显示名称");
              dict.Add("ClassName", "样式名称");
              dict.Add("SourceType", "来源");
-             dict.Add("CreateTime", "创建时间");
+             dict.Add("CreateTime", "创建时间");*/
              #endregion
 
             return dict;

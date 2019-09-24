@@ -15,6 +15,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using JCodes.Framework.Common.Extension;
 
 namespace JCodes.Framework.AddIn.Dictionary
 {
@@ -75,7 +76,7 @@ namespace JCodes.Framework.AddIn.Dictionary
                 var lst = BLLFactory<DictData>.Instance.Find(where);
                 if (lst.Count > 0)
                 {
-                    MessageDxUtil.ShowTips(string.Format("已存在此值域数据[字典大类编号:{0},字典值:{1},字典名称:{2}]", lst[0].DicttypeID, lst[0].Value, lst[0].Name));
+                    MessageDxUtil.ShowTips(string.Format("已存在此值域数据[字典大类编号:{0},字典值:{1},字典名称:{2}]", lst[0].DicttypeId, lst[0].DicttypeValue, lst[0].Name));
                     this.txtValue.Focus();
                     result = false;
                 }
@@ -92,7 +93,7 @@ namespace JCodes.Framework.AddIn.Dictionary
                 DictDataInfo info = BLLFactory<DictData>.Instance.FindByID(Id);
                 if (info != null)
                 {
-                    DictTypeInfo typeInfo = BLLFactory<DictType>.Instance.FindByID(info.DicttypeID.ToString());
+                    DictTypeInfo typeInfo = BLLFactory<DictType>.Instance.FindByID(info.DicttypeId);
 
                     this.txtDictType.Text = typeInfo.Name;
                     this.txtDictType.Tag = typeInfo.Id;
@@ -101,7 +102,7 @@ namespace JCodes.Framework.AddIn.Dictionary
                     this.txtName.Text = info.Name;
                     this.txtNote.Text = info.Remark;
                     this.txtSeq.Text = info.Seq;
-                    this.txtValue.Text = info.Value.ToString();
+                    this.txtValue.Text = info.DicttypeValue.ToString();
                 }
             }
 
@@ -110,8 +111,8 @@ namespace JCodes.Framework.AddIn.Dictionary
 
         private void SetInfo(DictDataInfo info)
         {
-            info.DicttypeID = Convert.ToInt32(this.txtDictType.Tag);
-            info.Value = this.txtValue.Text.Trim();
+            info.DicttypeId = Convert.ToInt32(this.txtDictType.Tag);
+            info.DicttypeValue = this.txtValue.Text.Trim().ToInt32();
             info.Name = this.txtName.Text.Trim();
             info.Seq = this.txtSeq.Text;
             info.Remark = this.txtNote.Text.Trim();

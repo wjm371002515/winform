@@ -7,6 +7,7 @@ using JCodes.Framework.Common.Framework.BaseDAL;
 using JCodes.Framework.IDAL;
 using JCodes.Framework.Entity;
 using JCodes.Framework.Common.Databases;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AccessDAL
 {

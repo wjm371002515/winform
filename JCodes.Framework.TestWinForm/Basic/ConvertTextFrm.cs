@@ -3,7 +3,6 @@ using JCodes.Framework.Common;
 using JCodes.Framework.Common.Files;
 using JCodes.Framework.Common.Office;
 using JCodes.Framework.Entity;
-using JCodes.Framework.Entity.Common;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using System;
 using System.Collections.Generic;

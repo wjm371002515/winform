@@ -114,12 +114,12 @@ namespace JCodes.Framework.AddIn.Security
 
                     txtName.Text = info.Name;
                     txtAuthorizeType.SetComboBoxItem(info.AuthorizeType.ToString());
-                    txtForbid.Checked = info.Forbid;
+                    txtForbid.Checked = info.IsForbid==0?false:true;
                     txtIPStart.Text = info.IPStart;
                     txtIPEnd.Text = info.IPEnd;
-                    txtNote.Text = info.Note;
-                    txtCreator.Text = info.Creator;
-                    txtCreateTime.SetDateTime(info.CreateTime);
+                    txtNote.Text = info.Remark;
+                    txtCreator.Text = info.CreatorId.ToString();
+                    txtCreateTime.SetDateTime(info.CreatorTime);
                 }
                 #endregion         
             }
@@ -145,14 +145,14 @@ namespace JCodes.Framework.AddIn.Security
         private void SetInfo(BlackIPInfo info)
         {
             info.Name = txtName.Text;
-            info.AuthorizeType = txtAuthorizeType.GetComboBoxStrValue().ToInt32();
-            info.Forbid = txtForbid.Checked;
+            info.AuthorizeType = Convert.ToInt16( txtAuthorizeType.GetComboBoxStrValue());
+            info.IsForbid = (short)(txtForbid.Checked?1:0);
             info.IPStart = txtIPStart.Text;
             info.IPEnd = txtIPEnd.Text;
-            info.Note = txtNote.Text;
-            info.Editor = Portal.gc.UserInfo.FullName;
+            info.Remark = txtNote.Text;
+            //info.Editor = Portal.gc.UserInfo.FullName;
             info.EditorId = Portal.gc.UserInfo.Id;
-            info.EditTime = DateTimeHelper.GetServerDateTime2();
+            info.LastUpdateTime = DateTimeHelper.GetServerDateTime2();
 
             info.CurrentLoginUserId = Portal.gc.UserInfo.Id; //记录当前登录的用户信息，供操作日志记录使用
         }
@@ -165,9 +165,9 @@ namespace JCodes.Framework.AddIn.Security
         {
             BlackIPInfo info = tempInfo;//必须使用存在的局部变量，因为部分信息可能被附件使用
             SetInfo(info);
-            info.Creator = Portal.gc.UserInfo.FullName;
+            //info.Creator = Portal.gc.UserInfo.FullName;
             info.CreatorId = Portal.gc.UserInfo.Id;
-            info.CreateTime = DateTimeHelper.GetServerDateTime2();
+            info.CreatorTime = DateTimeHelper.GetServerDateTime2();
 
             try
             {
@@ -205,7 +205,7 @@ namespace JCodes.Framework.AddIn.Security
                 try
                 {
                     #region 更新数据
-                    bool succeed = BLLFactory<BlackIP>.Instance.Update(info, info.ID);
+                    bool succeed = BLLFactory<BlackIP>.Instance.Update(info, info.Id);
                     if (succeed)
                     {
                         //可添加其他关联操作
@@ -237,7 +237,7 @@ namespace JCodes.Framework.AddIn.Security
 
             this.lvwUser.BeginUpdate();
             this.lvwUser.Items.Clear();
-            List<SimpleUserInfo> list = BLLFactory<BlackIP>.Instance.GetSimpleUserByBlackIP(tempInfo.ID);
+            List<SimpleUserInfo> list = BLLFactory<BlackIP>.Instance.GetSimpleUserByBlackIP(tempInfo.Id);
             foreach (SimpleUserInfo info in list)
             {
                 string name = string.Format("{0}（{1}）", info.FullName, info.Name);
@@ -295,11 +295,11 @@ namespace JCodes.Framework.AddIn.Security
 
                 foreach (int id in deletedUserList)
                 {
-                    BLLFactory<BlackIP>.Instance.RemoveUser(id, tempInfo.ID);
+                    BLLFactory<BlackIP>.Instance.RemoveUser(id, tempInfo.Id);
                 }
                 foreach (int id in addedUserList)
                 {
-                    BLLFactory<BlackIP>.Instance.AddUser(id, tempInfo.ID);
+                    BLLFactory<BlackIP>.Instance.AddUser(id, tempInfo.Id);
                 }
 
                 this.RefreshUsers();
@@ -318,7 +318,7 @@ namespace JCodes.Framework.AddIn.Security
                 if (userItem != null)
                 {
                     int userId = Convert.ToInt32(userItem.Value);
-                    BLLFactory<BlackIP>.Instance.RemoveUser(userId, tempInfo.ID);
+                    BLLFactory<BlackIP>.Instance.RemoveUser(userId, tempInfo.Id);
                     this.RefreshUsers();
                 }
             }

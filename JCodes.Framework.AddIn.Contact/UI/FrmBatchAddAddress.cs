@@ -144,13 +144,13 @@ namespace JCodes.Framework.AddIn.Contact
                         if (paramList.Length >= 3)
                         {
                             info.Name = paramList[0];
-                            info.Sex = Convert.ToInt32( paramList[1]);
+                            info.Gender = Convert.ToInt16( paramList[1]);
                             info.MobilePhone = paramList[2];
 
                             info.Email = GetParamValue(paramList, 3);
                             //info.QQ = GetParamValue(paramList, 4);
                             info.DeptName = GetParamValue(paramList, 5);
-                            info.Position = GetParamValue(paramList, 6);
+                            info.WorkPosition = GetParamValue(paramList, 6);
 
                             SetInfo(info);
                             info.CreatorId = LoginUserInfo.Id;

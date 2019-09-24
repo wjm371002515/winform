@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Runtime.Serialization;
-using JCodes.Framework.Entity;
+using System.ComponentModel;
 
 namespace JCodes.Framework.Entity
 {
 	/// <summary>
-	/// 文件上传信息
+	/// 文件上传信息(FileUploadInfo)
+	/// 对象号: 100003
+	/// 备注信息: 
 	/// </summary>
 	[Serializable]
 	[DataContract]
-	public class FileUploadInfo : BaseEntity 
+	public partial class FileUploadInfo : BaseEntity
 	{
 		#region Field Members
 
@@ -19,7 +21,7 @@ namespace JCodes.Framework.Entity
 		private String m_Gid = string.Empty;
 
 		/// <summary>
-		/// 创建人ID
+		/// 创建人编号
 		/// </summary>
 		private Int32 m_CreatorId = 0;
 
@@ -59,7 +61,7 @@ namespace JCodes.Framework.Entity
 		private String m_FileExtend = string.Empty;
 
 		/// <summary>
-		/// 编辑人ID
+		/// 编辑人编号
 		/// </summary>
 		private Int32 m_EditorId = 0;
 
@@ -72,6 +74,11 @@ namespace JCodes.Framework.Entity
 		/// 是否删除
 		/// </summary>
 		private Int16 m_IsDelete = 0;
+
+		/// <summary>
+		/// 文件数据
+		/// </summary>
+		private byte[] m_FileData;
 		#endregion
 
 		#region Property Members
@@ -80,6 +87,7 @@ namespace JCodes.Framework.Entity
 		/// GUID对应的ID序号
 		/// </summary>
 		[DataMember]
+		[DisplayName("GUID对应的ID序号")]
 		public virtual String Gid
 		{
 			get
@@ -93,9 +101,10 @@ namespace JCodes.Framework.Entity
 		}
 
 		/// <summary>
-		/// 创建人ID
+		/// 创建人编号
 		/// </summary>
 		[DataMember]
+		[DisplayName("创建人编号")]
 		public virtual Int32 CreatorId
 		{
 			get
@@ -112,6 +121,7 @@ namespace JCodes.Framework.Entity
 		/// 附件GUID
 		/// </summary>
 		[DataMember]
+		[DisplayName("附件GUID")]
 		public virtual String AttachmentGid
 		{
 			get
@@ -128,6 +138,7 @@ namespace JCodes.Framework.Entity
 		/// 名称
 		/// </summary>
 		[DataMember]
+		[DisplayName("名称")]
 		public virtual String Name
 		{
 			get
@@ -144,6 +155,7 @@ namespace JCodes.Framework.Entity
 		/// 基础路径
 		/// </summary>
 		[DataMember]
+		[DisplayName("基础路径")]
 		public virtual String BasePath
 		{
 			get
@@ -160,6 +172,7 @@ namespace JCodes.Framework.Entity
 		/// 文件保存相对路径
 		/// </summary>
 		[DataMember]
+		[DisplayName("文件保存相对路径")]
 		public virtual String SavePath
 		{
 			get
@@ -176,6 +189,7 @@ namespace JCodes.Framework.Entity
 		/// 分类编码
 		/// </summary>
 		[DataMember]
+		[DisplayName("分类编码")]
 		public virtual String CategoryCode
 		{
 			get
@@ -192,6 +206,7 @@ namespace JCodes.Framework.Entity
 		/// 文件大小
 		/// </summary>
 		[DataMember]
+		[DisplayName("文件大小")]
 		public virtual Int32 FileSize
 		{
 			get
@@ -208,6 +223,7 @@ namespace JCodes.Framework.Entity
 		/// 文件扩展名
 		/// </summary>
 		[DataMember]
+		[DisplayName("文件扩展名")]
 		public virtual String FileExtend
 		{
 			get
@@ -221,9 +237,10 @@ namespace JCodes.Framework.Entity
 		}
 
 		/// <summary>
-		/// 编辑人ID
+		/// 编辑人编号
 		/// </summary>
 		[DataMember]
+		[DisplayName("编辑人编号")]
 		public virtual Int32 EditorId
 		{
 			get
@@ -240,6 +257,7 @@ namespace JCodes.Framework.Entity
 		/// 添加时间
 		/// </summary>
 		[DataMember]
+		[DisplayName("添加时间")]
 		public virtual DateTime AddTime
 		{
 			get
@@ -256,6 +274,7 @@ namespace JCodes.Framework.Entity
 		/// 是否删除
 		/// </summary>
 		[DataMember]
+		[DisplayName("是否删除")]
 		public virtual Int16 IsDelete
 		{
 			get
@@ -269,14 +288,11 @@ namespace JCodes.Framework.Entity
 		}
 
 		/// <summary>
-		/// 文件流
-		/// </summary>
-		private byte[] m_FileData;
-		/// <summary>
-		/// 文件流数据
+		/// 文件数据
+		/// 保存图片数据文件(二进制)
 		/// </summary>
 		[DataMember]
-		public byte[] FileData
+		public virtual byte[] FileData
 		{
 			get
 			{

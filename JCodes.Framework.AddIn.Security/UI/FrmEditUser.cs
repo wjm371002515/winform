@@ -133,9 +133,9 @@ namespace JCodes.Framework.AddIn.Security
                     RefreshFunction(info.Id);
 
                     //如果是管理员，不能设置为过期
-                    bool isAdmin = BLLFactory<User>.Instance.UserInRole(info.Name, RoleInfo.SuperAdminName);
+                    /*bool isAdmin = BLLFactory<User>.Instance.UserInRole(info.Name, RoleInfo.SuperAdminName);
                     this.txtIsExpire.Enabled = !isAdmin;
-                    this.txtDeleted.Enabled = !isAdmin;
+                    this.txtDeleted.Enabled = !isAdmin;*/
 
                     this.cmbManager.SetComboBoxItem(info.Pid.ToString());
                     this.txtCompany.Value = info.CompanyId.ToString();
@@ -192,7 +192,7 @@ namespace JCodes.Framework.AddIn.Security
             info.Name = txtName.Text;
             info.FullName = txtFullName.Text;
             info.LoginName = txtNickname.Text;
-            info.IsExpire = txtIsExpire.Checked ? 0: 1;
+            info.IsExpire = (short)(txtIsExpire.Checked ? 0: 1);
             //info.t = txtTitle.Text;
             info.IdCard = txtIdentityCard.Text;
             info.MobilePhone = txtMobilePhone.Text;
@@ -201,11 +201,11 @@ namespace JCodes.Framework.AddIn.Security
             info.Email = txtEmail.Text;
             info.Address = txtAddress.Text;
             info.WorkAddress = txtWorkAddr.Text;
-            info.Gender = txtGender.Text.ToInt32();
+            info.Gender = Convert.ToInt16( txtGender.Text);
             info.Birthday = txtBirthday.DateTime;
             info.QQ = txtQq.Text.ToInt32();
             info.Signature = txtSignature.Text;
-            info.AuditStatus = txtAuditStatus.Text.ToInt32();
+            info.AuditStatus =Convert.ToInt16(  txtAuditStatus.Text);
             info.Remark = txtNote.Text;
             //info.CustomField = txtCustomField.Text;
             info.DeptId = txtDept.Value.ToInt32();
@@ -216,7 +216,7 @@ namespace JCodes.Framework.AddIn.Security
             //info.Editor = Portal.gc.UserInfo.FullName;
             info.EditorId = Portal.gc.UserInfo.Id;
             info.LastLoginTime = DateTimeHelper.GetServerDateTime2();
-            info.IsDelete = txtDeleted.Checked ? 0 : 1;
+            info.IsDelete = (short)(txtDeleted.Checked ? 0 : 1);
 
             info.CurrentLoginUserId = Portal.gc.UserInfo.Id;
         }
@@ -357,8 +357,8 @@ namespace JCodes.Framework.AddIn.Security
             List<SystemTypeInfo> typeList = BLLFactory<SystemType>.Instance.GetAll();
             foreach (SystemTypeInfo typeInfo in typeList)
             {
-                TreeNode parentNode = this.treeFunction.Nodes.Add(typeInfo.OID, typeInfo.Name, 0, 0);
-                List<FunctionNodeInfo> list = BLLFactory<Functions>.Instance.GetFunctionNodesByUser(id, typeInfo.OID);
+                TreeNode parentNode = this.treeFunction.Nodes.Add(typeInfo.Gid, typeInfo.Name, 0, 0);
+                List<FunctionNodeInfo> list = BLLFactory<Functions>.Instance.GetFunctionNodesByUser(id, typeInfo.Gid);
                 AddFunctionNode(parentNode, list);                
             }
 
@@ -370,7 +370,7 @@ namespace JCodes.Framework.AddIn.Security
         {
             foreach (FunctionNodeInfo info in list)
             {
-               TreeNode subNode =  node.Nodes.Add(info.ID, info.Name, 1, 1);
+               TreeNode subNode =  node.Nodes.Add(info.Gid, info.Name, 1, 1);
 
                AddFunctionNode(subNode, info.Children);
             }

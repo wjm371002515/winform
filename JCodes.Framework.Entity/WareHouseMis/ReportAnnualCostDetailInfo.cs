@@ -1,284 +1,427 @@
-using System;
-using System.Xml.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
+using System.ComponentModel;
 
 namespace JCodes.Framework.Entity
 {
-    [Serializable]
-    public class ReportAnnualCostDetailInfo : BaseEntity
-    {    
-        #region Field Members
+	/// <summary>
+	/// 年费用成本明细报表信息(ReportAnnualCostDetailInfo)
+	/// 对象号: 100074
+	/// 备注信息: 
+	/// </summary>
+	[Serializable]
+	[DataContract]
+	public partial class ReportAnnualCostDetailInfo : BaseEntity
+	{
+		#region Field Members
 
-        private int m_ID = 0;         
-        private int m_Header_ID = 0; //报表头ID          
-        private int m_ReportYear = 0; //报表年份          
-        private string m_ItemType = ""; //备件类别          
-        private string m_CostCenterOrDept = ""; //成本中心或部门          
-        private decimal m_One = 0; //总金额          
-        private decimal m_Two = 0;         
-        private decimal m_Three = 0;         
-        private decimal m_Four = 0;         
-        private decimal m_Five = 0;         
-        private decimal m_Six = 0;         
-        private decimal m_Seven = 0;         
-        private decimal m_Eight = 0;         
-        private decimal m_Nine = 0;         
-        private decimal m_Ten = 0;
-        private decimal m_Eleven = 0;
-        private decimal m_Twelve = 0;
-        private decimal m_Total = 0;     
-        private string m_ReportCode = ""; //额外的数据分类码          
+		/// <summary>
+		/// ID序号
+		/// </summary>
+		private Int32 m_Id = 0;
 
-        #endregion
+		/// <summary>
+		/// 报表头编号
+		/// </summary>
+		private Int32 m_ReportHeaderId = 0;
 
-        #region Property Members
-        
-        public virtual int ID
-        {
-            get
-            {
-                return this.m_ID;
-            }
-            set
-            {
-                this.m_ID = value;
-            }
-        }
+		/// <summary>
+		/// 报表年份
+		/// </summary>
+		private Int32 m_ReportYear = 0;
 
-        /// <summary>
-        /// 报表头ID
-        /// </summary>
-        public virtual int Header_ID
-        {
-            get
-            {
-                return this.m_Header_ID;
-            }
-            set
-            {
-                this.m_Header_ID = value;
-            }
-        }
+		/// <summary>
+		/// 备件类别
+		/// </summary>
+		private Int32 m_ItemType = 0;
 
-        /// <summary>
-        /// 报表年份
-        /// </summary>
-        public virtual int ReportYear
-        {
-            get
-            {
-                return this.m_ReportYear;
-            }
-            set
-            {
-                this.m_ReportYear = value;
-            }
-        }
+		/// <summary>
+		/// 成本中心
+		/// </summary>
+		private String m_CostCenter = string.Empty;
 
-        /// <summary>
-        /// 备件类别
-        /// </summary>
-        public virtual string ItemType
-        {
-            get
-            {
-                return this.m_ItemType;
-            }
-            set
-            {
-                this.m_ItemType = value;
-            }
-        }
+		/// <summary>
+		/// 报表代码
+		/// </summary>
+		private String m_ReportCode = string.Empty;
 
-        /// <summary>
-        /// 成本中心或部门
-        /// </summary>
-        public virtual string CostCenterOrDept
-        {
-            get
-            {
-                return this.m_CostCenterOrDept;
-            }
-            set
-            {
-                this.m_CostCenterOrDept = value;
-            }
-        }
+		/// <summary>
+		/// 总金额1
+		/// </summary>
+		private decimal m_One;
 
-        /// <summary>
-        /// 总金额
-        /// </summary>
-        public virtual decimal One
-        {
-            get
-            {
-                return this.m_One;
-            }
-            set
-            {
-                this.m_One = value;
-            }
-        }
+		/// <summary>
+		/// 总金额2
+		/// </summary>
+		private decimal m_Two;
 
-        public virtual decimal Two
-        {
-            get
-            {
-                return this.m_Two;
-            }
-            set
-            {
-                this.m_Two = value;
-            }
-        }
+		/// <summary>
+		/// 总金额3
+		/// </summary>
+		private decimal m_Three;
 
-        public virtual decimal Three
-        {
-            get
-            {
-                return this.m_Three;
-            }
-            set
-            {
-                this.m_Three = value;
-            }
-        }
+		/// <summary>
+		/// 总金额4
+		/// </summary>
+		private decimal m_Four;
 
-        public virtual decimal Four
-        {
-            get
-            {
-                return this.m_Four;
-            }
-            set
-            {
-                this.m_Four = value;
-            }
-        }
+		/// <summary>
+		/// 总金额5
+		/// </summary>
+		private decimal m_Five;
 
-        public virtual decimal Five
-        {
-            get
-            {
-                return this.m_Five;
-            }
-            set
-            {
-                this.m_Five = value;
-            }
-        }
+		/// <summary>
+		/// 总金额6
+		/// </summary>
+		private decimal m_Six;
 
-        public virtual decimal Six
-        {
-            get
-            {
-                return this.m_Six;
-            }
-            set
-            {
-                this.m_Six = value;
-            }
-        }
+		/// <summary>
+		/// 总金额7
+		/// </summary>
+		private decimal m_Seven;
 
-        public virtual decimal Seven
-        {
-            get
-            {
-                return this.m_Seven;
-            }
-            set
-            {
-                this.m_Seven = value;
-            }
-        }
+		/// <summary>
+		/// 总金额8
+		/// </summary>
+		private decimal m_Eight;
 
-        public virtual decimal Eight
-        {
-            get
-            {
-                return this.m_Eight;
-            }
-            set
-            {
-                this.m_Eight = value;
-            }
-        }
+		/// <summary>
+		/// 总金额9
+		/// </summary>
+		private decimal m_Nine;
 
-        public virtual decimal Nine
-        {
-            get
-            {
-                return this.m_Nine;
-            }
-            set
-            {
-                this.m_Nine = value;
-            }
-        }
+		/// <summary>
+		/// 总金额10
+		/// </summary>
+		private decimal m_Ten;
 
-        public virtual decimal Ten
-        {
-            get
-            {
-                return this.m_Ten;
-            }
-            set
-            {
-                this.m_Ten = value;
-            }
-        }
+		/// <summary>
+		/// 总金额11
+		/// </summary>
+		private decimal m_Eleven;
 
-        public virtual decimal Eleven
-        {
-            get
-            {
-                return this.m_Eleven;
-            }
-            set
-            {
-                this.m_Eleven = value;
-            }
-        }
+		/// <summary>
+		/// 总金额12
+		/// </summary>
+		private decimal m_Twelve;
 
-        public virtual decimal Twelve
-        {
-            get
-            {
-                return this.m_Twelve;
-            }
-            set
-            {
-                this.m_Twelve = value;
-            }
-        }
+		/// <summary>
+		/// 总金额
+		/// </summary>
+		private decimal m_Total;
+		#endregion
 
-        public virtual decimal Total
-        {
-            get
-            {
-                return this.m_Total;
-            }
-            set
-            {
-                this.m_Total = value;
-            }
-        }
-        /// <summary>
-        /// 额外的数据分类码
-        /// </summary>
-        public virtual string ReportCode
-        {
-            get
-            {
-                return this.m_ReportCode;
-            }
-            set
-            {
-                this.m_ReportCode = value;
-            }
-        }
+		#region Property Members
 
+		/// <summary>
+		/// ID序号
+		/// </summary>
+		[DataMember]
+		[DisplayName("ID序号")]
+		public virtual Int32 Id
+		{
+			get
+			{
+				return this.m_Id;
+			}
+			set
+			{
+				this.m_Id = value;
+			}
+		}
 
-        #endregion
+		/// <summary>
+		/// 报表头编号
+		/// </summary>
+		[DataMember]
+		[DisplayName("报表头编号")]
+		public virtual Int32 ReportHeaderId
+		{
+			get
+			{
+				return this.m_ReportHeaderId;
+			}
+			set
+			{
+				this.m_ReportHeaderId = value;
+			}
+		}
 
-    }
+		/// <summary>
+		/// 报表年份
+		/// </summary>
+		[DataMember]
+		[DisplayName("报表年份")]
+		public virtual Int32 ReportYear
+		{
+			get
+			{
+				return this.m_ReportYear;
+			}
+			set
+			{
+				this.m_ReportYear = value;
+			}
+		}
+
+		/// <summary>
+		/// 备件类别
+		/// </summary>
+		[DataMember]
+		[DisplayName("备件类别")]
+		public virtual Int32 ItemType
+		{
+			get
+			{
+				return this.m_ItemType;
+			}
+			set
+			{
+				this.m_ItemType = value;
+			}
+		}
+
+		/// <summary>
+		/// 成本中心
+		/// </summary>
+		[DataMember]
+		[DisplayName("成本中心")]
+		public virtual String CostCenter
+		{
+			get
+			{
+				return this.m_CostCenter;
+			}
+			set
+			{
+				this.m_CostCenter = value;
+			}
+		}
+
+		/// <summary>
+		/// 报表代码
+		/// </summary>
+		[DataMember]
+		[DisplayName("报表代码")]
+		public virtual String ReportCode
+		{
+			get
+			{
+				return this.m_ReportCode;
+			}
+			set
+			{
+				this.m_ReportCode = value;
+			}
+		}
+
+		/// <summary>
+		/// 总金额1
+		/// </summary>
+		[DataMember]
+		public virtual decimal One
+		{
+			get
+			{
+				return this.m_One;
+			}
+			set
+			{
+				this.m_One = value;
+			}
+		}
+
+		/// <summary>
+		/// 总金额2
+		/// </summary>
+		[DataMember]
+		public virtual decimal Two
+		{
+			get
+			{
+				return this.m_Two;
+			}
+			set
+			{
+				this.m_Two = value;
+			}
+		}
+
+		/// <summary>
+		/// 总金额3
+		/// </summary>
+		[DataMember]
+		public virtual decimal Three
+		{
+			get
+			{
+				return this.m_Three;
+			}
+			set
+			{
+				this.m_Three = value;
+			}
+		}
+
+		/// <summary>
+		/// 总金额4
+		/// </summary>
+		[DataMember]
+		public virtual decimal Four
+		{
+			get
+			{
+				return this.m_Four;
+			}
+			set
+			{
+				this.m_Four = value;
+			}
+		}
+
+		/// <summary>
+		/// 总金额5
+		/// </summary>
+		[DataMember]
+		public virtual decimal Five
+		{
+			get
+			{
+				return this.m_Five;
+			}
+			set
+			{
+				this.m_Five = value;
+			}
+		}
+
+		/// <summary>
+		/// 总金额6
+		/// </summary>
+		[DataMember]
+		public virtual decimal Six
+		{
+			get
+			{
+				return this.m_Six;
+			}
+			set
+			{
+				this.m_Six = value;
+			}
+		}
+
+		/// <summary>
+		/// 总金额7
+		/// </summary>
+		[DataMember]
+		public virtual decimal Seven
+		{
+			get
+			{
+				return this.m_Seven;
+			}
+			set
+			{
+				this.m_Seven = value;
+			}
+		}
+
+		/// <summary>
+		/// 总金额8
+		/// </summary>
+		[DataMember]
+		public virtual decimal Eight
+		{
+			get
+			{
+				return this.m_Eight;
+			}
+			set
+			{
+				this.m_Eight = value;
+			}
+		}
+
+		/// <summary>
+		/// 总金额9
+		/// </summary>
+		[DataMember]
+		public virtual decimal Nine
+		{
+			get
+			{
+				return this.m_Nine;
+			}
+			set
+			{
+				this.m_Nine = value;
+			}
+		}
+
+		/// <summary>
+		/// 总金额10
+		/// </summary>
+		[DataMember]
+		public virtual decimal Ten
+		{
+			get
+			{
+				return this.m_Ten;
+			}
+			set
+			{
+				this.m_Ten = value;
+			}
+		}
+
+		/// <summary>
+		/// 总金额11
+		/// </summary>
+		[DataMember]
+		public virtual decimal Eleven
+		{
+			get
+			{
+				return this.m_Eleven;
+			}
+			set
+			{
+				this.m_Eleven = value;
+			}
+		}
+
+		/// <summary>
+		/// 总金额12
+		/// </summary>
+		[DataMember]
+		public virtual decimal Twelve
+		{
+			get
+			{
+				return this.m_Twelve;
+			}
+			set
+			{
+				this.m_Twelve = value;
+			}
+		}
+
+		/// <summary>
+		/// 总金额
+		/// </summary>
+		[DataMember]
+		public virtual decimal Total
+		{
+			get
+			{
+				return this.m_Total;
+			}
+			set
+			{
+				this.m_Total = value;
+			}
+		}
+		#endregion
+	}
 }

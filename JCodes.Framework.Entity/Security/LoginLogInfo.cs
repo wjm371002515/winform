@@ -1,208 +1,242 @@
-using System;
-using System.Xml.Serialization;
+﻿using System;
 using System.Runtime.Serialization;
+using System.ComponentModel;
 
 namespace JCodes.Framework.Entity
 {
-    /// <summary>
-    /// 用户登录日志信息
-    /// </summary>
-    [Serializable]
-    [DataContract]
-    public class LoginLogInfo : BaseEntity
-    {    
-        #region Field Members
+	/// <summary>
+	/// 用户登录日志信息(LoginLogInfo)
+	/// 对象号: 100057
+	/// 备注信息: 
+	/// </summary>
+	[Serializable]
+	[DataContract]
+	public partial class LoginLogInfo : BaseEntity
+	{
+		#region Field Members
 
-        private int m_Id = 0; //          
-        private Int32 m_UserId; //登录用户ID          
-        private string m_LoginName; //登录名          
-        private string m_FullName; //真实名称          
-        private Int32 m_CompanyId; //所属公司ID          
-        private string m_CompanyName; //所属公司名称          
-        private string m_Remark; //日志描述          
-        private string m_IP; //IP地址          
-        private string m_Mac; //Mac地址          
-        private DateTime m_LastUpdateTime; //更新时间          
-        private string m_SystemtypeId; //系统编号          
+		/// <summary>
+		/// ID序号
+		/// </summary>
+		private Int32 m_Id = 0;
 
-        #endregion
+		/// <summary>
+		/// 用户Id
+		/// </summary>
+		private Int32 m_UserId = 0;
 
-        #region Property Members
-        
+		/// <summary>
+		/// 登录名
+		/// </summary>
+		private String m_LoginName = string.Empty;
+
+		/// <summary>
+		/// 真实名
+		/// </summary>
+		private String m_FullName = string.Empty;
+
+		/// <summary>
+		/// 公司Id
+		/// </summary>
+		private Int32 m_CompanyId = 0;
+
+		/// <summary>
+		/// 备注
+		/// </summary>
+		private String m_Remark = string.Empty;
+
+		/// <summary>
+		/// IP地址
+		/// </summary>
+		private String m_IP = string.Empty;
+
+		/// <summary>
+		/// Mac地址
+		/// </summary>
+		private String m_Mac = string.Empty;
+
+		/// <summary>
+		/// 最后更新时间
+		/// </summary>
+		private DateTime m_LastUpdateTime = DateTime.Now;
+
+		/// <summary>
+		/// 系统编号
+		/// </summary>
+		private String m_SystemtypeId = string.Empty;
+		#endregion
+
+		#region Property Members
+
+		/// <summary>
+		/// ID序号
+		/// </summary>
 		[DataMember]
-        public virtual int Id
-        {
-            get
-            {
-                return this.m_Id;
-            }
-            set
-            {
-                this.m_Id = value;
-            }
-        }
+		[DisplayName("ID序号")]
+		public virtual Int32 Id
+		{
+			get
+			{
+				return this.m_Id;
+			}
+			set
+			{
+				this.m_Id = value;
+			}
+		}
 
-        /// <summary>
-        /// 登录用户ID
-        /// </summary>
+		/// <summary>
+		/// 用户Id
+		/// </summary>
 		[DataMember]
-        public virtual Int32 UserId
-        {
-            get
-            {
-                return this.m_UserId;
-            }
-            set
-            {
-                this.m_UserId = value;
-            }
-        }
+		[DisplayName("用户Id")]
+		public virtual Int32 UserId
+		{
+			get
+			{
+				return this.m_UserId;
+			}
+			set
+			{
+				this.m_UserId = value;
+			}
+		}
 
-        /// <summary>
-        /// 登录名
-        /// </summary>
+		/// <summary>
+		/// 登录名
+		/// </summary>
 		[DataMember]
-        public virtual string LoginName
-        {
-            get
-            {
-                return this.m_LoginName;
-            }
-            set
-            {
-                this.m_LoginName = value;
-            }
-        }
+		[DisplayName("登录名")]
+		public virtual String LoginName
+		{
+			get
+			{
+				return this.m_LoginName;
+			}
+			set
+			{
+				this.m_LoginName = value;
+			}
+		}
 
-        /// <summary>
-        /// 真实名称
-        /// </summary>
+		/// <summary>
+		/// 真实名
+		/// </summary>
 		[DataMember]
-        public virtual string FullName
-        {
-            get
-            {
-                return this.m_FullName;
-            }
-            set
-            {
-                this.m_FullName = value;
-            }
-        }
+		[DisplayName("真实名")]
+		public virtual String FullName
+		{
+			get
+			{
+				return this.m_FullName;
+			}
+			set
+			{
+				this.m_FullName = value;
+			}
+		}
 
-        /// <summary>
-        /// 所属公司ID
-        /// </summary>
+		/// <summary>
+		/// 公司Id
+		/// </summary>
 		[DataMember]
-        public virtual Int32 CompanyId
-        {
-            get
-            {
-                return this.m_CompanyId;
-            }
-            set
-            {
-                this.m_CompanyId = value;
-            }
-        }
+		[DisplayName("公司Id")]
+		public virtual Int32 CompanyId
+		{
+			get
+			{
+				return this.m_CompanyId;
+			}
+			set
+			{
+				this.m_CompanyId = value;
+			}
+		}
 
-        /// <summary>
-        /// 所属公司名称
-        /// </summary>
+		/// <summary>
+		/// 备注
+		/// </summary>
 		[DataMember]
-        public virtual string CompanyName
-        {
-            get
-            {
-                return this.m_CompanyName;
-            }
-            set
-            {
-                this.m_CompanyName = value;
-            }
-        }
+		[DisplayName("备注")]
+		public virtual String Remark
+		{
+			get
+			{
+				return this.m_Remark;
+			}
+			set
+			{
+				this.m_Remark = value;
+			}
+		}
 
-        /// <summary>
-        /// 日志描述
-        /// </summary>
+		/// <summary>
+		/// IP地址
+		/// </summary>
 		[DataMember]
-        public virtual string Remark
-        {
-            get
-            {
-                return this.m_Remark;
-            }
-            set
-            {
-                this.m_Remark = value;
-            }
-        }
+		[DisplayName("IP地址")]
+		public virtual String IP
+		{
+			get
+			{
+				return this.m_IP;
+			}
+			set
+			{
+				this.m_IP = value;
+			}
+		}
 
-        /// <summary>
-        /// IP地址
-        /// </summary>
+		/// <summary>
+		/// Mac地址
+		/// </summary>
 		[DataMember]
-        public virtual string IP
-        {
-            get
-            {
-                return this.m_IP;
-            }
-            set
-            {
-                this.m_IP = value;
-            }
-        }
+		[DisplayName("Mac地址")]
+		public virtual String Mac
+		{
+			get
+			{
+				return this.m_Mac;
+			}
+			set
+			{
+				this.m_Mac = value;
+			}
+		}
 
-        /// <summary>
-        /// Mac地址
-        /// </summary>
+		/// <summary>
+		/// 最后更新时间
+		/// </summary>
 		[DataMember]
-        public virtual string Mac
-        {
-            get
-            {
-                return this.m_Mac;
-            }
-            set
-            {
-                this.m_Mac = value;
-            }
-        }
+		[DisplayName("最后更新时间")]
+		public virtual DateTime LastUpdateTime
+		{
+			get
+			{
+				return this.m_LastUpdateTime;
+			}
+			set
+			{
+				this.m_LastUpdateTime = value;
+			}
+		}
 
-        /// <summary>
-        /// 更新时间
-        /// </summary>
+		/// <summary>
+		/// 系统编号
+		/// </summary>
 		[DataMember]
-        public virtual DateTime LastUpdateTime
-        {
-            get
-            {
-                return this.m_LastUpdateTime;
-            }
-            set
-            {
-                this.m_LastUpdateTime = value;
-            }
-        }
-
-        /// <summary>
-        /// 系统编号
-        /// </summary>
-        [DataMember]
-        public virtual string SystemtypeId
-        {
-            get
-            {
-                return this.m_SystemtypeId;
-            }
-            set
-            {
-                this.m_SystemtypeId = value;
-            }
-        }
-
-        #endregion
-
-    }
+		[DisplayName("系统编号")]
+		public virtual String SystemtypeId
+		{
+			get
+			{
+				return this.m_SystemtypeId;
+			}
+			set
+			{
+				this.m_SystemtypeId = value;
+			}
+		}
+		#endregion
+	}
 }

@@ -19,14 +19,14 @@ namespace JCodes.Framework.WebUI.Controllers
         {
             //留给子类对参数对象进行修改
             info.EditorId = CurrentUser.Id;
-            info.LastUpdated = DateTime.Now;
+            info.LastUpdateTime = DateTime.Now;
         }
 
         protected override void OnBeforeUpdate(DictTypeInfo info)
         {
             //留给子类对参数对象进行修改
             info.EditorId = CurrentUser.Id;
-            info.LastUpdated = DateTime.Now;
+            info.LastUpdateTime = DateTime.Now;
         }
         #endregion
 

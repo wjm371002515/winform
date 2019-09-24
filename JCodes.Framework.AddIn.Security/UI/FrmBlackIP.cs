@@ -178,9 +178,9 @@ namespace JCodes.Framework.AddIn.Security
             int[] rowSelected = this.winGridViewPager1.GridView1.GetSelectedRows();
             foreach (int iRow in rowSelected)
             {
-                string ID = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "ID");
-                BLLFactory<BlackIP>.Instance.DeleteByUser(ID, LoginUserInfo.Id);
-                BLLFactory<BlackIP>.Instance.RemoveUserByBlackId(ID);
+                Int32 Id = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "Id").ToInt32();
+                BLLFactory<BlackIP>.Instance.DeleteByUser(Id, LoginUserInfo.Id);
+                BLLFactory<BlackIP>.Instance.RemoveUserByBlackId(Id);
             }
              
             BindData();

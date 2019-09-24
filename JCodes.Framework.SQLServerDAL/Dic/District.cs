@@ -25,7 +25,7 @@ namespace JCodes.Framework.SQLServerDAL
 				return new District();
 			}
 		}
-		public District() : base(SQLServerPortal.gc._basicTablePre+"District","ID")
+		public District() : base(SQLServerPortal.gc._basicTablePre+"District","Id")
 		{
             this.isDescending = false;
 		}
@@ -42,9 +42,9 @@ namespace JCodes.Framework.SQLServerDAL
 			DistrictInfo districtInfo = new DistrictInfo();
 			SmartDataReader reader = new SmartDataReader(dataReader);
 
-            districtInfo.ID = reader.GetInt32("ID");
+            districtInfo.Id = reader.GetInt32("Id");
 			districtInfo.DistrictName = reader.GetString("DistrictName");
-            districtInfo.CityID = reader.GetInt32("CityID");
+            districtInfo.CityId = reader.GetInt32("CityId");
 			
 			return districtInfo;
 		}
@@ -60,7 +60,7 @@ namespace JCodes.Framework.SQLServerDAL
 			Hashtable hash = new Hashtable(); 
 			
  			hash.Add("DistrictName", info.DistrictName);
- 			hash.Add("CityID", info.CityID);
+            hash.Add("CityId", info.CityId);
  				
 			return hash;
 		}

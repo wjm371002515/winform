@@ -32,7 +32,7 @@ namespace JCodes.Framework.WebDemo.Controllers
         /// <returns></returns>
         public ActionResult CheckExcelColumns(string guid)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
 
             try
             {
@@ -40,7 +40,7 @@ namespace JCodes.Framework.WebDemo.Controllers
                 if (dt != null)
                 {
                     //检查列表是否包含必须的字段
-                    result.Success = DataTableHelper.ContainAllColumns(dt, columnString);
+                    result.ErrorCode = DataTableHelper.ContainAllColumns(dt, columnString) ? 0: 1;
                 }
             }
             catch (Exception ex)
@@ -70,11 +70,9 @@ namespace JCodes.Framework.WebDemo.Controllers
             if (table != null)
             {
                 #region 数据转换
-                int i = 1;
                 foreach (DataRow dr in table.Rows)
                 {
                     DateTime dtDefault = Convert.ToDateTime("1900-01-01");
-                    DateTime dt;
                     PictureAlbumInfo info = new PictureAlbumInfo();
 
                     info.Pid = dr["父ID"].ToString().ToInt32() ;
@@ -102,7 +100,7 @@ namespace JCodes.Framework.WebDemo.Controllers
         /// <returns></returns>
         public ActionResult SaveExcelData(List<PictureAlbumInfo> list)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             if (list != null && list.Count > 0)
             {
                 #region 采用事务进行数据提交
@@ -124,7 +122,7 @@ namespace JCodes.Framework.WebDemo.Controllers
                             BLLFactory<PictureAlbum>.Instance.Insert(detail, trans);
                         }
                         trans.Commit();
-                        result.Success = true;
+                        result.ErrorCode = 0;
                     }
                     catch (Exception ex)
                     {
@@ -229,7 +227,7 @@ namespace JCodes.Framework.WebDemo.Controllers
         public override ActionResult FindWithPager()
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.ListKey);
+            base.CheckAuthorized(authorizeKeyInfo.ListKey);
 
             string where = GetPagerCondition();
             PagerInfo pagerInfo = GetPagerInfo();

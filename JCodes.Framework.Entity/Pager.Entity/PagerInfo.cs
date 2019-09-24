@@ -1,78 +1,85 @@
 ﻿using System;
-using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using System.ComponentModel;
 
 namespace JCodes.Framework.Entity
 {
-    public delegate void PageInfoChanged(PagerInfo info);
+	/// <summary>
+	/// 页面信息(PagerInfo)
+	/// 对象号: 100037
+	/// 备注信息: 
+	/// </summary>
+	[Serializable]
+	[DataContract]
+	public partial class PagerInfo
+	{
+		#region Field Members
 
-    [Serializable]
-    [DataContract]
-    public class PagerInfo
-    {
-        public event PageInfoChanged OnPageInfoChanged;
+		/// <summary>
+		/// 当前页码
+		/// </summary>
+		private Int32 m_CurrenetPageIndex = 0;
 
-        private int currenetPageIndex; //当前页码
-        private int pageSize;//每页显示的记录
-        private int recordCount;//记录总数
+		/// <summary>
+		/// 每页显示的记录
+		/// </summary>
+		private Int32 m_PageSize = 0;
 
-        #region 属性变量
+		/// <summary>
+		/// 记录总数
+		/// </summary>
+		private Int32 m_RecordCount = 0;
+		#endregion
 
-        /// <summary>
-        /// 获取或设置当前页码
-        /// </summary>
-        [XmlElement(ElementName = "CurrenetPageIndex")]
-        [DataMember]
-        public int CurrenetPageIndex
-        {
-            get { return currenetPageIndex; }
-            set
-            {
-                currenetPageIndex = value;
+		#region Property Members
 
-                if (OnPageInfoChanged != null)
-                {
-                    OnPageInfoChanged(this);
-                }
-            }
-        }
+		/// <summary>
+		/// 当前页码
+		/// </summary>
+		[DataMember]
+		public virtual Int32 CurrenetPageIndex
+		{
+			get
+			{
+				return this.m_CurrenetPageIndex;
+			}
+			set
+			{
+				this.m_CurrenetPageIndex = value;
+			}
+		}
 
-        /// <summary>
-        /// 获取或设置每页显示的记录
-        /// </summary>
-        [XmlElement(ElementName = "PageSize")]
-        [DataMember]
-        public int PageSize
-        {
-            get { return pageSize; }
-            set
-            {
-                pageSize = value;
-                if (OnPageInfoChanged != null)
-                {
-                    OnPageInfoChanged(this);
-                }
-            }
-        }
+		/// <summary>
+		/// 每页显示的记录
+		/// </summary>
+		[DataMember]
+		public virtual Int32 PageSize
+		{
+			get
+			{
+				return this.m_PageSize;
+			}
+			set
+			{
+				this.m_PageSize = value;
+			}
+		}
 
-        /// <summary>
-        /// 获取或设置记录总数
-        /// </summary>
-        [XmlElement(ElementName = "RecordCount")]
-        [DataMember]
-        public int RecordCount
-        {
-            get { return recordCount; }
-            set
-            {
-                recordCount = value;
-                if (OnPageInfoChanged != null)
-                {
-                    OnPageInfoChanged(this);
-                }
-            }
-        }
-
-        #endregion
-    }
+		/// <summary>
+		/// 记录总数
+		/// </summary>
+		[DataMember]
+		public virtual Int32 RecordCount
+		{
+			get
+			{
+				return this.m_RecordCount;
+			}
+			set
+			{
+				this.m_RecordCount = value;
+			}
+		}
+		#endregion
+	}
 }

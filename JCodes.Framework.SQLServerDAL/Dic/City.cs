@@ -42,11 +42,11 @@ namespace JCodes.Framework.SQLServerDAL
 		{
 			CityInfo cityInfo = new CityInfo();
 			SmartDataReader reader = new SmartDataReader(dataReader);
-			
-			cityInfo.ID = reader.GetInt32("ID");
+
+            cityInfo.Id = reader.GetInt32("Id");
 			cityInfo.CityName = reader.GetString("CityName");
 			cityInfo.ZipCode = reader.GetString("ZipCode");
-            cityInfo.ProvinceID = reader.GetInt32("ProvinceID");
+            cityInfo.ProvinceId = reader.GetInt32("ProvinceId");
 			
 			return cityInfo;
 		}
@@ -63,7 +63,7 @@ namespace JCodes.Framework.SQLServerDAL
 			
  			hash.Add("CityName", info.CityName);
  			hash.Add("ZipCode", info.ZipCode);
- 			hash.Add("ProvinceID", info.ProvinceID);
+            hash.Add("ProvinceId", info.ProvinceId);
  				
 			return hash;
 		}

@@ -41,7 +41,7 @@ namespace JCodes.Framework.SQLServerDAL
 		{
 			InformationInfo info = new InformationInfo();
 			SmartDataReader reader = new SmartDataReader(dataReader);
-
+            /*
             info.Id = reader.GetInt32("Id");
 			info.Title = reader.GetString("Title");
 			info.Content = reader.GetString("Content");
@@ -54,7 +54,7 @@ namespace JCodes.Framework.SQLServerDAL
 			info.CheckUser = reader.GetString("CheckUser");
 			info.CheckTime = reader.GetDateTime("CheckTime");
 			info.ForceExpire = reader.GetInt32("ForceExpire");
-			info.TimeOut = reader.GetDateTime("TimeOut");
+			info.TimeOut = reader.GetDateTime("TimeOut");*/
 			
 			return info;
 		}
@@ -69,7 +69,7 @@ namespace JCodes.Framework.SQLServerDAL
 		    InformationInfo info = obj as InformationInfo;
 			Hashtable hash = new Hashtable();
 
-            hash.Add("Id", info.Id);
+            /*hash.Add("Id", info.Id);
  			hash.Add("Title", info.Title);
  			hash.Add("Content", info.Content);
  			hash.Add("Attachment_GUID", info.Attachment_GUID);
@@ -81,23 +81,10 @@ namespace JCodes.Framework.SQLServerDAL
  			hash.Add("CheckUser", info.CheckUser);
  			hash.Add("CheckTime", info.CheckTime);
  			hash.Add("ForceExpire", info.ForceExpire);
- 			hash.Add("TimeOut", info.TimeOut);
+ 			hash.Add("TimeOut", info.TimeOut);*/
  				
 			return hash;
 		}
-
-        private InformationCategory ConvertCategory(string strCategory)
-        {
-            InformationCategory categoryType = InformationCategory.其他;
-            try
-            {
-                categoryType = (InformationCategory)Enum.Parse(typeof(InformationCategory), strCategory);
-            }
-            catch
-            {
-            }
-            return categoryType;
-        }
 
         /// <summary>
         /// 获取字段中文别名（用于界面显示）的字典集合
@@ -108,7 +95,7 @@ namespace JCodes.Framework.SQLServerDAL
             Dictionary<string, string> dict = new Dictionary<string, string>();
             #region 添加别名解析
             //dict.Add("ID", "编号");
-            dict.Add("ID", "");
+            /*dict.Add("ID", "");
             dict.Add("Title", "标题");
             dict.Add("Content", "内容");
             dict.Add("Attachment_GUID", "附件GUID");
@@ -120,7 +107,7 @@ namespace JCodes.Framework.SQLServerDAL
             dict.Add("CheckUser", "审批者");
             dict.Add("CheckTime", "审批时间");
             dict.Add("ForceExpire", "是否强制过期");
-            dict.Add("TimeOut", "过期截止时间");
+            dict.Add("TimeOut", "过期截止时间");*/
             #endregion
 
             return dict;
@@ -132,15 +119,15 @@ namespace JCodes.Framework.SQLServerDAL
         /// <param name="userId">当前用户ID</param>
         /// <param name="infoType">信息类型</param>
         /// <returns></returns>
-        public DataTable GetMyInformation(int userId, InformationCategory infoType)
+        public DataTable GetMyInformation(int userId, Int32 infoType)
         {
             string readIdString = string.Format(@"select INFORMATION_ID from TB_InformationStatus 
-            where USER_ID='{0}' and CATEGORY='{1}' and STATUS=1 ", userId, infoType.ToString());//已读ID
+            where USER_ID='{0}' and CATEGORY='{1}' and STATUS=1 ", userId, infoType);//已读ID
 
             string infoSql = string.Format(@" SELECT ID, TITLE, ATTACHMENT_GUID, EDITOR, EDITTIME FROM TB_INFORMATION 
             WHERE Category='{2}' 
             AND (ID NOT IN ({0})  OR (ForceExpire=1 AND TIME_OUT>'{1}') ) 
-            ORDER BY EDITTIME DESC", readIdString, DateTime.Now.ToShortDateString(), infoType.ToString());
+            ORDER BY EDITTIME DESC", readIdString, DateTime.Now.ToShortDateString(), infoType);
 
             return SqlTable(infoSql);
         }

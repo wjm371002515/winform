@@ -76,7 +76,7 @@ namespace JCodes.Framework.AddIn.Security
             List<SystemTypeInfo> systemList = BLLFactory<SystemType>.Instance.GetAll();
             foreach (SystemTypeInfo info in systemList)
             {
-                this.txtSystemType.Properties.Items.Add(new CListItem(info.OID, info.Name));
+                this.txtSystemType.Properties.Items.Add(new CListItem(info.Gid, info.Name));
             }
             if (this.txtSystemType.Properties.Items.Count == 1)
             {
@@ -105,7 +105,7 @@ namespace JCodes.Framework.AddIn.Security
                     txtIcon.Text = info.Icon;
                     txtSeq.Text = info.Seq;
                     txtFunctionId.Text = info.AuthGid;
-                    txtVisible.Checked = info.IsVisable;
+                    txtVisible.Checked = info.IsVisable==0 ? false: true;
                     txtWinformType.Text = info.WinformClass;
                     txtUrl.Text = info.Url;
                     txtWebIcon.Text = info.WebIcon;
@@ -135,7 +135,7 @@ namespace JCodes.Framework.AddIn.Security
             info.Icon = txtIcon.Text;
             info.Seq = txtSeq.Text;
             info.AuthGid = txtFunctionId.Text;
-            info.IsVisable = txtVisible.Checked;
+            info.IsVisable = (short)(txtVisible.Checked?1:0);
             info.WinformClass = txtWinformType.Text;
             info.Url = txtUrl.Text;
             info.WebIcon = txtWebIcon.Text;

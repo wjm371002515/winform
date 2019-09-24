@@ -14,6 +14,7 @@ using JCodes.Framework.CommonControl.BaseUI;
 using JCodes.Framework.CommonControl.Controls;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.Common.Framework;
+using JCodes.Framework.Common.Extension;
 
 namespace JCodes.Framework.AddIn.WareHouseManage
 {
@@ -108,23 +109,23 @@ namespace JCodes.Framework.AddIn.WareHouseManage
                     this.txtItemNo.Properties.ReadOnly = true;
                     this.txtItemNo.ForeColor = Color.Pink;
 
-                    txtBigType.Text = info.ItemBigType;
-                    txtItemName.Text = info.ItemName;
+                    txtBigType.Text = info.ItemBigtype.ToString();
+                    txtItemName.Text = info.Name;
                     txtItemNo.Text = info.ItemNo;
-                    txtItemType.Text = info.ItemType;
+                    txtItemType.Text = info.ItemType.ToString();
                     txtManufacture.Text = info.Manufacture;
                     txtMapNo.Text = info.MapNo;
                     txtMaterial.Text = info.Material;
-                    txtNote.Text = info.Note;
+                    txtNote.Text = info.Remark;
                     txtPrice.Text = info.Price.ToString("f2");
-                    txtSource.Text = info.Source;
+                    txtSource.Text = info.ItemSource;
                     txtSpecNumber.Text = info.Specification;
                     txtStockPos.Text = info.StoragePos;
-                    txtUnit.Text = info.Unit;
+                    txtUnit.Text = info.ItemUnit.ToString();
                     txtUsagePos.Text = info.UsagePos;
-                    txtBelongWareHouse.Text = info.WareHouse;
-                    txtBelongWareHouse.Tag = info.WareHouse;//用来识别是否变化
-                    txtBelongDept.Text = info.Dept;
+                    txtBelongWareHouse.Text = info.WareHouseId.ToString();
+                    txtBelongWareHouse.Tag = info.WareHouseId;//用来识别是否变化
+                    txtBelongDept.Text = info.DeptId.ToString();
                 } 
                 #endregion           
             }
@@ -136,22 +137,22 @@ namespace JCodes.Framework.AddIn.WareHouseManage
         /// <param name="info"></param>
         private void SetInfo(ItemDetailInfo info)
         {
-            info.ItemBigType = txtBigType.GetComboBoxIntValue().ToString();
-            info.ItemName = txtItemName.Text;
+            info.ItemBigtype = (Int32)txtBigType.GetComboBoxIntValue();
+            info.Name = txtItemName.Text;
             info.ItemNo = txtItemNo.Text;
-            info.ItemType = txtItemType.GetComboBoxIntValue().ToString();
+            info.ItemType = (Int32)txtItemType.GetComboBoxIntValue();
             info.Manufacture = txtManufacture.GetComboBoxStrValue();
             info.MapNo = txtMapNo.Text;
             info.Material = txtMaterial.Text;
-            info.Note = txtNote.Text;
-            info.Price = Convert.ToDecimal(txtPrice.Text);
-            info.Source = txtSource.Text;
+            info.Remark = txtNote.Text;
+            info.Price = Convert.ToDouble(txtPrice.Text);
+            info.ItemSource = txtSource.Text;
             info.Specification = txtSpecNumber.Text;
             info.StoragePos = txtStockPos.Text;
-            info.Unit = txtUnit.GetComboBoxIntValue().ToString();
+            info.ItemUnit = (Int32)txtUnit.GetComboBoxIntValue();
             info.UsagePos = txtUsagePos.Text;
-            info.Dept = txtBelongDept.Text;
-            info.WareHouse = txtBelongWareHouse.GetComboBoxStrValue();
+            info.DeptId = txtBelongDept.Text.ToInt32();
+            info.WareHouseId = txtBelongWareHouse.GetComboBoxStrValue().ToInt32();
         }
          
         /// <summary>
@@ -182,7 +183,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
                         bool isInit = BLLFactory<Stock>.Instance.CheckIsInitedWareHouse(this.txtBelongWareHouse.Text, this.txtItemNo.Text);
                         if (!isInit)
                         {
-                            BLLFactory<Stock>.Instance.InitStockQuantity(info, 0, this.txtBelongWareHouse.Text);
+                            BLLFactory<Stock>.Instance.InitStockQuantity(info, 0, this.txtBelongWareHouse.Text.ToInt32());
                         }
                     }
                     catch (Exception ex)
@@ -232,23 +233,23 @@ namespace JCodes.Framework.AddIn.WareHouseManage
                 try
                 {
                     #region 更新数据
-                    bool succeed = BLLFactory<ItemDetail>.Instance.Update(info, info.ID.ToString());
+                    bool succeed = BLLFactory<ItemDetail>.Instance.Update(info, info.Id);
                     if (succeed)
                     {
                         try
                         {
-                            StockInfo stockInfo = BLLFactory<Stock>.Instance.FindByItemNo(this.txtItemNo.Text, this.txtBelongWareHouse.Tag.ToString());
-                            if (stockInfo != null)
+                            WareInfo wareInfo = BLLFactory<Stock>.Instance.FindByItemNo(this.txtItemNo.Text, this.txtBelongWareHouse.Tag.ToString());
+                            if (wareInfo != null)
                             {
-                                stockInfo.WareHouse = txtBelongWareHouse.Text;
-                                BLLFactory<Stock>.Instance.Update(stockInfo, stockInfo.ID.ToString());
+                                //wareInfo.wareInfo = txtBelongWareHouse.Text;
+                                BLLFactory<Stock>.Instance.Update(wareInfo, wareInfo.Id);
                             }
 
                             //不管是更新还是新增，如果对应的备件编码在库房没有初始化，初始化之
                             bool isInit = BLLFactory<Stock>.Instance.CheckIsInitedWareHouse(this.txtBelongWareHouse.Text, this.txtItemNo.Text);
                             if (!isInit)
                             {
-                                BLLFactory<Stock>.Instance.InitStockQuantity(info, 0, this.txtBelongWareHouse.Text);
+                                BLLFactory<Stock>.Instance.InitStockQuantity(info, 0, this.txtBelongWareHouse.Text.ToInt32());
                             }
                         }
                         catch (Exception ex)

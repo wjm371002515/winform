@@ -47,10 +47,10 @@ namespace JCodes.Framework.WebUI.Controllers
             string belongCompanys = string.Join(",", companyList);
             string belongDepts = string.Join(",", deptList);
 
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             try
             {
-                result.Success = BLLFactory<RoleData>.Instance.UpdateRoleData(roleId, belongCompanys, belongDepts);
+                result.ErrorCode = BLLFactory<RoleData>.Instance.UpdateRoleData(roleId, belongCompanys, belongDepts)?0:1;
             }
             catch (Exception ex)
             {
@@ -71,10 +71,10 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult UpdateRoleData(int roleId, string belongCompanys, string belongDepts)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             try
             {
-                result.Success = BLLFactory<RoleData>.Instance.UpdateRoleData(roleId, belongCompanys, belongDepts);
+                result.ErrorCode = BLLFactory<RoleData>.Instance.UpdateRoleData(roleId, belongCompanys, belongDepts)?0:1;
             }
             catch(Exception ex)
             {

@@ -27,7 +27,7 @@ namespace JCodes.Framework.SQLServerDAL
             }
         }
         public OperationLogSetting()
-            : base(SQLServerPortal.gc._securityTablePre + "OperationLogSetting", "ID")
+            : base(SQLServerPortal.gc._securityTablePre + "OperationLogSetting", "Id")
         {
             this.SortField = "CreatorTime";
             this.IsDescending = true;
@@ -45,7 +45,7 @@ namespace JCodes.Framework.SQLServerDAL
             OperationLogSettingInfo info = new OperationLogSettingInfo();
             SmartDataReader reader = new SmartDataReader(dataReader);
 
-            info.Id = reader.GetInt32("Id");
+            /*info.Id = reader.GetInt32("Id");
             info.IsForbid = reader.GetInt32("IsForbid");
             info.TableName = reader.GetString("TableName");
             info.IsInsertLog = reader.GetInt32("IsInsertLog");
@@ -57,7 +57,7 @@ namespace JCodes.Framework.SQLServerDAL
             info.CreatorTime = reader.GetDateTime("CreatorTime");
             //info.Editor = reader.GetString("Editor");
             info.EditorId = reader.GetInt32("EditorId");
-            info.LastUpdateTime = reader.GetDateTime("LastUpdateTime");
+            info.LastUpdateTime = reader.GetDateTime("LastUpdateTime");*/
 
             return info;
         }
@@ -72,7 +72,7 @@ namespace JCodes.Framework.SQLServerDAL
             OperationLogSettingInfo info = obj as OperationLogSettingInfo;
             Hashtable hash = new Hashtable();
 
-            hash.Add("Id", info.Id);
+            /*hash.Add("Id", info.Id);
             hash.Add("IsForbid", info.IsForbid);
             hash.Add("TableName", info.TableName);
             hash.Add("IsInsertLog", info.IsInsertLog);
@@ -84,7 +84,7 @@ namespace JCodes.Framework.SQLServerDAL
             hash.Add("CreatorTime", info.CreatorTime);
             //hash.Add("Editor", info.Editor);
             hash.Add("EditorId", info.EditorId);
-            hash.Add("LastUpdateTime", info.LastUpdateTime);
+            hash.Add("LastUpdateTime", info.LastUpdateTime);*/
 
             return hash;
         }
@@ -97,7 +97,7 @@ namespace JCodes.Framework.SQLServerDAL
         {
             Dictionary<string, string> dict = new Dictionary<string, string>();
             #region 添加别名解析
-            dict.Add("Id", "编号");
+            /*dict.Add("Id", "编号");
             dict.Add("IsForbid", "是否禁用");
             dict.Add("TableName", "数据库表");
             dict.Add("IsInsertLog", "记录插入日志");
@@ -109,7 +109,7 @@ namespace JCodes.Framework.SQLServerDAL
             dict.Add("CreatorTime", "创建时间");
             //dict.Add("Editor", "编辑人");
             dict.Add("EditorId", "编辑人ID");
-            dict.Add("LastUpdateTime", "编辑时间");
+            dict.Add("LastUpdateTime", "编辑时间");*/
             #endregion
 
             return dict;

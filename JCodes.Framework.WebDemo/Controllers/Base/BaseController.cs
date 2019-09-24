@@ -39,7 +39,7 @@ namespace JCodes.Framework.WebDemo.Controllers
         /// <summary>
         /// 定义常用功能的控制ID，方便基类控制器对用户权限的控制
         /// </summary>
-        protected AuthorizeKey AuthorizeKey = new AuthorizeKey(); 
+        protected AuthorizeKeyInfo authorizeKeyInfo = new AuthorizeKeyInfo(); 
 
         #endregion
 
@@ -99,12 +99,12 @@ namespace JCodes.Framework.WebDemo.Controllers
         protected virtual void ConvertAuthorizedInfo()
         {
             //判断用户权限
-            AuthorizeKey.CanInsert = HasFunction(AuthorizeKey.InsertKey);
-            AuthorizeKey.CanUpdate = HasFunction(AuthorizeKey.UpdateKey);
-            AuthorizeKey.CanDelete = HasFunction(AuthorizeKey.DeleteKey);
-            AuthorizeKey.CanView = HasFunction(AuthorizeKey.ViewKey);
-            AuthorizeKey.CanList = HasFunction(AuthorizeKey.ListKey);
-            AuthorizeKey.CanExport = HasFunction(AuthorizeKey.ExportKey);
+            authorizeKeyInfo.CanInsert = HasFunction(authorizeKeyInfo.InsertKey);
+            authorizeKeyInfo.CanUpdate = HasFunction(authorizeKeyInfo.UpdateKey);
+            authorizeKeyInfo.CanDelete = HasFunction(authorizeKeyInfo.DeleteKey);
+            authorizeKeyInfo.CanView = HasFunction(authorizeKeyInfo.ViewKey);
+            authorizeKeyInfo.CanList = HasFunction(authorizeKeyInfo.ListKey);
+            authorizeKeyInfo.CanExport = HasFunction(authorizeKeyInfo.ExportKey);
         }
 
         #endregion

@@ -50,7 +50,7 @@ namespace JCodes.Framework.SQLServerDAL
 			dictTypeInfo.Remark = reader.GetString("Remark");
 			dictTypeInfo.Seq = reader.GetString("Seq");
             dictTypeInfo.EditorId = reader.GetInt32("EditorId");
-			dictTypeInfo.LastUpdated = reader.GetDateTime("LastUpdated");
+            dictTypeInfo.LastUpdateTime = reader.GetDateTime("LastUpdateTime");
             dictTypeInfo.Pid = reader.GetInt32("Pid");
 			
 			return dictTypeInfo;
@@ -71,7 +71,7 @@ namespace JCodes.Framework.SQLServerDAL
  			hash.Add("Remark", info.Remark);
  			hash.Add("Seq", info.Seq);
             hash.Add("EditorId", info.EditorId);
- 			hash.Add("LastUpdated", info.LastUpdated);
+            hash.Add("LastUpdateTime", info.LastUpdateTime);
             hash.Add("Pid", info.Pid);
  				
 			return hash;

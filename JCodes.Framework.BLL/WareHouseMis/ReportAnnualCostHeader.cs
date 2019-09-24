@@ -45,12 +45,12 @@ namespace JCodes.Framework.BLL
             }
             else
             {
-                existInfo.Note = info.Note;
-                existInfo.CreateDate = DateTimeHelper.GetServerDateTime2();
-                existInfo.Creator = info.Creator;
+                existInfo.Remark = info.Remark;
+                existInfo.CreatorTime = DateTimeHelper.GetServerDateTime2();
+                existInfo.CreatorId = info.CreatorId;
                 existInfo.ReportTitle = info.ReportTitle;
-                baseDal.Update(existInfo, existInfo.ID.ToString());
-                headerID = existInfo.ID;
+                baseDal.Update(existInfo, existInfo.Id);
+                headerID = existInfo.Id;
             }
             return headerID;
         }

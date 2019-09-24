@@ -96,9 +96,9 @@ namespace TestSecurityMix_WCF_WIN
                         {
                             foreach (FunctionInfo functionInfo in list)
                             {
-                                if (!functionDict.ContainsKey(functionInfo.FunctionId))
+                                if (!functionDict.ContainsKey(functionInfo.DllPath))
                                 {
-                                    functionDict.Add(functionInfo.FunctionId, functionInfo);
+                                    functionDict.Add(functionInfo.DllPath, functionInfo);
                                 }
                             }
                         }

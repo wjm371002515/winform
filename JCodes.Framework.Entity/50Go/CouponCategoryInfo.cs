@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Runtime.Serialization;
-using JCodes.Framework.Entity;
+using System.ComponentModel;
 
 namespace JCodes.Framework.Entity
 {
 	/// <summary>
-	/// 优惠券分类信息
+	/// 优惠券分类信息(CouponCategoryInfo)
+	/// 对象号: 100002
+	/// 备注信息: 
 	/// </summary>
 	[Serializable]
 	[DataContract]
-	public class CouponCategoryInfo : BaseEntity 
+	public partial class CouponCategoryInfo : BaseEntity
 	{
 		#region Field Members
 
@@ -34,7 +36,7 @@ namespace JCodes.Framework.Entity
 		private String m_CompanyLst = string.Empty;
 
 		/// <summary>
-		/// 创建人ID
+		/// 创建人编号
 		/// </summary>
 		private Int32 m_CreatorId = 0;
 
@@ -44,7 +46,7 @@ namespace JCodes.Framework.Entity
 		private DateTime m_CreatorTime = DateTime.Now;
 
 		/// <summary>
-		/// 编辑人ID
+		/// 编辑人编号
 		/// </summary>
 		private Int32 m_EditorId = 0;
 
@@ -65,6 +67,7 @@ namespace JCodes.Framework.Entity
 		/// ID序号
 		/// </summary>
 		[DataMember]
+		[DisplayName("ID序号")]
 		public virtual Int32 Id
 		{
 			get
@@ -81,6 +84,7 @@ namespace JCodes.Framework.Entity
 		/// 通用编码
 		/// </summary>
 		[DataMember]
+		[DisplayName("通用编码")]
 		public virtual String GeneralCode
 		{
 			get
@@ -97,6 +101,7 @@ namespace JCodes.Framework.Entity
 		/// 名称
 		/// </summary>
 		[DataMember]
+		[DisplayName("名称")]
 		public virtual String Name
 		{
 			get
@@ -113,6 +118,7 @@ namespace JCodes.Framework.Entity
 		/// 公司列表
 		/// </summary>
 		[DataMember]
+		[DisplayName("公司列表")]
 		public virtual String CompanyLst
 		{
 			get
@@ -126,9 +132,10 @@ namespace JCodes.Framework.Entity
 		}
 
 		/// <summary>
-		/// 创建人ID
+		/// 创建人编号
 		/// </summary>
 		[DataMember]
+		[DisplayName("创建人编号")]
 		public virtual Int32 CreatorId
 		{
 			get
@@ -145,6 +152,7 @@ namespace JCodes.Framework.Entity
 		/// 创建时间
 		/// </summary>
 		[DataMember]
+		[DisplayName("创建时间")]
 		public virtual DateTime CreatorTime
 		{
 			get
@@ -158,9 +166,10 @@ namespace JCodes.Framework.Entity
 		}
 
 		/// <summary>
-		/// 编辑人ID
+		/// 编辑人编号
 		/// </summary>
 		[DataMember]
+		[DisplayName("编辑人编号")]
 		public virtual Int32 EditorId
 		{
 			get
@@ -177,6 +186,7 @@ namespace JCodes.Framework.Entity
 		/// 最后更新时间
 		/// </summary>
 		[DataMember]
+		[DisplayName("最后更新时间")]
 		public virtual DateTime LastUpdateTime
 		{
 			get
@@ -193,6 +203,7 @@ namespace JCodes.Framework.Entity
 		/// 是否禁用
 		/// </summary>
 		[DataMember]
+		[DisplayName("是否禁用")]
 		public virtual Int16 IsForbid
 		{
 			get

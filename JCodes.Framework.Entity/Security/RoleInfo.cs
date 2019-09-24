@@ -1,284 +1,352 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using System.ComponentModel;
 
 namespace JCodes.Framework.Entity
 {
-    /// <summary>
-    /// 角色信息
-    /// </summary>
-    [Serializable]
-    [DataContract]
-    public class RoleInfo : BaseEntity
-    {
-        /// <summary>
-        /// 超级管理员名称
-        /// </summary>
-        public const string SuperAdminName = "超级管理员";
+	/// <summary>
+	/// 角色信息(RoleInfo)
+	/// 对象号: 100063
+	/// 备注信息: 
+	/// </summary>
+	[Serializable]
+	[DataContract]
+	public partial class RoleInfo : BaseEntity
+	{
+		#region Field Members
 
-        /// <summary>
-        /// 公司级别的系统管理员
-        /// </summary>
-        public const string CompanyAdminName = "系统管理员";
+		/// <summary>
+		/// ID序号
+		/// </summary>
+		private Int32 m_Id = 0;
 
-        #region Field Members
-        private int m_Id = 0; //          
-        private int m_Pid = -1; //父ID          
-        private string m_RoleCode; //角色编码          
-        private string m_Name; //角色名称          
-        private string m_Remark; //备注          
-        private string m_Seq; //排序码          
-        private Int32 m_RoleType; //角色分类          
-        private Int32 m_CompanyId; //所属公司ID          
-        private string m_CompanyName; //所属公司名称                   
-        private Int32 m_CreatorId; //创建人ID          
-        private DateTime m_CreatorTime = System.DateTime.Now; //创建时间                
-        private Int32 m_EditorId; //编辑人ID          
-        private DateTime m_LastUpdateTime = System.DateTime.Now; //编辑时间          
-        private Int32 m_IsDelete; //是否已删除          
-        private Int32 m_IsForbid; //有效标志          
+		/// <summary>
+		/// 父节点ID序号
+		/// </summary>
+		private Int32 m_Pid = 0;
 
-        #endregion
+		/// <summary>
+		/// 角色编码
+		/// </summary>
+		private String m_RoleCode = string.Empty;
 
-        #region Property Members
+		/// <summary>
+		/// 名称
+		/// </summary>
+		private String m_Name = string.Empty;
 
-        [DataMember]
-        public virtual int Id
-        {
-            get
-            {
-                return this.m_Id;
-            }
-            set
-            {
-                this.m_Id = value;
-            }
-        }
+		/// <summary>
+		/// 备注
+		/// </summary>
+		private String m_Remark = string.Empty;
 
-        /// <summary>
-        /// 父ID
-        /// </summary>
+		/// <summary>
+		/// 排序
+		/// </summary>
+		private String m_Seq = string.Empty;
+
+		/// <summary>
+		/// 角色分类
+		/// </summary>
+		private Int16 m_RoleType = 0;
+
+		/// <summary>
+		/// 公司Id
+		/// </summary>
+		private Int32 m_CompanyId = 0;
+
+		/// <summary>
+		/// 公司名字
+		/// </summary>
+		private String m_CompanyName = string.Empty;
+
+		/// <summary>
+		/// 创建人编号
+		/// </summary>
+		private Int32 m_CreatorId = 0;
+
+		/// <summary>
+		/// 创建时间
+		/// </summary>
+		private DateTime m_CreatorTime = DateTime.Now;
+
+		/// <summary>
+		/// 编辑人编号
+		/// </summary>
+		private Int32 m_EditorId = 0;
+
+		/// <summary>
+		/// 最后更新时间
+		/// </summary>
+		private DateTime m_LastUpdateTime = DateTime.Now;
+
+		/// <summary>
+		/// 是否删除
+		/// </summary>
+		private Int16 m_IsDelete = 0;
+
+		/// <summary>
+		/// 是否禁用
+		/// </summary>
+		private Int16 m_IsForbid = 0;
+		#endregion
+
+		#region Property Members
+
+		/// <summary>
+		/// ID序号
+		/// </summary>
 		[DataMember]
-        public virtual int Pid
-        {
-            get
-            {
-                return this.m_Pid;
-            }
-            set
-            {
-                this.m_Pid = value;
-            }
-        }
+		[DisplayName("ID序号")]
+		public virtual Int32 Id
+		{
+			get
+			{
+				return this.m_Id;
+			}
+			set
+			{
+				this.m_Id = value;
+			}
+		}
 
-        /// <summary>
-        /// 角色编码
-        /// </summary>
+		/// <summary>
+		/// 父节点ID序号
+		/// </summary>
 		[DataMember]
-        public virtual string RoleCode
-        {
-            get
-            {
-                return this.m_RoleCode;
-            }
-            set
-            {
-                this.m_RoleCode = value;
-            }
-        }
+		[DisplayName("父节点ID序号")]
+		public virtual Int32 Pid
+		{
+			get
+			{
+				return this.m_Pid;
+			}
+			set
+			{
+				this.m_Pid = value;
+			}
+		}
 
-        /// <summary>
-        /// 角色名称
-        /// </summary>
-        [DataMember]
-        public virtual string Name
-        {
-            get
-            {
-                return this.m_Name;
-            }
-            set
-            {
-                this.m_Name = value;
-            }
-        }
-
-        /// <summary>
-        /// 备注
-        /// </summary>
-        [DataMember]
-        public virtual string Remark
-        {
-            get
-            {
-                return this.m_Remark;
-            }
-            set
-            {
-                this.m_Remark = value;
-            }
-        }
-
-        /// <summary>
-        /// 排序
-        /// </summary>
+		/// <summary>
+		/// 角色编码
+		/// </summary>
 		[DataMember]
-        public virtual string Seq
-        {
-            get
-            {
-                return this.m_Seq;
-            }
-            set
-            {
-                this.m_Seq = value;
-            }
-        }
+		[DisplayName("角色编码")]
+		public virtual String RoleCode
+		{
+			get
+			{
+				return this.m_RoleCode;
+			}
+			set
+			{
+				this.m_RoleCode = value;
+			}
+		}
 
-        /// <summary>
-        /// 角色分类
-        /// </summary>
+		/// <summary>
+		/// 名称
+		/// </summary>
 		[DataMember]
-        public virtual Int32 RoleType
-        {
-            get
-            {
-                return this.m_RoleType;
-            }
-            set
-            {
-                this.m_RoleType = value;
-            }
-        }
+		[DisplayName("名称")]
+		public virtual String Name
+		{
+			get
+			{
+				return this.m_Name;
+			}
+			set
+			{
+				this.m_Name = value;
+			}
+		}
 
-        /// <summary>
-        /// 所属公司ID
-        /// </summary>
+		/// <summary>
+		/// 备注
+		/// </summary>
 		[DataMember]
-        public virtual Int32 CompanyId
-        {
-            get
-            {
-                return this.m_CompanyId;
-            }
-            set
-            {
-                this.m_CompanyId = value;
-            }
-        }
+		[DisplayName("备注")]
+		public virtual String Remark
+		{
+			get
+			{
+				return this.m_Remark;
+			}
+			set
+			{
+				this.m_Remark = value;
+			}
+		}
 
-        /// <summary>
-        /// 所属公司名称
-        /// </summary>
+		/// <summary>
+		/// 排序
+		/// </summary>
 		[DataMember]
-        public virtual string CompanyName
-        {
-            get
-            {
-                return this.m_CompanyName;
-            }
-            set
-            {
-                this.m_CompanyName = value;
-            }
-        }
+		[DisplayName("排序")]
+		public virtual String Seq
+		{
+			get
+			{
+				return this.m_Seq;
+			}
+			set
+			{
+				this.m_Seq = value;
+			}
+		}
 
-        /// <summary>
-        /// 创建人
-        /// </summary>
+		/// <summary>
+		/// 角色分类
+		/// </summary>
 		[DataMember]
-        public virtual Int32 CreatorId
-        {
-            get
-            {
-                return this.m_CreatorId;
-            }
-            set
-            {
-                this.m_CreatorId = value;
-            }
-        }
+		[DisplayName("角色分类")]
+		public virtual Int16 RoleType
+		{
+			get
+			{
+				return this.m_RoleType;
+			}
+			set
+			{
+				this.m_RoleType = value;
+			}
+		}
 
-        /// <summary>
-        /// 创建时间
-        /// </summary>
+		/// <summary>
+		/// 公司Id
+		/// </summary>
 		[DataMember]
-        public virtual DateTime CreatorTime
-        {
-            get
-            {
-                return this.m_CreatorTime;
-            }
-            set
-            {
-                this.m_CreatorTime = value;
-            }
-        }
+		[DisplayName("公司Id")]
+		public virtual Int32 CompanyId
+		{
+			get
+			{
+				return this.m_CompanyId;
+			}
+			set
+			{
+				this.m_CompanyId = value;
+			}
+		}
 
-        /// <summary>
-        /// 编辑人ID
-        /// </summary>
+		/// <summary>
+		/// 公司名字
+		/// </summary>
 		[DataMember]
-        public virtual Int32 EditorId
-        {
-            get
-            {
-                return this.m_EditorId;
-            }
-            set
-            {
-                this.m_EditorId = value;
-            }
-        }
+		[DisplayName("公司名字")]
+		public virtual String CompanyName
+		{
+			get
+			{
+				return this.m_CompanyName;
+			}
+			set
+			{
+				this.m_CompanyName = value;
+			}
+		}
 
-        /// <summary>
-        /// 编辑时间
-        /// </summary>
+		/// <summary>
+		/// 创建人编号
+		/// </summary>
 		[DataMember]
-        public virtual DateTime LastUpdateTime
-        {
-            get
-            {
-                return this.m_LastUpdateTime;
-            }
-            set
-            {
-                this.m_LastUpdateTime = value;
-            }
-        }
+		[DisplayName("创建人编号")]
+		public virtual Int32 CreatorId
+		{
+			get
+			{
+				return this.m_CreatorId;
+			}
+			set
+			{
+				this.m_CreatorId = value;
+			}
+		}
 
-        /// <summary>
-        /// 是否已删除
-        /// </summary>
+		/// <summary>
+		/// 创建时间
+		/// </summary>
 		[DataMember]
-        public virtual Int32 IsDelete
-        {
-            get
-            {
-                return this.m_IsDelete;
-            }
-            set
-            {
-                this.m_IsDelete = value;
-            }
-        }
+		[DisplayName("创建时间")]
+		public virtual DateTime CreatorTime
+		{
+			get
+			{
+				return this.m_CreatorTime;
+			}
+			set
+			{
+				this.m_CreatorTime = value;
+			}
+		}
 
-        /// <summary>
-        /// 有效标志
-        /// </summary>
+		/// <summary>
+		/// 编辑人编号
+		/// </summary>
 		[DataMember]
-        public virtual Int32 IsForbid
-        {
-            get
-            {
-                return this.m_IsForbid;
-            }
-            set
-            {
-                this.m_IsForbid = value;
-            }
-        }
+		[DisplayName("编辑人编号")]
+		public virtual Int32 EditorId
+		{
+			get
+			{
+				return this.m_EditorId;
+			}
+			set
+			{
+				this.m_EditorId = value;
+			}
+		}
 
+		/// <summary>
+		/// 最后更新时间
+		/// </summary>
+		[DataMember]
+		[DisplayName("最后更新时间")]
+		public virtual DateTime LastUpdateTime
+		{
+			get
+			{
+				return this.m_LastUpdateTime;
+			}
+			set
+			{
+				this.m_LastUpdateTime = value;
+			}
+		}
 
-        #endregion
-    }
+		/// <summary>
+		/// 是否删除
+		/// </summary>
+		[DataMember]
+		[DisplayName("是否删除")]
+		public virtual Int16 IsDelete
+		{
+			get
+			{
+				return this.m_IsDelete;
+			}
+			set
+			{
+				this.m_IsDelete = value;
+			}
+		}
+
+		/// <summary>
+		/// 是否禁用
+		/// </summary>
+		[DataMember]
+		[DisplayName("是否禁用")]
+		public virtual Int16 IsForbid
+		{
+			get
+			{
+				return this.m_IsForbid;
+			}
+			set
+			{
+				this.m_IsForbid = value;
+			}
+		}
+		#endregion
+	}
 }

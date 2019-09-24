@@ -110,7 +110,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
                             if (itemInfo != null)
                             {
                                 #region 更新
-                                itemInfo.ItemBigType = dr["备件属类"].ToString();
+                                /*itemInfo.ItemBigType = dr["备件属类"].ToString();
                                 itemInfo.ItemName = dr["备件名称"].ToString();
                                 itemInfo.ItemNo = itemNo;
                                 itemInfo.ItemType = dr["备件类别"].ToString();
@@ -130,9 +130,9 @@ namespace JCodes.Framework.AddIn.WareHouseManage
                                 itemInfo.Unit = dr["单位"].ToString();
                                 itemInfo.UsagePos = dr["使用位置"].ToString();
                                 itemInfo.WareHouse = wareHouse;
-                                itemInfo.Dept = dr["部门"].ToString();
+                                itemInfo.Dept = dr["部门"].ToString();*/
 
-                                bool success = BLLFactory<ItemDetail>.Instance.Update(itemInfo, itemInfo.ID.ToString());
+                                bool success = BLLFactory<ItemDetail>.Instance.Update(itemInfo, itemInfo.Id);
                                 if (success)
                                 {
                                     intOk++;
@@ -142,7 +142,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
                             else
                             {
                                 #region 添加
-                                itemInfo = new ItemDetailInfo();
+                                /*itemInfo = new ItemDetailInfo();
                                 itemInfo.ItemBigType = dr["备件属类"].ToString();
                                 itemInfo.ItemName = dr["备件名称"].ToString();
                                 itemInfo.ItemNo = itemNo;
@@ -163,7 +163,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
                                 itemInfo.Unit = dr["单位"].ToString();
                                 itemInfo.UsagePos = dr["使用位置"].ToString();
                                 itemInfo.WareHouse = wareHouse;
-                                itemInfo.Dept = dr["部门"].ToString();
+                                itemInfo.Dept = dr["部门"].ToString();*/
 
                                 bool success = BLLFactory<ItemDetail>.Instance.Insert(itemInfo);
                                 if (success)
@@ -231,11 +231,11 @@ namespace JCodes.Framework.AddIn.WareHouseManage
                         try
                         {
                             string wareHouse = WareHouseDict[wareHouseKey];
-                            StockInfo stockInfo = BLLFactory<Stock>.Instance.FindByItemNo(itemNo, wareHouse);
-                            if (stockInfo != null)
+                            WareInfo wareInfo = BLLFactory<Stock>.Instance.FindByItemNo(itemNo, wareHouse);
+                            if (wareInfo != null)
                             {
                                 #region 更新
-                                stockInfo.ItemNo = itemNo;
+                                /*stockInfo.ItemNo = itemNo;
                                 stockInfo.WareHouse = wareHouse;
                                 stockInfo.ItemName = dr["备件名称"].ToString();
                                 stockInfo.ItemBigType = dr["备件属类"].ToString();
@@ -265,13 +265,13 @@ namespace JCodes.Framework.AddIn.WareHouseManage
                                 if (success)
                                 {
                                     intOk++;
-                                }
+                                }*/
                                 #endregion
                             }
                             else
                             {
                                 #region 添加
-                                stockInfo = new StockInfo();
+                                /*stockInfo = new StockInfo();
                                 stockInfo.ItemNo = itemNo;
                                 stockInfo.WareHouse = wareHouse;
                                 stockInfo.ItemName = dr["备件名称"].ToString();
@@ -303,7 +303,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
                                 if (success)
                                 {
                                     intOk++;
-                                }
+                                }*/
 
                                 #endregion
                             }

@@ -10,24 +10,24 @@ using JCodes.Framework.IDAL;
 using JCodes.Framework.Common.Framework.BaseDAL;
 using JCodes.Framework.Common.Databases;
 
-namespace JCodes.Framework.SQLServerDAL
+namespace JCodes.Framework.MySqlDAL
 {
 	/// <summary>
 	/// Stock 的摘要说明。
 	/// </summary>
-    public class Stock : BaseDALSQLServer<StockInfo>, IStock
+	public class Ware : BaseDALMySql<WareInfo>, IWare
 	{
 		#region 对象实例及构造函数
 
-		public static Stock Instance
+        public static Ware Instance
 		{
 			get
 			{
-				return new Stock();
+                return new Ware();
 			}
 		}
-        public Stock()
-            : base(SQLServerPortal.gc._wareHouseTablePre + "Stock", "ID")
+        public Ware()
+            : base(MySqlPortal.gc._wareHouseTablePre + "Ware", "Id")
 		{
 		}
 
@@ -38,12 +38,12 @@ namespace JCodes.Framework.SQLServerDAL
 		/// </summary>
 		/// <param name="dr">有效的DataReader对象</param>
 		/// <returns>实体类对象</returns>
-		protected override StockInfo DataReaderToEntity(IDataReader dataReader)
+		protected override WareInfo DataReaderToEntity(IDataReader dataReader)
 		{
-			StockInfo stockInfo = new StockInfo();
+            WareInfo wareInfo = new WareInfo();
 			SmartDataReader reader = new SmartDataReader(dataReader);
 			
-			stockInfo.ID = reader.GetInt32("ID");
+			/*stockInfo.ID = reader.GetInt32("ID");
 			stockInfo.ItemNo = reader.GetString("ItemNo");
 			stockInfo.ItemName = reader.GetString("ItemName");
 			stockInfo.ItemBigType = reader.GetString("ItemBigType");
@@ -53,9 +53,9 @@ namespace JCodes.Framework.SQLServerDAL
 			stockInfo.LowWarning = reader.GetInt32("LowWarning");
 			stockInfo.HighWarning = reader.GetInt32("HighWarning");
 			stockInfo.WareHouse = reader.GetString("WareHouse");
-			stockInfo.Note = reader.GetString("Note");
-			
-			return stockInfo;
+			stockInfo.Note = reader.GetString("Note");*/
+
+            return wareInfo;
 		}
 
 		/// <summary>
@@ -63,12 +63,12 @@ namespace JCodes.Framework.SQLServerDAL
 		/// </summary>
 		/// <param name="obj">有效的实体对象</param>
 		/// <returns>包含键值映射的Hashtable</returns>
-        protected override Hashtable GetHashByEntity(StockInfo obj)
+        protected override Hashtable GetHashByEntity(WareInfo obj)
 		{
-		    StockInfo info = obj as StockInfo;
+            WareInfo info = obj as WareInfo;
 			Hashtable hash = new Hashtable(); 
 			
- 			hash.Add("ItemNo", info.ItemNo);
+ 			/*hash.Add("ItemNo", info.ItemNo);
  			hash.Add("ItemName", info.ItemName);
  			hash.Add("ItemBigType", info.ItemBigType);
  			hash.Add("ItemType", info.ItemType);
@@ -77,7 +77,7 @@ namespace JCodes.Framework.SQLServerDAL
  			hash.Add("LowWarning", info.LowWarning);
  			hash.Add("HighWarning", info.HighWarning);
  			hash.Add("WareHouse", info.WareHouse);
- 			hash.Add("Note", info.Note);
+ 			hash.Add("Note", info.Note);*/
  				
 			return hash;
 		}
@@ -89,24 +89,24 @@ namespace JCodes.Framework.SQLServerDAL
         /// <param name="quantity">期初数量</param>
         /// <param name="wareHouse">库房名称</param>
         /// <returns></returns>
-        public bool InitStockQuantity(ItemDetailInfo detailInfo, int quantity, string wareHouse)
+        public bool InitStockQuantity(ItemDetailInfo detailInfo, int quantity, Int32 wareHouseId)
         {
-            bool exist =base.IsExistRecord(string.Format("ItemNo='{0}' AND WareHouse='{1}'", detailInfo.ItemNo, wareHouse));
+            bool exist = base.IsExistRecord(string.Format("ItemNo='{0}' AND WareHouse='{1}'", detailInfo.ItemNo, wareHouseId));
             if (exist)
             {
                 throw new ArgumentException("库房已经存在该项目的信息，不能设置");
             }
 
-            StockInfo stockInfo = new StockInfo();
-            stockInfo.ItemBigType = detailInfo.ItemBigType;
-            stockInfo.ItemName = detailInfo.ItemName;
-            stockInfo.ItemNo = detailInfo.ItemNo;
-            stockInfo.ItemType = detailInfo.ItemType;
-            stockInfo.StockQuantity = quantity;
-            stockInfo.WareHouse = wareHouse;
+            WareInfo wareInfo = new WareInfo();
+            wareInfo.ItemBigtype = detailInfo.ItemBigtype;
+            wareInfo.Name = detailInfo.Name;
+            wareInfo.ItemNo = detailInfo.ItemNo;
+            wareInfo.ItemType = detailInfo.ItemType;
+            wareInfo.Amount = quantity;
+            wareInfo.WareHouseId = wareHouseId;
             //stockInfo.HighWarning =
             //stockInfo.LowWarning = 
-            return base.Insert(stockInfo);
+            return base.Insert(wareInfo);
         }
 
 
@@ -117,9 +117,9 @@ namespace JCodes.Framework.SQLServerDAL
         /// <param name="itemName">备件名称</param>
         /// <param name="quantity">库存属类</param>
         /// <returns></returns>
-        public bool AddStockQuantiy(string ItemNo, string itemName, int quantity, string wareHouse)
+        public bool AddStockQuantiy(string ItemNo, string itemName, int quantity, Int32 wareHouseId)
         {
-            return this.AddStockQuantiy(ItemNo, itemName, quantity, wareHouse, null);
+            return this.AddStockQuantiy(ItemNo, itemName, quantity, wareHouseId, null);
         }
 
         /// <summary>
@@ -129,10 +129,10 @@ namespace JCodes.Framework.SQLServerDAL
         /// <param name="itemName">备件名称</param>
         /// <param name="quantity">库存属类</param>
         /// <returns></returns>
-        public bool AddStockQuantiy(string ItemNo, string itemName, int quantity, string wareHouse, DbTransaction trans)
+        public bool AddStockQuantiy(string ItemNo, string itemName, int quantity, Int32 wareHouseId, DbTransaction trans)
         {
             string sql = string.Format("Update {0} set StockQuantity=StockQuantity+{1}, ItemName='{2}' where ItemNo='{3}' and WareHouse='{4}'  ",
-                this.tableName, quantity, itemName, ItemNo, wareHouse);
+                this.tableName, quantity, itemName, ItemNo, wareHouseId);
             Database db = CreateDatabase();
             DbCommand command = db.GetSqlStringCommand(sql);
             bool result = false;
@@ -178,13 +178,13 @@ namespace JCodes.Framework.SQLServerDAL
         {
             //ID,ItemNo,ItemName,Manufacture,MapNo,Specification,Material,ItemBigType,ItemType,Unit,Price,(UnitCost * StockQuantity) StockAmount, (Price * StockQuantity) Amount, Source,StoragePos,UsagePos,StockQuantity,AlarmQuantity,Note
             string sql = string.Format(@"Select t.ID,d.ItemNo,d.ItemName,Price,t.StockQuantity,(Price * t.StockQuantity) as StockAmount,d.Manufacture,d.MapNo,d.Specification,d.Material,d.ItemBigType,d.ItemType,d.Unit, Source,StoragePos,UsagePos,LowWarning,HighWarning,t.Note,t.WareHouse,d.Dept
-                                         From {0}Stock t inner join {0}ItemDetail d on t.ItemNo = d.ItemNo  {1} order by t.id ",SQLServerPortal.gc._wareHouseTablePre , condition);
+                                         From {0}Stock t inner join {0}ItemDetail d on t.ItemNo = d.ItemNo  {1} order by t.id ", MySqlPortal.gc._wareHouseTablePre, condition);
             return this.SqlTable(sql);
         }
 
         public int GetCurrentStockReportCount(string condition)
         {
-            string sql = string.Format(@"Select count(*) From {0}Stock t inner join {0}ItemDetail d on t.ItemNo = d.ItemNo  {1} ",SQLServerPortal.gc._wareHouseTablePre, condition);
+            string sql = string.Format(@"Select count(*) From {0}Stock t inner join {0}ItemDetail d on t.ItemNo = d.ItemNo  {1} ", MySqlPortal.gc._wareHouseTablePre, condition);
             string value = this.SqlValueList(sql);
             return Convert.ToInt32(value);
         }

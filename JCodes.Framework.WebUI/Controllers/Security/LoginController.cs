@@ -42,8 +42,8 @@ namespace JCodes.Framework.WebUI.Controllers
         public ActionResult ClearSession()
         {
             Session.Clear();
-            CommonResult result = new CommonResult();
-            result.Success = true;
+            ReturnResult result = new ReturnResult();
+            result.ErrorCode = 0;
 
             return ToJsonContent(result);
         }
@@ -67,7 +67,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult CheckUser(string username, string password, string code)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
 
             bool codeValidated = true;
             if (this.TempData["ValidateCode"] != null)
@@ -93,7 +93,7 @@ namespace JCodes.Framework.WebUI.Controllers
                     UserInfo info = BLLFactory<User>.Instance.GetUserByName(username);
                     if (info != null)
                     {
-                        result.Success = true;
+                        result.ErrorCode = 0;
                         
                         //方便方法使用
                         Session["UserInfo"] = info;
@@ -102,8 +102,8 @@ namespace JCodes.Framework.WebUI.Controllers
                         Session["UserID"] = info.Id;
                         Session["Company_ID"] = info.CompanyId;
                         Session["Dept_ID"] = info.DeptId;
-                        bool isSuperAdmin = BLLFactory<User>.Instance.UserInRole(info.Name, RoleInfo.SuperAdminName);//判断是否超级管理员
-                        Session["IsSuperAdmin"] = isSuperAdmin;
+                        /*bool isSuperAdmin = BLLFactory<User>.Instance.UserInRole(info.Name, RoleInfo.SuperAdminName);//判断是否超级管理员
+                        Session["IsSuperAdmin"] = isSuperAdmin;*/
 
                         Session["Identity"] = info.Name.Trim();
 
@@ -113,11 +113,11 @@ namespace JCodes.Framework.WebUI.Controllers
                         Dictionary<string, string> functionDict = new Dictionary<string, string>();
                         foreach (FunctionInfo functionInfo in functionList)
                         {
-                            if (!string.IsNullOrEmpty(functionInfo.FunctionId) &&
+                            /*if (!string.IsNullOrEmpty(functionInfo.FunctionId) &&
                                 !functionDict.ContainsKey(functionInfo.FunctionId))
                             {
                                 functionDict.Add(functionInfo.FunctionId, functionInfo.Name);
-                            }
+                            }*/
                         }
                         Session["Functions"] = functionDict;
 

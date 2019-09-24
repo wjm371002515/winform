@@ -40,11 +40,11 @@ namespace JCodes.Framework.MySqlDAL
             SystemTypeInfo systemTypeInfo = new SystemTypeInfo();
             SmartDataReader reader = new SmartDataReader(dataReader);
 
-            systemTypeInfo.OID = reader.GetString("OID");
+            /*systemTypeInfo.OID = reader.GetString("OID");
             systemTypeInfo.Name = reader.GetString("Name");
             systemTypeInfo.CustomID = reader.GetString("CustomID");
             systemTypeInfo.Authorize = reader.GetString("Authorize");
-            systemTypeInfo.Note = reader.GetString("Note");
+            systemTypeInfo.Note = reader.GetString("Note");*/
 
             return systemTypeInfo;
         }
@@ -59,11 +59,11 @@ namespace JCodes.Framework.MySqlDAL
             SystemTypeInfo info = obj as SystemTypeInfo;
             Hashtable hash = new Hashtable();
 
-            hash.Add("OID", info.OID);
+            /*hash.Add("OID", info.OID);
             hash.Add("Name", info.Name);
             hash.Add("CustomID", info.CustomID);
             hash.Add("Authorize", info.Authorize);
-            hash.Add("Note", info.Note);
+            hash.Add("Note", info.Note);*/
 
             return hash;
         }

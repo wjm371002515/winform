@@ -43,13 +43,13 @@ namespace JCodes.Framework.MySqlDAL
 			ReportAnnualCostHeaderInfo reportAnnualCostHeaderInfo = new ReportAnnualCostHeaderInfo();
 			SmartDataReader reader = new SmartDataReader(dataReader);
 			
-			reportAnnualCostHeaderInfo.ID = reader.GetInt32("ID");
+			/*reportAnnualCostHeaderInfo.ID = reader.GetInt32("ID");
 			reportAnnualCostHeaderInfo.ReportType = reader.GetInt32("ReportType");
 			reportAnnualCostHeaderInfo.ReportTitle = reader.GetString("ReportTitle");
 			reportAnnualCostHeaderInfo.ReportYear = reader.GetInt32("ReportYear");
 			reportAnnualCostHeaderInfo.CreateDate = reader.GetDateTime("CreateDate");
 			reportAnnualCostHeaderInfo.Creator = reader.GetString("Creator");
-			reportAnnualCostHeaderInfo.Note = reader.GetString("Note");
+			reportAnnualCostHeaderInfo.Note = reader.GetString("Note");*/
 			
 			return reportAnnualCostHeaderInfo;
 		}
@@ -64,13 +64,13 @@ namespace JCodes.Framework.MySqlDAL
 		    ReportAnnualCostHeaderInfo info = obj as ReportAnnualCostHeaderInfo;
 			Hashtable hash = new Hashtable(); 
 			
- 			hash.Add("ReportType", info.ReportType);
+ 			/*hash.Add("ReportType", info.ReportType);
  			hash.Add("ReportTitle", info.ReportTitle);
  			hash.Add("ReportYear", info.ReportYear);
  			hash.Add("CreateDate", info.CreateDate);
  			hash.Add("Creator", info.Creator);
  			hash.Add("Note", info.Note);
- 				
+ 				*/
 			return hash;
 		}
 

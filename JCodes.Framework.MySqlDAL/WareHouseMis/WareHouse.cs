@@ -45,12 +45,12 @@ namespace JCodes.Framework.MySqlDAL
 			WareHouseInfo wareHouseInfo = new WareHouseInfo();
 			SmartDataReader reader = new SmartDataReader(dataReader);
 			
-			wareHouseInfo.ID = reader.GetInt32("ID");
+			/*wareHouseInfo.ID = reader.GetInt32("ID");
 			wareHouseInfo.Name = reader.GetString("Name");
 			wareHouseInfo.Manager = reader.GetString("Manager");
 			wareHouseInfo.Phone = reader.GetString("Phone");
 			wareHouseInfo.Address = reader.GetString("Address");
-			wareHouseInfo.Note = reader.GetString("Note");
+			wareHouseInfo.Note = reader.GetString("Note");*/
 			
 			return wareHouseInfo;
 		}
@@ -65,11 +65,11 @@ namespace JCodes.Framework.MySqlDAL
 		    WareHouseInfo info = obj as WareHouseInfo;
 			Hashtable hash = new Hashtable(); 
 			
- 			hash.Add("Name", info.Name);
+ 			/*hash.Add("Name", info.Name);
  			hash.Add("Manager", info.Manager);
  			hash.Add("Phone", info.Phone);
  			hash.Add("Address", info.Address);
- 			hash.Add("Note", info.Note);
+ 			hash.Add("Note", info.Note);*/
  				
 			return hash;
 		}

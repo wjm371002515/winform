@@ -47,18 +47,18 @@ namespace JCodes.Framework.AddIn.Proj
             // 将节点转换为元素，便于得到节点的属性值
             XmlElement xeproject = (XmlElement)xn1project;
             // 得到Type和ISBN两个属性的属性值
-            projectInfo.GUID = xeproject.GetAttribute("guid").ToString();
+            projectInfo.Gid = xeproject.GetAttribute("gid").ToString();
             // 得到DataTypeInfo节点的所有子节点
             XmlNodeList xnl0project = xeproject.ChildNodes;
             projectInfo.Name = xnl0project.Item(0).InnerText;
             projectInfo.Version = xnl0project.Item(1).InnerText;
-            projectInfo.Contract = xnl0project.Item(2).InnerText;
+            projectInfo.Contacts = xnl0project.Item(2).InnerText;
             projectInfo.Remark = xnl0project.Item(3).InnerText;
             projectInfo.DbType = xnl0project.Item(4).InnerText;
             projectInfo.DicttypeTable = xnl0project.Item(5).InnerText;
             projectInfo.DictdataTable = xnl0project.Item(6).InnerText;
             projectInfo.ErrTable = xnl0project.Item(7).InnerText;
-            projectInfo.LastTime = xnl0project.Item(8).InnerText;
+            projectInfo.LastUpdateTime = Convert.ToDateTime( xnl0project.Item(8).InnerText );
             projectInfo.OutputPath = xnl0project.Item(9).InnerText;
 
             #endregion
@@ -79,13 +79,13 @@ namespace JCodes.Framework.AddIn.Proj
         {
             txtName.Text = projectInfo.Name;
             txtVersion.Text = projectInfo.Version;
-            txtContract.Text = projectInfo.Contract;
+            txtContract.Text = projectInfo.Contacts;
             txtRemark.Text = projectInfo.Remark;
             cbbdbtype.SetComboBoxItem(projectInfo.DbType);
             txtdicttype.Text = projectInfo.DicttypeTable;
             txtdictdata.Text = projectInfo.DictdataTable;
             txterr.Text = projectInfo.ErrTable;
-            txtlasttime.Text = projectInfo.LastTime;
+            txtlasttime.Text = projectInfo.LastUpdateTime.ToString("yyyyMMdd HH:mm:ss");
             txtoutputpath.Text = projectInfo.OutputPath;
         }
 
@@ -121,7 +121,7 @@ namespace JCodes.Framework.AddIn.Proj
                 }
 
                 string curdatetime = DateTimeHelper.GetServerDateTime();
-                xmlprojectthelper.Replace("datatype/item[@guid=\"" + projectInfo.GUID + "\"]/lasttime", curdatetime);
+                xmlprojectthelper.Replace("datatype/item[@gid=\"" + projectInfo.Gid + "\"]/lastupdatetime", curdatetime);
                 xmlprojectthelper.Save(false);
                 txtlasttime.Text = curdatetime;
             }
@@ -144,7 +144,7 @@ namespace JCodes.Framework.AddIn.Proj
             {
                 txtoutputpath.Text = folderbrowserdialog.SelectedPath;
                 string curdatetime = DateTimeHelper.GetServerDateTime();
-                xmlprojectthelper.Replace("datatype/item[@guid=\"" + projectInfo.GUID + "\"]/lasttime", curdatetime);
+                xmlprojectthelper.Replace("datatype/item[@gid=\"" + projectInfo.Gid + "\"]/lastupdatetime", curdatetime);
                 xmlprojectthelper.Save(false);
                 txtlasttime.Text = curdatetime;
             }
@@ -178,31 +178,31 @@ namespace JCodes.Framework.AddIn.Proj
             switch (c.Name)
             {
                 case "txtName":
-                    result = "datatype/item[@guid=\"" + projectInfo.GUID + "\"]/name";
+                    result = "datatype/item[@gid=\"" + projectInfo.Gid + "\"]/name";
                     break;
                 case "txtVersion":
-                    result = "datatype/item[@guid=\"" + projectInfo.GUID + "\"]/version";
+                    result = "datatype/item[@gid=\"" + projectInfo.Gid + "\"]/version";
                     break;
                 case "txtContract":
-                    result = "datatype/item[@guid=\"" + projectInfo.GUID + "\"]/contract";
+                    result = "datatype/item[@gid=\"" + projectInfo.Gid + "\"]/contacts";
                     break;
                 case "txtRemark":
-                    result = "datatype/item[@guid=\"" + projectInfo.GUID + "\"]/remark";
+                    result = "datatype/item[@gid=\"" + projectInfo.Gid + "\"]/remark";
                     break;
                 case "cbbdbtype":
-                    result = "datatype/item[@guid=\"" + projectInfo.GUID + "\"]/dbtype";
+                    result = "datatype/item[@gid=\"" + projectInfo.Gid + "\"]/dbtype";
                     break;
                 case "txtdicttype":
-                    result = "datatype/item[@guid=\"" + projectInfo.GUID + "\"]/dicttype_table";
+                    result = "datatype/item[@gid=\"" + projectInfo.Gid + "\"]/dicttype_table";
                     break;
                 case "txtdictdata":
-                    result = "datatype/item[@guid=\"" + projectInfo.GUID + "\"]/dictdata_table";
+                    result = "datatype/item[@gid=\"" + projectInfo.Gid + "\"]/dictdata_table";
                     break;
                 case "txterr":
-                    result = "datatype/item[@guid=\"" + projectInfo.GUID + "\"]/err_table";
+                    result = "datatype/item[@gid=\"" + projectInfo.Gid + "\"]/err_table";
                     break;
                 case "txtoutputpath":
-                    result = "datatype/item[@guid=\"" + projectInfo.GUID + "\"]/outputpath";
+                    result = "datatype/item[@gid=\"" + projectInfo.Gid + "\"]/outputpath";
                     break;
             }
 
@@ -214,7 +214,7 @@ namespace JCodes.Framework.AddIn.Proj
 
             string curdatetime = DateTimeHelper.GetServerDateTime();
             xmlprojectthelper.Replace(result, c.Name == "cbbdbtype" ? c.Text.Split('-')[0] : c.Text);
-            xmlprojectthelper.Replace("datatype/item[@guid=\"" + projectInfo.GUID + "\"]/lasttime", curdatetime);
+            xmlprojectthelper.Replace("datatype/item[@gid=\"" + projectInfo.Gid + "\"]/lastupdatetime", curdatetime);
             xmlprojectthelper.Save(false);
             txtlasttime.Text = curdatetime;
         }

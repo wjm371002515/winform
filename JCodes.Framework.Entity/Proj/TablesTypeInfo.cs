@@ -1,53 +1,110 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 
 namespace JCodes.Framework.Entity
 {
-    public class TablesTypeInfo
-    {
-        public TablesTypeInfo()
-        { }
+	/// <summary>
+	/// 表分类信息(TablesTypeInfo)
+	/// 对象号: 100054
+	/// 备注信息: 
+	/// </summary>
+	[Serializable]
+	[DataContract]
+	public partial class TablesTypeInfo
+	{
+		#region Field Members
 
-        private string guid;
+		/// <summary>
+		/// GUID对应的ID序号
+		/// </summary>
+		private String m_Gid = string.Empty;
 
-        [DisplayName("GUID")]
-        public string GUID
-        {
-            get { return guid; }
-            set { guid = value; }
-        }
+		/// <summary>
+		/// 创建时间
+		/// </summary>
+		private DateTime m_CreatorTime = DateTime.Now;
 
-        /// <summary>
-        /// 创建时间
-        /// </summary>
-        private string createdate;
+		/// <summary>
+		/// 名称
+		/// </summary>
+		private String m_Name = string.Empty;
 
-        [DisplayName("创建时间")]
-        public string CreateDate
-        {
-            get { return createdate; }
-            set { createdate = value; }
-        }
+		/// <summary>
+		/// 是否基础数据
+		/// </summary>
+		private Int16 m_IsBasicData = 0;
+		#endregion
 
-        private string name;
+		#region Property Members
 
-        [DisplayName("分类名")]
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
+		/// <summary>
+		/// GUID对应的ID序号
+		/// </summary>
+		[DataMember]
+		[DisplayName("GUID对应的ID序号")]
+		public virtual String Gid
+		{
+			get
+			{
+				return this.m_Gid;
+			}
+			set
+			{
+				this.m_Gid = value;
+			}
+		}
 
-        private string basicdata;
+		/// <summary>
+		/// 创建时间
+		/// </summary>
+		[DataMember]
+		[DisplayName("创建时间")]
+		public virtual DateTime CreatorTime
+		{
+			get
+			{
+				return this.m_CreatorTime;
+			}
+			set
+			{
+				this.m_CreatorTime = value;
+			}
+		}
 
-        [DisplayName("是否基础数据")]
-        public string BasicData
-        {
-            get { return basicdata; }
-            set { basicdata = value; }
-        }
-    }
+		/// <summary>
+		/// 名称
+		/// </summary>
+		[DataMember]
+		[DisplayName("名称")]
+		public virtual String Name
+		{
+			get
+			{
+				return this.m_Name;
+			}
+			set
+			{
+				this.m_Name = value;
+			}
+		}
+
+		/// <summary>
+		/// 是否基础数据
+		/// </summary>
+		[DataMember]
+		[DisplayName("是否基础数据")]
+		public virtual Int16 IsBasicData
+		{
+			get
+			{
+				return this.m_IsBasicData;
+			}
+			set
+			{
+				this.m_IsBasicData = value;
+			}
+		}
+		#endregion
+	}
 }

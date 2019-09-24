@@ -47,12 +47,18 @@ namespace JCodes.Framework.AddIn.Proj
         private Label lblchineseName;
         private Label lblDB;
         private Label lblversion;
+        private Label lblfolder;
+        private Label lblfieldnamespace;
+        private Label lblbaseclass;
         private Label lbllastupdate;
         private Label lblremark;
         private TextEdit txtobjectId;
         private TextEdit txtenglishName;
         private TextEdit txtchineseName;
         private TextEdit txtversion;
+        private TextEdit txtfolder;
+        private MemoEdit mefieldnamespace;
+        private TextEdit txtbaseclass;
         private DateEdit txtlastupdate;
         private MemoEdit meremark;
         private SplitContainer splitContainer1;
@@ -69,10 +75,13 @@ namespace JCodes.Framework.AddIn.Proj
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnRemark;
         private DevExpress.XtraGrid.GridControl gridControlIndexs;
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewIndexs;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnIndexGuid;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnIndexName;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnIndexChineseName;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnIndexFieldType;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnIndexContent;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnIndexRemark;
+        DevExpress.XtraEditors.Repository.RepositoryItemMemoExEdit repositoryItemMemoExEdit;
         #endregion
 
         #region 读取xml配置文件
@@ -83,7 +92,7 @@ namespace JCodes.Framework.AddIn.Proj
 
         #region 数据缓存
         private string xmlfieldsinfomodel = "<name>{0}</name><remark>{1}</remark>";
-        private string xmldiyfieldinfomodel = "<name>{0}</name><chinesename>{1}</chinesename><content>{2}</content><remark>{3}</remark>";
+        private string xmldiyfieldinfomodel = "<name>{0}</name><chinesename>{1}</chinesename><fieldtype></fieldtype><content>{2}</content><remark>{3}</remark>";
 
         private List<DictInfo> dictTypeInfoList = null;
 
@@ -145,14 +154,14 @@ namespace JCodes.Framework.AddIn.Proj
                 // 将节点转换为元素，便于得到节点的属性值
                 XmlElement xe = (XmlElement)xn1;
                 // 得到Type和ISBN两个属性的属性值
-                tablesInfo.GUID = xe.GetAttribute("guid").ToString();
+                tablesInfo.Gid = xe.GetAttribute("gid").ToString();
 
                 // 得到ConstantInfo节点的所有子节点
                 XmlNodeList xnl0 = xe.ChildNodes;
                 tablesInfo.Name = xnl0.Item(0).InnerText;
                 tablesInfo.ChineseName = xnl0.Item(1).InnerText;
-                tablesInfo.FunctionId = xnl0.Item(2).InnerText;
-                tablesInfo.Path = xnl0.Item(3).InnerText;
+                tablesInfo.FunctionId = xnl0.Item(2).InnerText.ToString().ToInt32();
+                tablesInfo.BasicdataPath = xnl0.Item(3).InnerText;
                 tablesInfoList.Add(tablesInfo);
             }
            
@@ -166,7 +175,7 @@ namespace JCodes.Framework.AddIn.Proj
                 NavBarItem item = new NavBarItem();
                 item.Caption = string.Format("{0}-({1} {2})", tablesInfo.FunctionId, tablesInfo.ChineseName, tablesInfo.Name);
                 // 临时调整为表名
-                item.Tag = tablesInfo.GUID;
+                item.Tag = tablesInfo.Gid;
                 item.Name = tablesInfo.Name;
                 item.Hint = tablesInfo.ChineseName;
                 item.LinkClicked += Item_LinkClicked;
@@ -187,7 +196,7 @@ namespace JCodes.Framework.AddIn.Proj
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 NavBarItem item = new NavBarItem();
-                item.Caption = string.Format("{0}-({1} {2})", dlg.strFunction, dlg.strChineseName, dlg.strItemName);
+                item.Caption = string.Format("{0}-({1} {2})", dlg.intFunction, dlg.strChineseName, dlg.strItemName);
                 item.Tag = dlg.strGuid;
                 item.Name = dlg.strItemName;
                 item.Hint = dlg.strChineseName;
@@ -224,7 +233,7 @@ namespace JCodes.Framework.AddIn.Proj
             {
                 NavBarItem item = selectedLink.Item;
 
-                item.Caption = string.Format("{0}-({1} {2})", dlg.strFunction, dlg.strChineseName, dlg.strItemName);
+                item.Caption = string.Format("{0}-({1} {2})", dlg.intFunction, dlg.strChineseName, dlg.strItemName);
                 item.Tag = dlg.strGuid;
                 item.Name = dlg.strItemName;
                 item.Hint = dlg.strChineseName;
@@ -247,7 +256,7 @@ namespace JCodes.Framework.AddIn.Proj
 
             xmltableshelper = new XmlHelper(@"XML\entity.xml");
             // 删除子项
-            xmltableshelper.DeleteByPathNode(string.Format("datatype/dataitem/item[@guid=\"{0}\"]", selectedLink.Item.Tag));
+            xmltableshelper.DeleteByPathNode(string.Format("datatype/dataitem/item[@gid=\"{0}\"]", selectedLink.Item.Tag));
             xmltableshelper.Save(false);
 
             // 删除table文件
@@ -311,6 +320,9 @@ namespace JCodes.Framework.AddIn.Proj
             lblchineseName = new Label();
             lblDB = new Label();
             lblversion = new Label();
+            lblfolder = new Label();
+            lblfieldnamespace = new Label();
+            lblbaseclass = new Label();
             lbllastupdate = new Label();
             lblremark = new Label();
 
@@ -318,6 +330,9 @@ namespace JCodes.Framework.AddIn.Proj
             txtenglishName = new TextEdit();
             txtchineseName = new TextEdit();
             txtversion = new TextEdit();
+            txtfolder = new TextEdit();
+            mefieldnamespace = new MemoEdit();
+            txtbaseclass = new TextEdit();
             txtlastupdate = new DateEdit();
             meremark = new MemoEdit();
 
@@ -326,6 +341,9 @@ namespace JCodes.Framework.AddIn.Proj
             ((System.ComponentModel.ISupportInitialize)(txtenglishName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(txtchineseName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(txtversion.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(txtfolder.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(mefieldnamespace.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(txtbaseclass.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(txtlastupdate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(meremark.Properties)).BeginInit();
 
@@ -378,16 +396,48 @@ namespace JCodes.Framework.AddIn.Proj
             txtversion.Location = new System.Drawing.Point(100, 107);
             txtversion.Name = "txtversion";
             txtversion.Size = new System.Drawing.Size(180, 22);
-            txtversion.Enabled = false;
 
-            lbllastupdate.Location = new System.Drawing.Point(5, 130);
+            lblfolder.Location = new System.Drawing.Point(5, 130);
+            lblfolder.Name = "lblfolder";
+            lblfolder.Size = new System.Drawing.Size(90, 22);
+            lblfolder.Text = "导出文件夹";
+            lblfolder.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+
+            txtfolder.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left));
+            txtfolder.Location = new System.Drawing.Point(100, 132);
+            txtfolder.Name = "txtfolder";
+            txtfolder.Size = new System.Drawing.Size(180, 22);
+
+            lblfieldnamespace.Location = new System.Drawing.Point(5, 155);
+            lblfieldnamespace.Name = "lblfieldnamespace";
+            lblfieldnamespace.Size = new System.Drawing.Size(90, 22);
+            lblfieldnamespace.Text = "命名空间";
+            lblfieldnamespace.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+
+            mefieldnamespace.Location = new System.Drawing.Point(100, 157);
+            mefieldnamespace.Name = "mefieldnamespace";
+            mefieldnamespace.Size = new System.Drawing.Size(180, 120);
+            mefieldnamespace.UseOptimizedRendering = true;
+
+            lblbaseclass.Location = new System.Drawing.Point(5, 280);
+            lblbaseclass.Name = "lblbaseclass";
+            lblbaseclass.Size = new System.Drawing.Size(90, 22);
+            lblbaseclass.Text = "继承父类";
+            lblbaseclass.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+
+            txtbaseclass.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left));
+            txtbaseclass.Location = new System.Drawing.Point(100, 282);
+            txtbaseclass.Name = "txtbaseclass";
+            txtbaseclass.Size = new System.Drawing.Size(320, 22);
+
+            lbllastupdate.Location = new System.Drawing.Point(5, 305);
             lbllastupdate.Name = "lbllastupdate";
             lbllastupdate.Size = new System.Drawing.Size(90, 22);
             lbllastupdate.Text = "修改日期";
             lbllastupdate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 
             txtlastupdate.EditValue = null;
-            txtlastupdate.Location = new System.Drawing.Point(100, 132);
+            txtlastupdate.Location = new System.Drawing.Point(100, 307);
             txtlastupdate.Name = "txtlastupdate";
             txtlastupdate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -395,13 +445,13 @@ namespace JCodes.Framework.AddIn.Proj
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             txtlastupdate.Size = new System.Drawing.Size(180, 22);
 
-            lblremark.Location = new System.Drawing.Point(5, 155);
+            lblremark.Location = new System.Drawing.Point(5, 330);
             lblremark.Name = "lblremark";
             lblremark.Size = new System.Drawing.Size(90, 22);
             lblremark.Text = "说明";
             lblremark.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 
-            meremark.Location = new System.Drawing.Point(100, 157);
+            meremark.Location = new System.Drawing.Point(100, 332);
             meremark.Name = "meremark";
             meremark.Size = new System.Drawing.Size(180, 120);
             meremark.UseOptimizedRendering = true;
@@ -415,6 +465,12 @@ namespace JCodes.Framework.AddIn.Proj
             groupControl1.Controls.Add(lblDB);
             groupControl1.Controls.Add(lblversion);
             groupControl1.Controls.Add(txtversion);
+            groupControl1.Controls.Add(lblfolder);
+            groupControl1.Controls.Add(txtfolder);
+            groupControl1.Controls.Add(lblfieldnamespace);
+            groupControl1.Controls.Add(mefieldnamespace);
+            groupControl1.Controls.Add(lblbaseclass);
+            groupControl1.Controls.Add(txtbaseclass);
             groupControl1.Controls.Add(lbllastupdate);
             groupControl1.Controls.Add(txtlastupdate);
             groupControl1.Controls.Add(lblremark);
@@ -437,16 +493,19 @@ namespace JCodes.Framework.AddIn.Proj
                 
                 // 将节点转换为元素，便于得到节点的属性值
                 XmlElement xe = (XmlElement)xn1;
-                strBasicInfoGuid = xe.GetAttribute("guid").ToString();
+                strBasicInfoGuid = xe.GetAttribute("gid").ToString();
 
                 // 得到DataTypeInfo节点的所有子节点
                 XmlNodeList xnl0 = xe.ChildNodes;
                 txtobjectId.Text = xnl0.Item(0).InnerText;
                 txtenglishName.Text = xnl0.Item(1).InnerText;
                 txtchineseName.Text = xnl0.Item(2).InnerText;
-                txtversion.Text = xnl0.Item(3).InnerText;
-                txtlastupdate.Text = xnl0.Item(4).InnerText;
-                meremark.Text = xnl0.Item(5).InnerText;
+                mefieldnamespace.Text = xnl0.Item(3).InnerText;
+                txtversion.Text = xnl0.Item(4).InnerText;
+                txtfolder.Text = xnl0.Item(5).InnerText;
+                txtbaseclass.Text = xnl0.Item(6).InnerText.Replace("&lt;", "<").Replace( "&gt;", ">");
+                txtlastupdate.Text = xnl0.Item(7).InnerText;
+                meremark.Text = xnl0.Item(8).InnerText;
             }
             #endregion
 
@@ -454,7 +513,10 @@ namespace JCodes.Framework.AddIn.Proj
             txtobjectId.Validated += new System.EventHandler(txtValue_Validated);
             txtenglishName.Validated += new System.EventHandler(txtValue_Validated);
             txtchineseName.Validated += new System.EventHandler(txtValue_Validated);
+            mefieldnamespace.Validated += new System.EventHandler(txtValue_Validated);
             txtversion.Validated += new System.EventHandler(txtValue_Validated);
+            txtfolder.Validated += new System.EventHandler(txtValue_Validated);
+            txtbaseclass.Validated += new System.EventHandler(txtValue_Validated);
             txtlastupdate.Validated += new System.EventHandler(txtValue_Validated);
             meremark.Validated += new System.EventHandler(txtValue_Validated);
             #endregion
@@ -538,7 +600,7 @@ namespace JCodes.Framework.AddIn.Proj
             gridColumnGuid.Name = "gridColumnGUID";
             gridColumnGuid.Visible = true;
             gridColumnGuid.VisibleIndex = 0;
-            gridColumnGuid.FieldName = "GUID";
+            gridColumnGuid.FieldName = "Gid";
 
             gridColumnFieldName.Caption = "字段名";
             gridColumnFieldName.Name = "gridColumnFieldName";
@@ -631,7 +693,7 @@ namespace JCodes.Framework.AddIn.Proj
             repositoryItemLookUpEditFields.DataSource = stdFieldInfoList;
 
             gridViewFields.Columns["FieldName"].ColumnEdit = repositoryItemLookUpEditFields;
-            gridViewFields.Columns["GUID"].Visible = false;
+            gridViewFields.Columns["Gid"].Visible = false;
 
             XmlNodeList xmlfieldsLst = xmltablesinfohelper.Read(string.Format("datatype/fieldsinfo"));
             List<TableFieldsInfo> FieldsInfoLst = new List<TableFieldsInfo>();
@@ -643,7 +705,7 @@ namespace JCodes.Framework.AddIn.Proj
                 // 将节点转换为元素，便于得到节点的属性值
                 XmlElement xe = (XmlElement)xn1;
 
-                tablefieldInfo.GUID = xe.GetAttribute("guid").ToString();
+                tablefieldInfo.Gid = xe.GetAttribute("gid").ToString();
 
                 // 得到DataTypeInfo节点的所有子节点
                 XmlNodeList xnl0 = xe.ChildNodes;
@@ -654,7 +716,7 @@ namespace JCodes.Framework.AddIn.Proj
                     {
                         tablefieldInfo.FieldName = stdFieldInfoList[i].Name;
                         tablefieldInfo.ChineseName = stdFieldInfoList[i].ChineseName;
-                        tablefieldInfo.FieldType = stdFieldInfoList[i].DataType;
+                        tablefieldInfo.DataType = stdFieldInfoList[i].DataType;
                         tablefieldInfo.FieldInfo = stdFieldInfoList[i].DictNameLst;
                         break;
                     }
@@ -666,6 +728,7 @@ namespace JCodes.Framework.AddIn.Proj
             }
 
             gridControlFields.DataSource = FieldsInfoLst;
+
             #endregion
 
             #region 索引表格
@@ -673,17 +736,21 @@ namespace JCodes.Framework.AddIn.Proj
             groupControlIndexs.Dock = DockStyle.Fill;
             groupControlIndexs.Name = "groupControlIndexs";
             groupControlIndexs.TabIndex = 5;
-            groupControlIndexs.Text = "索引";
+            groupControlIndexs.Text = "自定义属性";
 
             gridControlIndexs = new DevExpress.XtraGrid.GridControl();
             gridViewIndexs = new DevExpress.XtraGrid.Views.Grid.GridView();
+            gridColumnIndexGuid = new DevExpress.XtraGrid.Columns.GridColumn();
             gridColumnIndexName = new DevExpress.XtraGrid.Columns.GridColumn();
             gridColumnIndexChineseName = new DevExpress.XtraGrid.Columns.GridColumn();
+            gridColumnIndexFieldType = new DevExpress.XtraGrid.Columns.GridColumn();
             gridColumnIndexContent = new DevExpress.XtraGrid.Columns.GridColumn();
             gridColumnIndexRemark = new DevExpress.XtraGrid.Columns.GridColumn();
+            repositoryItemMemoExEdit = new DevExpress.XtraEditors.Repository.RepositoryItemMemoExEdit();
 
             ((System.ComponentModel.ISupportInitialize)(gridControlIndexs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(gridViewIndexs)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(repositoryItemMemoExEdit)).BeginInit();
 
             gridControlIndexs.Dock = DockStyle.Fill;
             gridControlIndexs.Cursor = System.Windows.Forms.Cursors.Default;
@@ -694,6 +761,7 @@ namespace JCodes.Framework.AddIn.Proj
             gridControlIndexs.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             gridViewIndexs});
             gridControlIndexs.ContextMenuStrip = contextMenuStripIndex;
+            gridControlIndexs.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryItemMemoExEdit });
 
             gridViewIndexs.Appearance.FocusedRow.BackColor = System.Drawing.Color.LightCyan;
             gridViewIndexs.Appearance.FocusedRow.BackColor2 = System.Drawing.Color.LightCyan;
@@ -711,10 +779,16 @@ namespace JCodes.Framework.AddIn.Proj
             gridViewIndexs.OptionsView.EnableAppearanceEvenRow = true;
             gridViewIndexs.OptionsView.EnableAppearanceOddRow = true;
             gridViewIndexs.OptionsView.ShowGroupPanel = false;
-            gridViewIndexs.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { gridColumnIndexName, gridColumnIndexChineseName, gridColumnIndexContent, gridColumnIndexRemark });
+            gridViewIndexs.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { gridColumnIndexGuid, gridColumnIndexName, gridColumnIndexChineseName, gridColumnIndexFieldType, gridColumnIndexContent, gridColumnIndexRemark });
             gridViewIndexs.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(gridViewIndexs_CellValueChanged);
             gridViewIndexs.CellValueChanging += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(gridViewIndexs_CellValueChanging);
             gridViewIndexs.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(gridViewIndexs_ValidateRow);
+
+            gridColumnIndexGuid.Caption = "GUID";
+            gridColumnIndexGuid.Name = "gridColumnIndexGuid";
+            gridColumnIndexGuid.Visible = false;
+            gridColumnIndexGuid.VisibleIndex = 0;
+            gridColumnIndexGuid.FieldName = "Gid";
 
             gridColumnIndexName.Caption = "字段";
             gridColumnIndexName.Name = "gridColumnIndexName";
@@ -728,11 +802,23 @@ namespace JCodes.Framework.AddIn.Proj
             gridColumnIndexChineseName.VisibleIndex = 1;
             gridColumnIndexChineseName.FieldName = "ChineseName";
 
+            gridColumnIndexFieldType.Caption = "数据类型";
+            gridColumnIndexFieldType.Name = "gridColumnIndexFieldType";
+            gridColumnIndexFieldType.Visible = true;
+            gridColumnIndexFieldType.VisibleIndex = 1;
+            gridColumnIndexFieldType.FieldName = "DataType";
+
             gridColumnIndexContent.Caption = "属性内容";
             gridColumnIndexContent.Name = "gridColumnIndexContent";
             gridColumnIndexContent.Visible = true;
             gridColumnIndexContent.VisibleIndex = 2;
-            gridColumnIndexContent.FieldName = "Content";
+            gridColumnIndexContent.FieldName = "AttrContent";
+            gridColumnIndexContent.ColumnEdit = repositoryItemMemoExEdit;
+
+            repositoryItemMemoExEdit.AutoHeight = false;
+            repositoryItemMemoExEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            repositoryItemMemoExEdit.Name = "repositoryItemMemoExEdit";
 
             gridColumnIndexRemark.Caption = "备注";
             gridColumnIndexRemark.Name = "gridColumnIndexRemark";
@@ -742,7 +828,7 @@ namespace JCodes.Framework.AddIn.Proj
 
             ((System.ComponentModel.ISupportInitialize)(gridControlIndexs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(gridViewIndexs)).EndInit();
-
+            ((System.ComponentModel.ISupportInitialize)(repositoryItemMemoExEdit)).EndInit();
             groupControlIndexs.Controls.Add(gridControlIndexs);
             gridControlIndexs.DataSource = new List<DiyFieldInfo>();
 
@@ -763,19 +849,22 @@ namespace JCodes.Framework.AddIn.Proj
 
                 // 将节点转换为元素，便于得到节点的属性值
                 XmlElement xe = (XmlElement)xn1;
-                tableindexsInfo.GUID = xe.GetAttribute("guid").ToString();
+                tableindexsInfo.Gid = xe.GetAttribute("gid").ToString();
 
                 // 得到DataTypeInfo节点的所有子节点
                 XmlNodeList xnl0 = xe.ChildNodes;
                 tableindexsInfo.Name = xnl0.Item(0).InnerText;
                 tableindexsInfo.ChineseName = xnl0.Item(1).InnerText;
-                tableindexsInfo.Content = xnl0.Item(2).InnerText;
-                tableindexsInfo.Remark = xnl0.Item(3).InnerText;
+                tableindexsInfo.DataType = xnl0.Item(2).InnerText;
+                tableindexsInfo.AttrContent = xnl0.Item(3).InnerText;
+                tableindexsInfo.Remark = xnl0.Item(4).InnerText;
                 tableindexsInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
                 IndexsInfoLst.Add(tableindexsInfo);
             }
 
             gridControlIndexs.DataSource = IndexsInfoLst;
+
+            gridViewIndexs.Columns["Gid"].Visible = false;
 
             #endregion
 
@@ -812,7 +901,7 @@ namespace JCodes.Framework.AddIn.Proj
             gridViewModrecord.TabIndex = 0;
             gridViewModrecord.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryItemDateEdit1 });
             gridViewModrecord.DisplayColumns = "ModDate,ModVersion,ModOrderId,Proposer,Programmer,ModContent,ModReason,Remark";
-            gridViewModrecord.AddColumnAlias("GUID", "GUID");
+            gridViewModrecord.AddColumnAlias("Gid", "GUID");
             gridViewModrecord.AddColumnAlias("ModDate", "修改日期");
             gridViewModrecord.AddColumnAlias("ModVersion", "修改版本");
             gridViewModrecord.AddColumnAlias("ModOrderId", "修改单号");
@@ -843,6 +932,9 @@ namespace JCodes.Framework.AddIn.Proj
             ((System.ComponentModel.ISupportInitialize)(txtobjectId.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(txtenglishName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(txtchineseName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(mefieldnamespace.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(txtfolder.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(txtbaseclass.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(txtversion.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(txtlastupdate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(meremark.Properties)).EndInit();
@@ -882,10 +974,10 @@ namespace JCodes.Framework.AddIn.Proj
                     var tablefieldsInfo = gridViewFields.GetFocusedRow() as TableFieldsInfo;
                     tablefieldsInfo.FieldName = o.Name;
                     tablefieldsInfo.ChineseName = o.ChineseName;
-                    tablefieldsInfo.FieldType = o.DataType;
+                    tablefieldsInfo.DataType = o.DataType;
                     tablefieldsInfo.FieldInfo = o.DictNameLst;
 
-                    XmlNodeList xmlNodeLst = xmltablesinfohelper.Read("datatype/fieldsinfo/item[@guid=\"" + tablefieldsInfo.GUID + "\"]");
+                    XmlNodeList xmlNodeLst = xmltablesinfohelper.Read("datatype/fieldsinfo/item[@gid=\"" + tablefieldsInfo.Gid + "\"]");
                     xmlNodeLst.Item(0).InnerText = o.Name;
                     xmltablesinfohelper.Save(false);
 
@@ -925,22 +1017,31 @@ namespace JCodes.Framework.AddIn.Proj
             switch (c.Name)
             {
                 case "txtobjectId":
-                    result = "datatype/basicinfo/item[@guid=\"" + strBasicInfoGuid + "\"]/functionId";
+                    result = "datatype/basicinfo/item[@gid=\"" + strBasicInfoGuid + "\"]/functionId";
                     break;
                 case "txtenglishName":
-                    result = "datatype/basicinfo/item[@guid=\"" + strBasicInfoGuid + "\"]/name";
+                    result = "datatype/basicinfo/item[@gid=\"" + strBasicInfoGuid + "\"]/name";
                     break;
                 case "txtchineseName":
-                    result = "datatype/basicinfo/item[@guid=\"" + strBasicInfoGuid + "\"]/chineseName";
+                    result = "datatype/basicinfo/item[@gid=\"" + strBasicInfoGuid + "\"]/chineseName";
+                    break;
+                case "mefieldnamespace":
+                    result = "datatype/basicinfo/item[@gid=\"" + strBasicInfoGuid + "\"]/fieldnamespace";
                     break;
                 case "txtversion":
-                    result = "datatype/basicinfo/item[@guid=\"" + strBasicInfoGuid + "\"]/version";
+                    result = "datatype/basicinfo/item[@gid=\"" + strBasicInfoGuid + "\"]/version";
+                    break;
+                case "txtfolder":
+                    result = "datatype/basicinfo/item[@gid=\"" + strBasicInfoGuid + "\"]/folder";
+                    break;
+                case "txtbaseclass":
+                    result = "datatype/basicinfo/item[@gid=\"" + strBasicInfoGuid + "\"]/baseclass";
                     break;
                 case "txtlastupdate":
-                    result = "datatype/basicinfo/item[@guid=\"" + strBasicInfoGuid + "\"]/lasttime";
+                    result = "datatype/basicinfo/item[@gid=\"" + strBasicInfoGuid + "\"]/lasttime";
                     break;
                 case "meremark":
-                    result = "datatype/basicinfo/item[@guid=\"" + strBasicInfoGuid + "\"]/remark";
+                    result = "datatype/basicinfo/item[@gid=\"" + strBasicInfoGuid + "\"]/remark";
                     break;
             }
 
@@ -951,8 +1052,11 @@ namespace JCodes.Framework.AddIn.Proj
                 return;
             }
 
+            xmltablesinfohelper.Replace(result, c.Text.Replace("<", "&lt;").Replace(">", "&gt;"));
+            xmltablesinfohelper.Save(false);
+
             string curdatetime = DateTimeHelper.GetServerDateTime();
-            xmltablesinfohelper.Replace("datatype/basicinfo/item[@guid=\"" + strBasicInfoGuid + "\"]/lasttime", curdatetime);
+            xmltablesinfohelper.Replace("datatype/basicinfo/item[@gid=\"" + strBasicInfoGuid + "\"]/lasttime", curdatetime);
             xmltablesinfohelper.Save(false);
 
             txtlastupdate.Text = curdatetime;
@@ -1009,10 +1113,10 @@ namespace JCodes.Framework.AddIn.Proj
         private void toolStripMenuItem_AddField_Click(object sender, EventArgs e)
         {
             var tableFieldsInfo = new TableFieldsInfo();
-            tableFieldsInfo.GUID = System.Guid.NewGuid().ToString();
+            tableFieldsInfo.Gid = System.Guid.NewGuid().ToString();
             tableFieldsInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
 
-            xmltablesinfohelper.InsertElement("datatype/fieldsinfo", "item", "guid", tableFieldsInfo.GUID, string.Format(xmlfieldsinfomodel, string.Empty, string.Empty));
+            xmltablesinfohelper.InsertElement("datatype/fieldsinfo", "item", "gid", tableFieldsInfo.Gid, string.Format(xmlfieldsinfomodel, string.Empty, string.Empty));
             xmltablesinfohelper.Save(false);
 
             (gridViewFields.DataSource as List<TableFieldsInfo>).Add(tableFieldsInfo);
@@ -1027,10 +1131,10 @@ namespace JCodes.Framework.AddIn.Proj
         private void toolStripMenuItem_DelField_Click(object sender, EventArgs e)
         {
             // 20170824 如果是最后一行空行则不再继续操作
-            if (gridViewFields.GetFocusedRow() as TableFieldsInfo == null || string.IsNullOrEmpty((gridViewFields.GetFocusedRow() as TableFieldsInfo).GUID))
+            if (gridViewFields.GetFocusedRow() as TableFieldsInfo == null || string.IsNullOrEmpty((gridViewFields.GetFocusedRow() as TableFieldsInfo).Gid))
                 return;
 
-            xmltablesinfohelper.DeleteByPathNode("datatype/fieldsinfo/item[@guid=\"" + gridViewFields.GetRowCellDisplayText(gridViewFields.FocusedRowHandle, "GUID") + "\"]");
+            xmltablesinfohelper.DeleteByPathNode("datatype/fieldsinfo/item[@gid=\"" + gridViewFields.GetRowCellDisplayText(gridViewFields.FocusedRowHandle, "Gid") + "\"]");
             xmltablesinfohelper.Save(false);
 
             (gridViewFields.DataSource as List<TableFieldsInfo>).RemoveAt(gridViewFields.FocusedRowHandle);
@@ -1039,7 +1143,7 @@ namespace JCodes.Framework.AddIn.Proj
 
         private void gridViewFields_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
-            XmlNodeList xmlNodeLst = xmltablesinfohelper.Read("datatype/fieldsinfo/item[@guid=\"" + tmptableFieldsInfo.GUID + "\"]");
+            XmlNodeList xmlNodeLst = xmltablesinfohelper.Read("datatype/fieldsinfo/item[@gid=\"" + tmptableFieldsInfo.Gid + "\"]");
             Int32 idx = -1;
 
             switch (e.Column.ToString())
@@ -1065,7 +1169,7 @@ namespace JCodes.Framework.AddIn.Proj
         private void gridViewFields_CellValueChanging(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
             // 20170824 如果是最后一行空行则不再继续操作
-            if (string.IsNullOrEmpty((gridViewFields.GetFocusedRow() as TableFieldsInfo).GUID))
+            if (string.IsNullOrEmpty((gridViewFields.GetFocusedRow() as TableFieldsInfo).Gid))
                 return;
 
             tmptableFieldsInfo = gridViewFields.GetRow(e.RowHandle) as TableFieldsInfo;
@@ -1082,7 +1186,7 @@ namespace JCodes.Framework.AddIn.Proj
             List<String> lstName = new List<string>();
             foreach (TableFieldsInfo tableFieldsInfo in lsttableFieldsInfo)
             {
-                if (string.IsNullOrEmpty(tableFieldsInfo.GUID))
+                if (string.IsNullOrEmpty(tableFieldsInfo.Gid))
                     continue;
 
                 if (lstName.Contains(tableFieldsInfo.FieldName))
@@ -1097,7 +1201,7 @@ namespace JCodes.Framework.AddIn.Proj
 
             foreach (TableFieldsInfo tableFieldsInfo in lsttableFieldsInfo)
             {
-                if (string.IsNullOrEmpty(tableFieldsInfo.GUID))
+                if (string.IsNullOrEmpty(tableFieldsInfo.Gid))
                     continue;
 
                 // 判断重复的 类型名
@@ -1139,10 +1243,10 @@ namespace JCodes.Framework.AddIn.Proj
         private void toolStripMenuItem_AddIndex_Click(object sender, EventArgs e)
         {
             var diyFieldInfo = new DiyFieldInfo();
-            diyFieldInfo.GUID = System.Guid.NewGuid().ToString();
+            diyFieldInfo.Gid = System.Guid.NewGuid().ToString();
             diyFieldInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
 
-            xmltablesinfohelper.InsertElement("datatype/diyfieldinfo", "item", "guid", diyFieldInfo.GUID, string.Format(xmldiyfieldinfomodel, string.Empty, string.Empty, string.Empty, string.Empty));
+            xmltablesinfohelper.InsertElement("datatype/diyfieldinfo", "item", "gid", diyFieldInfo.Gid, string.Format(xmldiyfieldinfomodel, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty));
             xmltablesinfohelper.Save(false);
 
             (gridViewIndexs.DataSource as List<DiyFieldInfo>).Add(diyFieldInfo);
@@ -1158,10 +1262,10 @@ namespace JCodes.Framework.AddIn.Proj
         {
             // 20171106 wjm 修复删除没有数据报错问题
             // 20170824 如果是最后一行空行则不再继续操作
-            if (gridViewIndexs.GetFocusedRow() as DiyFieldInfo == null || string.IsNullOrEmpty((gridViewIndexs.GetFocusedRow() as DiyFieldInfo).GUID))
+            if (gridViewIndexs.GetFocusedRow() as DiyFieldInfo == null || string.IsNullOrEmpty((gridViewIndexs.GetFocusedRow() as DiyFieldInfo).Gid))
                 return;
 
-            xmltablesinfohelper.DeleteByPathNode("datatype/diyfieldinfo/item[@guid=\"" + gridViewIndexs.GetRowCellDisplayText(gridViewIndexs.FocusedRowHandle, "GUID") + "\"]");
+            xmltablesinfohelper.DeleteByPathNode("datatype/diyfieldinfo/item[@gid=\"" + gridViewIndexs.GetRowCellDisplayText(gridViewIndexs.FocusedRowHandle, "Gid") + "\"]");
             xmltablesinfohelper.Save(false);
 
             (gridViewIndexs.DataSource as List<DiyFieldInfo>).RemoveAt(gridViewIndexs.FocusedRowHandle);
@@ -1170,7 +1274,7 @@ namespace JCodes.Framework.AddIn.Proj
 		
 		private void gridViewIndexs_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
-            XmlNodeList xmlNodeLst = xmltablesinfohelper.Read("datatype/diyfieldinfo/item[@guid=\"" + tmptableIndexsInfo.GUID + "\"]");
+            XmlNodeList xmlNodeLst = xmltablesinfohelper.Read("datatype/diyfieldinfo/item[@gid=\"" + tmptableIndexsInfo.Gid + "\"]");
             Int32 idx = -1;
 
             switch (e.Column.ToString())
@@ -1181,11 +1285,14 @@ namespace JCodes.Framework.AddIn.Proj
                 case "中文名":
                     idx = 1;
                     break;
-                case "属性内容":
+                case "数据类型":
                     idx = 2;
                     break;
-                case "备注":
+                case "属性内容":
                     idx = 3;
+                    break;
+                case "备注":
+                    idx = 4;
                     break;
             }
 
@@ -1202,7 +1309,7 @@ namespace JCodes.Framework.AddIn.Proj
         private void gridViewIndexs_CellValueChanging(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
             // 20170824 如果是最后一行空行则不再继续操作
-            if (string.IsNullOrEmpty((gridViewIndexs.GetFocusedRow() as DiyFieldInfo).GUID))
+            if (string.IsNullOrEmpty((gridViewIndexs.GetFocusedRow() as DiyFieldInfo).Gid))
                 return;
 
             tmptableIndexsInfo = gridViewIndexs.GetRow(e.RowHandle) as DiyFieldInfo;
@@ -1219,7 +1326,7 @@ namespace JCodes.Framework.AddIn.Proj
             List<String> lstName = new List<string>();
             foreach (DiyFieldInfo tableIndexsInfo in lsttableIndexsInfo)
             {
-                if (string.IsNullOrEmpty(tableIndexsInfo.GUID))
+                if (string.IsNullOrEmpty(tableIndexsInfo.Gid))
                     continue;
 
                 if (lstName.Contains(tableIndexsInfo.Name))
@@ -1234,11 +1341,11 @@ namespace JCodes.Framework.AddIn.Proj
 
             foreach (DiyFieldInfo tableIndexsInfo in lsttableIndexsInfo)
             {
-                if (string.IsNullOrEmpty(tableIndexsInfo.GUID))
+                if (string.IsNullOrEmpty(tableIndexsInfo.Gid))
                     continue;
 
                 // 判断重复的 类型名
-                if (tmpName.Contains(tableIndexsInfo.Name))
+                if (tmpName.Contains(tableIndexsInfo.Name) && !string.IsNullOrEmpty(tableIndexsInfo.Name))
                 {
                     if (tableIndexsInfo.lstInfo.ContainsKey("Name"))
                     {
@@ -1248,34 +1355,6 @@ namespace JCodes.Framework.AddIn.Proj
                     else
                     {
                         tableIndexsInfo.lstInfo.Add("Name", new DevExpress.XtraEditors.DXErrorProvider.ErrorInfo("一个表中不允许存在重复的字段", DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical));
-                    }
-                }
-
-                // 判断索引名是否为空
-                if (string.IsNullOrEmpty(tableIndexsInfo.Name))
-                {
-                    if (tableIndexsInfo.lstInfo.ContainsKey("Name"))
-                    {
-                        tableIndexsInfo.lstInfo["Name"].ErrorText = tableIndexsInfo.lstInfo["Name"].ErrorText + "\r\n字段不能为空";
-                        tableIndexsInfo.lstInfo["Name"].ErrorType = tableIndexsInfo.lstInfo["Name"].ErrorType >= DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical ? tableIndexsInfo.lstInfo["Name"].ErrorType : DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-                    }
-                    else
-                    {
-                        tableIndexsInfo.lstInfo.Add("Name", new DevExpress.XtraEditors.DXErrorProvider.ErrorInfo("索字段不能为空", DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical));
-                    }
-                }
-
-                // 判断索引字段列表是否为空
-                if (string.IsNullOrEmpty(tableIndexsInfo.ChineseName))
-                {
-                    if (tableIndexsInfo.lstInfo.ContainsKey("ChineseName"))
-                    {
-                        tableIndexsInfo.lstInfo["ChineseName"].ErrorText = tableIndexsInfo.lstInfo["ChineseName"].ErrorText + "\r\n中文名不能为空";
-                        tableIndexsInfo.lstInfo["ChineseName"].ErrorType = tableIndexsInfo.lstInfo["ChineseName"].ErrorType >= DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical ? tableIndexsInfo.lstInfo["ChineseName"].ErrorType : DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-                    }
-                    else
-                    {
-                        tableIndexsInfo.lstInfo.Add("ChineseName", new DevExpress.XtraEditors.DXErrorProvider.ErrorInfo("中文名不能为空", DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical));
                     }
                 }
             }

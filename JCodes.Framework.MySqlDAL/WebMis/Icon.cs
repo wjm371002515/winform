@@ -38,11 +38,11 @@ namespace JCodes.Framework.MySqlDAL
 			IconInfo info = new IconInfo();
 			SmartDataReader reader = new SmartDataReader(dataReader);
 			
-			info.ID = reader.GetString("ID");
+			/*info.ID = reader.GetString("ID");
 			info.IconCls = reader.GetString("IconCls");
 			info.IconUrl = reader.GetString("IconUrl");
 			info.IconSize = reader.GetInt32("IconSize");
-			info.CreateTime = reader.GetDateTime("CreateTime");
+			info.CreateTime = reader.GetDateTime("CreateTime");*/
 			
 			return info;
 		}
@@ -56,12 +56,12 @@ namespace JCodes.Framework.MySqlDAL
 		{
 		    IconInfo info = obj as IconInfo;
 			Hashtable hash = new Hashtable(); 
-			
+			/*
 			hash.Add("ID", info.ID);
  			hash.Add("IconCls", info.IconCls);
  			hash.Add("IconUrl", info.IconUrl);
  			hash.Add("IconSize", info.IconSize);
- 			hash.Add("CreateTime", info.CreateTime);
+ 			hash.Add("CreateTime", info.CreateTime);*/
  				
 			return hash;
 		}
@@ -75,11 +75,11 @@ namespace JCodes.Framework.MySqlDAL
             Dictionary<string, string> dict = new Dictionary<string, string>();
             #region 添加别名解析
             //dict.Add("ID", "编号");
-            dict.Add("ID", "");
+            /*dict.Add("ID", "");
              dict.Add("IconCls", "样式名称");
              dict.Add("IconUrl", "URL地址");
              dict.Add("IconSize", "尺寸");
-             dict.Add("CreateTime", "创建时间");
+             dict.Add("CreateTime", "创建时间");*/
              #endregion
 
             return dict;

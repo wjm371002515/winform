@@ -37,7 +37,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult CheckExcelColumns(string guid)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
 
             try
             {
@@ -45,7 +45,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 if (dt != null)
                 {
                     //检查列表是否包含必须的字段
-                    result.Success = DataTableHelper.ContainAllColumns(dt, columnString);
+                    result.ErrorCode = DataTableHelper.ContainAllColumns(dt, columnString)?0:1;
                 }
             }
             catch (Exception ex)
@@ -75,7 +75,6 @@ namespace JCodes.Framework.WebUI.Controllers
             if (table != null)
             {
                 #region 数据转换
-                int i = 1;
                 foreach (DataRow dr in table.Rows)
                 {
                     DateTime dtDefault = Convert.ToDateTime("1900-01-01");
@@ -86,7 +85,7 @@ namespace JCodes.Framework.WebUI.Controllers
                     info.Name = dr["角色名称"].ToString();
                     info.Remark = dr["备注"].ToString();
                     info.Seq = dr["排序"].ToString();
-                    info.RoleType = dr["角色分类"].ToString().ToInt32();
+                    info.RoleType = Convert.ToInt16( dr["角色分类"]);
 
                     info.CompanyId = CurrentUser.CompanyId;
                     //info.CompanyName = CurrentUser.com;
@@ -113,7 +112,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult SaveExcelData(List<RoleInfo> list)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             if (list != null && list.Count > 0)
             {
                 #region 采用事务进行数据提交
@@ -139,7 +138,7 @@ namespace JCodes.Framework.WebUI.Controllers
                             BLLFactory<Role>.Instance.Insert(info, trans);
                         }
                         trans.Commit();
-                        result.Success = true;
+                        result.ErrorCode = 0;
                     }
                     catch (Exception ex)
                     {
@@ -253,7 +252,7 @@ namespace JCodes.Framework.WebUI.Controllers
         public override ActionResult FindWithPager()
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.ListKey);
+            base.CheckAuthorized(authorizeKeyInfo.ListKey);
 
             string where = GetPagerCondition();
             PagerInfo pagerInfo = GetPagerInfo();
@@ -287,14 +286,14 @@ namespace JCodes.Framework.WebUI.Controllers
 
             foreach (string item in enumNames)
             {
-                listItem.Add(new CListItem(item));
+                listItem.Add(new CListItem(item, item));
             }
             return Json(listItem, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult EditUsers(string roleId, string newList)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             if (!string.IsNullOrEmpty(roleId) && ValidateUtil.IsValidInt(roleId))
             {
                 if (!string.IsNullOrWhiteSpace(newList))
@@ -305,7 +304,7 @@ namespace JCodes.Framework.WebUI.Controllers
                         list.Add(id.ToInt32());
                     }
 
-                    result.Success = BLLFactory<Role>.Instance.EditRoleUsers(roleId.ToInt32(), list);
+                    result.ErrorCode = BLLFactory<Role>.Instance.EditRoleUsers(roleId.ToInt32(), list)?0:1;
                 }
             }
             else
@@ -317,7 +316,7 @@ namespace JCodes.Framework.WebUI.Controllers
 
         public ActionResult EditOUs(string roleId, string newList)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             if (!string.IsNullOrEmpty(roleId) && ValidateUtil.IsValidInt(roleId))
             {
                 if (!string.IsNullOrWhiteSpace(newList))
@@ -328,7 +327,7 @@ namespace JCodes.Framework.WebUI.Controllers
                         list.Add(id.ToInt32());
                     }
 
-                    result.Success = BLLFactory<Role>.Instance.EditRoleOUs(roleId.ToInt32(), list);
+                    result.ErrorCode = BLLFactory<Role>.Instance.EditRoleOUs(roleId.ToInt32(), list)?0:1;
                 }
             }
             else
@@ -339,7 +338,7 @@ namespace JCodes.Framework.WebUI.Controllers
         }
         public ActionResult EditFunctions(string roleId, string newList)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             if (!string.IsNullOrEmpty(roleId) && ValidateUtil.IsValidInt(roleId))
             {
                 if (!string.IsNullOrWhiteSpace(newList))
@@ -350,7 +349,7 @@ namespace JCodes.Framework.WebUI.Controllers
                         list.Add(id);
                     }
 
-                    result.Success = BLLFactory<Role>.Instance.EditRoleFunctions(roleId.ToInt32(), list);
+                    result.ErrorCode = BLLFactory<Role>.Instance.EditRoleFunctions(roleId.ToInt32(), list)?0:1;
                 }
             }
             else
@@ -362,7 +361,7 @@ namespace JCodes.Framework.WebUI.Controllers
 
         public ActionResult EditUserRelation(string roleId, string addList, string removeList)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             if (!string.IsNullOrEmpty(roleId) && ValidateUtil.IsValidInt(roleId))
             {
                 if (!string.IsNullOrWhiteSpace(removeList))
@@ -385,7 +384,7 @@ namespace JCodes.Framework.WebUI.Controllers
                         }
                     }
                 }
-                result.Success = true;
+                result.ErrorCode = 0;
             }
             else
             {
@@ -396,7 +395,7 @@ namespace JCodes.Framework.WebUI.Controllers
 
         public ActionResult EditOURelation(string roleId, string addList, string removeList)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             if (!string.IsNullOrEmpty(roleId) && ValidateUtil.IsValidInt(roleId))
             {
                 if (!string.IsNullOrWhiteSpace(removeList))
@@ -419,7 +418,7 @@ namespace JCodes.Framework.WebUI.Controllers
                         }
                     }
                 }
-                result.Success = true;
+                result.ErrorCode = 0;
             }
             else
             {
@@ -430,7 +429,7 @@ namespace JCodes.Framework.WebUI.Controllers
 
         public ActionResult EditFunctionRelation(string roleId, string addList, string removeList)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             if (!string.IsNullOrEmpty(roleId) && ValidateUtil.IsValidInt(roleId))
             {
                 if (!string.IsNullOrWhiteSpace(removeList))
@@ -454,7 +453,7 @@ namespace JCodes.Framework.WebUI.Controllers
                         }
                     }
                 } 
-                result.Success = true;
+                result.ErrorCode = 0;
             }
             else
             {
@@ -513,9 +512,9 @@ namespace JCodes.Framework.WebUI.Controllers
         public override ActionResult Insert(RoleInfo info)
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.InsertKey);
-                       
-            CommonResult result = new CommonResult();
+            base.CheckAuthorized(authorizeKeyInfo.InsertKey);
+
+            ReturnResult result = new ReturnResult();
             if (info != null)
             {
                 string filter = string.Format("Name='{0}'  and Company_ID={1}", info.Name, info.CompanyId);
@@ -533,7 +532,7 @@ namespace JCodes.Framework.WebUI.Controllers
                         info.CreatorId = CurrentUser.Id;
                         SetCommonInfo(info);
 
-                        result.Success = baseBLL.Insert(info);
+                        result.ErrorCode = baseBLL.Insert(info)?0:1;
                     }
                     catch (Exception ex)
                     {
@@ -549,7 +548,7 @@ namespace JCodes.Framework.WebUI.Controllers
         public override ActionResult Insert2(RoleInfo info)
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.InsertKey);
+            base.CheckAuthorized(authorizeKeyInfo.InsertKey);
 
             int result = -1;
             if (info != null)

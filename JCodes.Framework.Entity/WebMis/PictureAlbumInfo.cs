@@ -1,71 +1,198 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using System.ComponentModel;
 
 namespace JCodes.Framework.Entity
 {
-    /// <summary>
-    /// 图片相册
-    /// </summary>
-    [DataContract]
-    public class PictureAlbumInfo : BaseEntity
-    { 
-        /// <summary>
-        /// 默认构造函数（需要初始化属性的在此处理）
-        /// </summary>
-	    public PictureAlbumInfo()
+	/// <summary>
+	/// 图片相册信息(PictureAlbumInfo)
+	/// 对象号: 100087
+	/// 备注信息: 
+	/// </summary>
+	[Serializable]
+	[DataContract]
+	public partial class PictureAlbumInfo : BaseEntity
+	{
+		#region Field Members
+
+		/// <summary>
+		/// ID序号
+		/// </summary>
+		private Int32 m_Id = 0;
+
+		/// <summary>
+		/// 父节点ID序号
+		/// </summary>
+		private Int32 m_Pid = 0;
+
+		/// <summary>
+		/// 名称
+		/// </summary>
+		private String m_Name = string.Empty;
+
+		/// <summary>
+		/// 备注
+		/// </summary>
+		private String m_Remark = string.Empty;
+
+		/// <summary>
+		/// 编辑人编号
+		/// </summary>
+		private Int32 m_EditorId = 0;
+
+		/// <summary>
+		/// 最后更新时间
+		/// </summary>
+		private DateTime m_LastUpdateTime = DateTime.Now;
+
+		/// <summary>
+		/// 创建人编号
+		/// </summary>
+		private Int32 m_CreatorId = 0;
+
+		/// <summary>
+		/// 创建时间
+		/// </summary>
+		private DateTime m_CreatorTime = DateTime.Now;
+		#endregion
+
+		#region Property Members
+
+		/// <summary>
+		/// ID序号
+		/// </summary>
+		[DataMember]
+		[DisplayName("ID序号")]
+		public virtual Int32 Id
 		{
-            this.Id=0;
+			get
+			{
+				return this.m_Id;
+			}
+			set
+			{
+				this.m_Id = value;
+			}
 		}
 
-        #region Property Members
-        
+		/// <summary>
+		/// 父节点ID序号
+		/// </summary>
 		[DataMember]
-        public virtual Int32 Id { get; set; }
+		[DisplayName("父节点ID序号")]
+		public virtual Int32 Pid
+		{
+			get
+			{
+				return this.m_Pid;
+			}
+			set
+			{
+				this.m_Pid = value;
+			}
+		}
 
-        /// <summary>
-        /// 父ID
-        /// </summary>
+		/// <summary>
+		/// 名称
+		/// </summary>
 		[DataMember]
-        public virtual Int32 Pid { get; set; }
+		[DisplayName("名称")]
+		public virtual String Name
+		{
+			get
+			{
+				return this.m_Name;
+			}
+			set
+			{
+				this.m_Name = value;
+			}
+		}
 
-        /// <summary>
-        /// 名称
-        /// </summary>
+		/// <summary>
+		/// 备注
+		/// </summary>
 		[DataMember]
-        public virtual string Name { get; set; }
+		[DisplayName("备注")]
+		public virtual String Remark
+		{
+			get
+			{
+				return this.m_Remark;
+			}
+			set
+			{
+				this.m_Remark = value;
+			}
+		}
 
-        /// <summary>
-        /// 备注
-        /// </summary>
+		/// <summary>
+		/// 编辑人编号
+		/// </summary>
 		[DataMember]
-        public virtual string Remark { get; set; }
+		[DisplayName("编辑人编号")]
+		public virtual Int32 EditorId
+		{
+			get
+			{
+				return this.m_EditorId;
+			}
+			set
+			{
+				this.m_EditorId = value;
+			}
+		}
 
-        /// <summary>
-        /// 编辑人
-        /// </summary>
+		/// <summary>
+		/// 最后更新时间
+		/// </summary>
 		[DataMember]
-        public virtual Int32 EditorId { get; set; }
+		[DisplayName("最后更新时间")]
+		public virtual DateTime LastUpdateTime
+		{
+			get
+			{
+				return this.m_LastUpdateTime;
+			}
+			set
+			{
+				this.m_LastUpdateTime = value;
+			}
+		}
 
-        /// <summary>
-        /// 编辑时间
-        /// </summary>
+		/// <summary>
+		/// 创建人编号
+		/// </summary>
 		[DataMember]
-        public virtual DateTime LastUpdateTime { get; set; }
+		[DisplayName("创建人编号")]
+		public virtual Int32 CreatorId
+		{
+			get
+			{
+				return this.m_CreatorId;
+			}
+			set
+			{
+				this.m_CreatorId = value;
+			}
+		}
 
-        /// <summary>
-        /// 创建人
-        /// </summary>
+		/// <summary>
+		/// 创建时间
+		/// </summary>
 		[DataMember]
-        public virtual Int32 CreatorId { get; set; }
-
-        /// <summary>
-        /// 创建时间
-        /// </summary>
-		[DataMember]
-        public virtual DateTime CreatorTime { get; set; }
-
-
-        #endregion
-
-    }
+		[DisplayName("创建时间")]
+		public virtual DateTime CreatorTime
+		{
+			get
+			{
+				return this.m_CreatorTime;
+			}
+			set
+			{
+				this.m_CreatorTime = value;
+			}
+		}
+		#endregion
+	}
 }

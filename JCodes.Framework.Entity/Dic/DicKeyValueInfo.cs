@@ -1,71 +1,88 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using System.ComponentModel;
 
 namespace JCodes.Framework.Entity
 {
-    [Serializable]
-    [DataContract]
-    public class DicKeyValueInfo
-    {
-        #region Field Members
-        private Int32 m_DicttypeID = 0; //字典类型名称        
-        private Int32 m_Value = 0; //字典值内容  
-        private string m_Name = ""; //字典显示名称          
-        #endregion
+	/// <summary>
+	/// 字典大类(DicKeyValueInfo)
+	/// 对象号: 100015
+	/// 备注信息: 
+	/// </summary>
+	[Serializable]
+	[DataContract]
+	public partial class DicKeyValueInfo
+	{
+		#region Field Members
 
-        #region Property Members
-        /// <summary>
-        /// 字典类型名称
-        /// </summary>
-        [DataMember]
-        public virtual Int32 DicttypeID
-        {
-            get
-            {
-                return this.m_DicttypeID;
-            }
-            set
-            {
-                this.m_DicttypeID = value;
-            }
-        }
+		/// <summary>
+		/// 字典类型对应的ID
+		/// </summary>
+		private Int32 m_DicttypeId = 0;
 
-        /// <summary>
-        /// 字典值内容
-        /// </summary>
-        [DataMember]
-        public virtual Int32 Value
-        {
-            get
-            {
-                return this.m_Value;
-            }
-            set
-            {
-                this.m_Value = value;
-            }
-        }
+		/// <summary>
+		/// 字典键
+		/// </summary>
+		private Int32 m_DicttypeValue = 0;
 
-        /// <summary>
-        /// 字典显示名称
-        /// </summary>
-        [DataMember]
-        public virtual string Name
-        {
-            get
-            {
-                return this.m_Name;
-            }
-            set
-            {
-                this.m_Name = value;
-            }
-        }
+		/// <summary>
+		/// 名称
+		/// </summary>
+		private String m_Name = string.Empty;
+		#endregion
 
-        public override string ToString()
-        {
-            return string.Format("{0}-{1}", this.m_Value, this.m_Name);
-        }
-        #endregion
-    }
+		#region Property Members
+
+		/// <summary>
+		/// 字典类型对应的ID
+		/// </summary>
+		[DataMember]
+		[DisplayName("字典类型对应的ID")]
+		public virtual Int32 DicttypeId
+		{
+			get
+			{
+				return this.m_DicttypeId;
+			}
+			set
+			{
+				this.m_DicttypeId = value;
+			}
+		}
+
+		/// <summary>
+		/// 字典键
+		/// </summary>
+		[DataMember]
+		[DisplayName("字典键")]
+		public virtual Int32 DicttypeValue
+		{
+			get
+			{
+				return this.m_DicttypeValue;
+			}
+			set
+			{
+				this.m_DicttypeValue = value;
+			}
+		}
+
+		/// <summary>
+		/// 名称
+		/// </summary>
+		[DataMember]
+		[DisplayName("名称")]
+		public virtual String Name
+		{
+			get
+			{
+				return this.m_Name;
+			}
+			set
+			{
+				this.m_Name = value;
+			}
+		}
+		#endregion
+	}
 }

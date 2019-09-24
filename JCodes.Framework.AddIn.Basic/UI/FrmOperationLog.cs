@@ -224,10 +224,10 @@ namespace JCodes.Framework.AddIn.Basic
             condition.AddDateCondition("CreatorTime", this.txtCreateTime1, this.txtCreateTime2); //日期类型
 
             //如果是公司管理员，增加公司标识
-            if (Portal.gc.UserInRole(RoleInfo.CompanyAdminName))
+            /*if (Portal.gc.UserInRole(RoleInfo.CompanyAdminName))
             {
                 condition.AddCondition("CompanyId", Portal.gc.UserInfo.CompanyId, SqlOperator.Equal);
-            }
+            }*/
 
             string where = condition.BuildConditionSql().Replace("Where", "");
             //如果是单击节点得到的条件，则使用树列表的，否则使用查询条件的
@@ -365,7 +365,7 @@ namespace JCodes.Framework.AddIn.Basic
             this.treeView1.Nodes.Add(tableNode);
             List<string> tableList = BLLFactory<OperationLog>.Instance.GetFieldList("TableName");
 
-            bool isCompanyAdmin = Portal.gc.UserInRole(RoleInfo.CompanyAdminName);
+            /*bool isCompanyAdmin = Portal.gc.UserInRole(RoleInfo.CompanyAdminName);
             foreach (string tablename in tableList)
             {
                 TreeNode subNode = new TreeNode(tablename, 1, 1);
@@ -380,7 +380,7 @@ namespace JCodes.Framework.AddIn.Basic
                             tablename, operationType, canOptCompanyID);
                     subNode.Nodes.Add(operationNode);
                 }
-            }
+            }*/
 
             this.treeView1.ExpandAll();
             this.treeView1.EndUpdate();

@@ -1,109 +1,240 @@
-﻿using DevExpress.XtraEditors.DXErrorProvider;
-using System;
-using System.Collections.Generic;
+﻿using System;
+using System.Runtime.Serialization;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-
+using DevExpress.XtraEditors.DXErrorProvider;
+using System.Collections.Generic;
 namespace JCodes.Framework.Entity
 {
-    public class TableFieldsInfo : IDXDataErrorInfo
-    {
-        private string guid;
+	/// <summary>
+	/// 表格字段信息(TableFieldsInfo)
+	/// 对象号: 100051
+	/// 备注信息: 
+	/// </summary>
+	[Serializable]
+	[DataContract]
+	public partial class TableFieldsInfo : IDXDataErrorInfo
+	{
+		#region Field Members
 
-        [DisplayName("GUID")]
-        public string GUID
-        {
-            get { return guid; }
-            set { guid = value; }
-        }
+		/// <summary>
+		/// GUID对应的ID序号
+		/// </summary>
+		private String m_Gid = string.Empty;
 
-        private string fieldName;
+		/// <summary>
+		/// 字段名字
+		/// </summary>
+		private String m_FieldName = string.Empty;
 
-        [DisplayName("字段名")]
-        public string FieldName
-        {
-            get { return fieldName; }
-            set { fieldName = value; }
-        }
+		/// <summary>
+		/// 中文名称
+		/// </summary>
+		private String m_ChineseName = string.Empty;
 
-        private string chineseName;
+		/// <summary>
+		/// 字段类型
+		/// </summary>
+		private String m_DataType = string.Empty;
 
-        [DisplayName("中文名")]
-        public string ChineseName
-        {
-            get { return chineseName; }
-            set { chineseName = value; }
-        }
-            
-        private string fieldType;
+		/// <summary>
+		/// 字典条目
+		/// </summary>
+		private Int32 m_DictNo = 0;
 
-        [DisplayName("字段类型")]
-        public string FieldType
-        {
-            get { return fieldType; }
-            set { fieldType = value; }
-        }
+		/// <summary>
+		/// 字段说明
+		/// </summary>
+		private String m_FieldInfo = string.Empty;
 
-        private Int32 dictno;
+		/// <summary>
+		/// 允许空
+		/// </summary>
+		private Int16 m_IsNull = 0;
 
-        [DisplayName("数据字典")]
-        public Int32 DictNo
-        {
-            get { return dictno; }
-            set { dictno = value; }
-        }
+		/// <summary>
+		/// 备注
+		/// </summary>
+		private String m_Remark = string.Empty;
 
-        private string fieldInfo;
+		/// <summary>
+		/// 用来保存行数据中字段名，错误信息
+		/// </summary>
+		private Dictionary<string, ErrorInfo> m_lstInfo;
+		#endregion
 
-        [DisplayName("字段说明")]
-        public string FieldInfo
-        {
-            get { return fieldInfo; }
-            set { fieldInfo = value; }
-        }
+		#region Property Members
 
-        private bool isNull;
+		/// <summary>
+		/// GUID对应的ID序号
+		/// </summary>
+		[DataMember]
+		[DisplayName("GUID对应的ID序号")]
+		public virtual String Gid
+		{
+			get
+			{
+				return this.m_Gid;
+			}
+			set
+			{
+				this.m_Gid = value;
+			}
+		}
 
-        [DisplayName("允许空")]
-        public bool IsNull
-        {
-            get { return isNull; }
-            set { isNull = value; }
-        }
+		/// <summary>
+		/// 字段名字
+		/// </summary>
+		[DataMember]
+		[DisplayName("字段名字")]
+		public virtual String FieldName
+		{
+			get
+			{
+				return this.m_FieldName;
+			}
+			set
+			{
+				this.m_FieldName = value;
+			}
+		}
 
-        private string remark;
+		/// <summary>
+		/// 中文名称
+		/// </summary>
+		[DataMember]
+		[DisplayName("中文名称")]
+		public virtual String ChineseName
+		{
+			get
+			{
+				return this.m_ChineseName;
+			}
+			set
+			{
+				this.m_ChineseName = value;
+			}
+		}
 
-        [DisplayName("备注")]
-        public string Remark
-        {
-            get { return remark; }
-            set { remark = value; }
-        }
+		/// <summary>
+		/// 字段类型
+		/// </summary>
+		[DataMember]
+		[DisplayName("字段类型")]
+		public virtual String DataType
+		{
+			get
+			{
+				return this.m_DataType;
+			}
+			set
+			{
+				this.m_DataType = value;
+			}
+		}
 
-        #region IDXDataErrorInfo Members
+		/// <summary>
+		/// 字典条目
+		/// </summary>
+		[DataMember]
+		[DisplayName("字典条目")]
+		public virtual Int32 DictNo
+		{
+			get
+			{
+				return this.m_DictNo;
+			}
+			set
+			{
+				this.m_DictNo = value;
+			}
+		}
 
-        /// <summary>
-        /// 用来保存行数据中字段名，错误信息
-        /// </summary>
-        public Dictionary<string, ErrorInfo> lstInfo
-        {
-            get;
-            set;
-        }
+		/// <summary>
+		/// 字段说明
+		/// </summary>
+		[DataMember]
+		[DisplayName("字段说明")]
+		public virtual String FieldInfo
+		{
+			get
+			{
+				return this.m_FieldInfo;
+			}
+			set
+			{
+				this.m_FieldInfo = value;
+			}
+		}
 
-        //<gridControl1>
-        void IDXDataErrorInfo.GetPropertyError(string propertyName, ErrorInfo info)
-        {
-            // 添加自定义错误
-            if (lstInfo != null && lstInfo.Count > 0 && lstInfo.ContainsKey(propertyName) && !string.IsNullOrEmpty(lstInfo[propertyName].ErrorText))
+		/// <summary>
+		/// 允许空
+		/// </summary>
+		[DataMember]
+		[DisplayName("允许空")]
+		public virtual Int16 IsNull
+		{
+			get
+			{
+				return this.m_IsNull;
+			}
+			set
+			{
+				this.m_IsNull = value;
+			}
+		}
+
+		/// <summary>
+		/// 备注
+		/// </summary>
+		[DataMember]
+		[DisplayName("备注")]
+		public virtual String Remark
+		{
+			get
+			{
+				return this.m_Remark;
+			}
+			set
+			{
+				this.m_Remark = value;
+			}
+		}
+
+		/// <summary>
+		/// 用来保存行数据中字段名，错误信息
+		/// </summary>
+		[DataMember]
+		public virtual Dictionary<string, ErrorInfo> lstInfo
+		{
+			get
+			{
+				return this.m_lstInfo;
+			}
+			set
+			{
+				this.m_lstInfo = value;
+			}
+		}
+
+		/// <summary>
+		/// 自定义错误
+		/// </summary>
+		void IDXDataErrorInfo.GetPropertyError(string propertyName, ErrorInfo info)
+		{
+			 if (lstInfo != null && lstInfo.Count > 0 && lstInfo.ContainsKey(propertyName) && !string.IsNullOrEmpty(lstInfo[propertyName].ErrorText))
             {
                 info.ErrorText = lstInfo[propertyName].ErrorText;
                 info.ErrorType = lstInfo[propertyName].ErrorType;
             }
-        }
-        void IDXDataErrorInfo.GetError(ErrorInfo info) { }
-        //</gridControl1>
-        #endregion
-    }
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		void IDXDataErrorInfo.GetError(ErrorInfo info)
+		{
+			
+		}
+		#endregion
+	}
 }

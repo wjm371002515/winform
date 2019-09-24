@@ -418,10 +418,10 @@ namespace JCodes.Framework.AddIn.Security
             }
 
             //如果是公司管理员，增加公司标识
-            if (Portal.gc.UserInRole(RoleInfo.CompanyAdminName))
+            /*if (Portal.gc.UserInRole(RoleInfo.CompanyAdminName))
             {
                 condition.AddCondition("Company_ID", Portal.gc.UserInfo.CompanyId, SqlOperator.Equal);
-            }
+            }*/
 
             string where = condition.BuildConditionSql().Replace("Where", "");
             
@@ -603,7 +603,7 @@ namespace JCodes.Framework.AddIn.Security
             info.Name = name;
             info.FullName = dr["用户全名"].ToString();
             info.LoginName = dr["用户呢称"].ToString();
-            info.Gender = Convert.ToInt32(dr["性别"]);
+            //info.Gender = Convert.ToInt16( dr["性别"].ToString() );
             info.MobilePhone = dr["移动电话"].ToString();
             info.Email = dr["邮件地址"].ToString();
             info.CurrentLoginUserId = Portal.gc.UserInfo.Id;
@@ -611,7 +611,7 @@ namespace JCodes.Framework.AddIn.Security
 
             if (dr.Table.Columns.Contains("是否过期"))
             {
-                info.IsExpire = dr["是否过期"].ToString().ToInt32();
+                info.IsExpire = Convert.ToInt16( dr["是否过期"]);
             }
             /*if (dr.Table.Columns.Contains("职务头衔"))
             {
@@ -655,7 +655,7 @@ namespace JCodes.Framework.AddIn.Security
             }
             if (dr.Table.Columns.Contains("审核状态"))
             {
-                info.AuditStatus = Convert.ToInt32( dr["审核状态"]);
+                info.AuditStatus = Convert.ToInt16( dr["审核状态"]);
             }
             if (dr.Table.Columns.Contains("备注"))
             {

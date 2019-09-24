@@ -29,7 +29,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult CheckExcelColumns(string guid)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
 
             try
             {
@@ -37,7 +37,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 if (dt != null)
                 {
                     //检查列表是否包含必须的字段
-                    result.Success = DataTableHelper.ContainAllColumns(dt, columnString);
+                    result.ErrorCode = DataTableHelper.ContainAllColumns(dt, columnString)?0:1;
                 }
             }
             catch (Exception ex)
@@ -67,19 +67,16 @@ namespace JCodes.Framework.WebUI.Controllers
             if (table != null)
             {
                 #region 数据转换
-                int i = 1;
                 foreach (DataRow dr in table.Rows)
                 {
-                    bool converted = false;
                     DateTime dtDefault = Convert.ToDateTime("1900-01-01");
-                    DateTime dt;
                     SystemTypeInfo info = new SystemTypeInfo();
 
-                    info.OID = dr["系统标识"].ToString();
+                    info.Gid = dr["系统标识"].ToString();
                     info.Name = dr["系统名称"].ToString();
-                    info.CustomID = dr["客户编码"].ToString();
-                    info.Authorize = dr["授权编码"].ToString();
-                    info.Note = dr["备注"].ToString();
+                    info.ConsumerCode = dr["客户编码"].ToString();
+                    info.Licence = dr["授权编码"].ToString();
+                    info.Remark = dr["备注"].ToString();
 
                     list.Add(info);
                 }
@@ -97,7 +94,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult SaveExcelData(List<SystemTypeInfo> list)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             if (list != null && list.Count > 0)
             {
                 #region 采用事务进行数据提交
@@ -115,7 +112,7 @@ namespace JCodes.Framework.WebUI.Controllers
                             BLLFactory<SystemType>.Instance.Insert(detail, trans);
                         }
                         trans.Commit();
-                        result.Success = true;
+                        result.ErrorCode = 0;
                     }
                     catch (Exception ex)
                     {
@@ -168,11 +165,11 @@ namespace JCodes.Framework.WebUI.Controllers
             {
                 dr = datatable.NewRow();
                 dr["序号"] = j++;
-                dr["系统标识"] = list[i].OID;
+                dr["系统标识"] = list[i].Gid;
                 dr["系统名称"] = list[i].Name;
-                dr["客户编码"] = list[i].CustomID;
-                dr["授权编码"] = list[i].Authorize;
-                dr["备注"] = list[i].Note;
+                dr["客户编码"] = list[i].ConsumerCode;
+                dr["授权编码"] = list[i].Licence;
+                dr["备注"] = list[i].Remark;
                 //如果为外键，可以在这里进行转义，如下例子
                 //dr["客户名称"] = BLLFactory<Customer>.Instance.GetCustomerName(list[i].Customer_ID);//转义为客户名称
 
@@ -217,7 +214,7 @@ namespace JCodes.Framework.WebUI.Controllers
         public override ActionResult FindWithPager()
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.ListKey);
+            base.CheckAuthorized(authorizeKeyInfo.ListKey);
 
             string where = GetPagerCondition();
             PagerInfo pagerInfo = GetPagerInfo();
@@ -249,7 +246,7 @@ namespace JCodes.Framework.WebUI.Controllers
             List<SystemTypeInfo> list = baseBLL.GetAll();
             foreach (SystemTypeInfo info in list)
             {
-                treeList.Add(new JsTreeData(info.OID, info.Name, "fa fa-home icon-state-danger icon-lg"));
+                treeList.Add(new JsTreeData(info.Gid, info.Name, "fa fa-home icon-state-danger icon-lg"));
             }
 
             return ToJsonContent(treeList);
@@ -265,7 +262,7 @@ namespace JCodes.Framework.WebUI.Controllers
             List<CListItem> itemList = new List<CListItem>();
             foreach (SystemTypeInfo info in list)
             {
-                itemList.Add(new CListItem(info.OID, info.Name));
+                itemList.Add(new CListItem(info.Gid, info.Name));
             }
             return Json(itemList, JsonRequestBehavior.AllowGet);
         }
@@ -278,7 +275,7 @@ namespace JCodes.Framework.WebUI.Controllers
         public virtual ActionResult FindByOID(string oid)
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.ViewKey);
+            base.CheckAuthorized(authorizeKeyInfo.ViewKey);
 
             ActionResult result = Content("");
             SystemTypeInfo info = BLLFactory<SystemType>.Instance.FindByOID(oid);

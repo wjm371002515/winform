@@ -33,7 +33,7 @@ namespace JCodes.Framework.AddIn.Proj
 
         private Dictionary<string, string> lstName = new Dictionary<string, string>();
 
-        private string xmlModel = "<id>{0}</id><pid>{1}</pid><name>{2}</name><functionid>{3}</functionid><systemtype_id>{4}</systemtype_id><seq>{5}</seq>";
+        private string xmlModel = "<gid>{0}</gid><pgid>{1}</pgid><name>{2}</name><functiongid>{3}</functiongid><systemtypeid>{4}</systemtypeid><seq>{5}</seq>";
 
         private Int32 _errCount = 0;
         private List<CListItem> _errlst = new List<CListItem>();
@@ -92,19 +92,19 @@ namespace JCodes.Framework.AddIn.Proj
               
                 // 得到DataTypeInfo节点的所有子节点
                 XmlNodeList xnl0 = xe.ChildNodes;
-                functionInfo.ID = xnl0.Item(0).InnerText;
-                functionInfo.PID = xnl0.Item(1).InnerText;
+                functionInfo.Gid = xnl0.Item(0).InnerText;
+                functionInfo.Pgid = xnl0.Item(1).InnerText;
                 functionInfo.Name = xnl0.Item(2).InnerText;
-                functionInfo.FunctionId = xnl0.Item(3).InnerText;
-                functionInfo.SystemType_ID = xnl0.Item(4).InnerText;
+                functionInfo.FunctionGid = xnl0.Item(3).InnerText;
+                functionInfo.SystemtypeId = xnl0.Item(4).InnerText;
                 functionInfo.Seq = xnl0.Item(5).InnerText;
                 functionInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
 
                 functionInfoList.Add(functionInfo);
             }
 
-            treelstFunction.KeyFieldName = "ID";
-            treelstFunction.ParentFieldName = "PID";
+            treelstFunction.KeyFieldName = "Gid";
+            treelstFunction.ParentFieldName = "Pgid";
             treelstFunction.DataSource = functionInfoList;
 
             treelstFunction.Columns["lstInfo"].Visible = false;
@@ -127,22 +127,22 @@ namespace JCodes.Framework.AddIn.Proj
             Dictionary<string, string> tmpName = new Dictionary<string, string>();
             foreach (SysFunctionInfo sysFunctionInfo in lstSysFunctionInfo)
             {
-                if (lstName.ContainsKey(sysFunctionInfo.Name) && lstName[sysFunctionInfo.Name] == sysFunctionInfo.PID)
+                if (lstName.ContainsKey(sysFunctionInfo.Name) && lstName[sysFunctionInfo.Name] == sysFunctionInfo.Pgid)
                 {
                     if (!tmpName.ContainsKey(sysFunctionInfo.Name))
-                        tmpName.Add(sysFunctionInfo.Name, sysFunctionInfo.PID);
+                        tmpName.Add(sysFunctionInfo.Name, sysFunctionInfo.Pgid);
                 }
                 else
                 {
                     if (!lstName.ContainsKey(sysFunctionInfo.Name))
-                        lstName.Add(sysFunctionInfo.Name, sysFunctionInfo.PID);
+                        lstName.Add(sysFunctionInfo.Name, sysFunctionInfo.Pgid);
                 }
             }
 
             foreach (SysFunctionInfo sysFunctionInfo in lstSysFunctionInfo)
             {
                 // 判断重复的 类型名
-                if (tmpName.ContainsKey(sysFunctionInfo.Name) && (tmpName[sysFunctionInfo.Name] == sysFunctionInfo.PID))
+                if (tmpName.ContainsKey(sysFunctionInfo.Name) && (tmpName[sysFunctionInfo.Name] == sysFunctionInfo.Pgid))
                 {
                     if (sysFunctionInfo.lstInfo.ContainsKey("Name"))
                     {
@@ -191,35 +191,35 @@ namespace JCodes.Framework.AddIn.Proj
                     }
                 }
                 // 判断功能ID是否为空
-                if (string.IsNullOrEmpty(sysFunctionInfo.FunctionId))
+                if (string.IsNullOrEmpty(sysFunctionInfo.FunctionGid))
                 {
-                    if (sysFunctionInfo.lstInfo.ContainsKey("FunctionId"))
+                    if (sysFunctionInfo.lstInfo.ContainsKey("FunctionGid"))
                     {
-                        sysFunctionInfo.lstInfo["FunctionId"].ErrorText = sysFunctionInfo.lstInfo["FunctionId"].ErrorText + "\r\n功能ID不能为空";
-                        sysFunctionInfo.lstInfo["FunctionId"].ErrorType = sysFunctionInfo.lstInfo["FunctionId"].ErrorType >= DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical ? sysFunctionInfo.lstInfo["FunctionId"].ErrorType : DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+                        sysFunctionInfo.lstInfo["FunctionGid"].ErrorText = sysFunctionInfo.lstInfo["FunctionGid"].ErrorText + "\r\n功能ID不能为空";
+                        sysFunctionInfo.lstInfo["FunctionGid"].ErrorType = sysFunctionInfo.lstInfo["FunctionGid"].ErrorType >= DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical ? sysFunctionInfo.lstInfo["FunctionGid"].ErrorType : DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
                     }
                     else
                     {
-                        sysFunctionInfo.lstInfo.Add("FunctionId", new DevExpress.XtraEditors.DXErrorProvider.ErrorInfo("功能ID不能为空", DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical));
+                        sysFunctionInfo.lstInfo.Add("FunctionGid", new DevExpress.XtraEditors.DXErrorProvider.ErrorInfo("功能ID不能为空", DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical));
                         _errCount++;
                         // 20170901 wjm 调整key 和value的顺序
                         _errlst.Add(new CListItem("功能ID不能为空", "功能ID" + sysFunctionInfo.Name));
                     }
                 }
                 // 判断系统编号是否为空
-                if (string.IsNullOrEmpty(sysFunctionInfo.SystemType_ID))
+                if (string.IsNullOrEmpty(sysFunctionInfo.SystemtypeId))
                 {
-                    if (sysFunctionInfo.lstInfo.ContainsKey("SystemType_ID"))
+                    if (sysFunctionInfo.lstInfo.ContainsKey("SystemtypeId"))
                     {
-                        sysFunctionInfo.lstInfo["SystemType_ID"].ErrorText = sysFunctionInfo.lstInfo["SystemType_ID"].ErrorText + "\r\n系统编号不能为空";
-                        sysFunctionInfo.lstInfo["SystemType_ID"].ErrorType = sysFunctionInfo.lstInfo["SystemType_ID"].ErrorType >= DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical ? sysFunctionInfo.lstInfo["SystemType_ID"].ErrorType : DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+                        sysFunctionInfo.lstInfo["SystemtypeId"].ErrorText = sysFunctionInfo.lstInfo["SystemtypeId"].ErrorText + "\r\n系统编号不能为空";
+                        sysFunctionInfo.lstInfo["SystemtypeId"].ErrorType = sysFunctionInfo.lstInfo["SystemtypeId"].ErrorType >= DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical ? sysFunctionInfo.lstInfo["SystemtypeId"].ErrorType : DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
                     }
                     else
                     {
-                        sysFunctionInfo.lstInfo.Add("SystemType_ID", new DevExpress.XtraEditors.DXErrorProvider.ErrorInfo("系统编号不能为空", DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical));
+                        sysFunctionInfo.lstInfo.Add("SystemtypeId", new DevExpress.XtraEditors.DXErrorProvider.ErrorInfo("系统编号不能为空", DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical));
                         _errCount++;
                         // 20170901 wjm 调整key 和value的顺序
-                        _errlst.Add(new CListItem("系统编号不能为空", "系统编号" + sysFunctionInfo.SystemType_ID));
+                        _errlst.Add(new CListItem("系统编号不能为空", "系统编号" + sysFunctionInfo.SystemtypeId));
                     }
                 }
             }
@@ -270,12 +270,12 @@ namespace JCodes.Framework.AddIn.Proj
         {
             if (treelstFunction.FocusedNode != null)
             {
-                string delID = treelstFunction.FocusedNode.GetValue("ID").ToString();
+                string delID = treelstFunction.FocusedNode.GetValue("Gid").ToString();
                 deleteNodeXML(treelstFunction.FocusedNode);
                 // 删除节点
                 xmlhelper = new XmlHelper(@"XML\function.xml");
                 
-                xmlhelper.DeleteByPathNode("datatype/item[id=\"" + delID + "\"]");
+                xmlhelper.DeleteByPathNode("datatype/item[gid=\"" + delID + "\"]");
                 xmlhelper.Save(false);
 
                 treelstFunction.DeleteNode(treelstFunction.FocusedNode);
@@ -293,14 +293,14 @@ namespace JCodes.Framework.AddIn.Proj
                     var childNodes = nodes.Nodes;
                     for (Int32 i = 0; i < childNodes.Count; i++)
                     {
-                        string delID = childNodes[i].GetValue("ID").ToString();
+                        string delID = childNodes[i].GetValue("Gid").ToString();
 
                         // 递归
                         result = result & deleteNodeXML(childNodes[i]);
 
                         // 删除节点
                         xmlhelper = new XmlHelper(@"XML\function.xml");
-                        xmlhelper.DeleteByPathNode("datatype/item[id=\"" + delID + "\"]");
+                        xmlhelper.DeleteByPathNode("datatype/item[gid=\"" + delID + "\"]");
                         xmlhelper.Save(false);
                     }
                 }
@@ -322,8 +322,8 @@ namespace JCodes.Framework.AddIn.Proj
                 {
                     DataRow row = dt.NewRow();
                     row[0] = preStr + nodes.Nodes[i].GetValue("Name");
-                    row[1] = nodes.Nodes[i].GetValue("FunctionId");
-                    row[2] = nodes.Nodes[i].GetValue("SystemType_ID");
+                    row[1] = nodes.Nodes[i].GetValue("FunctionGid");
+                    row[2] = nodes.Nodes[i].GetValue("SystemtypeId");
                     row[3] = nodes.Nodes[i].GetValue("Seq");
 
                     dt.Rows.Add(row);
@@ -357,8 +357,8 @@ namespace JCodes.Framework.AddIn.Proj
                     DataRow row = dt.NewRow();
 
                     row[0] = "" + treelstFunction.Nodes[i].GetValue("Name");
-                    row[1] = treelstFunction.Nodes[i].GetValue("FunctionId");
-                    row[2] = treelstFunction.Nodes[i].GetValue("SystemType_ID");
+                    row[1] = treelstFunction.Nodes[i].GetValue("FunctionGid");
+                    row[2] = treelstFunction.Nodes[i].GetValue("SystemtypeId");
                     row[3] = treelstFunction.Nodes[i].GetValue("Seq");
                     dt.Rows.Add(row);
 
@@ -428,17 +428,17 @@ namespace JCodes.Framework.AddIn.Proj
                 for (Int32 i = 0; i < dt.Rows.Count; i++)
                 {
                     var sysFunctionInfo = new SysFunctionInfo();
-                    sysFunctionInfo.ID = Guid.NewGuid().ToString();
-                    sysFunctionInfo.PID = pushFunction.Last<string>();
+                    sysFunctionInfo.Gid = Guid.NewGuid().ToString();
+                    sysFunctionInfo.Pgid = pushFunction.Last<string>();
                     sysFunctionInfo.Name = dt.Rows[i][0].ToString().TrimStart('﹂');
-                    sysFunctionInfo.FunctionId = dt.Rows[i][1].ToString();
-                    sysFunctionInfo.SystemType_ID = dt.Rows[i][2].ToString();
+                    sysFunctionInfo.FunctionGid = dt.Rows[i][1].ToString();
+                    sysFunctionInfo.SystemtypeId = dt.Rows[i][2].ToString();
                     sysFunctionInfo.Seq = dt.Rows[i][3].ToString();
                     sysFunctionInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
 
                     if ((i + 1) < dt.Rows.Count && dt.Rows[i][0].ToString().LastIndexOf("﹂") < dt.Rows[i + 1][0].ToString().LastIndexOf("﹂"))
                     {
-                        pushFunction.Add(sysFunctionInfo.ID);
+                        pushFunction.Add(sysFunctionInfo.Gid);
                     }
 
                     // 返回到了某个父节点
@@ -454,7 +454,7 @@ namespace JCodes.Framework.AddIn.Proj
                     addRows++;
 
                     lstsysFunctionInfo.Add(sysFunctionInfo);
-                    xmlhelper.InsertElement("datatype", "item", string.Format(xmlModel, sysFunctionInfo.ID, sysFunctionInfo.PID, sysFunctionInfo.Name, sysFunctionInfo.FunctionId, sysFunctionInfo.SystemType_ID, sysFunctionInfo.Seq));
+                    xmlhelper.InsertElement("datatype", "item", string.Format(xmlModel, sysFunctionInfo.Gid, sysFunctionInfo.Pgid, sysFunctionInfo.Name, sysFunctionInfo.FunctionGid, sysFunctionInfo.SystemtypeId, sysFunctionInfo.Seq));
                     xmlhelper.Save(false);
                     
                 }
@@ -510,27 +510,27 @@ namespace JCodes.Framework.AddIn.Proj
         private void btnAddRoot_Click(object sender, EventArgs e)
         {
             SysFunctionInfo functionInfo = new SysFunctionInfo();
-            if (string.Equals(treelstFunction.FocusedNode.GetValue("PID").ToString(), Const.Num_MinusOne.ToString()))
+            if (string.Equals(treelstFunction.FocusedNode.GetValue("Pgid").ToString(), Const.Num_MinusOne.ToString()))
             {
-                functionInfo.ID = Guid.NewGuid().ToString();
-                functionInfo.PID = Const.Num_MinusOne.ToString();
+                functionInfo.Gid = Guid.NewGuid().ToString();
+                functionInfo.Pgid = Const.Num_MinusOne.ToString();
                 functionInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
                 treelstFunction.FocusedNode = treelstFunction.AppendNode(functionInfo, null);
-                treelstFunction.FocusedNode.SetValue("ID", functionInfo.ID);
-                treelstFunction.FocusedNode.SetValue("PID", functionInfo.PID);
+                treelstFunction.FocusedNode.SetValue("Gid", functionInfo.Gid);
+                treelstFunction.FocusedNode.SetValue("Pgid", functionInfo.Pgid);
                 treelstFunction.FocusedNode.SetValue("lstInfo", functionInfo.lstInfo);
             }
             else
             {
-                functionInfo.ID = Guid.NewGuid().ToString();
-                functionInfo.PID = treelstFunction.FocusedNode.GetValue("PID").ToString();
+                functionInfo.Gid = Guid.NewGuid().ToString();
+                functionInfo.Pgid = treelstFunction.FocusedNode.GetValue("Pgid").ToString();
                 functionInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
                 treelstFunction.FocusedNode = treelstFunction.AppendNode(functionInfo, treelstFunction.FocusedNode.ParentNode);
-                treelstFunction.FocusedNode.SetValue("ID", functionInfo.ID);
-                treelstFunction.FocusedNode.SetValue("PID", functionInfo.PID);
+                treelstFunction.FocusedNode.SetValue("Gid", functionInfo.Gid);
+                treelstFunction.FocusedNode.SetValue("Pgid", functionInfo.Pgid);
                 treelstFunction.FocusedNode.SetValue("lstInfo", functionInfo.lstInfo);
             }
-            xmlhelper.InsertElement("datatype", "item", string.Format(xmlModel, functionInfo.ID, functionInfo.PID, functionInfo.Name, functionInfo.FunctionId, functionInfo.SystemType_ID, functionInfo.Seq));
+            xmlhelper.InsertElement("datatype", "item", string.Format(xmlModel, functionInfo.Gid, functionInfo.Pgid, functionInfo.Name, functionInfo.FunctionGid, functionInfo.SystemtypeId, functionInfo.Seq));
 
             xmlhelper.Save(false);
         }
@@ -546,14 +546,14 @@ namespace JCodes.Framework.AddIn.Proj
             if (treelstFunction.FocusedNode != null)
             {
                 SysFunctionInfo functionInfo = new SysFunctionInfo();
-                functionInfo.ID = Guid.NewGuid().ToString();
-                functionInfo.PID = treelstFunction.FocusedNode.GetValue("ID").ToString();
+                functionInfo.Gid = Guid.NewGuid().ToString();
+                functionInfo.Pgid = treelstFunction.FocusedNode.GetValue("Gid").ToString();
                 functionInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
                 treelstFunction.FocusedNode = treelstFunction.AppendNode(null, treelstFunction.FocusedNode);
-                treelstFunction.FocusedNode.SetValue("ID", functionInfo.ID);
-                treelstFunction.FocusedNode.SetValue("PID", functionInfo.PID);
+                treelstFunction.FocusedNode.SetValue("Gid", functionInfo.Gid);
+                treelstFunction.FocusedNode.SetValue("Pgid", functionInfo.Pgid);
 
-                xmlhelper.InsertElement("datatype", "item", string.Format(xmlModel, functionInfo.ID, functionInfo.PID, functionInfo.Name, functionInfo.FunctionId, functionInfo.SystemType_ID, functionInfo.Seq));
+                xmlhelper.InsertElement("datatype", "item", string.Format(xmlModel, functionInfo.Gid, functionInfo.Pgid, functionInfo.Name, functionInfo.FunctionGid, functionInfo.SystemtypeId, functionInfo.Seq));
 
                 xmlhelper.Save(false);
             }
@@ -571,14 +571,14 @@ namespace JCodes.Framework.AddIn.Proj
             {
                 // 放到之后去则与TargetNode 的节点的父节点一致
                 //Console.WriteLine(args.TargetNode.GetValue("PID"));
-                string dragId = args.Node.GetValue("ID").ToString();
+                string dragId = args.Node.GetValue("Gid").ToString();
                 xmlhelper = new XmlHelper(@"XML\function.xml");
                 var xmlNodes = xmlhelper.Read("datatype");
                 for (Int32 i = 0; i < xmlNodes.Count; i++)
                 {
                     if (string.Equals(xmlNodes[i].ChildNodes[0].InnerText, dragId))
                     {
-                        xmlNodes[i].ChildNodes[1].InnerText = args.TargetNode.GetValue("PID").ToString();
+                        xmlNodes[i].ChildNodes[1].InnerText = args.TargetNode.GetValue("Pgid").ToString();
                         break;
                     }
                 }
@@ -587,14 +587,14 @@ namespace JCodes.Framework.AddIn.Proj
             {
                 // 放到目标节点之中，则父节点就是TargetNode;
                 //Console.WriteLine(args.TargetNode.GetValue("ID"));
-                string dragId = args.Node.GetValue("ID").ToString();
+                string dragId = args.Node.GetValue("Gid").ToString();
                 xmlhelper = new XmlHelper(@"XML\function.xml");
                 var xmlNodes = xmlhelper.Read("datatype");
                 for (Int32 i = 0; i < xmlNodes.Count; i++)
                 {
                     if (string.Equals(xmlNodes[i].ChildNodes[0].InnerText, dragId))
                     {
-                        xmlNodes[i].ChildNodes[1].InnerText = args.TargetNode.GetValue("ID").ToString();
+                        xmlNodes[i].ChildNodes[1].InnerText = args.TargetNode.GetValue("Gid").ToString();
                         break;
                     }
                 }
@@ -609,7 +609,7 @@ namespace JCodes.Framework.AddIn.Proj
         /// <param name="e"></param>
         private void treelstFunction_CellValueChanged(object sender, DevExpress.XtraTreeList.CellValueChangedEventArgs e)
         {
-            string changId = treelstFunction.FocusedNode.GetValue("ID").ToString();
+            string changId = treelstFunction.FocusedNode.GetValue("Gid").ToString();
             xmlhelper = new XmlHelper(@"XML\function.xml");
             var xmlNodes = xmlhelper.Read("datatype");
             for (Int32 i = 0; i < xmlNodes.Count; i++)
@@ -622,10 +622,10 @@ namespace JCodes.Framework.AddIn.Proj
                         case "Name":
                             idx = 2;
                             break;
-                        case "FunctionId":
+                        case "FunctionGid":
                             idx = 3;
                             break;
-                        case "SystemType_ID":
+                        case "SystemtypeId":
                             idx = 4;
                             break;
                         case "Seq":

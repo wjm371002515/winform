@@ -37,7 +37,7 @@ namespace JCodes.Framework.WebDemo.Controllers
         /// <returns></returns>
         public ActionResult CheckExcelColumns(string guid)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
 
             try
             {
@@ -45,7 +45,7 @@ namespace JCodes.Framework.WebDemo.Controllers
                 if (dt != null)
                 {
                     //检查列表是否包含必须的字段
-                    result.Success = DataTableHelper.ContainAllColumns(dt, columnString);
+                    result.ErrorCode = DataTableHelper.ContainAllColumns(dt, columnString)?0:1;
                 }
             }
             catch (Exception ex)
@@ -75,7 +75,6 @@ namespace JCodes.Framework.WebDemo.Controllers
             if (table != null)
             {
                 #region 数据转换
-                int i = 1;
                 foreach (DataRow dr in table.Rows)
                 {
                     bool converted = false;
@@ -83,16 +82,16 @@ namespace JCodes.Framework.WebDemo.Controllers
                     DateTime dt;                    
                     BootstrapIconInfo info = new BootstrapIconInfo();
                     
-                     info.DisplayName = dr["显示名称"].ToString();
-                      info.ClassName = dr["样式名称"].ToString();
-                      info.SourceType = dr["来源"].ToString();
-                      converted = DateTime.TryParse(dr["创建时间"].ToString(), out dt);
+                    info.DisplayName = dr["显示名称"].ToString();
+                    info.ClassName = dr["样式名称"].ToString();
+                    info.IconSourceType = Convert.ToInt16(dr["来源"]);
+                    converted = DateTime.TryParse(dr["创建时间"].ToString(), out dt);
                     if (converted && dt > dtDefault)
                     {
-                         info.CreateTime = dt;
+                         info.CreatorTime = dt;
                     }
   
-                    info.CreateTime = DateTime.Now;
+                    info.CreatorTime = DateTime.Now;
 
                     list.Add(info);
                 }
@@ -110,7 +109,7 @@ namespace JCodes.Framework.WebDemo.Controllers
         /// <returns></returns>
         public ActionResult SaveExcelData(List<BootstrapIconInfo> list)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             if (list != null && list.Count > 0)
             {
                 #region 采用事务进行数据提交
@@ -124,12 +123,12 @@ namespace JCodes.Framework.WebDemo.Controllers
                         foreach (BootstrapIconInfo detail in list)
                         {
                             //detail.Seq = seq++;//增加1
-                            detail.CreateTime = DateTime.Now;
+                            detail.CreatorTime = DateTime.Now;
 
                             BLLFactory<BootstrapIcon>.Instance.Insert(detail, trans);
                         }
                         trans.Commit();
-                        result.Success = true;
+                        result.ErrorCode = 0;
                     }
                     catch (Exception ex)
                     {
@@ -184,8 +183,8 @@ namespace JCodes.Framework.WebDemo.Controllers
                 dr["序号"] = j++;                
                  dr["显示名称"] = list[i].DisplayName;
                  dr["样式名称"] = list[i].ClassName;
-                 dr["来源"] = list[i].SourceType;
-                 dr["创建时间"] = list[i].CreateTime;
+                 dr["来源"] = list[i].IconSourceType;
+                 dr["创建时间"] = list[i].CreatorTime;
                  //如果为外键，可以在这里进行转义，如下例子
                 //dr["客户名称"] = BLLFactory<Customer>.Instance.GetCustomerName(list[i].Customer_ID);//转义为客户名称
 
@@ -228,7 +227,7 @@ namespace JCodes.Framework.WebDemo.Controllers
         public override ActionResult FindWithPager()
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.ListKey);
+            base.CheckAuthorized(authorizeKeyInfo.ListKey);
 
             string where = GetPagerCondition();
             PagerInfo pagerInfo = GetPagerInfo();
@@ -256,7 +255,7 @@ namespace JCodes.Framework.WebDemo.Controllers
         /// <returns></returns>
         public ActionResult GenerateIconCSS()
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             string regex = "^\\.(?<name>.*?):before\\s*\\{";
             List<string> filePathList = new List<string>()
             {
@@ -303,20 +302,20 @@ namespace JCodes.Framework.WebDemo.Controllers
                             {
                                 DisplayName = item,
                                 ClassName = prefix + item,
-                                CreateTime = DateTime.Now,
-                                SourceType = sourceType,
+                                CreatorTime = DateTime.Now,
+                                IconSourceType = Convert.ToInt16( sourceType),
                             };
 
                             BLLFactory<BootstrapIcon>.Instance.Insert(info);
                         }
-                        result.Success = true;
+                        result.ErrorCode = 0;
                     }
                     i++;
                 }
             }
             catch(Exception ex)
             {
-                result.Success = false;
+                result.ErrorCode = 1;
                 result.ErrorMessage = ex.Message;
                 LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(BootstrapIconController));
             }

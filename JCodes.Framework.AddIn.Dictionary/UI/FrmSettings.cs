@@ -31,7 +31,7 @@ namespace JCodes.Framework.AddIn.Dictionary
             var lst = BLLFactory<DictData>.Instance.GetDictByTypeID(Const.DIC_PARAMETER);
             foreach (var dic in lst)
             {
-                var frm1 = new FrmSysparameter(dic.Value, dic.Name);
+                var frm1 = new FrmSysparameter(dic.DicttypeValue, dic.Name);
                 this.firefoxDialog1.AddPage(dic.Name, frm1);//基于本地文件的参数存储
                 frm1.MeEvent += firefoxDialog1.ChangeValue;
             }

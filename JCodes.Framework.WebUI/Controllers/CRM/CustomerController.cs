@@ -31,7 +31,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult CheckExcelColumns(string guid)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
 
             try
             {
@@ -39,7 +39,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 if (dt != null)
                 {
                     //检查列表是否包含必须的字段
-                    result.Success = DataTableHelper.ContainAllColumns(dt, importColumnString);
+                    result.ErrorCode = DataTableHelper.ContainAllColumns(dt, importColumnString)?0:1;
                 }
             }
             catch (Exception ex)
@@ -69,15 +69,12 @@ namespace JCodes.Framework.WebUI.Controllers
             if (table != null)
             {
                 #region 数据转换
-                int i = 1;
                 foreach (DataRow dr in table.Rows)
                 {
-                    bool converted = false;
                     DateTime dtDefault = Convert.ToDateTime("1900-01-01");
-                    DateTime dt;
                     CustomerInfo info = new CustomerInfo();
 
-                    info.UserCode = dr["客户编号"].ToString();
+                    /*info.UserCode = dr["客户编号"].ToString();
                     info.Name = dr["客户名称"].ToString();
                     info.FullName = dr["客户简称"].ToString();
                     info.ProvinceName = dr["所在省份"].ToString();
@@ -92,7 +89,7 @@ namespace JCodes.Framework.WebUI.Controllers
                     info.ContactPhone = dr["联系人电话"].ToString();
                     info.ContactMobile = dr["联系人手机"].ToString();
                     info.Email = dr["电子邮件"].ToString();
-                    info.QQ = dr["QQ号码"].ToString();
+                    info.QQ = dr["QQ号码"].ToString();*/
                     //info.Industry = dr["所属行业"].ToString();
                     //info.BusinessScope = dr["经营范围"].ToString();
                     //info.Brand = dr["经营品牌"].ToString();
@@ -144,7 +141,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult SaveExcelData(List<CustomerInfo> list)
         {
-            CommonResult result = new CommonResult();
+            ReturnResult result = new ReturnResult();
             if (list != null && list.Count > 0)
             {
                 #region 采用事务进行数据提交
@@ -169,7 +166,7 @@ namespace JCodes.Framework.WebUI.Controllers
                             BLLFactory<Customer>.Instance.Insert(detail, trans);
                         }
                         trans.Commit();
-                        result.Success = true;
+                        result.ErrorCode = 0;
                     }
                     catch (Exception ex)
                     {
@@ -221,7 +218,7 @@ namespace JCodes.Framework.WebUI.Controllers
             for (int i = 0; i < list.Count; i++)
             {
                 dr = datatable.NewRow();
-                dr["序号"] = j++;
+                /*dr["序号"] = j++;
                 dr["客户编号"] = list[i].UserCode;
                 dr["客户名称"] = list[i].Name;
                 dr["客户简称"] = list[i].FullName;
@@ -264,7 +261,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 dr["客户满意度"] = list[i].Satisfaction;
                 dr["备注信息"] = list[i].Remark;
                 dr["客户阶段"] = list[i].Stage;
-                dr["客户状态"] = list[i].AuditStatus;
+                dr["客户状态"] = list[i].AuditStatus;*/
 
                 //如果为外键，可以在这里进行转义，如下例子
                 //dr["客户名称"] = BLLFactory<Customer>.Instance.GetCustomerName(list[i].Customer_ID);//转义为客户名称
@@ -308,7 +305,7 @@ namespace JCodes.Framework.WebUI.Controllers
         public override ActionResult FindWithPager()
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
-            base.CheckAuthorized(AuthorizeKey.ListKey);
+            base.CheckAuthorized(authorizeKeyInfo.ListKey);
 
             string where = GetPagerCondition();
             PagerInfo pagerInfo = GetPagerInfo();

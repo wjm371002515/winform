@@ -1,116 +1,286 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 
 namespace JCodes.Framework.Entity
 {
-    public class ProjectInfo
-    {
-        public ProjectInfo()
-        { }
+	/// <summary>
+	/// 项目信息(ProjectInfo)
+	/// 对象号: 100046
+	/// 备注信息: 
+	/// </summary>
+	[Serializable]
+	[DataContract]
+	public partial class ProjectInfo
+	{
+		#region Field Members
 
-        private string guid;
+		/// <summary>
+		/// GUID对应的ID序号
+		/// </summary>
+		private String m_Gid = string.Empty;
 
-        [DisplayName("GUID")]
-        public string GUID
-        {
-            get { return guid; }
-            set { guid = value; }
-        }
+		/// <summary>
+		/// 名称
+		/// </summary>
+		private String m_Name = string.Empty;
 
-        /// <summary>
-        /// 类型名
-        /// </summary>
-        private string name;
+		/// <summary>
+		/// 版本号
+		/// </summary>
+		private String m_Version = string.Empty;
 
-        [DisplayName("名称")]
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
+		/// <summary>
+		/// 控件类型
+		/// </summary>
+		private Int16 m_ControlType = 0;
 
-        private string version;
+		/// <summary>
+		/// 联系人
+		/// </summary>
+		private String m_Contacts = string.Empty;
 
-        [DisplayName("版本号")]
-        public string Version
-        {
-            get { return version; }
-            set { version = value; }
-        }
+		/// <summary>
+		/// 备注
+		/// </summary>
+		private String m_Remark = string.Empty;
 
-        private string contract;
+		/// <summary>
+		/// 数据库类型
+		/// </summary>
+		private String m_DbType = string.Empty;
 
-        [DisplayName("联系方式")]
-        public string Contract
-        {
-            get { return contract; }
-            set { contract = value; }
-        }
+		/// <summary>
+		/// 字典大类信息
+		/// </summary>
+		private String m_DicttypeTable = string.Empty;
 
-        private string remark;
+		/// <summary>
+		/// 字典明细信息
+		/// </summary>
+		private String m_DictdataTable = string.Empty;
 
-        [DisplayName("说明")]
-        public string Remark
-        {
-            get { return remark; }
-            set { remark = value; }
-        }
+		/// <summary>
+		/// 错误号信息表
+		/// </summary>
+		private String m_ErrTable = string.Empty;
 
-        private string dbtype;
+		/// <summary>
+		/// 最后更新时间
+		/// </summary>
+		private DateTime m_LastUpdateTime = DateTime.Now;
 
-        [DisplayName("数据库类型")]
-        public string DbType
-        {
-            get { return dbtype; }
-            set { dbtype = value; }
-        }
+		/// <summary>
+		/// 脚本生成路径
+		/// </summary>
+		private String m_OutputPath = string.Empty;
+		#endregion
 
-        private string dicttype_table;
+		#region Property Members
 
-        [DisplayName("字典大类信息")]
-        public string DicttypeTable
-        {
-            get { return dicttype_table; }
-            set { dicttype_table = value; }
-        }
+		/// <summary>
+		/// GUID对应的ID序号
+		/// </summary>
+		[DataMember]
+		[DisplayName("GUID对应的ID序号")]
+		public virtual String Gid
+		{
+			get
+			{
+				return this.m_Gid;
+			}
+			set
+			{
+				this.m_Gid = value;
+			}
+		}
 
-        private string dictdata_table;
+		/// <summary>
+		/// 名称
+		/// </summary>
+		[DataMember]
+		[DisplayName("名称")]
+		public virtual String Name
+		{
+			get
+			{
+				return this.m_Name;
+			}
+			set
+			{
+				this.m_Name = value;
+			}
+		}
 
-        [DisplayName("字典明细信息")]
-        public string DictdataTable
-        {
-            get { return dictdata_table; }
-            set { dictdata_table = value; }
-        }
+		/// <summary>
+		/// 版本号
+		/// </summary>
+		[DataMember]
+		[DisplayName("版本号")]
+		public virtual String Version
+		{
+			get
+			{
+				return this.m_Version;
+			}
+			set
+			{
+				this.m_Version = value;
+			}
+		}
 
-        private string err_table;
+		/// <summary>
+		/// 控件类型
+		/// </summary>
+		[DataMember]
+		[DisplayName("控件类型")]
+		public virtual Int16 ControlType
+		{
+			get
+			{
+				return this.m_ControlType;
+			}
+			set
+			{
+				this.m_ControlType = value;
+			}
+		}
 
-        [DisplayName("错误号信息表")]
-        public string ErrTable
-        {
-            get { return err_table; }
-            set { err_table = value; }
-        }
+		/// <summary>
+		/// 联系人
+		/// </summary>
+		[DataMember]
+		[DisplayName("联系人")]
+		public virtual String Contacts
+		{
+			get
+			{
+				return this.m_Contacts;
+			}
+			set
+			{
+				this.m_Contacts = value;
+			}
+		}
 
-        private string lasttime;
+		/// <summary>
+		/// 备注
+		/// </summary>
+		[DataMember]
+		[DisplayName("备注")]
+		public virtual String Remark
+		{
+			get
+			{
+				return this.m_Remark;
+			}
+			set
+			{
+				this.m_Remark = value;
+			}
+		}
 
-        [DisplayName("最后更新日期")]
-        public string LastTime
-        {
-            get { return lasttime; }
-            set { lasttime = value; }
-        }
+		/// <summary>
+		/// 数据库类型
+		/// </summary>
+		[DataMember]
+		[DisplayName("数据库类型")]
+		public virtual String DbType
+		{
+			get
+			{
+				return this.m_DbType;
+			}
+			set
+			{
+				this.m_DbType = value;
+			}
+		}
 
-        private string outputpath;
+		/// <summary>
+		/// 字典大类信息
+		/// </summary>
+		[DataMember]
+		[DisplayName("字典大类信息")]
+		public virtual String DicttypeTable
+		{
+			get
+			{
+				return this.m_DicttypeTable;
+			}
+			set
+			{
+				this.m_DicttypeTable = value;
+			}
+		}
 
-        [DisplayName("脚本生成路径")]
-        public string OutputPath
-        {
-            get { return outputpath; }
-            set { outputpath = value; }
-        }
-    }
+		/// <summary>
+		/// 字典明细信息
+		/// </summary>
+		[DataMember]
+		[DisplayName("字典明细信息")]
+		public virtual String DictdataTable
+		{
+			get
+			{
+				return this.m_DictdataTable;
+			}
+			set
+			{
+				this.m_DictdataTable = value;
+			}
+		}
+
+		/// <summary>
+		/// 错误号信息表
+		/// </summary>
+		[DataMember]
+		[DisplayName("错误号信息表")]
+		public virtual String ErrTable
+		{
+			get
+			{
+				return this.m_ErrTable;
+			}
+			set
+			{
+				this.m_ErrTable = value;
+			}
+		}
+
+		/// <summary>
+		/// 最后更新时间
+		/// </summary>
+		[DataMember]
+		[DisplayName("最后更新时间")]
+		public virtual DateTime LastUpdateTime
+		{
+			get
+			{
+				return this.m_LastUpdateTime;
+			}
+			set
+			{
+				this.m_LastUpdateTime = value;
+			}
+		}
+
+		/// <summary>
+		/// 脚本生成路径
+		/// </summary>
+		[DataMember]
+		[DisplayName("脚本生成路径")]
+		public virtual String OutputPath
+		{
+			get
+			{
+				return this.m_OutputPath;
+			}
+			set
+			{
+				this.m_OutputPath = value;
+			}
+		}
+		#endregion
+	}
 }

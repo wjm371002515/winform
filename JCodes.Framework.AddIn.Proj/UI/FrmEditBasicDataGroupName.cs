@@ -51,7 +51,7 @@ namespace JCodes.Framework.AddIn.Proj
                 // 配置的这个节点 basicdata 为1时才加载数据
                 if (string.Equals(xe.GetAttribute("basicdata").ToString(), Const.Num_Zero.ToString()))
                 {
-                    lst.Add(new CListItem(xe.GetAttribute("guid").ToString(), xe.GetAttribute("name").ToString()));
+                    lst.Add(new CListItem(xe.GetAttribute("gid").ToString(), xe.GetAttribute("name").ToString()));
                 }
             }
             #endregion
@@ -80,8 +80,8 @@ namespace JCodes.Framework.AddIn.Proj
 
                 var objXmlDoc = xmltableshelper.GetXmlDoc();
                 // 修改大的分类basicdata
-                objXmlDoc.SelectSingleNode(string.Format("datatype/tabletype/item[@guid=\"{0}\"]", info.GUID)).Attributes["basicdata"].InnerText = "1";
-                strGroupName = objXmlDoc.SelectSingleNode(string.Format("datatype/tabletype/item[@guid=\"{0}\"]", info.GUID)).Attributes["name"].InnerText;
+                objXmlDoc.SelectSingleNode(string.Format("datatype/tabletype/item[@gid=\"{0}\"]", info.Gid)).Attributes["basicdata"].InnerText = "1";
+                strGroupName = objXmlDoc.SelectSingleNode(string.Format("datatype/tabletype/item[@gid=\"{0}\"]", info.Gid)).Attributes["name"].InnerText;
                 xmltableshelper.Save();
                 // TODO
                 //Id = info.GUID;
@@ -105,7 +105,7 @@ namespace JCodes.Framework.AddIn.Proj
 
         private void SetInfo(TablesTypeInfo info)
         {
-            info.GUID = cbbGroupName.GetComboBoxStrValue();
+            info.Gid = cbbGroupName.GetComboBoxStrValue();
         }
 
         /// <summary>

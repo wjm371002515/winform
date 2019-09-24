@@ -45,7 +45,7 @@ namespace JCodes.Framework.MySqlDAL
         {
             OUInfo info = new OUInfo();
             SmartDataReader reader = new SmartDataReader(dataReader);
-            info.Id = reader.GetInt32("Id");
+            /*info.Id = reader.GetInt32("Id");
             info.Pid = reader.GetInt32("Pid");
             info.OuCode = reader.GetString("OuCode");
             info.Name = reader.GetString("Name");
@@ -61,7 +61,7 @@ namespace JCodes.Framework.MySqlDAL
             info.LastUpdateTime = reader.GetDateTime("LastUpdateTime");
             info.IsDelete = reader.GetInt32("IsDelete");
             info.IsForbid = reader.GetInt32("IsForbid");
-            info.CompanyId = reader.GetInt32("CompanyId");
+            info.CompanyId = reader.GetInt32("CompanyId");*/
 
             return info;
         }
@@ -75,7 +75,7 @@ namespace JCodes.Framework.MySqlDAL
         {
             OUInfo info = obj as OUInfo;
             Hashtable hash = new Hashtable();
-            hash.Add("Pid", info.Pid);
+            /*hash.Add("Pid", info.Pid);
             hash.Add("OuCode", info.OuCode);
             hash.Add("Name", info.Name);
             hash.Add("Seq", info.Seq);
@@ -90,7 +90,7 @@ namespace JCodes.Framework.MySqlDAL
             hash.Add("LastUpdateTime", info.LastUpdateTime);
             hash.Add("IsDelete", info.IsDelete);
             hash.Add("IsForbid", info.IsForbid);
-            hash.Add("CompanyId", info.CompanyId);
+            hash.Add("CompanyId", info.CompanyId);*/
             return hash;
         }
 
@@ -102,7 +102,7 @@ namespace JCodes.Framework.MySqlDAL
         {
             Dictionary<string, string> dict = new Dictionary<string, string>();
             #region 添加别名解析
-            dict.Add("ID", "编号");
+            /*dict.Add("ID", "编号");
             dict.Add("PID", "父ID");
             dict.Add("OuCode", "机构编码");
             dict.Add("Name", "机构名称");
@@ -118,7 +118,7 @@ namespace JCodes.Framework.MySqlDAL
             dict.Add("LastUpdateTime", "编辑时间");
             dict.Add("IsDelete", "是否已删除");
             dict.Add("IsForbid", "有效标志");
-            dict.Add("CompanyId", "所属公司ID");
+            dict.Add("CompanyId", "所属公司ID");*/
             #endregion
 
             return dict;

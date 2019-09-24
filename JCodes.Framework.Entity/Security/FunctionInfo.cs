@@ -1,163 +1,154 @@
 ﻿using System;
-using System.Xml.Serialization;
 using System.Runtime.Serialization;
-using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace JCodes.Framework.Entity
 {
-    /// <summary>
-    /// 系统功能定义
-    /// </summary>
-    [Serializable]
-    [DataContract]
-    public class FunctionInfo : BaseEntity
-    {
-        #region Field Members
+	/// <summary>
+	/// 系统功能定义(FunctionInfo)
+	/// 对象号: 100056
+	/// 备注信息: 
+	/// </summary>
+	[Serializable]
+	[DataContract]
+	public partial class FunctionInfo : BaseEntity
+	{
+		#region Field Members
 
-        private string m_ID = System.Guid.NewGuid().ToString(); //          
-        private string m_PID = "-1"; //父ID          
-        private string m_Name; //功能名称          
-        private string m_FunctionId; //功能ID    
-        private string m_SystemType_ID; //系统编号          
-        private string m_Seq; //排序码          
+		/// <summary>
+		/// GUID对应的ID序号
+		/// </summary>
+		private String m_Gid = string.Empty;
 
-        #endregion
+		/// <summary>
+		/// 父节点GUID对应的ID序号
+		/// </summary>
+		private String m_Pgid = string.Empty;
 
-        #region Property Members
+		/// <summary>
+		/// 名称
+		/// </summary>
+		private String m_Name = string.Empty;
 
-        [DataMember]
-        public virtual string ID
-        {
-            get
-            {
-                return this.m_ID;
-            }
-            set
-            {
-                this.m_ID = value;
-            }
-        }
+		/// <summary>
+		/// 映射路径
+		/// </summary>
+		private String m_DllPath = string.Empty;
 
-        /// <summary>
-        /// 父ID
-        /// </summary>
+		/// <summary>
+		/// 系统编号
+		/// </summary>
+		private String m_SystemtypeId = string.Empty;
+
+		/// <summary>
+		/// 排序
+		/// </summary>
+		private String m_Seq = string.Empty;
+		#endregion
+
+		#region Property Members
+
+		/// <summary>
+		/// GUID对应的ID序号
+		/// </summary>
 		[DataMember]
-        public virtual string PID
-        {
-            get
-            {
-                return this.m_PID;
-            }
-            set
-            {
-                this.m_PID = value;
-            }
-        }
+		[DisplayName("GUID对应的ID序号")]
+		public virtual String Gid
+		{
+			get
+			{
+				return this.m_Gid;
+			}
+			set
+			{
+				this.m_Gid = value;
+			}
+		}
 
-        /// <summary>
-        /// 功能名称
-        /// </summary>
-        [DataMember]
-        public virtual string Name
-        {
-            get
-            {
-                return this.m_Name;
-            }
-            set
-            {
-                this.m_Name = value;
-            }
-        }
+		/// <summary>
+		/// 父节点GUID对应的ID序号
+		/// </summary>
+		[DataMember]
+		[DisplayName("父节点GUID对应的ID序号")]
+		public virtual String Pgid
+		{
+			get
+			{
+				return this.m_Pgid;
+			}
+			set
+			{
+				this.m_Pgid = value;
+			}
+		}
 
-        /// <summary>
-        /// 功能ID
-        /// </summary>
-        [DataMember]
-        public virtual string FunctionId
-        {
-            get
-            {
-                return this.m_FunctionId;
-            }
-            set
-            {
-                this.m_FunctionId = value;
-            }
-        }
+		/// <summary>
+		/// 名称
+		/// </summary>
+		[DataMember]
+		[DisplayName("名称")]
+		public virtual String Name
+		{
+			get
+			{
+				return this.m_Name;
+			}
+			set
+			{
+				this.m_Name = value;
+			}
+		}
 
-        /// <summary>
-        /// 系统编号
-        /// </summary>
-        [DataMember]
-        public virtual string SystemType_ID
-        {
-            get
-            {
-                return this.m_SystemType_ID;
-            }
-            set
-            {
-                this.m_SystemType_ID = value;
-            }
-        }
-        /// <summary>
-        /// 排序
-        /// </summary>
-        [DataMember]
-        public virtual string Seq
-        {
-            get
-            {
-                return this.m_Seq;
-            }
-            set
-            {
-                this.m_Seq = value;
-            }
-        }
-        #endregion
-    }
+		/// <summary>
+		/// 映射路径
+		/// </summary>
+		[DataMember]
+		[DisplayName("映射路径")]
+		public virtual String DllPath
+		{
+			get
+			{
+				return this.m_DllPath;
+			}
+			set
+			{
+				this.m_DllPath = value;
+			}
+		}
 
-    /// <summary>
-    /// 系统功能节点对象
-    /// </summary>
-    [Serializable]
-    [DataContract]
-    public class FunctionNodeInfo : FunctionInfo
-    {
-        private List<FunctionNodeInfo> m_Children = new List<FunctionNodeInfo>();
+		/// <summary>
+		/// 系统编号
+		/// </summary>
+		[DataMember]
+		[DisplayName("系统编号")]
+		public virtual String SystemtypeId
+		{
+			get
+			{
+				return this.m_SystemtypeId;
+			}
+			set
+			{
+				this.m_SystemtypeId = value;
+			}
+		}
 
-        /// <summary>
-        /// 子菜单实体类对象集合
-        /// </summary>
-        [DataMember]
-        public List<FunctionNodeInfo> Children
-        {
-            get { return m_Children; }
-            set { m_Children = value; }
-        }
-
-        /// <summary>
-        /// 默认构造函数
-        /// </summary>
-        public FunctionNodeInfo()
-        {
-            this.m_Children = new List<FunctionNodeInfo>();
-        }
-
-        /// <summary>
-        /// 参数构造函数
-        /// </summary>
-        /// <param name="functionInfo">FunctionInfo对象</param>
-        public FunctionNodeInfo(FunctionInfo functionInfo)
-        {
-            base.FunctionId = functionInfo.FunctionId;
-            base.ID = functionInfo.ID;
-            base.Name = functionInfo.Name;
-            base.PID = functionInfo.PID;
-            base.SystemType_ID = functionInfo.SystemType_ID;
-            base.Seq = functionInfo.Seq;
-        }
-    }
+		/// <summary>
+		/// 排序
+		/// </summary>
+		[DataMember]
+		[DisplayName("排序")]
+		public virtual String Seq
+		{
+			get
+			{
+				return this.m_Seq;
+			}
+			set
+			{
+				this.m_Seq = value;
+			}
+		}
+		#endregion
+	}
 }

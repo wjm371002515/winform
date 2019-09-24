@@ -170,14 +170,14 @@ namespace JCodes.Framework.AddIn.Proj
                 // 将节点转换为元素，便于得到节点的属性值
                 XmlElement xe = (XmlElement)xn1;
                 // 得到Type和ISBN两个属性的属性值
-                tablesTypeInfo.GUID = xe.GetAttribute("guid").ToString();
-                tablesTypeInfo.CreateDate = xe.GetAttribute("createdate").ToString();
+                tablesTypeInfo.Gid= xe.GetAttribute("gid").ToString();
+                tablesTypeInfo.CreatorTime = Convert.ToDateTime(xe.GetAttribute("creatortime"));
                 tablesTypeInfo.Name = xe.GetAttribute("name").ToString();
 
                 // 获取字符串中的英文字母 [a-zA-Z]+
                 string GroupEnglishName = CRegex.GetText(tablesTypeInfo.Name, "[a-zA-Z]+", 0);
 
-                guidGroup.Add(tablesTypeInfo.GUID, string.Format("{0}{1}_", Const.TablePre, GroupEnglishName));
+                guidGroup.Add(tablesTypeInfo.Gid, string.Format("{0}{1}_", Const.TablePre, GroupEnglishName));
                 tablesTypeInfoList.Add(tablesTypeInfo);
             }
 
@@ -189,15 +189,15 @@ namespace JCodes.Framework.AddIn.Proj
                 // 将节点转换为元素，便于得到节点的属性值
                 XmlElement xe = (XmlElement)xn1;
                 // 得到Type和ISBN两个属性的属性值
-                tablesInfo.GUID = xe.GetAttribute("guid").ToString();
+                tablesInfo.Gid = xe.GetAttribute("gid").ToString();
 
                 // 得到ConstantInfo节点的所有子节点
                 XmlNodeList xnl0 = xe.ChildNodes;
                 tablesInfo.Name = xnl0.Item(0).InnerText;
                 tablesInfo.ChineseName = xnl0.Item(1).InnerText;
-                tablesInfo.FunctionId = xnl0.Item(2).InnerText;
+                tablesInfo.FunctionId = xnl0.Item(2).InnerText.ToInt32();
                 tablesInfo.TypeGuid = xnl0.Item(3).InnerText;
-                tablesInfo.Path = xnl0.Item(4).InnerText;
+                tablesInfo.BasicdataPath = xnl0.Item(4).InnerText;
 
                 tableGroup.Add(tablesInfo.Name, guidGroup[tablesInfo.TypeGuid]);
                 tablesInfoList.Add(tablesInfo);
@@ -209,17 +209,17 @@ namespace JCodes.Framework.AddIn.Proj
             {
                 NavBarGroup standardGroup = navBar.Groups.Add();
                 standardGroup.Caption = tablesTypeInfo.Name;
-                standardGroup.Tag = tablesTypeInfo.GUID;
+                standardGroup.Tag = tablesTypeInfo.Gid;
                 standardGroup.Expanded = true;
 
                 foreach (var tablesInfo in tablesInfoList)
                 {
-                    if (string.Equals(tablesTypeInfo.GUID, tablesInfo.TypeGuid))
+                    if (string.Equals(tablesTypeInfo.Gid, tablesInfo.TypeGuid))
                     {
                         NavBarItem item = new NavBarItem();
                         item.Caption = string.Format("{0}-({1} {2})", tablesInfo.FunctionId, tablesInfo.ChineseName, tablesInfo.Name);
                         // 临时调整为表名
-                        item.Tag = tablesInfo.GUID;
+                        item.Tag = tablesInfo.Gid;
                         item.Name = tablesInfo.Name;
                         item.Hint = tablesInfo.ChineseName;
                         item.LinkClicked += Item_LinkClicked;
@@ -303,7 +303,7 @@ namespace JCodes.Framework.AddIn.Proj
             // 需要重新读一下xml文件不存缓存里面没有
             xmltableshelper = new XmlHelper(@"XML\tables.xml");
             // 删除大的分类
-            xmltableshelper.DeleteByPathNode(string.Format("datatype/tabletype/item[@guid=\"{0}\"]", selectedGroup.Tag));
+            xmltableshelper.DeleteByPathNode(string.Format("datatype/tabletype/item[@gid=\"{0}\"]", selectedGroup.Tag));
             // 删除子项
             while (true)
             {
@@ -358,7 +358,7 @@ namespace JCodes.Framework.AddIn.Proj
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 NavBarItem item = new NavBarItem();
-                item.Caption = string.Format("{0}-({1} {2})", dlg.strFunction, dlg.strChineseName, dlg.strItemName);
+                item.Caption = string.Format("{0}-({1} {2})", dlg.intFunction, dlg.strChineseName, dlg.strItemName);
                 item.Tag = dlg.strGuid;
                 item.Name = dlg.strItemName;
                 item.Hint = dlg.strChineseName;
@@ -397,7 +397,7 @@ namespace JCodes.Framework.AddIn.Proj
                 NavBarItem item = selectedLink.Item;
                 tableGroup.Remove(selectedLink.Item.Name);
 
-                item.Caption = string.Format("{0}-({1} {2})", dlg.strFunction, dlg.strChineseName, dlg.strItemName);
+                item.Caption = string.Format("{0}-({1} {2})", dlg.intFunction, dlg.strChineseName, dlg.strItemName);
                 item.Name = dlg.strItemName;
                 item.Hint = dlg.strChineseName;
 
@@ -422,7 +422,7 @@ namespace JCodes.Framework.AddIn.Proj
 
             xmltableshelper = new XmlHelper(@"XML\tables.xml");
             // 删除子项
-            xmltableshelper.DeleteByPathNode(string.Format("datatype/dataitem/item[@guid=\"{0}\"]", selectedLink.Item.Tag));
+            xmltableshelper.DeleteByPathNode(string.Format("datatype/dataitem/item[@gid=\"{0}\"]", selectedLink.Item.Tag));
             xmltableshelper.Save(false);
 
             // 删除table文件
@@ -628,7 +628,7 @@ namespace JCodes.Framework.AddIn.Proj
                 
                 // 将节点转换为元素，便于得到节点的属性值
                 XmlElement xe = (XmlElement)xn1;
-                strBasicInfoGuid = xe.GetAttribute("guid").ToString();
+                strBasicInfoGuid = xe.GetAttribute("gid").ToString();
 
                 // 得到DataTypeInfo节点的所有子节点
                 XmlNodeList xnl0 = xe.ChildNodes;
@@ -736,7 +736,7 @@ namespace JCodes.Framework.AddIn.Proj
             gridColumnGuid.Name = "gridColumnGUID";
             gridColumnGuid.Visible = true;
             gridColumnGuid.VisibleIndex = 0;
-            gridColumnGuid.FieldName = "GUID";
+            gridColumnGuid.FieldName = "Gid";
 
             gridColumnFieldName.Caption = "字段名";
             gridColumnFieldName.Name = "gridColumnFieldName";
@@ -841,7 +841,7 @@ namespace JCodes.Framework.AddIn.Proj
 
             gridViewFields.Columns["IsNull"].ColumnEdit = repositoryItemChkIsNull;
             gridViewFields.Columns["FieldName"].ColumnEdit = repositoryItemLookUpEditFields;
-            gridViewFields.Columns["GUID"].Visible = false;
+            gridViewFields.Columns["Gid"].Visible = false;
 
             XmlNodeList xmlfieldsLst = xmltablesinfohelper.Read(string.Format("datatype/fieldsinfo"));
             List<TableFieldsInfo> FieldsInfoLst = new List<TableFieldsInfo>();
@@ -853,7 +853,7 @@ namespace JCodes.Framework.AddIn.Proj
                 // 将节点转换为元素，便于得到节点的属性值
                 XmlElement xe = (XmlElement)xn1;
 
-                tablefieldInfo.GUID = xe.GetAttribute("guid").ToString();
+                tablefieldInfo.Gid = xe.GetAttribute("gid").ToString();
 
                 // 得到DataTypeInfo节点的所有子节点
                 XmlNodeList xnl0 = xe.ChildNodes;
@@ -864,13 +864,13 @@ namespace JCodes.Framework.AddIn.Proj
                     {
                         tablefieldInfo.FieldName = stdFieldInfoList[i].Name;
                         tablefieldInfo.ChineseName = stdFieldInfoList[i].ChineseName;
-                        tablefieldInfo.FieldType = stdFieldInfoList[i].DataType;
+                        tablefieldInfo.DataType = stdFieldInfoList[i].DataType;
                         tablefieldInfo.FieldInfo = stdFieldInfoList[i].DictNameLst;
                         break;
                     }
                 }
 
-                tablefieldInfo.IsNull = xnl0.Item(1).InnerText == "0" ? false : true;
+                tablefieldInfo.IsNull = (short) (xnl0.Item(1).InnerText == "0" ? 0 : 1);
                 tablefieldInfo.Remark = xnl0.Item(2).InnerText;
                 tablefieldInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
                 FieldsInfoLst.Add(tablefieldInfo);
@@ -937,7 +937,7 @@ namespace JCodes.Framework.AddIn.Proj
             gridColumnIndexGuid.Name = "gridColumnIndexGuid";
             gridColumnIndexGuid.Visible = true;
             gridColumnIndexGuid.VisibleIndex = 0;
-            gridColumnIndexGuid.FieldName = "GUID";
+            gridColumnIndexGuid.FieldName = "Gid";
 
             gridColumnIndexName.Caption = "索引名";
             gridColumnIndexName.Name = "gridColumnIndexName";
@@ -1002,7 +1002,7 @@ namespace JCodes.Framework.AddIn.Proj
         
             gridViewIndexs.Columns["ConstraintType"].ColumnEdit = repositoryItemConstraintType;
             gridViewIndexs.Columns["IndexFieldLst"].ColumnEdit = repositoryItemCheckedComboBoxIndexFields;
-            gridViewIndexs.Columns["GUID"].Visible = false;
+            gridViewIndexs.Columns["Gid"].Visible = false;
 
             XmlNodeList xmlindexLst = xmltablesinfohelper.Read(string.Format("datatype/indexsinfo"));
 
@@ -1014,13 +1014,13 @@ namespace JCodes.Framework.AddIn.Proj
 
                 // 将节点转换为元素，便于得到节点的属性值
                 XmlElement xe = (XmlElement)xn1;
-                tableindexsInfo.GUID = xe.GetAttribute("guid").ToString();
+                tableindexsInfo.Gid = xe.GetAttribute("gid").ToString();
 
                 // 得到DataTypeInfo节点的所有子节点
                 XmlNodeList xnl0 = xe.ChildNodes;
                 tableindexsInfo.IndexName = xnl0.Item(0).InnerText;
                 tableindexsInfo.IndexFieldLst = xnl0.Item(1).InnerText;
-                tableindexsInfo.ConstraintType = constrainttypelst[xnl0.Item(2).InnerText];
+                tableindexsInfo.ConstraintType = (short)(constrainttypelst[xnl0.Item(2).InnerText].ToInt32());
                 tableindexsInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
                 IndexsInfoLst.Add(tableindexsInfo);
             }
@@ -1129,7 +1129,7 @@ namespace JCodes.Framework.AddIn.Proj
                     // 将节点转换为元素，便于得到节点的属性值
                     XmlElement xe = (XmlElement)xn1;
                     // 得到Type和ISBN两个属性的属性值
-                    dataTypeInfo.GUID = xe.GetAttribute("guid").ToString();
+                    dataTypeInfo.Gid = xe.GetAttribute("gid").ToString();
 
                     // 得到DataTypeInfo节点的所有子节点
                     XmlNodeList xnl0 = xe.ChildNodes;
@@ -1232,7 +1232,7 @@ namespace JCodes.Framework.AddIn.Proj
             gridViewModrecord.TabIndex = 0;
             gridViewModrecord.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryItemDateEdit1 });
             gridViewModrecord.DisplayColumns = "ModDate,ModVersion,ModOrderId,Proposer,Programmer,ModContent,ModReason,Remark";
-            gridViewModrecord.AddColumnAlias("GUID", "GUID");
+            gridViewModrecord.AddColumnAlias("Gid", "GUID");
             gridViewModrecord.AddColumnAlias("ModDate", "修改日期");
             gridViewModrecord.AddColumnAlias("ModVersion", "修改版本");
             gridViewModrecord.AddColumnAlias("ModOrderId", "修改单号");
@@ -1303,10 +1303,10 @@ namespace JCodes.Framework.AddIn.Proj
                     var tablefieldsInfo = gridViewFields.GetFocusedRow() as TableFieldsInfo;
                     tablefieldsInfo.FieldName = o.Name;
                     tablefieldsInfo.ChineseName = o.ChineseName;
-                    tablefieldsInfo.FieldType = o.DataType;
+                    tablefieldsInfo.DataType = o.DataType;
                     tablefieldsInfo.FieldInfo = o.DictNameLst;
 
-                    XmlNodeList xmlNodeLst = xmltablesinfohelper.Read("datatype/fieldsinfo/item[@guid=\"" + tablefieldsInfo.GUID + "\"]");
+                    XmlNodeList xmlNodeLst = xmltablesinfohelper.Read("datatype/fieldsinfo/item[@gid=\"" + tablefieldsInfo.Gid + "\"]");
                     xmlNodeLst.Item(0).InnerText = o.Name;
                     xmltablesinfohelper.Save(false);
 
@@ -1346,25 +1346,25 @@ namespace JCodes.Framework.AddIn.Proj
             switch (c.Name)
             {
                 case "txtobjectId":
-                    result = "datatype/basicinfo/item[@guid=\"" + strBasicInfoGuid + "\"]/functionId";
+                    result = "datatype/basicinfo/item[@gid=\"" + strBasicInfoGuid + "\"]/functionId";
                     break;
                 case "txtenglishName":
-                    result = "datatype/basicinfo/item[@guid=\"" + strBasicInfoGuid + "\"]/name";
+                    result = "datatype/basicinfo/item[@gid=\"" + strBasicInfoGuid + "\"]/name";
                     break;
                 case "txtchineseName":
-                    result = "datatype/basicinfo/item[@guid=\"" + strBasicInfoGuid + "\"]/chineseName";
+                    result = "datatype/basicinfo/item[@gid=\"" + strBasicInfoGuid + "\"]/chineseName";
                     break;
                 case "ckexistHisTable":
-                    result = "datatype/basicinfo/item[@guid=\"" + strBasicInfoGuid + "\"]/existhistable";
+                    result = "datatype/basicinfo/item[@gid=\"" + strBasicInfoGuid + "\"]/existhistable";
                     break;
                 case "txtversion":
-                    result = "datatype/basicinfo/item[@guid=\"" + strBasicInfoGuid + "\"]/version";
+                    result = "datatype/basicinfo/item[@gid=\"" + strBasicInfoGuid + "\"]/version";
                     break;
                 case "txtlastupdate":
-                    result = "datatype/basicinfo/item[@guid=\"" + strBasicInfoGuid + "\"]/lasttime";
+                    result = "datatype/basicinfo/item[@gid=\"" + strBasicInfoGuid + "\"]/lasttime";
                     break;
                 case "meremark":
-                    result = "datatype/basicinfo/item[@guid=\"" + strBasicInfoGuid + "\"]/remark";
+                    result = "datatype/basicinfo/item[@gid=\"" + strBasicInfoGuid + "\"]/remark";
                     break;
             }
 
@@ -1376,7 +1376,7 @@ namespace JCodes.Framework.AddIn.Proj
             }
 
             string curdatetime = DateTimeHelper.GetServerDateTime();
-            xmltablesinfohelper.Replace("datatype/basicinfo/item[@guid=\"" + strBasicInfoGuid + "\"]/lasttime", curdatetime);
+            xmltablesinfohelper.Replace("datatype/basicinfo/item[@gid=\"" + strBasicInfoGuid + "\"]/lasttime", curdatetime);
             xmltablesinfohelper.Save(false);
 
             txtlastupdate.Text = curdatetime;
@@ -1433,10 +1433,10 @@ namespace JCodes.Framework.AddIn.Proj
         private void toolStripMenuItem_AddField_Click(object sender, EventArgs e)
         {
             var tableFieldsInfo = new TableFieldsInfo();
-            tableFieldsInfo.GUID = System.Guid.NewGuid().ToString();
+            tableFieldsInfo.Gid = System.Guid.NewGuid().ToString();
             tableFieldsInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
 
-            xmltablesinfohelper.InsertElement("datatype/fieldsinfo", "item", "guid", tableFieldsInfo.GUID, string.Format(xmlfieldsinfomodel, string.Empty, Const.Num_Zero, string.Empty));
+            xmltablesinfohelper.InsertElement("datatype/fieldsinfo", "item", "gid", tableFieldsInfo.Gid, string.Format(xmlfieldsinfomodel, string.Empty, Const.Num_Zero, string.Empty));
             xmltablesinfohelper.Save(false);
 
             (gridViewFields.DataSource as List<TableFieldsInfo>).Add(tableFieldsInfo);
@@ -1451,10 +1451,10 @@ namespace JCodes.Framework.AddIn.Proj
         private void toolStripMenuItem_DelField_Click(object sender, EventArgs e)
         {
             // 20170824 如果是最后一行空行则不再继续操作
-            if (gridViewFields.GetFocusedRow() as TableFieldsInfo == null || string.IsNullOrEmpty((gridViewFields.GetFocusedRow() as TableFieldsInfo).GUID))
+            if (gridViewFields.GetFocusedRow() as TableFieldsInfo == null || string.IsNullOrEmpty((gridViewFields.GetFocusedRow() as TableFieldsInfo).Gid))
                 return;
 
-            xmltablesinfohelper.DeleteByPathNode("datatype/fieldsinfo/item[@guid=\"" + gridViewFields.GetRowCellDisplayText(gridViewFields.FocusedRowHandle, "GUID") + "\"]");
+            xmltablesinfohelper.DeleteByPathNode("datatype/fieldsinfo/item[@gid=\"" + gridViewFields.GetRowCellDisplayText(gridViewFields.FocusedRowHandle, "Gid") + "\"]");
             xmltablesinfohelper.Save(false);
 
             (gridViewFields.DataSource as List<TableFieldsInfo>).RemoveAt(gridViewFields.FocusedRowHandle);
@@ -1463,7 +1463,7 @@ namespace JCodes.Framework.AddIn.Proj
 
         private void gridViewFields_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
-            XmlNodeList xmlNodeLst = xmltablesinfohelper.Read("datatype/fieldsinfo/item[@guid=\"" + tmptableFieldsInfo.GUID + "\"]");
+            XmlNodeList xmlNodeLst = xmltablesinfohelper.Read("datatype/fieldsinfo/item[@gid=\"" + tmptableFieldsInfo.Gid + "\"]");
             Int32 idx = -1;
 
             switch (e.Column.ToString())
@@ -1496,7 +1496,7 @@ namespace JCodes.Framework.AddIn.Proj
         private void gridViewFields_CellValueChanging(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
             // 20170824 如果是最后一行空行则不再继续操作
-            if (string.IsNullOrEmpty((gridViewFields.GetFocusedRow() as TableFieldsInfo).GUID))
+            if (string.IsNullOrEmpty((gridViewFields.GetFocusedRow() as TableFieldsInfo).Gid))
                 return;
 
             tmptableFieldsInfo = gridViewFields.GetRow(e.RowHandle) as TableFieldsInfo;
@@ -1513,7 +1513,7 @@ namespace JCodes.Framework.AddIn.Proj
             List<String> lstName = new List<string>();
             foreach (TableFieldsInfo tableFieldsInfo in lsttableFieldsInfo)
             {
-                if (string.IsNullOrEmpty(tableFieldsInfo.GUID))
+                if (string.IsNullOrEmpty(tableFieldsInfo.Gid))
                     continue;
 
                 if (lstName.Contains(tableFieldsInfo.FieldName))
@@ -1528,7 +1528,7 @@ namespace JCodes.Framework.AddIn.Proj
 
             foreach (TableFieldsInfo tableFieldsInfo in lsttableFieldsInfo)
             {
-                if (string.IsNullOrEmpty(tableFieldsInfo.GUID))
+                if (string.IsNullOrEmpty(tableFieldsInfo.Gid))
                     continue;
 
                 // 判断重复的 类型名
@@ -1569,10 +1569,10 @@ namespace JCodes.Framework.AddIn.Proj
         private void toolStripMenuItem_AddIndex_Click(object sender, EventArgs e)
         {
             var tableIndexsInfo = new TableIndexsInfo();
-            tableIndexsInfo.GUID = System.Guid.NewGuid().ToString();
+            tableIndexsInfo.Gid = System.Guid.NewGuid().ToString();
             tableIndexsInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
 
-            xmltablesinfohelper.InsertElement("datatype/indexsinfo", "item", "guid", tableIndexsInfo.GUID, string.Format(xmlindexsinfomodel, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty));
+            xmltablesinfohelper.InsertElement("datatype/indexsinfo", "item", "guid", tableIndexsInfo.Gid, string.Format(xmlindexsinfomodel, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty));
             xmltablesinfohelper.Save(false);
 
             (gridViewIndexs.DataSource as List<TableIndexsInfo>).Add(tableIndexsInfo);
@@ -1588,10 +1588,10 @@ namespace JCodes.Framework.AddIn.Proj
         {
             // 20171106 wjm 修复删除没有数据报错问题
             // 20170824 如果是最后一行空行则不再继续操作
-            if (gridViewIndexs.GetFocusedRow() as TableIndexsInfo == null || string.IsNullOrEmpty((gridViewIndexs.GetFocusedRow() as TableIndexsInfo).GUID))
+            if (gridViewIndexs.GetFocusedRow() as TableIndexsInfo == null || string.IsNullOrEmpty((gridViewIndexs.GetFocusedRow() as TableIndexsInfo).Gid))
                 return;
 
-            xmltablesinfohelper.DeleteByPathNode("datatype/indexsinfo/item[@guid=\"" + gridViewIndexs.GetRowCellDisplayText(gridViewIndexs.FocusedRowHandle, "GUID") + "\"]");
+            xmltablesinfohelper.DeleteByPathNode("datatype/indexsinfo/item[@gid=\"" + gridViewIndexs.GetRowCellDisplayText(gridViewIndexs.FocusedRowHandle, "Gid") + "\"]");
             xmltablesinfohelper.Save(false);
 
             (gridViewIndexs.DataSource as List<TableIndexsInfo>).RemoveAt(gridViewIndexs.FocusedRowHandle);
@@ -1608,7 +1608,7 @@ namespace JCodes.Framework.AddIn.Proj
             DevExpress.XtraEditors.CheckedComboBoxEdit edit = sender as DevExpress.XtraEditors.CheckedComboBoxEdit;
             if (edit.EditValue != null)
             {
-                XmlNodeList xmlNodeLst = xmltablesinfohelper.Read("datatype/indexsinfo/item[@guid=\"" + (gridViewIndexs.GetFocusedRow() as TableIndexsInfo).GUID + "\"]");
+                XmlNodeList xmlNodeLst = xmltablesinfohelper.Read("datatype/indexsinfo/item[@gid=\"" + (gridViewIndexs.GetFocusedRow() as TableIndexsInfo).Gid + "\"]");
                 xmlNodeLst.Item(1).InnerText = edit.EditValue.ToString();
                 xmltablesinfohelper.Save(false);
             }
@@ -1616,7 +1616,7 @@ namespace JCodes.Framework.AddIn.Proj
 
         private void gridViewIndexs_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
-            XmlNodeList xmlNodeLst = xmltablesinfohelper.Read("datatype/indexsinfo/item[@guid=\"" + tmptableIndexsInfo.GUID + "\"]");
+            XmlNodeList xmlNodeLst = xmltablesinfohelper.Read("datatype/indexsinfo/item[@gid=\"" + tmptableIndexsInfo.Gid + "\"]");
             Int32 idx = -1;
 
             switch (e.Column.ToString())
@@ -1655,7 +1655,7 @@ namespace JCodes.Framework.AddIn.Proj
         private void gridViewIndexs_CellValueChanging(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
             // 20170824 如果是最后一行空行则不再继续操作
-            if (string.IsNullOrEmpty((gridViewIndexs.GetFocusedRow() as TableIndexsInfo).GUID))
+            if (string.IsNullOrEmpty((gridViewIndexs.GetFocusedRow() as TableIndexsInfo).Gid))
                 return;
 
             tmptableIndexsInfo = gridViewIndexs.GetRow(e.RowHandle) as TableIndexsInfo;
@@ -1672,7 +1672,7 @@ namespace JCodes.Framework.AddIn.Proj
             List<String> lstName = new List<string>();
             foreach (TableIndexsInfo tableIndexsInfo in lsttableIndexsInfo)
             {
-                if (string.IsNullOrEmpty(tableIndexsInfo.GUID))
+                if (string.IsNullOrEmpty(tableIndexsInfo.Gid))
                     continue;
 
                 if (lstName.Contains(tableIndexsInfo.IndexName))
@@ -1687,7 +1687,7 @@ namespace JCodes.Framework.AddIn.Proj
 
             foreach (TableIndexsInfo tableIndexsInfo in lsttableIndexsInfo)
             {
-                if (string.IsNullOrEmpty(tableIndexsInfo.GUID))
+                if (string.IsNullOrEmpty(tableIndexsInfo.Gid))
                     continue;
 
                 // 判断重复的 类型名

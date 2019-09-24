@@ -114,11 +114,11 @@ namespace JCodes.Framework.AddIn.Basic
         /// <param name="info"></param>
         private void SetInfo(OperationLogSettingInfo info)
         {
-            info.IsForbid = txtForbid.Checked ? 0 : 1;
+            info.IsForbid = (short)(txtForbid.Checked ? 0 : 1);
             info.TableName = txtTableName.Text;
-            info.IsInsertLog = txtInsertLog.Checked ? 0 : 1;
-            info.IsDeleteLog = txtDeleteLog.Checked ? 0 : 1;
-            info.IsUpdateLog = txtUpdateLog.Checked ? 0 : 1;
+            info.IsInsertLog = (short)(txtInsertLog.Checked ? 0 : 1);
+            info.IsDeleteLog = (short)(txtDeleteLog.Checked ? 0 : 1);
+            info.IsUpdateLog = (short)(txtUpdateLog.Checked ? 0 : 1);
             info.Remark = txtNote.Text;
             //info.Editor = Portal.gc.UserInfo.FullName;
             info.EditorId = Portal.gc.UserInfo.Id;
