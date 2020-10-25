@@ -1,0 +1,255 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浙商证券正在审核债券项目</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="/Content/themes/css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+    <link href="/Content/themes/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <!-- Sweet Alert -->
+    <link href="/Content/themes/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="/Content/themes/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="/Content/themes/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+    <link href="/Content/themes/css/plugins/chosen/chosen.css" rel="stylesheet">
+    <link href="/Content/themes/css/animate.min.css" rel="stylesheet">
+
+    <link href="/Content/themes/css/style.min.css?v=4.0.0" rel="stylesheet">
+    <base target="_blank">
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <!-- Panel Other -->
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <!-- Example Events -->
+                        <div class="example-wrap">
+                            <div class="example">
+                                <div class="btn-group hidden-xs" id="exampleTableEventsToolbar" role="group" style="z-index:9999;">
+                                    <div class="input-group" style="width:150px; white-space: nowrap; float: left; margin-left:5px;">
+                                        <input type="text" class="form-control" id="name" placeholder="券商名字" value="浙商证券">
+                                    </div>
+                                    <div class="input-group start" style="width:150px; white-space: nowrap; float: left; margin-left:5px;">
+                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                        <input type="text" class="form-control zstime" id="starttime" placeholder="开始时间">
+                                    </div>
+                                    <div class="input-group" style="width:150px; white-space: nowrap; float: left; margin-left:5px;">
+                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                        <input type="text" class="form-control zstime" id="endtime" placeholder="结束时间">
+                                    </div>
+                                    <div class="input-group" style="width:150px; white-space: nowrap; float: left; margin-left:5px;">
+                                        <select data-placeholder="项目状态" class="chosen-select" id="status" style="width:150px;" tabindex="2">
+                                            <option value="">全部</option>
+                                            <option value="1" hassubinfo="true">已受理</option>
+                                            <option value="2" hassubinfo="true">已反馈</option>
+                                            <option value="4" hassubinfo="true">通过</option>
+                                            <option value="5" hassubinfo="true">未通过</option>
+                                            <option value="8" hassubinfo="true">终止</option>
+                                            <option value="10" hassubinfo="true">已回复交易所意见</option>
+                                            <option value="11" hassubinfo="true">提交注册</option>
+                                            <option value="12" hassubinfo="true">注册结果</option>
+                                        </select>
+                                    </div>
+
+                                     <button type="button" class="btn btn-w-m btn-primary" id="btn_search" style="margin-left: 3px; border-radius: 3px;">查询</button>
+                                </div>
+                                <table id="ArbetTable"></table>
+                            </div>
+                        </div>
+                        <!-- End Example Events -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Panel Other -->
+    </div>
+
+    <script src="/Scripts/jquery.min.js?v=2.1.4"></script>
+    <script src="/Scripts/bootstrap.min.js?v=3.3.5"></script>
+    <script src="/Scripts/content.min.js?v=1.0.0"></script>
+    <script src="/Scripts/plugins/sweetalert/sweetalert.min.js"></script>
+    <script src="/Scripts/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="/Scripts/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+    <script src="/Scripts/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script src="/Scripts/plugins/datapicker/bootstrap-datepicker.js"></script>
+    <script src="/Scripts/plugins/chosen/chosen.jquery.js"></script>
+    <script src="/Scripts/plugins/suggest/bootstrap-suggest.min.js"></script>
+  
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.form-control.zstime').datepicker({ dateFormat: 'yyyy-mm-dd' });
+            var day1 = new Date();
+            $("#starttime").val(day1.getFullYear() + "-" + day1.getMonth() + "-" + day1.getDate());
+            $("#endtime").val(day1.getFullYear() + "-" + (day1.getMonth() + 1) + "-" + day1.getDate());
+
+            for (var selector in config) {
+                $(selector).chosen(config[selector]);
+            }
+
+            //1.初始化Table
+            var oTable = new TableInit();
+            oTable.Init();
+
+            // 添加样式 .bootstrap-table add position:relative, top:-50px;
+            $(".bootstrap-table").css('position', 'relative').css('top', '-50px');
+
+            $("#btn_search").bind("click", function () {
+                $('#ArbetTable').bootstrapTable('refresh');
+            });
+        });
+
+        var config = {
+            '.chosen-select': {},
+            '.chosen-select-deselect': {
+                allow_single_deselect: true
+            },
+            '.chosen-select-no-single': {
+                disable_search_threshold: 10
+            },
+            '.chosen-select-no-results': {
+                no_results_text: '无选择项'
+            },
+            '.chosen-select-width': {
+                width: "95%"
+            }
+        }
+
+        window.onload = function () {
+
+        }
+
+        var TableInit = function () {
+            var oTableInit = new Object();
+            //初始化Table
+            oTableInit.Init = function () {
+                $('#ArbetTable').bootstrapTable({
+                    url: '/Interface/GetAllExamine',         //请求后台的URL（*）
+                    method: 'get',                      //请求方式（*）
+                    toolbar: '#toolbar',                //工具按钮用哪个容器
+                    striped: true,                      //是否显示行间隔色
+                    cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+                    pagination: true,                   //是否显示分页（*）
+                    sortable: false,                     //是否启用排序
+                    sortOrder: "asc",                   //排序方式
+                    queryParams: function (params) {
+                        return {
+                            limit: params.limit,
+                            offset: params.offset,
+                            name: $("#name").val(),
+                            status: $("#status").val(),
+                            starttime: $("#starttime").val(),
+                            endtime: $("#endtime").val(),
+                        };
+                    },
+                    sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
+                    pageNumber: 1,                       //初始化加载第一页，默认第一页
+                    pageSize: 50,                       //每页的记录行数（*）
+                    pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
+                    contentType: "application/x-www-form-urlencoded",
+                    showColumns: true,                  //是否显示所有的列
+                    showRefresh: true,                  //是否显示刷新按钮
+                    minimumCountColumns: 2,             //最少允许的列数
+                    clickToSelect: true,                //是否启用点击选中行
+                    uniqueId: "no",                     //每一行的唯一标识，一般为主键列
+                    cardView: false,                    //是否显示详细视图
+                    detailView: false,                   //是否显示父子表
+                    columns: [
+                    { field: 'DeptName', title: '投行部门'},
+                    { field: 'Id', title: '序号', formatter: indexFormatter },
+                    { field: 'ProjectName', title: '报监管部门在审的项目名称' },
+                    { field: 'RaisedAmount', title: '募集资金预计额（亿）' },
+                    {
+                        field: 'ProjectType', title: '项目类型', formatter: function (value) {
+                            if (value == "-1") {
+                                return "公募";
+                            } else if (value == '0') {
+                                return "小公募";
+                            } else if (value == '1') {
+                                return "私募";
+                            } else if (value == "2") {
+                                return "资产支持证券(ABS)";
+                            } else if (value == "3") {
+                                return "大公募";
+                            }
+                            else {
+                                return value;
+                            }
+                        }
+                    },
+                    { field: 'ProjectLeader', title: '项目负责人' },
+                    { field: 'Managers', title: '承销商/管理人' },
+                    { field: 'DeclareTime', title: '申报时间' },
+                    { field: 'ProjectStatusDetail', title: '项目状态跟踪', width: 120 },
+                    {
+                        field: 'ProjectStatus', title: '项目状态', formatter: function (value) {
+                            if (value == "1") {
+                                return "已受理";
+                            } else if (value == '2') {
+                                return "已反馈";
+                            } else if (value == '4') {
+                                return "通过";
+                            } else if (value == "5") {
+                                return "未通过";
+                            } else if (value == "8") {
+                                return "终止";
+                            } else if (value == "10") {
+                                return "已回复交易所意见";
+                            } else if (value == "11") {
+                                return "提交注册";
+                            } else if (value == "12") {
+                                return "注册生效";
+                            } else {
+                                return value;
+                            }
+                        }
+                    },
+                    { field: 'DocNum', title: '交易所确认文件文号' },
+                    { field: 'From', title: '信息来源' },
+                    { field: 'Remark', title: '备注信息' },
+                    { field: 'operate', title: '操作', formatter: operateFormatter },
+                    ],
+                    rowStyle: function (row, index) {
+                        style = "";
+                        if (index % 2 === 0) {//偶数行
+                            style = { css: { 'background': '#fafafa' } };
+                        } else {//奇数行
+                            style = { css: { 'background': '#efefef' } };
+                        }
+                        return style;
+                    },//隔行变色
+                });
+
+            };
+            return oTableInit;
+        };
+
+        function operateFormatter(value, row, index) {//赋予的参数
+            console.log(row);
+            if (row.From == "上海债券网站") {
+                return [
+                '<a style="color: #337ab7; cursor: pointer;" data-toggle="modal" href="http://bond.sse.com.cn/bridge/information/index_detail.shtml?bound_id=' + row.Id + '">查看明细</a>'
+                ].join('');
+            }
+            else if (row.From == "中国债券信息网") {
+                return [
+               '<a style="color: #337ab7; cursor: pointer;" data-toggle="modal" href="https://www.chinabond.com.cn/Info/' + row.Id + '">查看明细</a>'
+                ].join('');
+            }
+            else {
+                return [
+                '<a style="color: #337ab7; cursor: pointer;" data-toggle="modal" href="###">查看明细</a>'
+                ].join('');
+            }
+            
+        }
+
+        function indexFormatter(value, row, index) {//赋予的参数
+            return [
+                index+1
+            ].join('');
+        }
+    </script>
+</body>
+</html>

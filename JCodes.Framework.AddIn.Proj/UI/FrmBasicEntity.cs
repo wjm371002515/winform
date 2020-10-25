@@ -350,6 +350,10 @@ namespace JCodes.Framework.AddIn.Proj
         /// <param name="e"></param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            // 假如在查询去掉查询在新增
+            if (!string.IsNullOrEmpty(gridView1.ActiveFilterString))
+                gridView1.ActiveFilterString = "";
+
             var errornoInfo = new ErrornoInfo();
             errornoInfo.Gid = System.Guid.NewGuid().ToString();
             errornoInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
@@ -357,7 +361,7 @@ namespace JCodes.Framework.AddIn.Proj
             xmlhelper.InsertElement("datatype", "item", "gid", errornoInfo.Gid, string.Format(xmlModel, string.Empty, string.Empty, string.Empty, string.Empty));
             xmlhelper.Save(false);
 
-            (gridView1.DataSource as List<ErrornoInfo>).Insert(gridView1.RowCount - 1, errornoInfo);
+            (gridView1.DataSource as List<ErrornoInfo>).Insert((gridView1.DataSource as List<ErrornoInfo>).Count - 1, errornoInfo);
             gridView1.RefreshData();
         }
 
@@ -572,7 +576,7 @@ namespace JCodes.Framework.AddIn.Proj
 
                         xmlhelper.InsertElement("datatype", "item", "gid", errornoInfo.Gid, string.Format(xmlModel, dt.Rows[i][0].ToString(), dt.Rows[i][1].ToString(), dt.Rows[i][2].ToString(), dt.Rows[i][3].ToString()));
 
-                        (gridView1.DataSource as List<ErrornoInfo>).Insert(gridView1.RowCount - 1, errornoInfo);
+                        (gridView1.DataSource as List<ErrornoInfo>).Insert((gridView1.DataSource as List<ErrornoInfo>).Count - 1, errornoInfo);
                         addRows++;
                         lstName.Add(dt.Rows[i][0].ToString());
                     }

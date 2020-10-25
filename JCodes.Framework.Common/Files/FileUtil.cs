@@ -5,7 +5,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Reflection;
 using JCodes.Framework.Common.Format;
-using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.jCodesenum;
 using System.Runtime.InteropServices;
 
 namespace JCodes.Framework.Common.Files

@@ -1,7 +1,7 @@
 using System.Xml;
 using System.IO;
 using System;
-using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.Common.Files
 {
@@ -88,6 +88,58 @@ namespace JCodes.Framework.Common.Files
             }
             document.Save(filePath);
         }
+
+        /// <summary>
+        /// 新增程序的config文件
+        /// </summary>
+        /// <param name="keyName">键名</param>
+        /// <param name="keyValue">键值</param>
+        /// <returns>0表示成功，-1表示失败 1表示已存在</returns>
+        public Int32 AppConfigAdd(string keyName, string keyValue)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(filePath); //加载配置文件
+
+            XmlNode node = doc.SelectSingleNode("//appSettings");   //得到[appSettings]节点
+
+            Int32 isSuccess = -1;
+
+            try
+            {
+                ////得到[appSettings]节点中关于Key的子节点
+                XmlElement element = (XmlElement)node.SelectSingleNode("//add[@key='" + keyName + "']");
+
+                if (element == null)
+                {
+                    //不存在则新增子节点
+                    XmlElement subElement = doc.CreateElement("add");
+                    subElement.SetAttribute("key", keyName);
+                    subElement.SetAttribute("value", keyValue);
+                    node.AppendChild(subElement);
+                    isSuccess = 0;
+                }
+                else {
+                    isSuccess = 1;
+                }
+                
+                //保存至配置文件(方式一)
+                using (XmlTextWriter xmlwriter = new XmlTextWriter(filePath, null))
+                {
+                    xmlwriter.Formatting = Formatting.Indented;
+                    doc.WriteTo(xmlwriter);
+                    xmlwriter.Flush();
+                }
+            }
+            catch (Exception ex)
+            {
+                isSuccess = -1;
+
+                throw ex;
+            }
+
+            return isSuccess;
+        }
+
 
         /// <summary>
         /// 读取程序的config文件的键值。

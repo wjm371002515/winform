@@ -9,6 +9,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Net;
 using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.Common.Network
 {

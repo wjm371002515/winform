@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Xml;
 using System.Data.Common;
-using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.Common.Databases
 {

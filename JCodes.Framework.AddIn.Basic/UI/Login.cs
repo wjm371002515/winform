@@ -9,6 +9,7 @@ using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Common.Device;
 using DevExpress.XtraEditors;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn.Basic
 {
@@ -50,28 +51,37 @@ namespace JCodes.Framework.AddIn.Basic
 
             try
             {
+                string loginName = this.txtUserName.Text.Trim();
                 string ip = NetworkUtil.GetLocalIP();
                 string macAddr = HardwareInfoHelper.GetMacAddress();
-                string loginName = this.txtUserName.Text.Trim();
-
-                string identity = BLLFactory<User>.Instance.VerifyUser(loginName, this.txtPassword.Text, Portal.gc.SystemType, ip, macAddr);
+                string identity = BLLFactory<User>.Instance.VerifyUser(loginName, this.txtPassword.Text, Portal.gc.SYSTEMTYPEID, ip, macAddr);
                 if (!string.IsNullOrEmpty(identity))
                 {
+                    UserInfo info = BLLFactory<User>.Instance.GetUserByName(loginName);
+                    
+                    // 20191207 wjm 新增判断超级管理员 系统配置参数为1
                     // 20171109 wjm 不应该直接去判断这个Name的值，不合理 删除其逻辑判断
-                    //if (BLLFactory<User>.Instance.UserIsAdmin(loginName))
-                    //{
-                        UserInfo info = BLLFactory<User>.Instance.GetUserByName(loginName);
-                        Portal.gc.UserInfo = info;                                  //赋值给全局变量“管理用户” 
+                    if (info != null && BLLFactory<Sysparameter>.Instance.UserIsSuperAdmin(loginName))
+                    {
+                        Portal.gc.UserInfo = info;
+                        Portal.gc.IsSuperAdmin = true; 
                         bLogin = true;
                         this.DialogResult = DialogResult.OK;
-                    //}
-                    //else
-                    //{
-                    //    LogHelper.WriteLog(LogLevel.LOG_LEVEL_ERR, "该用户没有管理员权限", typeof(Login));
-                    //    MessageDxUtil.ShowError("该用户没有管理员权限");
-                    //    txtUserName.Focus();
-                    //    return;
-                    //}
+                    }
+                    else if (info != null && BLLFactory<Role>.Instance.UserHasRole(info.Id))
+                    {
+                        Portal.gc.UserInfo = info;
+                        Portal.gc.IsSuperAdmin = false;
+                        bLogin = true;
+                        this.DialogResult = DialogResult.OK;
+                    }
+                    else
+                    {
+                        LogHelper.WriteLog(LogLevel.LOG_LEVEL_ERR, string.Format("该用户({0})没有管理员权限", loginName), typeof(Login));
+                        MessageDxUtil.ShowError(string.Format("该用户({0})没有管理员权限", loginName));
+                        txtUserName.Focus();
+                        return;
+                    }
                 }
                 else
                 {

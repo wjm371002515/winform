@@ -41,6 +41,9 @@
             this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.colorPickEdit1 = new DevExpress.XtraEditors.ColorPickEdit();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.dictControl1 = new JCodes.Framework.AddIn.UI.BizControl.DictControl();
+            this.btnConfigSet = new DevExpress.XtraEditors.SimpleButton();
+            this.btnMultiDatabase = new DevExpress.XtraEditors.SimpleButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchControl1.Properties)).BeginInit();
@@ -175,11 +178,41 @@
             this.simpleButton1.Text = "测试";
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
+            // dictControl1
+            // 
+            this.dictControl1.DicNo = 300005;
+            this.dictControl1.EditValue = null;
+            this.dictControl1.Location = new System.Drawing.Point(126, 390);
+            this.dictControl1.Name = "dictControl1";
+            this.dictControl1.Size = new System.Drawing.Size(196, 28);
+            this.dictControl1.TabIndex = 11;
+            // 
+            // btnConfigSet
+            // 
+            this.btnConfigSet.Location = new System.Drawing.Point(160, 254);
+            this.btnConfigSet.Name = "btnConfigSet";
+            this.btnConfigSet.Size = new System.Drawing.Size(162, 34);
+            this.btnConfigSet.TabIndex = 10;
+            this.btnConfigSet.Text = "Config设置值测试";
+            this.btnConfigSet.Click += new System.EventHandler(this.btnConfigSet_Click);
+            // 
+            // btnMultiDatabase
+            // 
+            this.btnMultiDatabase.Location = new System.Drawing.Point(339, 254);
+            this.btnMultiDatabase.Name = "btnMultiDatabase";
+            this.btnMultiDatabase.Size = new System.Drawing.Size(162, 34);
+            this.btnMultiDatabase.TabIndex = 10;
+            this.btnMultiDatabase.Text = "多数据库支持";
+            this.btnMultiDatabase.Click += new System.EventHandler(this.btnMultiDatabase_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(836, 535);
+            this.Controls.Add(this.dictControl1);
+            this.Controls.Add(this.btnMultiDatabase);
+            this.Controls.Add(this.btnConfigSet);
             this.Controls.Add(this.simpleButton1);
             this.Controls.Add(this.colorPickEdit1);
             this.Controls.Add(this.maskedTextBox1);
@@ -218,6 +251,9 @@
         private System.Windows.Forms.MaskedTextBox maskedTextBox1;
         private DevExpress.XtraEditors.ColorPickEdit colorPickEdit1;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private AddIn.UI.BizControl.DictControl dictControl1;
+        private DevExpress.XtraEditors.SimpleButton btnConfigSet;
+        private DevExpress.XtraEditors.SimpleButton btnMultiDatabase;
     }
 }
 

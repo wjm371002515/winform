@@ -6,7 +6,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>G:\ZSZQDemo</_PublishTargetUrl>
+    <_PublishTargetUrl>ftp://codeany.w253.cndns5.com/wwwroot</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/AspNet.ScriptManager.jQuery.dll">
@@ -52,25 +52,25 @@
       <publishTime>07/24/2010 14:32:20</publishTime>
     </File>
     <File Include="bin/JCodes.Framework.BLL.dll">
-      <publishTime>08/17/2019 13:05:34</publishTime>
+      <publishTime>05/08/2020 00:15:58</publishTime>
     </File>
     <File Include="bin/JCodes.Framework.Common.dll">
-      <publishTime>08/17/2019 10:37:16</publishTime>
+      <publishTime>05/08/2020 00:15:43</publishTime>
     </File>
     <File Include="bin/JCodes.Framework.CommonControl.dll">
-      <publishTime>08/17/2019 10:37:31</publishTime>
+      <publishTime>05/08/2020 00:15:54</publishTime>
     </File>
     <File Include="bin/JCodes.Framework.Data.IDAL.dll">
-      <publishTime>08/17/2019 13:05:30</publishTime>
+      <publishTime>05/08/2020 00:15:46</publishTime>
     </File>
     <File Include="bin/JCodes.Framework.Entity.dll">
-      <publishTime>08/17/2019 10:37:07</publishTime>
+      <publishTime>05/08/2020 00:15:36</publishTime>
     </File>
     <File Include="bin/JCodes.Framework.jCodesenum.dll">
-      <publishTime>07/20/2019 17:05:33</publishTime>
+      <publishTime>05/08/2020 00:14:43</publishTime>
     </File>
     <File Include="bin/JCodes.Framework.WebDemo.dll">
-      <publishTime>08/17/2019 15:07:44</publishTime>
+      <publishTime>05/08/2020 00:19:21</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.FriendlyUrls.dll">
       <publishTime>01/22/2019 11:02:42</publishTime>
@@ -520,7 +520,7 @@
       <publishTime>01/22/2019 14:53:12</publishTime>
     </File>
     <File Include="index.html">
-      <publishTime>11/28/2017 15:32:55</publishTime>
+      <publishTime>05/08/2020 00:19:00</publishTime>
     </File>
     <File Include="MVC配置关键操作.txt">
       <publishTime>11/28/2017 15:32:55</publishTime>
@@ -532,7 +532,7 @@
       <publishTime>01/29/2019 10:24:59</publishTime>
     </File>
     <File Include="Scripts/content.min.js">
-      <publishTime>01/29/2019 10:24:59</publishTime>
+      <publishTime>12/28/2019 12:11:50</publishTime>
     </File>
     <File Include="Scripts/hplus.min.js">
       <publishTime>01/29/2019 10:24:59</publishTime>
@@ -831,6 +831,9 @@
     <File Include="Scripts/plugins/webuploader/webuploader.min.js">
       <publishTime>01/29/2019 10:24:59</publishTime>
     </File>
+    <File Include="Scripts/shuiyin.js">
+      <publishTime>12/27/2019 12:22:02</publishTime>
+    </File>
     <File Include="Scripts/welcome.min.js">
       <publishTime>01/29/2019 10:24:59</publishTime>
     </File>
@@ -846,11 +849,20 @@
     <File Include="Views/Home/aa.cshtml">
       <publishTime>01/24/2019 09:52:02</publishTime>
     </File>
+    <File Include="Views/Home/c8903ed406ee4adf9470638f8eaf6fdc.cshtml">
+      <publishTime>12/28/2019 12:22:00</publishTime>
+    </File>
+    <File Include="Views/Home/ce8a6e89f05a4bc88d64092e1ec609c5.cshtml">
+      <publishTime>12/28/2019 12:22:00</publishTime>
+    </File>
     <File Include="Views/Home/Index.cshtml">
       <publishTime>01/31/2019 18:01:17</publishTime>
     </File>
+    <File Include="Views/Home/Index_info.cshtml">
+      <publishTime>02/03/2020 16:34:37</publishTime>
+    </File>
     <File Include="Views/Home/Index_Statistics.cshtml">
-      <publishTime>08/17/2019 17:22:47</publishTime>
+      <publishTime>12/27/2019 12:06:54</publishTime>
     </File>
     <File Include="Views/Home/Index_v1.cshtml">
       <publishTime>02/01/2019 13:57:36</publishTime>
@@ -859,13 +871,16 @@
       <publishTime>07/21/2019 08:10:14</publishTime>
     </File>
     <File Include="Views/Home/Index_v3.cshtml">
-      <publishTime>08/15/2019 14:29:31</publishTime>
+      <publishTime>12/20/2019 22:25:18</publishTime>
     </File>
     <File Include="Views/Home/Index_v3_detail.cshtml">
-      <publishTime>08/16/2019 14:42:27</publishTime>
+      <publishTime>12/21/2019 14:35:30</publishTime>
     </File>
     <File Include="Views/Home/Index_v4.cshtml">
-      <publishTime>08/17/2019 15:18:35</publishTime>
+      <publishTime>08/17/2019 22:05:30</publishTime>
+    </File>
+    <File Include="Views/Home/mediaplay.cshtml">
+      <publishTime>12/28/2019 11:42:44</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>11/28/2017 15:32:55</publishTime>
@@ -874,7 +889,7 @@
       <publishTime>11/28/2017 15:32:55</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>08/17/2019 15:45:10</publishTime>
+      <publishTime>05/08/2020 00:14:20</publishTime>
     </File>
     <File Include="安装说明.txt">
       <publishTime>11/28/2017 15:29:20</publishTime>

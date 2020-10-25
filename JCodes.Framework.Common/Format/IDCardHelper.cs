@@ -4,7 +4,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Data;
 using System.Text.RegularExpressions;
-using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.Common.Format
 {

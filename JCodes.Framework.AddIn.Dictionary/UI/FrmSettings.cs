@@ -1,12 +1,14 @@
 ﻿using JCodes.Framework.AddIn;
 using JCodes.Framework.BLL;
 using JCodes.Framework.Common;
+using JCodes.Framework.Common.Format;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Common.Office;
 using JCodes.Framework.CommonControl;
 using JCodes.Framework.CommonControl.BaseUI;
 using JCodes.Framework.CommonControl.Framework;
 using JCodes.Framework.CommonControl.PlugInInterface;
+using JCodes.Framework.jCodesenum;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,11 +30,11 @@ namespace JCodes.Framework.AddIn.Dictionary
         {
             this.firefoxDialog1.ImageList = this.imageList1;
 
-            var lst = BLLFactory<DictData>.Instance.GetDictByTypeID(Const.DIC_PARAMETER);
+            Dictionary<string, object> lst = EnumHelper.GetMemberKeyValue<SysId>();
             foreach (var dic in lst)
             {
-                var frm1 = new FrmSysparameter(dic.DicttypeValue, dic.Name);
-                this.firefoxDialog1.AddPage(dic.Name, frm1);//基于本地文件的参数存储
+                var frm1 = new FrmSysparameter(ConvertHelper.ToInt32(dic.Value, 1), dic.Key);
+                this.firefoxDialog1.AddPage(dic.Key, frm1);//基于本地文件的参数存储
                 frm1.MeEvent += firefoxDialog1.ChangeValue;
             }
             this.firefoxDialog1.Init();

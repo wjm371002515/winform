@@ -39,6 +39,10 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Aspose.Cells, Version=7.7.2.0, Culture=neutral, PublicKeyToken=00725b1ceb58d0a9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\JCodes.Framework.libs\Aspose\Aspose.Cells.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.ReportViewer.Common, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
@@ -333,6 +337,7 @@
     <Content Include="Scripts\plugins\validate\jquery.validate.min.js" />
     <Content Include="Scripts\plugins\validate\messages_zh.min.js" />
     <Content Include="Scripts\plugins\webuploader\webuploader.min.js" />
+    <Content Include="Scripts\shuiyin.js" />
     <Content Include="Scripts\welcome.min.js" />
     <Content Include="安装说明.txt" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
@@ -350,7 +355,6 @@
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.eot#Uf025" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Content\themes\css\.DS_Store" />
     <Content Include="Content\themes\css\plugins\footable\fonts\footable.eot" />
     <Content Include="Content\themes\css\plugins\footable\fonts\footable.eot#Uf025" />
     <Content Include="Content\themes\css\plugins\footable\fonts\footable.ttf" />
@@ -368,6 +372,11 @@
     <Content Include="Views\Home\Index_v3_detail.cshtml" />
     <Content Include="Views\Home\Index_Statistics.cshtml" />
     <Content Include="Views\Home\Index_v4.cshtml" />
+    <Content Include="Views\Home\c8903ed406ee4adf9470638f8eaf6fdc.cshtml" />
+    <Content Include="Views\Home\mediaplay.cshtml" />
+    <Content Include="Views\Home\Index_info.cshtml" />
+    <Content Include="Views\Home\ZheSheng_TH.cshtml" />
+    <Content Include="Views\Home\Index_zheshang_v1.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -403,6 +412,10 @@
       </SubType>
     </Compile>
     <Compile Include="Controllers\Base\IconController.cs" />
+    <Compile Include="Controllers\Base\InterfaceController_Zheshang.cs" />
+    <Compile Include="Controllers\Base\InterfaceController_Login.cs" />
+    <Compile Include="Controllers\Base\InterfaceController_Other.cs" />
+    <Compile Include="Controllers\Base\InterfaceController_Dongnanhai.cs" />
     <Compile Include="Controllers\Base\InterfaceController.cs" />
     <Compile Include="Controllers\Base\PictureAlbumController.cs" />
     <Compile Include="Global.asax.cs">

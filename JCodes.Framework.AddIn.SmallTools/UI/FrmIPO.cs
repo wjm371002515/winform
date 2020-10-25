@@ -2,6 +2,7 @@
 using JCodes.Framework.Common.Format;
 using JCodes.Framework.CommonControl.BaseUI;
 using JCodes.Framework.Entity;
+using JCodes.Framework.jCodesenum;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using Spire.Xls;
 using System;

@@ -35,6 +35,8 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 是否打开
+		/// 1-是,
+		/// 2-否
 		/// </summary>
 		[DataMember]
 		[DisplayName("是否打开")]
@@ -52,6 +54,8 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 是否选中
+		/// 1-是,
+		/// 2-否
 		/// </summary>
 		[DataMember]
 		[DisplayName("是否选中")]
@@ -69,6 +73,8 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 是否可用
+		/// 1-是,
+		/// 2-否
 		/// </summary>
 		[DataMember]
 		[DisplayName("是否可用")]

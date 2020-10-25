@@ -1,0 +1,7 @@
+C:\Users\Jimmy\Desktop\Quartz.NET-2.5\build\4.0\Debug\Quartz.Examples\quartz_jobs.xml
+C:\Users\Jimmy\Desktop\Quartz.NET-2.5\build\4.0\Debug\Quartz.Examples\Quartz.Examples.exe.config
+C:\Users\Jimmy\Desktop\Quartz.NET-2.5\build\4.0\Debug\Quartz.Examples\Quartz.Examples.exe
+C:\Users\Jimmy\Desktop\Quartz.NET-2.5\build\4.0\Debug\Quartz.Examples\Quartz.Examples.pdb
+C:\Users\Jimmy\Desktop\Quartz.NET-2.5\src\Quartz.Examples\obj\Debug\Quartz.Examples.2010.csprojResolveAssemblyReference.cache
+C:\Users\Jimmy\Desktop\Quartz.NET-2.5\src\Quartz.Examples\obj\Debug\Quartz.Examples.exe
+C:\Users\Jimmy\Desktop\Quartz.NET-2.5\src\Quartz.Examples\obj\Debug\Quartz.Examples.pdb

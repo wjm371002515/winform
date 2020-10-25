@@ -92,6 +92,8 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 是否禁用
+		/// 1-是,
+		/// 2-否
 		/// </summary>
 		[DataMember]
 		[DisplayName("是否禁用")]
@@ -126,6 +128,8 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 是否插入日志
+		/// 1-是,
+		/// 2-否
 		/// </summary>
 		[DataMember]
 		[DisplayName("是否插入日志")]
@@ -143,6 +147,8 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 是否更新日志
+		/// 1-是,
+		/// 2-否
 		/// </summary>
 		[DataMember]
 		[DisplayName("是否更新日志")]
@@ -160,6 +166,8 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 是否删除日志
+		/// 1-是,
+		/// 2-否
 		/// </summary>
 		[DataMember]
 		[DisplayName("是否删除日志")]

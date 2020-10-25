@@ -162,7 +162,7 @@ namespace JCodes.Framework.WebDemo.Controllers
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
             base.CheckAuthorized(authorizeKeyInfo.UpdateKey);
 
-            T obj = baseBLL.FindByID(id);
+            T obj = baseBLL.FindById(id);
             if (obj != null)
             {
                 //遍历提交过来的数据（可能是实体类的部分属性更新）
@@ -274,7 +274,7 @@ namespace JCodes.Framework.WebDemo.Controllers
             base.CheckAuthorized(authorizeKeyInfo.ViewKey);
 
             ActionResult result = Content("");
-            T info = baseBLL.FindByID(id);
+            T info = baseBLL.FindById(id);
             if (info != null)
             {
                 result = ToJsonContentDate(info);
@@ -367,7 +367,7 @@ namespace JCodes.Framework.WebDemo.Controllers
         /// </summary>
         /// <param name="ids">ID字符串(逗号分隔)</param>
         /// <returns>符合条件的对象列表</returns>
-        public virtual ActionResult FindByIDs(string ids)
+        public virtual ActionResult FindByIds(string ids)
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
             base.CheckAuthorized(authorizeKeyInfo.ListKey);
@@ -375,7 +375,7 @@ namespace JCodes.Framework.WebDemo.Controllers
             ActionResult result = Content("");
             if (!string.IsNullOrEmpty(ids))
             {
-                List<T> list = baseBLL.FindByIDs(ids);
+                List<T> list = baseBLL.FindByIds(ids);
                 result = ToJsonContentDate(list);
             }
             return result;
@@ -924,7 +924,7 @@ namespace JCodes.Framework.WebDemo.Controllers
 
         /// <summary>
         /// 根据当前用户身份，获取对应的顶级机构管理节点。
-        /// 如果是超级管理员，返回集团节点；如果是公司管理员，返回其公司节点
+        /// 是公司管理员，返回其公司节点
         /// </summary>
         /// <returns></returns>
         protected List<OUInfo> GetMyTopGroup(UserInfo userInfo)
@@ -933,22 +933,32 @@ namespace JCodes.Framework.WebDemo.Controllers
         }
 
         /// <summary>
+        /// 根据当前用户身份，获取对应的顶级机构管理节点。
+        /// 超级管理员，返回集团节点；
+        /// </summary>
+        /// <returns></returns>
+        protected List<OUInfo> GetSuperAdminTopGroup(UserInfo userInfo)
+        {
+            return BLLFactory<OU>.Instance.GetSuperAdminTopGroup(userInfo.Id);
+        }
+
+        /// <summary>
         /// 根据机构分类获取对应的图形序号
         /// </summary>
         /// <param name="category">机构分类</param>
         /// <returns></returns>
-        protected string GetImageIndex(string category)
+        protected string GetImageIndex(OuType ouType)
         {
             string result = iconBasePath + "house.png";
-            if (category == OUCategoryEnum.公司.ToString())
+            if (ouType == OuType.公司)
             {
                 result = iconBasePath + "organ.png";
             }
-            else if (category == OUCategoryEnum.部门.ToString())
+            else if (ouType == OuType.部门)
             {
                 result = iconBasePath + "group.png";
             }
-            else if (category == OUCategoryEnum.工作组.ToString())
+            else if (ouType == OuType.工作组)
             {
                 result = iconBasePath + "group.png";
             }
@@ -960,18 +970,18 @@ namespace JCodes.Framework.WebDemo.Controllers
         /// </summary>
         /// <param name="category">机构分类</param>
         /// <returns></returns>
-        protected string GetIconcls(string category)
+        protected string GetIconcls(OuType ouType)
         {
             string result = "icon-house";
-            if (category == OUCategoryEnum.公司.ToString())
+            if (ouType == OuType.公司)
             {
                 result = "icon-organ";
             }
-            else if (category == OUCategoryEnum.部门.ToString())
+            else if (ouType == OuType.部门)
             {
                 result = "icon-group";
             }
-            else if (category == OUCategoryEnum.工作组.ToString())
+            else if (ouType == OuType.工作组)
             {
                 result = "icon-group";
             }
@@ -983,18 +993,18 @@ namespace JCodes.Framework.WebDemo.Controllers
         /// </summary>
         /// <param name="category">机构分类</param>
         /// <returns></returns>
-        protected string GetBootstrapIcon(string category)
+        protected string GetBootstrapIcon(OuType ouType)
         {
             string result = "fa fa-home icon-state-danger icon-lg";
-            if (category == OUCategoryEnum.公司.ToString())
+            if (ouType == OuType.公司)
             {
                 result = "fa fa-sitemap icon-state-warning icon-lg";
             }
-            else if (category == OUCategoryEnum.部门.ToString())
+            else if (ouType == OuType.部门)
             {
                 result = "fa fa-users icon-state-info icon-lg";
             }
-            else if (category == OUCategoryEnum.工作组.ToString())
+            else if (ouType == OuType.工作组)
             {
                 result = "fa fa-user icon-state-success icon-lg";
             }

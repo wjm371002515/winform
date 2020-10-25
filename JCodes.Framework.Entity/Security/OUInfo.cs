@@ -190,6 +190,10 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 机构分类
+		/// 1-集团,
+		/// 2-公司,
+		/// 3-部门,
+		/// 4-工作组
 		/// </summary>
 		[DataMember]
 		[DisplayName("机构分类")]
@@ -343,6 +347,8 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 是否删除
+		/// 1-是,
+		/// 2-否
 		/// </summary>
 		[DataMember]
 		[DisplayName("是否删除")]
@@ -360,6 +366,8 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 是否禁用
+		/// 1-是,
+		/// 2-否
 		/// </summary>
 		[DataMember]
 		[DisplayName("是否禁用")]

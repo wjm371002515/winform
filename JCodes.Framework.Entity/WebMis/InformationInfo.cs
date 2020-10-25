@@ -153,6 +153,9 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 信息大类名称
+		/// 1-通知公告,
+		/// 2-行业动态,
+		/// 3-政策法规
 		/// </summary>
 		[DataMember]
 		[DisplayName("信息大类名称")]
@@ -170,6 +173,8 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 信息子类
+		/// 1-法律法规,
+		/// 99-其他
 		/// </summary>
 		[DataMember]
 		[DisplayName("信息子类")]
@@ -221,6 +226,8 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 是否审批通过
+		/// 1-是,
+		/// 2-否
 		/// </summary>
 		[DataMember]
 		[DisplayName("是否审批通过")]
@@ -272,6 +279,8 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 是否强制过期
+		/// 1-是,
+		/// 2-否
 		/// </summary>
 		[DataMember]
 		[DisplayName("是否强制过期")]

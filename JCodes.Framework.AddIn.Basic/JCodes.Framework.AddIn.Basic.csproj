@@ -29,6 +29,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.Data.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -77,6 +78,12 @@
     <Compile Include="BizControl\CustomGridLookUpEdit.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="BizControl\DictControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BizControl\DictControl.Designer.cs">
+      <DependentUpon>DictControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="BizControl\DeptControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -89,12 +96,6 @@
     <Compile Include="BizControl\FunctionControl.Designer.cs">
       <DependentUpon>FunctionControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="BizControl\GlassButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="BizControl\GlassButton.designer.cs">
-      <DependentUpon>GlassButton.cs</DependentUpon>
-    </Compile>
     <Compile Include="BizControl\ManagerSelectControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -106,12 +107,6 @@
     </Compile>
     <Compile Include="BizControl\MenuControl.Designer.cs">
       <DependentUpon>MenuControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BizControl\NameControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="BizControl\NameControl.designer.cs">
-      <DependentUpon>NameControl.cs</DependentUpon>
     </Compile>
     <Compile Include="BizControl\PrintableListView.cs">
       <SubType>Component</SubType>
@@ -127,9 +122,6 @@
     </Compile>
     <Compile Include="BizControl\UserNameControl.designer.cs">
       <DependentUpon>UserNameControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BizControl\VistaButton.cs">
-      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Other\Portal.cs" />
     <Compile Include="Other\RibbonPageHelper.cs" />
@@ -265,6 +257,9 @@
     <EmbeddedResource Include="BizControl\CompanyControl.resx">
       <DependentUpon>CompanyControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BizControl\DictControl.resx">
+      <DependentUpon>DictControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BizControl\DeptControl.resx">
       <DependentUpon>DeptControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -277,19 +272,12 @@
     <EmbeddedResource Include="BizControl\MenuControl.resx">
       <DependentUpon>MenuControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BizControl\NameControl.resx">
-      <DependentUpon>NameControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="BizControl\RowMergeGridView.resx">
       <DependentUpon>RowMergeGridView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BizControl\UserNameControl.resx">
       <DependentUpon>UserNameControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BizControl\VistaButton.resx">
-      <DependentUpon>VistaButton.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

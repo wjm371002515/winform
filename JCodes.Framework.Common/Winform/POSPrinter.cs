@@ -3,7 +3,7 @@ using System.Text;
 using System.Runtime.InteropServices;
 using System.IO;
 using System.Drawing;
-using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.Common.Winform
 {

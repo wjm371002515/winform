@@ -14,6 +14,7 @@ using JCodes.Framework.Common.Winform;
 using JCodes.Framework.Common.Files;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.Common.Office;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.CommonControl.Device
 {

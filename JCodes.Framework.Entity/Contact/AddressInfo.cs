@@ -174,6 +174,9 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 性别
+		/// 1-男,
+		/// 2-女,
+		/// 2-保密
 		/// </summary>
 		[DataMember]
 		[DisplayName("性别")]

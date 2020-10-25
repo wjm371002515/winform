@@ -4,6 +4,7 @@ using System.Drawing;
 using JCodes.Framework.Common;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.CommonControl.Other;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.CommonControl.Settings
 {	

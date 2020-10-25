@@ -18,6 +18,7 @@ using JCodes.Framework.Common.Office;
 using JCodes.Framework.CommonControl.Pager.Others;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.CommonControl.Pager
 { 

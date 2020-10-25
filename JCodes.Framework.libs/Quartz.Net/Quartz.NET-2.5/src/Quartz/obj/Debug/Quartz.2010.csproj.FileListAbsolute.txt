@@ -1,0 +1,5 @@
+C:\Users\Jimmy\Desktop\Quartz.NET-2.5\build\4.0\Debug\Quartz\Quartz.dll
+C:\Users\Jimmy\Desktop\Quartz.NET-2.5\build\4.0\Debug\Quartz\Quartz.pdb
+C:\Users\Jimmy\Desktop\Quartz.NET-2.5\build\4.0\Debug\Quartz\Quartz.xml
+C:\Users\Jimmy\Desktop\Quartz.NET-2.5\src\Quartz\obj\Debug\Quartz.dll
+C:\Users\Jimmy\Desktop\Quartz.NET-2.5\src\Quartz\obj\Debug\Quartz.pdb

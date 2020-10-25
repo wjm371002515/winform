@@ -15,6 +15,7 @@ using JCodes.Framework.CommonControl.Controls;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Common.Extension;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn.WareHouseManage
 {
@@ -103,7 +104,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
             if (Id > 0)
             {
                 #region 显示客户信息
-                ItemDetailInfo info = BLLFactory<ItemDetail>.Instance.FindByID(Id);
+                ItemDetailInfo info = BLLFactory<ItemDetail>.Instance.FindById(Id);
                 if (info != null)
                 {
                     this.txtItemNo.Properties.ReadOnly = true;
@@ -217,7 +218,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
                 return false;
             }
 
-            ItemDetailInfo info = BLLFactory<ItemDetail>.Instance.FindByID(Id);
+            ItemDetailInfo info = BLLFactory<ItemDetail>.Instance.FindById(Id);
             if (info != null)
             {
                 if (txtBelongWareHouse.Text != txtBelongWareHouse.Tag.ToString())

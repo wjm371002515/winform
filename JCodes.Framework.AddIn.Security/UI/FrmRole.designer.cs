@@ -29,6 +29,7 @@ namespace JCodes.Framework.AddIn.Security
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("节点0");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("节点2");
             System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("节点1", new System.Windows.Forms.TreeNode[] {
@@ -43,14 +44,14 @@ namespace JCodes.Framework.AddIn.Security
             System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("节点1", new System.Windows.Forms.TreeNode[] {
             treeNode8});
             this.treeView1 = new System.Windows.Forms.TreeView();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menu_Delete = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_Add = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_Update = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.menu_ExpandAll = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_Collapse = new System.Windows.Forms.ToolStripMenuItem();
-            this.imageList1 = new System.Windows.Forms.ImageList();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.txtNote = new DevExpress.XtraEditors.MemoEdit();
             this.label12 = new System.Windows.Forms.Label();
@@ -68,15 +69,13 @@ namespace JCodes.Framework.AddIn.Security
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.txtCompany = new JCodes.Framework.AddIn.Basic.BizControl.CompanyControl();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtCategory = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtSeq = new DevExpress.XtraEditors.TextEdit();
             this.txtHandNo = new DevExpress.XtraEditors.TextEdit();
             this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
             this.groupControl5 = new DevExpress.XtraEditors.GroupControl();
-            this.imageFunction = new System.Windows.Forms.ImageList();
+            this.imageFunction = new System.Windows.Forms.ImageList(this.components);
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.tabBasic = new DevExpress.XtraTab.XtraTabPage();
@@ -85,16 +84,16 @@ namespace JCodes.Framework.AddIn.Security
             this.btnRefreshFunction = new DevExpress.XtraEditors.SimpleButton();
             this.btnSaveFunction = new DevExpress.XtraEditors.SimpleButton();
             this.treeFunction = new System.Windows.Forms.TreeView();
+            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.function_Refresh = new System.Windows.Forms.ToolStripMenuItem();
+            this.function_ExpandAll = new System.Windows.Forms.ToolStripMenuItem();
+            this.function_Collapse = new System.Windows.Forms.ToolStripMenuItem();
             this.tabRoleData = new DevExpress.XtraTab.XtraTabPage();
             this.btnRefreshRoleData = new DevExpress.XtraEditors.SimpleButton();
             this.btnSaveRoleData = new DevExpress.XtraEditors.SimpleButton();
             this.chkAllRoleData = new DevExpress.XtraEditors.CheckEdit();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
             this.treeRoleData = new System.Windows.Forms.TreeView();
-            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip();
-            this.function_Refresh = new System.Windows.Forms.ToolStripMenuItem();
-            this.function_ExpandAll = new System.Windows.Forms.ToolStripMenuItem();
-            this.function_Collapse = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNote.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).BeginInit();
@@ -102,7 +101,6 @@ namespace JCodes.Framework.AddIn.Security
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCategory.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSeq.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHandNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).BeginInit();
@@ -116,11 +114,11 @@ namespace JCodes.Framework.AddIn.Security
             this.tabBasic.SuspendLayout();
             this.tabFunction.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkFunctionSelectAll.Properties)).BeginInit();
+            this.contextMenuStrip2.SuspendLayout();
             this.tabRoleData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkAllRoleData.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             this.groupControl3.SuspendLayout();
-            this.contextMenuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // treeView1
@@ -131,7 +129,7 @@ namespace JCodes.Framework.AddIn.Security
             this.treeView1.ImageIndex = 0;
             this.treeView1.ImageList = this.imageList1;
             this.treeView1.ItemHeight = 24;
-            this.treeView1.Location = new System.Drawing.Point(2, 22);
+            this.treeView1.Location = new System.Drawing.Point(2, 30);
             this.treeView1.Name = "treeView1";
             treeNode1.Name = "节点0";
             treeNode1.Text = "节点0";
@@ -143,13 +141,14 @@ namespace JCodes.Framework.AddIn.Security
             treeNode1,
             treeNode3});
             this.treeView1.SelectedImageIndex = 0;
-            this.treeView1.Size = new System.Drawing.Size(223, 649);
+            this.treeView1.Size = new System.Drawing.Size(223, 641);
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             this.treeView1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.treeView1_MouseDown);
             // 
             // contextMenuStrip1
             // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menu_Delete,
             this.menu_Add,
@@ -158,13 +157,13 @@ namespace JCodes.Framework.AddIn.Security
             this.menu_ExpandAll,
             this.menu_Collapse});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(165, 120);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(221, 160);
             // 
             // menu_Delete
             // 
             this.menu_Delete.Image = ((System.Drawing.Image)(resources.GetObject("menu_Delete.Image")));
             this.menu_Delete.Name = "menu_Delete";
-            this.menu_Delete.Size = new System.Drawing.Size(164, 22);
+            this.menu_Delete.Size = new System.Drawing.Size(220, 30);
             this.menu_Delete.Text = "删除(&D)";
             this.menu_Delete.Click += new System.EventHandler(this.menu_Delete_Click);
             // 
@@ -172,7 +171,7 @@ namespace JCodes.Framework.AddIn.Security
             // 
             this.menu_Add.Image = ((System.Drawing.Image)(resources.GetObject("menu_Add.Image")));
             this.menu_Add.Name = "menu_Add";
-            this.menu_Add.Size = new System.Drawing.Size(164, 22);
+            this.menu_Add.Size = new System.Drawing.Size(220, 30);
             this.menu_Add.Text = "添加(&A)";
             this.menu_Add.Click += new System.EventHandler(this.menu_Add_Click);
             // 
@@ -180,20 +179,20 @@ namespace JCodes.Framework.AddIn.Security
             // 
             this.menu_Update.Image = ((System.Drawing.Image)(resources.GetObject("menu_Update.Image")));
             this.menu_Update.Name = "menu_Update";
-            this.menu_Update.Size = new System.Drawing.Size(164, 22);
+            this.menu_Update.Size = new System.Drawing.Size(220, 30);
             this.menu_Update.Text = "刷新列表(&U)";
             this.menu_Update.Click += new System.EventHandler(this.menu_Update_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(161, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(217, 6);
             // 
             // menu_ExpandAll
             // 
             this.menu_ExpandAll.Image = ((System.Drawing.Image)(resources.GetObject("menu_ExpandAll.Image")));
             this.menu_ExpandAll.Name = "menu_ExpandAll";
-            this.menu_ExpandAll.Size = new System.Drawing.Size(164, 22);
+            this.menu_ExpandAll.Size = new System.Drawing.Size(220, 30);
             this.menu_ExpandAll.Text = "展开全部子节点";
             this.menu_ExpandAll.Click += new System.EventHandler(this.menu_ExpandAll_Click);
             // 
@@ -201,7 +200,7 @@ namespace JCodes.Framework.AddIn.Security
             // 
             this.menu_Collapse.Image = ((System.Drawing.Image)(resources.GetObject("menu_Collapse.Image")));
             this.menu_Collapse.Name = "menu_Collapse";
-            this.menu_Collapse.Size = new System.Drawing.Size(164, 22);
+            this.menu_Collapse.Size = new System.Drawing.Size(220, 30);
             this.menu_Collapse.Text = "折叠全部节点(&C)";
             this.menu_Collapse.Click += new System.EventHandler(this.menu_Collapse_Click);
             // 
@@ -218,7 +217,7 @@ namespace JCodes.Framework.AddIn.Security
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(395, 219);
+            this.btnSave.Location = new System.Drawing.Point(395, 191);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 2;
@@ -229,17 +228,18 @@ namespace JCodes.Framework.AddIn.Security
             // 
             this.txtNote.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNote.Location = new System.Drawing.Point(92, 164);
+            this.txtNote.Location = new System.Drawing.Point(92, 137);
             this.txtNote.Name = "txtNote";
             this.txtNote.Size = new System.Drawing.Size(378, 45);
             this.txtNote.TabIndex = 1;
+            this.txtNote.UseOptimizedRendering = true;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(46, 171);
+            this.label12.Location = new System.Drawing.Point(52, 141);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(43, 14);
+            this.label12.Size = new System.Drawing.Size(64, 22);
             this.label12.TabIndex = 0;
             this.label12.Text = "描述：";
             // 
@@ -249,7 +249,7 @@ namespace JCodes.Framework.AddIn.Security
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtName.Location = new System.Drawing.Point(92, 29);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(378, 20);
+            this.txtName.Size = new System.Drawing.Size(378, 28);
             this.txtName.TabIndex = 0;
             // 
             // label1
@@ -257,7 +257,7 @@ namespace JCodes.Framework.AddIn.Security
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(29, 32);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 14);
+            this.label1.Size = new System.Drawing.Size(88, 22);
             this.label1.TabIndex = 0;
             this.label1.Text = "名称(*)：";
             // 
@@ -287,16 +287,16 @@ namespace JCodes.Framework.AddIn.Security
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lvwUser.FormattingEnabled = true;
-            this.lvwUser.ItemHeight = 14;
+            this.lvwUser.ItemHeight = 22;
             this.lvwUser.Location = new System.Drawing.Point(3, 24);
             this.lvwUser.Name = "lvwUser";
-            this.lvwUser.Size = new System.Drawing.Size(214, 592);
+            this.lvwUser.Size = new System.Drawing.Size(214, 576);
             this.lvwUser.TabIndex = 2;
             // 
             // btnEditOU
             // 
             this.btnEditOU.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEditOU.Location = new System.Drawing.Point(305, 387);
+            this.btnEditOU.Location = new System.Drawing.Point(305, 409);
             this.btnEditOU.Name = "btnEditOU";
             this.btnEditOU.Size = new System.Drawing.Size(75, 23);
             this.btnEditOU.TabIndex = 0;
@@ -306,7 +306,7 @@ namespace JCodes.Framework.AddIn.Security
             // btnRemoveOU
             // 
             this.btnRemoveOU.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRemoveOU.Location = new System.Drawing.Point(402, 387);
+            this.btnRemoveOU.Location = new System.Drawing.Point(402, 409);
             this.btnRemoveOU.Name = "btnRemoveOU";
             this.btnRemoveOU.Size = new System.Drawing.Size(75, 23);
             this.btnRemoveOU.TabIndex = 1;
@@ -319,10 +319,10 @@ namespace JCodes.Framework.AddIn.Security
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lvwOU.FormattingEnabled = true;
-            this.lvwOU.ItemHeight = 14;
+            this.lvwOU.ItemHeight = 22;
             this.lvwOU.Location = new System.Drawing.Point(3, 23);
             this.lvwOU.Name = "lvwOU";
-            this.lvwOU.Size = new System.Drawing.Size(490, 354);
+            this.lvwOU.Size = new System.Drawing.Size(490, 356);
             this.lvwOU.TabIndex = 3;
             // 
             // btnAdd
@@ -361,10 +361,8 @@ namespace JCodes.Framework.AddIn.Security
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupControl2.Controls.Add(this.txtCompany);
             this.groupControl2.Controls.Add(this.label5);
-            this.groupControl2.Controls.Add(this.txtCategory);
             this.groupControl2.Controls.Add(this.btnSave);
             this.groupControl2.Controls.Add(this.txtNote);
-            this.groupControl2.Controls.Add(this.label4);
             this.groupControl2.Controls.Add(this.label3);
             this.groupControl2.Controls.Add(this.label2);
             this.groupControl2.Controls.Add(this.label1);
@@ -374,7 +372,7 @@ namespace JCodes.Framework.AddIn.Security
             this.groupControl2.Controls.Add(this.txtName);
             this.groupControl2.Location = new System.Drawing.Point(15, 12);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(496, 253);
+            this.groupControl2.Size = new System.Drawing.Size(496, 225);
             this.groupControl2.TabIndex = 3;
             this.groupControl2.Text = "角色详细信息";
             // 
@@ -393,37 +391,16 @@ namespace JCodes.Framework.AddIn.Security
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(7, 59);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(84, 14);
+            this.label5.Size = new System.Drawing.Size(124, 22);
             this.label5.TabIndex = 7;
             this.label5.Text = "所属公司(*)：";
-            // 
-            // txtCategory
-            // 
-            this.txtCategory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCategory.Location = new System.Drawing.Point(92, 137);
-            this.txtCategory.Name = "txtCategory";
-            this.txtCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.txtCategory.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.txtCategory.Size = new System.Drawing.Size(378, 20);
-            this.txtCategory.TabIndex = 3;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(22, 140);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(67, 14);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "角色分类：";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(34, 114);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 14);
+            this.label3.Size = new System.Drawing.Size(82, 22);
             this.label3.TabIndex = 0;
             this.label3.Text = "排序码：";
             // 
@@ -432,7 +409,7 @@ namespace JCodes.Framework.AddIn.Security
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(22, 88);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 14);
+            this.label2.Size = new System.Drawing.Size(100, 22);
             this.label2.TabIndex = 0;
             this.label2.Text = "角色编码：";
             // 
@@ -442,7 +419,7 @@ namespace JCodes.Framework.AddIn.Security
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSeq.Location = new System.Drawing.Point(92, 110);
             this.txtSeq.Name = "txtSeq";
-            this.txtSeq.Size = new System.Drawing.Size(378, 20);
+            this.txtSeq.Size = new System.Drawing.Size(378, 28);
             this.txtSeq.TabIndex = 0;
             // 
             // txtHandNo
@@ -451,7 +428,7 @@ namespace JCodes.Framework.AddIn.Security
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtHandNo.Location = new System.Drawing.Point(92, 83);
             this.txtHandNo.Name = "txtHandNo";
-            this.txtHandNo.Size = new System.Drawing.Size(378, 20);
+            this.txtHandNo.Size = new System.Drawing.Size(378, 28);
             this.txtHandNo.TabIndex = 0;
             // 
             // groupControl4
@@ -475,9 +452,9 @@ namespace JCodes.Framework.AddIn.Security
             this.groupControl5.Controls.Add(this.btnEditOU);
             this.groupControl5.Controls.Add(this.lvwOU);
             this.groupControl5.Controls.Add(this.btnRemoveOU);
-            this.groupControl5.Location = new System.Drawing.Point(15, 271);
+            this.groupControl5.Location = new System.Drawing.Point(15, 249);
             this.groupControl5.Name = "groupControl5";
-            this.groupControl5.Size = new System.Drawing.Size(496, 418);
+            this.groupControl5.Size = new System.Drawing.Size(496, 440);
             this.groupControl5.TabIndex = 6;
             this.groupControl5.Text = "包含机构";
             // 
@@ -523,7 +500,7 @@ namespace JCodes.Framework.AddIn.Security
             this.tabBasic.Controls.Add(this.groupControl2);
             this.tabBasic.Controls.Add(this.groupControl4);
             this.tabBasic.Name = "tabBasic";
-            this.tabBasic.Size = new System.Drawing.Size(756, 701);
+            this.tabBasic.Size = new System.Drawing.Size(756, 693);
             this.tabBasic.Text = "角色基础信息";
             // 
             // tabFunction
@@ -533,7 +510,7 @@ namespace JCodes.Framework.AddIn.Security
             this.tabFunction.Controls.Add(this.btnSaveFunction);
             this.tabFunction.Controls.Add(this.treeFunction);
             this.tabFunction.Name = "tabFunction";
-            this.tabFunction.Size = new System.Drawing.Size(756, 701);
+            this.tabFunction.Size = new System.Drawing.Size(756, 693);
             this.tabFunction.Text = "可操作功能";
             // 
             // chkFunctionSelectAll
@@ -541,7 +518,7 @@ namespace JCodes.Framework.AddIn.Security
             this.chkFunctionSelectAll.Location = new System.Drawing.Point(6, 18);
             this.chkFunctionSelectAll.Name = "chkFunctionSelectAll";
             this.chkFunctionSelectAll.Properties.Caption = "全选/反选";
-            this.chkFunctionSelectAll.Size = new System.Drawing.Size(79, 19);
+            this.chkFunctionSelectAll.Size = new System.Drawing.Size(79, 26);
             this.chkFunctionSelectAll.TabIndex = 9;
             this.chkFunctionSelectAll.CheckedChanged += new System.EventHandler(this.chkFunctionSelectAll_CheckedChanged);
             // 
@@ -590,6 +567,40 @@ namespace JCodes.Framework.AddIn.Security
             this.treeFunction.TabIndex = 5;
             this.treeFunction.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeFunction_AfterCheck);
             // 
+            // contextMenuStrip2
+            // 
+            this.contextMenuStrip2.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.function_Refresh,
+            this.function_ExpandAll,
+            this.function_Collapse});
+            this.contextMenuStrip2.Name = "contextMenuStrip2";
+            this.contextMenuStrip2.Size = new System.Drawing.Size(221, 94);
+            // 
+            // function_Refresh
+            // 
+            this.function_Refresh.Image = ((System.Drawing.Image)(resources.GetObject("function_Refresh.Image")));
+            this.function_Refresh.Name = "function_Refresh";
+            this.function_Refresh.Size = new System.Drawing.Size(220, 30);
+            this.function_Refresh.Text = "刷新列表(&U)";
+            this.function_Refresh.Click += new System.EventHandler(this.function_Refresh_Click);
+            // 
+            // function_ExpandAll
+            // 
+            this.function_ExpandAll.Image = ((System.Drawing.Image)(resources.GetObject("function_ExpandAll.Image")));
+            this.function_ExpandAll.Name = "function_ExpandAll";
+            this.function_ExpandAll.Size = new System.Drawing.Size(220, 30);
+            this.function_ExpandAll.Text = "展开全部子节点";
+            this.function_ExpandAll.Click += new System.EventHandler(this.function_ExpandAll_Click);
+            // 
+            // function_Collapse
+            // 
+            this.function_Collapse.Image = ((System.Drawing.Image)(resources.GetObject("function_Collapse.Image")));
+            this.function_Collapse.Name = "function_Collapse";
+            this.function_Collapse.Size = new System.Drawing.Size(220, 30);
+            this.function_Collapse.Text = "折叠全部节点(&C)";
+            this.function_Collapse.Click += new System.EventHandler(this.function_Collapse_Click);
+            // 
             // tabRoleData
             // 
             this.tabRoleData.Controls.Add(this.btnRefreshRoleData);
@@ -597,7 +608,7 @@ namespace JCodes.Framework.AddIn.Security
             this.tabRoleData.Controls.Add(this.chkAllRoleData);
             this.tabRoleData.Controls.Add(this.groupControl3);
             this.tabRoleData.Name = "tabRoleData";
-            this.tabRoleData.Size = new System.Drawing.Size(756, 701);
+            this.tabRoleData.Size = new System.Drawing.Size(756, 693);
             this.tabRoleData.Text = "可访问数据";
             // 
             // btnRefreshRoleData
@@ -623,7 +634,7 @@ namespace JCodes.Framework.AddIn.Security
             this.chkAllRoleData.Location = new System.Drawing.Point(14, 18);
             this.chkAllRoleData.Name = "chkAllRoleData";
             this.chkAllRoleData.Properties.Caption = "全选/反选";
-            this.chkAllRoleData.Size = new System.Drawing.Size(89, 19);
+            this.chkAllRoleData.Size = new System.Drawing.Size(89, 26);
             this.chkAllRoleData.TabIndex = 8;
             this.chkAllRoleData.CheckedChanged += new System.EventHandler(this.chkAllRoleData_CheckedChanged);
             // 
@@ -647,7 +658,7 @@ namespace JCodes.Framework.AddIn.Security
             this.treeRoleData.ImageIndex = 0;
             this.treeRoleData.ImageList = this.imageList1;
             this.treeRoleData.ItemHeight = 24;
-            this.treeRoleData.Location = new System.Drawing.Point(2, 22);
+            this.treeRoleData.Location = new System.Drawing.Point(2, 30);
             this.treeRoleData.Name = "treeRoleData";
             treeNode7.Name = "节点0";
             treeNode7.Text = "节点0";
@@ -659,45 +670,12 @@ namespace JCodes.Framework.AddIn.Security
             treeNode7,
             treeNode9});
             this.treeRoleData.SelectedImageIndex = 0;
-            this.treeRoleData.Size = new System.Drawing.Size(730, 625);
+            this.treeRoleData.Size = new System.Drawing.Size(730, 617);
             this.treeRoleData.TabIndex = 0;
-            // 
-            // contextMenuStrip2
-            // 
-            this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.function_Refresh,
-            this.function_ExpandAll,
-            this.function_Collapse});
-            this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(165, 92);
-            // 
-            // function_Refresh
-            // 
-            this.function_Refresh.Image = ((System.Drawing.Image)(resources.GetObject("function_Refresh.Image")));
-            this.function_Refresh.Name = "function_Refresh";
-            this.function_Refresh.Size = new System.Drawing.Size(164, 22);
-            this.function_Refresh.Text = "刷新列表(&U)";
-            this.function_Refresh.Click += new System.EventHandler(this.function_Refresh_Click);
-            // 
-            // function_ExpandAll
-            // 
-            this.function_ExpandAll.Image = ((System.Drawing.Image)(resources.GetObject("function_ExpandAll.Image")));
-            this.function_ExpandAll.Name = "function_ExpandAll";
-            this.function_ExpandAll.Size = new System.Drawing.Size(164, 22);
-            this.function_ExpandAll.Text = "展开全部子节点";
-            this.function_ExpandAll.Click += new System.EventHandler(this.function_ExpandAll_Click);
-            // 
-            // function_Collapse
-            // 
-            this.function_Collapse.Image = ((System.Drawing.Image)(resources.GetObject("function_Collapse.Image")));
-            this.function_Collapse.Name = "function_Collapse";
-            this.function_Collapse.Size = new System.Drawing.Size(164, 22);
-            this.function_Collapse.Text = "折叠全部节点(&C)";
-            this.function_Collapse.Click += new System.EventHandler(this.function_Collapse_Click);
             // 
             // FrmRole
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 730);
             this.Controls.Add(this.splitContainerControl1);
@@ -712,7 +690,6 @@ namespace JCodes.Framework.AddIn.Security
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
             this.groupControl2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCategory.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSeq.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHandNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).EndInit();
@@ -726,11 +703,11 @@ namespace JCodes.Framework.AddIn.Security
             this.tabBasic.ResumeLayout(false);
             this.tabFunction.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chkFunctionSelectAll.Properties)).EndInit();
+            this.contextMenuStrip2.ResumeLayout(false);
             this.tabRoleData.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chkAllRoleData.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
             this.groupControl3.ResumeLayout(false);
-            this.contextMenuStrip2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -766,8 +743,6 @@ namespace JCodes.Framework.AddIn.Security
         private DevExpress.XtraEditors.TextEdit txtHandNo;
         private System.Windows.Forms.Label label3;
         private DevExpress.XtraEditors.TextEdit txtSeq;
-        private DevExpress.XtraEditors.ComboBoxEdit txtCategory;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ImageList imageFunction;
         private JCodes.Framework.AddIn.Basic.BizControl.CompanyControl txtCompany;

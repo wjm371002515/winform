@@ -55,43 +55,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attachment\FileUpload.cs" />
-    <Compile Include="Contact\Address.cs" />
-    <Compile Include="Contact\AddressGroup.cs" />
-    <Compile Include="Dic\City.cs" />
-    <Compile Include="Dic\DictData.cs" />
-    <Compile Include="Dic\DictType.cs" />
-    <Compile Include="Dic\District.cs" />
-    <Compile Include="Dic\Province.cs" />
     <Compile Include="Dongnanhai\DongnanhaiVotes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Security\BlackIP.cs" />
-    <Compile Include="Security\Function.cs" />
-    <Compile Include="Security\LoginLog.cs" />
-    <Compile Include="Security\Menu.cs" />
-    <Compile Include="Security\OperationLog.cs" />
-    <Compile Include="Security\OperationLogSetting.cs" />
-    <Compile Include="Security\OU.cs" />
-    <Compile Include="Security\Role.cs" />
-    <Compile Include="Security\RoleData.cs" />
-    <Compile Include="Security\SystemType.cs" />
-    <Compile Include="Security\User.cs" />
     <Compile Include="MySqlPortal.cs" />
-    <Compile Include="WareHouseMis\ItemDetail.cs" />
-    <Compile Include="WareHouseMis\PurchaseDetail.cs" />
-    <Compile Include="WareHouseMis\PurchaseHeader.cs" />
-    <Compile Include="WareHouseMis\ReportAnnualCostDetail.cs" />
-    <Compile Include="WareHouseMis\ReportAnnualCostHeader.cs" />
-    <Compile Include="WareHouseMis\ReportMonthlyCostDetail.cs" />
-    <Compile Include="WareHouseMis\ReportMonthlyDetail.cs" />
-    <Compile Include="WareHouseMis\ReportMonthlyHeader.cs" />
-    <Compile Include="WareHouseMis\Ware.cs" />
-    <Compile Include="WareHouseMis\Client.cs" />
-    <Compile Include="WareHouseMis\Supplier.cs" />
-    <Compile Include="WareHouseMis\WareHouse.cs" />
-    <Compile Include="WebMis\Icon.cs" />
-    <Compile Include="WebMis\Information.cs" />
-    <Compile Include="WebMis\InformationStatus.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JCodes.Framework.Common\JCodes.Framework.Common.csproj">
@@ -111,9 +77,7 @@
       <Name>JCodes.Framework.IDAL</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CRM\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy ..\jCodes\$(TargetFileName) ..\JCodes.Framework.WebUI\bin\ /y

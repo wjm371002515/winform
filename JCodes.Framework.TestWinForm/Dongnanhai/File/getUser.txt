@@ -1,0 +1,25 @@
+POST https://ynzx.zgwyzxw.cn/index.php/home/login/getUser HTTP/1.1
+Host: ynzx.zgwyzxw.cn
+Connection: keep-alive
+Content-Length: 25
+Accept: application/json, text/plain, */*
+Origin: https://ynzx.zgwyzxw.cn
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36
+Sec-Fetch-Mode: cors
+Content-Type: application/x-www-form-urlencoded
+Sec-Fetch-Site: same-origin
+Referer: https://ynzx.zgwyzxw.cn/EditData1
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+
+openid=false&userId=37614
+
+HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 24 Dec 2019 01:46:12 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Vary: Accept-Encoding
+Content-Length: 642
+
+{"code":200,"data":{"id":37614,"phone":"15268559568","real_name":"温志钢","name":"","id_number":"","sex":"Male","password":"","email":"","frozen_money":"0.00","money":"0.00","address":"中国_浙江_杭州","nickname":"知足才能满足","status":"1","avatar":"http:\/\/thirdwx.qlogo.cn\/mmopen\/vi_32\/Q0j4TwGTfTIOplXmE0r4SzJ9xr2EmgslzVzlhnWfgf7tItQMdbG7fprEXFGzHwibxzUibsyrWfNhNcWBJ7aA4uvw\/132","last_login_ip":"","is_validated":"0","login_count":0,"created_at":1557971832,"updated_at":1558109221,"ys_admin_id":"0","ys_user_id":"0","open_id":"oiki8wtnHVaSA0NngvGYCayepH6s","village_id":650,"wx_role":"User","head_img":null},"error":""}

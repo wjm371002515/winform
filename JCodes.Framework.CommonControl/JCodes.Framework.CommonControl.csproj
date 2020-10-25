@@ -179,6 +179,12 @@
     <Compile Include="Controls\ucCodeEditor.designer.cs">
       <DependentUpon>ucCodeEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="DevBiz\ucOutput.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DevBiz\ucOutput.designer.cs">
+      <DependentUpon>ucOutput.cs</DependentUpon>
+    </Compile>
     <Compile Include="Device\KeyboardHelper.cs" />
     <Compile Include="Framework\FrmException.cs">
       <SubType>Form</SubType>
@@ -330,9 +336,7 @@
     <Compile Include="Pager\WinListViewPager.Designer.cs">
       <DependentUpon>WinListViewPager.cs</DependentUpon>
     </Compile>
-    <Compile Include="PlugInInterface\AppInfo.cs" />
     <Compile Include="PlugInInterface\IFunction.cs" />
-    <Compile Include="PlugInInterface\LoginUserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resource.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -431,6 +435,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ucCodeEditor.resx">
       <DependentUpon>ucCodeEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DevBiz\ucOutput.resx">
+      <DependentUpon>ucOutput.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Device\CameraDialog.resx">
       <DependentUpon>CameraDialog.cs</DependentUpon>

@@ -31,9 +31,9 @@ namespace JCodes.Framework.Entity
 		private String m_Data2 = string.Empty;
 
 		/// <summary>
-		/// 额外数据3
+		/// 额外数据3(传递非字符串数据)
 		/// </summary>
-		private String m_Data3 = string.Empty;
+        private String m_Data3 = string.Empty;
 		#endregion
 
 		#region Property Members
@@ -98,7 +98,7 @@ namespace JCodes.Framework.Entity
 		/// </summary>
 		[DataMember]
 		[DisplayName("额外数据3")]
-		public virtual String Data3
+        public virtual String Data3
 		{
 			get
 			{

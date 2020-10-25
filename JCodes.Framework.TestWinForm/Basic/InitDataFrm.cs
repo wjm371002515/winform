@@ -15,6 +15,11 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using JCodes.Framework.Common.Extension;
+using JCodes.Framework.jCodesenum;
+using JCodes.Framework.Common.Format;
+using System.Collections;
+using JCodes.Framework.BLL;
+using JCodes.Framework.Common.Framework;
 
 namespace JCodes.Framework.TestWinForm.Basic
 {
@@ -847,6 +852,14 @@ namespace JCodes.Framework.TestWinForm.Basic
                     sboropertys.Append("\r\n");
                     sboropertys.Append("\t\t/// <summary>\r\n");
                     sboropertys.Append(string.Format("\t\t/// {0}\r\n", stdfielddict[fieldname].ChineseName));
+                    // 解析数据字典具体的值
+                    if (dictTypeInfoList != null && stdfielddict[fieldname].DictNo != 0)
+                    {
+                        var dictType = dictTypeInfoList.Find(new Predicate<DictInfo>(dictinfo => dictinfo.Id == stdfielddict[fieldname].DictNo));
+                        if (dictType != null) {
+                            sboropertys.Append(string.Format("\t\t/// {0}\r\n", dictType.Remark.Replace("\r\n", "\r\n\t\t/// ")));
+                        }
+                    }
                     if (!string.IsNullOrEmpty(fieldremark))
                     {
                         sboropertys.Append(string.Format("\t\t/// {0}\r\n", fieldremark));
@@ -1220,10 +1233,6 @@ namespace JCodes.Framework.TestWinForm.Basic
                
                     XmlHelper xmldiytablefieldhelper = new XmlHelper(diyfilePath);
                     XmlNodeList xmlfieldNodeLst = xmldiytablefieldhelper.Read("datatype/fieldsinfo");
-
-
-
-
                     XmlNodeList xmldiyfieldNodeLst = xmldiytablefieldhelper.Read("datatype/diyfieldinfo");
                 }
             }
@@ -1345,6 +1354,14 @@ namespace JCodes.Framework.TestWinForm.Basic
 
         private void button2_Click(object sender, EventArgs e)
         {
+            //SortedList lst = EnumHelper.GetStatus(typeof(OuType));
+            List<DicKeyValueInfo> dics = BLLFactory<DictData>.Instance.GetDictByTypeId(300005);
+            lookUpEdit1.Properties.DataSource = dics;
+            lookUpEdit1.Properties.ValueMember = "DicttypeValue";
+            lookUpEdit1.Properties.DisplayMember = "Name";
+            lookUpEdit1.Properties.ShowHeader = false;
+            lookUpEdit1.Properties.NullText = "";
+            lookUpEdit1.EditValue = 1;
             Int32 result = textBox1.Text.ToInt32();
             Console.WriteLine("result:" + result);
         }
@@ -1397,6 +1414,584 @@ namespace JCodes.Framework.TestWinForm.Basic
         private void button11_Click(object sender, EventArgs e)
         {
             (new FrmClassEntity()).Show();
+        }
+
+        /// <summary>
+        /// 生产业务逻辑代码
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button6_Click_1(object sender, EventArgs e)
+        {
+            General_BuinessCode();
+
+            MessageDxUtil.ShowTips("生成成功");
+        }
+
+        private void General_BuinessCode()
+        {
+            // 获取实体类生成路径
+            #region 根据项目属性获取数据类型
+            XmlHelper xmlprojectthelper = new XmlHelper(@"XML\project.xml");
+            XmlNodeList xmlprejectNodeLst = xmlprojectthelper.Read("datatype");
+
+            if (xmlprejectNodeLst.Count == 0)
+                return;
+
+            XmlNode xn1project = xmlprejectNodeLst[0];
+
+            // 将节点转换为元素，便于得到节点的属性值
+            XmlElement xeproject = (XmlElement)xn1project;
+
+            // 得到DataTypeInfo节点的所有子节点
+            XmlNodeList xnl0project = xeproject.ChildNodes;
+            string dbType = xnl0project.Item(4).InnerText;
+            string filePath = xnl0project.Item(9).InnerText;
+
+            #endregion
+
+            #region 先读取datatype.xml 在读取defaulttype.xml 然后Linq 查询保存到数据字典dic中
+            XmlHelper xmldatatypehelper = new XmlHelper(@"XML\datatype.xml");
+            XmlNodeList xmldatatypeNodeLst = xmldatatypehelper.Read("datatype");
+            List<DataTypeInfo> dataTypeInfoList = new List<DataTypeInfo>();
+            foreach (XmlNode xn1 in xmldatatypeNodeLst)
+            {
+                DataTypeInfo dataTypeInfo = new DataTypeInfo();
+                // 将节点转换为元素，便于得到节点的属性值
+                XmlElement xe = (XmlElement)xn1;
+                // 得到Type和ISBN两个属性的属性值
+                dataTypeInfo.Gid = xe.GetAttribute("gid").ToString();
+
+                // 得到DataTypeInfo节点的所有子节点
+                XmlNodeList xnl0 = xe.ChildNodes;
+                dataTypeInfo.Name = xnl0.Item(0).InnerText;
+                dataTypeInfo.StdType = xnl0.Item(2).InnerText;
+                dataTypeInfo.Length = xnl0.Item(3).InnerText;
+                dataTypeInfo.Precision = xnl0.Item(4).InnerText;
+
+                dataTypeInfoList.Add(dataTypeInfo);
+            }
+
+            XmlHelper defaulttypexmlHelper = new XmlHelper(@"XML\defaulttype.xml");
+            XmlNodeList defaulttypexmlNodeLst = defaulttypexmlHelper.Read("datatype");
+            Dictionary<string, string> dict = new Dictionary<string, string>();
+            foreach (var dataTypeInfo in dataTypeInfoList)
+            {
+                foreach (XmlNode xn1 in defaulttypexmlNodeLst)
+                {
+                    // 将节点转换为元素，便于得到节点的属性值
+                    XmlElement xe = (XmlElement)xn1;
+                    // 得到DataTypeInfo节点的所有子节点
+                    XmlNodeList xnl0 = xe.ChildNodes;
+                    string value = string.Empty;
+                    if (dbType == "Oracle")
+                        value = xnl0.Item(2).InnerText;
+                    else if (dbType == "Mysql")
+                        value = xnl0.Item(3).InnerText;
+                    else if (dbType == "DB2")
+                        value = xnl0.Item(4).InnerText;
+                    else if (dbType == "SqlServer")
+                        value = xnl0.Item(5).InnerText;
+                    else if (dbType == "Sqlite")
+                        value = xnl0.Item(6).InnerText;
+                    else if (dbType == "Access")
+                        value = xnl0.Item(7).InnerText;
+                    else if (dbType == "CShort")
+                        value = xnl0.Item(8).InnerText;
+
+                    // 找到匹配记录
+                    if (dataTypeInfo.StdType == xnl0.Item(0).InnerText)
+                    {
+                        if (value.Contains("$L"))
+                        {
+                            if (String.Empty == dataTypeInfo.Length)
+                                value = value.Replace("$L", "0");
+                            else
+                                value = value.Replace("$L", dataTypeInfo.Length);
+
+                        }
+                        if (value.Contains("$P"))
+                        {
+                            if (String.Empty == dataTypeInfo.Precision)
+                                value = value.Replace("$P", "0");
+                            else
+                                value = value.Replace("$P", dataTypeInfo.Precision);
+                        }
+                        dict.Add(dataTypeInfo.Name, value);
+                    }
+                }
+            }
+
+            // 新增CShort翻译 一定要有后面要翻译
+            XmlHelper defaulttypeshortxmlHelper = new XmlHelper(@"XML\defaulttype.xml");
+            XmlNodeList defaulttypeshortxmlNodeLst = defaulttypeshortxmlHelper.Read("datatype");
+            Dictionary<string, string> dictshort = new Dictionary<string, string>();
+            foreach (var dataTypeInfo in dataTypeInfoList)
+            {
+                foreach (XmlNode xn1 in defaulttypeshortxmlNodeLst)
+                {
+                    // 将节点转换为元素，便于得到节点的属性值
+                    XmlElement xe = (XmlElement)xn1;
+                    // 得到DataTypeInfo节点的所有子节点
+                    XmlNodeList xnl0 = xe.ChildNodes;
+                    string value = xnl0.Item(8).InnerText;
+
+                    // 找到匹配记录
+                    if (dataTypeInfo.StdType == xnl0.Item(0).InnerText)
+                    {
+                        if (value.Contains("$L"))
+                        {
+                            if (String.Empty == dataTypeInfo.Length)
+                                value = value.Replace("$L", "0");
+                            else
+                                value = value.Replace("$L", dataTypeInfo.Length);
+
+                        }
+                        if (value.Contains("$P"))
+                        {
+                            if (String.Empty == dataTypeInfo.Precision)
+                                value = value.Replace("$P", "0");
+                            else
+                                value = value.Replace("$P", dataTypeInfo.Precision);
+                        }
+                        dictshort.Add(dataTypeInfo.Name, value);
+                    }
+                }
+            }
+            // 在读取字段保存到数据字典中
+            XmlHelper stdfieldxmlHelper = new XmlHelper(@"XML\stdfield.xml");
+            XmlNodeList stdfieldxmlNodeLst = stdfieldxmlHelper.Read("datatype/dataitem");
+            Dictionary<string, StdFieldInfo> stdfielddict = new Dictionary<string, StdFieldInfo>();
+            foreach (var xn1 in stdfieldxmlNodeLst)
+            {
+                StdFieldInfo stdfield = new StdFieldInfo();
+                // 将节点转换为元素，便于得到节点的属性值
+                XmlElement xe = (XmlElement)xn1;
+
+                // 得到DataTypeInfo节点的所有子节点
+                XmlNodeList xnl0 = xe.ChildNodes;
+                stdfield.Name = xnl0.Item(0).InnerText;
+                stdfield.ChineseName = xnl0.Item(1).InnerText;
+                stdfield.DataType = xnl0.Item(2).InnerText;
+                stdfield.DictNo = xnl0.Item(3).InnerText.ToInt32();
+                if (dictTypeInfoList != null)
+                {
+                    var dictType = dictTypeInfoList.Find(new Predicate<DictInfo>(dictinfo => dictinfo.Id == stdfield.DictNo));
+                    if (dictType != null) stdfield.DictNameLst = dictType.Remark;
+                }
+                // 用来保存CShort 对应的值
+                stdfield.Remark = dict[stdfield.DataType];
+
+                stdfielddict.Add(stdfield.Name, stdfield);
+            }
+            #endregion
+
+            XmlHelper xmltableshelper = new XmlHelper(@"XML\tables.xml");
+
+            XmlNodeList xmlNodeLst = xmltableshelper.Read("datatype/tabletype");
+            Dictionary<string, string> tablesTypeInfoDic = new Dictionary<string, string>();
+            foreach (XmlNode xn1 in xmlNodeLst)
+            {
+                // 将节点转换为元素，便于得到节点的属性值
+                XmlElement xe = (XmlElement)xn1;
+                // 得到Type和ISBN两个属性的属性值
+                string Gid= xe.GetAttribute("gid").ToString();
+                string Name = xe.GetAttribute("name").ToString();
+
+                if (tablesTypeInfoDic.ContainsKey(Gid)){
+                    continue;
+                }
+                tablesTypeInfoDic.Add(Gid, Name.Split('(')[1].Split('_')[0]);
+            }
+
+            XmlNodeList xmlNodeLst2 = xmltableshelper.Read("datatype/dataitem");
+            List<TablesInfo> tablesInfoList = new List<TablesInfo>();
+            foreach (XmlNode xn1 in xmlNodeLst2)
+            {
+                TablesInfo tablesInfo = new TablesInfo();
+                // 将节点转换为元素，便于得到节点的属性值
+                XmlElement xe = (XmlElement)xn1;
+                // 得到Type和ISBN两个属性的属性值
+                tablesInfo.Gid = xe.GetAttribute("gid").ToString();
+
+                // 得到ConstantInfo节点的所有子节点
+                XmlNodeList xnl0 = xe.ChildNodes;
+                string typeguid = xnl0.Item(3).InnerText;
+                string basicdataPath = xnl0.Item(4).InnerText;
+
+                // 如果包含TODO字样就说明目前还么有弄好 生成过滤掉 关联表用_表示 也是不需要的
+                if (basicdataPath.Contains("_TODO") || basicdataPath.Contains("_"))
+                    continue;
+
+                // 确定存放目录
+                string folder = tablesTypeInfoDic[typeguid];
+
+                XmlHelper oneentityxmlhelper = new XmlHelper(basicdataPath);
+                // 取主键字段 indexsinfo
+                XmlNodeList xmlindexNodeLst = oneentityxmlhelper.Read("datatype/indexsinfo");
+                string strIndexFields = string.Empty;
+                foreach (XmlNode xn2 in xmlindexNodeLst)
+                {
+                    XmlElement xe2 = (XmlElement)xn2;
+                    XmlNodeList xn20 = xe2.ChildNodes;
+                    string name = xn20.Item(0).InnerText;
+                    Int32 constraint_type = string.IsNullOrEmpty(xn20.Item(2).InnerText) == null ? 0 : xn20.Item(2).InnerText.ToInt32();
+                    if (name.Contains("pk_") && string.Equals((ConstraintType)constraint_type, ConstraintType.主键))
+                    {
+                        strIndexFields = xn20.Item(1).InnerText;
+                    }
+                }
+                // 如果索引字段最后一个是, 去掉
+                strIndexFields = strIndexFields.Trim().TrimEnd(',');
+                // 取字段保存到临时变量
+                XmlNodeList xmlfieldsLst = oneentityxmlhelper.Read(string.Format("datatype/fieldsinfo"));
+                List<TableFieldsInfo> FieldsInfoLst = new List<TableFieldsInfo>();
+
+                foreach (XmlNode xn12 in xmlfieldsLst)
+                {
+                    TableFieldsInfo tablefieldInfo = new TableFieldsInfo();
+
+                    // 将节点转换为元素，便于得到节点的属性值
+                    XmlElement xe2 = (XmlElement)xn12;
+
+                    tablefieldInfo.Gid = xe2.GetAttribute("gid").ToString();
+
+                    // 得到DataTypeInfo节点的所有子节点
+                    XmlNodeList xnl02 = xe2.ChildNodes;
+
+                    if (stdfielddict.ContainsKey(xnl02.Item(0).InnerText))
+                    {
+                        StdFieldInfo stdfield = stdfielddict[xnl02.Item(0).InnerText];
+
+                        tablefieldInfo.FieldName = stdfield.Name;
+                        tablefieldInfo.ChineseName = stdfield.ChineseName;
+                        tablefieldInfo.DataType = stdfield.DataType;
+                        tablefieldInfo.FieldInfo = stdfield.DictNameLst;
+                    }
+
+                    tablefieldInfo.IsNull = (short)(xnl0.Item(1).InnerText == "0" ? 0 : 1);
+                    tablefieldInfo.Remark = xnl0.Item(2).InnerText;
+                    tablefieldInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
+                    FieldsInfoLst.Add(tablefieldInfo);
+                }
+
+                XmlNodeList xmlentityNodeLst = oneentityxmlhelper.Read("datatype/basicinfo");
+
+                string filepath = string.Empty;
+                // 20200815 wujianming 新增IDAL接口文件
+                string fileIDalpath = string.Empty;
+                string fileBllpath = string.Empty;
+                StringBuilder sbcontent = new StringBuilder();
+                StringBuilder sbcontentdetail= new StringBuilder();
+         
+                foreach (XmlNode xn2 in xmlentityNodeLst)
+                {
+                    XmlElement xe2 = (XmlElement)xn2;
+                    XmlNodeList xn20 = xe2.ChildNodes;
+
+                    string functionId = xn20.Item(0).InnerText;
+                    string name = xn20.Item(1).InnerText;
+                    string chineseName = xn20.Item(2).InnerText;
+                    string version = xn20.Item(4).InnerText;
+                    string lasttime = xn20.Item(5).InnerText;
+
+                    #region IDAL层数据代码
+                    if (!string.IsNullOrEmpty(folder) && !DirectoryUtil.IsExistDirectory(string.Format("{0}//IDAL//{1}//", filePath, folder)))
+                    {
+                        DirectoryUtil.CreateDirectory(string.Format(string.Format("{0}//IDAL//{1}//", filePath, folder)));
+                    }
+
+                    fileIDalpath = string.Format("{0}//IDAL//{1}//I{2}.cs", filePath, folder, name);
+
+                    if (FileUtil.IsExistFile(fileIDalpath))
+                        FileUtil.DeleteFile(fileIDalpath);
+
+                    FileUtil.CreateFile(fileIDalpath);
+                    #endregion
+
+                    #region 写基础代码到IDAL文件中
+                    StringBuilder sbIDalContent = new StringBuilder();
+                    sbIDalContent.Append("using JCodes.Framework.Entity;\r\n");
+                    sbIDalContent.Append("using JCodes.Framework.Common.Framework;\r\n\r\n");
+                    sbIDalContent.Append("namespace JCodes.Framework.IDAL\r\n{\r\n");
+                    sbIDalContent.Append("\t/// <summary>\r\n");
+                    sbIDalContent.Append(string.Format("\t/// I{0} 的摘要说明\r\n", name));
+                    sbIDalContent.Append("\t/// </summary>\r\n");
+                    sbIDalContent.Append(string.Format("\tpublic interface I{0} : IBaseDAL<{0}Info>\r\n", name));
+                    sbIDalContent.Append("\t{\r\n\t}\r\n}");
+
+                    FileUtil.AppendText(fileIDalpath, sbIDalContent.ToString(), Encoding.UTF8);
+                    #endregion
+
+                    #region BLL 层数据代码
+                    if (!string.IsNullOrEmpty(folder) && !DirectoryUtil.IsExistDirectory(string.Format("{0}//BLL//{1}//", filePath, folder)))
+                    {
+                        DirectoryUtil.CreateDirectory(string.Format(string.Format("{0}//BLL//{1}//", filePath, folder)));
+                    }
+
+                    fileBllpath = string.Format("{0}//BLL//{1}//{2}.cs", filePath, folder, name);
+
+                    if (FileUtil.IsExistFile(fileBllpath))
+                        FileUtil.DeleteFile(fileBllpath);
+
+                    FileUtil.CreateFile(fileBllpath);
+                    #endregion
+
+                    #region 写基础代码到BLL文件中
+                    StringBuilder sbBllContent = new StringBuilder();
+                    sbBllContent.Append("using JCodes.Framework.IDAL;\r\n");
+                    sbBllContent.Append("using JCodes.Framework.Common.Framework;\r\n");
+                    sbBllContent.Append("using JCodes.Framework.Entity;\r\n\r\n");
+                    sbBllContent.Append("namespace JCodes.Framework.BLL\r\n{\r\n");
+                    sbBllContent.Append("\t/// <summary>\r\n");
+                    sbBllContent.Append(string.Format("\t/// {0}业务对象类\r\n", chineseName));
+                    sbBllContent.Append("\t/// </summary>\r\n");
+                    sbBllContent.Append(string.Format("\tpublic class {0} : BaseBLL<{0}Info>\r\n", name));
+                    sbBllContent.Append("\t{\r\n");
+                    sbBllContent.Append(string.Format("\t\tprivate I{0} dal = null;\r\n\r\n", name));
+                    sbBllContent.Append(string.Format("\t\tpublic {0}() : base()\r\n", name));
+                    sbBllContent.Append("\t\t{\r\n");
+                    
+                    sbBllContent.Append("\t\t\tif (isMultiDatabase)\r\n");
+                    sbBllContent.Append("\t\t\t{\r\n");
+                    sbBllContent.Append("\t\t\t\tbase.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name, dicmultiDatabase[this.GetType().Name].ToString());\r\n");
+                    sbBllContent.Append("\t\t\t}\r\n");
+                    sbBllContent.Append("\t\t\telse\r\n");
+                    sbBllContent.Append("\t\t\t{\r\n");
+                    sbBllContent.Append("\t\t\t\tbase.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);\r\n");
+                    sbBllContent.Append("\t\t\t}\r\n\r\n");
+                    sbBllContent.Append("\t\t\tbaseDal.OnOperationLog += new OperationLogEventHandler(OperationLog.OnOperationLog);//如果需要记录操作日志，则实现这个事件\r\n\r\n");
+                    sbBllContent.Append(string.Format("\t\t\tdal = baseDal as I{0};\r\n", name));
+                    sbBllContent.Append("\t\t}\r\n");
+                    sbBllContent.Append("\t}\r\n}");
+                    FileUtil.AppendText(fileBllpath, sbBllContent.ToString(), Encoding.UTF8);
+                    #endregion
+
+                    #region 数据层业务代码
+                    if (!string.IsNullOrEmpty(folder) && !DirectoryUtil.IsExistDirectory(string.Format("{0}//BusinessCode//{1}//", filePath, folder)))
+                    {
+                        DirectoryUtil.CreateDirectory(string.Format(string.Format("{0}//BusinessCode//{1}//", filePath, folder)));
+                    }
+
+                    filepath = string.Format("{0}//BusinessCode//{1}//{2}.cs", filePath, folder, name);
+
+                    if (FileUtil.IsExistFile(filepath))
+                        FileUtil.DeleteFile(filepath);
+
+                    FileUtil.CreateFile(filepath);
+                    #endregion
+
+                    // 加载头文件信息
+                    sbcontent.Append("using JCodes.Framework.Common.Databases;\r\n");
+                    sbcontent.Append("using JCodes.Framework.Common.Framework.BaseDAL;\r\n");
+                    sbcontent.Append("using JCodes.Framework.Entity;\r\n");
+                    sbcontent.Append("using JCodes.Framework.IDAL;\r\n");
+                    sbcontent.Append("using JCodes.Framework.jCodesenum;\r\n");
+                    sbcontent.Append("using Microsoft.Practices.EnterpriseLibrary.Data;\r\n");
+                    sbcontent.Append("using System;\r\n");
+                    sbcontent.Append("using System.Collections;\r\n");
+                    sbcontent.Append("using System.Collections.Generic;\r\n");
+                    sbcontent.Append("using System.Data;\r\n");
+                    sbcontent.Append("using System.Data.Common;\r\n\r\n");
+                    string tmpdbType = String.Empty;
+                    if (dbType == "Oracle")
+                        tmpdbType = "Oracle";
+                    else if (dbType == "Mysql")
+                        tmpdbType = "MySql";
+                    //else if (dbType == "DB2") TODO
+                        //tmpdbType = "DB2";
+                    else if (dbType == "SqlServer")
+                        tmpdbType = "SQLServer";
+                    else if (dbType == "SQLite")
+                        tmpdbType = "SQLServer";
+                    else if (dbType == "Access")
+                        tmpdbType = "Access";
+
+                    sbcontent.Append(string.Format("namespace JCodes.Framework.{0}DAL\r\n", tmpdbType));
+                    sbcontent.Append("{\r\n");
+
+                    sbcontent.Append("\t/// <summary>\r\n");
+                    sbcontent.Append(string.Format("\t/// 对象号: {0}\r\n", functionId));
+                    sbcontent.Append(string.Format("\t/// {0}({1})\r\n", chineseName, name));
+                    sbcontent.Append(string.Format("\t/// 版本: {0}\r\n", version));
+                    sbcontent.Append(string.Format("\t/// 表结构最后更新时间: {0}\r\n", lasttime));
+                    sbcontent.Append("\t/// </summary>\r\n");
+                    sbcontent.Append(string.Format("\tpublic partial class {0} : BaseDAL{1}<{0}Info>, I{0}", name, tmpdbType));
+                    sbcontent.Append("\r\n\t{");
+
+                    sbcontentdetail.Append("\r\n\t\t#region 对象实例及构造函数\r\n");
+                    sbcontentdetail.Append(string.Format("\t\tpublic static {0} Instance\r\n", name));
+                    sbcontentdetail.Append("\t\t{\r\n");
+                    sbcontentdetail.Append("\t\t\tget\r\n");
+                    sbcontentdetail.Append("\t\t\t{\r\n");
+                    sbcontentdetail.Append(string.Format("\t\t\t\treturn new {0}();\r\n",name));
+                    sbcontentdetail.Append("\t\t\t}\r\n");
+                    sbcontentdetail.Append("\t\t}\r\n\r\n");
+                    // 20190925 wujianming 前缀改小写
+                    sbcontentdetail.Append(string.Format("\t\tpublic {0}() : base({1}Portal.gc._{2}TablePre + \"{0}\", \"{3}\")\r\n", name, tmpdbType, folder.ToLower(), strIndexFields));
+                    sbcontentdetail.Append("\t\t{\r\n");
+                    // TODO 字段有Seq 按照Seq排序 如果有主键 按照主键 都没有则没有内容
+                    bool isSortFieldBySeq = false;
+                    foreach (var fieldInfo in FieldsInfoLst)
+                    {
+                        if (fieldInfo.FieldName == "Seq")
+                        {
+                            sbcontentdetail.Append(string.Format("\t\t\tthis.sortField = \"{0}\";\r\n", fieldInfo.FieldName));
+                            isSortFieldBySeq = true;
+                            break;
+                        }
+                    }
+                    if (!isSortFieldBySeq)
+                    {
+                        sbcontentdetail.Append(string.Format("\t\t\tthis.sortField = \"{0}\";\r\n", strIndexFields));
+                        
+                    }
+                    sbcontentdetail.Append("\t\t}\r\n");
+                    sbcontentdetail.Append("\t\t#endregion\r\n");
+
+                    // 处理 DataReaderToEntity
+                    sbcontentdetail.Append("\r\n\t\t/// <summary>\r\n");
+                    sbcontentdetail.Append("\t\t/// 将DataReader的属性值转化为实体类的属性值，返回实体类\r\n");
+                    sbcontentdetail.Append("\t\t/// </summary>\r\n");
+                    sbcontentdetail.Append("\t\t/// <param name=\"dr\">有效的DataReader对象</param>\r\n");
+                    sbcontentdetail.Append("\t\t/// <returns>实体类对象</returns>\r\n");
+                    sbcontentdetail.Append(string.Format("\t\tprotected override {0}Info DataReaderToEntity(IDataReader dataReader)\r\n", name));
+                    sbcontentdetail.Append("\t\t{\r\n");
+                    sbcontentdetail.Append(string.Format("\t\t\t{0}Info info = new {0}Info();\r\n",name));
+                    sbcontentdetail.Append("\t\t\tSmartDataReader reader = new SmartDataReader(dataReader);\r\n");
+                    foreach (var fieldInfo in FieldsInfoLst) {
+                        if (string.IsNullOrEmpty(fieldInfo.FieldName) || string.IsNullOrEmpty(fieldInfo.DataType))
+                            continue;
+                        if (!dictshort.ContainsKey(fieldInfo.DataType))
+                            continue;
+                        sbcontentdetail.Append(string.Format("\t\t\tinfo.{0} = reader.Get{2}(\"{0}\"); \t //{1}\r\n", fieldInfo.FieldName, fieldInfo.ChineseName, dictshort[ fieldInfo.DataType ]));
+                    }
+                    sbcontentdetail.Append("\t\t\treturn info;\r\n");
+                    sbcontentdetail.Append("\t\t}\r\n");
+     
+                    // 处理 GetHashByEntity
+                    sbcontentdetail.Append("\r\n\t\t/// <summary>\r\n");
+                    sbcontentdetail.Append("\t\t/// 将实体对象的属性值转化为Hashtable对应的键值\r\n");
+                    sbcontentdetail.Append("\t\t/// </summary>\r\n");
+                    sbcontentdetail.Append("\t\t/// <param name=\"dr\">有效的实体对象</param>\r\n");
+                    sbcontentdetail.Append("\t\t/// <returns>包含键值映射的Hashtable</returns>\r\n");
+                    sbcontentdetail.Append(string.Format("\t\tprotected override Hashtable GetHashByEntity({0}Info obj)\r\n", name));
+                    sbcontentdetail.Append("\t\t{\r\n");
+                    sbcontentdetail.Append(string.Format("\t\t\t{0}Info info = obj as {0}Info;\r\n", name));
+                    sbcontentdetail.Append("\t\t\tHashtable hash = new Hashtable();\r\n");
+                    foreach (var fieldInfo in FieldsInfoLst)
+                    {
+                        sbcontentdetail.Append(string.Format("\t\t\thash.Add(\"{0}\", info.{0}); \t //{1}\r\n", fieldInfo.FieldName, fieldInfo.ChineseName));
+                    }
+                    sbcontentdetail.Append("\t\t\treturn hash;\r\n");
+                    sbcontentdetail.Append("\t\t}\r\n");
+
+                    // 处理 GetColumnNameAlias
+                    sbcontentdetail.Append("\r\n\t\t/// <summary>\r\n");
+                    sbcontentdetail.Append("\t\t/// 获取字段中文别名（用于界面显示）的字典集合\r\n");
+                    sbcontentdetail.Append("\t\t/// </summary>\r\n");
+                    sbcontentdetail.Append("\t\t/// <returns></returns>\r\n");
+                    sbcontentdetail.Append(string.Format("\t\tpublic override Dictionary<string, string> GetColumnNameAlias()\r\n", name));
+                    sbcontentdetail.Append("\t\t{\r\n");
+                    sbcontentdetail.Append("\t\t\tDictionary<string, string> dict = new Dictionary<string, string>();\r\n");
+                    sbcontentdetail.Append("\t\t\t#region 添加别名解析\r\n");
+                    foreach (var fieldInfo in FieldsInfoLst)
+                    {
+                        sbcontentdetail.Append(string.Format("\t\t\tdict.Add(\"{0}\", \"{1}\");\r\n", fieldInfo.FieldName, fieldInfo.ChineseName));
+                    }
+                    sbcontentdetail.Append("\t\t\t#endregion\r\n");
+                    sbcontentdetail.Append("\t\t\treturn dict;\r\n");
+                    sbcontentdetail.Append("\t\t}\r\n");
+                }
+                FileUtil.AppendText(filepath, sbcontent.ToString() + sbcontentdetail.ToString() + "\t}\r\n}", Encoding.UTF8);
+            }  
+        }
+
+        /// <summary>
+        /// 枚举生成
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button12_Click(object sender, EventArgs e)
+        {
+            // 获取实体类生成路径
+            #region 根据项目属性获取数据类型
+            XmlHelper xmlprojectthelper = new XmlHelper(@"XML\project.xml");
+            XmlNodeList xmlprejectNodeLst = xmlprojectthelper.Read("datatype");
+
+            if (xmlprejectNodeLst.Count == 0)
+                return;
+
+            XmlNode xn1project = xmlprejectNodeLst[0];
+
+            // 将节点转换为元素，便于得到节点的属性值
+            XmlElement xeproject = (XmlElement)xn1project;
+
+            // 得到DataTypeInfo节点的所有子节点
+            XmlNodeList xnl0project = xeproject.ChildNodes;
+            string dbType = xnl0project.Item(4).InnerText;
+            string filePath = xnl0project.Item(9).InnerText;
+            #endregion
+
+            if (!DirectoryUtil.IsExistDirectory(string.Format("{0}//EnumCode//", filePath)))
+            {
+                DirectoryUtil.CreateDirectory(string.Format("{0}//EnumCode//", filePath));
+            }
+
+            filePath = string.Format("{0}//EnumCode//EnumDic.cs", filePath);
+
+            if (FileUtil.IsExistFile(filePath))
+            {
+                FileUtil.DeleteFile(filePath);
+            }
+            FileUtil.CreateFile(filePath);
+
+            StringBuilder sbcontent = new StringBuilder();
+            sbcontent.Append("\r\n");
+            sbcontent.Append("namespace JCodes.Framework.jCodesenum\r\n");
+            sbcontent.Append("{\r\n");
+
+            XmlHelper stdfieldxmlHelper = new XmlHelper(@"XML\stdfield.xml");
+            XmlNodeList stdfieldxmlNodeLst = stdfieldxmlHelper.Read("datatype/dataitem");
+            foreach (var xn1 in stdfieldxmlNodeLst)
+            {
+                StdFieldInfo stdfield = new StdFieldInfo();
+                // 将节点转换为元素，便于得到节点的属性值
+                XmlElement xe = (XmlElement)xn1;
+
+                // 得到DataTypeInfo节点的所有子节点
+                XmlNodeList xnl0 = xe.ChildNodes;
+                stdfield.Name = xnl0.Item(0).InnerText;
+                stdfield.ChineseName = xnl0.Item(1).InnerText;
+                stdfield.DataType = xnl0.Item(2).InnerText;
+                stdfield.DictNo = xnl0.Item(3).InnerText.ToInt32();
+                if (dictTypeInfoList != null && stdfield.DictNo > 0)
+                {
+                    var dictType = dictTypeInfoList.Find(new Predicate<DictInfo>(dictinfo => dictinfo.Id == stdfield.DictNo));
+                    if (dictType != null) {
+                        sbcontent.Append("\r\n\t/// <summary>\r\n");
+                        sbcontent.Append(string.Format("\t/// 数据字典项: {0}\r\n", stdfield.DictNo));
+                        sbcontent.Append(string.Format("\t/// {0}\r\n", stdfield.ChineseName));
+                        sbcontent.Append(string.Format("\t/// {0}\r\n", dictType.Remark.Replace("\r\n", "\r\n\t/// ")));
+                        sbcontent.Append("\t/// </summary>\r\n");
+                        sbcontent.Append(string.Format("\tpublic enum {0}\r\n", stdfield.Name));
+                        sbcontent.Append("\t{\r\n");
+                        // 转成值
+                        string[] enumlst = dictType.Remark.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                        for (Int32 i = 0; i < enumlst.Length; i++)
+                        {
+                            string[] tmpstr = enumlst[i].Trim().TrimEnd(',').Split('-');
+                            string enumkey = tmpstr[0];
+                            string enumvalue = tmpstr[1].Replace("（", "(").Replace("）", ")");
+                            sbcontent.Append(string.Format("\t\t{0} = {1},\r\n\r\n", enumvalue, enumkey));
+                        }
+                        sbcontent.Append("\t}\r\n");
+                    }
+                }
+            }
+            FileUtil.AppendText(filePath, sbcontent.ToString() + "\r\n}", Encoding.UTF8);
+
+            MessageDxUtil.ShowTips("生成成功");
         }
     }
 }

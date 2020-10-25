@@ -105,7 +105,7 @@ namespace JCodes.Framework.AddIn.Proj
                 XmlNodeList xnl0 = xe.ChildNodes;
                 errornoInfo.Name = xnl0.Item(0).InnerText;
                 errornoInfo.ChineseName = xnl0.Item(1).InnerText;
-                errornoInfo.LogLevel = Convert.ToInt16( xnl0.Item(2).InnerText );
+                errornoInfo.LogLevel = string.IsNullOrEmpty(xnl0.Item(2).InnerText ) ? (short)-1 : Convert.ToInt16( xnl0.Item(2).InnerText );
                 errornoInfo.Remark = xnl0.Item(3).InnerText;
                 errornoInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
 
@@ -311,16 +311,16 @@ namespace JCodes.Framework.AddIn.Proj
 
             switch (e.Column.ToString())
             {
-                case "错误号":
+                case "名称":
                     idx = 0;
                     break;
-                case "错误提示信息":
+                case "中文名称":
                     idx = 1;
                     break;
-                case "错误级别":
+                case "日志级别":
                     idx = 2;
                     break;
-                case "说明":
+                case "备注":
                     idx = 3;
                     break;
             }
@@ -351,6 +351,10 @@ namespace JCodes.Framework.AddIn.Proj
         /// <param name="e"></param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            // 假如在查询去掉查询在新增
+            if (!string.IsNullOrEmpty(gridView1.ActiveFilterString))
+                gridView1.ActiveFilterString = "";
+
             var errornoInfo = new ErrornoInfo();
             errornoInfo.Gid = System.Guid.NewGuid().ToString();
             errornoInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
@@ -358,7 +362,7 @@ namespace JCodes.Framework.AddIn.Proj
             xmlhelper.InsertElement("datatype", "item", "gid", errornoInfo.Gid, string.Format(xmlModel, string.Empty, string.Empty, string.Empty, string.Empty));
             xmlhelper.Save(false);
 
-            (gridView1.DataSource as List<ErrornoInfo>).Insert(gridView1.RowCount - 1, errornoInfo);
+            (gridView1.DataSource as List<ErrornoInfo>).Insert((gridView1.DataSource as List<ErrornoInfo>).Count - 1, errornoInfo);
             gridView1.RefreshData();
         }
 
@@ -573,7 +577,7 @@ namespace JCodes.Framework.AddIn.Proj
 
                         xmlhelper.InsertElement("datatype", "item", "gid", errornoInfo.Gid, string.Format(xmlModel, dt.Rows[i][0].ToString(), dt.Rows[i][1].ToString(), dt.Rows[i][2].ToString(), dt.Rows[i][3].ToString()));
 
-                        (gridView1.DataSource as List<ErrornoInfo>).Insert(gridView1.RowCount - 1, errornoInfo);
+                        (gridView1.DataSource as List<ErrornoInfo>).Insert((gridView1.DataSource as List<ErrornoInfo>).Count - 1, errornoInfo);
                         addRows++;
                         lstName.Add(dt.Rows[i][0].ToString());
                     }
@@ -715,6 +719,35 @@ namespace JCodes.Framework.AddIn.Proj
                     break;
             }
             return result;
+        }
+
+        /// <summary>
+        /// 复制错误信息到剪贴板
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tsmirealoadcache_Click(object sender, EventArgs e)
+        {
+            StringBuilder sb = new StringBuilder();
+            /*
+             * result.ErrorCode = 000000;           // ErrorCode 表示登陆成功
+               result.LogLevel = 1;
+               result.ErrorMessage = "操作成功";
+               result.Data1 = "普通管理员";
+             */
+            if (gridView1.RowCount > 0 && gridView1.FocusedRowHandle >= 0)
+            {
+                ErrornoInfo errornoInfo = gridView1.GetFocusedRow() as ErrornoInfo;
+                if (null != errornoInfo)
+                {
+                    sb.Append("// 系统自动生成错误信息\r\n");
+                    sb.Append(string.Format("result.ErrorCode = {0};\r\n", errornoInfo.Name));
+                    sb.Append(string.Format("result.LogLevel = {0};\r\n", errornoInfo.LogLevel));
+                    sb.Append(string.Format("result.ErrorMessage = \"{0}[{1}]\";\r\n", errornoInfo.Remark, errornoInfo.ChineseName));
+                }
+            }
+
+            Clipboard.SetDataObject(sb.ToString());
         }
     }
 }

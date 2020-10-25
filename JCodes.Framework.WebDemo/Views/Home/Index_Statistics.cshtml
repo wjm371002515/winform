@@ -35,6 +35,15 @@
 </head>
 <body class="gray-bg">
     <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="notice_active">
+            <ul id="jsfoot01" class="noticTipTxt">
+                <li><a href="####" target="_blank">制定《停车收费管理办法》和《小区物业服务合同》</a></li>
+                <li><a href="####" target="_blank">建设美好家园</a></li>
+                <li><a href="####" target="_blank">钱塘东南家园小区物业续聘、选聘投票开始啦，</a></li>
+                <li><a href="####" target="_blank">积极参与投票，共建幸福家园</a></li>
+            </ul>
+        </div>
+
         <!-- Panel Other -->
         <div class="ibox float-e-margins">
             <div class="ibox-content">
@@ -42,8 +51,8 @@
                     <div class="col-sm-12">
                         <!-- Example Events -->
                         <div class="example-wrap">
-                            <button type="button" id="printbtn" onclick="printdata()" class="btn btn-block btn-outline btn-primary">打印数据</button>
-                            <p class="btn btn-block btn-outline btn-primary" id="louzhuangtxt"></p>
+                            <!--button type="button" id="printbtn" onclick="printdata()" class="btn btn-block btn-outline btn-primary">打印数据</!--button>
+                            <p class="btn btn-block btn-outline btn-primary" id="louzhuangtxt"></p-->
                             <div class="spiner-example">
                                 <div class="sk-spinner sk-spinner-three-bounce">
                                     <div class="sk-bounce1"></div>
@@ -62,6 +71,12 @@
         <!-- End Panel Other -->
     </div>
 
+    <div class="footer">
+        <div class="pull-right">
+            &copy; 2006-2020 <a href="http://www.jcodes.cn/" target="_blank">Editor by Jimmy</a>
+        </div>
+    </div>
+
     <script src="/Scripts/jquery.min.js?v=2.1.4"></script>
     <script src="/Scripts/bootstrap.min.js?v=3.3.5"></script>
     <script src="/Scripts/content.min.js?v=1.0.0"></script>
@@ -69,6 +84,7 @@
     <script src="/Scripts/plugins/bootstrap-table/bootstrap-table.min.js"></script>
     <script src="/Scripts/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
     <script src="/Scripts/plugins/exclsTable/Table.js"></script>
+    <script src="/Scripts/shuiyin.js"></script>
   
     <script type="text/javascript">
         $(document).ready(function () {
@@ -165,6 +181,65 @@
             }
             return (false);
         }
+
+        var now = getNow();
+        watermark({ "watermark_txt": "钱塘东南家园 " + getQueryVariable('louzhuang') + "幢投票明细统计" + now });
     </script>
+
+    <script type="text/javascript" src="https://www.17sucai.com/preview/11/2013-04-30/scrolltext/js/scrolltext.js"></script>
+    <script type="text/javascript">
+        if (document.getElementById("jsfoot01")) {
+            var scrollup = new ScrollText("jsfoot01");
+            scrollup.LineHeight = 22;        //单排文字滚动的高度
+            scrollup.Amount = 1;            //注意:子模块(LineHeight)一定要能整除Amount.
+            scrollup.Delay = 20;           //延时
+            scrollup.Start();             //文字自动滚动
+            scrollup.Direction = "down"; //文字向下滚动
+        }
+
+    </script>
+
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        a, img {
+            border: 0;
+            vertical-align: middle;
+        }
+        /*公告*/
+        .notice_active {
+            width: 387px;
+            margin: 20px auto;
+            background: url(/Content/themes/img/bg.gif) no-repeat;
+        }
+
+        .noticTipTxt {
+            color: #ff7300;
+            height: 22px;
+            line-height: 22px;
+            overflow: hidden;
+            margin: 0 0 0 40px;
+        }
+
+            .noticTipTxt li {
+                height: 22px;
+                line-height: 22px;
+            }
+
+            .noticTipTxt a {
+                color: #0075E8;
+                font-size: 12px;
+                text-decoration: none;
+            }
+
+                .noticTipTxt a:hover {
+                    color: #ff7300;
+                    text-decoration: underline;
+                }
+    </style>
 </body>
 </html>

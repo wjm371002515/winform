@@ -232,7 +232,7 @@ namespace JCodes.Framework.WebUI.Controllers
         protected override void OnBeforeUpdate(OUInfo info)
         {
             //子类对参数对象进行修改
-            //info.Creator = CurrentUser.FullName.ToString();
+            //info.Creator = CurrentUser.LoginName.ToString();
             //info.Creator = CurrentUser.ID.ToString();
             //info.CreateTime = DateTime.Now;
             info.EditorId = CurrentUser.Id;
@@ -255,7 +255,7 @@ namespace JCodes.Framework.WebUI.Controllers
             //    info.PID = BLLFactory<OU>.Instance.GetFieldValue(info.PID, "Name");
             //    if (!string.IsNullOrEmpty(info.Creator))
             //    {
-            //        info.Creator = BLLFactory<User>.Instance.GetFullNameByID(info.Creator.ToInt32());
+            //        info.Creator = BLLFactory<User>.Instance.GetNameById(info.Creator.ToInt32());
             //    }
             //}
 
@@ -272,7 +272,7 @@ namespace JCodes.Framework.WebUI.Controllers
         public ActionResult GetOUCategorysDictJson()
         {
             List<CListItem> treeList = new List<CListItem>();
-            string[] enumNames = EnumHelper.GetMemberNames<OUCategoryEnum>();
+            string[] enumNames = EnumHelper.GetMemberNames<OuType>();
 
             foreach (string item in enumNames)
             {
@@ -366,7 +366,7 @@ namespace JCodes.Framework.WebUI.Controllers
         {
             if (!string.IsNullOrEmpty(roleid) && ValidateUtil.IsValidInt(roleid))
             {
-                List<OUInfo> list = BLLFactory<OU>.Instance.GetOUsByRole(Convert.ToInt32(roleid));
+                List<OUInfo> list = BLLFactory<OU>.Instance.GetOUsByRoleId(Convert.ToInt32(roleid));
                 return Json(list, JsonRequestBehavior.AllowGet);
             }
             return Content("");
@@ -381,7 +381,7 @@ namespace JCodes.Framework.WebUI.Controllers
         {
             if (!string.IsNullOrEmpty(userid) && ValidateUtil.IsValidInt(userid))
             {
-                List<OUInfo> ouList = BLLFactory<OU>.Instance.GetOUsByUser(Convert.ToInt32(userid));
+                List<OUInfo> ouList = BLLFactory<OU>.Instance.GetOUsByUserId(Convert.ToInt32(userid));
                 return Json(ouList, JsonRequestBehavior.AllowGet);
             }
 
@@ -397,7 +397,7 @@ namespace JCodes.Framework.WebUI.Controllers
             info.EditorId = CurrentUser.Id;
             info.LastUpdateTime = DateTime.Now;
 
-            OUInfo pInfo = BLLFactory<OU>.Instance.FindByID(info.Pid);
+            OUInfo pInfo = BLLFactory<OU>.Instance.FindById(info.Pid);
             if (pInfo != null)
             {
                 //pInfo.Category == "集团" ||

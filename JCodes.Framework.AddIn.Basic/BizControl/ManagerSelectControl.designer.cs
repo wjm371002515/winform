@@ -47,7 +47,7 @@
             this.txtOperator.Name = "txtOperator";
             this.txtOperator.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.txtOperator.Properties.DisplayMember = "FullName";
+            this.txtOperator.Properties.DisplayMember = "LoginName";
             this.txtOperator.Properties.NullText = "";
             this.txtOperator.Properties.NullValuePrompt = "请选择人员";
             this.txtOperator.Properties.NullValuePromptShowForEmptyValue = true;
@@ -74,8 +74,8 @@
             // 
             // gridColumn4
             // 
-            this.gridColumn4.Caption = "ID";
-            this.gridColumn4.FieldName = "ID";
+            this.gridColumn4.Caption = "Id";
+            this.gridColumn4.FieldName = "Id";
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 0;
@@ -93,7 +93,7 @@
             // gridColumn3
             // 
             this.gridColumn3.Caption = "用户全名";
-            this.gridColumn3.FieldName = "FullName";
+            this.gridColumn3.FieldName = "LoginName";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 3;

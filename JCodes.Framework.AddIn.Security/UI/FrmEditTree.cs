@@ -20,14 +20,13 @@ namespace JCodes.Framework.AddIn.Security
     public partial class FrmEditTree : BaseDock
     {
         public DisplayTreeType DisplayType;
-        public string RoleID = string.Empty;//在Role中查看其他相关信息的时候
-        public string OUID = string.Empty;//在OU中查看用户列表的时候
-        public string UserID = string.Empty;//在User的时候查看功能列表
+        public Int32 RoleId = 0;//在Role中查看其他相关信息的时候
+        public Int32 OuId = 0;//在OU中查看用户列表的时候
+        public Int32 UserId = 0;//在User的时候查看功能列表
 
         private List<string> removeList = new List<string>();
         private List<string> addList = new List<string>();
 
-        //CListItem Text=Name, Value = PID
         private Dictionary<string, CListItem> checkedDict = new Dictionary<string, CListItem>();//记录用户原来选择的内容
         private Dictionary<string, CListItem> treeDict = new Dictionary<string, CListItem>();//记录所有列表的内容
 
@@ -53,9 +52,9 @@ namespace JCodes.Framework.AddIn.Security
                     #region OU
                     list.AddRange(BLLFactory<OU>.Instance.GetAll());
 
-                    if (!string.IsNullOrEmpty(RoleID))
+                    if (RoleId > 0)
                     {
-                        chechedList.AddRange(BLLFactory<OU>.Instance.GetOUsByRole(RoleID.ToInt32()));
+                        chechedList.AddRange(BLLFactory<OU>.Instance.GetOUsByRoleId(RoleId));
                     }
 
                     if (chechedList == null)
@@ -85,9 +84,9 @@ namespace JCodes.Framework.AddIn.Security
 
                     list.AddRange(BLLFactory<Role>.Instance.GetAll());
 
-                    if (!string.IsNullOrEmpty(OUID))
+                    if (OuId > 0)
                     {
-                        chechedList.AddRange(BLLFactory<Role>.Instance.GetRolesByOU(Convert.ToInt32(OUID)));
+                        chechedList.AddRange(BLLFactory<Role>.Instance.GetRolesByOU(OuId));
                     }
                     if (chechedList == null)
                     {
@@ -115,13 +114,13 @@ namespace JCodes.Framework.AddIn.Security
                     #region User
                     list.AddRange(BLLFactory<User>.Instance.GetAll());
 
-                    if (!string.IsNullOrEmpty(RoleID))
+                    if (RoleId > 0)
                     {
-                        chechedList.AddRange(BLLFactory<User>.Instance.GetUsersByRole(RoleID.ToInt32()));
+                        chechedList.AddRange(BLLFactory<User>.Instance.GetUsersByRoleId(RoleId));
                     }
-                    else if (!string.IsNullOrEmpty(OUID))
+                    else if (OuId > 0)
                     {
-                        chechedList.AddRange(BLLFactory<User>.Instance.GetUsersByOU(Convert.ToInt32(OUID)));
+                        chechedList.AddRange(BLLFactory<User>.Instance.GetUsersByOUId(OuId));
                     }
 
                     if (chechedList == null)
@@ -133,16 +132,16 @@ namespace JCodes.Framework.AddIn.Security
                     {
                         if (!checkedDict.ContainsKey(info.Id.ToString()))
                         {
-                            string name = string.Format("{0}（{1}）", info.Name, info.FullName);
-                            checkedDict.Add(info.Id.ToString(), new CListItem(info.Pid.ToString(), name));
+                            string name = string.Format("{0}（{1}）", info.Name, info.LoginName);
+                            //checkedDict.Add(info.Id.ToString(), new CListItem(info.Pid.ToString(), name));
                         }
                     }
                     foreach (UserInfo info in list)
                     {
                         if (!treeDict.ContainsKey(info.Id.ToString()))
                         {
-                            string name = string.Format("{0}（{1}）", info.Name, info.FullName);
-                            treeDict.Add(info.Id.ToString(), new CListItem(info.Pid.ToString(), name));
+                            string name = string.Format("{0}（{1}）", info.Name, info.LoginName);
+                            //treeDict.Add(info.Id.ToString(), new CListItem(info.Pid.ToString(), name));
                         }
                     } 
                     #endregion
@@ -150,15 +149,15 @@ namespace JCodes.Framework.AddIn.Security
 
                 case DisplayTreeType.Function:
                     #region Function
-                    list.AddRange(BLLFactory<Functions>.Instance.GetAll());
+                    list.AddRange(BLLFactory<Function>.Instance.GetAll());
 
-                    if (!string.IsNullOrEmpty(RoleID))
+                    if (RoleId > 0)
                     {
-                        chechedList.AddRange(BLLFactory<Functions>.Instance.GetFunctionsByRole(RoleID.ToInt32()));
+                        chechedList.AddRange(BLLFactory<Function>.Instance.GetFunctionsByRoleId(RoleId));
                     }
-                    else if (!string.IsNullOrEmpty(UserID))
+                    else if (UserId > 0)
                     {
-                        chechedList.AddRange(BLLFactory<Functions>.Instance.GetFunctionsByUser(Convert.ToInt32(UserID), ""));
+                        chechedList.AddRange(BLLFactory<Function>.Instance.GetFunctionsByUser(UserId, ""));
                     }
 
                     if (chechedList == null)
@@ -234,14 +233,14 @@ namespace JCodes.Framework.AddIn.Security
 
         private void GetChanges(TreeNode node)
         {
-            string id = node.Name;
-            if (!node.Checked && checkedDict.ContainsKey(id))
+            string Id = node.Name;
+            if (!node.Checked && checkedDict.ContainsKey(Id))
             {
-                removeList.Add(id);
+                removeList.Add(Id);
             }
-            if (node.Checked && !checkedDict.ContainsKey(id))
+            if (node.Checked && !checkedDict.ContainsKey(Id))
             {
-                addList.Add(id);
+                addList.Add(Id);
             }
 
             foreach (TreeNode subNode in node.Nodes)
@@ -261,63 +260,62 @@ namespace JCodes.Framework.AddIn.Security
             switch (DisplayType)
             {
                 case DisplayTreeType.OU:
-                    foreach (string id in removeList)
+                    foreach (string Id in removeList)
                     {
-                        if (!string.IsNullOrEmpty(RoleID))
+                        if (RoleId > 0)
                         {
-                            BLLFactory<Role>.Instance.RemoveOU(id.ToInt32(), RoleID.ToInt32());
+                            BLLFactory<Role>.Instance.RemoveOU(Id.ToInt32(), RoleId);
                         }
                     }
-                    foreach (string id in addList)
+                    foreach (string Id in addList)
                     {
-                        if (!string.IsNullOrEmpty(RoleID))
+                        if (RoleId > 0)
                         {
-                            BLLFactory<Role>.Instance.AddOU(id.ToInt32(), RoleID.ToInt32());
+                            BLLFactory<Role>.Instance.AddOU(Id.ToInt32(), RoleId);
                         }
                     }
                     break;
-
                 case DisplayTreeType.Role:
                     break;
 
                 case DisplayTreeType.User:
-                    foreach (string id in removeList)
+                    foreach (string Id in removeList)
                     {
-                        if (!string.IsNullOrEmpty(RoleID))
+                        if (RoleId > 0)
                         {
-                            BLLFactory<Role>.Instance.RemoveUser(id.ToInt32(), RoleID.ToInt32());
+                            BLLFactory<Role>.Instance.RemoveUser(Id.ToInt32(), RoleId);
                         }
-                        else if (!string.IsNullOrEmpty(OUID))
+                        else if (OuId > 0)
                         {
-                            BLLFactory<OU>.Instance.RemoveUser(id.ToInt32(), Convert.ToInt32(OUID));
+                            BLLFactory<OU>.Instance.RemoveUser(Id.ToInt32(), OuId);
                         }
-                    }         
-                    foreach (string id in addList)
+                    }
+                    foreach (string Id in addList)
                     {
-                        if (!string.IsNullOrEmpty(RoleID))
+                        if (RoleId > 0)
                         {
-                            BLLFactory<Role>.Instance.AddUser(id.ToInt32(), RoleID.ToInt32());
+                            BLLFactory<Role>.Instance.AddUser(Id.ToInt32(), RoleId);
                         }
-                        else if (!string.IsNullOrEmpty(OUID))
+                        else if (OuId > 0)
                         {
-                            BLLFactory<OU>.Instance.AddUser(id.ToInt32(), Convert.ToInt32(OUID));
+                            BLLFactory<OU>.Instance.AddUser(Id.ToInt32(), OuId);
                         }
                     }
                     break;
 
                 case DisplayTreeType.Function:
-                    foreach (string id in removeList)
+                    foreach (string Id in removeList)
                     {
-                        if (!string.IsNullOrEmpty(RoleID))
+                        if (RoleId > 0)
                         {
-                            BLLFactory<Role>.Instance.RemoveFunction(id, RoleID.ToInt32());
+                            BLLFactory<Role>.Instance.RemoveFunction(Id, RoleId);
                         }
                     }
-                    foreach (string id in addList)
+                    foreach (string Id in addList)
                     {
-                        if (!string.IsNullOrEmpty(RoleID))
+                        if (RoleId > 0)
                         {
-                            BLLFactory<Role>.Instance.AddFunction(id, RoleID.ToInt32());
+                            BLLFactory<Role>.Instance.AddFunction(Id, RoleId);
                         }
                     }
                     break;

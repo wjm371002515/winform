@@ -1,20 +1,24 @@
-using System;
-using System.Collections;
-using System.Data;
-using System.Data.Common;
-using System.Collections.Generic;
-using JCodes.Framework.Common;
+using JCodes.Framework.Common.Databases;
+using JCodes.Framework.Common.Framework.BaseDAL;
 using JCodes.Framework.Entity;
 using JCodes.Framework.IDAL;
-using JCodes.Framework.Common.Framework.BaseDAL;
-using JCodes.Framework.Common.Databases;
+using JCodes.Framework.jCodesenum;
+using Microsoft.Practices.EnterpriseLibrary.Data;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
 
 namespace JCodes.Framework.SQLServerDAL
 {
 	/// <summary>
-	/// District 的摘要说明。
+	/// 对象号: 000004
+	/// 城市行政区划(District)
+	/// 版本: 1.0.0.0
+	/// 表结构最后更新时间: 2018-02-08 13:34:17.447
 	/// </summary>
-    public class District : BaseDALSQLServer<DistrictInfo>, IDistrict
+	public partial class District : BaseDALSQLServer<DistrictInfo>, IDistrict
 	{
 		#region 对象实例及构造函数
 
@@ -25,11 +29,11 @@ namespace JCodes.Framework.SQLServerDAL
 				return new District();
 			}
 		}
-		public District() : base(SQLServerPortal.gc._basicTablePre+"District","Id")
-		{
-            this.isDescending = false;
-		}
 
+		public District() : base(SQLServerPortal.gc._dicTablePre + "District", "Id")
+		{
+			this.sortField = "Id";
+		}
 		#endregion
 
 		/// <summary>
@@ -39,36 +43,48 @@ namespace JCodes.Framework.SQLServerDAL
 		/// <returns>实体类对象</returns>
 		protected override DistrictInfo DataReaderToEntity(IDataReader dataReader)
 		{
-			DistrictInfo districtInfo = new DistrictInfo();
+			DistrictInfo info = new DistrictInfo();
 			SmartDataReader reader = new SmartDataReader(dataReader);
-
-            districtInfo.Id = reader.GetInt32("Id");
-			districtInfo.DistrictName = reader.GetString("DistrictName");
-            districtInfo.CityId = reader.GetInt32("CityId");
-			
-			return districtInfo;
+			info.Id = reader.GetInt32("Id"); 	 //ID序号
+			info.DistrictName = reader.GetString("DistrictName"); 	 //行政区划
+			info.CityId = reader.GetInt32("CityId"); 	 //城市Id
+			return info;
 		}
 
 		/// <summary>
 		/// 将实体对象的属性值转化为Hashtable对应的键值
 		/// </summary>
-		/// <param name="obj">有效的实体对象</param>
+		/// <param name="dr">有效的实体对象</param>
 		/// <returns>包含键值映射的Hashtable</returns>
-        protected override Hashtable GetHashByEntity(DistrictInfo obj)
+		protected override Hashtable GetHashByEntity(DistrictInfo obj)
 		{
-		    DistrictInfo info = obj as DistrictInfo;
-			Hashtable hash = new Hashtable(); 
-			
- 			hash.Add("DistrictName", info.DistrictName);
-            hash.Add("CityId", info.CityId);
- 				
+			DistrictInfo info = obj as DistrictInfo;
+			Hashtable hash = new Hashtable();
+			hash.Add("Id", info.Id); 	 //ID序号
+			hash.Add("DistrictName", info.DistrictName); 	 //行政区划
+			hash.Add("CityId", info.CityId); 	 //城市Id
 			return hash;
 		}
 
-        public List<DistrictInfo> GetDistrictByCityName(string cityName)
+		/// <summary>
+		/// 获取字段中文别名（用于界面显示）的字典集合
+		/// </summary>
+		/// <returns></returns>
+		public override Dictionary<string, string> GetColumnNameAlias()
+		{
+			Dictionary<string, string> dict = new Dictionary<string, string>();
+			#region 添加别名解析
+			dict.Add("Id", "ID序号");
+			dict.Add("DistrictName", "行政区划");
+			dict.Add("CityId", "城市Id");
+			#endregion
+			return dict;
+		}
+		
+		public List<DistrictInfo> GetDistrictByCityName(string cityName)
         {
-            string sql = string.Format("Select c.* from {0}District as c inner join {0}City as p on c.CityID=p.ID where CityName='{1}' ", SQLServerPortal.gc._basicTablePre, cityName);
+            string sql = string.Format("Select c.* from {0}District as c inner join {0}City as p on c.CityId=p.Id where CityName='{1}' ", SQLServerPortal.gc._dicTablePre, cityName);
             return base.GetList(sql, null);
         }
-    }
+	}
 }

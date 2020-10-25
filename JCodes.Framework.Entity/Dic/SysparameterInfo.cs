@@ -92,6 +92,8 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 系统参数Id
+		/// 1-系统参数,
+		/// 99-其他
 		/// </summary>
 		[DataMember]
 		[DisplayName("系统参数Id")]
@@ -143,6 +145,15 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 控件类型
+		/// 1-文本框,
+		/// 2-整数框,
+		/// 3-下拉单选框,
+		/// 4-下拉多选框,
+		/// 5-勾选框,
+		/// 6-日期,
+		/// 7-密码,
+		/// 8-小数框,
+		/// 9-时间框
 		/// </summary>
 		[DataMember]
 		[DisplayName("控件类型")]

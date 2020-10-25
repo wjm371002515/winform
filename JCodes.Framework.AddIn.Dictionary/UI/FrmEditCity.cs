@@ -16,6 +16,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using JCodes.Framework.Common.Extension;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn.Dictionary
 {
@@ -62,7 +63,7 @@ namespace JCodes.Framework.AddIn.Dictionary
         {
             if (Id > 0)
             {
-                CityInfo info = BLLFactory<City>.Instance.FindByID(Id);
+                CityInfo info = BLLFactory<City>.Instance.FindById(Id);
                 if (info != null)
                 {
                     this.txtCity.Text = info.CityName;
@@ -137,6 +138,11 @@ namespace JCodes.Framework.AddIn.Dictionary
             info.ProvinceId = this.txtProvince.Tag.ToString().ToInt32();
             info.ZipCode = txtZipCode.Text;
             info.CurrentLoginUserId = LoginUserInfo.Id;
+
+            if (0 == Id)
+            {
+                info.Id = BLLFactory<City>.Instance.GetMaxId() + 1;
+            }
         }
     }
 }

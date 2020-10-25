@@ -12,10 +12,11 @@ using System.Data.Common;
 using System.Text.RegularExpressions;
 using System.Web.Mvc;
 using JCodes.Framework.Common.Extension;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.WebUI.Controllers
 {
-    public class MenuController : BusinessController<Menus, MenuInfo>
+    public class MenuController : BusinessController<Menu, MenuInfo>
     {
         #region 导入Excel数据操作
 
@@ -107,7 +108,7 @@ namespace JCodes.Framework.WebUI.Controllers
             {
                 #region 采用事务进行数据提交
 
-                DbTransaction trans = BLLFactory<Menus>.Instance.CreateTransaction();
+                DbTransaction trans = BLLFactory<Menu>.Instance.CreateTransaction();
                 if (trans != null)
                 {
                     try
@@ -121,7 +122,7 @@ namespace JCodes.Framework.WebUI.Controllers
                             detail.EditorId = CurrentUser.Id;
                             detail.LastUpdateTime = DateTime.Now;
 
-                            BLLFactory<Menus>.Instance.Insert(detail, trans);
+                            BLLFactory<Menu>.Instance.Insert(detail, trans);
                         }
                         trans.Commit();
                         result.ErrorCode = 0;
@@ -253,7 +254,7 @@ namespace JCodes.Framework.WebUI.Controllers
             //    info.PID = BLLFactory<Menu>.Instance.GetFieldValue(info.PID, "Name");
             //    if (!string.IsNullOrEmpty(info.Creator))
             //    {
-            //        info.Creator = BLLFactory<User>.Instance.GetFullNameByID(info.Creator.ToInt32());
+            //        info.Creator = BLLFactory<User>.Instance.GetNameById(info.Creator.ToInt32());
             //    }
             //}
 
@@ -319,7 +320,7 @@ namespace JCodes.Framework.WebUI.Controllers
 
             Dictionary<string, List<MenuData>> dict = new Dictionary<string, List<MenuData>>();
 
-            List<MenuInfo> list = BLLFactory<Menus>.Instance.GetTopMenu(Const.SystemTypeID);
+            List<MenuInfo> list = BLLFactory<Menu>.Instance.GetTopMenu(Const.SystemTypeID);
             int i = 0;
             foreach (MenuInfo info in list)
             {
@@ -329,7 +330,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 }
                            
                 List<MenuData> treeList = new List<MenuData>();
-                List<MenuNodeInfo> nodeList = BLLFactory<Menus>.Instance.GetTreeByID(info.Gid);
+                List<MenuNodeInfo> nodeList = BLLFactory<Menu>.Instance.GetTreeById(info.Gid);
                 foreach (MenuNodeInfo nodeInfo in nodeList)
                 {
                     if (!HasFunction(nodeInfo.AuthGid))
@@ -398,7 +399,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 string systemType = typeInfo.Gid;//系统标识ID
 
                 //一般情况下，对Ribbon样式而言，一级菜单表示RibbonPage；二级菜单表示PageGroup;三级菜单才是BarButtonItem最终的菜单项。
-                List<MenuNodeInfo> menuList = BLLFactory<Menus>.Instance.GetTree(systemType);
+                List<MenuNodeInfo> menuList = BLLFactory<Menu>.Instance.GetTree(systemType);
                 foreach (MenuNodeInfo info in menuList)
                 {
                     JsTreeData item = new JsTreeData(info.Gid, info.Name);

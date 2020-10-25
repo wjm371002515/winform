@@ -278,7 +278,7 @@ namespace JCodes.Framework.WebUI.Controllers
             //    info.PID = BLLFactory<Address>.Instance.GetFieldValue(info.PID, "Name");
             //    if (!string.IsNullOrEmpty(info.Creator))
             //    {
-            //        info.Creator = BLLFactory<User>.Instance.GetFullNameByID(info.Creator.ToInt32());
+            //        info.Creator = BLLFactory<User>.Instance.GetNameById(info.Creator.ToInt32());
             //    }
             //}
 
@@ -299,7 +299,7 @@ namespace JCodes.Framework.WebUI.Controllers
             base.CheckAuthorized(authorizeKeyInfo.ListKey);
                         
             List<AddressInfo> list = new List<AddressInfo>();
-            AddressType type = (addressType == "public") ? AddressType.公共 : AddressType.个人;
+            AddressType type = (addressType == "public") ? AddressType.公司 : AddressType.个人;
 
             PagerInfo pagerInfo = GetPagerInfo();
             //增加一个CustomedCondition条件，根据客户这个条件进行查询
@@ -307,11 +307,11 @@ namespace JCodes.Framework.WebUI.Controllers
             if (!string.IsNullOrWhiteSpace(CustomedCondition))
             {
                 #region 自定义条件查询
-                if (type == AddressType.公共)
+                if (type == AddressType.公司)
                 {
                     if (CustomedCondition == "all")
                     {
-                        list = BLLFactory<Address>.Instance.GetAllByAddressType(AddressType.公共);
+                        list = BLLFactory<Address>.Instance.GetAllByAddressType(AddressType.公司);
                     }
                     else if (CustomedCondition == "ungroup")
                     {

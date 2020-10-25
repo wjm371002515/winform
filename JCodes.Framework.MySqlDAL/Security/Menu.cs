@@ -15,7 +15,7 @@ namespace JCodes.Framework.MySqlDAL
     /// <summary>
     /// 功能菜单
     /// </summary>
-    public class Menus : BaseDALMySql<MenuInfo>, IMenus
+    public class Menus : BaseDALMySql<MenusInfo>, IMenus
     {
         #region 对象实例及构造函数
 
@@ -40,9 +40,9 @@ namespace JCodes.Framework.MySqlDAL
         /// </summary>
         /// <param name="dr">有效的DataReader对象</param>
         /// <returns>实体类对象</returns>
-        protected override MenuInfo DataReaderToEntity(IDataReader dataReader)
+        protected override MenusInfo DataReaderToEntity(IDataReader dataReader)
         {
-            MenuInfo info = new MenuInfo();
+            MenusInfo info = new MenusInfo();
             SmartDataReader reader = new SmartDataReader(dataReader);
 
             /*info.Gid = reader.GetString("Gid");
@@ -70,9 +70,9 @@ namespace JCodes.Framework.MySqlDAL
         /// </summary>
         /// <param name="obj">有效的实体对象</param>
         /// <returns>包含键值映射的Hashtable</returns>
-        protected override Hashtable GetHashByEntity(MenuInfo obj)
+        protected override Hashtable GetHashByEntity(MenusInfo obj)
         {
-            MenuInfo info = obj as MenuInfo;
+            MenusInfo info = obj as MenusInfo;
             Hashtable hash = new Hashtable();
 
             /*hash.Add("Gid", info.Gid);
@@ -149,7 +149,7 @@ namespace JCodes.Framework.MySqlDAL
         /// <summary>
         /// 获取所有的菜单列表
         /// </summary>
-        public List<MenuInfo> GetAllMenu(string systemType)
+        public List<MenusInfo> GetAllMenu(string systemType)
         {
             string condition = !string.IsNullOrEmpty(systemType) ? string.Format("Where SystemtypeId='{0}'", systemType) : "";
             string sql = string.Format("Select * From {0} {1} Order  By Pgid, Seq  ", tableName, condition);
@@ -158,7 +158,7 @@ namespace JCodes.Framework.MySqlDAL
 
         private MenuNodeInfo GetNode(string id, DataTable dt)
         {
-            MenuInfo menuInfo = this.FindByID(id);
+            MenusInfo menuInfo = this.FindById(id);
             MenuNodeInfo menuNodeInfo = new MenuNodeInfo(menuInfo);
 
             string sort = string.Format("{0} {1}", GetSafeFileName(sortField), isDescending ? "DESC" : "ASC");
@@ -176,7 +176,7 @@ namespace JCodes.Framework.MySqlDAL
         /// <summary>
         /// 获取第一级的菜单列表
         /// </summary>
-        public List<MenuInfo> GetTopMenu(string systemType)
+        public List<MenusInfo> GetTopMenu(string systemType)
         {
             string condition = !string.IsNullOrEmpty(systemType) ? string.Format("AND SystemtypeId='{0}'", systemType) : "";
             string sql = string.Format("Select * From {0} Where IsVisable > 0 and Pgid='-1' {1} Order By Seq  ", tableName, condition);
@@ -187,14 +187,14 @@ namespace JCodes.Framework.MySqlDAL
         /// 获取指定菜单下面的树形列表
         /// </summary>
         /// <param name="mainMenuID">指定菜单ID</param>
-        public List<MenuNodeInfo> GetTreeByID(string mainMenuID)
+        public List<MenuNodeInfo> GetTreeById(string mainMenuId)
         {
             List<MenuNodeInfo> arrReturn = new List<MenuNodeInfo>();
             string sql = string.Format("Select * From {0} Where IsVisable > 0 Order By Pgid, Seq ", tableName);
 
             DataTable dt = SqlTable(sql);
             string sort = string.Format("{0} {1}", GetSafeFileName(sortField), isDescending ? "DESC" : "ASC");
-            DataRow[] dataRows = dt.Select(string.Format(" Pgid = '{0}'", mainMenuID), sort);
+            DataRow[] dataRows = dt.Select(string.Format(" Pgid = '{0}'", mainMenuId), sort);
             for (int i = 0; i < dataRows.Length; i++)
             {
                 string id = dataRows[i]["Gid"].ToString();
@@ -209,7 +209,7 @@ namespace JCodes.Framework.MySqlDAL
         /// 根据指定的父ID获取其下面一级（仅限一级）的菜单列表
         /// </summary>
         /// <param name="PID">菜单父ID</param>
-        public List<MenuInfo> GetMenuByID(string PID)
+        public List<MenusInfo> GetMenuById(string PID)
         {
             string sql = string.Format(@"Select t.*,case Pgid when '-1' then '0' else Pgid end as parentId From {1} t 
                                          Where  Pgid='{0}' Order By Seq ", PID, tableName);

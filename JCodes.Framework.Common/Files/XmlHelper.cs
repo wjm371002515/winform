@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 using System.Xml;
 using System.Data;
 using JCodes.Framework.Common.Encrypt;
-using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.Common.Files
 {

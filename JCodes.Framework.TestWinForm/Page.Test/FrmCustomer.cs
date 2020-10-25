@@ -81,7 +81,7 @@ namespace WHC.OrderWater.UI
              {
                  if (e.Value != null)
                  {
-                     //e.DisplayText = BLLFactory<User>.Instance.GetFullNameByID(e.Value.ToString().ToInt32());
+                     //e.DisplayText = BLLFactory<User>.Instance.GetNameById(e.Value.ToString().ToInt32());
                  }
              }
          }

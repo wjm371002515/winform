@@ -7,7 +7,7 @@ using System.Threading;
 using System.Web.UI.WebControls;
 using System.Text.RegularExpressions;
 using System.Net;
-using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.jCodesenum;
 using JCodes.Framework.Common.Format;
 
 namespace JCodes.Framework.Common.Web

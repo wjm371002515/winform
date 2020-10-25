@@ -23,9 +23,9 @@ namespace JCodes.Framework.MySqlDAL
             }
         }
         public SystemType()
-            : base(MySqlPortal.gc._securityTablePre + "SystemType", "OID")
+            : base(MySqlPortal.gc._securityTablePre + "SystemType", "Gid")
         {
-            SortField = "OID";
+            SortField = "Gid";
         }
 
         #endregion

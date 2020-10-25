@@ -16,6 +16,7 @@ using JCodes.Framework.Common.Office;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.Common.Files;
 using JCodes.Framework.Common.Format;
+using JCodes.Framework.jCodesenum;
 
 namespace TestControlUtil
 {
@@ -200,6 +201,17 @@ namespace TestControlUtil
         private void FrmAsposeWords_Load(object sender, EventArgs e)
         {
 
+        }
+
+        /// <summary>
+        /// 20201016 word生成HTML文件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnGeneralToHtml_Click(object sender, EventArgs e)
+        {
+            Aspose.Words.Document d = new Aspose.Words.Document(@"C:\Users\Jimmy\Desktop\投行整理\投行业务管理系统问题排查手册.docx");
+            d.Save(" D:\\a.html ", SaveFormat.Html);
         }
     }
 }

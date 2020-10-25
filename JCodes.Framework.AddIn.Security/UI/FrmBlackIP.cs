@@ -19,6 +19,7 @@ using JCodes.Framework.CommonControl.Pager.Others;
 using JCodes.Framework.Common.Extension;
 using JCodes.Framework.CommonControl.Controls;
 using JCodes.Framework.jCodesenum;
+using JCodes.Framework.AddIn.Basic;
 
 namespace JCodes.Framework.AddIn.Security
 {
@@ -55,7 +56,7 @@ namespace JCodes.Framework.AddIn.Security
             if (e.Column.FieldName == "AuthorizeType")
             {
                 Color color = Color.White;
-                if (e.CellValue.ToString() == "0")
+                if (e.CellValue.ToString().ToInt16() == (short)AuthorizeType.黑名单)
                 {
                     e.Appearance.BackColor = Color.Black;
                     e.Appearance.BackColor2 = Color.LightCyan;
@@ -65,16 +66,17 @@ namespace JCodes.Framework.AddIn.Security
                     e.Appearance.BackColor = Color.White;
                 }
             }
-            if (e.Column.FieldName == "Forbid")
+            if (e.Column.FieldName == "IsForbid")
             {
                 Color color = Color.White;
-                if (e.CellValue.ToString().ToBoolean())
+                if (e.CellValue.ToString().ToInt16() == (short)IsForbid.是)
                 {
                     e.Appearance.BackColor = Color.Red;
                     e.Appearance.BackColor2 = Color.LightCyan;
                 }
             }
         }
+
         void gridView1_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
         {
             if (e.Column.ColumnType == typeof(DateTime))
@@ -96,7 +98,28 @@ namespace JCodes.Framework.AddIn.Security
             {
                 if (e.Value != null)
                 {
-                    e.DisplayText = ((AuthrizeType)e.Value).ToString();
+                    e.DisplayText = EnumHelper.GetMemberName<AuthorizeType>(e.Value);
+                }
+            }
+            else if (e.Column.FieldName == "IsForbid")
+            {
+                if (e.Value != null)
+                {
+                    e.DisplayText = EnumHelper.GetMemberName<IsForbid>(e.Value);
+                }
+            }
+            else if (string.Equals(e.Column.FieldName, "EditorId", StringComparison.CurrentCultureIgnoreCase))
+            {
+                if (e.Value != null && !string.IsNullOrEmpty(e.Value.ToString()) && Portal.gc.AllUserInfo.ContainsKey(e.Value.ToString().ToInt32()))
+                {
+                    e.DisplayText = Portal.gc.AllUserInfo[e.Value.ToString().ToInt32()];
+                }
+            }
+            else if (string.Equals(e.Column.FieldName, "CreatorId", StringComparison.CurrentCultureIgnoreCase))
+            {
+                if (e.Value != null && !string.IsNullOrEmpty(e.Value.ToString()) && Portal.gc.AllUserInfo.ContainsKey(e.Value.ToString().ToInt32()))
+                {
+                    e.DisplayText = Portal.gc.AllUserInfo[e.Value.ToString().ToInt32()];
                 }
             }
         }
@@ -114,9 +137,17 @@ namespace JCodes.Framework.AddIn.Security
                     column.Width = 100;
                 }
 
-                //可特殊设置特别的宽度 
-                winGridViewPager1.gridView1.SetGridColumWidth("Name", 200);
-                winGridViewPager1.gridView1.SetGridColumWidth("Note", 200);
+                //可特殊设置特别的宽度
+                winGridViewPager1.gridView1.SetGridColumWidth("Remark", 300);
+                winGridViewPager1.gridView1.SetGridColumWidth("AuthorizeType", 70);
+                winGridViewPager1.gridView1.SetGridColumWidth("IsForbid", 70);
+                winGridViewPager1.gridView1.SetGridColumWidth("CreatorId", 70); // 创建日期
+                winGridViewPager1.gridView1.SetGridColumWidth("CreatorTime", 130); // 创建日期
+                winGridViewPager1.gridView1.SetGridColumWidth("EditorId", 70);
+                winGridViewPager1.gridView1.SetGridColumWidth("LastUpdateTime", 130); // 最后更新日期
+                winGridViewPager1.gridView1.SetGridColumWidth("Seq", 130); // 最后修改密码时间
+                winGridViewPager1.gridView1.SetGridColumWidth("StartTime", 130); // 创建日期
+                winGridViewPager1.gridView1.SetGridColumWidth("EndTime", 130); // 创建日期
             }
         }
 
@@ -142,7 +173,7 @@ namespace JCodes.Framework.AddIn.Security
         private void InitDictItem()
         {
             //初始化分类
-            Dictionary<string, object> dictEnum = EnumHelper.GetMemberKeyValue<AuthrizeType>();
+            Dictionary<string, object> dictEnum = EnumHelper.GetMemberKeyValue<AuthorizeType>();
             this.txtAuthorizeType.Properties.Items.Clear();
             foreach (string item in dictEnum.Keys)
             {
@@ -164,7 +195,7 @@ namespace JCodes.Framework.AddIn.Security
         /// </summary>
         private void winGridViewPager1_OnDeleteSelected(object sender, EventArgs e)
         {
-            if (!HasFunction("BlackIP/del"))
+            if (!HasFunction("Basic/BlackIP/BlackIPDel"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -191,17 +222,17 @@ namespace JCodes.Framework.AddIn.Security
         /// </summary>
         private void winGridViewPager1_OnEditSelected(object sender, EventArgs e)
         {
-            if (!HasFunction("BlackIP/edit"))
+            if (!HasFunction("Basic/BlackIP/BlackIPEdit"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
             }
 
-            Int32 Id = this.winGridViewPager1.gridView1.GetFocusedRowCellDisplayText("ID").ToInt32();
+            Int32 Id = this.winGridViewPager1.gridView1.GetFocusedRowCellDisplayText("Id").ToInt32();
             List<Int32> IdList = new List<Int32>();
             for (int i = 0; i < this.winGridViewPager1.gridView1.RowCount; i++)
             {
-                Int32 intTemp = this.winGridViewPager1.GridView1.GetRowCellDisplayText(i, "ID").ToInt32();
+                Int32 intTemp = this.winGridViewPager1.GridView1.GetRowCellDisplayText(i, "Id").ToInt32();
                 IdList.Add(intTemp);
             }
 
@@ -229,7 +260,7 @@ namespace JCodes.Framework.AddIn.Security
         /// </summary>        
         private void winGridViewPager1_OnAddNew(object sender, EventArgs e)
         {
-            if (!HasFunction("BlackIP/add"))
+            if (!HasFunction("Basic/BlackIP/BlackIPAdd"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -271,7 +302,7 @@ namespace JCodes.Framework.AddIn.Security
             }
             if (this.txtForbid.Checked)
             {
-                condition.AddCondition("Forbid", 1, SqlOperator.Equal);//数值类型
+                condition.AddCondition("IsForbid", (short)IsForbid.是, SqlOperator.Equal);//数值类型
             }
 
             string where = condition.BuildConditionSql().Replace("Where", "");
@@ -283,9 +314,9 @@ namespace JCodes.Framework.AddIn.Security
         /// </summary>
         private void BindData()
         {
-            //entity
-            this.winGridViewPager1.DisplayColumns = "Name,AuthorizeType,Forbid,IPStart,IPEnd,Note,Creator,CreateTime";
-            this.winGridViewPager1.ColumnNameAlias = BLLFactory<BlackIP>.Instance.GetColumnNameAlias();//字段列显示名称转义
+            var columnNameAlias = BLLFactory<BlackIP>.Instance.GetColumnNameAlias();//字段列显示名称转义
+            this.winGridViewPager1.DisplayColumns = columnNameAlias.ToDiplayKeyString();
+            this.winGridViewPager1.ColumnNameAlias = columnNameAlias;//字段列显示名称转义
             string where = GetConditionSql();
             List<BlackIPInfo> list = BLLFactory<BlackIP>.Instance.Find(where);
             this.winGridViewPager1.DataSource = new SortableBindingList<BlackIPInfo>(list);
@@ -321,11 +352,6 @@ namespace JCodes.Framework.AddIn.Security
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (!HasFunction("BlackIP/search"))
-                {
-                    return;
-                }
-
                 btnSearch_Click(null, null);
             }
         }

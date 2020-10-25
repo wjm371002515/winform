@@ -254,7 +254,7 @@ namespace JCodes.Framework.WebUI.Controllers
             //    info.PID = BLLFactory<TestUser>.Instance.GetFieldValue(info.PID, "Name");
             //    if (!string.IsNullOrEmpty(info.Creator))
             //    {
-            //        info.Creator = BLLFactory<User>.Instance.GetFullNameByID(info.Creator.ToInt32());
+            //        info.Creator = BLLFactory<User>.Instance.GetNameById(info.Creator.ToInt32());
             //    }
             //}
 

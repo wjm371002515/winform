@@ -1,0 +1,60 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>投票视频教程</title>
+    <meta name="keywords" content="投票视频教程">
+    <meta name="description" content="投票视频教程">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="/Content/themes/css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+    <link href="/Content/themes/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="/Content/themes/css/style.min.css?v=4.0.0" rel="stylesheet">
+    <link rel="stylesheet" href="/Content/themes/css/plugins/plyr/plyr.css">
+    <base target="_blank">
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>投票视频教程</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="form_basic.html#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="player">
+                            <video poster="https://plyr.io/poster.jpg" controls crossorigin>
+                                <!-- Video files -->
+                                <source src="/Mp4/三方投票视频教程.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        (function (d, u) { var a = new XMLHttpRequest(), b = d.body; if ("withCredentials" in a) { a.open("GET", u, true); a.send(); a.onload = function () { var c = d.createElement("div"); c.setAttribute("hidden", ""); c.innerHTML = a.responseText; b.insertBefore(c, b.childNodes[0]) } } })(document, "css/plugins/plyr/sprite.svg");
+    </script>
+    <script src="/Scripts/plugins/plyr/plyr.js"></script>
+    <script>
+        plyr.setup();
+    </script>
+    <script src="/Scripts/jquery.min.js?v=2.1.4"></script>
+    <script src="/Scripts/bootstrap.min.js?v=3.3.5"></script>
+    <script src="/Scripts/content.min.js?v=1.0.0"></script>
+</body>
+</html>

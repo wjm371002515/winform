@@ -113,17 +113,22 @@ namespace JCodes.Framework.AddIn.Security
             this.winGridViewPager1.DataSource = null;
             this.winGridViewPager1.DisplayColumns = "";
             this.winGridViewPager1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.winGridViewPager1.FixedColumns = null;
             this.winGridViewPager1.Location = new System.Drawing.Point(0, 0);
             this.winGridViewPager1.MinimumSize = new System.Drawing.Size(540, 0);
             this.winGridViewPager1.Name = "winGridViewPager1";
             this.winGridViewPager1.PrintTitle = "";
+            this.winGridViewPager1.ShowAddMenu = true;
             this.winGridViewPager1.ShowCheckBox = false;
+            this.winGridViewPager1.ShowDeleteMenu = true;
+            this.winGridViewPager1.ShowEditMenu = true;
             this.winGridViewPager1.ShowExportButton = true;
             this.winGridViewPager1.Size = new System.Drawing.Size(756, 588);
             this.winGridViewPager1.TabIndex = 11;
             // 
             // contextMenuStrip1
             // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
@@ -146,33 +151,33 @@ namespace JCodes.Framework.AddIn.Security
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(109, 12);
+            this.txtName.Location = new System.Drawing.Point(89, 12);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(117, 20);
+            this.txtName.Size = new System.Drawing.Size(132, 28);
             this.txtName.StyleController = this.layoutControl1;
             this.txtName.TabIndex = 1;
             // 
             // txtFunctionId
             // 
-            this.txtFunctionId.Location = new System.Drawing.Point(327, 12);
+            this.txtFunctionId.Location = new System.Drawing.Point(302, 12);
             this.txtFunctionId.Name = "txtFunctionId";
-            this.txtFunctionId.Size = new System.Drawing.Size(117, 20);
+            this.txtFunctionId.Size = new System.Drawing.Size(139, 28);
             this.txtFunctionId.StyleController = this.layoutControl1;
             this.txtFunctionId.TabIndex = 4;
             // 
             // txtWinformType
             // 
-            this.txtWinformType.Location = new System.Drawing.Point(545, 12);
+            this.txtWinformType.Location = new System.Drawing.Point(522, 12);
             this.txtWinformType.Name = "txtWinformType";
-            this.txtWinformType.Size = new System.Drawing.Size(132, 20);
+            this.txtWinformType.Size = new System.Drawing.Size(152, 28);
             this.txtWinformType.StyleController = this.layoutControl1;
             this.txtWinformType.TabIndex = 6;
             // 
             // txtUrl
             // 
-            this.txtUrl.Location = new System.Drawing.Point(778, 12);
+            this.txtUrl.Location = new System.Drawing.Point(751, 12);
             this.txtUrl.Name = "txtUrl";
-            this.txtUrl.Size = new System.Drawing.Size(106, 20);
+            this.txtUrl.Size = new System.Drawing.Size(133, 28);
             this.txtUrl.StyleController = this.layoutControl1;
             this.txtUrl.TabIndex = 7;
             // 
@@ -183,7 +188,7 @@ namespace JCodes.Framework.AddIn.Security
             this.txtVisible.Name = "txtVisible";
             this.txtVisible.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default;
             this.txtVisible.Properties.Caption = "菜单可见";
-            this.txtVisible.Size = new System.Drawing.Size(80, 19);
+            this.txtVisible.Size = new System.Drawing.Size(80, 26);
             this.txtVisible.StyleController = this.layoutControl1;
             this.txtVisible.TabIndex = 5;
             this.txtVisible.CheckedChanged += new System.EventHandler(this.txtVisible_CheckedChanged);
@@ -210,51 +215,59 @@ namespace JCodes.Framework.AddIn.Security
             this.layoutControlItem1.CustomizationFormText = "显示名称";
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.MaxSize = new System.Drawing.Size(233, 25);
-            this.layoutControlItem1.MinSize = new System.Drawing.Size(163, 25);
+            this.layoutControlItem1.MinSize = new System.Drawing.Size(90, 25);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(218, 25);
+            this.layoutControlItem1.Size = new System.Drawing.Size(213, 25);
             this.layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem1.Text = "显示名称";
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(94, 14);
+            this.layoutControlItem1.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(72, 22);
+            this.layoutControlItem1.TextToControlDistance = 5;
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.txtFunctionId;
             this.layoutControlItem4.CustomizationFormText = "功能ID";
-            this.layoutControlItem4.Location = new System.Drawing.Point(218, 0);
+            this.layoutControlItem4.Location = new System.Drawing.Point(213, 0);
             this.layoutControlItem4.MaxSize = new System.Drawing.Size(233, 25);
             this.layoutControlItem4.MinSize = new System.Drawing.Size(163, 25);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(218, 25);
+            this.layoutControlItem4.Size = new System.Drawing.Size(220, 25);
             this.layoutControlItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem4.Text = "功能ID";
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(94, 14);
+            this.layoutControlItem4.Text = "控制标识";
+            this.layoutControlItem4.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(72, 22);
+            this.layoutControlItem4.TextToControlDistance = 5;
             // 
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.txtWinformType;
             this.layoutControlItem6.CustomizationFormText = "Winform窗体类型";
-            this.layoutControlItem6.Location = new System.Drawing.Point(436, 0);
+            this.layoutControlItem6.Location = new System.Drawing.Point(433, 0);
             this.layoutControlItem6.MaxSize = new System.Drawing.Size(233, 25);
             this.layoutControlItem6.MinSize = new System.Drawing.Size(163, 25);
             this.layoutControlItem6.Name = "layoutControlItem6";
             this.layoutControlItem6.Size = new System.Drawing.Size(233, 25);
             this.layoutControlItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem6.Text = "Winform窗体类型";
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(94, 14);
+            this.layoutControlItem6.Text = "窗体类名";
+            this.layoutControlItem6.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.layoutControlItem6.TextSize = new System.Drawing.Size(72, 22);
+            this.layoutControlItem6.TextToControlDistance = 5;
             // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.txtUrl;
             this.layoutControlItem7.CustomizationFormText = "Web界面Url地址";
-            this.layoutControlItem7.Location = new System.Drawing.Point(669, 0);
+            this.layoutControlItem7.Location = new System.Drawing.Point(666, 0);
             this.layoutControlItem7.MaxSize = new System.Drawing.Size(233, 25);
             this.layoutControlItem7.MinSize = new System.Drawing.Size(163, 25);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(207, 25);
+            this.layoutControlItem7.Size = new System.Drawing.Size(210, 25);
             this.layoutControlItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem7.Text = "Web界面Url地址";
-            this.layoutControlItem7.TextSize = new System.Drawing.Size(94, 14);
+            this.layoutControlItem7.Text = "URL地址";
+            this.layoutControlItem7.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.layoutControlItem7.TextSize = new System.Drawing.Size(68, 22);
+            this.layoutControlItem7.TextToControlDistance = 5;
             // 
             // layoutControlItem5
             // 
@@ -307,7 +320,7 @@ namespace JCodes.Framework.AddIn.Security
             this.treeView1.ImageList = this.imageList1;
             this.treeView1.Indent = 22;
             this.treeView1.ItemHeight = 24;
-            this.treeView1.Location = new System.Drawing.Point(2, 22);
+            this.treeView1.Location = new System.Drawing.Point(2, 30);
             this.treeView1.Name = "treeView1";
             treeNode1.ImageIndex = 1;
             treeNode1.Name = "节点1";
@@ -317,21 +330,22 @@ namespace JCodes.Framework.AddIn.Security
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode2});
             this.treeView1.SelectedImageIndex = 0;
-            this.treeView1.Size = new System.Drawing.Size(218, 564);
+            this.treeView1.Size = new System.Drawing.Size(218, 556);
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
             // ctxMenuTree
             // 
+            this.ctxMenuTree.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.ctxMenuTree.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ctxMenuTree_Refresh});
             this.ctxMenuTree.Name = "ctxMenuTree";
-            this.ctxMenuTree.Size = new System.Drawing.Size(141, 26);
+            this.ctxMenuTree.Size = new System.Drawing.Size(177, 32);
             // 
             // ctxMenuTree_Refresh
             // 
             this.ctxMenuTree_Refresh.Name = "ctxMenuTree_Refresh";
-            this.ctxMenuTree_Refresh.Size = new System.Drawing.Size(140, 22);
+            this.ctxMenuTree_Refresh.Size = new System.Drawing.Size(176, 28);
             this.ctxMenuTree_Refresh.Text = "刷新列表(&R)";
             this.ctxMenuTree_Refresh.Click += new System.EventHandler(this.ctxMenuTree_Refresh_Click);
             // 
@@ -346,7 +360,7 @@ namespace JCodes.Framework.AddIn.Security
             // 
             // FrmMenu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1004, 680);
             this.Controls.Add(this.splitContainerControl1);

@@ -6,6 +6,7 @@ using JCodes.Framework.Common.Network;
 using JCodes.Framework.CommonControl;
 using JCodes.Framework.CommonControl.BaseUI;
 using JCodes.Framework.CommonControl.Other;
+using JCodes.Framework.jCodesenum;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace JCodes.Framework.AddIn.Basic
 
         private void FrmModifyPassword_Load(object sender, EventArgs e)
         {
-            this.txtLogin.Text = this.LoginUserInfo.FullName;
+            this.txtLogin.Text = this.LoginUserInfo.LoginName;
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -43,8 +44,8 @@ namespace JCodes.Framework.AddIn.Basic
             try
             {
                 string ip = NetworkUtil.GetLocalIP();
-                string macAddr = HardwareInfoHelper.GetMacAddress();
-                bool result = BLLFactory<User>.Instance.ModifyPassword(this.LoginUserInfo.Name, this.txtPassword.Text, Portal.gc.SystemType, ip, macAddr);
+                string mac = NetworkUtil.GetMacAddress();
+                Boolean result = BLLFactory<User>.Instance.ModifyPassword(this.LoginUserInfo.Name, this.txtPassword.Text, Portal.gc.SYSTEMTYPEID, ip, mac);
 
                 if (result)
                 {

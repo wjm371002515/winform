@@ -65,7 +65,7 @@
             // lblChineseName
             // 
             this.lblChineseName.AutoSize = true;
-            this.lblChineseName.Location = new System.Drawing.Point(23, 102);
+            this.lblChineseName.Location = new System.Drawing.Point(23, 138);
             this.lblChineseName.Name = "lblChineseName";
             this.lblChineseName.Size = new System.Drawing.Size(82, 22);
             this.lblChineseName.TabIndex = 52;
@@ -75,7 +75,7 @@
             // 
             this.txtChineseName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtChineseName.Location = new System.Drawing.Point(82, 99);
+            this.txtChineseName.Location = new System.Drawing.Point(82, 135);
             this.txtChineseName.Name = "txtChineseName";
             this.txtChineseName.Size = new System.Drawing.Size(391, 29);
             this.txtChineseName.TabIndex = 3;
@@ -104,7 +104,7 @@
             // 
             this.txtFunctionId.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFunctionId.Location = new System.Drawing.Point(84, 133);
+            this.txtFunctionId.Location = new System.Drawing.Point(84, 66);
             this.txtFunctionId.Name = "txtFunctionId";
             this.txtFunctionId.Size = new System.Drawing.Size(391, 29);
             this.txtFunctionId.TabIndex = 4;
@@ -112,7 +112,7 @@
             // lblFunctionId
             // 
             this.lblFunctionId.AutoSize = true;
-            this.lblFunctionId.Location = new System.Drawing.Point(25, 136);
+            this.lblFunctionId.Location = new System.Drawing.Point(25, 69);
             this.lblFunctionId.Name = "lblFunctionId";
             this.lblFunctionId.Size = new System.Drawing.Size(64, 22);
             this.lblFunctionId.TabIndex = 52;
@@ -122,7 +122,7 @@
             // 
             this.txtTableName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTableName.Location = new System.Drawing.Point(82, 65);
+            this.txtTableName.Location = new System.Drawing.Point(82, 101);
             this.txtTableName.Name = "txtTableName";
             this.txtTableName.Size = new System.Drawing.Size(391, 29);
             this.txtTableName.TabIndex = 2;
@@ -130,7 +130,7 @@
             // lblTableName
             // 
             this.lblTableName.AutoSize = true;
-            this.lblTableName.Location = new System.Drawing.Point(22, 68);
+            this.lblTableName.Location = new System.Drawing.Point(22, 104);
             this.lblTableName.Name = "lblTableName";
             this.lblTableName.Size = new System.Drawing.Size(46, 22);
             this.lblTableName.TabIndex = 52;

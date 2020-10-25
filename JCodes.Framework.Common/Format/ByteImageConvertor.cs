@@ -1,4 +1,4 @@
-using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.jCodesenum;
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;

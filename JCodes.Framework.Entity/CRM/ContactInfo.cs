@@ -375,6 +375,9 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 性别
+		/// 1-男,
+		/// 2-女,
+		/// 2-保密
 		/// </summary>
 		[DataMember]
 		[DisplayName("性别")]
@@ -800,6 +803,18 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 生肖
+		/// 1-鼠,
+		/// 2-牛,
+		/// 3-虎,
+		/// 4-兔,
+		/// 5-龙,
+		/// 6-蛇,
+		/// 7-马,
+		/// 8-羊,
+		/// 9-猴,
+		/// 10-鸡,
+		/// 11-狗,
+		/// 12-猪
 		/// </summary>
 		[DataMember]
 		[DisplayName("生肖")]
@@ -817,6 +832,18 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 星座
+		/// 1-白羊座,
+		/// 2-金牛座,
+		/// 3-双子座,
+		/// 4-巨蟹座,
+		/// 5-狮子座,
+		/// 6-处女座,
+		/// 7-天秤座,
+		/// 8-天蝎座,
+		/// 9-射手座,
+		/// 10-魔羯座,
+		/// 11-水瓶座,
+		/// 12-双鱼座
 		/// </summary>
 		[DataMember]
 		[DisplayName("星座")]
@@ -834,6 +861,10 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 婚姻状态
+		/// 1-未婚,
+		/// 2-已婚,
+		/// 3-丧偶,
+		/// 4-离婚
 		/// </summary>
 		[DataMember]
 		[DisplayName("婚姻状态")]
@@ -851,6 +882,9 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 健康状态
+		/// 1-健康,
+		/// 2-亚健康,
+		/// 3-疾病
 		/// </summary>
 		[DataMember]
 		[DisplayName("健康状态")]
@@ -868,6 +902,10 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 重要级别
+		/// 1-重要紧急,
+		/// 2-重要不紧急,
+		/// 3-不重要紧急,
+		/// 4-不重要不紧急
 		/// </summary>
 		[DataMember]
 		[DisplayName("重要级别")]
@@ -885,6 +923,11 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 认可程度级别
+		/// 1-极为认可,
+		/// 2-较认可,
+		/// 3-一般,
+		/// 4-较不认可,
+		/// 5-非常不认可
 		/// </summary>
 		[DataMember]
 		[DisplayName("认可程度级别")]
@@ -970,6 +1013,10 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 体型
+		/// 1-体型纤细,
+		/// 2-不胖不瘦,
+		/// 3-体型丰满,
+		/// 4-体型超重
 		/// </summary>
 		[DataMember]
 		[DisplayName("体型")]
@@ -987,6 +1034,8 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 是否吸烟
+		/// 1-是,
+		/// 2-否
 		/// </summary>
 		[DataMember]
 		[DisplayName("是否吸烟")]
@@ -1004,6 +1053,8 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 是否喝酒
+		/// 1-是,
+		/// 2-否
 		/// </summary>
 		[DataMember]
 		[DisplayName("是否喝酒")]
@@ -1157,6 +1208,8 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 是否删除
+		/// 1-是,
+		/// 2-否
 		/// </summary>
 		[DataMember]
 		[DisplayName("是否删除")]

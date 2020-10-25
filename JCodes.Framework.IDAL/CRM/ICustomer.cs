@@ -3,6 +3,7 @@ using System.Data.Common;
 using System.Collections.Generic;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Entity;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.IDAL
 {
@@ -26,7 +27,7 @@ namespace JCodes.Framework.IDAL
         /// <param name="deleted">是否删除</param>
         /// <param name="trans">事务对象</param>
         /// <returns></returns>
-        bool SetDeletedFlag(string id, bool deleted = true, DbTransaction trans = null);
+        bool SetDeletedFlag(Int32 id, IsDelete isDelete = IsDelete.是, DbTransaction trans = null);
 
         /// <summary>
         /// 根据客户分组的名称，搜索属于该分组的客户列表

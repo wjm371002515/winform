@@ -19,5 +19,7 @@ namespace JCodes.Framework.IDAL
         Int32 MaxCengHuShu(string louzhuang);
 
         void UpdateFlag(string fanghao, string util, string zhuang, string yuan, Int32 flag);
+
+        Int32 GetXianchangAndPhoneShu(string condition);
     }
 }

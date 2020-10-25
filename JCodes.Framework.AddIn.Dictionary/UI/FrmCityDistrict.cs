@@ -21,8 +21,8 @@ namespace JCodes.Framework.AddIn.Dictionary
 {
     public partial class FrmCityDistrict : BaseDock
     {
-        private string SelectedProvinceId = "0";
-        private string SelectedCityId = "0";
+        private Int32 SelectedProvinceId = 0;
+        private Int32 SelectedCityId = 0;
 
         #region 框架初始化
         public FrmCityDistrict()
@@ -97,7 +97,7 @@ namespace JCodes.Framework.AddIn.Dictionary
             TreeNode selectedNode = this.treeProvince.SelectedNode;
             if (selectedNode != null && selectedNode.Tag != null)
             {
-                this.SelectedProvinceId = selectedNode.Tag.ToString();
+                this.SelectedProvinceId = selectedNode.Tag.ToString().ToInt32();
 
                 this.treeCity.Nodes.Clear();
                 this.treeCity.BeginUpdate();
@@ -118,7 +118,7 @@ namespace JCodes.Framework.AddIn.Dictionary
         {
             if (e.Node != null && e.Node.Tag != null)
             {
-                this.SelectedCityId = e.Node.Tag.ToString();
+                this.SelectedCityId = e.Node.Tag.ToString().ToInt32();
                 this.lblCityName.Text = e.Node.Text;
                 this.lblCityName.Tag = e.Node.Tag.ToString();
 
@@ -143,19 +143,20 @@ namespace JCodes.Framework.AddIn.Dictionary
 
         private void menuCity_AddNew_Click(object sender, EventArgs e)
         {
-            if (!HasFunction("CityDistrict/CityAdd"))
+            if (!HasFunction("Dictionary/CityDistrict/CityAdd"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(SelectedProvinceId))
+            if (SelectedProvinceId == 0)
             {
                 MessageDxUtil.ShowTips("请先选择省份");
                 return;
             }
 
-            ProvinceInfo info = BLLFactory<Province>.Instance.FindByID(SelectedProvinceId);
+            ProvinceInfo info = BLLFactory<Province>.Instance.FindById(SelectedProvinceId);
+
             if (info != null)
             {
                 FrmEditCity dlg = new FrmEditCity();
@@ -173,7 +174,7 @@ namespace JCodes.Framework.AddIn.Dictionary
 
         private void menuCity_Edit_Click(object sender, EventArgs e)
         {
-            if (!HasFunction("CityDistrict/CityEdit"))
+            if (!HasFunction("Dictionary/CityDistrict/CityEdit"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -182,13 +183,13 @@ namespace JCodes.Framework.AddIn.Dictionary
             TreeNode selectedNode = this.treeCity.SelectedNode;
             if (selectedNode != null && selectedNode.Tag != null)
             {
-                ProvinceInfo info = BLLFactory<Province>.Instance.FindByID(SelectedProvinceId);
+                ProvinceInfo info = BLLFactory<Province>.Instance.FindById(SelectedProvinceId);
                 if (info != null)
                 {
                     FrmEditCity dlg = new FrmEditCity();
                     dlg.txtProvince.Text = info.ProvinceName;
                     dlg.txtProvince.Tag = info.Id;
-                    dlg.Id = Convert.ToInt32( selectedNode.Tag);
+                    dlg.Id = Convert.ToInt32(selectedNode.Tag);
                     dlg.OnDataSaved += new EventHandler(dlgCity_OnDataSaved);
                     dlg.ShowDialog();
                 }
@@ -197,7 +198,7 @@ namespace JCodes.Framework.AddIn.Dictionary
 
         private void menuCity_Delete_Click(object sender, EventArgs e)
         {
-            if (!HasFunction("CityDistrict/CityDel"))
+            if (!HasFunction("Dictionary/CityDistrict/CityDel"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -210,7 +211,7 @@ namespace JCodes.Framework.AddIn.Dictionary
                 if (MessageDxUtil.ShowYesNoAndWarning(message) == System.Windows.Forms.DialogResult.Yes)
                 {
                     BLLFactory<City>.Instance.DeleteByUser(selectedNode.Tag.ToString(), LoginUserInfo.Id);
-                    BLLFactory<District>.Instance.DeleteByCondition(string.Format("CityID={0}", selectedNode.Tag.ToString()));
+                    BLLFactory<District>.Instance.DeleteByCondition(string.Format("CityId={0}", selectedNode.Tag.ToString()));
 
                     InitCityTree();
                 }
@@ -240,7 +241,7 @@ namespace JCodes.Framework.AddIn.Dictionary
                     }
                     else
                     {
-                        e.DisplayText = Convert.ToDateTime(e.Value).ToString("yyyy-MM-dd HH:mm");//yyyy-MM-dd
+                        e.DisplayText = Convert.ToDateTime(e.Value).ToString("yyyy-MM-dd HH:mm:ss");//yyyy-MM-dd
                     }
                 }
             }
@@ -274,13 +275,13 @@ namespace JCodes.Framework.AddIn.Dictionary
 
         private void btnBatchAdd_Click(object sender, EventArgs e)
         {
-            if (!HasFunction("CityDistrict/DistrictAdd"))
+            if (!HasFunction("Dictionary/CityDistrict/DistrictAdd"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(SelectedCityId))
+            if (SelectedCityId == 0)
             {
                 MessageDxUtil.ShowTips("请先选择城市");
                 return;
@@ -311,26 +312,26 @@ namespace JCodes.Framework.AddIn.Dictionary
         /// </summary>
         private void winGridViewPager1_OnEditSelected(object sender, EventArgs e)
         {
-            if (!HasFunction("CityDistrict/DistrictEdit"))
+            if (!HasFunction("Dictionary/CityDistrict/DistrictEdit"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(SelectedCityId))
+            if (SelectedCityId == 0)
             {
                 MessageDxUtil.ShowTips("请先选择城市");
                 return;
             }
 
-            string ID = this.winGridViewPager1.gridView1.GetFocusedRowCellDisplayText("ID");
-            if (!string.IsNullOrEmpty(ID))
+            Int32 Id = this.winGridViewPager1.gridView1.GetFocusedRowCellDisplayText("Id").ToInt32();
+            if (Id > 0)
             {
 
                 FrmEditDistrict dlg = new FrmEditDistrict();
                 dlg.txtCity.Text = lblCityName.Text;
                 dlg.txtCity.Tag = lblCityName.Tag;
-                dlg.Id = Convert.ToInt32(ID);
+                dlg.Id = Id;
                 dlg.OnDataSaved += new EventHandler(District_OnDataSaved);
 
                 dlg.OnDataSaved += new EventHandler(dlg_OnDataSaved);
@@ -352,7 +353,7 @@ namespace JCodes.Framework.AddIn.Dictionary
         /// </summary>
         private void winGridViewPager1_OnDeleteSelected(object sender, EventArgs e)
         {
-            if (!HasFunction("CityDistrict/DistrictDel"))
+            if (!HasFunction("Dictionary/CityDistrict/DistrictDel"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -366,8 +367,8 @@ namespace JCodes.Framework.AddIn.Dictionary
             int[] rowSelected = this.winGridViewPager1.GridView1.GetSelectedRows();
             foreach (int iRow in rowSelected)
             {
-                string ID = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "ID");
-                BLLFactory<District>.Instance.DeleteByUser(ID, LoginUserInfo.Id);
+                Int32 Id = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "Id").ToInt32();
+                BLLFactory<District>.Instance.DeleteByUser(Id, LoginUserInfo.Id);
             }
 
             BindData();
@@ -383,7 +384,7 @@ namespace JCodes.Framework.AddIn.Dictionary
         /// </summary> 
         private void winGridViewPager1_OnStartExport(object sender, EventArgs e)
         {
-            List<DistrictInfo> list = BLLFactory<District>.Instance.GetDistrictByCity(SelectedCityId);
+            List<DistrictInfo> list = BLLFactory<District>.Instance.GetDistrictByCityId(SelectedCityId);
             this.winGridViewPager1.AllToExport = list;
         }
 
@@ -392,16 +393,13 @@ namespace JCodes.Framework.AddIn.Dictionary
         /// </summary>
         private void BindData()
         {
-            //entity
-            this.winGridViewPager1.DisplayColumns = "DistrictName";
-
             #region 添加别名解析
 
-            this.winGridViewPager1.AddColumnAlias("DistrictName", "区县名称");
-
+            this.winGridViewPager1.ColumnNameAlias = BLLFactory<District>.Instance.GetColumnNameAlias();
+            this.winGridViewPager1.DisplayColumns = "DistrictName";
             #endregion
 
-            List<DistrictInfo> list = BLLFactory<District>.Instance.GetDistrictByCity(SelectedCityId);
+            List<DistrictInfo> list = BLLFactory<District>.Instance.GetDistrictByCityId(SelectedCityId);
             this.winGridViewPager1.DataSource = new SortableBindingList<DistrictInfo>(list);
             this.winGridViewPager1.PrintTitle = "District报表";
         }

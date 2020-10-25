@@ -17,6 +17,8 @@ namespace JCodes.Framework.AddIn.Dictionary
 {
     public partial class FrmBatchAddDistrict : BaseDock
     {
+        private Int32 currentMaxNum = 0;
+
         public FrmBatchAddDistrict()
         {
             InitializeComponent();
@@ -35,6 +37,8 @@ namespace JCodes.Framework.AddIn.Dictionary
                 DistrictInfo info = new DistrictInfo();
                 info.DistrictName = dictData;
                 info.CityId = Convert.ToInt32(this.txtCity.Tag.ToString());
+                info.Id = currentMaxNum + 1;
+                currentMaxNum++;
 
                 bool succeed = BLLFactory<District>.Instance.Insert(info, trans);
             }
@@ -50,6 +54,9 @@ namespace JCodes.Framework.AddIn.Dictionary
                 {
                     try
                     {
+                        // 批量新增 先获取最大值
+                        currentMaxNum = BLLFactory<District>.Instance.GetMaxId();
+
                         #region MyRegion
                         foreach (string strItem in arrayItems)
                         {

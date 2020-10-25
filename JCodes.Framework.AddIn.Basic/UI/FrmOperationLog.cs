@@ -20,6 +20,7 @@ using JCodes.Framework.Common.Office;
 using JCodes.Framework.Common.Winform;
 using JCodes.Framework.CommonControl.Controls;
 using JCodes.Framework.Common.Extension;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn.Basic
 {
@@ -237,7 +238,7 @@ namespace JCodes.Framework.AddIn.Basic
             }
 
             // 增加系统可以访问的公司部门的权限
-            where += " and (CompanyId " + canOptCompanyID + ")";
+            where += " and (CompanyId " + canOptCompanyId + ")";
             return where;
         }
         
@@ -314,8 +315,8 @@ namespace JCodes.Framework.AddIn.Basic
                     dr = dtNew.NewRow();
                     dr["序号"] = j++;
                     dr["用户Id"] = list[i].UserId;
-                    dr["登录名"] = list[i].LoginName;
-                    dr["真实名称"] = list[i].FullName;
+                    dr["登录名"] = list[i].Name;
+                    dr["真实名称"] = list[i].LoginName;
                     dr["公司Id"] = list[i].CompanyId;
                     dr["公司名字"] = list[i].CompanyName;
                     dr["表名"] = list[i].TableName;
@@ -369,7 +370,7 @@ namespace JCodes.Framework.AddIn.Basic
             foreach (string tablename in tableList)
             {
                 TreeNode subNode = new TreeNode(tablename, 1, 1);
-                subNode.Tag = string.Format("TableName='{0}' AND (Company_ID {1}) ", tablename, canOptCompanyID);
+                subNode.Tag = string.Format("TableName='{0}' AND (Company_ID {1}) ", tablename, canOptCompanyId);
                 tableNode.Nodes.Add(subNode);
 
                 List<string> operationList = new List<string>() { "增加", "修改", "删除"};
@@ -377,7 +378,7 @@ namespace JCodes.Framework.AddIn.Basic
                 {
                     TreeNode operationNode = new TreeNode(operationType, 2, 2);
                     operationNode.Tag = string.Format("TableName='{0}'  AND OperationType='{1}' AND (Company_ID {2}) ",
-                            tablename, operationType, canOptCompanyID);
+                            tablename, operationType, canOptCompanyId);
                     subNode.Nodes.Add(operationNode);
                 }
             }*/

@@ -9,6 +9,7 @@ using System.Net.NetworkInformation;
 using Microsoft.Win32;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.Common.Format;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.Common.Network
 {
@@ -205,15 +206,17 @@ namespace JCodes.Framework.Common.Network
         /// </summary>
         /// <returns></returns>
         public static string GetLocalIP()
-        {        
-            //string strHostIP = string.Empty;
-            //IPHostEntry oIPHost = Dns.GetHostEntry(Environment.MachineName);
-            //if (oIPHost.AddressList.Length > 0)
-            //{
-            //    strHostIP = oIPHost.AddressList[0].ToString();
-            //}
-            //return strHostIP;
-           return GetIPAddress();
+        {
+            string strHostIP = string.Empty;
+            IPHostEntry oIPHost = Dns.GetHostEntry(Environment.MachineName);
+            if (oIPHost.AddressList.Length > 0)
+            {
+                for (Int32 i = 0; i < oIPHost.AddressList.Length; i++) { 
+                    if (oIPHost.AddressList[i].AddressFamily == AddressFamily.InterNetwork)
+                        strHostIP = oIPHost.AddressList[i].ToString();
+                }
+            }
+            return strHostIP;
         }
 
         /// <summary>

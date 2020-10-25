@@ -11,6 +11,7 @@ using JCodes.Framework.CommonControl.Controls;
 using JCodes.Framework.Common.Format;
 using System.Text;
 using JCodes.Framework.Common.Extension;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn.Proj
 {
@@ -18,14 +19,14 @@ namespace JCodes.Framework.AddIn.Proj
     {
         public string strItemName = string.Empty;
 
-        public Int32 intFunction = 0;
+        public String intFunction = string.Empty;
 
         public string strChineseName = string.Empty;
 
         public string strGuid = string.Empty;
         public string strGroupGuid = string.Empty;
 
-        private string tablesModel = "<name>{0}</name><chineseName>{1}</chineseName><functionId>{2}</functionId><typeguid>{3}</typeguid><path>{4}</path><basicdatapath></basicdatapath>";
+        private string tablesModel = "<name>{0}</name><chineseName>{1}</chineseName><functionId>{2}</functionId><typegid>{3}</typegid><path>{4}</path><basicdatapath></basicdatapath>";
 
         private string tablesDetailModel = "<?xml version=\"1.0\" encoding=\"utf-8\"?><datatype><histories></histories><basicinfo><item gid=\"{0}\"><functionId>{1}</functionId><name>{2}</name><chineseName>{3}</chineseName><existhistable>{4}</existhistable><version>{5}</version><lasttime>{6}</lasttime><remark>{7}</remark></item></basicinfo><fieldsinfo></fieldsinfo><indexsinfo></indexsinfo></datatype>";
 
@@ -46,6 +47,12 @@ namespace JCodes.Framework.AddIn.Proj
             if (this.txtTableName.Text.Trim().Length == 0)
             {
                 MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblTableName.Text.Replace(Const.MsgCheckSign, string.Empty));
+                this.txtTableName.Focus();
+                result = false;
+            }
+
+            if (this.txtTableName.Text.Trim().EndsWith("Info", StringComparison.OrdinalIgnoreCase)) {
+                MessageDxUtil.ShowWarning("表名不允许Info结尾");
                 this.txtTableName.Focus();
                 result = false;
             }
@@ -72,7 +79,7 @@ namespace JCodes.Framework.AddIn.Proj
             }
 
             // 检查新增的表是否已经存在
-            if (!string.IsNullOrEmpty(strGuid))
+            if (string.IsNullOrEmpty(strGuid))
             {
                 XmlHelper xmltableshelper = new XmlHelper(@"XML\tables.xml");
                 XmlNodeList xmlNodeLst = xmltableshelper.Read(string.Format("datatype/dataitem"));
@@ -219,7 +226,7 @@ namespace JCodes.Framework.AddIn.Proj
                 xmltableshelper.Replace(string.Format("datatype/dataitem/item[@gid=\"{0}\"]/name", strGuid), info.Name);
                 xmltableshelper.Replace(string.Format("datatype/dataitem/item[@gid=\"{0}\"]/chineseName", strGuid), info.ChineseName);
                 xmltableshelper.Replace(string.Format("datatype/dataitem/item[@gid=\"{0}\"]/functionId", strGuid), info.FunctionId.ToString());
-                xmltableshelper.Replace(string.Format("datatype/dataitem/item[@gid=\"{0}\"]/typeguid", strGuid), info.TypeGuid);
+                xmltableshelper.Replace(string.Format("datatype/dataitem/item[@gid=\"{0}\"]/typegid", strGuid), info.TypeGuid);
                 xmltableshelper.Replace(string.Format("datatype/dataitem/item[@gid=\"{0}\"]/path", strGuid), info.BasicdataPath);
                 xmltableshelper.Save();
 
@@ -258,11 +265,11 @@ namespace JCodes.Framework.AddIn.Proj
             info.Gid = txtGUID.Text;
             info.Name = txtTableName.Text;
             info.ChineseName = txtChineseName.Text;
-            info.FunctionId = txtFunctionId.Text.ToInt32();
+            info.FunctionId = txtFunctionId.Text;
             info.TypeGuid = (cbbTypeGuid.SelectedItem as CListItem).Value;
             info.BasicdataPath = string.Format(@"XML\{0}.table", info.Name);
             // 如果是新增 则赋值路径
-            if (!string.IsNullOrEmpty(strGuid))
+            if (string.IsNullOrEmpty(strGuid))
             {
                 // 删除table文件
                 if (FileUtil.FileIsExist(info.BasicdataPath))

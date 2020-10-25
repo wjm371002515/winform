@@ -13,6 +13,7 @@ using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.Common.Databases;
 using JCodes.Framework.Common.Files;
 using System.Configuration;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.Common.Framework.BaseDAL
 {

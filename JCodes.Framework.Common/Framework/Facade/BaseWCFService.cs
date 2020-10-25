@@ -212,7 +212,7 @@ namespace JCodes.Framework.Common.Framework.Facade
         /// </summary>
         /// <param name="key">对象的ID值</param>
         /// <returns>存在则返回指定的对象,否则返回Null</returns>
-        public virtual T FindByID(string key)
+        public virtual T FindById(string key)
         {
             T result = null;
 
@@ -220,7 +220,7 @@ namespace JCodes.Framework.Common.Framework.Facade
             ICommunicationObject comm = service as ICommunicationObject;
             comm.Using(client =>
             {
-                result = service.FindByID(key);
+                result = service.FindById(key);
             });
 
             return result;
@@ -231,14 +231,14 @@ namespace JCodes.Framework.Common.Framework.Facade
         /// </summary>
         /// <param name="key">对象的ID值</param>
         /// <returns>存在则返回指定的对象,否则返回Null</returns>
-        public virtual T FindByID2(int key)
+        public virtual T FindById2(int key)
         {
             T result = null;
             IBaseService<T> service = CreateClient();
             ICommunicationObject comm = service as ICommunicationObject;
             comm.Using(client =>
             {
-                result = service.FindByID2(key);
+                result = service.FindById2(key);
             });
             return result;
         }
@@ -326,7 +326,7 @@ namespace JCodes.Framework.Common.Framework.Facade
         /// </summary>
         /// <param name="idString">ID字符串(逗号分隔)</param>
         /// <returns>符合条件的对象列表</returns>
-        public virtual List<T> FindByIDs(string idString)
+        public virtual List<T> FindByIds(string idString)
         {
             List<T> result = new List<T>();
 
@@ -334,7 +334,7 @@ namespace JCodes.Framework.Common.Framework.Facade
             ICommunicationObject comm = service as ICommunicationObject;
             comm.Using(client =>
             {
-                result = service.FindByIDs(idString);
+                result = service.FindByIds(idString);
             });
 
             return result;

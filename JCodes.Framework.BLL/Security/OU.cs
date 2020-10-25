@@ -6,6 +6,7 @@ using JCodes.Framework.Common;
 using JCodes.Framework.Entity;
 using JCodes.Framework.IDAL;
 using JCodes.Framework.Common.Framework;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.BLL
 {
@@ -14,17 +15,25 @@ namespace JCodes.Framework.BLL
     /// </summary>
     public class OU : BaseBLL<OUInfo>
     {
-        private IOU ouDal;
+        private IOU dal = null;
 
         /// <summary>
         /// 构造函数
         /// </summary>
         public OU() : base()
         {
-            base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+            if (isMultiDatabase)
+            {
+                base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name, dicmultiDatabase[this.GetType().Name].ToString());
+            }
+            else
+            {
+                base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+            }
+
             baseDal.OnOperationLog += new OperationLogEventHandler(OperationLog.OnOperationLog);//如果需要记录操作日志，则实现这个事件
             
-            this.ouDal = baseDal as IOU;
+            dal = baseDal as IOU;
         }
 
         /// <summary>
@@ -34,7 +43,7 @@ namespace JCodes.Framework.BLL
         /// <returns></returns>
         public override List<OUInfo> GetAll(DbTransaction trans = null)
         {
-            string condition = string.Format(" IsDelete = 0");
+            string condition = string.Format(" IsDelete = {0}", (short)IsDelete.否);
             return base.Find(condition, trans);
         }
 
@@ -44,34 +53,43 @@ namespace JCodes.Framework.BLL
         /// <returns></returns>
         public List<OUInfo> GetTopGroup()
         {
-            string condition = string.Format("PID=-1 ");
+            string condition = string.Format("Pid = -1 ");
             return Find(condition);
         }
                
         /// <summary>
         /// 根据当前用户身份，获取对应的顶级机构管理节点。
-        /// 如果是超级管理员，返回集团节点；如果是公司管理员，返回其公司节点
+        /// 是公司管理员，返回其公司节点
         /// </summary>
         /// <returns></returns>
-        public List<OUInfo> GetMyTopGroup(int userId)
+        public List<OUInfo> GetMyTopGroup(Int32 userId)
         {
             List<OUInfo> list = new List<OUInfo>();
 
-            UserInfo userInfo = BLLFactory<User>.Instance.FindByID(userId);
+            UserInfo userInfo = BLLFactory<User>.Instance.FindById(userId);
             if (userInfo != null)
             {
-                OUInfo groupInfo = null;
-                // TODO
-                /*if (BLLFactory<User>.Instance.UserInRoleById(userId, RoleInfo.SuperAdminName))
-                {
-                    //超级管理员取集团节点
-                    list.AddRange(GetTopGroup());
-                }
-                else
-                {
-                    groupInfo = this.FindByID(userInfo.CompanyId);//公司管理员取公司节点
-                    list.Add(groupInfo);
-                }*/
+                OUInfo groupInfo = this.FindById(userInfo.CompanyId);//公司管理员取公司节点
+                list.Add(groupInfo);
+            }
+            return list;
+        }
+
+        /// <summary>
+        /// 根据当前用户身份，获取对应的顶级机构管理节点。
+        /// 超级管理员，返回集团节点；
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+
+        public List<OUInfo> GetSuperAdminTopGroup(Int32 userId) {
+            List<OUInfo> list = new List<OUInfo>();
+
+            UserInfo userInfo = BLLFactory<User>.Instance.FindById(userId);
+            if (userInfo != null)
+            {
+                //超级管理员取集团节点
+                list.AddRange(GetTopGroup());
             }
             return list;
         }
@@ -80,9 +98,9 @@ namespace JCodes.Framework.BLL
         /// 获取部门分类为公司的列表【Category='公司'】
         /// </summary>
         /// <returns></returns>
-        public List<OUInfo> GetAllCompany(int groupId)
+        public List<OUInfo> GetAllCompany(Int32 groupId)
         {
-            string condition = string.Format("OuType='公司' AND PID={0} ", groupId);
+            string condition = string.Format("OuType={1} AND Pid={0} ", groupId, (short)OuType.公司);
             return Find(condition);
         }
 
@@ -92,7 +110,7 @@ namespace JCodes.Framework.BLL
         /// <returns></returns>
         public List<OUInfo> GetGroupCompany()
         {
-            string condition = string.Format("OuType='公司' or Category='集团' ");
+            string condition = string.Format("OuType={0} or OuType={1} ", (short)OuType.公司, (short)OuType.集团);
             return Find(condition);
         }
 
@@ -126,93 +144,52 @@ namespace JCodes.Framework.BLL
         /// <summary>
         /// 为机构制定新的人员列表
         /// </summary>
-        /// <param name="ouID">机构ID</param>
+        /// <param name="ouId">机构Id</param>
         /// <param name="newUserList">人员列表</param>
         /// <returns></returns>
-        public bool EditOuUsers(int ouID, List<int> newUserList)
+        public bool EditOuUsers(Int32 ouId, List<Int32> newUserList)
         {
-            return ouDal.EditOuUsers(ouID, newUserList);
+            return dal.EditOuUsers(ouId, newUserList);
         }
 
         /// <summary>
         /// 为机构添加相关用户
         /// </summary>
-        /// <param name="userID">用户ID</param>
-        /// <param name="ouID">机构ID</param>
-        public void AddUser(int userID, int ouID)
+        /// <param name="userId">用户ID</param>
+        /// <param name="ouId">机构ID</param>
+        public void AddUser(Int32 userId, Int32 ouId)
         {
-            /* TODO
-            if (this.OUInRole(ouID, RoleInfo.SuperAdminName))
-            {
-                BLLFactory<User>.Instance.CancelExpire(userID);
-            }*/
-
-            this.ouDal.AddUser(userID, ouID);
+            dal.AddUser(ouId, ouId);
         }
 
         /// <summary>
         /// 根据角色ID获取对应的机构列表
         /// </summary>
-        /// <param name="roleID">角色ID</param>
+        /// <param name="roleId">角色ID</param>
         /// <returns></returns>
-        public List<OUInfo> GetOUsByRole(int roleID)
+        public List<OUInfo> GetOUsByRoleId(Int32 roleId)
         {
-            return this.ouDal.GetOUsByRole(roleID);
+            return dal.GetOUsByRoleId(roleId);
         }
 
         /// <summary>
         /// 获取指定用户的机构列表
         /// </summary>
-        /// <param name="userID">用户ID</param>
+        /// <param name="userId">用户ID</param>
         /// <returns></returns>
-        public List<OUInfo> GetOUsByUser(int userID)
+        public List<OUInfo> GetOUsByUserId(Int32 userId)
         {
-            return this.ouDal.GetOUsByUser(userID);
-        }
-
-        /// <summary>
-        /// 判断机构是否在指定的角色中
-        /// </summary>
-        /// <param name="ouID">机构ID</param>
-        /// <param name="roleName">角色名称</param>
-        /// <returns></returns>
-        public bool OUInRole(int ouID, string roleName)
-        {
-            bool result = false;
-            List<RoleInfo> rolesByOU = BLLFactory<Role>.Instance.GetRolesByOU(ouID);
-            foreach (RoleInfo info in rolesByOU)
-            {
-                if (info.Name == roleName)
-                {
-                    result = true;
-                    break;
-                }
-            }
-
-            return result;
+            return dal.GetOUsByUser(userId);
         }
 
         /// <summary>
         /// 在机构中移除指定的用户
         /// </summary>
-        /// <param name="userID">用户ID</param>
-        /// <param name="ouID">机构ID</param>
-        public void RemoveUser(int userID, int ouID)
+        /// <param name="userId">用户ID</param>
+        /// <param name="ouId">机构ID</param>
+        public void RemoveUser(Int32 userId, Int32 ouId)
         {
-            /* TODO
-            if (this.OUInRole(ouID, RoleInfo.SuperAdminName))
-            {
-                List<SimpleUserInfo> adminSimpleUsers = BLLFactory<Role>.Instance.GetAdminSimpleUsers();
-                if (adminSimpleUsers.Count == 1)
-                {
-                    SimpleUserInfo info = (SimpleUserInfo)adminSimpleUsers[0];
-                    if (userID == info.Id)
-                    {
-                        throw new Exception("管理员角色至少需要包含一个用户！");
-                    }
-                }
-            }*/
-            ouDal.RemoveUser(userID, ouID);
+            dal.RemoveUser(userId, ouId);
         }
                         
         /// <summary>
@@ -220,9 +197,9 @@ namespace JCodes.Framework.BLL
         /// </summary>
         /// <param name="parentId">指定机构节点ID</param>
         /// <returns></returns>
-        public List<OUInfo> GetAllOUsByParent(int parentId)
+        public List<OUInfo> GetAllOUsByParent(Int32 parentId)
         {
-            return ouDal.GetAllOUsByParent(parentId);
+            return dal.GetAllOUsByParent(parentId);
         }
 
         /// <summary>
@@ -230,16 +207,16 @@ namespace JCodes.Framework.BLL
         /// </summary>
         public List<OUNodeInfo> GetTree()
         {
-            return ouDal.GetTree();
+            return dal.GetTree();
         }
 
         /// <summary>
         /// 获取指定机构下面的树形列表
         /// </summary>
         /// <param name="mainOUID">指定机构ID</param>
-        public List<OUNodeInfo> GetTreeByID(int mainOUID)
+        public List<OUNodeInfo> GetTreeById(Int32 mainOUId)
         {
-            return ouDal.GetTreeByID(mainOUID);
+            return dal.GetTreeById(mainOUId);
         }
 
         /// <summary>
@@ -247,9 +224,9 @@ namespace JCodes.Framework.BLL
         /// </summary>
         /// <param name="id">机构ID</param>
         /// <returns></returns>
-        public string GetName(int id, DbTransaction trans = null)
+        public string GetName(Int32 id, DbTransaction trans = null)
         {
-            return ouDal.GetName(id, trans);
+            return dal.GetName(id, trans);
         }
 
         /// <summary>
@@ -270,9 +247,9 @@ namespace JCodes.Framework.BLL
         /// <param name="deleted">是否删除</param>
         /// <param name="trans">事务对象</param>
         /// <returns></returns>
-        public bool SetDeletedFlag(object id, bool deleted = true, DbTransaction trans = null)
+        public bool SetDeletedFlag(Int32 Id, DbTransaction trans = null)
         {
-            return ouDal.SetDeletedFlag(id, deleted, trans);
+            return dal.SetDeletedFlag(Id, trans);
         }
 
         /// <summary>
@@ -280,10 +257,10 @@ namespace JCodes.Framework.BLL
         /// </summary>
         /// <param name="ouId"></param>
         /// <returns></returns>
-        private OUInfo GetCompanyInfo(int ouId)
+        private OUInfo GetCompanyInfo(Int32 ouId)
         {
-            OUInfo info = BLLFactory<OU>.Instance.FindByID(ouId);
-            if (info.OuType == 1)
+            OUInfo info = BLLFactory<OU>.Instance.FindById(ouId);
+            if (info.OuType == (short)OuType.公司)
             {
                 return info;
             }

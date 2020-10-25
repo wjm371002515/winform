@@ -96,6 +96,9 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// Icon来源
+		/// 1-Glyphicons,
+		/// 2-FontAwesome,
+		/// 3-SimpleLine
 		/// </summary>
 		[DataMember]
 		[DisplayName("Icon来源")]

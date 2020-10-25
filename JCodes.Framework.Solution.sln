@@ -87,6 +87,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "JCodes.Framework.WebService
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JCodes.Framework.WebDemo", "JCodes.Framework.WebDemo\JCodes.Framework.WebDemo.csproj", "{C24CB42F-B207-4769-94C4-381ECD6A5098}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dakax", "daka\dakax.csproj", "{B87FB704-BC25-4B9B-B1FF-1CA53BD81B54}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -197,6 +199,10 @@ Global
 		{C24CB42F-B207-4769-94C4-381ECD6A5098}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C24CB42F-B207-4769-94C4-381ECD6A5098}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C24CB42F-B207-4769-94C4-381ECD6A5098}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B87FB704-BC25-4B9B-B1FF-1CA53BD81B54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B87FB704-BC25-4B9B-B1FF-1CA53BD81B54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B87FB704-BC25-4B9B-B1FF-1CA53BD81B54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B87FB704-BC25-4B9B-B1FF-1CA53BD81B54}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -228,5 +234,6 @@ Global
 		{0DC2C51C-4601-4045-A412-BED930658C2C} = {E55CD18E-7574-4CEC-A0DA-B75094DE0DB4}
 		{64CFE6D2-0684-4D68-BFA0-EC7EFFDF4623} = {E55CD18E-7574-4CEC-A0DA-B75094DE0DB4}
 		{1E48793E-326C-46B5-8AE2-97F8C0AFA30E} = {14599BE9-EE2D-4DB0-AB52-1858F0A18967}
+		{B87FB704-BC25-4B9B-B1FF-1CA53BD81B54} = {14599BE9-EE2D-4DB0-AB52-1858F0A18967}
 	EndGlobalSection
 EndGlobal

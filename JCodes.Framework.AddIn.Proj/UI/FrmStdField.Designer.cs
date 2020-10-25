@@ -65,6 +65,8 @@ namespace JCodes.Framework.AddIn.Proj
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.contextMenuStripFields = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmirealoadcache = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearch.Properties)).BeginInit();
@@ -84,6 +86,7 @@ namespace JCodes.Framework.AddIn.Proj
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditStdType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
+            this.contextMenuStripFields.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnInsert
@@ -374,6 +377,7 @@ namespace JCodes.Framework.AddIn.Proj
             this.gridControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridControl1.ContextMenuStrip = this.contextMenuStripFields;
             this.gridControl1.Cursor = System.Windows.Forms.Cursors.Default;
             this.gridControl1.Location = new System.Drawing.Point(11, 67);
             this.gridControl1.MainView = this.gridView1;
@@ -522,6 +526,21 @@ namespace JCodes.Framework.AddIn.Proj
             this.imageList1.Images.SetKeyName(1, "002.png");
             this.imageList1.Images.SetKeyName(2, "003.png");
             // 
+            // contextMenuStripFields
+            // 
+            this.contextMenuStripFields.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.contextMenuStripFields.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmirealoadcache});
+            this.contextMenuStripFields.Name = "contextMenuStripIndex";
+            this.contextMenuStripFields.Size = new System.Drawing.Size(189, 32);
+            // 
+            // tsmirealoadcache
+            // 
+            this.tsmirealoadcache.Name = "tsmirealoadcache";
+            this.tsmirealoadcache.Size = new System.Drawing.Size(188, 28);
+            this.tsmirealoadcache.Text = "更新标准字段";
+            this.tsmirealoadcache.Click += new System.EventHandler(this.tsmirealoadcache_Click);
+            // 
             // FrmStdField
             // 
             this.AcceptButton = this.btnSearch;
@@ -555,6 +574,7 @@ namespace JCodes.Framework.AddIn.Proj
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditStdType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
+            this.contextMenuStripFields.ResumeLayout(false);
             this.ResumeLayout(false);
 
 }
@@ -596,6 +616,8 @@ namespace JCodes.Framework.AddIn.Proj
         private DevExpress.XtraBars.BarStaticItem barWarningText;
         private DevExpress.XtraBars.BarStaticItem barInfoText;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEditStdType;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripFields;
+        private System.Windows.Forms.ToolStripMenuItem tsmirealoadcache;
 
     }
 }

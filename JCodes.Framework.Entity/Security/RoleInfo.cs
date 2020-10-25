@@ -21,11 +21,6 @@ namespace JCodes.Framework.Entity
 		private Int32 m_Id = 0;
 
 		/// <summary>
-		/// 父节点ID序号
-		/// </summary>
-		private Int32 m_Pid = 0;
-
-		/// <summary>
 		/// 角色编码
 		/// </summary>
 		private String m_RoleCode = string.Empty;
@@ -44,11 +39,6 @@ namespace JCodes.Framework.Entity
 		/// 排序
 		/// </summary>
 		private String m_Seq = string.Empty;
-
-		/// <summary>
-		/// 角色分类
-		/// </summary>
-		private Int16 m_RoleType = 0;
 
 		/// <summary>
 		/// 公司Id
@@ -107,23 +97,6 @@ namespace JCodes.Framework.Entity
 			set
 			{
 				this.m_Id = value;
-			}
-		}
-
-		/// <summary>
-		/// 父节点ID序号
-		/// </summary>
-		[DataMember]
-		[DisplayName("父节点ID序号")]
-		public virtual Int32 Pid
-		{
-			get
-			{
-				return this.m_Pid;
-			}
-			set
-			{
-				this.m_Pid = value;
 			}
 		}
 
@@ -192,23 +165,6 @@ namespace JCodes.Framework.Entity
 			set
 			{
 				this.m_Seq = value;
-			}
-		}
-
-		/// <summary>
-		/// 角色分类
-		/// </summary>
-		[DataMember]
-		[DisplayName("角色分类")]
-		public virtual Int16 RoleType
-		{
-			get
-			{
-				return this.m_RoleType;
-			}
-			set
-			{
-				this.m_RoleType = value;
 			}
 		}
 
@@ -316,6 +272,8 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 是否删除
+		/// 1-是,
+		/// 2-否
 		/// </summary>
 		[DataMember]
 		[DisplayName("是否删除")]
@@ -333,6 +291,8 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 是否禁用
+		/// 1-是,
+		/// 2-否
 		/// </summary>
 		[DataMember]
 		[DisplayName("是否禁用")]

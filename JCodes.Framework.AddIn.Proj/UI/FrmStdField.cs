@@ -18,6 +18,7 @@ using System.Drawing;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.Utils;
 using JCodes.Framework.Common.Extension;
+using JCodes.Framework.Common.Winform;
 
 // 参考文档 http://www.cnblogs.com/a1656344531/archive/2012/11/28/2792863.html
 
@@ -125,6 +126,7 @@ namespace JCodes.Framework.AddIn.Proj
             // 添加一行空行
             stdfieldInfoList.Add(new StdFieldInfo());
             gridControl1.DataSource = stdfieldInfoList;
+            gridControl1.Refresh();
 
             #region 绑定stdType 数据源
 
@@ -160,8 +162,8 @@ namespace JCodes.Framework.AddIn.Proj
             List<StdFieldInfo> lstDataTypeInfo = gridControl1.DataSource as List<StdFieldInfo>;
 
             // 查找重复的Name的值
-
             List<String> tmpName = new List<string>();
+            lstName.Clear();
             foreach (StdFieldInfo dataTypeInfo in lstDataTypeInfo)
             {
                 if (string.IsNullOrEmpty(dataTypeInfo.Gid))
@@ -359,8 +361,6 @@ namespace JCodes.Framework.AddIn.Proj
 
             if (idx == 3 && dictTypeInfoList != null)
             {
-
-
                 var dictType = dictTypeInfoList.Find(new Predicate<DictInfo>(dictinfo => dictinfo.Id == e.Value.ToString().ToInt32()));
 
                 // 找到选中行的Gid值
@@ -387,6 +387,10 @@ namespace JCodes.Framework.AddIn.Proj
         /// <param name="e"></param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            // 假如在查询去掉查询在新增
+            if (!string.IsNullOrEmpty(gridView1.ActiveFilterString))
+                gridView1.ActiveFilterString = "";
+
             var datatypeInfo = new StdFieldInfo();
             datatypeInfo.Gid = System.Guid.NewGuid().ToString();
             datatypeInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
@@ -394,7 +398,7 @@ namespace JCodes.Framework.AddIn.Proj
             xmlhelper.InsertElement("datatype/dataitem", "item", "gid", datatypeInfo.Gid, string.Format(xmlModel, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty));
             xmlhelper.Save(false);
 
-            (gridView1.DataSource as List<StdFieldInfo>).Insert(gridView1.RowCount - 1, datatypeInfo);
+            (gridView1.DataSource as List<StdFieldInfo>).Insert((gridView1.DataSource as List<StdFieldInfo>).Count - 1, datatypeInfo);
             gridView1.RefreshData();
         }
 
@@ -620,7 +624,7 @@ namespace JCodes.Framework.AddIn.Proj
 
                         xmlhelper.InsertElement("datatype/dataitem", "item", "gid", datatypeInfo.Gid, string.Format(xmlModel, dt.Rows[i][0].ToString(), dt.Rows[i][1].ToString(), dt.Rows[i][2].ToString(), dt.Rows[i][3].ToString(), dt.Rows[i][5].ToString()));
 
-                        (gridView1.DataSource as List<StdFieldInfo>).Insert(gridView1.RowCount - 1, datatypeInfo);
+                        (gridView1.DataSource as List<StdFieldInfo>).Insert((gridView1.DataSource as List<StdFieldInfo>).Count - 1, datatypeInfo);
                         addRows++;
                         lstName.Add(dt.Rows[i][0].ToString());
                     }
@@ -716,6 +720,27 @@ namespace JCodes.Framework.AddIn.Proj
                 dictTypeInfoList.Add(dictInfo);
             }
             #endregion
+        }
+
+        /// <summary>
+        /// 更新标准字段
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tsmirealoadcache_Click(object sender, EventArgs e)
+        {
+            if (gridView1.RowCount > 0 && gridView1.FocusedRowHandle >= 0)
+            {
+                StdFieldInfo stdFieldInfo = gridView1.GetFocusedRow() as StdFieldInfo;
+                if (null != stdFieldInfo)
+                { 
+                    // 弹框修改 只支持修改字段英文名、字段中文名、字段长度
+                    (new FrmModField(stdFieldInfo, gridControl1.DataSource as List<StdFieldInfo>)).ShowDialog();
+                    // 刷新界面
+                    xmlhelper = new XmlHelper(@"XML\stdfield.xml");
+                    BindData();
+                }
+            }
         }
     }
 }

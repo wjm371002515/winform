@@ -10,6 +10,7 @@ using JCodes.Framework.CommonControl;
 using JCodes.Framework.CommonControl.Framework;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.Entity;
+using JCodes.Framework.jCodesenum;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using System;
 using System.Collections.Generic;
@@ -81,17 +82,17 @@ namespace TestSecurityMix_WCF_WIN
             {
                 //判断用户是否登录成功
                 string loginName = this.txtLogin.Text.Trim();
-                string ip = NetworkUtil.GetLocalIP();
-                string macAddr = HardwareInfoHelper.GetMacAddress();
                 string systemType = "WareMis";
-                string identity = BLLFactory<User>.Instance.VerifyUser(loginName, this.txtPassword.Text, systemType, ip, macAddr);
+                string ip = NetworkUtil.GetLocalIP();
+                string mac = NetworkUtil.GetMacAddress();
+                string identity = BLLFactory<User>.Instance.VerifyUser(loginName, this.txtPassword.Text, systemType, ip, mac);
                 if (!string.IsNullOrEmpty(identity))
                 {
                     UserInfo info = BLLFactory<User>.Instance.GetUserByName(loginName);
                     if (info != null)
                     {
                         //获取该登陆用户的权限集合
-                        List<FunctionInfo> list = BLLFactory<Functions>.Instance.GetFunctionsByUser(info.Id, systemType);
+                        List<FunctionInfo> list = BLLFactory<Function>.Instance.GetFunctionsByUser(info.Id, systemType);
                         if (list != null && list.Count > 0)
                         {
                             foreach (FunctionInfo functionInfo in list)

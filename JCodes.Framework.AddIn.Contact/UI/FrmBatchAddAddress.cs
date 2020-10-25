@@ -187,7 +187,7 @@ namespace JCodes.Framework.AddIn.Contact
         /// <returns></returns>
         public override bool SaveUpdated()
         {
-            AddressInfo info = BLLFactory<Address>.Instance.FindByID(Id);
+            AddressInfo info = BLLFactory<Address>.Instance.FindById(Id);
             if (info != null)
             {
                 SetInfo(info);

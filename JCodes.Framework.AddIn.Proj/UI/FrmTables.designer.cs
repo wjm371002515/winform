@@ -18,7 +18,7 @@ namespace JCodes.Framework.AddIn.Proj
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmClassEntity));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTables));
             this.barAndDockingController = new DevExpress.XtraBars.BarAndDockingController(this.components);
             this.dockManager = new DevExpress.XtraBars.Docking.DockManager(this.components);
             this.hideContainerLeft = new DevExpress.XtraBars.Docking.AutoHideContainer();
@@ -36,6 +36,7 @@ namespace JCodes.Framework.AddIn.Proj
             this.bbiAddItem = new DevExpress.XtraBars.BarButtonItem();
             this.bbiModItem = new DevExpress.XtraBars.BarButtonItem();
             this.bbiDelItem = new DevExpress.XtraBars.BarButtonItem();
+            this.barbtnSyncBasic = new DevExpress.XtraBars.BarButtonItem();
             this.documentManager = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
             this.tabbedView = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
             this.pmGroup = new DevExpress.XtraBars.PopupMenu(this.components);
@@ -135,8 +136,9 @@ namespace JCodes.Framework.AddIn.Proj
             this.bbiDelGroup,
             this.bbiAddItem,
             this.bbiModItem,
-            this.bbiDelItem});
-            this.barManager1.MaxItemId = 7;
+            this.bbiDelItem,
+            this.barbtnSyncBasic});
+            this.barManager1.MaxItemId = 8;
             // 
             // barDockControlTop
             // 
@@ -208,6 +210,13 @@ namespace JCodes.Framework.AddIn.Proj
             this.bbiDelItem.Name = "bbiDelItem";
             this.bbiDelItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiDelItem_ItemClick);
             // 
+            // barbtnSyncBasic
+            // 
+            this.barbtnSyncBasic.Caption = "同步到类属性";
+            this.barbtnSyncBasic.Id = 7;
+            this.barbtnSyncBasic.Name = "barbtnSyncBasic";
+            this.barbtnSyncBasic.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtnSyncBasic_ItemClick);
+            // 
             // documentManager
             // 
             this.documentManager.BarAndDockingController = this.barAndDockingController;
@@ -242,7 +251,8 @@ namespace JCodes.Framework.AddIn.Proj
             // 
             this.pmItem.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.bbiModItem),
-            new DevExpress.XtraBars.LinkPersistInfo(this.bbiDelItem)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.bbiDelItem),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barbtnSyncBasic)});
             this.pmItem.Manager = this.barManager1;
             this.pmItem.Name = "pmItem";
             // 
@@ -253,19 +263,19 @@ namespace JCodes.Framework.AddIn.Proj
             this.toolStripMenuItem_AddField,
             this.toolStripMenuItem_DelField});
             this.contextMenuStripFields.Name = "contextMenuStripFields";
-            this.contextMenuStripFields.Size = new System.Drawing.Size(166, 64);
+            this.contextMenuStripFields.Size = new System.Drawing.Size(153, 60);
             // 
             // toolStripMenuItem_AddField
             // 
             this.toolStripMenuItem_AddField.Name = "toolStripMenuItem_AddField";
-            this.toolStripMenuItem_AddField.Size = new System.Drawing.Size(165, 30);
+            this.toolStripMenuItem_AddField.Size = new System.Drawing.Size(152, 28);
             this.toolStripMenuItem_AddField.Text = "新增字段";
             this.toolStripMenuItem_AddField.Click+=toolStripMenuItem_AddField_Click;
             // 
             // toolStripMenuItem_DelField
             // 
             this.toolStripMenuItem_DelField.Name = "toolStripMenuItem_DelField";
-            this.toolStripMenuItem_DelField.Size = new System.Drawing.Size(165, 30);
+            this.toolStripMenuItem_DelField.Size = new System.Drawing.Size(152, 28);
             this.toolStripMenuItem_DelField.Text = "删除字段";
             this.toolStripMenuItem_DelField.Click+=toolStripMenuItem_DelField_Click;
             // 
@@ -276,21 +286,21 @@ namespace JCodes.Framework.AddIn.Proj
             this.toolStripMenuItem_AddIndex,
             this.toolStripMenuItem_DelIndex});
             this.contextMenuStripIndex.Name = "contextMenuStripIndex";
-            this.contextMenuStripIndex.Size = new System.Drawing.Size(166, 64);
+            this.contextMenuStripIndex.Size = new System.Drawing.Size(153, 60);
             // 
             // toolStripMenuItem_AddIndex
             // 
             this.toolStripMenuItem_AddIndex.Name = "toolStripMenuItem_AddIndex";
-            this.toolStripMenuItem_AddIndex.Size = new System.Drawing.Size(165, 30);
+            this.toolStripMenuItem_AddIndex.Size = new System.Drawing.Size(152, 28);
             this.toolStripMenuItem_AddIndex.Text = "新增索引";
-            this.toolStripMenuItem_AddIndex.Click+=toolStripMenuItem_AddIndex_Click;
+            this.toolStripMenuItem_AddIndex.Click += toolStripMenuItem_AddIndex_Click;
             // 
             // toolStripMenuItem_DelIndex
             // 
             this.toolStripMenuItem_DelIndex.Name = "toolStripMenuItem_DelIndex";
-            this.toolStripMenuItem_DelIndex.Size = new System.Drawing.Size(165, 30);
+            this.toolStripMenuItem_DelIndex.Size = new System.Drawing.Size(152, 28);
             this.toolStripMenuItem_DelIndex.Text = "删除索引";
-            this.toolStripMenuItem_DelIndex.Click+=toolStripMenuItem_DelIndex_Click;
+            this.toolStripMenuItem_DelIndex.Click += toolStripMenuItem_DelIndex_Click;
             // 
             // FrmTables
             // 
@@ -352,5 +362,6 @@ namespace JCodes.Framework.AddIn.Proj
         private System.Windows.Forms.ContextMenuStrip contextMenuStripIndex;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_AddIndex;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_DelIndex;
+        private DevExpress.XtraBars.BarButtonItem barbtnSyncBasic;
     }
 }

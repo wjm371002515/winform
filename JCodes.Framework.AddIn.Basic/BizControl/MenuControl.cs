@@ -18,7 +18,7 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
     /// <summary>
     /// 菜单显示控件
     /// </summary>
-    public partial class MenuControl : UserControl
+    public partial class MenuControl : UserControl, ISupportStyleController
     {
         /// <summary>
         /// 选择的值发生变化的时候
@@ -53,8 +53,8 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
         /// </summary>
         public void Init()
         {
-            DataTable dt = DataTableHelper.CreateTable("ImageIndex|int,ID,PID,Name,FunctionId,SystemType_ID,Seq");
-            List<MenuInfo> list = BLLFactory<Menus>.Instance.GetAll();
+            DataTable dt = DataTableHelper.CreateTable("ImageIndex|int,Gid,Pgid,Name,AuthGid,SystemtypeId,Seq");
+            List<MenuInfo> list = BLLFactory<JCodes.Framework.BLL.Menu>.Instance.GetAll();
             DataRow dr = null;
             foreach (MenuInfo info in list)
             {
@@ -70,8 +70,8 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
             }
             //增加一行空的
             dr = dt.NewRow();
-            dr["ID"] = "0"; //使用0代替-1，避免出现节点的嵌套显示，因为-1已经作为了一般节点的顶级标识
-            dr["PID"] = "-1";
+            dr["Gid"] = "0"; //使用0代替-1，避免出现节点的嵌套显示，因为-1已经作为了一般节点的顶级标识
+            dr["Pgid"] = "-1";
             dr["Name"] = "无";
             dt.Rows.InsertAt(dr, 0);
 
@@ -79,10 +79,10 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
             this.treeListLookUpEdit1TreeList.SelectImageList = this.imageList2;
             this.treeListLookUpEdit1TreeList.StateImageList = this.imageList2;
 
-            this.txtMenu.Properties.TreeList.KeyFieldName = "ID";
-            this.txtMenu.Properties.TreeList.ParentFieldName = "PID";
+            this.txtMenu.Properties.TreeList.KeyFieldName = "Gid";
+            this.txtMenu.Properties.TreeList.ParentFieldName = "Pgid";
             this.txtMenu.Properties.DataSource = dt;
-            this.txtMenu.Properties.ValueMember = "ID";
+            this.txtMenu.Properties.ValueMember = "Gid";
             this.txtMenu.Properties.DisplayMember = "Name";
         }
 
@@ -138,6 +138,18 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
             if (!this.DesignMode)
             {
                 Init();
+            }
+        }
+
+        public IStyleController StyleController
+        {
+            get
+            {
+                return txtMenu.StyleController;
+            }
+            set
+            {
+                txtMenu.StyleController = value;
             }
         }
     }

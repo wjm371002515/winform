@@ -100,7 +100,7 @@ namespace JCodes.Framework.AddIn.Basic
             List<WareHouseInfo> wareList = BLLFactory<WareHouse>.Instance.GetAll();
             ReportMonthlyHeaderInfo eachWareHeaderInfo = GetMainHeader();
             eachWareHeaderInfo.ReportTitle = string.Format("{0}库房结存月报表", DateTimeHelper.GetServerDateTime2().ToString("yyyy年MM月"));
-            eachWareHeaderInfo.ReportType = 2;
+            eachWareHeaderInfo.MonthlyReportType = (short)MonthlyReportType.库房结存;
             int headerID = BLLFactory<ReportMonthlyHeader>.Instance.InsertOrUpdate(eachWareHeaderInfo);
             if (headerID > 0)
             {
@@ -119,14 +119,14 @@ namespace JCodes.Framework.AddIn.Basic
                     detailInfo.ReportMonth = (short)DateTimeHelper.GetServerDateTime2().Month;
                     //detailInfo.YearMonth = DateTimeHelper.GetServerDateTime2().ToString("yyyy年MM月");
                     detailInfo.Name = wareInfo.Name;//项目名称为库房名称
-                    detailInfo.CurrentCount = BLLFactory<ReportMonthlyDetail>.Instance.GetEachWareCount(StatisticValueType.CurrentCount, wareInfo.Name);
-                    detailInfo.CurrentInCount = BLLFactory<ReportMonthlyDetail>.Instance.GetEachWareCount(StatisticValueType.CurrentInCount, wareInfo.Name);
-                    detailInfo.CurrentInMoney = BLLFactory<ReportMonthlyDetail>.Instance.GetEachWareMoney(StatisticValueType.CurrentInMoney, wareInfo.Name);
-                    detailInfo.CurrentMoney = BLLFactory<ReportMonthlyDetail>.Instance.GetEachWareMoney(StatisticValueType.CurrentMoney, wareInfo.Name);
-                    detailInfo.CurrentOutCount = BLLFactory<ReportMonthlyDetail>.Instance.GetEachWareCount(StatisticValueType.CurrentOutCount, wareInfo.Name);
-                    detailInfo.CurrentOutMoney = BLLFactory<ReportMonthlyDetail>.Instance.GetEachWareMoney(StatisticValueType.CurrentOutMoney, wareInfo.Name); ;
-                    detailInfo.LastCount = BLLFactory<ReportMonthlyDetail>.Instance.GetEachWareCount(StatisticValueType.LastCount, wareInfo.Name);
-                    detailInfo.LastMoney = BLLFactory<ReportMonthlyDetail>.Instance.GetEachWareMoney(StatisticValueType.LastMoney, wareInfo.Name); ;
+                    //detailInfo.CurrentCount = BLLFactory<ReportMonthlyDetail>.Instance.GetEachWareCount(StatisticValueType.CurrentCount, wareInfo.Name);
+                    //detailInfo.CurrentInCount = BLLFactory<ReportMonthlyDetail>.Instance.GetEachWareCount(StatisticValueType.CurrentInCount, wareInfo.Name);
+                    //detailInfo.CurrentInMoney = BLLFactory<ReportMonthlyDetail>.Instance.GetEachWareMoney(StatisticValueType.CurrentInMoney, wareInfo.Name);
+                    //detailInfo.CurrentMoney = BLLFactory<ReportMonthlyDetail>.Instance.GetEachWareMoney(StatisticValueType.CurrentMoney, wareInfo.Name);
+                    //detailInfo.CurrentOutCount = BLLFactory<ReportMonthlyDetail>.Instance.GetEachWareCount(StatisticValueType.CurrentOutCount, wareInfo.Name);
+                    //detailInfo.CurrentOutMoney = BLLFactory<ReportMonthlyDetail>.Instance.GetEachWareMoney(StatisticValueType.CurrentOutMoney, wareInfo.Name); ;
+                    //detailInfo.LastCount = BLLFactory<ReportMonthlyDetail>.Instance.GetEachWareCount(StatisticValueType.LastCount, wareInfo.Name);
+                    //detailInfo.LastMoney = BLLFactory<ReportMonthlyDetail>.Instance.GetEachWareMoney(StatisticValueType.LastMoney, wareInfo.Name); ;
 
                     BLLFactory<ReportMonthlyDetail>.Instance.Insert(detailInfo);
 

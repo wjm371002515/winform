@@ -5,6 +5,7 @@ using Microsoft.Win32;
 using System;
 using System.Text;
 using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.Common.Device
 {

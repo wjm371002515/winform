@@ -11,18 +11,42 @@ namespace JCodes.Framework.BLL
     /// <summary>
     /// 系统功能定义
     /// </summary>
-    public class Functions : BaseBLL<FunctionInfo>
+    public class Function : BaseBLL<FunctionInfo>
     {
-        private IFunctions functionDal;
+        private IFunction dal;
 
         /// <summary>
         /// 构造函数
         /// </summary>
-        public Functions()  : base()
+        public Function() : base()
         {
-            base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+            if (isMultiDatabase)
+            {
+                base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name, dicmultiDatabase[this.GetType().Name].ToString());
+            }
+            else
+            {
+                base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+            }
+
             baseDal.OnOperationLog += new OperationLogEventHandler(OperationLog.OnOperationLog);//如果需要记录操作日志，则实现这个事件
-            functionDal = baseDal as IFunctions;
+
+            dal = baseDal as IFunction;
+        }
+
+        /// <summary>
+        /// 根据角色ID字符串（逗号分开)和系统类型ID，获取对应的操作功能列表
+        /// </summary>
+        /// <param name="roleIds">角色ID</param>
+        /// <param name="systemtypeId">系统类型ID</param>
+        /// <returns></returns>
+        public List<FunctionInfo> GetFunctions(string roleIds, string systemtypeId)
+        {
+            if (roleIds == string.Empty)
+            {
+                roleIds = "-1";
+            }
+            return this.dal.GetFunctions(roleIds, systemtypeId);
         }
 
         /// <summary>
@@ -31,28 +55,13 @@ namespace JCodes.Framework.BLL
         /// <param name="roleIDs">角色ID</param>
         /// <param name="typeID">系统类型ID</param>
         /// <returns></returns>
-        public List<FunctionInfo> GetFunctions(string roleIDs, string typeID)
+        public List<FunctionNodeInfo> GetFunctionNodes(string roleIds, string systemtypeId)
         {
-            if (roleIDs == string.Empty)
+            if (roleIds == string.Empty)
             {
-                roleIDs = "-1";
+                roleIds = "-1";
             }
-            return this.functionDal.GetFunctions(roleIDs, typeID);
-        }
-
-        /// <summary>
-        /// 根据角色ID字符串（逗号分开)和系统类型ID，获取对应的操作功能列表
-        /// </summary>
-        /// <param name="roleIDs">角色ID</param>
-        /// <param name="typeID">系统类型ID</param>
-        /// <returns></returns>
-        public List<FunctionNodeInfo> GetFunctionNodes(string roleIDs, string typeID)
-        {
-            if (roleIDs == string.Empty)
-            {
-                roleIDs = "-1";
-            }
-            return this.functionDal.GetFunctionNodes(roleIDs, typeID);
+            return this.dal.GetFunctionNodes(roleIds, systemtypeId);
         }
 
         /// <summary>
@@ -60,9 +69,9 @@ namespace JCodes.Framework.BLL
         /// </summary>
         /// <param name="roleID">角色ID</param>
         /// <returns></returns>
-        public List<FunctionInfo> GetFunctionsByRole(int roleID)
+        public List<FunctionInfo> GetFunctionsByRoleId(Int32 roleId)
         {
-            return this.functionDal.GetFunctionsByRole(roleID);
+            return this.dal.GetFunctionsByRoleId(roleId);
         }
 
         /// <summary>
@@ -71,20 +80,20 @@ namespace JCodes.Framework.BLL
         /// <param name="userID">用户ID</param>
         /// <param name="typeID">系统类别ID</param>
         /// <returns></returns>
-        public List<FunctionInfo> GetFunctionsByUser(int userID, string typeID)
+        public List<FunctionInfo> GetFunctionsByUser(Int32 userId, string systemtypeId)
         {
-            List<RoleInfo> rolesByUser = BLLFactory<Role>.Instance.GetRolesByUser(userID);
-            string roleIDs = ",";
+            List<RoleInfo> rolesByUser = BLLFactory<Role>.Instance.GetRolesByUser(userId);
+            string roleIds = ",";
             foreach (RoleInfo info in rolesByUser)
             {
-                roleIDs = roleIDs + info.Id + ",";
+                roleIds = roleIds + info.Id + ",";
             }
-            roleIDs = roleIDs.Trim(',');//移除前后的逗号
+            roleIds = roleIds.Trim(',');//移除前后的逗号
 
             List<FunctionInfo> functions = new List<FunctionInfo>();
-            if (!string.IsNullOrEmpty(roleIDs))
+            if (!string.IsNullOrEmpty(roleIds))
             {
-                functions = this.GetFunctions(roleIDs, typeID);
+                functions = this.GetFunctions(roleIds, systemtypeId);
             }
             return functions;
         }
@@ -92,23 +101,23 @@ namespace JCodes.Framework.BLL
         /// <summary>
         /// 根据用户ID，获取对应的功能列表
         /// </summary>
-        /// <param name="userID">用户ID</param>
-        /// <param name="typeID">系统类别ID</param>
+        /// <param name="userId">用户ID</param>
+        /// <param name="systemtypeId">系统类别ID</param>
         /// <returns></returns>
-        public List<FunctionNodeInfo> GetFunctionNodesByUser(int userID, string typeID)
+        public List<FunctionNodeInfo> GetFunctionNodesByUser(Int32 userId, string systemtypeId)
         {
-            List<RoleInfo> rolesByUser = BLLFactory<Role>.Instance.GetRolesByUser(userID);
-            string roleIDs = ",";
+            List<RoleInfo> rolesByUser = BLLFactory<Role>.Instance.GetRolesByUser(userId);
+            string roleIds = ",";
             foreach (RoleInfo info in rolesByUser)
             {
-                roleIDs = roleIDs + info.Id + ",";
+                roleIds = roleIds + info.Id + ",";
             }
-            roleIDs = roleIDs.Trim(',');//移除前后的逗号
+            roleIds = roleIds.Trim(',');//移除前后的逗号
 
             List<FunctionNodeInfo> functions = new List<FunctionNodeInfo>();
-            if (!string.IsNullOrEmpty(roleIDs))
+            if (!string.IsNullOrEmpty(roleIds))
             {
-                functions = this.GetFunctionNodes(roleIDs, typeID);
+                functions = this.GetFunctionNodes(roleIds, systemtypeId);
             }
             return functions;
         }
@@ -117,41 +126,41 @@ namespace JCodes.Framework.BLL
         /// 获取树形结构的功能列表
         /// </summary>
         /// <param name="systemType">系统类型的OID</param>
-        public List<FunctionNodeInfo> GetTree(string systemType)
+        public List<FunctionNodeInfo> GetTree(string systemtypeId)
         {
-            return functionDal.GetTree(systemType);
+            return dal.GetTree(systemtypeId);
         }
 
         /// <summary>
         /// 获取指定功能下面的树形列表
         /// </summary>
         /// <param name="id">指定功能ID</param>
-        public List<FunctionNodeInfo> GetTreeByID(string mainID)
+        public List<FunctionNodeInfo> GetTreeById(string mainId)
         {
-            return functionDal.GetTreeByID(mainID);
+            return dal.GetTreeById(mainId);
         }
                        
         /// <summary>
         /// 根据角色获取树形结构的功能列表
         /// </summary>
-        public List<FunctionNodeInfo> GetTreeWithRole(string systemType, List<int> roleList)
+        public List<FunctionNodeInfo> GetTreeWithRole(string systemtypeId, List<Int32> roleList)
         {
-            return functionDal.GetTreeWithRole(systemType, roleList);
+            return dal.GetTreeWithRole(systemtypeId, roleList);
         }
                       
         /// <summary>
         /// 根据角色获取树形结构的功能列表
         /// </summary>
-        public List<FunctionNodeInfo> GetTreeWithUser(string systemType, int userID)
+        public List<FunctionNodeInfo> GetTreeWithUser(string systemtypeId, Int32 userId)
         {
-            List<RoleInfo> rolesByUser = BLLFactory<Role>.Instance.GetRolesByUser(userID);
-            List<int> roleList = new List<int>();
+            List<RoleInfo> rolesByUser = BLLFactory<Role>.Instance.GetRolesByUser(userId);
+            List<Int32> roleList = new List<Int32>();
             foreach (RoleInfo info in rolesByUser)
             {
                 roleList.Add(info.Id);
             }
 
-            return GetTreeWithRole(systemType, roleList);
+            return GetTreeWithRole(systemtypeId, roleList);
         }
 
         /// <summary>
@@ -159,18 +168,18 @@ namespace JCodes.Framework.BLL
         /// </summary>
         /// <param name="Id">节点ID</param>
         /// <returns></returns>
-        public bool DeleteWithSubNode(string mainID, Int32 userId)
+        public bool DeleteWithSubNode(string mainId, Int32 userId)
         {
-            return functionDal.DeleteWithSubNode(mainID, userId);
+            return dal.DeleteWithSubNode(mainId, userId);
         }
 
         /// <summary>
         /// 根据指定的父ID获取其下面一级（仅限一级）的功能列表
         /// </summary>
-        /// <param name="pid">菜单父ID</param>
-        public List<FunctionInfo> GetFunctionByPID(string pid)
+        /// <param name="pgid">菜单父ID</param>
+        public List<FunctionInfo> GetFunctionByPgid(string pgid)
         {
-            return functionDal.GetFunctionByPID(pid);
+            return dal.GetFunctionByPgid(pgid);
         }
     }
 }

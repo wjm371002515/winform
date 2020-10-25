@@ -18,7 +18,7 @@ namespace JCodes.Framework.AddIn.UI.BizControl
     /// <summary>
     /// 功能显示控件
     /// </summary>
-    public partial class FunctionControl : UserControl
+    public partial class FunctionControl : UserControl, ISupportStyleController
     {
         /// <summary>
         /// 选择的值发生变化的时候
@@ -54,8 +54,8 @@ namespace JCodes.Framework.AddIn.UI.BizControl
         public void Init()
         {
             //InitUpperFunction
-            DataTable dt = DataTableHelper.CreateTable("ImageIndex|int,ID,PID,Name,FunctionId,SystemType_ID,Seq");
-            List<FunctionInfo> list = BLLFactory<Functions>.Instance.GetAll();
+            DataTable dt = DataTableHelper.CreateTable("ImageIndex|int,Gid,Pgid,Name,DllPath,SystemtypeId,Seq");
+            List<FunctionInfo> list = BLLFactory<Function>.Instance.GetAll();
             DataRow dr = null;
             foreach (FunctionInfo info in list)
             {
@@ -139,6 +139,18 @@ namespace JCodes.Framework.AddIn.UI.BizControl
             if (!this.DesignMode)
             {
                 Init();
+            }
+        }
+
+        public IStyleController StyleController
+        {
+            get
+            {
+                return txtFunction.StyleController;
+            }
+            set
+            {
+                txtFunction.StyleController = value;
             }
         }
     }

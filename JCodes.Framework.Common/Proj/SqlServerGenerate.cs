@@ -144,6 +144,11 @@ namespace JCodes.Framework.Common.Proj
             // 创建唯一索引
             sbResult.Append(IndexStr);
 
+            // 20200304 添加表的描述
+            // EXECUTE sp_addextendedproperty N'MS_Description', N'测试表', N'user', N'dbo',N'table', N'T_Dongnanhai_DongnanhaiVotes', NULL, NULL
+            // execute sp_updateextendedproperty N'MS_Description',N'修改注释-测试表',N'user',N'dbo',N'table',N'T_Dongnanhai_DongnanhaiVotes',null,null;  
+            sbResult.Append(string.Format("EXECUTE sp_addextendedproperty N'MS_Description', N'{0}', N'user', N'dbo',N'table', N'{1}', NULL, NULL;\r\n", tableChineseName, tableEnglishName));
+
             if (existHistable)
             {
                 sbResult.Append("历史表数据添加");
@@ -247,7 +252,7 @@ namespace JCodes.Framework.Common.Proj
                     string remark = dict.Remark;
                     if (remark.Contains(Const.SingleQuotation))
                         remark = remark.Replace(Const.SingleQuotation, Const.DuobleSingleQuotation);
-                    sbResult.Append(string.Format("INSERT [{0}] ([Gid], [DictTypeId], [Value], [Name], [Remark], [Seq], [EditorId], [LastUpdateTime]) VALUES (NEWID(), {1}, {2}, N'{3}', N'{4}', N'{5}', '1', GETDATE())\r\n", tableEnglishName, dict.DicttypeId, dict.DicttypeValue, dict.Name, remark, dict.Seq));
+                    sbResult.Append(string.Format("INSERT [{0}] ([Gid], [DictTypeId], [DicttypeValue], [Name], [Remark], [Seq], [EditorId], [LastUpdateTime]) VALUES (NEWID(), {1}, {2}, N'{3}', N'{4}', N'{5}', '1', GETDATE())\r\n", tableEnglishName, dict.DicttypeId, dict.DicttypeValue, dict.Name, remark, dict.Seq));
                 }
             }
 

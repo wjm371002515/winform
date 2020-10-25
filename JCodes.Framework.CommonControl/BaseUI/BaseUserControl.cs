@@ -12,6 +12,7 @@ using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.CommonControl.PlugInInterface;
 using JCodes.Framework.Common.Office;
 using JCodes.Framework.CommonControl.Other;
+using JCodes.Framework.Entity;
 
 namespace JCodes.Framework.CommonControl.BaseUI
 {
@@ -27,10 +28,10 @@ namespace JCodes.Framework.CommonControl.BaseUI
 
         /// <summary>
         /// 可操作性公司
-        /// 需要在前面加上括号 字段名 + canOptCompanyID + 括号
-        /// 如: "and ( CompanyID " +  canOptCompanyID + ") "
+        /// 需要在前面加上括号 字段名 + canOptCompanyId + 括号
+        /// 如: "and ( CompanyID " +  canOptCompanyId + ") "
         /// </summary>
-        public string canOptCompanyID { get; set; }
+        public string canOptCompanyId { get; set; }
 
         /// <summary>
         /// 可操作部门
@@ -54,7 +55,7 @@ namespace JCodes.Framework.CommonControl.BaseUI
                 this.FunctionDict = Cache.Instance["FunctionDict"] as Dictionary<string, string>;
 
                 // 进行数据过滤的Sql条件
-                this.canOptCompanyID = Cache.Instance["canOptCompanyID"] as string;
+                this.canOptCompanyId = Cache.Instance["canOptCompanyId"] as string;
                 this.canOptDeptId = Cache.Instance["canOptDeptId"] as string;
             }
         }

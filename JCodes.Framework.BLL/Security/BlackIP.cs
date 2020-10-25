@@ -17,10 +17,22 @@ namespace JCodes.Framework.BLL
     /// </summary>
 	public class BlackIP : BaseBLL<BlackIPInfo>
     {
+        private IBlackIP dal;
+
         public BlackIP() : base()
         {
-            base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+            if (isMultiDatabase)
+            {
+                base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name, dicmultiDatabase[this.GetType().Name].ToString());
+            }
+            else
+            {
+                base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+            }
+
             baseDal.OnOperationLog += new OperationLogEventHandler(OperationLog.OnOperationLog);//如果需要记录操作日志，则实现这个事件
+
+            dal = baseDal as IBlackIP;
         }                     
 
         /// <summary>
@@ -28,30 +40,26 @@ namespace JCodes.Framework.BLL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public List<SimpleUserInfo> GetSimpleUserByBlackIP(Int32 id)
+        public List<SimpleUserInfo> GetSimpleUserByBlackIP(Int32 Id)
         {
-            IBlackIP dal = baseDal as IBlackIP;
-            string userIdList = "-1," + dal.GetUserIdList(id);
+            string userIdList = "-1," + dal.GetUserIdList(Id);
 
             return BLLFactory<User>.Instance.GetSimpleUsers(userIdList.Trim(','));
         }
 
-        public void AddUser(Int32 userID, Int32 blackID)
+        public void AddUser(Int32 userId, Int32 blackId)
         {
-            IBlackIP dal = baseDal as IBlackIP;
-            dal.AddUser(userID, blackID);
+            dal.AddUser(userId, blackId);
         }
 
-        public void RemoveUser(Int32 userID, Int32 blackID)
+        public void RemoveUser(Int32 userId, Int32 blackId)
         {
-            IBlackIP dal = baseDal as IBlackIP;
-            dal.RemoveUser(userID, blackID);
+            dal.RemoveUser(userId, blackId);
         }
 
-        public void RemoveUserByBlackId(Int32 blackID)
+        public void RemoveUserByBlackId(Int32 blackId)
         {
-            IBlackIP dal = baseDal as IBlackIP;
-            dal.RemoveUserByBlackId(blackID);
+            dal.RemoveUserByBlackId(blackId);
         }
         
         /// <summary>
@@ -60,10 +68,9 @@ namespace JCodes.Framework.BLL
         /// <param name="userId">用户ID</param>
         /// <param name="type">授权类型</param>
         /// <returns></returns>
-        public List<BlackIPInfo> FindByUser(int userId, AuthrizeType type)
+        public List<BlackIPInfo> FindByUser(Int32 userId, AuthorizeType authorizeType)
         {
-            IBlackIP dal = baseDal as IBlackIP;
-            return dal.FindByUser(userId, type);
+            return dal.FindByUser(userId, authorizeType);
         }
 
         /// <summary>
@@ -71,23 +78,22 @@ namespace JCodes.Framework.BLL
         /// </summary>
         /// <param name="ipAddress"></param>
         /// <returns></returns>
-        public bool ValidateIPAccess(string ipAddress, int userId)
+        public bool ValidateIPAccess(string ip, Int32 userId)
         {
             bool result = false;
-            IBlackIP dal = baseDal as IBlackIP;
 
-            List<BlackIPInfo> whiteList = dal.FindByUser(userId, AuthrizeType.白名单);
+            List<BlackIPInfo> whiteList = dal.FindByUser(userId, AuthorizeType.白名单);    // 白名单
 
             if (whiteList.Count > 0)
             {
-                result = IsInList(whiteList, ipAddress);
+                result = IsInList(whiteList, ip);
                 return result; //白名单优先于黑名单，在白名单则通过
             }
 
-            List<BlackIPInfo> blackList = dal.FindByUser(userId, AuthrizeType.黑名单);
+            List<BlackIPInfo> blackList = dal.FindByUser(userId, AuthorizeType.黑名单);    // 黑名单
             if (blackList.Count > 0)
             {
-                bool flag = IsInList(blackList, ipAddress);
+                bool flag = IsInList(blackList, ip);
                 return !flag;//不在则通过，在就禁止
             }
 

@@ -15,6 +15,8 @@ namespace JCodes.Framework.WebUI.Controllers
     {
         public ActionResult Second()
         {
+            ViewBag.SubTitle = "测试界面";
+
             return View("Second");   
         }
 
@@ -22,11 +24,11 @@ namespace JCodes.Framework.WebUI.Controllers
         {
             if (CurrentUser != null)
             {
-                ViewBag.FullName = CurrentUser.FullName;
+                ViewBag.LoginName = CurrentUser.LoginName;
                 ViewBag.Name = CurrentUser.Name;
 
                 StringBuilder sb = new StringBuilder();
-                List<MenuInfo> menuList = BLLFactory<Menus>.Instance.GetTopMenu(Const.SystemTypeID);
+                List<MenuInfo> menuList = BLLFactory<Menu>.Instance.GetTopMenu(Const.SystemTypeID);
                 int i = 0;
                 foreach (MenuInfo menuInfo in menuList)
                 {
@@ -44,10 +46,6 @@ namespace JCodes.Framework.WebUI.Controllers
             if (HasFunction(info.AuthGid))
             {
                 string url = info.Url;
-                if (url != null)
-                {
-                    // url = url.Replace("#", "");
-                }
 
                 string menuId = (i == 0) ? "default" : info.Gid;
 
@@ -61,16 +59,6 @@ namespace JCodes.Framework.WebUI.Controllers
                 }
             }
             return result;
-        }
-
-        public ActionResult Another()
-        {
-            if (CurrentUser != null)
-            {
-                ViewBag.FullName = CurrentUser.FullName;
-                ViewBag.Name = CurrentUser.Name;
-            }
-            return View();
         }
     }
 }

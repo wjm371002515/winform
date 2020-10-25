@@ -12,7 +12,7 @@
 <!-- BEGIN HEAD -->
 <head>
     <meta charset="utf-8" />
-    <title>企业信息化平台管理系统</title>
+    <title>@ViewBag.AppName</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
@@ -44,7 +44,7 @@
     <div class="page-lock">
         <div class="page-logo">
             <a class="brand" href="/Login/index">
-                <h2 style="color:white">企业信息化平台管理系统</h2>
+                <h2 style="color:white">@ViewBag.AppName</h2>
             </a>
         </div>
         <div class="page-body">
@@ -70,11 +70,9 @@
             </div>
         </div>
         <div class="page-footer-custom">
-            <span class="label label-success"> 2015版 &copy; 广州爱奇迪软件科技有限公司</span>
-        </div>
+            <span style="color: white;">作者:</span><a class="label label-success" href="http://jcodes.cn">JimmyWu</a> &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: white;">QQ:</span><a href="tencent://message/?uin=371002515&Site=&Menu=yes" title="冥仼煋垨護者">371002515</a>
+</div>
     </div>
-
-
     <!-- END CONTAINER -->
     <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
     <!-- BEGIN CORE PLUGINS -->
@@ -87,14 +85,14 @@
     <script>
     //页面初始化
     $(function () {
-        var id = $.cookie('lock_UserID');
+        var id = $.cookie('lock_UserId');
         var username = $.cookie('lock_UserName');
 
         if(id == undefined || id == '' ) {
             id = "-1";
         }
         $("#myPortrait").attr('src', '/Login/GetPortrait?id=' + id);
-        $("#fullname").text($.cookie("lock_FullName"));
+        $("#fullname").text($.cookie("lock_LoginName"));
 
 
         //处理表单提交登陆
@@ -125,8 +123,6 @@
         });
     });
     </script>
-
-</body>
 
 </body>
 </html>

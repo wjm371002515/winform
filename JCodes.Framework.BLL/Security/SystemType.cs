@@ -12,16 +12,25 @@ namespace JCodes.Framework.BLL
     /// </summary>
     public class SystemType : BaseBLL<SystemTypeInfo>
 	{
-		private ISystemType systemTypeDal;
+        private ISystemType dal = null;
 
         /// <summary>
         /// 构造函数
         /// </summary>
 		public SystemType() :base()
         {
-            base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+            if (isMultiDatabase)
+            {
+                base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name, dicmultiDatabase[this.GetType().Name].ToString());
+            }
+            else
+            {
+                base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+            }
+
             baseDal.OnOperationLog += new OperationLogEventHandler(OperationLog.OnOperationLog);//如果需要记录操作日志，则实现这个事件
-			this.systemTypeDal = (ISystemType) baseDal;
+
+            dal = baseDal as ISystemType;
 		}
 
         public override bool DeleteByUser(object key, Int32 userId, System.Data.Common.DbTransaction trans = null)
@@ -37,11 +46,11 @@ namespace JCodes.Framework.BLL
         /// <summary>
         /// 根据系统OID获取系统标识信息
         /// </summary>
-        /// <param name="oid">系统OID</param>
+        /// <param name="gid">系统GID</param>
         /// <returns></returns>
-		public SystemTypeInfo FindByOID(string oid)
+        public SystemTypeInfo FindByGid(string gid)
 		{
-			return this.systemTypeDal.FindByOID(oid);
+            return dal.FindById(gid);
 		}
 
         /// <summary>
@@ -60,9 +69,9 @@ namespace JCodes.Framework.BLL
         /// <param name="typeID">类型ID</param>
         /// <param name="authorizeAmount">授权数量</param>
         /// <returns></returns>
-		public bool VerifySystem(string serialNumber, string typeID, int authorizeAmount)
+		public bool VerifySystem(string serialNumber, string typeID, Int32 authorizeAmount)
 		{
-			return this.systemTypeDal.VerifySystem(serialNumber, typeID, authorizeAmount);
+            return dal.VerifySystem(serialNumber, typeID, authorizeAmount);
 		}
 	}
 }

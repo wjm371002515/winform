@@ -23,6 +23,8 @@ using JCodes.Framework.Common.Network;
 using JCodes.Framework.Common.Device;
 using JCodes.Framework.AddIn.Basic;
 using JCodes.Framework.Common.Format;
+using JCodes.Framework.jCodesenum;
+using DevExpress.XtraPrinting;
 
 namespace JCodes.Framework.AddIn.Security
 {
@@ -43,12 +45,12 @@ namespace JCodes.Framework.AddIn.Security
             this.winGridViewPager1.OnAddNew += new EventHandler(winGridViewPager1_OnAddNew);
             this.winGridViewPager1.OnDeleteSelected += new EventHandler(winGridViewPager1_OnDeleteSelected);
             this.winGridViewPager1.OnRefresh += new EventHandler(winGridViewPager1_OnRefresh);
+            this.winGridViewPager1.gridView1.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(gridView1_RowStyle);
             this.winGridViewPager1.AppendedMenu = this.contextMenuStrip1;
             this.winGridViewPager1.ShowLineNumber = true;
             this.winGridViewPager1.BestFitColumnWith = false;//是否设置为自动调整宽度，false为不设置
             this.winGridViewPager1.gridView1.DataSourceChanged += new EventHandler(gridView1_DataSourceChanged);
             this.winGridViewPager1.gridView1.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(gridView1_CustomColumnDisplayText);
-            this.winGridViewPager1.gridView1.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(gridView1_RowCellStyle);
             this.winGridViewPager1.PagerInfo.PageSize = 20;//指定20个一页
 
             //关联回车键进行查询
@@ -58,42 +60,42 @@ namespace JCodes.Framework.AddIn.Security
             }
         }
 
-        void gridView1_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        void gridView1_RowStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs e)
         {
-            if (e.Column.FieldName == "AuditStatus")
+            try
             {
-                string status = this.winGridViewPager1.gridView1.GetRowCellValue(e.RowHandle, "AuditStatus").ToString();
-                Color color = Color.White;
-                if (status == "未审核")
+                if (e.RowHandle >= 0)
                 {
-                    e.Appearance.BackColor = Color.Red;
-                    e.Appearance.BackColor2 = Color.LightCyan;
+                    if ((sender as DevExpress.XtraGrid.Views.Grid.GridView).GetRowCellValue(e.RowHandle, "IsExpire").ToString().ToInt32() == (short)IsDelete.是)
+                    {
+                        e.Appearance.ForeColor = Color.Red;
+                    }
+
+                    if ((sender as DevExpress.XtraGrid.Views.Grid.GridView).GetRowCellValue(e.RowHandle, "IsDelete").ToString().ToInt32() == (short)IsDelete.是)
+                    {
+                        e.Appearance.ForeColor = Color.Red;
+                        Font font = new System.Drawing.Font("", e.Appearance.Font.Size, FontStyle.Strikeout);
+                        e.Appearance.Font = font;
+                    }    
                 }
             }
-            else if (e.Column.FieldName == "IsExpire")
+            catch (Exception)
             {
-                string status = this.winGridViewPager1.gridView1.GetRowCellValue(e.RowHandle, "IsExpire").ToString();
-                Color color = Color.White;
-                if (status.ToBoolean())
-                {
-                    e.Appearance.BackColor = Color.Yellow;
-                    e.Appearance.BackColor2 = Color.LightCyan;
-                }
-            }
-            else if (e.Column.FieldName == "Deleted")
-            {
-                string status = this.winGridViewPager1.gridView1.GetRowCellValue(e.RowHandle, "Deleted").ToString();
-                Color color = Color.White;
-                if (status.ToBoolean())
-                {
-                    e.Appearance.BackColor = Color.Yellow;
-                    e.Appearance.BackColor2 = Color.LightCyan;
-                }
+
             }
         }
+
+
         void gridView1_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
         {
-            if (e.Column.ColumnType == typeof(DateTime))
+            if (string.Equals(e.Column.FieldName, "Birthday", StringComparison.CurrentCultureIgnoreCase))
+            {
+                if (e.Value != null && !string.IsNullOrEmpty(e.Value.ToString()))
+                {
+                    e.DisplayText = Convert.ToDateTime(e.Value).ToString("yyyy-MM-dd");//yyyy-MM-dd
+                }
+            }
+            else if (e.Column.ColumnType == typeof(DateTime))
             {
                 string columnName = e.Column.FieldName;
                 if (e.Value != null)
@@ -104,8 +106,68 @@ namespace JCodes.Framework.AddIn.Security
                     }
                     else
                     {
-                        e.DisplayText = Convert.ToDateTime(e.Value).ToString("yyyy-MM-dd HH:mm");//yyyy-MM-dd
+                        e.DisplayText = Convert.ToDateTime(e.Value).ToString("yyyy-MM-dd HH:mm:ss");//yyyy-MM-dd
                     }
+                }
+            }
+            else if (string.Equals(e.Column.FieldName, "IsExpire", StringComparison.CurrentCultureIgnoreCase))
+            {
+                if (e.Value != null && !string.IsNullOrEmpty(e.Value.ToString()))
+                {
+                    e.DisplayText = EnumHelper.GetMemberName<IsExpire>(e.Value);
+                }
+            }
+            else if (string.Equals(e.Column.FieldName, "Password", StringComparison.CurrentCultureIgnoreCase))
+            {
+                e.DisplayText = "******";
+            }
+            else if (string.Equals(e.Column.FieldName, "Gender", StringComparison.CurrentCultureIgnoreCase))
+            {
+                if (e.Value != null && !string.IsNullOrEmpty(e.Value.ToString()))
+                {
+                    e.DisplayText = EnumHelper.GetMemberName<Gender>(e.Value);
+                }
+            }
+            else if (string.Equals(e.Column.FieldName, "AuditStatus", StringComparison.CurrentCultureIgnoreCase))
+            {
+                if (e.Value != null && !string.IsNullOrEmpty(e.Value.ToString()))
+                {
+                    e.DisplayText = EnumHelper.GetMemberName<AuditStatus>(e.Value);
+                }
+            }
+            else if (string.Equals(e.Column.FieldName, "CreatorId", StringComparison.CurrentCultureIgnoreCase))
+            {
+                if (e.Value != null && !string.IsNullOrEmpty(e.Value.ToString()) && Portal.gc.AllUserInfo.ContainsKey(e.Value.ToString().ToInt32()))
+                {
+                    e.DisplayText = Portal.gc.AllUserInfo[e.Value.ToString().ToInt32()];
+                }
+            }
+            else if (string.Equals(e.Column.FieldName, "EditorId", StringComparison.CurrentCultureIgnoreCase))
+            {
+                if (e.Value != null && !string.IsNullOrEmpty(e.Value.ToString()) && Portal.gc.AllUserInfo.ContainsKey(e.Value.ToString().ToInt32()))
+                {
+                    e.DisplayText = Portal.gc.AllUserInfo[e.Value.ToString().ToInt32()];
+                }
+            }
+            else if (string.Equals(e.Column.FieldName, "IsDelete", StringComparison.CurrentCultureIgnoreCase))
+            {
+                if (e.Value != null && !string.IsNullOrEmpty(e.Value.ToString()))
+                {
+                    e.DisplayText = EnumHelper.GetMemberName<IsDelete>(e.Value);
+                }
+            }
+            else if (string.Equals(e.Column.FieldName, "DeptId", StringComparison.CurrentCultureIgnoreCase))
+            {
+                if (e.Value != null && !string.IsNullOrEmpty(e.Value.ToString()) && Portal.gc.AllOuInfo.ContainsKey(e.Value.ToString().ToInt32()))
+                {
+                    e.DisplayText = Portal.gc.AllOuInfo[e.Value.ToString().ToInt32()];
+                }
+            }
+            else if (string.Equals(e.Column.FieldName, "CompanyId", StringComparison.CurrentCultureIgnoreCase))
+            {
+                if (e.Value != null && !string.IsNullOrEmpty(e.Value.ToString()) && Portal.gc.AllOuInfo.ContainsKey(e.Value.ToString().ToInt32()))
+                {
+                    e.DisplayText = Portal.gc.AllOuInfo[e.Value.ToString().ToInt32()];
                 }
             }
         }
@@ -126,7 +188,30 @@ namespace JCodes.Framework.AddIn.Security
                 //可特殊设置特别的宽度
                 winGridViewPager1.gridView1.SetGridColumWidth("Gender", 50);
                 winGridViewPager1.gridView1.SetGridColumWidth("Email", 150);
-                winGridViewPager1.gridView1.SetGridColumWidth("Note", 200);
+                winGridViewPager1.gridView1.SetGridColumWidth("Remark", 300);
+                winGridViewPager1.gridView1.SetGridColumWidth("IsExpire", 70);
+                winGridViewPager1.gridView1.SetGridColumWidth("IdCard", 140); // 身份证
+                winGridViewPager1.gridView1.SetGridColumWidth("Address", 300); // 地址
+                winGridViewPager1.gridView1.SetGridColumWidth("WorkAddress", 300); // 工作地点
+                winGridViewPager1.gridView1.SetGridColumWidth("Birthday", 80); // 生日
+                winGridViewPager1.gridView1.SetGridColumWidth("QQ", 80); // QQ
+                winGridViewPager1.gridView1.SetGridColumWidth("Signature", 300); // 个性签名
+                winGridViewPager1.gridView1.SetGridColumWidth("AuditStatus", 70); // 审核状态
+                winGridViewPager1.gridView1.SetGridColumWidth("DeptId", 70); // 部门Id
+                winGridViewPager1.gridView1.SetGridColumWidth("CompanyId", 70); // 公司Id
+                winGridViewPager1.gridView1.SetGridColumWidth("CreatorId", 70); // 创建日期
+                winGridViewPager1.gridView1.SetGridColumWidth("CreatorTime", 130); // 创建日期
+                winGridViewPager1.gridView1.SetGridColumWidth("EditorId", 70);
+                winGridViewPager1.gridView1.SetGridColumWidth("IsDelete", 70);
+                winGridViewPager1.gridView1.SetGridColumWidth("LastUpdateTime", 130); // 最后更新日期
+                winGridViewPager1.gridView1.SetGridColumWidth("LastLoginIp", 110); // 登陆IP
+                winGridViewPager1.gridView1.SetGridColumWidth("LastLoginTime", 130); // 最后登陆日期
+                winGridViewPager1.gridView1.SetGridColumWidth("LastLoginMac", 120); // 最后登陆mac	
+                winGridViewPager1.gridView1.SetGridColumWidth("CurLoginIp", 110); // 当前登陆IP
+                winGridViewPager1.gridView1.SetGridColumWidth("CurLoginTime", 130); // 当前登录日期
+                winGridViewPager1.gridView1.SetGridColumWidth("CurLoginMac", 120); // 当前登录mac
+                winGridViewPager1.gridView1.SetGridColumWidth("LastChangePwdTime", 130); // 最后修改密码时间
+                winGridViewPager1.gridView1.SetGridColumWidth("Seq", 130); // 最后修改密码时间
             }
         }
 
@@ -143,10 +228,9 @@ namespace JCodes.Framework.AddIn.Security
 
         void Init_Function()
         {
-            btnSearch.Enabled = HasFunction("User/search");
-            btnAddNew.Enabled = HasFunction("User/add");
-            btnImport.Enabled = HasFunction("User/import");
-            btnExport.Enabled = HasFunction("User/export");
+            btnAddNew.Enabled = HasFunction("User/Set/UserAdd");
+            btnImport.Enabled = HasFunction("User/Set/UserImport");
+            btnExport.Enabled = HasFunction("User/Set/UserExport");
         }
 
         #region 初始化组织结构树方法
@@ -162,17 +246,19 @@ namespace JCodes.Framework.AddIn.Security
             List<OUInfo>  list = Portal.gc.GetMyTopGroup();
             foreach (OUInfo groupInfo in list)
             {
-                if (groupInfo != null && groupInfo.IsDelete == 0 )
+                if (groupInfo != null && groupInfo.IsDelete == (short)IsDelete.否 )
                 {
                     TreeNode topnode = new TreeNode();
                     topnode.Text = groupInfo.Name;
                     topnode.Name = groupInfo.Id.ToString();
                     topnode.ImageIndex = groupInfo.OuType;//Portal.gc.GetImageIndex(groupInfo.OuType);
                     topnode.SelectedImageIndex = groupInfo.OuType; //Portal.gc.GetImageIndex(groupInfo.Category);
-                    topnode.Tag = string.Format("Company_ID='{0}' ", groupInfo.Id);
+                    topnode.Tag = string.Format("CompanyId='{0}' ", groupInfo.Id);
+
                     this.treeDept.Nodes.Add(topnode);
 
-                    List<OUNodeInfo> sublist = BLLFactory<OU>.Instance.GetTreeByID(groupInfo.Id);
+                    List<OUNodeInfo> sublist = BLLFactory<OU>.Instance.GetTreeById(groupInfo.Id);
+                  
                     AddOUNode(sublist, topnode);
                 }
             }
@@ -188,20 +274,21 @@ namespace JCodes.Framework.AddIn.Security
                 TreeNode ouNode = new TreeNode();
                 ouNode.Text = ouInfo.Name;
                 ouNode.Name = ouInfo.Id.ToString();
-                if (ouInfo.IsDelete == 0)
+                if (ouInfo.IsDelete == (short)IsDelete.是)
                 {
                     ouNode.ForeColor = Color.Red;
                     continue;//跳过不显示
                 }
                 ouNode.ImageIndex = ouInfo.OuType;// Portal.gc.GetImageIndex(ouInfo.OuType);
                 ouNode.SelectedImageIndex = ouInfo.OuType; //Portal.gc.GetImageIndex(ouInfo.Category);
-                if (ouNode.ImageIndex <= 1)//0,1为集团、公司
+                // 公司或者集团
+                if (ouInfo.OuType == (short)OuType.集团 || ouInfo.OuType == (short)OuType.公司)
                 {
-                    ouNode.Tag = string.Format("Company_ID='{0}'", ouInfo.Id);
+                    ouNode.Tag = string.Format("CompanyId='{0}'", ouInfo.Id);
                 }
                 else
                 {
-                    ouNode.Tag = string.Format("Dept_ID={0}", ouInfo.Id);
+                    ouNode.Tag = string.Format("DeptId={0}", ouInfo.Id);
                 }
                 parentNode.Nodes.Add(ouNode);
 
@@ -212,7 +299,6 @@ namespace JCodes.Framework.AddIn.Security
         #endregion
 
         #region 初始化角色树方法
-
         /// <summary>
         /// 初始化角色列表
         /// </summary>
@@ -224,7 +310,7 @@ namespace JCodes.Framework.AddIn.Security
             List<OUInfo> list = Portal.gc.GetMyTopGroup();
             foreach (OUInfo groupInfo in list)
             {
-                if (groupInfo != null && groupInfo.IsDelete == 0)
+                if (groupInfo != null && groupInfo.IsDelete == (short)IsDelete.否)
                 {
                     TreeNode topnode = AddOUNode(groupInfo);
                     AddRole(groupInfo, topnode);
@@ -251,8 +337,8 @@ namespace JCodes.Framework.AddIn.Security
             TreeNode ouNode = new TreeNode();
             ouNode.Text = ouInfo.Name;
             ouNode.Tag = string.Format("CompanyId='{0}' ", ouInfo.Id);
-            ouNode.ImageIndex = ouInfo.OuType; //Portal.gc.GetImageIndex(ouInfo.Category);
-            ouNode.SelectedImageIndex = ouInfo.OuType; // Portal.gc.GetImageIndex(ouInfo.Category);
+            ouNode.ImageIndex = ouInfo.OuType; 
+            ouNode.SelectedImageIndex = ouInfo.OuType; 
 
             if (parentNode != null)
             {
@@ -300,7 +386,7 @@ namespace JCodes.Framework.AddIn.Security
         /// </summary>
         private void winGridViewPager1_OnDeleteSelected(object sender, EventArgs e)
         {
-            if (!HasFunction("User/del"))
+            if (!HasFunction("User/Set/UserDel"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -314,8 +400,8 @@ namespace JCodes.Framework.AddIn.Security
             int[] rowSelected = this.winGridViewPager1.GridView1.GetSelectedRows();
             foreach (int iRow in rowSelected)
             {
-                string ID = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "Id");
-                BLLFactory<User>.Instance.SetDeletedFlag(ID);
+                Int32 Id = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "Id").ToInt32();
+                BLLFactory<User>.Instance.SetDeletedFlag(Id);
             }
 
             BindData();
@@ -326,25 +412,18 @@ namespace JCodes.Framework.AddIn.Security
         /// </summary>
         private void winGridViewPager1_OnEditSelected(object sender, EventArgs e)
         {
-            if (!HasFunction("User/edit"))
+            if (!HasFunction("User/Set/UserEdit"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
             }
 
             Int32 Id = this.winGridViewPager1.gridView1.GetFocusedRowCellDisplayText("Id").ToInt32();
-            List<Int32> IdList = new List<Int32>();
-            for (int i = 0; i < this.winGridViewPager1.gridView1.RowCount; i++)
-            {
-                Int32 intTemp = this.winGridViewPager1.GridView1.GetRowCellDisplayText(i, "Id").ToInt32();
-                IdList.Add(intTemp);
-            }
 
             if (Id > 0)
             {
                 FrmEditUser dlg = new FrmEditUser();
                 dlg.Id = Id;
-                dlg.IdList = IdList;
                 dlg.OnDataSaved += new EventHandler(dlg_OnDataSaved);
 
                 if (DialogResult.OK == dlg.ShowDialog())
@@ -364,7 +443,7 @@ namespace JCodes.Framework.AddIn.Security
         /// </summary>        
         private void winGridViewPager1_OnAddNew(object sender, EventArgs e)
         {
-            if (!HasFunction("User/add"))
+            if (!HasFunction("User/Set/UserAdd"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -409,20 +488,20 @@ namespace JCodes.Framework.AddIn.Security
                 condition = new SearchCondition();
                 condition.AddCondition("UserCode", this.txtHandNo.Text.Trim(), SqlOperator.Like);
                 condition.AddCondition("Name", this.txtName.Text.Trim(), SqlOperator.Like);
-                condition.AddCondition("FullName", this.txtFullName.Text.Trim(), SqlOperator.Like);
-                condition.AddCondition("LoginName", this.txtNickname.Text.Trim(), SqlOperator.Like);
+                condition.AddCondition("LoginName", this.txtLoginName.Text.Trim(), SqlOperator.Like);
+                condition.AddCondition("IdCard", this.txtIdCard.Text.Trim(), SqlOperator.Like);
                 condition.AddCondition("MobilePhone", this.txtMobilePhone.Text.Trim(), SqlOperator.Like);
                 condition.AddCondition("Email", this.txtEmail.Text.Trim(), SqlOperator.Like);
-                condition.AddCondition("Gender", this.txtGender.Text.Trim(), SqlOperator.Like);
+                condition.AddCondition("Gender", this.txtGender.EditValue, SqlOperator.Like);
                 condition.AddCondition("QQ", this.txtQq.Text.Trim(), SqlOperator.Like);
             }
 
             //如果是公司管理员，增加公司标识
-            /*if (Portal.gc.UserInRole(RoleInfo.CompanyAdminName))
+            if (!Portal.gc.IsSuperAdmin)
             {
-                condition.AddCondition("Company_ID", Portal.gc.UserInfo.CompanyId, SqlOperator.Equal);
-            }*/
-
+                condition.AddCondition("CompanyId", Portal.gc.UserInfo.CompanyId, SqlOperator.Equal);
+            }
+          
             string where = condition.BuildConditionSql().Replace("Where", "");
             
             //如果是单击节点得到的条件，则使用树列表的，否则使用查询条件的
@@ -434,8 +513,9 @@ namespace JCodes.Framework.AddIn.Security
             //如非选定，只显示正常用户
             if (!this.chkIncludeDelete.Checked)
             {
-                where += string.Format(" AND Deleted=0");
+                where += string.Format(" AND IsDelete={0}", (short)IsDelete.否);
             }
+
             return where;
         }
 
@@ -444,9 +524,11 @@ namespace JCodes.Framework.AddIn.Security
         /// </summary>
         private void BindData()
         {
+            var columnNameAlias = BLLFactory<User>.Instance.GetColumnNameAlias();//字段列显示名称转义
+            columnNameAlias.Remove("Password");
             //entity
-            this.winGridViewPager1.DisplayColumns = "UserCode,Name,FullName,Title,MobilePhone,OfficePhone,Email,Gender,QQ,AuditStatus,IsExpire,Deleted,Note";
-            this.winGridViewPager1.ColumnNameAlias = BLLFactory<User>.Instance.GetColumnNameAlias();//字段列显示名称转义
+            this.winGridViewPager1.DisplayColumns = columnNameAlias.ToDiplayKeyString();
+            this.winGridViewPager1.ColumnNameAlias = columnNameAlias;
             string where = GetConditionSql();
             List<UserInfo> list = BLLFactory<User>.Instance.FindWithPager(where, this.winGridViewPager1.PagerInfo);
             this.winGridViewPager1.DataSource = new SortableBindingList<UserInfo>(list);
@@ -458,11 +540,13 @@ namespace JCodes.Framework.AddIn.Security
         /// </summary>
         private void BindDataUseRole(int roleId)
         {
+            var columnNameAlias = BLLFactory<User>.Instance.GetColumnNameAlias();//字段列显示名称转义
+            columnNameAlias.Remove("Password");
             //entity
-            this.winGridViewPager1.DisplayColumns = "UserCode,Name,FullName,Title,MobilePhone,OfficePhone,Email,Gender,QQ,AuditStatus,IsExpire,Deleted,Note";
-            this.winGridViewPager1.ColumnNameAlias = BLLFactory<User>.Instance.GetColumnNameAlias();//字段列显示名称转义
+            this.winGridViewPager1.DisplayColumns = columnNameAlias.ToDiplayKeyString();
+            this.winGridViewPager1.ColumnNameAlias = columnNameAlias;
 
-            List<UserInfo> list = BLLFactory<User>.Instance.GetUsersByRole(roleId);
+            List<UserInfo> list = BLLFactory<User>.Instance.GetUsersByRoleId(roleId);
             this.winGridViewPager1.DataSource = new SortableBindingList<UserInfo>(list);
             this.winGridViewPager1.PrintTitle = "系统用户信息报表";
         }
@@ -472,12 +556,6 @@ namespace JCodes.Framework.AddIn.Security
         /// </summary>
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            if (!HasFunction("User/search"))
-            {
-                MessageDxUtil.ShowError(Const.NoAuthMsg);
-                return;
-            }
-
             treeConditionSql = "";
             advanceCondition = null;//必须重置查询条件，否则可能会使用高级查询条件了
             isUseRoleSearch = false;
@@ -518,28 +596,15 @@ namespace JCodes.Framework.AddIn.Security
             }
         }
 
-        string SelectedDeptId = "";
         private string moduleName = "系统用户信息";
         /// <summary>
         /// 导入Excel的操作
         /// </summary>          
         private void btnImport_Click(object sender, EventArgs e)
         {
-            if (!HasFunction("User/import"))
+            if (!HasFunction("User/Set/UserImport"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
-                return;
-            }
-
-            //如果导入的Excel不指定部门，则默认使用选定的部门作为记录的部门
-            TreeNode deptNode = this.treeDept.SelectedNode;
-            if (deptNode != null)
-            {
-                SelectedDeptId = deptNode.Name;
-            }
-            else
-            {
-                MessageDxUtil.ShowTips("请选择组织机构节点，然后在进行导入，默认导入用户属于该部门节点");
                 return;
             }
 
@@ -558,141 +623,77 @@ namespace JCodes.Framework.AddIn.Security
 
         bool ExcelData_OnDataSave(DataRow dr)
         {
-            string companyName = dr["所属公司名称"].ToString();
-            OUInfo companyInfo = BLLFactory<OU>.Instance.FindByName(companyName);
-            if (companyInfo == null)
-            {
-                //公司名称不存在，提示错误并记录日志
-                throw new ArgumentException(string.Format("公司名称【{0}】不存在，记录已跳过", companyName));
-            }
-
-            string name = dr["用户名/登录名"].ToString();
-            if (string.IsNullOrEmpty(name))
-            {
-                return false;//用户名为空，则跳过
-            }
-            else
-            {
-                //判断是否登录名重复，如果重复，则提示错误，并记录了日志
-                bool isExist = BLLFactory<User>.Instance.IsExistKey("Name", name);
-                if (isExist)
-                {
-                    throw new ArgumentException(string.Format("用户名/登录名【{0}】已存在，记录已跳过", name));
-                }
-            }
-
-            string deptName = dr["默认部门名称"].ToString();
-            OUInfo deptInfo = null;
-            //if (!string.IsNullOrEmpty(deptName))
-            //{
-            //    deptInfo = BLLFactory<OU>.Instance.FindByName(deptName);
-            //}
-
-            //默认使用选定的部门作为记录的部门                
-            if (!string.IsNullOrEmpty(SelectedDeptId))
-            {
-                deptInfo = BLLFactory<OU>.Instance.FindByID(SelectedDeptId.ToInt32());
-            }
-
             bool success = false;
-            bool converted = false;
-            DateTime dtDefault = Convert.ToDateTime("1900-01-01");
-            DateTime dt;
+
             UserInfo info = new UserInfo();
+            // ID序号	用户编码	名称	登录名	是否过期	
+            // 身份证	手机	办公电话	家庭电话	Email邮箱	
+            // 地址	工作地址	性别	生日	QQ号	
+            // 个性签名	审核状态	个人图片	备注	部门Id	
+            // 公司Id	创建人编号	创建时间	编辑人编号	最后更新时间	
+            // 是否删除	问题1	问题2	问题3	回答1	
+            // 回答2	回答3	最后登录IP	最后登录日期	最后登录Mac	
+            // 当前登录IP	当前登录日期	当前登录Mac	最后修改密码时间	
+            // 排序
+            UserInfo tmpInfo = BLLFactory<User>.Instance.FindById(dr["ID序号"].ToString().ToInt32());
+            if (null == tmpInfo)
+                info.Id = BLLFactory<User>.Instance.GetMaxId() + 1;
+            else
+                info.Id = tmpInfo.Id;
             info.UserCode = dr["用户编码"].ToString();
-            info.Name = name;
-            info.FullName = dr["用户全名"].ToString();
-            info.LoginName = dr["用户呢称"].ToString();
-            //info.Gender = Convert.ToInt16( dr["性别"].ToString() );
-            info.MobilePhone = dr["移动电话"].ToString();
-            info.Email = dr["邮件地址"].ToString();
-            info.CurrentLoginUserId = Portal.gc.UserInfo.Id;
-            #region 可选字段
 
-            if (dr.Table.Columns.Contains("是否过期"))
+            tmpInfo = BLLFactory<User>.Instance.GetUserByName(dr["名称"].ToString());
+            if (tmpInfo != null)
             {
-                info.IsExpire = Convert.ToInt16( dr["是否过期"]);
-            }
-            /*if (dr.Table.Columns.Contains("职务头衔"))
-            {
-                info.Title = dr["职务头衔"].ToString();
-            }*/
-            if (dr.Table.Columns.Contains("身份证号码"))
-            {
-                info.IdCard = dr["身份证号码"].ToString();
-            }
-            if (dr.Table.Columns.Contains("办公电话"))
-            {
-                info.OfficePhone = dr["办公电话"].ToString();
-            }
-            if (dr.Table.Columns.Contains("家庭电话"))
-            {
-                info.HomePhone = dr["家庭电话"].ToString();
-            }
-            if (dr.Table.Columns.Contains("住址"))
-            {
-                info.Address = dr["住址"].ToString();
-            }
-            if (dr.Table.Columns.Contains("办公地址"))
-            {
-                info.WorkAddress = dr["办公地址"].ToString();
-            }
-            if (dr.Table.Columns.Contains("出生日期"))
-            {
-                converted = DateTime.TryParse(dr["出生日期"].ToString(), out dt);
-                if (converted && dt > dtDefault)
-                {
-                    info.Birthday = dt;
-                }
-            }
-            if (dr.Table.Columns.Contains("QQ号码"))
-            {
-                info.QQ = Convert.ToInt32( dr["QQ号码"]);
-            }
-            if (dr.Table.Columns.Contains("个性签名"))
-            {
-                info.Signature = dr["个性签名"].ToString();
-            }
-            if (dr.Table.Columns.Contains("审核状态"))
-            {
-                info.AuditStatus = Convert.ToInt16( dr["审核状态"]);
-            }
-            if (dr.Table.Columns.Contains("备注"))
-            {
-                info.Remark = dr["备注"].ToString();
-            }
-            /*if (dr.Table.Columns.Contains("自定义字段"))
-            {
-                info.CustomField = dr["自定义字段"].ToString();
-            }*/
-            if (dr.Table.Columns.Contains("排序码"))
-            {
-                info.Seq = dr["排序码"].ToString();
-            } 
-            #endregion
-
-            #region 自动字段
-
-            //默认部门，可以为空
-            //info.DeptName = deptName;
-            if (deptInfo != null)
-            {
-                info.DeptId = deptInfo.Id;
+                MessageDxUtil.ShowError("存在相同的操作员名字，该条数据将不会被导入！");
+                return false;
             }
 
-            //公司名称，不能为空
-            //info.CompanyName = companyName;
-            if (companyInfo != null)
+            info.Name = dr["名称"].ToString();
+            info.LoginName = dr["登录名"].ToString();
+            info.IsExpire = (short)EnumHelper.GetMemberValue<IsExpire>(dr["是否过期"].ToString()).ToString().ToInt32();
+            info.IdCard = dr["身份证"].ToString();
+            info.MobilePhone = dr["手机"].ToString();
+            info.OfficePhone = dr["办公电话"].ToString();
+            info.HomePhone = dr["家庭电话"].ToString();
+            info.Email = dr["Email邮箱"].ToString();
+            info.Address = dr["地址"].ToString();
+            info.WorkAddress = dr["工作地址"].ToString();
+            info.Gender = (short)EnumHelper.GetMemberValue<Gender>(dr["性别"].ToString()).ToString().ToInt32();
+            info.Birthday = ConvertHelper.ToDateTime( dr["生日"], DateTime.MinValue);
+            info.QQ = ConvertHelper.ToInt32(dr["QQ号"], 0);
+            info.Signature = dr["个性签名"].ToString();
+            info.AuditStatus = (short)EnumHelper.GetMemberValue<AuditStatus>(dr["审核状态"].ToString()).ToString().ToInt32();
+            info.Portrait = dr["个人图片"].ToString();
+            info.Remark = dr["备注"].ToString();
+            OUInfo deptInfo = BLLFactory<OU>.Instance.FindByName( dr["部门Id"].ToString());
+            if (deptInfo != null && deptInfo.OuType == (short)OuType.部门)
             {
-                info.CompanyId = companyInfo.Id;
+                info.DeptId =  deptInfo.Id;
             }
-
-            //info.Creator = Portal.gc.UserInfo.FullName;
+            OUInfo companyInfo = BLLFactory<OU>.Instance.FindByName( dr["公司Id"].ToString());
+            if (companyInfo != null && companyInfo.OuType == (short)OuType.公司)
+            {
+                info.CompanyId =  companyInfo.Id;
+            }
             info.CreatorId = Portal.gc.UserInfo.Id;
             info.CreatorTime = DateTimeHelper.GetServerDateTime2();
             info.EditorId = Portal.gc.UserInfo.Id;
+            info.LastUpdateTime = DateTimeHelper.GetServerDateTime2();
+            info.IsDelete = (short)EnumHelper.GetMemberValue<IsDelete>(dr["是否删除"].ToString()).ToString().ToInt32();
+            info.Question1 = dr["问题1"].ToString();
+            info.Question2 = dr["问题2"].ToString();
+            info.Question3 = dr["问题3"].ToString();
+            info.Answer1 = dr["回答1"].ToString();
+            info.Answer2 = dr["回答2"].ToString();
+            info.Answer3 = dr["回答3"].ToString();
+            info.LastLoginIp = NetworkUtil.GetLocalIP();
             info.LastLoginTime = DateTimeHelper.GetServerDateTime2();
-            #endregion
+            info.LastLoginMac = NetworkUtil.GetMacAddress();
+            info.CurLoginIp = NetworkUtil.GetLocalIP();
+            info.CurLoginTime = DateTimeHelper.GetServerDateTime2();
+            info.CurLoginMac = NetworkUtil.GetMacAddress();
+            info.Seq = dr["排序"].ToString();
 
             success = BLLFactory<User>.Instance.Insert(info);
             return success;
@@ -703,7 +704,7 @@ namespace JCodes.Framework.AddIn.Security
         /// </summary>
         private void btnExport_Click(object sender, EventArgs e)
         {
-            if (!HasFunction("User/export"))
+            if (!HasFunction("User/Set/UserExport"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -712,74 +713,16 @@ namespace JCodes.Framework.AddIn.Security
             string file = FileDialogHelper.SaveExcel(string.Format("{0}.xls", moduleName));
             if (!string.IsNullOrEmpty(file))
             {
-                List<UserInfo> list = new List<UserInfo>();
-
-                TreeNode selectedNode = this.treeRole.SelectedNode;
-                if (isUseRoleSearch && selectedNode != null && selectedNode.Tag != null)
-                {
-                    string roleId = selectedNode.Tag.ToString();
-                    if (!string.IsNullOrEmpty(roleId))
-                    {
-                        list = BLLFactory<User>.Instance.GetUsersByRole(roleId.ToInt32());
-                    }
-                }
-                else
-                {
-                    string where = GetConditionSql();
-                    list = BLLFactory<User>.Instance.Find(where);
-                }
-
-                DataTable dtNew = DataTableHelper.CreateTable("序号|int,用户编码,用户名/登录名,用户全名,用户呢称,是否过期,职务头衔,身份证号码,移动电话,办公电话,家庭电话,邮件地址,住址,办公地址,性别,出生日期,QQ号码,个性签名,审核状态,备注,自定义字段,默认部门名称,所属公司名称,排序码");
-                DataRow dr;
-                int j = 1;
-                DateTime dtDefault = Convert.ToDateTime("1900-01-01");
-                for (int i = 0; i < list.Count; i++)
-                {
-                    dr = dtNew.NewRow();
-                    dr["序号"] = j++;
-                    dr["用户编码"] = list[i].UserCode;
-                    dr["用户名/登录名"] = list[i].Name;
-                    dr["用户全名"] = list[i].FullName;
-                    dr["用户呢称"] = list[i].LoginName;
-                    dr["是否过期"] = list[i].IsExpire;
-                    //dr["职务头衔"] = list[i].Title;
-                    dr["身份证号码"] = list[i].IdCard;
-                    dr["移动电话"] = list[i].MobilePhone;
-                    dr["办公电话"] = list[i].OfficePhone;
-                    dr["家庭电话"] = list[i].HomePhone;
-                    dr["邮件地址"] = list[i].Email;
-                    dr["住址"] = list[i].Address;
-                    dr["办公地址"] = list[i].WorkAddress;
-                    dr["性别"] = list[i].Gender;
-                    if (list[i].Birthday > dtDefault)
-                    {
-                        dr["出生日期"] = list[i].Birthday;
-                    }
-                    dr["QQ号码"] = list[i].QQ;
-                    dr["个性签名"] = list[i].Signature;
-                    dr["审核状态"] = list[i].AuditStatus;
-                    dr["备注"] = list[i].Remark;
-                    //dr["自定义字段"] = list[i].CustomField;
-                    dr["默认部门名称"] = list[i].DeptId;
-                    dr["所属公司名称"] = list[i].CompanyId;
-                    dr["排序码"] = list[i].Seq;
-                    dtNew.Rows.Add(dr);
-                }
-
                 try
                 {
-                    string error = "";
-                    AsposeExcelTools.DataTableToExcel2(dtNew, file, out error);
-                    if (!string.IsNullOrEmpty(error))
+                    DevExpress.XtraPrinting.XlsExportOptions options = new DevExpress.XtraPrinting.XlsExportOptions(DevExpress.XtraPrinting.TextExportMode.Value);
+                    options.TextExportMode = TextExportMode.Text;//设置导出模式为文本
+                    winGridViewPager1.gridView1.OptionsPrint.AutoWidth = false;
+                    winGridViewPager1.gridView1.ExportToXls(file, options);
+
+                    if (MessageDxUtil.ShowYesNoAndTips("导出成功，是否打开文件？") == System.Windows.Forms.DialogResult.Yes)
                     {
-                        MessageDxUtil.ShowError(string.Format("导出Excel出现错误：{0}", error));
-                    }
-                    else
-                    {
-                        if (MessageDxUtil.ShowYesNoAndTips("导出成功，是否打开文件？") == System.Windows.Forms.DialogResult.Yes)
-                        {
-                            System.Diagnostics.Process.Start(file);
-                        }
+                        System.Diagnostics.Process.Start(file);
                     }
                 }
                 catch (Exception ex)
@@ -829,7 +772,7 @@ namespace JCodes.Framework.AddIn.Security
 
         private void menuDept_AddNew_Click(object sender, EventArgs e)
         {
-            if (!HasFunction("User/add"))
+            if (!HasFunction("User/Set/UserAdd"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -870,7 +813,7 @@ namespace JCodes.Framework.AddIn.Security
 
         private void menu_InitPassword_Click(object sender, EventArgs e)
         {
-            if (!HasFunction("User/initPwd"))
+            if (!HasFunction("User/Set/UserInitPwd"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -886,9 +829,9 @@ namespace JCodes.Framework.AddIn.Security
             {
                 string ip = NetworkUtil.GetLocalIP();
                 string macAddr = HardwareInfoHelper.GetMacAddress();
-                string changeUserId = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "Id");
+                Int32 changeUserId = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "Id").ToInt32();
 
-                bool success = BLLFactory<User>.Instance.ResetPassword(Portal.gc.UserInfo.Id, changeUserId.ToInt32(),Portal.gc.SystemType, ip, macAddr);
+                bool success = BLLFactory<User>.Instance.ResetPassword(Portal.gc.UserInfo.Id, changeUserId,Portal.gc.SYSTEMTYPEID, ip, macAddr);
                 MessageDxUtil.ShowTips(success ? "重置密码操作成功" : "操作失败");
             }
         }

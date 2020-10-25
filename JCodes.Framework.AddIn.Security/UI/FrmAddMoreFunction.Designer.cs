@@ -39,7 +39,7 @@
             this.txtSystemType = new DevExpress.XtraEditors.TextEdit();
             this.label3 = new System.Windows.Forms.Label();
             this.lblSystemType = new System.Windows.Forms.Label();
-            this.txtFunctionID = new DevExpress.XtraEditors.TextEdit();
+            this.txtDllPath = new DevExpress.XtraEditors.TextEdit();
             this.label5 = new System.Windows.Forms.Label();
             this.txtName = new DevExpress.XtraEditors.TextEdit();
             this.label2 = new System.Windows.Forms.Label();
@@ -54,7 +54,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.chkModify.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkAdd.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSystemType.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFunctionID.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDllPath.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,7 +73,7 @@
             this.groupBox2.Controls.Add(this.txtSystemType);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.lblSystemType);
-            this.groupBox2.Controls.Add(this.txtFunctionID);
+            this.groupBox2.Controls.Add(this.txtDllPath);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.txtName);
             this.groupBox2.Controls.Add(this.label2);
@@ -92,6 +92,7 @@
             this.functionControl1.Location = new System.Drawing.Point(113, 52);
             this.functionControl1.Name = "functionControl1";
             this.functionControl1.Size = new System.Drawing.Size(291, 23);
+            this.functionControl1.StyleController = null;
             this.functionControl1.TabIndex = 7;
             this.functionControl1.Value = "-1";
             // 
@@ -101,7 +102,7 @@
             this.chkExport.Location = new System.Drawing.Point(190, 201);
             this.chkExport.Name = "chkExport";
             this.chkExport.Properties.Caption = "导出";
-            this.chkExport.Size = new System.Drawing.Size(50, 19);
+            this.chkExport.Size = new System.Drawing.Size(50, 26);
             this.chkExport.TabIndex = 3;
             // 
             // chkImport
@@ -110,16 +111,15 @@
             this.chkImport.Location = new System.Drawing.Point(113, 201);
             this.chkImport.Name = "chkImport";
             this.chkImport.Properties.Caption = "导入";
-            this.chkImport.Size = new System.Drawing.Size(50, 19);
+            this.chkImport.Size = new System.Drawing.Size(50, 26);
             this.chkImport.TabIndex = 3;
             // 
             // chkView
             // 
-            this.chkView.EditValue = true;
             this.chkView.Location = new System.Drawing.Point(344, 170);
             this.chkView.Name = "chkView";
             this.chkView.Properties.Caption = "查看";
-            this.chkView.Size = new System.Drawing.Size(50, 19);
+            this.chkView.Size = new System.Drawing.Size(50, 26);
             this.chkView.TabIndex = 3;
             // 
             // chkDelete
@@ -128,7 +128,7 @@
             this.chkDelete.Location = new System.Drawing.Point(190, 170);
             this.chkDelete.Name = "chkDelete";
             this.chkDelete.Properties.Caption = "删除";
-            this.chkDelete.Size = new System.Drawing.Size(50, 19);
+            this.chkDelete.Size = new System.Drawing.Size(50, 26);
             this.chkDelete.TabIndex = 3;
             // 
             // chkModify
@@ -137,7 +137,7 @@
             this.chkModify.Location = new System.Drawing.Point(267, 170);
             this.chkModify.Name = "chkModify";
             this.chkModify.Properties.Caption = "修改";
-            this.chkModify.Size = new System.Drawing.Size(50, 19);
+            this.chkModify.Size = new System.Drawing.Size(50, 26);
             this.chkModify.TabIndex = 3;
             // 
             // chkAdd
@@ -146,7 +146,7 @@
             this.chkAdd.Location = new System.Drawing.Point(113, 170);
             this.chkAdd.Name = "chkAdd";
             this.chkAdd.Properties.Caption = "添加";
-            this.chkAdd.Size = new System.Drawing.Size(50, 19);
+            this.chkAdd.Size = new System.Drawing.Size(50, 26);
             this.chkAdd.TabIndex = 3;
             // 
             // txtSystemType
@@ -156,7 +156,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSystemType.Location = new System.Drawing.Point(113, 124);
             this.txtSystemType.Name = "txtSystemType";
-            this.txtSystemType.Size = new System.Drawing.Size(291, 20);
+            this.txtSystemType.Size = new System.Drawing.Size(291, 28);
             this.txtSystemType.TabIndex = 2;
             this.txtSystemType.Visible = false;
             // 
@@ -165,7 +165,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(10, 171);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 14);
+            this.label3.Size = new System.Drawing.Size(118, 22);
             this.label3.TabIndex = 0;
             this.label3.Text = "其他子功能：";
             // 
@@ -174,29 +174,29 @@
             this.lblSystemType.AutoSize = true;
             this.lblSystemType.Location = new System.Drawing.Point(10, 129);
             this.lblSystemType.Name = "lblSystemType";
-            this.lblSystemType.Size = new System.Drawing.Size(108, 14);
+            this.lblSystemType.Size = new System.Drawing.Size(160, 22);
             this.lblSystemType.TabIndex = 0;
             this.lblSystemType.Text = "系统类型编号(*)：";
             this.lblSystemType.Visible = false;
             // 
-            // txtFunctionID
+            // txtDllPath
             // 
-            this.txtFunctionID.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtDllPath.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFunctionID.Location = new System.Drawing.Point(113, 92);
-            this.txtFunctionID.Name = "txtFunctionID";
-            this.txtFunctionID.Size = new System.Drawing.Size(291, 20);
-            this.txtFunctionID.TabIndex = 2;
+            this.txtDllPath.Location = new System.Drawing.Point(113, 92);
+            this.txtDllPath.Name = "txtDllPath";
+            this.txtDllPath.Size = new System.Drawing.Size(291, 28);
+            this.txtDllPath.TabIndex = 2;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(10, 97);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(96, 14);
+            this.label5.Size = new System.Drawing.Size(124, 22);
             this.label5.TabIndex = 0;
-            this.label5.Text = "功能控件ID(*)：";
+            this.label5.Text = "映射路径(*)：";
             // 
             // txtName
             // 
@@ -205,7 +205,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtName.Location = new System.Drawing.Point(113, 21);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(291, 20);
+            this.txtName.Size = new System.Drawing.Size(291, 28);
             this.txtName.TabIndex = 0;
             // 
             // label2
@@ -213,7 +213,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(10, 61);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(84, 14);
+            this.label2.Size = new System.Drawing.Size(124, 22);
             this.label2.TabIndex = 0;
             this.label2.Text = "上层功能(*)：";
             // 
@@ -222,7 +222,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(10, 24);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(96, 14);
+            this.label1.Size = new System.Drawing.Size(142, 22);
             this.label1.TabIndex = 0;
             this.label1.Text = "主功能名称(*)：";
             // 
@@ -248,7 +248,7 @@
             // 
             // FrmAddMoreFunction
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(441, 300);
             this.Controls.Add(this.btnCancel);
@@ -265,7 +265,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.chkModify.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkAdd.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSystemType.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFunctionID.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDllPath.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).EndInit();
             this.ResumeLayout(false);
 
@@ -276,7 +276,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private DevExpress.XtraEditors.TextEdit txtSystemType;
         private System.Windows.Forms.Label lblSystemType;
-        private DevExpress.XtraEditors.TextEdit txtFunctionID;
+        private DevExpress.XtraEditors.TextEdit txtDllPath;
         private System.Windows.Forms.Label label5;
         private DevExpress.XtraEditors.TextEdit txtName;
         private System.Windows.Forms.Label label2;

@@ -1,106 +1,102 @@
-﻿using System;
+﻿using JCodes.Framework.Common.Databases;
+using JCodes.Framework.Common.Framework.BaseDAL;
+using JCodes.Framework.Entity;
+using JCodes.Framework.IDAL;
+using JCodes.Framework.jCodesenum;
+using Microsoft.Practices.EnterpriseLibrary.Data;
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using System.Collections.Generic;
-using Microsoft.Practices.EnterpriseLibrary.Data;
-using JCodes.Framework.Entity;
-using JCodes.Framework.Common;
-using JCodes.Framework.IDAL;
-using JCodes.Framework.Common.Framework.BaseDAL;
-using JCodes.Framework.Common.Databases;
 
 namespace JCodes.Framework.SQLServerDAL
 {
-    /// <summary>
-    /// 系统功能定义
-    /// </summary>
-    public class Functions : BaseDALSQLServer<FunctionInfo>, IFunctions
-    {
-        #region 对象实例及构造函数
+	/// <summary>
+	/// 对象号: 000203
+	/// 系统功能定义(Function)
+	/// 版本: 1.0.0.0
+	/// 表结构最后更新时间: 2018-02-08 13:59:20.773
+	/// </summary>
+	public partial class Function : BaseDALSQLServer<FunctionInfo>, IFunction
+	{
+		#region 对象实例及构造函数
+		public static Function Instance
+		{
+			get
+			{
+				return new Function();
+			}
+		}
 
-        public static Functions Instance
-        {
-            get
-            {
-                return new Functions();
-            }
-        }
-        public Functions()
-            : base(SQLServerPortal.gc._securityTablePre + "Function", "Gid")
-        {
-            this.sortField = "Seq";
-            this.isDescending = false;
-        }
+		public Function() : base(SQLServerPortal.gc._securityTablePre + "Function", "Gid")
+		{
+			this.sortField = "Seq";
+		}
+		#endregion
 
-        #endregion
+		/// <summary>
+		/// 将DataReader的属性值转化为实体类的属性值，返回实体类
+		/// </summary>
+		/// <param name="dr">有效的DataReader对象</param>
+		/// <returns>实体类对象</returns>
+		protected override FunctionInfo DataReaderToEntity(IDataReader dataReader)
+		{
+			FunctionInfo info = new FunctionInfo();
+			SmartDataReader reader = new SmartDataReader(dataReader);
+			info.Gid = reader.GetString("Gid"); 	 //GUID对应的ID序号
+			info.Pgid = reader.GetString("Pgid"); 	 //父节点GUID对应的ID序号
+			info.Name = reader.GetString("Name"); 	 //名称
+			info.DllPath = reader.GetString("DllPath"); 	 //映射路径
+			info.SystemtypeId = reader.GetString("SystemtypeId"); 	 //系统编号
+			info.Seq = reader.GetString("Seq"); 	 //排序
+			return info;
+		}
 
-        /// <summary>
-        /// 将DataReader的属性值转化为实体类的属性值，返回实体类
-        /// </summary>
-        /// <param name="dr">有效的DataReader对象</param>
-        /// <returns>实体类对象</returns>
-        protected override FunctionInfo DataReaderToEntity(IDataReader dataReader)
-        {
-            FunctionInfo info = new FunctionInfo();
-            SmartDataReader reader = new SmartDataReader(dataReader);
-            /*info.ID = reader.GetString("ID");
-            info.PID = reader.GetString("PID");
-            info.Name = reader.GetString("Name");
-            info.FunctionId = reader.GetString("FunctionId");
-            info.SystemType_ID = reader.GetString("SystemType_ID");
-            info.Seq = reader.GetString("Seq");*/
+		/// <summary>
+		/// 将实体对象的属性值转化为Hashtable对应的键值
+		/// </summary>
+		/// <param name="dr">有效的实体对象</param>
+		/// <returns>包含键值映射的Hashtable</returns>
+		protected override Hashtable GetHashByEntity(FunctionInfo obj)
+		{
+			FunctionInfo info = obj as FunctionInfo;
+			Hashtable hash = new Hashtable();
+			hash.Add("Gid", info.Gid); 	 //GUID对应的ID序号
+			hash.Add("Pgid", info.Pgid); 	 //父节点GUID对应的ID序号
+			hash.Add("Name", info.Name); 	 //名称
+			hash.Add("DllPath", info.DllPath); 	 //映射路径
+			hash.Add("SystemtypeId", info.SystemtypeId); 	 //系统编号
+			hash.Add("Seq", info.Seq); 	 //排序
+			return hash;
+		}
 
-            return info;
-        }
-
-        /// <summary>
-        /// 将实体对象的属性值转化为Hashtable对应的键值
-        /// </summary>
-        /// <param name="obj">有效的实体对象</param>
-        /// <returns>包含键值映射的Hashtable</returns>
-        protected override Hashtable GetHashByEntity(FunctionInfo obj)
-        {
-            FunctionInfo info = obj as FunctionInfo;
-            Hashtable hash = new Hashtable();
-
-            /*hash.Add("ID", info.ID);
-            hash.Add("PID", info.PID);
-            hash.Add("Name", info.Name);
-            hash.Add("FunctionId", info.FunctionId);
-            hash.Add("SystemType_ID", info.SystemType_ID);
-            hash.Add("Seq", info.Seq);*/
-
-            return hash;
-        }
-
-        /// <summary>
-        /// 获取字段中文别名（用于界面显示）的字典集合
-        /// </summary>
-        /// <returns></returns>
-        public override Dictionary<string, string> GetColumnNameAlias()
-        {
-            Dictionary<string, string> dict = new Dictionary<string, string>();
-            #region 添加别名解析
-            /*dict.Add("ID", "编号");            
-            dict.Add("PID", "父ID");
-            dict.Add("Name", "功能名称");
-            dict.Add("FunctionId", "功能ID");
-            dict.Add("SystemType_ID", "系统编号");
-            dict.Add("Seq", "排序");*/
-            #endregion
-
-            return dict;
-        }
-
-        /// <summary>
+		/// <summary>
+		/// 获取字段中文别名（用于界面显示）的字典集合
+		/// </summary>
+		/// <returns></returns>
+		public override Dictionary<string, string> GetColumnNameAlias()
+		{
+			Dictionary<string, string> dict = new Dictionary<string, string>();
+			#region 添加别名解析
+			dict.Add("Gid", "GUID对应的ID序号");
+			dict.Add("Pgid", "父节点GUID对应的ID序号");
+			dict.Add("Name", "名称");
+			dict.Add("DllPath", "映射路径");
+			dict.Add("SystemtypeId", "系统编号");
+			dict.Add("Seq", "排序");
+			#endregion
+			return dict;
+		}
+		
+		/// <summary>
         /// 重写删除操作，把下面的节点提到上一级
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
         public override bool DeleteByUser(object key, Int32 userId, DbTransaction trans = null)
         {
-            FunctionInfo info = this.FindByID(key, trans);
+            FunctionInfo info = this.FindById(key, trans);
             if (info != null)
             {
                 string sql = string.Format("UPDATE {2} SET Pgid='{0}' Where Pgid='{1}' ", info.Pgid, key, tableName);
@@ -118,15 +114,15 @@ namespace JCodes.Framework.SQLServerDAL
         /// </summary>
         /// <param name="mainID">节点ID</param>
         /// <returns></returns>
-        public bool DeleteWithSubNode(string mainID, Int32 userId)
+        public bool DeleteWithSubNode(string mainId, Int32 userId)
         {
             //只获取ID、PID所需字段，提高效率
-            string sql = string.Format("Select ID,PID From {0} Order By PID ", tableName);
+            string sql = string.Format("SELECT Gid,Pgid From {0} Order By Pgid ", tableName);
             DataTable dt = SqlTable(sql);
 
             List<string> list = new List<string>();
-            list.AddRange(GetSubNodeIdList(mainID, dt));
-            list.Add(mainID);
+            list.AddRange(GetSubNodeIdList(mainId, dt));
+            list.Add(mainId);
 
             string idList = string.Join(",", list);
             //根据返回的ID集合，逐一删除
@@ -143,14 +139,14 @@ namespace JCodes.Framework.SQLServerDAL
         /// <param name="pid">PID</param>
         /// <param name="dt">所有集合，包含ID、PID</param>
         /// <returns></returns>
-        private List<string> GetSubNodeIdList(string pid, DataTable dt)
+        private List<string> GetSubNodeIdList(string pgid, DataTable dt)
         {
             List<string> list = new List<string>();
 
-            DataRow[] dataRows = dt.Select(string.Format(" PID = '{0}'", pid));
+            DataRow[] dataRows = dt.Select(string.Format(" Pgid = '{0}'", pgid));
             for (int i = 0; i < dataRows.Length; i++)
             {
-                string id = dataRows[i]["ID"].ToString();
+                string id = dataRows[i]["Gid"].ToString();
                 list.Add(id);
 
                 list.AddRange(GetSubNodeIdList(id, dt));//递归获取
@@ -158,33 +154,35 @@ namespace JCodes.Framework.SQLServerDAL
             return list;
         }
 
-        public List<FunctionInfo> GetFunctions(string roleIDs, string typeID)
+        public List<FunctionInfo> GetFunctions(string roleIds, string systemtypeId)
         {
-            string sql = string.Format(@"SELECT * FROM {0}Function 
-            INNER JOIN {0}Role_Function On {0}Function.ID={0}Role_Function.Function_ID WHERE Role_ID IN ({1})", SQLServerPortal.gc._securityTablePre, roleIDs);
-            if (typeID.Length > 0)
+            string sql = string.Format(@"SELECT distinct a.Gid, a.Pgid, a.Name, a.DllPath, a.SystemtypeId, a.Seq 
+                                           FROM {0}Function a
+                                     INNER JOIN {0}Role_Function b On a.Gid=b.FunctionGid WHERE b.RoleId IN ({1})", SQLServerPortal.gc._securityTablePre, roleIds);
+            if (systemtypeId.Length > 0)
             {
-                sql = sql + string.Format(" AND SystemType_ID='{0}' ", typeID);
+                sql = sql + string.Format(" AND SystemtypeId='{0}' ", systemtypeId);
             }
             return this.GetList(sql, null);
         }
 
-        public List<FunctionNodeInfo> GetFunctionNodes(string roleIDs, string typeID)
+        public List<FunctionNodeInfo> GetFunctionNodes(string roleIds, string typeId)
         {
-            string sql = string.Format(@"SELECT * FROM {0}Function 
-            INNER JOIN {0}Role_Function On {0}Function.ID={0}Role_Function.Function_ID WHERE Role_ID IN ({1})", SQLServerPortal.gc._securityTablePre, roleIDs);
-            if (typeID.Length > 0)
+            string sql = string.Format(@"SELECT distinct a.Gid, a.Pgid, a.Name, a.DllPath, a.SystemtypeId, a.Seq  
+                                           FROM {0}Function a
+                                     INNER JOIN {0}Role_Function b On a.Gid=b.FunctionGid WHERE b.RoleId IN ({1})", SQLServerPortal.gc._securityTablePre, roleIds);
+            if (typeId.Length > 0)
             {
-                sql = sql + string.Format(" AND SystemType_ID='{0}' ", typeID);
+                sql = sql + string.Format(" AND SystemtypeId='{0}' ", typeId);
             }
 
             List<FunctionNodeInfo> arrReturn = new List<FunctionNodeInfo>();
             DataTable dt = base.SqlTable(sql);
             string seq = string.Format("{0} {1}", GetSafeFileName(sortField), isDescending ? "DESC" : "ASC");
-            DataRow[] dataRows = dt.Select(string.Format(" PID = '{0}' ", -1), seq);
+            DataRow[] dataRows = dt.Select(string.Format(" Pgid = '{0}' ", -1), seq);
             for (int i = 0; i < dataRows.Length; i++)
             {
-                string id = dataRows[i]["ID"].ToString();
+                string id = dataRows[i]["Gid"].ToString();
                 FunctionNodeInfo menuNodeInfo = GetNode(id, dt);
                 arrReturn.Add(menuNodeInfo);
             }
@@ -192,28 +190,29 @@ namespace JCodes.Framework.SQLServerDAL
             return arrReturn;
         }
 
-        public List<FunctionInfo> GetFunctionsByRole(int roleID)
+        public List<FunctionInfo> GetFunctionsByRoleId(Int32 roleId)
         {
-            string sql = string.Format(@"SELECT * FROM {0}Function 
-            LEFT JOIN {0}Role_Function On {0}Function.ID={0}Role_Function.Function_ID WHERE Role_ID = {1}", SQLServerPortal.gc._securityTablePre, roleID);
+            string sql = string.Format(@"SELECT a.Gid, a.Pgid, a.Name, a.DllPath, a.SystemtypeId, a.Seq 
+                                           FROM {0}Function a
+                                      LEFT JOIN {0}Role_Function b On a.Gid=b.FunctionGid WHERE b.RoleId = {1}", SQLServerPortal.gc._securityTablePre, roleId);
             return this.GetList(sql, null);
         }
 
         /// <summary>
         /// 获取树形结构的功能列表
         /// </summary>
-        public List<FunctionNodeInfo> GetTree(string systemType)
+        public List<FunctionNodeInfo> GetTree(string systemtypeId)
         {
-            string condition = !string.IsNullOrEmpty(systemType) ? string.Format("Where SystemType_ID='{0}'", systemType) : "";
+            string condition = !string.IsNullOrEmpty(systemtypeId) ? string.Format("Where SystemtypeId='{0}'", systemtypeId) : "";
             List<FunctionNodeInfo> arrReturn = new List<FunctionNodeInfo>();
-            string sql = string.Format("Select * From {0} {1} Order By PID, Name ", tableName, condition);
+            string sql = string.Format("Select * From {0} {1} Order By Pgid, Name ", tableName, condition);
 
             DataTable dt = base.SqlTable(sql);
             string seq = string.Format("{0} {1}", GetSafeFileName(sortField), isDescending ? "DESC" : "ASC");
-            DataRow[] dataRows = dt.Select(string.Format(" PID = '{0}' ", -1), seq);
+            DataRow[] dataRows = dt.Select(string.Format(" Pgid = '{0}' ", -1), seq);
             for (int i = 0; i < dataRows.Length; i++)
             {
-                string id = dataRows[i]["ID"].ToString();
+                string id = dataRows[i]["Gid"].ToString();
                 FunctionNodeInfo menuNodeInfo = GetNode(id, dt);
                 arrReturn.Add(menuNodeInfo);
             }
@@ -224,23 +223,23 @@ namespace JCodes.Framework.SQLServerDAL
         /// <summary>
         /// 根据角色获取树形结构的功能列表
         /// </summary>
-        public List<FunctionNodeInfo> GetTreeWithRole(string systemType, List<int> roleList)
+        public List<FunctionNodeInfo> GetTreeWithRole(string systemtypeId, List<Int32> roleList)
         {
             List<FunctionNodeInfo> list = new List<FunctionNodeInfo>();
             if (roleList.Count > 0)
             {
                 string roleString = string.Join(",", roleList);
 
-                string sql = string.Format(@"SELECT F.* FROM {0}Function AS F 
-                INNER JOIN {0}Role_Function AS RF ON F.ID = RF.Function_ID
-                WHERE RF.Role_ID IN ({1}) AND F.SystemType_ID = '{2}' Order By PID, Name ", SQLServerPortal.gc._securityTablePre, roleString, systemType);
+                string sql = string.Format(@"SELECT distinct F.* FROM {0}Function AS F 
+                                         INNER JOIN {0}Role_Function AS RF ON F.Gid = RF.FunctionGid
+                                              WHERE RF.RoleId IN ({1}) AND F.SystemtypeId = '{2}' Order By Pgid, Name ", SQLServerPortal.gc._securityTablePre, roleString, systemtypeId);
 
                 DataTable dt = base.SqlTable(sql);
                 string seq = string.Format("{0} {1}", GetSafeFileName(sortField), isDescending ? "DESC" : "ASC");
-                DataRow[] dataRows = dt.Select(string.Format(" PID = '{0}' ", -1), seq);
+                DataRow[] dataRows = dt.Select(string.Format(" Pgid = '{0}' ", -1), seq);
                 for (int i = 0; i < dataRows.Length; i++)
                 {
-                    string id = dataRows[i]["ID"].ToString();
+                    string id = dataRows[i]["Gid"].ToString();
                     FunctionNodeInfo menuNodeInfo = GetNode(id, dt);
                     list.Add(menuNodeInfo);
                 }
@@ -252,17 +251,17 @@ namespace JCodes.Framework.SQLServerDAL
         /// 获取指定功能下面的树形列表
         /// </summary>
         /// <param name="id">指定功能ID</param>
-        public List<FunctionNodeInfo> GetTreeByID(string mainID)
+        public List<FunctionNodeInfo> GetTreeById(string mainId)
         {
             List<FunctionNodeInfo> arrReturn = new List<FunctionNodeInfo>();
-            string sql = string.Format("Select * From {0} Order By PID, Name ", tableName);
+            string sql = string.Format("Select * From {0} Order By Pgid, Name ", tableName);
 
             DataTable dt = SqlTable(sql);
             string sort = string.Format("{0} {1}", GetSafeFileName(sortField), isDescending ? "DESC" : "ASC");
-            DataRow[] dataRows = dt.Select(string.Format(" PID = '{0}'", mainID), sort);
+            DataRow[] dataRows = dt.Select(string.Format(" Pgid = '{0}'", mainId), sort);
             for (int i = 0; i < dataRows.Length; i++)
             {
-                string id = dataRows[i]["ID"].ToString();
+                string id = dataRows[i]["Gid"].ToString();
                 FunctionNodeInfo menuNodeInfo = GetNode(id, dt);
                 arrReturn.Add(menuNodeInfo);
             }
@@ -272,30 +271,30 @@ namespace JCodes.Framework.SQLServerDAL
 
         private FunctionNodeInfo GetNode(string id, DataTable dt)
         {
-            FunctionInfo menuInfo = this.FindByID(id);
-            FunctionNodeInfo menuNodeInfo = new FunctionNodeInfo(menuInfo);
+            FunctionInfo functionInfo = this.FindById(id);
+            FunctionNodeInfo functionInfoNodeInfo = new FunctionNodeInfo(functionInfo);
 
             string seq = string.Format("{0} {1}", GetSafeFileName(sortField), isDescending ? "DESC" : "ASC");
-            DataRow[] dChildRows = dt.Select(string.Format(" PID='{0}'", id), seq);
+            DataRow[] dChildRows = dt.Select(string.Format(" Pgid='{0}'", id), seq);
 
             for (int i = 0; i < dChildRows.Length; i++)
             {
-                string childId = dChildRows[i]["ID"].ToString();
+                string childId = dChildRows[i]["Gid"].ToString();
                 FunctionNodeInfo childNodeInfo = GetNode(childId, dt);
-                menuNodeInfo.Children.Add(childNodeInfo);
+                functionInfoNodeInfo.Children.Add(childNodeInfo);
             }
-            return menuNodeInfo;
+            return functionInfoNodeInfo;
         }
 
         /// <summary>
         /// 根据指定的父ID获取其下面一级（仅限一级）的菜单列表
         /// </summary>
         /// <param name="PID">菜单父ID</param>
-        public List<FunctionInfo> GetFunctionByPID(string PID)
+        public List<FunctionInfo> GetFunctionByPgid(string pgid)
         {
-            string sql = string.Format(@"Select t.*,case pid when '-1' then '0' else pid end as parentId From {1} t 
-                                         Where  PID='{0}' Order By Seq ", PID, tableName);
+            string sql = string.Format(@"Select t.*,case Pgid when '-1' then '0' else Pgid end as parentId From {1} t 
+                                         Where  Pgid='{0}' Order By Seq ", pgid, tableName);
             return GetList(sql, null);
         }
-    }
+	}
 }

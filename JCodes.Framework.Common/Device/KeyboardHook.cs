@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using JCodes.Framework.Common.Collections;
+using JCodes.Framework.jCodesenum;
 using JCodes.Framework.jCodesenum.BaseEnum;
 
 namespace JCodes.Framework.Common.Device

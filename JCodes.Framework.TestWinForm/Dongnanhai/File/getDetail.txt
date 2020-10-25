@@ -1,0 +1,24 @@
+POST https://ynzx.zgwyzxw.cn//index.php/home/my_vote/getDetail HTTP/1.1
+Host: ynzx.zgwyzxw.cn
+Connection: keep-alive
+Content-Length: 28
+Accept: application/json, text/plain, */*
+Origin: https://ynzx.zgwyzxw.cn
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36
+Sec-Fetch-Mode: cors
+Content-Type: application/x-www-form-urlencoded
+Sec-Fetch-Site: same-origin
+Referer: https://ynzx.zgwyzxw.cn/my/MyVoteResult/can/299
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+
+userId=37614&type=can&id=299
+HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 24 Dec 2019 01:54:30 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Vary: Accept-Encoding
+Content-Length: 2166
+
+{"code":200,"data":[{"options":"王  峰","house":"2-2102","created_at":"2019-08-15 20:40:09","type":"同意","candidateId":791,"img":"http:\/\/pic.zgwyzxw.cn\/article%2Fthumb%2F20190809154235_757126_%E7%8E%8B++%E5%B3%B0.png"},{"options":"朱国炎","house":"12-701","created_at":"2019-08-15 20:40:09","type":"同意","candidateId":794,"img":"http:\/\/pic.zgwyzxw.cn\/article%2Fthumb%2F20190809154618_675848_%E6%9C%B1%E5%9B%BD%E7%82%8E.png"},{"options":"孙金阳","house":"16-1-2101","created_at":"2019-08-15 20:40:09","type":"同意","candidateId":796,"img":"http:\/\/pic.zgwyzxw.cn\/article%2Fthumb%2F20190809154834_58433_%E5%AD%99%E9%87%91%E9%98%B3.png"},{"options":"何相玉","house":"9-304","created_at":"2019-08-15 20:40:09","type":"同意","candidateId":800,"img":"http:\/\/pic.zgwyzxw.cn\/article%2Fthumb%2F20190809155254_821001_%E4%BD%95%E7%9B%B8%E7%8E%89.png"},{"options":"沈铁军","house":"5-2101","created_at":"2019-08-15 20:40:09","type":"同意","candidateId":802,"img":"http:\/\/pic.zgwyzxw.cn\/article%2Fthumb%2F20190809155500_536480_%E6%B2%88%E9%93%81%E5%86%9B.png"},{"options":"陈  莲","house":"10-402","created_at":"2019-08-15 20:40:09","type":"不同意","candidateId":803,"img":"http:\/\/pic.zgwyzxw.cn\/article%2Fthumb%2F20190809155600_549918_%E9%99%88%E8%8E%B2.png"},{"options":"莫海滨","house":"13-2004","created_at":"2019-08-15 20:40:09","type":"同意","candidateId":804,"img":"http:\/\/pic.zgwyzxw.cn\/article%2Fthumb%2F20190809155650_799473_%E8%8E%AB%E6%B5%B7%E6%BB%A8.png"},{"options":"倪月娟","house":"11-1802","created_at":"2019-08-15 20:40:09","type":"同意","candidateId":805,"img":"http:\/\/pic.zgwyzxw.cn\/article%2Fthumb%2F20190809155746_464918_%E5%80%AA%E6%9C%88%E5%A8%9F.jpg"},{"options":"蒋  伟 ","house":"15-1-2704","created_at":"2019-08-15 20:40:09","type":"同意","candidateId":806,"img":"http:\/\/pic.zgwyzxw.cn\/article%2Fthumb%2F20190809155840_759899_%E8%92%8B%E4%BC%9F.png"},{"options":"童部林","house":"17-2-1402","created_at":"2019-08-15 20:40:09","type":"同意","candidateId":807,"img":"http:\/\/pic.zgwyzxw.cn\/article%2Fthumb%2F20190809155942_74822_%E7%AB%A5%E9%83%A8%E6%9E%97.png"}],"error":""}

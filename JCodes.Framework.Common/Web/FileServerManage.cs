@@ -5,7 +5,7 @@ using System.Net;
 using System.Configuration;
 using System.IO;
 using System.Web;
-using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.Common.Web
 {

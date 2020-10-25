@@ -1,5 +1,4 @@
 using System;
-using System.Text;
 using System.Drawing;
 using System.IO;
 using System.Reflection;
@@ -7,20 +6,16 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
-using JCodes.Framework.CommonControl.Framework;
 using JCodes.Framework.Common;
 using JCodes.Framework.Entity;
 using JCodes.Framework.BLL;
-using JCodes.Framework.AddIn.Basic;
-using JCodes.Framework.jCodesenum.BaseEnum;
-using JCodes.Framework.CommonControl;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.CommonControl.PlugInInterface;
-using System.Threading;
 using DevExpress.Utils;
 using System.Diagnostics;
 using JCodes.Framework.Common.Office;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn.Basic
 {
@@ -42,14 +37,14 @@ namespace JCodes.Framework.AddIn.Basic
         {
             // 约定菜单共有3级，第一级为大的类别，第二级为小模块分组，第三级为具体的菜单 
             // Portal.gc.SystemType = WareMis
-            List<MenuNodeInfo> menuList = BLLFactory<Menus>.Instance.GetTree(Portal.gc.SystemType);
+            List<MenuNodeInfo> menuList = BLLFactory<JCodes.Framework.BLL.Menu>.Instance.GetTree(Portal.gc.SYSTEMTYPEID);
             if (menuList.Count == 0) return;
 
             int i = 0;
             foreach(MenuNodeInfo firstInfo in menuList)
             {
                 //如果没有菜单的权限，则跳过
-                if (!Portal.gc.HasFunction(firstInfo.AuthGid)) continue;
+                if (!Portal.gc.HasFunction(firstInfo.DllPath)) continue;
 
                 //添加页面（一级菜单）
                 RibbonPage page = new RibbonPage();
@@ -61,7 +56,7 @@ namespace JCodes.Framework.AddIn.Basic
                 foreach(MenuNodeInfo secondInfo in firstInfo.Children)
                 {
                     //如果没有菜单的权限，则跳过
-                    if (!Portal.gc.HasFunction(secondInfo.AuthGid)) continue;
+                    if (!Portal.gc.HasFunction(secondInfo.DllPath)) continue;
 
                     //添加RibbonPageGroup（二级菜单）
                     RibbonPageGroup group = new RibbonPageGroup();
@@ -75,7 +70,7 @@ namespace JCodes.Framework.AddIn.Basic
                     foreach (MenuNodeInfo thirdInfo in secondInfo.Children)
                     {
                         //如果没有菜单的权限，则跳过
-                        if (!Portal.gc.HasFunction(thirdInfo.AuthGid)) continue;
+                        if (!Portal.gc.HasFunction(thirdInfo.DllPath)) continue;
 
                         // 判断 WinformType 如果是 RgbiSkins 则表示皮肤
                         if (thirdInfo.WinformClass == Const.RgbiSkins)
@@ -84,8 +79,7 @@ namespace JCodes.Framework.AddIn.Basic
                             var galleryItemGroup1 = new GalleryItemGroup();
                             rgbi.Name = thirdInfo.Gid;
                             rgbi.Caption = thirdInfo.Name;
-                            rgbi.Gallery.Groups.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItemGroup[] {
-            galleryItemGroup1});
+                            rgbi.Gallery.Groups.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItemGroup[] { galleryItemGroup1});
                             group.ItemLinks.Add(rgbi);
                             DevExpress.XtraBars.Helpers.SkinHelper.InitSkinGallery(rgbi, true);
                         }
@@ -260,7 +254,11 @@ namespace JCodes.Framework.AddIn.Basic
                     function.InitFunction(loginUserInfo, cacheDict);
 
                     //记录程序的相关信息
-                    function.AppInfo = new AppInfo(Portal.gc.AppUnit, Portal.gc.AppName, Portal.gc.AppWholeName, Portal.gc.SystemType);
+                    function.AppInfo = new AppInfo();
+                    function.AppInfo.AppUnit = Portal.gc.AppUnit;
+                    function.AppInfo.AppName = Portal.gc.AppName;
+                    function.AppInfo.AppWholeName = Portal.gc.AppWholeName;
+                    function.AppInfo.SystemtypeId = Portal.gc.SYSTEMTYPEID;
                 }
 
             }

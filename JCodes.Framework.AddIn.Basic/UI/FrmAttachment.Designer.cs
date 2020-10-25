@@ -1,4 +1,5 @@
-﻿namespace JCodes.Framework.AddIn.Basic
+﻿using JCodes.Framework.jCodesenum;
+namespace JCodes.Framework.AddIn.Basic
 {
     partial class FrmAttachment
     {
@@ -60,7 +61,7 @@
             // 
             // MyAttachment
             // 
-            this.MyAttachment.AttachmentDirectory = "业务附件";
+            this.MyAttachment.AttachmentDirectory = AttachmentType.业务附件;
             this.MyAttachment.AttachmentGid = null;
             this.MyAttachment.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MyAttachment.Location = new System.Drawing.Point(0, 0);
@@ -82,7 +83,7 @@
             // 
             // bizAttachment
             // 
-            this.bizAttachment.AttachmentDirectory = "业务附件";
+            this.bizAttachment.AttachmentDirectory = AttachmentType.业务附件;
             this.bizAttachment.AttachmentGid = null;
             this.bizAttachment.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bizAttachment.Location = new System.Drawing.Point(0, 0);

@@ -17,6 +17,7 @@ using JCodes.Framework.CommonControl.BaseUI;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.BLL;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn.WareHouseManage
 {

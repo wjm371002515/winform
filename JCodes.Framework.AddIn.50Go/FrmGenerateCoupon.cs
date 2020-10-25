@@ -18,6 +18,7 @@ using JCodes.Framework.Common.Extension;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.AddIn.Basic;
 using JCodes.Framework.CommonControl.Controls;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn._50Go
 {
@@ -61,10 +62,10 @@ namespace JCodes.Framework.AddIn._50Go
                 this.txtMobilePhone.Focus();
                 result = false;
             }
-            else if (this.txtFullName.Text.Length == 0)
+            else if (this.txtLoginName.Text.Length == 0)
             {
-                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblFullName.Text.Replace(Const.MsgCheckSign, string.Empty));
-                this.txtFullName.Focus();
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblLoginName.Text.Replace(Const.MsgCheckSign, string.Empty));
+                this.txtLoginName.Focus();
                 result = false;
             }
             else if (this.txtEnabled.Text.Length == 0)
@@ -103,17 +104,17 @@ namespace JCodes.Framework.AddIn._50Go
             if (Id > 0)
             {
                 #region 显示信息
-                CouponInfo info = BLLFactory<Coupon>.Instance.FindByID(Id);
+                CouponInfo info = BLLFactory<Coupon>.Instance.FindById(Id);
                 if (info != null)
                 {
                     txtID.Text = Id.ToString();
-                    CouponCategoryInfo info2 = BLLFactory<CouponCategory>.Instance.FindByID(info.CouponCategoryId);
+                    CouponCategoryInfo info2 = BLLFactory<CouponCategory>.Instance.FindById(info.CouponCategoryId);
                     if (info2 != null)
                     {
                         txtCategory.SelectedText = info2.GeneralCode + "-" + info2.Name;
                     }
                     txtMobilePhone.Text = info.MobilePhone;
-                    txtFullName.Text = info.Contacts;
+                    txtLoginName.Text = info.Contacts;
                     txtEndTime.DateTime = info.EndTime;
                     txtStartTime.DateTime = info.StartTime;
                     txtEnabled.SelectedIndex = info.IsDelete;
@@ -124,7 +125,7 @@ namespace JCodes.Framework.AddIn._50Go
             }
             else
             {
-                txtCreator.Text = Portal.gc.UserInfo.FullName;  //默认为当前登录用户
+                txtCreator.Text = Portal.gc.UserInfo.LoginName;  //默认为当前登录用户
                 txtCreateTime.DateTime = DateTimeHelper.GetServerDateTime2();          //默认当前时间
                 txtID.Text = Guid.NewGuid().ToString();
             }
@@ -148,7 +149,7 @@ namespace JCodes.Framework.AddIn._50Go
                 info.CreatorTime = DateTimeHelper.GetServerDateTime2();
             }
             info.CouponCategoryId = Convert.ToInt32((txtCategory.SelectedItem as CListItem).Value);
-            CouponCategoryInfo couponCategoryInfo = BLLFactory<CouponCategory>.Instance.FindByID(info.CouponCategoryId);
+            CouponCategoryInfo couponCategoryInfo = BLLFactory<CouponCategory>.Instance.FindById(info.CouponCategoryId);
             if (couponCategoryInfo != null)
             {
                 info.CouponCategoryName = couponCategoryInfo.Name;
@@ -156,7 +157,7 @@ namespace JCodes.Framework.AddIn._50Go
             }
            
             info.MobilePhone = txtMobilePhone.Text;
-            info.Contacts = txtFullName.Text;
+            info.Contacts = txtLoginName.Text;
             info.StartTime = txtStartTime.DateTime;
             info.EndTime = txtEndTime.DateTime;
             info.IsDelete = (short)txtEnabled.SelectedIndex;
@@ -198,7 +199,7 @@ namespace JCodes.Framework.AddIn._50Go
         public override bool SaveUpdated()
         {
 
-            CouponInfo info = BLLFactory<Coupon>.Instance.FindByID(Id);
+            CouponInfo info = BLLFactory<Coupon>.Instance.FindById(Id);
             if (info != null)
             {
                 SetInfo(info);

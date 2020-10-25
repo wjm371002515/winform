@@ -20,9 +20,9 @@ namespace JCodes.Framework.AddIn.UI.BizControl
     /// <summary>
     /// 部门显示控件
     /// </summary>
-    public partial class DeptControl : XtraUserControl
+    public partial class DeptControl : UserControl, ISupportStyleController
     {
-        public Int32 ParentOuID = -1;
+        public Int32 ParentOuId = -1;
 
         /// <summary>
         /// 选择的值发生变化的时候
@@ -54,7 +54,7 @@ namespace JCodes.Framework.AddIn.UI.BizControl
                 {
                     if (ouInfo != null)
                     {
-                        this.ParentOuID = ouInfo.Id;
+                        this.ParentOuId = ouInfo.Id;
                     }
                 }
 
@@ -67,14 +67,13 @@ namespace JCodes.Framework.AddIn.UI.BizControl
         /// </summary>
         public void Init()
         { 
-            //InitUpperOU
-            DataTable dt = DataTableHelper.CreateTable("ImageIndex|int,ID,PID,Name,UserCode,Category,Address,Note");
+            DataTable dt = DataTableHelper.CreateTable("ImageIndex|int,Id,Pid,Name,OuCode,OuType,Address,Remark");
             DataRow dr = null;
 
-            if (ParentOuID > -1)
+            if (ParentOuId > -1)
             {
-                List<OUInfo> list = BLLFactory<OU>.Instance.GetAllOUsByParent(ParentOuID);
-                OUInfo parentInfo = BLLFactory<OU>.Instance.FindByID(ParentOuID);
+                List<OUInfo> list = BLLFactory<OU>.Instance.GetAllOUsByParent(ParentOuId);
+                OUInfo parentInfo = BLLFactory<OU>.Instance.FindById(ParentOuId);
                 if (parentInfo != null)
                 {
                     list.Insert(0, parentInfo);
@@ -83,9 +82,9 @@ namespace JCodes.Framework.AddIn.UI.BizControl
                 foreach (OUInfo info in list)
                 {
                     dr = dt.NewRow();
-                    dr["ImageIndex"] = info.OuType;//Portal.gc.GetImageIndex(info.Category);
+                    dr["ImageIndex"] = info.OuType;
                     dr["Id"] = info.Id;
-                    dr["PID"] = info.Pid;
+                    dr["Pid"] = info.Pid;
                     dr["Name"] = info.Name;
                     dr["OuCode"] = info.OuCode;
                     dr["OuType"] = info.OuType;
@@ -97,8 +96,8 @@ namespace JCodes.Framework.AddIn.UI.BizControl
             }
             //增加一行空的
             dr = dt.NewRow();
-            dr["ID"] = "0"; //使用0代替-1，避免出现节点的嵌套显示，因为-1已经作为了一般节点的顶级标识
-            dr["PID"] = "-1";
+            dr["Id"] = "0"; //使用0代替-1，避免出现节点的嵌套显示，因为-1已经作为了一般节点的顶级标识
+            dr["Pid"] = "-1";
             dr["Name"] = "无";
             dt.Rows.InsertAt(dr, 0);
 
@@ -106,10 +105,10 @@ namespace JCodes.Framework.AddIn.UI.BizControl
             this.treeListLookUpEdit1TreeList.SelectImageList = this.imageList2;
             this.treeListLookUpEdit1TreeList.StateImageList = this.imageList2;
 
-            this.txtDept.Properties.TreeList.KeyFieldName = "ID";
-            this.txtDept.Properties.TreeList.ParentFieldName = "PID";
+            this.txtDept.Properties.TreeList.KeyFieldName = "Id";
+            this.txtDept.Properties.TreeList.ParentFieldName = "Pid";
             this.txtDept.Properties.DataSource = dt;
-            this.txtDept.Properties.ValueMember = "ID";
+            this.txtDept.Properties.ValueMember = "Id";
             this.txtDept.Properties.DisplayMember = "Name";
         }
 
@@ -165,6 +164,18 @@ namespace JCodes.Framework.AddIn.UI.BizControl
             if (!this.DesignMode)
             {
                 Init();
+            }
+        }
+
+        public IStyleController StyleController
+        {
+            get
+            {
+                return txtDept.StyleController;
+            }
+            set
+            {
+                txtDept.StyleController = value;
             }
         }
     }

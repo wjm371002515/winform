@@ -7,7 +7,7 @@
 <!-- BEGIN HEAD -->
 <head>
     <meta charset="utf-8" />
-    <title>企业信息化平台管理系统</title>
+    <title>@ViewBag.AppName @ViewBag.SubTitle</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
@@ -393,7 +393,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <img id="myPortrait" alt="个人头像" class="img-circle" src="~/Content/metronic/assets/admin/layout2/img/avatar3_small.jpg" />
                                 <span class="username username-hide-on-mobile">
-                                    @ViewBag.FullName
+                                    @ViewBag.LoginName
                                 </span>
                                 <i class="fa fa-angle-down"></i>
                             </a>
@@ -408,7 +408,7 @@
                                         <i class="icon-lock-open"></i> 修改密码
                                     </a>
                                 </li>
-                           <!-- <li>
+                                <li>
                                     <a href="~/Content/metronic/templates/admin2/page_calendar.html">
                                         <i class="icon-calendar"></i> 日程安排
                                     </a>
@@ -426,7 +426,7 @@
                                             7
                                         </span>
                                     </a>
-                                </li> -->
+                                </li>
                                 <li class="divider">
                                  <li>
                                     <a href="javascript:;" onclick="calculator()">
@@ -738,18 +738,18 @@
             $("#password").modal("show");
         }
         function changePassword() {
-            // if ($("#txtNewPass").val() == "") {
-            //     $("#txtNewPass").focus();
-            //     showToast('新密码不能为空', "warning");
-            //      return;
-            // }
+             if ($("#txtNewPass").val() == "") {
+                 $("#txtNewPass").focus();
+                 showToast('新密码不能为空', "warning");
+                  return;
+             }
             if ($("#txtNewPass").val() != $("#txtCheckPass").val()) {
                 $("#txtNewPass").focus();
                 showToast("两次输入的密码不一致", "warning"); 
                 return;
             }
             
-            var postData = { Name: '@Session["Identity"]', OldPass: $("#txtOldPass").val(), NewPass: $("#txtNewPass").val() };
+            var postData = { Name: '@Session["UserName"]', OldPass: $("#txtOldPass").val(), NewPass: $("#txtNewPass").val() };
             $.ajax({
                 type: 'POST',
                 url: '/User/ModifyPass?r=' + Math.random(),
@@ -779,11 +779,10 @@
             });
 
             //使用{ path: "/"} 解决Cokie不同页面取值问题
-            $.cookie("lock_UserID",  '@Session["UserID"]', { path: "/"});
-            $.cookie("lock_FullName", '@Session["FullName"]', { path: "/"});
-            $.cookie("lock_UserName",  '@Session["Identity"]', { path: "/"});
-            $.cookie("lock_UserID2",  '@Session["UserID"]', { path: "/"});
-
+            $.cookie("lock_UserId", '@Session["UserId"]', { path: "/" });
+            $.cookie("lock_UserName", '@Session["UserName"]', { path: "/" });
+            $.cookie("lock_LoginName", '@Session["LoginName"]', { path: "/" });
+  
             window.location.href = '/Login/Lock';
         };
 
@@ -795,8 +794,6 @@
         });
         $('.page-sidebar-menu li[id=' + tid + ']:first').attr("class", "active open");
         $('.page-sidebar-menu li[id=' + sid + ']:first').attr("class", "active");
-        // alert($('.page-sidebar-menu li[id=' + sid + ']:first').attr("class"));
-
     </script>
 
     @*用来控制JS输出的顺序*@

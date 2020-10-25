@@ -47,6 +47,10 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 处理状态
+		/// 1-未处理,
+		/// 2-待处理,
+		/// 3-正在处理,
+		/// 4-已处理
 		/// </summary>
 		[DataMember]
 		[DisplayName("处理状态")]

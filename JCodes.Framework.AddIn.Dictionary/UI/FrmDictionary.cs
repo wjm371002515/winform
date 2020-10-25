@@ -19,6 +19,10 @@ using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.Common.Databases;
 using JCodes.Framework.CommonControl.Pager.Others;
 using JCodes.Framework.CommonControl.Controls;
+using JCodes.Framework.jCodesenum;
+using JCodes.Framework.Common.Extension;
+using JCodes.Framework.Common.Format;
+using JCodes.Framework.AddIn.Basic;
 
 namespace JCodes.Framework.AddIn.Dictionary
 {
@@ -48,15 +52,43 @@ namespace JCodes.Framework.AddIn.Dictionary
             this.winGridViewPager1.AppendedMenu = this.contextMenuStrip2;
             this.winGridViewPager1.BestFitColumnWith = false;
             this.winGridViewPager1.gridView1.DataSourceChanged += new EventHandler(gridView1_DataSourceChanged);
+            this.winGridViewPager1.gridView1.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(gridView1_CustomColumnDisplayText);
 
             Init_Function();
         }
 
+        void gridView1_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
+        {
+            if (e.Column.ColumnType == typeof(DateTime))
+            {
+                string columnName = e.Column.FieldName;
+                if (e.Value != null)
+                {
+                    if (Convert.ToDateTime(e.Value) <= Convert.ToDateTime("1900-1-1"))
+                    {
+                        e.DisplayText = "";
+                    }
+                    else
+                    {
+                        e.DisplayText = Convert.ToDateTime(e.Value).ToString("yyyy-MM-dd HH:mm");//yyyy-MM-dd
+                    }
+                }
+            }
+            else if (string.Equals(e.Column.FieldName, "EditorId", StringComparison.CurrentCultureIgnoreCase))
+            {
+                if (e.Value != null && !string.IsNullOrEmpty(e.Value.ToString()))
+                {
+                    if (Portal.gc.AllUserInfo.ContainsKey(ConvertHelper.ToInt32(e.Value, 0)))
+                        e.DisplayText = Portal.gc.AllUserInfo[ConvertHelper.ToInt32(e.Value, 0)];
+                }
+            } 
+        }
+
         void Init_Function()
         {
-            btnAdd.Enabled = HasFunction("DicSet/DictDataAdd");
-            btnEdit.Enabled = HasFunction("DicSet/DictDataEdit");
-            btnDelete.Enabled = HasFunction("DicSet/DictDataDel");
+            btnAdd.Enabled = HasFunction("Dictionary/Set/DictDataAdd");
+            btnEdit.Enabled = HasFunction("Dictionary/Set/DictDataEdit");
+            btnDelete.Enabled = HasFunction("Dictionary/Set/DictDataDel");
         }
 
         #region 分类数据
@@ -108,14 +140,14 @@ namespace JCodes.Framework.AddIn.Dictionary
 
         private void menu_AddType_Click(object sender, EventArgs e)
         {
-            if (!HasFunction("DicSet/DictTypeAdd"))
+            if (!HasFunction("Dictionary/Set/DictTypeAdd"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
             }
 
             FrmEditDictType dlg = new FrmEditDictType();
-            dlg.PID = GetParentNodeIndex();
+            dlg.pId = GetParentNodeIndex();
             dlg.OnDataSaved += new EventHandler(dlg_OnDataTreeSaved);
             if (dlg.ShowDialog() == DialogResult.OK)
             {
@@ -145,7 +177,7 @@ namespace JCodes.Framework.AddIn.Dictionary
         /// <param name="e"></param>
         private void menu_EditType_Click(object sender, EventArgs e)
         {
-            if (!HasFunction("DicSet/DictTypeEdit"))
+            if (!HasFunction("Dictionary/Set/DictTypeEdit"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -155,12 +187,12 @@ namespace JCodes.Framework.AddIn.Dictionary
             if (selectedNode != null && selectedNode.Tag != null)
             {
                 Int32 typeId = Convert.ToInt32( selectedNode.Tag);
-                DictTypeInfo info = BLLFactory<DictType>.Instance.FindByID(typeId);
+                DictTypeInfo info = BLLFactory<DictType>.Instance.FindById(typeId);
                 if (info != null)
                 {
                     FrmEditDictType dlg = new FrmEditDictType();
                     dlg.Id = typeId;
-                    dlg.PID = info.Pid;
+                    dlg.pId = info.Pid;
                     dlg.OnDataSaved += new EventHandler(dlg_OnDataTreeSaved);
                     if (dlg.ShowDialog() == DialogResult.OK)
                     {
@@ -172,7 +204,7 @@ namespace JCodes.Framework.AddIn.Dictionary
 
         private void menu_DeleteType_Click(object sender, EventArgs e)
         {
-            if (!HasFunction("DicSet/DictTypeDel"))
+            if (!HasFunction("Dictionary/Set/DictTypeDel"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -195,7 +227,7 @@ namespace JCodes.Framework.AddIn.Dictionary
                         {
                             BLLFactory<DictType>.Instance.DeleteByUser(key, LoginUserInfo.Id);
 
-                            string condition = string.Format("DicttypeID={0}", key);
+                            string condition = string.Format("DicttypeId={0}", key);
                             BLLFactory<DictData>.Instance.DeleteByCondition(condition);
                         }
 
@@ -218,7 +250,7 @@ namespace JCodes.Framework.AddIn.Dictionary
         /// <returns></returns>
         bool drager_ProcessDragNode(TreeNode dragNode, TreeNode dropNode)
         {
-            if (!HasFunction("DicSet/DictTypeDrag"))
+            if (!HasFunction("Dictionary/Set/DictTypeDrag"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return false;
@@ -231,11 +263,10 @@ namespace JCodes.Framework.AddIn.Dictionary
             {
                 string dropTypeId = dropNode.Tag.ToString();
                 string dragTypeId = dragNode.Tag.ToString();
-                //MessageDxUtil.ShowTips(string.Format("dropTypeId:{0} dragTypeId:{1}", dropTypeId, drageTypeId));
-
+               
                 try
                 {
-                    DictTypeInfo dragTypeInfo = BLLFactory<DictType>.Instance.FindByID(dragTypeId);
+                    DictTypeInfo dragTypeInfo = BLLFactory<DictType>.Instance.FindById(dragTypeId);
                     if (dragTypeInfo != null)
                     {
                         dragTypeInfo.Pid = Convert.ToInt32(dropTypeId);
@@ -266,7 +297,7 @@ namespace JCodes.Framework.AddIn.Dictionary
         private void menu_ClearData_Click(object sender, EventArgs e)
         {
 
-            if (!HasFunction("DicSet/DictDataClearAll"))
+            if (!HasFunction("Dictionary/Set/DictDataClearAll"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -276,7 +307,7 @@ namespace JCodes.Framework.AddIn.Dictionary
             if (selectedNode != null && selectedNode.Tag != null)
             {
                 Int32 typeId = Convert.ToInt32(selectedNode.Tag);
-                int count = BLLFactory<DictData>.Instance.GetDictByTypeID(typeId).Count;
+                int count = BLLFactory<DictData>.Instance.GetDictByTypeId(typeId).Count;
                 string message = string.Format("您确定要删除节点：{0}，该节点下面有【{1}】项数据", selectedNode.Text, count);
                 if (MessageDxUtil.ShowYesNoAndWarning(message) == DialogResult.Yes)
                 {
@@ -304,7 +335,7 @@ namespace JCodes.Framework.AddIn.Dictionary
         #region 分类数据字典数据
         private void winGridViewPager1_OnAddNew(object sender, EventArgs e)
         {
-            if (!HasFunction("DicSet/DictDataAdd"))
+            if (!HasFunction("Dictionary/Set/DictDataAdd"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -329,17 +360,18 @@ namespace JCodes.Framework.AddIn.Dictionary
 
         private void winGridViewPager1_OnEditSelected(object sender, EventArgs e)
         {
-            if (!HasFunction("DicSet/DictDataEdit"))
+            if (!HasFunction("Dictionary/Set/DictDataEdit"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
             }
 
-            string ID = this.winGridViewPager1.gridView1.GetFocusedRowCellDisplayText("Id");
-            if (!string.IsNullOrEmpty(ID))
+            String Gid = this.winGridViewPager1.gridView1.GetFocusedRowCellDisplayText("Gid");
+            if (!string.IsNullOrEmpty(Gid))
             {
                 FrmEditDictData dlg = new FrmEditDictData();
-                dlg.Id = Convert.ToInt32(ID);
+                dlg.Id = 1;
+                dlg.Tag = Gid;
                 dlg.OnDataSaved += new EventHandler(dlg_OnDataSaved);
                 if (DialogResult.OK == dlg.ShowDialog())
                 {
@@ -350,7 +382,7 @@ namespace JCodes.Framework.AddIn.Dictionary
 
         private void winGridViewPager1_OnDeleteSelected(object sender, EventArgs e)
         {
-            if (!HasFunction("DicSet/DictDataDel"))
+            if (!HasFunction("Dictionary/Set/DictDataDel"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -364,8 +396,8 @@ namespace JCodes.Framework.AddIn.Dictionary
             int[] rowSelected = this.winGridViewPager1.GridView1.GetSelectedRows();
             foreach (int iRow in rowSelected)
             {
-                string ID = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "Id");
-                BLLFactory<DictData>.Instance.DeleteByUser(ID, LoginUserInfo.Id);
+                string Gid = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "Gid");
+                BLLFactory<DictData>.Instance.DeleteByUser(Gid, LoginUserInfo.Id);
             }
             BindData();
         }
@@ -382,8 +414,12 @@ namespace JCodes.Framework.AddIn.Dictionary
         {
             if (this.winGridViewPager1.gridView1.Columns.Count > 0 && this.winGridViewPager1.gridView1.RowCount > 0)
             {
-                this.winGridViewPager1.gridView1.Columns["Name"].Width = 200;
-                this.winGridViewPager1.gridView1.Columns["Value"].Width = 200;
+                this.winGridViewPager1.gridView1.Columns["DicttypeId"].Width = 120;
+                this.winGridViewPager1.gridView1.Columns["Name"].Width = 100;
+                this.winGridViewPager1.gridView1.Columns["DicttypeValue"].Width = 100;
+                this.winGridViewPager1.gridView1.Columns["Remark"].Width = 120;
+                this.winGridViewPager1.gridView1.Columns["LastUpdateTime"].Width = 160;
+                winGridViewPager1.gridView1.SetGridColumWidth("EditorId", 80);  
             }
         }
 
@@ -420,7 +456,7 @@ namespace JCodes.Framework.AddIn.Dictionary
             SearchCondition conditon = new SearchCondition();
             if (lblDictType.Tag != null)
             {
-                conditon.AddCondition("DicttypeID", Convert.ToInt32(this.lblDictType.Tag), SqlOperator.Equal);
+                conditon.AddCondition("DicttypeId", Convert.ToInt32(this.lblDictType.Tag), SqlOperator.Equal);
             }
             string sql = conditon.BuildConditionSql().Replace("Where", "");
             return sql;
@@ -429,15 +465,11 @@ namespace JCodes.Framework.AddIn.Dictionary
         private void BindData()
         {
             #region 添加别名解析
-            this.winGridViewPager1.DisplayColumns = "Value,Name,Seq,Remark,EditTime";
-            this.winGridViewPager1.AddColumnAlias("GID", "编号");
-            this.winGridViewPager1.AddColumnAlias("DicttypeID", "字典大类");
-            this.winGridViewPager1.AddColumnAlias("Name", "项目名称");
-            this.winGridViewPager1.AddColumnAlias("Value", "项目值");
-            this.winGridViewPager1.AddColumnAlias("Seq", "字典排序");
-            this.winGridViewPager1.AddColumnAlias("Remark", "备注");
-            this.winGridViewPager1.AddColumnAlias("EditorId", "修改用户");
-            this.winGridViewPager1.AddColumnAlias("EditTime", "更新日期");
+            var lst = BLLFactory<DictData>.Instance.GetColumnNameAlias();
+            if (lst.ContainsKey("Gid")) lst.Remove("Gid");
+            this.winGridViewPager1.DisplayColumns = lst.ToDiplayKeyString();
+            this.winGridViewPager1.ColumnNameAlias = lst;
+
             #endregion
 
             if (this.lblDictType.Tag != null)

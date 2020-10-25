@@ -12,6 +12,7 @@ using JCodes.Framework.CommonControl;
 using JCodes.Framework.BLL;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.CommonControl.Other;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn.Basic.BizControl
 {
@@ -25,12 +26,12 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
         /// <summary>
         /// 操作用户ID，当前登录用户
         /// </summary>
-        public Int32 userId = 0;
+        public Int32 UserId = 0;
 
         /// <summary>
         /// 设置附件的存储目录分类
         /// </summary>
-        public string AttachmentDirectory = "业务附件";
+        public AttachmentType AttachmentDirectory = AttachmentType.业务附件;
 
         /// <summary>
         /// 设置附件组的GUID
@@ -67,11 +68,11 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
         /// <param name="attachmentDir">设置附件的存储目录分类</param>
         /// <param name="creatorId">附件组所属的记录ID，如属于某个主表记录的ID</param>
         /// <param name="userId">操作用户ID，当前登录用户</param>
-        public void Init(string attachmentDir, Int32 creatorId, Int32 userId)
+        public void Init(AttachmentType attachmentDir, Int32 creatorId, Int32 userId)
         {
             this.AttachmentDirectory = attachmentDir;
             this.CreatorId = creatorId;
-            this.userId = userId;
+            this.UserId = userId;
         }
 
         public AttachmentControl()
@@ -105,7 +106,7 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
 
         private void btnView_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(AttachmentDirectory))
+            if ((short)AttachmentDirectory == 0)
             {
                 MessageDxUtil.ShowTips("请设置附件的存储目录分类");
                 return;
@@ -119,7 +120,7 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
             FrmAttachmentGroupView dlg = new FrmAttachmentGroupView();
             dlg.AttachmentDirectory = AttachmentDirectory;
             dlg.AttachmentGid = AttachmentGid;
-            dlg.UserId = userId;
+            dlg.UserId = UserId;
             dlg.CreatorId = CreatorId;
             dlg.OnDataSaved += new EventHandler(dlg_OnDataSaved);
             dlg.ShowDialog();
@@ -143,7 +144,7 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
             List<FileUploadInfo> list = new List<FileUploadInfo>();
             if (!this.DesignMode && !string.IsNullOrEmpty(this.AttachmentGid))
             {
-                list = BLLFactory<FileUpload>.Instance.GetByAttachGUID(this.AttachmentGid);
+                list = BLLFactory<FileUpload>.Instance.GetByAttachGid(this.AttachmentGid);
             }
             this.lblTips.Text = string.Format(TipsContent, list.Count);
         }

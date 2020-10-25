@@ -22,6 +22,7 @@ using JCodes.Framework.Entity;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.BLL;
 using JCodes.Framework.Common.Format;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn.Basic
 {
@@ -208,62 +209,11 @@ namespace JCodes.Framework.AddIn.Basic
             Splasher.Status = "加载数据缓存数据...";
             System.Threading.Thread.Sleep(Const.SLEEP_TIME);
             Application.DoEvents();
-            #region 获取用户的功能列表
-            Dictionary<string, string> functionDict = new Dictionary<string, string>();
+
             UserInfo info = Portal.gc.UserInfo;
 
-            List<FunctionInfo> list = BLLFactory<Functions>.Instance.GetFunctionsByUser(info.Id, Portal.gc.SystemType);
-            if (list != null && list.Count > 0)
-            {
-                functionDict.Clear();
-                foreach (FunctionInfo functionInfo in list)
-                {
-                    /*if (!functionDict.ContainsKey(functionInfo.FunctionId))
-                    {
-                        functionDict.Add(functionInfo.FunctionId, functionInfo.Name);
-                    }*/
-                }
-            }
-            #endregion
+            Portal.gc.LoadCache(info);
 
-            #region 获取角色对应的用户操作部门及公司范围
-            List<int> companyLst = BLLFactory<RoleData>.Instance.GetBelongCompanysByUser(info.Id);
-            List<int> deptLst = BLLFactory<RoleData>.Instance.GetBelongDeptsByUser(info.Id);
-            StringBuilder companysb = new StringBuilder();
-            StringBuilder deptsb = new StringBuilder();
-            companysb.Append(" in (");
-            for (int i = 0; i < companyLst.Count; i++)
-            {
-                companysb.Append(" '" + companyLst[i] + "', ");
-            }
-            companysb.Append(" '')");
-
-            if (companyLst.Contains(-1))
-            {
-                companysb.Append(" or (1 = 1)");
-            }
-
-            deptsb.Append(" in (");
-            for (int i = 0; i < deptLst.Count; i++)
-            {
-                deptsb.Append(" '" + deptsb[i] + "', ");
-            }
-            deptsb.Append(" '')");
-
-            if (deptLst.Contains(-11))
-            {
-                deptsb.Append(" or (1 = 1)");
-            }
-            #endregion
-
-            // 并保持到缓存中
-            Cache.Instance["LoginUserInfo"] = Portal.gc.ConvertToLoginUser(info);
-            Cache.Instance["FunctionDict"] = functionDict;
-            Cache.Instance["RoleList"] = BLLFactory<Role>.Instance.GetRolesByUser(info.Id);
-            Cache.Instance["canOptCompanyID"] = companysb.ToString();
-            Cache.Instance["canOptDeptId"] = deptsb.ToString();
-            Cache.Instance["DictData"] = BLLFactory<DictData>.Instance.GetAllDict();
-            Cache.Instance["AppConfig"] = Portal.gc.config;
             #endregion
 
             #region 初始化菜单及界面数据
@@ -348,7 +298,7 @@ namespace JCodes.Framework.AddIn.Basic
                 this.notifyIcon.Text = AppWholeName;
                 this.notifyIcon.Tag = AppWholeName;
 
-                lblCurrentUser.Caption = string.Format("当前用户：{0}({1})", Portal.gc.UserInfo.FullName, Portal.gc.UserInfo.Name);
+                lblCurrentUser.Caption = string.Format("当前用户：{0}({1})", Portal.gc.UserInfo.LoginName, Portal.gc.UserInfo.Name);
                 lblCommandStatus.Caption = string.Format("欢迎使用 {0}", Portal.gc.AppWholeName);
             }
             catch (Exception ex)
@@ -514,6 +464,19 @@ namespace JCodes.Framework.AddIn.Basic
         {
             if (MessageDxUtil.ShowYesNoAndWarning("您确定需要重新登录吗？") != DialogResult.Yes)
                 return;
+            
+            // 加载缓存
+            Portal.gc.LoadCache(Portal.gc.UserInfo);
+
+            // 重新加载是否是管理员
+            if (BLLFactory<Sysparameter>.Instance.UserIsSuperAdmin(Portal.gc.UserInfo.Name))
+            {
+                Portal.gc.IsSuperAdmin = true;
+            }
+            else if (BLLFactory<Role>.Instance.UserHasRole(Portal.gc.UserInfo.Id))
+            {
+                Portal.gc.IsSuperAdmin = false;
+            }
 
             Portal.gc.MainDialog.Hide();
 
@@ -569,7 +532,21 @@ namespace JCodes.Framework.AddIn.Basic
         /// <param name="e"></param>
         private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            MessageDxUtil.ShowTips("TODO 刷新内存");
+            Portal.gc.LoadCache(Portal.gc.UserInfo);
+
+            // 重新加载是否是管理员
+            if (BLLFactory<Sysparameter>.Instance.UserIsSuperAdmin(Portal.gc.UserInfo.Name))
+            {
+                Portal.gc.IsSuperAdmin = true;
+            }
+            else if (BLLFactory<Role>.Instance.UserHasRole(Portal.gc.UserInfo.Id))
+            {
+                Portal.gc.IsSuperAdmin = false;
+            }
+
+
+
+            MessageDxUtil.ShowTips("内存刷新成功");
         }
     }
 }

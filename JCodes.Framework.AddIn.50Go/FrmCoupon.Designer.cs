@@ -34,7 +34,7 @@ namespace JCodes.Framework.AddIn._50Go
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.btnSearch = new DevExpress.XtraEditors.SimpleButton();
             this.txtID = new DevExpress.XtraEditors.TextEdit();
-            this.txtFullName = new DevExpress.XtraEditors.TextEdit();
+            this.txtLoginName = new DevExpress.XtraEditors.TextEdit();
             this.txtMobilePhone = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -47,7 +47,7 @@ namespace JCodes.Framework.AddIn._50Go
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtID.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFullName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLoginName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMobilePhone.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
@@ -63,7 +63,7 @@ namespace JCodes.Framework.AddIn._50Go
             | System.Windows.Forms.AnchorStyles.Right)));
             this.layoutControl1.Controls.Add(this.btnSearch);
             this.layoutControl1.Controls.Add(this.txtID);
-            this.layoutControl1.Controls.Add(this.txtFullName);
+            this.layoutControl1.Controls.Add(this.txtLoginName);
             this.layoutControl1.Controls.Add(this.txtMobilePhone);
             this.layoutControl1.Location = new System.Drawing.Point(12, 8);
             this.layoutControl1.Name = "layoutControl1";
@@ -92,13 +92,13 @@ namespace JCodes.Framework.AddIn._50Go
             this.txtID.StyleController = this.layoutControl1;
             this.txtID.TabIndex = 1;
             // 
-            // txtFullName
+            // txtLoginName
             // 
-            this.txtFullName.Location = new System.Drawing.Point(403, 12);
-            this.txtFullName.Name = "txtFullName";
-            this.txtFullName.Size = new System.Drawing.Size(115, 28);
-            this.txtFullName.StyleController = this.layoutControl1;
-            this.txtFullName.TabIndex = 2;
+            this.txtLoginName.Location = new System.Drawing.Point(403, 12);
+            this.txtLoginName.Name = "txtLoginName";
+            this.txtLoginName.Size = new System.Drawing.Size(115, 28);
+            this.txtLoginName.StyleController = this.layoutControl1;
+            this.txtLoginName.TabIndex = 2;
             // 
             // txtMobilePhone
             // 
@@ -136,7 +136,7 @@ namespace JCodes.Framework.AddIn._50Go
             // 
             // layoutControlItem2
             // 
-            this.layoutControlItem2.Control = this.txtFullName;
+            this.layoutControlItem2.Control = this.txtLoginName;
             this.layoutControlItem2.CustomizationFormText = " ⁄»®¿‡–Õ1";
             this.layoutControlItem2.Location = new System.Drawing.Point(280, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
@@ -222,7 +222,7 @@ namespace JCodes.Framework.AddIn._50Go
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtID.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFullName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLoginName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMobilePhone.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
@@ -245,7 +245,7 @@ namespace JCodes.Framework.AddIn._50Go
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
-        private DevExpress.XtraEditors.TextEdit txtFullName;
+        private DevExpress.XtraEditors.TextEdit txtLoginName;
         private DevExpress.XtraEditors.TextEdit txtMobilePhone;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;

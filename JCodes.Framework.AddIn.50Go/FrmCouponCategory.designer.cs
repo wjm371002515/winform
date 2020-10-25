@@ -41,7 +41,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.txtEnabled = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.txtFullName = new DevExpress.XtraEditors.TextEdit();
+            this.txtLoginName = new DevExpress.XtraEditors.TextEdit();
             this.txtMobilePhone = new DevExpress.XtraEditors.TextEdit();
             this.txtCategory = new DevExpress.XtraEditors.ComboBoxEdit();
             this.txtID = new DevExpress.XtraEditors.TextEdit();
@@ -65,7 +65,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtEnabled.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFullName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLoginName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMobilePhone.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCategory.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtID.Properties)).BeginInit();
@@ -93,7 +93,7 @@
             this.layoutControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.layoutControl1.Controls.Add(this.txtEnabled);
-            this.layoutControl1.Controls.Add(this.txtFullName);
+            this.layoutControl1.Controls.Add(this.txtLoginName);
             this.layoutControl1.Controls.Add(this.txtMobilePhone);
             this.layoutControl1.Controls.Add(this.txtCategory);
             this.layoutControl1.Controls.Add(this.txtID);
@@ -118,13 +118,13 @@
             this.txtEnabled.StyleController = this.layoutControl1;
             this.txtEnabled.TabIndex = 12;
             // 
-            // txtFullName
+            // txtLoginName
             // 
-            this.txtFullName.Location = new System.Drawing.Point(123, 37);
-            this.txtFullName.Name = "txtFullName";
-            this.txtFullName.Size = new System.Drawing.Size(165, 28);
-            this.txtFullName.StyleController = this.layoutControl1;
-            this.txtFullName.TabIndex = 10;
+            this.txtLoginName.Location = new System.Drawing.Point(123, 37);
+            this.txtLoginName.Name = "txtLoginName";
+            this.txtLoginName.Size = new System.Drawing.Size(165, 28);
+            this.txtLoginName.StyleController = this.layoutControl1;
+            this.txtLoginName.TabIndex = 10;
             // 
             // txtMobilePhone
             // 
@@ -227,7 +227,7 @@
             // 
             // layoutControlItem9
             // 
-            this.layoutControlItem9.Control = this.txtFullName;
+            this.layoutControlItem9.Control = this.txtLoginName;
             this.layoutControlItem9.CustomizationFormText = "联系人";
             this.layoutControlItem9.Location = new System.Drawing.Point(0, 25);
             this.layoutControlItem9.MaxSize = new System.Drawing.Size(280, 25);
@@ -411,7 +411,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtEnabled.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFullName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLoginName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMobilePhone.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCategory.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtID.Properties)).EndInit();
@@ -443,7 +443,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraEditors.TextEdit txtMobilePhone;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
-        private DevExpress.XtraEditors.TextEdit txtFullName;
+        private DevExpress.XtraEditors.TextEdit txtLoginName;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
         private DevExpress.XtraEditors.ComboBoxEdit txtEnabled;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;

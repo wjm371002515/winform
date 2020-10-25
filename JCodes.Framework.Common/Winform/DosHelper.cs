@@ -3,7 +3,7 @@ using System.Text;
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.Threading;
-using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.Common.Winform
 {

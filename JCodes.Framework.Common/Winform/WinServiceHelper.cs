@@ -9,6 +9,7 @@ using System.Configuration.Install;
 using Microsoft.Win32;
 using JCodes.Framework.Common;
 using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.Common.Winform
 {

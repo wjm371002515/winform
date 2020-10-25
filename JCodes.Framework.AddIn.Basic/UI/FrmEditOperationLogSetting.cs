@@ -15,6 +15,7 @@ using JCodes.Framework.Common.Framework;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.CommonControl.Controls;
 using JCodes.Framework.Common.Format;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn.Basic
 {
@@ -74,29 +75,29 @@ namespace JCodes.Framework.AddIn.Basic
             if (Id > 0)
             {
                 #region 显示信息
-                OperationLogSettingInfo info = BLLFactory<OperationLogSetting>.Instance.FindByID(Id);
-                if (info != null)
-                {
-                    tempInfo = info;//重新给临时对象赋值，使之指向存在的记录对象
+                //OperationLogSettingInfo info = BLLFactory<OperationLogSetting>.Instance.FindByID(Id);
+                //if (info != null)
+                //{
+                //    tempInfo = info;//重新给临时对象赋值，使之指向存在的记录对象
 
-                    txtForbid.Checked = (info.IsForbid == 0);
-                    txtTableName.Text = info.TableName;
-                    txtInsertLog.Checked = (info.IsInsertLog ==0);
-                    txtDeleteLog.Checked = (info.IsDeleteLog == 0);
-                    txtUpdateLog.Checked = (info.IsUpdateLog == 0);
-                    txtNote.Text = info.Remark;
-                    txtCreator.Text = info.CreatorId.ToString();
-                    txtCreateTime.SetDateTime(info.CreatorTime);
-                    txtEditor.Text = info.EditorId.ToString();
-                    txtEditTime.SetDateTime(info.LastUpdateTime);
-                }
+                //    txtForbid.Checked = (info.IsForbid == 0);
+                //    txtTableName.Text = info.TableName;
+                //    txtInsertLog.Checked = (info.IsInsertLog ==0);
+                //    txtDeleteLog.Checked = (info.IsDeleteLog == 0);
+                //    txtUpdateLog.Checked = (info.IsUpdateLog == 0);
+                //    txtNote.Text = info.Remark;
+                //    txtCreator.Text = info.CreatorId.ToString();
+                //    txtCreateTime.SetDateTime(info.CreatorTime);
+                //    txtEditor.Text = info.EditorId.ToString();
+                //    txtEditTime.SetDateTime(info.LastUpdateTime);
+                //}
                 #endregion            
             }
             else
             {
                 txtCreateTime.DateTime = DateTimeHelper.GetServerDateTime2(); //默认当前时间
-                txtCreator.Text = Portal.gc.UserInfo.FullName;//默认为当前登录用户
-                txtEditor.Text = Portal.gc.UserInfo.FullName;//默认为当前登录用户
+                txtCreator.Text = Portal.gc.AllUserInfo[ Portal.gc.UserInfo.CreatorId ];//默认为当前登录用户
+                txtEditor.Text = Portal.gc.AllUserInfo[ Portal.gc.UserInfo.EditorId ];//默认为当前登录用户
                 txtEditTime.DateTime = DateTimeHelper.GetServerDateTime2(); //默认当前时间 
             }
         }
@@ -120,7 +121,7 @@ namespace JCodes.Framework.AddIn.Basic
             info.IsDeleteLog = (short)(txtDeleteLog.Checked ? 0 : 1);
             info.IsUpdateLog = (short)(txtUpdateLog.Checked ? 0 : 1);
             info.Remark = txtNote.Text;
-            //info.Editor = Portal.gc.UserInfo.FullName;
+            //info.Editor = Portal.gc.UserInfo.LoginName;
             info.EditorId = Portal.gc.UserInfo.Id;
             info.LastUpdateTime = txtCreateTime.DateTime;
 
@@ -135,7 +136,7 @@ namespace JCodes.Framework.AddIn.Basic
         {
             OperationLogSettingInfo info = tempInfo;//必须使用存在的局部变量，因为部分信息可能被附件使用
             SetInfo(info);
-            //info.Creator = Portal.gc.UserInfo.FullName;
+            //info.Creator = Portal.gc.UserInfo.LoginName;
             info.CreatorId = Portal.gc.UserInfo.Id;
             info.CreatorTime = txtCreateTime.DateTime;
 
@@ -182,29 +183,29 @@ namespace JCodes.Framework.AddIn.Basic
                 return false;
             }
 
-            OperationLogSettingInfo info = BLLFactory<OperationLogSetting>.Instance.FindByID(Id);
-            if (info != null)
-            {
-                SetInfo(info);
+            //OperationLogSettingInfo info = BLLFactory<OperationLogSetting>.Instance.FindByID(Id);
+            //if (info != null)
+            //{
+            //    SetInfo(info);
 
-                try
-                {
-                    #region 更新数据
-                    bool succeed = BLLFactory<OperationLogSetting>.Instance.Update(info, info.Id);
-                    if (succeed)
-                    {
-                        //可添加其他关联操作
+            //    try
+            //    {
+            //        #region 更新数据
+            //        bool succeed = BLLFactory<OperationLogSetting>.Instance.Update(info, info.Id);
+            //        if (succeed)
+            //        {
+            //            //可添加其他关联操作
 
-                        return true;
-                    }
-                    #endregion
-                }
-                catch (Exception ex)
-                {
-                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmEditOperationLogSetting));
-                    MessageDxUtil.ShowError(ex.Message);
-                }
-            }
+            //            return true;
+            //        }
+            //        #endregion
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmEditOperationLogSetting));
+            //        MessageDxUtil.ShowError(ex.Message);
+            //    }
+            //}
             return false;
         }
     }

@@ -121,9 +121,9 @@ namespace JCodes.Framework.Common.Framework.Facade
         /// </summary>
         /// <param name="key">对象的ID值</param>
         /// <returns>存在则返回指定的对象,否则返回Null</returns>
-        public virtual T FindByID(string key)
+        public virtual T FindById(string key)
         {
-            return baseBLL.FindByID(key);
+            return baseBLL.FindById(key);
         }
 
         /// <summary>
@@ -131,9 +131,9 @@ namespace JCodes.Framework.Common.Framework.Facade
         /// </summary>
         /// <param name="key">对象的ID值</param>
         /// <returns>存在则返回指定的对象,否则返回Null</returns>
-        public virtual T FindByID2(int key)
+        public virtual T FindById2(int key)
         {
-            return baseBLL.FindByID(key);
+            return baseBLL.FindById(key);
         }
 
         /// <summary>
@@ -184,9 +184,9 @@ namespace JCodes.Framework.Common.Framework.Facade
         /// </summary>
         /// <param name="idString">ID字符串(逗号分隔)</param>
         /// <returns>符合条件的对象列表</returns>
-        public virtual List<T> FindByIDs(string idString)
+        public virtual List<T> FindByIds(string idString)
         {
-            return baseBLL.FindByIDs(idString);
+            return baseBLL.FindByIds(idString);
         }
 
         /// <summary>

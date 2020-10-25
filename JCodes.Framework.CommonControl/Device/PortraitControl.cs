@@ -13,6 +13,7 @@ using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.CommonControl.Other.Images;
 using JCodes.Framework.CommonControl.DocViewer;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.CommonControl.Device
 {

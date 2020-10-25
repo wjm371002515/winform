@@ -78,11 +78,11 @@ namespace JCodes.Framework.AddIn.WareHouseManage
             }
             else if (columnName == "Manufacture")
             {
-                e.DisplayText = BLLFactory<Supplier>.Instance.FindByID(Convert.ToInt32(e.Value)).Name;
+                e.DisplayText = BLLFactory<Supplier>.Instance.FindById(Convert.ToInt32(e.Value)).Name;
             }
             else if (columnName == "WareHouse")
             { 
-                e.DisplayText = BLLFactory<WareHouse>.Instance.FindByID(Convert.ToInt32(e.Value)).Name;
+                e.DisplayText = BLLFactory<WareHouse>.Instance.FindById(Convert.ToInt32(e.Value)).Name;
             }
             else if (columnName == "ItemBigType")
             {

@@ -1,0 +1,10 @@
+C:\Users\Jimmy\Desktop\Quartz.NET-2.5\build\4.0\Debug\Quartz.Server\Quartz.Server.exe.config
+C:\Users\Jimmy\Desktop\Quartz.NET-2.5\server\Quartz.Server\obj\Debug\Quartz.Server.2010.csprojResolveAssemblyReference.cache
+C:\Users\Jimmy\Desktop\Quartz.NET-2.5\build\4.0\Debug\Quartz.Server\quartz_jobs.xml
+C:\Users\Jimmy\Desktop\Quartz.NET-2.5\build\4.0\Debug\Quartz.Server\App.config
+C:\Users\Jimmy\Desktop\Quartz.NET-2.5\build\4.0\Debug\Quartz.Server\quartz.config
+C:\Users\Jimmy\Desktop\Quartz.NET-2.5\build\4.0\Debug\Quartz.Server\Quartz.Server.XML
+C:\Users\Jimmy\Desktop\Quartz.NET-2.5\build\4.0\Debug\Quartz.Server\Quartz.Server.exe
+C:\Users\Jimmy\Desktop\Quartz.NET-2.5\build\4.0\Debug\Quartz.Server\Quartz.Server.pdb
+C:\Users\Jimmy\Desktop\Quartz.NET-2.5\server\Quartz.Server\obj\Debug\Quartz.Server.exe
+C:\Users\Jimmy\Desktop\Quartz.NET-2.5\server\Quartz.Server\obj\Debug\Quartz.Server.pdb

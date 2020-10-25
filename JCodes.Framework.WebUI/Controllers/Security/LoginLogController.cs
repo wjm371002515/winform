@@ -9,6 +9,7 @@ using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Common.Databases;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.Common;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.WebUI.Controllers
 {
@@ -76,8 +77,8 @@ namespace JCodes.Framework.WebUI.Controllers
                     LoginLogInfo info = new LoginLogInfo();
 
                     info.UserId = Convert.ToInt32( dr["登录用户ID"]);
-                    info.LoginName = dr["登录名"].ToString();
-                    info.FullName = dr["真实名称"].ToString();
+                    info.Name = dr["登录名"].ToString();
+                    info.LoginName = dr["真实名称"].ToString();
                     info.CompanyId = Convert.ToInt32( dr["所属公司ID"]);
                     //info.CompanyName = dr["所属公司名称"].ToString();
                     info.Remark = dr["日志描述"].ToString();
@@ -182,8 +183,8 @@ namespace JCodes.Framework.WebUI.Controllers
                 dr = datatable.NewRow();
                 dr["序号"] = j++;
                 dr["用户Id"] = list[i].UserId;
-                dr["登录名"] = list[i].LoginName;
-                dr["真实名"] = list[i].FullName;
+                dr["登录名"] = list[i].Name;
+                dr["真实名"] = list[i].LoginName;
                 dr["公司Id"] = list[i].CompanyId;
                 //dr["公司名字"] = list[i].CompanyName;
                 dr["备注"] = list[i].Remark;
@@ -247,7 +248,7 @@ namespace JCodes.Framework.WebUI.Controllers
             //    info.PID = BLLFactory<LoginLog>.Instance.GetFieldValue(info.PID, "Name");
             //    if (!string.IsNullOrEmpty(info.Creator))
             //    {
-            //        info.Creator = BLLFactory<User>.Instance.GetFullNameByID(info.Creator.ToInt32());
+            //        info.Creator = BLLFactory<User>.Instance.GetNameById(info.Creator.ToInt32());
             //    }
             //}
 

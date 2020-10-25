@@ -31,7 +31,7 @@ namespace JCodes.Framework.AddIn._50Go
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.txtID = new DevExpress.XtraEditors.TextEdit();
             this.txtMobilePhone = new DevExpress.XtraEditors.TextEdit();
-            this.txtFullName = new DevExpress.XtraEditors.TextEdit();
+            this.txtLoginName = new DevExpress.XtraEditors.TextEdit();
             this.txtCreator = new DevExpress.XtraEditors.TextEdit();
             this.txtCreateTime = new DevExpress.XtraEditors.DateEdit();
             this.txtCategory = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -41,7 +41,7 @@ namespace JCodes.Framework.AddIn._50Go
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.lblID = new DevExpress.XtraLayout.LayoutControlItem();
             this.lblMobilePhone = new DevExpress.XtraLayout.LayoutControlItem();
-            this.lblFullName = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lblLoginName = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.lblCategory = new DevExpress.XtraLayout.LayoutControlItem();
@@ -53,7 +53,7 @@ namespace JCodes.Framework.AddIn._50Go
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtID.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMobilePhone.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFullName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLoginName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCreator.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCreateTime.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCreateTime.Properties)).BeginInit();
@@ -66,7 +66,7 @@ namespace JCodes.Framework.AddIn._50Go
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblMobilePhone)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblFullName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblLoginName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblCategory)).BeginInit();
@@ -101,7 +101,7 @@ namespace JCodes.Framework.AddIn._50Go
             this.layoutControl1.Appearance.ControlReadOnly.Options.UseBackColor = true;
             this.layoutControl1.Controls.Add(this.txtID);
             this.layoutControl1.Controls.Add(this.txtMobilePhone);
-            this.layoutControl1.Controls.Add(this.txtFullName);
+            this.layoutControl1.Controls.Add(this.txtLoginName);
             this.layoutControl1.Controls.Add(this.txtCreator);
             this.layoutControl1.Controls.Add(this.txtCreateTime);
             this.layoutControl1.Controls.Add(this.txtCategory);
@@ -132,13 +132,13 @@ namespace JCodes.Framework.AddIn._50Go
             this.txtMobilePhone.StyleController = this.layoutControl1;
             this.txtMobilePhone.TabIndex = 6;
             // 
-            // txtFullName
+            // txtLoginName
             // 
-            this.txtFullName.Location = new System.Drawing.Point(147, 172);
-            this.txtFullName.Name = "txtFullName";
-            this.txtFullName.Size = new System.Drawing.Size(306, 28);
-            this.txtFullName.StyleController = this.layoutControl1;
-            this.txtFullName.TabIndex = 7;
+            this.txtLoginName.Location = new System.Drawing.Point(147, 172);
+            this.txtLoginName.Name = "txtLoginName";
+            this.txtLoginName.Size = new System.Drawing.Size(306, 28);
+            this.txtLoginName.StyleController = this.layoutControl1;
+            this.txtLoginName.TabIndex = 7;
             // 
             // txtCreator
             // 
@@ -228,7 +228,7 @@ namespace JCodes.Framework.AddIn._50Go
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.lblID,
             this.lblMobilePhone,
-            this.lblFullName,
+            this.lblLoginName,
             this.layoutControlItem9,
             this.layoutControlItem11,
             this.lblCategory,
@@ -261,15 +261,15 @@ namespace JCodes.Framework.AddIn._50Go
             this.lblMobilePhone.Text = "手机号(*)";
             this.lblMobilePhone.TextSize = new System.Drawing.Size(132, 22);
             // 
-            // lblFullName
+            // lblLoginName
             // 
-            this.lblFullName.Control = this.txtFullName;
-            this.lblFullName.CustomizationFormText = "联系人";
-            this.lblFullName.Location = new System.Drawing.Point(0, 160);
-            this.lblFullName.Name = "lblFullName";
-            this.lblFullName.Size = new System.Drawing.Size(445, 32);
-            this.lblFullName.Text = "联系人(*)";
-            this.lblFullName.TextSize = new System.Drawing.Size(132, 22);
+            this.lblLoginName.Control = this.txtLoginName;
+            this.lblLoginName.CustomizationFormText = "联系人";
+            this.lblLoginName.Location = new System.Drawing.Point(0, 160);
+            this.lblLoginName.Name = "lblLoginName";
+            this.lblLoginName.Size = new System.Drawing.Size(445, 32);
+            this.lblLoginName.Text = "联系人(*)";
+            this.lblLoginName.TextSize = new System.Drawing.Size(132, 22);
             // 
             // layoutControlItem9
             // 
@@ -350,7 +350,7 @@ namespace JCodes.Framework.AddIn._50Go
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtID.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMobilePhone.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFullName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLoginName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCreator.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCreateTime.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCreateTime.Properties)).EndInit();
@@ -363,7 +363,7 @@ namespace JCodes.Framework.AddIn._50Go
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblMobilePhone)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblFullName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblLoginName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblCategory)).EndInit();
@@ -382,13 +382,13 @@ namespace JCodes.Framework.AddIn._50Go
 
         private DevExpress.XtraEditors.TextEdit txtID;
         private DevExpress.XtraEditors.TextEdit txtMobilePhone;
-        private DevExpress.XtraEditors.TextEdit txtFullName;
+        private DevExpress.XtraEditors.TextEdit txtLoginName;
         private DevExpress.XtraEditors.TextEdit txtCreator;
 
         private DevExpress.XtraLayout.LayoutControlItem lblID;
         private DevExpress.XtraLayout.LayoutControlItem lblCategory;    
         private DevExpress.XtraLayout.LayoutControlItem lblMobilePhone;
-        private DevExpress.XtraLayout.LayoutControlItem lblFullName;
+        private DevExpress.XtraLayout.LayoutControlItem lblLoginName;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
         private DevExpress.XtraEditors.ComboBoxEdit txtCategory;
         private DevExpress.XtraEditors.DateEdit txtCreateTime;

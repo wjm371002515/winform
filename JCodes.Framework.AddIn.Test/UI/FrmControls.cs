@@ -21,7 +21,7 @@ namespace JCodes.Framework.AddIn.Test
             cbb.BindDictItems(100000);
             ccbb.BindDictItems(100000);
 
-            gridControl1.DataSource = new JCodes.Framework.BLL.GeneralSql().GetSqlTable("select t.ID, t.User_ID, t.LoginName, t2.FullName, t.CompanyName, t2.LastLoginIP, t2.LastLoginTime, t2.LastMacAddress, t2.CurrentLoginIP, t2.CurrentLoginTime, t2.CurrentMacAddress from T_AUTH_LoginLog t, T_AUTH_User t2 where t.User_ID = t2.ID order by LastLoginTime"); 
+            gridControl1.DataSource = new JCodes.Framework.BLL.GeneralSql().GetSqlTable("select t.ID, t.User_ID, t.LoginName, t2.LoginName, t.CompanyName, t2.LastLoginIP, t2.LastLoginTime, t2.LastMacAddress, t2.CurrentLoginIP, t2.CurrentLoginTime, t2.CurrentMacAddress from T_AUTH_LoginLog t, T_AUTH_User t2 where t.User_ID = t2.ID order by LastLoginTime"); 
         }
       
 

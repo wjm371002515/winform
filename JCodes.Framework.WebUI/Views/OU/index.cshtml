@@ -591,7 +591,7 @@
             $('#lbxUsers').empty();
             $.getJSON("/User/GetUsersByOU?r=" + Math.random() + "&ouid=" + ID, function (json) {
                 $.each(json, function (i, item) {
-                    $('#lbxUsers').append('<option value="' + item.ID + '">' + item.FullName + '</option>');
+                    $('#lbxUsers').append('<option value="' + item.ID + '">' + item.LoginName + '</option>');
                 });
             });
         }
@@ -884,8 +884,8 @@
                 $.getJSON(url, function (json) {
                     $.each(json, function (i, item) {
                         var id = item.ID;
-                        var fullName = item.FullName;
-                        addUser(id, fullName);  //加上已选择用户的信息                        
+                        var loginName = item.GetNameById;
+                        addUser(id, loginName);  //加上已选择用户的信息                        
                     });
                 });
             }
@@ -945,6 +945,7 @@
         //加上一些特殊条件
         function appendCondition() {
             var condition = "&WHC_Deleted=0";
+            // 20200229 wujianming TODO 要处理
             //如果不是超级管理员，只能看本公司的人员
             @if (Session["IsSuperAdmin"] == null || !(bool)Session["IsSuperAdmin"])
             {
@@ -974,7 +975,7 @@
                     tr += "<td>" + item.ID + "</td>";
                     tr += "<td>" + item.UserCode + "</td>";
                     tr += "<td>" + item.Name + "</td>";
-                    tr += "<td>" + item.FullName + "</td>";      
+                    tr += "<td>" + item.LoginName + "</td>";      
 
                     if (item.IsExpire) {
                         //tr += "<td>" + item.Visible + "</td>";

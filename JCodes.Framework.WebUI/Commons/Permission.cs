@@ -23,7 +23,7 @@ namespace JCodes.Framework.WebUI.Common
 		{
             bool hasFunction = false;
 
-            UserInfo CurrentUser = HttpContext.Current.Session["UserInfo"] as UserInfo;
+            LoginUserInfo CurrentUser = HttpContext.Current.Session["LoginUserInfo"] as LoginUserInfo;
             if (CurrentUser != null && CurrentUser.Name == "admin")
             {
                 hasFunction = true;
@@ -36,7 +36,7 @@ namespace JCodes.Framework.WebUI.Common
                 }
                 else
                 {
-                    Dictionary<string, string> functionDict = HttpContext.Current.Session["Functions"] as Dictionary<string, string>;
+                    Dictionary<string, string> functionDict = HttpContext.Current.Session["FunctionDict"] as Dictionary<string, string>;
                     if (functionDict != null && functionDict.ContainsKey(functionId))
                     {
                         hasFunction = true;
@@ -53,7 +53,7 @@ namespace JCodes.Framework.WebUI.Common
         public static bool IsAdmin()
         {
             bool blnIsAdmin = false;
-            UserInfo CurrentUser = HttpContext.Current.Session["UserInfo"] as UserInfo;
+            LoginUserInfo CurrentUser = HttpContext.Current.Session["LoginUserInfo"] as LoginUserInfo;
             if (CurrentUser != null)
             {
                 //int groupID = Permission.CurrentUser.Dept_id;

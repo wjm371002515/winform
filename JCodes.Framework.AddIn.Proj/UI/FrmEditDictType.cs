@@ -8,6 +8,7 @@ using JCodes.Framework.jCodesenum.BaseEnum;
 using System;
 using System.Xml;
 using JCodes.Framework.Common.Extension;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn.Proj
 {

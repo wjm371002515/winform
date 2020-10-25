@@ -17,6 +17,8 @@ using JCodes.Framework.Common.Files;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Common.Databases;
 using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.jCodesenum;
+using JCodes.Framework.Common.Format;
 
 namespace JCodes.Framework.AddIn.Basic
 {
@@ -29,7 +31,7 @@ namespace JCodes.Framework.AddIn.Basic
         /// <summary>
         /// 设置附件的存储目录分类
         /// </summary>
-        public string AttachmentDirectory = "";
+        public AttachmentType AttachmentDirectory = AttachmentType.业务附件;
 
         /// <summary>
         /// 指定附件对应的GUID
@@ -123,12 +125,12 @@ namespace JCodes.Framework.AddIn.Basic
                         }
                         else
                         {
-                            //常规复制文件，需要记录文件的字节
+                            // 常规复制文件，需要记录文件的字节
                             info.FileData = FileUtil.FileToBytes(file);
                         }
 
                         info.Name = FileUtil.GetFileName(file);
-                        info.CategoryCode = this.AttachmentDirectory;
+                        info.FileUploadType = (short)AttachmentDirectory;
                         info.FileExtend = FileUtil.GetExtension(file);
                         info.FileSize = FileUtil.GetFileSize(file);
                         info.EditorId = UserId;//登录人
@@ -196,7 +198,7 @@ namespace JCodes.Framework.AddIn.Basic
                 this.txtFile.Focus();
                 return;
             }
-            else if (string.IsNullOrEmpty(this.AttachmentDirectory))
+            else if ((short)this.AttachmentDirectory == 0)
             {
                 MessageDxUtil.ShowTips("请设置目录分类");
                 return;

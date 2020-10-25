@@ -5,6 +5,7 @@ using System.Collections;
 using ICSharpCode.SharpZipLib.Zip;
 using System.IO;
 using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.Common.Office
 {

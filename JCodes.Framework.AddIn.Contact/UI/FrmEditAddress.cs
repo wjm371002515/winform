@@ -74,7 +74,7 @@ namespace JCodes.Framework.AddIn.Contact
             if (Id > 0)
             {
                 #region 显示信息
-                AddressInfo info = BLLFactory<Address>.Instance.FindByID(Id);
+                AddressInfo info = BLLFactory<Address>.Instance.FindById(Id);
                 if (info != null)
                 {
                     tempInfo = info;//重新给临时对象赋值，使之指向存在的记录对象
@@ -104,9 +104,9 @@ namespace JCodes.Framework.AddIn.Contact
             }
             else
             {
-                txtCreator.Text = LoginUserInfo.FullName;//默认为当前登录用户
+                txtCreator.Text = LoginUserInfo.LoginName;//默认为当前登录用户
                 txtCreateTime.DateTime = DateTimeHelper.GetServerDateTime2(); //默认当前时间
-                txtEditor.Text = LoginUserInfo.FullName;//默认为当前登录用户
+                txtEditor.Text = LoginUserInfo.LoginName;//默认为当前登录用户
                 txtEditTime.DateTime = DateTimeHelper.GetServerDateTime2(); //默认当前时间
             }
 
@@ -205,7 +205,7 @@ namespace JCodes.Framework.AddIn.Contact
         /// <returns></returns>
         public override bool SaveUpdated()
         {
-            AddressInfo info = BLLFactory<Address>.Instance.FindByID(Id);
+            AddressInfo info = BLLFactory<Address>.Instance.FindById(Id);
             if (info != null)
             {
                 SetInfo(info);

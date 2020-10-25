@@ -16,6 +16,7 @@ using JCodes.Framework.Common;
 using JCodes.Framework.Common.Files;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Common.Office;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.WebDemo.Controllers
 {
@@ -239,7 +240,7 @@ namespace JCodes.Framework.WebDemo.Controllers
             //    info.PID = BLLFactory<BootstrapIcon>.Instance.GetFieldValue(info.PID, "Name");
             //    if (!string.IsNullOrEmpty(info.Creator))
             //    {
-            //        info.Creator = BLLFactory<User>.Instance.GetFullNameByID(info.Creator.ToInt32());
+            //        info.Creator = BLLFactory<User>.Instance.GetNameById(info.Creator.ToInt32());
             //    }
             //}
 

@@ -12,6 +12,7 @@ using System.Runtime.InteropServices;
 using JCodes.Framework.Common;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.CommonControl.Other;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn.Basic.BizControl
 {

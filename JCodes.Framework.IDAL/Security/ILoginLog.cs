@@ -19,6 +19,6 @@ namespace JCodes.Framework.IDAL
         /// </summary>
         /// <param name="userId">登录用户ID</param>
         /// <returns></returns>
-        LoginLogInfo GetLastLoginInfo(string userId);
+        LoginLogInfo GetLastLoginInfo(Int32 userId);
     }
 }

@@ -63,10 +63,10 @@ namespace JCodes.Framework.AddIn._50Go
                 this.txtMobilePhone.Focus();
                 result = false;
             }
-            else if (this.txtFullName.Text.Length == 0)
+            else if (this.txtLoginName.Text.Length == 0)
             {
-                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblFullName.Text.Replace(Const.MsgCheckSign, string.Empty));
-                this.txtFullName.Focus();
+                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblLoginName.Text.Replace(Const.MsgCheckSign, string.Empty));
+                this.txtLoginName.Focus();
                 result = false;
             }
             else if (this.txtEnabled.Text.Length == 0)
@@ -114,7 +114,7 @@ namespace JCodes.Framework.AddIn._50Go
                         txtCategory.SelectedText = info2.HandNo + "-" + info2.Name;
                     }
                     txtMobilePhone.Text = info.MobilePhone;
-                    txtFullName.Text = info.FullName;
+                    txtLoginName.Text = info.LoginName;
                     txtEndTime.DateTime = info.EndTime;
                     txtStartTime.DateTime = info.StartTime;
                     txtEnabled.SelectedIndex = info.DELETED;
@@ -125,7 +125,7 @@ namespace JCodes.Framework.AddIn._50Go
             }
             else
             {
-                txtCreator.Text = Portal.gc.UserInfo.FullName;  //默认为当前登录用户
+                txtCreator.Text = Portal.gc.UserInfo.LoginName;  //默认为当前登录用户
                 txtCreateTime.DateTime = DateTime.Now;          //默认当前时间
                 txtID.Text = Guid.NewGuid().ToString();
             }
@@ -145,7 +145,7 @@ namespace JCodes.Framework.AddIn._50Go
             info.ID = txtID.Text.Trim();
             if (string.IsNullOrEmpty(ID))
             {
-                info.Creator = Portal.gc.UserInfo.FullName;
+                info.Creator = Portal.gc.UserInfo.LoginName;
                 info.Creator_ID = Portal.gc.UserInfo.ID.ToString();
                 info.CreateTime = DateTime.Now;
             }
@@ -160,7 +160,7 @@ namespace JCodes.Framework.AddIn._50Go
             }
            
             info.MobilePhone = txtMobilePhone.Text;
-            info.FullName = txtFullName.Text;
+            info.LoginName = txtLoginName.Text;
             info.StartTime = txtStartTime.DateTime;
             info.EndTime = txtEndTime.DateTime;
             info.DELETED = txtEnabled.SelectedIndex;

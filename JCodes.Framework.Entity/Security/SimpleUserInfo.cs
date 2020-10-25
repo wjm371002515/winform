@@ -31,9 +31,9 @@ namespace JCodes.Framework.Entity
 		private String m_Name = string.Empty;
 
 		/// <summary>
-		/// 真实名
+		/// 登录名
 		/// </summary>
-		private String m_FullName = string.Empty;
+		private String m_LoginName = string.Empty;
 
 		/// <summary>
 		/// 密码
@@ -105,19 +105,19 @@ namespace JCodes.Framework.Entity
 		}
 
 		/// <summary>
-		/// 真实名
+		/// 登录名
 		/// </summary>
 		[DataMember]
-		[DisplayName("真实名")]
-		public virtual String FullName
+		[DisplayName("登录名")]
+		public virtual String LoginName
 		{
 			get
 			{
-				return this.m_FullName;
+				return this.m_LoginName;
 			}
 			set
 			{
-				this.m_FullName = value;
+				this.m_LoginName = value;
 			}
 		}
 

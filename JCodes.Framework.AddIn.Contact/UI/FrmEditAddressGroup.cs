@@ -89,7 +89,7 @@ namespace JCodes.Framework.AddIn.Contact
             if (Id > 0)
             {
                 #region 显示信息
-                AddressGroupInfo info = BLLFactory<AddressGroup>.Instance.FindByID(Id);
+                AddressGroupInfo info = BLLFactory<AddressGroup>.Instance.FindById(Id);
                 if (info != null)
                 {
                     txtPID.SetComboBoxItem(info.Pid);
@@ -113,14 +113,14 @@ namespace JCodes.Framework.AddIn.Contact
                     this.txtPID.SelectedIndex = 0;
                 }
                 this.txtEditTime.DateTime = DateTimeHelper.GetServerDateTime2(); //默认当前时间
-                this.txtEditor.Text = LoginUserInfo.FullName;//默认为当前登录用户 
+                this.txtEditor.Text = LoginUserInfo.LoginName;//默认为当前登录用户 
             }
         }
 
         public override void ClearScreen()
         {
             this.txtEditTime.DateTime = DateTimeHelper.GetServerDateTime2(); //默认当前时间
-            this.txtEditor.Text = LoginUserInfo.FullName;//默认为当前登录用户 
+            this.txtEditor.Text = LoginUserInfo.LoginName;//默认为当前登录用户 
             string pid = this.txtPID.GetComboBoxStrValue();
 
             base.ClearScreen();
@@ -184,7 +184,7 @@ namespace JCodes.Framework.AddIn.Contact
         /// <returns></returns>
         public override bool SaveUpdated()
         {
-            AddressGroupInfo info = BLLFactory<AddressGroup>.Instance.FindByID(Id);
+            AddressGroupInfo info = BLLFactory<AddressGroup>.Instance.FindById(Id);
             if (info != null)
             {
                 SetInfo(info);

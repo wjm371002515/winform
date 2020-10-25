@@ -234,6 +234,10 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 备件属类
+		/// 1-国产标准件,
+		/// 2-国产非标件,
+		/// 3-进口标准件,
+		/// 4-进口非标件
 		/// </summary>
 		[DataMember]
 		[DisplayName("备件属类")]
@@ -251,6 +255,18 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 备件类别
+		/// 1-日常备件,
+		/// 2-大修件,
+		/// 3-技改件,
+		/// 4-修复件,
+		/// 5-事故件,
+		/// 6-油品,
+		/// 7-连一铜板,
+		/// 8-连二铜板,
+		/// 9-连铸维修区,
+		/// 10-胶管承包,
+		/// 11-电机承包,
+		/// 12-其他承包件
 		/// </summary>
 		[DataMember]
 		[DisplayName("备件类别")]
@@ -268,6 +284,28 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 备件单位
+		/// 1-BA,
+		/// 2-BAG,
+		/// 3-BOT,
+		/// 4-EA,
+		/// 5-FU,
+		/// 6-GE,
+		/// 7-JIE,
+		/// 8-KG,
+		/// 9-KUA,
+		/// 10-M1,
+		/// 11-M2,
+		/// 12-M3,
+		/// 13-PA,
+		/// 14-PC,
+		/// 15-SHT,
+		/// 16-SHU,
+		/// 17-TAI,
+		/// 18-TAO,
+		/// 19-TIA,
+		/// 20-TO,
+		/// 21-ZHI,
+		/// 22-ZI
 		/// </summary>
 		[DataMember]
 		[DisplayName("备件单位")]

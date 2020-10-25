@@ -8,6 +8,7 @@ using JCodes.Framework.Common.Framework.BaseDAL;
 using JCodes.Framework.Entity;
 using JCodes.Framework.IDAL;
 using JCodes.Framework.Common.Databases;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.OracleDAL
 {
@@ -143,12 +144,12 @@ namespace JCodes.Framework.OracleDAL
             return nodeList;
         }
 
-        private AddressGroupNodeInfo GetNode(string id, DataTable dt)
+        private AddressGroupNodeInfo GetNode(string Id, DataTable dt)
         {
-            AddressGroupInfo info = this.FindByID(id);
+            AddressGroupInfo info = this.FindById(Id);
             AddressGroupNodeInfo nodeInfo = new AddressGroupNodeInfo(info);
 
-            DataRow[] dChildRows = dt.Select(string.Format(" PID='{0}'", id));
+            DataRow[] dChildRows = dt.Select(string.Format(" PID='{0}'", Id));
             for (int i = 0; i < dChildRows.Length; i++)
             {
                 string childId = dChildRows[i]["ID"].ToString();

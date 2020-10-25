@@ -67,7 +67,7 @@ namespace JCodes.Framework.AddIn.Contact
                 btnExport.Enabled = HasFunction("PersonalAddress/Export");
 
             }
-            if (AddressType.公共 == AddressType)
+            if (AddressType.公司 == AddressType)
             {
                 tsbNew.Enabled = HasFunction("CommonAddress/GroupAdd");
                 tsbEdit.Enabled = HasFunction("CommonAddress/GroupEdit");
@@ -141,7 +141,7 @@ namespace JCodes.Framework.AddIn.Contact
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
             }
-            if (AddressType.公共 == AddressType && !HasFunction("CommonAddress/GroupDel"))
+            if (AddressType.公司 == AddressType && !HasFunction("CommonAddress/GroupDel"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -172,7 +172,7 @@ namespace JCodes.Framework.AddIn.Contact
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
             }
-            if (AddressType.公共 == AddressType && !HasFunction("CommonAddress/GroupEdit"))
+            if (AddressType.公司 == AddressType && !HasFunction("CommonAddress/GroupEdit"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -217,7 +217,7 @@ namespace JCodes.Framework.AddIn.Contact
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
             }
-            if (AddressType.公共 == AddressType && !HasFunction("CommonAddress/GroupAdd"))
+            if (AddressType.公司 == AddressType && !HasFunction("CommonAddress/GroupAdd"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -236,7 +236,7 @@ namespace JCodes.Framework.AddIn.Contact
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
             }
-            if (AddressType.公共 == AddressType && !HasFunction("CommonAddress/Export"))
+            if (AddressType.公司 == AddressType && !HasFunction("CommonAddress/Export"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;

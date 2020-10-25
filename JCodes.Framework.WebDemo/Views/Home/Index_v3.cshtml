@@ -17,6 +17,14 @@
 </head>
 <body class="gray-bg">
     <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="notice_active">
+            <ul>
+                <li><img src="images/weibiaoti1.png" alt="" />制定《停车收费管理办法》和《小区物业服务合同》</li>
+                <li><img src="images/weibiaoti1.png" alt="" />建设美好家园</li>
+                <li><img src="images/weibiaoti1.png" alt="" />钱塘东南家园小区物业续聘、选聘投票开始啦，积</li>
+                <li><img src="images/weibiaoti1.png" alt="" />极参与投票，共建幸福家园</li>
+            </ul>
+        </div>
         <!-- Panel Other -->
         <div class="ibox float-e-margins">
             <div class="ibox-content">
@@ -34,6 +42,12 @@
             </div>
         </div>
         <!-- End Panel Other -->
+    </div>
+    
+    <div class="footer">
+        <div class="pull-right">
+            &copy; 2006-2020 <a href="http://www.jcodes.cn/" target="_blank">Editor by Jimmy</a>
+        </div>
     </div>
 
     <script src="/Scripts/jquery.min.js?v=2.1.4"></script>
@@ -127,6 +141,48 @@
                     '<a style="color: #337ab7; cursor: pointer;" data-toggle="modal"  href="' + row.Data1 + '">' + '统计' + '</a>'
                 ].join('');
         }
+
+        var time = setInterval(function () {
+            t();
+        }, 5000)
+
+        function t() {
+            var he = $(".notice_active>ul>li").height();//找到li高
+            $(".notice_active>ul>li").eq(0).appendTo($(".notice_active>ul")); //复制第一个到最后一个
+            $(".notice_active>ul").animate({
+                "marginTop": "-" + he
+            }, 500, function () {
+                $(".notice_active>ul").css({
+                    "marginLeft": 0
+                })
+            })
+        }
     </script>
+
+    <style type="text/css">
+        .notice_active {
+            float: left;
+            width: 100%;
+            height: 2rem;
+            padding: 0;
+            overflow: hidden;
+            position: relative;
+            text-align: center;
+            box-sizing: border-box;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .notice_active > ul > li {
+            display: flex;
+            align-items: center;
+            color: rgb(255, 0, 0);
+            z-index: 9999;
+        }
+
+        .notice_active > ul > li > img {
+            width: 2rem;
+        }
+    </style>
 </body>
 </html>

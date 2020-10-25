@@ -13,6 +13,9 @@ using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.Common.Databases;
 using JCodes.Framework.Common.Files;
 using System.Configuration;
+using JCodes.Framework.jCodesenum;
+using Microsoft.Practices.EnterpriseLibrary.Data.Configuration;
+using JCodes.Framework.Common.Encrypt;
 
 namespace JCodes.Framework.Common.Framework.BaseDAL
 {
@@ -20,30 +23,30 @@ namespace JCodes.Framework.Common.Framework.BaseDAL
 	/// 数据访问层的基类
 	/// </summary>
     public abstract class BaseDALSQLServer<T> : AbstractBaseDAL<T>, IBaseDAL<T> where T : BaseEntity, new()
-	{
-		#region 构造函数
+    {
+        #region 构造函数
 
         /// <summary>
         /// 默认构造函数
         /// </summary>
         public BaseDALSQLServer()
-		{}
+        { }
 
-		/// <summary>
-		/// 指定表名以及主键,对基类进构造
-		/// </summary>
-		/// <param name="tableName">表名</param>
-		/// <param name="primaryKey">表主键</param>
+        /// <summary>
+        /// 指定表名以及主键,对基类进构造
+        /// </summary>
+        /// <param name="tableName">表名</param>
+        /// <param name="primaryKey">表主键</param>
         public BaseDALSQLServer(string tableName, string primaryKey)
             : base(tableName, primaryKey)
-		{
+        {
             parameterPrefix = "@";     //数据库参数化访问的占位符
             safeFieldFormat = "[{0}]"; //防止和保留字、关键字同名的字段格式，如[value]
         }
 
-		#endregion
+        #endregion
 
-		#region 通用操作方法
+        #region 通用操作方法
 
         /// <summary>
         /// 添加记录
@@ -131,12 +134,12 @@ namespace JCodes.Framework.Common.Framework.BaseDAL
         public override bool TestConnection()
         {
             return TestConnection(ConfigurationManager.ConnectionStrings["sqlserver"].ToString());
-        } 
+        }
 
-		#endregion
+        #endregion
 
-		#region 对象添加、修改、查询接口
-		
+        #region 对象添加、修改、查询接口
+
         /// <summary>
         /// 查找记录表中最旧的一条记录
         /// </summary>
@@ -244,7 +247,7 @@ namespace JCodes.Framework.Common.Framework.BaseDAL
             return SqlTable(resultSql, trans);
         }
 
-		#endregion
+        #endregion
 
         #region 特殊的操作
 
@@ -270,7 +273,7 @@ namespace JCodes.Framework.Common.Framework.BaseDAL
         {
             return base.SqlTable(sql.ToUpper(), parameters, trans);
         }
-                       
+
         /// <summary>
         /// 获取数据库的全部表名称
         /// </summary>
@@ -293,5 +296,5 @@ namespace JCodes.Framework.Common.Framework.BaseDAL
         }
 
         #endregion
-	}
+    }
 }

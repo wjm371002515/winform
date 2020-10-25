@@ -18,6 +18,8 @@ using JCodes.Framework.Common.Databases;
 using JCodes.Framework.CommonControl.Pager.Others;
 using JCodes.Framework.Common.Extension;
 using JCodes.Framework.CommonControl.Controls;
+using JCodes.Framework.AddIn.Basic;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn.Dictionary
 {
@@ -26,7 +28,7 @@ namespace JCodes.Framework.AddIn.Dictionary
     /// </summary>	
     public partial class FrmSearchSysparameter : BaseDock
     {
-        public Int32 ID = 0;
+        public Int32 Id = 0;
 
         public FrmSearchSysparameter()
         {
@@ -44,7 +46,7 @@ namespace JCodes.Framework.AddIn.Dictionary
                 control.KeyUp += new System.Windows.Forms.KeyEventHandler(this.SearchControl_KeyUp);
             }
 
-            ID = 0;
+            Id = 0;
         }
         void gridView1_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
         {
@@ -67,14 +69,22 @@ namespace JCodes.Framework.AddIn.Dictionary
             {
                 if (e.Value != null && !string.IsNullOrEmpty(e.Value.ToString()))
                 {
-                    e.DisplayText = BLLFactory<DictData>.Instance.GetDictName(Const.DIC_PARAMETER, Convert.ToInt32(e.Value));
+                    e.DisplayText = EnumHelper.GetMemberName<SysId>(e.Value);
                 }
             }
-            else if (string.Equals(e.Column.FieldName, "Editor", StringComparison.CurrentCultureIgnoreCase))
+            else if (string.Equals(e.Column.FieldName, "EditorId", StringComparison.CurrentCultureIgnoreCase))
             {
                 if (e.Value != null && !string.IsNullOrEmpty(e.Value.ToString()))
                 {
-                    e.DisplayText = BLLFactory<User>.Instance.FindByID(Convert.ToInt32(e.Value)).FullName;
+                    if (Portal.gc.AllUserInfo.ContainsKey(ConvertHelper.ToInt32(e.Value, 0)))
+                        e.DisplayText = Portal.gc.AllUserInfo[ConvertHelper.ToInt32(e.Value, 0)];
+                }
+            }
+            else if (string.Equals(e.Column.FieldName, "ControlType", StringComparison.CurrentCultureIgnoreCase))
+            {
+                if (e.Value != null && !string.IsNullOrEmpty(e.Value.ToString()))
+                {
+                    e.DisplayText = EnumHelper.GetMemberName<ControlType>(e.Value);
                 }
             }
         }
@@ -93,13 +103,14 @@ namespace JCodes.Framework.AddIn.Dictionary
                 }
 
                 //可特殊设置特别的宽度 
-                winGridViewPager1.gridView1.SetGridColumWidth("SysId", 30);
+                winGridViewPager1.gridView1.SetGridColumWidth("Id", 50);
+                winGridViewPager1.gridView1.SetGridColumWidth("SysId", 100);
                 winGridViewPager1.gridView1.SetGridColumWidth("Name", 120);
-                winGridViewPager1.gridView1.SetGridColumWidth("Value", 60);
+                winGridViewPager1.gridView1.SetGridColumWidth("SysValue", 60);
                 winGridViewPager1.gridView1.SetGridColumWidth("Remark", 120);
                 winGridViewPager1.gridView1.SetGridColumWidth("Seq", 50);
-                winGridViewPager1.gridView1.SetGridColumWidth("Editor", 80);
-                winGridViewPager1.gridView1.SetGridColumWidth("EditorTime", 100);
+                winGridViewPager1.gridView1.SetGridColumWidth("EditorId", 80);
+                winGridViewPager1.gridView1.SetGridColumWidth("LastUpdateTime", 160);
             }
         }
 
@@ -127,17 +138,15 @@ namespace JCodes.Framework.AddIn.Dictionary
             BindData();
         }
         
-       
-        
         /// <summary>
         /// 分页控件编辑项操作
         /// </summary>
         private void winGridViewPager1_OnEditSelected(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
-            string strID = this.winGridViewPager1.gridView1.GetFocusedRowCellDisplayText("ID");
-            if (!string.IsNullOrEmpty(strID))
-                this.ID = Convert.ToInt32(strID);
+            string strId = this.winGridViewPager1.gridView1.GetFocusedRowCellDisplayText("Id");
+            if (!string.IsNullOrEmpty(strId))
+                this.Id = Convert.ToInt32(strId);
         }        
  
         /// <summary>
@@ -159,9 +168,11 @@ namespace JCodes.Framework.AddIn.Dictionary
         private void BindData()
         {
             //entity
-            this.winGridViewPager1.DisplayColumns = "SysId, Name, Value, Remark, Seq, Editor, EditorTime";
-            this.winGridViewPager1.ColumnNameAlias = BLLFactory<Sysparameter>.Instance.GetColumnNameAlias();//字段列显示名称转义
+            var columnNameAlias = BLLFactory<Sysparameter>.Instance.GetColumnNameAlias();
+            this.winGridViewPager1.DisplayColumns = columnNameAlias.ToDiplayKeyString();
+            this.winGridViewPager1.ColumnNameAlias = columnNameAlias;//字段列显示名称转义
             string where = GetConditionSql();
+
             if (!string.IsNullOrEmpty(txtName.Text))
             {
                 List<SysparameterInfo> list = BLLFactory<Sysparameter>.Instance.Find(where);

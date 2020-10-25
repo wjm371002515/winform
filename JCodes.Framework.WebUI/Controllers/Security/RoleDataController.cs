@@ -33,8 +33,8 @@ namespace JCodes.Framework.WebUI.Controllers
 
             foreach(int id in ouList.ToDelimitedList<int>(","))
             {
-                OUInfo info = BLLFactory<OU>.Instance.FindByID(id);
-                if(info != null && info.OuCode == OUCategoryEnum.公司.ToString())
+                OUInfo info = BLLFactory<OU>.Instance.FindById(id);
+                if (info != null && info.OuType == (short)OuType.公司)
                 {
                     companyList.Add(id);
                 }

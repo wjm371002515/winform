@@ -2,3 +2,6 @@
 2 完成实例、系统菜单、系统功能生成脚本。
 3 完成对于常量的定义
  
+
+ 
+ LayoutControl控件学习视频 https://www.bilibili.com/video/BV1MJ411U7vB?p=2

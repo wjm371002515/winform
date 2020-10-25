@@ -1,0 +1,24 @@
+POST https://ynzx.zgwyzxw.cn/index.php/home/my_vote/getMyVote HTTP/1.1
+Host: ynzx.zgwyzxw.cn
+Connection: keep-alive
+Content-Length: 12
+Accept: application/json, text/plain, */*
+Origin: https://ynzx.zgwyzxw.cn
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36
+Sec-Fetch-Mode: cors
+Content-Type: application/x-www-form-urlencoded
+Sec-Fetch-Site: same-origin
+Referer: https://ynzx.zgwyzxw.cn/my/MyVote
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+
+userId=37614
+HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 24 Dec 2019 01:42:24 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Vary: Accept-Encoding
+Content-Length: 1674
+
+{"code":200,"data":{"sup":[{"title":"业主大会表决票","content":"1.投票截止时间：2019年6月24日12:00 投票地点：5幢物业办公室2楼 开箱时间：2019年6月24日14:00 开箱地点：新宜社区党群服务中心郡望府4号楼商铺4-72.业主委托代理人参加业主大会会议的，代理人应当持委托书及委托人身份证复印件、代理人身份证原件参会，并根据委托书内容进行投票表决并签名;","voteId":239,"article_id":2091,"created_at":"2019-06-13 09:49:28"}],"can":[{"title":"钱塘东南家园业主大会会议表决票","content":"说明：1.本次选举业主委员会成员为16名，“同意”数不多于16名表决有效；2.业主委托代理人参加业主大会会议的，代理人应当持委托书及委托人身份证复印件、代理人身份证原件参会，并根据委托书内容进行投票表决并签名;3.投票截止时间：2019年8月21日12:00   投票地点：5幢物业办公室2楼    开箱时间：2019年8月21日14:00     开箱地点：新宜社区党群服务中心郡望府4号楼商铺4-74.已确认参与会议（送达、快递寄达、电话通知等），逾期未表决的计入在场已表决的多数票。","voteId":299,"article_id":2469,"created_at":"2019-08-15 20:40:09"},{"title":"候选人推选","content":"说明：1.本次选举业主委员会成员、业主代表成员为2名，“同意”数不多于2名表决有效；2.本幢得票第一名为业委会正式候选人，第二名为本幢业主代表;3.投票截止时间：2019年7月22日17:00   ","voteId":270,"article_id":2218,"created_at":"2019-07-19 06:48:40"}],"sat":""},"error":""}

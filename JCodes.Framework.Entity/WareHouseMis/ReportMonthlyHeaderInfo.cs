@@ -23,7 +23,7 @@ namespace JCodes.Framework.Entity
 		/// <summary>
 		/// 报表类型
 		/// </summary>
-		private Int16 m_ReportType = 0;
+		private Int16 m_MonthlyReportType = 0;
 
 		/// <summary>
 		/// 报表标题 
@@ -77,18 +77,23 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 报表类型
+		/// 1-库房部门结存,
+		/// 2-库房结存,
+		/// 3-所有库房结存,
+		/// 4-车间成本月报表,
+		/// 100-全年费用汇总表
 		/// </summary>
 		[DataMember]
 		[DisplayName("报表类型")]
-		public virtual Int16 ReportType
+		public virtual Int16 MonthlyReportType
 		{
 			get
 			{
-				return this.m_ReportType;
+				return this.m_MonthlyReportType;
 			}
 			set
 			{
-				this.m_ReportType = value;
+				this.m_MonthlyReportType = value;
 			}
 		}
 

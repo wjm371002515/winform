@@ -48,7 +48,7 @@ namespace JCodes.Framework.AddIn.Security
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.lblSystemType = new System.Windows.Forms.Label();
-            this.txtFunctionID = new DevExpress.XtraEditors.TextEdit();
+            this.txtDllPath = new DevExpress.XtraEditors.TextEdit();
             this.label5 = new System.Windows.Forms.Label();
             this.txtName = new DevExpress.XtraEditors.TextEdit();
             this.label2 = new System.Windows.Forms.Label();
@@ -66,7 +66,7 @@ namespace JCodes.Framework.AddIn.Security
             this.btnBatchAdd = new DevExpress.XtraEditors.SimpleButton();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.contextMenuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFunctionID.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDllPath.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
@@ -200,23 +200,23 @@ namespace JCodes.Framework.AddIn.Security
             this.lblSystemType.TabIndex = 0;
             this.lblSystemType.Text = "系统类型编号(*)：";
             // 
-            // txtFunctionID
+            // txtDllPath
             // 
-            this.txtFunctionID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtDllPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFunctionID.Location = new System.Drawing.Point(128, 92);
-            this.txtFunctionID.Name = "txtFunctionID";
-            this.txtFunctionID.Size = new System.Drawing.Size(515, 28);
-            this.txtFunctionID.TabIndex = 2;
+            this.txtDllPath.Location = new System.Drawing.Point(128, 92);
+            this.txtDllPath.Name = "txtDllPath";
+            this.txtDllPath.Size = new System.Drawing.Size(515, 28);
+            this.txtDllPath.TabIndex = 2;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(26, 96);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(143, 22);
+            this.label5.Size = new System.Drawing.Size(124, 22);
             this.label5.TabIndex = 0;
-            this.label5.Text = "功能控件ID(*)：";
+            this.label5.Text = "映射路径(*)：";
             // 
             // txtName
             // 
@@ -286,7 +286,7 @@ namespace JCodes.Framework.AddIn.Security
             this.groupControl1.Controls.Add(this.txtName);
             this.groupControl1.Controls.Add(this.lblSystemType);
             this.groupControl1.Controls.Add(this.label5);
-            this.groupControl1.Controls.Add(this.txtFunctionID);
+            this.groupControl1.Controls.Add(this.txtDllPath);
             this.groupControl1.Controls.Add(this.txtSystemType);
             this.groupControl1.Location = new System.Drawing.Point(8, 14);
             this.groupControl1.Name = "groupControl1";
@@ -301,6 +301,7 @@ namespace JCodes.Framework.AddIn.Security
             this.functionControl1.Location = new System.Drawing.Point(128, 62);
             this.functionControl1.Name = "functionControl1";
             this.functionControl1.Size = new System.Drawing.Size(515, 20);
+            this.functionControl1.StyleController = null;
             this.functionControl1.TabIndex = 6;
             this.functionControl1.Value = "-1";
             // 
@@ -395,7 +396,7 @@ namespace JCodes.Framework.AddIn.Security
             this.Text = "功能管理";
             this.Load += new System.EventHandler(this.FrmFunction_Load);
             this.contextMenuStrip1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.txtFunctionID.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDllPath.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
@@ -419,7 +420,7 @@ namespace JCodes.Framework.AddIn.Security
         private DevExpress.XtraEditors.TextEdit txtName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private DevExpress.XtraEditors.TextEdit txtFunctionID;
+        private DevExpress.XtraEditors.TextEdit txtDllPath;
         private System.Windows.Forms.Label label5;
         private DevExpress.XtraEditors.SimpleButton btnSave;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;

@@ -3,6 +3,7 @@ using JCodes.Framework.Common;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Common.Office;
 using JCodes.Framework.Entity;
+using JCodes.Framework.jCodesenum;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.WebUI.Common;
 using System;
@@ -157,7 +158,7 @@ namespace JCodes.Framework.WebUI.Controllers
         //    //    info.PID = BLLFactory<Icon>.Instance.GetFieldValue(info.PID, "Name");
         //    //    if (!string.IsNullOrEmpty(info.Creator))
         //    //    {
-        //    //        info.Creator = BLLFactory<User>.Instance.GetFullNameByID(info.Creator.ToInt32());
+        //    //        info.Creator = BLLFactory<User>.Instance.GetNameById(info.Creator.ToInt32());
         //    //    }
         //    //}
 

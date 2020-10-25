@@ -12,6 +12,7 @@ using JCodes.Framework.Common;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using System.Data.Common;
 using JCodes.Framework.Common.Framework;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.WebUI.Controllers
 {
@@ -226,7 +227,7 @@ namespace JCodes.Framework.WebUI.Controllers
             //    info.PID = BLLFactory<SystemType>.Instance.GetFieldValue(info.PID, "Name");
             //    if (!string.IsNullOrEmpty(info.Creator))
             //    {
-            //        info.Creator = BLLFactory<User>.Instance.GetFullNameByID(info.Creator.ToInt32());
+            //        info.Creator = BLLFactory<User>.Instance.GetNameById(info.Creator.ToInt32());
             //    }
             //}
 
@@ -272,13 +273,13 @@ namespace JCodes.Framework.WebUI.Controllers
         /// </summary>
         /// <param name="oid">系统OID</param>
         /// <returns>存在则返回指定的对象,否则返回Null</returns>
-        public virtual ActionResult FindByOID(string oid)
+        public virtual ActionResult FindByOID(string gid)
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
             base.CheckAuthorized(authorizeKeyInfo.ViewKey);
 
             ActionResult result = Content("");
-            SystemTypeInfo info = BLLFactory<SystemType>.Instance.FindByOID(oid);
+            SystemTypeInfo info = BLLFactory<SystemType>.Instance.FindByGid(gid);
             if (info != null)
             {
                 result = ToJsonContentDate(info);

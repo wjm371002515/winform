@@ -172,7 +172,7 @@ namespace JCodes.Framework.AddIn._50Go
                     dr["使用人ID"] = list[i].Editor_ID;
                     dr["使用时间"] = list[i].EditTime;
                     dr["联系电话"] = list[i].MobilePhone;
-                    dr["联系人"] = list[i].FullName;
+                    dr["联系人"] = list[i].LoginName;
                     dr["有效开始日期"] = list[i].StartTime;
                     dr["有效结束日期"] = list[i].EndTime;
                     dr["是否使用"] = list[i].DELETED == 0?"否":"是";
@@ -215,7 +215,7 @@ namespace JCodes.Framework.AddIn._50Go
                 condition.AddCondition("CouponCategory_ID", (this.txtCategory.SelectedItem as CListItem).Value, SqlOperator.Equal);
             }
             condition.AddCondition("MobilePhone", this.txtMobilePhone.Text, SqlOperator.Like);
-            condition.AddCondition("FullName", this.txtFullName.Text, SqlOperator.Like);
+            condition.AddCondition("LoginName", this.txtLoginName.Text, SqlOperator.Like);
             if (this.txtEnabled.SelectedIndex != -1)
             { 
                 condition.AddCondition("DELETED", this.txtEnabled.SelectedIndex, SqlOperator.Equal);
@@ -312,7 +312,7 @@ namespace JCodes.Framework.AddIn._50Go
 
             #region 添加别名解析
             // Company_Name,
-            this.winGridViewPager1.DisplayColumns = "ID,CouponCategory_Name,Company_Name,Creator,Creator_ID,CreateTime,Editor,Editor_ID, EditTime,MobilePhone,FullName,StartTime,EndTime,DELETED";
+            this.winGridViewPager1.DisplayColumns = "ID,CouponCategory_Name,Company_Name,Creator,Creator_ID,CreateTime,Editor,Editor_ID, EditTime,MobilePhone,LoginName,StartTime,EndTime,DELETED";
             this.winGridViewPager1.ColumnNameAlias = BLLFactory<Coupon>.Instance.GetColumnNameAlias();//字段列显示名称转义
             #endregion
 

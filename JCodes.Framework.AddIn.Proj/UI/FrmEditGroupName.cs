@@ -3,6 +3,7 @@ using JCodes.Framework.Common.Files;
 using JCodes.Framework.CommonControl.BaseUI;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.Entity;
+using JCodes.Framework.jCodesenum;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using System;
 using System.Xml;
@@ -52,7 +53,7 @@ namespace JCodes.Framework.AddIn.Proj
                     if (string.Equals(xe.Attributes["gid"].Value, this.Tag))
                     {
                         txtGroupName.Text = xe.Attributes["name"].Value;
-                        txtCreateDate.Text = xe.Attributes["createdate"].Value;
+                        txtCreateDate.Text = xe.Attributes["creatortime"].Value;
                     }
                 }
             }

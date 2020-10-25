@@ -32,6 +32,7 @@ using JCodes.Framework.Common.Network;
 using JCodes.Framework.Common.Images;
 using JCodes.Framework.CommonControl.RSARegistryTool;
 using DevExpress.Utils;
+using JCodes.Framework.jCodesenum;
 
 namespace TestCommons
 {
@@ -1089,7 +1090,65 @@ namespace TestCommons
             WaitBeforeLogin.Invoke((EventHandler)delegate { WaitBeforeLogin.Close(); }); 
             
         }
+
+        /// <summary>
+        /// 窗体
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnOpenFrm_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRSATOJAVA_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("---------------------------------------------------------");
+            Console.WriteLine("◆◆◆◆◆◆◆◆◆◆◆◆ RSA测试 ◆◆◆◆◆◆◆◆◆◆◆◆");
+            Console.WriteLine("---------------------------------------------------------");
+
+            var rsa = new RSA(512);
+            Console.WriteLine("【512私钥（XML）】：");
+            Console.WriteLine(rsa.ToXML());
+            Console.WriteLine();
+            Console.WriteLine("【512私钥（PEM）】：");
+            Console.WriteLine(rsa.ToPEM_PKCS1());
+            Console.WriteLine();
+            Console.WriteLine("【512公钥（PEM）】：");
+            Console.WriteLine(rsa.ToPEM_PKCS1(true));
+            Console.WriteLine();
+
+            var str = "abc内容123";
+            var en = rsa.Encode(str);
+            Console.WriteLine("【加密】：");
+            Console.WriteLine(en);
+
+            Console.WriteLine("【解密】：");
+            Console.WriteLine(rsa.DecodeOrNull(en));
+
+            Console.WriteLine("【签名SHA1】：");
+            Console.WriteLine(rsa.Sign("SHA1", str));
+            Console.WriteLine();
+
+            var rsa2 = new RSA(rsa.ToPEM_PKCS8(), true);
+            Console.WriteLine("【用PEM新创建的RSA是否和上面的一致】：");
+            Console.WriteLine("XML：" + (rsa2.ToXML() == rsa.ToXML()));
+            Console.WriteLine("PKCS1：" + (rsa2.ToPEM_PKCS1() == rsa.ToPEM_PKCS1()));
+            Console.WriteLine("PKCS8：" + (rsa2.ToPEM_PKCS8() == rsa.ToPEM_PKCS8()));
+
+            var rsa3 = new RSA(rsa.ToXML());
+            Console.WriteLine("【用XML新创建的RSA是否和上面的一致】：");
+            Console.WriteLine("XML：" + (rsa3.ToXML() == rsa.ToXML()));
+            Console.WriteLine("PKCS1：" + (rsa3.ToPEM_PKCS1() == rsa.ToPEM_PKCS1()));
+            Console.WriteLine("PKCS8：" + (rsa3.ToPEM_PKCS8() == rsa.ToPEM_PKCS8()));
+
+            Console.WriteLine("-------------------------------------------------------------");
+            Console.WriteLine("◆◆◆◆◆◆◆◆◆◆◆◆ 回车退出... ◆◆◆◆◆◆◆◆◆◆◆◆");
+            Console.WriteLine();
+            
+        }
     }
+
 
     public class PreDataInfo
     {

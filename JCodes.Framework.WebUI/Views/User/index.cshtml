@@ -88,7 +88,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">真实姓名</label>
                                 <div class="col-md-8">
-                                    <input name="WHC_FullName" type="text" class="form-control">
+                                    <input name="WHC_LoginName" type="text" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -230,7 +230,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-4">真实姓名<span class="required">*</span></label>
                                         <div class="input-icon col-md-8">                                            
-                                            <input id="FullName" name="FullName" type="text" class="form-control" placeholder="真实姓名..." required>
+                                            <input id="LoginName" name="LoginName" type="text" class="form-control" placeholder="真实姓名..." required>
                                         </div>
                                     </div>
                                 </div>
@@ -455,7 +455,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-4">真实姓名<span class="required">*</span></label>
                                         <div class="input-icon col-md-8">                                            
-                                            <input id="FullName1" name="FullName" type="text" class="form-control" placeholder="真实姓名..." required>
+                                            <input id="LoginName1" name="LoginName" type="text" class="form-control" placeholder="真实姓名..." required>
                                         </div>
                                     </div>
                                 </div>
@@ -738,7 +738,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-4">真实姓名</label>
                                         <div class="col-md-8">                                            
-                                            <label id="FullName2" name="FullName" class="form-control" />
+                                            <label id="LoginName2" name="LoginName" class="form-control" />
                                         </div>
                                     </div>
                                 </div>
@@ -1157,6 +1157,7 @@
         function appendCondition() {
             var condition = "&WHC_Deleted=0";
             //如果不是超级管理员，只能看本公司的人员
+            // 20200228 wujianming TODO 需要处理
             @if (Session["IsSuperAdmin"] == null || !(bool)Session["IsSuperAdmin"])
             {
                 @Html.Raw("&WHC_Company_ID=" + Session["Company_ID"]);
@@ -1186,7 +1187,7 @@
                     tr += "<td>" + item.ID + "</td>";
                     tr += "<td>" + item.UserCode + "</td>";
                     tr += "<td>" + item.Name + "</td>";
-                    tr += "<td>" + item.FullName + "</td>";      
+                    tr += "<td>" + item.LoginName + "</td>";      
 
                     if (item.IsExpire) {
                         //tr += "<td>" + item.Visible + "</td>";
@@ -1432,7 +1433,7 @@
                 $("#ID1").val(info.ID);                
                 $("#HandNo1").val(info.UserCode);
                 $("#Name1").val(info.Name);
-                $("#FullName1").val(info.FullName);
+                $("#LoginName1").val(info.LoginName);
                 $("#Nickname1").val(info.LoginName);
                 $("#Title1").val(info.Title);
                 $("#IdentityCard1").val(info.IdentityCard);
@@ -1487,7 +1488,7 @@
                 $("#ID2").text(info.ID);
                 $("#HandNo2").text(info.UserCode);
                 $("#Name2").text(info.Name);
-                $("#FullName2").text(info.FullName);
+                $("#LoginName2").text(info.LoginName);
                 $("#Nickname2").text(info.LoginName);
                 $("#Title2").text(info.Title);
                 $("#IdentityCard2").text(info.IdentityCard);
@@ -1683,7 +1684,7 @@
                     tr += "<td><input class='checkboxes' type=\"checkbox\" name=\"checkbox\" ></td>";
                     tr += "<td>" + item.UserCode + "</td>";
                     tr += "<td>" + item.Name + "</td>";
-                    tr += "<td>" + item.FullName + "</td>";   
+                    tr += "<td>" + item.LoginName + "</td>";   
                     tr += "<td>" + item.Title + "</td>";
                     tr += "<td>" + item.MobilePhone + "</td>";
                     tr += "<td>" + item.OfficePhone + "</td>";
@@ -1726,7 +1727,7 @@
                         // alert($(this).text());
                     });    
 
-                    list.push({ 'UserCode': rows[0],  'Name': rows[1], 'FullName': rows[2], 'Title': rows[3], 
+                    list.push({ 'UserCode': rows[0],  'Name': rows[1], 'LoginName': rows[2], 'Title': rows[3], 
                         'MobilePhone': rows[4], 'OfficePhone': rows[5], 'Email': rows[6], 'Gender': rows[7], 
                         'QQ': rows[8], 'Note': rows[9] });
                     i++;

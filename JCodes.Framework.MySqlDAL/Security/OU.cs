@@ -174,7 +174,7 @@ namespace JCodes.Framework.MySqlDAL
 
         public override bool DeleteByUser(object key, Int32 userId, DbTransaction trans = null)
         {
-            OUInfo info = this.FindByID(key, trans);
+            OUInfo info = this.FindById(key, trans);
             if (info != null)
             {
                 string sql = string.Format("UPDATE {0}OU SET PID={1} Where PID={2}", MySqlPortal.gc._securityTablePre, info.Pid, key);
@@ -187,7 +187,7 @@ namespace JCodes.Framework.MySqlDAL
             return true;
         }
 
-        public List<OUInfo> GetOUsByRole(int roleID)
+        public List<OUInfo> GetOUsByRoleId(int roleID)
         {
             string sql = string.Format("SELECT * FROM {0}OU INNER JOIN {0}OU_Role On {0}OU.ID={0}OU_Role.OU_ID WHERE Role_ID = {1}", MySqlPortal.gc._securityTablePre, roleID);
             return this.GetList(sql, null);
@@ -225,7 +225,7 @@ namespace JCodes.Framework.MySqlDAL
         {
             List<OUInfo> list = new List<OUInfo>();
 
-            OUInfo ouInfo = this.FindByID(id);
+            OUInfo ouInfo = this.FindById(id);
             list.Add(ouInfo);
 
             string sort = string.Format("{0} {1}", GetSafeFileName(sortField), isDescending ? "DESC" : "ASC");
@@ -262,7 +262,7 @@ namespace JCodes.Framework.MySqlDAL
 
         private OUNodeInfo GetNode(string id, DataTable dt)
         {
-            OUInfo ouInfo = this.FindByID(id);
+            OUInfo ouInfo = this.FindById(id);
             OUNodeInfo ouNodeInfo = new OUNodeInfo(ouInfo);
 
             string sort = string.Format("{0} {1}", GetSafeFileName(sortField), isDescending ? "DESC" : "ASC");
@@ -281,14 +281,14 @@ namespace JCodes.Framework.MySqlDAL
         /// 获取指定机构下面的树形列表
         /// </summary>
         /// <param name="mainOUID">指定机构ID</param>
-        public List<OUNodeInfo> GetTreeByID(int mainOUID)
+        public List<OUNodeInfo> GetTreeById(int mainGid)
         {
             List<OUNodeInfo> arrReturn = new List<OUNodeInfo>();
             string sql = string.Format("Select * From {0} Order By PID, Name ", tableName);
 
             DataTable dt = SqlTable(sql);
             string sort = string.Format("{0} {1}", GetSafeFileName(sortField), isDescending ? "DESC" : "ASC");
-            DataRow[] dataRows = dt.Select(string.Format(" PID = {0}", mainOUID), sort);
+            DataRow[] dataRows = dt.Select(string.Format(" PID = {0}", mainGid), sort);
             for (int i = 0; i < dataRows.Length; i++)
             {
                 string id = dataRows[i]["ID"].ToString();
@@ -306,10 +306,9 @@ namespace JCodes.Framework.MySqlDAL
         /// <param name="deleted">是否删除</param>
         /// <param name="trans">事务对象</param>
         /// <returns></returns>
-        public bool SetDeletedFlag(object id, bool deleted = true, DbTransaction trans = null)
+        public bool SetDeletedFlag(Int32 id, Int32 isDelete = 1, DbTransaction trans = null)
         {
-            int intDeleted = deleted ? 1 : 0;
-            string sql = string.Format("Update {0} Set IsDelete={1} Where ID = {2} ", tableName, intDeleted, id);
+            string sql = string.Format("Update {0} Set IsDelete={1} Where ID = {2} ", tableName, isDelete, id);
             return SqlExecute(sql, trans) > 0;
         }
     }

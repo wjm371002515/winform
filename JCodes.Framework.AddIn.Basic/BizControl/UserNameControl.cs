@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
-using System.Windows.Forms;
-using DevExpress.XtraEditors;
+using JCodes.Framework.Common.Format;
+using JCodes.Framework.Common;
 
 namespace JCodes.Framework.AddIn.Basic.BizControl
 {
     public partial class UserNameControl : DevExpress.XtraEditors.XtraUserControl
     {
-        public delegate void DeleteEventHandler(string ID);
+        public delegate void DeleteEventHandler(Int32 Id);
         public event DeleteEventHandler OnDeleteItem;
 
         public UserNameControl()
@@ -25,17 +20,16 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
             {
                 if (this.lblInfo.Tag != null)
                 {
-                    OnDeleteItem(this.lblInfo.Tag.ToString());
+                    OnDeleteItem(ConvertHelper.ToInt32(lblInfo.Tag, Const.Num_Zero));
                 }
             }
         }
 
-        public void BindData(string ID, string Name)
+        public void BindData(Int32 Id, string Name)
         {
             this.lblInfo.Text = Name;
-            this.lblInfo.Tag = ID;
-
-            this.btnDelete.Tag = ID;
+            this.lblInfo.Tag = Id;
+            this.btnDelete.Tag = Id;
         }
     }
 }

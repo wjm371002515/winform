@@ -145,7 +145,7 @@ namespace JCodes.Framework.AddIn._50Go
             //如果存在高级查询对象信息，则使用高级查询条件，否则使用主表条件查询
             SearchCondition condition = new SearchCondition();
             condition.AddCondition("ID", this.txtID.Text.Trim(), SqlOperator.Equal);
-            condition.AddCondition("FullName", this.txtFullName.Text.Trim(), SqlOperator.Equal);
+            condition.AddCondition("LoginName", this.txtLoginName.Text.Trim(), SqlOperator.Equal);
             condition.AddCondition("MobilePhone", this.txtMobilePhone.Text.Trim(), SqlOperator.Equal);
             string where = condition.BuildConditionSql().Replace("Where", "");
             return where;
@@ -156,7 +156,7 @@ namespace JCodes.Framework.AddIn._50Go
         /// </summary>
         private void BindData()
         {
-            this.winGridViewPager1.DisplayColumns = "ID,CouponCategory_Name,Company_Name,Creator,Creator_ID,CreateTime,Editor,Editor_ID, EditTime,MobilePhone,FullName,StartTime,EndTime,DELETED";
+            this.winGridViewPager1.DisplayColumns = "ID,CouponCategory_Name,Company_Name,Creator,Creator_ID,CreateTime,Editor,Editor_ID, EditTime,MobilePhone,LoginName,StartTime,EndTime,DELETED";
             this.winGridViewPager1.ColumnNameAlias = BLLFactory<Coupon>.Instance.GetColumnNameAlias();//字段列显示名称转义
 
             string where = GetConditionSql();
@@ -181,10 +181,10 @@ namespace JCodes.Framework.AddIn._50Go
                 this.txtID.Focus();
                 return;
             }
-            else if (this.txtFullName.Text.Length == 0)
+            else if (this.txtLoginName.Text.Length == 0)
             {
                 MessageDxUtil.ShowTips("请输入联系人");
-                this.txtFullName.Focus();
+                this.txtLoginName.Focus();
                 return;
             }
             else if (this.txtMobilePhone.Text.Length == 0)

@@ -21,10 +21,14 @@ namespace JCodes.Framework.SQLServerDAL
 
         public string _50GoTablePre = _appConfig.AppConfigGet("50GoTablePre");
 
-        public string _basicTablePre = _appConfig.AppConfigGet("BasicTablePre");
+        public string _dicTablePre = _appConfig.AppConfigGet("DicTablePre");
 
         public string _contactTablePre = _appConfig.AppConfigGet("ContactTablePre");
 
         public string _wareHouseTablePre = _appConfig.AppConfigGet("WareHouseTablePre");
+
+        public string _otherTablePre = _appConfig.AppConfigGet("OtherTablePre");
+
+        public string _dongnanhaiTablePre = _appConfig.AppConfigGet("OnethnkTablePre");
     }
 }

@@ -9,6 +9,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.Common.Format;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.Common.Files
 {

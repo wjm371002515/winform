@@ -7,6 +7,7 @@ using System.Web;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.IO;
+using JCodes.Framework.jCodesenum;
 using JCodes.Framework.jCodesenum.BaseEnum;
 
 namespace JCodes.Framework.Common.Office

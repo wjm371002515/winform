@@ -233,7 +233,7 @@ namespace JCodes.Framework.Common.Databases
         /// <returns></returns>
         public static DataTable CreateTable(string nameString)
         {
-            string[] nameArray = nameString.Split(new char[] { ',', ';' });
+            string[] nameArray = nameString.Split(new char[] { ',', ';' , '/'});
             List<string> nameList = new List<string>();
             DataTable dt = new DataTable();
             dt.TableName = "tableName";//增加一个默认的名字
@@ -244,11 +244,11 @@ namespace JCodes.Framework.Common.Databases
                     string[] subItems = item.Split('|');
                     if (subItems.Length == 2)
                     {
-                        dt.Columns.Add(subItems[0], ConvertType(subItems[1]));
+                        dt.Columns.Add(subItems[0].Trim(), ConvertType(subItems[1]));
                     }
                     else
                     {
-                        dt.Columns.Add(subItems[0]);
+                        dt.Columns.Add(subItems[0].Trim());
                     }
                  }
             }

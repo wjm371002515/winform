@@ -16,6 +16,7 @@ using JCodes.Framework.Common.Encrypt;
 using JCodes.Framework.Common.Databases;
 using JCodes.Framework.Common.Format;
 using JCodes.Framework.Common.Files;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.Common.Framework.BaseDAL
 {

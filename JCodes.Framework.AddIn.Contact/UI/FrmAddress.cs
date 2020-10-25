@@ -527,8 +527,6 @@ namespace JCodes.Framework.AddIn.Contact
 
         private void InitTree()
         {
-            base.LoginUserInfo = Cache.Instance["LoginUserInfo"] as LoginUserInfo;
-
             this.treeView1.BeginUpdate();
             this.treeView1.Nodes.Clear();
             //添加一个未分类和全部客户的组别

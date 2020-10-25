@@ -49,6 +49,18 @@ namespace JCodes.Framework.MySqlDAL
             base.SqlExecute(sql);
         }
 
+        /// <summary>
+        /// 根据条件过滤
+        /// </summary>
+        /// <param name="condition"></param>
+        /// <returns></returns>
+        public Int32 GetXianchangAndPhoneShu(string condition) {
+            string sql = string.Format("select count(1) from {0}dongnanhaiVotes where {1}", MySqlPortal.gc._dongnanhaiTablePre, condition);
+            Database db = CreateDatabase();
+            DbCommand command = db.GetSqlStringCommand(sql);
+            return base.GetExecuteScalarValue(db, command);
+        }
+
 		#endregion
     }
 }

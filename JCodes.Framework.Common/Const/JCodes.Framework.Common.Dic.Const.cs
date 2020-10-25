@@ -9,10 +9,13 @@ namespace JCodes.Framework.Common
     public partial class Const
     {
         #region 数字常量
+        // 参数配置
+        public const Int32 DIC_PARAMETER = 100008;
+
+        // TODO 下面都要确认
         // 控件类型
         public const Int32 DIC_CONTROLTYPE = 100018;
-        // 参数配置
-        public const Int32 DIC_PARAMETER = 100024;
+       
         // 备件属类
         public const Int32 DIC_DEVICEATTR = 100025;
         // 备件类别

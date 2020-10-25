@@ -50,7 +50,7 @@ ViewBag.Title = "当前用户信息";
                                 <div class="form-group">
                                     <label class="control-label col-md-4">真实姓名</label>
                                     <div class="col-md-8">                                            
-                                        <label id="FullName_global" name="FullName" class="form-control" />
+                                        <label id="LoginName_global" name="LoginName" class="form-control" />
                                     </div>
                                 </div>
                             </div>
@@ -268,7 +268,7 @@ ViewBag.Title = "当前用户信息";
 <script>
     //页面初始化
     $(function () {
-        var ID = '@Session["UserID"]';
+        var ID = '@Session["UserId"]';
         BindViewInfo(ID);
     });
 
@@ -279,7 +279,7 @@ ViewBag.Title = "当前用户信息";
             $("#ID_global").text(info.ID);
             $("#HandNo_global").text(info.UserCode);
             $("#Name_global").text(info.Name);
-            $("#FullName_global").text(info.FullName);
+            $("#LoginName_global").text(info.LoginName);
             $("#Nickname_global").text(info.LoginName);
             $("#Title_global").text(info.Title);
             $("#IdentityCard_global").text(info.IdentityCard);

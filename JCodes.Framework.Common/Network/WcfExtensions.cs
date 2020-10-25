@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using JCodes.Framework.jCodesenum;
+using System;
 using System.ServiceModel;
-using JCodes.Framework.jCodesenum.BaseEnum;
 
 namespace JCodes.Framework.Common.Network
 {

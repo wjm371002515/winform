@@ -20,6 +20,7 @@ using JCodes.Framework.Common.Databases;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.Common.Files;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn.Report.WareHouseManage
 {

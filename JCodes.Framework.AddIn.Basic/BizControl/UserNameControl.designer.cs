@@ -37,7 +37,7 @@
             // 
             this.lblInfo.Location = new System.Drawing.Point(31, 6);
             this.lblInfo.Name = "lblInfo";
-            this.lblInfo.Size = new System.Drawing.Size(114, 14);
+            this.lblInfo.Size = new System.Drawing.Size(170, 22);
             this.lblInfo.TabIndex = 0;
             this.lblInfo.Text = "广州管理员(gzadmin)";
             // 
@@ -59,7 +59,7 @@
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.lblInfo);
             this.Name = "UserNameControl";
-            this.Size = new System.Drawing.Size(163, 26);
+            this.Size = new System.Drawing.Size(204, 31);
             this.ResumeLayout(false);
             this.PerformLayout();
 

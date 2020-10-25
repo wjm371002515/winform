@@ -256,5 +256,13 @@ namespace TestControlUtil
                 }
             }
         }
+
+        private void btnGeneralToXLS_Click(object sender, EventArgs e)
+        {
+            Workbook workbook = new Workbook();
+            workbook.Open(@"C:\Users\Jimmy\Desktop\投行整理\存续期.xls");
+
+            workbook.Save("D:\\b.html", SaveFormat.Html);
+        }
     }
 }

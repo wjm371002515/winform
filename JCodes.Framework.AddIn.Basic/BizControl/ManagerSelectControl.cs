@@ -72,8 +72,8 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
         {
             if (!this.DesignMode)
             {
-                txtOperator.Properties.ValueMember = "Name";
-                txtOperator.Properties.DisplayMember = "FullName";
+                txtOperator.Properties.ValueMember = "Id";
+                txtOperator.Properties.DisplayMember = "Name";
                 txtOperator.Properties.DataSource = BLLFactory<User>.Instance.GetSimpleUsers();
             }
         }

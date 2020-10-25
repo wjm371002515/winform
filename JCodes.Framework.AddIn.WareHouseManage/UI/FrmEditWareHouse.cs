@@ -8,6 +8,7 @@ using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.BLL;
 using JCodes.Framework.Common.Extension;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn.WareHouseManage
 {
@@ -62,7 +63,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
         {
             if (Id > 0)
             {
-                WareHouseInfo info = BLLFactory<WareHouse>.Instance.FindByID(Id);
+                WareHouseInfo info = BLLFactory<WareHouse>.Instance.FindById(Id);
                 if (info != null)
                 {
                     txtName.Text = info.Name;
@@ -106,7 +107,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
         /// <returns></returns>
         public override bool SaveUpdated()
         {
-            WareHouseInfo info = BLLFactory<WareHouse>.Instance.FindByID(Id);
+            WareHouseInfo info = BLLFactory<WareHouse>.Instance.FindById(Id);
             if (info != null)
             {
                 SetInfo(info);

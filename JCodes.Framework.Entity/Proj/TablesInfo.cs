@@ -33,7 +33,7 @@ namespace JCodes.Framework.Entity
 		/// <summary>
 		/// 功能号
 		/// </summary>
-		private Int32 m_FunctionId = 0;
+        private String m_FunctionId = string.Empty;
 
 		/// <summary>
 		/// 类型GUID
@@ -109,7 +109,7 @@ namespace JCodes.Framework.Entity
 		/// </summary>
 		[DataMember]
 		[DisplayName("功能号")]
-		public virtual Int32 FunctionId
+        public virtual String FunctionId
 		{
 			get
 			{

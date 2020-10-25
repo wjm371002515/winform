@@ -11,6 +11,7 @@ using JCodes.Framework.CommonControl.Controls;
 using JCodes.Framework.Common.Format;
 using System.Text;
 using JCodes.Framework.Common.Extension;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn.Proj
 {
@@ -18,7 +19,7 @@ namespace JCodes.Framework.AddIn.Proj
     {
         public string strItemName = string.Empty;
 
-        public Int32 intFunction = 0;
+        public string intFunction = string.Empty;
 
         public string strChineseName = string.Empty;
 
@@ -131,8 +132,9 @@ namespace JCodes.Framework.AddIn.Proj
             }
             else
             {
-                strGuid = Guid.NewGuid().ToString();
-                txtGUID.Text = strGuid;
+                //  新增不可以直接复制给strGUID 不然判断不了值的问题
+                txtGUID.Text = Guid.NewGuid().ToString();
+                strGuid = txtGUID.Text.Trim();
             }
             this.txtTableName.Focus();
         }
@@ -162,7 +164,6 @@ namespace JCodes.Framework.AddIn.Proj
 
                 xmltableshelper.Save();
 
-                // <?xml version=\"1.0\" encoding=\"utf-8\"?><datatype><histories></histories><basicinfo><item guid=\"{0}\"><functionId>{1}</functionId><name>{2}</name><chineseName>{3}</chineseName><version>{4}</version><lasttime>{5}</lasttime><remark>{6}</remark></item></basicinfo><fieldsinfo></fieldsinfo></datatype>
                 // 新增表名.entity文件
                 FileUtil.AppendText(string.Format(@"XML\{0}.entity", info.Name), string.Format(tablesDetailModel, System.Guid.NewGuid(), info.FunctionId, info.Name, info.ChineseName, string.Empty, "1.0.0.0", string.Empty, string.Empty, DateTimeHelper.GetServerDateTime(), string.Empty), Encoding.UTF8);
 
@@ -228,7 +229,7 @@ namespace JCodes.Framework.AddIn.Proj
             info.Gid = txtGUID.Text;
             info.Name = txtTableName.Text;
             info.ChineseName = txtChineseName.Text;
-            info.FunctionId = txtFunctionId.Text.ToInt32();
+            info.FunctionId = txtFunctionId.Text;
             info.BasicdataPath = string.Format(@"XML\{0}.entity", info.Name);
             // 如果是新增 则赋值路径
             if (string.IsNullOrEmpty(strGuid))

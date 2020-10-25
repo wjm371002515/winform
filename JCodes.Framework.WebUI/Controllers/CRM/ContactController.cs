@@ -17,6 +17,7 @@ using JCodes.Framework.Common;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.Common.Databases;
 using JCodes.Framework.Common.Extension;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.WebUI.Controllers
 {

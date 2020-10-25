@@ -61,6 +61,7 @@ namespace JCodes.Framework.Entity
             base.Icon = menuInfo.Icon;
             base.WebIcon = menuInfo.WebIcon;
             base.WinformClass = menuInfo.WinformClass;
+			base.DllPath = menuInfo.DllPath;
             base.Url = menuInfo.Url;
             base.SystemtypeId = menuInfo.SystemtypeId;
             base.CreatorId = menuInfo.CreatorId;

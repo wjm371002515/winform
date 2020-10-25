@@ -27,7 +27,7 @@ namespace JCodes.Framework.AddIn.Security
     /// </summary>
     public partial class FrmRole : BaseDock
     {
-        private string currentID = string.Empty;
+        private Int32 currentRoldId = 0;
 
         public FrmRole()
         {
@@ -37,8 +37,7 @@ namespace JCodes.Framework.AddIn.Security
         private void FrmRole_Load(object sender, EventArgs e)
         {
             if (!this.DesignMode)
-            {
-                InitDictItem();                
+            {               
                 InitTreeFunction();
                 RefreshTreeView();
                 Init_Function();
@@ -47,33 +46,22 @@ namespace JCodes.Framework.AddIn.Security
 
         void Init_Function()
         {
-            if (!HasFunction("Role/RoleDataSearch"))
+            if (!HasFunction("Role/Set/RoleDataSearch"))
             {
                 xtraTabControl1.TabPages.Remove(xtraTabControl1.TabPages[2]);
             }
-            if (!HasFunction("Role/FunctionSearch"))
+            if (!HasFunction("Role/Set/FunctionSearch"))
             {
                 xtraTabControl1.TabPages.Remove(xtraTabControl1.TabPages[1]);
             }
-            btnAdd.Enabled = HasFunction("Role/add");
-            btnDelete.Enabled = HasFunction("Role/del");
-            btnEditOU.Enabled = HasFunction("Role/OUedit");
-            btnRemoveOU.Enabled = HasFunction("Role/OUdel");
-            btnEditUser.Enabled = HasFunction("Role/UserAdd");
-            btnRemoveUser.Enabled = HasFunction("Role/UserDel");
-            btnSaveFunction.Enabled = HasFunction("Role/FunctionSave");
-            btnSaveRoleData.Enabled = HasFunction("Role/RoleDataSave");
-        }
-
-        private void InitDictItem()
-        {
-            //初始化分类
-            string[] enumNames = EnumHelper.GetMemberNames<RoleCategoryEnum>();
-            this.txtCategory.Properties.Items.Clear();
-            foreach (string item in enumNames)
-            {
-                this.txtCategory.Properties.Items.Add(item);
-            }
+            btnAdd.Enabled = HasFunction("Role/Set/RoleAdd");
+            btnDelete.Enabled = HasFunction("Role/Set/RoleDel");
+            btnEditOU.Enabled = HasFunction("Role/Set/RoleOUEdit");
+            btnRemoveOU.Enabled = HasFunction("Role/Set/RoleOUDel");
+            btnEditUser.Enabled = HasFunction("Role/Set/RoleUserAdd");
+            btnRemoveUser.Enabled = HasFunction("Role/Set/RoleUserDel");
+            btnSaveFunction.Enabled = HasFunction("Role/Set/RoleFunctionEdit");
+            btnSaveRoleData.Enabled = HasFunction("Role/Set/RoleDataEdit");
         }
         
         private void RefreshTreeView()
@@ -84,17 +72,18 @@ namespace JCodes.Framework.AddIn.Security
             List<OUInfo> list = Portal.gc.GetMyTopGroup();
             foreach (OUInfo groupInfo in list)
             {
-                if (groupInfo != null && groupInfo.IsDelete == 0)
+                if (groupInfo != null && groupInfo.IsDelete == (short)IsDelete.否)
                 {
                     TreeNode topnode = AddOUNode(groupInfo);
                     AddRole(groupInfo, topnode);
 
-                    if (groupInfo.OuType == 0)
+                    // 超级管理员可以查看集团
+                    if (groupInfo.OuType == (short)OuType.集团 || groupInfo.OuType == (short)OuType.公司)
                     {
                         List<OUInfo> sublist = BLLFactory<OU>.Instance.GetAllCompany(groupInfo.Id);
                         foreach (OUInfo info in sublist)
                         {
-                            if (info.IsDelete == 0)
+                            if (info.IsDelete == (short)IsDelete.否)
                             {
                                 TreeNode ouNode = AddOUNode(info, topnode);
                                 AddRole(info, ouNode);
@@ -115,7 +104,7 @@ namespace JCodes.Framework.AddIn.Security
             ouNode.Text = ouInfo.Name;
             ouNode.Name = ouInfo.Id.ToString();
             ouNode.Tag = ouInfo;//机构信息放到Tag里面
-            if (ouInfo.IsDelete == 0)
+            if (ouInfo.IsDelete == (short)IsDelete.是)
             {
                 ouNode.ForeColor = Color.Red;
             }
@@ -136,11 +125,11 @@ namespace JCodes.Framework.AddIn.Security
             foreach (RoleInfo roleInfo in roleList)
             {
                 TreeNode roleNode = new TreeNode();
-                roleNode.Text = roleInfo.Name;
+                roleNode.Text = string.Format("({0}){1}", roleInfo.RoleCode, roleInfo.Name);
                 roleNode.Tag = roleInfo;//角色信息放到Tag里面
-                roleNode.ImageIndex = 3;
-                roleNode.SelectedImageIndex = 3;
-                if (ouInfo.IsDelete == 0)
+                roleNode.ImageIndex = Const.Num_Zero;
+                roleNode.SelectedImageIndex = Const.Num_Zero;
+                if (ouInfo.IsDelete == (short)IsDelete.是)
                 {
                     roleNode.ForeColor = Color.Red;
                     continue;//跳过不显示
@@ -157,11 +146,11 @@ namespace JCodes.Framework.AddIn.Security
             if (node.Tag != null)
             {
                 string id = node.Tag.ToString();
-                if (!node.Checked && dictFunction.ContainsKey(id))
+                if (!node.Checked && dictFunction.Contains(id))
                 {
                     deletedFunctionList.Add(id);
                 }
-                if (node.Checked && !dictFunction.ContainsKey(id))
+                if (node.Checked && !dictFunction.Contains(id))
                 {
                     addedFunctionList.Add(id);
                 }
@@ -173,33 +162,37 @@ namespace JCodes.Framework.AddIn.Security
             }
         }
 
-        Dictionary<string,string> dictFunction = new Dictionary<string,string>();//最初的用户列表
-        private void RefreshFunctions(int roleId)
+        List<string> dictFunction = new List<string>();//最初的用户列表
+        private void RefreshFunctions(Int32 roleId)
         {
-            dictFunction = new Dictionary<string, string>();
+            dictFunction = new List<string>();
 
-            List<FunctionInfo> list = BLLFactory<Functions>.Instance.GetFunctionsByRole(roleId);
+            List<FunctionInfo> list = BLLFactory<Function>.Instance.GetFunctionsByRoleId(roleId);
 
             //增加一个字典方便快速选择
             foreach (FunctionInfo info in list)
             {
-                if (!dictFunction.ContainsKey(info.Gid))
+                if (!dictFunction.Contains(info.Gid))
                 {
-                    dictFunction.Add(info.Gid, info.Gid);
+                    dictFunction.Add(info.Gid);
                 }
             }
-                
-            //如果是公司管理员一级，不能修改自己角色的权限（避免误操作，不再显示）
-            /*bool isSuperAdmin = BLLFactory<User>.Instance.UserInRole(Portal.gc.UserInfo.Name, RoleInfo.SuperAdminName);
+
             TreeNode selectNode = this.treeView1.SelectedNode;
-            if (selectNode != null && selectNode.Text.Equals(RoleInfo.CompanyAdminName) && !isSuperAdmin)
+
+            if (BLLFactory<Sysparameter>.Instance.UserIsSuperAdmin(Portal.gc.UserInfo.Name))
             {
                 this.treeFunction.CheckBoxes = false;
             }
-            else
+            else if (BLLFactory<Role>.Instance.UserHasRole(Portal.gc.UserInfo.Id))
             {
                 this.treeFunction.CheckBoxes = true;
-            }*/
+            }
+            else
+            {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_ERR, string.Format("该用户({0})没有管理员权限", Portal.gc.UserInfo.Name), typeof(Login));
+                MessageDxUtil.ShowError(string.Format("该用户({0})没有管理员权限", Portal.gc.UserInfo.Name));
+            }
 
             //判断角色具有哪些功能，更新勾选项
             foreach (TreeNode node in this.treeFunction.Nodes)
@@ -213,7 +206,6 @@ namespace JCodes.Framework.AddIn.Security
         /// </summary>
         private void InitTreeFunction()
         {
-            
             this.treeFunction.BeginUpdate();
             this.treeFunction.Nodes.Clear();
 
@@ -226,15 +218,20 @@ namespace JCodes.Framework.AddIn.Security
                 //如果是超级管理员，不根据角色获取，否则根据角色获取对应的分配权限
                 //也就是说，公司管理员只能分配自己被授权的功能，而超级管理员不受限制
                 List<FunctionNodeInfo> allNode = new List<FunctionNodeInfo>();
-                /*bool isSuperAdmin = BLLFactory<User>.Instance.UserInRole(Portal.gc.UserInfo.Name, RoleInfo.SuperAdminName);
-                if (isSuperAdmin)
+
+                // 20200528 wjm 调整为不再根据用户所拥有的角色去加载菜单
+                // 20191207 wjm 新增判断超级管理员 系统配置参数为1
+                // 20171109 wjm 不应该直接去判断这个Name的值，不合理 删除其逻辑判断 超级管理员
+                allNode = BLLFactory<Function>.Instance.GetTree(typeInfo.Gid);
+                /*if (Portal.gc.IsSuperAdmin)
                 {
-                    allNode = BLLFactory<Functions>.Instance.GetTree(typeInfo.Gid);
+                    allNode = BLLFactory<Function>.Instance.GetTree(typeInfo.Gid);
                 }
                 else
                 {
-                    allNode = BLLFactory<Functions>.Instance.GetFunctionNodesByUser(Portal.gc.UserInfo.Id, typeInfo.Gid);
+                    allNode = BLLFactory<Function>.Instance.GetFunctionNodesByUser(Portal.gc.UserInfo.Id, typeInfo.Gid);
                 }*/
+
                 AddFunctionNode(parentNode, allNode);
             }
             this.treeFunction.ExpandAll();
@@ -258,11 +255,11 @@ namespace JCodes.Framework.AddIn.Security
         /// <summary>
         /// 根据角色更新功能树勾选
         /// </summary>
-        private void RefreshFunctionNode(TreeNode node, Dictionary<string, string> dictFunction)
+        private void RefreshFunctionNode(TreeNode node, List<string> dictFunction)
         {
             foreach (TreeNode subNode in node.Nodes)
             {
-                if (subNode.Tag != null && dictFunction.ContainsKey(subNode.Tag.ToString()))
+                if (subNode.Tag != null && dictFunction.Contains(subNode.Tag.ToString()))
                 {
                     subNode.Checked = true;
                 }
@@ -284,10 +281,10 @@ namespace JCodes.Framework.AddIn.Security
             this.lvwUser.Items.Clear();//清空列表
 
             SelectUserDict = new Dictionary<Int32, string>();
-            List<UserInfo> list = BLLFactory<User>.Instance.GetUsersByRole(roleId);
+            List<UserInfo> list = BLLFactory<User>.Instance.GetUsersByRoleId(roleId);
             foreach (UserInfo info in list)
             {
-                string name = string.Format("{0}（{1}）", info.FullName, info.Name);
+                string name = string.Format("{0}（{1}）", info.LoginName, info.Name);
                 CDicKeyValue item = new CDicKeyValue(info.Id, name);
                 this.lvwUser.Items.Add(item);
 
@@ -308,7 +305,7 @@ namespace JCodes.Framework.AddIn.Security
             this.lvwOU.BeginUpdate();
             this.lvwOU.Items.Clear();
 
-            List<OUInfo> list = BLLFactory<OU>.Instance.GetOUsByRole(roleId);
+            List<OUInfo> list = BLLFactory<OU>.Instance.GetOUsByRoleId(roleId);
             foreach (OUInfo info in list)
             {
                 CDicKeyValue item = new CDicKeyValue(info.Id, info.Name);
@@ -342,7 +339,7 @@ namespace JCodes.Framework.AddIn.Security
 
         private void menu_Delete_Click(object sender, EventArgs e)
         {
-            if (!HasFunction("Role/del"))
+            if (!HasFunction("Role/Set/RoleDel"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -354,12 +351,6 @@ namespace JCodes.Framework.AddIn.Security
                 RoleInfo roleInfo = node.Tag as RoleInfo;
                 if (roleInfo != null)
                 {
-                    /*if (RoleInfo.SuperAdminName.Equals(node.Text, StringComparison.OrdinalIgnoreCase))
-                    {
-                        MessageDxUtil.ShowWarning("保留角色不能删除");
-                        return;
-                    }*/
-
                     if (MessageDxUtil.ShowYesNoAndTips("您确认删除吗?") == DialogResult.Yes)
                     {
                         try
@@ -379,7 +370,7 @@ namespace JCodes.Framework.AddIn.Security
 
         private void menu_Add_Click(object sender, EventArgs e)
         {
-            if (!HasFunction("Role/add"))
+            if (!HasFunction("Role/Set/RoleAdd"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -389,7 +380,6 @@ namespace JCodes.Framework.AddIn.Security
             this.xtraTabControl1.SelectedTabPageIndex = 0;
 
             ClearInput();
-            currentID = "";
             groupControl2.Text = Const.Add + "角色详细信息";
 
             // 20171127 wjm 修复添加后立刻添加成员错误
@@ -418,7 +408,6 @@ namespace JCodes.Framework.AddIn.Security
             this.lvwOU.Items.Clear();
             this.lvwUser.Items.Clear();
             this.txtCompany.Text = "";
-            this.txtCategory.Text = "";
             this.txtHandNo.Text = "";
             this.txtSeq.Text = "";
         }
@@ -443,12 +432,11 @@ namespace JCodes.Framework.AddIn.Security
                     if (info != null)
                     {
                         groupControl2.Text = Const.Edit + "角色详细信息";
-                        currentID = info.Id.ToString();
+                        currentRoldId = info.Id;
                         this.txtName.Text = info.Name;
                         this.txtNote.Text = info.Remark;
                         this.txtSeq.Text = info.Seq;
                         this.txtHandNo.Text = info.RoleCode;
-                        this.txtCategory.Text = info.RoleType.ToString();
                         this.txtCompany.Value = info.CompanyId.ToString();
 
                         RefreshUsers(info.Id);
@@ -463,9 +451,6 @@ namespace JCodes.Framework.AddIn.Security
                         btnRemoveUser.Enabled = true;
                     }
                 }
-                else if (e.Node.Text == "全部角色")
-                {
-                }
             }
         }
 
@@ -477,17 +462,34 @@ namespace JCodes.Framework.AddIn.Security
             info.CompanyId = this.txtCompany.Value.ToInt32();
             info.RoleCode = this.txtHandNo.Text;
             info.Seq = this.txtSeq.Text;
-            info.RoleType = Convert.ToInt16( this.txtCategory.Text);
-            //info.Editor = Portal.gc.UserInfo.FullName;
             info.EditorId = Portal.gc.UserInfo.Id;
             info.LastUpdateTime = DateTimeHelper.GetServerDateTime2();
             info.CurrentLoginUserId = Portal.gc.UserInfo.Id;
+
+            // 新增
+            if (currentRoldId == Const.Num_Zero)
+            {
+                info.CreatorId = Portal.gc.UserInfo.Id;
+                info.CreatorTime = DateTimeHelper.GetServerDateTime2();
+                info.IsDelete = (short)IsDelete.否;
+                info.IsForbid = (short)IsForbid.否;
+                info.Id = BLLFactory<Role>.Instance.GetMaxId() + 1;
+            }
+
             return info;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(currentID) && !HasFunction("Role/edit"))
+            // 检查修改权限
+            if (currentRoldId > Const.Num_Zero && !HasFunction("Role/Set/RoleEdit"))
+            {
+                MessageDxUtil.ShowError(Const.NoAuthMsg);
+                return;
+            }
+
+            // 检查新增权限
+            if (currentRoldId == Const.Num_Zero && !HasFunction("Role/Set/RoleAdd"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -509,23 +511,12 @@ namespace JCodes.Framework.AddIn.Security
 
             #endregion
 
-            if (!string.IsNullOrEmpty(currentID))
+            if (currentRoldId > Const.Num_Zero)
             {
-                TreeNode node = this.treeView1.SelectedNode;
-                if (node != null && node.Tag != null)
-                {
-                    RoleInfo roleInfo = node.Tag as RoleInfo;
-                    /*if (roleInfo != null && RoleInfo.SuperAdminName.Equals(roleInfo.Name, StringComparison.OrdinalIgnoreCase))
-                    {
-                        MessageDxUtil.ShowWarning("保留角色不能修改");
-                        return;
-                    }*/
-                }
-
                 try
                 {   
                     #region 排重检查
-                    string filter = string.Format("Name='{0}' AND Company_ID='{1}' AND ID <> {2} ", this.txtName.Text, this.txtCompany.Value, currentID);
+                    string filter = string.Format("Name='{0}' AND CompanyId='{1}' AND ID <> {2} ", this.txtName.Text, this.txtCompany.Value, currentRoldId);
                     bool isExist = BLLFactory<Role>.Instance.IsExistRecord(filter);
                     if (isExist)
                     {
@@ -535,7 +526,7 @@ namespace JCodes.Framework.AddIn.Security
                     } 
                     #endregion
 
-                    RoleInfo info = BLLFactory<Role>.Instance.FindByID(currentID);
+                    RoleInfo info = BLLFactory<Role>.Instance.FindById(currentRoldId);
                     if (info != null)
                     {
                         info = SetRoleInfo(info);
@@ -560,15 +551,8 @@ namespace JCodes.Framework.AddIn.Security
             }
             else
             {
-                /*if (this.txtName.Text.Trim() == RoleInfo.SuperAdminName)
-                {
-                    MessageDxUtil.ShowTips("超级管理员为保留名称，不能新增使用");
-                    this.txtName.Focus();
-                    return;
-                }*/
-
                 #region 排重检查
-                string filter = string.Format("Name='{0}' AND Company_ID='{1}' ", this.txtName.Text, this.txtCompany.Value);
+                string filter = string.Format("Name='{0}' AND CompanyId='{1}' ", this.txtName.Text, this.txtCompany.Value);
                 bool isExist = BLLFactory<Role>.Instance.IsExistRecord(filter);
                 if (isExist)
                 {
@@ -580,10 +564,6 @@ namespace JCodes.Framework.AddIn.Security
 
                 RoleInfo info = new RoleInfo();
                 info = SetRoleInfo(info);
-                //info.Creator = Portal.gc.UserInfo.FullName;
-                info.CreatorId = Portal.gc.UserInfo.Id;
-                info.CreatorTime = DateTimeHelper.GetServerDateTime2();
-
                 try
                 {
                     BLLFactory<Role>.Instance.Insert(info);
@@ -606,26 +586,27 @@ namespace JCodes.Framework.AddIn.Security
             }
         }
 
-        private void DeleteFunction(string FunctionID, int RoleID)
+        private void DeleteFunction(string FunctionId, int RoleId)
         {
-            BLLFactory<Role>.Instance.RemoveFunction(FunctionID, RoleID);
-            this.RefreshFunctions(RoleID);
+            BLLFactory<Role>.Instance.RemoveFunction(FunctionId, RoleId);
+            this.RefreshFunctions(RoleId);
         }
 
-        private void DeleteOU(int OUID, int RoleID)
+        private void DeleteOU(int OUId, int RoleId)
         {
-            BLLFactory<Role>.Instance.RemoveOU(OUID, RoleID);
-            this.RefreshOUs(RoleID);
+            BLLFactory<Role>.Instance.RemoveOU(OUId, RoleId);
+            this.RefreshOUs(RoleId);
         }
 
-        private void DeleteUser(int RoleID, int UserID)
+        private void DeleteUser(int RoleId, int UserId)
         {
-            BLLFactory<Role>.Instance.RemoveUser(UserID, RoleID);
-            this.RefreshUsers(RoleID);
+            BLLFactory<Role>.Instance.RemoveUser(UserId, RoleId);
+            this.RefreshUsers(RoleId);
         }
 
         private List<int> addedUserList = new List<int>();
         private List<int> deletedUserList = new List<int>();
+
         /// <summary>
         /// 获取那些变化了（增加的用户、删除的用户列表）
         /// </summary>
@@ -664,14 +645,14 @@ namespace JCodes.Framework.AddIn.Security
 
                     foreach (int id in deletedUserList)
                     {
-                        BLLFactory<Role>.Instance.RemoveUser(id, currentID.ToInt32());
+                        BLLFactory<Role>.Instance.RemoveUser(id, currentRoldId);
                     }
                     foreach (int id in addedUserList)
                     {
-                        BLLFactory<Role>.Instance.AddUser(id, currentID.ToInt32());
+                        BLLFactory<Role>.Instance.AddUser(id, currentRoldId);
                     }
 
-                    this.RefreshUsers(currentID.ToInt32());
+                    this.RefreshUsers(currentRoldId);
                 }
             }
             else
@@ -684,19 +665,18 @@ namespace JCodes.Framework.AddIn.Security
         {
             if (this.lvwUser.SelectedItem != null)
             {
-                CListItem userItem = this.lvwUser.SelectedItem as CListItem;
+                CDicKeyValue userItem = this.lvwUser.SelectedItem as CDicKeyValue;
                 if (userItem != null)
                 {
                     int userId = Convert.ToInt32(userItem.Value);
-                    if (!string.IsNullOrEmpty(currentID))
+                    if (currentRoldId > Const.Num_Zero)
                     {
-                        int roleID = Convert.ToInt32(currentID);
+                        int roleID = Convert.ToInt32(currentRoldId);
                         DeleteUser(roleID, userId);
                     }
                 }
             }
         }
-
 
         private List<int> addedOUList = new List<int>();
         private List<int> deletedOUList = new List<int>();
@@ -725,11 +705,12 @@ namespace JCodes.Framework.AddIn.Security
                 }
             }
         }
+
         private void btnEditOU_Click(object sender, EventArgs e)
         {
             if (this.treeView1.SelectedNode != null)
             {
-                List<OUInfo> list = BLLFactory<OU>.Instance.GetOUsByRole(currentID.ToInt32());
+                List<OUInfo> list = BLLFactory<OU>.Instance.GetOUsByRoleId(currentRoldId);
                 Dictionary<int, int> ouDict = new Dictionary<int, int>();
                 foreach (OUInfo info in list)
                 {
@@ -747,14 +728,14 @@ namespace JCodes.Framework.AddIn.Security
 
                     foreach (int id in deletedOUList)
                     {
-                        BLLFactory<Role>.Instance.RemoveOU(id, currentID.ToInt32());
+                        BLLFactory<Role>.Instance.RemoveOU(id, currentRoldId);
                     }
                     foreach (int id in addedOUList)
                     {
-                        BLLFactory<Role>.Instance.AddOU(id, currentID.ToInt32());
+                        BLLFactory<Role>.Instance.AddOU(id, currentRoldId);
                     }
 
-                    RefreshOUs(currentID.ToInt32());
+                    RefreshOUs(currentRoldId);
                 }
             }
             else
@@ -767,14 +748,13 @@ namespace JCodes.Framework.AddIn.Security
         {
             if (this.lvwOU.SelectedItem != null)
             {
-                CListItem item = this.lvwOU.SelectedItem as CListItem;
+                CDicKeyValue item = this.lvwOU.SelectedItem as CDicKeyValue;
                 if (item != null)
                 {
-                    int ouID = Convert.ToInt32(item.Value);
-                    if (!string.IsNullOrEmpty(currentID))
+                    int ouId = Convert.ToInt32(item.Value);
+                    if (currentRoldId > Const.Num_Zero)
                     {
-                        int roleID = Convert.ToInt32(currentID);
-                        DeleteOU(ouID, roleID);
+                        DeleteOU(ouId, currentRoldId);
                     }
                 }
             }
@@ -785,11 +765,11 @@ namespace JCodes.Framework.AddIn.Security
             if (this.treeView1.SelectedNode != null)
             {
                 FrmEditTree dlg = new FrmEditTree();
-                dlg.RoleID = currentID;
+                dlg.RoleId = currentRoldId;
                 dlg.DisplayType = DisplayTreeType.Function;
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
-                    RefreshFunctions(Convert.ToInt32(currentID));
+                    RefreshFunctions(currentRoldId);
                 }
             }
             else
@@ -826,17 +806,17 @@ namespace JCodes.Framework.AddIn.Security
                     GetFunctionChanges(node);
                 }
 
-                foreach (string id in deletedFunctionList)
+                foreach (string Id in deletedFunctionList)
                 {
-                    BLLFactory<Role>.Instance.RemoveFunction(id, currentID.ToInt32());
+                    BLLFactory<Role>.Instance.RemoveFunction(Id, currentRoldId);
                 }
-                foreach (string id in addedFunctionList)
+                foreach (string Id in addedFunctionList)
                 {
-                    BLLFactory<Role>.Instance.AddFunction(id, currentID.ToInt32());
+                    BLLFactory<Role>.Instance.AddFunction(Id, currentRoldId);
                 }
 
                 MessageDxUtil.ShowTips("保存成功");
-                this.RefreshFunctions(currentID.ToInt32());
+                this.RefreshFunctions(currentRoldId);
             }
             else
             {
@@ -849,7 +829,7 @@ namespace JCodes.Framework.AddIn.Security
             if (this.treeView1.SelectedNode != null)
             {
                 InitTreeFunction();
-                this.RefreshFunctions(currentID.ToInt32());
+                this.RefreshFunctions(currentRoldId);
             }
             else
             {
@@ -887,7 +867,7 @@ namespace JCodes.Framework.AddIn.Security
                 deptNode.Tag = ouInfo.Id;
                 deptNode.ImageIndex = ouInfo.OuType; // Portal.gc.GetImageIndex(ouInfo.Category);
                 deptNode.SelectedImageIndex = ouInfo.OuType; //Portal.gc.GetImageIndex(ouInfo.Category);
-                if (ouInfo.IsDelete == 0)
+                if (ouInfo.IsDelete == (short)IsDelete.是)
                 {
                     deptNode.ForeColor = Color.Red;
                     continue;//跳过不显示
@@ -917,16 +897,16 @@ namespace JCodes.Framework.AddIn.Security
             companyNode.Text = "所在公司";
             companyNode.Name = userCompanyId.ToString();
             companyNode.Tag = userCompanyId;
-            companyNode.ImageIndex = 1;
-            companyNode.SelectedImageIndex = 1;
+            companyNode.ImageIndex = (short)OuType.公司;
+            companyNode.SelectedImageIndex = (short)OuType.公司;
             companyNode.Checked = roleDataDict.ContainsKey(userCompanyId);
 
             TreeNode deptNode = new TreeNode();
             deptNode.Text = "所在部门";
             deptNode.Name = userDeptId.ToString();
             deptNode.Tag = userDeptId;
-            deptNode.ImageIndex = 2;
-            deptNode.SelectedImageIndex = 2;
+            deptNode.ImageIndex = (short)OuType.部门;
+            deptNode.SelectedImageIndex = (short)OuType.部门;
             deptNode.Checked = roleDataDict.ContainsKey(userDeptId);
 
             companyNode.Nodes.Add(deptNode);
@@ -946,7 +926,7 @@ namespace JCodes.Framework.AddIn.Security
                     topnode.SelectedImageIndex = groupInfo.OuType; //Portal.gc.GetImageIndex(groupInfo.Category);
                     topnode.Checked = roleDataDict.ContainsKey(groupInfo.Id);//选中的
 
-                    List<OUNodeInfo> sublist = BLLFactory<OU>.Instance.GetTreeByID(groupInfo.Id);
+                    List<OUNodeInfo> sublist = BLLFactory<OU>.Instance.GetTreeById(groupInfo.Id);
                     AddRoleDataDept(sublist, topnode);
 
                     this.treeRoleData.Nodes.Add(topnode);
@@ -966,7 +946,7 @@ namespace JCodes.Framework.AddIn.Security
             if (node.Checked && node.Tag != null)
             {
                 //group 0, company 1, other dept 2,3...
-                if (node.ImageIndex <= 1)
+                if (node.ImageIndex == (short)OuType.集团 || node.ImageIndex == (short)OuType.公司)
                 {
                     companyDataList.Add(node.Tag.ToString());
                 }
@@ -997,11 +977,11 @@ namespace JCodes.Framework.AddIn.Security
 
                 string companyString = string.Join(",", companyDataList.ToArray());
                 string deptDataString = string.Join(",", deptDataList);
-                bool result = BLLFactory<RoleData>.Instance.UpdateRoleData(currentID.ToInt32(), companyString, deptDataString);
+                bool result = BLLFactory<RoleData>.Instance.UpdateRoleData(currentRoldId, companyString, deptDataString);
                 if (result)
                 {
                     MessageDxUtil.ShowTips("保存成功");
-                    this.RefreshTreeRoleData(currentID.ToInt32());
+                    this.RefreshTreeRoleData(currentRoldId);
                 }
                 else
                 {
@@ -1018,11 +998,11 @@ namespace JCodes.Framework.AddIn.Security
         {
             if (this.treeView1.SelectedNode != null)
             {
-                this.RefreshTreeRoleData(currentID.ToInt32());
+                this.RefreshTreeRoleData(currentRoldId);
             }
             else
             {
-                //MessageDxUtil.ShowTips("请选择具体的角色");
+                MessageDxUtil.ShowTips("请选择具体的角色");
             }
         }
 

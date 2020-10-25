@@ -15,6 +15,7 @@ using JCodes.Framework.CommonControl.Controls;
 using JCodes.Framework.AddIn.Basic;
 using JCodes.Framework.Common.Format;
 using JCodes.Framework.Common.Extension;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn.Dictionary
 {
@@ -69,7 +70,7 @@ namespace JCodes.Framework.AddIn.Dictionary
             _currPosition_Y = _currPosition_Y + 5;
             foreach (var sysparameter in lst)
             {
-                InitControls(sysparameter.Id, sysparameter.Name, sysparameter.SysValue.ToString(), sysparameter.ControlType, sysparameter.DicNo, sysparameter.NumLen);
+                InitControls(sysparameter.Id, sysparameter.Name, sysparameter.SysValue, (ControlType)sysparameter.ControlType, sysparameter.DicNo, sysparameter.NumLen);
             }
          
             this.IsInit = true;
@@ -82,7 +83,7 @@ namespace JCodes.Framework.AddIn.Dictionary
         /// <param name="Value"></param>
         /// <param name="ControlType"></param>
         /// <param name="DicNo"></param>
-        private void InitControls(Int32 Id, string Name, string Value, Int16 ControlType, Int32 DicNo, Int32 Numlen)
+        private void InitControls(Int32 Id, string Name, string Value, ControlType Controltype, Int32 DicNo, Int32 Numlen)
         {
             xscControls.SuspendLayout();
             // 是否成功创建控件
@@ -107,9 +108,10 @@ namespace JCodes.Framework.AddIn.Dictionary
 
                 _currPosition_X = _currPosition_X + lc.Width + Const.ControlInterval;
 
-                switch (ControlType)
+
+                switch (Controltype)
                 {
-                    case 0:
+                    case ControlType.文本框:
                         #region 文本控件
                         te = new TextEdit();
                         ((System.ComponentModel.ISupportInitialize)(te.Properties)).BeginInit();
@@ -143,7 +145,7 @@ namespace JCodes.Framework.AddIn.Dictionary
                         ((System.ComponentModel.ISupportInitialize)(te.Properties)).EndInit();
                         #endregion
                         break;
-                    case 1:
+                    case ControlType.整数框:
                         #region 整数控件
                         te = new TextEdit();
                         ((System.ComponentModel.ISupportInitialize)(te.Properties)).BeginInit();
@@ -184,7 +186,7 @@ namespace JCodes.Framework.AddIn.Dictionary
                         ((System.ComponentModel.ISupportInitialize)(te.Properties)).EndInit();
                         #endregion
                         break;
-                    case 2:
+                    case ControlType.下拉单选框:
                         #region 单选下拉框
                         cbb = new ComboBoxEdit();
                         ((System.ComponentModel.ISupportInitialize)(cbb.Properties)).BeginInit();
@@ -225,7 +227,7 @@ namespace JCodes.Framework.AddIn.Dictionary
                         ((System.ComponentModel.ISupportInitialize)(cbb.Properties)).EndInit();
                         #endregion
                         break;
-                    case 3:
+                    case ControlType.下拉多选框:
                         #region 多选下拉框
                         ccbb = new CheckedComboBoxEdit();
                         ((System.ComponentModel.ISupportInitialize)(ccbb.Properties)).BeginInit();
@@ -266,7 +268,7 @@ namespace JCodes.Framework.AddIn.Dictionary
                         ((System.ComponentModel.ISupportInitialize)(ccbb.Properties)).EndInit();
                         #endregion
                         break;
-                    case 4:
+                    case ControlType.勾选框:
                         #region 勾选框
                         ck = new CheckEdit();
                         ((System.ComponentModel.ISupportInitialize)(ck.Properties)).BeginInit();
@@ -301,7 +303,7 @@ namespace JCodes.Framework.AddIn.Dictionary
                         ((System.ComponentModel.ISupportInitialize)(ck.Properties)).EndInit();
                         #endregion
                         break;
-                    case 5:
+                    case ControlType.日期:
                         #region 日期
                         de = new DateEdit();
                         ((System.ComponentModel.ISupportInitialize)(de.Properties.CalendarTimeProperties)).BeginInit();
@@ -343,7 +345,7 @@ namespace JCodes.Framework.AddIn.Dictionary
                         ((System.ComponentModel.ISupportInitialize)(de.Properties)).EndInit();
                         #endregion
                         break;
-                    case 6:
+                    case ControlType.密码:
                         #region 密码
                         te = new TextEdit();
                         ((System.ComponentModel.ISupportInitialize)(te.Properties)).BeginInit();
@@ -378,7 +380,7 @@ namespace JCodes.Framework.AddIn.Dictionary
                         ((System.ComponentModel.ISupportInitialize)(te.Properties)).EndInit();
                         #endregion
                         break;
-                    case 7:
+                    case ControlType.小数框:
                         #region 小数框
                         te = new TextEdit();
                         ((System.ComponentModel.ISupportInitialize)(te.Properties)).BeginInit();
@@ -414,7 +416,7 @@ namespace JCodes.Framework.AddIn.Dictionary
                         ((System.ComponentModel.ISupportInitialize)(te.Properties)).EndInit();
                         #endregion
                         break;
-                    case 8:
+                    case ControlType.时间框:
                         #region 时间框
                         time = new TimeEdit();
                         ((System.ComponentModel.ISupportInitialize)(time.Properties)).BeginInit();
@@ -531,7 +533,7 @@ namespace JCodes.Framework.AddIn.Dictionary
         /// <returns></returns>
         public override bool OnApply()
         {
-            if (!HasFunction("Sysparameter/Edit"))
+            if (!HasFunction("Dictionary/Sysparameter/Apply"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return false;
@@ -560,7 +562,7 @@ namespace JCodes.Framework.AddIn.Dictionary
 
         public override bool OnSearch()
         {
-            if (!HasFunction("Sysparameter/search"))
+            if (!HasFunction("Dictionary/Sysparameter/Search"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return false;
@@ -584,12 +586,12 @@ namespace JCodes.Framework.AddIn.Dictionary
                         c.ForeColor = Color.Black;
                     }
 
-                    if (string.Equals(string.Format("lbl{0}", dialog.ID), c.Name))
+                    if (string.Equals(string.Format("lbl{0}", dialog.Id), c.Name))
                     {
                         c.ForeColor = Color.Red;
                     }
 
-                    if (string.Equals(string.Format("ctl{0}", dialog.ID), c.Name))
+                    if (string.Equals(string.Format("ctl{0}", dialog.Id), c.Name))
                     {
                         c.Focus();
                     }

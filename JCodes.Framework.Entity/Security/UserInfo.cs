@@ -16,11 +16,6 @@ namespace JCodes.Framework.Entity
 		#region Field Members
 
 		/// <summary>
-		/// 父节点ID序号
-		/// </summary>
-		private Int32 m_Pid = 0;
-
-		/// <summary>
 		/// 登录名
 		/// </summary>
 		private String m_LoginName = string.Empty;
@@ -179,26 +174,24 @@ namespace JCodes.Framework.Entity
 		/// 最后修改密码时间
 		/// </summary>
 		private DateTime m_LastChangePwdTime = DateTime.Now;
+
+		/// <summary>
+		/// 当前登录IP
+		/// </summary>
+		private String m_CurLoginIp = string.Empty;
+
+		/// <summary>
+		/// 当前登录Mac
+		/// </summary>
+		private String m_CurLoginMac = string.Empty;
+
+		/// <summary>
+		/// 当前登录日期
+		/// </summary>
+		private DateTime m_CurLoginTime = DateTime.Now;
 		#endregion
 
 		#region Property Members
-
-		/// <summary>
-		/// 父节点ID序号
-		/// </summary>
-		[DataMember]
-		[DisplayName("父节点ID序号")]
-		public virtual Int32 Pid
-		{
-			get
-			{
-				return this.m_Pid;
-			}
-			set
-			{
-				this.m_Pid = value;
-			}
-		}
 
 		/// <summary>
 		/// 登录名
@@ -219,6 +212,8 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 是否过期
+		/// 1-是,
+		/// 2-否
 		/// </summary>
 		[DataMember]
 		[DisplayName("是否过期")]
@@ -338,6 +333,9 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 性别
+		/// 1-男,
+		/// 2-女,
+		/// 2-保密
 		/// </summary>
 		[DataMember]
 		[DisplayName("性别")]
@@ -406,6 +404,9 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 审核状态
+		/// 1-未审核,
+		/// 2-已审核,
+		/// 3-审核中
 		/// </summary>
 		[DataMember]
 		[DisplayName("审核状态")]
@@ -559,6 +560,8 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 是否删除
+		/// 1-是,
+		/// 2-否
 		/// </summary>
 		[DataMember]
 		[DisplayName("是否删除")]
@@ -741,6 +744,57 @@ namespace JCodes.Framework.Entity
 			set
 			{
 				this.m_LastChangePwdTime = value;
+			}
+		}
+
+		/// <summary>
+		/// 当前登录IP
+		/// </summary>
+		[DataMember]
+		[DisplayName("当前登录IP")]
+		public virtual String CurLoginIp
+		{
+			get
+			{
+				return this.m_CurLoginIp;
+			}
+			set
+			{
+				this.m_CurLoginIp = value;
+			}
+		}
+
+		/// <summary>
+		/// 当前登录Mac
+		/// </summary>
+		[DataMember]
+		[DisplayName("当前登录Mac")]
+		public virtual String CurLoginMac
+		{
+			get
+			{
+				return this.m_CurLoginMac;
+			}
+			set
+			{
+				this.m_CurLoginMac = value;
+			}
+		}
+
+		/// <summary>
+		/// 当前登录日期
+		/// </summary>
+		[DataMember]
+		[DisplayName("当前登录日期")]
+		public virtual DateTime CurLoginTime
+		{
+			get
+			{
+				return this.m_CurLoginTime;
+			}
+			set
+			{
+				this.m_CurLoginTime = value;
 			}
 		}
 		#endregion

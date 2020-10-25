@@ -9,6 +9,7 @@ using JCodes.Framework.Common.Encrypt;
 using JCodes.Framework.Common.Office;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.Common.Format;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.Common.Files
 {

@@ -5,6 +5,7 @@ using JCodes.Framework.CommonControl;
 using JCodes.Framework.CommonControl.BaseUI;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.Entity;
+using JCodes.Framework.jCodesenum;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using System;
 using System.Collections.Generic;
@@ -39,7 +40,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
             //this.btnOK.Enabled = HasFunction("Stock/Setting");
             if (!string.IsNullOrEmpty(ID))
             {
-                WareInfo info = BLLFactory<Stock>.Instance.FindByID(ID);
+                WareInfo info = BLLFactory<Stock>.Instance.FindById(ID);
                 if (info != null)
                 {
                     txtLowWarning.Text = info.LowAmountWarning.ToString();
@@ -52,7 +53,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
         {
             if (!string.IsNullOrEmpty(ID))
             {
-                WareInfo info = BLLFactory<Stock>.Instance.FindByID(ID);
+                WareInfo info = BLLFactory<Stock>.Instance.FindById(ID);
                 if (info != null)
                 {
                     SetInfo(info);

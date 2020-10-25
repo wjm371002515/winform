@@ -1,12 +1,13 @@
 ﻿using JCodes.Framework.Common;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Entity;
+using System;
 
 namespace JCodes.Framework.IDAL
 {
     public interface ISystemType : IBaseDAL<SystemTypeInfo>
 	{
-		SystemTypeInfo FindByOID(string oid);
-		bool VerifySystem(string serialNumber, string typeID, int authorizeAmount);
+        SystemTypeInfo FindByGid(string gid);
+        bool VerifySystem(string licence, string systemtypeId, Int32 authorizeAmount);
 	}
 }

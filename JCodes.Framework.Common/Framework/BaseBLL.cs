@@ -9,6 +9,7 @@ using System.Reflection;
 using JCodes.Framework.Entity;
 using JCodes.Framework.Common.Office;
 using JCodes.Framework.Common.Files;
+using System.Configuration;
 
 namespace JCodes.Framework.Common.Framework
 {
@@ -44,10 +45,31 @@ namespace JCodes.Framework.Common.Framework
         /// </summary>
         protected IBaseDAL<T> baseDal = null;
 
+        protected AppConfig config = null;
+
+        protected IDictionary dicmultiDatabase = null;
+
+        protected Boolean isMultiDatabase = false;
+
         /// <summary>
         /// 默认构造函数，调用后需手动调用一次 Init() 方法进行对象初始化
         /// </summary>
-        public BaseBLL() { }
+        public BaseBLL() {
+            // 初始化config文件
+            config = Cache.Instance["AppConfig"] as AppConfig;
+            if (config == null)
+            {
+                config = new AppConfig();
+                Cache.Instance["AppConfig"] = config;
+            }
+
+            if (config != null)
+            {
+                isMultiDatabase = String.IsNullOrEmpty(config.AppConfigGet("IsMultiDatabase")) ? false : Convert.ToBoolean(config.AppConfigGet("IsMultiDatabase"));
+            }
+
+            dicmultiDatabase = ConfigurationManager.GetSection("multiDatabase") as IDictionary;
+        }
               
         /// <summary>
         /// 参数赋值后，初始化相关对象
@@ -72,13 +94,7 @@ namespace JCodes.Framework.Common.Framework
             this.bllPrefix = bllPrefix;
 
             #region 根据不同的数据库类型，构造相应的DAL层
-            AppConfig config = Cache.Instance["AppConfig"] as AppConfig;
-            if (config == null)
-            {
-                config = new AppConfig();
-                Cache.Instance["AppConfig"] = config;
-            }
-
+           
             string dbType = config.AppConfigGet("ComponentDbType");
             if (string.IsNullOrEmpty(dbType))
             {
@@ -270,10 +286,10 @@ namespace JCodes.Framework.Common.Framework
 		/// <param name="key">对象的ID值</param>
         /// <param name="trans">事务对象</param>
 		/// <returns>存在则返回指定的对象,否则返回Null</returns>
-        public virtual T FindByID(object key, DbTransaction trans = null)
+        public virtual T FindById(object key, DbTransaction trans = null)
         {
             CheckDAL();
-            return baseDal.FindByID(key, trans);
+            return baseDal.FindById(key, trans);
         }
                        
         /// <summary>
@@ -300,6 +316,20 @@ namespace JCodes.Framework.Common.Framework
             CheckDAL();
             return baseDal.FindSingle(condition, orderBy, trans);
         }   
+
+        /// <summary>
+        /// 根据条件查询数据库,如果存在返回第一个对象
+        /// </summary>
+        /// <param name="condition">查询的条件</param>
+        /// <param name="orderBy">自定义排序语句，如Order By Name Desc；如不指定，则使用默认排序</param>
+        /// <param name="paramList">参数列表</param>
+        /// <param name="trans">事务对象</param>
+        /// <returns>指定的对象</returns>
+        public virtual T FindSingle(string condition, string orderBy, IDbDataParameter[] paramList, DbTransaction trans = null)
+        {
+            CheckDAL();
+            return baseDal.FindSingle(condition, orderBy, paramList, trans);
+        }
         
         /// <summary>
         /// 查找记录表中最旧的一条记录
@@ -323,6 +353,8 @@ namespace JCodes.Framework.Common.Framework
             return baseDal.FindLast(trans);
         }
 
+
+
         #endregion
 
         #region 返回集合的接口
@@ -333,10 +365,10 @@ namespace JCodes.Framework.Common.Framework
         /// <param name="idString">ID字符串(逗号分隔)</param>
          /// <param name="trans">事务对象</param>
        /// <returns>符合条件的对象列表</returns>
-        public virtual List<T> FindByIDs(string idString, DbTransaction trans = null)
+        public virtual List<T> FindByIds(string idString, DbTransaction trans = null)
         {
             CheckDAL();
-            return baseDal.FindByIDs(idString, trans);
+            return baseDal.FindByIds(idString, trans);
         }
 
         /// <summary>
@@ -362,6 +394,20 @@ namespace JCodes.Framework.Common.Framework
         {
             CheckDAL();
             return baseDal.Find(condition, orderBy, trans);
+        }
+
+        /// <summary>
+        /// 根据条件查询数据库,并返回对象集合
+        /// </summary>
+        /// <param name="condition">查询的条件</param>
+        /// <param name="orderBy">自定义排序语句，如Order By Name Desc；如不指定，则使用默认排序</param>
+        /// <param name="paramList">参数列表</param>
+        /// <param name="trans">事务对象</param>
+        /// <returns>指定对象的集合</returns>
+        public virtual List<T> Find(string condition, string orderBy, IDbDataParameter[] paramList, DbTransaction trans = null)
+        {
+            CheckDAL();
+            return baseDal.Find(condition, orderBy, paramList, trans);
         }
 
         /// <summary>
@@ -662,6 +708,18 @@ namespace JCodes.Framework.Common.Framework
             CheckDAL();
             return baseDal.IsExistKey(fieldName, key, trans);
         }
+
+         /// <summary>
+        /// 查询数据库,检查是否存在指定键值的对象
+        /// </summary>
+        /// <param name="recordTable">Hashtable:键[key]为字段名;值[value]为字段对应的值</param>
+        /// <param name="trans">事务对象</param>
+        /// <returns>存在则返回<c>true</c>，否则为<c>false</c>。</returns>
+        public virtual bool IsExistKey(Hashtable recordTable, DbTransaction trans = null)
+        {
+            CheckDAL();
+            return baseDal.IsExistKey(recordTable, trans);
+        }
                         
         /// <summary>
         /// 根据主键和字段名称，获取对应字段的内容
@@ -763,6 +821,143 @@ namespace JCodes.Framework.Common.Framework
             CheckDAL();
             return baseDal.GetReportData(fieldName, condition);
         } 
+        #endregion
+
+        #region 20200304 wujianming 新增函数
+
+        /// <summary>
+        /// 更新某个表一条记录
+        /// </summary>
+        /// <param name="id">Id值</param>
+        /// <param name="recordField">Hashtable:键[key]为字段名;值[value]为字段对应的值</param>
+        /// <param name="targetTable">需要操作的目标表名称</param>
+        /// <param name="trans">事务对象,如果使用事务,传入事务对象,否则为Null不使用事务</param>
+        /// <returns></returns>
+        public virtual bool PrivateUpdate(object id, Hashtable recordField, string targetTable, DbTransaction trans)
+        {
+            CheckDAL();
+            return baseDal.PrivateUpdate(id, recordField, targetTable, trans);
+        }
+
+        /// <summary>
+        /// 测试数据库是否正常连接
+        /// </summary>
+        public virtual bool TestConnection(string connectionString){
+            CheckDAL();
+            return baseDal.TestConnection(connectionString);
+        }
+
+        /// <summary>
+        /// 测试数据库是否正常连接
+        /// </summary>
+        public virtual bool TestConnection() {
+            CheckDAL();
+            return baseDal.TestConnection();
+        }
+
+         /// <summary>
+        /// 执行存储过程函数。
+        /// </summary>
+        /// <param name="storeProcName">存储过程函数</param>
+        /// <param name="parameters">参数集合</param>
+        /// <param name="trans">事务对象</param>
+        /// <returns></returns>
+        public virtual int StoreProcExecute(string storeProcName, DbParameter[] parameters, DbTransaction trans = null)
+        {
+            CheckDAL();
+            return baseDal.StoreProcExecute(storeProcName, parameters, trans);
+        }
+
+        /// <summary>
+        /// 执行一些特殊的语句
+        /// </summary>
+        /// <param name="sql">SQL语句</param>
+        /// <param name="trans">事务对象</param>
+        public virtual int SqlExecute(string sql, DbTransaction trans = null)
+        {
+            CheckDAL();
+            return baseDal.SqlExecute(sql, trans);
+        }
+
+         /// <summary>
+        /// 以分页方式通用获取集合对象方法
+        /// </summary>
+        /// <param name="sql">查询的Sql语句</param>
+        /// <param name="info">分页实体</param>
+        /// <param name="paramList">参数列表，如果没有则为null</param>
+        /// <param name="trans">事务对象</param>
+        /// <returns></returns>
+        public virtual List<T> GetListWithPager(string sql, PagerInfo info, IDbDataParameter[] paramList = null, DbTransaction trans = null)
+        {
+            CheckDAL();
+            return baseDal.GetListWithPager(sql, info, paramList, trans);
+        }
+
+        /// <summary>
+        /// 通用获取集合对象方法
+        /// </summary>
+        /// <param name="sql">查询的Sql语句</param>
+        /// <param name="paramList">参数列表，如果没有则为null</param>
+        /// <param name="trans">事务对象</param>
+        /// <returns></returns>
+        public virtual List<T> GetList(string sql, IDbDataParameter[] paramList = null, DbTransaction trans = null)
+        {
+            CheckDAL();
+            return baseDal.GetList(sql, paramList, trans);
+        }
+
+         /// <summary>
+        /// 获取前面记录指定数量的记录
+        /// </summary>
+        /// <param name="sql">查询语句</param>
+        /// <param name="count">指定数量</param>
+        /// <param name="orderBy">排序条件，例如order by id</param>
+        /// <param name="trans">事务对象</param>
+        /// <returns></returns>
+        public DataTable GetTopResult(string sql, int count, string orderBy, DbTransaction trans = null) {
+            CheckDAL();
+            return baseDal.GetTopResult(sql, count, orderBy, trans);
+        }
+
+        /// <summary>
+		/// 获取数据库中该对象的最大Id值
+		/// </summary>
+        /// <param name="trans">事务对象</param>
+        /// <returns>最大Id值</returns>
+        public virtual int GetMaxId(DbTransaction trans = null)
+        {
+            CheckDAL();
+            return baseDal.GetMaxId(trans);
+        }
+
+         /// <summary>
+        /// 转换.NET的对象类型到数据库类型
+        /// </summary>
+        /// <param name="t">.NET的对象类型</param>
+        /// <returns></returns>
+        public virtual DbType TypeToDbType(Type t)
+        {
+            CheckDAL();
+            return baseDal.TypeToDbType(t);
+        }
+
+         /// <summary>
+        /// 获取数据库的全部表名称
+        /// </summary>
+        /// <returns></returns>
+        public virtual List<string> GetTableNames()
+        {
+            CheckDAL();
+            return baseDal.GetTableNames();
+        }
+
+        /* 暂时不开放 查看BaseBLL.cs IBaseAL.cs AbstractBaseDAL.cs 文件
+          public bool StorePorcExecute(string storeProcName, Hashtable inParameters = null, Hashtable outParameters = null, DbTransaction trans = null)
+            public List<T> StorePorcToList(string storeProcName, Hashtable inParameters = null, Hashtable outParameters = null, DbTransaction trans = null)
+            public DataTable StorePorcToDataTable(string storeProcName, Hashtable inParameters = null, Hashtable outParameters = null, DbTransaction trans = null)
+            public T StorePorcToEntity(string storeProcName, Hashtable inParameters = null, Hashtable outParameters = null, DbTransaction trans = null)
+            public virtual bool HasInjectionData(string inputData)
+         */
         #endregion
     }
 }

@@ -7,19 +7,19 @@ using System.Collections.Generic;
 
 namespace JCodes.Framework.IDAL
 {
-    public interface IFunctions : IBaseDAL<FunctionInfo>
+    public interface IFunction : IBaseDAL<FunctionInfo>
 	{
-        List<FunctionInfo> GetFunctions(string roleIDs, string typeID);
-        List<FunctionNodeInfo> GetFunctionNodes(string roleIDs, string typeID);
+        List<FunctionInfo> GetFunctions(string roleIds, string systemtypeId);
+        List<FunctionNodeInfo> GetFunctionNodes(string roleIds, string typeId);
 
-        List<FunctionInfo> GetFunctionsByRole(int roleID);
+        List<FunctionInfo> GetFunctionsByRoleId(Int32 roleId);
 
-        List<FunctionNodeInfo> GetTree(string systemType);
-        List<FunctionNodeInfo> GetTreeByID(string mainID);
-        List<FunctionNodeInfo> GetTreeWithRole(string systemType, List<Int32> roleList);
+        List<FunctionNodeInfo> GetTree(string systemtypeId);
+        List<FunctionNodeInfo> GetTreeById(string mainId);
+        List<FunctionNodeInfo> GetTreeWithRole(string systemtypeId, List<Int32> roleList);
 
-        bool DeleteWithSubNode(string mainID, Int32 userId);
+        bool DeleteWithSubNode(string mainId, Int32 userId);
 
-        List<FunctionInfo> GetFunctionByPID(string PID);
+        List<FunctionInfo> GetFunctionByPgid(string pgid);
 	}
 }

@@ -57,7 +57,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">真实名称</label>
                                 <div class="col-md-8">
-                                    <input name="WHC_FullName" type="text" class="form-control"/>
+                                    <input name="WHC_LoginName" type="text" class="form-control"/>
                                 </div>
                             </div>
                         </div>
@@ -211,7 +211,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">真实名称</label>
                                 <div class="input-icon col-md-8">
-                                    <input id="FullName" name="FullName" type="text" class="form-control" placeholder="真实名称..."/>
+                                    <input id="LoginName" name="LoginName" type="text" class="form-control" placeholder="真实名称..."/>
 
                                 </div>
                             </div>
@@ -317,7 +317,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">真实名称</label>
                                 <div class="col-md-8">
-                                    <label id="FullName2" name="FullName" class="form-control"></label>
+                                    <label id="LoginName2" name="LoginName2" class="form-control"></label>
                                 </div>
                             </div>
                         </div>
@@ -507,6 +507,7 @@
         //加上一些特殊条件
         function appendCondition() {
             var condition = "";
+            // wujianming TODO 这里要处理
             //如果不是超级管理员，只能看本公司的人员
             @if (Session["IsSuperAdmin"] == null || !(bool)Session["IsSuperAdmin"])
             {
@@ -540,8 +541,8 @@
                     var tr = "<tr>";
                     tr += "<td><input class='checkboxes' type=\"checkbox\" name=\"checkbox\" value=" + item.ID + "></td>";
                      tr += "<td>" + item.User_ID + "</td>";
+                     tr += "<td>" + item.Name + "</td>";
                      tr += "<td>" + item.LoginName + "</td>";
-                     tr += "<td>" + item.FullName + "</td>";
                       tr += "<td>" + item.CompanyName + "</td>";
                      tr += "<td>" + item.Note + "</td>";
                      tr += "<td>" + item.IPAddress + "</td>";
@@ -727,8 +728,8 @@
             //首先用户发送一个异步请求去后台实现方法
             $.getJSON("/LoginLog/FindByID?r=" + Math.random() + "&id=" + ID, function (info) {
                  $("#User_ID").val(info.User_ID);
+                 $("#Name").val(info.Name);
                  $("#LoginName").val(info.LoginName);
-                 $("#FullName").val(info.FullName);
                   $("#CompanyName").val(info.CompanyName);
                  $("#Note").val(info.Note);
                  $("#IPAddress").val(info.IPAddress);
@@ -759,8 +760,8 @@
                 //$("#ID2").text(info.ID);
 
                  $("#User_ID2").text(info.User_ID);
+                 $("#Name2").text(info.Name);
                  $("#LoginName2").text(info.LoginName);
-                 $("#FullName2").text(info.FullName);
                   $("#CompanyName2").text(info.CompanyName);
                  $("#Note2").text(info.Note);
                  $("#IPAddress2").text(info.IPAddress);
@@ -768,10 +769,10 @@
                  $("#LastUpdated2").text(info.LastUpdated);
                  $("#SystemType_ID2").text(info.SystemType_ID);
   
-                //$.getJSON("/User/GetFullNameByID?userid=" + info.Creator, function (result) {
+                //$.getJSON("/User/GetNameById?userid=" + info.Creator, function (result) {
                 //    $("#Creator2").text(result);
                 //});
-                //$.getJSON("/User/GetFullNameByID?userid=" + info.Editor, function (result) {
+                //$.getJSON("/User/GetNameById?userid=" + info.Editor, function (result) {
                 //    $("#Editor2").text(result);
                 //});
                 //
@@ -907,8 +908,8 @@
                     var tr = "<tr>";
                     tr += "<td><input class='checkboxes' type=\"checkbox\" name=\"checkbox\" value=" + item.ID + "></td>";
                      tr += "<td>" + item.User_ID + "</td>";
+                     tr += "<td>" + item.Name + "</td>";
                      tr += "<td>" + item.LoginName + "</td>";
-                     tr += "<td>" + item.FullName + "</td>";
                       tr += "<td>" + item.CompanyName + "</td>";
                      tr += "<td>" + item.Note + "</td>";
                      tr += "<td>" + item.IPAddress + "</td>";
@@ -940,7 +941,7 @@
                         // alert($(this).text());
                     });    
 
-                    list.push({ 'User_ID': rows[0],'LoginName': rows[1],'FullName': rows[2],'CompanyName': rows[3],'Note': rows[4],'IPAddress': rows[5],'MacAddress': rows[6],'LastUpdated': rows[7],'SystemType_ID': rows[8] });
+                    list.push({ 'User_ID': rows[0],'Name': rows[1],'LoginName': rows[2],'CompanyName': rows[3],'Note': rows[4],'IPAddress': rows[5],'MacAddress': rows[6],'LastUpdated': rows[7],'SystemType_ID': rows[8] });
                     i++;
                 }
             });

@@ -31,9 +31,9 @@ namespace JCodes.Framework.Entity
 		private String m_Name = string.Empty;
 
 		/// <summary>
-		/// 真实名
+		/// 登录名
 		/// </summary>
-		private String m_FullName = string.Empty;
+		private String m_LoginName = string.Empty;
 
 		/// <summary>
 		/// 省份名称
@@ -335,19 +335,19 @@ namespace JCodes.Framework.Entity
 		}
 
 		/// <summary>
-		/// 真实名
+		/// 登录名
 		/// </summary>
 		[DataMember]
-		[DisplayName("真实名")]
-		public virtual String FullName
+		[DisplayName("登录名")]
+		public virtual String LoginName
 		{
 			get
 			{
-				return this.m_FullName;
+				return this.m_LoginName;
 			}
 			set
 			{
-				this.m_FullName = value;
+				this.m_LoginName = value;
 			}
 		}
 
@@ -829,6 +829,10 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 客户类别
+		/// 1-潜在客户,
+		/// 2-正式客户,
+		/// 3-合作伙伴,
+		/// 4-流动商
 		/// </summary>
 		[DataMember]
 		[DisplayName("客户类别")]
@@ -846,6 +850,9 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 客户级别
+		/// 1-普通客户,
+		/// 2-VIP客户,
+		/// 3-高级VIP会员
 		/// </summary>
 		[DataMember]
 		[DisplayName("客户级别")]
@@ -863,6 +870,10 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 信用等级
+		/// 1-优秀,
+		/// 2-良好,
+		/// 3-一般,
+		/// 4-差
 		/// </summary>
 		[DataMember]
 		[DisplayName("信用等级")]
@@ -880,6 +891,10 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 重要级别
+		/// 1-重要紧急,
+		/// 2-重要不紧急,
+		/// 3-不重要紧急,
+		/// 4-不重要不紧急
 		/// </summary>
 		[DataMember]
 		[DisplayName("重要级别")]
@@ -897,6 +912,8 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 是否公开
+		/// 1-是,
+		/// 2-否
 		/// </summary>
 		[DataMember]
 		[DisplayName("是否公开")]
@@ -914,6 +931,10 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 客户满意度级别
+		/// 1-非常重要,
+		/// 2-较为重要,
+		/// 3-一般,
+		/// 4-不重要
 		/// </summary>
 		[DataMember]
 		[DisplayName("客户满意度级别")]
@@ -1050,6 +1071,9 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 审核状态
+		/// 1-未审核,
+		/// 2-已审核,
+		/// 3-审核中
 		/// </summary>
 		[DataMember]
 		[DisplayName("审核状态")]
@@ -1135,6 +1159,8 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 是否删除
+		/// 1-是,
+		/// 2-否
 		/// </summary>
 		[DataMember]
 		[DisplayName("是否删除")]

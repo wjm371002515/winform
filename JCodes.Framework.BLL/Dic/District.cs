@@ -15,9 +15,22 @@ namespace JCodes.Framework.BLL
     /// </summary>
 	public class District : BaseBLL<DistrictInfo>
     {
+        private IDistrict dal = null;
+
         public District() : base()
         {
-            base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+            if (isMultiDatabase)
+            {
+                base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name, dicmultiDatabase[this.GetType().Name].ToString());
+            }
+            else
+            {
+                base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+            }
+
+            baseDal.OnOperationLog += new OperationLogEventHandler(OperationLog.OnOperationLog);//如果需要记录操作日志，则实现这个事件
+
+            dal = baseDal as IDistrict;
         }
 
         /// <summary>
@@ -25,9 +38,9 @@ namespace JCodes.Framework.BLL
         /// </summary>
         /// <param name="cityId">城市ID</param>
         /// <returns></returns>
-        public List<DistrictInfo> GetDistrictByCity(string cityId)
+        public List<DistrictInfo> GetDistrictByCityId(Int32 cityId)
         {
-            string condition = string.Format("CityID={0}", cityId);
+            string condition = string.Format("CityId={0}", cityId);
             return Find(condition);
         }
 
@@ -38,7 +51,6 @@ namespace JCodes.Framework.BLL
         /// <returns></returns>
         public List<DistrictInfo> GetDistrictByCityName(string cityName)
         {
-            IDistrict dal = baseDal as IDistrict;
             return dal.GetDistrictByCityName(cityName);
         }
     }

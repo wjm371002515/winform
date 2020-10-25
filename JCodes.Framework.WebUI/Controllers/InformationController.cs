@@ -77,7 +77,7 @@ namespace JCodes.Framework.WebUI.Controllers
 
             StringBuilder sb = new StringBuilder();
             int seq = 1;
-            List<FileUploadInfo> fileList = BLLFactory<FileUpload>.Instance.GetByAttachGUID(guid);
+            List<FileUploadInfo> fileList = BLLFactory<FileUpload>.Instance.GetByAttachGid(guid);
             if (fileList != null && fileList.Count > 0)
             {
                 foreach (FileUploadInfo info in fileList)
@@ -132,10 +132,10 @@ namespace JCodes.Framework.WebUI.Controllers
                 List<string> idArray = ids.ToDelimitedList<string>(",");
                 foreach (string id in idArray)
                 {
-                    InformationInfo info = baseBLL.FindByID(id);
+                    InformationInfo info = baseBLL.FindById(id);
                     if (info != null && !string.IsNullOrEmpty(info.AttachmentGid))
                     {
-                        BLLFactory<FileUpload>.Instance.DeleteByAttachGUID(info.AttachmentGid, CurrentUser.CurrentLoginUserId);
+                        BLLFactory<FileUpload>.Instance.DeleteByAttachGid(info.AttachmentGid, CurrentUser.Id);
                     }
                 }
             }
@@ -227,7 +227,7 @@ namespace JCodes.Framework.WebUI.Controllers
         {
             if (string.IsNullOrEmpty(id)) return null;
 
-            InformationInfo info = BLLFactory<Information>.Instance.FindByID(id);
+            InformationInfo info = BLLFactory<Information>.Instance.FindById(id);
             if (info != null)
             {
                 string template = "~/Content/Template/政策法规模板.doc";

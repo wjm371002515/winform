@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Threading;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.Common;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.CommonControl.Other.Images
 {

@@ -3,6 +3,7 @@ using JCodes.Framework.Common.Images;
 using JCodes.Framework.CommonControl;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.CommonControl.Other.Images;
+using JCodes.Framework.jCodesenum;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using System;
 using System.Collections.Generic;

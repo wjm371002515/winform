@@ -55,7 +55,6 @@
     <Compile Include="BaseEnum\DWM_BB.cs" />
     <Compile Include="BaseEnum\EmfToWmfBitsFlags.cs" />
     <Compile Include="BaseEnum\ExcelType.cs" />
-    <Compile Include="BaseEnum\FieldType.cs" />
     <Compile Include="BaseEnum\FileManagerStatus.cs" />
     <Compile Include="BaseEnum\FolderType.cs" />
     <Compile Include="BaseEnum\GetWindowConstants.cs" />
@@ -65,7 +64,6 @@
     <Compile Include="BaseEnum\IMEXType.cs" />
     <Compile Include="BaseEnum\InternetConnectionStatesType.cs" />
     <Compile Include="BaseEnum\Location.cs" />
-    <Compile Include="BaseEnum\LogLevel.cs" />
     <Compile Include="BaseEnum\MailFormat.cs" />
     <Compile Include="BaseEnum\MailPriority.cs" />
     <Compile Include="BaseEnum\MODKEY.cs" />
@@ -95,6 +93,7 @@
     <Compile Include="BaseEnum\Style.cs" />
     <Compile Include="BaseEnum\TaskBarEdge.cs" />
     <Compile Include="BaseEnum\TernaryRasterOperations.cs" />
+    <Compile Include="BaseEnum\TestEnum.cs" />
     <Compile Include="BaseEnum\ThreadAccess.cs" />
     <Compile Include="BaseEnum\TimerState.cs" />
     <Compile Include="BaseEnum\TmpClass.cs" />
@@ -105,6 +104,7 @@
     <Compile Include="BaseEnum\WorkItemStatus.cs" />
     <Compile Include="BaseEnum\ZoomMode.cs" />
     <Compile Include="EnumDic.cs" />
+    <Compile Include="EnumSystem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -5,6 +5,7 @@ using System.Reflection;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.Common;
 using JCodes.Framework.CommonControl.Other;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.CommonControl.Framework
 {

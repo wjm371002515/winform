@@ -8,6 +8,7 @@ using System;
 using JCodes.Framework.CommonControl.Controls;
 using System.Xml;
 using System.Collections.Generic;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn.Proj
 {

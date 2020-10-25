@@ -7,6 +7,7 @@ using JCodes.Framework.Common;
 using JCodes.Framework.Entity;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Common.Extension;
+using JCodes.Framework.IDAL;
 
 namespace JCodes.Framework.BLL
 {
@@ -15,11 +16,22 @@ namespace JCodes.Framework.BLL
     /// </summary>
 	public class RoleData : BaseBLL<RoleDataInfo>
     {
+        private IRoleData dal = null;
+
         public RoleData() : base()
         {
-            base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+            if (isMultiDatabase)
+            {
+                base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name, dicmultiDatabase[this.GetType().Name].ToString());
+            }
+            else
+            {
+                base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+            }
 
             baseDal.OnOperationLog += new OperationLogEventHandler(OperationLog.OnOperationLog);//如果需要记录操作日志，则实现这个事件
+
+            dal = baseDal as IRoleData;
         }
 
         /// <summary>
@@ -27,17 +39,17 @@ namespace JCodes.Framework.BLL
         /// </summary>
         /// <param name="userId">用户ID</param>
         /// <returns></returns>
-        public List<int> GetBelongCompanysByUser(int userId)
+        public List<int> GetBelongCompanysByUser(Int32 userId)
         {
             List<RoleDataInfo> roleDataList = FindByUser(userId);
-            List<int> companyList = new List<int>();
+            List<Int32> companyList = new List<Int32>();
 
             foreach (RoleDataInfo roleDataInfo in roleDataList)
             {
                 if (!string.IsNullOrEmpty(roleDataInfo.CompanyLst))
                 {
-                    List<int> tmpList = roleDataInfo.CompanyLst.ToDelimitedList<int>(",");
-                    foreach (int id in tmpList)
+                    List<Int32> tmpList = roleDataInfo.CompanyLst.ToDelimitedList<Int32>(",");
+                    foreach (Int32 id in tmpList)
                     {
                         if (!companyList.Contains(id))
                         {
@@ -54,17 +66,17 @@ namespace JCodes.Framework.BLL
         /// </summary>
         /// <param name="userId">用户ID</param>
         /// <returns></returns>
-        public List<int> GetBelongDeptsByUser(int userId)
+        public List<Int32> GetBelongDeptsByUser(Int32 userId)
         {
             List<RoleDataInfo> roleDataList = FindByUser(userId);
-            List<int> deptList = new List<int>();
+            List<Int32> deptList = new List<Int32>();
 
             foreach (RoleDataInfo roleDataInfo in roleDataList)
             {
                 if (!string.IsNullOrEmpty(roleDataInfo.DeptLst))
                 {
-                    List<int> tmpList = roleDataInfo.DeptLst.ToDelimitedList<int>(",");
-                    foreach (int id in tmpList)
+                    List<Int32> tmpList = roleDataInfo.DeptLst.ToDelimitedList<Int32>(",");
+                    foreach (Int32 id in tmpList)
                     {
                         if (!deptList.Contains(id))
                         {
@@ -82,22 +94,23 @@ namespace JCodes.Framework.BLL
         /// </summary>
         /// <param name="userId">用户ID</param>
         /// <returns></returns>
-        public List<RoleDataInfo> FindByUser(int userId)
+        public List<RoleDataInfo> FindByUser(Int32 userId)
         {
             //获取用户包含的角色
             List<RoleInfo> rolesByUser = BLLFactory<Role>.Instance.GetRolesByUser(userId);
-            List<int> roleList = new List<int>();
+            List<Int32> roleList = new List<Int32>();
             foreach (RoleInfo info in rolesByUser)
             {
                 roleList.Add(info.Id);
             }
 
-            //获取用户信息
-            UserInfo userInfo = BLLFactory<User>.Instance.FindByID(userId);
-
-            //根据角色获取对应的数据权限集合
             List<RoleDataInfo> list = new List<RoleDataInfo>();
-            foreach (int roleId in roleList)
+
+            // 获取用户信息
+            UserInfo userInfo = BLLFactory<User>.Instance.FindById(userId);
+
+            // 根据角色获取对应的数据权限集合
+            foreach (Int32 roleId in roleList)
             {
                 RoleDataInfo info = FindByRoleId(roleId);
                 if (info != null)
@@ -106,10 +119,10 @@ namespace JCodes.Framework.BLL
                     if (!string.IsNullOrEmpty(info.CompanyLst))
                     {
                         //不重复出现的公司列表
-                        List<int> notDuplicatedCompanyList = new List<int>();
+                        List<Int32> notDuplicatedCompanyList = new List<Int32>();
 
-                        List<int> companyList = info.CompanyLst.ToDelimitedList<int>(",");
-                        for (int i = 0; i < companyList.Count; i++)
+                        List<Int32> companyList = info.CompanyLst.ToDelimitedList<Int32>(",");
+                        for (Int32 i = 0; i < companyList.Count; i++)
                         {
                             // 20170610 wujm 这里不需要对其做转换反而会造成权限不对
                             /*if (companyList[i] == -1) // -1代表用户所在公司
@@ -127,10 +140,10 @@ namespace JCodes.Framework.BLL
                     if (!string.IsNullOrEmpty(info.DeptLst))
                     {
                         //不重复出现的部门列表
-                        List<int> notDuplicatedDeptList = new List<int>();
+                        List<Int32> notDuplicatedDeptList = new List<Int32>();
 
-                        List<int> deptList = info.DeptLst.ToDelimitedList<int>(",");
-                        for (int i = 0; i < deptList.Count; i++)
+                        List<Int32> deptList = info.DeptLst.ToDelimitedList<Int32>(",");
+                        for (Int32 i = 0; i < deptList.Count; i++)
                         {
                             // 20170610 wujm 这里不需要对其做转换反而会造成权限不对
                             /*if (deptList[i] == -11) // -11代表用户所在部门
@@ -159,9 +172,9 @@ namespace JCodes.Framework.BLL
         /// </summary>
         /// <param name="roleId">角色ID</param>
         /// <returns></returns>
-        public RoleDataInfo FindByRoleId(int roleId)
+        public RoleDataInfo FindByRoleId(Int32 roleId)
         {
-            string condition = string.Format("Role_ID = {0}", roleId);
+            string condition = string.Format("RoleId = {0}", roleId);
             return baseDal.FindSingle(condition);
         }
 
@@ -172,7 +185,7 @@ namespace JCodes.Framework.BLL
         /// <param name="belongCompanys">包含公司</param>
         /// <param name="belongDepts">包含部门</param>
         /// <returns></returns>
-        public bool UpdateRoleData(int roleId, string belongCompanys, string belongDepts)
+        public bool UpdateRoleData(Int32 roleId, string belongCompanys, string belongDepts)
         {
             bool result = false;
             RoleDataInfo info = FindByRoleId(roleId);
@@ -189,6 +202,7 @@ namespace JCodes.Framework.BLL
                 info.RoleId = (short)roleId;
                 info.CompanyLst = belongCompanys;
                 info.DeptLst = belongDepts;
+                info.Id = baseDal.GetMaxId() + 1;
 
                 result = baseDal.Insert(info);
             }
@@ -198,20 +212,20 @@ namespace JCodes.Framework.BLL
         /// <summary>
         /// 获取数据库的配置，角色数据权限(不对所在公司，所在部门转义）
         /// </summary>
-        /// <param name="roleID">角色ID</param>
+        /// <param name="roleId">角色ID</param>
         /// <returns></returns>
-        public Dictionary<int, int> GetRoleDataDict(int roleID)
+        public Dictionary<Int32, Int32> GetRoleDataDict(Int32 roleId)
         {
-            Dictionary<int, int> dict = new Dictionary<int, int>();
+            Dictionary<Int32, Int32> dict = new Dictionary<Int32, Int32>();
             //获取用户的角色权限
-            RoleDataInfo roleDataInfo = FindByRoleId(roleID);
+            RoleDataInfo roleDataInfo = FindByRoleId(roleId);
             if (roleDataInfo != null)
             {
                 //包含公司
                 if (!string.IsNullOrEmpty(roleDataInfo.CompanyLst))
                 {
-                    List<int> companyList = roleDataInfo.CompanyLst.ToDelimitedList<int>(",");
-                    foreach (int id in companyList)
+                    List<Int32> companyList = roleDataInfo.CompanyLst.ToDelimitedList<Int32>(",");
+                    foreach (Int32 id in companyList)
                     {
                         if (!dict.ContainsKey(id))
                         {
@@ -222,7 +236,7 @@ namespace JCodes.Framework.BLL
                 //包含部门
                 if (!string.IsNullOrEmpty(roleDataInfo.DeptLst))
                 {
-                    List<int> deptList = roleDataInfo.DeptLst.ToDelimitedList<int>(",");
+                    List<Int32> deptList = roleDataInfo.DeptLst.ToDelimitedList<Int32>(",");
                     foreach (int id in deptList)
                     {
                         if (!dict.ContainsKey(id))
@@ -231,8 +245,6 @@ namespace JCodes.Framework.BLL
                         }
                     }
                 }
-                //排除部门
-
             }
             return dict;
         }

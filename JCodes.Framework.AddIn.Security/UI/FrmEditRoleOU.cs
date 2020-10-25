@@ -16,6 +16,7 @@ using JCodes.Framework.CommonControl.Controls;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Common.Extension;
 using JCodes.Framework.AddIn.Basic;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn.Security
 {
@@ -52,9 +53,9 @@ namespace JCodes.Framework.AddIn.Security
                 TreeNode deptNode = new TreeNode();
                 deptNode.Text = ouInfo.Name;
                 deptNode.Tag = ouInfo.Id;
-                deptNode.ImageIndex = ouInfo.OuType;// Portal.gc.GetImageIndex(ouInfo.Category);
-                deptNode.SelectedImageIndex = ouInfo.OuType; // Portal.gc.GetImageIndex(ouInfo.Category);
-                if (ouInfo.IsDelete == 0)
+                deptNode.ImageIndex = Portal.gc.GetImageIndex((OuType)ouInfo.OuType);
+                deptNode.SelectedImageIndex = Portal.gc.GetImageIndex((OuType)ouInfo.OuType);
+                if (ouInfo.IsDelete == (short)IsDelete.否)
                 {
                     deptNode.ForeColor = Color.Red;
                     continue;//跳过不显示
@@ -81,11 +82,11 @@ namespace JCodes.Framework.AddIn.Security
                     topnode.Text = groupInfo.Name;
                     topnode.Name = groupInfo.Id.ToString();
                     topnode.Tag = groupInfo.Id;
-                    topnode.ImageIndex = groupInfo.OuType;// Portal.gc.GetImageIndex(groupInfo.Category);
-                    topnode.SelectedImageIndex = groupInfo.OuType;// Portal.gc.GetImageIndex(groupInfo.Category);
+                    topnode.ImageIndex = Portal.gc.GetImageIndex((OuType)groupInfo.OuType);
+                    topnode.SelectedImageIndex = Portal.gc.GetImageIndex((OuType)groupInfo.OuType);
                     topnode.Checked = SelectOUDict.ContainsKey(groupInfo.Id);//选中的
 
-                    List<OUNodeInfo> sublist = BLLFactory<OU>.Instance.GetTreeByID(groupInfo.Id);
+                    List<OUNodeInfo> sublist = BLLFactory<OU>.Instance.GetTreeById(groupInfo.Id);
                     AddDept(sublist, topnode);
 
                     this.treeView1.Nodes.Add(topnode);
@@ -146,6 +147,8 @@ namespace JCodes.Framework.AddIn.Security
         private List<int> GetSelected(TreeNode node)
         {
             List<int> list = new List<int>();
+            if (node.Checked && node.Tag != null) list.Add(node.Tag.ToString().ToInt32());
+
             foreach (TreeNode subNode in node.Nodes)
             {
                 if (subNode.Checked && subNode.Tag != null)

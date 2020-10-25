@@ -16,6 +16,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using JCodes.Framework.Common.Extension;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn.Dictionary
 {
@@ -55,10 +56,10 @@ namespace JCodes.Framework.AddIn.Dictionary
                 result = false;
             }
 
-            string Id = txtValue.Text;
+            string strId = txtValue.Text;
             if (result)
             {
-                if (!ValidateUtil.IsNumeric(Id))
+                if (!ValidateUtil.IsNumeric(strId))
                 {
                     MessageDxUtil.ShowWarning(lblValue.Text.Replace(Const.MsgCheckSign, string.Empty) + Const.MsgErrFormatByNum);
                     txtValue.Focus();
@@ -67,11 +68,11 @@ namespace JCodes.Framework.AddIn.Dictionary
             }
 
             // 检查对应的值是否已经存在数据库了
-            if (result && !string.IsNullOrEmpty(Id))
+            if (result && Id == 0)
             {
                 SearchCondition condition = new SearchCondition();
-                condition.AddCondition("DicttypeID", Convert.ToInt32(this.txtDictType.Tag), SqlOperator.Equal);
-                condition.AddCondition("Value", Convert.ToInt32(Id), SqlOperator.Equal);
+                condition.AddCondition("DicttypeId", Convert.ToInt32(this.txtDictType.Tag), SqlOperator.Equal);
+                condition.AddCondition("DicttypeValue", Convert.ToInt32(Id), SqlOperator.Equal);
                 string where = condition.BuildConditionSql().Replace("Where", "");
                 var lst = BLLFactory<DictData>.Instance.Find(where);
                 if (lst.Count > 0)
@@ -88,17 +89,17 @@ namespace JCodes.Framework.AddIn.Dictionary
 
         public override void DisplayData()
         {
-            if (Id > 0)
+            if (Id>0)
             {
-                DictDataInfo info = BLLFactory<DictData>.Instance.FindByID(Id);
+                string Gid = Tag.ToString();
+                DictDataInfo info = BLLFactory<DictData>.Instance.FindById(Gid);
                 if (info != null)
                 {
-                    DictTypeInfo typeInfo = BLLFactory<DictType>.Instance.FindByID(info.DicttypeId);
+                    DictTypeInfo typeInfo = BLLFactory<DictType>.Instance.FindById(info.DicttypeId);
 
                     this.txtDictType.Text = typeInfo.Name;
                     this.txtDictType.Tag = typeInfo.Id;
                     this.txtDictType.Enabled = false;
-
                     this.txtName.Text = info.Name;
                     this.txtNote.Text = info.Remark;
                     this.txtSeq.Text = info.Seq;
@@ -118,8 +119,15 @@ namespace JCodes.Framework.AddIn.Dictionary
             info.Remark = this.txtNote.Text.Trim();
             info.EditorId = LoginUserInfo.Id;
             info.LastUpdateTime = DateTimeHelper.GetServerDateTime2();
-
             info.CurrentLoginUserId = LoginUserInfo.Id;
+
+            if(string.IsNullOrEmpty(info.Gid))
+                info.Gid = Guid.NewGuid().ToString();
+
+            if (Tag != null && string.IsNullOrEmpty(Tag.ToString()))
+            {
+                info.Gid = Tag.ToString();
+            }
         }
 
         public override void ClearScreen()
@@ -160,7 +168,8 @@ namespace JCodes.Framework.AddIn.Dictionary
 
         public override bool SaveUpdated()
         {
-            DictDataInfo info = BLLFactory<DictData>.Instance.FindByID(Id);
+            String Gid = Tag.ToString();
+            DictDataInfo info = BLLFactory<DictData>.Instance.FindById(Gid);
             if (info != null)
             {
                 SetInfo(info);

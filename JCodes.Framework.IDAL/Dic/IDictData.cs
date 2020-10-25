@@ -19,7 +19,7 @@ namespace JCodes.Framework.IDAL
         /// </summary>
         /// <param name="dictTypeId"></param>
         /// <returns></returns>
-        List<DictDataInfo> FindByTypeID(Int32 dictTypeId);
+        List<DictDataInfo> FindByTypeId(Int32 dicttypeId);
                
         /// <summary>
         /// 获取所有的字典列表集合(Key为名称，Value为值）

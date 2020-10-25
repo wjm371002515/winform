@@ -10,6 +10,7 @@ using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Common.Databases;
 using JCodes.Framework.Common.Format;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.BLL
 {
@@ -18,11 +19,22 @@ namespace JCodes.Framework.BLL
     /// </summary>
 	public class LoginLog : BaseBLL<LoginLogInfo>
     {
+        private ILoginLog dal = null;
+
         public LoginLog() : base()
         {
-            base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+            if (isMultiDatabase)
+            {
+                base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name, dicmultiDatabase[this.GetType().Name].ToString());
+            }
+            else
+            {
+                base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+            }
 
             baseDal.OnOperationLog += new OperationLogEventHandler(OperationLog.OnOperationLog);//如果需要记录操作日志，则实现这个事件
+
+            dal = baseDal as ILoginLog;
         }
 
         /// <summary>
@@ -47,12 +59,9 @@ namespace JCodes.Framework.BLL
                 logInfo.Remark = remark;
                 logInfo.SystemtypeId = systemtypeId;
                 logInfo.Id = info.Id;
-                logInfo.FullName = info.FullName;
-                logInfo.LoginName = info.Name;
+                logInfo.Name = info.Name;
+                logInfo.LoginName = info.LoginName;
                 logInfo.CompanyId = info.CompanyId;
-                // TODO
-                //logInfo.CompanyName = info.CompanyName;
-
                 logInfo.CurrentLoginUserId = info.Id;
                 BLLFactory<LoginLog>.Instance.Insert(logInfo);
             }
@@ -69,10 +78,10 @@ namespace JCodes.Framework.BLL
         /// <param name="shopGuid">商店GUID</param>
         /// <param name="LastUpdated">最后更新日前</param>
         /// <returns></returns>
-        public List<LoginLogInfo> GetList(DateTime LastUpdateTime)
+        public List<LoginLogInfo> GetList(DateTime lastUpdateTime)
         {
             SearchCondition search = new SearchCondition();
-            search.AddCondition("LastUpdateTime", LastUpdateTime, SqlOperator.MoreThanOrEqual);
+            search.AddCondition("LastUpdateTime", lastUpdateTime, SqlOperator.MoreThanOrEqual);
             string condition = search.BuildConditionSql().Replace("Where", "");
             return Find(condition);
         }
@@ -87,7 +96,7 @@ namespace JCodes.Framework.BLL
             {
                 foreach (LoginLogInfo info in infoList)
                 {
-                    LoginLogInfo tempInfo = baseDal.FindByID(info.Id);
+                    LoginLogInfo tempInfo = baseDal.FindById(info.Id);
                     if (tempInfo != null)
                     {
                         if (tempInfo.LastUpdateTime < info.LastUpdateTime)
@@ -119,10 +128,9 @@ namespace JCodes.Framework.BLL
         /// </summary>
         /// <param name="userId">登录用户ID</param>
         /// <returns></returns>
-        public LoginLogInfo GetLastLoginInfo(string userId)
+        public LoginLogInfo GetLastLoginInfo(Int32 userId)
         {
-            ILoginLog loginDal = baseDal as ILoginLog;
-            return loginDal.GetLastLoginInfo(userId);
+            return dal.GetLastLoginInfo(userId);
         }
     }
 }

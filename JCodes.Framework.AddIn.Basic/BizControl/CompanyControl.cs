@@ -14,13 +14,14 @@ using JCodes.Framework.Common.Databases;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.CommonControl.Other;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn.Basic.BizControl
 {
     /// <summary>
     /// 公司显示控件
     /// </summary>
-    public partial class CompanyControl : XtraUserControl
+    public partial class CompanyControl : UserControl, ISupportStyleController
     {
         /// <summary>
         /// 选择的值发生变化的时候
@@ -47,9 +48,9 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
         /// </summary>
         public void Init()
         {
-            DataTable dt = DataTableHelper.CreateTable("ImageIndex|int,ID,PID,Name");
+            DataTable dt = DataTableHelper.CreateTable("ImageIndex|int,Id,Pid,Name");
             List<OUInfo> list = new List<OUInfo>();
-            /*if(Portal.gc.UserInRole(RoleInfo.SuperAdminName))
+            if (Portal.gc.IsSuperAdmin)
             {
                 list = BLLFactory<OU>.Instance.GetGroupCompany();
             }
@@ -57,38 +58,33 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
             {
                 try
                 {
-                    OUInfo myCompanyInfo = BLLFactory<OU>.Instance.FindByID(Portal.gc.UserInfo.CompanyId);
-                    if (myCompanyInfo != null)
-                    {
-                        list.Add(myCompanyInfo);
-                    }
+                    string condition = string.Format("Id={0} AND IsDelete={1} AND IsForbid={2} AND OuType = {3}", Portal.gc.UserInfo.CompanyId, (short)IsDelete.否, (short)IsForbid.否, (short)OuType.公司);
+                    list = BLLFactory<OU>.Instance.Find(condition);
                 }
                 catch (Exception ex)
                 {
                     MessageDxUtil.ShowWarning(ex.Message);
                 }
-            }*/
+            }
 
             DataRow dr = null;
             foreach (OUInfo info in list)
             {
                 dr = dt.NewRow();
-                dr["ImageIndex"] = info.OuType;//Portal.gc.GetImageIndex(info.Category);
-                dr["ID"] = info.Id;
-                dr["PID"] = info.Pid;
+                dr["ImageIndex"] = Portal.gc.GetImageIndex((OuType)info.OuType);
+                dr["Id"] = info.Id;
+                dr["Pid"] = info.Pid;
                 dr["Name"] = info.Name;
                 dt.Rows.Add(dr);
             }
 
             //设置图形序号
-
             this.treeListLookUpEdit1TreeList.SelectImageList = this.imageList2;
             this.treeListLookUpEdit1TreeList.StateImageList = this.imageList2;
-
-            this.txtCompany.Properties.TreeList.KeyFieldName = "ID";
-            this.txtCompany.Properties.TreeList.ParentFieldName = "PID";
+            this.txtCompany.Properties.TreeList.KeyFieldName = "Id";
+            this.txtCompany.Properties.TreeList.ParentFieldName = "Pid";
             this.txtCompany.Properties.DataSource = dt;
-            this.txtCompany.Properties.ValueMember = "ID";
+            this.txtCompany.Properties.ValueMember = "Id";
             this.txtCompany.Properties.DisplayMember = "Name";
         }
 
@@ -108,7 +104,7 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
         }
 
         /// <summary>
-        /// 公司ID
+        /// 公司Id
         /// </summary>
         public string Value
         {
@@ -144,6 +140,18 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
             if (!this.DesignMode)
             {
                 Init();
+            }
+        }
+
+        public IStyleController StyleController
+        {
+            get
+            {
+                return txtCompany.StyleController;
+            }
+            set
+            {
+                txtCompany.StyleController = value;
             }
         }
     }

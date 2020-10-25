@@ -13,6 +13,7 @@ using JCodes.Framework.Common.Databases;
 using JCodes.Framework.Common;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.jCodesenum;
+using JCodes.Framework.WebUI.Common;
 
 namespace JCodes.Framework.WebUI.Controllers
 {
@@ -80,19 +81,19 @@ namespace JCodes.Framework.WebUI.Controllers
                     DateTime dtDefault = Convert.ToDateTime("1900-01-01");
                     RoleInfo info = new RoleInfo();
 
-                    info.Pid = dr["父ID"].ToString().ToInt32();
+                    //info.Pid = dr["父ID"].ToString().ToInt32();
                     info.RoleCode = dr["角色编码"].ToString();
                     info.Name = dr["角色名称"].ToString();
                     info.Remark = dr["备注"].ToString();
                     info.Seq = dr["排序"].ToString();
-                    info.RoleType = Convert.ToInt16( dr["角色分类"]);
+                    //info.RoleType = Convert.ToInt16( dr["角色分类"]);
 
                     info.CompanyId = CurrentUser.CompanyId;
                     //info.CompanyName = CurrentUser.com;
-                    //info.Creator = CurrentUser.FullName.ToString();
+                    //info.Creator = CurrentUser.LoginName.ToString();
                     info.CreatorId = CurrentUser.Id;
                     info.CreatorTime = DateTime.Now;
-                    //info.Editor = CurrentUser.FullName.ToString();
+                    //info.Editor = CurrentUser.LoginName.ToString();
                     info.EditorId = CurrentUser.Id;
                     info.LastUpdateTime = DateTime.Now;
 
@@ -128,10 +129,10 @@ namespace JCodes.Framework.WebUI.Controllers
                             //detail.Seq = seq++;//增加1
                             info.CompanyId = CurrentUser.CompanyId;
                             //info.CompanyName = CurrentUser.CompanyName;
-                            //info.Creator = CurrentUser.FullName.ToString();
+                            //info.Creator = CurrentUser.LoginName.ToString();
                             info.CreatorId = CurrentUser.Id;
                             info.CreatorTime = DateTime.Now;
-                            //info.Editor = CurrentUser.FullName.ToString();
+                            //info.Editor = CurrentUser.LoginName.ToString();
                             info.EditorId = CurrentUser.Id;
                             info.LastUpdateTime = DateTime.Now;
 
@@ -191,12 +192,12 @@ namespace JCodes.Framework.WebUI.Controllers
             {
                 dr = datatable.NewRow();
                 dr["序号"] = j++;
-                dr["父ID"] = list[i].Pid;
+                //dr["父ID"] = list[i].Pid;
                 dr["角色编码"] = list[i].RoleCode;
                 dr["角色名称"] = list[i].Name;
                 dr["备注"] = list[i].Remark;
                 dr["排序"] = list[i].Seq;
-                dr["角色分类"] = list[i].RoleType;
+                //dr["角色分类"] = list[i].RoleType;
 
                 //如果为外键，可以在这里进行转义，如下例子
                 //dr["客户名称"] = BLLFactory<Customer>.Instance.GetCustomerName(list[i].Customer_ID);//转义为客户名称
@@ -227,10 +228,10 @@ namespace JCodes.Framework.WebUI.Controllers
             //子类对参数对象进行修改
             //info.Company_ID = CurrentUser.Company_ID;
             //info.CompanyName = CurrentUser.CompanyName;
-            //info.Creator = CurrentUser.FullName.ToString();
+            //info.Creator = CurrentUser.LoginName.ToString();
             info.CreatorId = CurrentUser.Id;
             info.CreatorTime = DateTime.Now;
-            //info.Editor = CurrentUser.FullName.ToString();
+            //info.Editor = CurrentUser.LoginName.ToString();
             info.EditorId = CurrentUser.Id;
             info.LastUpdateTime = DateTime.Now;
         }
@@ -240,10 +241,10 @@ namespace JCodes.Framework.WebUI.Controllers
             //子类对参数对象进行修改
             //info.Company_ID = CurrentUser.Company_ID;
             //info.CompanyName = CurrentUser.CompanyName;
-            //info.Creator = CurrentUser.FullName.ToString();
+            //info.Creator = CurrentUser.LoginName.ToString();
             //info.Creator_ID = CurrentUser.ID.ToString();
             //info.CreateTime = DateTime.Now;
-            //info.Editor = CurrentUser.FullName.ToString();
+            //info.Editor = CurrentUser.LoginName.ToString();
             info.EditorId = CurrentUser.Id;
             info.LastUpdateTime = DateTime.Now;
         }
@@ -264,7 +265,7 @@ namespace JCodes.Framework.WebUI.Controllers
             //    info.PID = BLLFactory<Role>.Instance.GetFieldValue(info.PID, "Name");
             //    if (!string.IsNullOrEmpty(info.Creator))
             //    {
-            //        info.Creator = BLLFactory<User>.Instance.GetFullNameByID(info.Creator.ToInt32());
+            //        info.Creator = BLLFactory<User>.Instance.GetNameById(info.Creator.ToInt32());
             //    }
             //}
 
@@ -282,7 +283,7 @@ namespace JCodes.Framework.WebUI.Controllers
         public ActionResult GetRoleCategorys()
         {
             List<CListItem> listItem = new List<CListItem>();
-            string[] enumNames = EnumHelper.GetMemberNames<RoleCategoryEnum>();
+            string[] enumNames = EnumHelper.GetMemberNames<RoleType>();
 
             foreach (string item in enumNames)
             {
@@ -499,11 +500,11 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <param name="info"></param>
         private void SetCommonInfo(RoleInfo info)
         {
-            //info.Editor = CurrentUser.FullName;
+            //info.Editor = CurrentUser.LoginName;
             info.EditorId = CurrentUser.Id;
             info.LastUpdateTime = DateTime.Now;
 
-            OUInfo companyInfo = BLLFactory<OU>.Instance.FindByID(info.CompanyId);
+            OUInfo companyInfo = BLLFactory<OU>.Instance.FindById(info.CompanyId);
             if (companyInfo != null)
             {
                 info.CompanyName = companyInfo.Name;
@@ -528,7 +529,7 @@ namespace JCodes.Framework.WebUI.Controllers
                     try
                     {
                         info.CreatorTime = DateTime.Now;
-                        //info.Creator = CurrentUser.FullName;
+                        //info.Creator = CurrentUser.LoginName;
                         info.CreatorId = CurrentUser.Id;
                         SetCommonInfo(info);
 
@@ -561,7 +562,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 }
 
                 info.CreatorTime = DateTime.Now;
-                ///info.Creator = CurrentUser.FullName;
+                ///info.Creator = CurrentUser.LoginName;
                 info.CreatorId = CurrentUser.Id;
                 SetCommonInfo(info);
                 result = baseBLL.Insert2(info);
@@ -597,10 +598,14 @@ namespace JCodes.Framework.WebUI.Controllers
         public ActionResult GetMyRoleJsTreeJson(int userId)
         {
             StringBuilder content = new StringBuilder();
-            UserInfo userInfo = BLLFactory<User>.Instance.FindByID(userId);
+            UserInfo userInfo = BLLFactory<User>.Instance.FindById(userId);
             if (userInfo != null)
             {
-                List<OUInfo> list = BLLFactory<OU>.Instance.GetMyTopGroup(CurrentUser.Id);
+                List<OUInfo> list = null;
+                if (Portal.hh.IsSuperAdmin)
+                   list = BLLFactory<OU>.Instance.GetSuperAdminTopGroup(CurrentUser.Id);
+                else
+                   list = BLLFactory<OU>.Instance.GetMyTopGroup(CurrentUser.Id);
                 foreach (OUInfo groupInfo in list)
                 {
                     if (groupInfo != null && groupInfo.IsDelete == 0)

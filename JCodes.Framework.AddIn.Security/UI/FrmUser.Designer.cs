@@ -56,12 +56,12 @@ namespace JCodes.Framework.AddIn.Security
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.txtHandNo = new DevExpress.XtraEditors.TextEdit();
             this.txtName = new DevExpress.XtraEditors.TextEdit();
-            this.txtFullName = new DevExpress.XtraEditors.TextEdit();
-            this.txtNickname = new DevExpress.XtraEditors.TextEdit();
+            this.txtLoginName = new DevExpress.XtraEditors.TextEdit();
+            this.txtIdCard = new DevExpress.XtraEditors.TextEdit();
             this.txtMobilePhone = new DevExpress.XtraEditors.TextEdit();
             this.txtEmail = new DevExpress.XtraEditors.TextEdit();
             this.txtQq = new DevExpress.XtraEditors.TextEdit();
-            this.txtGender = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.txtGender = new JCodes.Framework.AddIn.UI.BizControl.DictControl();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -97,12 +97,11 @@ namespace JCodes.Framework.AddIn.Security
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtHandNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFullName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNickname.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLoginName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtIdCard.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMobilePhone.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQq.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtGender.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
@@ -177,6 +176,7 @@ namespace JCodes.Framework.AddIn.Security
             this.winGridViewPager1.ColumnNameAlias = ((System.Collections.Generic.Dictionary<string, string>)(resources.GetObject("winGridViewPager1.ColumnNameAlias")));
             this.winGridViewPager1.DataSource = null;
             this.winGridViewPager1.DisplayColumns = "";
+            this.winGridViewPager1.FixedColumns = null;
             this.winGridViewPager1.Location = new System.Drawing.Point(2, 112);
             this.winGridViewPager1.MinimumSize = new System.Drawing.Size(540, 0);
             this.winGridViewPager1.Name = "winGridViewPager1";
@@ -191,16 +191,17 @@ namespace JCodes.Framework.AddIn.Security
             // 
             // contextMenuStrip1
             // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menu_InitPassword});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(176, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(238, 34);
             // 
             // menu_InitPassword
             // 
             this.menu_InitPassword.Image = ((System.Drawing.Image)(resources.GetObject("menu_InitPassword.Image")));
             this.menu_InitPassword.Name = "menu_InitPassword";
-            this.menu_InitPassword.Size = new System.Drawing.Size(175, 22);
+            this.menu_InitPassword.Size = new System.Drawing.Size(237, 30);
             this.menu_InitPassword.Text = "初始化用户密码(&P)";
             this.menu_InitPassword.Click += new System.EventHandler(this.menu_InitPassword_Click);
             // 
@@ -210,8 +211,8 @@ namespace JCodes.Framework.AddIn.Security
             | System.Windows.Forms.AnchorStyles.Right)));
             this.layoutControl1.Controls.Add(this.txtHandNo);
             this.layoutControl1.Controls.Add(this.txtName);
-            this.layoutControl1.Controls.Add(this.txtFullName);
-            this.layoutControl1.Controls.Add(this.txtNickname);
+            this.layoutControl1.Controls.Add(this.txtLoginName);
+            this.layoutControl1.Controls.Add(this.txtIdCard);
             this.layoutControl1.Controls.Add(this.txtMobilePhone);
             this.layoutControl1.Controls.Add(this.txtEmail);
             this.layoutControl1.Controls.Add(this.txtQq);
@@ -226,71 +227,67 @@ namespace JCodes.Framework.AddIn.Security
             // 
             // txtHandNo
             // 
-            this.txtHandNo.Location = new System.Drawing.Point(92, 12);
+            this.txtHandNo.Location = new System.Drawing.Point(87, 12);
             this.txtHandNo.Name = "txtHandNo";
-            this.txtHandNo.Size = new System.Drawing.Size(94, 20);
+            this.txtHandNo.Size = new System.Drawing.Size(99, 28);
             this.txtHandNo.StyleController = this.layoutControl1;
             this.txtHandNo.TabIndex = 1;
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(270, 12);
+            this.txtName.Location = new System.Drawing.Point(265, 12);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(90, 20);
+            this.txtName.Size = new System.Drawing.Size(95, 28);
             this.txtName.StyleController = this.layoutControl1;
             this.txtName.TabIndex = 2;
             // 
-            // txtFullName
+            // txtLoginName
             // 
-            this.txtFullName.Location = new System.Drawing.Point(444, 12);
-            this.txtFullName.Name = "txtFullName";
-            this.txtFullName.Size = new System.Drawing.Size(112, 20);
-            this.txtFullName.StyleController = this.layoutControl1;
-            this.txtFullName.TabIndex = 3;
+            this.txtLoginName.Location = new System.Drawing.Point(439, 12);
+            this.txtLoginName.Name = "txtLoginName";
+            this.txtLoginName.Size = new System.Drawing.Size(117, 28);
+            this.txtLoginName.StyleController = this.layoutControl1;
+            this.txtLoginName.TabIndex = 3;
             // 
-            // txtNickname
+            // txtIdCard
             // 
-            this.txtNickname.Location = new System.Drawing.Point(640, 12);
-            this.txtNickname.Name = "txtNickname";
-            this.txtNickname.Size = new System.Drawing.Size(100, 20);
-            this.txtNickname.StyleController = this.layoutControl1;
-            this.txtNickname.TabIndex = 4;
+            this.txtIdCard.Location = new System.Drawing.Point(635, 12);
+            this.txtIdCard.Name = "txtIdCard";
+            this.txtIdCard.Size = new System.Drawing.Size(105, 28);
+            this.txtIdCard.StyleController = this.layoutControl1;
+            this.txtIdCard.TabIndex = 4;
             // 
             // txtMobilePhone
             // 
-            this.txtMobilePhone.Location = new System.Drawing.Point(270, 36);
+            this.txtMobilePhone.Location = new System.Drawing.Point(265, 36);
             this.txtMobilePhone.Name = "txtMobilePhone";
-            this.txtMobilePhone.Size = new System.Drawing.Size(90, 20);
+            this.txtMobilePhone.Size = new System.Drawing.Size(95, 28);
             this.txtMobilePhone.StyleController = this.layoutControl1;
             this.txtMobilePhone.TabIndex = 5;
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(444, 36);
+            this.txtEmail.Location = new System.Drawing.Point(439, 36);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(112, 20);
+            this.txtEmail.Size = new System.Drawing.Size(117, 28);
             this.txtEmail.StyleController = this.layoutControl1;
             this.txtEmail.TabIndex = 6;
             // 
             // txtQq
             // 
-            this.txtQq.Location = new System.Drawing.Point(640, 36);
+            this.txtQq.Location = new System.Drawing.Point(635, 36);
             this.txtQq.Name = "txtQq";
-            this.txtQq.Size = new System.Drawing.Size(100, 20);
+            this.txtQq.Size = new System.Drawing.Size(105, 28);
             this.txtQq.StyleController = this.layoutControl1;
             this.txtQq.TabIndex = 9;
             // 
             // txtGender
             // 
-            this.txtGender.Location = new System.Drawing.Point(92, 36);
+            this.txtGender.DicNo = 100014;
+            this.txtGender.EditValue = null;
+            this.txtGender.Location = new System.Drawing.Point(87, 36);
             this.txtGender.Name = "txtGender";
-            this.txtGender.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.txtGender.Properties.Items.AddRange(new object[] {
-            "男",
-            "女"});
-            this.txtGender.Size = new System.Drawing.Size(94, 20);
-            this.txtGender.StyleController = this.layoutControl1;
+            this.txtGender.Size = new System.Drawing.Size(99, 20);
             this.txtGender.TabIndex = 8;
             // 
             // layoutControlGroup1
@@ -323,7 +320,7 @@ namespace JCodes.Framework.AddIn.Security
             this.layoutControlItem1.Size = new System.Drawing.Size(178, 24);
             this.layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem1.Text = "用户编码";
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(77, 14);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(72, 22);
             // 
             // layoutControlItem2
             // 
@@ -335,12 +332,12 @@ namespace JCodes.Framework.AddIn.Security
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Size = new System.Drawing.Size(174, 24);
             this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem2.Text = "用户名/登录名";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(77, 14);
+            this.layoutControlItem2.Text = "用 户 名";
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(72, 22);
             // 
             // layoutControlItem3
             // 
-            this.layoutControlItem3.Control = this.txtFullName;
+            this.layoutControlItem3.Control = this.txtLoginName;
             this.layoutControlItem3.CustomizationFormText = "用户全名";
             this.layoutControlItem3.Location = new System.Drawing.Point(352, 0);
             this.layoutControlItem3.MaxSize = new System.Drawing.Size(234, 24);
@@ -348,12 +345,12 @@ namespace JCodes.Framework.AddIn.Security
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Size = new System.Drawing.Size(196, 24);
             this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem3.Text = "用户全名";
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(77, 14);
+            this.layoutControlItem3.Text = "登 陆 名";
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(72, 22);
             // 
             // layoutControlItem4
             // 
-            this.layoutControlItem4.Control = this.txtNickname;
+            this.layoutControlItem4.Control = this.txtIdCard;
             this.layoutControlItem4.CustomizationFormText = "用户呢称";
             this.layoutControlItem4.Location = new System.Drawing.Point(548, 0);
             this.layoutControlItem4.MaxSize = new System.Drawing.Size(234, 24);
@@ -361,8 +358,8 @@ namespace JCodes.Framework.AddIn.Security
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Size = new System.Drawing.Size(184, 24);
             this.layoutControlItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem4.Text = "用户呢称";
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(77, 14);
+            this.layoutControlItem4.Text = "身 份 证";
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(72, 22);
             // 
             // layoutControlItem8
             // 
@@ -375,7 +372,7 @@ namespace JCodes.Framework.AddIn.Security
             this.layoutControlItem8.Size = new System.Drawing.Size(178, 26);
             this.layoutControlItem8.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem8.Text = "性别";
-            this.layoutControlItem8.TextSize = new System.Drawing.Size(77, 14);
+            this.layoutControlItem8.TextSize = new System.Drawing.Size(72, 22);
             // 
             // layoutControlItem9
             // 
@@ -388,7 +385,7 @@ namespace JCodes.Framework.AddIn.Security
             this.layoutControlItem9.Size = new System.Drawing.Size(184, 26);
             this.layoutControlItem9.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem9.Text = "QQ号码";
-            this.layoutControlItem9.TextSize = new System.Drawing.Size(77, 14);
+            this.layoutControlItem9.TextSize = new System.Drawing.Size(72, 22);
             // 
             // layoutControlItem5
             // 
@@ -401,7 +398,7 @@ namespace JCodes.Framework.AddIn.Security
             this.layoutControlItem5.Size = new System.Drawing.Size(174, 26);
             this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem5.Text = "移动电话";
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(77, 14);
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(72, 22);
             // 
             // layoutControlItem6
             // 
@@ -414,7 +411,7 @@ namespace JCodes.Framework.AddIn.Security
             this.layoutControlItem6.Size = new System.Drawing.Size(196, 26);
             this.layoutControlItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem6.Text = "邮件地址";
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(77, 14);
+            this.layoutControlItem6.TextSize = new System.Drawing.Size(72, 22);
             // 
             // splitContainerControl1
             // 
@@ -486,7 +483,7 @@ namespace JCodes.Framework.AddIn.Security
             this.treeDept.HideSelection = false;
             this.treeDept.ImageIndex = 0;
             this.treeDept.ImageList = this.imageList1;
-            this.treeDept.Location = new System.Drawing.Point(2, 22);
+            this.treeDept.Location = new System.Drawing.Point(2, 30);
             this.treeDept.Name = "treeDept";
             treeNode1.ImageIndex = 0;
             treeNode1.Name = "节点73";
@@ -512,12 +509,13 @@ namespace JCodes.Framework.AddIn.Security
             treeNode1,
             treeNode5});
             this.treeDept.SelectedImageIndex = 0;
-            this.treeDept.Size = new System.Drawing.Size(235, 667);
+            this.treeDept.Size = new System.Drawing.Size(235, 659);
             this.treeDept.TabIndex = 0;
             this.treeDept.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeDept_AfterSelect);
             // 
             // menuDept
             // 
+            this.menuDept.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuDept.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuDept_AddNew,
             this.toolStripSeparator1,
@@ -525,26 +523,26 @@ namespace JCodes.Framework.AddIn.Security
             this.menuDept_Collapse,
             this.menuDept_Refresh});
             this.menuDept.Name = "menuTree";
-            this.menuDept.Size = new System.Drawing.Size(141, 98);
+            this.menuDept.Size = new System.Drawing.Size(185, 130);
             // 
             // menuDept_AddNew
             // 
             this.menuDept_AddNew.Image = ((System.Drawing.Image)(resources.GetObject("menuDept_AddNew.Image")));
             this.menuDept_AddNew.Name = "menuDept_AddNew";
-            this.menuDept_AddNew.Size = new System.Drawing.Size(140, 22);
+            this.menuDept_AddNew.Size = new System.Drawing.Size(184, 30);
             this.menuDept_AddNew.Text = "新建(&N)";
             this.menuDept_AddNew.Click += new System.EventHandler(this.menuDept_AddNew_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(137, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(181, 6);
             // 
             // menuDept_ExpandAll
             // 
             this.menuDept_ExpandAll.Image = ((System.Drawing.Image)(resources.GetObject("menuDept_ExpandAll.Image")));
             this.menuDept_ExpandAll.Name = "menuDept_ExpandAll";
-            this.menuDept_ExpandAll.Size = new System.Drawing.Size(140, 22);
+            this.menuDept_ExpandAll.Size = new System.Drawing.Size(184, 30);
             this.menuDept_ExpandAll.Text = "全部展开(&E)";
             this.menuDept_ExpandAll.Click += new System.EventHandler(this.menuDept_ExpandAll_Click);
             // 
@@ -552,7 +550,7 @@ namespace JCodes.Framework.AddIn.Security
             // 
             this.menuDept_Collapse.Image = ((System.Drawing.Image)(resources.GetObject("menuDept_Collapse.Image")));
             this.menuDept_Collapse.Name = "menuDept_Collapse";
-            this.menuDept_Collapse.Size = new System.Drawing.Size(140, 22);
+            this.menuDept_Collapse.Size = new System.Drawing.Size(184, 30);
             this.menuDept_Collapse.Text = "全部折叠(&C)";
             this.menuDept_Collapse.Click += new System.EventHandler(this.menuDept_Collapse_Click);
             // 
@@ -560,7 +558,7 @@ namespace JCodes.Framework.AddIn.Security
             // 
             this.menuDept_Refresh.Image = ((System.Drawing.Image)(resources.GetObject("menuDept_Refresh.Image")));
             this.menuDept_Refresh.Name = "menuDept_Refresh";
-            this.menuDept_Refresh.Size = new System.Drawing.Size(140, 22);
+            this.menuDept_Refresh.Size = new System.Drawing.Size(184, 30);
             this.menuDept_Refresh.Text = "刷新列表(&R)";
             this.menuDept_Refresh.Click += new System.EventHandler(this.menuDept_Refresh_Click);
             // 
@@ -607,7 +605,7 @@ namespace JCodes.Framework.AddIn.Security
             this.treeRole.HideSelection = false;
             this.treeRole.ImageIndex = 0;
             this.treeRole.ImageList = this.imageList1;
-            this.treeRole.Location = new System.Drawing.Point(2, 22);
+            this.treeRole.Location = new System.Drawing.Point(2, 30);
             this.treeRole.Name = "treeRole";
             treeNode6.ImageIndex = 0;
             treeNode6.Name = "节点73";
@@ -633,24 +631,25 @@ namespace JCodes.Framework.AddIn.Security
             treeNode6,
             treeNode10});
             this.treeRole.SelectedImageIndex = 0;
-            this.treeRole.Size = new System.Drawing.Size(235, 667);
+            this.treeRole.Size = new System.Drawing.Size(235, 659);
             this.treeRole.TabIndex = 0;
             this.treeRole.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeRole_AfterSelect);
             // 
             // menuRole
             // 
+            this.menuRole.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuRole.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuRole_ExpandAll,
             this.menuRole_Collapse,
             this.menuRole_Refresh});
             this.menuRole.Name = "menuTree";
-            this.menuRole.Size = new System.Drawing.Size(141, 70);
+            this.menuRole.Size = new System.Drawing.Size(185, 94);
             // 
             // menuRole_ExpandAll
             // 
             this.menuRole_ExpandAll.Image = ((System.Drawing.Image)(resources.GetObject("menuRole_ExpandAll.Image")));
             this.menuRole_ExpandAll.Name = "menuRole_ExpandAll";
-            this.menuRole_ExpandAll.Size = new System.Drawing.Size(140, 22);
+            this.menuRole_ExpandAll.Size = new System.Drawing.Size(184, 30);
             this.menuRole_ExpandAll.Text = "全部展开(&E)";
             this.menuRole_ExpandAll.Click += new System.EventHandler(this.menuRole_ExpandAll_Click);
             // 
@@ -658,7 +657,7 @@ namespace JCodes.Framework.AddIn.Security
             // 
             this.menuRole_Collapse.Image = ((System.Drawing.Image)(resources.GetObject("menuRole_Collapse.Image")));
             this.menuRole_Collapse.Name = "menuRole_Collapse";
-            this.menuRole_Collapse.Size = new System.Drawing.Size(140, 22);
+            this.menuRole_Collapse.Size = new System.Drawing.Size(184, 30);
             this.menuRole_Collapse.Text = "全部折叠(&C)";
             this.menuRole_Collapse.Click += new System.EventHandler(this.menuRole_Collapse_Click);
             // 
@@ -666,7 +665,7 @@ namespace JCodes.Framework.AddIn.Security
             // 
             this.menuRole_Refresh.Image = ((System.Drawing.Image)(resources.GetObject("menuRole_Refresh.Image")));
             this.menuRole_Refresh.Name = "menuRole_Refresh";
-            this.menuRole_Refresh.Size = new System.Drawing.Size(140, 22);
+            this.menuRole_Refresh.Size = new System.Drawing.Size(184, 30);
             this.menuRole_Refresh.Text = "刷新列表(&R)";
             this.menuRole_Refresh.Click += new System.EventHandler(this.menuRole_Refresh_Click);
             // 
@@ -675,13 +674,13 @@ namespace JCodes.Framework.AddIn.Security
             this.chkIncludeDelete.Location = new System.Drawing.Point(11, 82);
             this.chkIncludeDelete.Name = "chkIncludeDelete";
             this.chkIncludeDelete.Properties.Caption = "包含删除用户";
-            this.chkIncludeDelete.Size = new System.Drawing.Size(127, 19);
+            this.chkIncludeDelete.Size = new System.Drawing.Size(127, 26);
             this.chkIncludeDelete.TabIndex = 16;
             this.chkIncludeDelete.CheckedChanged += new System.EventHandler(this.chkIncludeDelete_CheckedChanged);
             // 
             // FrmUser
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 730);
             this.Controls.Add(this.splitContainerControl1);
@@ -692,12 +691,11 @@ namespace JCodes.Framework.AddIn.Security
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtHandNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFullName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNickname.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLoginName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtIdCard.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMobilePhone.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQq.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtGender.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
@@ -742,9 +740,9 @@ namespace JCodes.Framework.AddIn.Security
  
         private DevExpress.XtraEditors.TextEdit txtName;     
  
-        private DevExpress.XtraEditors.TextEdit txtFullName;     
+        private DevExpress.XtraEditors.TextEdit txtLoginName;     
  
-        private DevExpress.XtraEditors.TextEdit txtNickname;     
+        private DevExpress.XtraEditors.TextEdit txtIdCard;     
  
         private DevExpress.XtraEditors.TextEdit txtMobilePhone;
 
@@ -776,7 +774,7 @@ namespace JCodes.Framework.AddIn.Security
          private DevExpress.XtraEditors.GroupControl groupControl2;
          private System.Windows.Forms.TreeView treeRole;
          private DevExpress.Utils.ImageCollection imageCollection1;
-         private DevExpress.XtraEditors.ComboBoxEdit txtGender;
+         private JCodes.Framework.AddIn.UI.BizControl.DictControl txtGender;
          private System.Windows.Forms.ContextMenuStrip menuRole;
          private System.Windows.Forms.ToolStripMenuItem menuRole_ExpandAll;
          private System.Windows.Forms.ToolStripMenuItem menuRole_Collapse;

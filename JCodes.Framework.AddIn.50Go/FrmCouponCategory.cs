@@ -9,6 +9,7 @@ using JCodes.Framework.CommonControl.BaseUI;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.CommonControl.Pager.Others;
 using JCodes.Framework.Entity;
+using JCodes.Framework.jCodesenum;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using System;
 using System.Collections.Generic;
@@ -212,7 +213,7 @@ namespace JCodes.Framework.AddIn._50Go
                 condition.AddCondition("CouponCategory_ID", (this.txtCategory.SelectedItem as CListItem).Value, SqlOperator.Equal);
             }
             condition.AddCondition("MobilePhone", this.txtMobilePhone.Text, SqlOperator.Like);
-            condition.AddCondition("FullName", this.txtFullName.Text, SqlOperator.Like);
+            condition.AddCondition("LoginName", this.txtLoginName.Text, SqlOperator.Like);
             if (this.txtEnabled.SelectedIndex != -1)
             { 
                 condition.AddCondition("DELETED", this.txtEnabled.SelectedIndex, SqlOperator.Equal);
@@ -310,7 +311,7 @@ namespace JCodes.Framework.AddIn._50Go
 
             #region 添加别名解析
             // Company_Name,
-            this.winGridViewPager1.DisplayColumns = "ID,CouponCategory_Name,Company_Name,Creator,Creator_ID,CreateTime,Editor,Editor_ID, EditTime,MobilePhone,FullName,StartTime,EndTime,DELETED";
+            this.winGridViewPager1.DisplayColumns = "ID,CouponCategory_Name,Company_Name,Creator,Creator_ID,CreateTime,Editor,Editor_ID, EditTime,MobilePhone,LoginName,StartTime,EndTime,DELETED";
             this.winGridViewPager1.ColumnNameAlias = BLLFactory<Coupon>.Instance.GetColumnNameAlias();//字段列显示名称转义
             #endregion
 

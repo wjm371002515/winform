@@ -21,6 +21,8 @@ using JCodes.Framework.CommonControl.Controls;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.AddIn.Basic.BizControl;
 using JCodes.Framework.AddIn.Basic;
+using JCodes.Framework.jCodesenum;
+using JCodes.Framework.Common.Format;
 
 namespace JCodes.Framework.AddIn.Security
 {
@@ -52,6 +54,7 @@ namespace JCodes.Framework.AddIn.Security
             this.winGridView1.BestFitColumnWith = false;//是否设置为自动调整宽度，false为不设置
             this.winGridView1.OnRefresh += new EventHandler(winGridView1_OnRefresh);
             this.winGridView1.gridView1.DataSourceChanged += new EventHandler(gridView1_DataSourceChanged);
+            this.winGridView1.gridView1.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(gridView1_CustomColumnDisplayText);
 
             if (!this.DesignMode)
             {
@@ -76,10 +79,43 @@ namespace JCodes.Framework.AddIn.Security
                 //可特殊设置特别的宽度
                 winGridView1.gridView1.SetGridColumWidth("Gender", 50);
                 winGridView1.gridView1.SetGridColumWidth("Email", 150);
-                winGridView1.gridView1.SetGridColumWidth("Note", 150);
+                winGridView1.gridView1.SetGridColumWidth("Remark", 150);
             }
-
         }
+
+        void gridView1_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
+        {
+            if (e.Column.ColumnType == typeof(DateTime))
+            {
+                string columnName = e.Column.FieldName;
+                if (e.Value != null)
+                {
+                    if (Convert.ToDateTime(e.Value) <= Convert.ToDateTime("1900-1-1"))
+                    {
+                        e.DisplayText = "";
+                    }
+                    else
+                    {
+                        e.DisplayText = Convert.ToDateTime(e.Value).ToString("yyyy-MM-dd HH:mm");//yyyy-MM-dd
+                    }
+                }
+            }
+            else if (string.Equals(e.Column.FieldName, "IsExpire", StringComparison.CurrentCultureIgnoreCase))
+            {
+                if (e.Value != null && !string.IsNullOrEmpty(e.Value.ToString()))
+                {
+                    e.DisplayText = EnumHelper.GetMemberName<IsExpire>(e.Value);
+                }
+            }
+            else if (string.Equals(e.Column.FieldName, "IsDelete", StringComparison.CurrentCultureIgnoreCase))
+            {
+                if (e.Value != null && !string.IsNullOrEmpty(e.Value.ToString()))
+                {
+                    e.DisplayText = EnumHelper.GetMemberName<IsDelete>(e.Value);
+                }
+            }
+        }
+
 
         void winGridView1_OnRefresh(object sender, EventArgs e)
         {
@@ -91,18 +127,19 @@ namespace JCodes.Framework.AddIn.Security
             List<UserInfo> list = new List<UserInfo>();
             if (this.treeDept.SelectedNode != null && this.treeDept.SelectedNode.Tag != null)
             {
-                int ouId = this.treeDept.SelectedNode.Tag.ToString().ToInt32();
-                list = BLLFactory<User>.Instance.FindByDept(ouId);
+                Int32 ouId = this.treeDept.SelectedNode.Tag.ToString().ToInt32();
+                list = BLLFactory<User>.Instance.FindByDeptId(ouId);
             }
             else if (this.treeRole.SelectedNode != null && this.treeRole.SelectedNode.Tag != null)
             {
                 int roleId = this.treeRole.SelectedNode.Tag.ToString().ToInt32();
-                list = BLLFactory<User>.Instance.GetUsersByRole(roleId);
+                list = BLLFactory<User>.Instance.GetUsersByRoleId(roleId);
             }
 
-            //entity
-            this.winGridView1.DisplayColumns = "UserCode,Name,FullName,Title,MobilePhone,OfficePhone,Email,Gender,QQ,Note";
-            this.winGridView1.ColumnNameAlias = BLLFactory<User>.Instance.GetColumnNameAlias();//字段列显示名称转义
+            //字段列显示名称转义
+            var columnNameAlias = BLLFactory<User>.Instance.GetColumnNameAlias();
+            this.winGridView1.DisplayColumns = "Id,UserCode,Name,LoginName,IsExpire,IsDelete";
+            this.winGridView1.ColumnNameAlias = columnNameAlias;
 
             this.winGridView1.DataSource = new SortableBindingList<UserInfo>(list);
         }
@@ -119,7 +156,7 @@ namespace JCodes.Framework.AddIn.Security
                 if (!string.IsNullOrEmpty(info))
                 {
                     UserNameControl control = new UserNameControl();
-                    control.BindData(key.ToString(), info);
+                    control.BindData(key, info);
                     control.OnDeleteItem += new UserNameControl.DeleteEventHandler(control_OnDeleteItem);
                     this.flowLayoutPanel1.Controls.Add(control);
                 }
@@ -127,11 +164,11 @@ namespace JCodes.Framework.AddIn.Security
             this.lblItemCount.Text = string.Format("当前选择【{0}】项目", SelectUserDict.Keys.Count);
         }
 
-        void control_OnDeleteItem(string Id)
+        void control_OnDeleteItem(Int32 Id)
         {
-            if (SelectUserDict.ContainsKey(Id.ToInt32()))
+            if (SelectUserDict.ContainsKey(Id))
             {
-                SelectUserDict.Remove(Id.ToInt32());
+                SelectUserDict.Remove(Id);
                 RefreshSelectItems();
             }
         }
@@ -158,10 +195,10 @@ namespace JCodes.Framework.AddIn.Security
                     topnode.Text = groupInfo.Name;
                     topnode.Name = groupInfo.Id.ToString();
                     topnode.Tag = groupInfo.Id;
-                    topnode.ImageIndex = groupInfo.OuType; //Portal.gc.GetImageIndex(groupInfo.Category);
-                    topnode.SelectedImageIndex = groupInfo.OuType; //Portal.gc.GetImageIndex(groupInfo.Category);
+                    topnode.ImageIndex = groupInfo.OuType;
+                    topnode.SelectedImageIndex = groupInfo.OuType;
 
-                    List<OUNodeInfo> sublist = BLLFactory<OU>.Instance.GetTreeByID(groupInfo.Id);
+                    List<OUNodeInfo> sublist = BLLFactory<OU>.Instance.GetTreeById(groupInfo.Id);
                     AddDept(sublist, topnode);
 
                     this.treeDept.Nodes.Add(topnode);
@@ -178,9 +215,9 @@ namespace JCodes.Framework.AddIn.Security
                 TreeNode deptNode = new TreeNode();
                 deptNode.Text = ouInfo.Name;
                 deptNode.Tag = ouInfo.Id;
-                deptNode.ImageIndex = ouInfo.OuType; //Portal.gc.GetImageIndex(ouInfo.Category);
-                deptNode.SelectedImageIndex = ouInfo.OuType;// Portal.gc.GetImageIndex(ouInfo.Category);
-                if (ouInfo.IsDelete == 0)
+                deptNode.ImageIndex = ouInfo.OuType; 
+                deptNode.SelectedImageIndex = ouInfo.OuType;
+                if (ouInfo.IsDelete == (short)IsDelete.是)
                 {
                     deptNode.ForeColor = Color.Red;
                     continue;//跳过不显示
@@ -204,12 +241,12 @@ namespace JCodes.Framework.AddIn.Security
                     TreeNode topnode = AddOUNode(groupInfo);
                     AddRole(groupInfo, topnode);
 
-                    if (groupInfo.OuType == 0)
+                    if (groupInfo.OuType == (short)OuType.集团)
                     {
                         List<OUInfo> sublist = BLLFactory<OU>.Instance.GetAllCompany(groupInfo.IsDelete);
                         foreach (OUInfo info in sublist)
                         {
-                            if (info.IsDelete == 0)
+                            if (info.IsDelete == (short)IsDelete.否)
                             {
                                 TreeNode ouNode = AddOUNode(info, topnode);
                                 AddRole(info, ouNode);
@@ -230,12 +267,12 @@ namespace JCodes.Framework.AddIn.Security
             ouNode.Text = ouInfo.Name;
             ouNode.Name = ouInfo.Id.ToString();
             ouNode.Tag = ouInfo;//机构信息放到Tag里面
-            if (ouInfo.IsDelete == 0)
+            if (ouInfo.IsDelete == (short)IsDelete.是)
             {
                 ouNode.ForeColor = Color.Red;
             }
-            ouNode.ImageIndex = ouInfo.OuType; //Portal.gc.GetImageIndex(ouInfo.Category);
-            ouNode.SelectedImageIndex = ouInfo.OuType;// Portal.gc.GetImageIndex(ouInfo.Category);
+            ouNode.ImageIndex = ouInfo.OuType;
+            ouNode.SelectedImageIndex = ouInfo.OuType;
 
             if (parentNode != null)
             {
@@ -253,9 +290,9 @@ namespace JCodes.Framework.AddIn.Security
                 TreeNode roleNode = new TreeNode();
                 roleNode.Text = roleInfo.Name;
                 roleNode.Tag = roleInfo.Id;
-                roleNode.ImageIndex = 5;
-                roleNode.SelectedImageIndex = 5;
-                if (ouInfo.IsDelete == 0)
+                roleNode.ImageIndex = Const.Num_Zero;
+                roleNode.SelectedImageIndex = Const.Num_Zero;
+                if (ouInfo.IsDelete == (short)IsDelete.否)
                 {
                     roleNode.ForeColor = Color.Red;
                     continue;//跳过不显示
@@ -306,14 +343,14 @@ namespace JCodes.Framework.AddIn.Security
             List<int> list = this.winGridView1.GetCheckedRows();
             foreach(int rowIndex in list)
             {
-                string ID = this.winGridView1.GridView1.GetRowCellDisplayText(rowIndex, "ID");
-                string Name= this.winGridView1.GridView1.GetRowCellDisplayText(rowIndex, "Name");
-                string FullName = this.winGridView1.GridView1.GetRowCellDisplayText(rowIndex, "FullName");
-                string displayname = string.Format("{0}（{1}）", FullName, Name);
+                Int32 Id = this.winGridView1.GridView1.GetRowCellDisplayText(rowIndex, "Id").ToInt32();
+                string name= this.winGridView1.GridView1.GetRowCellDisplayText(rowIndex, "Name");
+                string loginName = this.winGridView1.GridView1.GetRowCellDisplayText(rowIndex, "LoginName");
+                string displayname = string.Format("{0}（{1}）", loginName, Name);
 
-                if (!this.SelectUserDict.ContainsKey(ID.ToInt32()))
+                if (!this.SelectUserDict.ContainsKey(Id))
                 {
-                    this.SelectUserDict.Add(ID.ToInt32(), displayname);
+                    this.SelectUserDict.Add(Id, displayname);
                 }
             }
 

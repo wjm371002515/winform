@@ -62,6 +62,9 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 信息大类名称
+		/// 1-通知公告,
+		/// 2-行业动态,
+		/// 3-政策法规
 		/// </summary>
 		[DataMember]
 		[DisplayName("信息大类名称")]
@@ -96,6 +99,10 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 处理状态
+		/// 1-未处理,
+		/// 2-待处理,
+		/// 3-正在处理,
+		/// 4-已处理
 		/// </summary>
 		[DataMember]
 		[DisplayName("处理状态")]

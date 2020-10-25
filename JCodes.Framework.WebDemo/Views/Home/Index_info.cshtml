@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新冠状病毒新宜社区统计</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="/Content/themes/css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+    <link href="/Content/themes/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <!-- Sweet Alert -->
+    <link href="/Content/themes/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="/Content/themes/css/animate.min.css" rel="stylesheet">
+    <link href="/Content/themes/css/style.min.css?v=4.0.0" rel="stylesheet">
+    <base target="_blank">
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <!-- Panel Other -->
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <form method="post" class="form-horizontal" id="saveInfoform">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">新宜社区</label>
+                        <div class="col-sm-6">
+                            <select class="form-control m-b" name="xiaoqu">
+                                <option>钱塘东南家园</option>
+                                <option>郡望府</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">房号</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="fanghao" name="fanghao" placeholder="8-1-1004" minlength='2' required='' aria-required='true'>
+                            <span class="help-block m-b-none">房号信息:幢-单元-室，如8-1-1004</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">联系电话</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="contactphone" name="contactphone" minlength='2' required='' aria-required='true'>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" id="dynamicAdd">
+                        <label class="col-sm-8 control-label"></label>
+                        <div class="col-sm-4">
+                            <a class="btn btn-white btn-block" href="javascript:;" id="btnFamilyAdd" target="_self"><i class="glyphicon glyphicon-plus"></i> 添加家庭成员</a>
+                        </div>
+                    </div>
+                    <div class="form-group" style="text-align: center;">
+                        <button class="btn btn-primary" type="button" style="width:150px;" id="btnsumbit">保存内容</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- End Panel Other -->
+    </div>
+
+    <script src="/Scripts/jquery.min.js?v=2.1.4"></script>
+    <script src="/Scripts/bootstrap.min.js?v=3.3.5"></script>
+    <script src="/Scripts/content.min.js?v=1.0.0"></script>
+    <script src="/Scripts/plugins/validate/jquery.validate.min.js"></script>
+    <script src="/Scripts/plugins/validate/messages_zh.min.js"></script>
+    <script src="/Scripts/plugins/sweetalert/sweetalert.min.js"></script>
+    <script src="/Scripts/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="/Scripts/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+    <script type="text/javascript">
+        var currentFamily = 0;
+
+        $(document).ready(function () {
+            $("#btnFamilyAdd").click(function () {
+                currentFamily++;
+                $("#dynamicAdd").before("<div class='hr-line-dashed' ></div>");
+                $("#dynamicAdd").before("<div class='form-group" + currentFamily + "'><label class='col-sm-2 control-label'>姓名</label><div class='col-sm-10'><input type='text' class='form-control' minlength='2' required='' aria-required='true' name='username" + currentFamily + "' id='username" + currentFamily + "'></div></div>");
+                $("#dynamicAdd").before("<div class='form-group" + currentFamily + "'><label class='col-sm-2 control-label'>关系</label><div class='col-sm-10'><input type='text' class='form-control' minlength='2' required='' aria-required='true' name='relative" + currentFamily + "' id='relative" + currentFamily + "'></div></div>");
+                $("#dynamicAdd").before("<div class='form-group" + currentFamily + "'><label class='col-sm-2 control-label'>性别</label><div class='col-sm-10'><select class='form-control m-b' required='' aria-required='true' name='sex" + currentFamily + "' id='sex" + currentFamily + "'><option>男</option><option>女</option></select></div></div>");
+                $("#dynamicAdd").before("<div class='form-group" + currentFamily + "'><label class='col-sm-2 control-label'>身份证</label><div class='col-sm-10'><input type='text' class='form-control' minlength='2' required='' aria-required='true'  name='cardNo" + currentFamily + "' id='cardNo" + currentFamily + "'></div></div>");
+                $("#dynamicAdd").before("<div class='form-group" + currentFamily + "'><label class='col-sm-2 control-label'>联系电话</label><div class='col-sm-10'><input type='text' class='form-control' minlength='2' required='' aria-required='true' name='iphone" + currentFamily + "' id='iphone" + currentFamily + "'></div></div>");
+                $("#dynamicAdd").before("<div class='form-group" + currentFamily + "'><label class='col-sm-2 control-label'>户籍地址</label><div class='col-sm-10'><input type='text' class='form-control' minlength='2' required='' aria-required='true' name='household" + currentFamily + "' id='household" + currentFamily + "'></div></div>");
+                $("#dynamicAdd").before("<div class='form-group" + currentFamily + "'><label class='col-sm-2 control-label'>实际家庭住址</label><div class='col-sm-10'><input type='text' class='form-control' minlength='2' required='' aria-required='true' name='familyaddr" + currentFamily + "' id='familyaddr" + currentFamily + "'></div></div>");
+                $("#dynamicAdd").before("<div class='form-group" + currentFamily + "'><label class='col-sm-2 control-label'>是否去过湖北</label><div class='col-sm-10'><select class='form-control m-b'  name='isgohubei" + currentFamily + "' id='isgohubei" + currentFamily + "'><option>没去过</option><option>去过</option></select></div></div>");
+                $("#dynamicAdd").before("<div class='form-group" + currentFamily + "'><label class='col-sm-2 control-label'>是否去过温州</label><div class='col-sm-10'><select class='form-control m-b'  name='isgowenzhou" + currentFamily + "' id='isgowenzhou" + currentFamily + "'><option>没去过</option><option>去过</option></select></div></div>");
+                $("#dynamicAdd").before("<div class='form-group" + currentFamily + "'><label class='col-sm-2 control-label'>是否与疫情感染者密切接触</label><div class='col-sm-10'><select class='form-control m-b'  name='iscontacthubeiwenzhou" + currentFamily + "' id='iscontacthubeiwenzhou" + currentFamily + "'><option>否</option><option>是</option></select></div></div>");
+                $("#dynamicAdd").before("<div class='form-group" + currentFamily + "'><label class='col-sm-2 control-label'>是否出租给湖北、温州人员</label><div class='col-sm-10'><select class='form-control m-b'  name='isleasehubeiwenzhou" + currentFamily + "' id='isleasehubeiwenzhou" + currentFamily + "'><option>否</option><option>是</option></select></div></div>");
+                $("#dynamicAdd").before("<div class='form-group" + currentFamily + "'><label class='col-sm-2 control-label'>是否有湖北、温州人员来访</label><div class='col-sm-10'><select class='form-control m-b'  name='ishubeiwenzhouvisit" + currentFamily + "' id='ishubeiwenzhouvisit" + currentFamily + "'><option>否</option><option>是</option></select> </div></div>");
+                $("#dynamicAdd").before("<div class='form-group" + currentFamily + "'><label class='col-sm-2 control-label'>是否实施居家观察</label><div class='col-sm-10'> <select class='form-control m-b'  name='ishomeobser" + currentFamily + "' id='ishomeobser" + currentFamily + "'><option>否</option><option>是</option></select></div></div>");
+            });
+
+            $("#saveInfoform").validate();
+        });
+
+        jQuery('#saveInfoform').bind("submit", function () {
+            data = $("#saveInfoform").serializeArray();
+            
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].value == "")
+                    return;
+            }
+
+            var options = {
+                url: '/Home/saveInfo',
+                type: 'post',
+                dataType: 'text',
+                data: $("#saveInfoform").serialize(),
+                success: function (data) {
+                    if (data.length > 0 && data == "0")
+                        swal({ title: "操作成功", text: "递交个人信息成功", type: "success" });
+                    else
+                        swal({ title: "操作失败", text: "递交个人信息错误", type: "error" });
+                }
+            };
+
+            $.ajax(options);
+            return false;
+        })
+
+        $('#btnsumbit').click(function () {
+            data = $("#saveInfoform").serializeArray();
+
+            if (data.length <= 3) {
+                swal({ title: "操作失败", text: "至少添加一位家庭成员", type: "error" });
+                return;
+            }
+
+            $('#saveInfoform').submit();
+        })
+
+        $.validator.setDefaults({ highlight: function (e) { $(e).closest(".form-group").removeClass("has-success").addClass("has-error") }, success: function (e) { e.closest(".form-group").removeClass("has-error").addClass("has-success") }, errorElement: "span", errorPlacement: function (e, r) { e.appendTo(r.is(":radio") || r.is(":checkbox") ? r.parent().parent().parent() : r.parent()) }, errorClass: "help-block m-b-none", validClass: "help-block m-b-none" });
+    </script>
+</body>
+</html>

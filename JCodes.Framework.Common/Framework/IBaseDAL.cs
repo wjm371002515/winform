@@ -65,7 +65,7 @@ namespace JCodes.Framework.Common.Framework
 		/// </summary>
         /// <param name="trans">事务对象</param>
         /// <returns>最大ID值</returns>
-		int GetMaxID(DbTransaction trans = null);
+		int GetMaxId(DbTransaction trans = null);
                       
         /// <summary>
         /// 根据主键和字段名称，获取对应字段的内容
@@ -228,7 +228,7 @@ namespace JCodes.Framework.Common.Framework
         /// <param name="key">对象的ID值</param>
         /// <param name="trans">事务对象</param>
         /// <returns>存在则返回指定的对象,否则返回Null</returns>
-        T FindByID(object key, DbTransaction trans = null);
+        T FindById(object key, DbTransaction trans = null);
 
         /// <summary>
         /// 根据条件查询数据库,如果存在返回第一个对象
@@ -281,7 +281,7 @@ namespace JCodes.Framework.Common.Framework
         /// <param name="idString">ID字符串(逗号分隔)</param>
         /// <param name="trans">事务对象</param>
         /// <returns>符合条件的对象列表</returns>
-        List<T> FindByIDs(string idString, DbTransaction trans = null);
+        List<T> FindByIds(string idString, DbTransaction trans = null);
 
         /// <summary>
         /// 根据条件查询数据库,并返回对象集合
@@ -554,5 +554,26 @@ namespace JCodes.Framework.Common.Framework
         /// <param name="condition">查询条件</param>
         /// <returns></returns>
         DataTable GetReportData(string fieldName, string condition);
-	}
+
+        #region 20200304 wujianming 新增函数
+        /// <summary>
+        /// 更新某个表一条记录
+        /// </summary>
+        /// <param name="id">Id值</param>
+        /// <param name="recordField">Hashtable:键[key]为字段名;值[value]为字段对应的值</param>
+        /// <param name="targetTable">需要操作的目标表名称</param>
+        /// <param name="trans">事务对象,如果使用事务,传入事务对象,否则为Null不使用事务</param>
+        /// <returns></returns>
+        bool PrivateUpdate(object id, Hashtable recordField, string targetTable, DbTransaction trans);
+
+         /// <summary>
+        /// 转换.NET的对象类型到数据库类型
+        /// </summary>
+        /// <param name="t">.NET的对象类型</param>
+        /// <returns></returns>
+        DbType TypeToDbType(Type t);
+
+
+        #endregion
+    }
 }

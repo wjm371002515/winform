@@ -8,14 +8,28 @@ using JCodes.Framework.Entity;
 using JCodes.Framework.IDAL;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Common.Office;
+using System.Reflection;
 
 namespace JCodes.Framework.BLL
 {
 	public class DictData : BaseBLL<DictDataInfo>
     {
+        private IDictData dal = null;
+
         public DictData()
         {
-            base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+            if (isMultiDatabase)
+            {
+                base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name, dicmultiDatabase[this.GetType().Name].ToString());
+            }
+            else
+            {
+                base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+            }
+
+            baseDal.OnOperationLog += new OperationLogEventHandler(OperationLog.OnOperationLog);//如果需要记录操作日志，则实现这个事件
+
+            dal = baseDal as IDictData;
         }
                         
         /// <summary>
@@ -23,10 +37,9 @@ namespace JCodes.Framework.BLL
         /// </summary>
         /// <param name="dictTypeId"></param>
         /// <returns></returns>
-        public List<DictDataInfo> FindByTypeID(Int32 dictTypeId)
+        public List<DictDataInfo> FindByTypeId(Int32 dictTypeId)
         {
-            IDictData dal = baseDal as IDictData;
-            return dal.FindByTypeID(dictTypeId);
+            return dal.FindByTypeId(dictTypeId);
         }
                 
         /// <summary>
@@ -35,16 +48,17 @@ namespace JCodes.Framework.BLL
         /// <returns></returns>
         public List<DicKeyValueInfo> GetAllDict()
         {
-            var lst = Cache.Instance["DictData"] as List<DicKeyValueInfo>;
+            // 20200319 wujiaming 更新缓存会存在问题，强制刷新
+            /*var lst = Cache.Instance["DictData"] as List<DicKeyValueInfo>;
             if (lst != null)
             {
                 return lst;
             }
             else 
             {
-                IDictData dal = baseDal as IDictData;
                 return dal.GetAllDict();
-            }
+            }*/
+            return dal.GetAllDict();
         }
 
         /// <summary>
@@ -52,10 +66,12 @@ namespace JCodes.Framework.BLL
         /// </summary>
         /// <param name="dictTypeId">字典类型ID</param>
         /// <returns></returns>
-        public List<DicKeyValueInfo> GetDictByTypeID(Int32 dictTypeId)
+        public List<DicKeyValueInfo> GetDictByTypeId(Int32 dictTypeId)
         {
             List<DicKeyValueInfo> lst = GetAllDict();
-            return lst.FindAll(s => s.DicttypeId == dictTypeId);
+            lst = lst.FindAll(s => s.DicttypeId == dictTypeId);
+            lst.Sort(delegate(DicKeyValueInfo info1, DicKeyValueInfo info2) { return info1.DicttypeValue.CompareTo(info2.DicttypeValue); });
+            return lst;
         }
 
         public string GetDictName(Int32 dictTypeId, Int32 value)

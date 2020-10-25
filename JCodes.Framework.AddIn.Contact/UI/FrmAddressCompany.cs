@@ -196,7 +196,7 @@ namespace JCodes.Framework.AddIn.Contact
             {
                 FrmEditAddress dlg = new FrmEditAddress();
                 dlg.Id = Id;
-                dlg.AddressType = AddressType.公共;
+                dlg.AddressType = AddressType.公司;
                 dlg.IdList = IdList;
                 dlg.OnDataSaved += new EventHandler(dlg_OnDataSaved);
                 dlg.InitFunction(LoginUserInfo, FunctionDict);//给子窗体赋值用户权限信息
@@ -273,7 +273,7 @@ namespace JCodes.Framework.AddIn.Contact
                 condition.AddCondition("Company", this.txtCompany.Text.Trim(), SqlOperator.Like);
                 condition.AddCondition("Note", this.txtNote.Text.Trim(), SqlOperator.Like);
             }
-            condition.AddCondition("AddressType", AddressType.公共.ToString(), SqlOperator.Equal);
+            condition.AddCondition("AddressType", AddressType.公司.ToString(), SqlOperator.Equal);
 
             string where = condition.BuildConditionSql().Replace("Where", "");
             //如果是单击节点得到的条件，则使用树列表的，否则使用查询条件的
@@ -379,7 +379,7 @@ namespace JCodes.Framework.AddIn.Contact
         private void btnAddNew_Click(object sender, EventArgs e)
         {
             FrmEditAddress dlg = new FrmEditAddress();
-            dlg.AddressType = AddressType.公共;
+            dlg.AddressType = AddressType.公司;
             dlg.OnDataSaved += new EventHandler(dlg_OnDataSaved);
             dlg.InitFunction(LoginUserInfo, FunctionDict);//给子窗体赋值用户权限信息
 
@@ -427,7 +427,7 @@ namespace JCodes.Framework.AddIn.Contact
             DateTime dtDefault = Convert.ToDateTime("1900-01-01");
             DateTime dt;
             AddressInfo info = new AddressInfo();
-            info.AddressType = AddressType.公共;
+            info.AddressType = AddressType.公司;
             info.Name = dr["姓名"].ToString();
             info.Gender = Convert.ToInt16(dr["性别"]);
             converted = DateTime.TryParse(dr["出生日期"].ToString(), out dt);
@@ -540,8 +540,6 @@ namespace JCodes.Framework.AddIn.Contact
 
         private void InitTree()
         {
-            base.LoginUserInfo = Cache.Instance["LoginUserInfo"] as LoginUserInfo;
-
             this.treeView1.BeginUpdate();
             this.treeView1.Nodes.Clear();
             //添加一个未分类和全部客户的组别
@@ -549,7 +547,7 @@ namespace JCodes.Framework.AddIn.Contact
             this.treeView1.Nodes.Add(topNode);
             this.treeView1.Nodes.Add(new TreeNode("未分组联系人", 2, 2));
 
-            List<AddressGroupNodeInfo> groupList = BLLFactory<AddressGroup>.Instance.GetTree(AddressType.公共.ToString());
+            List<AddressGroupNodeInfo> groupList = BLLFactory<AddressGroup>.Instance.GetTree(AddressType.公司.ToString());
             AddContactGroupTree(groupList, topNode, 1);
 
             this.treeView1.ExpandAll();
@@ -617,7 +615,7 @@ namespace JCodes.Framework.AddIn.Contact
         private void menu_GroupManage_Click(object sender, EventArgs e)
         {
             FrmAddressGroup dlg = new FrmAddressGroup();
-            dlg.AddressType = AddressType.公共;
+            dlg.AddressType = AddressType.公司;
             dlg.InitFunction(LoginUserInfo, FunctionDict);
             dlg.OnDataSaved += new EventHandler(AddressGroup_OnDataSaved);
             dlg.ShowDialog();
@@ -632,7 +630,7 @@ namespace JCodes.Framework.AddIn.Contact
         private void btnBatchAdd_Click(object sender, EventArgs e)
         {
             FrmBatchAddAddress dlg = new FrmBatchAddAddress();
-            dlg.AddressType = AddressType.公共;
+            dlg.AddressType = AddressType.公司;
             dlg.OnDataSaved += new EventHandler(dlg_OnDataSaved);
             dlg.ShowDialog();
         }

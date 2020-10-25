@@ -1,151 +1,146 @@
-using System;
-using System.Collections;
-using System.Data;
-using System.Data.Common;
-using System.Collections.Generic;
-using Microsoft.Practices.EnterpriseLibrary.Data;
-using JCodes.Framework.Common;
+﻿using JCodes.Framework.Common.Databases;
+using JCodes.Framework.Common.Framework.BaseDAL;
 using JCodes.Framework.Entity;
 using JCodes.Framework.IDAL;
-using JCodes.Framework.Common.Framework.BaseDAL;
-using JCodes.Framework.Common.Databases;
 using JCodes.Framework.jCodesenum;
+using Microsoft.Practices.EnterpriseLibrary.Data;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
 
 namespace JCodes.Framework.SQLServerDAL
 {
-    /// <summary>
-    /// 登陆系统的黑白名单列表
-    /// </summary>
-    public class BlackIP : BaseDALSQLServer<BlackIPInfo>, IBlackIP
-    {
-        #region 对象实例及构造函数
+	/// <summary>
+	/// 对象号: 000201
+	/// 黑白名单信息表(BlackIP)
+	/// 版本: 1.0.0.0
+	/// 表结构最后更新时间: 2018-02-08 13:43:39.800
+	/// </summary>
+	public partial class BlackIP : BaseDALSQLServer<BlackIPInfo>, IBlackIP
+	{
+		#region 对象实例及构造函数
+		public static BlackIP Instance
+		{
+			get
+			{
+				return new BlackIP();
+			}
+		}
 
-        public static BlackIP Instance
-        {
-            get
-            {
-                return new BlackIP();
-            }
-        }
-        public BlackIP()
-            : base(SQLServerPortal.gc._securityTablePre + "BlackIP", "Id")
-        {
-            this.sortField = "CreatorTime";
-        }
+		public BlackIP() : base(SQLServerPortal.gc._securityTablePre + "BlackIP", "Id")
+		{
+			this.sortField = "Id";
+		}
+		#endregion
 
-        #endregion
+		/// <summary>
+		/// 将DataReader的属性值转化为实体类的属性值，返回实体类
+		/// </summary>
+		/// <param name="dr">有效的DataReader对象</param>
+		/// <returns>实体类对象</returns>
+		protected override BlackIPInfo DataReaderToEntity(IDataReader dataReader)
+		{
+			BlackIPInfo info = new BlackIPInfo();
+			SmartDataReader reader = new SmartDataReader(dataReader);
+			info.Id = reader.GetInt32("Id"); 	 //ID序号
+			info.Name = reader.GetString("Name"); 	 //名称
+			info.AuthorizeType = reader.GetInt16("AuthorizeType"); 	 //授权类型
+			info.IsForbid = reader.GetInt16("IsForbid"); 	 //是否禁用
+			info.IPStart = reader.GetString("IPStart"); 	 //IP起始地址
+			info.IPEnd = reader.GetString("IPEnd"); 	 //IP结束地址
+			info.Remark = reader.GetString("Remark"); 	 //备注
+			info.CreatorId = reader.GetInt32("CreatorId"); 	 //创建人编号
+			info.CreatorTime = reader.GetDateTime("CreatorTime"); 	 //创建时间
+			info.EditorId = reader.GetInt32("EditorId"); 	 //编辑人编号
+			info.LastUpdateTime = reader.GetDateTime("LastUpdateTime"); 	 //最后更新时间
+			info.StartTime = reader.GetDateTime("StartTime"); 	 //开始时间
+			info.EndTime = reader.GetDateTime("EndTime"); 	 //结束时间
+			return info;
+		}
 
-        /// <summary>
-        /// 将DataReader的属性值转化为实体类的属性值，返回实体类
-        /// </summary>
-        /// <param name="dr">有效的DataReader对象</param>
-        /// <returns>实体类对象</returns>
-        protected override BlackIPInfo DataReaderToEntity(IDataReader dataReader)
-        {
-            BlackIPInfo info = new BlackIPInfo();
-            SmartDataReader reader = new SmartDataReader(dataReader);
+		/// <summary>
+		/// 将实体对象的属性值转化为Hashtable对应的键值
+		/// </summary>
+		/// <param name="dr">有效的实体对象</param>
+		/// <returns>包含键值映射的Hashtable</returns>
+		protected override Hashtable GetHashByEntity(BlackIPInfo obj)
+		{
+			BlackIPInfo info = obj as BlackIPInfo;
+			Hashtable hash = new Hashtable();
+			hash.Add("Id", info.Id); 	 //ID序号
+			hash.Add("Name", info.Name); 	 //名称
+			hash.Add("AuthorizeType", info.AuthorizeType); 	 //授权类型
+			hash.Add("IsForbid", info.IsForbid); 	 //是否禁用
+			hash.Add("IPStart", info.IPStart); 	 //IP起始地址
+			hash.Add("IPEnd", info.IPEnd); 	 //IP结束地址
+			hash.Add("Remark", info.Remark); 	 //备注
+			hash.Add("CreatorId", info.CreatorId); 	 //创建人编号
+			hash.Add("CreatorTime", info.CreatorTime); 	 //创建时间
+			hash.Add("EditorId", info.EditorId); 	 //编辑人编号
+			hash.Add("LastUpdateTime", info.LastUpdateTime); 	 //最后更新时间
+			hash.Add("StartTime", info.StartTime); 	 //开始时间
+			hash.Add("EndTime", info.EndTime); 	 //结束时间
+			return hash;
+		}
 
-            /*info.ID = reader.GetString("ID");
-            info.Name = reader.GetString("Name");
-            info.AuthorizeType = reader.GetInt32("AuthorizeType");
-            info.Forbid = reader.GetInt32("Forbid") > 0;
-            info.IPStart = reader.GetString("IPStart");
-            info.IPEnd = reader.GetString("IPEnd");
-            info.Note = reader.GetString("Note");
-            info.Creator = reader.GetString("Creator");
-            info.CreatorId = reader.GetInt32("CreatorId");
-            info.CreateTime = reader.GetDateTime("CreateTime");
-            info.Editor = reader.GetString("Editor");
-            info.EditorId = reader.GetInt32("EditorId");
-            info.EditTime = reader.GetDateTime("EditTime");*/
-
-            return info;
-        }
-
-        /// <summary>
-        /// 将实体对象的属性值转化为Hashtable对应的键值
-        /// </summary>
-        /// <param name="obj">有效的实体对象</param>
-        /// <returns>包含键值映射的Hashtable</returns>
-        protected override Hashtable GetHashByEntity(BlackIPInfo obj)
-        {
-            BlackIPInfo info = obj as BlackIPInfo;
-            Hashtable hash = new Hashtable();
-
-            /*hash.Add("ID", info.ID);
-            hash.Add("Name", info.Name);
-            hash.Add("AuthorizeType", info.AuthorizeType);
-            hash.Add("Forbid", info.Forbid ? 1 : 0);
-            hash.Add("IPStart", info.IPStart);
-            hash.Add("IPEnd", info.IPEnd);
-            hash.Add("Note", info.Note);
-            hash.Add("Creator", info.Creator);
-            hash.Add("CreatorId", info.CreatorId);
-            hash.Add("CreateTime", info.CreateTime);
-            hash.Add("Editor", info.Editor);
-            hash.Add("EditorId", info.EditorId);
-            hash.Add("EditTime", info.EditTime);*/
-
-            return hash;
-        }
-
-        /// <summary>
-        /// 获取字段中文别名（用于界面显示）的字典集合
-        /// </summary>
-        /// <returns></returns>
-        public override Dictionary<string, string> GetColumnNameAlias()
-        {
-            Dictionary<string, string> dict = new Dictionary<string, string>();
-            #region 添加别名解析
-            /*dict.Add("ID", "编号");            
-            dict.Add("Name", "显示名称");
-            dict.Add("AuthorizeType", "授权类型");
-            dict.Add("Forbid", "是否禁用");
-            dict.Add("IPStart", "IP起始地址");
-            dict.Add("IPEnd", "IP结束地址");
-            dict.Add("Note", "备注");
-            dict.Add("Creator", "创建人");
-            dict.Add("Creator_ID", "创建人ID");
-            dict.Add("CreateTime", "创建时间");
-            dict.Add("Editor", "编辑人");
-            dict.Add("Editor_ID", "编辑人ID");
-            dict.Add("EditTime", "编辑时间");*/
-            #endregion
-
-            return dict;
-        }
+		/// <summary>
+		/// 获取字段中文别名（用于界面显示）的字典集合
+		/// </summary>
+		/// <returns></returns>
+		public override Dictionary<string, string> GetColumnNameAlias()
+		{
+			Dictionary<string, string> dict = new Dictionary<string, string>();
+			#region 添加别名解析
+			dict.Add("Id", "ID序号");
+			dict.Add("Name", "名称");
+			dict.Add("AuthorizeType", "授权类型");
+			dict.Add("IsForbid", "是否禁用");
+			dict.Add("IPStart", "IP起始地址");
+			dict.Add("IPEnd", "IP结束地址");
+			dict.Add("Remark", "备注");
+			dict.Add("CreatorId", "创建人编号");
+			dict.Add("CreatorTime", "创建时间");
+			dict.Add("EditorId", "编辑人编号");
+			dict.Add("LastUpdateTime", "最后更新时间");
+			dict.Add("StartTime", "开始时间");
+			dict.Add("EndTime", "结束时间");
+			#endregion
+			return dict;
+		}
 
         /// <summary>
         /// 根据黑名单ID获取对应的用户ID列表
         /// </summary>
         /// <param name="id">黑名单ID</param>
         /// <returns></returns>
-        public string GetUserIdList(Int32 id)
+        public string GetUserIdList(Int32 Id, IsForbid isForbid =  IsForbid.否)
         {
-            string sql = string.Format(@"SELECT USER_ID FROM {0}BLACKIP_USER m INNER JOIN {0}BLACKIP t
-            ON m.BLACKIP_ID=t.ID WHERE t.ID = '{1}' ", SQLServerPortal.gc._securityTablePre, id);
+            string sql = string.Format(@"SELECT UserId FROM {0}BlackIP_User m INNER JOIN {0}BlackIP t
+            ON m.BlackId=t.Id WHERE t.Id = '{1}' and (t.IsForbid = {2} or 0 = {2}) and t.StartTime <= GETDATE() and t.EndTime >= GETDATE()", SQLServerPortal.gc._securityTablePre, Id, (short)isForbid);
             return SqlValueList(sql);
         }
 
-        public void AddUser(Int32 userID, Int32 blackID)
+        public void AddUser(Int32 userId, Int32 blackId)
         {
-            string commandText = string.Format("INSERT INTO {0}BLACKIP_USER(User_ID, BLACKIP_ID) VALUES({1}, '{2}')", SQLServerPortal.gc._securityTablePre, userID, blackID);
+            string commandText = string.Format("INSERT INTO {0}BlackIP_User(UserId, BlackId) VALUES({1}, '{2}')", SQLServerPortal.gc._securityTablePre, userId, blackId);
             Database db = CreateDatabase();
             DbCommand command = db.GetSqlStringCommand(commandText);
             db.ExecuteNonQuery(command);
         }
 
-        public void RemoveUser(Int32 userID, Int32 blackID)
+        public void RemoveUser(Int32 userId, Int32 blackId)
         {
-            string commandText = string.Format("DELETE FROM {0}BLACKIP_USER WHERE User_ID={1} AND BLACKIP_ID='{2}'", SQLServerPortal.gc._securityTablePre, userID, blackID);
+            string commandText = string.Format("DELETE FROM {0}BlackIP_User WHERE UserId={1} AND BlackId='{2}'", SQLServerPortal.gc._securityTablePre, userId, blackId);
             Database db = CreateDatabase();
             DbCommand command = db.GetSqlStringCommand(commandText);
             db.ExecuteNonQuery(command);
         }
 
-        public void RemoveUserByBlackId(Int32 blackID)
+        public void RemoveUserByBlackId(Int32 blackId)
         {
-            string commandText = string.Format("DELETE FROM {0}BLACKIP_USER WHERE BLACKIP_ID='{1}'", SQLServerPortal.gc._securityTablePre, blackID);
+            string commandText = string.Format("DELETE FROM {0}BlackIP_User WHERE BlackId='{1}'", SQLServerPortal.gc._securityTablePre, blackId);
             Database db = CreateDatabase();
             DbCommand command = db.GetSqlStringCommand(commandText);
             db.ExecuteNonQuery(command);
@@ -157,11 +152,11 @@ namespace JCodes.Framework.SQLServerDAL
         /// <param name="userId">用户ID</param>
         /// <param name="type">授权类型</param>
         /// <returns></returns>
-        public List<BlackIPInfo> FindByUser(int userId, AuthrizeType type)
+        public List<BlackIPInfo> FindByUser(Int32 userId, AuthorizeType authorizeType, IsForbid isForbid = IsForbid.否)
         {
-            string sql = string.Format(@"SELECT t.* FROM {0}BLACKIP t INNER JOIN {0}BLACKIP_USER m
-            ON t.ID=m.BLACKIP_ID WHERE m.User_ID = {1} and t.AuthorizeType={2} and t.Forbid=0 ", SQLServerPortal.gc._securityTablePre, userId, (int)type);
+            string sql = string.Format(@"SELECT t.* FROM {0}BlackIP t INNER JOIN {0}BlackIP_User m
+            ON t.Id=m.BlackId WHERE m.UserId = {1} and t.AuthorizeType={2} and (t.IsForbid = {3} or 0 = {3}) ", SQLServerPortal.gc._securityTablePre, userId, (short)authorizeType, (short)isForbid);
             return GetList(sql, null);
         }
-    }
+	}
 }

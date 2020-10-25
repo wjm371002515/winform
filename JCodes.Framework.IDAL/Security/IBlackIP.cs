@@ -20,13 +20,13 @@ namespace JCodes.Framework.IDAL
         /// </summary>
         /// <param name="id">黑名单ID</param>
         /// <returns></returns>
-        string GetUserIdList(Int32 id);
+        string GetUserIdList(Int32 Id, IsForbid isForbid =  IsForbid.否);
 
-        void AddUser(Int32 userID, Int32 blackID);
+        void AddUser(Int32 userId, Int32 blackId);
 
-        void RemoveUser(Int32 userID, Int32 blackID);
+        void RemoveUser(Int32 userId, Int32 blackId);
 
-        void RemoveUserByBlackId(Int32 blackID);
+        void RemoveUserByBlackId(Int32 blackId);
                        
         /// <summary>
         /// 根据用户ID和授权类型获取列表
@@ -34,6 +34,6 @@ namespace JCodes.Framework.IDAL
         /// <param name="userId">用户ID</param>
         /// <param name="type">授权类型</param>
         /// <returns></returns>
-        List<BlackIPInfo> FindByUser(int userId, AuthrizeType type);
+        List<BlackIPInfo> FindByUser(Int32 userId, AuthorizeType authorizeType, IsForbid isForbid = IsForbid.否);
     }
 }

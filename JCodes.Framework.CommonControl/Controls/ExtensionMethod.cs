@@ -262,11 +262,8 @@ namespace JCodes.Framework.CommonControl.Controls
             List<CheckedListBoxItem> dataSourcre = new List<CheckedListBoxItem>();
 
             var cacheDictData = Cache.Instance["DictData"] as List<DicKeyValueInfo>;
-            if (cacheDictData != null)
-            {
-                return;
-            }
-
+            if (cacheDictData == null) return;
+           
             var lst = cacheDictData.FindAll(s => s.DicttypeId == dictTypeId);
             combo.Properties.BeginUpdate();//可以加快
             combo.Properties.Items.Clear();
@@ -780,6 +777,24 @@ namespace JCodes.Framework.CommonControl.Controls
                 }
             }
             return sb.ToString().Trim('/');
+        }
+
+        /// <summary>
+        /// 已分隔符显示多项键值
+        /// </summary>
+        /// <param name="dict">Dictionary对象</param>
+        /// <returns></returns>
+        public static string ToDiplayKeyString(this Dictionary<string, string> dict)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (string key in dict.Keys)
+            {
+                if (!string.IsNullOrEmpty(key))
+                {
+                    sb.AppendFormat("{0},", key);
+                }
+            }
+            return sb.ToString().Trim(',');
         }
 
         /// <summary>

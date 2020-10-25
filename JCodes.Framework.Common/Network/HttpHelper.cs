@@ -10,6 +10,7 @@ using System.Web;
 using System.Collections.Specialized;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.Common.Format;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.Common.Network
 {

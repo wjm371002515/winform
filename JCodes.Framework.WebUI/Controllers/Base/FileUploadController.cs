@@ -9,6 +9,7 @@ using JCodes.Framework.Common.Format;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Common.Office;
 using JCodes.Framework.Entity;
+using JCodes.Framework.jCodesenum;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using System;
 using System.Collections.Generic;
@@ -207,17 +208,17 @@ namespace JCodes.Framework.WebUI.Controllers
                             string saveName = Guid.NewGuid().ToString() + fileExtension; //保存文件名称
 
                             FileUploadInfo info = new FileUploadInfo();
-                            info.FileData = ReadFileBytes(fileData);
-                            if (info.FileData != null)
-                            {
-                                info.FileSize = info.FileData.Length;
-                            }
-                            info.CategoryCode = folder;
+                            // info.FileData = ReadFileBytes(fileData);
+                            //if (info.FileData != null)
+                            //{
+                            //    info.FileSize = info.FileData.Length;
+                            //}
+                            //info.FileUploadType = folder;
                             info.Name = fileName;
                             info.FileExtend = fileExtension;
                             info.AttachmentGid = guid;
 
-                            info.AddTime = DateTime.Now;
+                            info.LastUpdateTime = DateTime.Now;
                             info.EditorId = CurrentUser.Id;//登录人
 
                             result = BLLFactory<FileUpload>.Instance.Upload(info);
@@ -301,7 +302,7 @@ namespace JCodes.Framework.WebUI.Controllers
             int seq = 1;
             StringBuilder sb = new StringBuilder();
 
-            List<FileUploadInfo> fileList = BLLFactory<FileUpload>.Instance.GetByAttachGUID(guid);
+            List<FileUploadInfo> fileList = BLLFactory<FileUpload>.Instance.GetByAttachGid(guid);
             if (fileList != null && fileList.Count > 0)
             {
                 #region 构建附件展示的HTML代码
@@ -349,7 +350,7 @@ namespace JCodes.Framework.WebUI.Controllers
             StringBuilder sb = new StringBuilder();
             int seq = 1;
                         
-            List<FileUploadInfo> fileList = BLLFactory<FileUpload>.Instance.GetByAttachGUID(guid);
+            List<FileUploadInfo> fileList = BLLFactory<FileUpload>.Instance.GetByAttachGid(guid);
             if (fileList != null && fileList.Count > 0)
             {
                 foreach (FileUploadInfo info in fileList)
@@ -394,7 +395,7 @@ namespace JCodes.Framework.WebUI.Controllers
             int seq = 1;
             StringBuilder sb = new StringBuilder();
 
-            List<FileUploadInfo> fileList = BLLFactory<FileUpload>.Instance.GetByAttachGUID(guid);
+            List<FileUploadInfo> fileList = BLLFactory<FileUpload>.Instance.GetByAttachGid(guid);
             if (fileList != null && fileList.Count > 0)
             {
                 #region 构建附件展示的HTML代码
@@ -444,7 +445,7 @@ namespace JCodes.Framework.WebUI.Controllers
             StringBuilder sb = new StringBuilder();
             int seq = 1;
 
-            List<FileUploadInfo> fileList = BLLFactory<FileUpload>.Instance.GetByAttachGUID(guid);
+            List<FileUploadInfo> fileList = BLLFactory<FileUpload>.Instance.GetByAttachGid(guid);
             if (fileList != null && fileList.Count > 0)
             {
                 foreach (FileUploadInfo info in fileList)
@@ -487,7 +488,7 @@ namespace JCodes.Framework.WebUI.Controllers
         public ActionResult GetAttachViewUrl(string id)
         {
             string viewUrl = "";
-            FileUploadInfo info = BLLFactory<FileUpload>.Instance.FindByID(id);
+            FileUploadInfo info = BLLFactory<FileUpload>.Instance.FindById(id);
             if (info != null)
             {
                 string ext = info.FileExtend.Trim('.').ToLower();
@@ -550,7 +551,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult DownloadAttach(string guid)
         {
-            List<FileUploadInfo> list = BLLFactory<FileUpload>.Instance.GetByAttachGUID(guid);
+            List<FileUploadInfo> list = BLLFactory<FileUpload>.Instance.GetByAttachGid(guid);
             List<string> fileList = new List<string>();
             foreach(FileUploadInfo info in list)
             {

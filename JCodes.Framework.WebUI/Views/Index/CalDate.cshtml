@@ -1,0 +1,202 @@
+﻿@{
+    Layout = "~/Views/Shared/_Index.cshtml"; 
+    ViewBag.Title = "首页";
+}
+<link href="~/Content/MyPlugins/datapicker/datepicker3.css" rel="stylesheet">
+<style type="text/css">
+    #diffdays {padding: 0px; height: 40px;}
+
+</style>
+
+<div id="content" class="site-content site_container container clear">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>计算几天后的日期</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form role="form" class="form-inline">
+                        <div class="form-group media">
+                            <label class="control-label">和</label>
+
+                            <div class="input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                <input type="text" class="form-control" id="diffDate">
+                            </div>
+                        </div>
+                       
+                        <div class="form-group">
+                            <label class="control-label">相差</label>
+                            <input type="text" id="diffdays" minvalue="-1000" maxvalue="1000" class="mini-spinner">
+                            <label class="control-label">天(输入负数向前计算)</label>
+                        </div>
+                        <br />
+                        <div class="form-group media" id="calDayResult" style="display: none;">
+                            <div class="alert alert-success" id="calDayResulttxt">
+
+                            </div>
+                        </div>
+                       <br />
+                        <div class="form-group">
+                            <button class="btn btn-white" type="button" id="calDiffDay">计算日期</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>计算日期差</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form role="form" class="form-inline">
+                        <div class="input-group date">
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            <input type="text" class="form-control" name="startdate" id="startdate">
+                        </div>
+                        <div class="input-daterange input-group" id="datepicker">
+                            <span class="input-group-addon">到</span>
+                        </div>
+                        <div class="input-group date">
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            <input type="text" class="form-control" name="end" id="enddate">
+                        </div>
+                        <br />
+                        <div class="form-group media" id="calDayResult2" style="display: none;">
+                            <div class="alert alert-success" id="calDayResult2txt">
+                                相差： 75 天
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <button class="btn btn-white" type="button" id="calDiffDate">计算日期</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Data picker -->
+<script src="~/Content/MyPlugins/datapicker/bootstrap-datepicker.js"></script>
+
+<script>
+    Date.prototype.format = function (fmt) {
+        var o = {
+            "M+": this.getMonth() + 1,                 //月份 
+            "d+": this.getDate(),                    //日 
+            "h+": this.getHours(),                   //小时 
+            "m+": this.getMinutes(),                 //分 
+            "s+": this.getSeconds(),                 //秒 
+            "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+            "S": this.getMilliseconds()             //毫秒 
+        };
+        if (/(y+)/.test(fmt)) {
+            fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        }
+        for (var k in o) {
+            if (new RegExp("(" + k + ")").test(fmt)) {
+                fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+            }
+        }
+        return fmt;
+    }
+
+    todayDate = new Date().format("yyyy-MM-dd");
+
+    (function ($) { //create closure so we can safely use $ as alias for jQuery
+        $(document).ready(function () {
+            "use strict";
+            /*-----------------------------------------------------------------------------------*/
+            /*  Slick Mobile Menu
+            /*-----------------------------------------------------------------------------------*/
+            $(".collapse-link").click(function () {
+                var o = $(this).closest("div.ibox")
+                  , e = $(this).find("i")
+                  , i = o.find("div.ibox-content");
+                i.slideToggle(200),
+                e.toggleClass("fa-chevron-up").toggleClass("fa-chevron-down"),
+                o.toggleClass("").toggleClass("border-bottom"),
+                setTimeout(function () {
+                    o.resize(),
+                    o.find("[id^=map-]").resize()
+                }, 50)
+            });
+            $(".close-link").click(function () {
+                var o = $(this).closest("div.ibox");
+                o.remove()
+            });
+
+            $('.date .form-control').datepicker({
+                keyboardNavigation: false,
+                forceParse: false,
+                autoclose: true,
+                defaultDate: new Date()
+            });
+
+           
+            $('.date .form-control').val(todayDate);
+
+            // 根据相差天数计算日期
+            $("#calDiffDay").click(function () {
+                $.ajax( {
+                    "url": "/Index/AjaxCalDateByDiffDay?date=" + $("#diffDate").val() + "&days=" + mini.get("diffdays").getValue(),
+                    "async": false,
+                    "dataType": "json",
+                    "success": function (json) {
+                        // 2021年1月26日星期二
+                        $("#calDayResulttxt").text("计算日期为: " + json);
+                    }
+                } );
+
+                if (($("#calDayResult").css("display") == 'none'))
+                {
+                    $("#calDayResult").slideToggle(1000);
+                }
+            });
+
+            $("#calDiffDate").click(function () {
+                $.ajax({
+                    "url": "/Index/AjaxCalDaysByDiffDate?startdate=" + $("#startdate").val() + "&enddate=" + $("#enddate").val(),
+                    "async": false,
+                    "dataType": "json",
+                    "success": function (json) {
+                        // 相差： 75 天
+                        $("#calDayResult2txt").text("相差： " + json + "天");
+                    }
+                });
+                // TODO 1后台返回对象，2错误信息用红色，3后台记录查询日志
+                if (($("#calDayResult2").css("display") == 'none')) {
+                    $("#calDayResult2").slideToggle(1000);
+                }
+            });
+        });
+    }
+    )(jQuery);
+</script>

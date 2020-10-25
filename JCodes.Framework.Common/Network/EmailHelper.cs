@@ -9,6 +9,7 @@ using System.Net.Mail;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.Common.Network
 {

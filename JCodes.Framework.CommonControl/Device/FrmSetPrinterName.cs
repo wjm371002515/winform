@@ -13,6 +13,7 @@ using JCodes.Framework.CommonControl.BaseUI;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.Common.Office;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.CommonControl.Device
 {

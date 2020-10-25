@@ -77,6 +77,12 @@
     <Compile Include="UI\FrmEditItemEntity.Designer.cs">
       <DependentUpon>FrmEditItemEntity.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\FrmModField.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmModField.designer.cs">
+      <DependentUpon>FrmModField.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\FrmGeneralSql.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -199,12 +205,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="UI\FrmBasicEntity.resx">
       <DependentUpon>FrmBasicEntity.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\FrmEditItemEntity.resx">
       <DependentUpon>FrmEditItemEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmModField.resx">
+      <DependentUpon>FrmModField.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\FrmGeneralSql.resx">
       <DependentUpon>FrmGeneralSql.cs</DependentUpon>

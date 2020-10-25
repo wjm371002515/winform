@@ -40,6 +40,7 @@ namespace JCodes.Framework.AddIn.Proj
             this.contextMenuStripFields = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem_AddField = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem_DelField = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmirealoadcache = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripIndex = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem_AddIndex = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem_DelIndex = new System.Windows.Forms.ToolStripMenuItem();
@@ -221,23 +222,31 @@ namespace JCodes.Framework.AddIn.Proj
             this.contextMenuStripFields.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.contextMenuStripFields.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem_AddField,
-            this.toolStripMenuItem_DelField});
+            this.toolStripMenuItem_DelField,
+            this.tsmirealoadcache});
             this.contextMenuStripFields.Name = "contextMenuStripFields";
-            this.contextMenuStripFields.Size = new System.Drawing.Size(153, 60);
+            this.contextMenuStripFields.Size = new System.Drawing.Size(225, 88);
             // 
             // toolStripMenuItem_AddField
             // 
             this.toolStripMenuItem_AddField.Name = "toolStripMenuItem_AddField";
-            this.toolStripMenuItem_AddField.Size = new System.Drawing.Size(152, 28);
+            this.toolStripMenuItem_AddField.Size = new System.Drawing.Size(224, 28);
             this.toolStripMenuItem_AddField.Text = "新增字段";
-            this.toolStripMenuItem_AddField.Click += toolStripMenuItem_AddField_Click;
+            this.toolStripMenuItem_AddField.Click += new System.EventHandler(this.toolStripMenuItem_AddField_Click);
             // 
             // toolStripMenuItem_DelField
             // 
             this.toolStripMenuItem_DelField.Name = "toolStripMenuItem_DelField";
-            this.toolStripMenuItem_DelField.Size = new System.Drawing.Size(152, 28);
+            this.toolStripMenuItem_DelField.Size = new System.Drawing.Size(224, 28);
             this.toolStripMenuItem_DelField.Text = "删除字段";
-            this.toolStripMenuItem_DelField.Click += toolStripMenuItem_DelField_Click;
+            this.toolStripMenuItem_DelField.Click += new System.EventHandler(this.toolStripMenuItem_DelField_Click);
+            // 
+            // tsmirealoadcache
+            // 
+            this.tsmirealoadcache.Name = "tsmirealoadcache";
+            this.tsmirealoadcache.Size = new System.Drawing.Size(224, 28);
+            this.tsmirealoadcache.Text = "刷新标准字段缓存";
+            this.tsmirealoadcache.Click += new System.EventHandler(this.tsmirealoadcache_Click);
             // 
             // contextMenuStripIndex
             // 
@@ -246,21 +255,20 @@ namespace JCodes.Framework.AddIn.Proj
             this.toolStripMenuItem_AddIndex,
             this.toolStripMenuItem_DelIndex});
             this.contextMenuStripIndex.Name = "contextMenuStripIndex";
-            this.contextMenuStripIndex.Size = new System.Drawing.Size(153, 60);
+            this.contextMenuStripIndex.Size = new System.Drawing.Size(207, 93);
+            this.contextMenuStripIndex.Click += new System.EventHandler(this.toolStripMenuItem_AddIndex_Click);
             // 
             // toolStripMenuItem_AddIndex
             // 
             this.toolStripMenuItem_AddIndex.Name = "toolStripMenuItem_AddIndex";
-            this.toolStripMenuItem_AddIndex.Size = new System.Drawing.Size(152, 28);
+            this.toolStripMenuItem_AddIndex.Size = new System.Drawing.Size(206, 28);
             this.toolStripMenuItem_AddIndex.Text = "新增自定义字段";
-            this.toolStripMenuItem_AddIndex.Click += toolStripMenuItem_AddIndex_Click;
             // 
             // toolStripMenuItem_DelIndex
             // 
             this.toolStripMenuItem_DelIndex.Name = "toolStripMenuItem_DelIndex";
-            this.toolStripMenuItem_DelIndex.Size = new System.Drawing.Size(152, 28);
+            this.toolStripMenuItem_DelIndex.Size = new System.Drawing.Size(206, 28);
             this.toolStripMenuItem_DelIndex.Text = "删除自定义字段";
-            this.toolStripMenuItem_DelIndex.Click += toolStripMenuItem_DelIndex_Click;
             // 
             // FrmClassEntity
             // 
@@ -319,5 +327,6 @@ namespace JCodes.Framework.AddIn.Proj
         private System.Windows.Forms.ContextMenuStrip contextMenuStripIndex;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_AddIndex;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_DelIndex;
+        private System.Windows.Forms.ToolStripMenuItem tsmirealoadcache;
     }
 }

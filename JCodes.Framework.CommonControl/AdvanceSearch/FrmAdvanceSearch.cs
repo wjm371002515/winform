@@ -11,6 +11,7 @@ using JCodes.Framework.Common.Collections;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.Entity;
 using JCodes.Framework.Common.Databases;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.CommonControl.AdvanceSearch
 {
@@ -236,15 +237,15 @@ namespace JCodes.Framework.CommonControl.AdvanceSearch
                     string fieldValue = row["查询条件值"].ToString();
                     string valueDisplay = row["查询条件显示"].ToString();
 
-                    if (fieldType == FieldType.Text)
+                    if (fieldType == FieldType.TEXTAREA)
                     {
                         searchCondition.AddCondition(fieldName, fieldValue, SqlOperator.Like);
                     }
-                    else if (fieldType == FieldType.DropdownList)
+                    else if (fieldType == FieldType.SELECT)
                     {
                         searchCondition.AddCondition(fieldName, fieldValue, SqlOperator.Equal);
                     }
-                    else if (fieldType == FieldType.DateTime)
+                    else if (fieldType == FieldType.DATETIME)
                     {
                         #region 日期类型转换
                         if (!string.IsNullOrEmpty(fieldValue))
@@ -275,7 +276,7 @@ namespace JCodes.Framework.CommonControl.AdvanceSearch
                         } 
                         #endregion
                     }
-                    else if (fieldType == FieldType.Numeric)
+                    else if (fieldType == FieldType.NUM)
                     {
                         #region 数值类型转换
                         if (!string.IsNullOrEmpty(fieldValue))
@@ -351,7 +352,7 @@ namespace JCodes.Framework.CommonControl.AdvanceSearch
                 dtAdvance.Columns.Add("查询条件值");
                 dtAdvance.Columns.Add("查询条件显示");
 
-                FieldType customedType = FieldType.Text;
+                FieldType customedType = FieldType.TEXTAREA;
                 foreach (DataRow dr in dtFieldTypeTable.Rows)
                 {
                     #region 转换字段显示名称
@@ -379,7 +380,7 @@ namespace JCodes.Framework.CommonControl.AdvanceSearch
                         case "system.guid":
                         case "system.char":
                         case "system.boolean":
-                            customedType = FieldType.Text;
+                            customedType = FieldType.TEXTAREA;
                             break;
 
                         case "system.int16":
@@ -393,10 +394,10 @@ namespace JCodes.Framework.CommonControl.AdvanceSearch
                         case "system.double":
                         case "system.float":
                         case "system.byte":
-                            customedType = FieldType.Numeric;
+                            customedType = FieldType.NUM;
                             break;
                         case "system.datetime":
-                            customedType = FieldType.DateTime; //需要大写
+                            customedType = FieldType.DATETIME; //需要大写
                             break;
                     }
                     #endregion
@@ -404,7 +405,7 @@ namespace JCodes.Framework.CommonControl.AdvanceSearch
                     //特殊转换
                     if (listItemDict.ContainsKey(originalName))
                     {
-                        customedType = FieldType.DropdownList;
+                        customedType = FieldType.SELECT;
                     }
 
                     DataRow row = dtAdvance.NewRow();
@@ -490,19 +491,19 @@ namespace JCodes.Framework.CommonControl.AdvanceSearch
             string fieldValue = this.gridView1.GetFocusedRowCellValue("查询条件值").ToString();
             #region 根据类型转换不同的窗体
             FrmQueryBase dlg = null;
-            if (fieldType == FieldType.Text)
+            if (fieldType == FieldType.TEXTAREA)
             {
                 dlg = new FrmQueryTextEdit();
             }
-            else if (fieldType == FieldType.Numeric)
+            else if (fieldType == FieldType.NUM)
             {
                 dlg = new FrmQueryNumericEdit();
             }
-            else if (fieldType == FieldType.DateTime)
+            else if (fieldType == FieldType.DATETIME)
             {
                 dlg = new FrmQueryDateEdit();
             }
-            else if (fieldType == FieldType.DropdownList)
+            else if (fieldType == FieldType.SELECT)
             {
                 dlg = new FrmQueryDropdown();
             }

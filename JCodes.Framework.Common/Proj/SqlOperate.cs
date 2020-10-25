@@ -1,4 +1,5 @@
 ﻿using JCodes.Framework.Entity;
+using JCodes.Framework.jCodesenum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,7 +47,7 @@ namespace JCodes.Framework.Common.Proj
             //执行Show_Str方法   
             object str = type.GetMethod("printHeaderInfo", params_type).Invoke(instance, params_obj);
 
-            LogHelper.WriteLog(jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_DEBUG, str.ToString(), typeof(SqlOperate));
+            LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, str.ToString(), typeof(SqlOperate));
          
             return str.ToString();
         }
@@ -86,7 +87,7 @@ namespace JCodes.Framework.Common.Proj
             //执行Show_Str方法   
             object str = type.GetMethod("initTableInfo", params_type).Invoke(instance, params_obj);
 
-            LogHelper.WriteLog(jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_DEBUG, str.ToString(), typeof(SqlOperate));
+            LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, str.ToString(), typeof(SqlOperate));
 
             return str.ToString();
         }
@@ -120,7 +121,7 @@ namespace JCodes.Framework.Common.Proj
             //执行Show_Str方法   
             object str = type.GetMethod("initTableDataInfo", params_type).Invoke(instance, params_obj);
 
-            LogHelper.WriteLog(jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_DEBUG, str.ToString(), typeof(SqlOperate));
+            LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, str.ToString(), typeof(SqlOperate));
 
             return str.ToString();
         }
@@ -154,7 +155,7 @@ namespace JCodes.Framework.Common.Proj
             //执行Show_Str方法   
             object str = type.GetMethod("initDictTypeInfo", params_type).Invoke(instance, params_obj);
 
-            LogHelper.WriteLog(jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_DEBUG, str.ToString(), typeof(SqlOperate));
+            LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, str.ToString(), typeof(SqlOperate));
 
             return str.ToString();
         }
@@ -188,7 +189,7 @@ namespace JCodes.Framework.Common.Proj
             //执行Show_Str方法   
             object str = type.GetMethod("initDictDataInfo", params_type).Invoke(instance, params_obj);
 
-            LogHelper.WriteLog(jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_DEBUG, str.ToString(), typeof(SqlOperate));
+            LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, str.ToString(), typeof(SqlOperate));
 
             return str.ToString();
         }
@@ -222,7 +223,7 @@ namespace JCodes.Framework.Common.Proj
             //执行Show_Str方法   
             object str = type.GetMethod("initMenuInfo", params_type).Invoke(instance, params_obj);
 
-            LogHelper.WriteLog(jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_DEBUG, str.ToString(), typeof(SqlOperate));
+            LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, str.ToString(), typeof(SqlOperate));
 
             return str.ToString();
         }
@@ -256,7 +257,7 @@ namespace JCodes.Framework.Common.Proj
             //执行Show_Str方法   
             object str = type.GetMethod("initFunctionInfo", params_type).Invoke(instance, params_obj);
 
-            LogHelper.WriteLog(jCodesenum.BaseEnum.LogLevel.LOG_LEVEL_DEBUG, str.ToString(), typeof(SqlOperate));
+            LogHelper.WriteLog(LogLevel.LOG_LEVEL_DEBUG, str.ToString(), typeof(SqlOperate));
 
             return str.ToString();
         }

@@ -19,6 +19,7 @@ using JCodes.Framework.Common.Format;
 using JCodes.Framework.CommonControl.Other.Images;
 using JCodes.Framework.CommonControl.DocViewer;
 using JCodes.Framework.Common.Images;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn.Basic.BizControl
 {
@@ -39,7 +40,7 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
         /// <summary>
         /// 设置附件的存储目录分类
         /// </summary>
-        public string AttachmentDirectory
+        public AttachmentType AttachmentDirectory
         {
             get { return m_AttachmentDirectory; }
             set { m_AttachmentDirectory = value; }
@@ -95,14 +96,14 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
         private Dictionary<string, int> imageDict = new Dictionary<string, int>();
         private bool m_ShowUpload = true;// 是否显示上传按钮
         private bool m_ShowDelete = true;// 是否显示删除按钮
-        private string m_AttachmentDirectory = "业务附件";// 设置附件的存储目录分类
+        private AttachmentType m_AttachmentDirectory = AttachmentType.业务附件;// 设置附件的存储目录分类
         private string m_AttachmentGid;// 设置附件组的GUID
 
         public BizAttachment()
         {
             InitializeComponent();
 
-            //this.pager1.PageSize = 20;
+            this.pager1.PageSize = 20;
             this.pager1.PageChanged += new PageChangedEventHandler(pager1_PageChanged);
             ClearData();
         }
@@ -113,7 +114,7 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
         /// <param name="attachmentDir">设置附件的存储目录分类</param>
         /// <param name="creatorId">附件组所属的记录ID，如属于某个主表记录的ID</param>
         /// <param name="userId">操作用户ID，当前登录用户</param>
-        public void Init(string attachmentDir, Int32 creatorId, Int32 userId)
+        public void Init(AttachmentType attachmentDir, Int32 creatorId, Int32 userId)
         {
             this.AttachmentDirectory = attachmentDir;
             this.CreatorId = creatorId;
@@ -150,10 +151,10 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
             {
                 if (item != null && item.Tag != null)
                 {
-                    string id = item.Tag.ToString();
+                    string gid = item.Tag.ToString();
                     try
                     {
-                        sucess = BLLFactory<FileUpload>.Instance.DeleteByUser(id, UserId);
+                        sucess = BLLFactory<FileUpload>.Instance.DeleteByUser(gid, UserId);
                     }
                     catch (Exception ex)
                     {
@@ -187,11 +188,14 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
                 {
                     if (item != null && item.Tag != null)
                     {
-                        string id = item.Tag.ToString();
+                        string gid = item.Tag.ToString();
 
                         try
                         {
-                            FileUploadInfo fileInfo = BLLFactory<FileUpload>.Instance.Download(id);
+                            FileUploadInfo fileInfo = BLLFactory<FileUpload>.Instance.Download(gid);
+                            if (!string.IsNullOrEmpty(fileInfo.BasePath) && !string.IsNullOrEmpty(fileInfo.SavePath) && FileUtil.IsExistFile(string.Format("{0}\\{1}", fileInfo.BasePath, fileInfo.SavePath)))
+                                fileInfo.FileData = FileUtil.FileToBytes(string.Format("{0}\\{1}", fileInfo.BasePath, fileInfo.SavePath));
+
                             if (fileInfo != null && fileInfo.FileData != null)
                             {
                                 string filePath = Path.Combine(path, fileInfo.Name);
@@ -248,22 +252,22 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
                 {
                     if (!string.IsNullOrEmpty(this.AttachmentGid))
                     {
-                        fileList = BLLFactory<FileUpload>.Instance.GetByOwnerAndAttachGUID(this.CreatorId, this.AttachmentGid, this.pager1.PagerInfo);
+                        fileList = BLLFactory<FileUpload>.Instance.GetByOwnerAndAttachGid(this.CreatorId, this.AttachmentGid, this.pager1.PagerInfo);
                     }
                     else
                     {
-                        fileList = BLLFactory<FileUpload>.Instance.GetByOwner(this.CreatorId, this.pager1.PagerInfo);
+                        fileList = BLLFactory<FileUpload>.Instance.GetByCreatorId(this.CreatorId, this.pager1.PagerInfo);
                     }
                 }
                 else
                 {
                     if (!string.IsNullOrEmpty(this.AttachmentGid))
                     {
-                        fileList = BLLFactory<FileUpload>.Instance.GetByAttachGUID(this.AttachmentGid, this.pager1.PagerInfo);
+                        fileList = BLLFactory<FileUpload>.Instance.GetByAttachGid(this.AttachmentGid, this.pager1.PagerInfo);
                     }
                     else
                     {
-                        fileList = BLLFactory<FileUpload>.Instance.GetAllByUser(this.UserId, this.AttachmentDirectory, this.pager1.PagerInfo);
+                        fileList = BLLFactory<FileUpload>.Instance.GetAllByUserId(this.UserId, this.AttachmentDirectory, this.pager1.PagerInfo);
                     }
                 }
                 
@@ -282,7 +286,10 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
                         try
                         {
                             FileUploadInfo tmpInfo = BLLFactory<FileUpload>.Instance.Download(fileInfo.Gid, 48, 48);
-                            if (tmpInfo != null && tmpInfo.FileData != null)
+                            if (!string.IsNullOrEmpty(tmpInfo.BasePath) && !string.IsNullOrEmpty(tmpInfo.SavePath) && FileUtil.IsExistFile(string.Format("{0}\\{1}", tmpInfo.BasePath, tmpInfo.SavePath)))
+                                tmpInfo.FileData = FileUtil.FileToBytes(string.Format("{0}\\{1}", tmpInfo.BasePath, tmpInfo.SavePath));
+
+                            if (fileInfo != null && fileInfo.FileData != null)
                             {
                                 this.imageList1.Images.Add(ImageHelper.BitmapFromBytes(tmpInfo.FileData));
                                 this.imageList2.Images.Add(ImageHelper.BitmapFromBytes(tmpInfo.FileData));
@@ -328,7 +335,7 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
 
                     double fileSize = ConvertHelper.ToDouble(fileInfo.FileSize / 1024, 1);
                     item.SubItems.Add(fileSize.ToString("#,#KB"));
-                    item.SubItems.Add(fileInfo.AddTime.ToShortDateString());
+                    item.SubItems.Add(fileInfo.LastUpdateTime.ToShortDateString());
                     item.ImageIndex = GetImageKey(fileInfo.Name);
                     item.Tag = fileInfo.Gid;
                 }
@@ -363,7 +370,6 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
                 this.listView1.View = View.Details;
             }
         }
-
         private void chkSelect_CheckedChanged(object sender, EventArgs e)
         {
             this.listView1.CheckBoxes = chkSelect.Checked;
@@ -385,11 +391,14 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
             BindData();
         }
 
-        private void DownloadOrViewFile(string id, string name)
+        private void DownloadOrViewFile(string gid, string name)
         {
             try
             {
-                FileUploadInfo fileInfo = BLLFactory<FileUpload>.Instance.Download(id);
+                FileUploadInfo fileInfo = BLLFactory<FileUpload>.Instance.Download(gid);
+                if (!string.IsNullOrEmpty(fileInfo.BasePath) && !string.IsNullOrEmpty(fileInfo.SavePath) && FileUtil.IsExistFile(string.Format("{0}\\{1}", fileInfo.BasePath, fileInfo.SavePath)))
+                    fileInfo.FileData = FileUtil.FileToBytes(string.Format("{0}\\{1}", fileInfo.BasePath, fileInfo.SavePath));
+
                 if (fileInfo != null && fileInfo.FileData != null)
                 {
                     string extension = fileInfo.FileExtend.ToLower();
@@ -496,7 +505,7 @@ namespace JCodes.Framework.AddIn.Basic.BizControl
             }
 
             MessageDxUtil.ShowTips(sucess ? "删除操作成功" : "操作失败:" + lastError);
-            //ProcessDataSaved(this.btnDelete, new EventArgs());
+
             BindData();
         }
 

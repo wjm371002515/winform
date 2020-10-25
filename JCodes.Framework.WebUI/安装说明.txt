@@ -1,3 +1,63 @@
 1、本Web开发框架 Demo 默认使用SQLserver数据库。
 2、由于使用了较新的Jquery函数库，请使用IE9或以上版本，Chrome最新版进行浏览使用。
 3、由于采用了MVC5的技术，请确保部署环境安装了.NET 4.5环境+MVC5的安装包，并进行了相关的IIS设置,如果在64位系统上部署，确保IIS的应用程序池（高级设置）里面设置为CPU32位兼容模式。
+
+@ViewBag.AppName
+
+      public string GetMenuStringCache()
+        {
+            string itemValue = MemoryCacheHelper.GetCacheItem<string>("GetMenuStringCache", delegate()
+                {
+                    return GetMenuString();
+                },
+                null, DateTime.Now.AddMinutes(5) //5分钟以后过期，重新获取
+            );
+            return itemValue;
+        }
+
+Session["LoginUserInfo"] = Portal.hh.ConvertToLoginUser(info);    LoginUserInfo
+Session["FunctionDict"] = functionDict;		Dictionary<string, string>
+Session["RoleList"] = BLLFactory<Role>.Instance.GetRolesByUser(info.Id);		List<RoleInfo>
+Session["canOptCompanyID"] = companysb.ToString(); STRING
+Session["canOptDeptId"] = deptsb.ToString(); STRING
+Session["DictData"] = BLLFactory<DictData>.Instance.GetAllDict();			List<DicKeyValueInfo> 
+Session["AppConfig"] = Portal.hh.config;		AppConfig
+Session["UserId"]	int
+Session["UserId"] = info.Id;
+Session["UserName"] = info.Name;
+Session["LoginName"] = info.LoginName;
+Session["Identity"] = info.Data1;
+
+
+ $.cookie("lock_UserId", '@Session["UserId"]', { path: "/" });
+            $.cookie("lock_UserName", '@Session["UserName"]', { path: "/" });
+            $.cookie("lock_LoginName", '@Session["LoginName"]', { path: "/" });
+			
+			
+ string ip = GetClientIp();
+                string macAddr = Request.ServerVariables["HTTP_USER_AGENT"];
+
+// 判断是否超级管理员
+// 20191207 wjm 新增判断超级管理员 系统配置参数为1
+            // 20171109 wjm 不应该直接去判断这个Name的值，不合理 删除其逻辑判断 超级管理员
+            if (BLLFactory<Sysparameter>.Instance.UserIsSuperAdmin(Portal.gc.UserInfo.Name))
+            {
+                //超级管理员取集团节点
+                list.AddRange(BLLFactory<OU>.Instance.GetTopGroup());
+            }
+            else if (BLLFactory<Role>.Instance.UserHasRole(Portal.gc.UserInfo.Id))
+            {
+                groupInfo = BLLFactory<OU>.Instance.FindById(UserInfo.CompanyId);//公司管理员取公司节点
+                list.Add(groupInfo);
+            }
+
+			if (Portal.gc.IsSuperAdmin)
+                {
+                    allNode = BLLFactory<Function>.Instance.GetTree(typeInfo.Gid);
+                }
+                else
+                {
+                    allNode = BLLFactory<Function>.Instance.GetFunctionNodesByUser(Portal.gc.UserInfo.Id, typeInfo.Gid);
+                }
+
+http://www.wszzfdc.com.cn/tags/1426.html

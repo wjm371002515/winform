@@ -12,7 +12,9 @@ using ICSharpCode.SharpZipLib;
 using ICSharpCode.SharpZipLib.Zip;
 using ICSharpCode.SharpZipLib.Checksums;
 using JCodes.Framework.CommonControl.Other;
-using JCodes.Framework.Common.Format; 
+using JCodes.Framework.Common.Format;
+using JCodes.Framework.jCodesenum;
+using System.Diagnostics; 
 
 namespace JCodes.Framework.Test
 {
@@ -60,6 +62,10 @@ namespace JCodes.Framework.Test
         {
             using (POP3_Client pop3 = new POP3_Client())
             {
+                try {
+                    pop3.Connect(OApop3Server, OApop3ServerPort, true);
+                }
+                catch (Exception ex) { }
                 pop3.Connect(OApop3Server, OApop3ServerPort, true);
                 pop3.Login(OAUsername, OAUserPwd);//两个参数，前者为Email的账号，后者为Email的密码  
 
@@ -97,7 +103,6 @@ namespace JCodes.Framework.Test
                         DateTime dt = DateTime.Now;
                         if (string.Equals(senderAddress, EmailAddress) && string.Equals(subject, EmailSubject.Replace("yyyyMMdd", dt.ToString("yyyyMMdd"))) && mime_message.Date.Date == dt.Date)
                         {
-
                             MIME_Entity[] attachments = mime_message.GetAttachments(true, true);
 
                             foreach (MIME_Entity entity in attachments)
@@ -130,6 +135,12 @@ namespace JCodes.Framework.Test
                                     }
                                 }
                             }
+
+                            if (MessageDxUtil.ShowTips("下载成功") == DialogResult.OK)
+                            {
+                                Process.Start("explorer.exe", OutPath);
+                            }
+
                             break;
                         }
 

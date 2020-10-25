@@ -14,6 +14,7 @@ using JCodes.Framework.Common.Proj;
 using JCodes.Framework.Common.Format;
 using JCodes.Framework.Common.Office;
 using JCodes.Framework.Common.Extension;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn.Proj
 {
@@ -208,11 +209,11 @@ namespace JCodes.Framework.AddIn.Proj
         private void BindData()
         {
             #region 添加别名解析
-            this.winGridViewPager1.DisplayColumns = "Value,Name,Seq,Remark,EditTime";
+            this.winGridViewPager1.DisplayColumns = "IntValue,Name,Seq,Remark,EditTime";
             this.winGridViewPager1.AddColumnAlias("GID", "编号");
             this.winGridViewPager1.AddColumnAlias("DicttypeID", "字典大类");
             this.winGridViewPager1.AddColumnAlias("Name", "项目名称");
-            this.winGridViewPager1.AddColumnAlias("Value", "项目值");
+            this.winGridViewPager1.AddColumnAlias("IntValue", "项目值");
             this.winGridViewPager1.AddColumnAlias("Seq", "字典排序");
             this.winGridViewPager1.AddColumnAlias("Remark", "备注");
             this.winGridViewPager1.AddColumnAlias("EditorId", "修改用户");
@@ -272,6 +273,10 @@ namespace JCodes.Framework.AddIn.Proj
             TreeNode node = this.treeView1.SelectedNode;
             if (node != null)
             {
+                // 不是选择根节点让其遍历处理
+                while (node.Parent != null) {
+                    node = node.Parent;
+                }
                 return Convert.ToInt32(node.Tag);
             }
             return -1;
@@ -405,7 +410,7 @@ namespace JCodes.Framework.AddIn.Proj
 
         private void winGridViewPager1_OnEditSelected(object sender, EventArgs e)
         {
-            Int32 Id = this.winGridViewPager1.gridView1.GetFocusedRowCellDisplayText("Value").ToInt32();
+            Int32 Id = this.winGridViewPager1.gridView1.GetFocusedRowCellDisplayText("IntValue").ToInt32();
 
             if (Id > 0)
             {
@@ -431,10 +436,10 @@ namespace JCodes.Framework.AddIn.Proj
             int[] rowSelected = this.winGridViewPager1.GridView1.GetSelectedRows();
             foreach (int iRow in rowSelected)
             {
-                string ID = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "Value");
+                Int32 Id = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "IntValue").ToInt32();
 
                 // 再删除子节点本身
-                xmldicthelper.DeleteByPathNode(string.Format("datatype/dataitem/item[id=\"{0}\"]/subdic/item[value=\"{1}\"]", lblDictType.Tag, ID));
+                xmldicthelper.DeleteByPathNode(string.Format("datatype/dataitem/item[id=\"{0}\"]/subdic/item[value=\"{1}\"]", lblDictType.Tag, Id));
                 xmldicthelper.Save(false);
                 
             }
@@ -454,7 +459,7 @@ namespace JCodes.Framework.AddIn.Proj
             if (this.winGridViewPager1.gridView1.Columns.Count > 0 && this.winGridViewPager1.gridView1.RowCount > 0)
             {
                 this.winGridViewPager1.gridView1.Columns["Name"].Width = 200;
-                this.winGridViewPager1.gridView1.Columns["Value"].Width = 200;
+                this.winGridViewPager1.gridView1.Columns["IntValue"].Width = 200;
             }
         }
 

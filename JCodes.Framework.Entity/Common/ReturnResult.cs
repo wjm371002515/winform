@@ -44,6 +44,11 @@ namespace JCodes.Framework.Entity
 		/// 额外数据3
 		/// </summary>
 		private String m_Data3 = string.Empty;
+
+		/// <summary>
+		/// 日志级别
+		/// </summary>
+		private Int16 m_LogLevel = 0;
 		#endregion
 
 		#region Property Members
@@ -147,6 +152,32 @@ namespace JCodes.Framework.Entity
 			set
 			{
 				this.m_Data3 = value;
+			}
+		}
+
+		/// <summary>
+		/// 日志级别
+		/// 1-LOG_LEVEL_EMERG,
+		/// 2-LOG_LEVEL_ALERT,
+		/// 3-LOG_LEVEL_CRIT,
+		/// 4-LOG_LEVEL_ERR,
+		/// 5-LOG_LEVEL_WARN,
+		/// 6-LOG_LEVEL_NOTICE,
+		/// 7-LOG_LEVEL_INFO,
+		/// 8-LOG_LEVEL_DEBUG,
+		/// 9-LOG_LEVEL_SQL
+		/// </summary>
+		[DataMember]
+		[DisplayName("日志级别")]
+		public virtual Int16 LogLevel
+		{
+			get
+			{
+				return this.m_LogLevel;
+			}
+			set
+			{
+				this.m_LogLevel = value;
 			}
 		}
 		#endregion

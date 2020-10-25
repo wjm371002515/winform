@@ -18,6 +18,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using JCodes.Framework.CommonControl.Controls;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn.Basic
 { 
@@ -190,7 +191,7 @@ namespace JCodes.Framework.AddIn.Basic
         {
             SearchCondition condition = new SearchCondition();
             condition.AddCondition("LoginName", this.txtLoginName.Text, SqlOperator.Like);
-            condition.AddCondition("FullName", this.txtRealName.Text, SqlOperator.Like);
+            condition.AddCondition("LoginName", this.txtRealName.Text, SqlOperator.Like);
             condition.AddCondition("Remark", this.txtNote.Text, SqlOperator.Like);
             condition.AddCondition("IP", this.txtIPAddress.Text, SqlOperator.Like);
             condition.AddCondition("Mac", this.txtMacAddress.Text, SqlOperator.Like);
@@ -223,7 +224,7 @@ namespace JCodes.Framework.AddIn.Basic
                 where = treeConditionSql;
             }
             // 增加系统可以访问的公司部门的权限
-            where += " and (CompanyId " + canOptCompanyID + ")";
+            where += " and (CompanyId " + canOptCompanyId + ")";
 
             return where;
         }
@@ -234,7 +235,7 @@ namespace JCodes.Framework.AddIn.Basic
         private void BindData()
         {
             #region 添加别名解析
-            this.winGridViewPager1.DisplayColumns = "ID,UserId,LoginName,FullName,CompanyId,CompanyName,Remark,IP,Mac,SystemtypeId,LastUpdateTime";
+            this.winGridViewPager1.DisplayColumns = "ID,UserId,LoginName,LoginName,CompanyId,CompanyName,Remark,IP,Mac,SystemtypeId,LastUpdateTime";
             this.winGridViewPager1.ColumnNameAlias = BLLFactory<LoginLog>.Instance.GetColumnNameAlias();//字段列显示名称转义
             #endregion
 
@@ -308,8 +309,8 @@ namespace JCodes.Framework.AddIn.Basic
                     dr = dtNew.NewRow();
                     dr["序号"] = j++;
                     dr["用户Id"] = list[i].UserId;
-                    dr["登录名"] = list[i].LoginName;
-                    dr["真实名"] = list[i].FullName;
+                    dr["用户名"] = list[i].Name;
+                    dr["登陆名"] = list[i].LoginName;
                     dr["公司Id"] = list[i].CompanyId;
                     //dr["公司名字"] = list[i].CompanyName;
                     dr["备注"] = list[i].Remark;
@@ -359,12 +360,12 @@ namespace JCodes.Framework.AddIn.Basic
                     TreeNode topnode = new TreeNode();
                     topnode.Text = groupInfo.Name;
                     topnode.Name = groupInfo.Id.ToString();
-                    topnode.Tag = string.Format("CompanyId = {0} and SystemtypeId = '{1}'", groupInfo.Id, Portal.gc.SystemType);
+                    topnode.Tag = string.Format("CompanyId = {0} and SystemtypeId = '{1}'", groupInfo.Id, Portal.gc.SYSTEMTYPEID);
                     topnode.ImageIndex = groupInfo.OuType;//Portal.gc.GetImageIndex(groupInfo.OuType);
                     topnode.SelectedImageIndex = groupInfo.OuType;//Portal.gc.GetImageIndex(groupInfo.OuType);
                     this.treeView1.Nodes.Add(topnode);
 
-                    List<OUNodeInfo> sublist = BLLFactory<OU>.Instance.GetTreeByID(groupInfo.Id);
+                    List<OUNodeInfo> sublist = BLLFactory<OU>.Instance.GetTreeById(groupInfo.Id);
                     AddOUNode(sublist, topnode);
                 }
             }
@@ -381,14 +382,14 @@ namespace JCodes.Framework.AddIn.Basic
                 TreeNode ouNode = new TreeNode();
                 ouNode.Text = ouInfo.Name;
                 ouNode.Name = ouInfo.Id.ToString();
-                ouNode.Tag = string.Format("CompanyId = {0} and SystemtypeId = '{1}'", ouInfo.Id, Portal.gc.SystemType);
+                ouNode.Tag = string.Format("CompanyId = {0} and SystemtypeId = '{1}'", ouInfo.Id, Portal.gc.SYSTEMTYPEID);
                 if (ouInfo.IsDelete == 0)
                 {
                     ouNode.ForeColor = Color.Red;
                     continue;//跳过不显示
                 }
-                ouNode.ImageIndex = ouInfo.OuType;//Portal.gc.GetImageIndex(ouInfo.Category);
-                ouNode.SelectedImageIndex = ouInfo.OuType;//Portal.gc.GetImageIndex(ouInfo.Category);
+                ouNode.ImageIndex = Portal.gc.GetImageIndex((OuType)ouInfo.OuType);
+                ouNode.SelectedImageIndex = Portal.gc.GetImageIndex((OuType)ouInfo.OuType);
                 parentNode.Nodes.Add(ouNode);
             }
         }

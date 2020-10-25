@@ -15,6 +15,8 @@ using JCodes.Framework.Common.Format;
 using JCodes.Framework.CommonControl.Other.Images;
 using JCodes.Framework.Common.Images;
 using JCodes.Framework.CommonControl.DocViewer;
+using JCodes.Framework.jCodesenum;
+using JCodes.Framework.Common.Office;
 
 namespace JCodes.Framework.AddIn.Basic
 {
@@ -35,7 +37,7 @@ namespace JCodes.Framework.AddIn.Basic
         /// <summary>
         /// 设置附件的存储目录分类
         /// </summary>
-        public string AttachmentDirectory = "业务附件";
+        public AttachmentType AttachmentDirectory = AttachmentType.业务附件;
 
         /// <summary>
         /// 设置附件组的GUID
@@ -113,10 +115,13 @@ namespace JCodes.Framework.AddIn.Basic
             {
                 if (item != null && item.Tag != null)
                 {
-                    string id = item.Tag.ToString();
+                    if (LoginUserInfo == null)
+                        LoginUserInfo = Cache.Instance["LoginUserInfo"] as LoginUserInfo;
+
+                    string gid = item.Tag.ToString();
                     try
                     {
-                        sucess = BLLFactory<FileUpload>.Instance.DeleteByUser(id, LoginUserInfo.Id);
+                        sucess = BLLFactory<FileUpload>.Instance.DeleteByUser(gid, LoginUserInfo.Id);
                     }
                     catch (Exception ex)
                     {
@@ -152,11 +157,15 @@ namespace JCodes.Framework.AddIn.Basic
                 {
                     if (item != null && item.Tag != null)
                     {
-                        string id = item.Tag.ToString();
+                        string gid = item.Tag.ToString();
 
                         try
                         {
-                            FileUploadInfo fileInfo = BLLFactory<FileUpload>.Instance.Download(id);
+                            FileUploadInfo fileInfo = BLLFactory<FileUpload>.Instance.Download(gid);
+
+                            if (!string.IsNullOrEmpty(fileInfo.BasePath) && !string.IsNullOrEmpty(fileInfo.SavePath) && FileUtil.IsExistFile(string.Format("{0}\\{1}", fileInfo.BasePath, fileInfo.SavePath)))
+                                fileInfo.FileData = FileUtil.FileToBytes(string.Format("{0}\\{1}", fileInfo.BasePath, fileInfo.SavePath));
+
                             if (fileInfo != null && fileInfo.FileData != null)
                             {
                                 string filePath = Path.Combine(path, fileInfo.Name);
@@ -200,7 +209,7 @@ namespace JCodes.Framework.AddIn.Basic
             this.imageList2.Images.Clear();
             imageDict.Clear();//刷新需要清除
 
-            List<FileUploadInfo> fileList = BLLFactory<FileUpload>.Instance.GetByAttachGUID(this.AttachmentGid);
+            List<FileUploadInfo> fileList = BLLFactory<FileUpload>.Instance.GetByAttachGid(this.AttachmentGid);
 
             int k = 0;
             System.Drawing.Icon icon = null;
@@ -217,6 +226,10 @@ namespace JCodes.Framework.AddIn.Basic
                     try
                     {
                         FileUploadInfo tmpInfo = BLLFactory<FileUpload>.Instance.Download(fileInfo.Gid, 48, 48);
+
+                        if (!string.IsNullOrEmpty(tmpInfo.BasePath) && !string.IsNullOrEmpty(tmpInfo.SavePath) && FileUtil.IsExistFile(string.Format("{0}\\{1}", tmpInfo.BasePath, tmpInfo.SavePath)))
+                            tmpInfo.FileData = FileUtil.FileToBytes(string.Format("{0}\\{1}", tmpInfo.BasePath, tmpInfo.SavePath));
+
                         if (tmpInfo != null && tmpInfo.FileData != null)
                         {
                             this.imageList1.Images.Add(ImageHelper.BitmapFromBytes(tmpInfo.FileData));
@@ -262,7 +275,7 @@ namespace JCodes.Framework.AddIn.Basic
 
                 double fileSize = ConvertHelper.ToDouble(fileInfo.FileSize / 1024, 1);
                 item.SubItems.Add(fileSize.ToString("#,#KB"));
-                item.SubItems.Add(fileInfo.AddTime.ToShortDateString());
+                item.SubItems.Add(fileInfo.LastUpdateTime.ToShortDateString());
                 item.ImageIndex = GetImageKey(fileInfo.Name);
                 item.Tag = fileInfo.Gid;
             }
@@ -311,6 +324,10 @@ namespace JCodes.Framework.AddIn.Basic
             try
             {
                 FileUploadInfo fileInfo = BLLFactory<FileUpload>.Instance.Download(id);
+
+                if (!string.IsNullOrEmpty(fileInfo.BasePath) && !string.IsNullOrEmpty(fileInfo.SavePath) && FileUtil.IsExistFile(string.Format("{0}\\{1}", fileInfo.BasePath, fileInfo.SavePath)))
+                    fileInfo.FileData = FileUtil.FileToBytes(string.Format("{0}\\{1}", fileInfo.BasePath, fileInfo.SavePath));
+
                 if (fileInfo != null && fileInfo.FileData != null)
                 {
                     string extension = fileInfo.FileExtend.ToLower();
@@ -377,8 +394,8 @@ namespace JCodes.Framework.AddIn.Basic
             ListViewItem item = this.listView1.GetItemAt(e.X, e.Y);
             if (item != null && item.Tag != null)
             {
-                string id = item.Tag.ToString();
-                DownloadOrViewFile(id, item.Text);
+                string gid = item.Tag.ToString();
+                DownloadOrViewFile(gid, item.Text);
             }
         }
 
@@ -399,8 +416,8 @@ namespace JCodes.Framework.AddIn.Basic
                 ListViewItem item = this.listView1.SelectedItems[0];
                 if (item != null && item.Tag != null)
                 {
-                    string id = item.Tag.ToString();
-                    DownloadOrViewFile(id, item.Text);
+                    string gid = item.Tag.ToString();
+                    DownloadOrViewFile(gid, item.Text);
                 }
             }
         }
@@ -415,8 +432,8 @@ namespace JCodes.Framework.AddIn.Basic
                 {
                     if (item != null && item.Tag != null)
                     {
-                        string id = item.Tag.ToString();
-                        sucess = BLLFactory<FileUpload>.Instance.DeleteByUser(id, LoginUserInfo.Id);
+                        string gid = item.Tag.ToString();
+                        sucess = BLLFactory<FileUpload>.Instance.DeleteByUser(gid, LoginUserInfo.Id);
                     }
                 }
             }

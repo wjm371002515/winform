@@ -55,9 +55,13 @@
     <Compile Include="Dic\IDistrict.cs" />
     <Compile Include="Dic\ISysparameter.cs" />
     <Compile Include="Dic\IProvince.cs" />
+    <Compile Include="Dongnanhai\IDongnanhaiVotesUser.cs" />
     <Compile Include="Dongnanhai\IDongnanhaiVotes.cs" />
     <Compile Include="General\IGeneralSql.cs" />
     <Compile Include="Machines\Machines.cs" />
+    <Compile Include="Other\IConsignment.cs" />
+    <Compile Include="Other\IUnissuedBond.cs" />
+    <Compile Include="Other\IUnissuedBondUpdateData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\IBlackIP.cs" />
     <Compile Include="Security\IFunction.cs" />
@@ -68,6 +72,7 @@
     <Compile Include="Security\IOU.cs" />
     <Compile Include="Security\IRole.cs" />
     <Compile Include="Security\IRoleData.cs" />
+    <Compile Include="Security\ISystemAuthorize.cs" />
     <Compile Include="Security\ISystemType.cs" />
     <Compile Include="Security\IUser.cs" />
     <Compile Include="WareHouseMis\IItemDetail.cs" />

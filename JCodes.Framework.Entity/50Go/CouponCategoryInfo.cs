@@ -201,6 +201,8 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 是否禁用
+		/// 1-是,
+		/// 2-否
 		/// </summary>
 		[DataMember]
 		[DisplayName("是否禁用")]

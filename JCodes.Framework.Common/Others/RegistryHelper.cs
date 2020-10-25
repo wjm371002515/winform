@@ -3,7 +3,7 @@ using Microsoft.Win32;
 using System.Windows.Forms;
 using JCodes.Framework.Common.Files;
 using JCodes.Framework.Common.Encrypt;
-using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.Common.Office
 {

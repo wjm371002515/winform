@@ -4,7 +4,7 @@ using System.Text;
 using System.IO;
 using System.Security.Cryptography;
 using JCodes.Framework.Common.Format;
-using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.Common.Files
 {
@@ -540,6 +540,40 @@ namespace JCodes.Framework.Common.Files
             return DriveInfo.GetDrives();
         }
 
+        /// <summary>
+        /// 拷贝文件夹
+        /// </summary>
+        /// <param name="srcPath">文件夹路径</param>
+        /// <param name="descPath"></param>
+        /// <returns></returns>
+        public static void CopyDirectory(string srcPath, string descPath) {
+            //如果目录不存在，则抛出异常
+            if (!IsExistDirectory(srcPath))
+            {
+                throw new FileNotFoundException();
+            }
+
+            try {
+                if (!IsExistDirectory(descPath))
+                {
+                    CreateDirectory(descPath);
+                }
+                string[] files = GetAllFileNames(srcPath);
+                foreach (var file in files) {
+                    string descFile = file.Replace(srcPath, descPath);
+                    FileInfo f = new FileInfo(descFile);
+                    if ( f!= null && !f.Directory.Exists)
+                        DirectoryUtil.CreateDirectory(f.DirectoryName);
+                    FileUtil.Copy(file, descFile);
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(DirectoryUtil));
+                throw ex;
+
+            }
+        }
         #endregion
 
     }

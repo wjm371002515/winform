@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using JCodes.Framework.Common;
 using JCodes.Framework.Entity;
 using JCodes.Framework.Common.Framework;
+using JCodes.Framework.jCodesenum;
+using JCodes.Framework.IDAL;
 
 namespace JCodes.Framework.BLL
 {
@@ -14,11 +16,22 @@ namespace JCodes.Framework.BLL
     /// </summary>
 	public class OperationLogSetting : BaseBLL<OperationLogSettingInfo>
     {
+        private IOperationLogSetting dal = null;
+
         public OperationLogSetting() : base()
         {
-            base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+            if (isMultiDatabase)
+            {
+                base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name, dicmultiDatabase[this.GetType().Name].ToString());
+            }
+            else
+            {
+                base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+            }
 
             baseDal.OnOperationLog += new OperationLogEventHandler(OperationLog.OnOperationLog);//如果需要记录操作日志，则实现这个事件
+
+            dal = baseDal as IOperationLogSetting;
         }
 
         /// <summary>
@@ -28,7 +41,7 @@ namespace JCodes.Framework.BLL
         /// <returns></returns>
         public bool IsTableNeedtoLog(string tablename, DbTransaction trans = null)
         {
-            string condition = string.Format("TableName = '{0}' and Forbid = 0 ", tablename);
+            string condition = string.Format("TableName = '{0}' and IsForbid = {1} ", tablename, (short)IsForbid.是);
             return IsExistRecord(condition, trans);
         }
 
@@ -39,7 +52,7 @@ namespace JCodes.Framework.BLL
         /// <returns></returns>
         public OperationLogSettingInfo FindByTableName(string tablename, DbTransaction trans = null)
         {
-             string condition = string.Format("TableName = '{0}' and Forbid = 0 ", tablename);
+            string condition = string.Format("TableName = '{0}' and IsForbid = {1} ", tablename, (short)IsForbid.是);
              return FindSingle(condition, trans);
         }
 

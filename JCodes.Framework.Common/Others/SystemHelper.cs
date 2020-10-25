@@ -47,6 +47,32 @@ namespace JCodes.Framework.Common.Others
             proc.Dispose();
         }
 
+        /// <summary>
+        /// 调用BAT文件，并且传递参数
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="outstr"></param>
+
+        public static void RunCmd(string fileName, string arguments, out string outstr)
+        {
+            Process proc = new Process();
+            proc.StartInfo.CreateNoWindow = true;
+            proc.StartInfo.FileName = fileName;
+            if (!string.IsNullOrEmpty(arguments)) 
+                proc.StartInfo.Arguments = arguments;
+            proc.StartInfo.UseShellExecute = false;
+            proc.StartInfo.RedirectStandardError = true;
+            proc.StartInfo.RedirectStandardInput = true;
+            proc.StartInfo.RedirectStandardOutput = true;
+            proc.Start();
+            //proc.StandardInput.WriteLine(cmd);
+            //proc.StandardInput.WriteLine("exit");//最后打入退出命令
+            outstr = proc.StandardOutput.ReadToEnd();   // 把结果内容输出出去
+            proc.WaitForExit();
+            proc.Close();
+            proc.Dispose();
+        }
+
         /// <summary> 
         /// 打开软件并执行命令 
         /// </summary> 

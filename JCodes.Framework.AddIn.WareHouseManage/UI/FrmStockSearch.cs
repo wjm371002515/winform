@@ -474,7 +474,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
                 string ID = this.winGridView1.gridView1.GetRowCellDisplayText(iRow, "ID");
                 if (!string.IsNullOrEmpty(ID))
                 {
-                    WareInfo info = BLLFactory<Stock>.Instance.FindByID(ID);
+                    WareInfo info = BLLFactory<Stock>.Instance.FindById(ID);
                     if (info != null)
                     {
                         FrmStockAlert dlg = new FrmStockAlert();
@@ -503,7 +503,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
                 string ID = this.winGridView1.gridView1.GetRowCellDisplayText(iRow, "ID");
                 if (!string.IsNullOrEmpty(ID))
                 {
-                    WareInfo info = BLLFactory<Stock>.Instance.FindByID(ID);
+                    WareInfo info = BLLFactory<Stock>.Instance.FindById(ID);
                     if (info != null)
                     {
                         FrmEditStock dlg = new FrmEditStock();
@@ -588,8 +588,6 @@ namespace JCodes.Framework.AddIn.WareHouseManage
 
         private void InitTree()
         {
-            base.LoginUserInfo = Cache.Instance["LoginUserInfo"] as LoginUserInfo;
-
             this.treeView1.BeginUpdate();
             this.treeView1.Nodes.Clear();
 

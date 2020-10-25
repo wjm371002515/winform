@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using System;
 using JCodes.Framework.jCodesenum;
+using System.Text;
 
 namespace JCodes.Framework.WebUI.Controllers
 {
@@ -23,6 +24,12 @@ namespace JCodes.Framework.WebUI.Controllers
         {
             Session.Clear();
 
+            // 设置标题
+            AppConfig config = new AppConfig();
+            if (config != null)
+                ViewBag.AppName = config.AppConfigGet("AppName") + " -";
+            ViewBag.SubTitle = "登陆界面";
+
             return View();
         }
 
@@ -32,6 +39,12 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public ActionResult Lock()
         {
+            // 设置标题
+            AppConfig config = new AppConfig();
+            if (config != null)
+                ViewBag.AppName = config.AppConfigGet("AppName");
+            ViewBag.SubTitle = "登陆界面";
+
             return View("lockpage");
         }
 
@@ -43,19 +56,13 @@ namespace JCodes.Framework.WebUI.Controllers
         {
             Session.Clear();
             ReturnResult result = new ReturnResult();
-            result.ErrorCode = 0;
+
+            // 系统自动生成错误信息
+            result.ErrorCode = 000000;
+            result.LogLevel = 7;
+            result.ErrorMessage = "操作成功[OPERATION_OK]";
 
             return ToJsonContent(result);
-        }
-
-        /// <summary>
-        /// 第二种登陆界面
-        /// </summary>
-        public ActionResult SecondIndex()
-        {
-            Session.Clear();
-
-            return View();
         }
 
         /// <summary>
@@ -85,48 +92,66 @@ namespace JCodes.Framework.WebUI.Controllers
             }
             else
             {
-                string ip = NetworkUtil.GetLocalIP();   // TODO 这里要改成requestIP
-                string macAddr = HardwareInfoHelper.GetMacAddress();
+                string ip = GetClientIp();
+                // 这里用USER_AGENT 作为mac信息存入数据库
+                string macAddr = Request.ServerVariables["HTTP_USER_AGENT"];
+
                 string identity = BLLFactory<User>.Instance.VerifyUser(username, password, Const.SystemTypeID, ip, macAddr);
                 if (!string.IsNullOrEmpty(identity))
                 {
                     UserInfo info = BLLFactory<User>.Instance.GetUserByName(username);
-                    if (info != null)
+
+                    // 20200221 wjm 调整版本模式同winform
+                    // 20191207 wjm 新增判断超级管理员 系统配置参数为1
+                    // 20171109 wjm 不应该直接去判断这个Name的值，不合理 删除其逻辑判断
+                    if (info != null && BLLFactory<Sysparameter>.Instance.UserIsSuperAdmin(username))
                     {
-                        result.ErrorCode = 0;
-                        
-                        //方便方法使用
-                        Session["UserInfo"] = info;
+                        Portal.hh.UserInfo = info;
+                        Portal.hh.IsSuperAdmin = true;
 
-                        Session["FullName"] = info.FullName;
-                        Session["UserID"] = info.Id;
-                        Session["Company_ID"] = info.CompanyId;
-                        Session["Dept_ID"] = info.DeptId;
-                        /*bool isSuperAdmin = BLLFactory<User>.Instance.UserInRole(info.Name, RoleInfo.SuperAdminName);//判断是否超级管理员
-                        Session["IsSuperAdmin"] = isSuperAdmin;*/
+                        // 系统自动生成错误信息
+                        result.ErrorCode = 000000;
+                        result.LogLevel = 7;
+                        result.ErrorMessage = "操作成功[OPERATION_OK]";
 
-                        Session["Identity"] = info.Name.Trim();
+                        result.Data1 = "超级管理员";
+                    }
+                    else if (info != null && BLLFactory<Role>.Instance.UserHasRole(info.Id))
+                    {
+                        Portal.hh.UserInfo = info;
+                        Portal.hh.IsSuperAdmin = false;
 
-                        #region 取得用户的授权信息，并存储在Session中
+                        // 系统自动生成错误信息
+                        result.ErrorCode = 000000;
+                        result.LogLevel = 7;
+                        result.ErrorMessage = "操作成功[OPERATION_OK]";
+                    }
+                    else
+                    {
+                        LogHelper.WriteLog(LogLevel.LOG_LEVEL_ERR, string.Format("该用户({0})没有管理员权限", username), typeof(LoginController));
 
-                        List<FunctionInfo> functionList = BLLFactory<Functions>.Instance.GetFunctionsByUser(info.Id, Const.SystemTypeID);
-                        Dictionary<string, string> functionDict = new Dictionary<string, string>();
-                        foreach (FunctionInfo functionInfo in functionList)
-                        {
-                            /*if (!string.IsNullOrEmpty(functionInfo.FunctionId) &&
-                                !functionDict.ContainsKey(functionInfo.FunctionId))
-                            {
-                                functionDict.Add(functionInfo.FunctionId, functionInfo.Name);
-                            }*/
-                        }
-                        Session["Functions"] = functionDict;
+                        // 系统自动生成错误信息
+                        result.ErrorCode = 100001;
+                        result.LogLevel = 4;
+                        result.ErrorMessage = "用户没有管理员权限[WEB_USER_]";
 
-                        #endregion
+                    }
+
+                    if (0 == result.ErrorCode)
+                    {
+                        // 加载缓存
+                        LoadCache(info);
                     }
                 }
                 else
                 {
-                    result.ErrorMessage = "用户名输入错误或者您已经被禁用";
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_ERR, string.Format("用户名或密码错误或被禁止登陆[{0}]",username), typeof(LoginController));
+
+                    // 系统自动生成错误信息
+                    result.ErrorCode = 100000;
+                    result.LogLevel = 4;
+                    result.ErrorMessage = "用户名或密码错误或被禁止登陆[WEB_USER_PWD_REFUSE_ERR]";
+                    result.Data1 = username;
                 }
             }
 
@@ -160,6 +185,70 @@ namespace JCodes.Framework.WebUI.Controllers
             return userIP;
         }
 
+        /// <summary>
+        /// 加载缓存
+        /// </summary>
+        /// <returns></returns>
+        public void LoadCache(UserInfo info)
+        {
+            Dictionary<string, string> functionDict = new Dictionary<string, string>();
+            List<FunctionInfo> list = BLLFactory<Function>.Instance.GetFunctionsByUser(info.Id, Portal.hh.SYSTEMTYPEID);
+            if (list != null && list.Count > 0)
+            {
+                functionDict.Clear();
+                foreach (FunctionInfo functionInfo in list)
+                {
+                    if (!functionDict.ContainsKey(functionInfo.DllPath))
+                    {
+                        functionDict.Add(functionInfo.DllPath, functionInfo.Name);
+                    }
+                }
+            }
+
+            #region 获取角色对应的用户操作部门及公司范围
+            List<int> companyLst = BLLFactory<RoleData>.Instance.GetBelongCompanysByUser(info.Id);
+            List<int> deptLst = BLLFactory<RoleData>.Instance.GetBelongDeptsByUser(info.Id);
+            StringBuilder companysb = new StringBuilder();
+            StringBuilder deptsb = new StringBuilder();
+            companysb.Append(" in (");
+            for (int i = 0; i < companyLst.Count; i++)
+            {
+                companysb.Append(" '" + companyLst[i] + "', ");
+            }
+            companysb.Append(" '')");
+
+            if (companyLst.Contains(-1))
+            {
+                companysb.Append(" or (1 = 1)");
+            }
+
+            deptsb.Append(" in (");
+            for (int i = 0; i < deptLst.Count; i++)
+            {
+                deptsb.Append(" '" + deptsb[i] + "', ");
+            }
+            deptsb.Append(" '')");
+
+            if (deptLst.Contains(-11))
+            {
+                deptsb.Append(" or (1 = 1)");
+            }
+            #endregion
+
+            // 并保持到缓存中
+            Session["LoginUserInfo"] = Portal.hh.ConvertToLoginUser(info);
+            Session["FunctionDict"] = functionDict;
+            Session["RoleList"] = BLLFactory<Role>.Instance.GetRolesByUser(info.Id);
+            Session["canOptCompanyId"] = companysb.ToString();
+            Session["canOptDeptId"] = deptsb.ToString();
+            Session["DictData"] = BLLFactory<DictData>.Instance.GetAllDict();
+            Session["AppConfig"] = Portal.hh.config;
+            // 新增WEB特有
+            Session["UserId"] = info.Id;
+            Session["UserName"] = info.Name;
+            Session["LoginName"] = info.LoginName;
+            Session["Identity"] = info.Data1;
+        }
 
         /// <summary>
         /// 验证码的实现

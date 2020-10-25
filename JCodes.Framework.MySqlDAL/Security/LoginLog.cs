@@ -111,7 +111,7 @@ namespace JCodes.Framework.MySqlDAL
         /// </summary>
         /// <param name="userId">登录用户ID</param>
         /// <returns></returns>
-        public LoginLogInfo GetLastLoginInfo(string userId)
+        public LoginLogInfo GetLastLoginInfo(Int32 userId)
         {
             string sql = string.Format("Select * from {0} where UserId='{1}' order by LastUpdateTime desc LIMIT 2", tableName, userId);
             List<LoginLogInfo> list = GetList(sql, null);

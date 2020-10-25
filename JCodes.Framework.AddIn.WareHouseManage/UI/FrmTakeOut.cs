@@ -20,6 +20,7 @@ using JCodes.Framework.CommonControl.LocalReports;
 using JCodes.Framework.BLL;
 using JCodes.Framework.AddIn.Basic;
 using JCodes.Framework.Common.Format;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn.WareHouseManage
 {
@@ -47,8 +48,8 @@ namespace JCodes.Framework.AddIn.WareHouseManage
             this.txtSearchWareHouse.SelectedIndex = 0;
 
             this.txtCreator.Items.Clear();
-            this.txtCreator.Items.Add(this.LoginUserInfo.FullName);
-            this.txtCreator.SelectedIndex = this.txtCreator.FindString(this.LoginUserInfo.FullName);
+            this.txtCreator.Items.Add(this.LoginUserInfo.LoginName);
+            this.txtCreator.SelectedIndex = this.txtCreator.FindString(this.LoginUserInfo.LoginName);
 
             this.txtHandNo.Text = BLLFactory<PurchaseHeader>.Instance.GetHandNumber(true);//进货单号
             this.txtCreateDate.Enabled = false;
@@ -114,14 +115,14 @@ namespace JCodes.Framework.AddIn.WareHouseManage
             {
                 if (e.Value != null)
                 {
-                    e.DisplayText = BLLFactory<WareHouse>.Instance.FindByID(e.Value).Name;
+                    e.DisplayText = BLLFactory<WareHouse>.Instance.FindById(e.Value).Name;
                 }
             }
             else if (columnName == "MANUFACTURE")
             {
                 if (e.Value != null)
                 {
-                    e.DisplayText = BLLFactory<Supplier>.Instance.FindByID(e.Value).Name;
+                    e.DisplayText = BLLFactory<Supplier>.Instance.FindById(e.Value).Name;
                 }
             }
         }
@@ -185,7 +186,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
             {
                 if (e.Value != null)
                 {
-                    e.DisplayText = BLLFactory<WareHouse>.Instance.FindByID(e.Value).Name;
+                    e.DisplayText = BLLFactory<WareHouse>.Instance.FindById(e.Value).Name;
                 }
             }
         }
@@ -417,7 +418,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
                 headInfo.OrderNo = this.txtHandNo.Text;
                 headInfo.PickingPeople = this.txtPickingPeople.GetComboBoxStrValue();
                 headInfo.Remark = this.txtNote.Text;
-                headInfo.OperationType = "出库";
+                headInfo.OperationType = (short)OperationType.删除; // 出库
                 headInfo.WareHouseId = this.txtWareHouse.GetComboBoxStrValue().ToInt32();
                 headInfo.CreatorYear = DateTimeHelper.GetServerDateTime2().Year;
                 headInfo.CreatorMonth = (short)DateTimeHelper.GetServerDateTime2().Month;
@@ -687,7 +688,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
             headInfo.OrderNo = this.txtHandNo.Text;
             headInfo.PickingPeople = this.txtPickingPeople.Text;
             headInfo.Remark = this.txtNote.Text;
-            headInfo.OperationType = "出库";
+            headInfo.OperationType = (short)OperationType.删除;
             headInfo.WareHouseId = this.txtWareHouse.GetComboBoxStrValue().ToInt32();
             headInfo.CreatorYear = DateTimeHelper.GetServerDateTime2().Year;
             headInfo.CreatorMonth = (short)DateTimeHelper.GetServerDateTime2().Month;

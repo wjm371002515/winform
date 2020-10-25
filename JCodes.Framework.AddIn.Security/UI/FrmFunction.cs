@@ -17,12 +17,13 @@ using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.CommonControl.Controls;
 using JCodes.Framework.AddIn.Basic;
 using JCodes.Framework.Common.Extension;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn.Security
 {
     public partial class FrmFunction : BaseDock
     {
-        private string currentID = string.Empty;
+        private string currentId = string.Empty;
 
         public FrmFunction()
         {
@@ -38,9 +39,9 @@ namespace JCodes.Framework.AddIn.Security
 
         void Init_Function()
         {
-            btnAdd.Enabled = HasFunction("Function/add");
-            btnDelete.Enabled = HasFunction("Function/del");
-            btnBatchAdd.Enabled = HasFunction("Function/BatchAdd");
+            btnAdd.Enabled = HasFunction("Function/Set/FunctionAdd");
+            btnDelete.Enabled = HasFunction("Function/Set/FunctionDel");
+            btnBatchAdd.Enabled = HasFunction("Function/Set/FunctionBatchAdd");
         }
 
         /// <summary>
@@ -79,7 +80,7 @@ namespace JCodes.Framework.AddIn.Security
                 string systemType = typeInfo.Gid;//系统标识ID
 
                 //绑定树控件
-                List<FunctionNodeInfo> funList = BLLFactory<Functions>.Instance.GetTree(systemType);
+                List<FunctionNodeInfo> funList = BLLFactory<Function>.Instance.GetTree(systemType);
                 foreach (FunctionNodeInfo info in funList)
                 {
                     TreeNode item = new TreeNode();
@@ -118,7 +119,7 @@ namespace JCodes.Framework.AddIn.Security
 
         private void ClearInput()
         {
-            this.txtFunctionID.Text = "";
+            this.txtDllPath.Text = "";
             this.txtName.Text = "";
             this.functionControl1.Value = "-1";
             this.lvwRole.Items.Clear();
@@ -160,21 +161,27 @@ namespace JCodes.Framework.AddIn.Security
 
         private void menu_Delete_Click(object sender, EventArgs e)
         {
-            if (!HasFunction("Function/del"))
+            if (!HasFunction("Function/Set/FunctionDel"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
             }
 
             TreeNode node = this.treeView1.SelectedNode;
-            if (node != null && !string.IsNullOrEmpty(node.Name))
+            if (node != null && !string.IsNullOrEmpty(node.Tag.ToString()))
             {
+                MenuInfo menuInfo = BLLFactory<JCodes.Framework.BLL.Menu>.Instance.FindById(node.Tag.ToString());
+                if (menuInfo != null)
+                {
+                    MessageDxUtil.ShowError(Const.ForbidOperMsg);
+                    return;
+                }
+
                 if (MessageDxUtil.ShowYesNoAndTips("您确认删除指定节点吗？\r\n如果该节点含有子节点，子节点不会被删除，且它们会被提升一级") == DialogResult.Yes)
                 {
-                    //int id = Convert.ToInt32(node.Name);
                     try
                     {
-                        BLLFactory<Functions>.Instance.DeleteByUser(node.Name, LoginUserInfo.Id);
+                        BLLFactory<Function>.Instance.DeleteByUser(node.Tag.ToString(), LoginUserInfo.Id);
                         RefreshTreeView();
                     }
                     catch (Exception ex)
@@ -188,7 +195,7 @@ namespace JCodes.Framework.AddIn.Security
 
         private void menu_DeletAll_Click(object sender, EventArgs e)
         {
-            if (!HasFunction("Function/BatchDel"))
+            if (!HasFunction("Function/Set/FunctionBatchDel"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -201,7 +208,7 @@ namespace JCodes.Framework.AddIn.Security
                 {
                     try
                     {
-                        BLLFactory<Functions>.Instance.DeleteWithSubNode(node.Name, Portal.gc.UserInfo.Id);
+                        BLLFactory<Function>.Instance.DeleteWithSubNode(node.Name, Portal.gc.UserInfo.Id);
                         RefreshTreeView();
                     }
                     catch (Exception ex)
@@ -215,22 +222,52 @@ namespace JCodes.Framework.AddIn.Security
 
         private void menu_Add_Click(object sender, EventArgs e)
         {
-            if (!HasFunction("Function/add"))
+            if (!HasFunction("Function/Set/FunctionAdd"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
             }
 
+            // 检查是不是菜单子级目录
+            List<MenuInfo> lst = BLLFactory<JCodes.Framework.BLL.Menu>.Instance.GetMenuById(treeView1.SelectedNode.Tag.ToString());
+            if (lst.Count > 0)
+            {
+                MessageDxUtil.ShowError(Const.ForbidOperMsg);
+                txtName.Enabled = false;
+                txtDllPath.Enabled = false;
+                txtSeq.Enabled = false;
+                txtSystemType.Enabled = false;
+                functionControl1.Enabled = false;
+                btnSave.Enabled = false;
+                return;
+            }
+            else {
+                txtName.Enabled = true;
+                txtDllPath.Enabled = true;
+                txtSeq.Enabled = true;
+                txtSystemType.Enabled = true;
+                functionControl1.Enabled = true;
+                btnSave.Enabled = true;
+            }
+
             groupControl1.Text = Const.Add + "功能详细信息";
 
             ClearInput();
-            currentID = "";
+            currentId = "";
             TreeNode node = this.treeView1.SelectedNode;
             if (node != null && node.Tag != null)
             {
                 this.functionControl1.Value = node.Name;
             }
             this.txtName.Focus();
+
+            // 20200515 默认填充一些默认值
+            // 初始化DllPath 和 Name的值
+            FunctionInfo functionInfo = BLLFactory<Function>.Instance.FindById(treeView1.SelectedNode.Tag.ToString());
+            if (functionInfo != null) {
+                txtName.Text = functionInfo.Name + "_";
+                txtDllPath.Text = functionInfo.DllPath + "/";
+            } 
         }
 
         private void menu_Update_Click(object sender, EventArgs e)
@@ -247,17 +284,17 @@ namespace JCodes.Framework.AddIn.Security
         {
             if (e.Node != null && e.Node.Tag != null)
             {
-                currentID = e.Node.Tag.ToString();
+                currentId = e.Node.Tag.ToString();
                 groupControl1.Text = Const.Edit + "功能详细信息";
-                FunctionInfo info = BLLFactory<Functions>.Instance.FindByID(currentID);
+                FunctionInfo info = BLLFactory<Function>.Instance.FindById(currentId);
 
                 if (info != null)
                 {
                     this.txtName.Text = info.Name;
-                    this.txtFunctionID.Text = info.DllPath;
+                    this.txtDllPath.Text = info.DllPath;
                     this.txtSeq.Text = info.Seq;
 
-                    FunctionInfo info2 = BLLFactory<Functions>.Instance.FindByID(info.Pgid);
+                    FunctionInfo info2 = BLLFactory<Function>.Instance.FindById(info.Pgid);
                     if (info2 != null)
                     {
                         functionControl1.Value = info.Pgid;
@@ -268,7 +305,27 @@ namespace JCodes.Framework.AddIn.Security
                         txtSystemType.SetComboBoxItem(info.SystemtypeId);//设置系统类型
                     }
 
-                    RefreshRoles(currentID);
+                    // 20200515 wujianming 检查是否菜单如果存在则不允许修改
+                    MenuInfo menuinfo= BLLFactory<JCodes.Framework.BLL.Menu>.Instance.FindById(currentId);
+                    if (menuinfo != null)
+                    {
+                        txtName.Enabled = false;
+                        txtDllPath.Enabled = false;
+                        txtSeq.Enabled = false;
+                        txtSystemType.Enabled = false;
+                        functionControl1.Enabled = false;
+                        btnSave.Enabled = false;
+                    }
+                    else {
+                        txtName.Enabled = true;
+                        txtDllPath.Enabled = true;
+                        txtSeq.Enabled = true;
+                        txtSystemType.Enabled = true;
+                        functionControl1.Enabled = true;
+                        btnSave.Enabled = true;
+                    }
+
+                    RefreshRoles(currentId);
                 }
             }
         }
@@ -277,21 +334,21 @@ namespace JCodes.Framework.AddIn.Security
         {
             info.Name = this.txtName.Text;
             info.Pgid = this.functionControl1.Value;
-            info.DllPath = this.txtFunctionID.Text;
+            info.DllPath = this.txtDllPath.Text;
             info.Seq = this.txtSeq.Text;
             info.CurrentLoginUserId = Portal.gc.UserInfo.Id;
-            return info;
-        }
 
-        private void SetSystemTypeVisible(bool visible)
-        {
-            this.txtSystemType.Visible = visible;
-            this.lblSystemType.Visible = visible;
+            if (string.IsNullOrEmpty(currentId))
+            {
+                info.Gid = Guid.NewGuid().ToString(); 
+            }
+
+            return info;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(currentID) && !HasFunction("Function/edit"))
+            if (!string.IsNullOrEmpty(currentId) && !HasFunction("Function/Set/FunctionEdit"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -307,10 +364,10 @@ namespace JCodes.Framework.AddIn.Security
                 this.txtName.Focus();
                 return;
             }
-            else if (this.txtFunctionID.Text == "")
+            else if (this.txtDllPath.Text == "")
             {
                 MessageDxUtil.ShowTips("功能ID不能为空");
-                this.txtFunctionID.Focus();
+                this.txtDllPath.Focus();
                 return;
             }
             else if (this.txtSystemType.Visible && this.txtSystemType.Text.Length == 0)
@@ -322,14 +379,14 @@ namespace JCodes.Framework.AddIn.Security
 
             #endregion
             // 更新操作
-            if (!string.IsNullOrEmpty(currentID))
+            if (!string.IsNullOrEmpty(currentId))
             {
                 try
                 {
                     // 合法操作检查
-                    FunctionInfo info = BLLFactory<Functions>.Instance.FindByID(currentID);
+                    FunctionInfo info = BLLFactory<Function>.Instance.FindById(currentId);
 
-                    if (info.Pgid != functionControl1.Value && BLLFactory<Functions>.Instance.GetFunctionByPID(currentID).Count <= 1)
+                    if (info.Pgid != functionControl1.Value && BLLFactory<Function>.Instance.GetFunctionByPgid(currentId).Count <= 1)
                     {
                         MessageDxUtil.ShowError(Const.ForbidOperMsg);
                         return;
@@ -338,7 +395,7 @@ namespace JCodes.Framework.AddIn.Security
                     if (info != null)
                     {
                         info = SetFunction(info);
-                        BLLFactory<Functions>.Instance.Update(info, info.Gid);
+                        BLLFactory<Function>.Instance.Update(info, info.Gid);
 
                         RefreshTreeView();
                     }
@@ -352,15 +409,15 @@ namespace JCodes.Framework.AddIn.Security
             else
             {
                 string pid = this.functionControl1.Value;
-                FunctionInfo functionInfo = BLLFactory<Functions>.Instance.FindByID(pid);
+                FunctionInfo functionInfo = BLLFactory<Function>.Instance.FindById(pid);
 
                 if (functionInfo != null)
                 {
-                    string filter = string.Format("FunctionId='{0}' and SystemType_ID='{1}'", this.txtFunctionID.Text, functionInfo.SystemtypeId);
-                    bool isExist = BLLFactory<Functions>.Instance.IsExistRecord(filter);
+                    string filter = string.Format("DllPath='{0}' and SystemtypeId='{1}'", this.txtDllPath.Text, functionInfo.SystemtypeId);
+                    bool isExist = BLLFactory<Function>.Instance.IsExistRecord(filter);
                     if (isExist)
                     {
-                        MessageDxUtil.ShowTips("指定功能控制ID重复，请重新输入！");
+                        MessageDxUtil.ShowTips("指定映射路径重复，请重新输入！");
                         this.txtName.Focus();
                         return;
                     }
@@ -371,14 +428,14 @@ namespace JCodes.Framework.AddIn.Security
                     functionInfo = new FunctionInfo();
                     functionInfo.Pgid = "-1";
                     functionInfo.SystemtypeId = this.txtSystemType.GetComboBoxStrValue();
-                    functionInfo.DllPath = this.txtFunctionID.Text;
+                    functionInfo.DllPath = this.txtDllPath.Text;
                     functionInfo.Seq = this.txtSeq.Text;
 
-                    string filter = string.Format("FunctionId='{0}' and SystemType_ID='{1}'", this.txtFunctionID.Text, functionInfo.SystemtypeId);
-                    bool isExist = BLLFactory<Functions>.Instance.IsExistRecord(filter);
+                    string filter = string.Format("DllPath='{0}' and SystemtypeId='{1}'", this.txtDllPath.Text, functionInfo.SystemtypeId);
+                    bool isExist = BLLFactory<Function>.Instance.IsExistRecord(filter);
                     if (isExist)
                     {
-                        MessageDxUtil.ShowTips("指定功能控制ID重复，请重新输入！");
+                        MessageDxUtil.ShowTips("指定映射路径重复，请重新输入！");
                         this.txtName.Focus();
                         return;
                     }
@@ -386,11 +443,11 @@ namespace JCodes.Framework.AddIn.Security
 
                 FunctionInfo info = new FunctionInfo();
                 info = SetFunction(info);
-                info.SystemtypeId = functionInfo.SystemtypeId;//和父节点的SystemType_ID一样。
+                info.SystemtypeId = functionInfo.SystemtypeId;
 
                 try
                 {
-                    BLLFactory<Functions>.Instance.Insert(info);
+                    BLLFactory<Function>.Instance.Insert(info);
                     RefreshTreeView();
                 }
                 catch (Exception ex)
@@ -424,7 +481,7 @@ namespace JCodes.Framework.AddIn.Security
                 if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     //提高速度，避免重复更新
-                    //RefreshTreeView();
+                    RefreshTreeView();
                 }
             }
             else
@@ -436,7 +493,7 @@ namespace JCodes.Framework.AddIn.Security
         void dlg_OnDataSaved(object sender, EventArgs e)
         {
             //提高速度，避免重复更新
-            //RefreshTreeView();
+            RefreshTreeView();
         }
 
         private void menu_Collapse_Click(object sender, EventArgs e)

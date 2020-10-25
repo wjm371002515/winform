@@ -123,7 +123,7 @@ namespace JCodes.Framework.AddIn._50Go
             if (string.IsNullOrEmpty(Info.ID))
             {
                 Info.ID = Guid.NewGuid().ToString();
-                Info.Creator = Portal.gc.UserInfo.FullName;
+                Info.Creator = Portal.gc.UserInfo.LoginName;
                 Info.Creator_ID = Portal.gc.UserInfo.ID.ToString();
                 Info.CreateTime = DateTime.Now;
             }
@@ -133,7 +133,7 @@ namespace JCodes.Framework.AddIn._50Go
             Info.Enabled = txtEnabled.SelectedIndex;
             if (!string.IsNullOrEmpty(Info.ID))
             {
-                Info.Editor = Portal.gc.UserInfo.FullName;
+                Info.Editor = Portal.gc.UserInfo.LoginName;
                 Info.Editor_ID = Portal.gc.UserInfo.ID.ToString();
                 Info.EditTime = DateTime.Now;
             }

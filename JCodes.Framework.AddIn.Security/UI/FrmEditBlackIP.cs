@@ -49,12 +49,6 @@ namespace JCodes.Framework.AddIn.Security
                 this.txtName.Focus();
                 result = false;
             }
-            else if (this.txtAuthorizeType.Text.Length == 0)
-            {
-                MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblAuthorizeType.Text.Replace(Const.MsgCheckSign, string.Empty));
-                this.txtAuthorizeType.Focus();
-                result = false;
-            }
             else if (this.txtIPStart.Text.Length == 0)
             {
                 MessageDxUtil.ShowWarning(Const.MsgCheckInput + lblIPStart.Text.Replace(Const.MsgCheckSign, string.Empty));
@@ -84,37 +78,21 @@ namespace JCodes.Framework.AddIn.Security
         }
 
         /// <summary>
-        /// 初始化数据字典
-        /// </summary>
-        private void InitDictItem()
-        {
-            //初始化分类
-            Dictionary<string, object> dictEnum = EnumHelper.GetMemberKeyValue<AuthrizeType>();
-            this.txtAuthorizeType.Properties.Items.Clear();
-            foreach (string item in dictEnum.Keys)
-            {
-                this.txtAuthorizeType.Properties.Items.Add(new CListItem(dictEnum[item].ToString(), item));
-            }
-        }
-
-        /// <summary>
         /// 数据显示的函数
         /// </summary>
         public override void DisplayData()
         {
-            InitDictItem();//数据字典加载（公用）
-
             if (Id > 0)
             {
                 #region 显示信息
-                BlackIPInfo info = BLLFactory<BlackIP>.Instance.FindByID(Id);
+                BlackIPInfo info = BLLFactory<BlackIP>.Instance.FindById(Id);
                 if (info != null)
                 {
                     tempInfo = info;//重新给临时对象赋值，使之指向存在的记录对象
 
                     txtName.Text = info.Name;
-                    txtAuthorizeType.SetComboBoxItem(info.AuthorizeType.ToString());
-                    txtForbid.Checked = info.IsForbid==0?false:true;
+                    //txtAuthorizeType.SetComboBoxItem(info.AuthorizeType.ToString());
+                    //txtForbid.Checked = info.IsForbid==0?false:true;
                     txtIPStart.Text = info.IPStart;
                     txtIPEnd.Text = info.IPEnd;
                     txtNote.Text = info.Remark;
@@ -125,7 +103,7 @@ namespace JCodes.Framework.AddIn.Security
             }
             else
             {
-                txtCreator.Text = Portal.gc.UserInfo.FullName;//默认为当前登录用户
+                txtCreator.Text = Portal.gc.UserInfo.LoginName;//默认为当前登录用户
                 txtCreateTime.DateTime = DateTimeHelper.GetServerDateTime2(); //默认当前时间
             }
 
@@ -145,12 +123,12 @@ namespace JCodes.Framework.AddIn.Security
         private void SetInfo(BlackIPInfo info)
         {
             info.Name = txtName.Text;
-            info.AuthorizeType = Convert.ToInt16( txtAuthorizeType.GetComboBoxStrValue());
-            info.IsForbid = (short)(txtForbid.Checked?1:0);
+            //info.AuthorizeType = Convert.ToInt16( txtAuthorizeType.GetComboBoxStrValue());
+            //info.IsForbid = (short)(txtForbid.Checked?1:0);
             info.IPStart = txtIPStart.Text;
             info.IPEnd = txtIPEnd.Text;
             info.Remark = txtNote.Text;
-            //info.Editor = Portal.gc.UserInfo.FullName;
+            //info.Editor = Portal.gc.UserInfo.LoginName;
             info.EditorId = Portal.gc.UserInfo.Id;
             info.LastUpdateTime = DateTimeHelper.GetServerDateTime2();
 
@@ -165,7 +143,7 @@ namespace JCodes.Framework.AddIn.Security
         {
             BlackIPInfo info = tempInfo;//必须使用存在的局部变量，因为部分信息可能被附件使用
             SetInfo(info);
-            //info.Creator = Portal.gc.UserInfo.FullName;
+            //info.Creator = Portal.gc.UserInfo.LoginName;
             info.CreatorId = Portal.gc.UserInfo.Id;
             info.CreatorTime = DateTimeHelper.GetServerDateTime2();
 
@@ -197,7 +175,7 @@ namespace JCodes.Framework.AddIn.Security
         public override bool SaveUpdated()
         {
 
-            BlackIPInfo info = BLLFactory<BlackIP>.Instance.FindByID(Id);
+            BlackIPInfo info = BLLFactory<BlackIP>.Instance.FindById(Id);
             if (info != null)
             {
                 SetInfo(info);
@@ -240,7 +218,7 @@ namespace JCodes.Framework.AddIn.Security
             List<SimpleUserInfo> list = BLLFactory<BlackIP>.Instance.GetSimpleUserByBlackIP(tempInfo.Id);
             foreach (SimpleUserInfo info in list)
             {
-                string name = string.Format("{0}（{1}）", info.FullName, info.Name);
+                string name = string.Format("{0}（{1}）", info.LoginName, info.Name);
                 // 20170901 wjm 调整key 和value的顺序
                 CDicKeyValue item = new CDicKeyValue(info.Id, name);
                 this.lvwUser.Items.Add(item);

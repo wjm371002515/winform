@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using JCodes.Framework.CommonControl;
 using JCodes.Framework.CommonControl.BaseUI;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn.Basic
 {
@@ -26,11 +27,11 @@ namespace JCodes.Framework.AddIn.Basic
         private void MainForm_Load(object sender, EventArgs e)
         {
             this.bizAttachment.UserId = UserId;
-            this.bizAttachment.AttachmentDirectory = "业务附件";
+            this.bizAttachment.AttachmentDirectory = AttachmentType.业务附件;
             this.bizAttachment.BindData();
 
             this.MyAttachment.UserId = UserId;
-            this.MyAttachment.AttachmentDirectory = "个人附件";
+            this.MyAttachment.AttachmentDirectory = AttachmentType.个人附件;
             this.MyAttachment.BindData();
         }
 

@@ -121,6 +121,8 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 是否继承IDXDataError
+		/// 1-是,
+		/// 2-否
 		/// </summary>
 		[DataMember]
 		[DisplayName("是否继承IDXDataError")]
@@ -138,6 +140,8 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 是否继承BaseEntity
+		/// 1-是,
+		/// 2-否
 		/// </summary>
 		[DataMember]
 		[DisplayName("是否继承BaseEntity")]

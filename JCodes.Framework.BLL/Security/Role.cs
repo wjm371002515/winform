@@ -7,6 +7,7 @@ using JCodes.Framework.Entity;
 using JCodes.Framework.IDAL;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Common.Extension;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.BLL
 {
@@ -15,21 +16,25 @@ namespace JCodes.Framework.BLL
     /// </summary>
     public class Role : BaseBLL<RoleInfo>
 	{
-        /// <summary>
-        /// 该ID实际为一个无效ID，当调用FillAdminID会初始化为真是的管理员ID，以后以该实际ID作为管理员的凭证
-        /// </summary>
-        private static int m_AdminID = -99;
-		private IRole roleDal;
+		private IRole dal;
 
         /// <summary>
         /// 构造函数
         /// </summary>
 		public Role() : base()
         {
-            base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+            if (isMultiDatabase)
+            {
+                base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name, dicmultiDatabase[this.GetType().Name].ToString());
+            }
+            else
+            {
+                base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+            }
+
             baseDal.OnOperationLog += new OperationLogEventHandler(OperationLog.OnOperationLog);//如果需要记录操作日志，则实现这个事件
 
-			this.roleDal = baseDal as IRole;
+            dal = baseDal as IRole;
 		}
 
         /// <summary>
@@ -39,7 +44,7 @@ namespace JCodes.Framework.BLL
         /// <returns></returns>
         public List<RoleInfo> GetRolesByCompanyId(Int32 companyId)
         {
-            string condition = string.Format("CompanyId='{0}' and IsDelete = 0 ", companyId);
+            string condition = string.Format("CompanyId='{0}' and IsDelete = {1} ", companyId, (short)IsDelete.否);
             return Find(condition);
         }
 
@@ -48,46 +53,45 @@ namespace JCodes.Framework.BLL
         /// </summary>
         /// <param name="functionID">功能ID</param>
         /// <param name="roleID">角色ID</param>
-        public void AddFunction(string functionID, int roleID)
+        public void AddFunction(string functionId, Int32 roleId)
 		{
-			this.roleDal.AddFunction(functionID, roleID);
+            dal.AddFunction(functionId, roleId);
 		}
 
         /// <summary>
         /// 为角色添加机构
         /// </summary>
-        /// <param name="ouID">机构ID</param>
-        /// <param name="roleID">角色ID</param>
-		public void AddOU(int ouID, int roleID)
+        /// <param name="ouId">机构ID</param>
+        /// <param name="roleId">角色ID</param>
+		public void AddOU(Int32 ouId, Int32 roleId)
 		{
-			roleDal.AddOU(ouID, roleID);
+            dal.AddOU(ouId, roleId);
 		}
 
         /// <summary>
         /// 为角色添加用户
         /// </summary>
-        /// <param name="userID">用户ID</param>
-        /// <param name="roleID">角色ID</param>
-		public void AddUser(int userID, int roleID)
+        /// <param name="userId">用户ID</param>
+        /// <param name="roleId">角色ID</param>
+		public void AddUser(Int32 userId, Int32 roleId)
 		{
-			this.FillAdminID();
-			if (roleID == m_AdminID)
+            if (IsSuperAdmin(userId))
 			{
-                BLLFactory<User>.Instance.CancelExpire(userID);
+                BLLFactory<User>.Instance.CancelExpireByUserId(userId);
 			}
 
-			roleDal.AddUser(userID, roleID);
+            dal.AddUser(userId, roleId);
 		}
                       
         /// <summary>
         /// 为角色指定新的人员列表
         /// </summary>
-        /// <param name="roleID">角色ID</param>
+        /// <param name="roleId">角色ID</param>
         /// <param name="newUserList">人员列表</param>
         /// <returns></returns>
-        public bool EditRoleUsers(int roleID, List<int> newUserList)
+        public bool EditRoleUsers(Int32 roleId, List<Int32> newUserList)
         {
-            return roleDal.EditRoleUsers(roleID, newUserList);
+            return dal.EditRoleUsers(roleId, newUserList);
         }
                
         /// <summary>
@@ -96,159 +100,64 @@ namespace JCodes.Framework.BLL
         /// <param name="roleID">角色ID</param>
         /// <param name="newFunctionList">功能列表</param>
         /// <returns></returns>
-        public bool EditRoleFunctions(int roleID, List<string> newFunctionList)
+        public bool EditRoleFunctions(Int32 roleId, List<string> newFunctionList)
         {
-            return roleDal.EditRoleFunctions(roleID, newFunctionList);
+            return dal.EditRoleFunctions(roleId, newFunctionList);
         }
 
         /// <summary>
         /// 为角色指定新的机构列表
         /// </summary>
-        /// <param name="roleID">角色ID</param>
+        /// <param name="roleId">角色ID</param>
         /// <param name="newOUList">机构列表</param>
         /// <returns></returns>
-        public bool EditRoleOUs(int roleID, List<int> newOUList)
+        public bool EditRoleOUs(Int32 roleId, List<Int32> newOUList)
         {
-            return roleDal.EditRoleOUs(roleID, newOUList);
+            return dal.EditRoleOUs(roleId, newOUList);
         }
-
-        /// <summary>
-        /// 判断Admin用户是否包含用户
-        /// </summary>
-        /// <returns></returns>
-		internal bool AdminHasUser()
-		{
-			this.FillAdminID();
-
-            return BLLFactory<User>.Instance.GetSimpleUsersByRole(m_AdminID).Count > 0;
-		}
-
-        /// <summary>
-        /// 检查管理员角色不被移除
-        /// </summary>
-        /// <param name="roleID"></param>
-		private void CanRemoveFromAdmin(int roleID)
-		{
-			this.FillAdminID();
-
-			if ((roleID == m_AdminID) && (this.GetAdminSimpleUsers().Count <= 1))
-			{
-				throw new Exception("管理员角色 至少需要包含一个用户！");
-			}
-		}
 
         public override bool DeleteByUser(object key, Int32 userId, DbTransaction trans = null)
         {
-            this.FillAdminID(trans);
-
-            if (Convert.ToInt32(key) == m_AdminID)
-			{
-				throw new Exception("管理员角色 不能被删除！");
-			}
             return baseDal.DeleteByUser(key, userId, trans);
 		}
 
         /// <summary>
         /// 找到对应的角色名称（管理员），获取其对应的ID作为今后比较
         /// </summary>
-		private void FillAdminID(DbTransaction trans = null)
+        private bool IsSuperAdmin(Int32 userId, DbTransaction trans = null)
 		{
-			if (m_AdminID == -99)
-			{
-                /* TODO
-                string condition = string.Format("Name='{0}' ", RoleInfo.SuperAdminName);//超级管理员唯一性，不用公司区分
-                RoleInfo roleByName = FindSingle(condition, trans);
-				if (roleByName != null)
-				{
-					m_AdminID = roleByName.Id;//保存ID作为管理员角色参考
-				}*/
-			}
-		}
+            string userName = BLLFactory<User>.Instance.GetNameById(userId);
 
-        /// <summary>
-        /// 获取管理员包含的机构ID列表
-        /// </summary>
-        /// <returns></returns>
-		internal List<int> GetAdminOUIDs()
-		{
-			this.FillAdminID();
-
-			List<OUInfo> oUsByRole =BLLFactory<OU>.Instance.GetOUsByRole(m_AdminID);
-            List<int> list = new List<int>();
-			foreach (OUInfo info in oUsByRole)
-			{
-				list.Add(info.Id);
-			}
-			return list;
-		}
-
-        /// <summary>
-        /// 获取管理员包含的用户基础信息列表
-        /// </summary>
-        /// <returns></returns>
-        internal List<SimpleUserInfo> GetAdminSimpleUsers()
-		{
-			this.FillAdminID();
-
-			List<SimpleUserInfo> simpleUsersByRole = BLLFactory<User>.Instance.GetSimpleUsersByRole(m_AdminID);
-			int count = simpleUsersByRole.Count;
-			if (count <= 1)
-			{
-				foreach (OUInfo info in BLLFactory<OU>.Instance.GetOUsByRole(m_AdminID))
-				{
-                    List<SimpleUserInfo> simpleUsersByOU = BLLFactory<User>.Instance.GetSimpleUsersByOU(info.Id);
-					if (simpleUsersByOU.Count > 0)
-					{
-						simpleUsersByRole.Add(simpleUsersByOU[0]);
-						count++;
-						if (simpleUsersByOU.Count > 1)
-						{
-							simpleUsersByRole.Add(simpleUsersByOU[1]);
-							count++;
-						}
-						if (count > 1)
-						{
-							return simpleUsersByRole;
-						}
-					}
-				}
-			}
-			return simpleUsersByRole;
-		}
-
-        /// <summary>
-        /// 根据角色名称查找角色对象
-        /// </summary>
-        /// <param name="roleName">角色名称</param>
-        /// <returns></returns>
-        public RoleInfo GetRoleByName(string roleName, string companyId = null, DbTransaction trans = null)
-		{
-            string condition = string.Format("Name='{0}' ", roleName);
-            if (!string.IsNullOrEmpty(companyId))
+            if (BLLFactory<Sysparameter>.Instance.UserIsSuperAdmin(userName))
             {
-                condition += string.Format(" And CompanyId='{0}' ", companyId);
+                return true;
             }
-			return this.roleDal.FindSingle(condition, trans);
+            else if (BLLFactory<Role>.Instance.UserHasRole(userId))
+            {
+                return false;
+            }
+
+            return false;
 		}
 
         /// <summary>
         /// 获取对应功能的相关角色列表
         /// </summary>
-        /// <param name="functionID">对应功能ID</param>
+        /// <param name="functionGid">对应功能ID</param>
         /// <returns></returns>
-		public List<RoleInfo> GetRolesByFunction(string functionID)
+		public List<RoleInfo> GetRolesByFunction(string functionGid)
 		{
-			return this.roleDal.GetRolesByFunction(functionID);
+            return dal.GetRolesByFunction(functionGid);
 		}
 
         /// <summary>
         /// 根据机构的ID获取对应的角色列表
         /// </summary>
-        /// <param name="ouID">机构的ID</param>
+        /// <param name="ouId">机构的ID</param>
         /// <returns></returns>
-        public List<RoleInfo> GetRolesByOU(int ouID)
+        public List<RoleInfo> GetRolesByOU(Int32 ouId)
 		{
-			return this.roleDal.GetRolesByOU(ouID);
+            return dal.GetRolesByOUId(ouId);
 		}
 
         /// <summary>
@@ -256,34 +165,39 @@ namespace JCodes.Framework.BLL
         /// </summary>
         /// <param name="userID">用户的ID</param>
         /// <returns></returns>
-        public List<RoleInfo> GetRolesByUser(int userID)
+        public List<RoleInfo> GetRolesByUser(Int32 userId)
 		{
-			List<RoleInfo> rolesByUser = this.roleDal.GetRolesByUser(userID);
+            // 1. 用户角色（User_Role）表根据用户Id 查询用户的角色信息
+            // 2.1 用户组织（OU_User）表根据用户Id 查询用户所属的部门中间表的组织（工作组）
+            // 2.2 查询上一步中的中间件组织（工作组）查询用户的角色信息(OU_Role)
+            // 3.1 查询用户对应的部门(DeptId)包含的角色信息OU_Role
+            List<RoleInfo> rolesByUser = dal.GetRolesByUserId(userId);
 
-            List<int> list = new List<int>();
+            // 临时变量保存唯一的角色信息
+            List<Int32> list = new List<Int32>();
 			foreach (RoleInfo info in rolesByUser)
 			{
                 list.Add(info.Id);
 			}
 
-            //包含部门中间表的角色
-            foreach (OUInfo ouInfo in BLLFactory<OU>.Instance.GetOUsByUser(userID))
-			{
-				foreach (RoleInfo roleInfo in this.roleDal.GetRolesByOU(ouInfo.Id))
-				{
+            // 包含部门中间表的角色
+            foreach (OUInfo ouInfo in BLLFactory<OU>.Instance.GetOUsByUserId(userId))
+            {
+                foreach (RoleInfo roleInfo in dal.GetRolesByOUId(ouInfo.Id))
+                {
                     if (!list.Contains(roleInfo.Id))
-					{
-						rolesByUser.Add(roleInfo);
+                    {
+                        rolesByUser.Add(roleInfo);
                         list.Add(roleInfo.Id);
-					}
-				}
-			}
+                    }
+                }
+            }
 
             //包含默认所属部门的角色
-            UserInfo userInfo = BLLFactory<User>.Instance.FindByID(userID);
+            UserInfo userInfo = BLLFactory<User>.Instance.FindById(userId);
             if (userInfo != null)
             {
-                foreach (RoleInfo roleInfo in  roleDal.GetRolesByOU(userInfo.DeptId))
+                foreach (RoleInfo roleInfo in dal.GetRolesByOUId(userInfo.DeptId))
                 {
                     if (!list.Contains(roleInfo.Id))
                     {
@@ -299,61 +213,31 @@ namespace JCodes.Framework.BLL
         /// <summary>
         /// 从角色操作功能列表中，移除对应的功能
         /// </summary>
-        /// <param name="functionID">功能ID</param>
-        /// <param name="roleID">角色ID</param>
-        public void RemoveFunction(string functionID, int roleID)
+        /// <param name="functionGid">功能ID</param>
+        /// <param name="roleId">角色ID</param>
+        public void RemoveFunction(string functionGid, Int32 roleId)
 		{
-			this.roleDal.RemoveFunction(functionID, roleID);
+            dal.RemoveFunction(functionGid, roleId);
 		}
 
         /// <summary>
         /// 从角色机构列表中，移除指定的机构
         /// </summary>
-        /// <param name="ouID">机构ID</param>
-        /// <param name="roleID">角色ID</param>
-		public void RemoveOU(int ouID, int roleID)
+        /// <param name="ouId">机构ID</param>
+        /// <param name="roleId">角色ID</param>
+		public void RemoveOU(Int32 ouId, Int32 roleId)
 		{
-			this.FillAdminID();
-			if (roleID == m_AdminID)
-			{
-                List<SimpleUserInfo> simpleUsersByRole = BLLFactory<User>.Instance.GetSimpleUsersByRole(m_AdminID);
-				if (simpleUsersByRole.Count < 1)
-				{
-					simpleUsersByRole.Clear();
-                    List<UserInfo> usersByOU = BLLFactory<User>.Instance.GetUsersByOU(ouID);
-					if (usersByOU.Count > 0)
-					{
-						usersByOU.Clear();
-						bool flag = false;
-                        List<OUInfo> oUsByRole = BLLFactory<OU>.Instance.GetOUsByRole(m_AdminID);
-						foreach (OUInfo info in oUsByRole)
-						{
-                            if ((info.Id != ouID) && (BLLFactory<User>.Instance.GetSimpleUsersByOU(info.Id).Count > 0))
-							{
-								flag = true;
-								break;
-							}
-						}
-						oUsByRole.Clear();
-						if (!flag)
-						{
-							throw new Exception("管理员角色至少需要包含一个用户！");
-						}
-					}
-				}
-			}
-			roleDal.RemoveOU(ouID, roleID);
+            dal.RemoveOU(ouId, roleId);
 		}
 
         /// <summary>
         /// 从角色的用户列表中移除指定的用户
         /// </summary>
-        /// <param name="userID">用户ID</param>
-        /// <param name="roleID">角色ID</param>
-		public void RemoveUser(int userID, int roleID)
+        /// <param name="userId">用户ID</param>
+        /// <param name="roleId">角色ID</param>
+		public void RemoveUser(Int32 userId, Int32 roleId)
 		{
-			this.CanRemoveFromAdmin(roleID);
-			this.roleDal.RemoveUser(userID, roleID);
+            dal.RemoveUser(userId, roleId);
 		}
 
         /// <summary>
@@ -364,11 +248,6 @@ namespace JCodes.Framework.BLL
         /// <returns></returns>
         public override bool Update(RoleInfo obj, object primaryKeyValue, DbTransaction trans = null)
 		{
-            // TODO
-			/*if (obj.Id == m_AdminID)
-			{
-				obj.Name = RoleInfo.SuperAdminName;
-			}*/
             return base.Update(obj, primaryKeyValue, trans);
 		}
                        
@@ -379,9 +258,59 @@ namespace JCodes.Framework.BLL
         /// <param name="deleted">是否删除</param>
         /// <param name="trans">事务对象</param>
         /// <returns></returns>
-        public bool SetDeletedFlag(object id, bool deleted = true, DbTransaction trans = null)
+        public bool SetDeletedFlag(Int32 id, IsDelete isDelete = IsDelete.是, DbTransaction trans = null)
         {
-            return roleDal.SetDeletedFlag(id, deleted, trans);
+            return dal.SetDeletedFlag(id, isDelete, trans);
+        }
+
+        //<summary>
+        //判断用户是否为管理员，超级管理员、公司级别的系统管理员均通过。(作废)
+        //</summary>
+        //<param name="userName">用户Id</param>
+        //<returns></returns>
+        public bool UserHasRole(Int32 userId)
+        {
+            // 1. 用户角色（User_Role）表根据用户Id 查询用户的角色信息
+            // 2.1 用户组织（OU_User）表根据用户Id 查询用户所属的部门中间表的组织（工作组）
+            // 2.2 查询上一步中的中间件组织（工作组）查询用户的角色信息(OU_Role)
+            // 3.1 查询用户对应的部门(DeptId)包含的角色信息OU_Role
+            List<RoleInfo> rolesByUser = dal.GetRolesByUserId(userId);
+
+            // 临时变量保存唯一的角色信息
+            List<Int32> list = new List<Int32>();
+            foreach (RoleInfo info in rolesByUser)
+            {
+                list.Add(info.Id);
+            }
+
+            // 包含部门中间表的角色
+            foreach (OUInfo ouInfo in BLLFactory<OU>.Instance.GetOUsByUserId(userId))
+            {
+                foreach (RoleInfo roleInfo in dal.GetRolesByOUId(ouInfo.Id))
+                {
+                    if (!list.Contains(roleInfo.Id))
+                    {
+                        rolesByUser.Add(roleInfo);
+                        list.Add(roleInfo.Id);
+                    }
+                }
+            }
+
+            //包含默认所属部门的角色
+            UserInfo userInfo = BLLFactory<User>.Instance.FindById(userId);
+            if (userInfo != null)
+            {
+                foreach (RoleInfo roleInfo in dal.GetRolesByOUId(userInfo.DeptId))
+                {
+                    if (!list.Contains(roleInfo.Id))
+                    {
+                        rolesByUser.Add(roleInfo);
+                        list.Add(roleInfo.Id);
+                    }
+                }
+            }
+            // 如果数量大于0 则为配置了角色
+            return rolesByUser.Count > Const.Num_Zero ? true : false;
         }
 	}
 }

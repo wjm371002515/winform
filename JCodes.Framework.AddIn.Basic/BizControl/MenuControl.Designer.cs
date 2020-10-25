@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuControl));
             this.txtMenu = new DevExpress.XtraEditors.TreeListLookUpEdit();
             this.treeListLookUpEdit1TreeList = new DevExpress.XtraTreeList.TreeList();
@@ -36,7 +35,7 @@
             this.treeListColumn2 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumn4 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumn3 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.imageList2 = new System.Windows.Forms.ImageList(this.components);
+            this.imageList2 = new System.Windows.Forms.ImageList();
             this.btnRefresh = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.txtMenu.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeListLookUpEdit1TreeList)).BeginInit();
@@ -56,7 +55,7 @@
             this.txtMenu.Properties.NullValuePromptShowForEmptyValue = true;
             this.txtMenu.Properties.PopupFormSize = new System.Drawing.Size(600, 0);
             this.txtMenu.Properties.TreeList = this.treeListLookUpEdit1TreeList;
-            this.txtMenu.Size = new System.Drawing.Size(145, 20);
+            this.txtMenu.Size = new System.Drawing.Size(145, 28);
             this.txtMenu.TabIndex = 8;
             // 
             // treeListLookUpEdit1TreeList

@@ -28,7 +28,7 @@ namespace JCodes.Framework.Entity
 		/// <summary>
 		/// 操作类型
 		/// </summary>
-		private String m_OperationType = string.Empty;
+		private Int16 m_OperationType = 0;
 
 		/// <summary>
 		/// 供应商
@@ -114,10 +114,14 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 操作类型
+		/// 1-新增,
+		/// 2-修改,
+		/// 3-删除,
+		/// 4-查询
 		/// </summary>
 		[DataMember]
 		[DisplayName("操作类型")]
-		public virtual String OperationType
+		public virtual Int16 OperationType
 		{
 			get
 			{

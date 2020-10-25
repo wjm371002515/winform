@@ -94,6 +94,11 @@ namespace JCodes.Framework.Entity
 		/// 是否删除
 		/// </summary>
 		private Int16 m_IsDelete = 0;
+
+		/// <summary>
+		/// 映射路径
+		/// </summary>
+		private String m_DllPath = string.Empty;
 		#endregion
 
 		#region Property Members
@@ -202,6 +207,8 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 是否可见
+		/// 1-是,
+		/// 2-否
 		/// </summary>
 		[DataMember]
 		[DisplayName("是否可见")]
@@ -355,6 +362,8 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 是否删除
+		/// 1-是,
+		/// 2-否
 		/// </summary>
 		[DataMember]
 		[DisplayName("是否删除")]
@@ -367,6 +376,23 @@ namespace JCodes.Framework.Entity
 			set
 			{
 				this.m_IsDelete = value;
+			}
+		}
+
+		/// <summary>
+		/// 映射路径
+		/// </summary>
+		[DataMember]
+		[DisplayName("映射路径")]
+		public virtual String DllPath
+		{
+			get
+			{
+				return this.m_DllPath;
+			}
+			set
+			{
+				this.m_DllPath = value;
 			}
 		}
 		#endregion

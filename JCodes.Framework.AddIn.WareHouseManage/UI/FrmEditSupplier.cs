@@ -8,6 +8,7 @@ using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Common.Databases;
 using JCodes.Framework.BLL;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn.WareHouseManage
 {
@@ -62,7 +63,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
         {
             if (Id > 0)
             {
-                SupplierInfo info = BLLFactory<Supplier>.Instance.FindByID(Id);
+                SupplierInfo info = BLLFactory<Supplier>.Instance.FindById(Id);
                 if (info != null)
                 {
                     txtCode.Text = info.ConsumerCode;
@@ -125,7 +126,7 @@ namespace JCodes.Framework.AddIn.WareHouseManage
         /// <returns></returns>
         public override bool SaveUpdated()
         {
-            SupplierInfo info = BLLFactory<Supplier>.Instance.FindByID(Id);
+            SupplierInfo info = BLLFactory<Supplier>.Instance.FindById(Id);
             if (info != null)
             {
                 SetInfo(info);

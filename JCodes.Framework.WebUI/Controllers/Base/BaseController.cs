@@ -21,6 +21,7 @@ using JCodes.Framework.Common.Office;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.BLL;
 using JCodes.Framework.Common.Files;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.WebUI.Controllers
 {
@@ -34,7 +35,7 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <summary>
         /// 当前登录的用户属性
         /// </summary>
-        public UserInfo CurrentUser = new UserInfo();
+        public LoginUserInfo CurrentUser = new LoginUserInfo();
 
         /// <summary>
         /// 定义常用功能的控制ID，方便基类控制器对用户权限的控制
@@ -52,7 +53,7 @@ namespace JCodes.Framework.WebUI.Controllers
         {
             get
             {
-                Dictionary<string, string> functionDict = Session["Functions"] as Dictionary<string, string>;
+                Dictionary<string, string> functionDict = Session["FunctionDict"] as Dictionary<string, string>;
                 if (functionDict == null)
                 {
                     functionDict = new Dictionary<string, string>();
@@ -69,15 +70,6 @@ namespace JCodes.Framework.WebUI.Controllers
         public virtual bool HasFunction(string functionId)
         {
             return Permission.HasFunction(functionId);
-        }
-
-        /// <summary>
-        /// 判断是否为系统管理员
-        /// </summary>
-        /// <returns>true:系统管理员,false:不是系统管理员</returns>
-        public virtual bool IsAdmin()
-        {
-            return Permission.IsAdmin();
         }
 
         /// <summary>
@@ -119,7 +111,7 @@ namespace JCodes.Framework.WebUI.Controllers
             base.OnActionExecuting(filterContext);
 
             //得到用户登录的信息
-            CurrentUser = Session["UserInfo"] as UserInfo;
+            CurrentUser = Session["LoginUserInfo"] as LoginUserInfo;
             if (CurrentUser == null)
             {
                 Response.Redirect("/Login/Index");//如果用户为空跳转到登录界面
@@ -131,11 +123,12 @@ namespace JCodes.Framework.WebUI.Controllers
                 ViewBag.AuthorizeKey = authorizeKeyInfo;
 
                 //登录信息统一设置
-                ViewBag.FullName = CurrentUser.FullName;
+                ViewBag.LoginName = CurrentUser.LoginName;
                 ViewBag.Name = CurrentUser.Name;
-
                 ViewBag.MenuString = GetMenuString();
-                //ViewBag.MenuString = GetMenuStringCache(); //使用缓存，隔一段时间更新
+                AppConfig myAppConfig = Session["AppConfig"] as AppConfig;
+                if (myAppConfig != null)
+                    ViewBag.AppName = myAppConfig.AppConfigGet("AppName") + " -";
             }
         }
 
@@ -149,7 +142,7 @@ namespace JCodes.Framework.WebUI.Controllers
             {
                 base.OnException(filterContext);
 
-                //自定义非授权的异常处理，可记录用户操作
+                //自定义非授权的异常处理，可记录用户操作 TODO
 
                 // 当自定义显示错误 mode = On，显示友好错误页面
                 if (filterContext.HttpContext.IsCustomErrorEnabled)
@@ -169,24 +162,13 @@ namespace JCodes.Framework.WebUI.Controllers
                 {
                     filterContext.ExceptionHandled = true;
                     this.View("Error").ExecuteResult(this.ControllerContext);
-                    //Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 }
             }
         } 
         #endregion
 
         #region 菜单管理
-
-        public string GetMenuStringCache()
-        {
-            string itemValue = MemoryCacheHelper.GetCacheItem<string>("GetMenuStringCache", delegate()
-                {
-                    return GetMenuString();
-                },
-                null, DateTime.Now.AddMinutes(5) //5分钟以后过期，重新获取
-            );
-            return itemValue;
-        }
 
         public string GetMenuString()
         {
@@ -249,7 +231,7 @@ namespace JCodes.Framework.WebUI.Controllers
             string url = "";
             string icon = "icon-home";
             StringBuilder sb = new StringBuilder();
-            List<MenuInfo> list = BLLFactory<Menus>.Instance.GetTopMenu(Const.SystemTypeID);
+            List<MenuInfo> list = BLLFactory<Menu>.Instance.GetTopMenu(Const.SystemTypeID);
             foreach (MenuInfo info in list)
             {
                 if (!HasFunction(info.AuthGid))
@@ -262,7 +244,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 url = (!string.IsNullOrEmpty(info.Url) && info.Url.Trim() != "#") ? string.Format("{0}{1}tid={2}", info.Url, GetUrlJoiner(info.Url), info.Gid) : "javascript:;";
                 sb = sb.AppendFormat(firstTemplate, url, icon, info.Name, info.Gid);
 
-                List<MenuNodeInfo> nodeList = BLLFactory<Menus>.Instance.GetTreeByID(info.Gid);
+                List<MenuNodeInfo> nodeList = BLLFactory<Menu>.Instance.GetTreeById(info.Gid);
                 if (nodeList.Count > 0)
                 {
                     sb = sb.Append(secondTemplateStart);//二级菜单如果有的话，增加一个标题内容
@@ -461,6 +443,35 @@ namespace JCodes.Framework.WebUI.Controllers
             return data;
         }
 
+        #endregion
+
+        #region 获取客户端IP地址
+        /// <summary>
+        /// 获取客户端IP地址
+        /// </summary>
+        /// <returns></returns>
+        public string GetClientIp()
+        {
+            //可以透过代理服务器
+            string userIP = Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+            if (string.IsNullOrEmpty(userIP))
+            {
+                //没有代理服务器,如果有代理服务器获取的是代理服务器的IP
+                userIP = Request.ServerVariables["REMOTE_ADDR"];
+            }
+            if (string.IsNullOrEmpty(userIP))
+            {
+                userIP = Request.UserHostAddress;
+            }
+
+            //替换本机默认的::1
+            if (userIP == "::1")
+            {
+                userIP = "127.0.0.1";
+            }
+
+            return userIP;
+        }
         #endregion
     }
 }

@@ -160,7 +160,7 @@ namespace JCodes.Framework.AddIn.Proj
                 XmlNodeList xnl0 = xe.ChildNodes;
                 tablesInfo.Name = xnl0.Item(0).InnerText;
                 tablesInfo.ChineseName = xnl0.Item(1).InnerText;
-                tablesInfo.FunctionId = xnl0.Item(2).InnerText.ToString().ToInt32();
+                tablesInfo.FunctionId = xnl0.Item(2).InnerText;
                 tablesInfo.BasicdataPath = xnl0.Item(3).InnerText;
                 tablesInfoList.Add(tablesInfo);
             }
@@ -1358,6 +1358,42 @@ namespace JCodes.Framework.AddIn.Proj
                     }
                 }
             }
+        }
+
+        // 手工刷新缓存
+        private void tsmirealoadcache_Click(object sender, EventArgs e)
+        {
+            // 加载数据字典
+            LoadDicData();
+
+            // 重新加载缓存
+            XmlHelper stdfieldxmlHelper = new XmlHelper(@"XML\stdfield.xml");
+            XmlNodeList stdfieldxmlNodeLst = stdfieldxmlHelper.Read("datatype/dataitem");
+
+            List<StdFieldComboBox> stdFieldInfoList = new List<StdFieldComboBox>();
+            foreach (XmlNode xn1 in stdfieldxmlNodeLst)
+            {
+                // 将节点转换为元素，便于得到节点的属性值
+                XmlElement xe = (XmlElement)xn1;
+                // 得到DataTypeInfo节点的所有子节点
+                XmlNodeList xnl0 = xe.ChildNodes;
+                StdFieldComboBox listItem = new StdFieldComboBox();
+                listItem.Name = xnl0.Item(0).InnerText;
+                listItem.ChineseName = xnl0.Item(1).InnerText;
+                listItem.DataType = xnl0.Item(2).InnerText;
+                listItem.DictNo = xnl0.Item(3).InnerText.ToInt32();
+                if (dictTypeInfoList != null)
+                {
+                    var dictType = dictTypeInfoList.Find(new Predicate<DictInfo>(dictinfo => dictinfo.Id == xnl0.Item(3).InnerText.ToInt32()));
+                    if (dictType != null) listItem.DictNameLst = dictType.Remark;
+                }
+
+                stdFieldInfoList.Add(listItem);
+            }
+
+            repositoryItemLookUpEditFields.DataSource = stdFieldInfoList;
+
+            gridViewFields.Columns["FieldName"].ColumnEdit = repositoryItemLookUpEditFields;
         }
     }
 }

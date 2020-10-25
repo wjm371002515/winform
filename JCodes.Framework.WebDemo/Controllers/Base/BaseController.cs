@@ -21,6 +21,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.Runtime.Caching;
 using JCodes.Framework.WebUI.Common;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.WebDemo.Controllers
 {
@@ -35,6 +36,8 @@ namespace JCodes.Framework.WebDemo.Controllers
         /// 当前登录的用户属性
         /// </summary>
         public UserInfo CurrentUser = new UserInfo();
+
+
 
         /// <summary>
         /// 定义常用功能的控制ID，方便基类控制器对用户权限的控制
@@ -131,7 +134,7 @@ namespace JCodes.Framework.WebDemo.Controllers
                 ViewBag.AuthorizeKey = AuthorizeKey;
 
                 //登录信息统一设置
-                ViewBag.FullName = CurrentUser.FullName;
+                ViewBag.LoginName = CurrentUser.LoginName;
                 ViewBag.Name = CurrentUser.Name;
 
                 ViewBag.MenuString = GetMenuString();
@@ -249,7 +252,7 @@ namespace JCodes.Framework.WebDemo.Controllers
             string url = "";
             string icon = "icon-home";
             StringBuilder sb = new StringBuilder();
-            List<MenuInfo> list = BLLFactory<Menus>.Instance.GetTopMenu(Const.SystemTypeID);
+            List<MenuInfo> list = BLLFactory<Menu>.Instance.GetTopMenu(Const.SystemTypeID);
             foreach (MenuInfo info in list)
             {
                 if (!HasFunction(info.AuthGid))
@@ -262,7 +265,7 @@ namespace JCodes.Framework.WebDemo.Controllers
                 url = (!string.IsNullOrEmpty(info.Url) && info.Url.Trim() != "#") ? string.Format("{0}{1}tid={2}", info.Url, GetUrlJoiner(info.Url), info.Gid) : "javascript:;";
                 sb = sb.AppendFormat(firstTemplate, url, icon, info.Name, info.Gid);
 
-                List<MenuNodeInfo> nodeList = BLLFactory<Menus>.Instance.GetTreeByID(info.Gid);
+                List<MenuNodeInfo> nodeList = BLLFactory<Menu>.Instance.GetTreeById(info.Gid);
                 if (nodeList.Count > 0)
                 {
                     sb = sb.Append(secondTemplateStart);//二级菜单如果有的话，增加一个标题内容
@@ -429,7 +432,7 @@ namespace JCodes.Framework.WebDemo.Controllers
 
             //根据用户创建目录，确保生成的文件不会产生冲突
             string realPath = Server.MapPath(relatedPath);
-            string parentPath = Directory.GetParent(realPath).FullName;
+            string parentPath = Directory.GetParent(realPath).LoginName;
             DirectoryUtil.AssertDirExist(parentPath);
 
             workbook.Save(realPath, Aspose.Cells.SaveFormat.Excel97To2003);

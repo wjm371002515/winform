@@ -21,6 +21,7 @@ using JCodes.Framework.CommonControl.Other;
 using OAUS.Core;
 using JCodes.Framework.AddIn.Basic;
 using JCodes.Framework.Common.Format;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.WinFormUI
 {
@@ -125,7 +126,6 @@ namespace JCodes.Framework.WinFormUI
                             }
                         });
                     }
-
                     Application.Run(Portal.gc.MainDialog);
                 }
             }

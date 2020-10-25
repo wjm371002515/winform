@@ -102,6 +102,15 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 日志级别
+		/// 1-LOG_LEVEL_EMERG,
+		/// 2-LOG_LEVEL_ALERT,
+		/// 3-LOG_LEVEL_CRIT,
+		/// 4-LOG_LEVEL_ERR,
+		/// 5-LOG_LEVEL_WARN,
+		/// 6-LOG_LEVEL_NOTICE,
+		/// 7-LOG_LEVEL_INFO,
+		/// 8-LOG_LEVEL_DEBUG,
+		/// 9-LOG_LEVEL_SQL
 		/// </summary>
 		[DataMember]
 		[DisplayName("日志级别")]

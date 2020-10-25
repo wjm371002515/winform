@@ -46,7 +46,9 @@
   <ItemGroup>
     <Compile Include="50Go\CouponCategoryInfo.cs" />
     <Compile Include="50Go\CouponInfo.cs" />
-    <Compile Include="Attachment\FileUploadInfo.cs" />
+    <Compile Include="Common\AppInfo.cs" />
+    <Compile Include="Common\LoginUserInfo.cs" />
+    <Compile Include="Dic\FileUploadInfo.cs" />
     <Compile Include="BaseEntity\BaseEntity.cs" />
     <Compile Include="Common\CDicKeyValue.cs" />
     <Compile Include="Common\CListItem.cs" />
@@ -78,6 +80,9 @@
     <Compile Include="Dic\SysparameterInfo.cs" />
     <Compile Include="Machines\DongnanhaiVotesInfo.cs" />
     <Compile Include="Machines\IntelVoteDetailInfo.cs" />
+    <Compile Include="Machines\CollectionUserInfo.cs" />
+    <Compile Include="Machines\ReviewBondInfo.cs" />
+    <Compile Include="Machines\VoteUserInfo.cs" />
     <Compile Include="Machines\IntelVoteInfo.cs" />
     <Compile Include="Machines\MachinesInfo.cs" />
     <Compile Include="Manual\PagerInfo.cs" />
@@ -113,6 +118,7 @@
     <Compile Include="Security\RoleDataInfo.cs" />
     <Compile Include="Security\RoleInfo.cs" />
     <Compile Include="Security\SimpleUserInfo.cs" />
+    <Compile Include="Security\SystemAuthorizeInfo.cs" />
     <Compile Include="Security\SystemTypeInfo.cs" />
     <Compile Include="Security\UserInfo.cs" />
     <Compile Include="SmallTools\MEBInfo.cs" />
@@ -138,6 +144,9 @@
     <Compile Include="WebMis\InformationStatusInfo.cs" />
     <Compile Include="Manual\MyDenyAccessException.cs" />
     <Compile Include="WebMis\PictureAlbumInfo.cs" />
+    <Compile Include="ZSZQ\ConsignmentInfo.cs" />
+    <Compile Include="ZSZQ\UnissuedBondInfo.cs" />
+    <Compile Include="ZSZQ\UnissuedBondUpdateDataInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JCodes.Framework.Enum\JCodes.Framework.jCodesenum.csproj">

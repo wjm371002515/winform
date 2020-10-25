@@ -15,10 +15,21 @@ namespace JCodes.Framework.BLL
     /// </summary>
     public class GeneralSql : BaseBLL<BaseEntity>
     {
+        private IGeneralSql dal = null;
+        
         public GeneralSql()
             : base()
         {
-            base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+            if (isMultiDatabase)
+            {
+                base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name, dicmultiDatabase[this.GetType().Name].ToString());
+            }
+            else
+            {
+                base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+            }
+
+            dal = baseDal as IGeneralSql;
         }
 
         /// <summary>
@@ -30,7 +41,6 @@ namespace JCodes.Framework.BLL
         /// <returns></returns>
         public DataTable GetSqlTable(string sql)
         {
-            IGeneralSql dal = baseDal as IGeneralSql;
             return dal.SqlTable(sql);
         }
     }

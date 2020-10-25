@@ -36,6 +36,7 @@
         $(function () {
             var queryData = {
                 WHC_Deleted: "1"
+                // 20200229 wujianming TODO 需要处理
                 @if(Session["IsSuperAdmin"] == null || (bool)Session["IsSuperAdmin"] == false) {
                     @Html.Raw(",WHC_Company_ID:"+ Session["Company_ID"]);
                 }
@@ -70,7 +71,7 @@
                      { title: 'ID', field: 'ID', width: 80, sortable: true },
                      { title: '用户编码', field: 'UserCode', width: 80, sortable: true },
                      { title: '用户名/登录名', field: 'Name', width: 120, sortable: true },
-                     { title: '真实姓名', field: 'FullName', width: 80, sortable: true },
+                     { title: '登陆姓名', field: 'LoginName', width: 80, sortable: true },
                      {
                          title: '是否过期', field: 'IsExpire', width: 80, formatter: function (val, rowdata, index) {
                              if (val) {

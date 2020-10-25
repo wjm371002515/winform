@@ -248,7 +248,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 info.Data1 = info.AddressType.ToString();
                 if (info.CreatorId > 0)
                 {
-                    //info. = BLLFactory<User>.Instance.GetFullNameByID(info.Creator.ToInt32());
+                    //info. = BLLFactory<User>.Instance.GetNameById(info.Creator.ToInt32());
                 }
             }
 
@@ -271,7 +271,7 @@ namespace JCodes.Framework.WebUI.Controllers
             CListItem topNode = new CListItem("-1", "无");
             treeList.Add(topNode);
 
-            AddressType type = (addressType == "public") ? AddressType.公共 : AddressType.个人;
+            AddressType type = (addressType == "public") ? AddressType.公司 : AddressType.个人;
             List<AddressGroupNodeInfo> groupList = BLLFactory<AddressGroup>.Instance.GetTree(type.ToString());
             AddGroupDict(groupList, treeList);
 
@@ -297,7 +297,7 @@ namespace JCodes.Framework.WebUI.Controllers
             treeList.Add(topNode);
             treeList.Add(new JsTreeData("ungroup", "未分组联系人"));
 
-            AddressType type = (addressType == "public") ? AddressType.公共 : AddressType.个人;
+            AddressType type = (addressType == "public") ? AddressType.公司 : AddressType.个人;
             List<AddressGroupNodeInfo> groupList = BLLFactory<AddressGroup>.Instance.GetTree(type.ToString());
             AddContactGroupJsTree(groupList, topNode);
 
@@ -330,7 +330,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 }
             }
 
-            AddressType type = (addressType == "public") ? AddressType.公共 : AddressType.个人;
+            AddressType type = (addressType == "public") ? AddressType.公司 : AddressType.个人;
 
             List<AddressGroupNodeInfo> groupList = new List<AddressGroupNodeInfo>();
             if (type == AddressType.个人)

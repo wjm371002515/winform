@@ -31,6 +31,8 @@ using System.Text;
 using JCodes.Framework.Common;
 using JCodes.Framework.Common.Office;
 using JCodes.Framework.Common.Extension;
+using JCodes.Framework.Common.Framework;
+using JCodes.Framework.BLL;
 
 namespace JCodes.Framework.AddIn.Proj
 {
@@ -80,7 +82,7 @@ namespace JCodes.Framework.AddIn.Proj
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnRemark;
         private DevExpress.XtraGrid.GridControl gridControlIndexs;
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewIndexs;
-        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemConstraintType;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemConstraintType;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit repositoryItemCheckedComboBoxIndexFields;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnIndexGuid;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnIndexName;
@@ -195,7 +197,7 @@ namespace JCodes.Framework.AddIn.Proj
                 XmlNodeList xnl0 = xe.ChildNodes;
                 tablesInfo.Name = xnl0.Item(0).InnerText;
                 tablesInfo.ChineseName = xnl0.Item(1).InnerText;
-                tablesInfo.FunctionId = xnl0.Item(2).InnerText.ToInt32();
+                tablesInfo.FunctionId = xnl0.Item(2).InnerText;
                 tablesInfo.TypeGuid = xnl0.Item(3).InnerText;
                 tablesInfo.BasicdataPath = xnl0.Item(4).InnerText;
 
@@ -311,7 +313,7 @@ namespace JCodes.Framework.AddIn.Proj
                 {
                     // 再删除子节点本身
                     var objXmlDoc = xmltableshelper.GetXmlDoc();
-                    XmlNode xn = objXmlDoc.SelectSingleNode(string.Format("datatype/dataitem/item[typeguid=\"{0}\"]", selectedGroup.Tag));
+                    XmlNode xn = objXmlDoc.SelectSingleNode(string.Format("datatype/dataitem/item[typegid=\"{0}\"]", selectedGroup.Tag));
                     // 删除table文件
                     if (FileUtil.FileIsExist(string.Format(@"XML\{0}.table", xn.FirstChild.InnerText)))
                     {
@@ -390,6 +392,7 @@ namespace JCodes.Framework.AddIn.Proj
             }
 
             FrmEditItemName dlg = new FrmEditItemName();
+            dlg.Id = 1;
             dlg.strGuid = selectedLink.Item.Tag.ToString();
             dlg.strGroupGuid = selectedGroup.Tag.ToString();
             if (dlg.ShowDialog() == DialogResult.OK)
@@ -524,6 +527,7 @@ namespace JCodes.Framework.AddIn.Proj
             txtobjectId.Location = new System.Drawing.Point(100, 32);
             txtobjectId.Name = "txtobjectId";
             txtobjectId.Size = new System.Drawing.Size(180, 22);
+            txtobjectId.Enabled = false;
 
             lblenglishName.Location = new System.Drawing.Point(5, 55);
             lblenglishName.Name = "lblenglishName";
@@ -535,6 +539,7 @@ namespace JCodes.Framework.AddIn.Proj
             txtenglishName.Location = new System.Drawing.Point(100, 57);
             txtenglishName.Name = "txtenglishName";
             txtenglishName.Size = new System.Drawing.Size(180, 22);
+            txtenglishName.Enabled = false;
 
             lblchineseName.Location = new System.Drawing.Point(5, 80);
             lblchineseName.Name = "lblenglishName";
@@ -546,6 +551,7 @@ namespace JCodes.Framework.AddIn.Proj
             txtchineseName.Location = new System.Drawing.Point(100, 82);
             txtchineseName.Name = "txtchineseName";
             txtchineseName.Size = new System.Drawing.Size(180, 22);
+            txtchineseName.Enabled = false;
 
             lblexistHisTable.Location = new System.Drawing.Point(5, 105);
             lblexistHisTable.Name = "lblexistHisTable";
@@ -888,7 +894,7 @@ namespace JCodes.Framework.AddIn.Proj
 
             gridControlIndexs = new DevExpress.XtraGrid.GridControl();
             gridViewIndexs = new DevExpress.XtraGrid.Views.Grid.GridView();
-            repositoryItemConstraintType = new RepositoryItemComboBox();
+            repositoryItemConstraintType = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             repositoryItemCheckedComboBoxIndexFields = new RepositoryItemCheckedComboBoxEdit();
             gridColumnIndexGuid = new DevExpress.XtraGrid.Columns.GridColumn();
             gridColumnIndexName = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -957,9 +963,33 @@ namespace JCodes.Framework.AddIn.Proj
             gridColumnConstraintType.VisibleIndex = 3;
             gridColumnConstraintType.FieldName = "ConstraintType";
 
-            repositoryItemConstraintType.AutoHeight = false;
+            /*repositoryItemConstraintType.AutoHeight = false;
             repositoryItemConstraintType.Buttons.AddRange(new EditorButton[] { new EditorButton(ButtonPredefines.Combo)});
-            repositoryItemConstraintType.Items.AddRange(new object[] { "主键", "索引", "唯一索引"});
+            //repositoryItemConstraintType.Items.AddRange(new List<CDicKeyValue> { new CDicKeyValue(0, "请选择"), new CDicKeyValue(1, "主键"), new CDicKeyValue(2, "索引"), new CDicKeyValue(3, "唯一索引") });
+            repositoryItemConstraintType.Items.Add(new CDicKeyValue(1, "主键"));
+            repositoryItemConstraintType.Items.Add(new CDicKeyValue(2, "索引"));
+            repositoryItemConstraintType.Items.Add(new CDicKeyValue(3, "唯一索引"));
+            repositoryItemConstraintType.EditValueChanged += repositoryItemConstraintType_EditValueChanged;*/
+            repositoryItemConstraintType.PopupWidth = 400; //下拉框宽度  
+            repositoryItemConstraintType.NullText = "";//空时的值  
+            repositoryItemConstraintType.DropDownRows = 10;//下拉框行数  
+            repositoryItemConstraintType.ImmediatePopup = true;//输入值是否马上弹出窗体  
+            repositoryItemConstraintType.ValidateOnEnterKey = true;//回车确认  
+            repositoryItemConstraintType.SearchMode = SearchMode.OnlyInPopup;//自动过滤掉不需要显示的数据，可以根据需要变化  
+            repositoryItemConstraintType.TextEditStyle = TextEditStyles.Standard;//要使用户可以输入，这里须设为Standard  
+            repositoryItemConstraintType.AllowNullInput = DevExpress.Utils.DefaultBoolean.True; //可用Ctrl + Delete清空选择內容 
+            repositoryItemConstraintType.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+                new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            //添加显示列  
+            repositoryItemConstraintType.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {  
+                 new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DicttypeValue", "数据字典值"),
+                 new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "数据字典内容")
+            });
+            repositoryItemConstraintType.ValueMember = "DicttypeValue";
+            repositoryItemConstraintType.DisplayMember = "Name";
+            repositoryItemConstraintType.EditValueChanged += repositoryItemConstraintType_EditValueChanged;
+            List<DicKeyValueInfo> dics = BLLFactory<DictData>.Instance.GetDictByTypeId(100016);
+            repositoryItemConstraintType.DataSource = dics;
 
             repositoryItemCheckedComboBoxIndexFields.NullText = "";//空时的值  
             repositoryItemCheckedComboBoxIndexFields.ValidateOnEnterKey = true;//回车确认  
@@ -975,6 +1005,7 @@ namespace JCodes.Framework.AddIn.Proj
             repositoryItemCheckedComboBoxIndexFields.ValueMember = "FieldName";
             repositoryItemCheckedComboBoxIndexFields.DisplayMember = "FieldName";
             repositoryItemCheckedComboBoxIndexFields.EditValueChanged += repositoryItemLookUpEditIndexFields_EditValueChanged;
+           
 
             ((System.ComponentModel.ISupportInitialize)(repositoryItemCheckedComboBoxIndexFields)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(repositoryItemConstraintType)).EndInit();
@@ -995,10 +1026,6 @@ namespace JCodes.Framework.AddIn.Proj
 
             #region 索引初始化
             repositoryItemCheckedComboBoxIndexFields.DataSource = FieldsInfoLst;
-            Dictionary<string, string> constrainttypelst = new Dictionary<string, string>();
-            constrainttypelst.Add("0", "主键");
-            constrainttypelst.Add("1", "索引");
-            constrainttypelst.Add("2", "唯一索引");
         
             gridViewIndexs.Columns["ConstraintType"].ColumnEdit = repositoryItemConstraintType;
             gridViewIndexs.Columns["IndexFieldLst"].ColumnEdit = repositoryItemCheckedComboBoxIndexFields;
@@ -1020,7 +1047,8 @@ namespace JCodes.Framework.AddIn.Proj
                 XmlNodeList xnl0 = xe.ChildNodes;
                 tableindexsInfo.IndexName = xnl0.Item(0).InnerText;
                 tableindexsInfo.IndexFieldLst = xnl0.Item(1).InnerText;
-                tableindexsInfo.ConstraintType = (short)(constrainttypelst[xnl0.Item(2).InnerText].ToInt32());
+                //tableindexsInfo.ConstraintType = string.Equals(xnl0.Item(2).InnerText, "") ? (short)0 : (short)(constrainttypelst[xnl0.Item(2).InnerText].ToInt32());
+                tableindexsInfo.ConstraintType = string.Equals(xnl0.Item(2).InnerText, "") ? (short)0 : (short)xnl0.Item(2).InnerText.ToInt32();
                 tableindexsInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
                 IndexsInfoLst.Add(tableindexsInfo);
             }
@@ -1374,6 +1402,7 @@ namespace JCodes.Framework.AddIn.Proj
                 MessageDxUtil.ShowError("修改失败，其修改的控件不在已知范围内");
                 return;
             }
+            xmltablesinfohelper.Replace(result, c.Text);
 
             string curdatetime = DateTimeHelper.GetServerDateTime();
             xmltablesinfohelper.Replace("datatype/basicinfo/item[@gid=\"" + strBasicInfoGuid + "\"]/lasttime", curdatetime);
@@ -1572,7 +1601,7 @@ namespace JCodes.Framework.AddIn.Proj
             tableIndexsInfo.Gid = System.Guid.NewGuid().ToString();
             tableIndexsInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
 
-            xmltablesinfohelper.InsertElement("datatype/indexsinfo", "item", "guid", tableIndexsInfo.Gid, string.Format(xmlindexsinfomodel, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty));
+            xmltablesinfohelper.InsertElement("datatype/indexsinfo", "item", "gid", tableIndexsInfo.Gid, string.Format(xmlindexsinfomodel, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty));
             xmltablesinfohelper.Save(false);
 
             (gridViewIndexs.DataSource as List<TableIndexsInfo>).Add(tableIndexsInfo);
@@ -1614,6 +1643,18 @@ namespace JCodes.Framework.AddIn.Proj
             }
         }
 
+        void repositoryItemConstraintType_EditValueChanged(object sender, EventArgs e)
+        {
+            DevExpress.XtraEditors.LookUpEdit edit = sender as DevExpress.XtraEditors.LookUpEdit;
+
+            if (edit.EditValue != null)
+            {
+                XmlNodeList xmlNodeLst = xmltablesinfohelper.Read("datatype/indexsinfo/item[@gid=\"" + (gridViewIndexs.GetFocusedRow() as TableIndexsInfo).Gid + "\"]");
+                xmlNodeLst.Item(2).InnerText = edit.EditValue.ToString();
+                xmltablesinfohelper.Save(false);
+            }
+        }
+
         private void gridViewIndexs_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
             XmlNodeList xmlNodeLst = xmltablesinfohelper.Read("datatype/indexsinfo/item[@gid=\"" + tmptableIndexsInfo.Gid + "\"]");
@@ -1627,25 +1668,12 @@ namespace JCodes.Framework.AddIn.Proj
                 case "索引字段列表":
                     idx = 1;
                     break;
-                case "约束类型":
-                    idx = 2;
-                    break;
             }
 
             if (idx == -1)
                 return;
 
-            if (idx == 2)
-            {
-                Dictionary<string, string> constrainttypelst = new Dictionary<string, string>();
-                constrainttypelst.Add("主键", "0");
-                constrainttypelst.Add("索引", "1");
-                constrainttypelst.Add("唯一索引", "2");
-
-                xmlNodeLst.Item(idx).InnerText = constrainttypelst[e.Value.ToString()];
-            }
-            else
-                xmlNodeLst.Item(idx).InnerText = e.Value.ToString();
+            xmlNodeLst.Item(idx).InnerText = e.Value.ToString();
 
             xmltablesinfohelper.Save(false);
 
@@ -1732,6 +1760,16 @@ namespace JCodes.Framework.AddIn.Proj
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// 同步到类属性
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void barbtnSyncBasic_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            MessageBox.Show("TODO");
         }
 
     }

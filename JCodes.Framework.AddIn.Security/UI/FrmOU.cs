@@ -52,7 +52,7 @@ namespace JCodes.Framework.AddIn.Security
         private void InitDictItem()
         {
             //初始化分类
-            string[] enumNames = EnumHelper.GetMemberNames<OUCategoryEnum>();
+            string[] enumNames = EnumHelper.GetMemberNames<OuType>();
             this.txtCategory.Properties.Items.Clear();
             foreach (string item in enumNames)
             {
@@ -80,7 +80,7 @@ namespace JCodes.Framework.AddIn.Security
                     topnode.SelectedImageIndex = groupInfo.OuType;// Portal.gc.GetImageIndex(groupInfo.OuType);
                     this.treeView1.Nodes.Add(topnode);
 
-                    List<OUNodeInfo> sublist = BLLFactory<OU>.Instance.GetTreeByID(groupInfo.Id);
+                    List<OUNodeInfo> sublist = BLLFactory<OU>.Instance.GetTreeById(groupInfo.Id);
                     AddOUNode(sublist, topnode);
                 }
             }
@@ -139,10 +139,10 @@ namespace JCodes.Framework.AddIn.Security
 
             this.lvwUser.BeginUpdate();
             this.lvwUser.Items.Clear();
-            List<SimpleUserInfo> list = BLLFactory<User>.Instance.GetSimpleUsersByOU(id);
+            List<SimpleUserInfo> list = BLLFactory<User>.Instance.GetSimpleUsersByOUId(id);
             foreach (SimpleUserInfo info in list)
             {
-                string name = string.Format("{0}（{1}）", info.FullName, info.Name);
+                string name = string.Format("{0}（{1}）", info.LoginName, info.Name);
                 CDicKeyValue item = new CDicKeyValue(info.Id, name);
                 this.lvwUser.Items.Add(item);
 
@@ -187,7 +187,8 @@ namespace JCodes.Framework.AddIn.Security
                 {
                     try
                     {
-                        BLLFactory<OU>.Instance.SetDeletedFlag(node.Name);
+                        // TODO
+                        //BLLFactory<OU>.Instance.SetDeletedFlag(node.Name);
                         RefreshTreeView();
                     }
                     catch (Exception ex)
@@ -226,7 +227,7 @@ namespace JCodes.Framework.AddIn.Security
             this.txtAddress.Text = "";
             this.txtOuCode.Text = "";
             this.txtSeq.Text = "";
-            this.txtCreator.Text = Portal.gc.UserInfo.FullName;
+            this.txtCreator.Text = Portal.gc.UserInfo.LoginName;
             this.txtCreateTime.Text = DateTimeHelper.GetServerDateTime2().ToString();
             this.txtInnerPhone.Text = "";
             this.txtOuterPhone.Text = "";
@@ -251,7 +252,7 @@ namespace JCodes.Framework.AddIn.Security
             info.LastUpdateTime = DateTimeHelper.GetServerDateTime2();
             info.Pid = this.cmbUpperOU.Value.ToString().ToInt32();
 
-            OUInfo pInfo = BLLFactory<OU>.Instance.FindByID(info.Pid);
+            OUInfo pInfo = BLLFactory<OU>.Instance.FindById(info.Pid);
             if (pInfo != null)
             {   
                 //pInfo.Category == "集团" ||
@@ -302,7 +303,7 @@ namespace JCodes.Framework.AddIn.Security
             if (e.Node != null)
             {
                 Int32 Id = Convert.ToInt32( e.Node.Name);
-                OUInfo info = BLLFactory<OU>.Instance.FindByID(Id);
+                OUInfo info = BLLFactory<OU>.Instance.FindById(Id);
 
                 if (info != null)
                 {
@@ -325,10 +326,10 @@ namespace JCodes.Framework.AddIn.Security
                     if(topTreeNode != null && topTreeNode.Tag != null)
                     {
                         string topOuId = topTreeNode.Tag.ToString();
-                        this.cmbUpperOU.ParentOuID = topOuId.ToInt32();
+                        this.cmbUpperOU.ParentOuId = topOuId.ToInt32();
                         this.cmbUpperOU.Init();
                     }
-                    OUInfo info2 = BLLFactory<OU>.Instance.FindByID(info.Pid);
+                    OUInfo info2 = BLLFactory<OU>.Instance.FindById(info.Pid);
                     if (info2 != null)
                     {
                         this.cmbUpperOU.Value = info.Pid.ToString();
@@ -396,7 +397,7 @@ namespace JCodes.Framework.AddIn.Security
                     } 
                     #endregion
 
-                    OUInfo info = BLLFactory<OU>.Instance.FindByID(currentID);
+                    OUInfo info = BLLFactory<OU>.Instance.FindById(currentID);
                     if (info.Pid != cmbUpperOU.Value.ToString().ToInt32() && BLLFactory<OU>.Instance.Find(string.Format("PID={0}", currentID)).Count <= 1)
                     {
                         MessageDxUtil.ShowError(Const.ForbidOperMsg);

@@ -5,6 +5,7 @@ using JCodes.Framework.CommonControl;
 using JCodes.Framework.CommonControl.BaseUI;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.Entity;
+using JCodes.Framework.jCodesenum;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using System;
 using System.Collections.Generic;
@@ -43,7 +44,7 @@ namespace JCodes.Framework.AddIn.Dictionary
         {
             if (Id > 0)
             {
-                DistrictInfo info = BLLFactory<District>.Instance.FindByID(Id);
+                DistrictInfo info = BLLFactory<District>.Instance.FindById(Id);
                 if (info != null)
                 {
                     this.txtDistrict.Text = info.DistrictName;
@@ -115,15 +116,17 @@ namespace JCodes.Framework.AddIn.Dictionary
         {
             info.DistrictName = this.txtDistrict.Text;
             info.CityId = Convert.ToInt32(this.txtCity.Tag);
-
             info.CurrentLoginUserId = LoginUserInfo.Id;
+            if (0 == info.Id) {
+                info.Id = BLLFactory<District>.Instance.GetMaxId() + 1;
+            }
         }
 
         private void FrmEditCityDistrict_Load(object sender, EventArgs e)
         {
             if (Id > 0)
             {
-                DistrictInfo info = BLLFactory<District>.Instance.FindByID(Id);
+                DistrictInfo info = BLLFactory<District>.Instance.FindById(Id);
                 if (info != null)
                 {
                     this.txtDistrict.Text = info.DistrictName;

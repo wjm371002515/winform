@@ -19,6 +19,9 @@ using JCodes.Framework.Common.Files;
 using JCodes.Framework.Common.Office;
 using JCodes.Framework.CommonControl.Controls;
 using JCodes.Framework.Common.Extension;
+using JCodes.Framework.jCodesenum;
+using JCodes.Framework.AddIn.Basic;
+using JCodes.Framework.Common.Format;
 
 namespace JCodes.Framework.AddIn.Security
 {
@@ -40,6 +43,7 @@ namespace JCodes.Framework.AddIn.Security
             this.winGridViewPager1.ShowLineNumber = true;
             this.winGridViewPager1.BestFitColumnWith = false;
             this.winGridViewPager1.gridView1.DataSourceChanged += new EventHandler(gridView1_DataSourceChanged);
+            this.winGridViewPager1.gridView1.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(gridView1_CustomColumnDisplayText);
 
             //关联回车键进行查询
             foreach (Control control in this.layoutControl1.Controls)
@@ -63,13 +67,67 @@ namespace JCodes.Framework.AddIn.Security
 
                 //可特殊设置特别的宽度
                 winGridViewPager1.gridView1.SetGridColumWidth("Name", 150);
-                winGridViewPager1.gridView1.SetGridColumWidth("Icon", 200);
-                winGridViewPager1.gridView1.SetGridColumWidth("Seq", 80);
-                winGridViewPager1.gridView1.SetGridColumWidth("IsVisable", 80);
-                winGridViewPager1.gridView1.SetGridColumWidth("WinformClass", 400);
-                winGridViewPager1.gridView1.SetGridColumWidth("WebIcon", 200);
-                winGridViewPager1.gridView1.SetGridColumWidth("Url", 200);
-                winGridViewPager1.gridView1.SetGridColumWidth("Note", 200);
+                winGridViewPager1.gridView1.SetGridColumWidth("Icon", 120);
+                winGridViewPager1.gridView1.SetGridColumWidth("Seq", 50);
+                winGridViewPager1.gridView1.SetGridColumWidth("AuthGid", 240);
+                winGridViewPager1.gridView1.SetGridColumWidth("IsVisable", 70);
+                winGridViewPager1.gridView1.SetGridColumWidth("WinformClass", 180);
+                winGridViewPager1.gridView1.SetGridColumWidth("SystemtypeId", 80);
+                winGridViewPager1.gridView1.SetGridColumWidth("WebIcon", 120);
+                winGridViewPager1.gridView1.SetGridColumWidth("Url", 120);
+                winGridViewPager1.gridView1.SetGridColumWidth("IsDelete", 70);
+                winGridViewPager1.gridView1.SetGridColumWidth("DllPath", 120);
+                winGridViewPager1.gridView1.SetGridColumWidth("CreatorId", 70); // 创建日期
+                winGridViewPager1.gridView1.SetGridColumWidth("CreatorTime", 130); // 创建日期
+                winGridViewPager1.gridView1.SetGridColumWidth("EditorId", 70);
+                winGridViewPager1.gridView1.SetGridColumWidth("LastUpdateTime", 130); // 最后更新日期
+            }
+        }
+
+        void gridView1_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
+        {
+            if (e.Column.ColumnType == typeof(DateTime))
+            {
+                string columnName = e.Column.FieldName;
+                if (e.Value != null)
+                {
+                    if (Convert.ToDateTime(e.Value) <= Convert.ToDateTime("1900-1-1"))
+                    {
+                        e.DisplayText = "";
+                    }
+                    else
+                    {
+                        e.DisplayText = Convert.ToDateTime(e.Value).ToString("yyyy-MM-dd HH:mm:ss");//yyyy-MM-dd
+                    }
+                }
+            }
+            else if (string.Equals(e.Column.FieldName, "CreatorId", StringComparison.CurrentCultureIgnoreCase))
+            {
+                if (e.Value != null && !string.IsNullOrEmpty(e.Value.ToString()) && Portal.gc.AllUserInfo.ContainsKey(e.Value.ToString().ToInt32()))
+                {
+                    e.DisplayText = Portal.gc.AllUserInfo[e.Value.ToString().ToInt32()];
+                }
+            }
+            else if (string.Equals(e.Column.FieldName, "IsDelete", StringComparison.CurrentCultureIgnoreCase))
+            {
+                if (e.Value != null && !string.IsNullOrEmpty(e.Value.ToString()))
+                {
+                    e.DisplayText = EnumHelper.GetMemberName<IsDelete>(e.Value);
+                }
+            }
+            else if (string.Equals(e.Column.FieldName, "IsVisable", StringComparison.CurrentCultureIgnoreCase))
+            {
+                if (e.Value != null && !string.IsNullOrEmpty(e.Value.ToString()))
+                {
+                    e.DisplayText = EnumHelper.GetMemberName<IsVisable>(e.Value);
+                }
+            }
+            else if (string.Equals(e.Column.FieldName, "SystemtypeId", StringComparison.CurrentCultureIgnoreCase))
+            {
+                if (e.Value != null && !string.IsNullOrEmpty(e.Value.ToString()))
+                {
+                    e.DisplayText = BLLFactory<SystemType>.Instance.FindById(e.Value) == null ? "" : BLLFactory<SystemType>.Instance.FindById(e.Value).Name;
+                }
             }
         }
 
@@ -85,9 +143,8 @@ namespace JCodes.Framework.AddIn.Security
 
         void Init_Function()
         {
-            btnSearch.Enabled = HasFunction("Menu/search");
-            btnAddNew.Enabled = HasFunction("Menu/add");
-            btnExport.Enabled = HasFunction("Menu/Export");
+            btnAddNew.Enabled = HasFunction("Menu/Set/MenuAdd");
+            btnExport.Enabled = HasFunction("Menu/Set/MenuExport");
         }
 
         /// <summary>
@@ -111,7 +168,7 @@ namespace JCodes.Framework.AddIn.Security
         /// </summary>
         private void winGridViewPager1_OnDeleteSelected(object sender, EventArgs e)
         {
-            if (!HasFunction("Menu/del"))
+            if (!HasFunction("Menu/Set/MenuDel"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -122,11 +179,21 @@ namespace JCodes.Framework.AddIn.Security
                 return;
             }
 
-            int[] rowSelected = this.winGridViewPager1.GridView1.GetSelectedRows();
-            foreach (int iRow in rowSelected)
+            Int32[] rowSelected = this.winGridViewPager1.GridView1.GetSelectedRows();
+            foreach (Int32 iRow in rowSelected)
             {
-                string ID = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "ID");
-                BLLFactory<Menus>.Instance.DeleteByUser(ID, LoginUserInfo.Id);
+                String gid = this.winGridViewPager1.GridView1.GetRowCellDisplayText(iRow, "Gid");
+
+                // 如果下面存在子菜单不允许删除
+                if (BLLFactory<JCodes.Framework.BLL.Menu>.Instance.GetMenuById(gid).Count >= 1)
+                {
+                    MessageDxUtil.ShowError(Const.ForbidOperMsg);
+                    continue;
+                }
+                BLLFactory<JCodes.Framework.BLL.Menu>.Instance.DeleteByUser(gid, LoginUserInfo.Id);
+
+                // 删除功能对应的子列表
+                BLLFactory<JCodes.Framework.BLL.Function>.Instance.DeleteWithSubNode(gid, LoginUserInfo.Id);
             }
 
             BindData();
@@ -137,25 +204,26 @@ namespace JCodes.Framework.AddIn.Security
         /// </summary>
         private void winGridViewPager1_OnEditSelected(object sender, EventArgs e)
         {
-            if (!HasFunction("Menu/edit"))
+            if (!HasFunction("Menu/Set/MenuEdit"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
             }
 
-            Int32 Id = this.winGridViewPager1.gridView1.GetFocusedRowCellDisplayText("ID").ToInt32();
-            List<Int32> IdList = new List<Int32>();
+            String gid = this.winGridViewPager1.gridView1.GetFocusedRowCellDisplayText("Gid");
+            List<string> GidList = new List<string>();
             for (int i = 0; i < this.winGridViewPager1.gridView1.RowCount; i++)
             {
-                Int32 intTemp = this.winGridViewPager1.GridView1.GetRowCellDisplayText(i, "ID").ToInt32();
-                IdList.Add(intTemp);
+                String strTemp = this.winGridViewPager1.GridView1.GetRowCellDisplayText(i, "Gid");
+                GidList.Add(strTemp);
             }
 
-            if (Id > 0)
+            if (!string.IsNullOrEmpty(gid))
             {
                 FrmEditMenu dlg = new FrmEditMenu();
-                dlg.Id = Id;
-                dlg.IdList = IdList;
+                dlg.Id = 1;
+                dlg.Gid = gid;
+                dlg.GidList = GidList;
                 dlg.OnDataSaved += new EventHandler(dlg_OnDataSaved);
                 if (DialogResult.OK == dlg.ShowDialog())
                 {
@@ -175,7 +243,7 @@ namespace JCodes.Framework.AddIn.Security
         /// </summary>        
         private void winGridViewPager1_OnAddNew(object sender, EventArgs e)
         {
-            if (!HasFunction("Menu/add"))
+            if (!HasFunction("Menu/Set/MenuAdd"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
@@ -189,14 +257,14 @@ namespace JCodes.Framework.AddIn.Security
         /// </summary> 
         private void winGridViewPager1_OnStartExport(object sender, EventArgs e)
         {
-            if (!HasFunction("Menu/Export"))
+            if (!HasFunction("Menu/Set/MenuExport"))
             {
                 MessageDxUtil.ShowError(Const.NoAuthMsg);
                 return;
             }
 
             string where = GetConditionSql();
-            this.winGridViewPager1.AllToExport = BLLFactory<Menus>.Instance.FindToDataTable(where);
+            this.winGridViewPager1.AllToExport = BLLFactory<JCodes.Framework.BLL.Menu>.Instance.FindToDataTable(where);
         }
 
         /// <summary>
@@ -214,13 +282,15 @@ namespace JCodes.Framework.AddIn.Security
         {
             SearchCondition condition = new SearchCondition();
             condition.AddCondition("Name", this.txtName.Text, SqlOperator.Like);
-            condition.AddCondition("FunctionId", this.txtFunctionId.Text, SqlOperator.Like);
-            condition.AddCondition("WinformType", this.txtWinformType.Text, SqlOperator.Like);
+            condition.AddCondition("AuthGid", this.txtFunctionId.Text, SqlOperator.Like);
+            condition.AddCondition("WinformClass", this.txtWinformType.Text, SqlOperator.Like);
             condition.AddCondition("Url", this.txtUrl.Text, SqlOperator.Like);
             if (this.txtVisible.Checked)
             {
-                condition.AddCondition("Visible", 1, SqlOperator.Equal);
+                condition.AddCondition("IsVisable", 1, SqlOperator.Equal);
             }
+            else
+                condition.AddCondition("IsVisable", 2, SqlOperator.Equal);
             string where = condition.BuildConditionSql().Replace("Where", "");
             //如果是单击节点得到的条件，则使用树列表的，否则使用查询条件的
             if (!string.IsNullOrEmpty(treeConditionSql))
@@ -235,24 +305,14 @@ namespace JCodes.Framework.AddIn.Security
         /// </summary>
         private void BindData()
         {
-            //entity
-            this.winGridViewPager1.DisplayColumns = "Name,Icon,Seq,FunctionId,Visible,WinformType,WebIcon,Url";
-            #region 添加别名解析
-
-            this.winGridViewPager1.AddColumnAlias("ID", "");
-            this.winGridViewPager1.AddColumnAlias("Name", "显示名称");
-            this.winGridViewPager1.AddColumnAlias("Icon", "图标");
-            this.winGridViewPager1.AddColumnAlias("Seq", "排序");
-            this.winGridViewPager1.AddColumnAlias("FunctionId", "功能ID");
-            this.winGridViewPager1.AddColumnAlias("Visible", "菜单可见");
-            this.winGridViewPager1.AddColumnAlias("WinformType", "Winform窗体类型");
-            this.winGridViewPager1.AddColumnAlias("WebIcon", "Web界面的菜单图标");
-            this.winGridViewPager1.AddColumnAlias("Url", "Web界面Url地址");
-
-            #endregion
+            var columnNameAlias = BLLFactory<JCodes.Framework.BLL.Menu>.Instance.GetColumnNameAlias();//字段列显示名称转义
+            columnNameAlias.Remove("Gid");
+            columnNameAlias.Remove("Pgid");
+            this.winGridViewPager1.DisplayColumns = columnNameAlias.ToDiplayKeyString();
+            this.winGridViewPager1.ColumnNameAlias = columnNameAlias;
 
             string where = GetConditionSql();
-            List<MenuInfo> list = BLLFactory<Menus>.Instance.FindWithPager(where, this.winGridViewPager1.PagerInfo);
+            List<MenuInfo> list = BLLFactory<JCodes.Framework.BLL.Menu>.Instance.FindWithPager(where, this.winGridViewPager1.PagerInfo);
             this.winGridViewPager1.DataSource = new SortableBindingList<MenuInfo>(list);
             this.winGridViewPager1.PrintTitle = "功能菜单信息报表";
         }
@@ -262,12 +322,6 @@ namespace JCodes.Framework.AddIn.Security
         /// </summary>
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            if (!HasFunction("Menu/search"))
-            {
-                MessageDxUtil.ShowError(Const.NoAuthMsg);
-                return;
-            }
-
             treeConditionSql = "";
             BindData();
         }
@@ -298,8 +352,8 @@ namespace JCodes.Framework.AddIn.Security
             }
 
             FrmEditMenu dlg = new FrmEditMenu();
-            dlg.PID = selectId;
-            dlg.SystemType_ID = systemType;
+            dlg.Pgid = selectId;
+            dlg.SystemtypeId = systemType;
             dlg.OnDataSaved += new EventHandler(dlg_OnDataSaved);
             if (DialogResult.OK == dlg.ShowDialog())
             {
@@ -328,7 +382,7 @@ namespace JCodes.Framework.AddIn.Security
             string file = FileDialogHelper.SaveExcel(string.Format("{0}.xls", moduleName));
             if (!string.IsNullOrEmpty(file))
             {
-                List<MenuInfo> list = BLLFactory<Menus>.Instance.GetAll();
+                List<MenuInfo> list = BLLFactory<JCodes.Framework.BLL.Menu>.Instance.GetAll();
                 DataTable dtNew = DataTableHelper.CreateTable("序号|int,父ID,显示名称,图标,排序,功能ID,菜单可见,Winform窗体类型,Web界面的菜单图标,Web界面Url地址,系统编号");
                 DataRow dr;
                 int j = 1;
@@ -397,11 +451,11 @@ namespace JCodes.Framework.AddIn.Security
 
                 //绑定树控件
                 //一般情况下，对Ribbon样式而言，一级菜单表示RibbonPage；二级菜单表示PageGroup;三级菜单才是BarButtonItem最终的菜单项。
-                List<MenuNodeInfo> menuList = BLLFactory<Menus>.Instance.GetTree(systemType);
+                List<MenuNodeInfo> menuList = BLLFactory<JCodes.Framework.BLL.Menu>.Instance.GetTree(systemType);
                 foreach (MenuNodeInfo info in menuList)
                 {
                     TreeNode item = new TreeNode();
-                    item.Name = info.Pgid;
+                    item.Name = info.Gid;
                     item.Text = info.Name;//一级菜单节点
                     item.Tag = info;//对菜单而言，记录其MenuNodeInfo到Tag中，作为判断依据
                     item.ImageIndex = 1;
@@ -422,7 +476,7 @@ namespace JCodes.Framework.AddIn.Security
             foreach (MenuNodeInfo info in list)
             {
                 TreeNode item = new TreeNode();
-                item.Name = info.Pgid;
+                item.Name = info.Gid;
                 item.Text = info.Name;//二、三级菜单节点
                 item.Tag = info;//对菜单而言，记录其MenuNodeInfo到Tag中，作为判断依据
                 int index = (fnode.ImageIndex + 1 > 3) ? 3 : fnode.ImageIndex + 1;
@@ -447,8 +501,8 @@ namespace JCodes.Framework.AddIn.Security
                 }
                 else
                 {
-                    string systemTypeID = e.Node.Name;
-                    treeConditionSql = string.Format("SystemType_ID='{0}' ", systemTypeID);
+                    string SystemtypeId = e.Node.Name;
+                    treeConditionSql = string.Format("SystemtypeId='{0}' ", SystemtypeId);
                     BindData();
                 }
             }

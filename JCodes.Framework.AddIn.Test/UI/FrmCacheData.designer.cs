@@ -17,16 +17,15 @@ namespace JCodes.Framework.AddIn.Test
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCacheData));
-            this.barAndDockingController = new DevExpress.XtraBars.BarAndDockingController(this.components);
-            this.dockManager = new DevExpress.XtraBars.Docking.DockManager(this.components);
+            this.barAndDockingController = new DevExpress.XtraBars.BarAndDockingController();
+            this.dockManager = new DevExpress.XtraBars.Docking.DockManager();
             this.hideContainerLeft = new DevExpress.XtraBars.Docking.AutoHideContainer();
             this.dockPanel6 = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel6_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.ucToolbox1 = new System.Windows.Forms.UserControl();
-            this.documentManager = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
-            this.tabbedView = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
+            this.documentManager = new DevExpress.XtraBars.Docking2010.DocumentManager();
+            this.tabbedView = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView();
             ((System.ComponentModel.ISupportInitialize)(this.barAndDockingController)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager)).BeginInit();
             this.hideContainerLeft.SuspendLayout();
@@ -70,7 +69,7 @@ namespace JCodes.Framework.AddIn.Test
             this.dockPanel6.FloatSize = new System.Drawing.Size(146, 428);
             this.dockPanel6.ID = new System.Guid("24977e30-0ea6-44aa-8fa4-9abaeb178b5e");
             this.dockPanel6.ImageIndex = 25;
-            this.dockPanel6.Location = new System.Drawing.Point(-60, 0);
+            this.dockPanel6.Location = new System.Drawing.Point(0, 0);
             this.dockPanel6.Name = "dockPanel6";
             this.dockPanel6.OriginalSize = new System.Drawing.Size(200, 200);
             this.dockPanel6.SavedDock = DevExpress.XtraBars.Docking.DockingStyle.Left;

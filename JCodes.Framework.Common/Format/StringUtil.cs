@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Text;
 using Microsoft.VisualBasic;
 using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.Common.Format
 {

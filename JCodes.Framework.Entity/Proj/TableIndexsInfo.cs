@@ -12,7 +12,7 @@ namespace JCodes.Framework.Entity
 	/// </summary>
 	[Serializable]
 	[DataContract]
-	public partial class TableIndexsInfo : IDXDataErrorInfo
+    public partial class TableIndexsInfo : IDXDataErrorInfo
 	{
 		#region Field Members
 
@@ -97,6 +97,9 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 约束类型
+		/// 1-主键,
+		/// 2-索引,
+		/// 3-唯一索引
 		/// </summary>
 		[DataMember]
 		[DisplayName("约束类型")]
@@ -148,5 +151,5 @@ namespace JCodes.Framework.Entity
 			
 		}
 		#endregion
-	}
+    }
 }

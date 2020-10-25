@@ -3,6 +3,7 @@ using JCodes.Framework.Common;
 using JCodes.Framework.Common.Format;
 using JCodes.Framework.CommonControl.BaseUI;
 using JCodes.Framework.CommonControl.Other;
+using JCodes.Framework.jCodesenum;
 //using JCodes.Framework.Entity;
 //using JCodes.Framework.Entity.SmallTools;
 using JCodes.Framework.jCodesenum.BaseEnum;

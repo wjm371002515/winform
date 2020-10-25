@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>H+ 后台主题UI框架 - 高级表单</title>
+    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+
+    <link rel="shortcut icon" href="favicon.ico"> <link href="css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css?v=4.1.0" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+     <div class="row">
+       
+            <div class="col-sm-7">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>固定格式文本 <small>http://jasny.github.io/bootstrap/</small></h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="form_advanced.html#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li><a href="form_advanced.html#">选项1</a>
+                                </li>
+                                <li><a href="form_advanced.html#">选项2</a>
+                                </li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <h3>金融控件</h3>
+                        <p>金融控件，可以根据数字翻译成中文。</p>
+						<div class="form-horizontal m-t-md">
+							<div class="hr-line-dashed"></div>
+							<div class="form-group">
+                                <label class="col-sm-2 control-label">金融控件：</label>
+                                <div class="col-sm-10">
+                                    <input id="firstname" name="firstname" class="form-control" type="text">
+                                    <span class="help-block m-b-none" id="chinesefirstName"><i class="fa fa-info-circle"></i> 这里写点提示的内容</span>
+                                </div>
+							 </div>
+                        </div>
+                        <form class="form-horizontal m-t-md" action="form_advanced.html#">
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">货币</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" data-mask="&yen; 999,999,999.99" placeholder="">
+                                    <span class="help-block">&yen; 999,999,999.99</span>
+                                </div>
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    
+
+    <!-- 全局js -->
+    <script src="js/jquery.min.js?v=2.1.4"></script>
+    <script src="js/bootstrap.min.js?v=3.3.6"></script>
+	<script src="js/bootstrap.min.js?v=3.3.6"></script>
+    <!-- 自定义js -->
+    <script src="js/content.js?v=1.0.0"></script>
+	<script src="js/ChinaNumToEnglishNum.js?v=1.0.0"></script>
+	
+    <!-- Input Mask-->
+    <script src="js/plugins/jasny/jasny-bootstrap.min.js"></script>
+	
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$("#firstname").bind("input propertychange ",  function() {
+				$("#chinesefirstName").text(chineseNumber($("#firstname").val()) + " 元");
+			});
+			
+			$("#chinesefirstName").text(chineseNumber($("#firstname").val()) + " 元");
+		});
+	</script>
+
+</body>
+
+</html>

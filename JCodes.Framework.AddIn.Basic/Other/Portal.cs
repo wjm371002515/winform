@@ -16,11 +16,11 @@ using JCodes.Framework.Common.Office;
 using JCodes.Framework.Common.Device;
 using JCodes.Framework.Common.Encrypt;
 using JCodes.Framework.Common.Framework;
-using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.CommonControl.Other;
 using DevExpress.Utils;
 using JCodes.Framework.Common.Files;
 using JCodes.Framework.jCodesenum;
+using System.Xml;
 
 namespace JCodes.Framework.AddIn.Basic
 {
@@ -31,20 +31,25 @@ namespace JCodes.Framework.AddIn.Basic
 
     public class GlobalControl
     {
-        public MainForm MainDialog;                                         // 主窗体对话框(对应的是MainForm)
-        public string SystemType = "071bafed-4634-4083-bb34-86dda58edfc4";  //系统类型
-        public string AppUnit = string.Empty;                               //单位名称
-        public string AppName = string.Empty;                               //程序名称
-        public string AppWholeName = string.Empty;                          //单位名称+程序名称
-        public bool Registed { get; set;}                                   // 判断是否注册了   
-        public bool EnableRegister = false;                                 //设置一个开关，确定是否要求注册后才能使用软件
-        public WaitDialogForm _waitBeforeLogin = null;                      // 登录等待窗口
-        public AppConfig config = new AppConfig();                                 // config 全局变量 只一次读取config文件提高效率
+        public MainForm MainDialog;                                             // 主窗体对话框(对应的是MainForm)
+        public string SYSTEMTYPEID = "071bafed-4634-4083-bb34-86dda58edfc4";    // 系统类型
+        public string AppUnit = string.Empty;                                   // 单位名称
+        public string AppName = string.Empty;                                   // 程序名称
+        public string AppWholeName = string.Empty;                              // 单位名称+程序名称
+        public bool Registed { get; set;}                                       // 判断是否注册了   
+        public bool EnableRegister = false;                                     // 设置一个开关，确定是否要求注册后才能使用软件
+        public WaitDialogForm _waitBeforeLogin = null;                          // 登录等待窗口
+        public AppConfig config = new AppConfig();                              // config 全局变量 只一次读取config文件提高效率
+        public Boolean IsSuperAdmin = false;                                    // 配置超级管理员
 
         /// <summary>
         /// 登录用户信息
         /// </summary>
         public UserInfo UserInfo { get; set; }
+
+        public Dictionary<Int32, string> AllUserInfo { get; set; }
+
+        public Dictionary<Int32, string> AllOuInfo { get; set; }
 
         /// <summary>
         /// 转换框架通用的用户基础信息，方便框架使用
@@ -56,7 +61,7 @@ namespace JCodes.Framework.AddIn.Basic
             LoginUserInfo loginInfo = new LoginUserInfo();
             loginInfo.Id = info.Id;
             loginInfo.Name = info.Name;
-            loginInfo.FullName = info.FullName;
+            loginInfo.LoginName = info.LoginName;
             loginInfo.IdCard = info.IdCard;
             loginInfo.MobilePhone = info.MobilePhone;
             loginInfo.QQ = info.QQ;
@@ -120,6 +125,107 @@ namespace JCodes.Framework.AddIn.Basic
         }
 
         /// <summary>
+        /// 加载缓存
+        /// </summary>
+        /// <returns></returns>
+        public void LoadCache(UserInfo info)
+        {
+            Dictionary<string, string> functionDict = new Dictionary<string, string>();
+            List<FunctionInfo> list = BLLFactory<Function>.Instance.GetFunctionsByUser(info.Id, Portal.gc.SYSTEMTYPEID);
+            if (list != null && list.Count > 0)
+            {
+                functionDict.Clear();
+                foreach (FunctionInfo functionInfo in list)
+                {
+                    // 20200303 改用功能确认是否有权限
+                    if (!functionDict.ContainsKey(functionInfo.DllPath))
+                    {
+                        functionDict.Add(functionInfo.DllPath, functionInfo.Name);
+                    }
+                }
+            }
+
+            #region 获取角色对应的用户操作部门及公司范围
+            List<int> companyLst = BLLFactory<RoleData>.Instance.GetBelongCompanysByUser(info.Id);
+            List<int> deptLst = BLLFactory<RoleData>.Instance.GetBelongDeptsByUser(info.Id);
+            StringBuilder companysb = new StringBuilder();
+            StringBuilder deptsb = new StringBuilder();
+            companysb.Append(" in (");
+            for (int i = 0; i < companyLst.Count; i++)
+            {
+                companysb.Append(" '" + companyLst[i] + "', ");
+            }
+            companysb.Append(" '')");
+
+            if (companyLst.Contains(-1))
+            {
+                companysb.Append(" or (1 = 1)");
+            }
+
+            deptsb.Append(" in (");
+            for (int i = 0; i < deptLst.Count; i++)
+            {
+                deptsb.Append(" '" + deptsb[i] + "', ");
+            }
+            deptsb.Append(" '')");
+
+            if (deptLst.Contains(-11))
+            {
+                deptsb.Append(" or (1 = 1)");
+            }
+            #endregion
+
+            #region 获取标准字段
+            XmlHelper xmlhelper = new XmlHelper(@"XML\stdfield.xml");
+            XmlNodeList xmlNodeLst = xmlhelper.Read("datatype/dataitem");
+            Dictionary<string, string> dicStdField = new Dictionary<string, string>();
+            foreach (XmlNode xn1 in xmlNodeLst)
+            {
+                // 将节点转换为元素，便于得到节点的属性值
+                XmlElement xe = (XmlElement)xn1;
+
+                // 得到DataTypeInfo节点的所有子节点
+                XmlNodeList xnl0 = xe.ChildNodes;
+
+                dicStdField.Add(xnl0.Item(0).InnerText, xnl0.Item(1).InnerText);
+            }
+            #endregion
+
+            #region 获取全部用户信息
+            List<UserInfo> lst = BLLFactory<User>.Instance.GetAll();
+
+            if (AllUserInfo == null) AllUserInfo = new Dictionary<int, string>();
+
+            foreach (var user in lst)
+            {
+                if (!AllUserInfo.ContainsKey(user.Id))
+                    AllUserInfo.Add(user.Id, user.Name);  
+            }
+            #endregion
+
+            #region 获取全部用户信息
+            List<OUInfo> oulst = BLLFactory<OU>.Instance.GetAll();
+
+            if (AllOuInfo == null) AllOuInfo = new Dictionary<int, string>();
+
+            foreach (var ou in oulst)
+            {
+                if (!AllOuInfo.ContainsKey(ou.Id))
+                    AllOuInfo.Add(ou.Id, ou.Name);
+            }
+            #endregion
+
+                // 并保持到缓存中
+            Cache.Instance["LoginUserInfo"] = ConvertToLoginUser(info);
+            Cache.Instance["FunctionDict"] = functionDict;
+            Cache.Instance["RoleList"] = BLLFactory<Role>.Instance.GetRolesByUser(info.Id);
+            Cache.Instance["canOptCompanyId"] = companysb.ToString();
+            Cache.Instance["canOptDeptId"] = deptsb.ToString();
+            Cache.Instance["DictData"] = BLLFactory<DictData>.Instance.GetAllDict();
+            Cache.Instance["AppConfig"] = Portal.gc.config;
+        }
+
+        /// <summary>
         /// 调用非对称加密方式对序列号进行验证
         /// </summary>
         /// <param name="serialNumber">正确的序列号</param>
@@ -155,7 +261,7 @@ namespace JCodes.Framework.AddIn.Basic
         /*public void CurrentUserInfo() {
             FrmEditUser dlg = new FrmEditUser();
             var loginUserInfo = Cache.Instance["LoginUserInfo"] as LoginUserInfo;
-            dlg.ID = loginUserInfo.ID.ToString();
+            dlg.ID = loginUserInfo.Id;
             dlg.StartPosition = FormStartPosition.CenterScreen;
             dlg.ShowDialog();
         }*/
@@ -166,46 +272,21 @@ namespace JCodes.Framework.AddIn.Basic
         /// </summary>
         /// <param name="category">机构分类</param>
         /// <returns></returns>
-        public int GetImageIndex(string category)
+        public Int32 GetImageIndex(OuType ouType)
         {
-            int index = 0;
-            if (category == OUCategoryEnum.公司.ToString())
+            /*if (ouType == OuType.公司)
             {
                 index = 1;
             }
-            else if (category == OUCategoryEnum.部门.ToString())
+            else if (ouType == OuType.部门)
             {
                 index = 2;
             }
-            else if (category == OUCategoryEnum.工作组.ToString())
+            else if (ouType == OuType.工作组)
             {
                 index = 3;
-            }
-            return index;
-        }
-
-        /// <summary>
-        /// 判断当前用户具有某个角色
-        /// </summary>
-        /// <param name="roleName">角色名称</param>
-        /// <returns></returns>
-        public bool UserInRole(string roleName)
-        {
-            var roleList = Cache.Instance["RoleList"] as List<RoleInfo>;
-
-            bool result = false;
-            if (roleList != null)
-            {
-                foreach (RoleInfo info in roleList)
-                {
-                    if (info.Name.Equals(roleName, StringComparison.OrdinalIgnoreCase))
-                    {
-                        result = true;
-                        break;
-                    }
-                }
-            }
-            return result;
+            }*/
+            return ((Int32)ouType - 1);
         }
 
         /// <summary>
@@ -217,16 +298,18 @@ namespace JCodes.Framework.AddIn.Basic
         {
             List<OUInfo> list = new List<OUInfo>();
             OUInfo groupInfo = null;
-            /*if (UserInRole(RoleInfo.SuperAdminName))
+
+            if (Portal.gc.IsSuperAdmin)
             {
                 //超级管理员取集团节点
                 list.AddRange(BLLFactory<OU>.Instance.GetTopGroup());
             }
             else
             {
-                groupInfo = BLLFactory<OU>.Instance.FindByID(UserInfo.CompanyId);//公司管理员取公司节点
+                groupInfo = BLLFactory<OU>.Instance.FindById(UserInfo.CompanyId);//公司管理员取公司节点
                 list.Add(groupInfo);
-            }*/
+            }
+
             return list;
         }
 

@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Web.Mvc;
 using JCodes.Framework.WebUI.Common;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.WebDemo.Controllers
 {
@@ -157,7 +158,7 @@ namespace JCodes.Framework.WebDemo.Controllers
         //    //    info.PID = BLLFactory<Icon>.Instance.GetFieldValue(info.PID, "Name");
         //    //    if (!string.IsNullOrEmpty(info.Creator))
         //    //    {
-        //    //        info.Creator = BLLFactory<User>.Instance.GetFullNameByID(info.Creator.ToInt32());
+        //    //        info.Creator = BLLFactory<User>.Instance.GetNameById(info.Creator.ToInt32());
         //    //    }
         //    //}
 

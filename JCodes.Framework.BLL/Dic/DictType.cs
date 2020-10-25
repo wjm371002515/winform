@@ -12,9 +12,22 @@ namespace JCodes.Framework.BLL
 {
 	public class DictType : BaseBLL<DictTypeInfo>
     {
+        private IDictType dal = null;
+
         public DictType()
         {
-            base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+            if (isMultiDatabase)
+            {
+                base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name, dicmultiDatabase[this.GetType().Name].ToString());
+            }
+            else
+            {
+                base.Init(this.GetType().FullName, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+            }
+
+            baseDal.OnOperationLog += new OperationLogEventHandler(OperationLog.OnOperationLog);//如果需要记录操作日志，则实现这个事件
+
+            dal = baseDal as IDictType;
         }
 
         /// <summary>
@@ -24,8 +37,7 @@ namespace JCodes.Framework.BLL
         /// <returns></returns>
         public Dictionary<Int32, string> GetAllType(Int32 dictTypeId)
         {
-            IDictType typeDal = baseDal as IDictType;
-            return typeDal.GetAllType(dictTypeId);
+            return dal.GetAllType(dictTypeId);
         }
 
         /// <summary>
@@ -33,17 +45,16 @@ namespace JCodes.Framework.BLL
         /// </summary>
         /// <param name="dictTypeInfo"></param>
         /// <returns></returns>
-        public bool CheckDuplicated(Int32 ID)
+        public bool CheckDuplicated(Int32 Id)
         {
-            string condition = string.Format("(id == '{0}')", ID);
+            string condition = string.Format("(Id == '{0}')", Id);
             DictTypeInfo info = baseDal.FindSingle(condition);
             return (info != null);
         }
 
         public List<DictTypeNodeInfo> GetTree()
         {
-            IDictType typeDal = baseDal as IDictType;
-            return typeDal.GetTree();
+            return dal.GetTree();
         }
     }
 }

@@ -23,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -40,6 +41,10 @@
     <Reference Include="Aspose.Words, Version=14.2.0.0, Culture=neutral, PublicKeyToken=00725b1ceb58d0a9, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\JCodes.Framework.libs\Aspose\Aspose.Words.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.4.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\JCodes.Framework.libs\Bccrypto\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Data.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DotRas">
@@ -160,6 +165,9 @@
     <Compile Include="Encrypt\MD5Util.cs" />
     <Compile Include="Encrypt\QQEncryptUtil.cs" />
     <Compile Include="Encrypt\RSASecurityHelper.cs" />
+    <Compile Include="Encrypt\RSAUtil\RSA.cs" />
+    <Compile Include="Encrypt\RSAUtil\RSA_PEM.cs" />
+    <Compile Include="Encrypt\RSAUtil\RSA_Unit.cs" />
     <Compile Include="Extension\ControlExtensions.cs" />
     <Compile Include="Extension\StringExtensionMethod.cs" />
     <Compile Include="FileHelper.cs" />
@@ -371,6 +379,15 @@
       <Guid>{AED3A6B0-2171-11D2-B77C-0008C73ACA8F}</Guid>
       <VersionMajor>4</VersionMajor>
       <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Office">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>99</VersionMajor>
+      <VersionMinor>1</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>tlbimp</WrapperTool>
       <Isolated>False</Isolated>

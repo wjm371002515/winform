@@ -84,7 +84,7 @@ namespace JCodes.Framework.Common.Framework.Facade
         /// <param name="key">对象的ID值</param>
         /// <returns>存在则返回指定的对象,否则返回Null</returns>
         [OperationContract]
-        T FindByID(string key);
+        T FindById(string key);
 
         /// <summary>
         /// 查询数据库,检查是否存在指定ID的对象(用于整型主键)
@@ -92,7 +92,7 @@ namespace JCodes.Framework.Common.Framework.Facade
         /// <param name="key">对象的ID值</param>
         /// <returns>存在则返回指定的对象,否则返回Null</returns>[OperationContract]
         [OperationContract]
-        T FindByID2(int key);
+        T FindById2(int key);
 
         /// <summary>
         /// 根据条件查询数据库,如果存在返回第一个对象
@@ -135,7 +135,7 @@ namespace JCodes.Framework.Common.Framework.Facade
         /// <param name="idString">ID字符串(逗号分隔)</param>
         /// <returns>符合条件的对象列表</returns>
         [OperationContract]
-        List<T> FindByIDs(string idString);
+        List<T> FindByIds(string idString);
 
         /// <summary>
         /// 根据条件查询数据库,并返回对象集合

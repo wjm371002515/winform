@@ -2,7 +2,7 @@ using System;
 using System.Text;
 using System.IO;
 using System.Security.Cryptography;
-using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.Common.Encrypt
 {
@@ -12,9 +12,6 @@ namespace JCodes.Framework.Common.Encrypt
     public sealed class EncodeHelper
     {
         #region DES对称加密解密
-        
-       
-
         /// <summary>
         /// 使用默认加密
         /// </summary>

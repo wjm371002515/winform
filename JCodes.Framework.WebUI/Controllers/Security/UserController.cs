@@ -19,6 +19,7 @@ using JCodes.Framework.Common.Extension;
 using JCodes.Framework.Common.Network;
 using JCodes.Framework.Common.Device;
 using JCodes.Framework.jCodesenum;
+using JCodes.Framework.WebUI.Common;
 
 namespace JCodes.Framework.WebUI.Controllers
 {
@@ -86,21 +87,11 @@ namespace JCodes.Framework.WebUI.Controllers
                     //用户编码,用户名/登录名,真实姓名,职务头衔,移动电话,办公电话,邮件地址,性别,QQ号码,备注
                     info.UserCode = dr["用户编码"].ToString();
                     info.Name = dr["用户名/登录名"].ToString();
-                    info.FullName = dr["真实姓名"].ToString();
+                    info.LoginName = dr["真实姓名"].ToString();
                     info.MobilePhone = dr["移动电话"].ToString();
                     info.OfficePhone = dr["办公电话"].ToString();
                     info.Email = dr["邮件地址"].ToString();
-                    // TODO
-                    //info.Gender = dr["性别"].ToString();
-                    //info.QQ = dr["QQ号码"].ToString();
                     info.Remark = dr["备注"].ToString();
-
-                    //converted = DateTime.TryParse(dr["出生日期"].ToString(), out dt);
-                    //if (converted && dt > dtDefault)
-                    //{
-                    //    info.BirthDate = dt;
-                    //}
-
                     info.CreatorId = CurrentUser.Id;
                     info.CreatorTime = DateTime.Now;
                     info.EditorId = CurrentUser.Id;
@@ -218,7 +209,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 dr["序号"] = j++;
                 dr["用户编码"] = list[i].UserCode;
                 dr["用户名/登录名"] = list[i].Name;
-                dr["真实姓名"] = list[i].FullName;
+                dr["真实姓名"] = list[i].LoginName;
                 dr["移动电话"] = list[i].MobilePhone;
                 dr["办公电话"] = list[i].OfficePhone;
                 dr["邮件地址"] = list[i].Email;
@@ -307,31 +298,46 @@ namespace JCodes.Framework.WebUI.Controllers
         /// </summary>
         /// <param name="id">用户ID</param>
         /// <returns></returns>
-        public ActionResult ResetPassword(string id)
+        public ActionResult ResetPassword(string Id)
         {
             ReturnResult result = new ReturnResult();
             try
             {
-                if (string.IsNullOrEmpty(id))
+                // 检查是否有权限，假如有权限则可以重置其他管理员密码
+                //string sId = Session["UserId"] == null ? "" : Session["UserId"].ToString();
+                //if (string.Equals(Id, sId)) { 
+                    
+                //}
+
+                if (string.IsNullOrEmpty(Id))
                 {
+                    result.ErrorCode = 100001;
                     result.ErrorMessage = "用户id不能为空";
                 }
                 else
                 {
-                    UserInfo info = BLLFactory<User>.Instance.FindByID(id);
+                    UserInfo info = BLLFactory<User>.Instance.FindById(Id);
                     if (info != null)
                     {
                         string defaultPassword = Const.defaultPwd;
-                        string ip = NetworkUtil.GetLocalIP();
-                        string macAddr = HardwareInfoHelper.GetMacAddress();
+                        string ip = GetClientIp();
+                        string macAddr = Request.ServerVariables["HTTP_USER_AGENT"];
                         bool tempBool = BLLFactory<User>.Instance.ModifyPassword(info.Name, defaultPassword, Const.SystemTypeID, ip, macAddr);
                         if (tempBool)
                         {
-                            result.ErrorCode = 0;
+                            // 系统自动生成错误信息
+                            result.ErrorCode = 000000;
+                            result.LogLevel = 7;
+                            result.ErrorMessage = "操作成功[OPERATION_OK]";
+
                         }
                         else
                         {
-                            result.ErrorMessage = "口令初始化失败";
+                            // 系统自动生成错误信息
+                            result.ErrorCode = 100002;
+                            result.LogLevel = 7;
+                            result.ErrorMessage = "口令初始化失败[WEB_USER_PWD_MOD_ERR]";
+
                         }
                     }
                 }
@@ -356,24 +362,35 @@ namespace JCodes.Framework.WebUI.Controllers
             ReturnResult result = new ReturnResult();
             try
             {
-                // TODO 这里要修改为Request IP
-                string ip = NetworkUtil.GetLocalIP();
-                string macAddr = HardwareInfoHelper.GetMacAddress();
+                string ip = GetClientIp();
+                string macAddr = Request.ServerVariables["HTTP_USER_AGENT"];
+
                 string identity = BLLFactory<User>.Instance.VerifyUser(name, oldpass, Const.SystemTypeID, ip, macAddr);
                 if (string.IsNullOrEmpty(identity))
                 {
-                    result.ErrorMessage = "原口令错误";
+                    // 系统自动生成错误信息
+                    result.ErrorCode = 100003;
+                    result.LogLevel = 1;
+                    result.ErrorMessage = "原口令错误[WEB_USER_OLDPWD_ERR]";
+
                 }
                 else
                 {
                     bool tempBool = BLLFactory<User>.Instance.ModifyPassword(name, newpass, Const.SystemTypeID, ip, macAddr);
                     if (tempBool)
                     {
-                        result.ErrorCode = 0;
+                        // 系统自动生成错误信息
+                        result.ErrorCode = 000000;
+                        result.LogLevel = 7;
+                        result.ErrorMessage = "操作成功[OPERATION_OK]";
+
                     }
                     else
                     {
-                        result.ErrorMessage = "口令修改失败";
+                        // 系统自动生成错误信息
+                        result.ErrorCode = 100002;
+                        result.LogLevel = 7;
+                        result.ErrorMessage = "口令初始化失败[WEB_USER_PWD_MOD_ERR]";
                     }
                 }
             }
@@ -394,15 +411,20 @@ namespace JCodes.Framework.WebUI.Controllers
         public ActionResult GetMyDeptJsTreeJson(int userId)
         {
             StringBuilder content = new StringBuilder();
-            UserInfo userInfo = BLLFactory<User>.Instance.FindByID(userId);
+            UserInfo userInfo = BLLFactory<User>.Instance.FindById(userId);
             if (userInfo != null)
             {
-                List<OUInfo> list = BLLFactory<OU>.Instance.GetMyTopGroup(userId);
+                List<OUInfo> list = null;
+                if (Portal.hh.IsSuperAdmin)
+                    list = BLLFactory<OU>.Instance.GetSuperAdminTopGroup(userId);
+                else 
+                    list = BLLFactory<OU>.Instance.GetMyTopGroup(userId);
+                
                 foreach (OUInfo groupInfo in list)
                 {
                     if (groupInfo != null && groupInfo.IsDelete == 0)
                     {
-                        List<OUNodeInfo> sublist = BLLFactory<OU>.Instance.GetTreeByID(groupInfo.Id);
+                        List<OUNodeInfo> sublist = BLLFactory<OU>.Instance.GetTreeById(groupInfo.Id);
 
                         //JsTreeData treeData = new JsTreeData(groupInfo.Id, groupInfo.Name, GetBootstrapIcon(groupInfo.OuType));
                         JsTreeData treeData = new JsTreeData(groupInfo.Id, groupInfo.Name);
@@ -439,10 +461,15 @@ namespace JCodes.Framework.WebUI.Controllers
             List<CDicKeyValue> itemList = new List<CDicKeyValue>();
 
             StringBuilder content = new StringBuilder();
-            UserInfo userInfo = BLLFactory<User>.Instance.FindByID(userId);
+            UserInfo userInfo = BLLFactory<User>.Instance.FindById(userId);
             if (userInfo != null)
             {
-                List<OUInfo> list = BLLFactory<OU>.Instance.GetMyTopGroup(userId);
+                List<OUInfo> list = null;
+                if (Portal.hh.IsSuperAdmin)
+                    list = BLLFactory<OU>.Instance.GetSuperAdminTopGroup(userId);
+                else
+                    list = BLLFactory<OU>.Instance.GetMyTopGroup(userId);
+
                 foreach (OUInfo groupInfo in list)
                 {
                     if (groupInfo != null && groupInfo.IsDelete == 0)
@@ -482,7 +509,7 @@ namespace JCodes.Framework.WebUI.Controllers
         {
             List<JsTreeData> treeList = new List<JsTreeData>();
 
-            UserInfo userInfo = BLLFactory<User>.Instance.FindByID(userId);
+            UserInfo userInfo = BLLFactory<User>.Instance.FindById(userId);
             if (userInfo != null)
             {
                 List<OUNodeInfo> list = new List<OUNodeInfo>();
@@ -521,7 +548,7 @@ namespace JCodes.Framework.WebUI.Controllers
         {
             List<CDicKeyValue> itemList = new List<CDicKeyValue>();
 
-            UserInfo userInfo = BLLFactory<User>.Instance.FindByID(userId);
+            UserInfo userInfo = BLLFactory<User>.Instance.FindById(userId);
             if (userInfo != null)
             {
                 List<OUNodeInfo> list = new List<OUNodeInfo>();
@@ -563,10 +590,10 @@ namespace JCodes.Framework.WebUI.Controllers
 
             if (!string.IsNullOrEmpty(parentId) && parentId != "null")
             {
-                OUInfo groupInfo = BLLFactory<OU>.Instance.FindByID(parentId);
+                OUInfo groupInfo = BLLFactory<OU>.Instance.FindById(parentId);
                 if (groupInfo != null)
                 {
-                    List<OUNodeInfo> list = BLLFactory<OU>.Instance.GetTreeByID(groupInfo.Id);
+                    List<OUNodeInfo> list = BLLFactory<OU>.Instance.GetTreeById(groupInfo.Id);
 
                     JsTreeData treeData = new JsTreeData(groupInfo.Id, groupInfo.Name, "fa fa-users icon-state-warning icon-lg");
                     GetJsTreeDataWithOUNode(list, treeData);
@@ -589,7 +616,7 @@ namespace JCodes.Framework.WebUI.Controllers
 
             if (!string.IsNullOrEmpty(parentId) && parentId != "null")
             {
-                OUInfo groupInfo = BLLFactory<OU>.Instance.FindByID(parentId);
+                OUInfo groupInfo = BLLFactory<OU>.Instance.FindById(parentId);
                 if (groupInfo != null)
                 {
                     itemList.Add(new CDicKeyValue(groupInfo.Id, groupInfo.Name));
@@ -616,10 +643,10 @@ namespace JCodes.Framework.WebUI.Controllers
             List<JsTreeData> treeList = new List<JsTreeData>();
             treeList.Insert(0, new JsTreeData(-1, "无"));
 
-            List<UserInfo> list = BLLFactory<User>.Instance.FindByDept(deptId);
+            List<UserInfo> list = BLLFactory<User>.Instance.FindByDeptId(deptId);
             foreach (UserInfo info in list)
             {
-                treeList.Add(new JsTreeData(info.Id, info.FullName, "fa fa-user icon-state-warning icon-lg"));
+                treeList.Add(new JsTreeData(info.Id, info.LoginName, "fa fa-user icon-state-warning icon-lg"));
             }
 
             return ToJsonContent(treeList);
@@ -635,10 +662,10 @@ namespace JCodes.Framework.WebUI.Controllers
             List<CDicKeyValue> itemList = new List<CDicKeyValue>();
             itemList.Insert(0, new CDicKeyValue(-1, "无"));
 
-            List<UserInfo> list = BLLFactory<User>.Instance.FindByDept(deptId);
+            List<UserInfo> list = BLLFactory<User>.Instance.FindByDeptId(deptId);
             foreach (UserInfo info in list)
             {
-                itemList.Add(new CDicKeyValue(info.Id, info.FullName));
+                itemList.Add(new CDicKeyValue(info.Id, info.LoginName));
             }
 
             return ToJsonContent(itemList);
@@ -656,7 +683,7 @@ namespace JCodes.Framework.WebUI.Controllers
             ActionResult result = Content("");
             if (!string.IsNullOrEmpty(roleid) && ValidateUtil.IsValidInt(roleid))
             {
-                List<UserInfo> roleList = BLLFactory<User>.Instance.GetUsersByRole(Convert.ToInt32(roleid));
+                List<UserInfo> roleList = BLLFactory<User>.Instance.GetUsersByRoleId(Convert.ToInt32(roleid));
                 result = ToJsonContentDate(roleList);
             }
             return result;
@@ -672,7 +699,7 @@ namespace JCodes.Framework.WebUI.Controllers
             ActionResult result = Content("");
             if (!string.IsNullOrEmpty(ouid) && ValidateUtil.IsValidInt(ouid))
             {
-                List<UserInfo> roleList = BLLFactory<User>.Instance.GetUsersByOU(Convert.ToInt32(ouid));
+                List<UserInfo> roleList = BLLFactory<User>.Instance.GetUsersByOUId(Convert.ToInt32(ouid));
                 result = ToJsonContentDate(roleList);
             }
             return result;
@@ -706,12 +733,12 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns></returns>
         public override ActionResult FindWithPager()
         {
-            string roleId = Request["RoldId"] ?? "";
+            string roleId = Request["RoleId"] ?? "";
             if (!string.IsNullOrEmpty(roleId))
             {
                 //检查用户是否有权限，否则抛出MyDenyAccessException异常
                 base.CheckAuthorized(authorizeKeyInfo.ListKey);
-                List<UserInfo> list = BLLFactory<User>.Instance.GetUsersByRole(roleId.ToInt32());
+                List<UserInfo> list = BLLFactory<User>.Instance.GetUsersByRoleId(roleId.ToInt32());
 
                 //Json格式的要求{total:22,rows:{}}
                 //构造成Json的格式传递
@@ -831,19 +858,17 @@ namespace JCodes.Framework.WebUI.Controllers
         /// </summary>
         /// <param name="userId">用户ID</param>
         /// <returns></returns>
-        public ActionResult GetFullNameByID(string userId)
+        public ActionResult GetNameById(Int32 userId)
         {
             string result = "";
-            if (!string.IsNullOrEmpty(userId))
-            {
-                System.Reflection.MethodBase method = System.Reflection.MethodBase.GetCurrentMethod();
-                //string key = string.Format("{0}-{1}-{2}", method.DeclaringType.FullName, method.Name, userId);
-                string key = string.Format("GetFullNameByID-{0}", userId);
+           
+            System.Reflection.MethodBase method = System.Reflection.MethodBase.GetCurrentMethod();
+            //string key = string.Format("{0}-{1}-{2}", method.DeclaringType.LoginName, method.Name, userId);
+            string key = string.Format("GetNameById-{0}", userId);
 
-                result = MemoryCacheHelper.GetCacheItem<string>(key,
-                    delegate() { return BLLFactory<User>.Instance.GetFullNameByID(userId.ToInt32()); },
-                    new TimeSpan(0, 30, 0));//30分钟过期
-            }
+            result = MemoryCacheHelper.GetCacheItem<string>(key,
+                delegate() { return BLLFactory<User>.Instance.GetNameById(userId); },
+                new TimeSpan(0, 30, 0));//30分钟过期
             return ToJsonContent(result); ;
         }
 
@@ -940,7 +965,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 var files = Request.Files;
                 if (files != null && files.Count > 0)
                 {
-                    UserInfo info = BLLFactory<User>.Instance.FindByID(id);
+                    UserInfo info = BLLFactory<User>.Instance.FindById(id);
                     if (info != null)
                     {
                         var fileData = ReadFileBytes(files[0]);

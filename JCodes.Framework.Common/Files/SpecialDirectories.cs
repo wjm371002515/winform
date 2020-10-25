@@ -6,6 +6,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Security;
 using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.Common.Files
 {

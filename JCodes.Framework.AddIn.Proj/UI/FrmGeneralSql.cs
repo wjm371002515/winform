@@ -7,16 +7,16 @@ using JCodes.Framework.CommonControl.BaseUI;
 using JCodes.Framework.Common.Files;
 using JCodes.Framework.Entity;
 using System.Xml;
-using DevExpress.XtraEditors;
 using System;
 using System.Drawing;
 using System.Text;
-using JCodes.Framework.jCodesenum.BaseEnum;
 using System.ComponentModel;
 using JCodes.Framework.Common.Office;
 using JCodes.Framework.Common;
 using System.Data;
 using JCodes.Framework.Common.Extension;
+using JCodes.Framework.jCodesenum;
+using DevExpress.XtraEditors;
 
 namespace JCodes.Framework.AddIn.Proj
 {
@@ -176,7 +176,7 @@ namespace JCodes.Framework.AddIn.Proj
                 // 获取字符串中的英文字母 [a-zA-Z]+
                 string GroupEnglishName = CRegex.GetText(xe.GetAttribute("name").ToString(), "[a-zA-Z]+", 0);
 
-                guidGroup.Add(xe.GetAttribute("guid").ToString(), string.Format("{0}{1}_", Const.TablePre, GroupEnglishName));
+                guidGroup.Add(xe.GetAttribute("gid").ToString(), string.Format("{0}{1}_", Const.TablePre, GroupEnglishName));
             }
 
             XmlNodeList xmlNodeLst2 = xmltableshelper.Read("datatype/dataitem");
@@ -555,10 +555,19 @@ namespace JCodes.Framework.AddIn.Proj
                     #region 处理每个Table脚本
                     for (Int32 ii = 0; ii < filenames.Length; ii++)
                     {
+                        // 20190925 没有做好的不生成
+                        if (filenames[ii].Contains("_TODO"))
+                        {
+                            Console.WriteLine(string.Format("{0} [{1})]无需处理.\r\n", LogLevel.LOG_LEVEL_INFO, filenames[ii]));
+                            backgroundWorker1.ReportProgress((Int32)(progressBar.Position + 1) / progressBar.Properties.Maximum, string.Format("{0} [{1})]无需处理.\r\n", LogLevel.LOG_LEVEL_INFO, filenames[ii]));
+                            continue;
+                        }
+
                         XmlHelper xmltablesinfohelper = new XmlHelper(filenames[ii]);
 
                         XmlNodeList xmlbasicsLst = xmltablesinfohelper.Read(string.Format("datatype/basicinfo"));
                         XmlNodeList xmlbasicsOne = ((XmlElement)xmlbasicsLst[0]).ChildNodes;
+                        string functionStr = xmlbasicsOne.Item(0).InnerText;
                         string englishName = xmlbasicsOne.Item(1).InnerText;
                         string chineseName = xmlbasicsOne.Item(2).InnerText;
                         Boolean checkHis = Convert.ToInt32(xmlbasicsOne.Item(3).InnerText) == 0 ? false : true;
@@ -618,13 +627,14 @@ namespace JCodes.Framework.AddIn.Proj
                             XmlNodeList xnl0 = xe.ChildNodes;
                             tableindexsInfo.IndexName = xnl0.Item(0).InnerText;
                             tableindexsInfo.IndexFieldLst = xnl0.Item(1).InnerText;
-                            tableindexsInfo.ConstraintType = Convert.ToInt16( constrainttypelst[xnl0.Item(2).InnerText] );
+                            tableindexsInfo.ConstraintType = string.IsNullOrEmpty(xnl0.Item(2).InnerText) ? (short)-1 : Convert.ToInt16(xnl0.Item(2).InnerText);
                             tableindexsInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
                             IndexsInfoLst.Add(tableindexsInfo);
                         }
 
-                        FileUtil.AppendText(filePath + "\\TableInit.sql", JCodes.Framework.Common.Proj.SqlOperate.initTableInfo(dbType, tableGroup[englishName]+englishName, chineseName, checkHis, FieldsInfoLst, IndexsInfoLst, dict), Encoding.UTF8);
+                        FileUtil.AppendText(filePath + "\\TableInit.sql", JCodes.Framework.Common.Proj.SqlOperate.initTableInfo(dbType, tableGroup[englishName]+englishName, string.Format("{0}({1})", chineseName, functionStr), checkHis, FieldsInfoLst, IndexsInfoLst, dict), Encoding.UTF8);
 
+                        Console.WriteLine(string.Format("{0} [{1}({2})]处理完成.\r\n", LogLevel.LOG_LEVEL_INFO, chineseName, englishName));
                         backgroundWorker1.ReportProgress((Int32)(progressBar.Position + 1) / progressBar.Properties.Maximum, string.Format("{0} [{1}({2})]处理完成.\r\n", LogLevel.LOG_LEVEL_INFO, chineseName, englishName));
                     }
                     #endregion
@@ -657,7 +667,6 @@ namespace JCodes.Framework.AddIn.Proj
                         {
                             // 将节点转换为元素，便于得到节点的属性值
                             XmlElement xe = (XmlElement)xn1;
-                            //tablefieldInfo.GUID = xe.GetAttribute("guid").ToString();
                             // 得到DataTypeInfo节点的所有子节点
                             XmlNodeList xnl0 = xe.ChildNodes;
 
@@ -692,7 +701,7 @@ namespace JCodes.Framework.AddIn.Proj
                             List<String> tmp = new List<string>();
                             foreach (XmlAttribute a in xe.Attributes)
                             {
-                                if (dt.Columns[a.Name] == null && !string.Equals(a.Name, "guid"))
+                                if (dt.Columns[a.Name] == null && !string.Equals(a.Name, "gid"))
                                     tmp.Add(a.Name);
                             }
                             foreach (var s in tmp)
@@ -821,10 +830,10 @@ namespace JCodes.Framework.AddIn.Proj
                     #region 处理每个Table脚本
                     XmlHelper xmlfunctionhelper = new XmlHelper(@"XML\function.xml");
                     XmlNodeList xmlNodeLst4 = xmlfunctionhelper.Read("datatype/dataitem");
-                    List<FunctionInfo> functionInfolst = new List<FunctionInfo>();
+                    List<JCodes.Framework.Entity.FunctionInfo> functionInfolst = new List<JCodes.Framework.Entity.FunctionInfo>();
                     foreach (XmlNode xn1 in xmlNodeLst4)
                     {
-                        FunctionInfo functioninfo = new FunctionInfo();
+                        JCodes.Framework.Entity.FunctionInfo functioninfo = new JCodes.Framework.Entity.FunctionInfo();
                         // 将节点转换为元素，便于得到节点的属性值
                         XmlElement xe = (XmlElement)xn1;
 

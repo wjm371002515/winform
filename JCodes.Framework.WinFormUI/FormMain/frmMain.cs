@@ -14,6 +14,7 @@ using System.Diagnostics;
 using DevExpress.XtraEditors;
 using JCodes.Framework.Common;
 using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.WinFormUI
 {
@@ -28,7 +29,6 @@ namespace JCodes.Framework.WinFormUI
             InitializeComponent();
             WindowState = FormWindowState.Maximized;
             CreateResourceStream();
-            //SolutionExplorer.InitTreeView(treeView1);
             wait.Close(); 
         }
         Assembly currentAssemblyCore;

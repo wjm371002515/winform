@@ -1,5 +1,5 @@
 ﻿
-using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.jCodesenum;
 using System;
 using System.Collections.Generic;
 using System.Text;

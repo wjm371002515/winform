@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Configuration;
-using JCodes.Framework.jCodesenum.BaseEnum;
 using System.Text;
 using System.Data.Common;
-
+using JCodes.Framework.jCodesenum;
 
 [assembly: log4net.Config.XmlConfigurator(Watch = true)]
 namespace JCodes.Framework.Common

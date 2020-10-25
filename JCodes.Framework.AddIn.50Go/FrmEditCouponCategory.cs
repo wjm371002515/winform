@@ -15,6 +15,7 @@ using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.AddIn.Basic;
 using JCodes.Framework.Common.Format;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn._50Go
 {
@@ -33,7 +34,7 @@ namespace JCodes.Framework.AddIn._50Go
             if (Id > 0)
             {
                 #region 显示客户信息
-                CouponCategoryInfo info = BLLFactory<CouponCategory>.Instance.FindByID(Id);
+                CouponCategoryInfo info = BLLFactory<CouponCategory>.Instance.FindById(Id);
                 if (info != null)
                 {
                     txtHandNo.Text = info.GeneralCode;
@@ -51,7 +52,7 @@ namespace JCodes.Framework.AddIn._50Go
         /// <returns></returns>
         public override bool SaveUpdated()
         {
-            CouponCategoryInfo info = BLLFactory<CouponCategory>.Instance.FindByID(Id);
+            CouponCategoryInfo info = BLLFactory<CouponCategory>.Instance.FindById(Id);
             if (info != null)
             {
                 SetInfo(info);

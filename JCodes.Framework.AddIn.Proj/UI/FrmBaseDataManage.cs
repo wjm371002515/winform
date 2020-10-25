@@ -149,7 +149,7 @@ namespace JCodes.Framework.AddIn.Proj
                     tablesInfo.Gid = xe.GetAttribute("gid").ToString();
                     tablesInfo.Name = xnl0.Item(0).InnerText;
                     tablesInfo.ChineseName = xnl0.Item(1).InnerText;
-                    tablesInfo.FunctionId = xnl0.Item(2).InnerText.ToInt32();
+                    tablesInfo.FunctionId = xnl0.Item(2).InnerText;
                     tablesInfo.TypeGuid = xnl0.Item(3).InnerText;
                     tablesInfo.SavePath = xnl0.Item(4).InnerText;
                     tablesInfo.BasicdataPath = xnl0.Item(5).InnerText;
@@ -237,7 +237,7 @@ namespace JCodes.Framework.AddIn.Proj
             objXmlDoc.SelectSingleNode(string.Format("datatype/tabletype/item[@gid=\"{0}\"]", selectedGroup.Tag)).Attributes["basicdata"].InnerText = "0";
 
             // 再删除子节点本身
-            XmlNodeList nodelst = objXmlDoc.SelectNodes(string.Format("datatype/dataitem/item[typeguid=\"{0}\"]/basicdatapath", selectedGroup.Tag));
+            XmlNodeList nodelst = objXmlDoc.SelectNodes(string.Format("datatype/dataitem/item[typegid=\"{0}\"]/basicdatapath", selectedGroup.Tag));
 
             foreach (XmlNode node in nodelst)
             {
@@ -392,7 +392,7 @@ namespace JCodes.Framework.AddIn.Proj
             {
                 // 将节点转换为元素，便于得到节点的属性值
                 XmlElement xe = (XmlElement)xn1;
-                //tablefieldInfo.GUID = xe.GetAttribute("guid").ToString();
+                //tablefieldInfo.GID = xe.GetAttribute("gid").ToString();
                 // 得到DataTypeInfo节点的所有子节点
                 XmlNodeList xnl0 = xe.ChildNodes;
 
@@ -921,15 +921,15 @@ namespace JCodes.Framework.AddIn.Proj
         /// <param name="e"></param>
         private void toolStripMenuItem_AddField_Click(object sender, EventArgs e)
         {
-            string guid = System.Guid.NewGuid().ToString();
+            string gid = System.Guid.NewGuid().ToString();
             XmlHelper xmldatahelper = new XmlHelper(gridViewFields.Name);
             var objXmlDoc = xmldatahelper.GetXmlDoc();
             XmlNode objNode = objXmlDoc.SelectSingleNode("datatype/dataitem");
             XmlElement objElement = objXmlDoc.CreateElement("item");
             DataRow dr = dt.NewRow();
-            
-            objElement.SetAttribute("gid", guid);
-            dr["gid"] = guid;
+
+            objElement.SetAttribute("gid", gid);
+            dr["gid"] = gid;
 
             foreach (DataColumn s in dt.Columns)
             {

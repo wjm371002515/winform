@@ -15,18 +15,18 @@ namespace JCodes.Framework.MySqlDAL
     /// <summary>
     /// 系统功能定义
     /// </summary>
-    public class Functions : BaseDALMySql<FunctionInfo>, IFunctions
+    public class Function : BaseDALMySql<FunctionsInfo>, IFunctions
     {
         #region 对象实例及构造函数
 
-        public static Functions Instance
+        public static Function Instance
         {
             get
             {
-                return new Functions();
+                return new Function();
             }
         }
-        public Functions()
+        public Function()
             : base(MySqlPortal.gc._securityTablePre + "Function", "ID")
         {
             this.sortField = "Seq";
@@ -40,9 +40,9 @@ namespace JCodes.Framework.MySqlDAL
         /// </summary>
         /// <param name="dr">有效的DataReader对象</param>
         /// <returns>实体类对象</returns>
-        protected override FunctionInfo DataReaderToEntity(IDataReader dataReader)
+        protected override FunctionsInfo DataReaderToEntity(IDataReader dataReader)
         {
-            FunctionInfo info = new FunctionInfo();
+            FunctionsInfo info = new FunctionsInfo();
             SmartDataReader reader = new SmartDataReader(dataReader);
 
             /*info.ID = reader.GetString("ID");
@@ -60,9 +60,9 @@ namespace JCodes.Framework.MySqlDAL
         /// </summary>
         /// <param name="obj">有效的实体对象</param>
         /// <returns>包含键值映射的Hashtable</returns>
-        protected override Hashtable GetHashByEntity(FunctionInfo obj)
+        protected override Hashtable GetHashByEntity(FunctionsInfo obj)
         {
-            FunctionInfo info = obj as FunctionInfo;
+            FunctionsInfo info = obj as FunctionsInfo;
             Hashtable hash = new Hashtable();
 
             /*hash.Add("ID", info.ID);
@@ -101,7 +101,7 @@ namespace JCodes.Framework.MySqlDAL
         /// <returns></returns>
         public override bool DeleteByUser(object key, Int32 userId, DbTransaction trans = null)
         {
-            FunctionInfo info = this.FindByID(key, trans);
+            FunctionsInfo info = this.FindById(key, trans);
             if (info != null)
             {
                 string sql = string.Format("UPDATE {2} SET Pgid='{0}' Where Pgid='{1}' ", info.Pgid, key, tableName);
@@ -158,7 +158,7 @@ namespace JCodes.Framework.MySqlDAL
             return list;
         }
 
-        public List<FunctionInfo> GetFunctions(string roleIDs, string typeID)
+        public List<FunctionsInfo> GetFunctions(string roleIDs, string typeID)
         {
             string sql = string.Format( @"SELECT * FROM {0}Function 
             INNER JOIN {0}Role_Function On {0}Function.ID={0}Role_Function.Function_ID WHERE Role_ID IN ({1})", MySqlPortal.gc._securityTablePre, roleIDs);
@@ -191,10 +191,10 @@ namespace JCodes.Framework.MySqlDAL
 
             return arrReturn;
         }
-        public List<FunctionInfo> GetFunctionsByRole(int roleID)
+        public List<FunctionsInfo> GetFunctionsByRoleId(Int32 roleId)
         {
             string sql = string.Format(@"SELECT * FROM {0}Function 
-            LEFT JOIN {0}Role_Function On {0}Function.ID={0}Role_Function.Function_ID WHERE Role_ID = {1}", MySqlPortal.gc._securityTablePre, roleID);
+            LEFT JOIN {0}Role_Function On {0}Function.ID={0}Role_Function.Function_ID WHERE Role_ID = {1}", MySqlPortal.gc._securityTablePre, roleId);
             return this.GetList(sql, null);
         }
 
@@ -224,14 +224,14 @@ namespace JCodes.Framework.MySqlDAL
         /// 获取指定功能下面的树形列表
         /// </summary>
         /// <param name="id">指定功能ID</param>
-        public List<FunctionNodeInfo> GetTreeByID(string mainID)
+        public List<FunctionNodeInfo> GetTreeById(string mainId)
         {
             List<FunctionNodeInfo> arrReturn = new List<FunctionNodeInfo>();
             string sql = string.Format("Select * From {0} Order By PID, Name ", tableName);
 
             DataTable dt = SqlTable(sql);
             string sort = string.Format("{0} {1}", GetSafeFileName(sortField), isDescending ? "DESC" : "ASC");
-            DataRow[] dataRows = dt.Select(string.Format(" PID = '{0}'", mainID), sort);
+            DataRow[] dataRows = dt.Select(string.Format(" PID = '{0}'", mainId), sort);
             for (int i = 0; i < dataRows.Length; i++)
             {
                 string id = dataRows[i]["ID"].ToString();
@@ -271,7 +271,7 @@ namespace JCodes.Framework.MySqlDAL
 
         private FunctionNodeInfo GetNode(string id, DataTable dt)
         {
-            FunctionInfo menuInfo = this.FindByID(id);
+            FunctionsInfo menuInfo = this.FindById(id);
             FunctionNodeInfo menuNodeInfo = new FunctionNodeInfo(menuInfo);
 
             string sort = string.Format("{0} {1}", GetSafeFileName(sortField), isDescending ? "DESC" : "ASC");
@@ -289,11 +289,11 @@ namespace JCodes.Framework.MySqlDAL
         /// <summary>
         /// 根据指定的父ID获取其下面一级（仅限一级）的菜单列表
         /// </summary>
-        /// <param name="PID">菜单父ID</param>
-        public List<FunctionInfo> GetFunctionByPID(string PID)
+        /// <param name="pgid">菜单父ID</param>
+        public List<FunctionsInfo> GetFunctionByPgid(string pgid)
         {
             string sql = string.Format(@"Select t.*,case pid when '-1' then '0' else pid end as parentId From {1} t 
-                                         Where  PID='{0}' Order By Seq ", PID, tableName);
+                                         Where  PID='{0}' Order By Seq ", pgid, tableName);
             return GetList(sql, null);
         }
     }

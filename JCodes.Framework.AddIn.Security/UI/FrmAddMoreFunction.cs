@@ -17,6 +17,7 @@ using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.CommonControl.Controls;
 using JCodes.Framework.AddIn.Basic;
 using JCodes.Framework.Common.Extension;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn.Security
 {
@@ -25,35 +26,6 @@ namespace JCodes.Framework.AddIn.Security
         public FrmAddMoreFunction()
         {
             InitializeComponent();
-
-            this.functionControl1.EditValueChanged += new EventHandler(functionControl1_EditValueChanged);
-
-            InitDictItem();
-        }
-
-        void functionControl1_EditValueChanged(object sender, EventArgs e)
-        {
-            string item = this.functionControl1.Value;
-            if (!string.IsNullOrEmpty(item) && item == "-1")
-            {
-                SetSystemTypeVisible(true);
-            }
-            else
-            {
-                SetSystemTypeVisible(false);
-            }
-        }
-
-
-        private void SetSystemTypeVisible(bool visible)
-        {
-            this.txtSystemType.Visible = visible;
-            this.lblSystemType.Visible = visible;
-        }
-
-        private void InitDictItem()
-        {
-
         }
 
         public void SetUpperFunction(string value)
@@ -73,10 +45,10 @@ namespace JCodes.Framework.AddIn.Security
                 this.txtName.Focus();
                 return;
             }
-            else if (this.txtFunctionID.Text == "")
+            else if (this.txtDllPath.Text == "")
             {
-                MessageDxUtil.ShowTips("功能ID不能为空");
-                this.txtFunctionID.Focus();
+                MessageDxUtil.ShowTips("映射路径不能为空");
+                this.txtDllPath.Focus();
                 return;
             }
             else if (this.txtSystemType.Visible && this.txtSystemType.Text.Length == 0)
@@ -86,15 +58,24 @@ namespace JCodes.Framework.AddIn.Security
                 return;
             }
 
+            string pid = this.functionControl1.Value;
+            FunctionInfo functionInfo = BLLFactory<Function>.Instance.FindById(pid) as FunctionInfo;
+
+            // 校验功能菜单是否存在 如果不存在则不允许创建
+            MenuInfo menuInfo = BLLFactory<JCodes.Framework.BLL.Menu>.Instance.FindSingle(string.Format("Name = '{0}' and DllPath = '{1}' and SystemtypeId = '{2}'", txtName.Text, txtDllPath.Text, functionInfo.SystemtypeId));
+            if (menuInfo == null)
+            {
+                MessageDxUtil.ShowTips("请在菜单部分维护其对应菜单后操作");
+                return;
+            }
+
             #endregion
 
-            string pid = this.functionControl1.Value;
-            FunctionInfo functionInfo = BLLFactory<Functions>.Instance.FindByID(pid) as FunctionInfo;
-
-            if (functionInfo != null)
+            // 20200522 在新增菜单的时候加了功能
+            /*if (functionInfo != null)
             {
-                string filter = string.Format("FunctionId='{0}' and SystemType_ID='{1}'", this.txtFunctionID.Text, functionInfo.SystemtypeId);
-                bool isExist = BLLFactory<Functions>.Instance.IsExistRecord(filter);
+                string filter = string.Format("DllPath='{0}' and SystemtypeId='{1}'", this.txtDllPath.Text, functionInfo.SystemtypeId);
+                bool isExist = BLLFactory<Function>.Instance.IsExistRecord(filter);
                 if (isExist)
                 {
                     MessageDxUtil.ShowTips("指定功能控制ID重复，请重新输入！");
@@ -108,28 +89,30 @@ namespace JCodes.Framework.AddIn.Security
                 functionInfo = new FunctionInfo();
                 functionInfo.Gid = "-1";
                 functionInfo.SystemtypeId = this.txtSystemType.Text;
-                functionInfo.DllPath = this.txtFunctionID.Text;
+                functionInfo.DllPath = this.txtDllPath.Text;
 
-                string filter = string.Format("FunctionId='{0}' and SystemType_ID='{1}'", this.txtFunctionID.Text, functionInfo.SystemtypeId);
-                bool isExist = BLLFactory<Functions>.Instance.IsExistRecord(filter);
+                string filter = string.Format("DllPath='{0}' and SystemtypeId='{1}'", this.txtDllPath.Text, functionInfo.SystemtypeId);
+                bool isExist = BLLFactory<Function>.Instance.IsExistRecord(filter);
                 if (isExist)
                 {
                     MessageDxUtil.ShowTips("指定功能控制ID重复，请重新输入！");
                     this.txtName.Focus();
                     return;
                 }
-            }
+            }*/
 
             FunctionInfo mainInfo = new FunctionInfo();
+            mainInfo.Gid = menuInfo.Gid;
             mainInfo = SetFunction(mainInfo);
             mainInfo.SystemtypeId = functionInfo.SystemtypeId;//和父节点的SystemType_ID一样。
-            using (DbTransaction trans = BLLFactory<Functions>.Instance.CreateTransaction())
+            using (DbTransaction trans = BLLFactory<Function>.Instance.CreateTransaction())
             {
                 try
                 {
                     if (trans != null)
                     {
-                        bool sucess = BLLFactory<Functions>.Instance.Insert(mainInfo, trans);
+                        //bool sucess = BLLFactory<Function>.Instance.Insert(mainInfo, trans);
+                        bool sucess = true;
                         if (sucess)
                         {
                             FunctionInfo subInfo = null;
@@ -140,57 +123,55 @@ namespace JCodes.Framework.AddIn.Security
                             {
                                 subInfo = CreateSubFunction(mainInfo);
                                 subInfo.Seq = (seqIndex++).ToString("D2");
-                                //subInfo.FunctionId = string.Format("{0}/Add", mainInfo.FunctionId);
-                                subInfo.Name = string.Format("添加{0}", mainInfo.Name);
+                                subInfo.DllPath = string.Format("{0}/{1}Add", mainInfo.DllPath, mainInfo.DllPath.Split('/')[0]);
+                                subInfo.Name = string.Format("{0}_添加", mainInfo.Name);
 
-                                BLLFactory<Functions>.Instance.Insert(subInfo, trans);
+                                BLLFactory<Function>.Instance.Insert(subInfo, trans);
                             }
                             if (chkDelete.Checked)
                             {
                                 subInfo = CreateSubFunction(mainInfo);
                                 subInfo.Seq = (seqIndex++).ToString("D2");
-                                //subInfo.FunctionId = string.Format("{0}/Delete", mainInfo.FunctionId);
-                                subInfo.Name = string.Format("删除{0}", mainInfo.Name);
-                                BLLFactory<Functions>.Instance.Insert(subInfo, trans);
+                                subInfo.DllPath = string.Format("{0}/{1}Delete", mainInfo.DllPath, mainInfo.DllPath.Split('/')[0]);
+                                subInfo.Name = string.Format("{0}_删除", mainInfo.Name);
+                                BLLFactory<Function>.Instance.Insert(subInfo, trans);
                             }
                             if (chkModify.Checked)
                             {
                                 subInfo = CreateSubFunction(mainInfo);
                                 subInfo.Seq = (seqIndex++).ToString("D2");
-                                //subInfo.FunctionId = string.Format("{0}/Edit", mainInfo.FunctionId);
-                                subInfo.Name = string.Format("修改{0}", mainInfo.Name);
-                                BLLFactory<Functions>.Instance.Insert(subInfo, trans);
+                                subInfo.DllPath = string.Format("{0}/{1}Edit", mainInfo.DllPath, mainInfo.DllPath.Split('/')[0]);
+                                subInfo.Name = string.Format("{0}_修改", mainInfo.Name);
+                                BLLFactory<Function>.Instance.Insert(subInfo, trans);
                             }
                             if (chkView.Checked)
                             {
                                 subInfo = CreateSubFunction(mainInfo);
                                 subInfo.Seq = (seqIndex++).ToString("D2");
-                                //subInfo.FunctionId = string.Format("{0}/View", mainInfo.FunctionId);
-                                subInfo.Name = string.Format("查看{0}", mainInfo.Name);
-                                BLLFactory<Functions>.Instance.Insert(subInfo, trans);
+                                subInfo.DllPath = string.Format("{0}/{1}View", mainInfo.DllPath, mainInfo.DllPath.Split('/')[0]);
+                                subInfo.Name = string.Format("{0}_查看", mainInfo.Name);
+                                BLLFactory<Function>.Instance.Insert(subInfo, trans);
                             }
                             if (chkImport.Checked)
                             {
                                 subInfo = CreateSubFunction(mainInfo);
                                 subInfo.Seq = (seqIndex++).ToString("D2");
-                                //subInfo.FunctionId = string.Format("{0}/Import", mainInfo.FunctionId);
-                                subInfo.Name = string.Format("导入{0}", mainInfo.Name);
-                                BLLFactory<Functions>.Instance.Insert(subInfo, trans);
+                                subInfo.DllPath = string.Format("{0}/{1}Import", mainInfo.DllPath, mainInfo.DllPath.Split('/')[0]);
+                                subInfo.Name = string.Format("{0}_导入", mainInfo.Name);
+                                BLLFactory<Function>.Instance.Insert(subInfo, trans);
                             }
                             if (chkExport.Checked)
                             {
                                 subInfo = CreateSubFunction(mainInfo);
                                 subInfo.Seq = (seqIndex++).ToString("D2");
-                                //subInfo.FunctionId = string.Format("{0}/Export", mainInfo.FunctionId);
-                                subInfo.Name = string.Format("导出{0}", mainInfo.Name);
-                                BLLFactory<Functions>.Instance.Insert(subInfo, trans);
+                                subInfo.DllPath = string.Format("{0}/{1}Export", mainInfo.DllPath, mainInfo.DllPath.Split('/')[0]);
+                                subInfo.Name = string.Format("{0}_导出", mainInfo.Name);
+                                BLLFactory<Function>.Instance.Insert(subInfo, trans);
                             }
                             #endregion
 
                             trans.Commit();
                             ProcessDataSaved(this.btnSave, new EventArgs());
-
-                            //this.DialogResult = System.Windows.Forms.DialogResult.OK;
                             MessageDxUtil.ShowTips("保存成功");
                         }
                         else
@@ -215,6 +196,7 @@ namespace JCodes.Framework.AddIn.Security
         private FunctionInfo CreateSubFunction(FunctionInfo mainInfo)
         {
             FunctionInfo subInfo = new FunctionInfo();
+            subInfo.Gid = Guid.NewGuid().ToString();
             subInfo.Pgid = mainInfo.Gid;
             subInfo.SystemtypeId = mainInfo.SystemtypeId;
             return subInfo;
@@ -224,7 +206,7 @@ namespace JCodes.Framework.AddIn.Security
         {
             info.Name = this.txtName.Text;
             info.Pgid = this.functionControl1.Value;
-            info.DllPath = this.txtFunctionID.Text;
+            info.DllPath = this.txtDllPath.Text;
             info.CurrentLoginUserId = Portal.gc.UserInfo.Id;
             return info;
         }

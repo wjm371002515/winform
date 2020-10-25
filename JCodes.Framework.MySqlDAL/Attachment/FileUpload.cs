@@ -17,7 +17,7 @@ namespace JCodes.Framework.MySqlDAL
     /// <summary>
     /// 相关附件信息
     /// </summary>
-	public class FileUploads : BaseDALMySql<FileUploadInfo>, IFileUploads
+	public class FileUploads : BaseDALMySql<FileUploadInfo>, IFileUpload
 	{
 		#region 对象实例及构造函数
 
@@ -46,7 +46,7 @@ namespace JCodes.Framework.MySqlDAL
 			FileUploadInfo info = new FileUploadInfo();
 			SmartDataReader reader = new SmartDataReader(dataReader);
 			
-			info.Gid = reader.GetString("Gid");
+			/*info.Gid = reader.GetString("Gid");
             info.CreatorId = reader.GetInt32("CreatorId");
             info.AttachmentGid = reader.GetString("AttachmentGid");
             info.Name = reader.GetString("Name");
@@ -58,7 +58,7 @@ namespace JCodes.Framework.MySqlDAL
             info.EditorId = reader.GetInt32("EditorId");
             info.AddTime = reader.GetDateTime("AddTime");
             info.IsDelete = reader.GetInt16("IsDelete");
-			
+			*/
 			return info;
 		}
 
@@ -72,6 +72,7 @@ namespace JCodes.Framework.MySqlDAL
 		    FileUploadInfo info = obj as FileUploadInfo;
 			Hashtable hash = new Hashtable();
 
+            /*
             hash.Add("Gid", info.Gid);
             hash.Add("CreatorId", info.CreatorId);
             hash.Add("AttachmentGid", info.AttachmentGid);
@@ -83,7 +84,7 @@ namespace JCodes.Framework.MySqlDAL
             hash.Add("FileExtend", info.FileExtend);
             hash.Add("EditorId", info.EditorId);
             hash.Add("AddTime", info.AddTime);
-            hash.Add("IsDelete", info.IsDelete);
+            hash.Add("IsDelete", info.IsDelete);*/
  				
 			return hash;
 		}

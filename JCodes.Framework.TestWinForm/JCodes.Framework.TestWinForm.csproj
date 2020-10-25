@@ -42,6 +42,9 @@
     <Reference Include="Aspose.Words">
       <HintPath>..\JCodes.Framework.libs\Aspose\Aspose.Words.dll</HintPath>
     </Reference>
+    <Reference Include="BouncyCastle.Crypto">
+      <HintPath>..\JCodes.Framework.libs\Bccrypto\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.BonusSkins.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.CodeParser.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -52,14 +55,21 @@
     <Reference Include="DevExpress.XtraBars.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGrid.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraPrinting.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraRichEdit.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v14.1.Core, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\JCodes.Framework.libs\SharpZipLib\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
-    <Reference Include="LumiSoft.Net">
-      <HintPath>..\JCodes.Framework.libs\LumiSoft\LumiSoft.Net.dll</HintPath>
+    <Reference Include="itextsharp">
+      <HintPath>..\JCodes.Framework.libs\itextSharp\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="LumiSoft.Net, Version=4.5.5510.19119, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\JCodes.Framework.libs\LumiSoft2\LumiSoft.Net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
       <HintPath>..\JCodes.Framework.libs\Microsoft.Practices\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
@@ -70,6 +80,10 @@
     <Reference Include="Microsoft.Practices.ObjectBuilder">
       <HintPath>..\JCodes.Framework.libs\Microsoft.Practices\Microsoft.Practices.ObjectBuilder.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\JCodes.Framework.libs\Newtonsoft.Json\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="NPOI">
       <HintPath>..\JCodes.Framework.libs\NPOI\NPOI.dll</HintPath>
     </Reference>
@@ -78,6 +92,9 @@
     </Reference>
     <Reference Include="org.in2bits.MyXls">
       <HintPath>..\JCodes.Framework.libs\org.in2bits\org.in2bits.MyXls.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp">
+      <HintPath>..\JCodes.Framework.libs\PdfSharp\PdfSharp.dll</HintPath>
     </Reference>
     <Reference Include="SevenZipSharp, Version=0.62.3757.29192, Culture=neutral, PublicKeyToken=20de82c62b055c88, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -122,11 +139,29 @@
     <Compile Include="Basic\ConvertTextFrm.Designer.cs">
       <DependentUpon>ConvertTextFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Basic\FrmTestBizControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Basic\FrmTestBizControl.Designer.cs">
+      <DependentUpon>FrmTestBizControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Basic\InitDataFrm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Basic\InitDataFrm.Designer.cs">
       <DependentUpon>InitDataFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Basic\TestFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Basic\TestFrm.Designer.cs">
+      <DependentUpon>TestFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BizControl.Test\BizControlForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BizControl.Test\BizControlForm.Designer.cs">
+      <DependentUpon>BizControlForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Common.Test\Form1.cs">
       <SubType>Form</SubType>
@@ -219,11 +254,23 @@
     <Compile Include="Dic.Test\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dongnanhai\FrmHackVote.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dongnanhai\FrmHackVote.Designer.cs">
+      <DependentUpon>FrmHackVote.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Haotian\FrmXlsDataDeal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Haotian\FrmXlsDataDeal.Designer.cs">
+      <DependentUpon>FrmXlsDataDeal.cs</DependentUpon>
     </Compile>
     <Compile Include="Page.Test\FrmCustomer.cs">
       <SubType>Form</SubType>
@@ -243,6 +290,18 @@
     <Compile Include="Page.Test\FrmEditCustomer.designer.cs">
       <DependentUpon>FrmEditCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="PdfDemo\FrmPdfTools.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PdfDemo\FrmPdfTools.Designer.cs">
+      <DependentUpon>FrmPdfTools.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PdfDemo\PdfTestFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PdfDemo\PdfTestFrm.Designer.cs">
+      <DependentUpon>PdfTestFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quanxian\Form1.cs">
@@ -260,6 +319,67 @@
     <Compile Include="TcpDemo\TcpClient.cs" />
     <Compile Include="TcpDemo\TcpServer.cs" />
     <Compile Include="TempCommon\SqliteHelper.cs" />
+    <Compile Include="ZheshangDG\ZheshangKaoshi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZheshangDG\ZheshangKaoshi.Designer.cs">
+      <DependentUpon>ZheshangKaoshi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ZheshangDG\ZheshangDGTools.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZheshangDG\ZheshangDGTools.Designer.cs">
+      <DependentUpon>ZheshangDGTools.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ZsDaixiao\ConsignmentInfo.cs" />
+    <Compile Include="ZsDaixiao\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZsDaixiao\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ZsDaixiao\FrmConsignment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZsDaixiao\FrmConsignment.Designer.cs">
+      <DependentUpon>FrmConsignment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ZsDaixiao\FrmDealPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZsDaixiao\FrmDealPassword.Designer.cs">
+      <DependentUpon>FrmDealPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ZsDaixiao\FrmDealConsignment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZsDaixiao\FrmDealConsignment.Designer.cs">
+      <DependentUpon>FrmDealConsignment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ZsDaixiao\FrmEditConsignment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZsDaixiao\FrmEditConsignment.designer.cs">
+      <DependentUpon>FrmEditConsignment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ZsDaixiao\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZsDaixiao\MainForm.designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ZSJob\DakaDateSetFrm2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZSJob\DakaDateSetFrm2.Designer.cs">
+      <DependentUpon>DakaDateSetFrm2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ZSJob\DakaDateSetFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZSJob\DakaDateSetFrm.Designer.cs">
+      <DependentUpon>DakaDateSetFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ZSJob\IPOdepthDealfrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -272,15 +392,56 @@
     <Compile Include="ZSJob\AMSDownloadForm.Designer.cs">
       <DependentUpon>AMSDownloadForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ZSJob\TouHangDiGaoFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZSJob\TouHangDiGaoFrm.Designer.cs">
+      <DependentUpon>TouHangDiGaoFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ZSZQ_IPO\ZSZQ_IPO.cs" />
+    <EmbeddedResource Include="Basic\TestFrm.resx">
+      <DependentUpon>TestFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PdfDemo\FrmPdfTools.resx">
+      <DependentUpon>FrmPdfTools.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PdfDemo\PdfTestFrm.resx">
+      <DependentUpon>PdfTestFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="ZheshangDG\ZheshangKaoshi.resx">
+      <DependentUpon>ZheshangKaoshi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ZheshangDG\ZheshangDGTools.resx">
+      <DependentUpon>ZheshangDGTools.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ZsDaixiao\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ZSJob\DakaDateSetFrm2.resx">
+      <DependentUpon>DakaDateSetFrm2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ZSJob\DakaDateSetFrm.resx">
+      <DependentUpon>DakaDateSetFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ZSJob\TouHangDiGaoFrm.resx">
+      <DependentUpon>TouHangDiGaoFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Resources\favicon.ico" />
     <EmbeddedResource Include="Attachment.Test\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Basic\ConvertTextFrm.resx">
       <DependentUpon>ConvertTextFrm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Basic\FrmTestBizControl.resx">
+      <DependentUpon>FrmTestBizControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Basic\InitDataFrm.resx">
       <DependentUpon>InitDataFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BizControl.Test\BizControlForm.resx">
+      <DependentUpon>BizControlForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Common.Test\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -327,8 +488,14 @@
     <EmbeddedResource Include="Dic.Test\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dongnanhai\FrmHackVote.resx">
+      <DependentUpon>FrmHackVote.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Haotian\FrmXlsDataDeal.resx">
+      <DependentUpon>FrmXlsDataDeal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Page.Test\FrmCustomer.resx">
       <DependentUpon>FrmCustomer.cs</DependentUpon>
@@ -339,7 +506,6 @@
     <EmbeddedResource Include="Page.Test\FrmEditCustomer.resx">
       <DependentUpon>FrmEditCustomer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -356,6 +522,21 @@
     <EmbeddedResource Include="SmallTools.Test\FrmWinRarZip.resx">
       <DependentUpon>FrmWinRarZip.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ZsDaixiao\FrmConsignment.resx">
+      <DependentUpon>FrmConsignment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ZsDaixiao\FrmDealPassword.resx">
+      <DependentUpon>FrmDealPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ZsDaixiao\FrmDealConsignment.resx">
+      <DependentUpon>FrmDealConsignment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ZsDaixiao\FrmEditConsignment.resx">
+      <DependentUpon>FrmEditConsignment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ZsDaixiao\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ZSJob\IPOdepthDealfrm.resx">
       <DependentUpon>IPOdepthDealfrm.cs</DependentUpon>
     </EmbeddedResource>
@@ -364,6 +545,10 @@
     </EmbeddedResource>
     <None Include="CommonUtil.Test\Templates\Advice.doc" />
     <None Include="CommonUtil.Test\Templates\Advice.xls" />
+    <Content Include="Dongnanhai\File\106_Full.txt" />
+    <Content Include="Dongnanhai\File\getDetail.txt" />
+    <Content Include="Dongnanhai\File\getMyHouse.txt" />
+    <Content Include="Dongnanhai\File\getUser.txt" />
     <Content Include="Files\网下利率询价及申购申请表汇总表.xlsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -434,6 +619,17 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="TimsSync\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>4</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

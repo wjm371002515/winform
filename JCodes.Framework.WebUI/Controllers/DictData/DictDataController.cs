@@ -10,6 +10,7 @@ using JCodes.Framework.Common;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Common.Extension;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.WebUI.Controllers
 {
@@ -188,7 +189,7 @@ namespace JCodes.Framework.WebUI.Controllers
             {
                 dr = datatable.NewRow();
                 dr["序号"] = j++;
-                DictTypeInfo typeInfo = BLLFactory<DictType>.Instance.FindByID(list[i].DicttypeId);
+                DictTypeInfo typeInfo = BLLFactory<DictType>.Instance.FindById(list[i].DicttypeId);
                 if (typeInfo != null)
                 {
                     dr["字典大类"] = typeInfo.Name;
@@ -248,7 +249,7 @@ namespace JCodes.Framework.WebUI.Controllers
             //    info.PID = BLLFactory<DictData>.Instance.GetFieldValue(info.PID, "Name");
             //    if (!string.IsNullOrEmpty(info.Creator))
             //    {
-            //        info.Creator = BLLFactory<User>.Instance.GetFullNameByID(info.Creator.ToInt32());
+            //        info.Creator = BLLFactory<User>.Instance.GetNameById(info.Creator.ToInt32());
             //    }
             //}
 

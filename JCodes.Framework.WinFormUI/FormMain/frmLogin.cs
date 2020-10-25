@@ -38,7 +38,6 @@ namespace JCodes.Framework.WinFormUI
         /// <param name="e"></param>
         private void sbClose_Click(object sender, EventArgs e)
         {
-            alertControl1.Show(this, "±®¥Ì", "≤‚ ‘ƒ⁄»›");
             this.Close();
         }
 

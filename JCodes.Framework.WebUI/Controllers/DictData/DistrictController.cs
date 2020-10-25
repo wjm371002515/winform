@@ -10,6 +10,7 @@ using JCodes.Framework.Common.Databases;
 using JCodes.Framework.Common;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.Common.Extension;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.WebUI.Controllers
 {
@@ -232,7 +233,7 @@ namespace JCodes.Framework.WebUI.Controllers
             //    info.PID = BLLFactory<District>.Instance.GetFieldValue(info.PID, "Name");
             //    if (!string.IsNullOrEmpty(info.Creator))
             //    {
-            //        info.Creator = BLLFactory<User>.Instance.GetFullNameByID(info.Creator.ToInt32());
+            //        info.Creator = BLLFactory<User>.Instance.GetNameById(info.Creator.ToInt32());
             //    }
             //}
 
@@ -272,15 +273,15 @@ namespace JCodes.Framework.WebUI.Controllers
         /// </summary>
         /// <param name="cityName">城市名称</param>
         /// <returns></returns>
-        public ActionResult GetDistrictByCityDictJson(string cityId)
+        public ActionResult GetDistrictByCityDictJson(Int32 cityId)
         {
             List<CDicKeyValue> treeList = new List<CDicKeyValue>();
             CDicKeyValue pNode = new CDicKeyValue(-1, "选择记录");
             treeList.Add(pNode);
 
-            if (!string.IsNullOrEmpty(cityId))
+            if (cityId >= 0)
             {
-                List<DistrictInfo> districtList = BLLFactory<District>.Instance.GetDistrictByCity(cityId);
+                List<DistrictInfo> districtList = BLLFactory<District>.Instance.GetDistrictByCityId(cityId);
                 foreach (DistrictInfo info in districtList)
                 {
                     CDicKeyValue item = new CDicKeyValue(info.Id, info.DistrictName);

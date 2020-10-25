@@ -14,6 +14,7 @@ using JCodes.Framework.CommonControl.BaseUI;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.CommonControl.Controls;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.AddIn.Basic
 {
@@ -58,22 +59,22 @@ namespace JCodes.Framework.AddIn.Basic
             if (Id > 0)
             {
                 #region 显示信息
-                OperationLogInfo info = BLLFactory<OperationLog>.Instance.FindByID(Id);
-                if (info != null)
-                {
-                    tempInfo = info;//重新给临时对象赋值，使之指向存在的记录对象
-                    txtUser_ID.Text = info.UserId.ToString();
-                    txtLoginName.Text = info.LoginName;
-                    txtFullName.Text = info.FullName;
-                    txtCompany_ID.Text = info.CompanyId.ToString();
-                    txtCompanyName.Text = info.CompanyName;
-                    txtTableName.Text = info.TableName;
-                    txtOperationType.Text = info.OperationType;
-                    txtNote.Text = info.Remark;
-                    txtIPAddress.Text = info.IP;
-                    txtMacAddress.Text = info.Mac;
-                    txtCreateTime.SetDateTime(info.CreatorTime);
-                }
+                //OperationLogInfo info = BLLFactory<OperationLog>.Instance.FindByID(Id);
+                //if (info != null)
+                //{
+                //    tempInfo = info;//重新给临时对象赋值，使之指向存在的记录对象
+                //    txtUser_ID.Text = info.UserId.ToString();
+                //    txtLoginName.Text = info.LoginName;
+                //    txtLoginName.Text = info.LoginName;
+                //    txtCompany_ID.Text = info.CompanyId.ToString();
+                //    txtCompanyName.Text = info.CompanyName;
+                //    txtTableName.Text = info.TableName;
+                //    txtOperationType.Text = info.OperationType.ToString();
+                //    txtNote.Text = info.Remark;
+                //    txtIPAddress.Text = info.IP;
+                //    txtMacAddress.Text = info.Mac;
+                //    txtCreateTime.SetDateTime(info.CreatorTime);
+                //}
                 #endregion          
             }
         }
@@ -90,11 +91,11 @@ namespace JCodes.Framework.AddIn.Basic
         /// <param name="info"></param>
         private void SetInfo(OperationLogInfo info)
         {
+            info.Name = txtName.Text;
             info.LoginName = txtLoginName.Text;
-            info.FullName = txtFullName.Text;
             info.CompanyName = txtCompanyName.Text;
             info.TableName = txtTableName.Text;
-            info.OperationType = txtOperationType.Text;
+            //info.OperationType = txtOperationType.Text;
             info.Remark = txtNote.Text;
             info.Mac = this.txtMacAddress.Text;
             info.IP = this.txtIPAddress.Text;
@@ -138,29 +139,29 @@ namespace JCodes.Framework.AddIn.Basic
         public override bool SaveUpdated()
         {
 
-            OperationLogInfo info = BLLFactory<OperationLog>.Instance.FindByID(Id);
-            if (info != null)
-            {
-                SetInfo(info);
+            //OperationLogInfo info = BLLFactory<OperationLog>.Instance.FindByID(Id);
+            //if (info != null)
+            //{
+            //    SetInfo(info);
 
-                try
-                {
-                    #region 更新数据
-                    bool succeed = BLLFactory<OperationLog>.Instance.Update(info, info.Id);
-                    if (succeed)
-                    {
-                        //可添加其他关联操作
+            //    try
+            //    {
+            //        #region 更新数据
+            //        bool succeed = BLLFactory<OperationLog>.Instance.Update(info, info.Id);
+            //        if (succeed)
+            //        {
+            //            //可添加其他关联操作
 
-                        return true;
-                    }
-                    #endregion
-                }
-                catch (Exception ex)
-                {
-                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmEditOperationLog));
-                    MessageDxUtil.ShowError(ex.Message);
-                }
-            }
+            //            return true;
+            //        }
+            //        #endregion
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(FrmEditOperationLog));
+            //        MessageDxUtil.ShowError(ex.Message);
+            //    }
+            //}
             return false;
         }
     }

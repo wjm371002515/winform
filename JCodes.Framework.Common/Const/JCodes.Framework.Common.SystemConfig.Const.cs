@@ -32,7 +32,7 @@ namespace JCodes.Framework.Common
         /// <summary>
         /// 系统编号ID TODO 待删除
         /// </summary>
-        public const string SystemTypeID = "f8811525-3cbc-4092-92e0-04d449c0adb9";
+        public const string SystemTypeID = "071bafed-4634-4083-bb34-86dda58edfc4";
 
         /// <summary>
         /// 数据库表前缀

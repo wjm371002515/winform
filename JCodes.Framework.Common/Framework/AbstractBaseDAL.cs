@@ -12,18 +12,21 @@ using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.Common.Format;
 using JCodes.Framework.Common.Databases;
 using JCodes.Framework.Common.Office;
+using JCodes.Framework.jCodesenum;
+using System.Configuration;
+using JCodes.Framework.Common.Files;
 
 namespace JCodes.Framework.Common.Framework
 {
     /// <summary>
     /// 定义一个记录操作日志的事件处理
     /// </summary>
-    /// <param name="userId">操作的用户ID</param>
+    /// <param name="userId">操作的用户Id</param>
     /// <param name="tableName">操作表名称</param>
     /// <param name="operationType">操作类型：增加、修改、删除</param>
     /// <param name="note">操作的详细记录信息</param>
     /// <returns></returns>
-    public delegate bool OperationLogEventHandler(Int32 userId, string tableName, string operationType, string note, DbTransaction trans = null); 
+    public delegate bool OperationLogEventHandler(Int32 userId, string tableName, OperationType operationType, string remark, DbTransaction trans = null); 
 
 	/// <summary>
 	/// 数据访问层的超级基类，所有数据库的数据访问基类都继承自这个超级基类，包括Oracle、SqlServer、Sqlite、MySql、Access等
@@ -38,7 +41,7 @@ namespace JCodes.Framework.Common.Framework
         protected string tableName;//需要初始化的对象表名
         protected string primaryKey;//数据库的主键字段名
         protected string sortField;//排序字段
-        protected bool isDescending = true;//是否为降序
+        protected bool isDescending = false;//是否为降序
         protected string selectedFields = " * ";//选择的字段，默认为所有(*)        
         public event OperationLogEventHandler OnOperationLog;//定义一个操作记录的事件处理
         
@@ -261,14 +264,20 @@ namespace JCodes.Framework.Common.Framework
                 db.AddInParameter(command, field, TypeToDbType(val.GetType()), val);
             }
 
-            if (trans != null)
-            {
-                result = db.ExecuteNonQuery(command, trans) > 0;
+            try {
+                if (trans != null)
+                {
+                    result = db.ExecuteNonQuery(command, trans) > 0;
+                }
+                else
+                {
+                    result = db.ExecuteNonQuery(command) > 0;
+                }
             }
-            else
-            {
-                result = db.ExecuteNonQuery(command) > 0;
+            catch (Exception ex) {
+                LogHelper.WriteLog(LogLevel.LOG_LEVEL_ALERT, ex, typeof(AbstractBaseDAL<T>));
             }
+            
 
             return result;
         }
@@ -297,7 +306,7 @@ namespace JCodes.Framework.Common.Framework
 		/// <summary>
 		/// 更新某个表一条记录(只适用于用单键,用int类型作键值的表)
 		/// </summary>
-		/// <param name="id">ID值</param>
+		/// <param name="id">Id值</param>
 		/// <param name="recordField">Hashtable:键[key]为字段名;值[value]为字段对应的值</param>
 		/// <param name="trans">事务对象,如果使用事务,传入事务对象,否则为Null不使用事务</param>
         public virtual bool Update(object id, Hashtable recordField, DbTransaction trans)
@@ -308,7 +317,7 @@ namespace JCodes.Framework.Common.Framework
 		/// <summary>
 		/// 更新某个表一条记录(只适用于用单键,用int类型作键值的表)
 		/// </summary>
-		/// <param name="id">ID值</param>
+		/// <param name="id">Id值</param>
 		/// <param name="recordField">Hashtable:键[key]为字段名;值[value]为字段对应的值</param>
 		/// <param name="targetTable">需要操作的目标表名称</param>
 		/// <param name="trans">事务对象,如果使用事务,传入事务对象,否则为Null不使用事务</param>
@@ -320,7 +329,7 @@ namespace JCodes.Framework.Common.Framework
         /// <summary>
         /// 更新某个表一条记录
         /// </summary>
-        /// <param name="id">ID值</param>
+        /// <param name="id">Id值</param>
         /// <param name="recordField">Hashtable:键[key]为字段名;值[value]为字段对应的值</param>
         /// <param name="targetTable">需要操作的目标表名称</param>
         /// <param name="trans">事务对象,如果使用事务,传入事务对象,否则为Null不使用事务</param>
@@ -346,7 +355,7 @@ namespace JCodes.Framework.Common.Framework
 
                 DbCommand command = db.GetSqlStringCommand(sql);
 
-                bool foundID = false;
+                bool foundId = false;
                 foreach (string field in recordField.Keys)
                 {
                     object val = recordField[field];
@@ -366,11 +375,11 @@ namespace JCodes.Framework.Common.Framework
 
                     if (field.Equals(primaryKey, StringComparison.OrdinalIgnoreCase))
                     {
-                        foundID = true;
+                        foundId = true;
                     }
                 }
 
-                if (!foundID)
+                if (!foundId)
                 {
                     db.AddInParameter(command, primaryKey, TypeToDbType(id.GetType()), id);
                 }
@@ -690,13 +699,13 @@ namespace JCodes.Framework.Common.Framework
         public virtual bool InsertIfNew(T obj, object primaryKeyValue, DbTransaction trans = null)
         {
             bool result = false;
-            string sql = string.Format("Update {0} set {1}={2}ID  Where {1} = {2}ID", tableName, primaryKey, parameterPrefix);
+            string sql = string.Format("Update {0} set {1}={2}Id  Where {1} = {2}Id", tableName, primaryKey, parameterPrefix);
             Database db = CreateDatabase();
 
             LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "InsertIfNew:" + sql, typeof(AbstractBaseDAL<T>));
 
             DbCommand command = db.GetSqlStringCommand(sql);
-            db.AddInParameter(command, "ID", TypeToDbType(primaryKeyValue.GetType()), primaryKeyValue);
+            db.AddInParameter(command, "Id", TypeToDbType(primaryKeyValue.GetType()), primaryKeyValue);
 
             int count = db.ExecuteNonQuery(command, trans);
             if (count <= 0)
@@ -711,32 +720,32 @@ namespace JCodes.Framework.Common.Framework
         #region 返回实体类操作
 
         /// <summary>
-        /// 查询数据库,检查是否存在指定ID的对象
+        /// 查询数据库,检查是否存在指定Id的对象
         /// </summary>
-        /// <param name="key">对象的ID值</param>
+        /// <param name="key">对象的Id值</param>
         /// <param name="trans">事务对象</param>
         /// <returns>存在则返回指定的对象,否则返回Null</returns>
-        public virtual T FindByID(object key, DbTransaction trans = null)
+        public virtual T FindById(object key, DbTransaction trans = null)
         {
-            return PrivateFindByID(key, trans);
+            return PrivateFindById(key, trans);
         }
 
         /// <summary>
-        /// 提供对FindByID的私有方法实现
+        /// 提供对FindById的私有方法实现
         /// </summary>
         /// <param name="key">主键的值</param>
         /// <param name="trans">事务对象</param>
         /// <returns></returns>
-        private T PrivateFindByID(object key, DbTransaction trans = null)
+        private T PrivateFindById(object key, DbTransaction trans = null)
         {
-            string sql = string.Format("Select {0} From {1} Where ({2} = {3}ID)", selectedFields, tableName, primaryKey, parameterPrefix);
+            string sql = string.Format("Select {0} From {1} Where ({2} = {3}Id)", selectedFields, tableName, primaryKey, parameterPrefix);
 
             Database db = CreateDatabase();
 
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "PrivateFindByID:" + sql, typeof(AbstractBaseDAL<T>));
+            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "PrivateFindById:" + sql, typeof(AbstractBaseDAL<T>));
 
             DbCommand command = db.GetSqlStringCommand(sql);
-            db.AddInParameter(command, "ID", TypeToDbType(key.GetType()), key);
+            db.AddInParameter(command, "Id", TypeToDbType(key.GetType()), key);
 
             T entity = GetEntity(db, command, trans);
             return entity;
@@ -875,12 +884,12 @@ namespace JCodes.Framework.Common.Framework
 		#region 返回集合的接口
 		
 		/// <summary>
-		/// 根据ID字符串(逗号分隔)获取对象列表
+		/// 根据Id字符串(逗号分隔)获取对象列表
 		/// </summary>
-		/// <param name="idString">ID字符串(逗号分隔)</param>
+		/// <param name="idString">Id字符串(逗号分隔)</param>
         /// <param name="trans">事务对象</param>
         /// <returns>符合条件的对象列表</returns>
-        public virtual List<T> FindByIDs(string idString, DbTransaction trans = null)
+        public virtual List<T> FindByIds(string idString, DbTransaction trans = null)
 		{
 			string condition = string.Format("{0} in({1})", primaryKey, idString);
 			return this.Find(condition, trans);
@@ -1100,7 +1109,7 @@ namespace JCodes.Framework.Common.Framework
             {
                 sql += orderBy;
             }
-            else
+            else if (!string.IsNullOrEmpty(sortField))
             {
                 sql += string.Format(" Order by {0} {1}", GetSafeFileName(sortField), isDescending ? "DESC" : "ASC");
             }
@@ -1476,7 +1485,7 @@ namespace JCodes.Framework.Common.Framework
             PropertyInfo[] pis = obj.GetType().GetProperties();
             for (int i = 0; i < pis.Length; i++)
             {
-                //if (pis[i].Name != PrimaryKey)
+                if (pis[i].Name != PrimaryKey)
                 {
                     object objValue = pis[i].GetValue(obj, null);
                     objValue = (objValue == null) ? DBNull.Value : objValue;
@@ -1640,17 +1649,17 @@ namespace JCodes.Framework.Common.Framework
         }
 		
 		/// <summary>
-		/// 获取数据库中该对象的最大ID值
+		/// 获取数据库中该对象的最大Id值
 		/// </summary>
         /// <param name="trans">事务对象</param>
-        /// <returns>最大ID值</returns>
-        public virtual int GetMaxID(DbTransaction trans = null)
+        /// <returns>最大Id值</returns>
+        public virtual int GetMaxId(DbTransaction trans = null)
 		{
-			string sql = string.Format("SELECT MAX({0}) AS MaxID FROM {1}", primaryKey, tableName);
+			string sql = string.Format("SELECT MAX({0}) AS MaxId FROM {1}", primaryKey, tableName);
 
             Database db = CreateDatabase();
 
-            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "GetMaxID:" + sql, typeof(AbstractBaseDAL<T>));
+            LogHelper.WriteLog(LogLevel.LOG_LEVEL_SQL, "GetMaxId:" + sql, typeof(AbstractBaseDAL<T>));
 
             DbCommand command = db.GetSqlStringCommand(sql);
 
@@ -1673,7 +1682,7 @@ namespace JCodes.Framework.Common.Framework
         /// <summary>
         /// 根据主键和字段名称，获取对应字段的内容
         /// </summary>
-        /// <param name="key">指定对象的ID</param>
+        /// <param name="key">指定对象的Id</param>
         /// <param name="fieldName">字段名称</param>
         /// <param name="trans">事务对象</param>
         /// <returns></returns>
@@ -1709,10 +1718,10 @@ namespace JCodes.Framework.Common.Framework
         }
 
         /// <summary>
-        /// 根据指定对象的ID和用户ID,从数据库中删除指定对象(用于记录人员的操作日志）
+        /// 根据指定对象的Id和用户Id,从数据库中删除指定对象(用于记录人员的操作日志）
         /// </summary>
-        /// <param name="key">指定对象的ID</param>
-        /// <param name="userId">用户ID</param>
+        /// <param name="key">指定对象的Id</param>
+        /// <param name="userId">用户Id</param>
         /// <param name="trans">事务对象</param>
         /// <returns>执行成功返回<c>true</c>，否则为<c>false</c>。</returns>
         public virtual bool DeleteByUser(object key, Int32 userId, DbTransaction trans = null)
@@ -1795,7 +1804,6 @@ namespace JCodes.Framework.Common.Framework
         {
             if (OnOperationLog != null)
             {
-                string operationType = "增加";
                 Int32 userId = obj.CurrentLoginUserId;
 
                 Hashtable recordField = GetHashByEntity(obj);
@@ -1817,27 +1825,26 @@ namespace JCodes.Framework.Common.Framework
                 sb.AppendLine();
                 string note = sb.ToString();
 
-                OnOperationLog(userId, this.tableName, operationType, note, trans);
+                OnOperationLog(userId, this.tableName, OperationType.新增, note, trans);
             }
         }
 
         /// <summary>
         /// 修改操作的日志记录
         /// </summary>
-        /// <param name="id">记录ID</param>
+        /// <param name="id">记录Id</param>
         /// <param name="obj">数据对象</param>
         /// <param name="trans">事务对象</param>
         protected virtual void OperationLogOfUpdate(T obj, object id, DbTransaction trans = null)
         {
             if (OnOperationLog != null)
             {
-                string operationType = "修改";
                 Int32 userId = obj.CurrentLoginUserId;
 
                 Hashtable recordField = GetHashByEntity(obj);
                 Dictionary<string, string> dictColumnNameAlias = GetColumnNameAlias();
 
-                T objInDb = FindByID(id, trans);
+                T objInDb = FindById(id, trans);
                 if (objInDb != null)
                 {
                     Hashtable dbrecordField = GetHashByEntity(objInDb);//把数据库里的实体对象数据转换为哈希表
@@ -1865,7 +1872,7 @@ namespace JCodes.Framework.Common.Framework
                     sb.AppendLine();
                     string note = sb.ToString();
 
-                    OnOperationLog(userId, this.tableName, operationType, note, trans);
+                    OnOperationLog(userId, this.tableName, OperationType.修改, note, trans);
                 }
             }
         }
@@ -1873,18 +1880,16 @@ namespace JCodes.Framework.Common.Framework
         /// <summary>
         /// 删除操作的日志记录
         /// </summary>
-        /// <param name="id">记录ID</param>
-        /// <param name="userId">用户ID</param>
+        /// <param name="id">记录Id</param>
+        /// <param name="userId">用户Id</param>
         /// <param name="trans">事务对象</param>
         protected virtual void OperationLogOfDelete(object id, Int32 userId, DbTransaction trans = null)
         {
             if (OnOperationLog != null)
             {
-                string operationType = "删除";
-
                 Dictionary<string, string> dictColumnNameAlias = GetColumnNameAlias();
 
-                T objInDb = FindByID(id, trans);
+                T objInDb = FindById(id, trans);
                 if (objInDb != null)
                 {
                     Hashtable dbrecordField = GetHashByEntity(objInDb);//把数据库里的实体对象数据转换为哈希表
@@ -1906,7 +1911,7 @@ namespace JCodes.Framework.Common.Framework
                     sb.AppendLine();
                     string note = sb.ToString();
 
-                    OnOperationLog(userId, this.tableName, operationType, note, trans);
+                    OnOperationLog(userId, this.tableName, OperationType.删除, note, trans);
                 }
             }
         } 
@@ -1980,10 +1985,11 @@ namespace JCodes.Framework.Common.Framework
             //构造SQL的注入关键字符
             string[] strBadChar =
             {
+                // 20200303 wujianming  假如完全匹配则前面加上/ 假如包含某个字符串则不需要加/
                 //"select\\s",
                 //"from\\s",
                 "insert\\s",
-                "delete\\s",
+                "/delete\\s",
                 "update\\s",
                 "drop\\s",
                 "truncate\\s",
@@ -2017,6 +2023,8 @@ namespace JCodes.Framework.Common.Framework
         /// <returns></returns>
         public virtual List<string> GetTableNames()
         {
+            var mySection = ConfigurationManager.GetSection("dataConfiguration");
+
             return new List<string>();
         }
 

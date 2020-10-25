@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System.Globalization;
 using JCodes.Framework.Common.Network;
 using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.Common.Format
 {

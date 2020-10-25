@@ -26,14 +26,14 @@ namespace JCodes.Framework.Entity
 		private Int32 m_UserId = 0;
 
 		/// <summary>
+		/// 名称
+		/// </summary>
+		private String m_Name = string.Empty;
+
+		/// <summary>
 		/// 登录名
 		/// </summary>
 		private String m_LoginName = string.Empty;
-
-		/// <summary>
-		/// 真实名
-		/// </summary>
-		private String m_FullName = string.Empty;
 
 		/// <summary>
 		/// 公司Id
@@ -103,6 +103,23 @@ namespace JCodes.Framework.Entity
 		}
 
 		/// <summary>
+		/// 名称
+		/// </summary>
+		[DataMember]
+		[DisplayName("名称")]
+		public virtual String Name
+		{
+			get
+			{
+				return this.m_Name;
+			}
+			set
+			{
+				this.m_Name = value;
+			}
+		}
+
+		/// <summary>
 		/// 登录名
 		/// </summary>
 		[DataMember]
@@ -116,23 +133,6 @@ namespace JCodes.Framework.Entity
 			set
 			{
 				this.m_LoginName = value;
-			}
-		}
-
-		/// <summary>
-		/// 真实名
-		/// </summary>
-		[DataMember]
-		[DisplayName("真实名")]
-		public virtual String FullName
-		{
-			get
-			{
-				return this.m_FullName;
-			}
-			set
-			{
-				this.m_FullName = value;
 			}
 		}
 

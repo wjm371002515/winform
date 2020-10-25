@@ -5,7 +5,7 @@ using System.Text;
 using DotRas;
 using System.Collections.ObjectModel;
 using System.Threading;
-using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.jCodesenum;
 using JCodes.Framework.Entity;
 
 namespace JCodes.Framework.Common.Network

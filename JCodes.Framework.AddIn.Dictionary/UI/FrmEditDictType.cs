@@ -6,6 +6,7 @@ using JCodes.Framework.CommonControl;
 using JCodes.Framework.CommonControl.BaseUI;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.Entity;
+using JCodes.Framework.jCodesenum;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace JCodes.Framework.AddIn.Dictionary
 {
     public partial class FrmEditDictType : BaseEditForm
     {
-        public Int32 PID = -1;
+        public Int32 pId = -1;
 
         public FrmEditDictType()
         {
@@ -58,10 +59,10 @@ namespace JCodes.Framework.AddIn.Dictionary
                 result = false;
             }
 
-            string Id = txtID.Text;
+            string strId = txtID.Text;
             if (result)
             {
-                if (!ValidateUtil.IsNumeric(Id))
+                if (!ValidateUtil.IsNumeric(strId))
                 {
                     MessageDxUtil.ShowWarning(txtID.Text.Replace(Const.MsgCheckSign, string.Empty) + Const.MsgErrFormatByNum);
                     txtID.Focus();
@@ -69,11 +70,10 @@ namespace JCodes.Framework.AddIn.Dictionary
                 }
             }
 
-
-            if (result && !string.IsNullOrEmpty(Id))
+            Int32 Id = Convert.ToInt32(strId);
+            if (result && Id == 0)
             {
-                Int32 NumId = Convert.ToInt32(Id);
-                DictTypeInfo dictTypeInfo = BLLFactory<DictType>.Instance.FindByID(NumId);
+                DictTypeInfo dictTypeInfo = BLLFactory<DictType>.Instance.FindById(Id);
                 if (dictTypeInfo != null)
                 {
                     MessageDxUtil.ShowTips(string.Format("已存在类别编号[{0}],类别名称[{1}]", dictTypeInfo.Id, dictTypeInfo.Name));
@@ -92,7 +92,7 @@ namespace JCodes.Framework.AddIn.Dictionary
         /// </summary>
         public override void DisplayData()
         {
-            DictTypeInfo parentInfo = BLLFactory<DictType>.Instance.FindByID(PID);
+            DictTypeInfo parentInfo = BLLFactory<DictType>.Instance.FindById(pId);
             if (parentInfo != null)
             {
                 this.txtParent.Text = parentInfo.Name;
@@ -101,7 +101,7 @@ namespace JCodes.Framework.AddIn.Dictionary
 
             if (Id > 0)
             {
-                DictTypeInfo info = BLLFactory<DictType>.Instance.FindByID(Id);
+                DictTypeInfo info = BLLFactory<DictType>.Instance.FindById(Id);
                 if (info != null)
                 {
                     this.txtID.Text = info.Id.ToString();
@@ -158,7 +158,7 @@ namespace JCodes.Framework.AddIn.Dictionary
 
         public override bool SaveUpdated()
         {
-            DictTypeInfo info = BLLFactory<DictType>.Instance.FindByID(Id);
+            DictTypeInfo info = BLLFactory<DictType>.Instance.FindById(Id);
             if (info != null)
             {
                 SetInfo(info);
@@ -192,7 +192,7 @@ namespace JCodes.Framework.AddIn.Dictionary
             info.Name = this.txtName.Text.Trim();
             info.Remark = this.txtNote.Text.Trim();
             info.Seq = this.txtSeq.Text;
-            info.Pid = PID;
+            info.Pid = pId;
             if (this.chkTopItem.Checked)
             {
                 info.Pid = -1;

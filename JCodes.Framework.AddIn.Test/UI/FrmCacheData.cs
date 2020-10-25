@@ -66,9 +66,7 @@ namespace JCodes.Framework.AddIn.Test
 
                     #region 创建分页控件
                     JCodes.Framework.CommonControl.Pager.WinGridViewPager winGridViewPager = new CommonControl.Pager.WinGridViewPager();
-                    winGridViewPager.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
+                    winGridViewPager.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
                     winGridViewPager.AppendedMenu = null;
                     winGridViewPager.DataSource = JCodes.Framework.Common.Office.Cache.Instance[key];
                     winGridViewPager.DisplayColumns = "";
@@ -104,19 +102,25 @@ namespace JCodes.Framework.AddIn.Test
 
         List<string> getNavBarListString()
         { 
-            // Cache.Instance["LoginUserInfo"] = Portal.gc.ConvertToLoginUser(info);
-            // Cache.Instance["FunctionDict"] = functionDict;
-            // Cache.Instance["RoleList"] = BLLFactory<Role>.Instance.GetRolesByUser(info.ID);
-            // Cache.Instance["canOptCompanyID"] = companysb.ToString();
-            // Cache.Instance["canOptDeptId"] = deptsb.ToString();
-            // Cache.Instance["DictData"] = BLLFactory<DictData>.Instance.GetAllDict();
+            
+            // 加载缓存
+            /*Cache.Instance["LoginUserInfo"] = Portal.gc.ConvertToLoginUser(info);
+            Cache.Instance["FunctionDict"] = functionDict;
+            Cache.Instance["RoleList"] = BLLFactory<Role>.Instance.GetRolesByUser(info.Id);
+            Cache.Instance["canOptCompanyId"] = companysb.ToString();
+            Cache.Instance["canOptDeptId"] = deptsb.ToString();
+            Cache.Instance["DictData"] = BLLFactory<DictData>.Instance.GetAllDict();
+            Cache.Instance["AppConfig"] = Portal.gc.config;*/
+
+
             List<string> lst = new List<string>();
-            //lst.Add("LoginUserInfo");
+            lst.Add("LoginUserInfo");
             lst.Add("FunctionDict");
             lst.Add("RoleList");
-            //lst.Add("canOptCompanyID");
-            //lst.Add("canOptDeptId");
+            lst.Add("canOptCompanyId");
+            lst.Add("canOptDeptId");
             lst.Add("DictData");
+            lst.Add("AppConfig");
             return lst;
         }
     }

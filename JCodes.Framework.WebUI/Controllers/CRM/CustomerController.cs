@@ -3,6 +3,7 @@ using JCodes.Framework.Common;
 using JCodes.Framework.Common.Databases;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Entity;
+using JCodes.Framework.jCodesenum;
 using JCodes.Framework.jCodesenum.BaseEnum;
 using System;
 using System.Collections.Generic;
@@ -76,7 +77,7 @@ namespace JCodes.Framework.WebUI.Controllers
 
                     /*info.UserCode = dr["客户编号"].ToString();
                     info.Name = dr["客户名称"].ToString();
-                    info.FullName = dr["客户简称"].ToString();
+                    info.LoginName = dr["客户简称"].ToString();
                     info.ProvinceName = dr["所在省份"].ToString();
                     info.CityName = dr["城市"].ToString();
                     info.DistrictName = dr["所在行政区"].ToString();
@@ -221,7 +222,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 /*dr["序号"] = j++;
                 dr["客户编号"] = list[i].UserCode;
                 dr["客户名称"] = list[i].Name;
-                dr["客户简称"] = list[i].FullName;
+                dr["客户简称"] = list[i].LoginName;
                 dr["所在省份"] = list[i].ProvinceName;
                 dr["城市"] = list[i].CityName;
                 dr["所在行政区"] = list[i].DistrictName;
@@ -317,7 +318,7 @@ namespace JCodes.Framework.WebUI.Controllers
             //    info.PID = BLLFactory<Customer>.Instance.GetFieldValue(info.PID, "Name");
             //    if (!string.IsNullOrEmpty(info.Creator))
             //    {
-            //        info.Creator = BLLFactory<User>.Instance.GetFullNameByID(info.Creator.ToInt32());
+            //        info.Creator = BLLFactory<User>.Instance.GetNameById(info.Creator.ToInt32());
             //    }
             //}
 

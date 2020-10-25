@@ -81,6 +81,17 @@
             this.btnRegeditTool = new System.Windows.Forms.Button();
             this.btnAutoUpdateConfig = new System.Windows.Forms.Button();
             this.btnWait = new System.Windows.Forms.Button();
+            this.btnOpenFrm = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.btnRSATOJAVA = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
@@ -88,7 +99,7 @@
             // 
             // btnMessageBox
             // 
-            this.btnMessageBox.Location = new System.Drawing.Point(51, 48);
+            this.btnMessageBox.Location = new System.Drawing.Point(18, 20);
             this.btnMessageBox.Margin = new System.Windows.Forms.Padding(4);
             this.btnMessageBox.Name = "btnMessageBox";
             this.btnMessageBox.Size = new System.Drawing.Size(162, 34);
@@ -99,7 +110,7 @@
             // 
             // btnJetAccess
             // 
-            this.btnJetAccess.Location = new System.Drawing.Point(262, 48);
+            this.btnJetAccess.Location = new System.Drawing.Point(188, 20);
             this.btnJetAccess.Margin = new System.Windows.Forms.Padding(4);
             this.btnJetAccess.Name = "btnJetAccess";
             this.btnJetAccess.Size = new System.Drawing.Size(198, 34);
@@ -110,7 +121,7 @@
             // 
             // btnOleDbHelper
             // 
-            this.btnOleDbHelper.Location = new System.Drawing.Point(513, 48);
+            this.btnOleDbHelper.Location = new System.Drawing.Point(394, 20);
             this.btnOleDbHelper.Margin = new System.Windows.Forms.Padding(4);
             this.btnOleDbHelper.Name = "btnOleDbHelper";
             this.btnOleDbHelper.Size = new System.Drawing.Size(204, 34);
@@ -121,7 +132,7 @@
             // 
             // btnCSV
             // 
-            this.btnCSV.Location = new System.Drawing.Point(51, 111);
+            this.btnCSV.Location = new System.Drawing.Point(18, 83);
             this.btnCSV.Margin = new System.Windows.Forms.Padding(4);
             this.btnCSV.Name = "btnCSV";
             this.btnCSV.Size = new System.Drawing.Size(162, 34);
@@ -144,7 +155,7 @@
             // 
             // btnFileUtil
             // 
-            this.btnFileUtil.Location = new System.Drawing.Point(262, 111);
+            this.btnFileUtil.Location = new System.Drawing.Point(188, 83);
             this.btnFileUtil.Margin = new System.Windows.Forms.Padding(4);
             this.btnFileUtil.Name = "btnFileUtil";
             this.btnFileUtil.Size = new System.Drawing.Size(198, 34);
@@ -155,7 +166,7 @@
             // 
             // btnExcel
             // 
-            this.btnExcel.Location = new System.Drawing.Point(513, 111);
+            this.btnExcel.Location = new System.Drawing.Point(394, 83);
             this.btnExcel.Margin = new System.Windows.Forms.Padding(4);
             this.btnExcel.Name = "btnExcel";
             this.btnExcel.Size = new System.Drawing.Size(204, 34);
@@ -166,7 +177,7 @@
             // 
             // btnAnimator
             // 
-            this.btnAnimator.Location = new System.Drawing.Point(51, 168);
+            this.btnAnimator.Location = new System.Drawing.Point(18, 140);
             this.btnAnimator.Margin = new System.Windows.Forms.Padding(4);
             this.btnAnimator.Name = "btnAnimator";
             this.btnAnimator.Size = new System.Drawing.Size(162, 34);
@@ -177,7 +188,7 @@
             // 
             // btnFreezeWindow
             // 
-            this.btnFreezeWindow.Location = new System.Drawing.Point(262, 168);
+            this.btnFreezeWindow.Location = new System.Drawing.Point(188, 140);
             this.btnFreezeWindow.Margin = new System.Windows.Forms.Padding(4);
             this.btnFreezeWindow.Name = "btnFreezeWindow";
             this.btnFreezeWindow.Size = new System.Drawing.Size(198, 34);
@@ -188,7 +199,7 @@
             // 
             // btnIcon
             // 
-            this.btnIcon.Location = new System.Drawing.Point(513, 168);
+            this.btnIcon.Location = new System.Drawing.Point(394, 140);
             this.btnIcon.Margin = new System.Windows.Forms.Padding(4);
             this.btnIcon.Name = "btnIcon";
             this.btnIcon.Size = new System.Drawing.Size(204, 34);
@@ -199,7 +210,7 @@
             // 
             // btnSnap
             // 
-            this.btnSnap.Location = new System.Drawing.Point(51, 226);
+            this.btnSnap.Location = new System.Drawing.Point(18, 198);
             this.btnSnap.Margin = new System.Windows.Forms.Padding(4);
             this.btnSnap.Name = "btnSnap";
             this.btnSnap.Size = new System.Drawing.Size(162, 34);
@@ -210,7 +221,7 @@
             // 
             // btnResouceHelper
             // 
-            this.btnResouceHelper.Location = new System.Drawing.Point(262, 226);
+            this.btnResouceHelper.Location = new System.Drawing.Point(188, 198);
             this.btnResouceHelper.Margin = new System.Windows.Forms.Padding(4);
             this.btnResouceHelper.Name = "btnResouceHelper";
             this.btnResouceHelper.Size = new System.Drawing.Size(198, 34);
@@ -221,7 +232,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(513, 226);
+            this.button1.Location = new System.Drawing.Point(394, 198);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(204, 34);
@@ -232,7 +243,7 @@
             // 
             // btnEncrypt
             // 
-            this.btnEncrypt.Location = new System.Drawing.Point(759, 46);
+            this.btnEncrypt.Location = new System.Drawing.Point(606, 18);
             this.btnEncrypt.Margin = new System.Windows.Forms.Padding(4);
             this.btnEncrypt.Name = "btnEncrypt";
             this.btnEncrypt.Size = new System.Drawing.Size(189, 34);
@@ -243,7 +254,7 @@
             // 
             // btnPlaySound
             // 
-            this.btnPlaySound.Location = new System.Drawing.Point(759, 111);
+            this.btnPlaySound.Location = new System.Drawing.Point(606, 83);
             this.btnPlaySound.Margin = new System.Windows.Forms.Padding(4);
             this.btnPlaySound.Name = "btnPlaySound";
             this.btnPlaySound.Size = new System.Drawing.Size(189, 34);
@@ -254,7 +265,7 @@
             // 
             // btnComputer
             // 
-            this.btnComputer.Location = new System.Drawing.Point(759, 168);
+            this.btnComputer.Location = new System.Drawing.Point(606, 140);
             this.btnComputer.Margin = new System.Windows.Forms.Padding(4);
             this.btnComputer.Name = "btnComputer";
             this.btnComputer.Size = new System.Drawing.Size(189, 34);
@@ -265,7 +276,7 @@
             // 
             // btnKeyboadHook
             // 
-            this.btnKeyboadHook.Location = new System.Drawing.Point(51, 286);
+            this.btnKeyboadHook.Location = new System.Drawing.Point(18, 258);
             this.btnKeyboadHook.Margin = new System.Windows.Forms.Padding(4);
             this.btnKeyboadHook.Name = "btnKeyboadHook";
             this.btnKeyboadHook.Size = new System.Drawing.Size(162, 34);
@@ -276,7 +287,7 @@
             // 
             // btnRemoveKeyboadHook
             // 
-            this.btnRemoveKeyboadHook.Location = new System.Drawing.Point(262, 286);
+            this.btnRemoveKeyboadHook.Location = new System.Drawing.Point(188, 258);
             this.btnRemoveKeyboadHook.Margin = new System.Windows.Forms.Padding(4);
             this.btnRemoveKeyboadHook.Name = "btnRemoveKeyboadHook";
             this.btnRemoveKeyboadHook.Size = new System.Drawing.Size(198, 34);
@@ -287,7 +298,7 @@
             // 
             // btnMouseHook
             // 
-            this.btnMouseHook.Location = new System.Drawing.Point(513, 286);
+            this.btnMouseHook.Location = new System.Drawing.Point(394, 258);
             this.btnMouseHook.Margin = new System.Windows.Forms.Padding(4);
             this.btnMouseHook.Name = "btnMouseHook";
             this.btnMouseHook.Size = new System.Drawing.Size(204, 34);
@@ -298,7 +309,7 @@
             // 
             // btnPlayMp3
             // 
-            this.btnPlayMp3.Location = new System.Drawing.Point(759, 226);
+            this.btnPlayMp3.Location = new System.Drawing.Point(606, 198);
             this.btnPlayMp3.Margin = new System.Windows.Forms.Padding(4);
             this.btnPlayMp3.Name = "btnPlayMp3";
             this.btnPlayMp3.Size = new System.Drawing.Size(189, 34);
@@ -309,7 +320,7 @@
             // 
             // btnTestEnum
             // 
-            this.btnTestEnum.Location = new System.Drawing.Point(759, 285);
+            this.btnTestEnum.Location = new System.Drawing.Point(606, 257);
             this.btnTestEnum.Margin = new System.Windows.Forms.Padding(4);
             this.btnTestEnum.Name = "btnTestEnum";
             this.btnTestEnum.Size = new System.Drawing.Size(189, 34);
@@ -339,7 +350,7 @@
             // trackBar1
             // 
             this.trackBar1.LargeChange = 10;
-            this.trackBar1.Location = new System.Drawing.Point(18, 674);
+            this.trackBar1.Location = new System.Drawing.Point(28, 673);
             this.trackBar1.Margin = new System.Windows.Forms.Padding(4);
             this.trackBar1.Maximum = 100;
             this.trackBar1.Name = "trackBar1";
@@ -350,7 +361,7 @@
             // 
             // btnThread
             // 
-            this.btnThread.Location = new System.Drawing.Point(51, 345);
+            this.btnThread.Location = new System.Drawing.Point(18, 317);
             this.btnThread.Margin = new System.Windows.Forms.Padding(4);
             this.btnThread.Name = "btnThread";
             this.btnThread.Size = new System.Drawing.Size(162, 34);
@@ -361,7 +372,7 @@
             // 
             // btnBase64
             // 
-            this.btnBase64.Location = new System.Drawing.Point(262, 345);
+            this.btnBase64.Location = new System.Drawing.Point(188, 317);
             this.btnBase64.Margin = new System.Windows.Forms.Padding(4);
             this.btnBase64.Name = "btnBase64";
             this.btnBase64.Size = new System.Drawing.Size(198, 34);
@@ -372,7 +383,7 @@
             // 
             // btnXML
             // 
-            this.btnXML.Location = new System.Drawing.Point(513, 344);
+            this.btnXML.Location = new System.Drawing.Point(394, 316);
             this.btnXML.Margin = new System.Windows.Forms.Padding(4);
             this.btnXML.Name = "btnXML";
             this.btnXML.Size = new System.Drawing.Size(204, 34);
@@ -383,7 +394,7 @@
             // 
             // btnTestCollection
             // 
-            this.btnTestCollection.Location = new System.Drawing.Point(759, 345);
+            this.btnTestCollection.Location = new System.Drawing.Point(606, 317);
             this.btnTestCollection.Margin = new System.Windows.Forms.Padding(4);
             this.btnTestCollection.Name = "btnTestCollection";
             this.btnTestCollection.Size = new System.Drawing.Size(189, 34);
@@ -394,7 +405,7 @@
             // 
             // btnWebFile
             // 
-            this.btnWebFile.Location = new System.Drawing.Point(51, 410);
+            this.btnWebFile.Location = new System.Drawing.Point(18, 382);
             this.btnWebFile.Margin = new System.Windows.Forms.Padding(4);
             this.btnWebFile.Name = "btnWebFile";
             this.btnWebFile.Size = new System.Drawing.Size(162, 34);
@@ -405,7 +416,7 @@
             // 
             // btnSingleton
             // 
-            this.btnSingleton.Location = new System.Drawing.Point(260, 410);
+            this.btnSingleton.Location = new System.Drawing.Point(186, 382);
             this.btnSingleton.Margin = new System.Windows.Forms.Padding(4);
             this.btnSingleton.Name = "btnSingleton";
             this.btnSingleton.Size = new System.Drawing.Size(201, 34);
@@ -416,7 +427,7 @@
             // 
             // btnSyncTest
             // 
-            this.btnSyncTest.Location = new System.Drawing.Point(976, 345);
+            this.btnSyncTest.Location = new System.Drawing.Point(803, 317);
             this.btnSyncTest.Margin = new System.Windows.Forms.Padding(4);
             this.btnSyncTest.Name = "btnSyncTest";
             this.btnSyncTest.Size = new System.Drawing.Size(171, 34);
@@ -427,7 +438,7 @@
             // 
             // btnSort
             // 
-            this.btnSort.Location = new System.Drawing.Point(976, 286);
+            this.btnSort.Location = new System.Drawing.Point(803, 258);
             this.btnSort.Margin = new System.Windows.Forms.Padding(4);
             this.btnSort.Name = "btnSort";
             this.btnSort.Size = new System.Drawing.Size(171, 34);
@@ -438,7 +449,7 @@
             // 
             // btnTimer
             // 
-            this.btnTimer.Location = new System.Drawing.Point(976, 48);
+            this.btnTimer.Location = new System.Drawing.Point(803, 20);
             this.btnTimer.Margin = new System.Windows.Forms.Padding(4);
             this.btnTimer.Name = "btnTimer";
             this.btnTimer.Size = new System.Drawing.Size(171, 34);
@@ -449,7 +460,7 @@
             // 
             // btnDelegeteHelper
             // 
-            this.btnDelegeteHelper.Location = new System.Drawing.Point(976, 111);
+            this.btnDelegeteHelper.Location = new System.Drawing.Point(803, 83);
             this.btnDelegeteHelper.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelegeteHelper.Name = "btnDelegeteHelper";
             this.btnDelegeteHelper.Size = new System.Drawing.Size(171, 34);
@@ -460,7 +471,7 @@
             // 
             // btnThreadPool
             // 
-            this.btnThreadPool.Location = new System.Drawing.Point(976, 168);
+            this.btnThreadPool.Location = new System.Drawing.Point(803, 140);
             this.btnThreadPool.Margin = new System.Windows.Forms.Padding(4);
             this.btnThreadPool.Name = "btnThreadPool";
             this.btnThreadPool.Size = new System.Drawing.Size(171, 34);
@@ -471,7 +482,7 @@
             // 
             // btnQueneServer
             // 
-            this.btnQueneServer.Location = new System.Drawing.Point(976, 226);
+            this.btnQueneServer.Location = new System.Drawing.Point(803, 198);
             this.btnQueneServer.Margin = new System.Windows.Forms.Padding(4);
             this.btnQueneServer.Name = "btnQueneServer";
             this.btnQueneServer.Size = new System.Drawing.Size(171, 34);
@@ -482,7 +493,7 @@
             // 
             // btnAbortableThreadPool
             // 
-            this.btnAbortableThreadPool.Location = new System.Drawing.Point(513, 410);
+            this.btnAbortableThreadPool.Location = new System.Drawing.Point(394, 382);
             this.btnAbortableThreadPool.Margin = new System.Windows.Forms.Padding(4);
             this.btnAbortableThreadPool.Name = "btnAbortableThreadPool";
             this.btnAbortableThreadPool.Size = new System.Drawing.Size(204, 34);
@@ -493,7 +504,7 @@
             // 
             // btnSendEmail
             // 
-            this.btnSendEmail.Location = new System.Drawing.Point(759, 410);
+            this.btnSendEmail.Location = new System.Drawing.Point(606, 382);
             this.btnSendEmail.Margin = new System.Windows.Forms.Padding(4);
             this.btnSendEmail.Name = "btnSendEmail";
             this.btnSendEmail.Size = new System.Drawing.Size(189, 34);
@@ -504,7 +515,7 @@
             // 
             // btnNetWork
             // 
-            this.btnNetWork.Location = new System.Drawing.Point(976, 410);
+            this.btnNetWork.Location = new System.Drawing.Point(803, 382);
             this.btnNetWork.Margin = new System.Windows.Forms.Padding(4);
             this.btnNetWork.Name = "btnNetWork";
             this.btnNetWork.Size = new System.Drawing.Size(171, 34);
@@ -515,7 +526,7 @@
             // 
             // btnValidateUtil
             // 
-            this.btnValidateUtil.Location = new System.Drawing.Point(51, 472);
+            this.btnValidateUtil.Location = new System.Drawing.Point(18, 444);
             this.btnValidateUtil.Margin = new System.Windows.Forms.Padding(4);
             this.btnValidateUtil.Name = "btnValidateUtil";
             this.btnValidateUtil.Size = new System.Drawing.Size(162, 34);
@@ -526,7 +537,7 @@
             // 
             // btnPinyinUtil
             // 
-            this.btnPinyinUtil.Location = new System.Drawing.Point(262, 472);
+            this.btnPinyinUtil.Location = new System.Drawing.Point(188, 444);
             this.btnPinyinUtil.Margin = new System.Windows.Forms.Padding(4);
             this.btnPinyinUtil.Name = "btnPinyinUtil";
             this.btnPinyinUtil.Size = new System.Drawing.Size(198, 34);
@@ -537,7 +548,7 @@
             // 
             // btnRMBUtil
             // 
-            this.btnRMBUtil.Location = new System.Drawing.Point(513, 472);
+            this.btnRMBUtil.Location = new System.Drawing.Point(394, 444);
             this.btnRMBUtil.Margin = new System.Windows.Forms.Padding(4);
             this.btnRMBUtil.Name = "btnRMBUtil";
             this.btnRMBUtil.Size = new System.Drawing.Size(204, 34);
@@ -548,7 +559,7 @@
             // 
             // btnCheckCode
             // 
-            this.btnCheckCode.Location = new System.Drawing.Point(759, 472);
+            this.btnCheckCode.Location = new System.Drawing.Point(606, 444);
             this.btnCheckCode.Margin = new System.Windows.Forms.Padding(4);
             this.btnCheckCode.Name = "btnCheckCode";
             this.btnCheckCode.Size = new System.Drawing.Size(189, 34);
@@ -559,7 +570,7 @@
             // 
             // btnResourceHelper
             // 
-            this.btnResourceHelper.Location = new System.Drawing.Point(976, 472);
+            this.btnResourceHelper.Location = new System.Drawing.Point(803, 444);
             this.btnResourceHelper.Margin = new System.Windows.Forms.Padding(4);
             this.btnResourceHelper.Name = "btnResourceHelper";
             this.btnResourceHelper.Size = new System.Drawing.Size(171, 34);
@@ -570,7 +581,7 @@
             // 
             // btnSmtpMail
             // 
-            this.btnSmtpMail.Location = new System.Drawing.Point(51, 536);
+            this.btnSmtpMail.Location = new System.Drawing.Point(18, 508);
             this.btnSmtpMail.Margin = new System.Windows.Forms.Padding(4);
             this.btnSmtpMail.Name = "btnSmtpMail";
             this.btnSmtpMail.Size = new System.Drawing.Size(162, 34);
@@ -581,7 +592,7 @@
             // 
             // btnRegistryHelper
             // 
-            this.btnRegistryHelper.Location = new System.Drawing.Point(262, 536);
+            this.btnRegistryHelper.Location = new System.Drawing.Point(188, 508);
             this.btnRegistryHelper.Margin = new System.Windows.Forms.Padding(4);
             this.btnRegistryHelper.Name = "btnRegistryHelper";
             this.btnRegistryHelper.Size = new System.Drawing.Size(198, 34);
@@ -592,7 +603,7 @@
             // 
             // btnGZipUtil
             // 
-            this.btnGZipUtil.Location = new System.Drawing.Point(513, 536);
+            this.btnGZipUtil.Location = new System.Drawing.Point(394, 508);
             this.btnGZipUtil.Margin = new System.Windows.Forms.Padding(4);
             this.btnGZipUtil.Name = "btnGZipUtil";
             this.btnGZipUtil.Size = new System.Drawing.Size(204, 34);
@@ -603,7 +614,7 @@
             // 
             // btnUnicodeHelper
             // 
-            this.btnUnicodeHelper.Location = new System.Drawing.Point(759, 536);
+            this.btnUnicodeHelper.Location = new System.Drawing.Point(606, 508);
             this.btnUnicodeHelper.Margin = new System.Windows.Forms.Padding(4);
             this.btnUnicodeHelper.Name = "btnUnicodeHelper";
             this.btnUnicodeHelper.Size = new System.Drawing.Size(189, 34);
@@ -614,7 +625,7 @@
             // 
             // btnRTFUtil
             // 
-            this.btnRTFUtil.Location = new System.Drawing.Point(976, 536);
+            this.btnRTFUtil.Location = new System.Drawing.Point(803, 508);
             this.btnRTFUtil.Margin = new System.Windows.Forms.Padding(4);
             this.btnRTFUtil.Name = "btnRTFUtil";
             this.btnRTFUtil.Size = new System.Drawing.Size(171, 34);
@@ -625,7 +636,7 @@
             // 
             // btnpublicsecurt
             // 
-            this.btnpublicsecurt.Location = new System.Drawing.Point(51, 602);
+            this.btnpublicsecurt.Location = new System.Drawing.Point(18, 574);
             this.btnpublicsecurt.Margin = new System.Windows.Forms.Padding(4);
             this.btnpublicsecurt.Name = "btnpublicsecurt";
             this.btnpublicsecurt.Size = new System.Drawing.Size(162, 34);
@@ -636,7 +647,7 @@
             // 
             // btnRegeditTool
             // 
-            this.btnRegeditTool.Location = new System.Drawing.Point(260, 602);
+            this.btnRegeditTool.Location = new System.Drawing.Point(186, 574);
             this.btnRegeditTool.Margin = new System.Windows.Forms.Padding(4);
             this.btnRegeditTool.Name = "btnRegeditTool";
             this.btnRegeditTool.Size = new System.Drawing.Size(200, 34);
@@ -647,7 +658,7 @@
             // 
             // btnAutoUpdateConfig
             // 
-            this.btnAutoUpdateConfig.Location = new System.Drawing.Point(513, 602);
+            this.btnAutoUpdateConfig.Location = new System.Drawing.Point(394, 574);
             this.btnAutoUpdateConfig.Margin = new System.Windows.Forms.Padding(4);
             this.btnAutoUpdateConfig.Name = "btnAutoUpdateConfig";
             this.btnAutoUpdateConfig.Size = new System.Drawing.Size(204, 34);
@@ -658,7 +669,7 @@
             // 
             // btnWait
             // 
-            this.btnWait.Location = new System.Drawing.Point(759, 602);
+            this.btnWait.Location = new System.Drawing.Point(606, 574);
             this.btnWait.Margin = new System.Windows.Forms.Padding(4);
             this.btnWait.Name = "btnWait";
             this.btnWait.Size = new System.Drawing.Size(189, 34);
@@ -667,32 +678,155 @@
             this.btnWait.UseVisualStyleBackColor = true;
             this.btnWait.Click += new System.EventHandler(this.btnWait_Click);
             // 
+            // btnOpenFrm
+            // 
+            this.btnOpenFrm.Location = new System.Drawing.Point(803, 574);
+            this.btnOpenFrm.Margin = new System.Windows.Forms.Padding(4);
+            this.btnOpenFrm.Name = "btnOpenFrm";
+            this.btnOpenFrm.Size = new System.Drawing.Size(171, 34);
+            this.btnOpenFrm.TabIndex = 41;
+            this.btnOpenFrm.Text = "窗体TODO";
+            this.btnOpenFrm.UseVisualStyleBackColor = true;
+            this.btnOpenFrm.Click += new System.EventHandler(this.btnOpenFrm_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(982, 317);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(171, 34);
+            this.button2.TabIndex = 29;
+            this.button2.Text = "TODO";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(982, 258);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(171, 34);
+            this.button3.TabIndex = 30;
+            this.button3.Text = "TODO";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // btnRSATOJAVA
+            // 
+            this.btnRSATOJAVA.Location = new System.Drawing.Point(982, 20);
+            this.btnRSATOJAVA.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRSATOJAVA.Name = "btnRSATOJAVA";
+            this.btnRSATOJAVA.Size = new System.Drawing.Size(171, 34);
+            this.btnRSATOJAVA.TabIndex = 31;
+            this.btnRSATOJAVA.Text = "RSATOJAVA";
+            this.btnRSATOJAVA.UseVisualStyleBackColor = true;
+            this.btnRSATOJAVA.Click += new System.EventHandler(this.btnRSATOJAVA_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(982, 83);
+            this.button5.Margin = new System.Windows.Forms.Padding(4);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(171, 34);
+            this.button5.TabIndex = 32;
+            this.button5.Text = "TODO";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(982, 140);
+            this.button6.Margin = new System.Windows.Forms.Padding(4);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(171, 34);
+            this.button6.TabIndex = 33;
+            this.button6.Text = "TODO";
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(982, 198);
+            this.button7.Margin = new System.Windows.Forms.Padding(4);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(171, 34);
+            this.button7.TabIndex = 34;
+            this.button7.Text = "TODO";
+            this.button7.UseVisualStyleBackColor = true;
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(982, 382);
+            this.button8.Margin = new System.Windows.Forms.Padding(4);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(171, 34);
+            this.button8.TabIndex = 37;
+            this.button8.Text = "TODO";
+            this.button8.UseVisualStyleBackColor = true;
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(982, 444);
+            this.button9.Margin = new System.Windows.Forms.Padding(4);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(171, 34);
+            this.button9.TabIndex = 40;
+            this.button9.Text = "TODO";
+            this.button9.UseVisualStyleBackColor = true;
+            // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(982, 574);
+            this.button10.Margin = new System.Windows.Forms.Padding(4);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(171, 34);
+            this.button10.TabIndex = 41;
+            this.button10.Text = "TODO";
+            this.button10.UseVisualStyleBackColor = true;
+            // 
+            // button11
+            // 
+            this.button11.Location = new System.Drawing.Point(982, 508);
+            this.button11.Margin = new System.Windows.Forms.Padding(4);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(171, 34);
+            this.button11.TabIndex = 43;
+            this.button11.Text = "TODO";
+            this.button11.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1216, 934);
+            this.Controls.Add(this.button11);
             this.Controls.Add(this.btnRTFUtil);
             this.Controls.Add(this.btnUnicodeHelper);
             this.Controls.Add(this.btnGZipUtil);
             this.Controls.Add(this.btnRegistryHelper);
+            this.Controls.Add(this.button10);
+            this.Controls.Add(this.btnOpenFrm);
             this.Controls.Add(this.btnWait);
             this.Controls.Add(this.btnAutoUpdateConfig);
             this.Controls.Add(this.btnRegeditTool);
             this.Controls.Add(this.btnpublicsecurt);
             this.Controls.Add(this.btnSmtpMail);
+            this.Controls.Add(this.button9);
             this.Controls.Add(this.btnResourceHelper);
             this.Controls.Add(this.btnCheckCode);
             this.Controls.Add(this.btnRMBUtil);
             this.Controls.Add(this.btnPinyinUtil);
             this.Controls.Add(this.btnValidateUtil);
+            this.Controls.Add(this.button8);
             this.Controls.Add(this.btnNetWork);
             this.Controls.Add(this.btnSendEmail);
             this.Controls.Add(this.btnAbortableThreadPool);
+            this.Controls.Add(this.button7);
             this.Controls.Add(this.btnQueneServer);
+            this.Controls.Add(this.button6);
             this.Controls.Add(this.btnThreadPool);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.btnRSATOJAVA);
             this.Controls.Add(this.btnDelegeteHelper);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.btnTimer);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.btnSort);
             this.Controls.Add(this.btnSyncTest);
             this.Controls.Add(this.btnSingleton);
@@ -792,6 +926,17 @@
         private System.Windows.Forms.Button btnRegeditTool;
         private System.Windows.Forms.Button btnAutoUpdateConfig;
         private System.Windows.Forms.Button btnWait;
+        private System.Windows.Forms.Button btnOpenFrm;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnRSATOJAVA;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button button11;
     }
 }
 

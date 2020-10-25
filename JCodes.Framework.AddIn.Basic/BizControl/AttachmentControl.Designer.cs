@@ -38,7 +38,7 @@
             // 
             this.lblTips.Location = new System.Drawing.Point(4, 4);
             this.lblTips.Name = "lblTips";
-            this.lblTips.Size = new System.Drawing.Size(91, 14);
+            this.lblTips.Size = new System.Drawing.Size(136, 22);
             this.lblTips.TabIndex = 0;
             this.lblTips.Text = "共有【0】个附件";
             // 
@@ -46,7 +46,7 @@
             // 
             this.btnView.Location = new System.Drawing.Point(106, 0);
             this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(60, 23);
+            this.btnView.Size = new System.Drawing.Size(90, 28);
             this.btnView.TabIndex = 1;
             this.btnView.Text = "查看附件";
             this.btnView.Click += new System.EventHandler(this.btnView_Click);
@@ -54,7 +54,7 @@
             // label1
             // 
             this.label1.Image = ((System.Drawing.Image)(resources.GetObject("label1.Image")));
-            this.label1.Location = new System.Drawing.Point(169, 0);
+            this.label1.Location = new System.Drawing.Point(200, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(10, 23);
             this.label1.TabIndex = 2;
@@ -65,10 +65,10 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnView);
             this.Controls.Add(this.lblTips);
-            this.MaximumSize = new System.Drawing.Size(180, 25);
-            this.MinimumSize = new System.Drawing.Size(180, 25);
+            this.MaximumSize = new System.Drawing.Size(210, 30);
+            this.MinimumSize = new System.Drawing.Size(210, 30);
             this.Name = "AttachmentControl";
-            this.Size = new System.Drawing.Size(180, 25);
+            this.Size = new System.Drawing.Size(210, 30);
             this.Load += new System.EventHandler(this.AttachmentControl_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

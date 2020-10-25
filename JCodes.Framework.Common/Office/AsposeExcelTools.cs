@@ -10,7 +10,7 @@ using System.Diagnostics;
 using System.Web;
 using Aspose.Cells.Drawing;
 using JCodes.Framework.Common.Files;
-using JCodes.Framework.jCodesenum.BaseEnum;
+using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.Common.Office
 {

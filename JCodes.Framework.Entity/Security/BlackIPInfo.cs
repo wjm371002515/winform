@@ -69,6 +69,16 @@ namespace JCodes.Framework.Entity
 		/// 最后更新时间
 		/// </summary>
 		private DateTime m_LastUpdateTime = DateTime.Now;
+
+		/// <summary>
+		/// 开始时间
+		/// </summary>
+		private DateTime m_StartTime = DateTime.Now;
+
+		/// <summary>
+		/// 结束时间
+		/// </summary>
+		private DateTime m_EndTime = DateTime.Now;
 		#endregion
 
 		#region Property Members
@@ -109,6 +119,8 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 授权类型
+		/// 1-黑名单,
+		/// 2-白名单
 		/// </summary>
 		[DataMember]
 		[DisplayName("授权类型")]
@@ -126,6 +138,8 @@ namespace JCodes.Framework.Entity
 
 		/// <summary>
 		/// 是否禁用
+		/// 1-是,
+		/// 2-否
 		/// </summary>
 		[DataMember]
 		[DisplayName("是否禁用")]
@@ -257,6 +271,40 @@ namespace JCodes.Framework.Entity
 			set
 			{
 				this.m_LastUpdateTime = value;
+			}
+		}
+
+		/// <summary>
+		/// 开始时间
+		/// </summary>
+		[DataMember]
+		[DisplayName("开始时间")]
+		public virtual DateTime StartTime
+		{
+			get
+			{
+				return this.m_StartTime;
+			}
+			set
+			{
+				this.m_StartTime = value;
+			}
+		}
+
+		/// <summary>
+		/// 结束时间
+		/// </summary>
+		[DataMember]
+		[DisplayName("结束时间")]
+		public virtual DateTime EndTime
+		{
+			get
+			{
+				return this.m_EndTime;
+			}
+			set
+			{
+				this.m_EndTime = value;
 			}
 		}
 		#endregion
