@@ -125,6 +125,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
+    <Reference Include="WAPIWrapperCSharp">
+      <HintPath>..\JCodes.Framework.libs\Wind\WAPIWrapperCSharp.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attachment.Test\Form1.cs">
@@ -319,6 +322,12 @@
     <Compile Include="TcpDemo\TcpClient.cs" />
     <Compile Include="TcpDemo\TcpServer.cs" />
     <Compile Include="TempCommon\SqliteHelper.cs" />
+    <Compile Include="Wind\FrmWindDemo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Wind\FrmWindDemo.Designer.cs">
+      <DependentUpon>FrmWindDemo.cs</DependentUpon>
+    </Compile>
     <Compile Include="ZheshangDG\ZheshangKaoshi.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -409,6 +418,9 @@
       <DependentUpon>PdfTestFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Wind\FrmWindDemo.resx">
+      <DependentUpon>FrmWindDemo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ZheshangDG\ZheshangKaoshi.resx">
       <DependentUpon>ZheshangKaoshi.cs</DependentUpon>
     </EmbeddedResource>

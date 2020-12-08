@@ -53,6 +53,7 @@
     <Compile Include="Dic\IDictData.cs" />
     <Compile Include="Dic\IDictType.cs" />
     <Compile Include="Dic\IDistrict.cs" />
+    <Compile Include="Dic\IMVCRouteConfig.cs" />
     <Compile Include="Dic\ISysparameter.cs" />
     <Compile Include="Dic\IProvince.cs" />
     <Compile Include="Dongnanhai\IDongnanhaiVotesUser.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Security\IRole.cs" />
     <Compile Include="Security\IRoleData.cs" />
     <Compile Include="Security\ISystemAuthorize.cs" />
+    <Compile Include="Security\ISystemLog.cs" />
     <Compile Include="Security\ISystemType.cs" />
     <Compile Include="Security\IUser.cs" />
     <Compile Include="WareHouseMis\IItemDetail.cs" />

@@ -76,6 +76,7 @@
     <Compile Include="Dic\DictTypeInfo.cs" />
     <Compile Include="Dic\DictTypeNodeInfo.cs" />
     <Compile Include="Dic\DistrictInfo.cs" />
+    <Compile Include="Dic\MVCRouteConfigInfo.cs" />
     <Compile Include="Dic\ProvinceInfo.cs" />
     <Compile Include="Dic\SysparameterInfo.cs" />
     <Compile Include="Machines\DongnanhaiVotesInfo.cs" />
@@ -119,6 +120,7 @@
     <Compile Include="Security\RoleInfo.cs" />
     <Compile Include="Security\SimpleUserInfo.cs" />
     <Compile Include="Security\SystemAuthorizeInfo.cs" />
+    <Compile Include="Security\SystemLogInfo.cs" />
     <Compile Include="Security\SystemTypeInfo.cs" />
     <Compile Include="Security\UserInfo.cs" />
     <Compile Include="SmallTools\MEBInfo.cs" />

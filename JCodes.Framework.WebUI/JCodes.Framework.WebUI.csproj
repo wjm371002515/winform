@@ -141,6 +141,9 @@
       <Private>True</Private>
       <HintPath>..\..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="URLRewriter">
+      <HintPath>..\JCodes.Framework.libs\URLRewriter\URLRewriter.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\WebGrease.1.3.0\lib\WebGrease.dll</HintPath>
@@ -169,7 +172,8 @@
     <Compile Include="Controllers\Base\FileUploadController.cs" />
     <Compile Include="Controllers\Base\HomeController.cs" />
     <Compile Include="Controllers\Base\IconController.cs" />
-    <Compile Include="Controllers\Index\ErrPagesController.cs" />
+    <Compile Include="Controllers\Base\RegisterControllers.cs" />
+    <Compile Include="Controllers\Index\CodeconversionController.cs" />
     <Compile Include="Controllers\Index\IndexController.cs" />
     <Compile Include="Controllers\Base\PictureAlbumController.cs" />
     <Compile Include="Controllers\ContactBook\AddressController.cs" />
@@ -207,6 +211,7 @@
     <Folder Include="Content\metronic\assets\global\plugins\jquery-file-upload\server\php\files\thumbnail\" />
     <Folder Include="Demo\Hplusdoc\网页版本\plugins\" />
     <Folder Include="Demo\Hplus\plugins\" />
+    <Folder Include="Demo\metronic_v7.1.2\" />
     <Folder Include="UploadFiles\动态信息\" />
     <Folder Include="UploadFiles\通知公告\" />
   </ItemGroup>
@@ -9554,8 +9559,8 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="index.html" />
     <Content Include="MVC配置关键操作.txt" />
+    <Content Include="Scripts\beforeclosewindow.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\CommonUtil.js" />
@@ -9875,9 +9880,8 @@
     <Content Include="Views\Shared\_Index.cshtml" />
     <Content Include="Views\Index\CalDate.cshtml" />
     <Content Include="Views\Index\CalDate - 复制.cshtml" />
-    <Content Include="Views\ErrPages\Index.cshtml" />
-    <Content Include="Views\ErrPages\_404.cshtml" />
-    <Content Include="Views\ErrPages\_500.cshtml" />
+    <Content Include="Views\Shared\NotFound.cshtml" />
+    <Content Include="Views\Shared\ServerError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\icons-customed\16\icon.css.vm" />
@@ -10608,7 +10612,8 @@
     <Content Include="Views\RoleData\index.cshtml" />
     <Content Include="Views\Role\index.cshtml" />
     <Content Include="Views\Shared\Building.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Index\Disclaimers.cshtml" />
+    <Content Include="Views\CodeConversion\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\SystemType\index.cshtml" />
     <Content Include="Views\TestUser\index.cshtml" />
@@ -10617,7 +10622,8 @@
     <Content Include="Views\User\index.cshtml" />
     <Content Include="Views\User\RDLCReport.cshtml" />
     <Content Include="Views\User\UserDetail.cshtml" />
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Shared\NotAuthor.cshtml" />
+    <None Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

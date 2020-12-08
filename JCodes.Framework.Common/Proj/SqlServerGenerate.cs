@@ -109,9 +109,9 @@ namespace JCodes.Framework.Common.Proj
                 foreach (TableFieldsInfo tablefieldInfo in fieldsLst)
                 {
                     if (dicts.ContainsKey(tablefieldInfo.DataType))
-                        sbFields.Append(string.Format("\r\n\t[{0}] {1} {2},", tablefieldInfo.FieldName, dicts[tablefieldInfo.DataType], tablefieldInfo.IsNull == 0 ? string.Empty : "NOT NULL"));
+                        sbFields.Append(string.Format("\r\n\t[{0}] {1} {2},", tablefieldInfo.FieldName, dicts[tablefieldInfo.DataType], tablefieldInfo.IsNull == 1 ? string.Empty : "NOT NULL"));
                     else
-                        sbFields.Append(string.Format("\r\n\t[{0}] {1} {2},", tablefieldInfo.FieldName, "不存在的数据类型请检查", tablefieldInfo.IsNull == 0 ? string.Empty : "NOT NULL"));
+                        sbFields.Append(string.Format("\r\n\t[{0}] {1} {2},", tablefieldInfo.FieldName, "不存在的数据类型请检查", tablefieldInfo.IsNull == 1 ? string.Empty : "NOT NULL"));
                 }
             }
 
@@ -121,19 +121,33 @@ namespace JCodes.Framework.Common.Proj
             {
                 foreach (TableIndexsInfo tableindexInfo in indexsLst)
                 {
-                    if (string.Equals(tableindexInfo.ConstraintType, "主键"))
+                    /* 20201113 wujianming 调整主键内容
+                      repositoryItemConstraintType.Items.Add(new CDicKeyValue(1, "主键"));
+                      repositoryItemConstraintType.Items.Add(new CDicKeyValue(2, "索引"));
+                      repositoryItemConstraintType.Items.Add(new CDicKeyValue(3, "唯一索引"));
+                     */
+
+                    if (tableindexInfo.ConstraintType == 1)
                     {
-                        sbFields.Append(string.Format("\r\n\tCONSTRAINT {0} PRIMARY KEY ({1}) ,", tableindexInfo.IndexName, tableindexInfo.IndexFieldLst));
+                        // 特殊处理 字段Id，设置自动增长
+                        if (string.Equals(tableindexInfo.IndexFieldLst, "Id"))
+                        {
+                            sbFields.Replace("[Id] int NOT NULL", string.Format("[Id] int IDENTITY(1,1),CONSTRAINT {0} primary key ({1})", tableindexInfo.IndexName, tableindexInfo.IndexFieldLst));
+                        }
+                        else {
+                            sbFields.Append(string.Format("\r\n\tCONSTRAINT {0} PRIMARY KEY ({1}) ,", tableindexInfo.IndexName, tableindexInfo.IndexFieldLst));
+                        }
+
                     }
-                    else if (string.Equals(tableindexInfo.ConstraintType, "唯一索引"))
+                    else if (tableindexInfo.ConstraintType == 2)
+                    {
+                        IndexStr += string.Format("\r\nCREATE INDEX {0} ON {1} ({2});", tableindexInfo.IndexName, tableEnglishName, tableindexInfo.IndexFieldLst);
+                    }
+                    else if (tableindexInfo.ConstraintType == 3)
                     {
                         sbFields.Append(string.Format("\r\n\tCONSTRAINT {0} UNIQUE ({1}) ,", tableindexInfo.IndexName, tableindexInfo.IndexFieldLst));
                     }
-                    else if (string.Equals(tableindexInfo.ConstraintType, "索引"))
-                    {
-                        //    -- 创建索引
-                        IndexStr += string.Format("\r\nCREATE INDEX {0} ON {1} ({2});", tableindexInfo.IndexName, tableEnglishName, tableindexInfo.IndexFieldLst);
-                    }
+                    
                 }
             }
 

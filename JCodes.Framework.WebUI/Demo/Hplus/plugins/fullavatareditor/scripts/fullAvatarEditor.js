@@ -68,10 +68,10 @@ function fullAvatarEditor() {
 	};
 	var swf = null;
 	var	callbackFn = function (e) {
-		swf = e.ref;
+		/*swf = e.ref;
 		swf.eventHandler = function(json){
 			callback.call(swf, json);
-		};
+		};*/
 	};
 	swfobject.embedSWF(
 		file,

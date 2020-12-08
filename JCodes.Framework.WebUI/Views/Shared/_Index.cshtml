@@ -39,6 +39,16 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <!--离开事件-->
+    <script type='text/javascript' src="/Scripts/beforeclosewindow.js"></script>
+    <script type="text/javascript">
+          (function ($) { //create closure so we can safely use $ as alias for jQuery
+              $(document).ready(function () {
+                  "use strict";
+                  $(window).bind('beforeunload', function () { return '您输入的内容尚未保存，确定离开此页面吗？'; });
+                  });
+              })(jQuery);
+    </script>
 
     <style type="text/css">
         .recentcomments a {
@@ -184,8 +194,8 @@
                                     <li id="menu-item-794" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-794"><a href="full-width.html">全宽页面</a></li>
                                 </ul>
                             </li>
-                            <li id="menu-item-911" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-911"><a href="tags.html">热门标签</a></li>
-                            <li id="menu-item-789" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-789"><a target="_blank" rel="noopener noreferrer" href="iux.html">购买主题</a></li>
+                            <li id="menu-item-911" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-911"><a href="tags.html">开心一刻</a></li>
+                            <li id="menu-item-789" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-789"><a target="_blank" rel="noopener noreferrer" href="iux.html">游戏中心</a></li>
                             <li id="menu-item-790" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-790"><a target="_blank" rel="noopener noreferrer" href="vip.html">加入会员</a></li>
                         </ul>
                     </div>
@@ -220,7 +230,7 @@
                         <ul id="primary-menu" class="sf-menu">
                             <li id="menu-item-795" class="color1 menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-795"><a href="" aria-current="page"><i class="fa fa-home"></i> 首页</a></li>
                             <li id="menu-item-784" class="color2 menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-784">
-                                <a href="zhuanti.html"><i class="fa fa-tags"></i> 个人博客</a>
+                                <a href="zhuanti.html"><i class="fa fa-tags"></i> 博客</a>
                                 <ul class="sub-menu">
                                     <li id="menu-item-785" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-785"><a href="zhuanti-full.html">技术类</a></li>
                                     <li id="menu-item-771" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-771"><a href="house.html">业务类</a></li>
@@ -266,10 +276,18 @@
                                 <a href="food.html"><i class="fa fa-briefcase"></i> 工具集合</a>
                                 <ul class="sub-menu">
                                     <li id="menu-item-747" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-747"><a href="https://www.xftsoft.com/">小飞兔整站爬虫</a></li>
-                                    <li id="menu-item-754" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-754"><a href="auto.html">编码格式转化(TODO)</a></li>
-                                    <li id="menu-item-748" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-748"><a href="/Index/CalDate">日期计算公式</a></li>
+                                    <li id="menu-item-754" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-754"><a href="codeconversion.html">编码格式转化</a></li>
+                                    <li id="menu-item-748" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-748"><a href="caldate.html">日期计算公式</a></li>
                                     <li id="menu-item-748" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-748"><a href="https://tool.chinaz.com/">站长工具</a></li>
                                     <li id="menu-item-755" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-755"><a href="/Demo/Hplus/">H+4.9模板</a></li>
+                                    <li id="menu-item-755" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-755"><a href="/Demo/metronic_v7.1.2/">Metronic_v7.1.2模板</a></li>
+                                </ul>
+                            </li>
+                            <li id="menu-item-737" class="color16 menu-item menu-item-type-taxonomy menu-item-object-category menu-item-737">
+                                <a href="food.html"><i class="fa fa-briefcase"></i> 关于我</a>
+                                <ul class="sub-menu">
+                                    <li id="menu-item-747" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-747"><a href="https://www.xftsoft.com/">小飞兔整站爬虫</a></li>
+                                   
                                 </ul>
                             </li>
                         </ul>

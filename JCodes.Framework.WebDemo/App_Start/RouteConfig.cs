@@ -13,11 +13,12 @@ namespace JCodes.Framework.WebDemo
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            // 默认路由
             routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
+                 name: "Default",
+                 url: "{controller}_{action}.html",
+                 defaults: new { controller = "Index", action = "Index" }
+             );
 
             //2.自定义路由一：匹配到action
             routes.MapRoute(

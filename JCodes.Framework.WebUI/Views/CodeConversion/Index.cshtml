@@ -1,0 +1,830 @@
+﻿@{
+    Layout = "~/Views/Shared/_Index.cshtml"; 
+    ViewBag.Title = "编码转换工具";
+}
+<link href="~/Content/MyPlugins/datapicker/datepicker3.css" rel="stylesheet">
+<link href="~/Content/MyPlugins/simditor/simditor.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+    .table-info tr td:first-child {
+        width: 30%;
+        background-color: #f6f6f6;
+    }
+
+    .table-info tr td:nth-child(2) {
+        width: 70%;
+    }
+</style>
+
+<div id="content" class="site-content site_container container clear">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="tabs-container">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a data-toggle="tab" href="#tab-1" aria-expanded="true"> Unicode编码</a>
+                    </li>
+                    <li class="">
+                        <a data-toggle="tab" href="#tab-2" aria-expanded="false">UTF-8编码</a>
+                    </li>
+                    <li class="">
+                        <a data-toggle="tab" href="#tab-3" aria-expanded="false">URL编码/解码</a>
+                    </li>
+                    <li class="">
+                        <a data-toggle="tab" href="#tab-4" aria-expanded="false">Unix时间戳</a>
+                    </li>
+                    <li class="">
+                        <a data-toggle="tab" href="#tab-5" aria-expanded="false">Ascii/Native编码互转</a>
+                    </li>
+                    <li class="">
+                        <a data-toggle="tab" href="#tab-6" aria-expanded="false">Hex编码/解码</a>
+                    </li>
+                    <li class="">
+                        <a data-toggle="tab" href="#tab-7" aria-expanded="false">Html编码/解码</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div id="tab-1" class="tab-pane active">
+                        <div class="panel-body">
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-content">
+                                    <div class="col-md-6">
+                                        <div class="simditor">
+                                            <textarea id="editor" placeholder="请把你需要转换的内容粘贴在这里" autofocus="" style="display: none;">
+                                                
+                                            </textarea><div tabindex="-1" contenteditable="true" class="simditor-paste-area" style="width: 1px; height: 1px; overflow: hidden; position: fixed; right: 0px; bottom: 100px;"></div><textarea tabindex="-1" class="simditor-clean-paste-area" style="width: 1px; height: 1px; overflow: hidden; position: fixed; right: 0px; bottom: 101px;"></textarea><div class="simditor-popover code-popover">
+
+                                            </div><div class="simditor-popover link-popover">
+                                                <div class="link-settings">
+                                                    <div class="settings-field">
+                                                        <label></label>
+                                                        <input class="link-text" type="text">
+                                                        <a class="btn-unlink" href="javascript:;" title="" tabindex="-1"><span class="fa fa-unlink"></span></a>
+                                                    </div>
+                                                    <div class="settings-field">
+                                                        <label></label>
+                                                        <input class="link-url" type="text">
+                                                    </div>
+                                                </div>
+                                            </div><div class="simditor-popover image-popover">
+                                                <div class="link-settings">
+                                                    <div class="settings-field">
+                                                        <label></label>
+                                                        <input class="image-src" type="text" tabindex="1">
+
+                                                    </div>
+                                                    <div class="settings-field">
+                                                        <label></label>
+                                                        <input class="image-size" id="image-width" type="text" tabindex="2">
+                                                        <span class="times">×</span>
+                                                        <input class="image-size" id="image-height" type="text" tabindex="3">
+                                                        <a class="btn-restore" href="javascript:;" title="" tabindex="-1">
+                                                            <span class="fa fa-reply"></span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="simditor">
+                                            <textarea id="editor_after" placeholder="转换后的结果" autofocus="" style="display: none;">
+                                            </textarea><div tabindex="-1" contenteditable="true" class="simditor-paste-area" style="width: 1px; height: 1px; overflow: hidden; position: fixed; right: 0px; bottom: 100px;"></div><textarea tabindex="-1" class="simditor-clean-paste-area" style="width: 1px; height: 1px; overflow: hidden; position: fixed; right: 0px; bottom: 101px;"></textarea><div class="simditor-popover code-popover">
+
+                                            </div><div class="simditor-popover link-popover">
+                                                <div class="link-settings">
+                                                    <div class="settings-field">
+                                                        <label></label>
+                                                        <input class="link-text" type="text">
+                                                        <a class="btn-unlink" href="javascript:;" title="" tabindex="-1"><span class="fa fa-unlink"></span></a>
+                                                    </div>
+                                                    <div class="settings-field">
+                                                        <label></label>
+                                                        <input class="link-url" type="text">
+                                                    </div>
+                                                </div>
+                                            </div><div class="simditor-popover image-popover">
+                                                <div class="link-settings">
+                                                    <div class="settings-field">
+                                                        <label></label>
+                                                        <input class="image-src" type="text" tabindex="1">
+
+                                                    </div>
+                                                    <div class="settings-field">
+                                                        <label></label>
+                                                        <input class="image-size" id="image-width" type="text" tabindex="2">
+                                                        <span class="times">×</span>
+                                                        <input class="image-size" id="image-height" type="text" tabindex="3">
+                                                        <a class="btn-restore" href="javascript:;" title="" tabindex="-1">
+                                                            <span class="fa fa-reply"></span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="ibox-tools clients-list ">
+                                    <div class="col-md-12">
+                                        <button type="button" class="btn btn-w-m">ASCII 转 Unicode</button>
+                                        <button type="button" class="btn btn-w-m">Unicode 转 ASCII</button>
+                                        <button type="button" class="btn btn-w-m">Unicode 转 中文</button>
+                                        <button type="button" class="btn btn-w-m">中文 转 Unicode</button>
+                                        <button type="button" class="btn-w-m btn-white">清空结果</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tab-2" class="tab-pane">
+                        <div class="panel-body">
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-content">
+                                    <div class="col-md-6">
+                                        <div class="simditor">
+                                            <textarea id="editor_utf8" placeholder="请将您要转换的汉文内容粘贴在这里" autofocus="" style="display: none;"> 
+                                            </textarea><div tabindex="-1" contenteditable="true" class="simditor-paste-area" style="width: 1px; height: 1px; overflow: hidden; position: fixed; right: 0px; bottom: 100px;"></div><textarea tabindex="-1" class="simditor-clean-paste-area" style="width: 1px; height: 1px; overflow: hidden; position: fixed; right: 0px; bottom: 101px;"></textarea><div class="simditor-popover code-popover">
+
+                                            </div><div class="simditor-popover link-popover">
+                                                <div class="link-settings">
+                                                    <div class="settings-field">
+                                                        <label></label>
+                                                        <input class="link-text" type="text">
+                                                        <a class="btn-unlink" href="javascript:;" title="" tabindex="-1"><span class="fa fa-unlink"></span></a>
+                                                    </div>
+                                                    <div class="settings-field">
+                                                        <label></label>
+                                                        <input class="link-url" type="text">
+                                                    </div>
+                                                </div>
+                                            </div><div class="simditor-popover image-popover">
+                                                <div class="link-settings">
+                                                    <div class="settings-field">
+                                                        <label></label>
+                                                        <input class="image-src" type="text" tabindex="1">
+
+                                                    </div>
+                                                    <div class="settings-field">
+                                                        <label></label>
+                                                        <input class="image-size" id="image-width" type="text" tabindex="2">
+                                                        <span class="times">×</span>
+                                                        <input class="image-size" id="image-height" type="text" tabindex="3">
+                                                        <a class="btn-restore" href="javascript:;" title="" tabindex="-1">
+                                                            <span class="fa fa-reply"></span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="simditor">
+                                            <textarea id="editor_utf8_after" placeholder="请将您要转换的UTF-8内容粘贴在这里" autofocus="" style="display: none;">
+                                            </textarea><div tabindex="-1" contenteditable="true" class="simditor-paste-area" style="width: 1px; height: 1px; overflow: hidden; position: fixed; right: 0px; bottom: 100px;"></div><textarea tabindex="-1" class="simditor-clean-paste-area" style="width: 1px; height: 1px; overflow: hidden; position: fixed; right: 0px; bottom: 101px;"></textarea><div class="simditor-popover code-popover">
+                                            </div><div class="simditor-popover link-popover">
+                                                <div class="link-settings">
+                                                    <div class="settings-field">
+                                                        <label></label>
+                                                        <input class="link-text" type="text">
+                                                        <a class="btn-unlink" href="javascript:;" title="" tabindex="-1"><span class="fa fa-unlink"></span></a>
+                                                    </div>
+                                                    <div class="settings-field">
+                                                        <label></label>
+                                                        <input class="link-url" type="text">
+                                                    </div>
+                                                </div>
+                                            </div><div class="simditor-popover image-popover">
+                                                <div class="link-settings">
+                                                    <div class="settings-field">
+                                                        <label></label>
+                                                        <input class="image-src" type="text" tabindex="1">
+
+                                                    </div>
+                                                    <div class="settings-field">
+                                                        <label></label>
+                                                        <input class="image-size" id="image-width" type="text" tabindex="2">
+                                                        <span class="times">×</span>
+                                                        <input class="image-size" id="image-height" type="text" tabindex="3">
+                                                        <a class="btn-restore" href="javascript:;" title="" tabindex="-1">
+                                                            <span class="fa fa-reply"></span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="ibox-tools clients-list ">
+                                    <div class="col-md-12">
+                                        <button type="button" class="btn btn-w-m">中文 转 UTF-8</button>
+                                        <button type="button" class="btn btn-w-m">UTF-8 转 中文</button>
+                                        <button type="button" class="btn-w-m btn-white">清空结果</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tab-3" class="tab-pane">
+                        <div class="panel-body">
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-content">
+                                    <div class="col-md-12">
+                                        <div class="simditor">
+                                            <textarea id="editor_url" placeholder="请将您要转换的汉文内容粘贴在这里" autofocus="" style="display: none;">
+                                            </textarea><div tabindex="-1" contenteditable="true" class="simditor-paste-area" style="width: 1px; height: 1px; overflow: hidden; position: fixed; right: 0px; bottom: 100px;"></div><textarea tabindex="-1" class="simditor-clean-paste-area" style="width: 1px; height: 1px; overflow: hidden; position: fixed; right: 0px; bottom: 101px;"></textarea><div class="simditor-popover code-popover">
+                                            </div><div class="simditor-popover link-popover">
+                                                <div class="link-settings">
+                                                    <div class="settings-field">
+                                                        <label></label>
+                                                        <input class="link-text" type="text">
+                                                        <a class="btn-unlink" href="javascript:;" title="" tabindex="-1"><span class="fa fa-unlink"></span></a>
+                                                    </div>
+                                                    <div class="settings-field">
+                                                        <label></label>
+                                                        <input class="link-url" type="text">
+                                                    </div>
+                                                </div>
+                                            </div><div class="simditor-popover image-popover">
+                                                <div class="link-settings">
+                                                    <div class="settings-field">
+                                                        <label></label>
+                                                        <input class="image-src" type="text" tabindex="1">
+
+                                                    </div>
+                                                    <div class="settings-field">
+                                                        <label></label>
+                                                        <input class="image-size" id="image-width" type="text" tabindex="2">
+                                                        <span class="times">×</span>
+                                                        <input class="image-size" id="image-height" type="text" tabindex="3">
+                                                        <a class="btn-restore" href="javascript:;" title="" tabindex="-1">
+                                                            <span class="fa fa-reply"></span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="ibox-tools clients-list ">
+                                    <div class="col-md-12">
+                                        <div class="input-group-btn open" style="display: inline; margin-right: 5px;">
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                <span class="buttonText" id="buttonText">选择</span>
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="javascript:void(0);">utf-8</a></li>
+                                                <li><a href="javascript:void(0);">gb2312</a></li>
+                                            </ul>
+                                        </div>
+                                        <button type="button" class="btn btn-w-m">UrlEncode编码</button>
+                                        <button type="button" class="btn btn-w-m">UrlDecode解码</button>
+                                        <button type="button" class="btn-w-m btn-white">清空结果</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tab-4" class="tab-pane">
+                        <div class="panel-body">
+                            <div class="ibox float-e-margins" style="margin-bottom: 0px;">
+                                <div class="ibox-content" style="padding-bottom: 0px;">
+                                    <div class="row">
+                                        <label class="col-sm-3 control-label text-right" style="line-height: 40px; padding-right: 0px;">现在Unix时间戳(Unix timestamp)是:</label>
+                                        <div class="col-sm-4" style="padding-right: 0px;">
+                                            <input type="text" name="" class="form-control" placeholder="请输入文本">
+                                        </div>
+                                        <div class="col-md-5">
+                                            <button type="button" class="btn btn-w-m">开始</button>
+                                            <button type="button" class="btn btn-w-m">停止</button>
+                                            <button type="button" class="btn btn-w-m">刷新</button>
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="row">
+                                        <label class="col-sm-3 control-label text-right" style="line-height: 40px; padding-right: 0px;">Unix时间戳（Unix timestamp）:</label>
+                                        <div class="col-sm-3" style="padding-right: 0px;">
+                                            <input type="text" name="" class="form-control" placeholder="请输入文本">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="input-group-btn open" style="display: inline; margin-right: 5px;">
+                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                    <span class="buttonText" id="buttonText2">秒</span>
+                                                    <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="javascript:void(0);">秒</a></li>
+                                                    <li><a href="javascript:void(0);">毫秒</a></li>
+                                                </ul>
+                                            </div>
+                                            <button type="button" class="btn btn-w-m" style="min-width: 90px;">转换</button>
+                                        </div>
+                                        <div class="col-sm-4" style="padding-left: 0px;">
+                                            <input type="text" name="" class="form-control" placeholder="请输入文本">
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <label class="control-label" style="width: auto; margin-right: 5px;">时间</label>
+                                            <input type="text" placeholder="年份" id="year" class="form-control" style="width: 60px; display: inline-block;">
+                                            <label class="control-label" style="width: auto; margin-right: 5px;">年</label>
+                                            <input type="text" placeholder="月" id="month" class="form-control" style="width: 60px; display: inline-block;">
+                                            <label class="control-label" style="width: auto; margin-right: 5px;">月</label>
+                                            <input type="text" placeholder="日" id="day" class="form-control" style="width: 60px; display: inline-block;">
+                                            <label class="control-label" style="width: auto; margin-right: 5px;">日</label>
+                                            <input type="text" placeholder="时" id="hour" class="form-control" style="width: 60px; display: inline-block;">
+                                            <label class="control-label" style="width: auto; margin-right: 5px;">时</label>
+                                            <input type="text" placeholder="分" id="minute" class="form-control" style="width: 60px; display: inline-block;">
+                                            <label class="control-label" style="width: auto; margin-right: 5px;">分</label>
+                                            <input type="text" placeholder="秒" id="second" class="form-control" style="width: 60px; display: inline-block;">
+                                            <label class="control-label" style="width: auto; margin-right: 5px;">秒</label>
+                                            <button type="button" class="btn btn-w-m" style="min-width: 90px;">转换Unix时间戳</button>
+                                            <input type="text" placeholder="Unix时间戳" id="convertunix" class="form-control" style="width: 250px; display: inline-block;">
+                                            <div class="input-group-btn open" style="display: inline; margin-right: 5px;">
+                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                    <span class="buttonText" id="buttonText2">秒</span>
+                                                    <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="javascript:void(0);">秒</a></li>
+                                                    <li><a href="javascript:void(0);">毫秒</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <h2>如何在不同编程语言中获取现在的Unix时间戳(Unix timestamp)</h2>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <table class="table table-bordered table-info">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Java</td>
+                                                        <td>time</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>JavaScript</td>
+                                                        <td>Math.round(new Date().getTime()/1000)<br />getTime()返回数值的单位是毫秒</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Microsoft .NET / C#	</td>
+                                                        <td>epoch = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000) / 10000000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>MySQL</td>
+                                                        <td>SELECT unix_timestamp(now())</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Perl</td>
+                                                        <td>time</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>PHP</td>
+                                                        <td>time()</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>PostgreSQL</td>
+                                                        <td>SELECT extract(epoch FROM now())</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Python</td>
+                                                        <td>先 import time 然后 time.time()</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Ruby</td>
+                                                        <td>获取Unix时间戳：Time.now 或 Time.new<br />显示Unix时间戳：Time.now.to_i</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>SQL Server</td>
+                                                        <td>SELECT DATEDIFF(s, '1970-01-01 00:00:00', GETUTCDATE())</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Unix / Linux</td>
+                                                        <td>date +%s</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>VBScript / ASP</td>
+                                                        <td>DateDiff("s", "01/01/1970 00:00:00", Now())</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>其他操作系统<br /><span style="font-size: 10px;">(如果Perl被安装在系统中)</span></td>
+                                                        <td>命令行状态：perl -e "print time"</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <h2>如何在不同编程语言中实现Unix时间戳(Unix timestamp) → 普通时间</h2>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <table class="table table-bordered table-info">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Java</td>
+                                                        <td>String date = new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new java.util.Date(Unix timestamp * 1000))</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>JavaScript</td>
+                                                        <td>先 var unixTimestamp = new Date(Unix timestamp * 1000) 然后 commonTime = unixTimestamp.toLocaleString()</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Linux	</td>
+                                                        <td>date -d @@Unix timestamp</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>MySQL</td>
+                                                        <td>from_unixtime(Unix timestamp)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Perl</td>
+                                                        <td>先 my $time = Unix timestamp 然后 my ($sec, $min, $hour, $day, $month, $year) = (localtime($time))[0,1,2,3,4,5,6]</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>PHP</td>
+                                                        <td>date('r', Unix timestamp)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>PostgreSQL</td>
+                                                        <td>SELECT TIMESTAMP WITH TIME ZONE 'epoch' + Unix timestamp) * INTERVAL '1 second';</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Python</td>
+                                                        <td>先 import time 然后 time.gmtime(Unix timestamp)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Ruby</td>
+                                                        <td>Time.at(Unix timestamp)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>SQL Server</td>
+                                                        <td>DATEADD(s, Unix timestamp, '1970-01-01 00:00:00')</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>VBScript / ASP</td>
+                                                        <td>DateAdd("s", Unix timestamp, "01/01/1970 00:00:00")</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>其他操作系统<br /><span style="font-size: 10px;">(如果Perl被安装在系统中)</span></td>
+                                                        <td>命令行状态：perl -e "print scalar(localtime(Unix timestamp))"</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <h2>如何在不同编程语言中实现普通时间 → Unix时间戳(Unix timestamp)</h2>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <table class="table table-bordered table-info">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Java</td>
+                                                        <td>long epoch = new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse("01/01/1970 01:00:00");</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>JavaScript</td>
+                                                        <td>var commonTime = new Date(Date.UTC(year, month - 1, day, hour, minute, second))</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>MySQL</td>
+                                                        <td>SELECT unix_timestamp(time)<br />时间格式: YYYY-MM-DD HH:MM:SS 或 YYMMDD 或 YYYYMMDD</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Perl</td>
+                                                        <td>先 use Time::Local 然后 my $time = timelocal($sec, $min, $hour, $day, $month, $year);</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>PHP</td>
+                                                        <td>mktime(hour, minute, second, month, day, year)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>PostgreSQL</td>
+                                                        <td>SELECT extract(epoch FROM date('YYYY-MM-DD HH:MM:SS'));</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Python</td>
+                                                        <td>先 import time 然后 int(time.mktime(time.strptime('YYYY-MM-DD HH:MM:SS', '%Y-%m-%d %H:%M:%S')))</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Ruby</td>
+                                                        <td>Time.local(year, month, day, hour, minute, second)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>SQL Server</td>
+                                                        <td>SELECT DATEDIFF(s, '1970-01-01 00:00:00', time)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Unix / Linux</td>
+                                                        <td>date +%s -d"Jan 1, 1970 00:00:01"</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>VBScript / ASP</td>
+                                                        <td>DateDiff("s", "01/01/1970 00:00:00", time)</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tab-5" class="tab-pane">
+                        <div class="panel-body">
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-content">
+                                    <div class="col-md-6">
+                                        <div class="simditor">
+                                            <textarea id="editor_ascill" placeholder="请把你需要转换的NATIVE代码粘贴在这里" autofocus="" style="display: none;">
+                                            </textarea><div tabindex="-1" contenteditable="true" class="simditor-paste-area" style="width: 1px; height: 1px; overflow: hidden; position: fixed; right: 0px; bottom: 100px;"></div><textarea tabindex="-1" class="simditor-clean-paste-area" style="width: 1px; height: 1px; overflow: hidden; position: fixed; right: 0px; bottom: 101px;"></textarea><div class="simditor-popover code-popover">
+                                            </div><div class="simditor-popover link-popover">
+                                                <div class="link-settings">
+                                                    <div class="settings-field">
+                                                        <label></label>
+                                                        <input class="link-text" type="text">
+                                                        <a class="btn-unlink" href="javascript:;" title="" tabindex="-1"><span class="fa fa-unlink"></span></a>
+                                                    </div>
+                                                    <div class="settings-field">
+                                                        <label></label>
+                                                        <input class="link-url" type="text">
+                                                    </div>
+                                                </div>
+                                            </div><div class="simditor-popover image-popover">
+                                                <div class="link-settings">
+                                                    <div class="settings-field">
+                                                        <label></label>
+                                                        <input class="image-src" type="text" tabindex="1">
+
+                                                    </div>
+                                                    <div class="settings-field">
+                                                        <label></label>
+                                                        <input class="image-size" id="image-width" type="text" tabindex="2">
+                                                        <span class="times">×</span>
+                                                        <input class="image-size" id="image-height" type="text" tabindex="3">
+                                                        <a class="btn-restore" href="javascript:;" title="" tabindex="-1">
+                                                            <span class="fa fa-reply"></span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="simditor">
+                                            <textarea id="editor_native" placeholder="请把你需要转换的ASCII代码粘贴在这里" autofocus="" style="display: none;">
+                                            </textarea><div tabindex="-1" contenteditable="true" class="simditor-paste-area" style="width: 1px; height: 1px; overflow: hidden; position: fixed; right: 0px; bottom: 100px;"></div><textarea tabindex="-1" class="simditor-clean-paste-area" style="width: 1px; height: 1px; overflow: hidden; position: fixed; right: 0px; bottom: 101px;"></textarea><div class="simditor-popover code-popover">
+                                            </div><div class="simditor-popover link-popover">
+                                                <div class="link-settings">
+                                                    <div class="settings-field">
+                                                        <label></label>
+                                                        <input class="link-text" type="text">
+                                                        <a class="btn-unlink" href="javascript:;" title="" tabindex="-1"><span class="fa fa-unlink"></span></a>
+                                                    </div>
+                                                    <div class="settings-field">
+                                                        <label></label>
+                                                        <input class="link-url" type="text">
+                                                    </div>
+                                                </div>
+                                            </div><div class="simditor-popover image-popover">
+                                                <div class="link-settings">
+                                                    <div class="settings-field">
+                                                        <label></label>
+                                                        <input class="image-src" type="text" tabindex="1">
+
+                                                    </div>
+                                                    <div class="settings-field">
+                                                        <label></label>
+                                                        <input class="image-size" id="image-width" type="text" tabindex="2">
+                                                        <span class="times">×</span>
+                                                        <input class="image-size" id="image-height" type="text" tabindex="3">
+                                                        <a class="btn-restore" href="javascript:;" title="" tabindex="-1">
+                                                            <span class="fa fa-reply"></span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="ibox-tools clients-list ">
+                                    <div class="col-md-12">
+                                        <div class="input-group-btn open" style="display: inline; margin-right: 5px;">
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                <span class="buttonText" id="buttonText2">不转换字母和数字</span>
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="javascript:void(0);">不转换字母和数字</a></li>
+                                                <li><a href="javascript:void(0);">转换字母和数字</a></li>
+                                            </ul>
+                                        </div>
+                                        <button type="button" class="btn btn-w-m">ASCII转NATIVE</button>
+                                        <button type="button" class="btn btn-w-m">NATIVE转ASCII</button>
+                                        <button type="button" class="btn-w-m btn-white">清空结果</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tab-6" class="tab-pane">
+                        <div class="panel-body">
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-content">
+                                    <div class="col-md-12">
+                                        <div class="simditor">
+                                            <textarea id="editor_hex" placeholder="请将您要转换的汉文内容粘贴在这里" autofocus="" style="display: none;">
+                                            </textarea><div tabindex="-1" contenteditable="true" class="simditor-paste-area" style="width: 1px; height: 1px; overflow: hidden; position: fixed; right: 0px; bottom: 100px;"></div><textarea tabindex="-1" class="simditor-clean-paste-area" style="width: 1px; height: 1px; overflow: hidden; position: fixed; right: 0px; bottom: 101px;"></textarea><div class="simditor-popover code-popover">
+                                            </div><div class="simditor-popover link-popover">
+                                                <div class="link-settings">
+                                                    <div class="settings-field">
+                                                        <label></label>
+                                                        <input class="link-text" type="text">
+                                                        <a class="btn-unlink" href="javascript:;" title="" tabindex="-1"><span class="fa fa-unlink"></span></a>
+                                                    </div>
+                                                    <div class="settings-field">
+                                                        <label></label>
+                                                        <input class="link-url" type="text">44
+                                                    </div>
+                                                </div>
+                                            </div><div class="simditor-popover image-popover">
+                                                <div class="link-settings">
+                                                    <div class="settings-field">
+                                                        <label></label>
+                                                        <input class="image-src" type="text" tabindex="1">
+
+                                                    </div>
+                                                    <div class="settings-field">
+                                                        <label></label>
+                                                        <input class="image-size" id="image-width" type="text" tabindex="2">
+                                                        <span class="times">×</span>
+                                                        <input class="image-size" id="image-height" type="text" tabindex="3">
+                                                        <a class="btn-restore" href="javascript:;" title="" tabindex="-1">
+                                                            <span class="fa fa-reply"></span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="ibox-tools clients-list ">
+                                    <div class="col-md-12">
+                                        <div class="input-group-btn open" style="display: inline; margin-right: 5px;">
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                <span class="buttonText" id="buttonText3">选择</span>
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="javascript:void(0);">utf-8</a></li>
+                                                <li><a href="javascript:void(0);">gb2312</a></li>
+                                            </ul>
+                                        </div>
+                                        <button type="button" class="btn btn-w-m">Hex编码</button>
+                                        <button type="button" class="btn btn-w-m">Hex解码</button>
+                                        <button type="button" class="btn-w-m btn-white">清空结果</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tab-7" class="tab-pane">
+                        <div class="panel-body">
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-content">
+                                    <div class="col-md-12">
+                                        <div class="simditor">
+                                            <textarea id="editor_html" placeholder="请将您要转换的汉文内容粘贴在这里" autofocus="" style="display: none;">
+                                            </textarea><div tabindex="-1" contenteditable="true" class="simditor-paste-area" style="width: 1px; height: 1px; overflow: hidden; position: fixed; right: 0px; bottom: 100px;"></div><textarea tabindex="-1" class="simditor-clean-paste-area" style="width: 1px; height: 1px; overflow: hidden; position: fixed; right: 0px; bottom: 101px;"></textarea><div class="simditor-popover code-popover">
+                                            </div><div class="simditor-popover link-popover">
+                                                <div class="link-settings">
+                                                    <div class="settings-field">
+                                                        <label></label>
+                                                        <input class="link-text" type="text">
+                                                        <a class="btn-unlink" href="javascript:;" title="" tabindex="-1"><span class="fa fa-unlink"></span></a>
+                                                    </div>
+                                                    <div class="settings-field">
+                                                        <label></label>
+                                                        <input class="link-url" type="text">
+                                                    </div>
+                                                </div>
+                                            </div><div class="simditor-popover image-popover">
+                                                <div class="link-settings">
+                                                    <div class="settings-field">
+                                                        <label></label>
+                                                        <input class="image-src" type="text" tabindex="1">
+
+                                                    </div>
+                                                    <div class="settings-field">
+                                                        <label></label>
+                                                        <input class="image-size" id="image-width" type="text" tabindex="2">
+                                                        <span class="times">×</span>
+                                                        <input class="image-size" id="image-height" type="text" tabindex="3">
+                                                        <a class="btn-restore" href="javascript:;" title="" tabindex="-1">
+                                                            <span class="fa fa-reply"></span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="ibox-tools clients-list ">
+                                    <div class="col-md-12">
+                                        <button type="button" class="btn btn-w-m">HtmlEncode编码</button>
+                                        <button type="button" class="btn btn-w-m">HtmlDecode解码</button>
+                                        <button type="button" class="btn-w-m btn-white">清空结果</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="~/Content/MyPlugins/simditor/module.js"></script>
+<script type="text/javascript" src="~/Content/MyPlugins/simditor/hotkeys.js"></script>
+<script type="text/javascript" src="~/Content/MyPlugins/simditor/uploader.js"></script>
+<script type="text/javascript" src="~/Content/MyPlugins/simditor/simditor.js"></script>
+<script type="text/javascript">
+    (function ($) { //create closure so we can safely use $ as alias for jQuery
+        $(document).ready(function () {
+            "use strict";
+            $("#tab-3 .dropdown-menu li").click(function () {
+                $("#buttonText").text($(this).text());
+            });
+
+            $("#tab-5 .dropdown-menu li").click(function () {
+                $("#buttonText2").text($(this).text());
+            });
+
+            var editor = new Simditor({
+                textarea: $('#editor'),
+                toolbarHidden: true,
+                defaultImage: 'img/a9.jpg'
+            });
+
+            var editor_after = new Simditor({
+                textarea: $('#editor_after'),
+                toolbarHidden: true,
+                defaultImage: 'img/a9.jpg'
+            });
+
+            var editor_utf8 = new Simditor({
+                textarea: $('#editor_utf8'),
+                toolbarHidden: true,
+                defaultImage: 'img/a9.jpg'
+            });
+
+            var editor_utf8_after = new Simditor({
+                textarea: $('#editor_utf8_after'),
+                toolbarHidden: true,
+                defaultImage: 'img/a9.jpg'
+            });
+
+            var editor_url = new Simditor({
+                textarea: $('#editor_url'),
+                toolbarHidden: true,
+                defaultImage: 'img/a9.jpg'
+            });
+
+            var editor_ascill = new Simditor({
+                textarea: $('#editor_ascill'),
+                toolbarHidden: true,
+                defaultImage: 'img/a9.jpg'
+            });
+
+            var editor_native = new Simditor({
+                textarea: $('#editor_native'),
+                toolbarHidden: true,
+                defaultImage: 'img/a9.jpg'
+            });
+
+            var editor_hex = new Simditor({
+                textarea: $('#editor_hex'),
+                toolbarHidden: true,
+                defaultImage: 'img/a9.jpg'
+            });
+
+            var editor_html = new Simditor({
+                textarea: $('#editor_html'),
+                toolbarHidden: true,
+                defaultImage: 'img/a9.jpg'
+            });
+        });
+    })(jQuery);
+</script>

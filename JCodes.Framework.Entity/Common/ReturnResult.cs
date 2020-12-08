@@ -49,6 +49,11 @@ namespace JCodes.Framework.Entity
 		/// 日志级别
 		/// </summary>
 		private Int16 m_LogLevel = 0;
+
+		/// <summary>
+		/// 执行时间
+		/// </summary>
+		private Int32 m_ExecutedTime = 0;
 		#endregion
 
 		#region Property Members
@@ -178,6 +183,23 @@ namespace JCodes.Framework.Entity
 			set
 			{
 				this.m_LogLevel = value;
+			}
+		}
+
+		/// <summary>
+		/// 执行时间
+		/// </summary>
+		[DataMember]
+		[DisplayName("执行时间")]
+		public virtual Int32 ExecutedTime
+		{
+			get
+			{
+				return this.m_ExecutedTime;
+			}
+			set
+			{
+				this.m_ExecutedTime = value;
 			}
 		}
 		#endregion

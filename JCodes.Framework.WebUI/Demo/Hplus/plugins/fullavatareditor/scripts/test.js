@@ -139,7 +139,7 @@ swfobject.addDomLoadEvent(function () {
                     $('#editorPanelButtons,#webcamPanelButton').hide();
                 }
             }
-            swf1.call('changepanel', this.id);
+            //swf1.call('changepanel', this.id);
         }
     });
     //复选框事件

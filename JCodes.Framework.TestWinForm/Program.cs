@@ -59,7 +59,7 @@ namespace JCodes.Framework.TestWinForm
             // 测试公共类
             //Application.Run(new TestCommons.Form1());
 
-            Application.Run(new TestControlUtil.Form1());
+            //Application.Run(new TestControlUtil.Form1());
 
             // 附件测试
             //Application.Run(new TestAttachmentDx.Form1());
@@ -84,7 +84,8 @@ namespace JCodes.Framework.TestWinForm
 
             //Application.Run(new JCodes.Framework.Test.AMSDownloadForm());
             //Application.Run(new JCodes.Framework.Test.DakaDateSetFrm());
-            //Application.Run(new JCodes.Framework.TestWinForm.Basic.InitDataFrm());
+            // Application.Run(new JCodes.Framework.TestWinForm.Basic.InitDataFrm());
+            Application.Run(new JCodes.Framework.Wind.FrmWindDemo());
         }
     }
 }

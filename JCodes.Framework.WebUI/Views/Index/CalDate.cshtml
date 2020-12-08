@@ -89,7 +89,7 @@
                         <br />
                         <div class="form-group media" id="calDayResult2" style="display: none;">
                             <div class="alert alert-success" id="calDayResult2txt">
-                                相差： 75 天
+                                相差： 天
                             </div>
                         </div>
                         <br />
@@ -171,7 +171,10 @@
                     "dataType": "json",
                     "success": function (json) {
                         // 2021年1月26日星期二
-                        $("#calDayResulttxt").text("计算日期为: " + json);
+                        if (json.ErrorCode == 0)
+                            $("#calDayResulttxt").text("计算日期为: " + json.ErrorMessage);
+                        else
+                            $("#calDayResulttxt").text("计算出错啦，出错原因: " + json.ErrorMessage);
                     }
                 } );
 
@@ -188,7 +191,10 @@
                     "dataType": "json",
                     "success": function (json) {
                         // 相差： 75 天
-                        $("#calDayResult2txt").text("相差： " + json + "天");
+                        if (json.ErrorCode == 0)
+                            $("#calDayResult2txt").text("相差： " + json.ErrorMessage + "天");
+                        else
+                            $("#calDayResult2txt").text("计算出错啦，出错原因: " + json.ErrorMessage);
                     }
                 });
                 // TODO 1后台返回对象，2错误信息用红色，3后台记录查询日志

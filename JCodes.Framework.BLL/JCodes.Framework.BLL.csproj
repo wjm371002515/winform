@@ -55,6 +55,7 @@
     <Compile Include="Dic\DictData.cs" />
     <Compile Include="Dic\DictType.cs" />
     <Compile Include="Dic\District.cs" />
+    <Compile Include="Dic\MVCRouteConfig.cs" />
     <Compile Include="Dic\Sysparameter.cs" />
     <Compile Include="Dic\Province.cs" />
     <Compile Include="Dongnanhai_todo\DongnanhaiVotesUser.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Security\OU.cs" />
     <Compile Include="Security\Role.cs" />
     <Compile Include="Security\RoleData.cs" />
+    <Compile Include="Security\SystemLog.cs" />
     <Compile Include="Security\SystemType.cs" />
     <Compile Include="Security\User.cs" />
     <Compile Include="WareHouseMis_todo\ItemDetail.cs" />
