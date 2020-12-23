@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="8a1010fe-8cf2-4035-a472-40ed101b128e">
+      <functionId>100009</functionId>
+      <name>AddressInfo</name>
+      <chineseName>通讯录联系人</chineseName>
+      <fieldnamespace>using JCodes.Framework.jCodesenum;</fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Contact</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-09-13 18:15:53.286</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="e9d4696c-1195-4deb-8321-71fbcc8ded77">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="3e05689c-2575-4763-b9a8-2d106910b8c5">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="4a4f181a-d071-4faf-9541-570fa2a41353">
+      <name>Gender</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="4b4c5fbf-e2e2-4845-9a5b-88c51d8060ca">
+      <name>Birthday</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f38c5bb5-e45f-4c22-909c-1ed37fe9781c">
+      <name>MobilePhone</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c86a3ca5-495f-48ec-8a00-32670cf9db09">
+      <name>Email</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ba2196ea-cb71-437e-a47c-463aed93942a">
+      <name>QQ</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="044ee305-2baf-494e-862c-4009f25f289a">
+      <name>HomePhone</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ee04f3a1-8948-40a4-8d67-797085810de3">
+      <name>OfficePhone</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2fe29ef9-61e6-4a35-bff4-cde4b0b05e42">
+      <name>HomeAddress</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="524470df-608b-456d-8868-06a84251c9b9">
+      <name>OfficeAddress</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ec5a654f-ade6-4b60-bafd-f115bef29233">
+      <name>Fax</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="31990f0f-fdc0-4bd6-b2de-5fb32f482073">
+      <name>CompanyName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="34ab9b1d-ac73-49ec-8216-32fa705ef18d">
+      <name>DeptName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="66cde588-783f-4ab0-8b72-0611ef06a217">
+      <name>WorkPosition</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="7bf2f69e-d78d-46d7-8c42-2af6358b5ef0">
+      <name>Remark</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="24578aa8-219c-44b7-9650-8efa626a8dd6">
+      <name>CreatorId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="679528bf-c64c-4800-8b07-58a660e74eb4">
+      <name>CreatorTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b00cce44-d8e7-46d5-bcdb-5f47600830de">
+      <name>EditorId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e6263417-daa2-4ad8-9eec-8b46201e5d63">
+      <name>LastUpdateTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="60d1fc81-4ff9-4726-9539-224d3c31ba5b">
+      <name>DeptId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="843f5699-320f-4e02-801f-88279d34c229">
+      <name>CompanyId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c3d14eb4-2ee0-49cf-b946-866c107ed57e">
+      <name>Other</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+    <item gid="e0645359-19a8-49bc-b4be-b27506045fc5">
+      <name>AddressType</name>
+      <chinesename>通讯录类型</chinesename>
+      <fieldtype>AddressType</fieldtype>
+      <content>get
+            {
+                return this.m_AddressType;
+            }
+            set
+            {
+                this.m_AddressType = value;
+            }</content>
+      <remark>[个人,公司]</remark>
+    </item>
+  </diyfieldinfo>
+</datatype>

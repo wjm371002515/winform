@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="a7ab4701-666c-4455-9789-4d6ac6a2c1d5">
+      <functionId>100074</functionId>
+      <name>ReportAnnualCostDetailInfo</name>
+      <chineseName>年费用成本明细报表信息</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>WareHouseMis</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-09-23 10:00:13.909</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="05e2de2c-2392-4a65-8de5-8a821306ce80">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e589d8f8-1a18-4fcf-8308-3b063d13f5ba">
+      <name>ReportHeaderId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2bec8da5-6317-46f9-879d-2b5d94eaeeed">
+      <name>ReportYear</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0efb4000-439c-4a9c-8060-307086463f23">
+      <name>ItemType</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="053ecb3a-9e9d-4ea7-91c2-5cfd298cbd45">
+      <name>CostCenter</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="a6c9f00c-22d5-4d8b-be32-6923f53dfada">
+      <name>ReportCode</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+    <item gid="dceeb8a4-a588-4094-9c06-99571507c93d">
+      <name>One</name>
+      <chinesename>总金额1</chinesename>
+      <fieldtype>decimal</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d6cefcea-4db2-4f72-bd0f-6c372975cc41">
+      <name>Two</name>
+      <chinesename>总金额2</chinesename>
+      <fieldtype>decimal</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9ef8f9b9-0040-4c85-8623-79c53d4977cc">
+      <name>Three</name>
+      <chinesename>总金额3</chinesename>
+      <fieldtype>decimal</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="46731095-dbc0-439c-b014-a12544461c76">
+      <name>Four</name>
+      <chinesename>总金额4</chinesename>
+      <fieldtype>decimal</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="375c5287-9d20-4465-8c96-8152a39bffc6">
+      <name>Five</name>
+      <chinesename>总金额5</chinesename>
+      <fieldtype>decimal</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d7915a19-480c-4596-b70b-30feafdbbee9">
+      <name>Six</name>
+      <chinesename>总金额6</chinesename>
+      <fieldtype>decimal</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d49ae07b-4bd7-4da5-bf87-3fa5b7d253b5">
+      <name>Seven</name>
+      <chinesename>总金额7</chinesename>
+      <fieldtype>decimal</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="1b0a86ae-42d0-43de-8d8b-232562eecca5">
+      <name>Eight</name>
+      <chinesename>总金额8</chinesename>
+      <fieldtype>decimal</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f3bc4aa9-2349-48d1-a7f9-cd011325ad83">
+      <name>Nine</name>
+      <chinesename>总金额9</chinesename>
+      <fieldtype>decimal</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e27a31a2-8630-4dab-ab8f-393ac62f548b">
+      <name>Ten</name>
+      <chinesename>总金额10</chinesename>
+      <fieldtype>decimal</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="1e3b6e08-a324-4b78-80d2-cec576c85169">
+      <name>Eleven</name>
+      <chinesename>总金额11</chinesename>
+      <fieldtype>decimal</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="710e634f-88c5-41cf-b20f-31beb930135a">
+      <name>Twelve</name>
+      <chinesename>总金额12</chinesename>
+      <fieldtype>decimal</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d51fc1ce-14a4-44c9-8d43-f99ca3f67c84">
+      <name>Total</name>
+      <chinesename>总金额</chinesename>
+      <fieldtype>decimal</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+  </diyfieldinfo>
+</datatype>

@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="e1bd2f0d-9088-49ba-a366-710ff1c3a688">
+      <functionId>100031</functionId>
+      <name>TableEntity</name>
+      <chineseName>表格实体类</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Common</folder>
+      <baseclass>
+      </baseclass>
+      <lasttime>2019-09-16 18:26:03.440</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="a5c68cbf-9bb2-4e69-8dfa-40a00bad504b">
+      <name>TableName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0265455e-0047-4593-a911-46ed47de6fcf">
+      <name>Remark</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d2246860-84f7-4a60-a882-499dac04b21e">
+      <name>FolderName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="4ad3d3a5-a55c-4d91-b65a-89113ff719e8">
+      <name>IsIDXDataError</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f4c09c0c-5e63-4031-9e45-f77bac8d5bb0">
+      <name>IsBaseEntity</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="94382c19-a1d3-4072-8cc4-45454a517693">
+      <name>ToStringContent</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0fca1a86-7eb7-45b4-861b-992f15d358a0">
+      <name>ConstructContent</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e8376c3e-f817-4b78-affe-8ede7195b93a">
+      <name>CustomParentClass</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="528a6b8b-0b53-44ec-90ea-985c7ed5cb3a">
+      <name>CustomContent</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="1cae6211-2134-42a9-8c4a-88b1fd80c0f1">
+      <name>CustomNamespace</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

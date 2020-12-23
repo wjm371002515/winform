@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="57929a82-dadf-4865-845d-ca97f5e0cf70">
+      <functionId>100040</functionId>
+      <name>DefaultTypeInfo</name>
+      <chineseName>默认数据类型</chineseName>
+      <fieldnamespace>using DevExpress.XtraEditors.DXErrorProvider;
+using System.Collections.Generic;</fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Proj</folder>
+      <baseclass>IDXDataErrorInfo</baseclass>
+      <lasttime>2019-09-19 14:26:10.098</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="10df5b6d-973d-45a6-8796-913877e17e84">
+      <name>Gid</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="53ec0a57-69cd-4cb6-82f4-8f71a97da8e5">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="7de7905e-3c21-4ca2-90d1-6e8e33e8060d">
+      <name>ChineseName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="16b9c8f5-5a90-47f1-bbdb-92256e8edd69">
+      <name>Oracle</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="52641317-43e2-47fa-b02d-49230165beab">
+      <name>Mysql</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="790384bc-937d-47b4-8357-9efd9b563284">
+      <name>DB2</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2194d475-a671-456f-80f7-8a92d29b707c">
+      <name>SqlServer</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="6cfb56a1-70ee-4edd-aa31-1be5bceea2ce">
+      <name>Sqlite</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="dfe40ebb-2653-4818-9142-730a4a0d2020">
+      <name>Access</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="18eaf299-6cc0-4431-a2ef-928e3aff22f7">
+      <name>CShort</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+    <item gid="6c143c19-31d7-4800-b0f0-d11e02cb029b">
+      <name>lstInfo</name>
+      <chinesename>用来保存行数据中字段名，错误信息</chinesename>
+      <fieldtype>Dictionary&lt;string, ErrorInfo&gt;</fieldtype>
+      <content>get;
+            set;</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="74396c98-0bb3-4db9-ac58-5754ceedfa50">
+      <name>IDXDataErrorInfo.GetPropertyError(string propertyName, ErrorInfo info)</name>
+      <chinesename>添加自定义错误</chinesename>
+      <fieldtype>void</fieldtype>
+      <content> // 添加自定义错误
+            if (lstInfo != null &amp;&amp; lstInfo.Count &gt; 0 &amp;&amp; lstInfo.ContainsKey(propertyName) &amp;&amp; !string.IsNullOrEmpty(lstInfo[propertyName].ErrorText))
+            {
+                info.ErrorText = lstInfo[propertyName].ErrorText;
+                info.ErrorType = lstInfo[propertyName].ErrorType;
+            }</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="70661ef6-8517-4a28-b929-ea04656df81e">
+      <name>IDXDataErrorInfo.GetError(ErrorInfo info)</name>
+      <chinesename>
+      </chinesename>
+      <fieldtype>void</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+  </diyfieldinfo>
+</datatype>

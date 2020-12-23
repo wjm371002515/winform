@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="6f6c6429-b18b-47fb-9dd6-e211ed3fd34c">
+      <functionId>100056</functionId>
+      <name>FunctionInfo</name>
+      <chineseName>系统功能定义</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Security</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-09-21 16:47:45.867</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="ae341bb2-a141-4d62-9daf-0914bfdf79f4">
+      <name>Gid</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="1011db2d-0194-42b1-9cc0-a685f00eb2e5">
+      <name>Pgid</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ffa89ad6-56ba-47d3-8cad-3f23c915a34b">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="fa4c361b-4441-4535-a27f-227e4c134b70">
+      <name>DllPath</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="3f5040ef-5f81-4e72-bd14-1bcbc4a057cc">
+      <name>SystemtypeId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e10058f1-576f-4d74-a14d-0aaea2601759">
+      <name>Seq</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

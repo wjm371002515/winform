@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="c8bcc361-6ccd-4a9b-af03-1e6d5ffb2352">
+      <functionId>100014</functionId>
+      <name>CityInfo</name>
+      <chineseName>城市信息</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Dic</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-09-16 09:52:55.964</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="8e841bb4-63f0-4f8c-9187-8abaf6f3e3be">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="19b96f3f-4601-4b34-a103-8b6fe44831f5">
+      <name>CityName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d04e4cfe-f79c-42fc-af76-05ef005295de">
+      <name>ZipCode</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c145746c-0657-4b17-bd85-7da9e2ffbb8e">
+      <name>ProvinceId</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

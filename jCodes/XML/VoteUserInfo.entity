@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="37c27a0e-b0cf-45f8-a3d4-5744a829ef73">
+      <functionId>100096</functionId>
+      <name>VoteUserInfo</name>
+      <chineseName>投票用户信息类</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Machines</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2020-02-22 00:13:53.619</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="55960cdf-d339-45c4-983c-a88309af63c1">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e9484363-5396-4385-98c8-a69ff5509e5e">
+      <name>MobilePhone</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="861d1e6f-f812-4f58-8967-f9531f78c4d1">
+      <name>LoginName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c93be14e-a7b3-49f5-b9c6-5f2cfdbdcc31">
+      <name>Gender</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

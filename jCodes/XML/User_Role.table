@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="f5516d40-1e69-4561-ad6b-76d34105ed8e">
+      <functionId>000216</functionId>
+      <name>User_Role</name>
+      <chineseName>用户角色关系表</chineseName>
+      <existhistable>0</existhistable>
+      <version>1.0.0.0</version>
+      <lasttime>2019-09-27 09:41:33.414</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="61a6adf6-c968-4605-a512-49912f47b06f">
+      <name>UserId</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b803de94-9fe0-4b84-99a4-aeaa9d5b8a18">
+      <name>RoleId</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <indexsinfo>
+  </indexsinfo>
+</datatype>

@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="eabdf693-873b-49f8-bba2-1dfb90ff3810">
+      <functionId>100041</functionId>
+      <name>DictInfo</name>
+      <chineseName>字典信息</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Proj</folder>
+      <baseclass>IComparable&lt;DictInfo&gt;</baseclass>
+      <lasttime>2019-09-19 15:11:11.830</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="2bfac5de-e708-4e1a-8533-e446564074f9">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b7045a12-4903-4d07-b43b-dc8bee56c301">
+      <name>Pid</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d41ae131-2694-4d59-8eb3-187f0d7e3718">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ac6d9da7-4cfa-4322-beec-5d0b8dc2e3ff">
+      <name>Remark</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+    <item gid="3ddcb16e-26b1-4161-bc20-d898ad9f11a7">
+      <name>CompareTo(DictInfo other)</name>
+      <chinesename>Compares to.</chinesename>
+      <fieldtype>Int32</fieldtype>
+      <content>if (other == null) return -1;
+            if (Id &gt; other.Id)
+            {
+                return 1;
+            }
+            return -1;</content>
+      <remark>
+      </remark>
+    </item>
+  </diyfieldinfo>
+</datatype>

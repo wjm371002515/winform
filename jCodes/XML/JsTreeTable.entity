@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="6ea0b0bd-1d2a-4d26-9e71-b77168b4b20a">
+      <functionId>100024</functionId>
+      <name>JsTreeTable</name>
+      <chineseName>JsTree的数据模型(datatable类型)</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Common</folder>
+      <baseclass>
+      </baseclass>
+      <lasttime>2019-09-16 13:55:24.419</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="3cd9a915-a416-4942-aebe-c766a3f99dcc">
+      <name>Gid</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e0f99455-0616-4747-8a9a-a1341a55680f">
+      <name>Pgid</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="35e27058-b9b2-4c67-9170-8278e57eaa57">
+      <name>Text</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ce2d2e7e-549d-49b3-bd2c-49f2cc0f976b">
+      <name>Icon</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+    <item gid="5aac0c8d-b246-44c6-abb9-1992ae4f07c2">
+      <name>JsTreeDataStatus</name>
+      <chinesename>状态对象</chinesename>
+      <fieldtype>JsTreeStatus</fieldtype>
+      <content>get
+			{
+				return this.m_JsTreeDataStatus;
+			}
+			set
+			{
+				this.m_JsTreeDataStatus = value;
+			}</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="99aad8f3-d410-4453-81c8-34cfa7d74611">
+      <name>JsTreeTable()</name>
+      <chinesename>无参构造函数</chinesename>
+      <fieldtype>
+      </fieldtype>
+      <content>this.Pgid = "#"; //#表示为根节点
+            this.JsTreeDataStatus = new JsTreeStatus();</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="93014b0f-324a-4633-939b-b9d5e5387101">
+      <name>JsTreeTable(string id, string text, string icon = null, string parent = "#")</name>
+      <chinesename>有参构造函数</chinesename>
+      <fieldtype>
+      </fieldtype>
+      <content>this.m_Gid = id;
+            this.m_Text = text;
+            this.m_Icon = icon;
+
+            this.Pgid = parent;
+            this.JsTreeDataStatus = new JsTreeStatus();</content>
+      <remark>
+      </remark>
+    </item>
+  </diyfieldinfo>
+</datatype>

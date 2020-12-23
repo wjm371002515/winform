@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="c05e1693-6523-47ab-80db-3306e996bf44">
+      <functionId>100069</functionId>
+      <name>OUNodeInfo</name>
+      <chineseName>部门机构节点对象</chineseName>
+      <fieldnamespace>using System.Collections.Generic;</fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Security</folder>
+      <baseclass>OUInfo</baseclass>
+      <lasttime>2019-09-22 00:28:48.097</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+  </fieldsinfo>
+  <diyfieldinfo>
+    <item gid="cc77c06d-ae41-466e-ac8b-6a971c32a3bd">
+      <name>Children</name>
+      <chinesename>子节点</chinesename>
+      <fieldtype>List&lt;OUNodeInfo&gt;</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9c39d811-7d54-45fa-84bc-1048aabf7bae">
+      <name>OUNodeInfo()</name>
+      <chinesename>无参构造函数</chinesename>
+      <fieldtype>
+      </fieldtype>
+      <content>this.m_Children = new List&lt;OUNodeInfo&gt;();</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0a8d3382-a3f0-4864-991a-e0822c6a504c">
+      <name>OUNodeInfo(OUInfo info)</name>
+      <chinesename>带参构造函数</chinesename>
+      <fieldtype>
+      </fieldtype>
+      <content>base.Id = info.Id;
+            base.Pid = info.Pid;
+            base.OuCode = info.OuCode;
+            base.Name = info.Name;
+            base.Seq = info.Seq;
+            base.OuType = info.OuType;
+            base.Address = info.Address;
+            base.OutPhone = info.OutPhone;
+            base.InnerPhone = info.InnerPhone;
+            base.Remark = info.Remark;
+            base.CreatorId = info.CreatorId;
+            base.CreatorTime = info.CreatorTime;
+            base.EditorId = info.EditorId;
+            base.LastUpdateTime = info.LastUpdateTime;
+            base.IsDelete = info.IsDelete;
+            base.IsForbid = info.IsForbid;
+            base.CompanyId = info.CompanyId;</content>
+      <remark>
+      </remark>
+    </item>
+  </diyfieldinfo>
+</datatype>

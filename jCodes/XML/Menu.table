@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="0de06865-752b-4836-bf5a-0e097aabf118">
+      <functionId>000205</functionId>
+      <name>Menu</name>
+      <chineseName>菜单信息表</chineseName>
+      <existhistable>0</existhistable>
+      <version>1.0.0.0</version>
+      <lasttime>2018-02-08 14:18:18.043</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="f2ab9aa8-a744-460a-a5eb-6a80e6f9e34a">
+      <name>Gid</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="55ea1b7b-8864-4631-b820-4364b36621ad">
+      <name>Pgid</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="8698dcba-95fc-40cd-b6da-2fee6200fd5d">
+      <name>Name</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="360a424a-03ef-4133-bf22-45cfb6e3d11f">
+      <name>Icon</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="81a8d247-a07c-458a-9b06-acd72f94fac5">
+      <name>Seq</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="75c9c917-d454-4abe-82ba-bc1b255c8776">
+      <name>AuthGid</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ef1296d8-a3c8-4006-959b-f9ce1d1253fc">
+      <name>IsVisable</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b6e65667-5b07-49f2-9b60-b840a1e3bac6">
+      <name>WinformClass</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d4d54c43-629a-4709-b641-c72f92a27d15">
+      <name>Url</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0789e844-cc5b-4e9d-85d9-adea10a65428">
+      <name>WebIcon</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="33ef0182-8eda-4775-8b37-d301abe1bc8d">
+      <name>SystemtypeId</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="cd6d4529-4d96-4770-a031-aeead34a08cc">
+      <name>CreatorId</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b9d7ff58-3955-4616-bd72-299b21b98de1">
+      <name>CreatorTime</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="4c53c2ca-a005-4fa0-93c6-52d04692137a">
+      <name>EditorId</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b82d032b-2e61-4883-8e51-fade1824b7a4">
+      <name>LastUpdateTime</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="a87f6bdd-774a-4ef6-bff6-0eed84ae04aa">
+      <name>IsDelete</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="3059ee1a-62b5-467b-b511-994d744b81cc">
+      <name>DllPath</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <indexsinfo>
+    <item gid="1bd51e17-f9d8-4942-a411-e506e9daa734">
+      <name>pk_menu</name>
+      <indexfieldlst>Gid</indexfieldlst>
+      <constraint_type>1</constraint_type>
+    </item>
+  </indexsinfo>
+</datatype>

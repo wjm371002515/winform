@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="887a1c0b-8e62-4d9a-8ce1-d3a5f437c723">
+      <functionId>100067</functionId>
+      <name>MenuNodeInfo</name>
+      <chineseName>功能菜单节点对象</chineseName>
+      <fieldnamespace>using System.Collections.Generic;</fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Security</folder>
+      <baseclass>MenuInfo</baseclass>
+      <lasttime>2019-09-22 00:28:03.625</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+  </fieldsinfo>
+  <diyfieldinfo>
+    <item gid="bfbc57e1-7c23-48f9-921e-38bc8adef497">
+      <name>Children</name>
+      <chinesename>子节点</chinesename>
+      <fieldtype>List&lt;MenuNodeInfo&gt;</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="6a8e0d09-b111-45ac-b1d5-891f738fd596">
+      <name>MenuNodeInfo()</name>
+      <chinesename>无参构造函数</chinesename>
+      <fieldtype>
+      </fieldtype>
+      <content>this.m_Children = new List&lt;MenuNodeInfo&gt;();</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="776f264b-4cf8-47ad-a8bc-c31fddfbe56c">
+      <name>MenuNodeInfo(MenuInfo menuInfo)</name>
+      <chinesename>带参构造函数</chinesename>
+      <fieldtype>
+      </fieldtype>
+      <content>base.Gid = menuInfo.Gid;
+            base.Pgid = menuInfo.Pgid;
+            base.Name = menuInfo.Name;
+            base.Seq = menuInfo.Seq;
+            base.IsVisable = menuInfo.IsVisable;
+            base.AuthGid = menuInfo.AuthGid;
+            base.Icon = menuInfo.Icon;
+            base.WebIcon = menuInfo.WebIcon;
+            base.WinformClass = menuInfo.WinformClass;
+			base.DllPath = menuInfo.DllPath;
+            base.Url = menuInfo.Url;
+            base.SystemtypeId = menuInfo.SystemtypeId;
+            base.CreatorId = menuInfo.CreatorId;
+            base.CreatorTime = menuInfo.CreatorTime;
+            base.EditorId = menuInfo.EditorId;
+            base.LastUpdateTime = menuInfo.LastUpdateTime;</content>
+      <remark>
+      </remark>
+    </item>
+  </diyfieldinfo>
+</datatype>

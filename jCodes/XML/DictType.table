@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="4eca7694-9ade-4f1f-9a2d-f0756ff54559">
+      <functionId>000001</functionId>
+      <name>DictType</name>
+      <chineseName>数据字典类型</chineseName>
+      <existhistable>0</existhistable>
+      <version>1.0.0.0</version>
+      <lasttime>2018-02-08 13:06:37.334</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="bc554650-625d-4688-843f-1cfc4a80bb9e">
+      <name>Id</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="1d725a5d-2152-4f57-8195-62819489cb66">
+      <name>Pid</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="6ac11540-061a-4c5e-9358-17f3b6588674">
+      <name>Name</name>
+      <isnull>
+      </isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="bc135b95-0060-4d01-ba49-475e84b214f2">
+      <name>Remark</name>
+      <isnull>
+      </isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="bf4c6ea3-d4d5-4a69-9503-156a5ffd1683">
+      <name>Seq</name>
+      <isnull>
+      </isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="001a51da-5f82-4c91-9aaf-4e41fc4ea0cf">
+      <name>EditorId</name>
+      <isnull>
+      </isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="14351568-965d-45dc-932d-d0f51abbc5e5">
+      <name>LastUpdateTime</name>
+      <isnull>
+      </isnull>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <indexsinfo>
+    <item gid="c10b8f80-83ee-40f7-a750-02bfc1b2a487">
+      <name>pk_dicttype</name>
+      <indexfieldlst>Id</indexfieldlst>
+      <constraint_type>1</constraint_type>
+    </item>
+  </indexsinfo>
+</datatype>

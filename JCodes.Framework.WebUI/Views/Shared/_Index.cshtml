@@ -45,9 +45,11 @@
           (function ($) { //create closure so we can safely use $ as alias for jQuery
               $(document).ready(function () {
                   "use strict";
-                  $(window).bind('beforeunload', function () { return '您输入的内容尚未保存，确定离开此页面吗？'; });
+                 
                   });
-              })(jQuery);
+          })(jQuery);
+
+         
     </script>
 
     <style type="text/css">
@@ -159,11 +161,9 @@
 			text-indent: 2em;
 		}
 
-
 		#primary-menu {
 			margin-right: 30px;
 		}
-
 	/* Bottom Content Color */
 	.bottom-content {
 	    background: linear-gradient(105deg, #0ecad4, #0ecad4, #50e3c2);
@@ -423,6 +423,7 @@
     <script type='text/javascript' src="~/Content/Index/js/content.min.js?v=1.0.0"></script>
     <script type='text/javascript' src='~/Content/MyPlugins/layer/layer.min.js'></script>
     <script type='text/javascript' src="~/Content/MyPlugins/numberInput/miniui.js"></script>
+    <script type='text/javascript' src="~/Scripts/frame.js"></script>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="~/Content/Index/assets/js/ie10-viewport-bug-workaround.js"></script>

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="043bc213-cf02-46fd-974b-b71eaacdc65f">
+      <functionId>000013</functionId>
+      <name>MVCRouteConfig</name>
+      <chineseName>MVC路由配置项</chineseName>
+      <existhistable>0</existhistable>
+      <version>1.0.0.0</version>
+      <lasttime>2020-11-24 23:22:15.860</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="8541d26a-62d4-4592-a66d-a97514e76446">
+      <name>Id</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="7c9684d8-9426-451f-ab5b-c0196b376e32">
+      <name>Name</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d10276b4-3a44-4b0a-b727-0fc934337b92">
+      <name>Url</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9f87e864-008b-486d-a261-a789aaa7d0c0">
+      <name>ModuleInfo</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="8a2b35d4-ac90-4a78-972f-bf25bf72e643">
+      <name>OperationInfo</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <indexsinfo>
+    <item gid="4be1bfb7-706a-47ce-bdfa-920a3ecb8874">
+      <name>pk_routeconfig_id</name>
+      <indexfieldlst>Id</indexfieldlst>
+      <constraint_type>1</constraint_type>
+    </item>
+  </indexsinfo>
+</datatype>

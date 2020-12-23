@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="cd508b6a-6ee3-45be-8967-3b31da930e26">
+      <functionId>100077</functionId>
+      <name>ReportMonthlyDetailInfo</name>
+      <chineseName>月费用清单明细信息</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>WareHouseMis</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-09-23 11:12:03.337</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="f56b2b41-e513-4b2e-9a12-975a9f268222">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="01e4df73-030e-4fc2-b18b-307ccb36a551">
+      <name>ReportHeaderId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="33f2c0db-e85b-479a-a850-0b07046a6bff">
+      <name>ReportYear</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ec3e24a2-b37d-45e7-9b87-6872f5c2f198">
+      <name>ReportMonth</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b608e61c-df52-40e6-928c-2362ea2a655e">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="08b6ce7f-0a94-4ef5-9338-0f24f8e41211">
+      <name>ReportCode</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+    <item gid="4162d805-52ea-4012-a640-6ab7b28abc70">
+      <name>LastCount</name>
+      <chinesename>上月结存数量</chinesename>
+      <fieldtype>Int32</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="72d9dfa3-55b6-4594-8ff1-42754c84892e">
+      <name>LastMoney</name>
+      <chinesename>上月结存金额</chinesename>
+      <fieldtype>decimal</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="5775a1f5-626f-4d3a-89ac-2fd66f48e6e7">
+      <name>CurrentInCount</name>
+      <chinesename>本月入库数量</chinesename>
+      <fieldtype>Int32</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="81d29d44-2720-4f23-9f38-ab65fcf6136b">
+      <name>CurrentInMoney</name>
+      <chinesename>本月入库金额</chinesename>
+      <fieldtype>decimal</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="fbb97dfd-f32e-4734-b49f-896d5f43da1d">
+      <name>CurrentOutCount</name>
+      <chinesename>本月出库数量</chinesename>
+      <fieldtype>Int32</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="1c6fa7ae-3541-4386-b6c2-d9553f8db036">
+      <name>CurrentOutMoney</name>
+      <chinesename>本月出库金额</chinesename>
+      <fieldtype>decimal</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="69cbb114-51d2-48ba-b484-08517e7c82f8">
+      <name>CurrentCount</name>
+      <chinesename>本月结存金额</chinesename>
+      <fieldtype>Int32</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c7de2b95-def4-4201-addc-af4d4cf92477">
+      <name>CurrentMoney</name>
+      <chinesename>本月结存金额</chinesename>
+      <fieldtype>decimal</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+  </diyfieldinfo>
+</datatype>

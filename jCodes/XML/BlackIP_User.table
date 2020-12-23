@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="687ea598-79fc-4130-b5b5-9bb5a2aa9d73">
+      <functionId>000202</functionId>
+      <name>BlackIP_User</name>
+      <chineseName>黑白名单与用户关系表</chineseName>
+      <existhistable>0</existhistable>
+      <version>1.0.0.0</version>
+      <lasttime>2019-09-25 09:49:45.089</lasttime>
+      <remark>没有实体类</remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="b4da608b-78df-4ba5-a233-f999dc0d8210">
+      <name>BlackId</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="317592d9-47fe-48b1-b986-3c74657d3259">
+      <name>UserId</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <indexsinfo>
+    <item gid="573a672c-17b9-47c6-b250-6ff17dc44d55">
+      <name>pk_blackip_user</name>
+      <indexfieldlst>BlackId, UserId</indexfieldlst>
+      <constraint_type>1</constraint_type>
+    </item>
+  </indexsinfo>
+</datatype>

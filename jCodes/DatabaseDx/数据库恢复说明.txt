@@ -1,0 +1,7 @@
+默认系统采用Access数据库，确保配置ComponentDbType的值为access；
+可以通过配置切换为SqlServer数据库（同时需要修改ComponentDbType的值为sqlserver)；
+也可以通过配置切换为Sqlite数据库（同时需要修改ComponentDbType的值为sqlite)；
+
+Access数据库文件为WareHouse.mdb，可以直接打开进行维护。
+Sqlite数据库文件为Winframework.db,可以使用SQLite Developer等管理工具进行维护。
+SqlServer数据库备份文件为：Winframework.bak（带业务数据）,恢复数据库到Winframework即可。

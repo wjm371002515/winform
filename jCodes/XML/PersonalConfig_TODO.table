@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="c1d25f04-00e3-4cbd-a3d9-a4f1e94f5b8b">
+      <functionId>000007</functionId>
+      <name>PersonalConfig_TODO</name>
+      <chineseName>个人参数配置表</chineseName>
+      <existhistable>0</existhistable>
+      <version>1.0.0.0</version>
+      <lasttime>2019-09-25 11:23:50.750</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+  </fieldsinfo>
+  <indexsinfo>
+  </indexsinfo>
+</datatype>

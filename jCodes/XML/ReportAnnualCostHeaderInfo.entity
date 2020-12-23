@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="c3956911-6f05-49de-af3b-3a18f211417c">
+      <functionId>100075</functionId>
+      <name>ReportAnnualCostHeaderInfo</name>
+      <chineseName>年费用表头报表信息</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>WareHouseMis</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-09-23 10:13:58.979</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="9133c5a3-a937-4a7e-aae6-4d5c1df6ad9e">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="14a09143-0d85-4aed-9b34-fc5d02ad6b5d">
+      <name>MonthlyReportType</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="6422a348-e066-402a-9652-a8fbb9e1539a">
+      <name>ReportTitle</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="51b87366-9c58-4be6-822b-31c8e99e8ae2">
+      <name>ReportYear</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9221bc4f-0fa7-41c7-a6e0-72ef7c3a2d37">
+      <name>CreatorId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e5c2184d-3daa-4537-bbd0-8ef3de2fedfc">
+      <name>CreatorTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e3730e69-4483-4a2f-9d40-fdba79cd910b">
+      <name>Remark</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="80a52164-55cd-4b2f-8970-21e503dc8c01">
+      <functionId>000802</functionId>
+      <name>WorkDay</name>
+      <chineseName>工作日维护</chineseName>
+      <existhistable>0</existhistable>
+      <version>1.0.0.0</version>
+      <lasttime>2020-08-16 11:18:35.408</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="d5fdd58e-76a5-4eb3-924f-0422335f31e1">
+      <name>UserId</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="96532e84-3f55-4662-8708-a55c11061ba5">
+      <name>Date</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b3e82c34-3461-4497-ac9e-126397520931">
+      <name>IsDaka</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <indexsinfo>
+  </indexsinfo>
+</datatype>

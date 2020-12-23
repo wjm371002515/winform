@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="ad65fab1-979e-4cf1-9430-271fab5e69ed">
+      <functionId>100092</functionId>
+      <name>ConsignmentInfo</name>
+      <chineseName>代销数据</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>ZSZQ</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-11-23 11:03:10.723</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="e70afad5-b272-4a18-9701-c40b3027b178">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c362ff74-2678-47ab-bff3-9f0cff164d0a">
+      <name>StrValue</name>
+      <remark>小账号</remark>
+    </item>
+    <item gid="c25a20b6-6bf6-4a3e-8a11-05e29749e734">
+      <name>Name</name>
+      <remark>代销名字</remark>
+    </item>
+    <item gid="c8eebf7f-c5d0-4182-9e00-6dffad36edb9">
+      <name>EnableStatus</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9363a1d9-81c9-41e5-9aaa-30a43a6f4da5">
+      <name>SysValue</name>
+      <remark>代销商号</remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

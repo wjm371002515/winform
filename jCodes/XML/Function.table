@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="35cef2f8-94b6-4f8d-9f44-a434f2eab61f">
+      <functionId>000203</functionId>
+      <name>Function</name>
+      <chineseName>系统功能定义</chineseName>
+      <existhistable>0</existhistable>
+      <version>1.0.0.0</version>
+      <lasttime>2018-02-08 13:59:20.773</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="925982a3-3227-443c-b7bb-15019ae44a43">
+      <name>Gid</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="779f3bbf-4d48-48d6-b02b-34a5cd68818c">
+      <name>Pgid</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="694512c6-3e6a-4827-9ce2-1548a012f5e9">
+      <name>Name</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d05c1f74-e618-412a-866f-c3310cc301f9">
+      <name>DllPath</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="4b6a8003-13c8-4066-b6dd-319793e49a8f">
+      <name>SystemtypeId</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="4f361b39-ac75-4810-b4ad-eb38f14c8532">
+      <name>Seq</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <indexsinfo>
+    <item gid="3a5f787f-a057-4b8e-a2db-6f87785c2d74">
+      <name>pk_function</name>
+      <indexfieldlst>Gid</indexfieldlst>
+      <constraint_type>1</constraint_type>
+    </item>
+  </indexsinfo>
+</datatype>

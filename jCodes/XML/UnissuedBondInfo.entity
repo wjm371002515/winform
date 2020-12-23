@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="ba755fa1-48b7-4a2f-9d14-6045e63b3758">
+      <functionId>100101</functionId>
+      <name>UnissuedBondInfo</name>
+      <chineseName>已取得批文未发行债券项目信息</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>
+      </folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2020-11-11 15:21:48.998</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="57c12127-09ee-480b-aa64-f607f7a47e7a">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="361f6c5c-7f15-4376-8af6-a2700cc7f819">
+      <name>ProjectName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="1681a553-2eb7-411b-8159-fc530812f43f">
+      <name>RaisedAmount</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e26b0fad-fcba-4bea-9995-d3e0371c8392">
+      <name>ProjectType</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0e6bca7a-f9ab-4bc0-bd07-5e54577951bf">
+      <name>ProjectLeader</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="28ce357e-4ecf-420e-9fd3-f6f1229ca8bc">
+      <name>Managers</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="3def491e-8818-4865-9dc5-aadbdd49230c">
+      <name>DocNum</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="fff2f919-80b1-43f8-9f0f-104a20a057a2">
+      <name>ProjectStatusDetail</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="899c4910-ace1-43a6-ad66-c615fcb32331">
+      <name>DeptId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="3cb858dc-b3c3-48e7-84d4-5c2fdc5ce45c">
+      <name>DeptName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="3759bc36-b377-4116-9b10-a5cc90f0893e">
+      <name>ProjectProgress</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="a6ee770c-1805-44ee-a00e-1c6bb80545ff">
+      <name>ProjectStatus</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="4f00ab4d-2db9-4ed9-a878-4bf4272a46b0">
+      <name>DeclareTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d6555a0c-d8bd-4c92-b344-ee02446ccda3">
+      <name>From</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="8928b604-ec5f-46d8-b153-d87a483b7a51">
+      <name>Remark</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

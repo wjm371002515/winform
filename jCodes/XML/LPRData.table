@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="02bd0a9e-4eaf-4b95-a0fa-669fcc71ea7d">
+      <functionId>000012</functionId>
+      <name>LPRData</name>
+      <chineseName>LPR数据</chineseName>
+      <existhistable>0</existhistable>
+      <version>1.0.0.0</version>
+      <lasttime>2020-08-16 11:19:22.249</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="4d950d69-f247-44a3-b4a3-84c060794f4a">
+      <name>Nationality</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2d8d1ceb-a75e-4fb7-96d3-2d0ac11a98f6">
+      <name>Year</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="054dc291-e912-4f01-8a69-c4c76cadfafd">
+      <name>Month</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2a8faa5e-4fd8-4488-8baa-6921727123e4">
+      <name>Day</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b4a8a41c-a8a5-4e1e-ac7d-e23a3f2a0a17">
+      <name>FloatValue</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <indexsinfo>
+  </indexsinfo>
+</datatype>

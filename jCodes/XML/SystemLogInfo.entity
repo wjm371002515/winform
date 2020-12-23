@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="a91f3ad6-7273-4456-aedf-57921598f8a7">
+      <functionId>100102</functionId>
+      <name>SystemLogInfo</name>
+      <chineseName>系统日志信息表</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Security</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2020-11-24 23:28:24.898</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="ed7f0ef0-85a4-4908-8cd0-a7a964db8d6d">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="470a9cc9-8ee2-46ec-a58e-03384853088d">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ee6f304d-233c-49e4-8457-231a3f249c2c">
+      <name>IP</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2e610d65-f9c2-41c7-913c-87e3d4b9b0d1">
+      <name>Mac</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9135b604-21d2-4275-8fb4-56f9a5b7d8e3">
+      <name>LogLevel</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f9b2bdee-7fed-4f46-a7d9-a2d7d9a4966f">
+      <name>CreatorTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="3cd47a0a-f7c5-41ec-85ca-47e5b2e914a7">
+      <name>SystemtypeId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d431fb68-3578-4366-9e3f-6ba97bf9e719">
+      <name>ModuleInfo</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="19dd7f17-5822-4802-b401-54395c4cec88">
+      <name>OperationInfo</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c8a52676-954b-4ff8-b189-b703b8c1ff9e">
+      <name>Remark</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="97b949a8-6241-4e1a-b152-98f2c959dbcc">
+      <name>SessionId</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

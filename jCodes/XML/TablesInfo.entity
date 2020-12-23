@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="aa225df1-320b-4db9-9f65-0e051cef1f12">
+      <functionId>100053</functionId>
+      <name>TablesInfo</name>
+      <chineseName>表信息</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Proj</folder>
+      <baseclass>
+      </baseclass>
+      <lasttime>2019-09-19 18:14:10.630</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="0b5ff086-4c89-4192-9be0-cf7ba2198c5e">
+      <name>Gid</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="585010dc-69c7-4850-9fef-f92231ca4707">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="6400d7b6-6e89-4cda-a733-cbcc8a70466a">
+      <name>ChineseName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b2288541-e948-4366-8623-0fbbe16a9fba">
+      <name>FunctionId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="255d34da-c0c1-4baf-ad31-1509fba55448">
+      <name>TypeGuid</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="6168c845-c7d4-40e1-980a-f65a4601330e">
+      <name>SavePath</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="4418c731-49b2-4803-951c-c5b5bcb98858">
+      <name>BasicdataPath</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

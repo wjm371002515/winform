@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="8503bcfe-205e-48f2-862a-22384f64dffc">
+      <functionId>100084</functionId>
+      <name>IconInfo</name>
+      <chineseName>系统图表库</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>WebMis</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-09-23 20:50:04.824</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="5f9fd6a9-1ffe-4fef-9d8f-74541ebeac7d">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e4acb8a0-9a30-4b95-a08a-a1f5679a528d">
+      <name>IconCls</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="7cb5cc17-169e-4c1e-8354-5692baa74790">
+      <name>IconUrl</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="bf41caf3-3e39-4bd2-a632-4b15ea2c455c">
+      <name>IconSize</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="af10202e-0154-4023-9378-068742146735">
+      <name>CreatorTime</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

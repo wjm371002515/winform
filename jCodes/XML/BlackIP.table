@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="365e5229-8e45-442e-a036-50a1d93aec60">
+      <functionId>000201</functionId>
+      <name>BlackIP</name>
+      <chineseName>黑白名单信息表</chineseName>
+      <existhistable>0</existhistable>
+      <version>1.0.0.0</version>
+      <lasttime>2018-02-08 13:43:39.800</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="4cd16721-54c0-4669-b83f-067c28a01ee4">
+      <name>Id</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="cb1013c4-3765-43f2-9dfc-01de99cc7dcf">
+      <name>Name</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d6efe5d1-5ff4-44d1-a395-488f6f7886e0">
+      <name>AuthorizeType</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0d587c2d-1d46-4126-afdb-02fda1f00967">
+      <name>IsForbid</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="eaf583c9-b856-4d13-a6e6-c8b5f9148146">
+      <name>IPStart</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="be02bae0-08c4-49b3-ac74-d009846fb9a5">
+      <name>IPEnd</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="048c49fb-9312-4fc3-a39b-3d39219cb8f4">
+      <name>Remark</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="3748373f-f1ff-4640-9561-5eb28f4096d7">
+      <name>CreatorId</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="bae69999-d184-43c4-b62c-1b90b8c589c5">
+      <name>CreatorTime</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="4e85c72a-018b-43c3-8c06-094f6a0ea641">
+      <name>EditorId</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="73386e97-89fe-483f-b162-d8654c7d7b78">
+      <name>LastUpdateTime</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="09b63f17-168c-4421-b151-fb9ac03c6c24">
+      <name>StartTime</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f2bacbc3-51bb-45e0-b6eb-1d0b4976ed3f">
+      <name>EndTime</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <indexsinfo>
+    <item gid="72598511-a732-4a7b-9049-1376ef718335">
+      <name>pk_blackip</name>
+      <indexfieldlst>Id</indexfieldlst>
+      <constraint_type>1</constraint_type>
+    </item>
+  </indexsinfo>
+</datatype>

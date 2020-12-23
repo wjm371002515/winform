@@ -1,0 +1,665 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DevExpress.DataAccess.v14.1.UI</name>
+    </assembly>
+    <members>
+        <member name="T:DevExpress.DataAccess.UI.Localization.DataAccessUIResLocalizer">
+
+            <summary>
+                <para>A default localizer to translate UI resources for the Data Access library.
+</para>
+            </summary>
+
+        </member>
+        <member name="M:DevExpress.DataAccess.UI.Localization.DataAccessUIResLocalizer.#ctor">
+            <summary>
+                <para>Initializes a new instance of the DataAccessUIResLocalizer class with default settings.
+</para>
+            </summary>
+
+
+        </member>
+        <member name="M:DevExpress.DataAccess.UI.Localization.DataAccessUIResLocalizer.GetLocalizedString(DevExpress.DataAccess.UI.Localization.DataAccessUIStringId)">
+            <summary>
+                <para>Gets the string, localized by the current DataAccessUIResLocalizer, for the specified user interface element.
+</para>
+            </summary>
+            <param name="id">
+		A <see cref="T:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId"/> enumeration value specifying the UI element whose caption (text) is to be localized.
+
+            </param>
+            <returns>A <see cref="T:System.String"/> that is the text to be displayed within the specified UI element.
+
+</returns>
+
+
+        </member>
+        <member name="P:DevExpress.DataAccess.UI.Localization.DataAccessUIResLocalizer.Language">
+            <summary>
+                <para>Returns the name of the language currently used by this localizer object.
+</para>
+            </summary>
+            <value>A <see cref="T:System.String"/> value that specifies the language of the user interface localization.
+</value>
+
+
+        </member>
+        <member name="T:DevExpress.DataAccess.UI.Localization.DataAccessUILocalizer">
+
+            <summary>
+                <para>Provides the means to localize the user interface provided by Data Access library.
+</para>
+            </summary>
+
+        </member>
+        <member name="M:DevExpress.DataAccess.UI.Localization.DataAccessUILocalizer.#ctor">
+            <summary>
+                <para>Initializes a new instance of the DataAccessUILocalizer class with default settings.
+</para>
+            </summary>
+
+
+        </member>
+        <member name="P:DevExpress.DataAccess.UI.Localization.DataAccessUILocalizer.Active">
+            <summary>
+                <para>Gets or sets a localizer object providing localization of the user interface at runtime.
+</para>
+            </summary>
+            <value>An <see cref="T:DevExpress.Utils.Localization.XtraLocalizer`1"/> descendant used to localize the user interface at runtime. 
+</value>
+
+
+        </member>
+        <member name="M:DevExpress.DataAccess.UI.Localization.DataAccessUILocalizer.CreateDefaultLocalizer">
+            <summary>
+                <para>Returns an  <b>XtraLocalizer</b> object representing default resources, based on the thread's language and regional settings (culture). 
+</para>
+            </summary>
+            <returns>A <see cref="T:DevExpress.Utils.Localization.XtraLocalizer`1"/> object representing resources based on the thread's culture.
+</returns>
+
+
+        </member>
+        <member name="M:DevExpress.DataAccess.UI.Localization.DataAccessUILocalizer.CreateResXLocalizer">
+            <summary>
+                <para>Returns an <b>XtraLocalizer</b> object representing resources based on the thread's language and regional settings (culture).
+</para>
+            </summary>
+            <returns>An <see cref="T:DevExpress.Utils.Localization.XtraLocalizer`1"/> object representing resources based on the thread's culture.
+</returns>
+
+
+        </member>
+        <member name="M:DevExpress.DataAccess.UI.Localization.DataAccessUILocalizer.GetString(DevExpress.DataAccess.UI.Localization.DataAccessUIStringId)">
+            <summary>
+                <para>Gets the string, localized by the current DataAccessUILocalizer, for the specified user interface element.
+</para>
+            </summary>
+            <param name="id">
+		A <see cref="T:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId"/> enumeration value specifying the UI element whose caption (text) is to be localized.
+
+            </param>
+            <returns>A <see cref="T:System.String"/> that is the text to be displayed within the specified UI element.
+
+</returns>
+
+
+        </member>
+        <member name="T:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId">
+
+            <summary>
+                <para>Contains values corresponding to strings that can be localized.
+</para>
+            </summary>
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.ConnectionEditorTitle">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.ConnectionErrorFormDetailPattern">
+            <summary>
+                <para><b>Default value</b>: Connection name: {0}nError message: {1}
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.DataSourceName">
+            <summary>
+                <para><b>Default value</b>: Data source name: {0}
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.DefaultNameConnection">
+            <summary>
+                <para><b>Default value</b>: Connection
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.DefaultNameParameter">
+            <summary>
+                <para>"Parameter"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.EFConnectionEditorTitle">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.EFDataMemberEditorTitle">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.EFDataSourceDesignerVerbEdit">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.EFDataSourceEditorTitle">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.ErrorFormDatasourceInitializationText">
+            <summary>
+                <para><b>Default value</b>: Unable to load data into one or several datasources. See information below for details.
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.ExpressionEditorParameterFormTitle">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.ExpressionEditorPresetEditExpression">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.ExpressionEditorPresetNewParameter">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.JoinEditorEmptyColumnText">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.JoinEditorEmptyTableText">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.JoinEditorEqualOperator">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.JoinEditorFillAllFieldsException">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.JoinEditorGreaterOperator">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.JoinEditorGreaterOrEqualOperator">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.JoinEditorLessOperator">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.JoinEditorLessOrEqualOperator">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.JoinEditorNotEqualOperator">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.LoadingDataCustomError">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.LoadingDataSourceAborted">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.LoadingDataSourceOpeningConnectionError">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.LoadingDatasourceOutOfMemoryError">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.LoadingDataSqlError">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.MasterDetailEditorAddConditionMessage">
+            <summary>
+                <para><b>Default value:</b> Create a new condition
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.MasterDetailEditorAddRelationMessage">
+            <summary>
+                <para><b>Default value:</b> Add a relation to the detail query
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.MasterDetailEditorInvalidColumnNameMessage">
+            <summary>
+                <para><b>Default value:</b> Cannot find the specified column: \"{0}\". Specify an existing column name.
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.MasterDetailEditorInvalidColumnQueryNameMessage">
+            <summary>
+                <para><b>Default value:</b> Cannot find the specified query: \"{0}\". Specify an existing query name before selecting a column.
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.MasterDetailEditorInvalidQueryNameMessage">
+            <summary>
+                <para><b>Default value</b>: Cannot find the specified query: \"{0}\". Specify an existing query name.
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.MasterDetailEditorInvalidRelationNameMessage">
+            <summary>
+                <para><b>Default value:</b> A relation with the specified name already exists.
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.MasterDetailEditorRemoveConditionMessage">
+            <summary>
+                <para><b>Default value:</b> Remove the condition
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.MasterDetailEditorRemoveRelationMessage">
+            <summary>
+                <para><b>Default value:</b> Remove the relation
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.MessageBoxConfirmationTitle">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.MessageBoxErrorTitle">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.MessageBoxWarningTitle">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.MessageLessThanTwoQueries">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.MessageMissingConnection">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.QueryDesignControlAliasAlreadyExists">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.QueryDesignControlDataPreviewCaption">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.QueryDesignControlExpressionChanged">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.QueryDesignControlJoinCommandPattern">
+            <summary>
+                <para><b>Default value:</b> Join {0}
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.QueryDesignControlNoSelection">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.QueryDesignControlRemoveTables">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.QueryDesignControlTableNameAlreadyExists">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.QueryDesignControlTableNameEmpty">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.QueryEditorTitle">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.RebuildResultSchemaConfirmationText">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.SqlDataSourceDesignerVerbAddQuery">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.SqlDataSourceDesignerVerbEditConnection">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.SqlDataSourceDesignerVerbManageQueries">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.SqlDataSourceDesignerVerbManageRelations">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.SqlDataSourceDesignerVerbRebuildSchema">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.WizardCannotConnectMessage">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.WizardCannotCreateDataSourceMessage">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.WizardCannotRetrieveDatabasesMessage">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.WizardConfirmExecutionMessage">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.WizardCustomConnectionString">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.WizardDataConnectionNameExistsMessage">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.WizardDataSourceCreatedMessage">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.WizardDataSourceEmptyNameMessage">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.WizardDataSourceNameExistsMessage">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.WizardEmptyConnectionNameMessage">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.WizardEmptyStoredProceduresListMessage">
+            <summary>
+                <para><b>Default value:</b> There are no any stored procedures in current database.
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.WizardFinishPageText">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.WizardPageChooseConnection">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.WizardPageChooseEFConnectionString">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.WizardPageChooseEFContext">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.WizardPageChooseEFDataMember">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.WizardPageConfigureParameters">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.WizardPageConfigureQuery">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.WizardPageConnectionProperties">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.WizardPageSaveConnection">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.DataAccess.UI.Localization.DataAccessUIStringId.WizardTitle">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+
+
+        </member>
+    </members>
+</doc>

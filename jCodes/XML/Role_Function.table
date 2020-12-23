@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="8264aef5-184f-4b49-beb1-ad910cc5b4d0">
+      <functionId>000212</functionId>
+      <name>Role_Function</name>
+      <chineseName>角色功能关联表</chineseName>
+      <existhistable>0</existhistable>
+      <version>1.0.0.0</version>
+      <lasttime>2019-09-25 09:55:29.534</lasttime>
+      <remark>没有实体类</remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="2aa96081-b852-4be1-a6ef-4949d142fb54">
+      <name>RoleId</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="15261efa-d0f6-46ec-ab10-3ac228230f7e">
+      <name>FunctionGid</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <indexsinfo>
+    <item gid="4b401762-f0be-4cd8-9bfc-99028d874765">
+      <name>pk_role_function</name>
+      <indexfieldlst>RoleId, FunctionGid</indexfieldlst>
+      <constraint_type>0</constraint_type>
+    </item>
+  </indexsinfo>
+</datatype>

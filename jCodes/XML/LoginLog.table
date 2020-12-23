@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="ecf19e61-759d-4b74-827d-9c7b3f0a1b7c">
+      <functionId>000204</functionId>
+      <name>LoginLog</name>
+      <chineseName>用户登录日志信息</chineseName>
+      <existhistable>0</existhistable>
+      <version>1.0.0.0</version>
+      <lasttime>2018-02-08 14:03:32.917</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="8fe480d0-0c8f-4b7a-9417-3d9c18f3f1ee">
+      <name>Id</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c801ec36-d13c-4959-8f6c-2077c2809fb8">
+      <name>UserId</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2727a9b7-75b6-4ca1-9ed1-403b1ea45eb1">
+      <name>Name</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0301e6a3-6bbc-4887-9de2-7f0e340f2a89">
+      <name>LoginName</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b630ca50-0a98-4914-8bbf-793045e587a2">
+      <name>CompanyId</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="8d9027c2-e70e-4301-9189-0ebdc90fcbd0">
+      <name>Remark</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="42bb8fd8-02e0-4325-b68a-a00222fa14e8">
+      <name>IP</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="3e31bf47-0012-4c07-a5b9-fcfa7e9071d4">
+      <name>Mac</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="34bb23a4-5b06-4df4-9500-d40846f1bb7d">
+      <name>LastUpdateTime</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="7be3a19b-4112-45ec-af96-68aee4b7adc5">
+      <name>SystemtypeId</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <indexsinfo>
+    <item gid="76d22a8e-5e76-48df-919f-e21180fbe93e">
+      <name>pk_loginlog</name>
+      <indexfieldlst>Id</indexfieldlst>
+      <constraint_type>1</constraint_type>
+    </item>
+  </indexsinfo>
+</datatype>

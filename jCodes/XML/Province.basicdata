@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <dataitem>
+    <item gid="0d22aeb2-24c8-46bd-b7ac-860004f0c549" id="1" provincename="北京市" />
+    <item gid="8caa6e6e-c5d9-4b88-a8cf-a5947104adf1" id="2" provincename="天津市" />
+    <item gid="91ae3b18-7f26-48f1-a43c-532db784d8f1" id="3" provincename="河北省" />
+    <item gid="27a625ca-cc0c-431c-9a1b-b21c799fe3cc" id="4" provincename="山西省" />
+    <item gid="e4bebca8-6e56-42fc-bcfe-65c0dde8b6bb" id="5" provincename="内蒙古自治区" />
+    <item gid="d58a79df-ae32-4bd7-b8bb-73c1449ad9b5" id="6" provincename="辽宁省" />
+    <item gid="6aa4090d-49fb-4486-9945-3f8aab431390" id="7" provincename="吉林省" />
+    <item gid="2a5995d1-a739-4cb2-b1f4-c9174a103fca" id="8" provincename="黑龙江省" />
+    <item gid="50efc210-f631-4390-81c0-c67d55b9d0cb" id="9" provincename="上海市" />
+    <item gid="f2c4d712-1d9d-4a72-994e-1d5dc2a84e53" id="10" provincename="江苏省" />
+    <item gid="ddd111d1-afe4-4126-8cce-d14ca3314d3e" id="11" provincename="浙江省" />
+    <item gid="ebf42de7-6634-4a6f-9b8c-8c4541158238" id="12" provincename="安徽省" />
+    <item gid="dd938f16-f402-413e-8d9f-8ef3d016ea17" id="13" provincename="福建省" />
+    <item gid="3d6c6b32-d580-4d9c-b2f7-36194e2afde3" id="14" provincename="江西省" />
+    <item gid="4a7d3661-caeb-4f77-b0d9-2048c6ddde17" id="15" provincename="山东省" />
+    <item gid="d908f5ee-3c31-4ab1-9653-b93e7850608e" id="16" provincename="河南省" />
+    <item gid="36a45c4e-a9e5-485c-8b73-af5d666a1c8b" id="17" provincename="湖北省" />
+    <item gid="5a61b1c6-b65b-4530-b641-495f8096c00c" id="18" provincename="湖南省" />
+    <item gid="983bce7c-aa64-4854-9ca4-e917fdf7e186" id="19" provincename="广东省" />
+    <item gid="21180def-086c-4d52-880c-96c46720faf0" id="20" provincename="广西壮族自治区" />
+    <item gid="1e871176-0d2d-4c14-a1e1-6ed905f66029" id="21" provincename="海南省" />
+    <item gid="1b580b5c-d567-4278-a26e-353897f56d1f" id="22" provincename="重庆市" />
+    <item gid="c23562e4-8078-4942-af78-be63e37f156d" id="23" provincename="四川省" />
+    <item gid="7b354045-7ffe-48ab-9376-f88122c230b5" id="24" provincename="贵州省" />
+    <item gid="b6b8e66f-538e-4ce3-b558-a9532008ecb3" id="25" provincename="云南省" />
+    <item gid="2fd662a5-7153-44e3-a574-cf231f732791" id="26" provincename="西藏自治区" />
+    <item gid="f70af0ed-0823-48f9-936c-f65add3b606d" id="27" provincename="陕西省" />
+    <item gid="4ebd5c3f-c4e1-4202-ba00-ca0d0e44d0ca" id="28" provincename="甘肃省" />
+    <item gid="afc743a7-3260-4aa8-a881-723fb2a7fc08" id="29" provincename="青海省" />
+    <item gid="9c99bbfd-c4ad-4dc1-a896-7425ee28934b" id="30" provincename="宁夏回族自治区" />
+    <item gid="c07ecad7-751b-45db-8524-d8fbeadf339f" id="31" provincename="新疆维吾尔自治区" />
+    <item gid="5ae0b94f-30e8-4e4f-a82c-2d92c3b942ab" id="32" provincename="香港特别行政区" />
+    <item gid="52156ffc-515e-497d-b151-9078b77b251f" id="33" provincename="澳门特别行政区" />
+    <item gid="45eacc13-77ea-4379-9f33-4441e049eab9" id="34" provincename="台湾省" />
+  </dataitem>
+</datatype>

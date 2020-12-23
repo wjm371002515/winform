@@ -1,0 +1,2445 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DevExpress.Pdf.v14.1.Core</name>
+    </assembly>
+    <members>
+        <member name="T:DevExpress.Pdf.PdfPageTreeObject">
+
+            <summary>
+                <para>Provides settings that define page boundaries for specific content types.
+</para>
+            </summary>
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfPageTreeObject.CropBox">
+            <summary>
+                <para>Specifies the crop box imposing the page boundaries displayed in a PDF Viewer.
+
+</para>
+            </summary>
+            <value>A <see cref="T:DevExpress.Pdf.PdfRectangle"/> object, specifying the crop box.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfPageTreeObject.MediaBox">
+            <summary>
+                <para>Specifies the media box defining the boundaries of the physical medium on which the page is to be printed. 
+</para>
+            </summary>
+            <value>A <see cref="T:DevExpress.Pdf.PdfRectangle"/> object, specifying the media box.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfPageTreeObject.Rotate">
+            <summary>
+                <para>Rotates the document page at the specified angle.
+</para>
+            </summary>
+            <value>An integer value, specifying the page rotation angle (in degrees).
+</value>
+
+
+        </member>
+        <member name="T:DevExpress.Pdf.Localization.PdfCoreLocalizer">
+
+            <summary>
+                <para>Provides the means to localize the dialog messages of a PDF Viewer.
+
+</para>
+            </summary>
+
+        </member>
+        <member name="M:DevExpress.Pdf.Localization.PdfCoreLocalizer.#ctor">
+            <summary>
+                <para>Initializes a new instance of the PdfCoreLocalizer class with default settings.
+</para>
+            </summary>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.Localization.PdfCoreLocalizer.Active">
+            <summary>
+                <para>Specifies a localizer object providing localization of a PDF Viewer's dialog messages at runtime.
+</para>
+            </summary>
+            <value>An <see cref="T:DevExpress.Utils.Localization.XtraLocalizer`1"/> descendant, used to localize the dialog messages at runtime. 
+</value>
+
+
+        </member>
+        <member name="M:DevExpress.Pdf.Localization.PdfCoreLocalizer.CreateResXLocalizer">
+            <summary>
+                <para>For internal use. Returns a Localizer object storing resources based on the thread's language and regional settings (culture). 
+</para>
+            </summary>
+            <returns>An <see cref="T:DevExpress.Utils.Localization.XtraLocalizer`1"/> object, storing resources based on the thread's language and regional settings (culture).
+
+</returns>
+
+
+        </member>
+        <member name="M:DevExpress.Pdf.Localization.PdfCoreLocalizer.GetString(DevExpress.Pdf.Localization.PdfCoreStringId)">
+            <summary>
+                <para>Returns a localized string for the given string identifier.
+</para>
+            </summary>
+            <param name="id">
+		A <see cref="T:DevExpress.Pdf.Localization.PdfCoreStringId"/> enumeration value, identifying the string to localize.
+
+            </param>
+            <returns>A <see cref="T:System.String"/> value, corresponding to the specified identifier.
+</returns>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.Localization.PdfCoreLocalizer.Language">
+            <summary>
+                <para>Returns the name of the language currently used by this localizer object.
+
+
+
+</para>
+            </summary>
+            <value>A <see cref="T:System.String"/> value that specifies the language of the user interface localization.
+</value>
+
+
+        </member>
+        <member name="T:DevExpress.Pdf.PdfPasswordRequestedEventHandler">
+
+            <summary>
+                <para>A method that will handle the <see cref="E:DevExpress.XtraPdfViewer.PdfViewer.PasswordRequested"/> event.
+
+</para>
+            </summary>
+
+        </member>
+        <member name="M:DevExpress.Pdf.PdfPasswordRequestedEventHandler.Invoke(System.Object,DevExpress.Pdf.PdfPasswordRequestedEventArgs)">
+            <summary>
+                <para>A method that will handle the <see cref="E:DevExpress.XtraPdfViewer.PdfViewer.PasswordRequested"/> event.
+</para>
+            </summary>
+            <param name="sender">
+		The event sender.
+
+            </param>
+            <param name="e">
+		A <see cref="T:DevExpress.Pdf.PdfPasswordRequestedEventArgs"/> object that contains data related to the event.
+
+            </param>
+
+
+        </member>
+        <member name="T:DevExpress.Pdf.PdfPasswordRequestedEventArgs">
+
+            <summary>
+                <para>Provides data for the <see cref="E:DevExpress.XtraPdfViewer.PdfViewer.PasswordRequested"/> event.
+</para>
+            </summary>
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfPasswordRequestedEventArgs.FileName">
+            <summary>
+                <para>Returns the PDF file name.
+</para>
+            </summary>
+            <value>A <see cref="T:System.String"/> value, specifying the file name.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfPasswordRequestedEventArgs.Password">
+            <summary>
+                <para>Specifies the security password to open a PDF file.
+</para>
+            </summary>
+            <value>A <see cref="T:System.Security.SecureString"/> value.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfPasswordRequestedEventArgs.PasswordRequestsCount">
+            <summary>
+                <para>Specifies how many times the password has been requested during the current authentication attempt.
+</para>
+            </summary>
+            <value>An integer value, specifying the number of password requests.
+</value>
+
+
+        </member>
+        <member name="T:DevExpress.Pdf.PdfWord">
+
+            <summary>
+                <para>An individual word in a document.
+</para>
+            </summary>
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfWord.Characters">
+            <summary>
+                <para>Returns a list of the word's characters.
+</para>
+            </summary>
+            <value>A collection of <see cref="T:DevExpress.Pdf.PdfCharacter"/> values.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfWord.Rectangles">
+            <summary>
+                <para>Returns rectangles surrounding the word.
+</para>
+            </summary>
+            <value>A collection of <see cref="T:DevExpress.Pdf.PdfOrientedRectangle"/> values.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfWord.Text">
+            <summary>
+                <para>Returns a Unicode representation of the word's characters.
+</para>
+            </summary>
+            <value>A <see cref="T:System.String"/> value.
+</value>
+
+
+        </member>
+        <member name="T:DevExpress.Pdf.PdfTextSearchDirection">
+
+            <summary>
+                <para>Lists the available text search direction modes.
+</para>
+            </summary>
+
+        </member>
+        <member name="F:DevExpress.Pdf.PdfTextSearchDirection.Backward">
+            <summary>
+                <para>Specifies a backward search in the document.
+
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.PdfTextSearchDirection.Forward">
+            <summary>
+                <para>Specifies a forward search in the document.
+
+</para>
+            </summary>
+
+
+        </member>
+        <member name="T:DevExpress.Pdf.PdfOrientedRectangle">
+
+            <summary>
+                <para>A rectangle that delimits a page area around a specific document element.
+
+</para>
+            </summary>
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfOrientedRectangle.Angle">
+            <summary>
+                <para>Specifies the rotation angle of the rectangle
+</para>
+            </summary>
+            <value>A <see cref="T:System.Double"/> value, specifying the rotation angle of the rectangle.
+</value>
+
+
+        </member>
+        <member name="M:DevExpress.Pdf.PdfOrientedRectangle.Equals(System.Object)">
+            <summary>
+                <para>Determines whether or not the specified object is equal to the current PdfOrientedRectangle instance.
+</para>
+            </summary>
+            <param name="obj">
+		The object to compare with the current object.
+
+            </param>
+            <returns><b>true</b> if the specified object is equal to the current PdfOrientedRectangle instance; otherwise <b>false</b>.
+</returns>
+
+
+        </member>
+        <member name="M:DevExpress.Pdf.PdfOrientedRectangle.GetHashCode">
+            <summary>
+                <para>Serves as the default hash function.
+</para>
+            </summary>
+            <returns>An integer value, specifying the hash code for the current object.
+</returns>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfOrientedRectangle.Height">
+            <summary>
+                <para>Specifies the rectangle height.
+</para>
+            </summary>
+            <value>A <see cref="T:System.Double"/> value, specifying the rectangle height.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfOrientedRectangle.Left">
+            <summary>
+                <para>Specifies the rectangle position in relation to the left edge of the PDF page.
+</para>
+            </summary>
+            <value>A <see cref="T:System.Double"/> value.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfOrientedRectangle.Top">
+            <summary>
+                <para>Specifies the rectangle position in relation to the top edge of the PDF page.
+</para>
+            </summary>
+            <value>A <see cref="T:System.Double"/> value.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfOrientedRectangle.Width">
+            <summary>
+                <para>Specifies the rectangle width.
+</para>
+            </summary>
+            <value>A <see cref="T:System.Double"/> value, specifying the rectangle width.
+</value>
+
+
+        </member>
+        <member name="T:DevExpress.Pdf.PdfCharacter">
+
+            <summary>
+                <para>An individual character in a document.
+</para>
+            </summary>
+
+        </member>
+        <member name="M:DevExpress.Pdf.PdfCharacter.#ctor(System.String,DevExpress.Pdf.PdfFont,System.Double,DevExpress.Pdf.PdfOrientedRectangle)">
+            <summary>
+                <para>Initializes a new instance of the PdfCharacter class with the specified settings.
+</para>
+            </summary>
+            <param name="unicodeData">
+		A <see cref="T:System.String"/> value. This value is assigned to the <see cref="P:DevExpress.Pdf.PdfCharacter.UnicodeData"/> property.
+
+            </param>
+            <param name="font">
+		A <see cref="T:DevExpress.Pdf.PdfFont"/> value. This value is assigned to the <see cref="P:DevExpress.Pdf.PdfCharacter.Font"/> property.
+
+            </param>
+            <param name="fontSize">
+		A <see cref="T:System.Double"/> value. This value is assigned to the <see cref="P:DevExpress.Pdf.PdfCharacter.FontSize"/> property.
+
+            </param>
+            <param name="rectangle">
+		A <see cref="T:DevExpress.Pdf.PdfOrientedRectangle"/> value. This value is assigned to the <see cref="P:DevExpress.Pdf.PdfCharacter.Rectangle"/> property.
+
+            </param>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfCharacter.Font">
+            <summary>
+                <para>Returns the character's font settings.
+</para>
+            </summary>
+            <value>A <see cref="T:DevExpress.Pdf.PdfFont"/> value.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfCharacter.FontSize">
+            <summary>
+                <para>Returns the character's font size (in points).
+</para>
+            </summary>
+            <value>A <see cref="T:System.Double"/> value, specifying the font size, in points.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfCharacter.Rectangle">
+            <summary>
+                <para>Returns a rectangle that surrounds the character.
+</para>
+            </summary>
+            <value>A <see cref="T:DevExpress.Pdf.PdfOrientedRectangle"/> value.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfCharacter.UnicodeData">
+            <summary>
+                <para>Returns a Unicode representation of the character.
+</para>
+            </summary>
+            <value>A <see cref="T:System.String"/> value, specifying a character's Unicode representation.
+</value>
+
+
+        </member>
+        <member name="T:DevExpress.Pdf.PdfPage">
+
+            <summary>
+                <para>An individual page in a document.
+</para>
+            </summary>
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfPage.Actions">
+            <summary>
+                <para>Provides access to a dictionary of additional actions to be performed when the page is opened or closed.
+</para>
+            </summary>
+            <value>A DevExpress.Pdf.PdfPageActions object.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfPage.Annotations">
+            <summary>
+                <para>Provides access to the collection of annotation dictionaries that contain indirect references to all annotations associated with the page.
+</para>
+            </summary>
+            <value>A collection of DevExpress.Pdf.PdfAnnotation objects.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfPage.AnnotationTabOrder">
+            <summary>
+                <para>Indicates the tab order that shall be used for annotations on the page. 
+</para>
+            </summary>
+            <value>A DevExpress.Pdf.PdfAnnotationTabOrder enumeration value.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfPage.ArtBox">
+            <summary>
+                <para>Specifies the art box defining the boundaries of the meaningful content (including potential white space) on a page as intended by the page's creator.
+</para>
+            </summary>
+            <value>A <see cref="T:DevExpress.Pdf.PdfRectangle"/> object, specifying the art box.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfPage.ArticleBeads">
+            <summary>
+                <para>Provides access to the collection of indirect references to all article beads appearing on the page.
+</para>
+            </summary>
+            <value>A collection of DevExpress.Pdf.PdfBead objects.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfPage.BleedBox">
+            <summary>
+                <para>Specifies the bleed box defining the region to which the contents of the page shall be clipped when output in a production environment.
+</para>
+            </summary>
+            <value>A <see cref="T:DevExpress.Pdf.PdfRectangle"/> object, specifying the bleed box.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfPage.Commands">
+            <summary>
+                <para>Provides access to a collection of indirect references to Web Capture command dictionaries describing commands that were used in building the PDF file.
+</para>
+            </summary>
+            <value>A collection of DevExpress.Pdf.PdfCommand objects.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfPage.DisplayDuration">
+            <summary>
+                <para>Indicates the display duration of a page (also called its advance timing): the maximum length of time, in seconds, that the page shall be displayed during presentations before the viewer application shall automatically advance to the next page.
+</para>
+            </summary>
+            <value>A <see cref="T:System.Double"/> value.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfPage.ID">
+            <summary>
+                <para>Indicates the digital identifier of the page's parent Web Capture content set.
+</para>
+            </summary>
+            <value>A <see cref="T:System.Byte"/> array.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfPage.LastModified">
+            <summary>
+                <para>Specifies the date and time when the page's contents were most recently modified.
+</para>
+            </summary>
+            <value>A nullable <see cref="T:System.DateTimeOffset"/> value.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfPage.Metadata">
+            <summary>
+                <para>Provides access to a metadata stream that contains metadata for the page.
+</para>
+            </summary>
+            <value>A DevExpress.Pdf.PdfMetadata object.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfPage.PieceInfo">
+            <summary>
+                <para>Provides access to a page-piece dictionary associated with the page.
+</para>
+            </summary>
+            <value>A dictionary, containing the DevExpress.Pdf.PdfPieceInfoEntry objects, along with their <see cref="T:System.String"/> keys.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfPage.PreferredZoomFactor">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+            <value> [To be supplied] </value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfPage.StructParents">
+            <summary>
+                <para>Indicates the key of the page's entry in the structural parent tree.
+</para>
+            </summary>
+            <value>A nullable integer value.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfPage.ThumbnailImage">
+            <summary>
+                <para>Provides access to a stream object that defines the page's thumbnail image.
+</para>
+            </summary>
+            <value>A DevExpress.Pdf.PdfImage object.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfPage.Trans">
+            <summary>
+                <para>Provides access to a transition dictionary describing the transition effect that shall be used when displaying the page during presentations.
+</para>
+            </summary>
+            <value>A DevExpress.Pdf.PdfPagePresentation object.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfPage.TransparencyGroup">
+            <summary>
+                <para>Specifies the group attributes dictionary that specifies the attributes of the page's page group for use in the transparent imaging model.
+</para>
+            </summary>
+            <value>A DevExpress.Pdf.PdfTransparencyGroup object.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfPage.TrimBox">
+            <summary>
+                <para>Specifies the trim box defining the intended dimensions of the finished page after trimming.
+</para>
+            </summary>
+            <value>A <see cref="T:DevExpress.Pdf.PdfRectangle"/> object, specifying the trim box.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfPage.UserUnit">
+            <summary>
+                <para>Indicates the size of default user space units, in multiples of <b>1</b>/<b>72</b> inch.
+</para>
+            </summary>
+            <value>A <see cref="T:System.Double"/> value. The default value is <b>1.0</b> (user space unit is <b>1</b>/<b>72</b> inch).
+</value>
+
+
+        </member>
+        <member name="T:DevExpress.Pdf.PdfDocument">
+
+            <summary>
+                <para>A document contained in a PDF file.
+</para>
+            </summary>
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocument.AcroForm">
+            <summary>
+                <para>Provides access to the document's interactive form (AcroForm) dictionary.
+</para>
+            </summary>
+            <value>A DevExpress.Pdf.PdfInteractiveForm object.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocument.Actions">
+            <summary>
+                <para>Provides access to a dictionary of additional actions defining the actions that shall be taken in response to various trigger events affecting the document as a whole.
+</para>
+            </summary>
+            <value>A DevExpress.Pdf.PdfDocumentActions object.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocument.AllowAccessibilty">
+            <summary>
+                <para>Enables copying or otherwise extracting text and graphics from the document (in support of accessibility to users with disabilities or for other purposes).
+</para>
+            </summary>
+            <value><b>true</b> to support PDF accessibility; otherwise <b>false</b>.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocument.AllowAnnotationsAndFormsModifying">
+            <summary>
+                <para>Enables adding and modifying text annotations and interactive form fields in the PDF.
+</para>
+            </summary>
+            <value><b>true</b> to allow making changes to the PDF annotations and form fields; otherwise <b>false</b>.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocument.AllowDataExtraction">
+            <summary>
+                <para>Enables extracting data from the PDF.
+</para>
+            </summary>
+            <value><b>true</b> to allow extracting the PDF data; otherwise <b>false</b>.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocument.AllowDocumentAssembling">
+            <summary>
+                <para>Enables inserting, rotating, or deleting PDF pages and creating navigation elements such as bookmarks or thumbnail images.
+</para>
+            </summary>
+            <value><b>true</b> to allow assembling the document; otherwise <b>false</b>.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocument.AllowFormsFilling">
+            <summary>
+                <para>Enables filling in interactive form fields of the PDF file, as well as signing the document (which amounts to filling in existing signature fields, a type of interactive form field).
+</para>
+            </summary>
+            <value><b>true</b> to allow filling in interactive form fields in the PDF; otherwise <b>false</b>.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocument.AllowHighQualityPrinting">
+            <summary>
+                <para>Enables printing the PDF in high resolution, so that a faithful digital copy of the PDF content is generated. 
+
+</para>
+            </summary>
+            <value><b>true</b> to high quality printing; otherwise <b>false</b>.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocument.AllowModifying">
+            <summary>
+                <para>Enables modifying the PDF.
+</para>
+            </summary>
+            <value><b>true</b> to allow modifying the PDF; otherwise <b>false</b>.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocument.AllowPrinting">
+            <summary>
+                <para>Enables printing the PDF.
+</para>
+            </summary>
+            <value><b>true</b> to allow printing the PDF; otherwise <b>false</b>.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocument.Author">
+            <summary>
+                <para>Returns the name of the person who created the document.
+</para>
+            </summary>
+            <value>A <see cref="T:System.String"/> value.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocument.CreationDate">
+            <summary>
+                <para>The date and time the document was created, in human-readable form.
+</para>
+            </summary>
+            <value>A <see cref="T:System.DateTimeOffset"/> structure.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocument.Creator">
+            <summary>
+                <para>If the document was converted to PDF from another format, the name of the conforming product that created the original document from which it was converted.
+</para>
+            </summary>
+            <value>A <see cref="T:System.String"/> value.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocument.Destinations">
+            <summary>
+                <para>Provides access to the dictionary of names and corresponding destinations.
+</para>
+            </summary>
+            <value>A dictionary, containing the DevExpress.Pdf.PdfDestination objects, along with their <see cref="T:System.Byte"/> key values.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocument.Keywords">
+            <summary>
+                <para>Returns the keywords associated with the document. 
+</para>
+            </summary>
+            <value>A <see cref="T:System.String"/> value.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocument.LanguageCulture">
+            <summary>
+                <para>Returns the culture-specific settings of the document.
+</para>
+            </summary>
+            <value>A <see cref="T:System.Globalization.CultureInfo"/> object.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocument.LogicalStructure">
+            <summary>
+                <para>Provides access to the document's structure tree root dictionary.
+</para>
+            </summary>
+            <value>A DevExpress.Pdf.PdfLogicalStructure object.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocument.MarkInfo">
+            <summary>
+                <para>Provides access to the mark information dictionary that contains information about the document's usage of Tagged PDF conventions.
+</para>
+            </summary>
+            <value>A DevExpress.Pdf.PdfMarkInfo object.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocument.Metadata">
+            <summary>
+                <para>Provides access to a stream that contains the document metadata.
+</para>
+            </summary>
+            <value>A DevExpress.Pdf.PdfMetadata object.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocument.ModDate">
+            <summary>
+                <para>The date and time the document was most recently modified, in human-readable form.
+</para>
+            </summary>
+            <value>A <see cref="T:System.DateTimeOffset"/> structure.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocument.Names">
+            <summary>
+                <para>Provides access to the document's name dictionary.
+</para>
+            </summary>
+            <value>A <see cref="T:DevExpress.Pdf.PdfNames"/> object.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocument.NeedsRendering">
+            <summary>
+                <para>Indicates whether or not to expedite the display of PDF documents containing XFA forms.
+</para>
+            </summary>
+            <value><b>true</b> if the document shall be regenerated when the document is first opened; otherwise <b>false</b>. The default value is <b>false</b>.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocument.OpenAction">
+            <summary>
+                <para>Indicates an action that shall be performed when the document is opened.
+</para>
+            </summary>
+            <value>A DevExpress.Pdf.PdfAction object.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocument.OpenDestination">
+            <summary>
+                <para>Indicates a destination that shall be displayed when the document is opened.
+</para>
+            </summary>
+            <value>A DevExpress.Pdf.PdfDestination object.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocument.OptionalContentProperties">
+            <summary>
+                <para>Provides access to the document's optional content properties dictionary.
+</para>
+            </summary>
+            <value>A DevExpress.Pdf.PdfOptionalContentProperties object.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocument.Outlines">
+            <summary>
+                <para>Provides access to the outline dictionary that shall be the root of the document's outline hierarchy.
+</para>
+            </summary>
+            <value>A DevExpress.Pdf.PdfOutlines object.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocument.OutputIntents">
+            <summary>
+                <para>Provides access to the array of output intent dictionaries that specify the color characteristics of output devices on which the document might be rendered.
+</para>
+            </summary>
+            <value>A collection of DevExpress.Pdf.PdfOutputIntent objects.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocument.PageLabels">
+            <summary>
+                <para>Provides access to the number tree defining the page labeling for the document.
+</para>
+            </summary>
+            <value>A dictionary, containing the DevExpress.Pdf.PdfPageLabel objects, along with their integer key values.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocument.PageLayout">
+            <summary>
+                <para>Indicates the page layout of the opened document.
+</para>
+            </summary>
+            <value>A DevExpress.Pdf.PdfPageLayout enumeration value. The default value is <b>SinglePage</b>.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocument.PageMode">
+            <summary>
+                <para>Indicates the mode of displaying the opened document.
+</para>
+            </summary>
+            <value>A DevExpress.Pdf.PdfPageMode enumeration value. The default value is <b>UseNone</b>.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocument.Pages">
+            <summary>
+                <para>Provides access to the collection of document pages.
+</para>
+            </summary>
+            <value>A collection of <see cref="T:DevExpress.Pdf.PdfPage"/> objects.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocument.PieceInfo">
+            <summary>
+                <para>Provides access to the page-piece dictionary associated with the document.
+</para>
+            </summary>
+            <value>A dictionary, containing the DevExpress.Pdf.PdfPieceInfoEntry objects, along with their <see cref="T:System.String"/> key values.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocument.Producer">
+            <summary>
+                <para>If the document was converted to PDF from another format, the name of the conforming product that converted it to PDF.
+</para>
+            </summary>
+            <value>A <see cref="T:System.String"/> value.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocument.Subject">
+            <summary>
+                <para>Returns the subject of the document.
+</para>
+            </summary>
+            <value>A <see cref="T:System.String"/> value.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocument.Threads">
+            <summary>
+                <para>Provides access to the array of thread dictionaries that contains the document's article threads.
+</para>
+            </summary>
+            <value>A collection of DevExpress.Pdf.PdfArticleThread objects.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocument.Title">
+            <summary>
+                <para>Returns the document's title.
+</para>
+            </summary>
+            <value>A <see cref="T:System.String"/> value.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocument.Trapped">
+            <summary>
+                <para>A name object indicating whether the document has been modified to include trapping information.
+</para>
+            </summary>
+            <value>A <see cref="T:DevExpress.Utils.DefaultBoolean"/> enumeration value.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocument.Version">
+            <summary>
+                <para>Indicates the version of the PDF specification to which the document conforms if later than the version specified in the file's header.
+</para>
+            </summary>
+            <value>A DevExpress.Pdf.PdfFileVersion object.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocument.ViewerPreferences">
+            <summary>
+                <para>Provides access to the viewer preferences dictionary specifying how to display the document on the screen.
+</para>
+            </summary>
+            <value>A DevExpress.Pdf.PdfViewerPreferences object.
+</value>
+
+
+        </member>
+        <member name="T:DevExpress.Pdf.PdfTextSearchParameters">
+
+            <summary>
+                <para>Specifies the options applied to a text search.
+</para>
+            </summary>
+
+        </member>
+        <member name="M:DevExpress.Pdf.PdfTextSearchParameters.#ctor">
+            <summary>
+                <para>Initializes a new instance of the PdfTextSearchParameters class with default settings.
+</para>
+            </summary>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfTextSearchParameters.CaseSensitive">
+            <summary>
+                <para>Specifies whether or not to ignore the letter case when searching text in a PDF.
+</para>
+            </summary>
+            <value><b>true</b>, to take into account the letter case; otherwise <b>false</b>.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfTextSearchParameters.Direction">
+            <summary>
+                <para>Specifies the direction of text search.
+</para>
+            </summary>
+            <value>A <see cref="T:DevExpress.Pdf.PdfTextSearchDirection"/> enumeration value, specifying the search direction.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfTextSearchParameters.WholeWords">
+            <summary>
+                <para>Specifies whether or not to take into account only whole words when searching text in a PDF. 
+</para>
+            </summary>
+            <value><b>true</b>, if whole words should match the search criteria; otherwise <b>false</b>.
+</value>
+
+
+        </member>
+        <member name="T:DevExpress.Pdf.PdfRectangle">
+
+            <summary>
+                <para>A document rectangle.
+</para>
+            </summary>
+
+        </member>
+        <member name="M:DevExpress.Pdf.PdfRectangle.#ctor(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+                <para>Initializes a new instance of the PdfRectangle class with the specified settings.
+</para>
+            </summary>
+            <param name="left">
+		A <see cref="T:System.Double"/> value.
+
+            </param>
+            <param name="bottom">
+		A <see cref="T:System.Double"/> value.
+
+            </param>
+            <param name="right">
+		A <see cref="T:System.Double"/> value.
+
+            </param>
+            <param name="top">
+		A <see cref="T:System.Double"/> value.
+
+            </param>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfRectangle.Bottom">
+            <summary>
+                <para>Specifies the PdfRectangle's bottom coordinate.
+</para>
+            </summary>
+            <value>A <see cref="T:System.Double"/> value, specifying the bottom coordinate of the PDF rectangle.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfRectangle.BottomRight">
+            <summary>
+                <para>Specifies the PdfRectangle's bottom right coordinate.
+</para>
+            </summary>
+            <value>A <see cref="T:DevExpress.Pdf.PdfPoint"/> structure, specifying the bottom right coordinate of the PDF rectangle.
+</value>
+
+
+        </member>
+        <member name="M:DevExpress.Pdf.PdfRectangle.Equals(System.Object)">
+            <summary>
+                <para>Determines whether or not the specified object is equal to the current PdfRectangle instance.
+
+
+
+</para>
+            </summary>
+            <param name="obj">
+		The object to compare with the current object.
+
+            </param>
+            <returns><b>true</b> if the specified object is equal to the current PdfRectangle instance; otherwise <b>false</b>.
+</returns>
+
+
+        </member>
+        <member name="M:DevExpress.Pdf.PdfRectangle.GetHashCode">
+            <summary>
+                <para>Serves as the default hash function.
+</para>
+            </summary>
+            <returns>An integer value, specifying the hash code for the current object.
+</returns>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfRectangle.Height">
+            <summary>
+                <para>Specifies the PdfRectangle's height.
+</para>
+            </summary>
+            <value>A <see cref="T:System.Double"/> value, specifying the height of the PDF rectangle.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfRectangle.Left">
+            <summary>
+                <para>Specifies the PdfRectangle's left coordinate.
+</para>
+            </summary>
+            <value>A <see cref="T:System.Double"/> value, specifying the left coordinate of the PDF rectangle.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfRectangle.Right">
+            <summary>
+                <para>Specifies the PdfRectangle's right coordinate.
+</para>
+            </summary>
+            <value>A <see cref="T:System.Double"/> value, specifying the right coordinate of the PDF rectangle.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfRectangle.Top">
+            <summary>
+                <para>Specifies the PdfRectangle's top coordinate.
+</para>
+            </summary>
+            <value>A <see cref="T:System.Double"/> value, specifying the top coordinate of the PDF rectangle.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfRectangle.TopLeft">
+            <summary>
+                <para>Specifies the PdfRectangle's top left coordinate.
+</para>
+            </summary>
+            <value>A <see cref="T:DevExpress.Pdf.PdfPoint"/> structure, specifying the top left coordinate of the PDF rectangle.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfRectangle.Width">
+            <summary>
+                <para>Specifies the PdfRectangle's width.
+</para>
+            </summary>
+            <value>A <see cref="T:System.Double"/> value, specifying the width of the PDF rectangle.
+</value>
+
+
+        </member>
+        <member name="T:DevExpress.Pdf.PdfFontFlags">
+
+            <summary>
+                <para>Lists the values that correspond to flags defining various characteristics of the font.
+</para>
+            </summary>
+
+        </member>
+        <member name="F:DevExpress.Pdf.PdfFontFlags.AllCap">
+            <summary>
+                <para><para>"0x10000"</para>
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.PdfFontFlags.FixedPitch">
+            <summary>
+                <para><para>"0x00001"</para>
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.PdfFontFlags.ForceBold">
+            <summary>
+                <para><para>"0x40000"</para>
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.PdfFontFlags.Italic">
+            <summary>
+                <para><para>"0x00040"</para>
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.PdfFontFlags.None">
+            <summary>
+                <para><para>"0x00000"</para>
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.PdfFontFlags.Nonsymbolic">
+            <summary>
+                <para><para>"0x00020"</para>
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.PdfFontFlags.Script">
+            <summary>
+                <para><para>"0x00008"</para>
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.PdfFontFlags.Serif">
+            <summary>
+                <para><para>"0x00002"</para>
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.PdfFontFlags.SmallCap">
+            <summary>
+                <para><para>"0x20000"</para>
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.PdfFontFlags.Symbolic">
+            <summary>
+                <para><para>"0x00004"</para>
+</para>
+            </summary>
+
+
+        </member>
+        <member name="T:DevExpress.Pdf.PdfFontStretch">
+
+            <summary>
+                <para>Lists the font stretch values.
+</para>
+            </summary>
+
+        </member>
+        <member name="F:DevExpress.Pdf.PdfFontStretch.Condensed">
+            <summary>
+                <para><para>"Condensed"</para>
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.PdfFontStretch.Expanded">
+            <summary>
+                <para><para>"Expanded"</para>
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.PdfFontStretch.ExtraCondensed">
+            <summary>
+                <para><para>"ExtraCondensed"</para>
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.PdfFontStretch.ExtraExpanded">
+            <summary>
+                <para><para>"ExtraExpanded"</para>
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.PdfFontStretch.Normal">
+            <summary>
+                <para><para>"Normal"</para>
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.PdfFontStretch.SemiCondensed">
+            <summary>
+                <para><para>"SemiCondensed"</para>
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.PdfFontStretch.SemiExpanded">
+            <summary>
+                <para><para>"SemiExpanded"</para>
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.PdfFontStretch.UltraCondensed">
+            <summary>
+                <para><para>"UltraCondensed"</para>
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.PdfFontStretch.UltraExpanded">
+            <summary>
+                <para><para>"UltraExpanded"</para>
+</para>
+            </summary>
+
+
+        </member>
+        <member name="T:DevExpress.Pdf.PdfCharacterMapping">
+
+            <summary>
+                <para>Stores a <b>CMap</b> table that maps character codes to Unicode values.
+</para>
+            </summary>
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfCharacterMapping.Map">
+            <summary>
+                <para>Returns a <b>CMap</b> table that maps character codes to Unicode values.
+</para>
+            </summary>
+            <value>A dictionary, storing the <b>CMap</b> table.
+</value>
+
+
+        </member>
+        <member name="T:DevExpress.Pdf.Localization.PdfCoreStringId">
+
+            <summary>
+                <para>Contains strings that correspond to the dialog messages of the PDF Viewer that are subject to localization.
+</para>
+            </summary>
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgDuplicateColorSpaceComponentName">
+            <summary>
+                <para>"<b>The color space component name array contains duplicate names.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgInconsistentArrayLength">
+            <summary>
+                <para>"<b>The length of c0 and c1 lists should be equal.</b>"
+
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgInconsistentColorantsCount">
+            <summary>
+                <para>"<b>Colorants count should be equal to names count.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgInconsistentColorComponentsCount">
+            <summary>
+                <para>"<b>The component count in this and alternate color spaces should be equal.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectBitsPerSample">
+            <summary>
+                <para>"<b>The number of bits should be 1, 2, 4, 8, 12, 24, and 32.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectCalculatorCode">
+            <summary>
+                <para>"<b>The Calculator Function code can't be empty.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectCIEColorComponent">
+            <summary>
+                <para>"<b>The CIE color space component value should be greater than or equal to 0.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectColorantComponentsCount">
+            <summary>
+                <para>"<b>The colorant components count should be equal to 1.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectColorantName">
+            <summary>
+                <para>"<b>The colorant name should be equal to component name.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectColorComponentsCount">
+            <summary>
+                <para>"<b>The color should have 1, 3 or 4 components.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectColorComponentValue">
+            <summary>
+                <para>"<b>The color component value should be greater than or equal to 0 and less than or equal to 1.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectColorLookupTableSize">
+            <summary>
+                <para>"<b>The color lookup table size should be a multiple of the number of color components and contain greater than 0 and less than or equal 256 colors.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectColorSpaceComponentName">
+            <summary>
+                <para>"<b>The color space component name can't be empty.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectColorSpaceName">
+            <summary>
+                <para>"<b>The color space name can't be empty.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectDashLength">
+            <summary>
+                <para>"<b>The dash length should be greater than or equal to 0.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectDashPattern">
+            <summary>
+                <para>"<b>The sum of dash and gap lengths should be greater than 0.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectDashPatternArraySize">
+            <summary>
+                <para>"<b>The dash pattern array must not be empty.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectDecodeArrayEntryValue">
+            <summary>
+                <para>"<b>The decode array entry value should be greater than or equal to 0.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectDecodeListSize">
+            <summary>
+                <para>"<b>The Decode list size should be equal to Range list size.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectEncodeListSize">
+            <summary>
+                <para>"<b>The Encode list size should be equal to Domain list size.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectFlatnessTolerance">
+            <summary>
+                <para>"<b>The flatness tolerance should be greater than or equal to 0 and less than or equal to 100.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectFontSize">
+            <summary>
+                <para>"<b>Ths font size should be greater than 0.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectGamma">
+            <summary>
+                <para>"<b>The gamma value should be greater than 0.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectGammaComponent">
+            <summary>
+                <para>"<b>The gamma component value should be greater than 0.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectGapLength">
+            <summary>
+                <para>"<b>The gap length should be greater than or equal to 0.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectGlyphPosition">
+            <summary>
+                <para>"<b>The glyph position should be less or equal than text length.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectGrayLevel">
+            <summary>
+                <para>"<b>The gray level should be greater than or equal to 0 and less than or equal to 1.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectHalftoneFrequency">
+            <summary>
+                <para>"<b>The halftone frequency should be greater than 0.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectLargestEdgeLength">
+            <summary>
+                <para>"<b>The largest edge length should be greater than 0.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectLineWidth">
+            <summary>
+                <para>"<b>The line width should be greater than or equal to 0.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectListSize">
+            <summary>
+                <para>"<b>The list should contain at least one value.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectLuminositySoftMaskTransparencyGroupColorSpace">
+            <summary>
+                <para>"<b>The transparency group for the luminosity soft mask requires a color space definition.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectMarkedContentTag">
+            <summary>
+                <para>"<b>The marked content tag can't be empty.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectMiterLimit">
+            <summary>
+                <para>"<b>The miter limit should be greater than 0.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectPageArtBox">
+            <summary>
+                <para>"<b>The page art box should be less than or equal to the media box.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectPageBleedBox">
+            <summary>
+                <para>"<b>The page bleeding box should be less than or equal to the media box.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectPageCropBox">
+            <summary>
+                <para>"<b>The page croppoing box should be less than or equal to the media box.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectPageNumber">
+            <summary>
+                <para>"<b>The page number should be greater than 0.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectPageRange">
+            <summary>
+                <para>"<b>The end page number should be greater than or equal to start page number.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectPageRotate">
+            <summary>
+                <para>"<b>The page rotation angle can have one of the following values: 0, 90, 180 or 270 degrees.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectPageTransparencyGroupColorSpace">
+            <summary>
+                <para>"<b>The page transparency group requires a color space definition.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectPageTrimBox">
+            <summary>
+                <para>"<b>The page trimming box should be less than or equal to the media box.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectPdfData">
+            <summary>
+                <para>"<b>Input data are not recognized as valid pdf.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectPdfPassword">
+            <summary>
+                <para>"<b>The Document Open password is empty or incorrect.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectRangeListSize">
+            <summary>
+                <para>"<b>The Range list size should be equal to the components count.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectRectangleHeight">
+            <summary>
+                <para>"<b>The top coordinate of the rectangle should be greater than the bottom.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectRectangleWidth">
+            <summary>
+                <para>"<b>The right coordinate of the rectangle should be greater than the left one.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectSampleArraySize">
+            <summary>
+                <para>"<b>The Samples array size should be equal to the sum of all Sample Count values.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectSampleCount">
+            <summary>
+                <para>"<b>The sample count should be greater than 0.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectSampleCountListSize">
+            <summary>
+                <para>"<b>The Sample Count list size should be equal to Domain list size.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectSampleValue">
+            <summary>
+                <para>"<b>The Samples array element value should be greater than or equal to 0 and less than or equal to 15.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectSeparationColorSpaceDomainSize">
+            <summary>
+                <para>"<b>Transformation function domain size should be equal to 1.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectShadingPatternName">
+            <summary>
+                <para>"<b>The shading pattern name can't be empty.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectSpecialColorSpaceTintTransformRange">
+            <summary>
+                <para>"<b>Transformation function Range size should be equal to alternate color space dimension.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectText">
+            <summary>
+                <para>"<b>The text value can't be null.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgIncorrectTextHorizontalScaling">
+            <summary>
+                <para>"<b>The text horizontal scaling value should be greater than 0.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgUnavailableOperation">
+            <summary>
+                <para>"<b>This operation is not available while no document is being loaded.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.Localization.PdfCoreStringId.MsgZeroColorComponentsCount">
+            <summary>
+                <para>"<b>The color should have at least one component.</b>"
+</para>
+            </summary>
+
+
+        </member>
+        <member name="T:DevExpress.Pdf.PdfFont">
+
+            <summary>
+                <para>A font assigned to a document text.
+</para>
+            </summary>
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfFont.BaseFont">
+            <summary>
+                <para>The <b>PostScript</b> name of the font. 
+</para>
+            </summary>
+            <value>A <see cref="T:System.String"/> value.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfFont.FontDescriptor">
+            <summary>
+                <para>Provides access to the PDF font options.
+</para>
+            </summary>
+            <value>A <see cref="T:DevExpress.Pdf.PdfFontDescriptor"/> object.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfFont.FontName">
+            <summary>
+                <para>The <b>PostScript</b> name of the font.
+</para>
+            </summary>
+            <value>A <see cref="T:System.String"/> value, specifying the font name.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfFont.SubsetName">
+            <summary>
+                <para>Specifies a font subset.
+</para>
+            </summary>
+            <value>A <see cref="T:System.String"/> value.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfFont.ToUnicode">
+            <summary>
+                <para>Converts PDF character codes to Unicode values.
+</para>
+            </summary>
+            <value>A <see cref="T:DevExpress.Pdf.PdfCharacterMapping"/> object, providing a <b>CMap</b> table that maps character codes to Unicode values.
+
+</value>
+
+
+        </member>
+        <member name="T:DevExpress.Pdf.PdfNames">
+
+            <summary>
+                <para>Stores names of various PDF entities.
+</para>
+            </summary>
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfNames.AnnotationAppearances">
+            <summary>
+                <para>Indicates the mapping name strings to annotation appearance streams.
+</para>
+            </summary>
+            <value>An object implementing the <see cref="T:System.Collections.IDictionary"/> interface.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfNames.EmbeddedFiles">
+            <summary>
+                <para>Indicates the mapping name strings to file specifications for embedded file streams.
+</para>
+            </summary>
+            <value>An object implementing the <see cref="T:System.Collections.IDictionary"/> interface.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfNames.JavaScriptActions">
+            <summary>
+                <para>Indicates the mapping name strings to document-level JavaScript actions.
+</para>
+            </summary>
+            <value>An object implementing the <see cref="T:System.Collections.IDictionary"/> interface.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfNames.PageDestinations">
+            <summary>
+                <para>Indicates the mapping name strings to destinations.
+</para>
+            </summary>
+            <value>An object implementing the <see cref="T:System.Collections.IDictionary"/> interface.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfNames.PageNames">
+            <summary>
+                <para>Indicates the mapping name strings to visible pages for use in interactive forms.
+</para>
+            </summary>
+            <value>An object implementing the <see cref="T:System.Collections.IDictionary"/> interface.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfNames.WebCaptureContentSetsIds">
+            <summary>
+                <para>Indicates the mapping digital identifiers to Web Capture content sets.
+</para>
+            </summary>
+            <value>An object implementing the <see cref="T:System.Collections.IDictionary"/> interface.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfNames.WebCaptureContentSetsUrls">
+            <summary>
+                <para>Indicates the mapping URLs (uniform resource locators) to Web Capture content sets.
+</para>
+            </summary>
+            <value>An object implementing the <see cref="T:System.Collections.IDictionary"/> interface.
+</value>
+
+
+        </member>
+        <member name="T:DevExpress.Pdf.PdfTextSearchResults">
+
+            <summary>
+                <para>Provides the information related to a PDF text search result.
+</para>
+            </summary>
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfTextSearchResults.Page">
+            <summary>
+                <para>Provides access to the page containing the text found.
+
+</para>
+            </summary>
+            <value>A <see cref="T:DevExpress.Pdf.PdfPage"/> object.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfTextSearchResults.PageIndex">
+            <summary>
+                <para>Indicates the zero-based index of a page that contains the found text.
+</para>
+            </summary>
+            <value>An integer value, specifying the zero-based page index.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfTextSearchResults.PageNumber">
+            <summary>
+                <para>Indicates the number of a page that contains the text that was found.
+
+</para>
+            </summary>
+            <value>An integer value, specifying the page number.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfTextSearchResults.Rectangles">
+            <summary>
+                <para>Provides access to the document area containing the text found.
+
+</para>
+            </summary>
+            <value>A collection of <see cref="T:DevExpress.Pdf.PdfOrientedRectangle"/> objects.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfTextSearchResults.Status">
+            <summary>
+                <para>Indicates the current text search operation status.
+</para>
+            </summary>
+            <value>A <see cref="T:DevExpress.Pdf.PdfTextSearchStatus"/> enumeration value.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfTextSearchResults.Words">
+            <summary>
+                <para>Returns the collection of words corresponding to the text that was found.
+
+</para>
+            </summary>
+            <value>A collection of <see cref="T:DevExpress.Pdf.PdfWord"/> objects.
+</value>
+
+
+        </member>
+        <member name="T:DevExpress.Pdf.PdfTextSearchStatus">
+
+            <summary>
+                <para>Lists the values specifying the status of a PDF text search operation.
+</para>
+            </summary>
+
+        </member>
+        <member name="F:DevExpress.Pdf.PdfTextSearchStatus.Finished">
+            <summary>
+                <para>The text search has finished.
+
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.PdfTextSearchStatus.Found">
+            <summary>
+                <para>The text, which is being searched for, has been found.
+
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Pdf.PdfTextSearchStatus.NotFound">
+            <summary>
+                <para>The text, which is being searched for, has not been found.
+
+</para>
+            </summary>
+
+
+        </member>
+        <member name="T:DevExpress.Pdf.PdfFontDescriptor">
+
+            <summary>
+                <para>Provides the PDF font options.
+</para>
+            </summary>
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfFontDescriptor.Ascent">
+            <summary>
+                <para>Indicates the maximum height above the baseline reached by glyphs in this font.
+</para>
+            </summary>
+            <value>A <see cref="T:System.Double"/> value.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfFontDescriptor.AvgWidth">
+            <summary>
+                <para>Indicates the average width of glyphs in the font.
+</para>
+            </summary>
+            <value>A <see cref="T:System.Double"/> value.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfFontDescriptor.CapHeight">
+            <summary>
+                <para>The vertical coordinate of the top of flat capital letters, measured from the baseline.
+</para>
+            </summary>
+            <value>A <see cref="T:System.Double"/> value.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfFontDescriptor.CharSet">
+            <summary>
+                <para>Provides access to the collection of character names defined in a font subset.
+</para>
+            </summary>
+            <value>An array of <see cref="T:System.String"/> values.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfFontDescriptor.Descent">
+            <summary>
+                <para>Indicates the maximum depth below the baseline reached by glyphs in this font.
+</para>
+            </summary>
+            <value>A <see cref="T:System.Double"/> value.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfFontDescriptor.Flags">
+            <summary>
+                <para>Provides access to a collection of flags defining various characteristics of the font.
+</para>
+            </summary>
+            <value>A <see cref="T:DevExpress.Pdf.PdfFontFlags"/> enumeration value.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfFontDescriptor.FontBBox">
+            <summary>
+                <para>Indicates a rectangle, expressed in the glyph coordinate system, that shall specify the font bounding box.
+</para>
+            </summary>
+            <value>A <see cref="T:DevExpress.Pdf.PdfRectangle"/> object.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfFontDescriptor.FontFamily">
+            <summary>
+                <para>Indicates the preferred font family name.
+</para>
+            </summary>
+            <value>A <see cref="T:System.String"/> value.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfFontDescriptor.FontName">
+            <summary>
+                <para>Indicates the PostScript name of the font.
+</para>
+            </summary>
+            <value>A <see cref="T:System.String"/> value.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfFontDescriptor.FontStretch">
+            <summary>
+                <para>Indicates the font stretch value. 
+</para>
+            </summary>
+            <value>A <see cref="T:DevExpress.Pdf.PdfFontStretch"/> enumeration value.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfFontDescriptor.FontWeight">
+            <summary>
+                <para>Indicates the weight (thickness) component of the fully-qualified font name or font specifier.
+</para>
+            </summary>
+            <value>An integer value.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfFontDescriptor.ItalicAngle">
+            <summary>
+                <para>The angle, expressed in degrees counterclockwise from the vertical, of the dominant vertical strokes of the font.
+</para>
+            </summary>
+            <value>A <see cref="T:System.Double"/> value.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfFontDescriptor.Leading">
+            <summary>
+                <para>Indicates the spacing between baselines of consecutive lines of text.
+</para>
+            </summary>
+            <value>A <see cref="T:System.Double"/> value.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfFontDescriptor.MaxWidth">
+            <summary>
+                <para>Indicates the maximum width of glyphs in the font.
+</para>
+            </summary>
+            <value>A <see cref="T:System.Double"/> value.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfFontDescriptor.MissingWidth">
+            <summary>
+                <para>The width to use for character codes whose widths are not specified in a font dictionary's <b>Widths</b> array. 
+</para>
+            </summary>
+            <value>A <see cref="T:System.Double"/> value.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfFontDescriptor.StemH">
+            <summary>
+                <para>Indicates the thickness, measured vertically, of the dominant horizontal stems of glyphs in the font.
+</para>
+            </summary>
+            <value>A <see cref="T:System.Double"/> value.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfFontDescriptor.StemV">
+            <summary>
+                <para>Indicates the thickness, measured horizontally, of the dominant vertical stems of glyphs in the font.
+</para>
+            </summary>
+            <value>A <see cref="T:System.Double"/> value.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfFontDescriptor.XHeight">
+            <summary>
+                <para>Indicates the font's X-height: the vertical coordinate of the top of flat nonascending lowercase letters (like the letter x), measured from the baseline, in fonts that have Latin characters.
+</para>
+            </summary>
+            <value>A <see cref="T:System.Double"/> value.
+</value>
+
+
+        </member>
+        <member name="T:DevExpress.Pdf.PdfDocumentPosition">
+
+            <summary>
+                <para>Specifies the PDF coordinates of a hit point.
+</para>
+            </summary>
+
+        </member>
+        <member name="M:DevExpress.Pdf.PdfDocumentPosition.#ctor(System.Int32,DevExpress.Pdf.PdfPoint)">
+            <summary>
+                <para>Initializes a new instance of the PdfDocumentPosition class with the specified settings.
+</para>
+            </summary>
+            <param name="pageNumber">
+		An integer value. This value is assigned to the <see cref="P:DevExpress.Pdf.PdfDocumentPosition.PageNumber"/> property.
+
+            </param>
+            <param name="point">
+		A <see cref="T:DevExpress.Pdf.PdfPoint"/> structure. This value is assigned to the <see cref="P:DevExpress.Pdf.PdfDocumentPosition.Point"/> property.
+
+            </param>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocumentPosition.PageNumber">
+            <summary>
+                <para>Indicates the number of a page corresponding to the hit point.
+</para>
+            </summary>
+            <value>An integer value, specifying the page number.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocumentPosition.Point">
+            <summary>
+                <para>Returns the hit point coordinates in a PDF.
+</para>
+            </summary>
+            <value>A <see cref="T:DevExpress.Pdf.PdfPoint"/> structure.
+</value>
+
+
+        </member>
+        <member name="T:DevExpress.Pdf.PdfPoint">
+
+            <summary>
+                <para>Specifies the coordinates of a PDF point.
+</para>
+            </summary>
+
+        </member>
+        <member name="M:DevExpress.Pdf.PdfPoint.#ctor(System.Double,System.Double)">
+            <summary>
+                <para>Initializes a new instance of the PdfPoint class with the specified coordinates.
+</para>
+            </summary>
+            <param name="x">
+		A <see cref="T:System.Double"/> value. This value is assigned to the <see cref="P:DevExpress.Pdf.PdfPoint.X"/> property.
+
+            </param>
+            <param name="y">
+		A <see cref="T:System.Double"/> value. This value is assigned to the <see cref="P:DevExpress.Pdf.PdfPoint.Y"/> property.
+
+            </param>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfPoint.X">
+            <summary>
+                <para>Specifies the X coordinate of the PdfPoint.
+</para>
+            </summary>
+            <value>A <see cref="T:System.Double"/> value, specifying the PDF point's X coordinate.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfPoint.Y">
+            <summary>
+                <para>Specifies the Y coordinate of the PdfPoint.
+</para>
+            </summary>
+            <value>A <see cref="T:System.Double"/> value, specifying the PDF point's Y coordinate.
+</value>
+
+
+        </member>
+        <member name="T:DevExpress.Pdf.PdfDocumentArea">
+
+            <summary>
+                <para>A document area.
+</para>
+            </summary>
+
+        </member>
+        <member name="M:DevExpress.Pdf.PdfDocumentArea.#ctor(System.Int32,DevExpress.Pdf.PdfRectangle)">
+            <summary>
+                <para>Initializes a new instance of the PdfDocumentArea class with the specified settings.
+</para>
+            </summary>
+            <param name="pageNumber">
+		An integer value. This value is assigned to the <see cref="P:DevExpress.Pdf.PdfDocumentArea.PageNumber"/> property.
+
+            </param>
+            <param name="area">
+		A <see cref="T:DevExpress.Pdf.PdfRectangle"/> object. This value is assigned to the <see cref="P:DevExpress.Pdf.PdfDocumentArea.Area"/> property.
+
+            </param>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocumentArea.Area">
+            <summary>
+                <para>Returns a document area corresponding to the specified rectangle.
+</para>
+            </summary>
+            <value>A <see cref="T:DevExpress.Pdf.PdfRectangle"/> object.
+</value>
+
+
+        </member>
+        <member name="M:DevExpress.Pdf.PdfDocumentArea.Create(DevExpress.Pdf.PdfDocumentPosition,DevExpress.Pdf.PdfDocumentPosition)">
+            <summary>
+                <para>Creates a document area based on the specified start and end positions.
+</para>
+            </summary>
+            <param name="position1">
+		A <see cref="T:DevExpress.Pdf.PdfDocumentPosition"/> object.
+
+            </param>
+            <param name="position2">
+		A <see cref="T:DevExpress.Pdf.PdfDocumentPosition"/> object.
+
+            </param>
+            <returns>A <see cref="T:DevExpress.Pdf.PdfDocumentArea"/> object.
+</returns>
+
+
+        </member>
+        <member name="P:DevExpress.Pdf.PdfDocumentArea.PageNumber">
+            <summary>
+                <para>Indicates the page number corresponding to the current document area.
+</para>
+            </summary>
+            <value>An integer value, specifying the page number.
+</value>
+
+
+        </member>
+        <member name="T:DevExpress.Pdf.Localization.PdfCoreResLocalizer">
+
+            <summary>
+                <para>A default localizer to translate the PDF Viewer's resources.
+</para>
+            </summary>
+
+        </member>
+        <member name="M:DevExpress.Pdf.Localization.PdfCoreResLocalizer.#ctor">
+            <summary>
+                <para>Initializes a new instance of the PdfCoreResLocalizer class with default settings.
+</para>
+            </summary>
+
+
+        </member>
+        <member name="M:DevExpress.Pdf.Localization.PdfCoreResLocalizer.GetLocalizedString(DevExpress.Pdf.Localization.PdfCoreStringId)">
+            <summary>
+                <para>Gets the string, localized by the current PdfCoreResLocalizer, for the specified dialog message.
+</para>
+            </summary>
+            <param name="id">
+		A <see cref="T:DevExpress.Pdf.Localization.PdfCoreStringId"/> enumeration value, specifying the dialog message whose caption (text) is to be localized.
+
+            </param>
+            <returns>A <see cref="T:System.String"/> value, specifying the text to be displayed within the specified dialog message.
+</returns>
+
+
+        </member>
+    </members>
+</doc>

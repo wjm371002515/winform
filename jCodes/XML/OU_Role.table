@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="3e0d1d7b-e4ce-4cac-8190-1abe0cc329ec">
+      <functionId>000209</functionId>
+      <name>OU_Role</name>
+      <chineseName>机构角色关联表</chineseName>
+      <existhistable>0</existhistable>
+      <version>1.0.0.0</version>
+      <lasttime>2019-09-25 09:54:27.682</lasttime>
+      <remark>没有实体类</remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="69d09387-bcae-42da-b7a5-a96955127ca5">
+      <name>OuId</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="3052e385-a430-408e-8d77-4feae566b5a9">
+      <name>RoleId</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <indexsinfo>
+    <item gid="0dd389bf-77b2-4e5a-9d9f-f8f6c1b25af9">
+      <name>pk_ou_role</name>
+      <indexfieldlst>OuId, RoleId</indexfieldlst>
+      <constraint_type>0</constraint_type>
+    </item>
+  </indexsinfo>
+</datatype>

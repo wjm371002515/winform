@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="104a99ea-960f-458f-9a44-de82a46fa6b1">
+      <functionId>100054</functionId>
+      <name>TablesTypeInfo</name>
+      <chineseName>表分类信息</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Proj</folder>
+      <baseclass>
+      </baseclass>
+      <lasttime>2019-09-19 18:17:43.331</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="0e6170a3-7b3a-444c-8255-5064466907e8">
+      <name>Gid</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2e874bbf-d330-4a52-a877-8bdc716ea179">
+      <name>CreatorTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="44afe620-8520-48ad-a541-d475014db296">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c2dcb7e9-5337-470a-a5f3-cf65f8eec15e">
+      <name>IsBasicData</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

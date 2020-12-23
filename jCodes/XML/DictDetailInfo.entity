@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="61d844c4-5082-44e7-be41-e72b0ad125d7">
+      <functionId>100042</functionId>
+      <name>DictDetailInfo</name>
+      <chineseName>数据字典明细信息</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Proj</folder>
+      <baseclass>IComparable&lt;DictDetailInfo&gt;</baseclass>
+      <lasttime>2019-09-19 15:19:51.540</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="c1186598-4e26-4c7b-beff-9c4f2ab4093c">
+      <name>IntValue</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="3f9e4c70-cb68-4ca7-ad06-4b8e4947ac3c">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="156693e4-8a02-405f-ab51-7070534c6797">
+      <name>Seq</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="8330eddf-f6a2-4072-8857-83d38bc49be6">
+      <name>Remark</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+    <item gid="8da516bf-e400-4259-9900-283b468d17bd">
+      <name>CompareTo(DictDetailInfo other)</name>
+      <chinesename>Compares to.</chinesename>
+      <fieldtype>Int32</fieldtype>
+      <content>return Seq.CompareTo(other.Seq);</content>
+      <remark>
+      </remark>
+    </item>
+  </diyfieldinfo>
+</datatype>

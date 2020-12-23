@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="ec136828-c41c-4807-8071-9d62e2f3d7a8">
+      <functionId>100047</functionId>
+      <name>StdFieldComboBox</name>
+      <chineseName>标准字段下拉框</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Proj</folder>
+      <baseclass>
+      </baseclass>
+      <lasttime>2019-09-19 16:45:36.895</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="f69c2505-5b04-4d63-a46d-2d40b25e9cb6">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="4310bbcc-89a4-48de-9c01-e00d3dcbc3dc">
+      <name>ChineseName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="90d889dd-18de-4ef5-afb8-4b95e8d3af99">
+      <name>DataType</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b97043ad-cf93-47d6-a547-5b25ddf599d0">
+      <name>DictNo</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d401ea15-04f5-4b2d-8ee7-e04f14d0e5e1">
+      <name>DictNameLst</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

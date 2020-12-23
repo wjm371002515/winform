@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="5a1b7e6c-130a-40a2-b1b2-fe5f6938f903">
+      <functionId>100088</functionId>
+      <name>MCaiwuInfo</name>
+      <chineseName>淘宝财务数据处理</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>SmallTools</folder>
+      <baseclass>
+      </baseclass>
+      <lasttime>2019-09-24 09:30:21.640</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+  </fieldsinfo>
+  <diyfieldinfo>
+    <item gid="cff8921f-53e8-4295-82bb-c1f7adb7a6e4">
+      <name>年</name>
+      <chinesename>年</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ac19413d-1bd0-40e1-831b-33d2a1942ac7">
+      <name>月</name>
+      <chinesename>月</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="5e30577a-59c4-4dfa-8518-0ae4ad5160d7">
+      <name>生效日期</name>
+      <chinesename>生效日期</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ec9e09dd-1db8-4b9d-840c-96cec3119e9d">
+      <name>出库机构代码</name>
+      <chinesename>出库机构代码</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="4c0d008f-7589-47c4-b2d0-eee3e478a92b">
+      <name>出库机构</name>
+      <chinesename>出库机构</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2d86bd2a-6230-4423-bf51-c3ae2db78a88">
+      <name>客户名称代码</name>
+      <chinesename>客户名称代码</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f72c7b98-4e9f-49da-875f-c33878dfa53a">
+      <name>客户名称</name>
+      <chinesename>客户名称</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="4c45c7d3-172c-4210-a4c2-3055a95bb685">
+      <name>供应商</name>
+      <chinesename>供应商</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="68d321e2-4f49-484c-b16d-3d5b719b072f">
+      <name>单据编号</name>
+      <chinesename>单据编号</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b201914c-6110-4773-ae08-f583ff11d432">
+      <name>单据类型</name>
+      <chinesename>单据类型</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="7f85d318-5c90-4070-a3c7-268555d513b0">
+      <name>商品编码</name>
+      <chinesename>商品编码</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="90665fed-2f5e-4a9f-945e-ad3ea6fe5910">
+      <name>商品名称</name>
+      <chinesename>商品名称</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="bebff381-4df6-4e44-801c-2620aaa31f0d">
+      <name>规格</name>
+      <chinesename>规格</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="06adaf38-dfbd-4c4e-a416-1aa24460acf9">
+      <name>单位</name>
+      <chinesename>单位</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e0bce9c8-4b4d-4610-8f7b-3b3ac0215301">
+      <name>产地</name>
+      <chinesename>产地</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="08636a30-a5c5-4f94-8ef3-c530480bee7d">
+      <name>数量</name>
+      <chinesename>数量</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f72db5a4-dd35-4e97-a374-dc978fd8b25b">
+      <name>进价金额</name>
+      <chinesename>进价金额</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="04fe3c15-9aa8-451d-b166-cc83dfde56fe">
+      <name>备注</name>
+      <chinesename>备注</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="bc2d1d13-adc8-434d-bf30-901cf5e36010">
+      <name>配送金额</name>
+      <chinesename>配送金额</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9a30f3c2-a8c6-4e77-b1b9-3a537e4ee44a">
+      <name>底价金额</name>
+      <chinesename>底价金额</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="be41d4ed-20a3-45c0-906d-d1d3df9504f2">
+      <name>零售金额</name>
+      <chinesename>零售金额</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+  </diyfieldinfo>
+</datatype>

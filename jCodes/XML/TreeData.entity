@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="6e77268e-42cc-4869-885d-dafafcf1a759">
+      <functionId>100030</functionId>
+      <name>TreeData</name>
+      <chineseName>定义zTree的相关数据，方便控制器生成Json数据进行传递</chineseName>
+      <fieldnamespace>using System.Collections.Generic;</fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Common</folder>
+      <baseclass>
+      </baseclass>
+      <lasttime>2019-09-16 14:50:03.028</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="fa31c93f-be92-4d1a-8c3a-4b93797861cc">
+      <name>Gid</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="089ca5ff-0e07-4229-87f6-86ffc4db0c59">
+      <name>Pgid</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="33c1a613-6b56-43e4-a325-b11f85229669">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="bd6d30cf-d4bc-4d69-9a3c-9ffbbb945abf">
+      <name>Icon</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9bbdbf10-abfb-4060-9780-f1563069842e">
+      <name>IsOpened</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+    <item gid="472aa3a5-9da2-4b22-b0a7-b7c73bf40215">
+      <name>children</name>
+      <chinesename>子节点集合</chinesename>
+      <fieldtype>List&lt;TreeData&gt;</fieldtype>
+      <content>get
+			{
+				return this.m_children;
+			}
+			set
+			{
+				this.m_children = value;
+			}</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="30156a91-04d9-4a7c-8810-36a35232328f">
+      <name>TreeData()</name>
+      <chinesename>无参构造函数</chinesename>
+      <fieldtype>
+      </fieldtype>
+      <content>this.children = new List&lt;TreeData&gt;();
+            this.IsOpened = 0;</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="586263fc-5086-4b92-b20e-7a5e0ef22fd4">
+      <name>TreeData(string id, string pid, string name, string icon = "") : this()</name>
+      <chinesename>带参构造函数</chinesename>
+      <fieldtype>
+      </fieldtype>
+      <content>this.m_Gid = id;
+            this.m_Pgid = pid;
+            this.Name = name;
+            this.Icon = icon;</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="52cac3e3-e866-4934-aa5c-9658650e160b">
+      <name>TreeData(int id, int pid, string name, string icon = "") : this()</name>
+      <chinesename>带参构造函数</chinesename>
+      <fieldtype>
+      </fieldtype>
+      <content>this.m_Gid = id.ToString();
+            this.m_Pgid = pid.ToString();
+            this.Name = name;
+            this.Icon = icon;</content>
+      <remark>
+      </remark>
+    </item>
+  </diyfieldinfo>
+</datatype>

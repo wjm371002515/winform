@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="5dbc815f-3ac7-42d0-ab7d-b982a6188234">
+      <functionId>100034</functionId>
+      <name>IntelVoteDetailInfo</name>
+      <chineseName>投票明细信息</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Machines</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-09-16 19:09:30.890</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+  </fieldsinfo>
+  <diyfieldinfo>
+    <item gid="a8d027f3-984a-4635-93f0-d82d3004c8c2">
+      <name>houseNum</name>
+      <chinesename>房号</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>get
+            {
+                return this.m_houseNum;
+            }
+            set
+            {
+                this.m_houseNum = value;
+            }</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="847cc16a-e44a-49c9-b3aa-c850ca7e31ee">
+      <name>toupiao</name>
+      <chinesename>投票</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>get
+            {
+                return this.m_toupiao;
+            }
+            set
+            {
+                this.m_toupiao = value;
+            }</content>
+      <remark>
+      </remark>
+    </item>
+  </diyfieldinfo>
+</datatype>

@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="43c411d0-bacc-4809-8a60-721a72252621">
+      <functionId>000206</functionId>
+      <name>OperationLog</name>
+      <chineseName>用户操作记录表</chineseName>
+      <existhistable>0</existhistable>
+      <version>1.0.0.0</version>
+      <lasttime>2018-02-08 14:27:05.376</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="6253e5a9-cdcf-4349-8c57-b459ba507526">
+      <name>Id</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e18a9476-200b-4126-8bef-3259c42ddddf">
+      <name>UserId</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f260408f-36d1-4a3c-9882-e6d0a7210814">
+      <name>Name</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="cb020083-6da5-465b-bd13-4fd1d8ee5ced">
+      <name>LoginName</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c603ec4a-8223-4441-aabc-5b6b3bf62e93">
+      <name>CompanyId</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="fc8e4261-902a-4180-94ee-40adfd5b8933">
+      <name>CompanyName</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e0ab87bb-117c-4883-8546-5750664303c8">
+      <name>TableName</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="fca1455b-731e-467c-8fb7-7ef1358800aa">
+      <name>OperationType</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f61e3de9-a1c6-4a96-ba80-e815184835c0">
+      <name>Remark</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0c406bc8-5731-4bc1-a172-dacfe27c6e58">
+      <name>IP</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="7bf6543c-4e98-44ba-a451-f0735a38beee">
+      <name>Mac</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9d0faff3-4939-4a0b-bfc0-cdf1b15f5f7a">
+      <name>CreatorTime</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <indexsinfo>
+    <item gid="ac5a17c0-3652-4e5a-becb-b80bfbd087f6">
+      <name>pk_operationlog</name>
+      <indexfieldlst>Id</indexfieldlst>
+      <constraint_type>1</constraint_type>
+    </item>
+  </indexsinfo>
+</datatype>

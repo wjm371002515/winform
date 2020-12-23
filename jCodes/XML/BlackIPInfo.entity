@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="65259340-d83d-4be3-bfb3-7c9a8592cf32">
+      <functionId>100055</functionId>
+      <name>BlackIPInfo</name>
+      <chineseName>黑白名单列表</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Security</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-09-21 16:43:26.381</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="97ddae55-5741-48ad-9a35-6f48ec0a1852">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="85229c36-7cf2-4daf-9b2b-aace498b71cb">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="89823c45-8e65-4269-bc15-139499e9d34a">
+      <name>AuthorizeType</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c1cebd52-7f27-47a7-83e1-c601736714e7">
+      <name>IsForbid</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b8c62526-e37c-4470-a2ba-cb185ed41794">
+      <name>IPStart</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="cd77aa85-39f8-44e8-9b52-6975a05de192">
+      <name>IPEnd</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b850f4c7-d1d1-428e-b95f-db4f6bc09bbf">
+      <name>Remark</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="638edfbd-438b-4889-8f38-ff446c204af1">
+      <name>CreatorId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2a0a889f-a588-43b6-9157-3665ab8159d1">
+      <name>CreatorTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="6af35390-e936-4fd2-b82e-b6ef9733b0fb">
+      <name>EditorId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="84c5f5af-2fa1-44af-9b88-32f41fc20c03">
+      <name>LastUpdateTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="572a0b7b-73e9-4c45-bd2b-3d0b2b77a92c">
+      <name>StartTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="14bb029b-cb89-46a2-aab8-eff47ef6eb7f">
+      <name>EndTime</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

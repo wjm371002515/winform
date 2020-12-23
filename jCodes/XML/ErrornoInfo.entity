@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="5a18973e-c48b-4726-981e-7576a3f1ada6">
+      <functionId>100044</functionId>
+      <name>ErrornoInfo</name>
+      <chineseName>错误信息</chineseName>
+      <fieldnamespace>using DevExpress.XtraEditors.DXErrorProvider;
+using System.Collections.Generic;</fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Proj</folder>
+      <baseclass>IDXDataErrorInfo</baseclass>
+      <lasttime>2019-09-19 15:57:22.374</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="5020de63-313c-4989-9c2e-3fd785a31ac5">
+      <name>Gid</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2009813d-cd08-4b1c-82a1-6d26287d92be">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="73fddbd6-3b73-4d30-9e37-38878b26c0c0">
+      <name>ChineseName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="bab1187f-0d5c-4c25-9ad2-db50e071820b">
+      <name>LogLevel</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="19e025d9-9d05-43ba-bf01-d3e2207a0e2c">
+      <name>Remark</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+    <item gid="950afccd-b794-4c15-a506-2a66244de9fb">
+      <name>lstInfo</name>
+      <chinesename>用来保存行数据中字段名，错误信息</chinesename>
+      <fieldtype>Dictionary&lt;string, ErrorInfo&gt;</fieldtype>
+      <content>get;
+            set;</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c7b63131-ac5a-4036-8bb8-f86add49f3af">
+      <name>IDXDataErrorInfo.GetPropertyError(string propertyName, ErrorInfo info)</name>
+      <chinesename>自定义错误</chinesename>
+      <fieldtype>void</fieldtype>
+      <content> // 添加自定义错误
+            if (lstInfo != null &amp;&amp; lstInfo.Count &gt; 0 &amp;&amp; lstInfo.ContainsKey(propertyName) &amp;&amp; !string.IsNullOrEmpty(lstInfo[propertyName].ErrorText))
+            {
+                info.ErrorText = lstInfo[propertyName].ErrorText;
+                info.ErrorType = lstInfo[propertyName].ErrorType;
+            }</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d7f1949f-1c1a-495d-a405-f8faa68ce33d">
+      <name>IDXDataErrorInfo.GetError(ErrorInfo info)</name>
+      <chinesename>
+      </chinesename>
+      <fieldtype>void</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+  </diyfieldinfo>
+</datatype>

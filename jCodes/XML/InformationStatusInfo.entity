@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="88b4be7e-e31b-48b4-975f-18f1ace10ed6">
+      <functionId>100086</functionId>
+      <name>InformationStatusInfo</name>
+      <chineseName>用户对指定内容的操作状态记录</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>WebMis</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-09-23 20:57:51.702</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="3a9d913c-c23d-4850-b148-e7e12b6e66b6">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="905f0e9f-728b-40eb-8fee-9fd0a7879c26">
+      <name>InformationCategory</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c4b5a62b-1379-4ecc-882f-e68e7c4b7de3">
+      <name>InformationId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="fccdd6ed-18ed-4f11-a1db-08647027066d">
+      <name>DealStatus</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9dd76cd8-1fc8-4130-ae2b-7493377ec554">
+      <name>UserId</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

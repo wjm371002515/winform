@@ -1,0 +1,623 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <dataitem>
+    <item gid="e72559bd-9181-4436-adb7-bd0a4b96cabd">
+      <name>CouponInfo</name>
+      <chineseName>优惠券信息</chineseName>
+      <functionId>100001</functionId>
+      <path>XML\CouponInfo.entity</path>
+    </item>
+    <item gid="3f12077c-f493-484e-9098-89c4767091ed">
+      <name>CouponCategoryInfo</name>
+      <chineseName>优惠券分类信息</chineseName>
+      <functionId>100002</functionId>
+      <path>XML\CouponCategoryInfo.entity</path>
+    </item>
+    <item gid="ee991c91-fec3-4175-bc2e-1f0d54c2e34c">
+      <name>FileUploadInfo</name>
+      <chineseName>文件上传信息</chineseName>
+      <functionId>100003</functionId>
+      <path>XML\FileUploadInfo.entity</path>
+    </item>
+    <item gid="e7a71935-8954-4145-82dd-58bbb0cbcf91">
+      <name>BaseEntity</name>
+      <chineseName>框架实体类的基类</chineseName>
+      <functionId>100004</functionId>
+      <path>XML\BaseEntity.entity</path>
+    </item>
+    <item gid="465be310-18d1-4a8e-9987-f13fa809e474">
+      <name>CListItem</name>
+      <chineseName>字符串键值对</chineseName>
+      <functionId>100005</functionId>
+      <path>XML\CListItem.entity</path>
+    </item>
+    <item gid="62412293-b625-46f1-825d-33815796d28f">
+      <name>CDicKeyValue</name>
+      <chineseName>框架用来记录字典键值的类，用于Comobox等控件对象的值传递</chineseName>
+      <functionId>100006</functionId>
+      <path>XML\CDicKeyValue.entity</path>
+    </item>
+    <item gid="079e8940-b855-4d56-93f7-fee3518c169d">
+      <name>ReturnResult</name>
+      <chineseName>返回结果对象</chineseName>
+      <functionId>100007</functionId>
+      <path>XML\ReturnResult.entity</path>
+    </item>
+    <item gid="b4c15279-7a8f-4d54-af1a-6a26a781158f">
+      <name>AddressGroupInfo</name>
+      <chineseName>通讯录分组</chineseName>
+      <functionId>100008</functionId>
+      <path>XML\AddressGroupInfo.entity</path>
+    </item>
+    <item gid="bccc1059-2fac-47be-8192-60ebf68850ac">
+      <name>AddressInfo</name>
+      <chineseName>通讯录联系人</chineseName>
+      <functionId>100009</functionId>
+      <path>XML\AddressInfo.entity</path>
+    </item>
+    <item gid="f8da2886-36f8-47b2-af25-f7defb4ab037">
+      <name>ContactGroupInfo</name>
+      <chineseName>联系人组别</chineseName>
+      <functionId>100010</functionId>
+      <path>XML\ContactGroupInfo.entity</path>
+    </item>
+    <item gid="1291b608-b9f3-4d7b-9fb4-4e623140273c">
+      <name>ContactInfo</name>
+      <chineseName>客户联系人</chineseName>
+      <functionId>100011</functionId>
+      <path>XML\ContactInfo.entity</path>
+    </item>
+    <item gid="186cc94c-a0e8-4c98-a18e-f44aa0335a31">
+      <name>CustomerInfo</name>
+      <chineseName>客户基本资料</chineseName>
+      <functionId>100012</functionId>
+      <path>XML\CustomerInfo.entity</path>
+    </item>
+    <item gid="4418531f-da2b-49e2-9382-906cf9bf01e6">
+      <name>ContactGroupNodeInfo</name>
+      <chineseName>联系人组别节点</chineseName>
+      <functionId>100013</functionId>
+      <path>XML\ContactGroupNodeInfo.entity</path>
+    </item>
+    <item gid="a2a8ffb5-df39-449e-a925-89c5ce00915d">
+      <name>CityInfo</name>
+      <chineseName>城市信息</chineseName>
+      <functionId>100014</functionId>
+      <path>XML\CityInfo.entity</path>
+    </item>
+    <item gid="8124c466-efb8-4fa0-90f2-53e38ba7c132">
+      <name>DicKeyValueInfo</name>
+      <chineseName>字典大类</chineseName>
+      <functionId>100015</functionId>
+      <path>XML\DicKeyValueInfo.entity</path>
+    </item>
+    <item gid="c5b38524-e890-43ff-8b49-50fb72112817">
+      <name>DictDataInfo</name>
+      <chineseName>数据字典明细</chineseName>
+      <functionId>100016</functionId>
+      <path>XML\DictDataInfo.entity</path>
+    </item>
+    <item gid="fdcfc298-f226-497c-8b79-66fbdbcb376d">
+      <name>DictTypeInfo</name>
+      <chineseName>字典类型信息</chineseName>
+      <functionId>100017</functionId>
+      <path>XML\DictTypeInfo.entity</path>
+    </item>
+    <item gid="4ca26069-0e44-49a0-9710-403609b02ebd">
+      <name>DictTypeNodeInfo</name>
+      <chineseName>字典节点类型信息</chineseName>
+      <functionId>100018</functionId>
+      <path>XML\DictTypeNodeInfo.entity</path>
+    </item>
+    <item gid="d946abd2-40e0-489e-9084-506d8224430d">
+      <name>DistrictInfo</name>
+      <chineseName>地区信息</chineseName>
+      <functionId>100019</functionId>
+      <path>XML\DistrictInfo.entity</path>
+    </item>
+    <item gid="f2425ebb-1b58-4903-8f01-d5396435a43c">
+      <name>ProvinceInfo</name>
+      <chineseName>省份信息</chineseName>
+      <functionId>100020</functionId>
+      <path>XML\ProvinceInfo.entity</path>
+    </item>
+    <item gid="d77028c8-3433-4f70-a1ea-585edac05667">
+      <name>SysparameterInfo</name>
+      <chineseName>系统信息</chineseName>
+      <functionId>100021</functionId>
+      <path>XML\SysparameterInfo.entity</path>
+    </item>
+    <item gid="3f352e87-6e37-4bba-9654-2131acfd8cbc">
+      <name>AddressGroupNodeInfo</name>
+      <chineseName>通讯录分组节点信息</chineseName>
+      <functionId>100022</functionId>
+      <path>XML\AddressGroupNodeInfo.entity</path>
+    </item>
+    <item gid="56292057-7a66-44a0-a26a-78916f6c4016">
+      <name>JsTreeData</name>
+      <chineseName>JsTree的数据模型</chineseName>
+      <functionId>100023</functionId>
+      <path>XML\JsTreeData.entity</path>
+    </item>
+    <item gid="23b2286d-60e3-4b8d-973b-b50dbbd22281">
+      <name>JsTreeTable</name>
+      <chineseName>JsTree的数据模型(datatable类型)</chineseName>
+      <functionId>100024</functionId>
+      <path>XML\JsTreeTable.entity</path>
+    </item>
+    <item gid="2f710e5c-53c6-4422-bcdc-4dc825762482">
+      <name>JsTreeStatus</name>
+      <chineseName>JsTree的状态对象</chineseName>
+      <functionId>100025</functionId>
+      <path>XML\JsTreeStatus.entity</path>
+    </item>
+    <item gid="9ec9636a-8e70-4499-8acd-20b9b86eb532">
+      <name>MenuData</name>
+      <chineseName>定义菜单Json的相关数据，方便控制器生成Json数据进行传递</chineseName>
+      <functionId>100026</functionId>
+      <path>XML\MenuData.entity</path>
+    </item>
+    <item gid="48af345f-2d50-4ab5-8773-2844edd3344f">
+      <name>NotifyContactInfo</name>
+      <chineseName>用于各个模块传递的联系信息</chineseName>
+      <functionId>100027</functionId>
+      <path>XML\NotifyContactInfo.entity</path>
+    </item>
+    <item gid="a4d78f62-2ba9-44fa-a131-2e0bc14a7f14">
+      <name>NotifyGroupInfo</name>
+      <chineseName>用于各个模块传递的分组联系人信息</chineseName>
+      <functionId>100028</functionId>
+      <path>XML\NotifyGroupInfo.entity</path>
+    </item>
+    <item gid="d1ba8d75-0dc9-4370-a7c4-c96722ec9e16">
+      <name>NotifyNodeInfo</name>
+      <chineseName>用于各个模块传递的分组联系人信息节点</chineseName>
+      <functionId>100029</functionId>
+      <path>XML\NotifyNodeInfo.entity</path>
+    </item>
+    <item gid="cce5b1c8-6749-4e15-b21d-aefefbe946b4">
+      <name>TreeData</name>
+      <chineseName>定义zTree的相关数据，方便控制器生成Json数据进行传递</chineseName>
+      <functionId>100030</functionId>
+      <path>XML\TreeData.entity</path>
+    </item>
+    <item gid="1d4e3300-8ea2-4cc6-b74d-aab955a5f982">
+      <name>TableEntity</name>
+      <chineseName>表格实体类</chineseName>
+      <functionId>100031</functionId>
+      <path>XML\TableEntity.entity</path>
+    </item>
+    <item gid="c5d364b4-e5f0-4064-94c4-7ed525138149">
+      <name>TableFieldEntity</name>
+      <chineseName>表格字段实体类</chineseName>
+      <functionId>100032</functionId>
+      <path>XML\TableFieldEntity.entity</path>
+    </item>
+    <item gid="5534978f-adab-4345-826d-439227ac12f6">
+      <name>IntelVoteInfo</name>
+      <chineseName>投票信息类</chineseName>
+      <functionId>100033</functionId>
+      <path>XML\IntelVoteInfo.entity</path>
+    </item>
+    <item gid="e9605e18-c3ad-49fc-afc7-f9b127d5dd3b">
+      <name>IntelVoteDetailInfo</name>
+      <chineseName>投票明细信息</chineseName>
+      <functionId>100034</functionId>
+      <path>XML\IntelVoteDetailInfo.entity</path>
+    </item>
+    <item gid="8055ef3d-7f10-42d6-b4ef-80075dc7e0a7">
+      <name>DongnanhaiVotesInfo</name>
+      <chineseName>东南海投票信息</chineseName>
+      <functionId>100035</functionId>
+      <path>XML\DongnanhaiVotesInfo.entity</path>
+    </item>
+    <item gid="c075939d-8232-4faf-8448-f0f13bae3c9d">
+      <name>MachinesInfo</name>
+      <chineseName>服务器信息</chineseName>
+      <functionId>100036</functionId>
+      <path>XML\MachinesInfo.entity</path>
+    </item>
+    <item gid="521904f4-5fd4-4425-a5e5-868472fb0b63">
+      <name>PagerInfo</name>
+      <chineseName>页面信息</chineseName>
+      <functionId>100037</functionId>
+      <path>XML\PagerInfo.entity</path>
+    </item>
+    <item gid="d45f156a-44b1-4805-86c2-4f444a6422a0">
+      <name>ConstantInfo</name>
+      <chineseName>常量信息</chineseName>
+      <functionId>100038</functionId>
+      <path>XML\ConstantInfo.entity</path>
+    </item>
+    <item gid="fb4d5c2b-3094-45f8-b8fa-ae82667b68c4">
+      <name>DataTypeInfo</name>
+      <chineseName>数据类型</chineseName>
+      <functionId>100039</functionId>
+      <path>XML\DataTypeInfo.entity</path>
+    </item>
+    <item gid="57c73a0c-c56b-402d-8e5b-83ca278a48b6">
+      <name>DefaultTypeInfo</name>
+      <chineseName>默认数据类型</chineseName>
+      <functionId>100040</functionId>
+      <path>XML\DefaultTypeInfo.entity</path>
+    </item>
+    <item gid="915ed28e-3834-4297-a77c-77fee8499995">
+      <name>DictInfo</name>
+      <chineseName>字典信息</chineseName>
+      <functionId>100041</functionId>
+      <path>XML\DictInfo.entity</path>
+    </item>
+    <item gid="6b3e79f4-8378-45fc-b8c5-0fb768801f1c">
+      <name>DictDetailInfo</name>
+      <chineseName>数据字典明细信息</chineseName>
+      <functionId>100042</functionId>
+      <path>XML\DictDetailInfo.entity</path>
+    </item>
+    <item gid="e490f67b-e9e8-4bbb-bfd3-8a83eae25420">
+      <name>DiyFieldInfo</name>
+      <chineseName>自定义字段信息</chineseName>
+      <functionId>100043</functionId>
+      <path>XML\DiyFieldInfo.entity</path>
+    </item>
+    <item gid="291940f2-dfa7-4c0a-b66f-2104adcd3624">
+      <name>ErrornoInfo</name>
+      <chineseName>错误信息</chineseName>
+      <functionId>100044</functionId>
+      <path>XML\ErrornoInfo.entity</path>
+    </item>
+    <item gid="a60fccfc-33b6-46a8-a694-aa5eab7b97d9">
+      <name>ModRecordInfo</name>
+      <chineseName>修改记录信息</chineseName>
+      <functionId>100045</functionId>
+      <path>XML\ModRecordInfo.entity</path>
+    </item>
+    <item gid="887515c4-d487-45f8-854f-178949b92e08">
+      <name>ProjectInfo</name>
+      <chineseName>项目信息</chineseName>
+      <functionId>100046</functionId>
+      <path>XML\ProjectInfo.entity</path>
+    </item>
+    <item gid="6c2ca10f-e58f-42c2-b0f7-b0fb722131f6">
+      <name>StdFieldComboBox</name>
+      <chineseName>标准字段下拉框</chineseName>
+      <functionId>100047</functionId>
+      <path>XML\StdFieldComboBox.entity</path>
+    </item>
+    <item gid="808f5fff-473a-43ba-b9d2-a182da854d4d">
+      <name>StdFieldInfo</name>
+      <chineseName>标准字段信息</chineseName>
+      <functionId>100048</functionId>
+      <path>XML\StdFieldInfo.entity</path>
+    </item>
+    <item gid="4e5e83c3-5b2c-4996-ad42-9a04a79a332f">
+      <name>SysFunctionInfo</name>
+      <chineseName>系统功能定义</chineseName>
+      <functionId>100049</functionId>
+      <path>XML\SysFunctionInfo.entity</path>
+    </item>
+    <item gid="90cfaed1-50bb-4d69-9fd7-2a2eb6d36ae3">
+      <name>SysMenuInfo</name>
+      <chineseName>系统菜单信息</chineseName>
+      <functionId>100050</functionId>
+      <path>XML\SysMenuInfo.entity</path>
+    </item>
+    <item gid="d9b1f113-1173-4e3d-8a25-3e9542b5c5cc">
+      <name>TableFieldsInfo</name>
+      <chineseName>表格字段信息</chineseName>
+      <functionId>100051</functionId>
+      <path>XML\TableFieldsInfo.entity</path>
+    </item>
+    <item gid="24734817-94c9-44f3-aeff-bb3274591501">
+      <name>TableIndexsInfo</name>
+      <chineseName>表格索引信息</chineseName>
+      <functionId>100052</functionId>
+      <path>XML\TableIndexsInfo.entity</path>
+    </item>
+    <item gid="7dd386dc-ac8f-491f-ae84-37709e1459b3">
+      <name>TablesInfo</name>
+      <chineseName>表信息</chineseName>
+      <functionId>100053</functionId>
+      <path>XML\TablesInfo.entity</path>
+    </item>
+    <item gid="c3a04c11-e126-4220-be14-63f2a900e28c">
+      <name>TablesTypeInfo</name>
+      <chineseName>表分类信息</chineseName>
+      <functionId>100054</functionId>
+      <path>XML\TablesTypeInfo.entity</path>
+    </item>
+    <item gid="f722d105-3b2b-4cd8-8175-46095b8eb018">
+      <name>BlackIPInfo</name>
+      <chineseName>黑白名单列表</chineseName>
+      <functionId>100055</functionId>
+      <path>XML\BlackIPInfo.entity</path>
+    </item>
+    <item gid="2c9861bb-56d0-4cc7-b976-240458e439ae">
+      <name>FunctionInfo</name>
+      <chineseName>系统功能定义</chineseName>
+      <functionId>100056</functionId>
+      <path>XML\FunctionInfo.entity</path>
+    </item>
+    <item gid="c8bfd746-613b-497a-8e4e-1e2fb14bf34b">
+      <name>LoginLogInfo</name>
+      <chineseName>用户登录日志信息</chineseName>
+      <functionId>100057</functionId>
+      <path>XML\LoginLogInfo.entity</path>
+    </item>
+    <item gid="9641d4fa-58f2-479c-bc69-cb18f3598b8e">
+      <name>MenuInfo</name>
+      <chineseName>菜单信息</chineseName>
+      <functionId>100058</functionId>
+      <path>XML\MenuInfo.entity</path>
+    </item>
+    <item gid="581b4c5a-5527-4489-a535-6758ce52dcf9">
+      <name>OperationLogInfo</name>
+      <chineseName>用户关键操作记录</chineseName>
+      <functionId>100059</functionId>
+      <path>XML\OperationLogInfo.entity</path>
+    </item>
+    <item gid="9b727eb2-8163-4738-93f8-f268e38fc565">
+      <name>OperationLogSettingInfo</name>
+      <chineseName>记录操作日志的数据表配置</chineseName>
+      <functionId>100060</functionId>
+      <path>XML\OperationLogSettingInfo.entity</path>
+    </item>
+    <item gid="d73d9ad2-82a2-480f-a858-647d1b94829b">
+      <name>OUInfo</name>
+      <chineseName>部门机构信息</chineseName>
+      <functionId>100061</functionId>
+      <path>XML\OUInfo.entity</path>
+    </item>
+    <item gid="4497fc6f-5bb8-4d2e-96b1-f4776be9e436">
+      <name>RoleDataInfo</name>
+      <chineseName>角色的数据权限</chineseName>
+      <functionId>100062</functionId>
+      <path>XML\RoleDataInfo.entity</path>
+    </item>
+    <item gid="471dd545-cccb-4d7a-ba5b-e9d51a53d0eb">
+      <name>RoleInfo</name>
+      <chineseName>角色信息</chineseName>
+      <functionId>100063</functionId>
+      <path>XML\RoleInfo.entity</path>
+    </item>
+    <item gid="e4d2497b-7160-4449-be60-482d6a610f62">
+      <name>SimpleUserInfo</name>
+      <chineseName>可用于传递的用户简单信息</chineseName>
+      <functionId>100064</functionId>
+      <path>XML\SimpleUserInfo.entity</path>
+    </item>
+    <item gid="0b32ec02-7d31-45ca-a688-8d2a61e9309f">
+      <name>SystemTypeInfo</name>
+      <chineseName>系统标识信息</chineseName>
+      <functionId>100065</functionId>
+      <path>XML\SystemTypeInfo.entity</path>
+    </item>
+    <item gid="dd861a0e-4ca1-402b-b0b3-efef248332f3">
+      <name>UserInfo</name>
+      <chineseName>用户信息</chineseName>
+      <functionId>100066</functionId>
+      <path>XML\UserInfo.entity</path>
+    </item>
+    <item gid="de32f22e-8a1e-4176-82b3-edd5ab1ae409">
+      <name>MenuNodeInfo</name>
+      <chineseName>功能菜单节点对象</chineseName>
+      <functionId>100067</functionId>
+      <path>XML\MenuNodeInfo.entity</path>
+    </item>
+    <item gid="f92ce97f-591e-4665-a9df-1ea8cfc69bb8">
+      <name>FunctionNodeInfo</name>
+      <chineseName>系统功能节点对象</chineseName>
+      <functionId>100068</functionId>
+      <path>XML\FunctionNodeInfo.entity</path>
+    </item>
+    <item gid="ba9bd655-0407-4513-a1ce-7d2cb275a9f7">
+      <name>OUNodeInfo</name>
+      <chineseName>部门机构节点对象</chineseName>
+      <functionId>100069</functionId>
+      <path>XML\OUNodeInfo.entity</path>
+    </item>
+    <item gid="524cf462-0ac0-40ff-ba32-8088439f8b79">
+      <name>ClientInfo</name>
+      <chineseName>客户信息</chineseName>
+      <functionId>100070</functionId>
+      <path>XML\ClientInfo.entity</path>
+    </item>
+    <item gid="a52e0272-75d6-41d9-874c-c9cfcc1feedf">
+      <name>ItemDetailInfo</name>
+      <chineseName>设备详细信息</chineseName>
+      <functionId>100071</functionId>
+      <path>XML\ItemDetailInfo.entity</path>
+    </item>
+    <item gid="9eabcbb9-1cfd-4d77-8aa0-af0f34abb197">
+      <name>PurchaseDetailInfo</name>
+      <chineseName>进货单信息</chineseName>
+      <functionId>100072</functionId>
+      <path>XML\PurchaseDetailInfo.entity</path>
+    </item>
+    <item gid="244357f3-9045-48de-a08e-b402d357330e">
+      <name>PurchaseHeaderInfo</name>
+      <chineseName>进货单表头信息</chineseName>
+      <functionId>100073</functionId>
+      <path>XML\PurchaseHeaderInfo.entity</path>
+    </item>
+    <item gid="2242495f-b57e-450d-a561-d1dd64c833d6">
+      <name>ReportAnnualCostDetailInfo</name>
+      <chineseName>年费用成本明细报表信息</chineseName>
+      <functionId>100074</functionId>
+      <path>XML\ReportAnnualCostDetailInfo.entity</path>
+    </item>
+    <item gid="05e4d0d6-570d-49fc-b43c-fdd9d4b8d109">
+      <name>ReportAnnualCostHeaderInfo</name>
+      <chineseName>年费用表头报表信息</chineseName>
+      <functionId>100075</functionId>
+      <path>XML\ReportAnnualCostHeaderInfo.entity</path>
+    </item>
+    <item gid="e087efcd-41ec-4ba6-b2fb-f4652ed852a3">
+      <name>ReportMonthlyCostDetailInfo</name>
+      <chineseName>月费用成本明细报表信息</chineseName>
+      <functionId>100076</functionId>
+      <path>XML\ReportMonthlyCostDetailInfo.entity</path>
+    </item>
+    <item gid="dce9d4b6-c30c-44ad-a5a3-eef0341cb78c">
+      <name>ReportMonthlyDetailInfo</name>
+      <chineseName>月费用清单明细信息</chineseName>
+      <functionId>100077</functionId>
+      <path>XML\ReportMonthlyDetailInfo.entity</path>
+    </item>
+    <item gid="3fca7915-bbaa-4916-a11b-b2f429c2e88e">
+      <name>ReportMonthlyHeaderInfo</name>
+      <chineseName>月费用表头报表信息</chineseName>
+      <functionId>100078</functionId>
+      <path>XML\ReportMonthlyHeaderInfo.entity</path>
+    </item>
+    <item gid="3f9b503d-b33d-4520-aafc-a96446f1d888">
+      <name>WareInfo</name>
+      <chineseName>商品信息</chineseName>
+      <functionId>100079</functionId>
+      <path>XML\WareInfo.entity</path>
+    </item>
+    <item gid="176db78d-8b84-44f5-a1cd-a286f1437ebf">
+      <name>SupplierInfo</name>
+      <chineseName>供应商信息</chineseName>
+      <functionId>100080</functionId>
+      <path>XML\SupplierInfo.entity</path>
+    </item>
+    <item gid="5f26d716-4512-43bf-b886-e413d3435229">
+      <name>WareHouseInfo</name>
+      <chineseName>仓库信息</chineseName>
+      <functionId>100081</functionId>
+      <path>XML\WareHouseInfo.entity</path>
+    </item>
+    <item gid="7a833d67-6846-4154-83f6-3003f2c1df12">
+      <name>AuthorizeKeyInfo</name>
+      <chineseName>定义常用功能的控制ID，方便基类控制器对用户权限的控制</chineseName>
+      <functionId>100082</functionId>
+      <path>XML\AuthorizeKeyInfo.entity</path>
+    </item>
+    <item gid="80793489-36d7-47a4-a09e-044b5afd7831">
+      <name>BootstrapIconInfo</name>
+      <chineseName>基于BootStrap的图标</chineseName>
+      <functionId>100083</functionId>
+      <path>XML\BootstrapIconInfo.entity</path>
+    </item>
+    <item gid="b1119e5e-0adf-423b-9974-70f72ac01521">
+      <name>IconInfo</name>
+      <chineseName>系统图表库</chineseName>
+      <functionId>100084</functionId>
+      <path>XML\IconInfo.entity</path>
+    </item>
+    <item gid="1ceab861-c502-42fd-81fb-3a72a40c2f60">
+      <name>InformationInfo</name>
+      <chineseName>政策法规公告动态</chineseName>
+      <functionId>100085</functionId>
+      <path>XML\InformationInfo.entity</path>
+    </item>
+    <item gid="61ab1117-c5ce-430a-9bc4-bbdc54d651cb">
+      <name>InformationStatusInfo</name>
+      <chineseName>用户对指定内容的操作状态记录</chineseName>
+      <functionId>100086</functionId>
+      <path>XML\InformationStatusInfo.entity</path>
+    </item>
+    <item gid="3bc63625-3c40-4f3e-8527-67b85f0c55bc">
+      <name>PictureAlbumInfo</name>
+      <chineseName>图片相册信息</chineseName>
+      <functionId>100087</functionId>
+      <path>XML\PictureAlbumInfo.entity</path>
+    </item>
+    <item gid="25b011c7-dbfc-4129-8c25-6acc683ee4db">
+      <name>MCaiwuInfo</name>
+      <chineseName>淘宝财务数据处理</chineseName>
+      <functionId>100088</functionId>
+      <path>XML\MCaiwuInfo.entity</path>
+    </item>
+    <item gid="45d515a8-ca4f-4323-9dc0-b28bef962a34">
+      <name>MEBInfo</name>
+      <chineseName>浙商证券EB 实体类（第二版）</chineseName>
+      <functionId>100089</functionId>
+      <path>XML\MEBInfo.entity</path>
+    </item>
+    <item gid="fc33a306-610b-43e4-9b10-3e94e2601004">
+      <name>MFileInfo</name>
+      <chineseName>文件信息类</chineseName>
+      <functionId>100090</functionId>
+      <path>XML\MFileInfo.entity</path>
+    </item>
+    <item gid="cbef2fc3-6621-497f-8acb-ee3b5eae31e3">
+      <name>MIPOInfo</name>
+      <chineseName>客户基本信息</chineseName>
+      <functionId>100091</functionId>
+      <path>XML\MIPOInfo.entity</path>
+    </item>
+    <item gid="2f3a5aec-f67b-4903-9450-ac529dacbf6b">
+      <name>ConsignmentInfo</name>
+      <chineseName>代销数据</chineseName>
+      <functionId>100092</functionId>
+      <path>XML\ConsignmentInfo.entity</path>
+    </item>
+    <item gid="2144cdbb-71f7-4d67-80d5-4c019a395a1b">
+      <name>AppInfo</name>
+      <chineseName>应用信息</chineseName>
+      <functionId>100093</functionId>
+      <path>XML\AppInfo.entity</path>
+    </item>
+    <item gid="848c30e4-1ba9-4809-a7c3-f16d8ad80c66">
+      <name>LoginUserInfo</name>
+      <chineseName>登陆用户的基础信息</chineseName>
+      <functionId>100094</functionId>
+      <path>XML\LoginUserInfo.entity</path>
+    </item>
+    <item gid="c2d0088e-da1c-48ea-9834-a15df4708456">
+      <name>CollectionUserInfo</name>
+      <chineseName>收集用户信息</chineseName>
+      <functionId>100095</functionId>
+      <path>XML\CollectionUserInfo.entity</path>
+    </item>
+    <item gid="0ef10778-ae74-4804-8e0d-961ebe231ecd">
+      <name>VoteUserInfo</name>
+      <chineseName>投票用户信息类</chineseName>
+      <functionId>100096</functionId>
+      <path>XML\VoteUserInfo.entity</path>
+    </item>
+    <item gid="63c4931a-f80d-46ce-9ec1-4cb9122955c1">
+      <name>SystemAuthorizeInfo</name>
+      <chineseName>系统授权认证信息</chineseName>
+      <functionId>100097</functionId>
+      <path>XML\SystemAuthorizeInfo.entity</path>
+    </item>
+    <item gid="5368c446-41c3-43ed-bcf6-349197505e8a">
+      <name>DakaUser</name>
+      <chineseName>打卡用户信息</chineseName>
+      <functionId>100098</functionId>
+      <path>XML\DakaUser.entity</path>
+    </item>
+    <item gid="2261bbc5-1f67-4f98-bd5b-6bee9d2c6ce5">
+      <name>WorkDay</name>
+      <chineseName>工作日信息</chineseName>
+      <functionId>100099</functionId>
+      <path>XML\WorkDay.entity</path>
+    </item>
+    <item gid="823ac99f-07a5-4982-bebf-84671ec9536f">
+      <name>UnissuedBondUpdateDataInfo</name>
+      <chineseName>已取得批文未发行债券项目更新状态数据</chineseName>
+      <functionId>100100</functionId>
+      <path>XML\UnissuedBondUpdateDataInfo.entity</path>
+    </item>
+    <item gid="c5c669e3-919e-4cce-8ff0-02607c3ea4fc">
+      <name>UnissuedBondInfo</name>
+      <chineseName>已取得批文未发行债券项目信息</chineseName>
+      <functionId>100101</functionId>
+      <path>XML\UnissuedBondInfo.entity</path>
+    </item>
+    <item gid="4bada542-db0c-4ce8-b618-c5f34c9073b1">
+      <name>SystemLogInfo</name>
+      <chineseName>系统日志信息表</chineseName>
+      <functionId>100102</functionId>
+      <path>XML\SystemLogInfo.entity</path>
+    </item>
+    <item gid="960823a7-1c93-40b0-9562-86515850d4f4">
+      <name>MVCRouteConfigInfo</name>
+      <chineseName>MVC路由配置表</chineseName>
+      <functionId>100103</functionId>
+      <path>XML\MVCRouteConfigInfo.entity</path>
+    </item>
+  </dataitem>
+</datatype>

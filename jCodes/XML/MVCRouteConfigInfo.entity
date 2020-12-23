@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="5341eb65-9c7e-4af7-a7b0-127e99905291">
+      <functionId>100103</functionId>
+      <name>MVCRouteConfigInfo</name>
+      <chineseName>MVC路由配置表</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Dic</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2020-11-24 23:29:53.238</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="e937d9f2-20dd-48d1-9619-5aa5f378d19a">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="8f40ad0d-bea6-41c0-bc08-7abc2a1e2f04">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="424b7b6e-14af-4306-883f-46f380e50120">
+      <name>Url</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="056dce21-351f-488b-949c-174ee462770b">
+      <name>ModuleInfo</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="faef4f78-7acd-49f1-8e79-ae3735d012de">
+      <name>OperationInfo</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="f9366b5d-f282-4be8-a3f6-09189ffb9cb4">
+      <functionId>100093</functionId>
+      <name>AppInfo</name>
+      <chineseName>应用信息</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Common</folder>
+      <baseclass>
+      </baseclass>
+      <lasttime>2020-02-21 15:55:37.384</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="49373c09-92b9-4a64-9ca3-c23a8f9c6e6c">
+      <name>AppUnit</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9c63020d-0334-43a5-a876-b91c3ffa50f1">
+      <name>AppName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="be15e324-2132-4e16-8ce2-2d81ecdac6eb">
+      <name>AppWholeName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f7fc2074-057b-462f-a8c1-023843efbadc">
+      <name>SystemtypeId</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

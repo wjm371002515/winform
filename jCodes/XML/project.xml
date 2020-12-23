@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <item gid="1FB6734A-46DF-49E8-89A1-60E38E062D1E">
+    <name>jCodes 项目整理</name>
+    <version>1.0.0.1</version>
+    <contacts>15558066316</contacts>
+    <remark>测试</remark>
+    <dbtype>SqlServer</dbtype>
+    <dicttype_table>
+    </dicttype_table>
+    <dictdata_table>
+    </dictdata_table>
+    <err_table>
+    </err_table>
+    <lastupdatetime>2019-09-19 14:45:09.075</lastupdatetime>
+    <outputpath>C:\myares</outputpath>
+  </item>
+</datatype>

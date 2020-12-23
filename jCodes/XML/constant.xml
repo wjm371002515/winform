@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <item gid="2cbd37e9-c0ff-4fa1-9735-c30185310214">
+    <name>MSG_ERR</name>
+    <constantvalue>00001</constantvalue>
+    <remark>
+    </remark>
+  </item>
+</datatype>

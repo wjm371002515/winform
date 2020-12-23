@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="4db6b8e1-da30-45d6-a771-147d2f20491a">
+      <functionId>100022</functionId>
+      <name>AddressGroupNodeInfo</name>
+      <chineseName>通讯录分组节点信息</chineseName>
+      <fieldnamespace>using System.Collections.Generic;</fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Contact</folder>
+      <baseclass>AddressGroupInfo</baseclass>
+      <lasttime>2019-09-16 13:11:42.964</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+  </fieldsinfo>
+  <diyfieldinfo>
+    <item gid="a14697d4-c75a-43c2-801d-330e34b50861">
+      <name>Children</name>
+      <chinesename>子分组实体类对象集合</chinesename>
+      <fieldtype>List&lt;AddressGroupNodeInfo&gt;</fieldtype>
+      <content>get { return m_Children; }
+            set { m_Children = value; }</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="3d0c39ee-3d97-461e-80fd-d197eedbc8e2">
+      <name>AddressGroupNodeInfo()</name>
+      <chinesename>无参构造函数</chinesename>
+      <fieldtype>
+      </fieldtype>
+      <content>this.m_Children = new List&lt;AddressGroupNodeInfo&gt;();</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="bb7c18b5-3085-4ad3-b31f-a2cd632f19cb">
+      <name>AddressGroupNodeInfo(AddressGroupInfo info)</name>
+      <chinesename>带参构造函数</chinesename>
+      <fieldtype>
+      </fieldtype>
+      <content>base.AddressType = info.AddressType;
+            base.Id = info.Id;
+            base.Seq = info.Seq;
+            base.Name = info.Name;
+            base.Pid = info.Pid;
+            base.Remark = info.Remark;
+            base.EditorId = info.EditorId;
+            base.LastUpdateTime = info.LastUpdateTime;
+            base.CreatorId = info.CreatorId;
+            base.CreatorTime = info.CreatorTime;
+            base.DeptId = info.DeptId;
+            base.CompanyId = info.CompanyId;</content>
+      <remark>
+      </remark>
+    </item>
+  </diyfieldinfo>
+</datatype>

@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="3c3b13bf-f3c2-4727-86b4-9925f9de4a64">
+      <functionId>100023</functionId>
+      <name>JsTreeData</name>
+      <chineseName>JsTree的数据模型</chineseName>
+      <fieldnamespace>using System.Collections.Generic;</fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Common</folder>
+      <baseclass>
+      </baseclass>
+      <lasttime>2019-09-16 13:46:59.109</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="53ab48d3-6753-4e1a-8658-ecf41af26023">
+      <name>Gid</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e688b69c-1594-4599-9f7f-db207e523e46">
+      <name>Text</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="4248ac57-fa23-4679-a1b2-ca96415e8a9e">
+      <name>Icon</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+    <item gid="0d5576c7-2b4c-4eb8-bac6-727d0db7382e">
+      <name>JsTreeStatus</name>
+      <chinesename>状态对象</chinesename>
+      <fieldtype>JsTreeStatus</fieldtype>
+      <content>get
+			{
+				return this.m_JsTreeStatus;
+			}
+			set
+			{
+				this.m_JsTreeStatus = value;
+			}</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b987c982-892a-49df-bce3-94f61db387ef">
+      <name>children</name>
+      <chinesename>子节点集合</chinesename>
+      <fieldtype>List&lt;JsTreeData&gt;</fieldtype>
+      <content>get
+			{
+				return this.m_children;
+			}
+			set
+			{
+				this.m_children = value;
+			}</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="1b7bca5d-c0a5-4d4f-a250-7cf0d560ee78">
+      <name>JsTreeData()</name>
+      <chinesename>无参构造函数</chinesename>
+      <fieldtype>
+      </fieldtype>
+      <content>this.JsTreeStatus = new JsTreeStatus();
+            this.children = new List&lt;JsTreeData&gt;();</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c792974b-7a8d-4bfd-9c62-3712293d5b12">
+      <name>JsTreeData(object id, string text, string icon = null):this()</name>
+      <chinesename>带参构造函数</chinesename>
+      <fieldtype>
+      </fieldtype>
+      <content>this.m_Gid = id.ToString();
+            this.m_Text = text;
+            this.m_Icon = icon;</content>
+      <remark>
+      </remark>
+    </item>
+  </diyfieldinfo>
+</datatype>

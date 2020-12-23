@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="860bd8ea-c9e7-4753-be45-31b7b031d910">
+      <functionId>000010</functionId>
+      <name>EntityTableField_TODO</name>
+      <chineseName>实体表字段</chineseName>
+      <existhistable>0</existhistable>
+      <version>1.0.0.0</version>
+      <lasttime>2018-03-28 22:31:14.093</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="a007ab75-c074-4364-868d-189919ef6a0b">
+      <name>TableName</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9b88fa50-015a-40ba-8ac6-7446dc26fd49">
+      <name>TableField</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="40ef167b-3623-418a-8a9f-965cc941dc2d">
+      <name>Seq</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <indexsinfo>
+  </indexsinfo>
+</datatype>

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="a994f13e-0a1a-4274-8259-50311c9c20d0">
+      <functionId>100100</functionId>
+      <name>UnissuedBondUpdateDataInfo</name>
+      <chineseName>已取得批文未发行债券项目更新状态数据</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Security</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2020-11-11 15:21:06.413</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="bcb7e288-6921-42d3-84e1-d362293e4ec7">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="8f193e02-cc63-4d1b-ad92-ffbe513372c0">
+      <name>DisplayName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="46bba2aa-7439-481e-8008-b406167287af">
+      <name>Date</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

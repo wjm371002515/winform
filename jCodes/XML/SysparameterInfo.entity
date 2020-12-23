@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="5b6c37b7-51de-405f-929c-58192cc8dfa8">
+      <functionId>100021</functionId>
+      <name>SysparameterInfo</name>
+      <chineseName>系统信息</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Dic</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-09-16 10:30:45.512</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="d0400a3f-4fec-40d6-b6dc-c666a91ed44c">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="026d62c2-3ab4-4953-8cb4-20f7c7761c9d">
+      <name>SysId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="7b23e233-b6a9-4efc-bfb9-adc2852d3a5f">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d3b1ba82-107c-4dd0-a1e0-5076c6de3672">
+      <name>SysValue</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="39d2c86e-0ecb-4df8-8f4e-a574ffb58fc8">
+      <name>ControlType</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="dcacf830-7d10-45e5-afa6-897b4c865f71">
+      <name>DicNo</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="4ff0dbd3-f8d4-46fd-bd2b-089b5acece06">
+      <name>NumLen</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="3dc0c6aa-cf83-43f8-b996-d37325db7f52">
+      <name>Remark</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="25a22007-b22c-4a24-ac7c-57f45e55d73d">
+      <name>Seq</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="16bf0e9d-dbc3-48a6-9fa3-c650f23f8ea9">
+      <name>EditorId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="6e7d5fc6-7af9-4fd8-93fb-4a4b17926b1f">
+      <name>LastUpdateTime</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

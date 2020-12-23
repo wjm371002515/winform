@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="28d37352-d145-4c75-8f47-17a891e2b672">
+      <functionId>100011</functionId>
+      <name>ContactInfo</name>
+      <chineseName>客户联系人</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>CRM</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-09-14 00:41:30.385</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="064fc67e-106f-4127-9df3-243340ad3cb4">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2df8c20a-c7af-4b62-b6f4-914683690814">
+      <name>UserCode</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="7715b389-8dc1-418b-b766-09c54f7a6cb3">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="bc868a9f-ef72-4586-a8df-024772244d48">
+      <name>IdCard</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c0fee855-6592-4b0a-855f-0c2cb7d2a65c">
+      <name>Birthday</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="8aea945d-5912-403d-800f-0a60516e8b27">
+      <name>Gender</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ec9ca524-2c01-4b49-98a7-351504caef69">
+      <name>OfficePhone</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f4d918fd-2724-4cdf-af4a-3aa36ff1e253">
+      <name>HomePhone</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="3c8a4371-56c7-4f1f-8063-3400d568e9d7">
+      <name>Fax</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="7dc85c69-3deb-4aca-9ba9-ee3d2c467106">
+      <name>MobilePhone</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="a21bb5ef-7091-4038-8934-36e8342de1e2">
+      <name>Address</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="feec8470-25fb-484f-84a9-afe4123d1f77">
+      <name>ZipCode</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d4db268d-6941-42ff-8982-a59752d9c9aa">
+      <name>Email</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="8eba11e2-874b-4ae4-afb6-fa93f69fc34c">
+      <name>QQ</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="72617cf8-1df3-4f6e-8da8-bd1d2cb23598">
+      <name>Remark</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="1608afed-f743-4cde-a560-e73e9afb2aa7">
+      <name>Seq</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="11badff7-f9ba-4393-a8a7-1f38d3d50bb7">
+      <name>ProvinceName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="a3c820ab-3db4-481c-9ac0-fca93d68e1d5">
+      <name>CityName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b4946c95-1151-4bc8-bc99-1cfc03622bf4">
+      <name>DistrictName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ac9014bc-deab-436c-b069-3dc396fa6a40">
+      <name>NativePlace</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e71f070a-560f-4193-808a-b442465dc24d">
+      <name>HomeAddress</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="cafa26ef-7412-4801-822b-2fb617db973f">
+      <name>Nation</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="93b67a30-2836-49f4-8a71-84a725c0386e">
+      <name>Education</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="85a9373d-900b-4e44-b6aa-bf93ce52b810">
+      <name>GraduateSchool</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="bee617d2-aa85-4e6b-8968-c66ad5490dac">
+      <name>Political</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="98c15d66-f544-48ad-a37e-a49b4013c454">
+      <name>JobType</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c554c619-d824-4cd0-b6ff-610dcbb5a47c">
+      <name>ProfessionalTitle</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c364c73b-58e7-41ad-b417-b93e7b4951a3">
+      <name>WorkPost</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2646a5a2-7a7e-4a29-8908-bbbc15bdad00">
+      <name>DeptName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="4e9a0cfd-eedc-4146-9284-0bac0468ef56">
+      <name>PersonalHobby</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="3f9a544b-c4b1-46f4-b703-876b9bcec347">
+      <name>ChineseZodiac</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="a9116aeb-6464-44e6-bb4d-d412d1f510fc">
+      <name>Constellation</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="8229c786-9ac8-4af9-84bd-ab371956c080">
+      <name>MarriageStatus</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="bdebd9c6-e200-43e1-93cb-5d7299a04345">
+      <name>HealthStatus</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="63e81a0c-068e-41a4-9251-19757ba69f50">
+      <name>ImportanceLevel</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="eb848df3-9edb-4503-9e26-03d5fee771af">
+      <name>RecognitionLevel</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="cf4ef174-4b52-49d5-a596-6cb3f5982bda">
+      <name>RelationShip</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ee5c92f4-e4c9-46ef-88fa-0d7daf33e96a">
+      <name>ResponseDemand</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="1f08cd9a-7034-472c-80c5-ac2ff11546f0">
+      <name>CareFocus</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="4fa1ad8d-d2f8-44b6-8d32-c9aed89b71b8">
+      <name>InterestDemand</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="5e325a1a-21ee-4886-8bff-c7176769f638">
+      <name>BodyType</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="04e1c4ce-090f-469e-b981-3a75bfd78103">
+      <name>IsSmoking</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e9989193-a2b4-4cc9-b77c-17be843cd8d4">
+      <name>IsDrink</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="87e69f64-a05c-4191-9d94-6bd6f253d7e3">
+      <name>Height</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2a4cb2ed-a71f-4bc1-93b7-28da68273a3b">
+      <name>Weight</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="448b0a96-4c6a-4786-93d6-a956bae2000e">
+      <name>Vision</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d72f9ef8-c8e3-4854-935f-46da8f6b1f8d">
+      <name>Introduce</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="55a3e315-040a-4bc2-b633-2e4cd7bf5ca6">
+      <name>CreatorId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="a7648991-0074-45ef-917a-4095d7516c47">
+      <name>CreatorTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="089bd1bf-0b6f-41fb-bbcb-969b5279c4d6">
+      <name>EditorId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="16eb685b-4d98-4540-8c86-9fd19a49e0c9">
+      <name>LastUpdateTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="adf8be65-c8ab-46ba-81ad-25fc2b9e64cb">
+      <name>IsDelete</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="4112c642-5b2d-41e5-8408-7120ba2bafaa">
+      <name>DeptId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="3fc6692d-b6fb-4637-b32b-d62cc6334399">
+      <name>CompanyId</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

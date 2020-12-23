@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="32eaa1fa-d9c0-4742-b5b4-8779b7c3c1db">
+      <functionId>100028</functionId>
+      <name>NotifyGroupInfo</name>
+      <chineseName>用于各个模块传递的分组联系人信息</chineseName>
+      <fieldnamespace>using System.Collections.Generic;</fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Common</folder>
+      <baseclass>
+      </baseclass>
+      <lasttime>2019-09-16 14:41:25.051</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="7a6c7b8a-f6e6-446c-ae9a-ee6cdc815990">
+      <name>NotifyCategoryName</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+    <item gid="f5036f80-82b0-40c3-9dc3-4b67b392e73d">
+      <name>ContactList</name>
+      <chinesename>联系人列表</chinesename>
+      <fieldtype>List&lt;NotifyContactInfo&gt;</fieldtype>
+      <content>get
+			{
+				return this.m_ContactList;
+			}
+			set
+			{
+				this.m_ContactList = value;
+			}</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="489e54f0-41b6-4e37-80ef-0436bb517259">
+      <name>NotifyGroupInfo()</name>
+      <chinesename>无参构造函数</chinesename>
+      <fieldtype>
+      </fieldtype>
+      <content>this.ContactList = new List&lt;NotifyContactInfo&gt;();</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="34bb27e6-2341-4b6f-b6c7-80994773baeb">
+      <name>
+      </name>
+      <chinesename>
+      </chinesename>
+      <fieldtype>
+      </fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+  </diyfieldinfo>
+</datatype>

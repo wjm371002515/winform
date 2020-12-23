@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="47bb18f5-461c-4c79-8988-a6f7b23ccbdb">
+      <functionId>000009</functionId>
+      <name>EntityTable_TODO</name>
+      <chineseName>实体表</chineseName>
+      <existhistable>0</existhistable>
+      <version>1.0.0.0</version>
+      <lasttime>2019-09-25 16:09:21.649</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="2d144b7c-53d5-42dd-b979-867c4f769af3">
+      <name>TableName</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="02424511-ce30-42df-9c30-f9aa6170a445">
+      <name>Remark</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="fc4e4d8e-6672-4a1c-a2f5-d526a5420232">
+      <name>FolderName</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="501dea43-2296-47d8-bddb-837714cf6053">
+      <name>IsIDXDataError</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="96fa0678-fc7b-4289-b4bb-b03fa6d9faa6">
+      <name>IsBaseEntity</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="58b7266b-bc9d-4746-ad1e-45c570ac32a2">
+      <name>ToStringContent</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="63322eca-2c4a-466b-aa89-e30dbccde95d">
+      <name>ConstructContent</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="50baecdc-6a50-4b14-9bb8-ff54e2272fd6">
+      <name>CustomParentClass</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="61519a6e-5aca-4a9b-8d1b-b364fefcc81a">
+      <name>CustomContent</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="16fb632a-11f2-47c9-af6f-808f8f54b7e2">
+      <name>CustomNamespace</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <indexsinfo>
+  </indexsinfo>
+</datatype>

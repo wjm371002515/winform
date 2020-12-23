@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="8f713e71-782e-4145-a6d1-88e8f1b96c1e">
+      <functionId>100089</functionId>
+      <name>MEBInfo</name>
+      <chineseName>浙商证券EB 实体类（第二版）</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>SmallTools</folder>
+      <baseclass>
+      </baseclass>
+      <lasttime>2019-09-24 09:35:21.188</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+  </fieldsinfo>
+  <diyfieldinfo>
+    <item gid="4ce32651-df21-4495-9754-516099618942">
+      <name>OrganizeName</name>
+      <chinesename>机构名或姓名</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ce688ec4-00ed-4d2a-9d21-486705113a58">
+      <name>AccountName</name>
+      <chinesename>证券账户户名（上海）</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="55c66563-eb09-4757-a6f9-16e66610f5e9">
+      <name>AccountCode</name>
+      <chinesename>证券账户代码（上海）</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="a75662c3-d1fe-4bcd-a70e-2d1375daa310">
+      <name>Seat</name>
+      <chinesename>托管席位号</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c3ec3c0d-480b-41d2-aaec-e0146c764657">
+      <name>CardId</name>
+      <chinesename>身份证明号码（如营业执照注册号等）</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2177315b-9eb3-4f50-827a-8e57f7be9bbe">
+      <name>Rate</name>
+      <chinesename>到期赎回价格</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c867af44-0b70-468f-8d35-a050f2ff8e0a">
+      <name>Balance</name>
+      <chinesename>申购金额</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="95b8cf93-67a6-426f-a881-dbda919cf0d4">
+      <name>BankName</name>
+      <chinesename>退款汇入行全称</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="49f0e365-30df-49fa-9302-3a12cf84ed24">
+      <name>ClientName</name>
+      <chinesename>退款收款人全称</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="bfa33f04-c8a6-4c76-a40e-2a0230a77118">
+      <name>BankAccount</name>
+      <chinesename>退款收款人账号</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ed6bbc47-b443-421d-9849-47988daee7fa">
+      <name>SystemId</name>
+      <chinesename>大额支付系统号</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="98f79847-fc12-4c14-a7b9-862e8791b97f">
+      <name>BankProvince</name>
+      <chinesename>退款汇入行省份</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f7901a93-9f32-48af-935c-1a32d2d61522">
+      <name>BankCity</name>
+      <chinesename>退款汇入行地市</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="040011ea-d9b5-4c26-89cc-e26ed71c90a8">
+      <name>Ident</name>
+      <chinesename>标识</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+  </diyfieldinfo>
+</datatype>

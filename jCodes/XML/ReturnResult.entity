@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="b9b12ca1-b99d-4227-b5df-dacbc3f1a91e">
+      <functionId>100007</functionId>
+      <name>ReturnResult</name>
+      <chineseName>返回结果对象</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Common</folder>
+      <baseclass>
+      </baseclass>
+      <lasttime>2019-09-13 00:19:06.557</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="fc4aedf0-f90b-4ded-87f5-09c69b795544">
+      <name>ErrorCode</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0fe2e6eb-0e47-41ac-a14d-c9256f5d97f3">
+      <name>ErrorMessage</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d0754eb7-ae42-48d9-bdef-5a90cd8716f7">
+      <name>ErrorPath</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ecd81353-8df6-4cef-b846-4e73fee520ca">
+      <name>Data1</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="425d044c-3dc6-4925-b03a-531c8f7ee30b">
+      <name>Data2</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ab1fc40a-fa29-4386-a11a-1d74112d9cf2">
+      <name>Data3</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9f9291e5-dcc7-499b-8339-78e75e1b2fa8">
+      <name>LogLevel</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d1d53663-9adb-4531-ab5c-6c81518b35f0">
+      <name>ExecutedTime</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

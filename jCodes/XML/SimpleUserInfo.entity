@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="737c82e8-c261-46bf-a3ba-7a74075b8ace">
+      <functionId>100064</functionId>
+      <name>SimpleUserInfo</name>
+      <chineseName>可用于传递的用户简单信息</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Security</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-09-21 17:19:49.041</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="6bf950b3-c166-4aab-8eb4-8d3fd511de25">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="da210b8d-8b6e-45c1-ad5d-4b6211739dc4">
+      <name>UserCode</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e4f66435-ccc9-4b3b-a917-a6f8ae8d7d03">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d1bcb274-7d20-430c-82fc-0f8130becf97">
+      <name>LoginName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="70985e93-5243-446d-afe9-1cc075b00b7b">
+      <name>Password</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="947ac86d-8750-43ef-9a8d-114907dd9858">
+      <name>MobilePhone</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="8b79d01a-4754-43af-962e-eae51e2225cf">
+      <name>Email</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

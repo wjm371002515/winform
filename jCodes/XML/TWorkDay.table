@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="0d031bbe-b178-46f9-8621-3f97232f4d1b">
+      <functionId>000806</functionId>
+      <name>TWorkDay</name>
+      <chineseName>工作日</chineseName>
+      <existhistable>0</existhistable>
+      <version>1.0.0.0</version>
+      <lasttime>2020-08-24 08:41:33.528</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="635c1460-5443-4216-ba0f-2decd001f91c">
+      <name>Date</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9dd38051-eccc-42c2-9d1e-4bf059727cbd">
+      <name>DataType</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="8e6c71f6-532e-4b20-bbe1-22b17f662625">
+      <name>IsDaka</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="dd548dd3-4a4b-4088-9441-d4223d8f4eb9">
+      <name>Week</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <indexsinfo>
+    <item gid="5d4eab40-829f-498d-971c-302cbb007ca0">
+      <name>pk_workday</name>
+      <indexfieldlst>Date, DataType</indexfieldlst>
+      <constraint_type>1</constraint_type>
+    </item>
+  </indexsinfo>
+</datatype>

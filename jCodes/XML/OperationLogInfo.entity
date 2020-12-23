@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="627cb056-e2dc-4204-bce9-eee7ba54de35">
+      <functionId>100059</functionId>
+      <name>OperationLogInfo</name>
+      <chineseName>用户关键操作记录</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Security</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-09-21 16:57:05.943</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="6f692f21-f942-49be-a2bf-6f8dc082eabf">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="95b6092f-da3f-418c-97ab-3906a2da3af5">
+      <name>UserId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="3b0b93da-7f3b-4190-bd97-b9a234e968d2">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="89c18d2b-9626-4b35-b554-7ab9d518f3a8">
+      <name>LoginName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="1b5c18b5-8bc1-40c6-87c9-d792e35930e0">
+      <name>CompanyId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="5cc075dd-99a2-4f59-bb07-e127f2f9d7e9">
+      <name>CompanyName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="135ba927-78d9-4344-94dd-0c6badec6387">
+      <name>TableName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e62f0d68-5ef5-4dbb-8161-10198672631a">
+      <name>OperationType</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="4254bcfc-b134-4bad-ba23-ad46d35f5362">
+      <name>Remark</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="eb28332e-673b-4ef4-a3a1-b6509e9d3cd0">
+      <name>IP</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0caa72c9-3dce-41a9-955a-9d5df571e7af">
+      <name>Mac</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="a97295d0-e5c5-4f35-8ec3-91a5b1d3d109">
+      <name>CreatorTime</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

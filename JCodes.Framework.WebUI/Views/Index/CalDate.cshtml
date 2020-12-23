@@ -166,10 +166,10 @@
             // 根据相差天数计算日期
             $("#calDiffDay").click(function () {
                 $.ajax( {
-                    "url": "/Index/AjaxCalDateByDiffDay?date=" + $("#diffDate").val() + "&days=" + mini.get("diffdays").getValue(),
-                    "async": false,
-                    "dataType": "json",
-                    "success": function (json) {
+                    url: "/Index/AjaxCalDateByDiffDay?date=" + $("#diffDate").val() + "&days=" + mini.get("diffdays").getValue(),
+                    async: false,
+                    dataType: "json",
+                    success: function (json) {
                         // 2021年1月26日星期二
                         if (json.ErrorCode == 0)
                             $("#calDayResulttxt").text("计算日期为: " + json.ErrorMessage);
@@ -186,10 +186,10 @@
 
             $("#calDiffDate").click(function () {
                 $.ajax({
-                    "url": "/Index/AjaxCalDaysByDiffDate?startdate=" + $("#startdate").val() + "&enddate=" + $("#enddate").val(),
-                    "async": false,
-                    "dataType": "json",
-                    "success": function (json) {
+                    url: "/Index/AjaxCalDaysByDiffDate?startdate=" + $("#startdate").val() + "&enddate=" + $("#enddate").val(),
+                    async: false,
+                    dataType: "json",
+                    success: function (json) {
                         // 相差： 75 天
                         if (json.ErrorCode == 0)
                             $("#calDayResult2txt").text("相差： " + json.ErrorMessage + "天");

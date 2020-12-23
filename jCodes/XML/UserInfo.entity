@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="d280a065-f389-417e-af01-7156d967e765">
+      <functionId>100066</functionId>
+      <name>UserInfo</name>
+      <chineseName>用户信息</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Security</folder>
+      <baseclass>SimpleUserInfo</baseclass>
+      <lasttime>2019-09-21 19:06:40.178</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="b0039c51-8671-4eed-ac30-c9c69baa6bb0">
+      <name>LoginName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="869a8de8-7d9c-43d6-958f-3ec60c7caf89">
+      <name>IsExpire</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0f749544-920d-49cb-87bd-f0884524a0f1">
+      <name>Remark</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="21b12072-8a71-4ace-a31e-0f61bc205a87">
+      <name>IdCard</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2e53fea4-6e60-43cf-9ff4-eca412120b80">
+      <name>OfficePhone</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="a72bdfdb-7f9a-40c4-99f9-2abb21906a9e">
+      <name>HomePhone</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e7ac86cd-edb0-4587-9c03-4fe38b9f5d23">
+      <name>Address</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0c61cb11-88be-40db-9dd7-a9e616124f71">
+      <name>WorkAddress</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d0b4e37a-6b00-455e-8def-0b30b81da9e7">
+      <name>Gender</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="20244c92-d874-43a4-980b-82b4dddeba07">
+      <name>Birthday</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c1ade975-7a6e-4104-96fb-224d93e33681">
+      <name>QQ</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d9f99131-45a4-4feb-9167-1a3bf9d2868d">
+      <name>Signature</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e2aa1489-32a0-41a4-8b16-ff9678843ab2">
+      <name>AuditStatus</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e7d76006-bf7b-4e5d-8ff9-8286715a4339">
+      <name>Portrait</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="17c7957b-5d00-4ac2-9e15-829ecd5e3cd3">
+      <name>DeptId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="8df3e18f-af41-4773-882e-4ab003374f80">
+      <name>CompanyId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="25273d42-73cb-4e2e-a654-4479bdce6f9e">
+      <name>Seq</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c25f6329-6ef0-4a6e-b4e3-fe27f9fbbdd5">
+      <name>CreatorId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b86d5bfb-da87-4ade-9b2c-3e0d09e7c786">
+      <name>CreatorTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="cb0ee4a4-016c-470b-8bc2-fee63faccc4e">
+      <name>EditorId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="66a0634d-1732-4928-b78a-b685819cda09">
+      <name>LastUpdateTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2d8516b6-02c5-4b64-826a-0690143eeb32">
+      <name>IsDelete</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="6183ae4f-7c65-49bf-8ddd-847c0236edca">
+      <name>Question1</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d6149b28-e58f-413a-b42b-ec7844eb134a">
+      <name>Question2</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f5207d1b-548b-4890-8c77-9cf6f14e1184">
+      <name>Question3</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="04615ca9-6fb9-48b6-a848-ec8567336c33">
+      <name>Answer1</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="15f5a17f-481a-4559-848b-5ca218936809">
+      <name>Answer2</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="347a05fb-fbc0-4222-a2da-b42f8b751fb6">
+      <name>Answer3</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="6b7523cc-2985-4b33-83d3-6191debfe83a">
+      <name>LastLoginIp</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="865d6183-984e-456c-bc9a-9f3115dfbf98">
+      <name>LastLoginMac</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="4f0e9ab6-5c4f-4007-b44c-cfaa98433cd3">
+      <name>LastLoginTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="a8f26de2-5e19-46b6-8016-d4068c521976">
+      <name>LastChangePwdTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="010370fe-bd85-4910-9fa2-0edd6d309a69">
+      <name>CurLoginIp</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="6ec41383-0294-4451-8206-344b954a461c">
+      <name>CurLoginMac</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="718d48ff-c05f-42f8-8c40-ec4168e7c782">
+      <name>CurLoginTime</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

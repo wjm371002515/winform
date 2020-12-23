@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="16641b49-1460-419b-a591-c2d60381e438">
+      <functionId>100051</functionId>
+      <name>TableFieldsInfo</name>
+      <chineseName>表格字段信息</chineseName>
+      <fieldnamespace>using DevExpress.XtraEditors.DXErrorProvider;
+using System.Collections.Generic;</fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Proj</folder>
+      <baseclass>IDXDataErrorInfo</baseclass>
+      <lasttime>2019-09-19 17:50:21.827</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="0212333a-8480-4830-b6ce-5e9862b9961d">
+      <name>Gid</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="3e58bfb6-f884-40b8-9e3d-45622d9b4463">
+      <name>FieldName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f8fb3049-01de-41a9-9c64-5e239d546707">
+      <name>ChineseName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="441e968d-633e-4c50-bf3a-a8cde6ec69a9">
+      <name>DataType</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="006a8cfc-4df1-499e-8829-9e098f28c949">
+      <name>DictNo</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b6658d7b-459f-464d-a7c0-d82203e01311">
+      <name>FieldInfo</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="3598e5d6-dcc6-4451-a922-c95c108b9d04">
+      <name>IsNull</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="499cf2a0-34eb-4eec-b4bb-9a34f64f344f">
+      <name>Remark</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+    <item gid="2cdecad4-66f4-40be-8d14-8b66a7018700">
+      <name>lstInfo</name>
+      <chinesename>用来保存行数据中字段名，错误信息</chinesename>
+      <fieldtype>Dictionary&lt;string, ErrorInfo&gt;</fieldtype>
+      <content> get;
+            set;</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="73231a7f-8273-4220-ae17-d403480d06d2">
+      <name>IDXDataErrorInfo.GetPropertyError(string propertyName, ErrorInfo info)</name>
+      <chinesename>自定义错误</chinesename>
+      <fieldtype>void</fieldtype>
+      <content> if (lstInfo != null &amp;&amp; lstInfo.Count &gt; 0 &amp;&amp; lstInfo.ContainsKey(propertyName) &amp;&amp; !string.IsNullOrEmpty(lstInfo[propertyName].ErrorText))
+            {
+                info.ErrorText = lstInfo[propertyName].ErrorText;
+                info.ErrorType = lstInfo[propertyName].ErrorType;
+            }</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="361e02c4-9508-4a21-8a68-204b11c2d3a1">
+      <name>IDXDataErrorInfo.GetError(ErrorInfo info)</name>
+      <chinesename>
+      </chinesename>
+      <fieldtype>void</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+  </diyfieldinfo>
+</datatype>

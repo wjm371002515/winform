@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="82401347-5838-44be-9ca0-41ec94aae651">
+      <functionId>000803</functionId>
+      <name>DakaUser</name>
+      <chineseName>打卡用户信息</chineseName>
+      <existhistable>0</existhistable>
+      <version>1.0.0.0</version>
+      <lasttime>2020-05-11 12:25:01.522</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="f4b9e283-ff3f-4369-9330-76374aebe26a">
+      <name>Id</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="16b66e47-436a-4471-9145-866b1b3d0626">
+      <name>LoginName</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e7ba67ce-3db8-4efe-956a-4c8109053594">
+      <name>Name</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d2a51682-e48f-4c08-b6f3-b1551b16e921">
+      <name>Password</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f0b09d7b-1d52-404f-b1f1-6dc63df4d820">
+      <name>StartTime</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ec7ada96-1122-470a-b9b2-45de9a234130">
+      <name>IsDaka</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="56d45424-ba9f-4a01-9699-3f358a690455">
+      <name>LastUpdateTime</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="8336803d-e820-4205-9d3a-132bbd086bef">
+      <name>IsForbid</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <indexsinfo>
+    <item gid="879bc36f-4135-4638-acf6-6752c1c60edf">
+      <name>pk_id</name>
+      <indexfieldlst>Id</indexfieldlst>
+      <constraint_type>2</constraint_type>
+    </item>
+  </indexsinfo>
+</datatype>

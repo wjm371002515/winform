@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="174d09c0-f425-428d-82b8-c4c990da6d65">
+      <functionId>100085</functionId>
+      <name>InformationInfo</name>
+      <chineseName>政策法规公告动态</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>WebMis</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-09-23 20:51:45.683</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="54c38f7d-49e1-4b9e-a883-68804467e73e">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="17c6b4e1-9a40-4a07-9a64-0406ec55cb62">
+      <name>InformationTitle</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="8261a053-55d2-4454-bacb-1a7bef76da4a">
+      <name>CustomContent</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ae649469-a03d-490d-8c28-368599fca3cb">
+      <name>AttachmentGid</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b548e72d-6a90-4290-92b1-eb8a0af4fbd1">
+      <name>InformationCategory</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="18a301ac-cd48-4d7b-ad1d-4cb5ae2c2b47">
+      <name>InformationSubType</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="73e94863-faee-4c1a-8158-f1ddf759566e">
+      <name>EditorId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="8c77309f-bed0-4aa4-8b78-f46eff081e7f">
+      <name>LastUpdateTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ca17ce16-f523-43e4-a053-90b5dcf37566">
+      <name>IsApprove</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9171b97a-3db0-4421-9211-9fd16c049e37">
+      <name>ApproveId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="36ce0f06-d717-43eb-90f1-1baae47d6a6e">
+      <name>ApproveTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c66efe41-d48d-4a1c-9436-8eed115441d4">
+      <name>IsForceExpire</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c859bbac-a966-46f5-b6d2-29fc2559fd36">
+      <name>TimeOut</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

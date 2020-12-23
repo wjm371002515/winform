@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <item gid="2cbd37e9-c0ff-4fa1-9735-c30185310214">
+    <name>000000</name>
+    <chineseName>OPERATION_OK</chineseName>
+    <errType>7</errType>
+    <remark>操作成功</remark>
+  </item>
+  <item gid="b0dd1066-410b-4794-b3a6-d1d46d7194ec">
+    <name>000001</name>
+    <chineseName>OPERATION_ERR</chineseName>
+    <errType>3</errType>
+    <remark>操作失败</remark>
+  </item>
+  <item gid="dcb6edcc-c2be-4a9b-9e41-0afb87ae01c3">
+    <name>000002</name>
+    <chineseName>DICTIONARY_QUERY_ERR</chineseName>
+    <errType>4</errType>
+    <remark>查询数据字典失败</remark>
+  </item>
+  <item gid="b07cfc5b-d4f9-4b1e-87f5-34514be336ec">
+    <name>000003</name>
+    <chineseName>DICTIONARY_ADD_ERR</chineseName>
+    <errType>4</errType>
+    <remark>新增数据字典失败</remark>
+  </item>
+  <item gid="be7f5481-9346-469d-b92f-dc96d41d08bb">
+    <name>000004</name>
+    <chineseName>DICTIONARY_MOD_ERR</chineseName>
+    <errType>4</errType>
+    <remark>修改数据字典失败</remark>
+  </item>
+  <item gid="7660fefd-cbed-4af8-aec2-7b525ea4ec65">
+    <name>000005</name>
+    <chineseName>DICTIONARY_DEL_ERR</chineseName>
+    <errType>4</errType>
+    <remark>删除数据字典失败</remark>
+  </item>
+  <item gid="edfd0fba-2c31-4f10-af27-bcbc079465db">
+    <name>000006</name>
+    <chineseName>DICTIONARY_EXISTS_ERR</chineseName>
+    <errType>4</errType>
+    <remark>数据字典记录已存在</remark>
+  </item>
+  <item gid="20c61011-c2f5-448e-99e4-0456fb1ff996">
+    <name>000007</name>
+    <chineseName>DICTIONARY_NOTEXISTS_ERR</chineseName>
+    <errType>4</errType>
+    <remark>数据字典记录不存在</remark>
+  </item>
+  <item gid="d4cabf9e-345d-404c-94a6-cee8509e23b5">
+    <name>100000</name>
+    <chineseName>WEB_USER_PWD_REFUSE_ERR</chineseName>
+    <errType>4</errType>
+    <remark>用户名或密码错误或被禁止登陆</remark>
+  </item>
+  <item gid="e689f34c-8f31-4927-9c09-8df588e4d678">
+    <name>100001</name>
+    <chineseName>WEB_USER_PWD_ERR</chineseName>
+    <errType>4</errType>
+    <remark>用户没有管理员权限</remark>
+  </item>
+  <item gid="5585e765-c134-4e4b-9ac6-53eae4603178">
+    <name>100002</name>
+    <chineseName>WEB_USER_PWD_MOD_ERR</chineseName>
+    <errType>7</errType>
+    <remark>口令初始化失败</remark>
+  </item>
+  <item gid="bbbd9140-f4df-461a-9d52-372456b955cf">
+    <name>100003</name>
+    <chineseName>WEB_USER_OLDPWD_ERR</chineseName>
+    <errType>1</errType>
+    <remark>原口令错误</remark>
+  </item>
+</datatype>

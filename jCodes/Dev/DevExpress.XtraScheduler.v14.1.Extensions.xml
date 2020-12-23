@@ -1,0 +1,230 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DevExpress.XtraScheduler.v14.1.Extensions</name>
+    </assembly>
+    <members>
+        <member name="T:DevExpress.XtraScheduler.UI.ViewNavigator">
+
+            <summary>
+                <para>Represents a component used to create a View Navigator bar.
+</para>
+            </summary>
+
+        </member>
+        <member name="M:DevExpress.XtraScheduler.UI.ViewNavigator.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+                <para>Initializes a new instance of the ViewNavigator class with the specified container.
+</para>
+            </summary>
+            <param name="container">
+		An object which implements the <see cref="T:System.ComponentModel.IContainer"/> interface.
+
+            </param>
+
+
+        </member>
+        <member name="M:DevExpress.XtraScheduler.UI.ViewNavigator.#ctor">
+            <summary>
+                <para>Initializes a new instance of the ViewNavigator class with default settings.
+</para>
+            </summary>
+
+
+        </member>
+        <member name="T:DevExpress.XtraScheduler.UI.RibbonViewNavigator">
+
+            <summary>
+                <para>Represents a component used to create a View Navigator Ribbon page.
+</para>
+            </summary>
+
+        </member>
+        <member name="M:DevExpress.XtraScheduler.UI.RibbonViewNavigator.#ctor">
+            <summary>
+                <para>Initializes a new instance of the RibbonViewNavigator class with default settings.
+</para>
+            </summary>
+
+
+        </member>
+        <member name="T:DevExpress.XtraScheduler.UI.ViewSelector">
+
+            <summary>
+                <para>Represents a component used to create a View Selector bar.
+</para>
+            </summary>
+
+        </member>
+        <member name="M:DevExpress.XtraScheduler.UI.ViewSelector.#ctor">
+            <summary>
+                <para>Initializes a new instance of the ViewSelector class with default settings.
+</para>
+            </summary>
+
+
+        </member>
+        <member name="M:DevExpress.XtraScheduler.UI.ViewSelector.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+                <para>Initializes a new instance of the ViewSelector class with the specified container.
+</para>
+            </summary>
+            <param name="container">
+		An object which implements the <see cref="T:System.ComponentModel.IContainer"/> interface.
+
+            </param>
+
+
+        </member>
+        <member name="T:DevExpress.XtraScheduler.UI.ResourcesTree">
+
+            <summary>
+                <para>A control used to display hierarchically ordered resources.
+</para>
+            </summary>
+
+        </member>
+        <member name="M:DevExpress.XtraScheduler.UI.ResourcesTree.#ctor">
+            <summary>
+                <para>Initializes a new instance of the ResourcesTree class with default settings.
+</para>
+            </summary>
+
+
+        </member>
+        <member name="P:DevExpress.XtraScheduler.UI.ResourcesTree.ColumnPanelRowHeight">
+            <summary>
+                <para>Hides the corresponding property of the base class. 
+</para>
+            </summary>
+            <value> 
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.XtraScheduler.UI.ResourcesTree.Columns">
+            <summary>
+                <para>Provides access to a collection of ResourcesTree columns.
+</para>
+            </summary>
+            <value>A <b>ResourceTreeColumnCollection</b> object that is a collection of all the columns within a resources tree control.
+
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.XtraScheduler.UI.ResourcesTree.DataMember">
+            <summary>
+                <para>For internal use only.
+</para>
+            </summary>
+            <value> 
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.XtraScheduler.UI.ResourcesTree.DataSource">
+            <summary>
+                <para>For internal use only.
+</para>
+            </summary>
+            <value> 
+</value>
+
+
+        </member>
+        <member name="E:DevExpress.XtraScheduler.UI.ResourcesTree.FilterNode">
+            <summary>
+                <para>Hides the corresponding event of the base class.
+</para>
+            </summary>
+
+
+        </member>
+        <member name="P:DevExpress.XtraScheduler.UI.ResourcesTree.HorzScrollVisibility">
+            <summary>
+                <para>Gets or sets whether the horizontal scrollbar should be displayed. 
+</para>
+            </summary>
+            <value>A <see cref="T:DevExpress.XtraTreeList.ScrollVisibility"/> enumeration value specifying whether the horizontal scrollbar should be displayed. 
+</value>
+
+
+        </member>
+        <member name="M:DevExpress.XtraScheduler.UI.ResourcesTree.InternalGetService(System.Type)">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+            <param name="service">
+		 [To be supplied] 
+            </param>
+            <returns> [To be supplied] </returns>
+
+
+        </member>
+        <member name="P:DevExpress.XtraScheduler.UI.ResourcesTree.IsUnboundMode">
+            <summary>
+                <para> [To be supplied] </para>
+            </summary>
+            <value> [To be supplied] </value>
+
+
+        </member>
+        <member name="M:DevExpress.XtraScheduler.UI.ResourcesTree.Refresh">
+            <summary>
+                <para>Recalculates all graphical information of the current ResourcesTree instance and redraws it. 
+</para>
+            </summary>
+
+
+        </member>
+        <member name="P:DevExpress.XtraScheduler.UI.ResourcesTree.SchedulerControl">
+            <summary>
+                <para>Gets or sets the SchedulerControl to which the current control is bound.
+</para>
+            </summary>
+            <value>A <see cref="T:DevExpress.XtraScheduler.SchedulerControl"/> whose resources should be displayed.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.XtraScheduler.UI.ResourcesTree.VertScrollVisibility">
+            <summary>
+                <para>Gets or sets whether the vertical scrollbar is displayed.
+</para>
+            </summary>
+            <value>A <see cref="T:DevExpress.XtraTreeList.ScrollVisibility"/> enumeration member specifying the scrollbar visibility.
+</value>
+
+
+        </member>
+        <member name="T:DevExpress.XtraScheduler.UI.RibbonViewSelector">
+
+            <summary>
+                <para>Represents a component used to create a View Selector Ribbon page.
+</para>
+            </summary>
+
+        </member>
+        <member name="M:DevExpress.XtraScheduler.UI.RibbonViewSelector.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+                <para>Initializes a new instance of the RibbonViewSelector class with the specified container.
+</para>
+            </summary>
+            <param name="container">
+		An object which implements the <see cref="T:System.ComponentModel.IContainer"/> interface.
+
+            </param>
+
+
+        </member>
+        <member name="M:DevExpress.XtraScheduler.UI.RibbonViewSelector.#ctor">
+            <summary>
+                <para>Initializes a new instance of the RibbonViewSelector class with default settings.
+</para>
+            </summary>
+
+
+        </member>
+    </members>
+</doc>

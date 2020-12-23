@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="70688e7c-555d-46b0-bf22-4630e7f3d344">
+      <functionId>000211</functionId>
+      <name>Role</name>
+      <chineseName>角色信息表</chineseName>
+      <existhistable>0</existhistable>
+      <version>1.0.0.0</version>
+      <lasttime>2018-02-13 10:50:38.279</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="4b8a59d1-ef57-4d49-b8ca-27815e45c941">
+      <name>Id</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="8076b5e7-8686-441f-b694-022d2d38f8b7">
+      <name>RoleCode</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="17431c2b-3a1d-4cef-8367-242e74ea80a1">
+      <name>Name</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="81231f0a-ba72-425d-ac1c-f684b82849e4">
+      <name>Remark</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="58f87b83-9383-4f92-9db1-66cf9aeba43a">
+      <name>Seq</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="76e59ef6-fb7d-4fc1-991d-bbf25f35ccab">
+      <name>CompanyId</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d67583e5-4609-4fa0-8672-e9fcc1c86dd7">
+      <name>CompanyName</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="103d7dd9-3e2a-4993-92d1-5ceb7f8213fd">
+      <name>CreatorId</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2c72de8b-83c0-4c51-84a6-fb807ba7e780">
+      <name>CreatorTime</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="1fe90f15-223d-4b57-803a-be9652dddb04">
+      <name>EditorId</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ac341a8e-db27-463b-995f-e3c6d1356c8f">
+      <name>LastUpdateTime</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ab4078f4-b030-4d24-b35f-72feb1053d5a">
+      <name>IsDelete</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="94adf552-f69e-40af-a196-34aa183cc0d5">
+      <name>IsForbid</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <indexsinfo>
+    <item gid="060c2564-6b16-4ac5-bd64-b3283222c2b5">
+      <name>pk_role</name>
+      <indexfieldlst>Id</indexfieldlst>
+      <constraint_type>0</constraint_type>
+    </item>
+  </indexsinfo>
+</datatype>

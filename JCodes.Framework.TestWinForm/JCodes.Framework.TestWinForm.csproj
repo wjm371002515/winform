@@ -96,9 +96,8 @@
     <Reference Include="PdfSharp">
       <HintPath>..\JCodes.Framework.libs\PdfSharp\PdfSharp.dll</HintPath>
     </Reference>
-    <Reference Include="SevenZipSharp, Version=0.62.3757.29192, Culture=neutral, PublicKeyToken=20de82c62b055c88, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\jCodes\SevenZipSharp.dll</HintPath>
+    <Reference Include="SevenZipSharp">
+      <HintPath>..\JCodes.Framework.libs\SevenZipSharp\SevenZipSharp.dll</HintPath>
     </Reference>
     <Reference Include="Spire.Common, Version=1.2.366.55040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -629,20 +628,7 @@
       <Name>JCodes.Framework.jCodesenum</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="TimsSync\" />
-  </ItemGroup>
-  <ItemGroup>
-    <COMReference Include="Microsoft.Office.Core">
-      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
-      <VersionMajor>2</VersionMajor>
-      <VersionMinor>4</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>echo "编译后处理的事情 JCodes.Framework.TestWinForm"</PostBuildEvent>

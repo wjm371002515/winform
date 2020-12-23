@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="3d11d201-8170-4b79-b2d6-8ad6177de077">
+      <functionId>100037</functionId>
+      <name>PagerInfo</name>
+      <chineseName>页面信息</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Pager.Entity</folder>
+      <baseclass>
+      </baseclass>
+      <lasttime>2019-09-16 22:37:12.789</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+  </fieldsinfo>
+  <diyfieldinfo>
+    <item gid="e559fabe-46d0-48b7-8211-62175da31e5a">
+      <name>CurrenetPageIndex</name>
+      <chinesename>当前页码</chinesename>
+      <fieldtype>Int32</fieldtype>
+      <content>get { return m_CurrenetPageIndex; }
+            set
+            {
+                m_CurrenetPageIndex = value;
+
+                if (OnPageInfoChanged != null)
+                {
+                    OnPageInfoChanged(this);
+                }
+            }</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="70dc9731-98a9-471e-b97d-c13549b01217">
+      <name>PageSize</name>
+      <chinesename>每页显示的记录</chinesename>
+      <fieldtype>Int32</fieldtype>
+      <content>get { return m_PageSize; }
+            set
+            {
+                m_PageSize = value;
+                if (OnPageInfoChanged != null)
+                {
+                    OnPageInfoChanged(this);
+                }
+            }</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="5f412fad-912e-41ec-add1-eeb2ea87f20a">
+      <name>RecordCount</name>
+      <chinesename>记录总数</chinesename>
+      <fieldtype>Int32</fieldtype>
+      <content>get { return m_RecordCount; }
+            set
+            {
+                m_RecordCount = value;
+                if (OnPageInfoChanged != null)
+                {
+                    OnPageInfoChanged(this);
+                }
+            }</content>
+      <remark>
+      </remark>
+    </item>
+  </diyfieldinfo>
+</datatype>

@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="80aed902-31bf-4308-a28d-3070e9af5290">
+      <functionId>100045</functionId>
+      <name>ModRecordInfo</name>
+      <chineseName>修改记录信息</chineseName>
+      <fieldnamespace>using System.Collections.Generic;</fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Proj</folder>
+      <baseclass>IComparable&lt;ModRecordInfo&gt;</baseclass>
+      <lasttime>2019-09-19 16:00:55.648</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="f60b1520-e48a-42d0-9371-6bdfa95d1fda">
+      <name>Gid</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9cf49889-ccb2-459b-97d5-e99d8b77bf93">
+      <name>ModDate</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="22dcd580-983a-4b15-bd9e-01a815723f53">
+      <name>ModVersion</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c38047b0-01ed-48e6-bb91-d59fe69fe5c2">
+      <name>ModOrderId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="4d91dfd6-fc75-46b7-8932-fe390c3fa85e">
+      <name>Proposer</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="aae7c9fa-55ae-4927-807d-2ab00303f5aa">
+      <name>Programmer</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0779ac52-cbb1-4609-89b4-294f6d6ded53">
+      <name>ModContent</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="bc11ecf0-ba29-4bb9-939c-ecfeb5295d80">
+      <name>ModReason</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="789cf1e2-144c-4a51-98f6-b828de3db130">
+      <name>Remark</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+    <item gid="c393a428-212d-4a5b-8456-3774291344cc">
+      <name>CompareTo(ModRecordInfo other)</name>
+      <chinesename>Compares to.</chinesename>
+      <fieldtype>Int32</fieldtype>
+      <content>if (other == null) return -1;
+            if (ModDate &gt; other.ModDate)
+            {
+                return -1;
+            }
+            return 1;</content>
+      <remark>
+      </remark>
+    </item>
+  </diyfieldinfo>
+</datatype>

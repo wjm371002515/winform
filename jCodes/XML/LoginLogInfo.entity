@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="215c4fb7-8e50-4725-81cf-75e148ec6588">
+      <functionId>100057</functionId>
+      <name>LoginLogInfo</name>
+      <chineseName>用户登录日志信息</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Security</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-09-21 16:49:54.973</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="1588cc29-083b-4086-bb51-82ebdcdca418">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e4eb38b9-79c0-42f3-94ce-5263c4b06ebf">
+      <name>UserId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="08db8b0e-41ae-49ef-b55b-c735f3a43db0">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="53eb9b46-3c0a-417e-b1a5-308d0aec117d">
+      <name>LoginName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2c4fe0bf-9824-4be1-b568-a11bca266c2c">
+      <name>CompanyId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="51e0c450-fd98-4d93-924b-0e3c1adc1ba1">
+      <name>Remark</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="10245648-4ceb-4b3c-87f2-c71ccb95cf4f">
+      <name>IP</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="a6c2c9eb-3491-41ef-8f85-7658b78689aa">
+      <name>Mac</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e284305e-0914-4680-a2b6-d971bd5d4b94">
+      <name>LastUpdateTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0e7d7c37-d506-470a-bed4-7826b4ef0185">
+      <name>SystemtypeId</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="157fee88-0578-4a4c-83d8-3ed73f05b9eb">
+      <functionId>100008</functionId>
+      <name>AddressGroupInfo</name>
+      <chineseName>通讯录分组</chineseName>
+      <fieldnamespace>using JCodes.Framework.jCodesenum;</fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Contact</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-09-13 18:09:36.473</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="2e911ff4-f68c-41c7-a687-27c5fb73a634">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ca7c2207-a316-4f40-8dab-df51695ae68a">
+      <name>Pid</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2033f5ae-7f36-4425-85ea-8339d6867a6b">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="1d5b8e32-941b-4044-a27c-318598730b9d">
+      <name>Remark</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2f4a06d6-1a29-4973-bac7-4b476382736e">
+      <name>Seq</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="1554f0f5-33cc-4406-b2e2-a6b19f514255">
+      <name>CreatorId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="968d29d9-6442-4915-adf5-eb62c84dc2b7">
+      <name>CreatorTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="47c02a81-a389-456d-8f0b-c96d5ad76154">
+      <name>EditorId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="258c6563-4fa8-4baa-9cd7-e65f768db832">
+      <name>LastUpdateTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="7525a748-2871-453c-b0c9-d45817cfe699">
+      <name>DeptId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c923c343-386f-493c-aa1f-b7023211621d">
+      <name>CompanyId</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+    <item gid="1c276625-c451-41b3-b02e-8db17baba94e">
+      <name>AddressType</name>
+      <chinesename>通讯录类型</chinesename>
+      <fieldtype>AddressType</fieldtype>
+      <content>get
+            {
+                return this.m_AddressType;
+            }
+            set
+            {
+                this.m_AddressType = value;
+            }</content>
+      <remark>
+      </remark>
+    </item>
+  </diyfieldinfo>
+</datatype>

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="08acecfd-1a57-4bc0-a0c0-4d3bd1299d84">
+      <functionId>100097</functionId>
+      <name>SystemAuthorizeInfo</name>
+      <chineseName>系统授权认证信息</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Security</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2020-05-11 12:32:10.434</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="f844096e-6c45-4ddc-b689-0f823912a6c6">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="bd4dbdf3-9aac-4456-a1ae-c6a5c7f4f712">
+      <name>SystemtypeId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="5a16be74-2ccb-40ef-a29d-08dda641e39c">
+      <name>Licence</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

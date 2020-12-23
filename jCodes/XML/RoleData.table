@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="522942c3-4cc5-4138-be6f-00e9a1dcb167">
+      <functionId>000213</functionId>
+      <name>RoleData</name>
+      <chineseName>角色数据权限表</chineseName>
+      <existhistable>0</existhistable>
+      <version>1.0.0.0</version>
+      <lasttime>2019-09-25 09:55:51.352</lasttime>
+      <remark>没有实体类</remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="87bf5e06-31ad-42df-9bc1-2a4bdfcc5aac">
+      <name>Id</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="92c7e5a8-1f0a-4ea5-9adc-e037dabfb01b">
+      <name>RoleId</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2372e0cf-9b51-4cf7-872f-9872b8123985">
+      <name>CompanyLst</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e2d1e88c-3194-444f-9c59-0b99bc04a935">
+      <name>DeptLst</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="435edf92-ba2d-478e-b172-eeb61fe71bd5">
+      <name>Remark</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <indexsinfo>
+    <item gid="b85ccdd1-8075-47ea-8220-6e253926409f">
+      <name>pk_roledata</name>
+      <indexfieldlst>Id</indexfieldlst>
+      <constraint_type>0</constraint_type>
+    </item>
+  </indexsinfo>
+</datatype>

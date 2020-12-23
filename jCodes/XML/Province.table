@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="fd88fbf7-4f57-45e5-a98e-e3980887908b">
+      <functionId>000005</functionId>
+      <name>Province</name>
+      <chineseName>全国省份表</chineseName>
+      <existhistable>0</existhistable>
+      <version>1.0.0.0</version>
+      <lasttime>2018-02-08 13:35:58.474</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="d9e07d92-d24c-47df-aef9-448837e1236e">
+      <name>Id</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9798da55-faa1-44d4-8294-10cfc80cd9f9">
+      <name>ProvinceName</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <indexsinfo>
+    <item gid="986e60a6-a508-47b1-ab65-5b1e994f272e">
+      <name>pk_province</name>
+      <indexfieldlst>Id</indexfieldlst>
+      <constraint_type>0</constraint_type>
+    </item>
+  </indexsinfo>
+</datatype>

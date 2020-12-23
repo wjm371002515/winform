@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="64af20ac-da80-4001-8690-d9563f998d8a">
+      <functionId>100006</functionId>
+      <name>CDicKeyValue</name>
+      <chineseName>框架用来记录字典键值的类，用于Comobox等控件对象的值传递</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Common</folder>
+      <baseclass>
+      </baseclass>
+      <lasttime>2019-09-12 23:04:12.297</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+  </fieldsinfo>
+  <diyfieldinfo>
+    <item gid="5ca5bddf-9251-4e4d-946f-54d4d57710f0">
+      <name>Value</name>
+      <chinesename>键</chinesename>
+      <fieldtype>Int32</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="7476cfd2-eed0-4fb8-ad2f-86409f4f1c8e">
+      <name>Text</name>
+      <chinesename>值</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="21f04fd8-1d40-4bcb-9758-eac24b702359">
+      <name>CDicKeyValue(Int32 value, string text)</name>
+      <chinesename>
+      </chinesename>
+      <fieldtype>
+      </fieldtype>
+      <content>this.m_Text = text;
+            this.m_Value = value;</content>
+      <remark>构造函数</remark>
+    </item>
+    <item gid="7e585f85-aa48-4093-ac0f-d3e5e58f9cff">
+      <name>ToString()</name>
+      <chinesename>
+      </chinesename>
+      <fieldtype>override string</fieldtype>
+      <content>return string.Format("{0}-{1}", this.m_Value, this.m_Text);</content>
+      <remark>返回显示的内容</remark>
+    </item>
+    <item gid="6938c15d-2f72-45c6-b522-53bf21fa0b41">
+      <name>
+      </name>
+      <chinesename>
+      </chinesename>
+      <fieldtype>
+      </fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+  </diyfieldinfo>
+</datatype>

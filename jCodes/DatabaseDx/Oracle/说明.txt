@@ -1,0 +1,9 @@
+1、使用ORACLE_DB.sql 创建数据库文件以及表命名空间，用户名和密码。注意datafile的文件路径。
+2、使用WHCDB.sql创建数据库表对象。
+3、使用WHCDB_Sequence.sql创建数据库表的序列对象。
+4、使用WHCDB_TableData.sql创建数据库所需的基础数据。
+5、使用WHCDB_TableData_ProvinceCity.sql创建全国省份、城市、行政区数据。
+6、使用WHCDB_TableData_WareHouse.sql创建仓库管理系统的数据。
+
+
+8、使用INFORMATION.sql创建政策法规信息（可不用）。

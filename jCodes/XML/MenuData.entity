@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="9df81c95-bae6-44ed-b20e-fecaebe0c0c6">
+      <functionId>100026</functionId>
+      <name>MenuData</name>
+      <chineseName>定义菜单Json的相关数据，方便控制器生成Json数据进行传递</chineseName>
+      <fieldnamespace>using System.Collections.Generic;</fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Common</folder>
+      <baseclass>
+      </baseclass>
+      <lasttime>2019-09-16 14:11:12.370</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="d82a97d1-b2c2-4b00-87df-35132ebe99df">
+      <name>Gid</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="872013d9-650c-4bfa-aef9-a3b47d47f88e">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="86059721-6a82-426c-b128-d5876f9e94d3">
+      <name>Icon</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="a3bec2f9-c2d2-4d00-ae51-fdeaac8645db">
+      <name>Url</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+    <item gid="ac139e57-de15-4ba6-8189-2ee48c7a50ca">
+      <name>menus</name>
+      <chinesename>子节点集合</chinesename>
+      <fieldtype>List&lt;MenuData&gt;</fieldtype>
+      <content>get
+			{
+				return this.m_menus;
+			}
+			set
+			{
+				this.m_menus = value;
+			}</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="4a449015-d9fd-4156-b449-5716c2322ede">
+      <name>MenuData() </name>
+      <chinesename>无参构造函数</chinesename>
+      <fieldtype>
+      </fieldtype>
+      <content>this.menus = new List&lt;MenuData&gt;();
+            this.m_Icon = "icon-view";</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="14316de4-f744-4a84-8142-f0ad23659388">
+      <name>MenuData(string menuid, string menuname, string icon = "icon-view", string url=null):this()</name>
+      <chinesename>带参构造函数</chinesename>
+      <fieldtype>
+      </fieldtype>
+      <content>this.m_Gid = menuid;
+            this.m_Name = menuname;
+            this.m_Icon = icon;
+            this.m_Url = url;</content>
+      <remark>
+      </remark>
+    </item>
+  </diyfieldinfo>
+</datatype>

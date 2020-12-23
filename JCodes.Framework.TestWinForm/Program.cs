@@ -24,18 +24,24 @@ namespace JCodes.Framework.TestWinForm
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            AppConfig appConfig = new AppConfig(@"AutoUpdater\AutoUpdater.exe.config");
-            string serverIP = appConfig.AppConfigGet("ServerIP");
-            Int32 serverPort = Convert.ToInt32( appConfig.AppConfigGet("ServerPort"));
-            Boolean _isUpdate = Convert.ToBoolean(appConfig.AppConfigGet("isUpdate"));
- 
-            // 检查更新服务器端口是否可用
-            if (_isUpdate && (NetworkUtil.CheckIPPortEnabled(serverIP, serverPort) < 0 || NetworkUtil.CheckIPPortEnabled(serverIP, serverPort + 2) < 0))
-            {
-                _isUpdate = false;
-                MessageDxUtil.ShowTips("更新服务器端不可用,服务器更新取消!");
-            }
+            string serverIP = "";
+            Int32 serverPort = 0;
+            Boolean _isUpdate = false;
 
+            if (FileUtil.IsExistFile(@"AutoUpdater\AutoUpdater.exe.config")) {
+                AppConfig appConfig = new AppConfig(@"AutoUpdater\AutoUpdater.exe.config");
+                serverIP = appConfig.AppConfigGet("ServerIP");
+                serverPort = Convert.ToInt32(appConfig.AppConfigGet("ServerPort"));
+                _isUpdate = Convert.ToBoolean(appConfig.AppConfigGet("isUpdate"));
+
+                // 检查更新服务器端口是否可用
+                if (_isUpdate && (NetworkUtil.CheckIPPortEnabled(serverIP, serverPort) < 0 || NetworkUtil.CheckIPPortEnabled(serverIP, serverPort + 2) < 0))
+                {
+                    _isUpdate = false;
+                    MessageDxUtil.ShowTips("更新服务器端不可用,服务器更新取消!");
+                }
+            }
+           
             // 自动升级工具
             if (_isUpdate && VersionHelper.HasNewVersion(serverIP, serverPort) && (MessageDxUtil.ShowYesNoAndTips("服务器有新的版本是否更新") == DialogResult.Yes))
             {
@@ -76,8 +82,8 @@ namespace JCodes.Framework.TestWinForm
             
             // Application.Run(new ZheshangKaoshi());
 
-            // Application.Run(new JCodes.Framework.AddIn.Test.MainForm());
-            //Application.Run(new JCodes.Framework.TestWinForm.Basic.FrmTestBizControl());
+            //Application.Run(new JCodes.Framework.AddIn.Test.MainForm());
+            Application.Run(new JCodes.Framework.TestWinForm.Basic.FrmTestBizControl());
             //Application.Run(new JCodes.Framework.TestWinForm.ZSJob.TouHangDiGaoFrm());
             //Application.Run(new JCodes.Framework.TestWinForm.PdfDemo.PdfTestFrm());
             //Application.Run(new JCodes.Framework.TestWinForm.ZsDaixiao.FrmDealConsignment());
@@ -85,7 +91,7 @@ namespace JCodes.Framework.TestWinForm
             //Application.Run(new JCodes.Framework.Test.AMSDownloadForm());
             //Application.Run(new JCodes.Framework.Test.DakaDateSetFrm());
             // Application.Run(new JCodes.Framework.TestWinForm.Basic.InitDataFrm());
-            Application.Run(new JCodes.Framework.Wind.FrmWindDemo());
+            //Application.Run(new JCodes.Framework.Wind.FrmWindDemo());
         }
     }
 }

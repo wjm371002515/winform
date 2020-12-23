@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="5cd17cc8-3a1d-47c7-b8cd-9f229a617d3a">
+      <functionId>000217</functionId>
+      <name>SystemAuthorize</name>
+      <chineseName>系统授权认证</chineseName>
+      <existhistable>0</existhistable>
+      <version>1.0.0.0</version>
+      <lasttime>2019-09-27 09:44:19.133</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="c5a00250-c1da-470e-a1da-76860aa6f2f9">
+      <name>Id</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="10b6215b-7cc2-4107-a003-fffa9dd8f61e">
+      <name>SystemtypeId</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="07ca89c7-ba2a-4d74-bd73-8802f513d542">
+      <name>Licence</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <indexsinfo>
+    <item gid="30428bf3-20d7-4fc3-9de8-bf4df09d3817">
+      <name>pk_id</name>
+      <indexfieldlst>Id</indexfieldlst>
+      <constraint_type>0</constraint_type>
+    </item>
+  </indexsinfo>
+</datatype>

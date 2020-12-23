@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <tabletype>
+    <item gid="51b9fae7-aef9-4b1e-a897-08f1eb014315" creatortime="2018-02-08" name="000001(Dic_数据字典)" basicdata="1" />
+    <item gid="e469a798-d778-4315-9a09-d614329f0b95" creatortime="2018-02-08" name="000201(Security_用户权限)" basicdata="1" />
+    <item gid="40281933-2af9-4317-b4a1-4bf282fc8aa7" creatortime="2019-09-25" name="000801(Other_其他)" basicdata="0" />
+    <item gid="8b50ae03-15ad-4b73-bc20-12e5e7ffc000" creatortime="2019-12-02" name="000701(Dongnanhai_东南海)" basicdata="0" />
+  </tabletype>
+  <dataitem>
+    <item gid="ba5ddb75-4554-4011-b9a2-a32f65cc6240">
+      <name>DictType</name>
+      <chineseName>数据字典类型</chineseName>
+      <functionId>000001</functionId>
+      <typegid>51b9fae7-aef9-4b1e-a897-08f1eb014315</typegid>
+      <path>XML\DictType.table</path>
+      <basicdatapath>
+      </basicdatapath>
+    </item>
+    <item gid="9137414c-dd5b-4b3a-aaf8-aea7c1a68d80">
+      <name>DictData</name>
+      <chineseName>数据字典明细</chineseName>
+      <functionId>000002</functionId>
+      <typegid>51b9fae7-aef9-4b1e-a897-08f1eb014315</typegid>
+      <path>XML\DictData.table</path>
+      <basicdatapath>
+      </basicdatapath>
+    </item>
+    <item gid="42e9d82b-f25f-4410-b86c-950a3c90bf28">
+      <name>City</name>
+      <chineseName>全国城市表</chineseName>
+      <functionId>000003</functionId>
+      <typegid>51b9fae7-aef9-4b1e-a897-08f1eb014315</typegid>
+      <path>XML\City.table</path>
+      <basicdatapath>XML\City.basicdata</basicdatapath>
+    </item>
+    <item gid="f7d286a7-2246-4fc5-b134-373f4afd9784">
+      <name>District</name>
+      <chineseName>城市行政区划</chineseName>
+      <functionId>000004</functionId>
+      <typegid>51b9fae7-aef9-4b1e-a897-08f1eb014315</typegid>
+      <path>XML\District.table</path>
+      <basicdatapath>XML\District.basicdata</basicdatapath>
+    </item>
+    <item gid="fd022710-f318-4063-bdf3-bba713daa5fe">
+      <name>Province</name>
+      <chineseName>全国省份表</chineseName>
+      <functionId>000005</functionId>
+      <typegid>51b9fae7-aef9-4b1e-a897-08f1eb014315</typegid>
+      <path>XML\Province.table</path>
+      <basicdatapath>XML\Province.basicdata</basicdatapath>
+    </item>
+    <item gid="acb3e98d-073d-4a32-a8fb-d6cce1298d23">
+      <name>Sysparameter</name>
+      <chineseName>系统参数表</chineseName>
+      <functionId>000006</functionId>
+      <typegid>51b9fae7-aef9-4b1e-a897-08f1eb014315</typegid>
+      <path>XML\Sysparameter.table</path>
+      <basicdatapath>
+      </basicdatapath>
+    </item>
+    <item gid="b5b03494-2a9a-4602-a834-c97bc3050f71">
+      <name>PersonalConfig_TODO</name>
+      <chineseName>个人参数配置表</chineseName>
+      <functionId>000007</functionId>
+      <typegid>51b9fae7-aef9-4b1e-a897-08f1eb014315</typegid>
+      <path>XML\PersonalConfig_TODO.table</path>
+      <basicdatapath>
+      </basicdatapath>
+    </item>
+    <item gid="298653a3-70e5-4d14-aa45-a5890d4cd3f4">
+      <name>GridViewHeaderConfig_TODO</name>
+      <chineseName>表格配置参数表</chineseName>
+      <functionId>000008</functionId>
+      <typegid>51b9fae7-aef9-4b1e-a897-08f1eb014315</typegid>
+      <path>XML\GridViewHeaderConfig_TODO.table</path>
+      <basicdatapath>
+      </basicdatapath>
+    </item>
+    <item gid="3b6baa4d-a49d-4d70-9d5c-ad5ff81f64fc">
+      <name>BlackIP</name>
+      <chineseName>黑白名单信息表</chineseName>
+      <functionId>000201</functionId>
+      <typegid>e469a798-d778-4315-9a09-d614329f0b95</typegid>
+      <path>XML\BlackIP.table</path>
+      <basicdatapath>
+      </basicdatapath>
+    </item>
+    <item gid="ab243a9f-8141-4cdb-8854-c10219819470">
+      <name>BlackIP_User</name>
+      <chineseName>黑白名单与用户关系表</chineseName>
+      <functionId>000202</functionId>
+      <typegid>e469a798-d778-4315-9a09-d614329f0b95</typegid>
+      <path>XML\BlackIP_User.table</path>
+      <basicdatapath>
+      </basicdatapath>
+    </item>
+    <item gid="40f4a603-44ec-4d95-a7ce-33d7e1b0918f">
+      <name>Function</name>
+      <chineseName>系统功能定义</chineseName>
+      <functionId>000203</functionId>
+      <typegid>e469a798-d778-4315-9a09-d614329f0b95</typegid>
+      <path>XML\Function.table</path>
+      <basicdatapath>
+      </basicdatapath>
+    </item>
+    <item gid="2025b9bd-93cb-4bf9-a34b-9a0b272c5aa8">
+      <name>LoginLog</name>
+      <chineseName>用户登录日志信息</chineseName>
+      <functionId>000204</functionId>
+      <typegid>e469a798-d778-4315-9a09-d614329f0b95</typegid>
+      <path>XML\LoginLog.table</path>
+      <basicdatapath>
+      </basicdatapath>
+    </item>
+    <item gid="c6b8b96a-2e60-4829-808c-2a04ad225e4d">
+      <name>Menu</name>
+      <chineseName>菜单信息表</chineseName>
+      <functionId>000205</functionId>
+      <typegid>e469a798-d778-4315-9a09-d614329f0b95</typegid>
+      <path>XML\Menu.table</path>
+      <basicdatapath>
+      </basicdatapath>
+    </item>
+    <item gid="c6dbf099-0061-4c23-bb9b-f32f9e72e537">
+      <name>OperationLog</name>
+      <chineseName>用户操作记录表</chineseName>
+      <functionId>000206</functionId>
+      <typegid>e469a798-d778-4315-9a09-d614329f0b95</typegid>
+      <path>XML\OperationLog.table</path>
+      <basicdatapath>
+      </basicdatapath>
+    </item>
+    <item gid="d48d077b-9771-49b8-a3f0-988d4b8d456d">
+      <name>OperationLogSetting</name>
+      <chineseName>操作日志数据配置表</chineseName>
+      <functionId>000207</functionId>
+      <typegid>e469a798-d778-4315-9a09-d614329f0b95</typegid>
+      <path>XML\OperationLogSetting.table</path>
+      <basicdatapath>
+      </basicdatapath>
+    </item>
+    <item gid="8c318b59-61f0-4a60-8111-b8c870127e29">
+      <name>OU</name>
+      <chineseName>机构信息表</chineseName>
+      <functionId>000208</functionId>
+      <typegid>e469a798-d778-4315-9a09-d614329f0b95</typegid>
+      <path>XML\OU.table</path>
+      <basicdatapath>
+      </basicdatapath>
+    </item>
+    <item gid="734535b9-9ecd-4771-903b-802c00d5c1d7">
+      <name>OU_Role</name>
+      <chineseName>机构角色关联表</chineseName>
+      <functionId>000209</functionId>
+      <typegid>e469a798-d778-4315-9a09-d614329f0b95</typegid>
+      <path>XML\OU_Role.table</path>
+      <basicdatapath>
+      </basicdatapath>
+    </item>
+    <item gid="f61e292a-6114-4a0e-b470-a4f5942cc7d9">
+      <name>OU_User</name>
+      <chineseName>机构用户关联表</chineseName>
+      <functionId>000210</functionId>
+      <typegid>e469a798-d778-4315-9a09-d614329f0b95</typegid>
+      <path>XML\OU_User.table</path>
+      <basicdatapath>
+      </basicdatapath>
+    </item>
+    <item gid="19537486-ca6d-4425-af27-8ca9f09f8e60">
+      <name>Role</name>
+      <chineseName>角色信息表</chineseName>
+      <functionId>000211</functionId>
+      <typegid>e469a798-d778-4315-9a09-d614329f0b95</typegid>
+      <path>XML\Role.table</path>
+      <basicdatapath>
+      </basicdatapath>
+    </item>
+    <item gid="b9dcc8ad-9ac2-4cb4-84ce-ba08726ce60f">
+      <name>Role_Function</name>
+      <chineseName>角色功能关联表</chineseName>
+      <functionId>000212</functionId>
+      <typegid>e469a798-d778-4315-9a09-d614329f0b95</typegid>
+      <path>XML\Role_Function.table</path>
+      <basicdatapath>
+      </basicdatapath>
+    </item>
+    <item gid="9b474929-dfcd-4bc7-9729-789e7d8d7437">
+      <name>RoleData</name>
+      <chineseName>角色数据权限表</chineseName>
+      <functionId>000213</functionId>
+      <typegid>e469a798-d778-4315-9a09-d614329f0b95</typegid>
+      <path>XML\RoleData.table</path>
+      <basicdatapath>
+      </basicdatapath>
+    </item>
+    <item gid="4cf4c26b-b3a0-43a8-b9a7-702e37a7b89b">
+      <name>EntityTable_TODO</name>
+      <chineseName>实体表</chineseName>
+      <functionId>000009</functionId>
+      <typegid>51b9fae7-aef9-4b1e-a897-08f1eb014315</typegid>
+      <path>XML\EntityTable_TODO.table</path>
+      <basicdatapath>XML\EntityTable.basicdata</basicdatapath>
+    </item>
+    <item gid="efc94c4b-273b-4301-91f2-65957cad51b5">
+      <name>EntityTableField_TODO</name>
+      <chineseName>实体表字段</chineseName>
+      <functionId>000010</functionId>
+      <typegid>51b9fae7-aef9-4b1e-a897-08f1eb014315</typegid>
+      <path>XML\EntityTableField_TODO.table</path>
+      <basicdatapath>XML\EntityTableField.basicdata</basicdatapath>
+    </item>
+    <item gid="e25b3310-49b0-4355-8dae-57f47010b1fe">
+      <name>SystemType</name>
+      <chineseName>系统标识信息</chineseName>
+      <functionId>000214</functionId>
+      <typegid>e469a798-d778-4315-9a09-d614329f0b95</typegid>
+      <path>XML\SystemType.table</path>
+      <basicdatapath>
+      </basicdatapath>
+    </item>
+    <item gid="ac8e3878-cadb-405b-937b-944e87ed628e">
+      <name>User</name>
+      <chineseName>用户信息</chineseName>
+      <functionId>000215</functionId>
+      <typegid>e469a798-d778-4315-9a09-d614329f0b95</typegid>
+      <path>XML\User.table</path>
+      <basicdatapath>
+      </basicdatapath>
+    </item>
+    <item gid="48fbbd02-3f36-4b0c-99b1-8e6402f6451d">
+      <name>User_Role</name>
+      <chineseName>用户角色关系表</chineseName>
+      <functionId>000216</functionId>
+      <typegid>e469a798-d778-4315-9a09-d614329f0b95</typegid>
+      <path>XML\User_Role.table</path>
+      <basicdatapath>
+      </basicdatapath>
+    </item>
+    <item gid="2098de27-3dbb-470f-994d-e5a1fc9e2f80">
+      <name>SystemAuthorize</name>
+      <chineseName>系统授权认证</chineseName>
+      <functionId>000217</functionId>
+      <typegid>e469a798-d778-4315-9a09-d614329f0b95</typegid>
+      <path>XML\SystemAuthorize.table</path>
+      <basicdatapath>
+      </basicdatapath>
+    </item>
+    <item gid="b76dee6a-cde8-4973-8160-360ced7d436b">
+      <name>FileUpload</name>
+      <chineseName>上传文件表</chineseName>
+      <functionId>000011</functionId>
+      <typegid>51b9fae7-aef9-4b1e-a897-08f1eb014315</typegid>
+      <path>XML\FileUpload.table</path>
+      <basicdatapath>
+      </basicdatapath>
+    </item>
+    <item gid="f4d8e6b6-66d3-42d4-991f-d4950b9fff31">
+      <name>Consignment</name>
+      <chineseName>代销信息数据</chineseName>
+      <functionId>000801</functionId>
+      <typegid>40281933-2af9-4317-b4a1-4bf282fc8aa7</typegid>
+      <path>XML\Consignment.table</path>
+      <basicdatapath>
+      </basicdatapath>
+    </item>
+    <item gid="b544d17c-ab1d-4b33-815b-0018c19a7987">
+      <name>DongnanhaiVotes</name>
+      <chineseName>东南海投票信息</chineseName>
+      <functionId>701</functionId>
+      <typegid>8b50ae03-15ad-4b73-bc20-12e5e7ffc000</typegid>
+      <path>XML\DongnanhaiVotes.table</path>
+      <basicdatapath>
+      </basicdatapath>
+    </item>
+    <item gid="8e8a2ba4-e914-40ed-a493-2267cf50f834">
+      <name>LPRData</name>
+      <chineseName>LPR数据</chineseName>
+      <functionId>000012</functionId>
+      <typegid>51b9fae7-aef9-4b1e-a897-08f1eb014315</typegid>
+      <path>XML\LPRData.table</path>
+      <basicdatapath>
+      </basicdatapath>
+    </item>
+    <item gid="23ee02ef-be56-439f-8248-d7221c875233">
+      <name>WorkDay</name>
+      <chineseName>工作日维护</chineseName>
+      <functionId>000802</functionId>
+      <typegid>40281933-2af9-4317-b4a1-4bf282fc8aa7</typegid>
+      <path>XML\WorkDay.table</path>
+      <basicdatapath>
+      </basicdatapath>
+    </item>
+    <item gid="f06e18df-4b1d-464c-a2ef-bbf88b38dcd2">
+      <name>DakaUser</name>
+      <chineseName>打卡用户信息</chineseName>
+      <functionId>000803</functionId>
+      <typegid>40281933-2af9-4317-b4a1-4bf282fc8aa7</typegid>
+      <path>XML\DakaUser.table</path>
+      <basicdatapath>
+      </basicdatapath>
+    </item>
+    <item gid="5543b51d-8dee-4e21-a123-eccb74b77f3b">
+      <name>UnissuedBondUpdateData</name>
+      <chineseName>已取得批文未发行债券项目更新状态数据</chineseName>
+      <functionId>000804</functionId>
+      <typegid>40281933-2af9-4317-b4a1-4bf282fc8aa7</typegid>
+      <path>XML\UnissuedBondUpdateData.table</path>
+      <basicdatapath>
+      </basicdatapath>
+    </item>
+    <item gid="d27fdb85-8cfb-49f7-b159-5c5516f7a9ac">
+      <name>UnissuedBond</name>
+      <chineseName>已取得批文未发行债券项目</chineseName>
+      <functionId>000805</functionId>
+      <typegid>40281933-2af9-4317-b4a1-4bf282fc8aa7</typegid>
+      <path>XML\UnissuedBond.table</path>
+      <basicdatapath>
+      </basicdatapath>
+    </item>
+    <item gid="bedb46c5-14e7-4049-a2a0-b473f4fb4dc8">
+      <name>TWorkDay</name>
+      <chineseName>工作日</chineseName>
+      <functionId>000806</functionId>
+      <typegid>40281933-2af9-4317-b4a1-4bf282fc8aa7</typegid>
+      <path>XML\TWorkDay.table</path>
+      <basicdatapath>
+      </basicdatapath>
+    </item>
+    <item gid="1cbe8a3c-cbe6-46c0-9348-bf77efbc7ccd">
+      <name>SystemLog</name>
+      <chineseName>系统日志表</chineseName>
+      <functionId>000218</functionId>
+      <typegid>e469a798-d778-4315-9a09-d614329f0b95</typegid>
+      <path>XML\SystemLog.table</path>
+      <basicdatapath>
+      </basicdatapath>
+    </item>
+    <item gid="165dc48d-5106-4dbc-bb0c-6eeb68fd3616">
+      <name>MVCRouteConfig</name>
+      <chineseName>MVC路由配置项</chineseName>
+      <functionId>000013</functionId>
+      <typegid>51b9fae7-aef9-4b1e-a897-08f1eb014315</typegid>
+      <path>XML\MVCRouteConfig.table</path>
+      <basicdatapath>
+      </basicdatapath>
+    </item>
+  </dataitem>
+</datatype>

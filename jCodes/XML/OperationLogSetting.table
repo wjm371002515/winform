@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="fffe29b4-944a-44ac-8731-da1766261afd">
+      <functionId>000207</functionId>
+      <name>OperationLogSetting</name>
+      <chineseName>操作日志数据配置表</chineseName>
+      <existhistable>0</existhistable>
+      <version>1.0.0.0</version>
+      <lasttime>2018-02-08 16:37:44.013</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="f89fd392-757c-480f-9c69-5e731556be83">
+      <name>Id</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ce1a77a6-ceb6-4928-ab36-33a5fedb0f75">
+      <name>IsForbid</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="3731d206-cc01-4b44-8ba4-a1c9404ade19">
+      <name>TableName</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="45997287-2d8b-4b68-97e8-64670cfb40d6">
+      <name>IsInsertLog</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2e93e700-3453-49a9-b154-6314cfd75ab6">
+      <name>IsUpdateLog</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f17e7168-add1-41f9-b44b-ddae399c4366">
+      <name>IsDeleteLog</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="02fa3446-5655-4ffd-b6dd-97ec2b14bef0">
+      <name>Remark</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c66e710b-64e2-421d-acbb-add6889a9865">
+      <name>CreatorId</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="da02e8e6-0360-4312-ae78-fd6d27f7cdd0">
+      <name>CreatorTime</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="83cefc2a-583d-4ec6-80fc-279065ae1d0b">
+      <name>EditorId</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="43999ac9-93ea-4f7d-9f29-fbaad7535382">
+      <name>LastUpdateTime</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <indexsinfo>
+    <item gid="70ae043f-42ce-40ae-9bac-67c361cc08fa">
+      <name>pk_operationlogsetting</name>
+      <indexfieldlst>Id</indexfieldlst>
+      <constraint_type>1</constraint_type>
+    </item>
+  </indexsinfo>
+</datatype>

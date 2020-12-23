@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="756f5eb7-9d68-4e75-9830-3f4d897d28cd">
+      <functionId>100070</functionId>
+      <name>ClientInfo</name>
+      <chineseName>客户信息</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>WareHouseMis</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-09-23 09:28:06.429</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="01bbb956-4721-439c-9b2a-a9fbe8ad094b">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="af00a8f0-1f95-431a-8c76-52f0b2273978">
+      <name>ConsumerCode</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0e899314-ad79-4020-8e83-dbd4926fa59b">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c52e5844-7dc6-4e66-8747-1eaed969f06d">
+      <name>MobilePhone</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c724f9c5-2ec1-4eb9-a7de-a06ac19f3268">
+      <name>Address</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="bdb85c77-d504-4ca0-8d06-efb3b4d1f546">
+      <name>Remark</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

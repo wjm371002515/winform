@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="14abe05c-bf06-40ec-ba9c-1221fafeb4f0">
+      <functionId>000214</functionId>
+      <name>SystemType</name>
+      <chineseName>系统标识信息</chineseName>
+      <existhistable>0</existhistable>
+      <version>1.0.0.0</version>
+      <lasttime>2019-09-25 09:56:51.435</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="7750ae70-4289-4b25-9dd0-07d1fe465f37">
+      <name>Gid</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0d643441-6b80-4422-895f-e67b1ae1d8c8">
+      <name>Name</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="a623ecb9-936b-42f9-818b-ef7633aa2d26">
+      <name>ConsumerCode</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="61f68b1f-e38b-4752-955d-b793575f1fba">
+      <name>Licence</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="a78491c1-17a2-4cf6-b987-71cd7f332869">
+      <name>Remark</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <indexsinfo>
+    <item gid="e2331989-8d39-46ff-a489-4f228d191d20">
+      <name>pk_gid</name>
+      <indexfieldlst>Gid</indexfieldlst>
+      <constraint_type>0</constraint_type>
+    </item>
+  </indexsinfo>
+</datatype>

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="76e702f4-8cbc-4d76-94fc-08fee6be347b">
+      <functionId>100019</functionId>
+      <name>DistrictInfo</name>
+      <chineseName>地区信息</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Dic</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-09-16 10:27:43.622</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="e6208fe2-d596-4719-9c50-c98b247497d7">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="1bf3a59f-1324-49bc-8eea-5b1f19eba223">
+      <name>DistrictName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="021820b9-b687-4448-8dbe-907596438157">
+      <name>CityId</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

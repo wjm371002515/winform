@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="daab0533-275e-4599-8cd8-1ac9c6e8ba2b">
+      <functionId>100073</functionId>
+      <name>PurchaseHeaderInfo</name>
+      <chineseName>进货单表头信息</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>WareHouseMis</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-09-23 09:50:53.122</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="c74dfef1-0cd0-4e3d-9006-415663b99d17">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="6210325e-5a62-49fa-b0f4-4e44cb925912">
+      <name>OrderNo</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="dd247e48-35e1-4260-9fbb-bd26c54f17e5">
+      <name>OperationType</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d7c98f97-ec33-4e3b-98eb-7b3746c94c98">
+      <name>Manufacture</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="db2096a9-53eb-4f17-91ef-bdff661090f8">
+      <name>WareHouseId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="99e5f834-22de-44ae-a2a1-89275701dbd3">
+      <name>CostCenter</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="22cdf23d-322d-4e1e-b7d7-fa09cb0d755a">
+      <name>Remark</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="3ccce925-d373-4521-845d-7b116dd587f4">
+      <name>CreatorId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0a2ed992-e836-4e47-9504-fea564e75752">
+      <name>CreatorTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f539cf52-39ce-49f4-b2eb-facd750beca1">
+      <name>CreatorYear</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b0522c37-eeb5-40fe-9f2a-a74c9b13a2f2">
+      <name>CreatorMonth</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="8d84d8e2-bf13-495e-9890-e9ba5508e829">
+      <name>PickingPeople</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

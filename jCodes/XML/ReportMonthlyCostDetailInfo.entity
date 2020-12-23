@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="99f790a2-e2d5-4d66-9365-11e8f1f2a7bd">
+      <functionId>100076</functionId>
+      <name>ReportMonthlyCostDetailInfo</name>
+      <chineseName>月费用成本明细报表信息</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>WareHouseMis</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-09-23 10:58:56.750</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="62ccdd1c-98c5-4c56-83d8-0d882c7281de">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="153acff5-e3f6-4c6b-a886-fcbd5fe3f9cb">
+      <name>ReportHeaderId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="95a0021c-a483-4085-bf26-57544c633543">
+      <name>ReportYear</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="3b0c6dde-6064-4888-9212-c5f1a7f58368">
+      <name>ReportMonth</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="64b54171-1e2b-4cf9-b71b-6694ae15b400">
+      <name>DeptId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f3a5ddc6-41e2-4935-b156-6ffbd0e1d1aa">
+      <name>ItemType</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e8dca2ed-13b6-4eda-8bd1-6856c37b1c3a">
+      <name>Balance</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d12f56ad-bc9e-4653-9d2e-1008f984782c">
+      <name>ReportCode</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

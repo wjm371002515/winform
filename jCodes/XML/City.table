@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="80643e07-4cc3-4f9a-a9f8-38c775c80f4e">
+      <functionId>000003</functionId>
+      <name>City</name>
+      <chineseName>全国城市表</chineseName>
+      <existhistable>0</existhistable>
+      <version>1.0.0.0</version>
+      <lasttime>2018-02-08 13:31:53.726</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="2c42f692-167d-4ac9-93ff-627a137aec05">
+      <name>Id</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f375b4dd-f572-4186-be0b-e8bf1f4d9f43">
+      <name>CityName</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="5a1da8a7-c020-4531-857e-9adf206c11a0">
+      <name>ZipCode</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="64fc39e8-a7aa-46b0-8431-9f07e77a48b8">
+      <name>ProvinceId</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <indexsinfo>
+    <item gid="8c7d25b0-73ed-4cab-bb4c-49a8571dbed5">
+      <name>pk_city</name>
+      <indexfieldlst>Id</indexfieldlst>
+      <constraint_type>1</constraint_type>
+    </item>
+  </indexsinfo>
+</datatype>

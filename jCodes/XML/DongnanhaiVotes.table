@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="f361893b-4eda-4e08-abf3-b19980170803">
+      <functionId>000701</functionId>
+      <name>DongnanhaiVotes</name>
+      <chineseName>东南海投票信息</chineseName>
+      <existhistable>0</existhistable>
+      <version>1.0.0.0</version>
+      <lasttime>2019-12-02 10:41:21.918</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="2d40d658-9c9f-4e0c-a48e-36baa29e7e18">
+      <name>Id</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="cfe40581-8353-49ae-9248-8cb0db8fd9ce">
+      <name>TestName1</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="4be6a1ba-c79a-4c28-8b16-3db3e53e7ac1">
+      <name>Name</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <indexsinfo>
+  </indexsinfo>
+</datatype>

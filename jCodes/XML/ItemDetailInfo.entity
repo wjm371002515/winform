@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="9e55741d-9201-4651-809a-790d8939f4b1">
+      <functionId>100071</functionId>
+      <name>ItemDetailInfo</name>
+      <chineseName>设备详细信息</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>WareHouseMis</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-09-23 09:31:17.397</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="124216b2-d9ed-4753-bedf-708381796d43">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="7ad4ed53-9e6b-418c-936a-38640dd9b613">
+      <name>ItemNo</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="5bf41d41-7413-4e1a-b268-b785acbd534e">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f57dba32-6ce1-4cba-9653-73977e76c12f">
+      <name>Manufacture</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="3a621987-a5e1-4ca4-9951-a861dbc97a48">
+      <name>MapNo</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="54a68362-bb0b-465f-a3f4-75b2249b3637">
+      <name>Specification</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="85366452-42ef-47b8-b3e3-8be69e3e751c">
+      <name>Material</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d7029a2b-bc0c-4eeb-9756-4ff738b0b9a7">
+      <name>ItemBigtype</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f3359ae4-65b2-471d-b8a8-0ae055b4b3bf">
+      <name>ItemType</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="3920514e-9e74-4265-a5c5-6116f26e8f18">
+      <name>ItemUnit</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ca70f61a-51ec-4495-a973-77ab2e4ea939">
+      <name>Price</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="edc375c5-98ae-4932-8f21-a8c734c34254">
+      <name>ItemSource</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="81e18b81-f2ca-41a3-820c-1d7df965f2bb">
+      <name>StoragePos</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="03eb3851-fb83-422e-8a56-59663b3c20e1">
+      <name>UsagePos</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="367c8577-6ab7-4966-9689-e023c34dd8f8">
+      <name>Remark</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f2ad0eeb-12f9-4106-89e5-671194fa316b">
+      <name>WareHouseId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e452d704-e225-4bca-b3e4-5b1eb15e374e">
+      <name>DeptId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e411499b-dfa7-4c54-aa38-9f3b402bdd4b">
+      <name>Amount</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="1680d10f-24fd-4505-828e-61e409048b1d">
+      <name>Balance</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

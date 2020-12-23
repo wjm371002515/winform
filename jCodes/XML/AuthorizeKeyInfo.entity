@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="257e0b10-13d8-44ae-aaa3-9406de4c3677">
+      <functionId>100082</functionId>
+      <name>AuthorizeKeyInfo</name>
+      <chineseName>定义常用功能的控制ID，方便基类控制器对用户权限的控制</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>WebMis</folder>
+      <baseclass>
+      </baseclass>
+      <lasttime>2019-09-23 20:42:44.241</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+  </fieldsinfo>
+  <diyfieldinfo>
+    <item gid="8db8000b-3e57-424a-9032-757d9009e4d6">
+      <name>InsertKey</name>
+      <chinesename>新增记录的功能控制ID</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="8805d514-4297-42c1-80df-b15a6034e7b1">
+      <name>UpdateKey</name>
+      <chinesename>更新记录的功能控制ID</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f5bd338e-1cc0-45c3-85c0-0796021a7860">
+      <name>DeleteKey</name>
+      <chinesename>删除记录的功能控制ID</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d29437a6-3fde-473d-acdb-57c489ce0b8d">
+      <name>ListKey</name>
+      <chinesename>查看列表的功能控制ID</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="22707b95-93e2-4d9c-8b22-05da09c18817">
+      <name>ViewKey</name>
+      <chinesename>查看明细的功能控制ID</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d686c728-6d98-4958-b8d1-efe8d4a5e433">
+      <name>ExportKey</name>
+      <chinesename>导出记录的功能控制ID</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="efcf3c60-681e-4039-874a-7df173d5f3fc">
+      <name>CanInsert</name>
+      <chinesename>判断是否具有插入权限</chinesename>
+      <fieldtype>bool</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="800bb984-d4b1-404f-8b9a-7c32610995da">
+      <name>CanUpdate</name>
+      <chinesename>判断是否具有更新权限</chinesename>
+      <fieldtype>bool</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="720ab401-c247-470f-b232-8320c12dc481">
+      <name>CanDelete</name>
+      <chinesename>判断是否具有删除权限</chinesename>
+      <fieldtype>bool</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="260ba376-602d-4418-a18c-31cad200d11d">
+      <name>CanList</name>
+      <chinesename>判断是否具有列表权限</chinesename>
+      <fieldtype>bool</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="8155ba08-fc8f-4c32-9197-ae74528f8a18">
+      <name>CanView</name>
+      <chinesename>判断是否具有查看权限</chinesename>
+      <fieldtype>bool</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="6b2d3b90-0f8d-4507-8446-f0d9f4a4d964">
+      <name>CanExport</name>
+      <chinesename>判断是否具有导出权限</chinesename>
+      <fieldtype>bool</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+  </diyfieldinfo>
+</datatype>

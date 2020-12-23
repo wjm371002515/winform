@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="c1437c8a-a409-4692-aee9-04bc393a6bf3">
+      <functionId>100061</functionId>
+      <name>OUInfo</name>
+      <chineseName>部门机构信息</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Security</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-09-21 19:12:21.955</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="47ffe74b-7fb6-4da9-a55c-e54100d71ec1">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="37d835c1-6da4-4a00-9954-403fd9054c20">
+      <name>Pid</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ad5c2376-69f9-4aa0-b987-829e4bf245a9">
+      <name>OuCode</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="fa6e7387-7fa8-4ab7-8a54-c62a0531ca9b">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="a9b72b2b-d182-4bc0-81ca-99047697bde7">
+      <name>Seq</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="5079de82-71b5-48dc-ab03-ba8dd17c3476">
+      <name>OuType</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f8a9c31b-a23b-460e-8648-efa20956d637">
+      <name>Address</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="bb470b72-70e9-43f8-b147-51cf5b394ec1">
+      <name>OutPhone</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="936e193a-3568-438b-a96e-1b66d12f5620">
+      <name>InnerPhone</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="333a9935-de22-41eb-823e-675d11e492c8">
+      <name>Remark</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="cbc65b1b-822a-4166-9107-2dfc2fb28291">
+      <name>CreatorId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="1641c7fa-f1ef-4cf4-8816-753748a3ae2f">
+      <name>CreatorTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9beb9d45-ec53-42d2-aa21-be3334ac4405">
+      <name>EditorId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b844abea-166f-4ef1-baa7-a1ada00e5f64">
+      <name>LastUpdateTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c64cebd1-e24b-44d9-aac5-cb73482d9cf9">
+      <name>IsDelete</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c8bbf28e-c653-4eb5-86eb-6f2b8c81d39c">
+      <name>IsForbid</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="fd4b71fd-ba01-43e3-9008-23f6622f76c4">
+      <name>CompanyId</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

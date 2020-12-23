@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="ef05bfb4-2668-4140-b403-02e41104983c">
+      <functionId>000004</functionId>
+      <name>District</name>
+      <chineseName>城市行政区划</chineseName>
+      <existhistable>0</existhistable>
+      <version>1.0.0.0</version>
+      <lasttime>2018-02-08 13:34:17.447</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="498c99c4-8ef8-4aed-a6ba-6effcaa9330b">
+      <name>Id</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="4ae0180d-c235-43f0-87a0-91ce9525a0fe">
+      <name>DistrictName</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="471d6e66-e914-4d80-8fcb-bb7d49c51e42">
+      <name>CityId</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <indexsinfo>
+    <item gid="c8b1bc03-2c39-4ac9-a9d8-f012f5135f93">
+      <name>pk_district</name>
+      <indexfieldlst>Id</indexfieldlst>
+      <constraint_type>1</constraint_type>
+    </item>
+  </indexsinfo>
+</datatype>

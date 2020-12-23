@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="8e83d2bb-3b67-470b-9e76-44bb97cac4ed">
+      <functionId>100083</functionId>
+      <name>BootstrapIconInfo</name>
+      <chineseName>基于BootStrap的图标</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>WebMis</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-09-23 20:47:43.925</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="2f3b3232-c0f2-4cc5-a03f-392e7fed81f9">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="54a9a3bd-3d6d-421a-9753-c578846366c1">
+      <name>DisplayName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="6200c557-8a37-42fc-8d45-854b4b31d150">
+      <name>ClassName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="36c7b0df-2f81-41df-b75c-545316884e5d">
+      <name>IconSourceType</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="a070974d-c53f-4293-8ef2-6c9531daef7d">
+      <name>CreatorTime</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

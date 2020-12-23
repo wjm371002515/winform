@@ -1,7 +1,6 @@
 ﻿using JCodes.Framework.Common.Files;
 using JCodes.Framework.CommonControl.BaseUI;
 using JCodes.Framework.CommonControl.Other;
-using SevenZip;
 using System;
 using System.Collections.Generic;
 using System.IO;

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <dataitem>
+    <item gid="d385cbab-9038-43ff-a73b-5b8940570081" id="1" pid="-1" usercode="1001" name="admin" loginname="管理员" fullname="管理员" password="YwJmAGUCbAhvCm4IaQpoAGgCbwBuAmUIZApnCH4KUQBQAlcAVgJdCFwKWwhWClkAWAI=" isexpire="0" remark="" idcard="" mobilephone="" officephone="" homephone="" email="" address="" workaddress="" gender="2" birthday="" qq="" signature="" auditstatus="1" portrait="" deptid="1" companyid="1" seq="1" creatorid="" creatortime="" editorid="" lastupdatetime="" isdelete="0" question1="" question2="" question3="" answer1="" answer2="" answer3="" lastloginip="" lastloginmac="" lastlogintime="" lastchangepwdtime="" />
+  </dataitem>
+</datatype>

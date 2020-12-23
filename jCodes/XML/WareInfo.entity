@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="a03a314d-e7ce-40a7-9209-696dee84c898">
+      <functionId>100079</functionId>
+      <name>WareInfo</name>
+      <chineseName>商品信息</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>WareHouseMis</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-09-23 11:21:17.130</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="7552bce3-b5e8-4ff7-a0d8-0b8f0f6a7218">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="557bc4e7-053a-4c30-8cae-657a96d47902">
+      <name>ItemNo</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="38b99455-d872-4f57-abd2-4663012f1ec9">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="27bbca0f-d6b0-4021-ab6d-5ca5a5b890fc">
+      <name>ItemBigtype</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d5dff388-845e-493c-9081-7347a6a7beb4">
+      <name>ItemType</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="6704bb63-1bf1-49e0-b681-31a5e7ea8238">
+      <name>Amount</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b52e1393-0f82-40be-aed6-78078ce62db4">
+      <name>Balance</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="1525dd55-6c4c-4231-9bf4-b568676fbc1e">
+      <name>LowAmountWarning</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="02ada2f3-4ab0-4614-9bc0-b87b6acecef9">
+      <name>HighAmountWarning</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="7351a101-93b2-4424-a543-eb881831bf89">
+      <name>WareHouseId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ddc972e9-96c9-4a5e-b13c-22bf8569e395">
+      <name>Remark</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

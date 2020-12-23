@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="214d67ea-cdae-42de-9b22-57d9623e3e5a">
+      <functionId>100060</functionId>
+      <name>OperationLogSettingInfo</name>
+      <chineseName>记录操作日志的数据表配置</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Security</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-09-21 17:00:15.799</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="8180907b-0ab7-430f-ad04-460a6c840596">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e4bd89e7-17de-450c-a6dd-8dda831fd1f4">
+      <name>IsForbid</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ac5d5f79-66e0-4e15-88e8-52b6d6bc95f9">
+      <name>TableName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="11aeaf8e-62ab-4544-a58b-ae2847e629b2">
+      <name>IsInsertLog</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="767817b4-e60f-49a7-8cf8-55127dde66fd">
+      <name>IsUpdateLog</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="3f12f25e-6ae0-4577-b2cc-b68ff165619d">
+      <name>IsDeleteLog</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="87acfa4d-d222-4215-bb7e-bfa9f74efd85">
+      <name>Remark</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="24d1c608-1485-4cce-963c-a445de4a72f7">
+      <name>CreatorId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="5cfff4b8-8cf9-44de-b525-09f518984dcb">
+      <name>CreatorTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="7690c068-4884-41e8-90b0-0ffb96538f5f">
+      <name>EditorId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="696faede-46e0-45af-b6bb-0327f1acfade">
+      <name>LastUpdateTime</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

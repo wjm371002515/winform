@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="b59bc949-6954-44f5-bb2e-de69259bdf20">
+      <functionId>100050</functionId>
+      <name>SysMenuInfo</name>
+      <chineseName>系统菜单信息</chineseName>
+      <fieldnamespace>using DevExpress.XtraEditors.DXErrorProvider;
+using System.Collections.Generic;</fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Proj</folder>
+      <baseclass>IDXDataErrorInfo</baseclass>
+      <lasttime>2019-09-19 17:43:26.598</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="4d70a429-2cd5-4c7e-b9c2-99111f8f314c">
+      <name>Gid</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="02aa1a71-1dc2-4ea7-a2d3-c1e803412296">
+      <name>Pgid</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="aad4b696-856b-4c00-84fe-96e9c58a8752">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="63de8a29-df42-4186-945a-3c4b9c742448">
+      <name>Icon</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="a7f7e693-9a0d-4982-bdf3-6ffe7b7f54dc">
+      <name>Seq</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="8839625a-2831-4ef1-b7e7-5bde02371286">
+      <name>AuthGid</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="7fb5a0aa-22f9-4487-a077-357f3a0c6b34">
+      <name>IsVisable</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9488bd62-a198-4a43-8694-9c3722563c97">
+      <name>WinformClass</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="48bd8204-e2eb-4138-87ce-4ee758e76f88">
+      <name>Url</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="6d405ab8-fb6d-43d5-8b98-272a5b092462">
+      <name>WebIcon</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="821577d8-e49c-45af-bc2f-d997a542c8da">
+      <name>SystemtypeId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="880afb3d-ea1e-483a-acff-08f62ccd6b4a">
+      <name>CreatorId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="cff86c78-96aa-4657-b991-b09408f3ce7e">
+      <name>CreatorTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="aa796e14-6e1b-4775-939d-ec4548cb6206">
+      <name>EditorId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="28e9b5be-3550-41d7-abec-f3b8683545bd">
+      <name>LastUpdateTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="95a3a932-6f17-4afa-ba62-5f659c43bc5f">
+      <name>IsDelete</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9e61f69a-ad36-4f72-8e80-999e7e41f678">
+      <name>DllPath</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+    <item gid="c65eac3f-110c-45eb-9e05-37e7265d340a">
+      <name>lstInfo</name>
+      <chinesename>用来保存行数据中字段名，错误信息</chinesename>
+      <fieldtype>Dictionary&lt;string, ErrorInfo&gt;</fieldtype>
+      <content>get;
+            set;</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="4c1b582e-71cb-4d86-9f20-2d4ed90246fa">
+      <name>IDXDataErrorInfo.GetPropertyError(string propertyName, ErrorInfo info)</name>
+      <chinesename>自定义错误</chinesename>
+      <fieldtype>void</fieldtype>
+      <content>if (lstInfo != null &amp;&amp; lstInfo.Count &gt; 0 &amp;&amp; lstInfo.ContainsKey(propertyName) &amp;&amp; !string.IsNullOrEmpty(lstInfo[propertyName].ErrorText))
+            {
+                info.ErrorText = lstInfo[propertyName].ErrorText;
+                info.ErrorType = lstInfo[propertyName].ErrorType;
+            }</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e88bedfa-667c-4c3d-abe2-815e7397158c">
+      <name>IDXDataErrorInfo.GetError(ErrorInfo info)</name>
+      <chinesename>
+      </chinesename>
+      <fieldtype>void</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+  </diyfieldinfo>
+</datatype>

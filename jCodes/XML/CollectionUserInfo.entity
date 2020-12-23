@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="de9aa382-235a-437e-9e5d-bba54304e1be">
+      <functionId>100095</functionId>
+      <name>CollectionUserInfo</name>
+      <chineseName>收集用户信息</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Machines</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2020-02-21 21:14:50.880</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="6ce71419-1487-4383-866b-bcac15b25add">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="eb859f76-a952-45c9-9b66-79cf98dbdea8">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="5813e8c5-39e7-4137-9467-95c87c08846b">
+      <name>RelationShip</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="300d7a48-7a09-4a9e-b6dd-f472e4778bc0">
+      <name>Gender</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d2e1e69a-b3f1-413e-a938-a4cc9d9fd074">
+      <name>IdCard</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="eae54bfd-80f4-4599-984c-f3f7a088cd48">
+      <name>MobilePhone</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="55d94df6-47f8-41ea-bf35-95604058c758">
+      <name>HouseHold</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="10b0b870-fc44-42d6-b4b7-91a928d81577">
+      <name>HomeAddress</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+    <item gid="177835a0-b371-4597-9076-28aad0694b5b">
+      <name>IsGoHubei</name>
+      <chinesename>是否去过湖北</chinesename>
+      <fieldtype>String</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="97a6933c-04c8-48b3-ba8f-1cf0c7a4b923">
+      <name>IsGoWenzhou</name>
+      <chinesename>是否去过温州</chinesename>
+      <fieldtype>String</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="5de7a2d0-b29c-4064-b726-ba31bc2a1a0a">
+      <name>IsContactHubeiWenzhou</name>
+      <chinesename>是否与疫情感染者密切接触</chinesename>
+      <fieldtype>String</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0674edbd-6b51-4850-acac-7ba2b5ee1cdd">
+      <name>IsLeaseHubeiWenzhou</name>
+      <chinesename>是否出租给湖北、温州人员</chinesename>
+      <fieldtype>String</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="719c05cc-85ce-429e-98d2-ad77d7d872c2">
+      <name>IsHubeiWenzhouVisit</name>
+      <chinesename>是否有湖北、温州人员来访</chinesename>
+      <fieldtype>String</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="292a6d64-17ce-43b5-8244-737ff185ce17">
+      <name>IsHomeObser</name>
+      <chinesename>是否实施居家观察</chinesename>
+      <fieldtype>String</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+  </diyfieldinfo>
+</datatype>

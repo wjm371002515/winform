@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="1f26ed85-4544-4752-a914-fa7aeecc6c31">
+      <functionId>100018</functionId>
+      <name>DictTypeNodeInfo</name>
+      <chineseName>字典节点类型信息</chineseName>
+      <fieldnamespace>using System.Collections.Generic;</fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Dic</folder>
+      <baseclass>DictTypeInfo</baseclass>
+      <lasttime>2019-09-16 10:41:29.920</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+  </fieldsinfo>
+  <diyfieldinfo>
+    <item gid="9e62725a-0396-4600-b6e0-b8de38856bab">
+      <name>Children</name>
+      <chinesename>子菜单实体类对象集合</chinesename>
+      <fieldtype>List&lt;DictTypeNodeInfo&gt;</fieldtype>
+      <content>get { return m_Children; }
+			set { m_Children = value; }</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b2926401-5d94-44a0-a4ba-0f2f40fc4389">
+      <name>DictTypeNodeInfo()</name>
+      <chinesename>无参构造函数</chinesename>
+      <fieldtype>
+      </fieldtype>
+      <content>this.m_Children = new List&lt;DictTypeNodeInfo&gt;();</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="29460ce5-943a-4f4b-a671-691a46aef2cd">
+      <name>DictTypeNodeInfo(DictTypeInfo typeInfo)</name>
+      <chinesename>带参构造函数</chinesename>
+      <fieldtype>
+      </fieldtype>
+      <content>base.Id = typeInfo.Id;
+            base.Name = typeInfo.Id+"_"+typeInfo.Name;
+			base.Remark = typeInfo.Remark;
+			base.Seq = typeInfo.Seq;
+			base.Pid = typeInfo.Pid;
+			base.EditorId = typeInfo.EditorId;
+            base.LastUpdateTime = typeInfo.LastUpdateTime;</content>
+      <remark>
+      </remark>
+    </item>
+  </diyfieldinfo>
+</datatype>

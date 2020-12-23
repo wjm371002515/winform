@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="3eae3964-adef-477d-98ae-d3f3c0145049">
+      <functionId>000011</functionId>
+      <name>FileUpload</name>
+      <chineseName>上传文件表</chineseName>
+      <existhistable>0</existhistable>
+      <version>1.0.0.0</version>
+      <lasttime>2019-10-06 00:45:08.347</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="a5ef0a5c-b7f1-4edd-9435-b1e064520cd5">
+      <name>Gid</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="65f0fd5d-fa37-4752-82fb-f382a2896774">
+      <name>CreatorId</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="8b7260b2-5b76-4bae-ba0c-b6d8bce64794">
+      <name>AttachmentGid</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="393f98a7-448b-4b42-a060-a1e6818003ef">
+      <name>Name</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0348e766-facc-4ced-8696-7f91926fc356">
+      <name>BasePath</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f4d417f8-2002-4586-bec8-9b86820c18ed">
+      <name>SavePath</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ff22cd89-81f7-4886-b72b-87af5444ee57">
+      <name>FileUploadType</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c9bc34c7-0e24-4c21-b513-86ea441df5d1">
+      <name>FileSize</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="7a3efd66-2820-4fc6-a11c-26c889896930">
+      <name>FileExtend</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="14bf6c37-a4df-4e30-9e11-5460b53e8a8f">
+      <name>EditorId</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e479fb92-a49b-46cb-a21b-72a205f81314">
+      <name>LastUpdateTime</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="57841ecd-cfb8-4e2e-8f67-9baca5ae7951">
+      <name>IsDelete</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <indexsinfo>
+    <item gid="e9a18fb5-f54f-4803-9306-61cccffb17e5">
+      <name>pk_gid</name>
+      <indexfieldlst>Gid</indexfieldlst>
+      <constraint_type>1</constraint_type>
+    </item>
+  </indexsinfo>
+</datatype>

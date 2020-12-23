@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="9e3b705c-e3fc-4789-a2c9-e8e1256f5509">
+      <functionId>000002</functionId>
+      <name>DictData</name>
+      <chineseName>数据字典明细</chineseName>
+      <existhistable>0</existhistable>
+      <version>1.0.0.0</version>
+      <lasttime>2018-02-08 13:22:39.518</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="c3f579ed-2b14-4a9b-a659-994b271f4d3d">
+      <name>Gid</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b793a7d6-c47d-4e11-92d9-ce57095e1714">
+      <name>DicttypeId</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="1bf8bd19-b3d9-4bc3-9dbf-28851bf0507a">
+      <name>DicttypeValue</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="814ee8cf-4a98-495e-a27e-9266382c2969">
+      <name>Name</name>
+      <isnull>
+      </isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="524a0919-f4ca-498e-b116-0b0a80a31c82">
+      <name>Remark</name>
+      <isnull>
+      </isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="81fe0077-c7e1-4aa2-aa5a-189729166363">
+      <name>Seq</name>
+      <isnull>
+      </isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="4ebd44d5-b789-45ce-9a9d-b531bb2fe3a2">
+      <name>EditorId</name>
+      <isnull>
+      </isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="407a5620-b246-454e-8490-7b749d58ba52">
+      <name>LastUpdateTime</name>
+      <isnull>
+      </isnull>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <indexsinfo>
+    <item gid="3a01a6a0-375b-44fe-9cbe-45b1e95cd833">
+      <name>pk_dictdata</name>
+      <indexfieldlst>Gid</indexfieldlst>
+      <constraint_type>1</constraint_type>
+    </item>
+    <item gid="746d7aa0-c9fe-4df6-8592-8092c541d636">
+      <name>uniq_dicttypeidvalue</name>
+      <indexfieldlst>DicttypeId, Value</indexfieldlst>
+      <constraint_type>3</constraint_type>
+    </item>
+  </indexsinfo>
+</datatype>

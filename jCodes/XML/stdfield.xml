@@ -1,0 +1,2892 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <dataitem>
+    <item gid="1220b014-33a2-4577-b30f-864963d45ab2">
+      <name>Id</name>
+      <chineseName>ID序号</chineseName>
+      <datatype>Number_6</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2b255d8a-539c-49da-a60e-8cd1374ae4f7">
+      <name>Name</name>
+      <chineseName>名称</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="57313587-5684-450e-bb4f-983b2b1d9623">
+      <name>Remark</name>
+      <chineseName>备注</chineseName>
+      <datatype>Char_max</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d254bf11-4a54-401f-99df-91497489862a">
+      <name>Seq</name>
+      <chineseName>排序</chineseName>
+      <datatype>Char_10</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="644fb789-f565-4e5d-aee0-bf8aa0bee2a6">
+      <name>EditorId</name>
+      <chineseName>编辑人编号</chineseName>
+      <datatype>Number_6</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="a7a64ae5-bfa3-46a1-b4b1-56e3b927bac9">
+      <name>LastUpdateTime</name>
+      <chineseName>最后更新时间</chineseName>
+      <datatype>Datetime</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="fce28caa-8261-41d9-b5d5-a63d14ac3f19">
+      <name>Pid</name>
+      <chineseName>父节点ID序号</chineseName>
+      <datatype>Number_6</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="db1d523c-d788-4958-8ed8-91792a96dfd6">
+      <name>Gid</name>
+      <chineseName>GUID对应的ID序号</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="5bf8312d-3ddf-429b-8013-230b6e50e6c7">
+      <name>DicttypeId</name>
+      <chineseName>字典类型对应的ID</chineseName>
+      <datatype>Number_6</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="a8c06d31-2ca6-438f-8836-85992ffe75dd">
+      <name>StrValue</name>
+      <chineseName>值</chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="1801d3e0-6410-43a4-8885-df1149a1580b">
+      <name>ProvinceName</name>
+      <chineseName>省份名称</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b8c85cc8-bef6-48b5-8426-d2379210fdb6">
+      <name>DistrictName</name>
+      <chineseName>行政区划</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f1ef19ba-4df9-420b-b785-7b6e7850da46">
+      <name>CityId</name>
+      <chineseName>城市Id</chineseName>
+      <datatype>Number_6</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="480a5877-cd98-44f2-a3ad-bb24b19312fb">
+      <name>CityName</name>
+      <chineseName>城市名字</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="24fc7de9-4022-4a14-99bc-4a28b46c55fb">
+      <name>ZipCode</name>
+      <chineseName>邮政编码</chineseName>
+      <datatype>Char_8</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e7f2144e-ee0b-4748-baad-0f6b9ec9d885">
+      <name>ProvinceId</name>
+      <chineseName>省份Id</chineseName>
+      <datatype>Number_8</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="8d157fca-79c2-4f59-a8bd-6905e2208685">
+      <name>SysId</name>
+      <chineseName>系统参数Id</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100008</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="7ad7ca22-ea75-4fbd-a12c-6e5dddc51212">
+      <name>ControlType</name>
+      <chineseName>控件类型</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100007</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d8f4610a-c144-4bed-a763-78f85f988d38">
+      <name>DicNo</name>
+      <chineseName>数据字典编号</chineseName>
+      <datatype>Number_8</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0a1098a8-ca59-4892-82ea-89e46a575700">
+      <name>NumLen</name>
+      <chineseName>整形长度</chineseName>
+      <datatype>Number_6</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="a7095c9f-a3cc-4d53-8aa1-b4e48728e8c3">
+      <name>IsForbid</name>
+      <chineseName>是否禁用</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100001</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="60ca6dbf-eb59-40f7-b21d-5e2a990b1a3b">
+      <name>AuthorizeType</name>
+      <chineseName>授权类型</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100009</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="bb9bee1a-9194-43c1-998a-edd11e3e1d4e">
+      <name>IPStart</name>
+      <chineseName>IP起始地址</chineseName>
+      <datatype>Char_32</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="619d50ea-eaf7-49ec-ab86-aaec6fea0e25">
+      <name>IPEnd</name>
+      <chineseName>IP结束地址</chineseName>
+      <datatype>Char_32</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="4595d809-cbbb-4783-a25f-0cdc6d303891">
+      <name>CreatorId</name>
+      <chineseName>创建人编号</chineseName>
+      <datatype>Number_6</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="87a537ed-3054-44b9-bee9-4917c74e2ec5">
+      <name>CreatorTime</name>
+      <chineseName>创建时间</chineseName>
+      <datatype>Datetime</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9fc680c4-b165-4f37-a5f4-217f3e290376">
+      <name>ItemBigtype</name>
+      <chineseName>备件属类</chineseName>
+      <datatype>Number_6</datatype>
+      <dictno>200001</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="67a1a791-143b-4dd6-83b8-fe158c8e24b7">
+      <name>ItemType</name>
+      <chineseName>备件类别</chineseName>
+      <datatype>Number_6</datatype>
+      <dictno>200002</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d3e12dff-f407-4b4d-a12e-7c15adfb3ac4">
+      <name>ItemUnit</name>
+      <chineseName>备件单位</chineseName>
+      <datatype>Number_6</datatype>
+      <dictno>200003</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0b35f30b-7fef-4251-be76-51f77b228eef">
+      <name>BlackId</name>
+      <chineseName>黑名单Id</chineseName>
+      <datatype>Number_6</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="793908f7-64fe-4216-963a-107a446fc959">
+      <name>UserId</name>
+      <chineseName>用户Id</chineseName>
+      <datatype>Number_6</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="7b7d3a5c-3577-4f64-9efc-bf2f0ece5676">
+      <name>Pgid</name>
+      <chineseName>父节点GUID对应的ID序号</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="abb16f48-558b-4b28-acdc-0b0cca025bbf">
+      <name>AuthGid</name>
+      <chineseName>控制标识</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="529f7b12-fe59-44e1-9c3a-7204d983018d">
+      <name>SystemtypeId</name>
+      <chineseName>系统编号</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d87ebd6e-c5ab-421a-b609-3ba5cff67d25">
+      <name>LoginName</name>
+      <chineseName>登录名</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="85a0e74a-8fab-41f7-8021-36a6c933896b">
+      <name>FullName</name>
+      <chineseName>真实名</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2ae4d59e-0ba8-4410-8a8f-e6d37c443883">
+      <name>CompanyId</name>
+      <chineseName>公司Id</chineseName>
+      <datatype>Number_6</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="cb8a4b12-04b3-4e98-98d2-a95774d6f204">
+      <name>CompanyName</name>
+      <chineseName>公司名字</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="5469a7e0-01a8-4a0a-aa4c-9861d83119d5">
+      <name>IP</name>
+      <chineseName>IP地址</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="64ac8129-eaf3-4dcc-9901-a7d4137af0af">
+      <name>Mac</name>
+      <chineseName>Mac地址</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="bcbac737-af3f-443a-9e28-28c783fbb7ea">
+      <name>Icon</name>
+      <chineseName>icon图标路径</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ad9d058d-1408-4911-ad10-dce1ba2d8d1b">
+      <name>IsVisable</name>
+      <chineseName>是否可见</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100001</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="97c0160b-977b-48c0-86d0-cc0c49a8a8c2">
+      <name>WinformClass</name>
+      <chineseName>窗体类名</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="628b2a8e-f130-4a0c-a5ac-3c966c30cc37">
+      <name>Url</name>
+      <chineseName>URL地址</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="697a189c-6014-4c1b-96b1-72f63d748b15">
+      <name>WebIcon</name>
+      <chineseName>Web对应的icon图标路径</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9eb19062-ceab-4ea5-9810-5f8e947630ee">
+      <name>IsDelete</name>
+      <chineseName>是否删除</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100001</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b1d18b15-ed08-48b3-9785-e0b67e12d0e9">
+      <name>Note</name>
+      <chineseName>注释</chineseName>
+      <datatype>Char_max</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="5fb43aa6-abc2-430a-b0ec-77840c65d3e0">
+      <name>TableName</name>
+      <chineseName>表名</chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9a0eff91-1808-44c5-b383-33d7ce0c8772">
+      <name>OperationType</name>
+      <chineseName>操作类型</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100010</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="dd5800bc-69fc-4eff-9792-4e211500e1e9">
+      <name>IsInsertLog</name>
+      <chineseName>是否插入日志</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100001</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="88f8d0fe-aff7-4675-95db-15dfe7c3972b">
+      <name>IsUpdateLog</name>
+      <chineseName>是否更新日志</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100001</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="55f5a5b3-57a8-414e-8fdf-1600b8a759d1">
+      <name>IsDeleteLog</name>
+      <chineseName>是否删除日志</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100001</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="4d3b13a7-f655-47f4-a5fa-0a7b0500a19c">
+      <name>OuCode</name>
+      <chineseName>机构编码</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="5090ff16-5d1a-4e84-9b56-688bac17ffb9">
+      <name>OuType</name>
+      <chineseName>机构分类</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100012</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e4f6e477-2d8b-42cb-923a-866ff34b8bdb">
+      <name>Address</name>
+      <chineseName>地址</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d58244ad-7e6b-4142-86fe-d0a5c761ff32">
+      <name>OutPhone</name>
+      <chineseName>外线电话</chineseName>
+      <datatype>Char_32</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="bfbe0238-f922-4d79-9eb2-bf1cd47e3752">
+      <name>InnerPhone</name>
+      <chineseName>内线电话</chineseName>
+      <datatype>Char_32</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="a8234cb9-de89-4f44-92a8-205e16363c50">
+      <name>OuId</name>
+      <chineseName>机构Id</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="5fdda215-47b7-4a0e-82c0-94821c43d28e">
+      <name>RoleId</name>
+      <chineseName>角色Id</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b27c16eb-0849-47ab-93ff-c0c79bfd549d">
+      <name>RoleCode</name>
+      <chineseName>角色编码</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="fc560feb-e395-4d69-8a8b-0beaf931dacd">
+      <name>RoleType</name>
+      <chineseName>角色分类</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100011</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="5252412d-3c7c-4772-a878-e6f36d5ced93">
+      <name>FunctionGid</name>
+      <chineseName>功能gid</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="bffc9c5f-20ab-478d-9647-d77b71f01320">
+      <name>CompanyLst</name>
+      <chineseName>公司列表</chineseName>
+      <datatype>Char_max</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="cce7d555-b82c-4b68-bff7-d88a47a78527">
+      <name>DeptLst</name>
+      <chineseName>部门列表</chineseName>
+      <datatype>Char_max</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c56ce9d5-a9d3-46b9-97cf-24cf59e2cf00">
+      <name>SystemVersion</name>
+      <chineseName>系统版本</chineseName>
+      <datatype>Char_32</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9da2dded-8117-4dbd-a860-0f36a2e4b9db">
+      <name>ConsumerCode</name>
+      <chineseName>客户编码</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d087d497-2e26-4ba3-bd3e-6b93275d3bba">
+      <name>ConsumerName</name>
+      <chineseName>客户名称</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="52f3ca3e-3385-4b9f-b9f2-b50c2741541f">
+      <name>UserCode</name>
+      <chineseName>用户编码</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="6af439b3-07fa-41df-a460-83112d07072e">
+      <name>Password</name>
+      <chineseName>密码</chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2235e001-d752-4fdf-a16d-7580af5bcdd5">
+      <name>IsExpire</name>
+      <chineseName>是否过期</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100001</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="5d844d50-512c-4fad-8d9e-212b784f5dc1">
+      <name>IdCard</name>
+      <chineseName>身份证</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="4c69ee55-af4a-4086-b26f-ccd7bd34bd67">
+      <name>MobilePhone</name>
+      <chineseName>手机</chineseName>
+      <datatype>Char_32</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="8d0a1e1e-ccc8-4546-935b-4bf49c4fe9a1">
+      <name>OfficePhone</name>
+      <chineseName>办公电话</chineseName>
+      <datatype>Char_32</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="7072757f-ad67-4546-971c-4f5a0ae2864a">
+      <name>HomePhone</name>
+      <chineseName>家庭电话</chineseName>
+      <datatype>Char_32</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="7b93768d-e95e-4de1-ba7a-280bd4c4bdd7">
+      <name>Email</name>
+      <chineseName>Email邮箱</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="dc4e8cda-fdb6-4c03-add0-e83431694ead">
+      <name>WorkAddress</name>
+      <chineseName>工作地址</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="5af513b4-4e6c-48a5-a0ac-62f0ec63ef5b">
+      <name>Gender</name>
+      <chineseName>性别</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100014</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="34aa455b-9e93-4ff1-9c18-d4a894feb7b4">
+      <name>Birthday</name>
+      <chineseName>生日</chineseName>
+      <datatype>Datetime</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="a30887c4-025d-4af2-9fdd-0ca2196676cc">
+      <name>QQ</name>
+      <chineseName>QQ号</chineseName>
+      <datatype>Number_10</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="a5fedf05-14b3-4aec-9bc7-0695dde12cf4">
+      <name>Signature</name>
+      <chineseName>个性签名</chineseName>
+      <datatype>Char_max</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="4c9977ea-6416-4d1b-84ef-c3b1d5ded6aa">
+      <name>AuditStatus</name>
+      <chineseName>审核状态</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100013</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="242249a7-0265-4e0a-967f-93693eda6939">
+      <name>Portrait</name>
+      <chineseName>个人图片</chineseName>
+      <datatype>Image</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2b9ad620-9d8a-4fed-9acf-a7c2b1ae7abe">
+      <name>DeptId</name>
+      <chineseName>部门Id</chineseName>
+      <datatype>Number_6</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9b16446d-c366-49c5-b01e-4253a85888bd">
+      <name>DeptName</name>
+      <chineseName>部门名字</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2ed0cc12-589c-423f-8f9f-f8f6c7f18bf8">
+      <name>Question1</name>
+      <chineseName>问题1</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="09bf4714-9ea7-460d-8593-e5754ef839dd">
+      <name>Question2</name>
+      <chineseName>问题2</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="44fcd6e9-db63-41df-872d-a557da4846a7">
+      <name>Question3</name>
+      <chineseName>问题3</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9a56ab26-c886-461e-9714-eebfe1c587b2">
+      <name>Question4</name>
+      <chineseName>问题4</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c2243499-f87b-4ed5-8603-52870df1c894">
+      <name>Question5</name>
+      <chineseName>问题5</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="bef5041c-aa25-4a0b-a691-05c428a8547d">
+      <name>Question6</name>
+      <chineseName>问题6</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="6f667a1a-c33d-4c7c-ba45-f4c9fe7aafd1">
+      <name>Answer1</name>
+      <chineseName>回答1</chineseName>
+      <datatype>Char_4000</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9295e3ba-3148-4a18-aec0-5d959c811a57">
+      <name>Answer2</name>
+      <chineseName>回答2</chineseName>
+      <datatype>Char_4000</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="1b71d425-6995-4bd1-a545-625ec4b362d3">
+      <name>Answer3</name>
+      <chineseName>回答3</chineseName>
+      <datatype>Char_4000</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f66098dd-e239-45fa-bad3-9a178e1dccf6">
+      <name>Answer4</name>
+      <chineseName>回答4</chineseName>
+      <datatype>Char_4000</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f4fe6676-8834-4296-a5aa-5f7fe00479fc">
+      <name>Answer5</name>
+      <chineseName>回答5</chineseName>
+      <datatype>Char_4000</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0b71616c-7052-44e0-a496-abf47ee76803">
+      <name>Answer6</name>
+      <chineseName>回答6</chineseName>
+      <datatype>Char_4000</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="638d9fd2-cd82-409c-8c0f-c7c666342f4f">
+      <name>LastLoginIp</name>
+      <chineseName>最后登录IP</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="6072d8c4-6af5-468e-9603-4b6b706791c4">
+      <name>LastLoginMac</name>
+      <chineseName>最后登录Mac</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="fad958d6-3aa4-43a4-9498-73b5209cf843">
+      <name>LastLoginTime</name>
+      <chineseName>最后登录日期</chineseName>
+      <datatype>Datetime</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="6c4ffee9-1bd6-4fd3-955b-bbdfb65930a3">
+      <name>CurLoginIp</name>
+      <chineseName>当前登录IP</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="afc418d6-a73a-43a8-9463-5f33498a825d">
+      <name>CurLoginMac</name>
+      <chineseName>当前登录Mac</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e3151f5a-672a-45f4-b815-cd3b5b6463b0">
+      <name>CurLoginTime</name>
+      <chineseName>当前登录日期</chineseName>
+      <datatype>Datetime</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="5f66e2a2-04dc-461b-9a55-df6355275401">
+      <name>LogLevel</name>
+      <chineseName>日志级别</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100002</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="8610afa9-9cad-4423-b664-b4d9c94d3030">
+      <name>LogInsertType</name>
+      <chineseName>日志记录方式</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100003</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="15167960-e88e-4146-bec5-785ba68b06c4">
+      <name>UserStatus</name>
+      <chineseName>用户状态</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100004</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="7fdce7ed-22b0-4e7a-b715-60e76413f9cc">
+      <name>FieldType</name>
+      <chineseName>字段类型</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100005</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="bdb45ee9-0dc4-4e1a-a691-184fb548b3c3">
+      <name>DealStatus</name>
+      <chineseName>处理状态</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100006</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="6fbe24be-2ebe-4ce4-a9fe-55ac39f145bb">
+      <name>Date</name>
+      <chineseName>年月日</chineseName>
+      <datatype>Number_8</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="49442972-3bfa-4ef7-adc7-da1d92b3db0c">
+      <name>LastChangePwdTime</name>
+      <chineseName>最后修改密码时间</chineseName>
+      <datatype>Datetime</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="49442972-3bfa-4ef7-adc7-da1d92b3db0d">
+      <name>TableField</name>
+      <chineseName>表格字段</chineseName>
+      <datatype>Char_32</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="49442972-3bfa-4ef7-adc7-da1d92b3db0e">
+      <name>IsIDXDataError</name>
+      <chineseName>是否继承IDXDataError</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100001</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="49442972-3bfa-4ef7-adc7-da1d92b3db0f">
+      <name>IsBaseEntity</name>
+      <chineseName>是否继承BaseEntity</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100001</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="49442972-3bfa-4ef7-adc7-da1d92b3db0g">
+      <name>ToStringContent</name>
+      <chineseName>ToString内容</chineseName>
+      <datatype>Char_max</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="49442972-3bfa-4ef7-adc7-da1d92b3db0h">
+      <name>ConstructContent</name>
+      <chineseName>构造函数内容</chineseName>
+      <datatype>Char_max</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="49442972-3bfa-4ef7-adc7-da1d92b3db0i">
+      <name>CustomParentClass</name>
+      <chineseName>自定义父类</chineseName>
+      <datatype>Char_32</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="49442972-3bfa-4ef7-adc7-da1d92b3db0j">
+      <name>CustomContent</name>
+      <chineseName>自定义文本</chineseName>
+      <datatype>Char_max</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="49442972-3bfa-4ef7-adc7-da1d92b3db0k">
+      <name>CouponCategoryId</name>
+      <chineseName>优惠券分类</chineseName>
+      <datatype>Number_6</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="49442972-3bfa-4ef7-adc7-da1d92b3db0l">
+      <name>CouponCategoryName</name>
+      <chineseName>优惠券分类名字</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="49442972-3bfa-4ef7-adc7-da1d92b3db0m">
+      <name>Contacts</name>
+      <chineseName>联系人</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="49442972-3bfa-4ef7-adc7-da1d92b3db0n">
+      <name>StartTime</name>
+      <chineseName>开始时间</chineseName>
+      <datatype>Datetime</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="49442972-3bfa-4ef7-adc7-da1d92b3db0o">
+      <name>EndTime</name>
+      <chineseName>结束时间</chineseName>
+      <datatype>Datetime</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="49442972-3bfa-4ef7-adc7-da1d92b3db0p">
+      <name>FolderName</name>
+      <chineseName>文件夹名字</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="49442972-3bfa-4ef7-adc7-da1d92b3db0q">
+      <name>CustomNamespace</name>
+      <chineseName>自定义命名空间</chineseName>
+      <datatype>Char_max</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="49442972-3bfa-4ef7-adc7-da1d92b3db0r">
+      <name>GeneralCode</name>
+      <chineseName>通用编码</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d63bea67-8593-434a-af7e-0dd3c99ed16c">
+      <name>AttachmentGid</name>
+      <chineseName>附件GUID</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ffa85fcd-88b9-42c4-ba88-46e56fe177ce">
+      <name>BasePath</name>
+      <chineseName>基础路径</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="47199c6a-2d54-4588-aa71-d75d6fcaef56">
+      <name>SavePath</name>
+      <chineseName>文件保存相对路径</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="272144a0-775b-4957-a387-1afbe404fb8f">
+      <name>CategoryCode</name>
+      <chineseName>分类编码</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="cb6cb8df-238f-4b5b-b455-b418bd30d54c">
+      <name>FileSize</name>
+      <chineseName>文件大小</chineseName>
+      <datatype>Number_8</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="3f2cf544-9d18-4757-91b4-79ef33806297">
+      <name>FileExtend</name>
+      <chineseName>文件扩展名</chineseName>
+      <datatype>Char_32</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d9b02f23-7732-47a8-b643-1280369eaf3c">
+      <name>AddTime</name>
+      <chineseName>添加时间</chineseName>
+      <datatype>Datetime</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b4f231b1-b6c7-4a33-a7b6-4c9e0d71adad">
+      <name>CurrentLoginUserId</name>
+      <chineseName>登陆用户ID</chineseName>
+      <datatype>Number_6</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ccbad15d-eea9-4b2d-81a1-52459c12b5ad">
+      <name>Data1</name>
+      <chineseName>额外数据1</chineseName>
+      <datatype>Char_4000</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="417d0a04-e7b4-436b-afd3-33e4c72574fa">
+      <name>Data2</name>
+      <chineseName>额外数据2</chineseName>
+      <datatype>Char_4000</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d6e7cc7e-325c-4a33-95b7-48db68e30e83">
+      <name>Data3</name>
+      <chineseName>额外数据3</chineseName>
+      <datatype>Char_4000</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="cd372eff-ccbf-48c6-93af-8b6a01a5ef74">
+      <name>Text</name>
+      <chineseName>文本信息</chineseName>
+      <datatype>Char_4000</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="736c1a93-6c99-45c2-bda1-11db8dc207b9">
+      <name>ErrorCode</name>
+      <chineseName>错误码</chineseName>
+      <datatype>Number_8</datatype>
+      <dictno>
+      </dictno>
+      <remark>0表示成功 1表示错误具体错误信息查看错误信息表</remark>
+    </item>
+    <item gid="e2d4328b-db40-4762-a297-39bc1395bba1">
+      <name>ErrorMessage</name>
+      <chineseName>错误信息</chineseName>
+      <datatype>Char_4000</datatype>
+      <dictno>
+      </dictno>
+      <remark>如果不成功，返回的错误信息</remark>
+    </item>
+    <item gid="1a9723a1-59f9-4db2-a29e-6f1d788d192f">
+      <name>ErrorPath</name>
+      <chineseName>错误路由信息</chineseName>
+      <datatype>Char_4000</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2f14964f-d473-4c56-b8e1-43b3a6fcf201">
+      <name>IsExpand</name>
+      <chineseName>是否展开</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100001</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="8aae4830-339a-44db-8bbf-e31695c5d056">
+      <name>IsCheck</name>
+      <chineseName>是否勾选</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100001</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="7523acb1-fd5f-485d-b73e-cf4775e25c9e">
+      <name>AddressType</name>
+      <chineseName>通讯录类型</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100015</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="06b91b53-d2f3-4e07-9dcf-65f401d3acdd">
+      <name>Fax</name>
+      <chineseName>传真号码</chineseName>
+      <datatype>Char_32</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0c336229-999d-417d-b6ac-ecb963a447fc">
+      <name>IntValue</name>
+      <chineseName>整型值</chineseName>
+      <datatype>Number_8</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b9b3ebc8-c66a-497c-bb16-1c292371701f">
+      <name>ChineseName</name>
+      <chineseName>中文名称</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="1416235d-fcb4-48e1-9670-c8d06ad88f01">
+      <name>StdType</name>
+      <chineseName>标准类型</chineseName>
+      <datatype>Char_32</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="60f4141e-187c-4822-931e-b5fa08e7945a">
+      <name>Length</name>
+      <chineseName>长度</chineseName>
+      <datatype>Char_8</datatype>
+      <dictno>
+      </dictno>
+      <remark>仅用于标准字段项目</remark>
+    </item>
+    <item gid="b45dbad9-8e59-4834-8bdb-c88aaa378eed">
+      <name>Precision</name>
+      <chineseName>精度</chineseName>
+      <datatype>Char_32</datatype>
+      <dictno>
+      </dictno>
+      <remark>仅用于标准字段项目</remark>
+    </item>
+    <item gid="54461a87-45df-4173-b2a5-422223b0af73">
+      <name>Oracle</name>
+      <chineseName>Oracle</chineseName>
+      <datatype>Char_32</datatype>
+      <dictno>
+      </dictno>
+      <remark>仅用于标准字段项目</remark>
+    </item>
+    <item gid="1474bb29-fc05-45f2-92e3-9e6f99f87f8f">
+      <name>Mysql</name>
+      <chineseName>Mysql</chineseName>
+      <datatype>Char_32</datatype>
+      <dictno>
+      </dictno>
+      <remark>仅用于标准字段项目</remark>
+    </item>
+    <item gid="14be17c1-2b0a-47c4-981f-52992197970b">
+      <name>DB2</name>
+      <chineseName>DB2</chineseName>
+      <datatype>Char_32</datatype>
+      <dictno>
+      </dictno>
+      <remark>仅用于标准字段项目</remark>
+    </item>
+    <item gid="d3bc1a25-dfbd-42ad-b85d-f3582b80c179">
+      <name>SqlServer</name>
+      <chineseName>SqlServer</chineseName>
+      <datatype>Char_32</datatype>
+      <dictno>
+      </dictno>
+      <remark>仅用于标准字段项目</remark>
+    </item>
+    <item gid="784fff67-4930-4010-9ae0-42e1c112ddff">
+      <name>Sqlite</name>
+      <chineseName>Sqlite</chineseName>
+      <datatype>Char_32</datatype>
+      <dictno>
+      </dictno>
+      <remark>仅用于标准字段项目</remark>
+    </item>
+    <item gid="5054c1d3-3dd9-439f-a585-cc15a5c170a7">
+      <name>Access</name>
+      <chineseName>Access</chineseName>
+      <datatype>Char_32</datatype>
+      <dictno>
+      </dictno>
+      <remark>仅用于标准字段项目</remark>
+    </item>
+    <item gid="01a69d5c-0413-4d58-9dd5-1973fff85b89">
+      <name>CShort</name>
+      <chineseName>CShort</chineseName>
+      <datatype>Char_32</datatype>
+      <dictno>
+      </dictno>
+      <remark>仅用于标准字段项目</remark>
+    </item>
+    <item gid="421bb767-00a8-4897-8004-30090e5a28a3">
+      <name>ModDate</name>
+      <chineseName>修改日期</chineseName>
+      <datatype>Datetime</datatype>
+      <dictno>
+      </dictno>
+      <remark>仅用于标准字段项目</remark>
+    </item>
+    <item gid="e55a1c13-11e0-4d16-a9b3-0c21b30bdcf7">
+      <name>ModVersion</name>
+      <chineseName>修改版本</chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>仅用于标准字段项目</remark>
+    </item>
+    <item gid="c6d23aaa-9529-4e4b-92e0-9486fa380634">
+      <name>ModOrderId</name>
+      <chineseName>修改单号</chineseName>
+      <datatype>Char_32</datatype>
+      <dictno>
+      </dictno>
+      <remark>仅用于标准字段项目</remark>
+    </item>
+    <item gid="3c1bcc0f-a074-446e-9082-0a63a494921b">
+      <name>Proposer</name>
+      <chineseName>申请人</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>仅用于标准字段项目</remark>
+    </item>
+    <item gid="6e626027-44dc-4d23-84a2-4e195a70630a">
+      <name>Programmer</name>
+      <chineseName>修改人</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>仅用于标准字段项目</remark>
+    </item>
+    <item gid="191e619a-eed8-4d2e-8b2f-9cace1e45161">
+      <name>ModContent</name>
+      <chineseName>修改内容</chineseName>
+      <datatype>Char_max</datatype>
+      <dictno>
+      </dictno>
+      <remark>仅用于标准字段项目</remark>
+    </item>
+    <item gid="61466088-b985-45b1-b137-eaa8c48857bd">
+      <name>ModReason</name>
+      <chineseName>修改原因</chineseName>
+      <datatype>Char_max</datatype>
+      <dictno>
+      </dictno>
+      <remark>仅用于标准字段项目</remark>
+    </item>
+    <item gid="e0721648-425b-4c9d-a84b-af2f72bcdd61">
+      <name>Version</name>
+      <chineseName>版本号</chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>仅用于标准字段项目</remark>
+    </item>
+    <item gid="201673b7-8f7d-4ef7-b8f8-7006d743f853">
+      <name>DbType</name>
+      <chineseName>数据库类型</chineseName>
+      <datatype>Char_32</datatype>
+      <dictno>
+      </dictno>
+      <remark>仅用于标准字段项目</remark>
+    </item>
+    <item gid="07357e37-006a-4ad2-8094-11c2a539ceea">
+      <name>DicttypeTable</name>
+      <chineseName>字典大类信息</chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>仅用于标准字段项目</remark>
+    </item>
+    <item gid="357e9b07-32ce-4f73-b4b4-cd2e48e89b79">
+      <name>DictdataTable</name>
+      <chineseName>字典明细信息</chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>仅用于标准字段项目</remark>
+    </item>
+    <item gid="db139d96-e94f-4841-af8a-e8a4ccf34463">
+      <name>ErrTable</name>
+      <chineseName>错误号信息表</chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>仅用于标准字段项目</remark>
+    </item>
+    <item gid="e867292b-fbe2-4661-b508-9ba9e6bf7304">
+      <name>OutputPath</name>
+      <chineseName>脚本生成路径</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>仅用于标准字段项目</remark>
+    </item>
+    <item gid="ff4f7bcc-35f8-4fde-a955-704fcd76fa11">
+      <name>DataType</name>
+      <chineseName>字段类型</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>仅用于标准字段项目</remark>
+    </item>
+    <item gid="112905d7-9e52-441e-97cb-b2a9a7f21ada">
+      <name>DictNo</name>
+      <chineseName>字典条目</chineseName>
+      <datatype>Number_6</datatype>
+      <dictno>
+      </dictno>
+      <remark>仅用于标准字段项目</remark>
+    </item>
+    <item gid="3d1cf788-fe77-4e8b-9711-5365f8cc6d72">
+      <name>DictNameLst</name>
+      <chineseName>字典条目说明</chineseName>
+      <datatype>Char_max</datatype>
+      <dictno>
+      </dictno>
+      <remark>仅用于标准字段项目</remark>
+    </item>
+    <item gid="aac3e2d5-1f17-49c9-ba2f-a860a1f4501c">
+      <name>FieldInfo</name>
+      <chineseName>字段说明</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>仅用于标准字段项目</remark>
+    </item>
+    <item gid="637d771b-1a10-4d07-8fd4-57f635469c55">
+      <name>IsNull</name>
+      <chineseName>允许空</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100001</dictno>
+      <remark>仅用于标准字段项目</remark>
+    </item>
+    <item gid="14609f81-2102-431f-909b-e49a7485dd9c">
+      <name>IndexName</name>
+      <chineseName>索引名</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>仅用于标准字段项目</remark>
+    </item>
+    <item gid="7853f4cd-824e-4136-bf7d-aa1ebf423a99">
+      <name>IndexFieldLst</name>
+      <chineseName>索引字段列表</chineseName>
+      <datatype>Char_max</datatype>
+      <dictno>
+      </dictno>
+      <remark>仅用于标准字段项目</remark>
+    </item>
+    <item gid="33109bb7-855f-40e3-9ca0-b1b105ab29f4">
+      <name>ConstraintType</name>
+      <chineseName>约束类型</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100016</dictno>
+      <remark>仅用于标准字段项目</remark>
+    </item>
+    <item gid="ce517fed-7c6a-4871-81cd-51f192bf0634">
+      <name>FunctionId</name>
+      <chineseName>功能号</chineseName>
+      <datatype>Number_6</datatype>
+      <dictno>
+      </dictno>
+      <remark>仅用于标准字段项目</remark>
+    </item>
+    <item gid="3668f561-7241-4db7-9231-f71c4daf8f7a">
+      <name>TypeGuid</name>
+      <chineseName>类型GUID</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>仅用于标准字段项目</remark>
+    </item>
+    <item gid="4479b8b2-1331-4090-b932-b443c62ec373">
+      <name>BasicdataPath</name>
+      <chineseName>基础数据文件路径</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>仅用于标准字段项目</remark>
+    </item>
+    <item gid="9bff8971-5ca2-4669-83db-27d699ced662">
+      <name>IsBasicData</name>
+      <chineseName>是否基础数据</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100001</dictno>
+      <remark>仅用于标准字段项目</remark>
+    </item>
+    <item gid="e2b35486-d701-44bf-8c79-5d8908df0d96">
+      <name>LoginStatus</name>
+      <chineseName>登陆状态</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100017</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e13b1f99-f105-4ad6-957e-037e5da374b5">
+      <name>PuchaseStatus</name>
+      <chineseName>采购进货退货方式</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>200004</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="08288af6-d819-46f2-8d05-e2681a0de5f2">
+      <name>IncomeType</name>
+      <chineseName>收入支出类型</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>200005</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="203cbba6-d733-487f-bc93-0baaeaa13955">
+      <name>MonthlyReportType</name>
+      <chineseName>报表类型</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>200006</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="dd5ea184-0173-4b2c-99f7-1b0fd1046ac2">
+      <name>ItemNo</name>
+      <chineseName>设备编号</chineseName>
+      <datatype>Char_10</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2f2eb789-8978-4235-95d7-5db9be5b940f">
+      <name>Manufacture</name>
+      <chineseName>供应商</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="969a6e8d-be87-4463-bd5c-baff0c65cae1">
+      <name>MapNo</name>
+      <chineseName>图号</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="613932d8-9713-4f98-9e6f-b40a7ba709d4">
+      <name>Specification</name>
+      <chineseName>规格型号</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2fd7fb27-1788-4c11-a689-88287a30b27b">
+      <name>Material</name>
+      <chineseName>材质 </chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="52c66187-c51d-43b3-8b9b-cd968b35c4c9">
+      <name>Price</name>
+      <chineseName>单价</chineseName>
+      <datatype>Number_10_2</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="6349895a-847b-47cd-abad-184b72b3984c">
+      <name>Amount</name>
+      <chineseName>数量</chineseName>
+      <datatype>Number_8</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9d704734-67b1-4bff-82df-dc8affa58c37">
+      <name>Balance</name>
+      <chineseName>金额</chineseName>
+      <datatype>Number_10_2</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="5585d3a6-ec3c-486c-bec3-e1c1ed32c7f9">
+      <name>WareHouseId</name>
+      <chineseName>库房编号</chineseName>
+      <datatype>Number_6</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="5faa82ca-0ab2-43ee-bf26-ef605a31f9f3">
+      <name>PurchaseHeadId</name>
+      <chineseName>进货表单头</chineseName>
+      <datatype>Number_6</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="172dc1d1-da60-4ff9-baa9-d524dcfae248">
+      <name>CostCenter</name>
+      <chineseName>成本中心</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="7d7a57e3-2182-4385-a18f-ed886786fe70">
+      <name>PickingPeople</name>
+      <chineseName>领料人</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="a94ef1b6-b123-4537-aff3-5a754471e0dc">
+      <name>Year</name>
+      <chineseName>记录年</chineseName>
+      <datatype>Number_6</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e572d7e4-e489-4026-8f62-8fcf6fecf6b9">
+      <name>Month</name>
+      <chineseName>记录月</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="64dbe624-9b55-4f34-bf23-96df2b1141e6">
+      <name>Day</name>
+      <chineseName>记录日</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="79ba6472-77d3-47e6-8d5a-53b1574b5eb2">
+      <name>ReportHeaderId</name>
+      <chineseName>报表头编号</chineseName>
+      <datatype>Number_6</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="57731085-9e45-4f33-b052-e305941d37ab">
+      <name>ReportTitle</name>
+      <chineseName>报表标题 </chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="fdaa3d7b-f765-4677-a507-b6ee0b7c1e78">
+      <name>LowAmountWarning</name>
+      <chineseName>低储预警</chineseName>
+      <datatype>Number_8</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="bb8034b5-2218-487c-944c-70431b1545d5">
+      <name>HighAmountWarning</name>
+      <chineseName>超储预警</chineseName>
+      <datatype>Number_8</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f7218352-100e-40e9-8c71-82aa88b220f5">
+      <name>SupplierId</name>
+      <chineseName>供应商编号</chineseName>
+      <datatype>Number_6</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="a339e5bd-18ca-4dc0-9088-b0dbe2dbec60">
+      <name>OfficeAddress</name>
+      <chineseName>办公地址</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="42439192-e964-4ef4-92f9-93a1eb49eb79">
+      <name>HomeAddress</name>
+      <chineseName>家庭地址</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="11c66db4-81aa-4fe3-9e92-3fca6c29a293">
+      <name>WorkPosition</name>
+      <chineseName>工作职位</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="dc4db078-8fbd-43e8-a8d3-a578655330b8">
+      <name>Other</name>
+      <chineseName>其他</chineseName>
+      <datatype>Char_4000</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9f1c4cc4-b85d-470f-873e-1e24a19e5b48">
+      <name>NativePlace</name>
+      <chineseName>籍贯</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="93619dfb-c687-4947-9333-5112140b0372">
+      <name>Nation</name>
+      <chineseName>民族</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="4309e5c9-b422-4553-b6aa-a85c1f4ad089">
+      <name>Education</name>
+      <chineseName>教育</chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="8649f0fb-1ed3-44c4-814a-1c3b7959da81">
+      <name>GraduateSchool</name>
+      <chineseName>毕业学校</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="cfc32302-a276-4c87-a147-61203f62c3dc">
+      <name>Political</name>
+      <chineseName>政治面貌</chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="bc66a1e3-2180-4319-b93b-7c75acdfbdcf">
+      <name>JobType</name>
+      <chineseName>职业类型 </chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="be86e081-2d03-4823-a0c8-be6b739b9d28">
+      <name>ProfessionalTitle</name>
+      <chineseName>职称</chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="1cf99794-4aee-40e1-8602-f577f8d4f124">
+      <name>WorkPost</name>
+      <chineseName>职务</chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="7aca9636-2cbe-462d-b4cb-802a367afdea">
+      <name>PersonalHobby</name>
+      <chineseName>个人爱好</chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="5bcb49bf-4f05-46da-928b-68727d3ff041">
+      <name>ChineseZodiac</name>
+      <chineseName>生肖</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100018</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="be4677f1-a573-4edb-8e12-4d5c7a423481">
+      <name>Constellation</name>
+      <chineseName>星座</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100019</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="00ca1c03-01bd-4f3d-a53e-58becee1c8c0">
+      <name>MarriageStatus</name>
+      <chineseName>婚姻状态</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100020</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0af57807-327e-4249-8d0a-e41fcf1f6099">
+      <name>HealthStatus</name>
+      <chineseName>健康状态</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100021</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="fd4d50ed-9741-42b4-b58e-57a68d3b824a">
+      <name>ImportanceLevel</name>
+      <chineseName>重要级别</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100022</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="de698e32-f62b-4c09-9266-330cb7f9510e">
+      <name>RecognitionLevel</name>
+      <chineseName>认可程度级别</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100023</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0a42d47c-f810-4c3d-a731-97e5b386535e">
+      <name>RelationShip</name>
+      <chineseName>关系</chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="90fd5705-caa4-4c12-9028-3071f3f9f2d9">
+      <name>ResponseDemand</name>
+      <chineseName>负责需求</chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="286b196c-4828-42e6-a169-1f50c880996e">
+      <name>CareFocus</name>
+      <chineseName>关心重点</chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="62c41646-aa4a-448f-8939-d73b711c8c36">
+      <name>InterestDemand</name>
+      <chineseName>利益诉求 </chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f7dd19be-8a97-4860-8eda-f1b963edd95e">
+      <name>BodyType</name>
+      <chineseName>体型</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100024</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b73bc000-eb59-4c04-a9f3-0107e3d8971a">
+      <name>IsSmoking</name>
+      <chineseName>是否吸烟</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100001</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="8c2d052c-1196-48f5-848e-2ba617b67542">
+      <name>IsDrink</name>
+      <chineseName>是否喝酒</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100001</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="1da21651-91cc-4524-a91b-004f4a896319">
+      <name>Height</name>
+      <chineseName>身高</chineseName>
+      <datatype>Number_6</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0c9b7c9c-ae36-416b-9a5e-2bb4efe066d0">
+      <name>Weight</name>
+      <chineseName>体重</chineseName>
+      <datatype>Number_6</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="1daad86b-88f7-4dd0-9a89-ef6901b44740">
+      <name>Vision</name>
+      <chineseName>视力</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="26ec8053-3e6b-42d4-a892-a2226525f589">
+      <name>Introduce</name>
+      <chineseName>个人简述</chineseName>
+      <datatype>Char_max</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="1bb88680-e921-41f0-86b4-cd6eb056daa5">
+      <name>MarketArea</name>
+      <chineseName>市场区域</chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="dc5b6ec9-786b-4d4c-90b2-52c40aa709ac">
+      <name>ContactPhone</name>
+      <chineseName>联系人电话</chineseName>
+      <datatype>Char_32</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0cf50482-7b95-42f1-8342-c5fee5a6fc2a">
+      <name>Industry</name>
+      <chineseName>所属行业</chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="43ea6740-b229-4043-85be-e79ab3f2831c">
+      <name>BusinessScope</name>
+      <chineseName>经营范围</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="47ca59db-9d7c-420e-b37d-4f73b17d7575">
+      <name>Brand</name>
+      <chineseName>经营品牌</chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e47e720a-61bc-4b01-a889-88a5cf8c0ef0">
+      <name>PrimaryClient</name>
+      <chineseName>主要客户群</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f92e050b-8825-47f9-98f0-d2103c1dcab8">
+      <name>PrimaryBusiness</name>
+      <chineseName>主营业务</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="692bb98e-0dde-44f2-9e73-3967fefd4360">
+      <name>RegisterCapital</name>
+      <chineseName>注册资金 </chineseName>
+      <datatype>Number_10_2</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="94498383-30ed-482a-8d4c-d476e5ef190c">
+      <name>TurnOver</name>
+      <chineseName>营业额</chineseName>
+      <datatype>Number_10_2</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="35333d5c-8196-4078-bbc5-3a2816b5375c">
+      <name>LicenseNo</name>
+      <chineseName>营业执照</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="a15e3c50-b0e5-45d5-9a32-634ff7d6037f">
+      <name>OpenBank</name>
+      <chineseName>开户银行</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="4ee3d6b7-ee78-44c7-b502-23ea20a76996">
+      <name>BankAccount</name>
+      <chineseName>银行账号</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e95c2cb6-58b8-4a57-bf2e-adb00f6ce850">
+      <name>LocalTaxNo</name>
+      <chineseName>地税登记号</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="3abdb3bc-6391-4bfb-8887-bbb38086cf17">
+      <name>NationalTaxNo</name>
+      <chineseName>国税登记号</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ed2a9562-32aa-4acd-b062-4437fafd10f2">
+      <name>LegalMan</name>
+      <chineseName>法人名称</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="afcf5f31-0a27-4ccb-9cde-80cd508701c4">
+      <name>LegalPhone</name>
+      <chineseName>法人电话</chineseName>
+      <datatype>Char_32</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="984b5f29-90be-4b32-af1d-c7fcce2486cd">
+      <name>CustomerSource</name>
+      <chineseName>客户来源</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ea4bee92-0045-44bf-8e78-cd90d2f2622e">
+      <name>WebSiteUrl</name>
+      <chineseName>单位网站</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d2b0d30d-1735-4faf-a915-fa6b08a639e4">
+      <name>CustomerType</name>
+      <chineseName>客户类别</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100025</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="55e93eb4-9c64-424c-8b52-d21823557f07">
+      <name>CustomerLevel</name>
+      <chineseName>客户级别</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100026</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f5526700-cbed-499e-8cdd-04fbaca48af7">
+      <name>CreditStatus</name>
+      <chineseName>信用等级</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100027</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b9eb3834-8087-4eb4-91ed-5979604e511d">
+      <name>IsPublic</name>
+      <chineseName>是否公开</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100001</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ac56e294-bf5e-474d-ac8d-878ac6a07d28">
+      <name>SatisfactionLevel</name>
+      <chineseName>客户满意度级别</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100028</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e0ab07f9-8278-43f3-8b1e-e12874512960">
+      <name>TransactionCount</name>
+      <chineseName>交易次数</chineseName>
+      <datatype>Number_10</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="3c8a93e6-a600-4fb3-87d6-dde0caa09e6c">
+      <name>TransactionTotal</name>
+      <chineseName>交易金额</chineseName>
+      <datatype>Number_10_2</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e6a2f1d0-08f9-47bc-b502-cbff56962923">
+      <name>TransactionFirstDate</name>
+      <chineseName>首次交易时间</chineseName>
+      <datatype>Datetime</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="a56b34c5-8ed0-47e3-9f5c-756021454265">
+      <name>TransactionLastDate</name>
+      <chineseName>最近交易时间</chineseName>
+      <datatype>Datetime</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="1161024d-1db2-466c-8449-ce835ff85dae">
+      <name>LastContactDate</name>
+      <chineseName>最近联系日期</chineseName>
+      <datatype>Datetime</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="366c339d-01a2-44dc-8a01-c2266b94e684">
+      <name>CustomerStage</name>
+      <chineseName>客户阶段</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2e28e232-5aa0-44aa-9ce8-a184d426f30d">
+      <name>DicttypeValue</name>
+      <chineseName>字典键</chineseName>
+      <datatype>Number_6</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d4eee202-d7e9-470e-ac2f-836e64429d36">
+      <name>SysValue</name>
+      <chineseName>系统键</chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="feb0841d-1999-4cf4-beba-e8d09e167b42">
+      <name>JsTreeDataStatus</name>
+      <chineseName>JsTree数据树状态</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100029</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2cfbc446-1a3b-4c00-a8e5-da7a16bc20b2">
+      <name>IsOpened</name>
+      <chineseName>是否打开</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100001</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="46731caa-f2ce-40e7-84f3-f2e719f696ba">
+      <name>IsSelected</name>
+      <chineseName>是否选中</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100001</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="19d592cd-b4de-4e26-9602-c35c6dcaffd9">
+      <name>IsDisabled</name>
+      <chineseName>是否可用</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100001</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="220c9a40-dbd2-45bd-96ca-0ecf8619a8c4">
+      <name>NotifyCategoryName</name>
+      <chineseName>通讯录分类名称</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e4caf9ae-20e3-4ea7-98b1-647ab4fd124a">
+      <name>ConstantValue</name>
+      <chineseName>常量值</chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="bceed393-287e-474e-93de-812ca18c925d">
+      <name>AttrContent</name>
+      <chineseName>属性内容</chineseName>
+      <datatype>Char_max</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="64624c10-29d1-4666-8c35-74c73d97f16f">
+      <name>FieldName</name>
+      <chineseName>字段名字</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="46d6e498-0488-4104-9ca5-e72e171bba29">
+      <name>Licence</name>
+      <chineseName>许可证</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="a0a66908-de87-4e6d-bc89-2d4e282a0db2">
+      <name>DllPath</name>
+      <chineseName>映射路径</chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="6ba0904f-1dfc-44d4-b208-1fa4ca1df509">
+      <name>ItemSource</name>
+      <chineseName>设备来源</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="3c954c81-0729-43ef-8c82-2fc4e2f3b82a">
+      <name>StoragePos</name>
+      <chineseName>库位</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f1dccb62-52e8-459a-b49d-0eda3c92019a">
+      <name>UsagePos</name>
+      <chineseName>使用位置</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c18bbef9-5eb1-4066-bdfa-e539302ef327">
+      <name>OrderNo</name>
+      <chineseName>订货单</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="7661fb18-60aa-45a6-b42c-ec16bd11bc69">
+      <name>CreatorYear</name>
+      <chineseName>创建年份</chineseName>
+      <datatype>Number_6</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="74c5c11f-e0d4-4c9a-a948-03f5c50b41c7">
+      <name>CreatorMonth</name>
+      <chineseName>创建月份</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="a4a8eb61-18a1-4a22-8395-d184716bc47e">
+      <name>ReportYear</name>
+      <chineseName>报表年份</chineseName>
+      <datatype>Number_6</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="1d9b15c8-9680-4df3-b645-8dcc2866f712">
+      <name>ReportMonth</name>
+      <chineseName>报表月份</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="bb88685c-45d5-4c8e-bf53-a068f69e7753">
+      <name>ReportCode</name>
+      <chineseName>报表代码</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="547016af-5d75-4ea3-a8ac-bdd4678b576f">
+      <name>DisplayName</name>
+      <chineseName>显示名称</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="73ab1ffc-797c-4fd2-bf25-1b068dd87780">
+      <name>ClassName</name>
+      <chineseName>样式名称</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2b52bf75-ffb0-41e2-9a27-3cd8d1354e52">
+      <name>IconSourceType</name>
+      <chineseName>Icon来源</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100030</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b0c4a9b1-2faa-406d-ab4b-85c44d59a349">
+      <name>IconCls</name>
+      <chineseName>Icon样式名称</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="63d9dead-f354-4338-ac8e-77cdafee0ca4">
+      <name>IconUrl</name>
+      <chineseName>Icon中URL地址</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="3021568e-10d8-4b2d-aa28-b6990809c736">
+      <name>IconSize</name>
+      <chineseName>Icon尺寸</chineseName>
+      <datatype>Number_8</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="676f7b85-844c-4722-ba63-61c1cc8043e3">
+      <name>IsForceExpire</name>
+      <chineseName>是否强制过期</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100001</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="404c3d51-5a93-4f0d-937f-bcd438ec8590">
+      <name>TimeOut</name>
+      <chineseName>过期截止时间</chineseName>
+      <datatype>Datetime</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="8a9d7dd3-18aa-4cbb-8342-35d892a1ab20">
+      <name>ApproveTime</name>
+      <chineseName>审批时间</chineseName>
+      <datatype>Datetime</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c9ddf092-be5e-47aa-b592-520aa52e62cf">
+      <name>ApproveId</name>
+      <chineseName>审批人编号</chineseName>
+      <datatype>Number_8</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="557671c5-65cc-4ae8-b9f9-e2756e3c18c1">
+      <name>IsApprove</name>
+      <chineseName>是否审批通过</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100001</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f1247af5-369d-4a67-989e-96160f759757">
+      <name>InformationCategory</name>
+      <chineseName>信息大类名称</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100031</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="09684075-6abe-4cfa-ad8e-ae79276248f4">
+      <name>InformationSubType</name>
+      <chineseName>信息子类</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100032</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="1bf09e5e-8d4f-4573-b9dd-8888b9ff64fa">
+      <name>InformationId</name>
+      <chineseName>信息Id</chineseName>
+      <datatype>Number_6</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="cb01e145-ff53-4b25-a1e9-51d84eeca395">
+      <name>InformationTitle</name>
+      <chineseName>信息标题</chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e5ad9d31-aad8-456a-a809-53fffad9ef8d">
+      <name>FileName</name>
+      <chineseName>文件名称</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="1fbc76ff-4d83-4498-ac37-bc01fb3c8fce">
+      <name>OutInComingType</name>
+      <chineseName>出入库类别</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="a2664b55-915a-4a18-80d1-85232c732257">
+      <name>StatisticValueType</name>
+      <chineseName>统计值类型</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>200007</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0d1ff7de-34ac-489f-aa2b-fa43fccb556d">
+      <name>UserImageType</name>
+      <chineseName>个人图片分类</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>200008</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="31779d80-7096-45af-af84-dd817615d4be">
+      <name>AttachmentType</name>
+      <chineseName>附件分类</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100033</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="6a5ea54b-3f2e-4e63-baf5-97bafd85600b">
+      <name>FileUploadType</name>
+      <chineseName>上传文件分类</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100034</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="4194272e-11ae-48e7-8518-1f4bde180e99">
+      <name>EnableStatus</name>
+      <chineseName>启用状态</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>300005</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e99a6eca-435b-4185-85ae-89ed6cdbb15d">
+      <name>AppUnit</name>
+      <chineseName>应用单元</chineseName>
+      <datatype>Char_64</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="78658a8f-f23e-49fd-b0b2-10612fe59d01">
+      <name>AppName</name>
+      <chineseName>应用名称</chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="7d0099d2-0752-4b7d-925c-c2ed4148991e">
+      <name>AppWholeName</name>
+      <chineseName>应用程序全部名称</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="895d0940-59cf-4b03-af78-847438930ad6">
+      <name>HouseHold</name>
+      <chineseName>户籍地</chineseName>
+      <datatype>Char_256</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="49a85714-aafb-4137-9317-a8995a35c0b3">
+      <name>FangHao</name>
+      <chineseName>房号</chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="631464d4-f61e-450d-bc27-7a2208383364">
+      <name>Util</name>
+      <chineseName>单元</chineseName>
+      <datatype>Char_8</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0a0e192f-ce34-4893-a107-c7abe345b058">
+      <name>Zhuang</name>
+      <chineseName>幢</chineseName>
+      <datatype>Char_8</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ba14350c-ed42-4f0f-8e88-8f9f58875a60">
+      <name>Nationality</name>
+      <chineseName>国籍</chineseName>
+      <datatype>Number_6</datatype>
+      <dictno>100035</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="75ab097b-3eb9-4d98-8074-a17e3ee5529f">
+      <name>FloatValue</name>
+      <chineseName>浮点型值</chineseName>
+      <datatype>Number_10_6</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="887ce9e7-13a8-4a22-8a17-41b60906e74a">
+      <name>IsDaka</name>
+      <chineseName>是否打卡</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100001</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ac1fd5e2-0cc0-40ab-b78e-9c98e3290cf2">
+      <name>ProjectName</name>
+      <chineseName>报监管部门在审的项目名称</chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="cf0f7f70-5783-4a8a-84cc-d255753854e7">
+      <name>RaisedAmount</name>
+      <chineseName>募集资金预计额（亿）</chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="a5ec50eb-c68e-42ed-a630-c024b9131049">
+      <name>ProjectType</name>
+      <chineseName>项目类型</chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="bd27f842-797f-426c-8ed9-aacc3a614aa2">
+      <name>ProjectLeader</name>
+      <chineseName>项目负责人</chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="1cb229d9-4a32-40c9-a9a9-2aca3c1b0489">
+      <name>Managers</name>
+      <chineseName>承销商/管理人</chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9cc24ebb-2429-44c3-bffb-b7394a859dec">
+      <name>DocNum</name>
+      <chineseName>交易所确认文件文号</chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="98216d07-26e7-4e20-b73c-43ad9af9653c">
+      <name>ProjectStatusDetail</name>
+      <chineseName>项目状态跟踪</chineseName>
+      <datatype>Char_4000</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="290ed3e5-3300-4e32-afc5-9cba98ee0cda">
+      <name>ProjectStatus</name>
+      <chineseName>最新项目状态</chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e9a97bd1-3f9a-48ae-9755-3b351d7f8574">
+      <name>DeclareTime</name>
+      <chineseName>申报时间</chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="70a10a52-ad90-4194-9ce3-c3f2d531634a">
+      <name>ProjectProgress</name>
+      <chineseName>项目进度</chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0ec81bc7-29f3-4856-9c60-0cca3181cab0">
+      <name>From</name>
+      <chineseName>信息来源</chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="830de1ab-ea49-43af-870e-e5872238ad19">
+      <name>Week</name>
+      <chineseName>星期</chineseName>
+      <datatype>Number_2</datatype>
+      <dictno>100036</dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2a591e21-93b0-49de-ad8e-cd3fa2bbfae8">
+      <name>ExecutedTime</name>
+      <chineseName>执行时间</chineseName>
+      <datatype>Number_8</datatype>
+      <dictno>
+      </dictno>
+      <remark>微妙</remark>
+    </item>
+    <item gid="6829f191-1ece-42d8-8eae-4e58bedf1369">
+      <name>ModuleInfo</name>
+      <chineseName>模块</chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="7385ae5b-67c7-4e7b-8a58-a89d15269ec2">
+      <name>OperationInfo</name>
+      <chineseName>操作</chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="acb2e039-597d-4d18-8d59-7a6d21b3b5c8">
+      <name>SessionId</name>
+      <chineseName>用户后台Session的值</chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+  </dataitem>
+</datatype>

@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="afa90156-3f10-4178-af0a-7790d516c5a6">
+      <functionId>100010</functionId>
+      <name>ContactGroupInfo</name>
+      <chineseName>联系人组别</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>CRM</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-09-13 21:14:40.307</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="15ae8d1d-00be-47f3-8084-d25faa17bae5">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="73254668-fd07-4049-8d86-cb9d77110e46">
+      <name>Pid</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="4250e85b-cf5e-408c-b569-de48a4f2dd72">
+      <name>UserCode</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="dd741c69-8556-42a1-968e-8ded3157eb4d">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f04e89a4-e1ac-4f22-921d-355dee5c01e0">
+      <name>Remark</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="5bb0ad77-957f-4e92-ae11-3937ab36b0fa">
+      <name>CreatorId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="48a9810f-4868-4bb5-b887-41b391f2ebd0">
+      <name>CreatorTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e24c7f6b-96b2-4e16-a2e2-1a72e86dc491">
+      <name>EditorId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="4ee1bd91-e682-40c9-a893-80cec6b43655">
+      <name>LastUpdateTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="415da099-26b4-415e-9a3a-81725cf78bdf">
+      <name>DeptId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="3078a2df-a0ab-4bc1-9e02-d16bee3dfe8a">
+      <name>CompanyId</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

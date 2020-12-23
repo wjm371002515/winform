@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="ea061334-8327-466e-8c1b-479258edf15b">
+      <functionId>100013</functionId>
+      <name>ContactGroupNodeInfo</name>
+      <chineseName>联系人组别节点</chineseName>
+      <fieldnamespace>using System.Collections.Generic;</fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>CRM</folder>
+      <baseclass>ContactGroupInfo</baseclass>
+      <lasttime>2019-09-14 08:20:15.760</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+  </fieldsinfo>
+  <diyfieldinfo>
+    <item gid="b8dfd971-f926-4a16-819f-16c47e7909dd">
+      <name>Children</name>
+      <chinesename>子分组实体类对象集合</chinesename>
+      <fieldtype>List&lt;ContactGroupNodeInfo&gt;</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="632919c6-b944-4d44-8a52-1791d7541b67">
+      <name>ContactGroupNodeInfo()</name>
+      <chinesename>
+      </chinesename>
+      <fieldtype>
+      </fieldtype>
+      <content>this.m_Children = new List&lt;ContactGroupNodeInfo&gt;();</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d967648e-f3fe-494e-8bcb-c0373ebd5736">
+      <name>ContactGroupNodeInfo(ContactGroupInfo info)</name>
+      <chinesename>
+      </chinesename>
+      <fieldtype>
+      </fieldtype>
+      <content>  base.Id = info.Id;
+            base.UserCode = info.UserCode;
+            base.Name = info.Name;
+            base.Pid = info.Pid;
+            base.Remark = info.Remark;
+            base.EditorId = info.EditorId;
+            base.LastUpdateTime = info.LastUpdateTime;
+            base.CreatorId = info.CreatorId;
+            base.CreatorTime = info.CreatorTime;
+            base.DeptId = info.DeptId;
+            base.CompanyId = info.CompanyId;</content>
+      <remark>
+      </remark>
+    </item>
+  </diyfieldinfo>
+</datatype>

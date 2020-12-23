@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="1c0696f4-dc27-41ea-a4c7-07a14d8de4bc">
+      <functionId>100025</functionId>
+      <name>JsTreeStatus</name>
+      <chineseName>JsTree的状态对象</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Common</folder>
+      <baseclass>
+      </baseclass>
+      <lasttime>2019-09-16 16:44:24.716</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="16f5e7c4-caca-4176-8b71-bd2101fa41e0">
+      <name>IsOpened</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="5d4c413b-105e-4c75-9cc7-a325bf7f2318">
+      <name>IsSelected</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="91efb791-0a90-4173-ad67-2f4415c4d196">
+      <name>IsDisabled</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+    <item gid="af75fa9c-16a5-464b-bab1-16adb478f35c">
+      <name>JsTreeStatus()</name>
+      <chinesename>无参构造函数</chinesename>
+      <fieldtype>
+      </fieldtype>
+      <content>this.m_IsOpened = 0;
+            this.m_IsSelected = 0;
+            this.m_IsDisabled = 0;</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="3c9abc7e-fba0-43b3-b2c5-18f60e52e3fa">
+      <name>JsTreeStatus(Int16 isopened = 0, Int16 isselected = 0, Int16 isdisabled = 0)</name>
+      <chinesename>带参构造函数</chinesename>
+      <fieldtype>
+      </fieldtype>
+      <content> this.m_IsOpened = isopened;
+            this.m_IsSelected = isselected;
+            this.m_IsDisabled = isdisabled;</content>
+      <remark>
+      </remark>
+    </item>
+  </diyfieldinfo>
+</datatype>

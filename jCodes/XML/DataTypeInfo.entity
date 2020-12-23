@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="7e949a03-049c-40be-9c38-1e92eb0e67d5">
+      <functionId>100039</functionId>
+      <name>DataTypeInfo</name>
+      <chineseName>数据类型</chineseName>
+      <fieldnamespace>using DevExpress.XtraEditors.DXErrorProvider;
+using System.Collections.Generic;</fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Proj</folder>
+      <baseclass>IDXDataErrorInfo</baseclass>
+      <lasttime>2019-09-19 15:26:05.566</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="a3b7d6e4-eb57-4776-897b-737214615454">
+      <name>Gid</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="48e8bb53-3a49-4df5-ad13-4f375bdebaf4">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c8147f7e-06ea-4cf5-ae95-95df2d89313a">
+      <name>ChineseName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="78c100b8-d941-459f-9cef-0da536063361">
+      <name>StdType</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d214c477-4552-4b71-967e-176cf698b2dc">
+      <name>Length</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="16ae3267-0148-4c81-95c3-4c0a1adb9e58">
+      <name>Precision</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="4dd9cd95-ef3c-4846-bc20-9fe1723709b1">
+      <name>Remark</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+    <item gid="3116c402-1001-4982-80d6-4f21849faf4d">
+      <name>lstInfo</name>
+      <chinesename>用来保存行数据中字段名，错误信息</chinesename>
+      <fieldtype>Dictionary&lt;string, ErrorInfo&gt;</fieldtype>
+      <content> get;
+            set;</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b59a487c-da25-40ee-b52c-4118ab7038e1">
+      <name>IDXDataErrorInfo.GetPropertyError(string propertyName, ErrorInfo info)</name>
+      <chinesename>添加自定义错误</chinesename>
+      <fieldtype>void</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f558afd1-b57d-448a-bfeb-8977cd68b7e9">
+      <name>IDXDataErrorInfo.GetError(ErrorInfo info)</name>
+      <chinesename>
+      </chinesename>
+      <fieldtype>void</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+  </diyfieldinfo>
+</datatype>

@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="ac72fa9d-1d81-4de9-b251-0fe81114e959">
+      <functionId>100005</functionId>
+      <name>CListItem</name>
+      <chineseName>字符串键值对</chineseName>
+      <fieldnamespace>using System.Text.RegularExpressions;</fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Common</folder>
+      <baseclass>
+      </baseclass>
+      <lasttime>2019-09-12 16:54:05.910</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+  </fieldsinfo>
+  <diyfieldinfo>
+    <item gid="c72b7f9b-5ab7-4e8e-9b17-7420391ac26e">
+      <name>Value</name>
+      <chinesename>键</chinesename>
+      <fieldtype>String</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f9785c6b-913c-42ad-ac94-1ee3048ea004">
+      <name>Text</name>
+      <chinesename>值</chinesename>
+      <fieldtype>String</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="8baa79de-2d41-469b-a887-d9785bc3494e">
+      <name>ToString()</name>
+      <chinesename>显示内容</chinesename>
+      <fieldtype>override string</fieldtype>
+      <content>if (Regex.IsMatch(this.m_Value, "[A-F0-9]{8}(-[A-F0-9]{4}){3}-[A-F0-9]{12}|[A-F0-9]{32}", RegexOptions.IgnoreCase))
+            {
+                return this.m_Text;
+            }
+            else
+            {
+                return string.Format("{0}-{1}", m_Value, m_Text);
+            }</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9bd18b2c-e946-438b-b05b-b49036c9f94b">
+      <name>CListItem(string value, string text)</name>
+      <chinesename>参数化构造CListItem对象</chinesename>
+      <fieldtype>
+      </fieldtype>
+      <content> this.m_Text = text;
+            this.m_Value = value;</content>
+      <remark>20170901 wjm 调整key 和value的顺序</remark>
+    </item>
+  </diyfieldinfo>
+</datatype>

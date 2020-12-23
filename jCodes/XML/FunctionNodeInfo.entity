@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="f462ef2c-dcf9-4970-be13-3acc5e7269b3">
+      <functionId>100068</functionId>
+      <name>FunctionNodeInfo</name>
+      <chineseName>系统功能节点对象</chineseName>
+      <fieldnamespace>using System.Collections.Generic;</fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Security</folder>
+      <baseclass>FunctionInfo</baseclass>
+      <lasttime>2019-09-22 00:28:21.818</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+  </fieldsinfo>
+  <diyfieldinfo>
+    <item gid="83171668-acaf-4342-a772-fff3d0e0ef09">
+      <name>Children</name>
+      <chinesename>子节点</chinesename>
+      <fieldtype>List&lt;FunctionNodeInfo&gt;</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d565ddca-65de-47af-b00e-000e3b1b0c80">
+      <name>FunctionNodeInfo()</name>
+      <chinesename>无参构造函数</chinesename>
+      <fieldtype>
+      </fieldtype>
+      <content>this.m_Children = new List&lt;FunctionNodeInfo&gt;();</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="86fa5e0d-f054-4cdf-a2d0-e91124679339">
+      <name>FunctionNodeInfo(FunctionInfo functionInfo)</name>
+      <chinesename>带参构造函数</chinesename>
+      <fieldtype>
+      </fieldtype>
+      <content>base.DllPath = functionInfo.DllPath;
+            base.Gid = functionInfo.Gid;
+            base.Name = functionInfo.Name;
+            base.Pgid = functionInfo.Pgid;
+            base.SystemtypeId = functionInfo.SystemtypeId;
+            base.Seq = functionInfo.Seq;</content>
+      <remark>
+      </remark>
+    </item>
+  </diyfieldinfo>
+</datatype>

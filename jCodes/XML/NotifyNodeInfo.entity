@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="ee89555a-0483-492f-948b-ea67e288207e">
+      <functionId>100029</functionId>
+      <name>NotifyNodeInfo</name>
+      <chineseName>用于各个模块传递的分组联系人信息节点</chineseName>
+      <fieldnamespace>using System.Collections.Generic;</fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Common</folder>
+      <baseclass>NotifyGroupInfo</baseclass>
+      <lasttime>2019-09-16 17:54:40.165</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+  </fieldsinfo>
+  <diyfieldinfo>
+    <item gid="e1e2411e-918f-48d4-a51c-9178583378aa">
+      <name>Children</name>
+      <chinesename>子分组实体类对象集合</chinesename>
+      <fieldtype>List&lt;NotifyNodeInfo&gt;</fieldtype>
+      <content> get { return m_Children; }
+            set { m_Children = value; }</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="4c0e3a47-e9aa-4973-b0b9-c61aee302b83">
+      <name>NotifyNodeInfo()</name>
+      <chinesename>无参构造函数</chinesename>
+      <fieldtype>
+      </fieldtype>
+      <content>this.m_Children = new List&lt;NotifyNodeInfo&gt;();</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="08108963-6159-4047-94f9-08c3888dfbe6">
+      <name>NotifyNodeInfo(NotifyGroupInfo info)</name>
+      <chinesename>带参构造函数</chinesename>
+      <fieldtype>
+      </fieldtype>
+      <content>base.NotifyCategoryName = info.NotifyCategoryName;
+            base.ContactList = info.ContactList;</content>
+      <remark>
+      </remark>
+    </item>
+  </diyfieldinfo>
+</datatype>

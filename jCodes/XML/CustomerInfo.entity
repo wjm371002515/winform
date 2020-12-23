@@ -1,0 +1,289 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="1d996641-b511-4e0c-851d-31e3ecc0e993">
+      <functionId>100012</functionId>
+      <name>CustomerInfo</name>
+      <chineseName>客户基本资料</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>CRM</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-09-13 23:26:43.786</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="86671639-2418-4b5c-9454-8e8e58d06837">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c2186c56-9767-4eff-9c00-a26e0ae03be0">
+      <name>UserCode</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="79f3ac27-c3f7-4524-a7f9-19b314ab5d5e">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e792ca51-10b9-42a4-8b82-ef84d4182baa">
+      <name>LoginName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="6d4adc96-6ce0-4745-8d0b-21718d5fa415">
+      <name>ProvinceName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="249f7cd5-e292-4e5e-acd3-d7b4dfd0aff9">
+      <name>CityName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="48664c37-82d6-45db-8502-df8b272905a1">
+      <name>DistrictName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="31433022-0e08-489d-9d40-ade5b6b3e4ed">
+      <name>MarketArea</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="22ad115b-c975-4ac7-a107-7c7011970a83">
+      <name>WorkAddress</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ad2ceb0b-3038-47f3-90a4-1af97d6b751e">
+      <name>ZipCode</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="189e1b4b-40aa-4854-b894-2be11dc827b9">
+      <name>MobilePhone</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="19670d45-6a8f-46f8-8921-07b78afb3384">
+      <name>Fax</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b3729245-1710-4f16-ac39-c87ee1c9616a">
+      <name>Contacts</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="eeeef167-64a7-4e5c-b441-9e7351700aa2">
+      <name>ContactPhone</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="89a22927-2aa5-49e3-8f1c-e26bebe14db1">
+      <name>Email</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="7826d4f3-374c-470e-9329-a362089f677b">
+      <name>QQ</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ac367d08-cb45-4e2e-9fa3-cb312a205a67">
+      <name>Industry</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="edb276a8-19b9-41ae-b5b6-334d812cfee1">
+      <name>BusinessScope</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="8884a132-e37a-4ede-84aa-d52988be286e">
+      <name>Brand</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="52b3b92a-ff8d-4814-b456-0d5f4fa74fa1">
+      <name>PrimaryClient</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="182ec14e-e144-4865-83e4-9bc76e6a346f">
+      <name>PrimaryBusiness</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b9ac00ca-8efa-4322-8a3d-cff37a30e1d6">
+      <name>RegisterCapital</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="7a2b82ba-6a0b-439d-ba15-4491e32ddf83">
+      <name>TurnOver</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="71d15492-1f94-4bc0-a5cb-7831579e049e">
+      <name>LicenseNo</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="cad66648-fef2-4552-9c68-953bce6c1616">
+      <name>OpenBank</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="1f2f884f-186a-4247-a1fb-d8b5c0660ae1">
+      <name>BankAccount</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="502e81e0-2723-4862-a561-230a9817d240">
+      <name>LocalTaxNo</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="a91768de-ecc3-476c-b54c-5ae5c34716d5">
+      <name>NationalTaxNo</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c5915440-e29b-4c5c-8933-ff2b7c480563">
+      <name>LegalMan</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9d35c03c-bcfe-4910-8313-19a2e8e0dbdd">
+      <name>LegalPhone</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="517fe8e8-a3b9-4683-b961-8549b3eb3ec8">
+      <name>CustomerSource</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="464e25fa-bc7c-4919-bcb0-e3db617bc2e3">
+      <name>WebSiteUrl</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="517fa579-a130-4110-b38b-6efa2fe0c21d">
+      <name>CustomerType</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ecc7ec1e-051f-4964-8b54-091ec7527199">
+      <name>CustomerLevel</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="40395799-cd8f-488b-9504-9e7e5a3d06d3">
+      <name>CreditStatus</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="fd214b88-07e3-4cca-8c24-924685401518">
+      <name>ImportanceLevel</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="16e614be-19ac-421b-a55a-bfd1483a0380">
+      <name>IsPublic</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="49b23c21-4012-4e19-a9c5-30680cefb6dc">
+      <name>SatisfactionLevel</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ac931651-1fca-41eb-9eb7-48e08d109948">
+      <name>Remark</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0ed25af4-af52-4c19-9da6-915f339dddc7">
+      <name>TransactionCount</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9117409f-6ee9-4944-80b2-db65b820e94f">
+      <name>TransactionTotal</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0ff3517d-11ca-4820-bd71-0ce19e2fa859">
+      <name>TransactionFirstDate</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="4b9c63ec-482f-42c5-96a6-b869961cf6ee">
+      <name>TransactionLastDate</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="900982f0-53c3-4b80-ade8-57a9f68da82b">
+      <name>LastContactDate</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="468c69a3-428b-4897-bbca-b512cd16fe15">
+      <name>CustomerStage</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d316bb43-1733-4b31-a7ec-3f4aecc1c818">
+      <name>AuditStatus</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f9d160e3-565f-42c8-bace-81129408e02e">
+      <name>CreatorId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2332c2a7-86b3-465c-ae2f-83445152a814">
+      <name>CreatorTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="fdd1d3b9-01ef-43e1-9e45-debb380bd36b">
+      <name>EditorId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="99caae76-dc37-4d5b-9a2e-f91bc450d4c9">
+      <name>LastUpdateTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0e79fe19-7fec-448c-b66d-eead9d34ad43">
+      <name>IsDelete</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2efb1f3e-1551-45b6-8705-e580b4fa4d3f">
+      <name>DeptId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="59f9e5cf-c9b4-410a-b05e-74da01e1d8a3">
+      <name>CompanyId</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

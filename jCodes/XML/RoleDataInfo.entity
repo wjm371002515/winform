@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="e55966e7-3b3c-480e-90e6-161b2a31c464">
+      <functionId>100062</functionId>
+      <name>RoleDataInfo</name>
+      <chineseName>角色的数据权限</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Security</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-09-21 17:05:54.103</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="30a361ec-ce2d-4697-b0e8-1c0ebc80e14f">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="70531b40-2fbf-4ab6-82ec-958d750fd7e0">
+      <name>RoleId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="6393219f-6ce9-4f14-8877-bd3745c951e0">
+      <name>CompanyLst</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="bebd580f-6251-4774-a79f-ae35f6f8b117">
+      <name>DeptLst</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="29359dec-ac89-4270-97f6-dc470b0781e2">
+      <name>Remark</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

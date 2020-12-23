@@ -1,0 +1,1783 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <dataitem>
+    <item>
+      <gid>00365557-6fbd-4717-ba87-1c1a1477f931</gid>
+      <pgid>-1</pgid>
+      <name>测试菜单</name>
+      <icon>images\MenuIcon\018.ico</icon>
+      <seq>5</seq>
+      <authgid>firTest</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>
+      </winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>054e6173-091e-489b-bd77-e09ee90b6761</gid>
+      <pgid>75b1cca0-20f1-46bb-9d1a-3c54166b48b7</pgid>
+      <name>投行IPO处理</name>
+      <icon>images\MenuIcon\109.ico</icon>
+      <seq>712</seq>
+      <authgid>TouhangIPO</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.SmallTools.FrmIPO,JCodes.Framework.AddIn.SmallTools.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>08ee3dad-73aa-43dd-a08c-6d3fb732b187</gid>
+      <pgid>-1</pgid>
+      <name>权限管理</name>
+      <icon>
+      </icon>
+      <seq>6</seq>
+      <authgid>firAuth</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>
+      </winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>0be015cc-8969-4ecf-ab8a-450c93d7efc0</gid>
+      <pgid>9cafc07d-9cbe-4d62-aab6-b2cecf02e212</pgid>
+      <name>黑白名单</name>
+      <icon>images\MenuIcon\011.ico</icon>
+      <seq>617</seq>
+      <authgid>BlackIP</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.Security.FrmBlackIP,JCodes.Framework.AddIn.Security.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>0efdce5b-bb1c-4656-907b-ad9ebbd072c3</gid>
+      <pgid>-1</pgid>
+      <name>仓库管理</name>
+      <icon>
+      </icon>
+      <seq>1</seq>
+      <authgid>firWareHouse</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>
+      </winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>0f3356d3-91dd-400b-945f-60bc837670c8</gid>
+      <pgid>9cafc07d-9cbe-4d62-aab6-b2cecf02e212</pgid>
+      <name>功能管理</name>
+      <icon>images\MenuIcon\104.ico</icon>
+      <seq>615</seq>
+      <authgid>Function</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.Security.FrmFunction,JCodes.Framework.AddIn.Security.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>14b6f6a5-5f1f-432d-bc6a-dc6899b85c86</gid>
+      <pgid>8eed9ba7-2511-466c-b018-dbef787ca557</pgid>
+      <name>内存查看</name>
+      <icon>images\MenuIcon\033.ico</icon>
+      <seq>513</seq>
+      <authgid>Test3</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.Test.FrmCacheData,JCodes.Framework.AddIn.Test.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>1a1d9a6e-0d04-4cdb-804f-0ac2b7c18e6d</gid>
+      <pgid>8eed9ba7-2511-466c-b018-dbef787ca557</pgid>
+      <name>测试菜单1</name>
+      <icon>images\MenuIcon\029.ico</icon>
+      <seq>511</seq>
+      <authgid>Test1</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.Test.FrmTest,JCodes.Framework.AddIn.Test.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>1bb78e79-da07-45a2-a504-a4c834f50992</gid>
+      <pgid>218d65a1-5bf6-4294-9376-45cd4b608783</pgid>
+      <name>当前用户信息</name>
+      <icon>images\MenuIcon\022.ico</icon>
+      <seq>815</seq>
+      <authgid>CurUserInfo</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.UI.Security.FrmEditUser,JCodes.Framework.AddIn.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>1c1bb429-5f56-4fcd-a9dc-23c093b41ef9</gid>
+      <pgid>43d2a0ed-97ac-4605-924e-1cfe52b8c26e</pgid>
+      <name>人员设置</name>
+      <icon>
+      </icon>
+      <seq>41</seq>
+      <authgid>secPeopleManage</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>
+      </winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>209ff686-95dd-4bce-9117-4dcfc22a81c0</gid>
+      <pgid>218d65a1-5bf6-4294-9376-45cd4b608783</pgid>
+      <name>参数配置</name>
+      <icon>images\MenuIcon\025.ico</icon>
+      <seq>811</seq>
+      <authgid>Sysparameter</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.UI.Common.FrmSettings,JCodes.Framework.AddIn.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>218d65a1-5bf6-4294-9376-45cd4b608783</gid>
+      <pgid>89dfeb34-2c3c-4dff-bf0f-8ed282f423bd</pgid>
+      <name>系统设置</name>
+      <icon>
+      </icon>
+      <seq>81</seq>
+      <authgid>secSystemSet</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>
+      </winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>2bb71328-b70f-4d8b-ae8d-1d763bd3bade</gid>
+      <pgid>32dd5d0d-4f18-43f2-9793-e634e200c286</pgid>
+      <name>生成优惠券</name>
+      <icon>
+      </icon>
+      <seq>311</seq>
+      <authgid>Generatecoupons</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.UI._50Go.FrmCouponCategory,JCodes.Framework.AddIn.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>2f09f707-ae9e-421d-8901-6d94c4105a39</gid>
+      <pgid>0efdce5b-bb1c-4656-907b-ad9ebbd072c3</pgid>
+      <name>仓库设置</name>
+      <icon>
+      </icon>
+      <seq>11</seq>
+      <authgid>secWareHouse</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>
+      </winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>2f9612fc-c249-482d-9c20-95892e62a3fe</gid>
+      <pgid>5e141816-16df-4ba5-b0f8-57306fdbdbec</pgid>
+      <name>关于软件</name>
+      <icon>images\MenuIcon\018.ico</icon>
+      <seq>912</seq>
+      <authgid>About</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.UI.Basic.AboutBox,JCodes.Framework.AddIn.dll,dialog</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>30886892-a8a3-4403-9dfb-41b3a20a7980</gid>
+      <pgid>2f09f707-ae9e-421d-8901-6d94c4105a39</pgid>
+      <name>库存查询</name>
+      <icon>images\MenuIcon\103.ico</icon>
+      <seq>113</seq>
+      <authgid>StockSearch</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>
+      </winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>32dd5d0d-4f18-43f2-9793-e634e200c286</gid>
+      <pgid>5e60bd31-6488-433c-9858-82dcca5519cf</pgid>
+      <name>50购管理</name>
+      <icon>
+      </icon>
+      <seq>31</seq>
+      <authgid>sec50GoManage</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>
+      </winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>373f59a7-aeec-4f74-8111-9f0fd6b72e9a</gid>
+      <pgid>99462bd2-f47b-4dca-8fb8-c579a3c7ed79</pgid>
+      <name>系统菜单</name>
+      <icon>images\MenuIcon\124.ico</icon>
+      <seq>a18</seq>
+      <authgid>SysMenu</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.Proj.FrmSysMenu,JCodes.Framework.AddIn.Proj.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>3914eb34-999b-4ff4-9602-ed957f41e9a6</gid>
+      <pgid>2f09f707-ae9e-421d-8901-6d94c4105a39</pgid>
+      <name>出货商管理</name>
+      <icon>images\MenuIcon\036.ico</icon>
+      <seq>117</seq>
+      <authgid>Client</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.UI.WareHouseManage.FrmClient,JCodes.Framework.AddIn.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>3fb5847e-02bd-4cd2-a62e-ce6d538b1cfb</gid>
+      <pgid>99462bd2-f47b-4dca-8fb8-c579a3c7ed79</pgid>
+      <name>标准数据类型</name>
+      <icon>images\MenuIcon\116.ico</icon>
+      <seq>a13</seq>
+      <authgid>DefaultType</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.Proj.FrmDefaultType,JCodes.Framework.AddIn.Proj.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>43d2a0ed-97ac-4605-924e-1cfe52b8c26e</gid>
+      <pgid>-1</pgid>
+      <name>人员管理</name>
+      <icon>
+      </icon>
+      <seq>4</seq>
+      <authgid>firPeopleManage</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>
+      </winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>45ab6e96-0d1f-4697-9ab1-30c71c6869ac</gid>
+      <pgid>8e4404b2-ff08-4eb6-9366-ca1506cd2fc3</pgid>
+      <name>基础数据</name>
+      <icon>
+      </icon>
+      <seq>a3</seq>
+      <authgid>secBaseData</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>
+      </winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>48b5efa6-242e-4c3e-a74b-118fb23e5ed9</gid>
+      <pgid>00365557-6fbd-4717-ba87-1c1a1477f931</pgid>
+      <name>跨线程更新UI</name>
+      <icon>
+      </icon>
+      <seq>52</seq>
+      <authgid>secThreadSetUI</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>
+      </winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>49418659-abb8-4e37-bc8b-11ac45bf6cc6</gid>
+      <pgid>89dfeb34-2c3c-4dff-bf0f-8ed282f423bd</pgid>
+      <name>系统日志</name>
+      <icon>
+      </icon>
+      <seq>82</seq>
+      <authgid>secSystemLog</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>
+      </winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>4bd049b6-9967-4c06-9050-38227fc90eee</gid>
+      <pgid>-1</pgid>
+      <name>帮助</name>
+      <icon>
+      </icon>
+      <seq>9</seq>
+      <authgid>firHelp</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>
+      </winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>53e0baa7-2a0a-41ee-91cd-4a77938543c0</gid>
+      <pgid>65f20891-f128-437b-8254-712e22713403</pgid>
+      <name>优惠券兑换</name>
+      <icon>
+      </icon>
+      <seq>321</seq>
+      <authgid>Exchangecoupons</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.UI._50Go.FrmCoupon,JCodes.Framework.AddIn.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>5607bd12-ec1d-493b-990a-ed79cff21bfb</gid>
+      <pgid>218d65a1-5bf6-4294-9376-45cd4b608783</pgid>
+      <name>省市区管理</name>
+      <icon>images\MenuIcon\031.ico</icon>
+      <seq>818</seq>
+      <authgid>CityDistrict</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.UI.Dictionary.FrmCityDistrict,JCodes.Framework.AddIn.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>5aa4e4a8-bc7a-48ed-8282-5fd9cb6f4417</gid>
+      <pgid>9cafc07d-9cbe-4d62-aab6-b2cecf02e212</pgid>
+      <name>角色管理</name>
+      <icon>images\MenuIcon\005.ico</icon>
+      <seq>613</seq>
+      <authgid>Role</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.Security.FrmRole,JCodes.Framework.AddIn.Security.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>5dadcabf-efee-4e53-ad81-5ae7f758b35b</gid>
+      <pgid>8e4404b2-ff08-4eb6-9366-ca1506cd2fc3</pgid>
+      <name>数据库</name>
+      <icon>
+      </icon>
+      <seq>a2</seq>
+      <authgid>secDataBase</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>
+      </winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>5e141816-16df-4ba5-b0f8-57306fdbdbec</gid>
+      <pgid>4bd049b6-9967-4c06-9050-38227fc90eee</pgid>
+      <name>帮助及注册</name>
+      <icon>
+      </icon>
+      <seq>91</seq>
+      <authgid>secHelpReg</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>
+      </winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>5e60bd31-6488-433c-9858-82dcca5519cf</gid>
+      <pgid>-1</pgid>
+      <name>50购</name>
+      <icon>
+      </icon>
+      <seq>3</seq>
+      <authgid>firGo</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>
+      </winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>5f4d1da9-79a1-4ce8-aa78-f8a910de3f11</gid>
+      <pgid>2f09f707-ae9e-421d-8901-6d94c4105a39</pgid>
+      <name>备件出库</name>
+      <icon>images\MenuIcon\102.ico</icon>
+      <seq>112</seq>
+      <authgid>TakeOut</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.UI.WareHouseManage.FrmTakeOut,JCodes.Framework.AddIn.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>60dee81a-bd07-427d-91e2-438b3cf8f8eb</gid>
+      <pgid>99462bd2-f47b-4dca-8fb8-c579a3c7ed79</pgid>
+      <name>系统功能</name>
+      <icon>images\MenuIcon\126.ico</icon>
+      <seq>a19</seq>
+      <authgid>SysFunction</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.Proj.FrmSysFunction,JCodes.Framework.AddIn.Proj.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>64d83b4a-7f90-485f-a75e-975fc1de36fd</gid>
+      <pgid>99462bd2-f47b-4dca-8fb8-c579a3c7ed79</pgid>
+      <name>标准字段</name>
+      <icon>images\MenuIcon\112.ico</icon>
+      <seq>a11</seq>
+      <authgid>StdField</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.Proj.FrmStdField,JCodes.Framework.AddIn.Proj.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>65f20891-f128-437b-8254-712e22713403</gid>
+      <pgid>5e60bd31-6488-433c-9858-82dcca5519cf</pgid>
+      <name>分销商管理</name>
+      <icon>
+      </icon>
+      <seq>32</seq>
+      <authgid>secDistributor</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>
+      </winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>69f22e6c-98bf-40d6-b155-0d918f3fe52c</gid>
+      <pgid>49418659-abb8-4e37-bc8b-11ac45bf6cc6</pgid>
+      <name>用户操作日志</name>
+      <icon>images\MenuIcon\012.ico</icon>
+      <seq>822</seq>
+      <authgid>OperationLog</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.UI.Basic.FrmOperationLog,JCodes.Framework.AddIn.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>6d864d8c-0ff0-476b-9f38-a321bd43457a</gid>
+      <pgid>fb2ef86a-1d1d-4414-8c24-b7ebb17f99cd</pgid>
+      <name>其他小工具</name>
+      <icon>
+      </icon>
+      <seq>73</seq>
+      <authgid>secOtherTools</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>
+      </winformclass>
+      <url>
+      </url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>6e44454c-8e69-4399-ba93-c0873d2f1dd1</gid>
+      <pgid>5e141816-16df-4ba5-b0f8-57306fdbdbec</pgid>
+      <name>官方网站</name>
+      <icon>images\MenuIcon\028.ico</icon>
+      <seq>915</seq>
+      <authgid>GovWeb</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>Hyperlink,http://www.jcodes.cn</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>73aacffa-8622-4a16-a686-84aea6480df8</gid>
+      <pgid>218d65a1-5bf6-4294-9376-45cd4b608783</pgid>
+      <name>操作日志配置</name>
+      <icon>images\MenuIcon\030.ico</icon>
+      <seq>817</seq>
+      <authgid>OperationLogSet</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.UI.Basic.FrmOperationLogSetting,JCodes.Framework.AddIn.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>75b1cca0-20f1-46bb-9d1a-3c54166b48b7</gid>
+      <pgid>fb2ef86a-1d1d-4414-8c24-b7ebb17f99cd</pgid>
+      <name>浙商小工具</name>
+      <icon>
+      </icon>
+      <seq>71</seq>
+      <authgid>secZSTools</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>
+      </winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>76fa9639-eec9-4755-a5b7-52356c0a3f41</gid>
+      <pgid>89dfeb34-2c3c-4dff-bf0f-8ed282f423bd</pgid>
+      <name>系统皮肤</name>
+      <icon>
+      </icon>
+      <seq>83</seq>
+      <authgid>secSystemSkin</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>
+      </winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>7a12290a-5641-4b3c-9d2e-0a93dd800ae3</gid>
+      <pgid>2f09f707-ae9e-421d-8901-6d94c4105a39</pgid>
+      <name>供应商管理</name>
+      <icon>images\MenuIcon\035.ico</icon>
+      <seq>116</seq>
+      <authgid>Supplier</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.UI.WareHouseManage.FrmSupplier,JCodes.Framework.AddIn.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>7b742001-f292-41a8-a69a-69847fdc0e9a</gid>
+      <pgid>48b5efa6-242e-4c3e-a74b-118fb23e5ed9</pgid>
+      <name>后台工作者方式</name>
+      <icon>images\MenuIcon\111.ico</icon>
+      <seq>523</seq>
+      <authgid>backgroundWorkerSetUI</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.Test.FrmbgWorkerSetUI,JCodes.Framework.AddIn.Test.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>85e0f79b-4aa1-4908-b605-05164a82bfc2</gid>
+      <pgid>8e4404b2-ff08-4eb6-9366-ca1506cd2fc3</pgid>
+      <name>工具资源</name>
+      <icon>
+      </icon>
+      <seq>a4</seq>
+      <authgid>secProjTools</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>
+      </winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>89792237-f784-40cd-98cc-e717d40efc69</gid>
+      <pgid>218d65a1-5bf6-4294-9376-45cd4b608783</pgid>
+      <name>修改密码</name>
+      <icon>images\MenuIcon\026.ico</icon>
+      <seq>816</seq>
+      <authgid>UserPwdEdit</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.UI.Basic.FrmModifyPassword,JCodes.Framework.AddIn.dll,dialog</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>89dfeb34-2c3c-4dff-bf0f-8ed282f423bd</gid>
+      <pgid>-1</pgid>
+      <name>系统管理</name>
+      <icon>
+      </icon>
+      <seq>8</seq>
+      <authgid>firSystemManage</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>
+      </winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>8e4404b2-ff08-4eb6-9366-ca1506cd2fc3</gid>
+      <pgid>-1</pgid>
+      <name>项目管理</name>
+      <icon>
+      </icon>
+      <seq>a</seq>
+      <authgid>firProj</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>
+      </winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>8eb79fab-d6aa-4cb9-9160-84bd3f0db0d6</gid>
+      <pgid>5e141816-16df-4ba5-b0f8-57306fdbdbec</pgid>
+      <name>程序帮助</name>
+      <icon>images\MenuIcon\017.ico</icon>
+      <seq>911</seq>
+      <authgid>Help</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>Hyperlink,Help.chm</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>8eed9ba7-2511-466c-b018-dbef787ca557</gid>
+      <pgid>00365557-6fbd-4717-ba87-1c1a1477f931</pgid>
+      <name>测试模块1</name>
+      <icon>
+      </icon>
+      <seq>51</seq>
+      <authgid>secTest</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>
+      </winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>91d90880-a0ec-4169-bf0d-0c99545a5860</gid>
+      <pgid>9cafc07d-9cbe-4d62-aab6-b2cecf02e212</pgid>
+      <name>用户管理</name>
+      <icon>images\MenuIcon\003.ico</icon>
+      <seq>611</seq>
+      <authgid>User</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.Security.FrmUser,JCodes.Framework.AddIn.Security.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>9298a1f9-0906-476e-a3f2-8a59665aa1ab</gid>
+      <pgid>b233045c-99c7-4d20-a1d9-29919a8a4fad</pgid>
+      <name>DOS命令行</name>
+      <icon>images\MenuIcon\125.ico</icon>
+      <seq>721</seq>
+      <authgid>DosTool</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.SmallTools.FrmDos,JCodes.Framework.AddIn.SmallTools.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>94ea26de-7844-4866-bc49-c249c5c58a48</gid>
+      <pgid>99462bd2-f47b-4dca-8fb8-c579a3c7ed79</pgid>
+      <name>项目属性</name>
+      <icon>images\MenuIcon\121.ico</icon>
+      <seq>a20</seq>
+      <authgid>Proj</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.Proj.FrmProj,JCodes.Framework.AddIn.Proj.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>99462bd2-f47b-4dca-8fb8-c579a3c7ed79</gid>
+      <pgid>8e4404b2-ff08-4eb6-9366-ca1506cd2fc3</pgid>
+      <name>元数据</name>
+      <icon>
+      </icon>
+      <seq>a1</seq>
+      <authgid>secMetaData</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>
+      </winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>9ae25e84-c5a2-45bc-bb68-c049c655f83c</gid>
+      <pgid>ca89ae69-0960-489b-a3d2-e592843a9fce</pgid>
+      <name>月度总结</name>
+      <icon>images\MenuIcon\203.ico</icon>
+      <seq>213</seq>
+      <authgid>MonthSummaryQuery</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>
+      </winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>9b182f3f-8ce8-4453-9264-057a6cae06fc</gid>
+      <pgid>49418659-abb8-4e37-bc8b-11ac45bf6cc6</pgid>
+      <name>用户登录日志</name>
+      <icon>images\MenuIcon\008.ico</icon>
+      <seq>821</seq>
+      <authgid>LoginLog</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.UI.Basic.FrmLoginLog,JCodes.Framework.AddIn.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>9cafc07d-9cbe-4d62-aab6-b2cecf02e212</gid>
+      <pgid>08ee3dad-73aa-43dd-a08c-6d3fb732b187</pgid>
+      <name>权限设置</name>
+      <icon>
+      </icon>
+      <seq>61</seq>
+      <authgid>secSetAuth</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>
+      </winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>9d7787ec-a524-44d5-aad2-da5aa4119fdc</gid>
+      <pgid>48b5efa6-242e-4c3e-a74b-118fb23e5ed9</pgid>
+      <name>委托方式</name>
+      <icon>images\MenuIcon\111.ico</icon>
+      <seq>521</seq>
+      <authgid>delegateSetUI</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.Test.FrmdelegateSetUI,JCodes.Framework.AddIn.Test.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>a0125004-00ca-4699-9342-313b8d9f462d</gid>
+      <pgid>75b1cca0-20f1-46bb-9d1a-3c54166b48b7</pgid>
+      <name>投保数据报送</name>
+      <icon>images\MenuIcon\110.ico</icon>
+      <seq>713</seq>
+      <authgid>toubao</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>#</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>a091cfd7-f213-4c9f-a559-f05a2758fff1</gid>
+      <pgid>1c1bb429-5f56-4fcd-a9dc-23c093b41ef9</pgid>
+      <name>公共通讯录</name>
+      <icon>images\MenuIcon\024.ico</icon>
+      <seq>413</seq>
+      <authgid>CommonAddress</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.UI.Contact.FrmAddressCompany,JCodes.Framework.AddIn.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>a74255c4-1984-41b4-8991-871e7e6e450c</gid>
+      <pgid>99462bd2-f47b-4dca-8fb8-c579a3c7ed79</pgid>
+      <name>系统常量</name>
+      <icon>images\MenuIcon\118.ico</icon>
+      <seq>a15</seq>
+      <authgid>SysConst</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.Proj.FrmConstant,JCodes.Framework.AddIn.Proj.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>aab68201-12fb-449e-b44f-a20d3d990783</gid>
+      <pgid>75b1cca0-20f1-46bb-9d1a-3c54166b48b7</pgid>
+      <name>EB发行</name>
+      <icon>images\MenuIcon\002.ico</icon>
+      <seq>711</seq>
+      <authgid>CQxlsDeal</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.SmallTools.xlsDataDeal,JCodes.Framework.AddIn.SmallTools.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>ab8ab820-8617-4d20-807f-ed492954c63d</gid>
+      <pgid>ca89ae69-0960-489b-a3d2-e592843a9fce</pgid>
+      <name>年度汇总</name>
+      <icon>images\MenuIcon\204.ico</icon>
+      <seq>214</seq>
+      <authgid>YearSummaryQuery</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>
+      </winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>abe2d5b8-d257-409c-91ab-98e0bb64be3d</gid>
+      <pgid>5e141816-16df-4ba5-b0f8-57306fdbdbec</pgid>
+      <name>问题反馈</name>
+      <icon>images\MenuIcon\027.ico</icon>
+      <seq>914</seq>
+      <authgid>Feedback</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.UI.Basic.FrmFeeBack,JCodes.Framework.AddIn.dll,dialog</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>b20f3d24-1193-41e3-b173-450fbf223a63</gid>
+      <pgid>9cafc07d-9cbe-4d62-aab6-b2cecf02e212</pgid>
+      <name>菜单管理</name>
+      <icon>images\MenuIcon\009.ico</icon>
+      <seq>616</seq>
+      <authgid>Menu</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.Security.FrmMenu,JCodes.Framework.AddIn.Security.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>b233045c-99c7-4d20-a1d9-29919a8a4fad</gid>
+      <pgid>fb2ef86a-1d1d-4414-8c24-b7ebb17f99cd</pgid>
+      <name>系统小工具</name>
+      <icon>
+      </icon>
+      <seq>72</seq>
+      <authgid>secSystemTools</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>
+      </winformclass>
+      <url>
+      </url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>b29afbf8-a3e5-4332-bc59-03544c5ee2a4</gid>
+      <pgid>5e141816-16df-4ba5-b0f8-57306fdbdbec</pgid>
+      <name>注册软件</name>
+      <icon>images\MenuIcon\026.ico</icon>
+      <seq>913</seq>
+      <authgid>Reg</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.UI.Basic.RegDlg,JCodes.Framework.AddIn.dll,dialog</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>b4a6e43b-f711-4324-9813-1781a8b05e04</gid>
+      <pgid>6d864d8c-0ff0-476b-9f38-a321bd43457a</pgid>
+      <name>财务xls处理</name>
+      <icon>images\MenuIcon\106.ico</icon>
+      <seq>731</seq>
+      <authgid>HaotianXls</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.SmallTools.FrmHaotianXls,JCodes.Framework.AddIn.SmallTools.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>b8b8e8c6-200f-43ab-b805-eadd7d57ef6e</gid>
+      <pgid>2f09f707-ae9e-421d-8901-6d94c4105a39</pgid>
+      <name>备件入库</name>
+      <icon>images\MenuIcon\101.ico</icon>
+      <seq>111</seq>
+      <authgid>Purchase</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.UI.WareHouseManage.FrmPurchase,JCodes.Framework.AddIn.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>bda35c94-166c-4bfc-a587-a669928048ae</gid>
+      <pgid>48b5efa6-242e-4c3e-a74b-118fb23e5ed9</pgid>
+      <name>上下文方式</name>
+      <icon>images\MenuIcon\111.ico</icon>
+      <seq>522</seq>
+      <authgid>synccontextSetUI</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.Test.FrmsynccontextSetUI,JCodes.Framework.AddIn.Test.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>c340318b-e325-4ea8-82a9-8e9a623ac539</gid>
+      <pgid>2f09f707-ae9e-421d-8901-6d94c4105a39</pgid>
+      <name>备件信息</name>
+      <icon>images\MenuIcon\104.ico</icon>
+      <seq>114</seq>
+      <authgid>ItemDetail</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.UI.WareHouseManage.FrmItemDetail,JCodes.Framework.AddIn.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>c88cfb79-5c4c-478e-a396-075855754dda</gid>
+      <pgid>45ab6e96-0d1f-4697-9ab1-30c71c6869ac</pgid>
+      <name>基础数据管理</name>
+      <icon>images\MenuIcon\123.ico</icon>
+      <seq>a31</seq>
+      <authgid>BaseDataManage</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.Proj.FrmBaseDataManage,JCodes.Framework.AddIn.Proj.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>ca89ae69-0960-489b-a3d2-e592843a9fce</gid>
+      <pgid>ff0fae31-b342-421e-b0fc-cf0ce90aa522</pgid>
+      <name>业务查询</name>
+      <icon>
+      </icon>
+      <seq>21</seq>
+      <authgid>secBusinessQuery</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>
+      </winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>cc4b29e3-4831-4b69-94be-e6f166498c30</gid>
+      <pgid>9cafc07d-9cbe-4d62-aab6-b2cecf02e212</pgid>
+      <name>系统类型定义</name>
+      <icon>images\MenuIcon\010.ico</icon>
+      <seq>614</seq>
+      <authgid>SystemType</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.Security.FrmSystemType,JCodes.Framework.AddIn.Security.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>ce12316e-b999-4862-9cb2-df636a7f20b3</gid>
+      <pgid>2f09f707-ae9e-421d-8901-6d94c4105a39</pgid>
+      <name>库房管理</name>
+      <icon>images\MenuIcon\034.ico</icon>
+      <seq>115</seq>
+      <authgid>WareHouse</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.UI.WareHouseManage.FrmWareHouse,JCodes.Framework.AddIn.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>d85e3f5f-1518-4187-83c7-52320aeabb30</gid>
+      <pgid>99462bd2-f47b-4dca-8fb8-c579a3c7ed79</pgid>
+      <name>业务数据类型</name>
+      <icon>images\MenuIcon\115.ico</icon>
+      <seq>a12</seq>
+      <authgid>DataType</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.Proj.FrmDataType,JCodes.Framework.AddIn.Proj.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>dccb096e-0c9a-4e56-b156-e54468746ac1</gid>
+      <pgid>ca89ae69-0960-489b-a3d2-e592843a9fce</pgid>
+      <name>图标统计</name>
+      <icon>images\MenuIcon\202.ico</icon>
+      <seq>212</seq>
+      <authgid>IconSummary</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>
+      </winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>e394c830-4dc7-4632-9085-f4a795d38cb0</gid>
+      <pgid>8eed9ba7-2511-466c-b018-dbef787ca557</pgid>
+      <name>控件集合</name>
+      <icon>images\MenuIcon\032.ico</icon>
+      <seq>512</seq>
+      <authgid>Test2</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.Test.FrmControls,JCodes.Framework.AddIn.Test.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>e8fe5a51-9ce0-4637-8099-4ecb01e95fd8</gid>
+      <pgid>99462bd2-f47b-4dca-8fb8-c579a3c7ed79</pgid>
+      <name>数据字典</name>
+      <icon>images\MenuIcon\117.ico</icon>
+      <seq>a14</seq>
+      <authgid>Dict</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.Proj.FrmDictionary,JCodes.Framework.AddIn.Proj.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>e90c6614-c69b-4ff4-8502-90ca8153f623</gid>
+      <pgid>218d65a1-5bf6-4294-9376-45cd4b608783</pgid>
+      <name>数据字典</name>
+      <icon>images\MenuIcon\107.ico</icon>
+      <seq>812</seq>
+      <authgid>DicSet</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.Dictionary.FrmDictionary,JCodes.Framework.AddIn.Dictionary.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>ed942f45-c710-4f77-9bf9-11fe192ec1f3</gid>
+      <pgid>1c1bb429-5f56-4fcd-a9dc-23c093b41ef9</pgid>
+      <name>个人通讯录</name>
+      <icon>images\MenuIcon\023.ico</icon>
+      <seq>412</seq>
+      <authgid>PersonalAddress</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.UI.Contact.FrmAddress,JCodes.Framework.AddIn.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>edf159e8-409e-4c1f-8eea-3ea574e0a5ff</gid>
+      <pgid>9cafc07d-9cbe-4d62-aab6-b2cecf02e212</pgid>
+      <name>组织机构管理</name>
+      <icon>images\MenuIcon\004.ico</icon>
+      <seq>612</seq>
+      <authgid>OU</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.Security.FrmOU,JCodes.Framework.AddIn.Security.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>f0b916f3-b5d9-4395-a28b-4a714647f689</gid>
+      <pgid>5dadcabf-efee-4e53-ad81-5ae7f758b35b</pgid>
+      <name>数据库管理</name>
+      <icon>images\MenuIcon\122.ico</icon>
+      <seq>a21</seq>
+      <authgid>DataBaseManage</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.Proj.FrmTables,JCodes.Framework.AddIn.Proj.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>f0ea04a5-bad9-436b-88bd-46da3573c6ec</gid>
+      <pgid>ca89ae69-0960-489b-a3d2-e592843a9fce</pgid>
+      <name>系统信息提示</name>
+      <icon>images\MenuIcon\205.ico</icon>
+      <seq>215</seq>
+      <authgid>SystemTip</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>
+      </winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>f1a78bd0-2f3d-43c3-852d-58a2e61f25a5</gid>
+      <pgid>99462bd2-f47b-4dca-8fb8-c579a3c7ed79</pgid>
+      <name>标准错误号</name>
+      <icon>images\MenuIcon\119.ico</icon>
+      <seq>a16</seq>
+      <authgid>ErrorNo</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.Proj.FrmErrorno,JCodes.Framework.AddIn.Proj.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>f3cee9e2-2e42-44d7-a58b-b508b21e04c1</gid>
+      <pgid>ca89ae69-0960-489b-a3d2-e592843a9fce</pgid>
+      <name>业务报表</name>
+      <icon>images\MenuIcon\201.ico</icon>
+      <seq>211</seq>
+      <authgid>BusinessQuery</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>
+      </winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>fa1103a7-a26e-4ee6-9bb0-7550124e6237</gid>
+      <pgid>8eed9ba7-2511-466c-b018-dbef787ca557</pgid>
+      <name>布局控件</name>
+      <icon>images\MenuIcon\037.ico</icon>
+      <seq>514</seq>
+      <authgid>Test4</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.Test.FrmLayoutControl,JCodes.Framework.AddIn.Test.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>fb2ef86a-1d1d-4414-8c24-b7ebb17f99cd</gid>
+      <pgid>-1</pgid>
+      <name>小工具</name>
+      <icon>
+      </icon>
+      <seq>7</seq>
+      <authgid>firTools</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>
+      </winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>fbf83718-a142-4e38-8778-429cbc619513</gid>
+      <pgid>76fa9639-eec9-4755-a5b7-52356c0a3f41</pgid>
+      <name>界面皮肤</name>
+      <icon>
+      </icon>
+      <seq>831</seq>
+      <authgid>SystemSkin</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>RibbonGalleryBarItem</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>fca6fba4-c1d3-47a1-a557-5fd01532109a</gid>
+      <pgid>85e0f79b-4aa1-4908-b605-05164a82bfc2</pgid>
+      <name>生成脚本</name>
+      <icon>images\MenuIcon\127.ico</icon>
+      <seq>a41</seq>
+      <authgid>GeneralSql</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>JCodes.Framework.AddIn.Proj.FrmGeneralSql,JCodes.Framework.AddIn.Proj.dll</winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+    <item>
+      <gid>ff0fae31-b342-421e-b0fc-cf0ce90aa522</gid>
+      <pgid>-1</pgid>
+      <name>业务报表</name>
+      <icon>
+      </icon>
+      <seq>2</seq>
+      <authgid>firRepot</authgid>
+      <isvisable>1</isvisable>
+      <winformclass>
+      </winformclass>
+      <url>#</url>
+      <webicon>
+      </webicon>
+      <systemtypeid>071bafed-4634-4083-bb34-86dda58edfc4</systemtypeid>
+      <creatorid>1</creatorid>
+      <creatortime>2018-02-16 22:02:38</creatortime>
+      <editorid>1</editorid>
+      <lastupdatetime>2018-02-16 22:02:38</lastupdatetime>
+      <isdelete>0</isdelete>
+    </item>
+  </dataitem>
+</datatype>

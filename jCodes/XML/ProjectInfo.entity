@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="6767d445-75b6-42d1-a980-06f9212a2a11">
+      <functionId>100046</functionId>
+      <name>ProjectInfo</name>
+      <chineseName>项目信息</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Proj</folder>
+      <baseclass>
+      </baseclass>
+      <lasttime>2019-09-19 16:03:39.330</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="7ff2fa50-be64-4fbc-8871-c187569043f9">
+      <name>Gid</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2bf675ed-f27d-495f-afb4-21ce3cf8b69c">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="907846fd-6266-404a-8785-c6253fa6348d">
+      <name>Version</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="fba8b7ff-b12a-4e22-9e8a-d50215da6c5e">
+      <name>ControlType</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="910e20eb-7864-4b1d-898b-7802bf953592">
+      <name>Contacts</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e374837f-ca9c-4469-a135-e5d4a8db39d4">
+      <name>Remark</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0f4d2f99-ca91-433f-9180-0c87c64fe4da">
+      <name>DbType</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="65b31f38-ecba-4f91-99d5-9aa2dd59c9b5">
+      <name>DicttypeTable</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="7ed79dba-2260-45da-b9a9-d20d7dbcee2d">
+      <name>DictdataTable</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2f948901-c16b-4ac3-b1dd-d104c737129e">
+      <name>ErrTable</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0ff99e3b-1f41-458b-b4e4-323fa6ee0fce">
+      <name>LastUpdateTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="23f48edd-3284-4c81-b823-6abaa5c4a98c">
+      <name>OutputPath</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

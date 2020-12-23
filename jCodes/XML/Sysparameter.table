@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="a0754e0f-ca6d-419f-b227-6a8ea7408393">
+      <functionId>000006</functionId>
+      <name>Sysparameter</name>
+      <chineseName>系统参数表</chineseName>
+      <existhistable>0</existhistable>
+      <version>1.0.0.0</version>
+      <lasttime>2018-02-08 13:38:16.246</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="e7c88b5a-f868-405f-b59a-2f81faa64421">
+      <name>Id</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="18fb0343-15ff-42de-a108-fa2db248ed31">
+      <name>SysId</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="cb8f2ba2-9e3a-4241-b65e-5df6796ca1f3">
+      <name>Name</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9ccf094d-b4b3-454a-9d1a-5425c49e22f8">
+      <name>SysValue</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="91e277a4-0d21-43ff-8458-3369f92933be">
+      <name>ControlType</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0fff1b90-e94f-42bc-8140-e245d348669b">
+      <name>DicNo</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="a82ab702-d9f0-4cb6-a14a-dbb1b2420634">
+      <name>NumLen</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="5634ed8a-ab8c-4a01-bfad-19d1703976a7">
+      <name>Remark</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="92256c1d-4150-46b9-a07e-b93e2cfc479c">
+      <name>Seq</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e532f816-adfc-4896-8bb7-cf75a92864f8">
+      <name>EditorId</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="fb410a6d-1d25-41e5-8cb6-1a0e38c4c6ac">
+      <name>LastUpdateTime</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <indexsinfo>
+    <item gid="2bb0da20-0121-4d27-8300-e6d6f730da92">
+      <name>pk_sysparameter</name>
+      <indexfieldlst>Id</indexfieldlst>
+      <constraint_type>0</constraint_type>
+    </item>
+  </indexsinfo>
+</datatype>

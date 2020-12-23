@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="dd0b28c9-50a4-4e6f-b736-e114b0d7b2b0">
+      <functionId>100065</functionId>
+      <name>SystemTypeInfo</name>
+      <chineseName>系统标识信息</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Security</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-09-21 17:21:45.590</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="5354a3fe-9932-415f-b728-c4124b9db16b">
+      <name>Gid</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="697125dd-06b1-4482-9c3c-54aeddee47e4">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="15313623-6b3c-4dc1-a988-0a5a4102227a">
+      <name>ConsumerCode</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="995d6f7b-d912-45be-8df6-81039cf7a629">
+      <name>Licence</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="a99582da-461c-4ef9-a2dd-198b2b1fa5d7">
+      <name>Remark</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

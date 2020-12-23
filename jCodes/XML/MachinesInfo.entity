@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="a422b093-fe5c-4533-a0ff-747dce19cfc9">
+      <functionId>100036</functionId>
+      <name>MachinesInfo</name>
+      <chineseName>服务器信息</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Machines</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-09-16 22:21:26.823</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+  </fieldsinfo>
+  <diyfieldinfo>
+    <item gid="59986417-7fd5-4b95-9005-07577e4b7671">
+      <name>ID</name>
+      <chinesename>ID序号</chinesename>
+      <fieldtype>Int32</fieldtype>
+      <content>get;set;</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="fb730763-0830-457f-8b86-021824b91f97">
+      <name>GLY</name>
+      <chinesename>管理人</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>get;set;</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="a4bcd290-b6e8-4d15-94b0-013ea86568c9">
+      <name>GBRQ</name>
+      <chinesename>过保日期</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>get;set;</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="35cb42a4-bf9b-4b65-ad84-9bcaa60ce301">
+      <name>GWFWDK</name>
+      <chinesename>公网端口</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>get;set;</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="5bd801c5-3d65-4d1b-8620-6629b0420cd9">
+      <name>GWIP</name>
+      <chinesename>公网IP</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>get;set;</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="3429e736-b8ff-422e-bb66-8bb9d87cdd41">
+      <name>JGWZ</name>
+      <chinesename>机柜位置</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>get;set;</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="5ba6b501-0640-4a3b-bf44-4b1fa86dd127">
+      <name>JQRT</name>
+      <chinesename>机器用途</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>get;set;</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="7eb01666-65ad-4083-b398-d034ca3aa8af">
+      <name>JQXH</name>
+      <chinesename>机器型号</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>get;set;</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="56b025e8-4cd3-4cdb-9be7-eb1175b101e6">
+      <name>NWFWDK</name>
+      <chinesename>内网开放端口</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>get;set;</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="aeb60c51-5eed-40de-bb89-a0a311b6ceee">
+      <name>NWIP</name>
+      <chinesename>内网IP</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>get;set;</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b1957042-c031-4d7a-bbfb-49783e566a67">
+      <name>TABTYPE</name>
+      <chinesename>表格类型</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>get;set;</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="20d296ac-5495-4654-8da5-80bec3e102a2">
+      <name>WJLY</name>
+      <chinesename>数据来源</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>get;set;</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ec35d38b-5553-4e19-8007-aba2f3cf73cf">
+      <name>WWFWDK</name>
+      <chinesename>外网开放端口</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>get;set;</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="6f66cd0c-fa3c-4754-9299-50b01a4bb2ad">
+      <name>WWIP</name>
+      <chinesename>外网IP</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>get;set;</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="dd15004c-0ace-41cb-9c86-0f599ef81e07">
+      <name>XTBB</name>
+      <chinesename>系统版本</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>get;set;</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="34cdefbc-b4f4-40e9-8258-61680a5622b4">
+      <name>YJXLH</name>
+      <chinesename>硬件序列号</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>get;set;</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b99b2272-5e79-4408-a95e-c7aa4cf24893">
+      <name>YYBB</name>
+      <chinesename>应用版本</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>get;set;</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="62f6b8b5-f959-49ac-b2ec-2138a73300cc">
+      <name>ZG</name>
+      <chinesename>主管</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>get;set;</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="dfb533b3-e395-46c8-a6b3-8bdbe894a7de">
+      <name>MODIFYMARK</name>
+      <chinesename>修改备注</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>get;set;</content>
+      <remark>
+      </remark>
+    </item>
+  </diyfieldinfo>
+</datatype>

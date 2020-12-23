@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="d11d8242-e422-4e1b-a17f-790c89ccafdc">
+      <functionId>100090</functionId>
+      <name>MFileInfo</name>
+      <chineseName>文件信息类</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>SmallTools</folder>
+      <baseclass>
+      </baseclass>
+      <lasttime>2019-09-24 09:40:46.887</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="65de9f80-6181-4a25-bc9b-f593d4f99d5f">
+      <name>FileName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="90fc171a-46c6-43da-bad1-12dddb284a6a">
+      <name>DealStatus</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

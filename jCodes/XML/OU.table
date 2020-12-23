@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="159568e5-6a4c-4e3d-9e94-145616ccb6a8">
+      <functionId>000208</functionId>
+      <name>OU</name>
+      <chineseName>机构信息表</chineseName>
+      <existhistable>0</existhistable>
+      <version>1.0.0.0</version>
+      <lasttime>2018-02-08 23:24:50.166</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="f30e22a3-39e4-425e-b6fe-ff1cc77412b8">
+      <name>Id</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+	<item gid="89d0fb59-809e-4e32-8d9d-d1db7c498bf0">
+      <name>Pid</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="531116ec-8b9d-4d7f-a7df-fda782e0dd0d">
+      <name>OuCode</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="8bc100db-467e-4a67-9069-a861522d1d55">
+      <name>Name</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e89d28e6-b040-4cfe-bf0d-1857d6dc7f17">
+      <name>Seq</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+	<item gid="b0345003-cbd5-476a-a1b6-08929291ca8e">
+      <name>OuType</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="733f570f-c809-4bb3-ab97-ce8057c4bc21">
+      <name>Address</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="dc6dac46-551f-44e5-aad2-471673f86317">
+      <name>OutPhone</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="1e138b1e-d15f-4bdf-a820-4c0d4461c059">
+      <name>InnerPhone</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e6037fbb-201d-4851-9126-1f05fbc2116f">
+      <name>Remark</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="06331a0f-f8c9-48ff-ad07-6549eab3c278">
+      <name>CreatorId</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="8aef527e-0a49-435f-a262-cb5fb65405ee">
+      <name>CreatorTime</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c34eddef-2dc4-4a0e-be4e-a0eae9b5a33a">
+      <name>EditorId</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d5e92dce-e1a1-497c-8f20-ffdb844c832d">
+      <name>LastUpdateTime</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9b74ddd1-ab8c-458c-9ea1-bc5a469f98bc">
+      <name>IsDelete</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="101af9ba-05ab-4bda-9aa9-579e2aa994af">
+      <name>IsForbid</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b6ca6b43-b095-495f-a660-ebaed591b2e7">
+      <name>CompanyId</name>
+      <isnull>1</isnull>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <indexsinfo>
+    <item gid="d3aa2f9a-da84-4707-a964-28112acca7a3">
+      <name>pk_ou</name>
+      <indexfieldlst>Id</indexfieldlst>
+      <constraint_type>0</constraint_type>
+    </item>
+  </indexsinfo>
+</datatype>

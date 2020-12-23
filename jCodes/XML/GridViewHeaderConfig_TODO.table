@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="f67a2683-f72e-4a08-8da6-3833d21428e3">
+      <functionId>000008</functionId>
+      <name>GridViewHeaderConfig_TODO</name>
+      <chineseName>表格配置参数表</chineseName>
+      <existhistable>0</existhistable>
+      <version>1.0.0.0</version>
+      <lasttime>2018-02-08 13:42:52.305</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+  </fieldsinfo>
+  <indexsinfo>
+  </indexsinfo>
+</datatype>

@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="9f0f5741-6120-41ba-bbf1-c50ee121d203">
+      <functionId>100001</functionId>
+      <name>CouponInfo</name>
+      <chineseName>优惠券信息</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>50Go</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-09-12 16:36:20.966</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="c0cd9186-e492-4339-8777-37d93589df1b">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0e2eea35-d559-49aa-8ade-77c501733654">
+      <name>CouponCategoryId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0a5da463-591b-4ba8-aaab-e3f5a63d4696">
+      <name>CouponCategoryName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e62d1a0d-8287-42c0-856c-041f07ebb2ec">
+      <name>CompanyId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="8401865d-8d08-4d11-a318-3fbac96e3486">
+      <name>CreatorId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="a3b87d26-de1f-412f-802f-b20c5fd49fcf">
+      <name>CreatorTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="3061dea6-6e18-47cd-bd6d-bfb61728697f">
+      <name>EditorId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d3bc37c4-24f2-446c-87d6-f365204be891">
+      <name>LastUpdateTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="5c97ac13-543f-4063-a9c7-cd432abb58c7">
+      <name>MobilePhone</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="62d78d9a-4de9-485a-a7a6-09e1e95d3242">
+      <name>Contacts</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="3d436229-ac49-4b2c-be03-002a1024f85d">
+      <name>StartTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="76060439-92be-45c5-9356-02eb416a1f13">
+      <name>EndTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="03650e8f-673e-4949-8eef-dda11b0ec7e5">
+      <name>IsDelete</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

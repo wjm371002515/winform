@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="4297fd53-e165-4a25-97e5-04f1458385b6">
+      <functionId>100016</functionId>
+      <name>DictDataInfo</name>
+      <chineseName>数据字典明细</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Dic</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-09-16 10:04:36.799</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="0b3f4e3e-885e-49ea-9e27-42698388c8f5">
+      <name>Gid</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c78d4c8c-4ba5-4b73-8941-737ce92b4d12">
+      <name>DicttypeId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="41472028-1841-426e-8a4e-15340e75ff7b">
+      <name>DicttypeValue</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="20326cf6-7a23-4ca9-b657-6fb95b647dab">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="5bc5e40a-16a5-4156-9da6-4194c2ed7ecf">
+      <name>Remark</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="8d27ca33-a351-4b50-a717-66f5c1fc36f3">
+      <name>Seq</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="03c641e2-ecf3-4c46-ac8a-d9d880897855">
+      <name>EditorId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f2b0a66a-32c6-46d0-94d7-3baf15cd01cb">
+      <name>LastUpdateTime</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

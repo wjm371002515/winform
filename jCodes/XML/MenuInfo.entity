@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="14687167-5e0b-4252-a901-2f6ff2b8c56d">
+      <functionId>100058</functionId>
+      <name>MenuInfo</name>
+      <chineseName>菜单信息</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Security</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-09-21 16:53:23.318</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="e808669a-ebf3-4241-aded-c460505d4876">
+      <name>Gid</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="25fc3c2e-c716-4c86-8518-ca49dc764210">
+      <name>Pgid</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="461ef11b-2067-403a-ac3c-ace5029e9cf0">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c4701e79-21ee-4e3f-9efb-5d5ed9ac9b39">
+      <name>Icon</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="bfadde44-4906-46ad-91cb-b3efa59253bc">
+      <name>Seq</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="60a6b9d7-96b2-412b-8fa4-989851faa675">
+      <name>AuthGid</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="34a54a48-a19c-4f64-a1f7-d3b9f9d83812">
+      <name>IsVisable</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2774710a-9409-43b1-8340-0fee967ae759">
+      <name>WinformClass</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f02913ef-6540-474f-92aa-5c34d220e7a1">
+      <name>Url</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c74971e0-5f5b-4ed4-a8fb-149a21763229">
+      <name>WebIcon</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="fbde2ff3-f107-4016-936c-116fdbcafbb8">
+      <name>SystemtypeId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e0bc0d1b-0de8-4163-afa0-bda3b49e4f07">
+      <name>CreatorId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="4b695c4e-e746-4f35-b17a-6956ca5b71b6">
+      <name>CreatorTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="67a5f474-2f44-4367-8410-2cc438f9e58c">
+      <name>EditorId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9fa7bb7f-b0df-461b-a126-3bde600d94d5">
+      <name>LastUpdateTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="17ac503f-bdf7-472f-9687-8099d94fa327">
+      <name>IsDelete</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="05de54a5-6749-490b-a804-97d8bc7bec2d">
+      <name>DllPath</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="3e3d863f-251f-46b2-a826-5418cdeb41ea">
+      <functionId>100094</functionId>
+      <name>LoginUserInfo</name>
+      <chineseName>登陆用户的基础信息</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Common</folder>
+      <baseclass>
+      </baseclass>
+      <lasttime>2020-02-21 17:12:35.580</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="caa33eb1-4436-449e-88b1-649ef50013e8">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9b46d05e-20b6-4df1-aeed-2899aa922607">
+      <name>DeptId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ce5fcd90-a3f9-40c2-9afe-927a38d0952f">
+      <name>CompanyId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="835f5ff0-f5c5-4c52-a250-c5f8640465aa">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="37b0e9b6-3076-4470-a6c4-d65ac0eff1d2">
+      <name>LoginName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="145f1c83-1596-442a-a679-887a3604c1af">
+      <name>Gender</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="634db74a-c1a5-4cae-b708-a24171d039bd">
+      <name>IdCard</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="36f790e7-3858-4287-b04b-87c92429bc26">
+      <name>MobilePhone</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="71ad3b29-3107-4a69-a9ab-87ea0fa15f9c">
+      <name>Email</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="8e6721e9-bc2b-413e-97ae-6e176ce025e9">
+      <name>QQ</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

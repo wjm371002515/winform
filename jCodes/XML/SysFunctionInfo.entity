@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="597b578c-6fdf-40d9-89b7-6c8193c68e7e">
+      <functionId>100049</functionId>
+      <name>SysFunctionInfo</name>
+      <chineseName>系统功能定义</chineseName>
+      <fieldnamespace>using DevExpress.XtraEditors.DXErrorProvider;
+using System.Collections.Generic;</fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Proj</folder>
+      <baseclass>IDXDataErrorInfo</baseclass>
+      <lasttime>2019-09-19 16:55:15.181</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="9ffe557e-8e71-4971-9481-d384c64ce5a1">
+      <name>Gid</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="46258d01-2d42-4f5c-9b24-c7969a829794">
+      <name>Pgid</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="290f7edc-5025-44ba-bced-1ee4f450f336">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="64f20ca1-b085-4ec2-b5b5-cfc06356f088">
+      <name>FunctionGid</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="acbedacd-0c37-4de3-a726-bd7ac8f7f3a3">
+      <name>SystemtypeId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="bc514129-92b0-4128-86a7-d78ccb9b852e">
+      <name>Seq</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+    <item gid="ca7cb28a-bf16-4df6-b617-938f404b5e99">
+      <name>lstInfo</name>
+      <chinesename>保存行数据中字段名，错误信息</chinesename>
+      <fieldtype>Dictionary&lt;string, ErrorInfo&gt;</fieldtype>
+      <content>get;
+            set;</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b39d55fc-dbd1-48d1-93c3-978081aa7224">
+      <name>IDXDataErrorInfo.GetPropertyError(string propertyName, ErrorInfo info)</name>
+      <chinesename>自定义错误</chinesename>
+      <fieldtype>void</fieldtype>
+      <content>if (lstInfo != null &amp;&amp; lstInfo.Count &gt; 0 &amp;&amp; lstInfo.ContainsKey(propertyName) &amp;&amp; !string.IsNullOrEmpty(lstInfo[propertyName].ErrorText))
+            {
+                info.ErrorText = lstInfo[propertyName].ErrorText;
+                info.ErrorType = lstInfo[propertyName].ErrorType;
+            }</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f11afab5-825d-466a-b3e7-d9ef9d0dacce">
+      <name>IDXDataErrorInfo.GetError(ErrorInfo info)</name>
+      <chinesename>
+      </chinesename>
+      <fieldtype>void</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+  </diyfieldinfo>
+</datatype>

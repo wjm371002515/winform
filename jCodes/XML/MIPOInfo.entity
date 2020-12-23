@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="b2a53391-213b-4a8b-a09b-a1d742206dda">
+      <functionId>100091</functionId>
+      <name>MIPOInfo</name>
+      <chineseName>客户基本信息</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>SmallTools</folder>
+      <baseclass>
+      </baseclass>
+      <lasttime>2019-09-24 09:44:26.135</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+  </fieldsinfo>
+  <diyfieldinfo>
+    <item gid="727dda0a-f962-471c-a615-e6013f3f8e63">
+      <name>WTXH</name>
+      <chinesename>委托序号</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="403f9334-7ae1-43af-9a69-c7b687b26565">
+      <name>FXLSH</name>
+      <chinesename>发行流水号</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="6c1c0c93-c5af-4757-9c00-c7b71192bd16">
+      <name>XJDXMC</name>
+      <chinesename>询价对象名称</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="a48d26b7-6d4e-4403-90f4-3fd3c9382241">
+      <name>PSDXID</name>
+      <chinesename>配售对象ID</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="600bbf4e-ad5c-496f-ad26-3eebeb68cfb9">
+      <name>PSDXMC</name>
+      <chinesename>配售对象名称</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d79fbf1c-6b2e-45fa-bd3a-a3d8d066cf9d">
+      <name>PSDXLX</name>
+      <chinesename>配售对象类型</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="33ae8dae-34e5-4712-afa5-54dd0cda6c39">
+      <name>ZQDM</name>
+      <chinesename>证券代码</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d334b0de-1daf-4431-be94-eb9326002fd5">
+      <name>SGSL</name>
+      <chinesename>申购数量</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="00ca9a34-bb88-480d-94b2-4aca1485c38e">
+      <name>SGJG</name>
+      <chinesename>申购价格</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="3f1fc7aa-1547-44c0-9d72-ac0e9dbd2aca">
+      <name>FXJG</name>
+      <chinesename>发行价格</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="21210a67-87d3-46f9-a6c7-229733e72064">
+      <name>REMARK1</name>
+      <chinesename>无内容</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="aaf1bbfe-8540-4d88-8770-ef1e95900951">
+      <name>REMARK2</name>
+      <chinesename>无内容2</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+  </diyfieldinfo>
+</datatype>

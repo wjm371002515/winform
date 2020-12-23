@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="b6b921d5-a065-49d9-93f7-a469dd52bd15">
+      <functionId>100027</functionId>
+      <name>NotifyContactInfo</name>
+      <chineseName>用于各个模块传递的联系信息</chineseName>
+      <fieldnamespace>using System.Collections.Generic;</fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Common</folder>
+      <baseclass>
+      </baseclass>
+      <lasttime>2019-09-16 14:21:52.723</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="66c3d8c0-a11d-4ae9-ad40-36bd81461a2e">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d98b618f-bb01-4a55-8104-06c6cebbaee4">
+      <name>Contacts</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c6e47fb8-fee6-4db1-a6ff-8b44ca539067">
+      <name>MobilePhone</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c7229718-0080-4cff-8900-ef65d4a70844">
+      <name>Email</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="152a4ed9-453e-4b22-9915-0014c2d4321c">
+      <name>Remark</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+    <item gid="964bdce7-cb6f-4c97-b399-19659ff14de6">
+      <name>NotifyContactInfo(Int32 id, string contactName, string mobile, string email = "", string remark = "")</name>
+      <chinesename>带参构造函数</chinesename>
+      <fieldtype>
+      </fieldtype>
+      <content>this.Id = id;
+            this.Contacts = contactName;
+            this.MobilePhone = mobile;
+            this.Email = email;
+            this.Remark = remark;</content>
+      <remark>
+      </remark>
+    </item>
+  </diyfieldinfo>
+</datatype>

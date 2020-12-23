@@ -126,11 +126,11 @@
                                 
                                 <div class="ibox-tools clients-list ">
                                     <div class="col-md-12">
-                                        <button type="button" class="btn btn-w-m">ASCII 转 Unicode</button>
-                                        <button type="button" class="btn btn-w-m">Unicode 转 ASCII</button>
-                                        <button type="button" class="btn btn-w-m">Unicode 转 中文</button>
-                                        <button type="button" class="btn btn-w-m">中文 转 Unicode</button>
-                                        <button type="button" class="btn-w-m btn-white">清空结果</button>
+                                        <button type="button" class="btn btn-w-m" id="asciitounicodebtn">ASCII 转 Unicode</button>
+                                        <button type="button" class="btn btn-w-m" id="unicodetoasciibtn">Unicode 转 ASCII</button>
+                                        <button type="button" class="btn btn-w-m" id="unicodetochinesebtn">Unicode 转 中文</button>
+                                        <button type="button" class="btn btn-w-m" id="chinesetounicodebtn">中文 转 Unicode</button>
+                                        <button type="button" class="btn-w-m btn-white" id="clearunicodebtn">清空结果</button>
                                     </div>
                                 </div>
                             </div>
@@ -825,6 +825,41 @@
                 toolbarHidden: true,
                 defaultImage: 'img/a9.jpg'
             });
+
+            // 20201222 wujianming 新增前后台交互
+            $("#asciitounicodebtn").bind("click", function () {
+                $.ajax({
+                    url: "/Codeconversion/AjaxCalASCIIToUnicode",
+                    async: false,
+                    type: "POST",
+                    dataType: "json",
+                    contentType: "application/json", //必须这样写
+                    data: { "StrASCII": editor.getValue().replace(/<\/?.+?>/g, "") },//schoolList是你要提交是json字符串
+                    success: function (json) {
+                        // 2021年1月26日星期二
+                        if (json.ErrorCode == 0)
+                            console.log(json.ErrorMessage);
+                        else
+                            console.log(json.ErrorMessage);
+                            //$("#calDayResulttxt").text("计算出错啦，出错原因: " + json.ErrorMessage);
+                    }
+                });
+
+
+                /*editor.setValue('hello world');
+                editor_after.setValue("hello world");
+                alert(editor_after.getValue().replace(/<\/?.+?>/g, ""));*/
+            });
+            /*
+             <button type="button" class="btn btn-w-m" id="asciitounicodebtn">ASCII 转 Unicode</button>
+                                        <button type="button" class="btn btn-w-m" id="unicodetoasciibtn">Unicode 转 ASCII</button>
+                                        <button type="button" class="btn btn-w-m" id="unicodetochinesebtn">Unicode 转 中文</button>
+                                        <button type="button" class="btn btn-w-m" id="chinesetounicodebtn">中文 转 Unicode</button>
+                                        <button type="button" class="btn-w-m btn-white" id="clearunicodebtn">清空结果</button>
+										
+										editor，editor_after
+            */
+
         });
     })(jQuery);
 </script>

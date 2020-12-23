@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="f9bf39ce-019f-4e6f-bee7-42eb93b95ac6">
+      <functionId>100020</functionId>
+      <name>ProvinceInfo</name>
+      <chineseName>省份信息</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Dic</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-09-16 10:29:09.344</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="945fa5f0-2f63-4146-845c-8f7a181ac3f1">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9e102493-27c1-4c23-b3f5-a36fbd8ea3e7">
+      <name>ProvinceName</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

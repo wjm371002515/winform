@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="90783193-0e49-4c52-9d5a-ba7d6b632635">
+      <functionId>100015</functionId>
+      <name>DicKeyValueInfo</name>
+      <chineseName>字典大类</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Dic</folder>
+      <baseclass>
+      </baseclass>
+      <lasttime>2019-09-16 09:59:04.922</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="cd7674d2-0424-4add-aec6-1bbcddd5b2df">
+      <name>DicttypeId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b6a3ec94-2b62-4ff0-b7d1-16b0affc577f">
+      <name>DicttypeValue</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="7c2edfbc-dc12-402c-850d-d1f51ed027db">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="de4f7a92-d7ac-4f8c-a22f-a4e159442d3f">
+      <functionId>100033</functionId>
+      <name>IntelVoteInfo</name>
+      <chineseName>投票信息类</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Machines</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-09-16 19:04:26.736</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+  </fieldsinfo>
+  <diyfieldinfo>
+    <item gid="190fe1c6-d12a-4fc2-85d8-3b14e9e83975">
+      <name>xiaoquName</name>
+      <chinesename>小区名字</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>get
+            {
+                return this.m_xiaoquName;
+            }
+            set
+            {
+                this.m_xiaoquName = value;
+            }</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ad403e80-52e6-4067-9b28-5d46bc942e0f">
+      <name>intelVote</name>
+      <chinesename>投票数量</chinesename>
+      <fieldtype>Int32</fieldtype>
+      <content>get
+            {
+                return this.m_intelVote;
+            }
+            set
+            {
+                this.m_intelVote = value;
+            }</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="27ca686c-8045-44ac-9fd9-9c3d406815d8">
+      <name>houseNum</name>
+      <chinesename>总户数</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>get
+            {
+                return this.m_houseNum;
+            }
+            set
+            {
+                this.m_houseNum = value;
+            }</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="1f140455-d03c-4fc0-b3f4-a785e477f92c">
+      <name>percentage</name>
+      <chinesename>投票率</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>get
+            {
+                return this.m_percentage;
+            }
+            set
+            {
+                this.m_percentage = value;
+            }</content>
+      <remark>
+      </remark>
+    </item>
+    <item gid="3ffcedfa-0b15-4901-9016-aa39b33af16b">
+      <name>detailurl</name>
+      <chinesename>详情连接</chinesename>
+      <fieldtype>string</fieldtype>
+      <content>get
+            {
+                return this.m_detailurl;
+            }
+            set
+            {
+                this.m_detailurl = value;
+            }</content>
+      <remark>
+      </remark>
+    </item>
+  </diyfieldinfo>
+</datatype>

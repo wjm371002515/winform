@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="df175562-9ec8-4e9f-ba1c-7926059f7743">
+      <functionId>100063</functionId>
+      <name>RoleInfo</name>
+      <chineseName>角色信息</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Security</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-09-21 17:16:33.489</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="90801de9-3c2d-45f5-940b-5a487e202871">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="beabeaa7-17df-426b-b10e-8bd7c4829abd">
+      <name>RoleCode</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="839adcc8-eccd-444f-a068-02e038b937a1">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c294a7b9-b6c9-4dcb-8f5e-17d0c73ad1a8">
+      <name>Remark</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="4cd0575a-d4cf-49b5-9287-c908af9ec02e">
+      <name>Seq</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f8840e1f-5aab-42dd-8014-da000c130cc2">
+      <name>CompanyId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="69fe7d44-4d1f-4cdd-aa6b-245e5e290f67">
+      <name>CompanyName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f94fd297-d9db-4c0e-aac3-899fa302cca7">
+      <name>CreatorId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="98fd9098-99fb-4a1f-97b8-df99f6ccbc3d">
+      <name>CreatorTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="26296891-6df1-43cd-bb19-535f7604b1e0">
+      <name>EditorId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="5ae7763a-ae1b-4057-8df3-6db967e61448">
+      <name>LastUpdateTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="32ab2064-6aa7-4fa3-af32-e81611eb463d">
+      <name>IsDelete</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2eb1beb4-9e44-4d8f-ad85-d38ce224d143">
+      <name>IsForbid</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

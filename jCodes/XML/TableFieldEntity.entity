@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="07a1cad8-14c1-47f5-baa7-9acc8e89331a">
+      <functionId>100032</functionId>
+      <name>TableFieldEntity</name>
+      <chineseName>表格字段实体类</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Common</folder>
+      <baseclass>
+      </baseclass>
+      <lasttime>2019-09-16 18:46:16.120</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="3a95334f-2993-4d69-9992-e7615fa4f344">
+      <name>TableName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9d87afe0-a8bd-4a12-a769-2a5500b2c74a">
+      <name>TableField</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="629e95a1-9662-43f8-9b8b-cc124a8d395c">
+      <name>Seq</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

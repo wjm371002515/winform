@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="d7c4183f-c009-40f9-93c8-85c026032e71">
+      <functionId>000218</functionId>
+      <name>SystemLog</name>
+      <chineseName>系统日志表</chineseName>
+      <existhistable>0</existhistable>
+      <version>1.0.0.0</version>
+      <lasttime>2020-11-11 14:54:25.821</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="1a44ec34-ede8-40ce-8c7a-5d17b9ab74f9">
+      <name>Id</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="7f588b89-9c7a-45d0-882e-f4510420e649">
+      <name>Name</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="27613411-98d9-4389-8ea4-ede45bb44e1b">
+      <name>IP</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ad389d45-9b91-4f13-b79e-83bfa454d73c">
+      <name>Mac</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="cbaabd2f-d32a-41b1-a5f8-1fbaff7c5c05">
+      <name>LogLevel</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="335da8ab-3650-4400-9240-e7be08dd095b">
+      <name>CreatorTime</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="6b27747a-2fd9-4d69-b5c7-d1bc5c03e58c">
+      <name>SystemtypeId</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="42625c4f-2492-4980-a6d6-44444bea365c">
+      <name>ModuleInfo</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="6d3b1a25-887e-4c4d-9b10-89390414c0a7">
+      <name>OperationInfo</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b8c017be-e5e0-43b6-9ec7-432d05ba2c26">
+      <name>Remark</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d8637d73-1cee-4cef-9664-62e312f5ac2e">
+      <name>SessionId</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <indexsinfo>
+    <item gid="5d5b1916-ab6b-4ef6-a776-62d1c23c456d">
+      <name>pk_id</name>
+      <indexfieldlst>Id</indexfieldlst>
+      <constraint_type>1</constraint_type>
+    </item>
+  </indexsinfo>
+</datatype>

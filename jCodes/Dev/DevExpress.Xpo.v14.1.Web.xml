@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DevExpress.Xpo.v14.1.Web</name>
+    </assembly>
+    <members>
+        <member name="T:DevExpress.Xpo.XpoDataSourceInsertedEventHandler">
+
+            <summary>
+                <para><see short="M:DevExpress.Xpo.XpoDataSourceInsertedEventHandler.Invoke"/>
+</para>
+            </summary>
+
+        </member>
+        <member name="M:DevExpress.Xpo.XpoDataSourceInsertedEventHandler.Invoke(System.Object,DevExpress.Xpo.XpoDataSourceInsertedEventArgs)">
+            <summary>
+                <para>Represents a method that will handle the <see cref="E:DevExpress.Xpo.XpoDataSource.Inserted"/> event.
+</para>
+            </summary>
+            <param name="sender">
+		The event sender.
+
+            </param>
+            <param name="e">
+		An <see cref="T:DevExpress.Xpo.XpoDataSourceInsertedEventArgs"/> object that contains event data.
+
+            </param>
+
+
+        </member>
+        <member name="T:DevExpress.Xpo.XpoDataSourceInsertedEventArgs">
+
+            <summary>
+                <para>Provides data for the <see cref="E:DevExpress.Xpo.XpoDataSource.Inserted"/> event.
+</para>
+            </summary>
+
+        </member>
+        <member name="M:DevExpress.Xpo.XpoDataSourceInsertedEventArgs.#ctor(System.Object)">
+            <summary>
+                <para>Initializes a new instance of the XpoDataSourceInsertedEventArgs class with a persistent object that has been inserted in the <see cref="T:DevExpress.Xpo.XpoDataSource"/> via a bound data-aware control.
+
+</para>
+            </summary>
+            <param name="value">
+		An <see cref="T:DevExpress.Xpo.XPObject"/> descendant representing the inserted persistent object.
+
+            </param>
+
+
+        </member>
+        <member name="P:DevExpress.Xpo.XpoDataSourceInsertedEventArgs.Value">
+            <summary>
+                <para>Provides access to the persistent object that has been inserted in the <see cref="T:DevExpress.Xpo.XpoDataSource"/> via a bound data-aware control.
+
+</para>
+            </summary>
+            <value>An <see cref="T:DevExpress.Xpo.XPObject"/> descendant representing the persistent object that has been inserted.
+</value>
+
+
+        </member>
+        <member name="T:DevExpress.Xpo.XpoDataSource">
+
+            <summary>
+                <para>A collection of persistent objects for ASP.NET controls.
+</para>
+            </summary>
+
+        </member>
+        <member name="M:DevExpress.Xpo.XpoDataSource.#ctor">
+            <summary>
+                <para>Initializes a new instance of the XpoDataSource class with default settings.
+</para>
+            </summary>
+
+
+        </member>
+        <member name="P:DevExpress.Xpo.XpoDataSource.Criteria">
+            <summary>
+                <para>Gets or sets the string representation of criteria used to filter persistent objects to be retrieved by the data source control.
+</para>
+            </summary>
+            <value>A <see cref="T:System.String"/> value that represents the filter criteria.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Xpo.XpoDataSource.CriteriaParameters">
+            <summary>
+                <para>Provides access to the collection of parameter values that are used to build the data source control's filter criteria.
+</para>
+            </summary>
+            <value>A <see cref="T:System.Web.UI.WebControls.ParameterCollection"/> object that stores the filter criteria's parameter values.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Xpo.XpoDataSource.DefaultSorting">
+            <summary>
+                <para>Specifies how data source contents are sorted by default, when sort order is not specified by the bound control.
+</para>
+            </summary>
+            <value>A <a href="ms-xhelp:///?Id=T%3aSystem.String">String</a> object which contains the names of the columns against which data source contents are sorted.
+</value>
+
+
+        </member>
+        <member name="E:DevExpress.Xpo.XpoDataSource.Inserted">
+            <summary>
+                <para>Enables you to respond to inserting a persistent object via a bound data-aware control.
+</para>
+            </summary>
+
+
+        </member>
+        <member name="P:DevExpress.Xpo.XpoDataSource.ServerMode">
+            <summary>
+                <para>Gets or sets whether server mode is enabled for the data-aware control bound to the current data source control.
+</para>
+            </summary>
+            <value><b>true</b> to enable server mode; otherwise, <b>false</b>.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Xpo.XpoDataSource.Session">
+            <summary>
+                <para>Gets or sets the <see cref="T:DevExpress.Xpo.Session"/> used by the current data source control to load and save persistent objects.
+</para>
+            </summary>
+            <value>A <see cref="T:DevExpress.Xpo.Session"/> object connected to a data store.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Xpo.XpoDataSource.TypeName">
+            <summary>
+                <para>Gets or sets the type name of persistent objects to be retrieved by the data source control.
+</para>
+            </summary>
+            <value>A <see cref="T:System.String"/> value that specifies the type name.
+</value>
+
+
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="c6aa05d2-2584-4119-8329-57acf2c344bd">
+      <functionId>000801</functionId>
+      <name>Consignment</name>
+      <chineseName>代销信息数据</chineseName>
+      <existhistable>0</existhistable>
+      <version>1.0.0.0</version>
+      <lasttime>2020-08-16 11:17:44.363</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="b0ef53c4-7752-4746-80a0-1905d9578cf3">
+      <name>Id</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="93052ec1-0075-45a7-8f6d-84b98806332e">
+      <name>StrValue</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9cf468db-422a-4af7-90c5-f6dd2a155d2b">
+      <name>SysValue</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ddb40f31-b5f7-4642-ab24-9aa14783de24">
+      <name>Name</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="166bda9c-5692-4dc9-a2fb-c9644575260e">
+      <name>EnableStatus</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <indexsinfo>
+    <item gid="10c1f64d-5ae0-43b6-853d-819fa3d5550a">
+      <name>pk_Id</name>
+      <indexfieldlst>Id</indexfieldlst>
+      <constraint_type>1</constraint_type>
+    </item>
+  </indexsinfo>
+</datatype>

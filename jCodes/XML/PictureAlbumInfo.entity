@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="6164ab95-3e3c-4775-992c-5cd3ee65da0e">
+      <functionId>100087</functionId>
+      <name>PictureAlbumInfo</name>
+      <chineseName>图片相册信息</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>WebMis</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-09-23 20:59:39.619</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="9b87455e-4f3a-4df8-9e80-5c142039a8ce">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="fb390deb-fbdd-4c5d-bbcd-bff03382865f">
+      <name>Pid</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="175feb2b-a40c-4725-af91-8bbd6186e8f3">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="b0b9e6ab-cae2-4d0a-be26-382f73ec158d">
+      <name>Remark</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="63da51c1-0266-444b-acfe-8cabbb5b285a">
+      <name>EditorId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d57b8822-7c13-4d8d-b760-7159483dd77c">
+      <name>LastUpdateTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="7606af0a-ac59-42ac-8aa3-3add711c8a0c">
+      <name>CreatorId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="3f6a8cad-6185-4725-afbd-cb6d63c752f5">
+      <name>CreatorTime</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

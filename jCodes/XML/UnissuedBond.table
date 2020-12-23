@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="6afc9ee1-c9e3-4f08-8faa-181ca2fde71a">
+      <functionId>000805</functionId>
+      <name>UnissuedBond</name>
+      <chineseName>已取得批文未发行债券项目</chineseName>
+      <existhistable>0</existhistable>
+      <version>1.0.0.0</version>
+      <lasttime>2020-08-15 21:45:22.031</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="388c436f-d0c5-43a3-9bbd-7d7c0bbf3d72">
+      <name>Id</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e2e727d3-cf16-4bdf-a6ea-3ad3cabad55d">
+      <name>ProjectName</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="5527579f-739c-4024-bcee-4bf36720d7c6">
+      <name>RaisedAmount</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="1a26c5bb-e5bb-4f39-be3b-16418a285ea9">
+      <name>ProjectType</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="832a20d1-815b-4252-afe0-4d36745cf9ff">
+      <name>ProjectLeader</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="58e62282-1871-48ce-ac1e-760f821a65f0">
+      <name>Managers</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9a6e52dc-006d-4d00-a52e-09f22a7d029a">
+      <name>DocNum</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="45ba7315-6645-420f-9570-9de60a042074">
+      <name>ProjectStatusDetail</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="bed0f0a2-1827-4795-9399-9f31ccfb32d5">
+      <name>DeptId</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="87660364-0012-4124-8660-9d9170b11411">
+      <name>DeptName</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d9eee0eb-9e27-4244-b389-2d65be337c18">
+      <name>ProjectProgress</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="33ede5ce-a1f8-423b-a0a4-b4c35513e18a">
+      <name>ProjectStatus</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="8a9c3a45-4868-492f-9f85-7f4190b2a34d">
+      <name>DeclareTime</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ab0d3fd2-c939-4c47-a882-3a28cef7f03c">
+      <name>From</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="39d869f1-f125-42db-9ef4-26e1306bcdd4">
+      <name>Remark</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <indexsinfo>
+  </indexsinfo>
+</datatype>

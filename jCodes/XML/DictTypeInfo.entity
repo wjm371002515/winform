@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="e17915d5-0596-4dae-826b-78b9f2db9b09">
+      <functionId>100017</functionId>
+      <name>DictTypeInfo</name>
+      <chineseName>字典类型信息</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Dic</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-09-16 10:12:04.656</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="e98befa3-8bdd-4328-b58e-6b9ad14dde93">
+      <name>Id</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="acd6447c-26d3-4417-a300-5c4a6a6e2a0e">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="3516a29b-0861-4ccc-915d-13c0990a242e">
+      <name>Remark</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="4d8951aa-d9b7-4a35-b382-f7d09ba56d8f">
+      <name>Seq</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="85155f86-1974-48c7-9198-d9ec88f54281">
+      <name>EditorId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="a27ca2f3-3a91-4dd1-9536-9c2a412c8624">
+      <name>LastUpdateTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="e84cc85a-0f45-463f-baeb-9ea4a8ff978b">
+      <name>Pid</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+  </diyfieldinfo>
+</datatype>

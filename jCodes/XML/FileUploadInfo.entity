@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<datatype>
+  <histories>
+  </histories>
+  <basicinfo>
+    <item gid="56da2b91-8e5d-40e6-a253-e63855801a68">
+      <functionId>100003</functionId>
+      <name>FileUploadInfo</name>
+      <chineseName>文件上传信息</chineseName>
+      <fieldnamespace>
+      </fieldnamespace>
+      <version>1.0.0.0</version>
+      <folder>Dic</folder>
+      <baseclass>BaseEntity</baseclass>
+      <lasttime>2019-10-06 16:26:43.586</lasttime>
+      <remark>
+      </remark>
+    </item>
+  </basicinfo>
+  <fieldsinfo>
+    <item gid="7630df71-0e49-4e20-a90f-1dfd978f78e4">
+      <name>Gid</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0448fdf7-3338-4f6c-8199-2adad25bc37f">
+      <name>CreatorId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="61beb7b9-d9ce-4e97-b17b-378e4398d4ec">
+      <name>AttachmentGid</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="9bcd174d-ebfb-4c21-997a-cbbb558ef799">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ba204658-b5f0-4c3f-b62a-7b21dacf45d7">
+      <name>BasePath</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0b590234-2301-4be7-96f6-1b41325afef9">
+      <name>SavePath</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="265e25d0-006c-4d81-b7f2-38ba41db0b63">
+      <name>FileUploadType</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="667e02ad-cf8b-44b8-81b7-5ceac465d024">
+      <name>FileSize</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="85432494-1d12-4e9b-8163-f6eb178bb2b1">
+      <name>FileExtend</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f164ca9b-85c7-4897-8995-df3029325329">
+      <name>EditorId</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="a6012744-024d-4204-b1ba-6061bb68de8f">
+      <name>LastUpdateTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="50a471c9-0575-44fd-ab96-de9563ef166d">
+      <name>IsDelete</name>
+      <remark>
+      </remark>
+    </item>
+  </fieldsinfo>
+  <diyfieldinfo>
+    <item gid="ac2c1542-0a20-49d3-8886-c06b863ad29c">
+      <name>FileData</name>
+      <chinesename>数据类型</chinesename>
+      <fieldtype>byte[] </fieldtype>
+      <content>
+      </content>
+      <remark>
+      </remark>
+    </item>
+  </diyfieldinfo>
+</datatype>

@@ -128,7 +128,6 @@ namespace JCodes.Framework.WebUI.Controllers.Base
         }
         #endregion
 
-
         #region 设置通用的SystemLogInfo信息
 
         protected SystemLogInfo GetUserSystemInfo() {
