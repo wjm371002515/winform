@@ -29,5 +29,10 @@
     </item>
   </fieldsinfo>
   <indexsinfo>
+    <item gid="7e897ce9-725f-4ce7-b283-70040b631235">
+      <name>unique_user_role</name>
+      <indexfieldlst>UserId, RoleId</indexfieldlst>
+      <constraint_type>3</constraint_type>
+    </item>
   </indexsinfo>
 </datatype>

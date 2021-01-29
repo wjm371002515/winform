@@ -1,4 +1,4 @@
-using JCodes.Framework.Common.Databases;
+﻿using JCodes.Framework.Common.Databases;
 using JCodes.Framework.Common.Framework.BaseDAL;
 using JCodes.Framework.Entity;
 using JCodes.Framework.IDAL;
@@ -9,7 +9,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using JCodes.Framework.jCodesenum.BaseEnum;
 
 namespace JCodes.Framework.SQLServerDAL
 {
@@ -57,6 +56,9 @@ namespace JCodes.Framework.SQLServerDAL
 			info.EditorId = reader.GetInt32("EditorId"); 	 //编辑人编号
 			info.LastUpdateTime = reader.GetDateTime("LastUpdateTime"); 	 //最后更新时间
 			info.IsDelete = reader.GetInt16("IsDelete"); 	 //是否删除
+			info.FileChunk = reader.GetInt32("FileChunk"); 	 //当前文件块编号
+			info.FileChunks = reader.GetInt32("FileChunks"); 	 //文件块总数量
+			info.Md5Value = reader.GetString("Md5Value"); 	 //MD5值
 			return info;
 		}
 
@@ -81,6 +83,9 @@ namespace JCodes.Framework.SQLServerDAL
 			hash.Add("EditorId", info.EditorId); 	 //编辑人编号
 			hash.Add("LastUpdateTime", info.LastUpdateTime); 	 //最后更新时间
 			hash.Add("IsDelete", info.IsDelete); 	 //是否删除
+			hash.Add("FileChunk", info.FileChunk); 	 //当前文件块编号
+			hash.Add("FileChunks", info.FileChunks); 	 //文件块总数量
+			hash.Add("Md5Value", info.Md5Value); 	 //MD5值
 			return hash;
 		}
 
@@ -104,127 +109,46 @@ namespace JCodes.Framework.SQLServerDAL
 			dict.Add("EditorId", "编辑人编号");
 			dict.Add("LastUpdateTime", "最后更新时间");
 			dict.Add("IsDelete", "是否删除");
+			dict.Add("FileChunk", "当前文件块编号");
+			dict.Add("FileChunks", "文件块总数量");
+			dict.Add("Md5Value", "MD5值");
 			#endregion
 			return dict;
 		}
-		
-		/// <summary>
-        /// 获取指定用户的上传信息
-        /// </summary>
-        /// <param name="userId">用户ID</param>
-        /// <returns></returns>
-        public List<FileUploadInfo> GetAllByUserId(Int32 userId, bool isSuperAdmin, IsDelete isDelete)
+
+        public List<FileUploadInfo> GetAllByUserId(int userId, bool isSuperAdmin, IsDelete isDelete)
         {
-            if (!isSuperAdmin)
-            {
-                string condition = string.Format("EditorId ={0} and IsDelete = {1}", userId, (short)isDelete);
-                return Find(condition);
-            }
-            else
-            {
-                string condition = string.Format("IsDelete = {1}", userId, (short)isDelete);
-                return Find(condition);
-            }
+            throw new NotImplementedException();
         }
 
-        /// <summary>
-        /// 获取指定用户的上传信息
-        /// </summary>
-        /// <param name="userId">用户ID</param>
-        /// <param name="FileUploadType">附件分类：个人附件，业务附件</param>
-        /// <param name="pagerInfo">分页信息</param>
-        /// <returns></returns>
-        public List<FileUploadInfo> GetAllByUserId(Int32 userId, AttachmentType attachmentType, PagerInfo pagerInfo)
+        public List<FileUploadInfo> GetAllByUserId(int userId, AttachmentType attachmentType, PagerInfo pagerInfo)
         {
-            SearchCondition cond = new SearchCondition();
-            cond.AddCondition("EditorId", userId, SqlOperator.Equal)
-                .AddCondition("FileUploadType", (short)attachmentType, SqlOperator.Equal);
-
-            string condition = cond.BuildConditionSql(DatabaseType.SqlServer).Replace("Where", "");
-
-            return FindWithPager(condition, pagerInfo);
+            throw new NotImplementedException();
         }
 
-        /// <summary>
-        /// 获取指定附件组GUID的附件信息
-        /// </summary>
-        /// <param name="attachmentGid">附件组GUID</param>
-        /// <param name="pagerInfo">分页信息</param>
-        /// <returns></returns>
         public List<FileUploadInfo> GetByAttachGid(string attachmentGid, PagerInfo pagerInfo)
         {
-            if (string.IsNullOrEmpty(attachmentGid))
-            {
-                throw new ArgumentException("附件组GUID不能为空", attachmentGid);
-            }
-
-            string condition = string.Format("AttachmentGid='{0}' ", attachmentGid);
-            return FindWithPager(condition, pagerInfo);
+            throw new NotImplementedException();
         }
 
-        /// <summary>
-        /// 获取指定附件组GUID的附件信息
-        /// </summary>
-        /// <param name="attachmentGUID">附件组GUID</param>
-        /// <returns></returns>
         public List<FileUploadInfo> GetByAttachGid(string attachmentGid)
         {
-            if (string.IsNullOrEmpty(attachmentGid))
-            {
-                throw new ArgumentException("附件组GUID不能为空", attachmentGid);
-            }
-            else
-            {
-                string condition = string.Format("AttachmentGid='{0}' ", attachmentGid);
-                return Find(condition);
-            }
+            throw new NotImplementedException();
         }
 
-        /// <summary>
-        /// 根据文件的相对路径，删除文件
-        /// </summary>
-        /// <param name="relativeFilePath"></param>
-        /// <returns></returns>
-        public bool DeleteByFilePath(string savePath, Int32 userId)
+        public bool DeleteByFilePath(string savePath, int userId)
         {
-            string condition = string.Format("SavePath ='{0}' and EditorId ={1} ", savePath, userId);
-            return base.DeleteByCondition(condition);
+            throw new NotImplementedException();
         }
 
-        /// <summary>
-        /// 根据附件组GUID获取对应的文件名列表，方便列出文件名
-        /// </summary>
-        /// <param name="attachmentGid">附件组GUID</param>
-        /// <returns>返回ID和文件名的列表</returns>
         public Dictionary<string, string> GetFileNames(string attachmentGid)
         {
-            string sql = string.Format("Select Gid, Name from {0} WHERE AttachmentGid='{1}' ", tableName, attachmentGid);
-            Database db = CreateDatabase();
-            DbCommand command = db.GetSqlStringCommand(sql);
-
-            Dictionary<string, string> dict = new Dictionary<string, string>();
-            using (IDataReader dr = db.ExecuteReader(command))
-            {
-                while (dr.Read())
-                {
-                    string id = dr["Gid"].ToString();
-                    dict.Add(id, dr["Name"].ToString());
-                }
-            }
-            return dict;
+            throw new NotImplementedException();
         }
 
-        /// <summary>
-        /// 标记为删除（不直接删除)
-        /// </summary>
-        /// <param name="id">文件的ID</param>
-        /// <returns></returns>
-        public bool SetDeleteFlag(string id)
+        public bool SetDeleteFlag(string Id)
         {
-            string sql = string.Format("Update {0} set IsDelete = {2} WHERE Gid='{1}' ", tableName, id, (short)IsDelete.是);
-            Database db = CreateDatabase();
-            DbCommand command = db.GetSqlStringCommand(sql);
-            return db.ExecuteNonQuery(command) > 0;
+            throw new NotImplementedException();
         }
-	}
+    }
 }

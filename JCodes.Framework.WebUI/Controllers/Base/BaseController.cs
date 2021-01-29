@@ -172,6 +172,17 @@ namespace JCodes.Framework.WebUI.Controllers
 
         #region 菜单管理
 
+        public string GetMenuStringCache()
+        {
+            string itemValue = MemoryCacheHelper.GetCacheItem<string>("GetMenuStringCache", delegate()
+                {
+                    return GetMenuString();
+                },
+                null, DateTime.Now.AddMinutes(5) //5分钟以后过期，重新获取
+            );
+            return itemValue;
+        }
+
         public string GetMenuString()
         {
             #region 菜单格式代码
@@ -233,7 +244,7 @@ namespace JCodes.Framework.WebUI.Controllers
             string url = "";
             string icon = "icon-home";
             StringBuilder sb = new StringBuilder();
-            List<MenuInfo> list = BLLFactory<Menu>.Instance.GetTopMenu(Const.SystemTypeID);
+            List<MenuInfo> list = BLLFactory<Menu>.Instance.GetTopMenu(Const.SystemTypeId);
             foreach (MenuInfo info in list)
             {
                 if (!HasFunction(info.AuthGid))

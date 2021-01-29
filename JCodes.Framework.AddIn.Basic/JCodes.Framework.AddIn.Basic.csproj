@@ -54,18 +54,6 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BizControl\AttachmentControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="BizControl\AttachmentControl.Designer.cs">
-      <DependentUpon>AttachmentControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BizControl\BizAttachment.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="BizControl\BizAttachment.Designer.cs">
-      <DependentUpon>BizAttachment.cs</DependentUpon>
-    </Compile>
     <Compile Include="BizControl\CompanyControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -142,18 +130,6 @@
     </Compile>
     <Compile Include="UI\FrmAnnualSummary.designer.cs">
       <DependentUpon>FrmAnnualSummary.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\FrmAttachment.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\FrmAttachment.Designer.cs">
-      <DependentUpon>FrmAttachment.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\FrmAttachmentGroupView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\FrmAttachmentGroupView.Designer.cs">
-      <DependentUpon>FrmAttachmentGroupView.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\FrmClearAll.cs">
       <SubType>Form</SubType>
@@ -248,12 +224,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="BizControl\AttachmentControl.resx">
-      <DependentUpon>AttachmentControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BizControl\BizAttachment.resx">
-      <DependentUpon>BizAttachment.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="BizControl\CompanyControl.resx">
       <DependentUpon>CompanyControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -287,12 +257,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\FrmAnnualSummary.resx">
       <DependentUpon>FrmAnnualSummary.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\FrmAttachment.resx">
-      <DependentUpon>FrmAttachment.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\FrmAttachmentGroupView.resx">
-      <DependentUpon>FrmAttachmentGroupView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\FrmClearAll.resx">
       <DependentUpon>FrmClearAll.cs</DependentUpon>

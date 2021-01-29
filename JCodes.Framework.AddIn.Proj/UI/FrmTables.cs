@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using DevExpress.XtraBars.Docking2010.Views;
-using DevExpress.XtraSplashScreen;
 using DevExpress.XtraNavBar;
 using JCodes.Framework.CommonControl.BaseUI;
 using JCodes.Framework.CommonControl.Controls;
@@ -71,7 +70,7 @@ namespace JCodes.Framework.AddIn.Proj
         private GroupControl groupControlIndexs;
         private DevExpress.XtraGrid.GridControl gridControlFields;
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewFields;
-        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemChkIsNull;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemcomboboxIsNull;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEditFields;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnGuid;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnFieldName;
@@ -689,7 +688,7 @@ namespace JCodes.Framework.AddIn.Proj
 
             gridControlFields = new DevExpress.XtraGrid.GridControl();
             gridViewFields = new DevExpress.XtraGrid.Views.Grid.GridView();
-            repositoryItemChkIsNull = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            repositoryItemcomboboxIsNull = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();  // RepositoryItemCheckEdit
             repositoryItemLookUpEditFields = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             gridColumnGuid = new DevExpress.XtraGrid.Columns.GridColumn();
             gridColumnFieldName = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -701,7 +700,7 @@ namespace JCodes.Framework.AddIn.Proj
 
             ((System.ComponentModel.ISupportInitialize)(gridControlFields)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(gridViewFields)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(repositoryItemChkIsNull)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(repositoryItemcomboboxIsNull)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(repositoryItemLookUpEditFields)).BeginInit();
 
             gridControlFields.Dock = DockStyle.Fill;
@@ -713,7 +712,7 @@ namespace JCodes.Framework.AddIn.Proj
             gridControlFields.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             gridViewFields});
             gridControlFields.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            repositoryItemChkIsNull, repositoryItemLookUpEditFields});
+            repositoryItemcomboboxIsNull, repositoryItemLookUpEditFields});
             gridControlFields.ContextMenuStrip = contextMenuStripFields;
 
             gridViewFields.Appearance.FocusedRow.BackColor = System.Drawing.Color.LightCyan;
@@ -783,9 +782,9 @@ namespace JCodes.Framework.AddIn.Proj
             gridColumnRemark.VisibleIndex = 5;
             gridColumnRemark.FieldName = "Remark";
 
-            repositoryItemChkIsNull.AutoHeight = false;
-            repositoryItemChkIsNull.Caption = "Check";
-            repositoryItemChkIsNull.Name = "repositoryItemChkIsNull";
+            repositoryItemcomboboxIsNull.Name = "repositoryItemcomboboxIsNull";
+            repositoryItemcomboboxIsNull.Items.Add(new CDicKeyValue(1, "是"));
+            repositoryItemcomboboxIsNull.Items.Add(new CDicKeyValue(2, "否"));
 
             repositoryItemLookUpEditFields.PopupWidth = 400; //下拉框宽度  
             repositoryItemLookUpEditFields.NullText = "";//空时的值  
@@ -810,7 +809,7 @@ namespace JCodes.Framework.AddIn.Proj
             repositoryItemLookUpEditFields.EditValueChanged += repositoryItemLookUpEditFields_EditValueChanged;
 
             ((System.ComponentModel.ISupportInitialize)(repositoryItemLookUpEditFields)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(repositoryItemChkIsNull)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(repositoryItemcomboboxIsNull)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(gridControlFields)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(gridViewFields)).EndInit();
             groupControlFields.Controls.Add(gridControlFields);
@@ -845,7 +844,7 @@ namespace JCodes.Framework.AddIn.Proj
 
             repositoryItemLookUpEditFields.DataSource = stdFieldInfoList;
 
-            gridViewFields.Columns["IsNull"].ColumnEdit = repositoryItemChkIsNull;
+            gridViewFields.Columns["IsNull"].ColumnEdit = repositoryItemcomboboxIsNull;
             gridViewFields.Columns["FieldName"].ColumnEdit = repositoryItemLookUpEditFields;
             gridViewFields.Columns["Gid"].Visible = false;
 

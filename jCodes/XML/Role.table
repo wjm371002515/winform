@@ -98,7 +98,7 @@
     <item gid="060c2564-6b16-4ac5-bd64-b3283222c2b5">
       <name>pk_role</name>
       <indexfieldlst>Id</indexfieldlst>
-      <constraint_type>0</constraint_type>
+      <constraint_type>1</constraint_type>
     </item>
   </indexsinfo>
 </datatype>

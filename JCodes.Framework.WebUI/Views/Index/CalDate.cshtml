@@ -174,7 +174,10 @@
                         if (json.ErrorCode == 0)
                             $("#calDayResulttxt").text("计算日期为: " + json.ErrorMessage);
                         else
-                            $("#calDayResulttxt").text("计算出错啦，出错原因: " + json.ErrorMessage);
+                        {
+                            swal("错误号" + json.ErrorCode, "错误信息" + json.ErrorMessage, "error");
+                            throw new Error("错误号" + json.ErrorCode + ", 错误信息" + json.ErrorMessage);
+                        }
                     }
                 } );
 
@@ -194,7 +197,10 @@
                         if (json.ErrorCode == 0)
                             $("#calDayResult2txt").text("相差： " + json.ErrorMessage + "天");
                         else
-                            $("#calDayResult2txt").text("计算出错啦，出错原因: " + json.ErrorMessage);
+                        {
+                            swal("错误号" + json.ErrorCode, "错误信息" + json.ErrorMessage, "error");
+                            throw new Error("错误号" + json.ErrorCode + ", 错误信息" + json.ErrorMessage);
+                        }
                     }
                 });
                 // TODO 1后台返回对象，2错误信息用红色，3后台记录查询日志

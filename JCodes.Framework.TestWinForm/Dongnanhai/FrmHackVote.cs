@@ -174,13 +174,13 @@ namespace JCodes.Framework.TestWinForm.Haotian
 
             //string sql = string.Format("insert into T_Dongnanhai_User(Id, phone, real_name, sex) values({0}, '{1}', '{2}', '{2}')", , jo["data"]["phone"], jo["data"]["real_name"], jo["data"]["sex"]);
 
-            DongnanhaiVotesUser dongnanhaiVotesUser = new DongnanhaiVotesUser();
+            /*DongnanhaiVotesUser dongnanhaiVotesUser = new DongnanhaiVotesUser();
             VoteUserInfo voteUserInfo = new Entity.VoteUserInfo();
             voteUserInfo.Id = ConvertHelper.ToInt32(jo["data"]["id"].ToString(), 0);
             voteUserInfo.MobilePhone = jo["data"]["phone"].ToString();
             voteUserInfo.LoginName = jo["data"]["real_name"].ToString();
             voteUserInfo.Gender = (short)EnumHelper.GetMemberValue<Gender>(jo["data"]["sex"].ToString());
-            dongnanhaiVotesUser.InsertVoteUser(voteUserInfo);
+            dongnanhaiVotesUser.InsertVoteUser(voteUserInfo);*/
 
         }
     }

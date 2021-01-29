@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.IO;
-using System.Windows.Forms;
 using NVelocity;
 using NVelocity.App;
 using NVelocity.Runtime;
 using NVelocity.Exception;
 using JCodes.Framework.Common;
-using JCodes.Framework.jCodesenum.BaseEnum;
 using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.WebUI.Common

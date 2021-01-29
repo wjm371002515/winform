@@ -1,0 +1,389 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>统计投票</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="/Content/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+    <link href="/Content/Index/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <!-- Sweet Alert -->
+    <link href="/Content/MyPlugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="/Content/Index/css/animate.min.css" rel="stylesheet">
+    <link href="/Content/Index/css/style.min.css?v=4.0.0" rel="stylesheet">
+    <style>
+        table {
+            border: 1px solid #555555;
+            margin: 1px;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+
+            table td, table th {
+                border: 1px solid #555555;
+                text-align: center;
+            }
+
+        textarea {
+            width: 800px;
+            height: 300px;
+            padding: 20px;
+            outline: none;
+        }
+    </style>
+    <base target="_blank">
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="notice_active">
+            <ul id="jsfoot01" class="noticTipTxt">
+                <li><a href="####" target="_blank">制定《停车收费管理办法》和《小区物业服务合同》</a></li>
+                <li><a href="####" target="_blank">建设美好家园</a></li>
+                <li><a href="####" target="_blank">钱塘东南家园小区物业续聘、选聘投票开始啦，</a></li>
+                <li><a href="####" target="_blank">积极参与投票，共建幸福家园</a></li>
+            </ul>
+        </div>
+
+        <!-- Panel Other -->
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <!-- Example Events -->
+                        <div class="example-wrap">
+                            <!--button type="button" id="printbtn" onclick="printdata()" class="btn btn-block btn-outline btn-primary">打印数据</!--button>
+                            <p class="btn btn-block btn-outline btn-primary" id="louzhuangtxt"></p-->
+                            <div class="spiner-example">
+                                <div class="sk-spinner sk-spinner-three-bounce">
+                                    <div class="sk-bounce1"></div>
+                                    <div class="sk-bounce2"></div>
+                                    <div class="sk-bounce3"></div>
+                                </div>
+                            </div>
+                            <div id="xlstable">
+                            </div>
+                        </div>
+                        <!-- End Example Events -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Panel Other -->
+    </div>
+
+    <div class="footer">
+        <div class="pull-right">
+            &copy; 2006-2020 <a href="http://www.jcodes.cn/" target="_blank">Editor by Jimmy</a>
+        </div>
+    </div>
+
+    <script src="/Content/Index/js/jquery-1.12.4-wp.js?v=2.1.4"></script>
+    <script src="/Content/metronic/assets/global/plugins/bootstrap/js/bootstrap.min.js?v=3.3.5"></script>
+    <script src="/Content/Index/js/content.min.js?v=1.0.0"></script>
+    <script src="/Content/MyPlugins/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="/Content/MyPlugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="/Content/MyPlugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+    <script src="/Content/metronic/assets/global/plugins/ckeditor/ckeditor.js"></script>
+    <script src="/Content/MyPlugins/exclsTable/Table.js"></script>
+    <script src="/Content/MyPlugins/shuiyin/shuiyin.js"></script>
+  
+    <script type="text/javascript">
+        (function ($) { //create closure so we can safely use $ as alias for jQuery
+            $(document).ready(function () {
+                "use strict";
+
+                var headerdata = null;
+                var data = new Array();
+                // 获取louzhuang参数
+                var louzhuang = getQueryVariable('louzhuang');
+
+                $("#louzhuangtxt").text("钱塘东南家园" + louzhuang + "幢统计表");
+
+                // 获取表头
+                $.ajax({
+                    type: "post",
+                    url: "/Interface/GetAjaxDongnanhai2_Statistics_title?louzhuang=" + louzhuang,
+                    async: false,
+                    success: function (t) {
+                        headerdata = eval(t);
+                    }
+                });
+
+                $.ajax({
+                    type: "post",
+                    url: "/Interface/GetAjaxDongnanhai2_Statistics?louzhuang=" + louzhuang,
+                    async: false,
+                    success: function (t) {
+                        var rowCount = t.total;
+                        var tmpRow = new Array();
+                        var tmpIndex = 0;
+
+                        var DataIndex = parseInt(t.rows[0].FangHao.substr(0, 2));
+                        for (var i = 0; i < t.rows.length; i++) {
+                            var ceng = parseInt(t.rows[i].FangHao.substr(0, 2));
+                            if (ceng != DataIndex) {
+                                data[DataIndex] = tmpRow;
+                                DataIndex++;
+                                tmpIndex = 0;
+                                tmpRow = new Array();
+                            }
+                            tmpRow[tmpIndex] = t.rows[i].Util + "单元" + ceng + "楼";
+                            tmpIndex++;
+                            tmpRow[tmpIndex] = (t.rows[i].EnableStatus == 0 ? '<span style="color: red">' + t.rows[i].FangHao + '</span>' : t.rows[i].FangHao);
+                            tmpIndex++;
+                            if (t.rows[i].EnableStatus == 0) {
+                                tmpRow[tmpIndex] = '<span style="color: red">未投</span>';
+                            }
+                            if (t.rows[i].EnableStatus == 1) {
+                                tmpRow[tmpIndex] = '<span style="color: green">已投</span>';
+                            }
+                            if (t.rows[i].EnableStatus == 2) {
+                                tmpRow[tmpIndex] = '<span style="color: green">现场已投</span>';
+                            }
+                            if (t.rows[i].EnableStatus == 3) {
+                                tmpRow[tmpIndex] = '<span style="color: green">电话已投</span>';
+                            }
+                            tmpIndex++;
+                        }
+
+                        if (tmpRow.length > 0) data[DataIndex] = tmpRow;
+                    }
+                });
+                console.log(headerdata);
+                console.log(data);
+
+                Table().init({
+                    id: 'xlstable',
+                    //header: ['单元楼层', '房号', '投票情况', '单元楼层', '房号', '投票情况', '单元楼层', '房号', '投票情况', '单元楼层', '房号', '投票情况'],
+                    header: headerdata,
+                    data: data,
+                    /*data: [
+                        ['1单元1楼', '101', '<span style="color: green">已投</span>', '1单元1楼', '102', '<span style="color: red">未投</span>', '1单元1楼', '103', '未投', '1单元1楼', '104', '未投'],
+                        ['1单元2楼', '201', '未投'],
+                    ]*/
+                });
+
+                $(".spiner-example").hide();
+            });
+
+            function Table() {
+                var TClass = {};
+                var Tool = {};
+                var DataStore = {};
+                var Option = {};
+                Tool.createHeader = function (htmls, data) {
+                    htmls.push('<tr>');
+                    for (var i in data) {
+                        htmls.push('<th>' + data[i] + '</th>');
+                    }
+                    htmls.push('</tr>');
+                }
+                ;
+                Tool.createRow = function (htmls, data) {
+                    htmls.push('<tr>');
+                    for (var i in data) {
+                        htmls.push('<td>' + data[i] + '</td>');
+                    }
+                    htmls.push('</tr>');
+                }
+                ;
+                Tool.render = function (id, tag) {
+                    var htmls = [];
+                    var option = Option[id];
+                    if (option['title'] != null) {
+                        htmls.push('<div class="title">' + option['title'] + '</div>');
+                    }
+                    htmls.push('<table>');
+                    Tool.createHeader(htmls, DataStore[id]['header']);
+                    for (var i in DataStore[id]['data']) {
+                        Tool.createRow(htmls, DataStore[id]['data'][i]);
+                    }
+                    htmls.push('</table>');
+                    tag.empty().append(htmls.join(''));
+                    Tool.setStyle(id, tag);
+                }
+                ;
+                Tool.setStyle = function (id, tag) {
+                    var option = Option[id];
+                    tag.find('.title').css({
+                        'font-weight': 'bold',
+                        'text-align': 'center',
+                        'color': option['titleColor'],
+                        'font-size': option['titleSize']
+                    });
+                    tag.find('table').css({
+                        'width': '100%'
+                    });
+                    tag.find('th').css({
+                        'color': option['headerColor'],
+                        'background-color': option['headerBgColor'],
+                        'font-size': option['headerSize']
+                    });
+                    tag.find('tr td').css({
+                        'color': option['color'],
+                        'font-size': option['size'],
+                        'text-align': option['align'],
+                    });
+                    tag.find('tr:even td').css({
+                        'background-color': option['evenBgColor']
+                    });
+                    tag.find('tr:odd td').css({
+                        'background-color': option['oddBgColor']
+                    });
+                    if (option['rowHeight'] != null) {
+                        tag.find('tr').find('th:eq(0)').css('height', option['rowHeight']);
+                        tag.find('tr').find('td:eq(0)').css('height', option['rowHeight']);
+                    }
+                    if (option['columnWidth'] != null) {
+                        var td = tag.find('tr').find('th');
+                        $.each(td, function (i) {
+                            $(this).css('width', option['columnWidth'][i] + '%');
+                        });
+                    }
+                }
+                ;
+                Tool.getValue = function (value, defalutValue) {
+                    if (typeof value == 'undefined') {
+                        return defalutValue;
+                    } else {
+                        return value;
+                    }
+                }
+                ;
+                TClass.init = function (option) {
+                    var id = option['id'];
+                    var tag = $('#' + id);
+                    var header = option['header'];
+                    var data = option['data'];
+                    DataStore[id] = {
+                        header: header,
+                        data: data
+                    };
+                    Option[id] = {
+                        title: Tool.getValue(option['title'], null),
+                        titleColor: Tool.getValue(option['titleColor'], 'black'),
+                        titleSize: Tool.getValue(option['titleSize'], 16),
+                        headerColor: Tool.getValue(option['headerColor'], 'black'),
+                        headerBgColor: Tool.getValue(option['headerBgColor'], '#A2FD9A'),
+                        headerSize: Tool.getValue(option['headerSize'], 16),
+                        color: Tool.getValue(option['color'], 'black'),
+                        size: Tool.getValue(option['size'], 16),
+                        align: Tool.getValue(option['align'], 'center'),
+                        evenBgColor: Tool.getValue(option['evenBgColor'], '#E3F4FD'),
+                        oddBgColor: Tool.getValue(option['oddBgColor'], '#FDF0E6'),
+                        rowHeight: Tool.getValue(option['rowHeight'], 34),
+                        columnWidth: Tool.getValue(option['columnWidth'], null)
+                    };
+                    Tool.render(id, tag);
+                }
+                ;
+                TClass.getValue = function (id, row, column) {
+                    return DataStore[id]['data'][row - 1][column - 1];
+                }
+                ;
+                TClass.setValue = function (id, row, column, value) {
+                    DataStore[id]['data'][row - 1][column - 1] = value;
+                }
+                ;
+                TClass.getValues = function (id) {
+                    return DataStore[id]['data'];
+                }
+                ;
+                TClass.addRow = function (id, data) {
+                    DataStore[id]['data'].push(data);
+                }
+                ;
+                TClass.deleteRow = function (id, row) {
+                    DataStore[id]['data'].splice(row - 1, 1);
+                }
+                ;
+                TClass.getRowCount = function (id) {
+                    return DataStore[id]['data'].length;
+                }
+                ;
+                TClass.render = function (id) {
+                    Tool.render(id, $('#' + id));
+                }
+                ;
+                return TClass;
+            }
+        })(jQuery);
+
+        function printdata() {
+            document.getElementById('printbtn').style.display = "none";
+            window.document.body.innerHTML = document.documentElement.innerHTML;
+            window.print();
+            document.getElementById('printbtn').style.display = "block";
+        }
+
+        function getQueryVariable(variable) {
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i = 0; i < vars.length; i++) {
+                var pair = vars[i].split("=");
+                if (pair[0] == variable) { return pair[1]; }
+            }
+            return (false);
+        }
+
+        var now = getNow();
+        watermark({ "watermark_txt": "钱塘东南家园 " + getQueryVariable('louzhuang') + "幢投票明细统计" + now });
+    </script>
+
+    <script type="text/javascript" src="https://www.17sucai.com/preview/11/2013-04-30/scrolltext/js/scrolltext.js"></script>
+    <script type="text/javascript">
+        if (document.getElementById("jsfoot01")) {
+            var scrollup = new ScrollText("jsfoot01");
+            scrollup.LineHeight = 22;        //单排文字滚动的高度
+            scrollup.Amount = 1;            //注意:子模块(LineHeight)一定要能整除Amount.
+            scrollup.Delay = 20;           //延时
+            scrollup.Start();             //文字自动滚动
+            scrollup.Direction = "down"; //文字向下滚动
+        }
+
+    </script>
+
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        a, img {
+            border: 0;
+            vertical-align: middle;
+        }
+        /*公告*/
+        .notice_active {
+            width: 387px;
+            margin: 20px auto;
+            background: url(/Content/images/bg.gif) no-repeat;
+        }
+
+        .noticTipTxt {
+            color: #ff7300;
+            height: 22px;
+            line-height: 22px;
+            overflow: hidden;
+            margin: 0 0 0 40px;
+        }
+
+            .noticTipTxt li {
+                height: 22px;
+                line-height: 22px;
+            }
+
+            .noticTipTxt a {
+                color: #0075E8;
+                font-size: 12px;
+                text-decoration: none;
+            }
+
+                .noticTipTxt a:hover {
+                    color: #ff7300;
+                    text-decoration: underline;
+                }
+    </style>
+</body>
+</html>

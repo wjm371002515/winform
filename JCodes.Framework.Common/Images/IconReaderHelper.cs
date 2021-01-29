@@ -1,8 +1,15 @@
-﻿using JCodes.Framework.jCodesenum.BaseEnum;
+﻿using JCodes.Framework.Common.Files;
+using JCodes.Framework.Entity;
+using JCodes.Framework.jCodesenum.BaseEnum;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using System.Xml;
+using JCodes.Framework.Common.Extension;
+using JCodes.Framework.Common.Office;
 
 namespace JCodes.Framework.Common.Images
 {
@@ -97,7 +104,6 @@ namespace JCodes.Framework.Common.Images
             return shfi.szTypeName;
         }
 
-
         #region 后缀名图标操作
 
         /// <summary>
@@ -180,6 +186,63 @@ namespace JCodes.Framework.Common.Images
             Shell32.SHGetFileInfo(stubPath, 256, ref info, (uint)cbFileInfo, flags);
             return (Icon)Icon.FromHandle(info.hIcon);
         } 
+        #endregion
+
+        #region 20201227 获取Winform 对应的图标
+        /// <summary>
+        /// 根据Icon的英文名查询
+        /// </summary>
+        /// <param name="name">查找字体的英文名</param>
+        /// <returns>如果icon.xml 文件不存在，name找不到， 字体未安装等常见返回空</returns>
+        public IconInfo GetIconFromTTF(string name)
+        {
+            Dictionary<String, IconInfo> dicIcon = Cache.Instance["DicIcon"] as Dictionary<String, IconInfo> ;
+
+            if (dicIcon == null)
+            {
+                string filePath = System.AppDomain.CurrentDomain.BaseDirectory + "\\" + @"Data\icon.xml";
+                // 如果文件不存在，则返回空
+                if (!FileUtil.FileIsExist(filePath)) return null;
+
+                // 读取Icon文件
+                XmlHelper xmlHelper = new XmlHelper(filePath);
+                XmlNodeList nodeLst = xmlHelper.Read("icons");
+
+                dicIcon = new Dictionary<String, IconInfo>();
+                dicIcon.Clear();
+
+                for (var i = 0; i < nodeLst.Count; i++)
+                {
+                    IconInfo iconInfo = new IconInfo();
+                    var node = nodeLst[i];
+                    if (node.Attributes["id"] != null) iconInfo.Id = node.Attributes["id"].Value.ToInt32();
+                    if (node.Attributes["fontfrom"] != null) iconInfo.IconCls = node.Attributes["fontfrom"].Value;
+                    if (node.Attributes["value"] != null) iconInfo.IconUrl = node.Attributes["value"].Value;
+                    if (node.Attributes["name"] != null) iconInfo.Name = node.Attributes["name"].Value;
+                    if (node.Attributes["chinesename"] != null) iconInfo.ChineseName = node.Attributes["chinesename"].Value;
+                    if (node.Attributes["strValue"] != null) iconInfo.StrValue = node.Attributes["strValue"].Value;
+
+                    if (!dicIcon.ContainsKey(iconInfo.Name))
+                        dicIcon.Add(iconInfo.Name, iconInfo);
+                }
+                Cache.Instance["DicIcon"] = dicIcon;
+            }
+
+            // 判断字体是否存在
+            if (!dicIcon.ContainsKey(name)) return null;
+
+            // 判断是否安装了字体
+            InstalledFontCollection fonts = new InstalledFontCollection();
+            foreach (System.Drawing.FontFamily family in fonts.Families)
+            {
+                if (family.Name.Equals(dicIcon[name].IconCls, StringComparison.CurrentCultureIgnoreCase))
+                {
+                    return dicIcon[name];
+                }
+            }
+            // 字体未按照
+            return null;
+        }
         #endregion
     }
 

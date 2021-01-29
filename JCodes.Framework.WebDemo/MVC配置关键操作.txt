@@ -1,5 +1,0 @@
-1.选择网站的ISAPI筛选器，设置ASP.NET的 aspnet_filter.dll右键恢复为父项。如果问题还未解决，执行第2步：
-
-2.是否注册了asp.net，打开cmd运行：C:\Windows\Microsoft.NET\Framework\v4.0.30319\aspnet_regiis.exe -i (64位系统同理)
-
-3.查看ISAPI和CGI限制是否允许asp.net4.0的执行

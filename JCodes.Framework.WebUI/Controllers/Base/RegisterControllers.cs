@@ -1,4 +1,5 @@
 ﻿using JCodes.Framework.BLL;
+using JCodes.Framework.Common;
 using JCodes.Framework.Common.Format;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.Entity;
@@ -6,16 +7,19 @@ using JCodes.Framework.jCodesenum;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.IO;
+using System.Net;
 using System.Text;
-using System.Web;
+using System.Text.RegularExpressions;
 using System.Web.Mvc;
 
 namespace JCodes.Framework.WebUI.Controllers.Base
 {
     public class RegisterControllers : Controller
     {
-        protected string systemtypeId = "071bafed-4634-4083-bb34-86dda58edfc4";
+        protected string systemtypeId = Const.SystemTypeId;
+
+        protected Dictionary<String, ErrornoInfo> dicErrInfo = (new JCodes.Framework.Common.ErrorInfo()).GetAllErrorInfo(); 
 
         protected override void OnActionExecuted(ActionExecutedContext filterContext)
         { 
@@ -129,7 +133,6 @@ namespace JCodes.Framework.WebUI.Controllers.Base
         #endregion
 
         #region 设置通用的SystemLogInfo信息
-
         protected SystemLogInfo GetUserSystemInfo() {
             UserInfo currentUser = Session["UserInfo"] as UserInfo;
             SystemLogInfo systemLogInfo = new SystemLogInfo();
@@ -144,6 +147,70 @@ namespace JCodes.Framework.WebUI.Controllers.Base
             systemLogInfo.SessionId = Session.SessionID;
             return systemLogInfo;
         }
+        #endregion
+
+        #region 生成HTML静态页面
+        protected ReturnResult BuildHtmlPage(String url, String htmPageName, Boolean isRootDir = true)
+        {
+            ReturnResult rr = new ReturnResult();
+
+            // 判断页面URL是否有效
+            if (!ValidateUtil.IsValidURL(url))
+            {
+                rr.ErrorCode = 000033;
+                rr.ErrorMessage = dicErrInfo["E000033"].ChineseName;
+                rr.ErrorPath = "RegisterControllers->BuildHtmlPage(String url, String htmPageName = null)";
+                rr.LogLevel = dicErrInfo["E000033"].LogLevel;
+                return rr;
+            }
+
+            // 如果页面不为空
+            Encoding enc;
+            WebRequest request = WebRequest.Create(url);
+            WebResponse response = request.GetResponse();
+            try
+            {
+                if (((HttpWebResponse)response).CharacterSet != "ISO-8859-1")
+                    enc = Encoding.GetEncoding(((HttpWebResponse)response).CharacterSet);
+                else
+                    enc = Encoding.UTF8;
+            }
+            catch
+            {
+                // *** Invalid encoding passed
+                enc = Encoding.UTF8;
+            }
+
+            if (enc == null)
+                enc = Encoding.Default;
+
+            Stream resstream = response.GetResponseStream();
+
+            StreamReader sr = new StreamReader(resstream, enc);
+            string contenthtml = sr.ReadToEnd();
+
+            //压缩  
+            contenthtml = Regex.Replace(contenthtml, @"(?<=>)\s|\n|\t(?=<)", string.Empty);
+            contenthtml = contenthtml.Trim();
+
+            resstream.Close();
+            sr.Close(); //写入文件
+            System.IO.StreamWriter sw;
+            if (isRootDir)
+                sw = new System.IO.StreamWriter(Server.MapPath("~/" + htmPageName), false, enc);
+            else
+                sw = new System.IO.StreamWriter(Server.MapPath(htmPageName), false, enc);
+
+            sw.Write(contenthtml);
+            sw.Close();
+
+            rr.ErrorCode = 000000;
+            rr.ErrorMessage = "生成页面成功";
+            rr.ErrorPath = "RegisterControllers->BuildHtmlPage(String url, String htmPageName = null)";
+            rr.LogLevel = (short)LogLevel.LOG_LEVEL_INFO;
+            return rr;
+        }
+
         #endregion
         #endregion
     }

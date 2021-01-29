@@ -619,5 +619,35 @@
       <functionId>100103</functionId>
       <path>XML\MVCRouteConfigInfo.entity</path>
     </item>
+    <item gid="b06ed8ae-60e6-4470-bc6a-486a17c09d0b">
+      <name>InputClass</name>
+      <chineseName>WEB通用输入参数</chineseName>
+      <functionId>100104</functionId>
+      <path>XML\InputClass.entity</path>
+    </item>
+    <item gid="63b01b71-c505-4b40-93c9-53342faa2ece">
+      <name>FrontLogInfo</name>
+      <chineseName>前台日志</chineseName>
+      <functionId>100105</functionId>
+      <path>XML\FrontLogInfo.entity</path>
+    </item>
+    <item gid="393100c0-5dc1-4995-9505-904cff7048d2">
+      <name>DongnanhaiVotesInfo</name>
+      <chineseName>东南海投票信息</chineseName>
+      <functionId>100106</functionId>
+      <path>XML\DongnanhaiVotesInfo.entity</path>
+    </item>
+    <item gid="0f70c273-e1f1-4442-aa40-5bd7e340cc37">
+      <name>SystemTimeLineInfo</name>
+      <chineseName>系统开发时间轴</chineseName>
+      <functionId>100107</functionId>
+      <path>XML\SystemTimeLineInfo.entity</path>
+    </item>
+    <item gid="053bb675-6080-4db4-9c2d-9df1eba2fb1a">
+      <name>JokeInfo</name>
+      <chineseName>段子</chineseName>
+      <functionId>100108</functionId>
+      <path>XML\JokeInfo.entity</path>
+    </item>
   </dataitem>
 </datatype>

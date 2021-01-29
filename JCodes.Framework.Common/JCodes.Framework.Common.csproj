@@ -93,6 +93,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\JCodes.Framework.libs\org.in2bits\org.in2bits.MyXls.dll</HintPath>
     </Reference>
+    <Reference Include="qiniu-csharp-sdk">
+      <HintPath>..\JCodes.Framework.libs\qiniu\qiniu-csharp-sdk.dll</HintPath>
+    </Reference>
     <Reference Include="stdole, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
@@ -171,25 +174,26 @@
     <Compile Include="Extension\ControlExtensions.cs" />
     <Compile Include="Extension\StringExtensionMethod.cs" />
     <Compile Include="FileHelper.cs" />
-    <Compile Include="Files\AppConfig.cs" />
-    <Compile Include="Files\ConfigurationUtil.cs" />
-    <Compile Include="Files\CSVHelper.cs" />
-    <Compile Include="Files\DatabaseInfo.cs" />
-    <Compile Include="Files\DirectoryUtil.cs" />
-    <Compile Include="Files\ExcelHelper.cs" />
-    <Compile Include="Files\ExtensionAttachUtil.cs" />
-    <Compile Include="Files\FileAssociationsHelper.cs" />
-    <Compile Include="Files\FileDialogHelper.cs" />
-    <Compile Include="Files\FileUtil.cs" />
-    <Compile Include="Files\INIFileUtil.cs" />
-    <Compile Include="Files\IsolatedStorageHelper.cs" />
-    <Compile Include="Files\MyFileSystemWatcher.cs">
+    <Compile Include="Format\Files\AppConfig.cs" />
+    <Compile Include="Format\Files\ConfigurationUtil.cs" />
+    <Compile Include="Format\Files\CSVHelper.cs" />
+    <Compile Include="Format\Files\DatabaseInfo.cs" />
+    <Compile Include="Format\Files\DirectoryUtil.cs" />
+    <Compile Include="Format\Files\ExcelHelper.cs" />
+    <Compile Include="Format\Files\ExtensionAttachUtil.cs" />
+    <Compile Include="Format\Files\FileAssociationsHelper.cs" />
+    <Compile Include="Format\Files\FileDialogHelper.cs" />
+    <Compile Include="Format\Files\FileUtil.cs" />
+    <Compile Include="Format\Files\FileUploadHelper.cs" />
+    <Compile Include="Format\Files\INIFileUtil.cs" />
+    <Compile Include="Format\Files\IsolatedStorageHelper.cs" />
+    <Compile Include="Format\Files\MyFileSystemWatcher.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Files\Serializer.cs" />
-    <Compile Include="Files\SpecialDirectories.cs" />
-    <Compile Include="Files\XmlConvertor.cs" />
-    <Compile Include="Files\XmlHelper.cs" />
+    <Compile Include="Format\Files\Serializer.cs" />
+    <Compile Include="Format\Files\SpecialDirectories.cs" />
+    <Compile Include="Format\Files\XmlConvertor.cs" />
+    <Compile Include="Format\Files\XmlHelper.cs" />
     <Compile Include="Format\ArgumentValidation.cs" />
     <Compile Include="Format\ByteImageConvertor.cs" />
     <Compile Include="Format\BytesTools.cs" />

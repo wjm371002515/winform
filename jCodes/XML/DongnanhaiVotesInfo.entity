@@ -10,104 +10,45 @@
       <fieldnamespace>
       </fieldnamespace>
       <version>1.0.0.0</version>
-      <folder>Machines</folder>
+      <folder>Dongnanhai</folder>
       <baseclass>BaseEntity</baseclass>
-      <lasttime>2019-09-16 19:12:50.673</lasttime>
+      <lasttime>2021-01-19 11:45:15.913</lasttime>
       <remark>
       </remark>
     </item>
   </basicinfo>
   <fieldsinfo>
+    <item gid="96e04b47-5562-4247-917a-f7be96705c4b">
+      <name>FangHao</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="d88d36d1-bedb-4b6b-9def-bea76f0900c4">
+      <name>Util</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ceced440-7d19-4278-92c8-00c1c046df23">
+      <name>Zhuang</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0d5f7ae5-6b17-48af-baea-5ecfc7c1ea19">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="ccea676a-b0c0-4dc1-b4e8-1e4b1f970120">
+      <name>Ceng</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="5ee403e5-ddf8-453c-8223-fa3df809f827">
+      <name>EnableStatus</name>
+      <remark>
+      </remark>
+    </item>
   </fieldsinfo>
   <diyfieldinfo>
-    <item gid="88e8bd7d-259f-4e63-8864-16b7d87a4789">
-      <name>Fanghao</name>
-      <chinesename>房号</chinesename>
-      <fieldtype>string</fieldtype>
-      <content>get
-            {
-                return this.m_Fanghao;
-            }
-            set
-            {
-                this.m_Fanghao = value;
-            }</content>
-      <remark>
-      </remark>
-    </item>
-    <item gid="b98cb569-04b7-479c-a84c-b68f9ea93324">
-      <name>Util</name>
-      <chinesename>单元</chinesename>
-      <fieldtype>string</fieldtype>
-      <content>get
-            {
-                return this.m_Util;
-            }
-            set
-            {
-                this.m_Util = value;
-            }</content>
-      <remark>
-      </remark>
-    </item>
-    <item gid="e6a3549d-088b-4608-9994-059c5aa0afca">
-      <name>Zhuang</name>
-      <chinesename>幢</chinesename>
-      <fieldtype>string</fieldtype>
-      <content>get
-            {
-                return this.m_Zhuang;
-            }
-            set
-            {
-                this.m_Zhuang = value;
-            }</content>
-      <remark>
-      </remark>
-    </item>
-    <item gid="9b9781b6-2bd8-4e9d-aa74-a9c3f490c75d">
-      <name>Yuan</name>
-      <chinesename>住宅/商铺</chinesename>
-      <fieldtype>string</fieldtype>
-      <content>get
-            {
-                return this.m_Yuan;
-            }
-            set
-            {
-                this.m_Yuan = value;
-            }</content>
-      <remark>
-      </remark>
-    </item>
-    <item gid="39c1ac6a-1d93-40f8-897a-0022a9cee72b">
-      <name>Ceng</name>
-      <chinesename>层</chinesename>
-      <fieldtype>Int32</fieldtype>
-      <content>get
-            {
-                return this.m_Ceng;
-            }
-            set
-            {
-                this.m_Ceng = value;
-            }</content>
-      <remark>
-      </remark>
-    </item>
-    <item gid="5bf08508-aa4e-4b13-b275-039263c1553a">
-      <name>Flag</name>
-      <chinesename>投票标志</chinesename>
-      <fieldtype>Int32</fieldtype>
-      <content>get
-            {
-                return this.m_Flag;
-            }
-            set
-            {
-                this.m_Flag = value;
-            }</content>
-      <remark>0.未投, 1.已投</remark>
-    </item>
   </diyfieldinfo>
 </datatype>

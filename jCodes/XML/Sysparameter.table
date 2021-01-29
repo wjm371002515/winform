@@ -86,7 +86,7 @@
     <item gid="2bb0da20-0121-4d27-8300-e6d6f730da92">
       <name>pk_sysparameter</name>
       <indexfieldlst>Id</indexfieldlst>
-      <constraint_type>0</constraint_type>
+      <constraint_type>1</constraint_type>
     </item>
   </indexsinfo>
 </datatype>

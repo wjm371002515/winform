@@ -49,7 +49,7 @@
     <item gid="b85ccdd1-8075-47ea-8220-6e253926409f">
       <name>pk_roledata</name>
       <indexfieldlst>Id</indexfieldlst>
-      <constraint_type>0</constraint_type>
+      <constraint_type>1</constraint_type>
     </item>
   </indexsinfo>
 </datatype>

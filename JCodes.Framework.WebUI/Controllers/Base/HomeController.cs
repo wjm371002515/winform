@@ -28,7 +28,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 ViewBag.Name = CurrentUser.Name;
 
                 StringBuilder sb = new StringBuilder();
-                List<MenuInfo> menuList = BLLFactory<Menu>.Instance.GetTopMenu(Const.SystemTypeID);
+                List<MenuInfo> menuList = BLLFactory<Menu>.Instance.GetTopMenu(Const.SystemTypeId);
                 int i = 0;
                 foreach (MenuInfo menuInfo in menuList)
                 {

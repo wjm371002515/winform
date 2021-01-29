@@ -611,6 +611,12 @@ namespace JCodes.Framework.Common.Framework
             OperationLogOfInsert(obj, trans);//根据设置记录操作日志
 
             Hashtable hash = GetHashByEntity(obj);
+
+            // 20210123 wujianming 特殊处理 如果存在主键Key为Id，则删掉，让其自动增长
+            if (hash.ContainsKey(this.primaryKey)) {
+                hash.Remove(this.primaryKey);
+            }
+
             return Insert(hash, trans);
         }
 
@@ -627,6 +633,12 @@ namespace JCodes.Framework.Common.Framework
             OperationLogOfInsert(obj, trans);//根据设置记录操作日志
 
             Hashtable hash = GetHashByEntity(obj);
+
+            // 20201226 wujianming 对于自动增长的主键Id 做删除操作
+            if (primaryKey.Equals("Id") && hash.ContainsKey("Id") && hash["Id"].ToString().Equals("0"))
+            {
+                hash.Remove("Id");
+            }
             return Insert2(hash, trans);
         }
 

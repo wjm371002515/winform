@@ -36,8 +36,7 @@
     </item>
     <item gid="bc135b95-0060-4d01-ba49-475e84b214f2">
       <name>Remark</name>
-      <isnull>
-      </isnull>
+      <isnull>1</isnull>
       <remark>
       </remark>
     </item>

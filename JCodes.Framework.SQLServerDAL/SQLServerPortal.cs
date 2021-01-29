@@ -29,6 +29,8 @@ namespace JCodes.Framework.SQLServerDAL
 
         public string _otherTablePre = _appConfig.AppConfigGet("OtherTablePre");
 
-        public string _dongnanhaiTablePre = _appConfig.AppConfigGet("OnethnkTablePre");
+        public string _dongnanhaiTablePre = _appConfig.AppConfigGet("DongnanhaiTablePre");
+
+        public string _businessTablePre = _appConfig.AppConfigGet("BusinessTablePre");  
     }
 }

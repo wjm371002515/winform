@@ -154,8 +154,7 @@ namespace JCodes.Framework.SQLServerDAL
         /// <returns></returns>
         public List<BlackIPInfo> FindByUser(Int32 userId, AuthorizeType authorizeType, IsForbid isForbid = IsForbid.否)
         {
-            string sql = string.Format(@"SELECT t.* FROM {0}BlackIP t INNER JOIN {0}BlackIP_User m
-            ON t.Id=m.BlackId WHERE m.UserId = {1} and t.AuthorizeType={2} and (t.IsForbid = {3} or 0 = {3}) ", SQLServerPortal.gc._securityTablePre, userId, (short)authorizeType, (short)isForbid);
+            string sql = string.Format(@"SELECT t.* FROM {0}BlackIP t INNER JOIN {0}BlackIP_User m ON t.Id=m.BlackId WHERE m.UserId = {1} and t.AuthorizeType={2} and (t.IsForbid = {3} or 0 = {3}) ", SQLServerPortal.gc._securityTablePre, userId, (short)authorizeType, (short)isForbid);
             return GetList(sql, null);
         }
 	}

@@ -1,0 +1,77 @@
+﻿@{
+    Layout = "~/Views/Shared/_Index.cshtml"; 
+    ViewBag.Title = "系统开发时间轴";
+}
+<link href="~/Content/MyPlugins/datapicker/datepicker3.css" rel="stylesheet">
+<link href="~/Content/MyPlugins/simditor/simditor.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+    .table-info tr td:first-child {
+        width: 30%;
+        background-color: #f6f6f6;
+    }
+
+    .table-info tr td:nth-child(2) {
+        width: 70%;
+    }
+</style>
+
+<div id="content" class="site-content site_container container clear">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="wrapper wrapper-content">
+                <div class="row animated fadeInRight">
+                    <div class="col-sm-12">
+                        <div class="ibox float-e-margins">
+                            <div class="text-center float-e-margins p-md" style="padding: 0px;">
+                                <a class="btn btn-primary btn-rounded btn-block" href="javascript:void(0)" style="background-color: #1ab394;" id="leftVersion"><i class="fa fa-random"></i> 布局切换</a>
+                            </div>
+                            <div class="" id="ibox-content">
+                                <div id="vertical-timeline" class="vertical-container light-timeline">
+                                    @foreach (var item in Model)
+                                    {
+                                        <div class="vertical-timeline-block" id="@item.Id">
+                                            <div class="vertical-timeline-icon @item.IconCls.Split(',')[0]">
+                                                <i class="fa @(item.IconCls.Split(',').Length > 1 ? item.IconCls.Split(',')[1] : item.IconCls)">
+                                                </i>
+                                            </div>
+                                       
+                                            <div class="vertical-timeline-content">
+                                                <h2>@item.Name</h2>
+                                                <p>
+                                                    @item.CustomContent
+                                                </p>
+                                                @if (!string.IsNullOrEmpty(item.DisplayName))
+                                                {
+                                                    <a href="@item.WebSiteUrl" class="btn btn-sm btn-primary" style="color: white;"> @item.DisplayName </a>
+                                                }
+                                                <span class="vertical-date">
+                                                    @item.Data1<br>
+                                                    <small>@Html.FormatValue(item.CreatorTime, "{0:yyyy年MM月dd日}")</small>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    (function ($) { //create closure so we can safely use $ as alias for jQuery
+        $(document).ready(function () {
+            "use strict";
+
+            // Local script for demo purpose only
+            $('#leftVersion').click(function (event) {
+                event.preventDefault()
+                $('#vertical-timeline').toggleClass('center-orientation');
+            });
+        });
+    })(jQuery);
+</script>

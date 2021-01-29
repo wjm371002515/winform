@@ -217,9 +217,9 @@
 
                                 <div class="ibox-tools clients-list ">
                                     <div class="col-md-12">
-                                        <button type="button" class="btn btn-w-m">中文 转 UTF-8</button>
-                                        <button type="button" class="btn btn-w-m">UTF-8 转 中文</button>
-                                        <button type="button" class="btn-w-m btn-white">清空结果</button>
+                                        <button type="button" class="btn btn-w-m" id="chinesetoutf8">中文 转 UTF-8</button>
+                                        <button type="button" class="btn btn-w-m" id="utf8tochinese">UTF-8 转 中文</button>
+                                        <button type="button" class="btn-w-m btn-white" id="clearutf8btn">清空结果</button>
                                     </div>
                                 </div>
                             </div>
@@ -279,9 +279,9 @@
                                                 <li><a href="javascript:void(0);">gb2312</a></li>
                                             </ul>
                                         </div>
-                                        <button type="button" class="btn btn-w-m">UrlEncode编码</button>
-                                        <button type="button" class="btn btn-w-m">UrlDecode解码</button>
-                                        <button type="button" class="btn-w-m btn-white">清空结果</button>
+                                        <button type="button" class="btn btn-w-m" id="urlencode">UrlEncode编码</button>
+                                        <button type="button" class="btn btn-w-m" id="urldecode">UrlDecode解码</button>
+                                        <button type="button" class="btn-w-m btn-white" id="clearurlbtn">清空结果</button>
                                     </div>
                                 </div>
                             </div>
@@ -294,23 +294,23 @@
                                     <div class="row">
                                         <label class="col-sm-3 control-label text-right" style="line-height: 40px; padding-right: 0px;">现在Unix时间戳(Unix timestamp)是:</label>
                                         <div class="col-sm-4" style="padding-right: 0px;">
-                                            <input type="text" name="" class="form-control" placeholder="请输入文本">
+                                            <input type="text" name="currentTime" id="currentTime" class="form-control" placeholder="请输入文本">
                                         </div>
                                         <div class="col-md-5">
-                                            <button type="button" class="btn btn-w-m">开始</button>
-                                            <button type="button" class="btn btn-w-m">停止</button>
-                                            <button type="button" class="btn btn-w-m">刷新</button>
+                                            <button type="button" class="btn btn-w-m" id="startTimestampbtn">开始</button>
+                                            <button type="button" class="btn btn-w-m" id="stopTimestampbtn">停止</button>
+                                            <button type="button" class="btn btn-w-m" id="refleshbtn">刷新</button>
                                         </div>
                                     </div>
                                     <div class="hr-line-dashed"></div>
                                     <div class="row">
                                         <label class="col-sm-3 control-label text-right" style="line-height: 40px; padding-right: 0px;">Unix时间戳（Unix timestamp）:</label>
                                         <div class="col-sm-3" style="padding-right: 0px;">
-                                            <input type="text" name="" class="form-control" placeholder="请输入文本">
+                                            <input type="text" name="txttimestamp" id="txttimestamp" class="form-control" placeholder="请输入文本">
                                         </div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-3" id="tab-4-1">
                                             <div class="input-group-btn open" style="display: inline; margin-right: 5px;">
-                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                <button type="button" class="btn btn-default dropdown-toggle" style="width: 110px;" data-toggle="dropdown">
                                                     <span class="buttonText" id="buttonText2">秒</span>
                                                     <span class="caret"></span>
                                                 </button>
@@ -319,10 +319,10 @@
                                                     <li><a href="javascript:void(0);">毫秒</a></li>
                                                 </ul>
                                             </div>
-                                            <button type="button" class="btn btn-w-m" style="min-width: 90px;">转换</button>
+                                            <button type="button" class="btn btn-w-m" style="min-width: 125px;" id="timestamptostringbtn">转换</button>
                                         </div>
-                                        <div class="col-sm-4" style="padding-left: 0px;">
-                                            <input type="text" name="" class="form-control" placeholder="请输入文本">
+                                        <div class="col-sm-3" style="padding-left: 0px;">
+                                            <input type="text" name="" class="form-control" id="stringDate" placeholder="请输入文本">
                                         </div>
                                     </div>
                                     <div class="hr-line-dashed"></div>
@@ -341,11 +341,11 @@
                                             <label class="control-label" style="width: auto; margin-right: 5px;">分</label>
                                             <input type="text" placeholder="秒" id="second" class="form-control" style="width: 60px; display: inline-block;">
                                             <label class="control-label" style="width: auto; margin-right: 5px;">秒</label>
-                                            <button type="button" class="btn btn-w-m" style="min-width: 90px;">转换Unix时间戳</button>
+                                            <button type="button" class="btn btn-w-m" style="min-width: 90px;" id="datetotimestamp">转换Unix时间戳</button>
                                             <input type="text" placeholder="Unix时间戳" id="convertunix" class="form-control" style="width: 250px; display: inline-block;">
-                                            <div class="input-group-btn open" style="display: inline; margin-right: 5px;">
+                                            <div class="input-group-btn open" id="tab-4-2" style="display: inline; margin-right: 5px;">
                                                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                                    <span class="buttonText" id="buttonText2">秒</span>
+                                                    <span class="buttonText" id="buttonText3">秒</span>
                                                     <span class="caret"></span>
                                                 </button>
                                                 <ul class="dropdown-menu">
@@ -619,7 +619,7 @@
                                     <div class="col-md-12">
                                         <div class="input-group-btn open" style="display: inline; margin-right: 5px;">
                                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                                <span class="buttonText" id="buttonText2">不转换字母和数字</span>
+                                                <span class="buttonText" id="buttonText4">不转换字母和数字</span>
                                                 <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu">
@@ -627,15 +627,14 @@
                                                 <li><a href="javascript:void(0);">转换字母和数字</a></li>
                                             </ul>
                                         </div>
-                                        <button type="button" class="btn btn-w-m">ASCII转NATIVE</button>
-                                        <button type="button" class="btn btn-w-m">NATIVE转ASCII</button>
-                                        <button type="button" class="btn-w-m btn-white">清空结果</button>
+                                        <button type="button" class="btn btn-w-m" id="ascii2nativebtn">ASCII转NATIVE</button>
+                                        <button type="button" class="btn btn-w-m" id="native2asciibtn">NATIVE转ASCII</button>
+                                        <button type="button" class="btn-w-m btn-white" id="nativeasciiclearbtn">清空结果</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     <div id="tab-6" class="tab-pane">
                         <div class="panel-body">
                             <div class="ibox float-e-margins">
@@ -653,7 +652,7 @@
                                                     </div>
                                                     <div class="settings-field">
                                                         <label></label>
-                                                        <input class="link-url" type="text">44
+                                                        <input class="link-url" type="text">
                                                     </div>
                                                 </div>
                                             </div><div class="simditor-popover image-popover">
@@ -682,7 +681,7 @@
                                     <div class="col-md-12">
                                         <div class="input-group-btn open" style="display: inline; margin-right: 5px;">
                                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                                <span class="buttonText" id="buttonText3">选择</span>
+                                                <span class="buttonText" id="buttonText5">选择</span>
                                                 <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu">
@@ -690,9 +689,9 @@
                                                 <li><a href="javascript:void(0);">gb2312</a></li>
                                             </ul>
                                         </div>
-                                        <button type="button" class="btn btn-w-m">Hex编码</button>
-                                        <button type="button" class="btn btn-w-m">Hex解码</button>
-                                        <button type="button" class="btn-w-m btn-white">清空结果</button>
+                                        <button type="button" class="btn btn-w-m" id="hexencodebtn">Hex编码</button>
+                                        <button type="button" class="btn btn-w-m" id="hexdecodebtn">Hex解码</button>
+                                        <button type="button" class="btn-w-m btn-white" id="clearhexbtn">清空结果</button>
                                     </div>
                                 </div>
                             </div>
@@ -742,9 +741,9 @@
 
                                 <div class="ibox-tools clients-list ">
                                     <div class="col-md-12">
-                                        <button type="button" class="btn btn-w-m">HtmlEncode编码</button>
-                                        <button type="button" class="btn btn-w-m">HtmlDecode解码</button>
-                                        <button type="button" class="btn-w-m btn-white">清空结果</button>
+                                        <button type="button" class="btn btn-w-m" id="htmlencodebtn">HtmlEncode编码</button>
+                                        <button type="button" class="btn btn-w-m" id="htmldecodebtn">HtmlDecode解码</button>
+                                        <button type="button" class="btn-w-m btn-white" id="clearhtmlbtn">清空结果</button>
                                     </div>
                                 </div>
                             </div>
@@ -768,8 +767,21 @@
                 $("#buttonText").text($(this).text());
             });
 
-            $("#tab-5 .dropdown-menu li").click(function () {
+            $("#tab-4-1 .dropdown-menu li").click(function () {
+                console.log($(this).text());
                 $("#buttonText2").text($(this).text());
+            });
+
+            $("#tab-4-2 .dropdown-menu li").click(function () {
+                $("#buttonText3").text($(this).text());
+            });
+
+            $("#tab-5 .dropdown-menu li").click(function () {
+                $("#buttonText4").text($(this).text());
+            });
+
+            $("#tab-6 .dropdown-menu li").click(function () {
+                $("#buttonText5").text($(this).text());
             });
 
             var editor = new Simditor({
@@ -826,40 +838,703 @@
                 defaultImage: 'img/a9.jpg'
             });
 
-            // 20201222 wujianming 新增前后台交互
+            // 20201222 wujianming 新增前后台交互 ASCII 转 Unicode 
             $("#asciitounicodebtn").bind("click", function () {
+                if (IsEmpty(editor.getValue().replace(/<\/?.+?>/g, ""))) {
+                    swal("提示信息", "请输入要转换的字符", "info");
+                    return;
+                }
+
+                // 20201225 wujianming 
                 $.ajax({
-                    url: "/Codeconversion/AjaxCalASCIIToUnicode",
+                    url: "/Codeconversion/AjaxCalCodeConvert",
                     async: false,
-                    type: "POST",
+                    type: 'post',
                     dataType: "json",
                     contentType: "application/json", //必须这样写
-                    data: { "StrASCII": editor.getValue().replace(/<\/?.+?>/g, "") },//schoolList是你要提交是json字符串
+                    data: JSON.stringify({ DataType: "ASCIIToUnicode",
+                            InputParam: editor.getValue().replace(/<\/?.+?>/g, ""),
+                            TimeStamp: Date.parse(new Date()) / 1000 }),// 用秒的时间戳
                     success: function (json) {
-                        // 2021年1月26日星期二
-                        if (json.ErrorCode == 0)
-                            console.log(json.ErrorMessage);
+                        if (json.ErrorCode == 0) {
+                            editor_after.setValue(htmlEncodeByRegExp(json.ErrorMessage));
+                        }
                         else
-                            console.log(json.ErrorMessage);
-                            //$("#calDayResulttxt").text("计算出错啦，出错原因: " + json.ErrorMessage);
+                        {
+                            swal("错误号" + json.ErrorCode, "错误信息" + json.ErrorMessage, "error");
+                            throw new Error("错误号" + json.ErrorCode + ", 错误信息" + json.ErrorMessage);
+                        }
                     }
                 });
-
-
-                /*editor.setValue('hello world');
-                editor_after.setValue("hello world");
-                alert(editor_after.getValue().replace(/<\/?.+?>/g, ""));*/
             });
-            /*
-             <button type="button" class="btn btn-w-m" id="asciitounicodebtn">ASCII 转 Unicode</button>
-                                        <button type="button" class="btn btn-w-m" id="unicodetoasciibtn">Unicode 转 ASCII</button>
-                                        <button type="button" class="btn btn-w-m" id="unicodetochinesebtn">Unicode 转 中文</button>
-                                        <button type="button" class="btn btn-w-m" id="chinesetounicodebtn">中文 转 Unicode</button>
-                                        <button type="button" class="btn-w-m btn-white" id="clearunicodebtn">清空结果</button>
-										
-										editor，editor_after
-            */
 
+            // 20201222 wujianming 新增前后台交互 Unicode 转 ASCII
+            $("#unicodetoasciibtn").bind("click", function () {
+                if (IsEmpty(editor.getValue().replace(/<\/?.+?>/g, ""))) {
+                    swal("提示信息", "请输入要转换的字符", "info");
+                    return;
+                }
+                // 20201225 wujianming 
+                $.ajax({
+                    url: "/Codeconversion/AjaxCalCodeConvert",
+                    async: false,
+                    type: 'post',
+                    dataType: "json",
+                    contentType: "application/json", //必须这样写
+                    data: JSON.stringify({
+                        DataType: "UnicodeToASCII",
+                        InputParam: htmlDecodeByRegExp(editor.getValue().replace(/<\/?.+?>/g, "")),
+                        TimeStamp: Date.parse(new Date()) / 1000
+                    }),// 用秒的时间戳
+                    success: function (json) {
+                        if (json.ErrorCode == 0) {
+                            editor_after.setValue(htmlEncodeByRegExp(json.ErrorMessage));
+                        }
+                        else {
+                            swal("错误号" + json.ErrorCode, "错误信息" + json.ErrorMessage, "error");
+                            throw new Error("错误号" + json.ErrorCode + ", 错误信息" + json.ErrorMessage);
+                        }
+                    }
+                });
+            });
+
+            // 20210111 wujianming 新增前后台交互 Unicode 转 中文
+            $("#unicodetochinesebtn").bind("click", function () {
+                if (IsEmpty(editor.getValue().replace(/<\/?.+?>/g, ""))) {
+                    swal("提示信息", "请输入要转换的字符", "info");
+                    return;
+                }
+                // 20201225 wujianming 
+                $.ajax({
+                    url: "/Codeconversion/AjaxCalCodeConvert",
+                    async: false,
+                    type: 'post',
+                    dataType: "json",
+                    contentType: "application/json", //必须这样写
+                    data: JSON.stringify({
+                        DataType: "UnicodeToChinese",
+                        InputParam: htmlDecodeByRegExp(editor.getValue().replace(/<\/?.+?>/g, "")),
+                        TimeStamp: Date.parse(new Date()) / 1000
+                    }),// 用秒的时间戳
+                    success: function (json) {
+                        if (json.ErrorCode == 0) {
+                            editor_after.setValue(htmlEncodeByRegExp(json.ErrorMessage));
+                        }
+                        else {
+                            swal("错误号" + json.ErrorCode, "错误信息" + json.ErrorMessage, "error");
+                            throw new Error("错误号" + json.ErrorCode + ", 错误信息" + json.ErrorMessage);
+                        }
+                    }
+                });
+            });
+
+            // 20210111 wujianming 新增前后台交互 中文 转 Unicode
+            $("#chinesetounicodebtn").bind("click", function () {
+                if (IsEmpty(editor.getValue().replace(/<\/?.+?>/g, ""))) {
+                    swal("提示信息", "请输入要转换的字符", "info");
+                    return;
+                }
+                // 20201225 wujianming 
+                $.ajax({
+                    url: "/Codeconversion/AjaxCalCodeConvert",
+                    async: false,
+                    type: 'post',
+                    dataType: "json",
+                    contentType: "application/json", //必须这样写
+                    data: JSON.stringify({
+                        DataType: "ChineseToUnicode",
+                        InputParam: htmlDecodeByRegExp(editor.getValue().replace(/<\/?.+?>/g, "")),
+                        TimeStamp: Date.parse(new Date()) / 1000
+                    }),// 用秒的时间戳
+                    success: function (json) {
+                        if (json.ErrorCode == 0) {
+                            editor_after.setValue(htmlEncodeByRegExp(json.ErrorMessage));
+                        }
+                        else {
+                            swal("错误号" + json.ErrorCode, "错误信息" + json.ErrorMessage, "error");
+                            throw new Error("错误号" + json.ErrorCode + ", 错误信息" + json.ErrorMessage);
+                        }
+                    }
+                });
+            });
+
+            // 20210111 wujianming 清空结果
+            $("#clearunicodebtn").bind("click", function () {
+                editor.setValue('');
+                editor_after.setValue('');
+            });
+
+            // 20210111 wujianming 新增前后台交互 中文 转 UTF-8
+            $("#chinesetoutf8").bind("click", function () {
+                if (IsEmpty(editor_utf8.getValue().replace(/<\/?.+?>/g, ""))) {
+                    swal("提示信息", "请输入要转换的字符", "info");
+                    return;
+                }
+                // 20201225 wujianming 
+                $.ajax({
+                    url: "/Codeconversion/AjaxCalCodeConvert",
+                    async: false,
+                    type: 'post',
+                    dataType: "json",
+                    contentType: "application/json", //必须这样写
+                    data: JSON.stringify({
+                        DataType: "ChineseToUTF8",
+                        InputParam: htmlDecodeByRegExp(editor_utf8.getValue().replace(/<\/?.+?>/g, "")),
+                        TimeStamp: Date.parse(new Date()) / 1000
+                    }),// 用秒的时间戳
+                    success: function (json) {
+                        if (json.ErrorCode == 0) {
+                            editor_utf8_after.setValue(htmlEncodeByRegExp(json.ErrorMessage));
+                        }
+                        else {
+                            swal("错误号" + json.ErrorCode, "错误信息" + json.ErrorMessage, "error");
+                            throw new Error("错误号" + json.ErrorCode + ", 错误信息" + json.ErrorMessage);
+                        }
+                    }
+                });
+            });
+
+            // 20210111 wujianming 新增前后台交互 UTF-8 转 中文
+            $("#utf8tochinese").bind("click", function () {
+                if (IsEmpty(editor_utf8.getValue().replace(/<\/?.+?>/g, ""))) {
+                    swal("提示信息", "请输入要转换的字符", "info");
+                    return;
+                }
+                // 20201225 wujianming 
+                $.ajax({
+                    url: "/Codeconversion/AjaxCalCodeConvert",
+                    async: false,
+                    type: 'post',
+                    dataType: "json",
+                    contentType: "application/json", //必须这样写
+                    data: JSON.stringify({
+                        DataType: "UTF8ToChinese",
+                        InputParam: htmlDecodeByRegExp(editor_utf8.getValue().replace(/<\/?.+?>/g, "")),
+                        TimeStamp: Date.parse(new Date()) / 1000
+                    }),// 用秒的时间戳
+                    success: function (json) {
+                        if (json.ErrorCode == 0) {
+                            editor_utf8_after.setValue(htmlEncodeByRegExp(json.ErrorMessage));
+                        }
+                        else {
+                            swal("错误号" + json.ErrorCode, "错误信息" + json.ErrorMessage, "error");
+                            throw new Error("错误号" + json.ErrorCode + ", 错误信息" + json.ErrorMessage);
+                        }
+                    }
+                });
+            });
+
+            // 20210111 wujianming 清空结果
+            $("#clearutf8btn").bind("click", function () {
+                editor_utf8.setValue('');
+                editor_utf8_after.setValue('');
+            });
+
+            // 20210111 wujianming 新增前后台交互 UrlEncode编码
+            $("#urlencode").bind("click", function () {
+                if (IsEmpty(editor_url.getValue().replace(/<\/?.+?>/g, ""))) {
+                    swal("提示信息", "请输入要转换的字符", "info");
+                    return;
+                }
+                // 获取下拉框的内容
+                var utfgb2312 = $("#buttonText").text();
+
+                if (utfgb2312 == "选择") {
+                    swal("提示信息", "请选择编码类型", "info");
+                    return;
+                }
+
+                // 20201225 wujianming 
+                $.ajax({
+                    url: "/Codeconversion/AjaxCalCodeConvert",
+                    async: false,
+                    type: 'post',
+                    dataType: "json",
+                    contentType: "application/json", //必须这样写
+                    data: JSON.stringify({
+                        DataType: "URLEncodeBy" + utfgb2312,
+                        InputParam: htmlDecodeByRegExp(editor_url.getValue().replace(/<\/?.+?>/g, "")),
+                        TimeStamp: Date.parse(new Date()) / 1000
+                    }),// 用秒的时间戳
+                    success: function (json) {
+                        if (json.ErrorCode == 0) {
+                            editor_url.setValue(htmlEncodeByRegExp(json.ErrorMessage));
+                        }
+                        else {
+                            swal("错误号" + json.ErrorCode, "错误信息" + json.ErrorMessage, "error");
+                            throw new Error("错误号" + json.ErrorCode + ", 错误信息" + json.ErrorMessage);
+                        }
+                    }
+                });
+            });
+
+            // 20210111 wujianming 新增前后台交互 UrlDecode编码
+            $("#urldecode").bind("click", function () {
+                if (IsEmpty(editor_url.getValue().replace(/<\/?.+?>/g, ""))) {
+                    swal("提示信息", "请输入要转换的字符", "info");
+                    return;
+                }
+
+                // 获取下拉框的内容
+                var utfgb2312 = $("#buttonText").text();
+
+                if (utfgb2312 == "选择") {
+                    swal("提示信息", "请选择编码类型", "info");
+                    return;
+                }
+
+                // 20201225 wujianming 
+                $.ajax({
+                    url: "/Codeconversion/AjaxCalCodeConvert",
+                    async: false,
+                    type: 'post',
+                    dataType: "json",
+                    contentType: "application/json", //必须这样写
+                    data: JSON.stringify({
+                        DataType: "URLDecodeBy" + utfgb2312,
+                        InputParam: htmlDecodeByRegExp(editor_url.getValue().replace(/<\/?.+?>/g, "")),
+                        TimeStamp: Date.parse(new Date()) / 1000
+                    }),// 用秒的时间戳
+                    success: function (json) {
+                        if (json.ErrorCode == 0) {
+                            editor_url.setValue(htmlEncodeByRegExp(json.ErrorMessage));
+                        }
+                        else {
+                            swal("错误号" + json.ErrorCode, "错误信息" + json.ErrorMessage, "error");
+                            throw new Error("错误号" + json.ErrorCode + ", 错误信息" + json.ErrorMessage);
+                        }
+                    }
+                });
+            });
+
+            // URL编码/解码 清空
+            $("#clearurlbtn").bind("click", function () {
+                editor_url.setValue('');
+            });
+            
+            // 设置定时器
+            var t = null;
+
+            $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+                // e.target // 新选项卡对象
+                // e.relatedTarget // 老选项卡对象
+                if (e.target.hash == "#tab-4" && e.relatedTarget.hash != "#tab-4") {
+                    if (t == null)
+                        t = setInterval(function () {
+                            if (IsEmpty($("#currentTime").val())) {
+                                var time = Date.parse(new Date()).toString();//获取到毫秒的时间戳，精确到毫秒
+                                time = time.substr(0, 10);//精确到秒
+                                $("#currentTime").val(time);
+                            }
+                            else {
+                                //console.log("计算+1方式: " + parseInt($("#currentTime").val()));
+                                $("#currentTime").val(parseInt($("#currentTime").val()) + 1);
+                            }  
+                        }, 1000);
+                    else
+                        t = setInterval(function () {
+                            if (IsEmpty($("#currentTime").val())) {
+                                var time = Date.parse(new Date()).toString();//获取到毫秒的时间戳，精确到毫秒
+                                time = time.substr(0, 10);//精确到秒
+                                $("#currentTime").val(time);
+                            }
+                            else {
+                                //console.log("计算+1方式: " + parseInt($("#currentTime").val()));
+                                $("#currentTime").val(parseInt($("#currentTime").val()) + 1);
+                            }
+                        }, 1000);
+                }
+                else if (e.relatedTarget.hash == "#tab-4" && e.target.hash != "#tab-4")
+                    clearInterval(t);
+            });
+
+            $("#startTimestampbtn").bind("click", function () {
+                t = setInterval(function () {
+                    var time = Date.parse(new Date()).toString();//获取到毫秒的时间戳，精确到毫秒
+                    time = time.substr(0, 10);//精确到秒
+                    $("#currentTime").val(time);
+                }, 1000);
+            });
+
+            $("#stopTimestampbtn").bind("click", function () {
+                clearInterval(t);
+            });
+
+            $("#refleshbtn").bind("click", function () {
+                clearInterval(t);
+                $("#currentTime").val("");
+                t = setInterval(function () {
+                    var time = Date.parse(new Date()).toString();//获取到毫秒的时间戳，精确到毫秒
+                    time = time.substr(0, 10);//精确到秒
+                    $("#currentTime").val(time);
+                }, 1000);
+            });
+
+            // 20210115 wujianming 新增前后台交互 时间戳转成字符串
+            var time = Date.parse(new Date()).toString();//获取到毫秒的时间戳，精确到毫秒
+            time = time.substr(0, 10);//精确到秒
+            $("#txttimestamp").val(time);
+            $("#timestamptostringbtn").bind("click", function () {
+                if (IsEmpty($("#txttimestamp").val())) {
+                    swal("提示信息", "请输入要转换的时间戳", "info");
+                    return;
+                }
+
+                // 获取下拉框的内容
+                var timestamptype = $("#buttonText2").text();
+
+                // 20201225 wujianming 
+                $.ajax({
+                    url: "/Codeconversion/AjaxCalCodeConvert",
+                    async: false,
+                    type: 'post',
+                    dataType: "json",
+                    contentType: "application/json", //必须这样写
+                    data: JSON.stringify({
+                        DataType: "TimestampToString" + timestamptype,
+                        InputParam: $("#txttimestamp").val(),
+                        TimeStamp: Date.parse(new Date()) / 1000
+                    }),// 用秒的时间戳
+                    success: function (json) {
+                        if (json.ErrorCode == 0) {
+                            $("#stringDate").val(json.ErrorMessage);
+                        }
+                        else {
+                            swal("错误号" + json.ErrorCode, "错误信息" + json.ErrorMessage, "error");
+                            throw new Error("错误号" + json.ErrorCode + ", 错误信息" + json.ErrorMessage);
+                        }
+                    }
+                });
+            });
+
+            // 获取年月日小时分钟秒
+            var date = new Date();
+
+            $("#year").val(date.getFullYear());
+            $("#month").val(date.getMonth()+1);
+            $("#day").val(date.getDate());
+            $("#hour").val(date.getHours());
+            $("#minute").val(date.getMinutes());
+            $("#second").val(date.getSeconds());
+            $("#datetotimestamp").bind("click", function () {
+                if (IsEmpty($("#year").val())) {
+                    $("#year").foucs();
+                    swal("提示信息", "年份不能为空", "info");
+                    return;
+                }
+                if (IsEmpty($("#month").val())) {
+                    $("#month").foucs();
+                    swal("提示信息", "月份不能为空", "info");
+                    return;
+                }
+                if (IsEmpty($("#day").val())) {
+                    $("#day").foucs();
+                    swal("提示信息", "日期不能为空", "info");
+                    return;
+                }
+                if (IsEmpty($("#hour").val())) {
+                    $("#hour").foucs();
+                    swal("提示信息", "小时不能为空", "info");
+                    return;
+                }
+                if (IsEmpty($("#minute").val())) {
+                    $("#minute").foucs();
+                    swal("提示信息", "分钟不能为空", "info");
+                    return;
+                }
+                if (IsEmpty($("#second").val())) {
+                    $("#second").foucs();
+                    swal("提示信息", "秒不能为空", "info");
+                    return;
+                }
+                if ($("#year").val().length != 4 || parseInt($("#year").val()) < 1970 || parseInt($("#year").val()) > 2099) {
+                    $("#year").foucs();
+                    swal("提示信息", "年份格式不正确", "info");
+                    return;
+                }
+
+                if (parseInt($("#month").val()) < 1 || parseInt($("#month").val()) > 12) {
+                    $("#month").foucs();
+                    swal("提示信息", "月份格式不正确", "info");
+                    return;
+                }
+
+                if (parseInt($("#day").val()) < 1 || parseInt($("#day").val()) > 31) {
+                    $("#day").foucs();
+                    swal("提示信息", "日期格式不正确", "info");
+                    return;
+                }
+
+                if (parseInt($("#hour").val()) < 1 || parseInt($("#hour").val()) > 24) {
+                    $("#hour").foucs();
+                    swal("提示信息", "小时格式不正确", "info");
+                    return;
+                }
+
+                if (parseInt($("#minute").val()) < 1 || parseInt($("#minute").val()) > 60) {
+                    $("#minute").foucs();
+                    swal("提示信息", "分钟格式不正确", "info");
+                    return;
+                }
+
+                if (parseInt($("#second").val()) < 1 || parseInt($("#second").val()) > 60) {
+                    $("#second").foucs();
+                    swal("提示信息", "分钟格式不正确", "info");
+                    return;
+                }
+
+                // 获取下拉框的内容
+                var timestamptype = $("#buttonText3").text();
+
+                var stringdate = $("#year").val() + "-" + $("#month").val() + "-" + $("#day").val() + " " + $("#hour").val() + ":" + $("#minute").val() + ":" + $("#second").val();
+                // 20201225 wujianming 
+                $.ajax({
+                    url: "/Codeconversion/AjaxCalCodeConvert",
+                    async: false,
+                    type: 'post',
+                    dataType: "json",
+                    contentType: "application/json", //必须这样写
+                    data: JSON.stringify({
+                        DataType: "DateToTimestamp" + timestamptype,
+                        InputParam: stringdate,
+                        TimeStamp: Date.parse(new Date()) / 1000
+                    }),// 用秒的时间戳
+                    success: function (json) {
+                        if (json.ErrorCode == 0) {
+                            $("#convertunix").val(json.ErrorMessage);
+                        }
+                        else {
+                            swal("错误号" + json.ErrorCode, "错误信息" + json.ErrorMessage, "error");
+                            throw new Error("错误号" + json.ErrorCode + ", 错误信息" + json.ErrorMessage);
+                        }
+                    }
+                });
+            });
+
+            // asill / native
+            $("#ascii2nativebtn").bind("click", function () {
+                if (IsEmpty(editor_ascill.getValue().replace(/<\/?.+?>/g, ""))) {
+                    swal("提示信息", "请输入要转换的字符", "info");
+                    return;
+                }
+
+                // 获取下拉框的内容
+                var ascillnativetype = $("#buttonText4").text();
+
+                // 20201225 wujianming 
+                $.ajax({
+                    url: "/Codeconversion/AjaxCalCodeConvert",
+                    async: false,
+                    type: 'post',
+                    dataType: "json",
+                    contentType: "application/json", //必须这样写
+                    data: JSON.stringify({
+                        DataType: "AsciiToNativeBy" + ascillnativetype,
+                        InputParam: htmlDecodeByRegExp(editor_ascill.getValue().replace(/<\/?.+?>/g, "")),
+                        TimeStamp: Date.parse(new Date()) / 1000
+                    }),// 用秒的时间戳
+                    success: function (json) {
+                        if (json.ErrorCode == 0) {
+                            editor_native.setValue(json.ErrorMessage);
+                        }
+                        else {
+                            swal("错误号" + json.ErrorCode, "错误信息" + json.ErrorMessage, "error");
+                            throw new Error("错误号" + json.ErrorCode + ", 错误信息" + json.ErrorMessage);
+                        }
+                    }
+                });
+            });
+
+            $("#native2asciibtn").bind("click", function () {
+                if (IsEmpty(editor_ascill.getValue().replace(/<\/?.+?>/g, ""))) {
+                    swal("提示信息", "请输入要转换的字符", "info");
+                    return;
+                }
+
+                // 获取下拉框的内容
+                var ascillnativetype = $("#buttonText4").text();
+
+                // 20201225 wujianming 
+                $.ajax({
+                    url: "/Codeconversion/AjaxCalCodeConvert",
+                    async: false,
+                    type: 'post',
+                    dataType: "json",
+                    contentType: "application/json", //必须这样写
+                    data: JSON.stringify({
+                        DataType: "NativeToAsciiBy" + ascillnativetype,
+                        InputParam: htmlDecodeByRegExp(editor_ascill.getValue().replace(/<\/?.+?>/g, "")),
+                        TimeStamp: Date.parse(new Date()) / 1000
+                    }),// 用秒的时间戳
+                    success: function (json) {
+                        if (json.ErrorCode == 0) {
+                            editor_native.setValue(json.ErrorMessage);
+                        }
+                        else {
+                            swal("错误号" + json.ErrorCode, "错误信息" + json.ErrorMessage, "error");
+                            throw new Error("错误号" + json.ErrorCode + ", 错误信息" + json.ErrorMessage);
+                        }
+                    }
+                });
+            });
+
+            $("#nativeasciiclearbtn").bind("click", function () {
+                editor_ascill.setValue('');
+                editor_native.setValue('');
+            });
+
+            // Hex编码 / 解码
+            // 20210111 wujianming 新增前后台交互 HexEncode编码
+            $("#hexencodebtn").bind("click", function () {
+                if (IsEmpty(editor_hex.getValue().replace(/<\/?.+?>/g, ""))) {
+                    swal("提示信息", "请输入要转换的字符", "info");
+                    return;
+                }
+                // 获取下拉框的内容
+                var utfgb2312 = $("#buttonText5").text();
+
+                if (utfgb2312 == "选择") {
+                    swal("提示信息", "请选择编码类型", "info");
+                    return;
+                }
+
+                // 20201225 wujianming 
+                $.ajax({
+                    url: "/Codeconversion/AjaxCalCodeConvert",
+                    async: false,
+                    type: 'post',
+                    dataType: "json",
+                    contentType: "application/json", //必须这样写
+                    data: JSON.stringify({
+                        DataType: "HexEncodeBy" + utfgb2312,
+                        InputParam: htmlDecodeByRegExp(editor_hex.getValue().replace(/<\/?.+?>/g, "")),
+                        TimeStamp: Date.parse(new Date()) / 1000
+                    }),// 用秒的时间戳
+                    success: function (json) {
+                        if (json.ErrorCode == 0) {
+                            editor_hex.setValue(htmlEncodeByRegExp(json.ErrorMessage));
+                        }
+                        else {
+                            swal("错误号" + json.ErrorCode, "错误信息" + json.ErrorMessage, "error");
+                            throw new Error("错误号" + json.ErrorCode + ", 错误信息" + json.ErrorMessage);
+                        }
+                    }
+                });
+            });
+
+            // 20210111 wujianming 新增前后台交互 HexDecode编码
+            $("#hexdecodebtn").bind("click", function () {
+                if (IsEmpty(editor_hex.getValue().replace(/<\/?.+?>/g, ""))) {
+                    swal("提示信息", "请输入要转换的字符", "info");
+                    return;
+                }
+
+                // 获取下拉框的内容
+                var utfgb2312 = $("#buttonText5").text();
+
+                if (utfgb2312 == "选择") {
+                    swal("提示信息", "请选择编码类型", "info");
+                    return;
+                }
+
+                // 20201225 wujianming 
+                $.ajax({
+                    url: "/Codeconversion/AjaxCalCodeConvert",
+                    async: false,
+                    type: 'post',
+                    dataType: "json",
+                    contentType: "application/json", //必须这样写
+                    data: JSON.stringify({
+                        DataType: "HexDecodeBy" + utfgb2312,
+                        InputParam: htmlDecodeByRegExp(editor_hex.getValue().replace(/<\/?.+?>/g, "")),
+                        TimeStamp: Date.parse(new Date()) / 1000
+                    }),// 用秒的时间戳
+                    success: function (json) {
+                        if (json.ErrorCode == 0) {
+                            editor_hex.setValue(htmlEncodeByRegExp(json.ErrorMessage));
+                        }
+                        else {
+                            swal("错误号" + json.ErrorCode, "错误信息" + json.ErrorMessage, "error");
+                            throw new Error("错误号" + json.ErrorCode + ", 错误信息" + json.ErrorMessage);
+                        }
+                    }
+                });
+            });
+
+            // Hex 编码/解码 清空
+            $("#clearhexbtn").bind("click", function () {
+                editor_hex.setValue('');
+            });
+
+            // Html编码 / 解码
+            // 20210111 wujianming 新增前后台交互 HtmlEncode编码
+            $("#htmlencodebtn").bind("click", function () {
+                if (IsEmpty(editor_html.getValue().replace(/<\/?.+?>/g, ""))) {
+                    swal("提示信息", "请输入要转换的字符", "info");
+                    return;
+                }
+ 
+                // 20201225 wujianming 
+                $.ajax({
+                    url: "/Codeconversion/AjaxCalCodeConvert",
+                    async: false,
+                    type: 'post',
+                    dataType: "json",
+                    contentType: "application/json", //必须这样写
+                    data: JSON.stringify({
+                        DataType: "HtmlEncode",
+                        InputParam: htmlDecodeByRegExp(editor_html.getValue().replace(/<\/?.+?>/g, "")),
+                        TimeStamp: Date.parse(new Date()) / 1000
+                    }),// 用秒的时间戳
+                    success: function (json) {
+                        if (json.ErrorCode == 0) {
+                            editor_html.setValue(htmlEncodeByRegExp(json.ErrorMessage));
+                        }
+                        else {
+                            swal("错误号" + json.ErrorCode, "错误信息" + json.ErrorMessage, "error");
+                            throw new Error("错误号" + json.ErrorCode + ", 错误信息" + json.ErrorMessage);
+                        }
+                    }
+                });
+            });
+
+            // 20210111 wujianming 新增前后台交互 HtmlDecode编码
+            $("#htmldecodebtn").bind("click", function () {
+                if (IsEmpty(editor_html.getValue().replace(/<\/?.+?>/g, ""))) {
+                    swal("提示信息", "请输入要转换的字符", "info");
+                    return;
+                }
+
+                // 20201225 wujianming 
+                $.ajax({
+                    url: "/Codeconversion/AjaxCalCodeConvert",
+                    async: false,
+                    type: 'post',
+                    dataType: "json",
+                    contentType: "application/json", //必须这样写
+                    data: JSON.stringify({
+                        DataType: "HtmlDecode",
+                        InputParam: htmlDecodeByRegExp(editor_html.getValue().replace(/<\/?.+?>/g, "")),
+                        TimeStamp: Date.parse(new Date()) / 1000
+                    }),// 用秒的时间戳
+                    success: function (json) {
+                        if (json.ErrorCode == 0) {
+                            editor_html.setValue(htmlEncodeByRegExp(json.ErrorMessage));
+                        }
+                        else {
+                            swal("错误号" + json.ErrorCode, "错误信息" + json.ErrorMessage, "error");
+                            throw new Error("错误号" + json.ErrorCode + ", 错误信息" + json.ErrorMessage);
+                        }
+                    }
+                });
+            });
+
+            // Html 编码/解码 清空
+            $("#clearhtmlbtn").bind("click", function () {
+                editor_html.setValue('');
+            });
+
+            // TODO 获取参数 显示不同的tab
         });
     })(jQuery);
 </script>

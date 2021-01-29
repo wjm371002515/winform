@@ -31,7 +31,7 @@
     <item gid="4e072ede-c72b-47b4-809a-05c1447fa98e">
       <name>pk_ou_user</name>
       <indexfieldlst>UserId, OuId</indexfieldlst>
-      <constraint_type>0</constraint_type>
+      <constraint_type>1</constraint_type>
     </item>
   </indexsinfo>
 </datatype>

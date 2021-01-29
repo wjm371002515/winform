@@ -1,0 +1,55 @@
+﻿后端 使用ToInt32
+using JCodes.Framework.Common.Extension;
+frontLogInfo.ErrorLineNo =  model.Data1.ToInt32();
+
+前台AJAX请求
+
+TODO Font, 错误号
+// 20201222 wujianming 新增前后台交互
+            $("#asciitounicodebtn").bind("click", function () {
+                if (IsEmpty(editor.getValue().replace(/<\/?.+?>/g, ""))) {
+                    swal("提示信息", "请输入要转换的字符", "info");
+                    return;
+                }
+
+                // 20201225 wujianming 
+                $.ajax({
+                    url: "/Codeconversion/AjaxCalCodeConvert",
+                    async: false,
+                    type: 'post',
+                    dataType: "json",
+                    contentType: "application/json", //必须这样写
+                    data: JSON.stringify({ DataType: "ASCIIToUnicode",
+                            InputParam: editor.getValue().replace(/<\/?.+?>/g, ""),
+                            TimeStamp: Date.parse(new Date()) / 1000 }),// 用秒的时间戳
+                    success: function (json) {
+                        if (json.ErrorCode == 0) {
+                            editor_after.setValue(htmlEncodeByRegExp(json.ErrorMessage));
+                        }
+                        else
+                        {
+                            swal("错误号" + json.ErrorCode, "错误信息" + json.ErrorMessage, "error");
+                            throw new Error("错误号" + json.ErrorCode + ", 错误信息" + json.ErrorMessage);
+                        }
+                    }
+                });
+            });
+
+
+使用错误号
+ToJsonContent(new ReturnResult() { ErrorCode = 000009, ErrorMessage = dicErrInfo["E000009"].ChineseName, LogLevel = dicErrInfo["E000009"].LogLevel });
+// TODO
+https://link.csdn.net/?target=http%3A%2F%2Fwww.cnblogs.com%2Ftwzy%2Fp%2F4922962.html
+https://www.bejson.com/convert/ox2str/
+http://www.spriteapp.com/user_agreement.html
+
+出现异常
+catch(Exception ex)
+                {
+                    LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(BusinessController<B, T>));
+
+                    rr.ErrorCode = 000015;
+                    rr.ErrorMessage = dicErrInfo["E000015"].ChineseName;
+                    rr.ErrorPath = "BusinessController->Insert(T info)";
+                    rr.LogLevel = dicErrInfo["E000015"].LogLevel;
+                }

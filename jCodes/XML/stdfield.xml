@@ -2888,5 +2888,77 @@
       <remark>
       </remark>
     </item>
+    <item gid="c4bc1e08-5f56-43a6-9aa9-f6a152078288">
+      <name>TimeStamp</name>
+      <chineseName>时间戳</chineseName>
+      <datatype>Number_10</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c12c5ba9-1414-4682-abbf-897a6885daf7">
+      <name>InputParam</name>
+      <chineseName>输入参数</chineseName>
+      <datatype>Char_max</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="f27cc70e-57a9-406a-b3ba-e688019666f7">
+      <name>ErrorLineNo</name>
+      <chineseName>错误行号</chineseName>
+      <datatype>Number_8</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="1d7c4969-37a3-4fb1-a504-c6b8738c6de1">
+      <name>ErrorColumNo</name>
+      <chineseName>错误列号</chineseName>
+      <datatype>Number_8</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="fa53c1b5-1264-42cc-84b0-3c5bf6ecf0e5">
+      <name>FileChunk</name>
+      <chineseName>当前文件块编号</chineseName>
+      <datatype>Number_6</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="57d16e33-5583-48ff-a201-611c64288b17">
+      <name>FileChunks</name>
+      <chineseName>文件块总数量</chineseName>
+      <datatype>Number_6</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="368eed31-a88a-4e94-b7d7-fe6c7f887f47">
+      <name>Md5Value</name>
+      <chineseName>MD5值</chineseName>
+      <datatype>Char_128</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c005d273-1e7f-404d-b040-8ec0ef446114">
+      <name>Ceng</name>
+      <chineseName>层</chineseName>
+      <datatype>Char_8</datatype>
+      <dictno>
+      </dictno>
+      <remark>
+      </remark>
+    </item>
   </dataitem>
 </datatype>

@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="50Go_todo\Coupon.cs" />
     <Compile Include="50Go_todo\CouponCategory.cs" />
+    <Compile Include="Business\Joke.cs" />
     <Compile Include="Dic\FileUpload.cs" />
     <Compile Include="Contact_todo\Address.cs" />
     <Compile Include="Contact_todo\AddressGroup.cs" />
@@ -58,8 +59,7 @@
     <Compile Include="Dic\MVCRouteConfig.cs" />
     <Compile Include="Dic\Sysparameter.cs" />
     <Compile Include="Dic\Province.cs" />
-    <Compile Include="Dongnanhai_todo\DongnanhaiVotesUser.cs" />
-    <Compile Include="Dongnanhai_todo\DongnanhaiVotes.cs" />
+    <Compile Include="Dongnanhai\DongnanhaiVotes.cs" />
     <Compile Include="General\GeneralSql.cs" />
     <Compile Include="Machines_todo\Machines.cs" />
     <Compile Include="Other\Consignment.cs" />
@@ -67,6 +67,7 @@
     <Compile Include="Other\UnissuedBondUpdateData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\BlackIP.cs" />
+    <Compile Include="Security\FrontLog.cs" />
     <Compile Include="Security\Function.cs" />
     <Compile Include="Security\LoginLog.cs" />
     <Compile Include="Security\Menu.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Security\Role.cs" />
     <Compile Include="Security\RoleData.cs" />
     <Compile Include="Security\SystemLog.cs" />
+    <Compile Include="Security\SystemTimeLine.cs" />
     <Compile Include="Security\SystemType.cs" />
     <Compile Include="Security\User.cs" />
     <Compile Include="WareHouseMis_todo\ItemDetail.cs" />

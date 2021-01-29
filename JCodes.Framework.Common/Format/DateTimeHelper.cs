@@ -87,6 +87,22 @@ namespace JCodes.Framework.Common.Format
             dtWeekeEnd = dt.AddDays((int)DayOfWeek.Saturday - (int)dt.DayOfWeek + 1).AddDays(-2);
         }
 
+        /// <summary>
+        /// 获取最小的时间
+        /// </summary>
+        /// <returns></returns>
+        public static DateTime GetMinDateTime() {
+            return new DateTime(1970, 1, 1, 0, 0, 0, 0);
+        }
+
+        /// <summary>
+        /// 获取最大的时间
+        /// </summary>
+        /// <returns></returns>
+        public static DateTime GetMaxDateTime() {
+            return new DateTime(2099, 12, 31, 0, 0, 0, 0);
+        }
+
         #region P/Invoke 设置本地时间
 
         [DllImport("kernel32.dll")]

@@ -57,12 +57,18 @@
             this.checkedComboBoxEdit1 = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             this.comboBoxEdit1 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.lookUpEdit1 = new DevExpress.XtraEditors.LookUpEdit();
+            this.txtContext = new System.Windows.Forms.TextBox();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.txtTTFfilePath = new System.Windows.Forms.TextBox();
+            this.txtTTFStartNum = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoExEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkedComboBoxEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTTFStartNum.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btnMenu
@@ -227,10 +233,10 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(194, 213);
+            this.button7.Location = new System.Drawing.Point(182, 213);
             this.button7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(159, 42);
+            this.button7.Size = new System.Drawing.Size(171, 42);
             this.button7.TabIndex = 0;
             this.button7.Text = "生成SQL";
             this.button7.UseVisualStyleBackColor = true;
@@ -364,15 +370,60 @@
             this.lookUpEdit1.Size = new System.Drawing.Size(300, 28);
             this.lookUpEdit1.TabIndex = 6;
             // 
+            // txtContext
+            // 
+            this.txtContext.Location = new System.Drawing.Point(609, 63);
+            this.txtContext.Name = "txtContext";
+            this.txtContext.Size = new System.Drawing.Size(279, 29);
+            this.txtContext.TabIndex = 2;
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(459, 73);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(103, 22);
+            this.labelControl1.TabIndex = 7;
+            this.labelControl1.Text = "labelControl1";
+            // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Location = new System.Drawing.Point(383, 182);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(198, 39);
+            this.simpleButton1.TabIndex = 8;
+            this.simpleButton1.Text = "读取TTF文件";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
+            // txtTTFfilePath
+            // 
+            this.txtTTFfilePath.Location = new System.Drawing.Point(383, 147);
+            this.txtTTFfilePath.Name = "txtTTFfilePath";
+            this.txtTTFfilePath.Size = new System.Drawing.Size(455, 29);
+            this.txtTTFfilePath.TabIndex = 2;
+            // 
+            // txtTTFStartNum
+            // 
+            this.txtTTFStartNum.EditValue = "1";
+            this.txtTTFStartNum.Location = new System.Drawing.Point(383, 113);
+            this.txtTTFStartNum.Name = "txtTTFStartNum";
+            this.txtTTFStartNum.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtTTFStartNum.Size = new System.Drawing.Size(100, 28);
+            this.txtTTFStartNum.TabIndex = 9;
+            // 
             // InitDataFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1047, 867);
+            this.Controls.Add(this.txtTTFStartNum);
+            this.Controls.Add(this.simpleButton1);
+            this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.lookUpEdit1);
             this.Controls.Add(this.comboBoxEdit1);
             this.Controls.Add(this.checkedComboBoxEdit1);
             this.Controls.Add(this.gridControl1);
+            this.Controls.Add(this.txtTTFfilePath);
+            this.Controls.Add(this.txtContext);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button11);
@@ -404,6 +455,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.checkedComboBoxEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTTFStartNum.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -440,5 +492,10 @@
         private DevExpress.XtraEditors.CheckedComboBoxEdit checkedComboBoxEdit1;
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit1;
         private DevExpress.XtraEditors.LookUpEdit lookUpEdit1;
+        private System.Windows.Forms.TextBox txtContext;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private System.Windows.Forms.TextBox txtTTFfilePath;
+        private DevExpress.XtraEditors.TextEdit txtTTFStartNum;
     }
 }

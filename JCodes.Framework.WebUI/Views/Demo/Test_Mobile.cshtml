@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>投票情况</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="/Content/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+    <link href="/Content/Index/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <!-- Sweet Alert -->
+    <link href="/Content/MyPlugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="/Content/Index/css/animate.min.css" rel="stylesheet">
+    <link href="/Content/Index/css/style.min.css?v=4.0.0" rel="stylesheet">
+    <link href="/Content/MyPlugins/layer_mobile/need/layer.css" rel="stylesheet" />
+    <base target="_blank">
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <!-- Panel Other -->
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <button id="test" type="button" class="btn btn-block btn-outline btn-primary" value="测试按钮">测试按钮</button>
+                        <textarea id="demo5a" style="display:none;">
+                            <div style="padding:20px;">
+                                <p style="margin-bottom: 20px;">仿佛是一个全新的页面</p>
+                                <a href="javascript:;" class="button" onclick="layer.closeAll(); layer.open({content:'世界恢复原样 →_→', time:2});  ">我要关闭！！</a>
+                            </div>
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Panel Other -->
+    </div>
+
+    <script src="/Content/Index/js/jquery-1.12.4-wp.js"></script>
+    <script src="/Content/metronic/assets/global/plugins/bootstrap/js/bootstrap.min.js?v=3.3.5"></script>
+    <script src="/Content/Index/js/content.min.js?v=1.0.1"></script>
+    <script src="/Content/MyPlugins/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="/Content/MyPlugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="/Content/MyPlugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+    <script src="/Content/MyPlugins/layer_mobile/layer.js"></script>
+    <script type="text/javascript">
+        (function ($) { //create closure so we can safely use $ as alias for jQuery
+            $(document).ready(function () {
+                "use strict";
+                $("#test").bind("click", function () {
+                    layer.open({
+                        type: 2
+                      , title: '你好，layer。'
+                      , content: 'http://www.jcodes.cn/UploadFiles/多媒体文件/DictData.xls'
+                      , anim: 'up'
+                      , style: 'position:fixed; left:0; top:0; width:100%; height:100%; border: none; -webkit-animation-duration: .5s; animation-duration: .5s;'
+                    });
+                });
+
+            });
+        })(jQuery);
+    </script>
+    </body>
+</html>

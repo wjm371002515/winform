@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using System;
+using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -26,8 +27,7 @@ namespace JCodes.Framework.WebUI
         /// </summary>
         private void InitData()
         {
-            // 取值 var dict = JCodes.Framework.Common.Office.Cache.Instance["Dict"] as Dictionary<Int32, String>;
-            JCodes.Framework.Common.Office.Cache.Instance["Dict"] = new JCodes.Framework.Common.ErrorInfo().GetErrorInfo();
+            new JCodes.Framework.Common.ErrorInfo().ReInitErrorInfo();
         }
     }
 }

@@ -10,6 +10,7 @@ using JCodes.Framework.jCodesenum;
 using JCodes.Framework.BLL;
 using JCodes.Framework.Common.Framework;
 using System.Web.Routing;
+using JCodes.Framework.Common;
 
 namespace JCodes.Framework.WebUI.Controllers.Base
 {
@@ -31,9 +32,8 @@ namespace JCodes.Framework.WebUI.Controllers.Base
         public ActionResult AjaxCalDateByDiffDay(string date, Int32 days)
         {
             if (!ValidateUtil.IsDate(date))
-                return ToJsonContent(new ReturnResult() { ErrorCode = 10001, ErrorMessage = "日期格式错误", LogLevel = (short)LogLevel.LOG_LEVEL_INFO });
+                return ToJsonContent(new ReturnResult() { ErrorCode = 000009, ErrorMessage = dicErrInfo["E000009"].ChineseName, LogLevel = dicErrInfo["E000009"].LogLevel });
             DateTime resultDT = DateTime.Parse(date).AddDays(days);
-
             SystemLogInfo systemLogInfo = GetUserSystemInfo();
             systemLogInfo.LogLevel = (Int32)LogLevel.LOG_LEVEL_INFO;
             systemLogInfo.ModuleInfo = ControllerContext.Controller.ControllerContext.RouteData.Values["controller"].ToString();
@@ -48,9 +48,9 @@ namespace JCodes.Framework.WebUI.Controllers.Base
         public ActionResult AjaxCalDaysByDiffDate(string startdate, string enddate)
         {
             if (!ValidateUtil.IsDate(startdate))
-                return ToJsonContent(new ReturnResult() { ErrorCode = 10001, ErrorMessage = "开始日期格式错误", LogLevel = (short)LogLevel.LOG_LEVEL_INFO }); 
+                return ToJsonContent(new ReturnResult() { ErrorCode = 000010, ErrorMessage = dicErrInfo["E000010"].ChineseName, LogLevel = dicErrInfo["E000010"].LogLevel }); 
             if (!ValidateUtil.IsDate(enddate))
-                return ToJsonContent(new ReturnResult() { ErrorCode = 10001, ErrorMessage = "结束日期格式错误", LogLevel = (short)LogLevel.LOG_LEVEL_INFO });
+                return ToJsonContent(new ReturnResult() { ErrorCode = 000011, ErrorMessage = dicErrInfo["E000011"].ChineseName, LogLevel = dicErrInfo["E000011"].LogLevel });
 
             TimeSpan diffDateSpan = DateTimeHelper.GetDiffTime2(DateTime.Parse(enddate), DateTime.Parse(startdate));
 
@@ -62,7 +62,21 @@ namespace JCodes.Framework.WebUI.Controllers.Base
             BLLFactory<SystemLog>.Instance.AddSystemLog(systemLogInfo);
            
             return ToJsonContent(new ReturnResult(){ ErrorCode = 0, ErrorMessage = diffDateSpan.Days.ToString(), LogLevel = (short)LogLevel.LOG_LEVEL_INFO});
+
+            
         }
+
+        public ActionResult Index_zheshang_v1()
+        {
+            return View();
+        }
+
+        public ActionResult Index_fileupload_demo()
+        {
+            return View();
+        }
+
+
 
         /// <summary>
         /// 免责声明
@@ -81,7 +95,6 @@ namespace JCodes.Framework.WebUI.Controllers.Base
         }
 
         public ActionResult Test2() {
-
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             return ToJsonContent(new ReturnResult() { ErrorCode = 0, ErrorMessage = "吴建明测试内容", LogLevel = (short)LogLevel.LOG_LEVEL_INFO });
         }

@@ -10,9 +10,9 @@
       <fieldnamespace>
       </fieldnamespace>
       <version>1.0.0.0</version>
-      <folder>WebMis</folder>
+      <folder>Dic</folder>
       <baseclass>BaseEntity</baseclass>
-      <lasttime>2019-09-23 20:50:04.824</lasttime>
+      <lasttime>2020-12-27 13:11:08.826</lasttime>
       <remark>
       </remark>
     </item>
@@ -40,6 +40,21 @@
     </item>
     <item gid="af10202e-0154-4023-9378-068742146735">
       <name>CreatorTime</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="73337d1b-9ebf-449f-9b52-6870b58edbfa">
+      <name>Name</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="21a031df-3e44-4006-8477-21b9109f1245">
+      <name>ChineseName</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="2adc62a2-5c81-481b-8287-0a024b5b315f">
+      <name>StrValue</name>
       <remark>
       </remark>
     </item>

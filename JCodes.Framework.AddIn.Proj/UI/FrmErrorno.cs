@@ -17,6 +17,7 @@ using System.Linq;
 using System.Drawing;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.Utils;
+using System.Diagnostics;
 
 // 参考文档 http://www.cnblogs.com/a1656344531/archive/2012/11/28/2792863.html
 
@@ -538,6 +539,85 @@ namespace JCodes.Framework.AddIn.Proj
                     System.Diagnostics.Process.Start(saveFile);
                 }
             }
+        }
+
+        /// <summary>
+        /// 导出Xml数据
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnExportXml_Click(object sender, EventArgs e)
+        {
+            #region 根据项目属性获取数据类型
+            XmlHelper xmlprojectthelper = new XmlHelper(@"XML\project.xml");
+            XmlNodeList xmlprejectNodeLst = xmlprojectthelper.Read("datatype");
+
+            if (xmlprejectNodeLst.Count == 0)
+                return;
+
+            XmlNode xn1project = xmlprejectNodeLst[0];
+
+            // 将节点转换为元素，便于得到节点的属性值
+            XmlElement xeproject = (XmlElement)xn1project;
+
+            // 得到DataTypeInfo节点的所有子节点
+            XmlNodeList xnl0project = xeproject.ChildNodes;
+
+            string generalPath = xnl0project.Item(9).InnerText;
+            #endregion
+
+            //创建XmlDocument对象
+            XmlDocument xmlDoc = new XmlDocument();
+            XmlDeclaration xmlSM = xmlDoc.CreateXmlDeclaration("1.0", "UTF-8", null);
+             //追加xmldecl位置
+            xmlDoc.AppendChild(xmlSM);
+             //添加一个名为Gen的根节点
+            XmlElement xml = xmlDoc.CreateElement("", "errors", "");
+            //追加Gen的根节点位置
+            xmlDoc.AppendChild(xml);
+            //添加另一个节点,与Gen所匹配，查找<Gen>
+            XmlNode gen = xmlDoc.SelectSingleNode("errors");
+
+            XmlNodeList xmlNodeLst = xmlhelper.Read("datatype");
+            List<ErrornoInfo> errornoInfoList = new List<ErrornoInfo>();
+            Int32 IndexNum = 1;
+            foreach (XmlNode xn1 in xmlNodeLst)
+            {
+                ErrornoInfo errornoInfo = new ErrornoInfo();
+                // 将节点转换为元素，便于得到节点的属性值
+                XmlElement xe = (XmlElement)xn1;
+                // 得到Type和ISBN两个属性的属性值
+                errornoInfo.Gid = xe.GetAttribute("gid").ToString();
+
+                // 得到ErrornoInfo节点的所有子节点
+                XmlNodeList xnl0 = xe.ChildNodes;
+                errornoInfo.Name = xnl0.Item(0).InnerText;
+                errornoInfo.ChineseName = xnl0.Item(1).InnerText;
+                errornoInfo.LogLevel = string.IsNullOrEmpty(xnl0.Item(2).InnerText) ? (short)-1 : Convert.ToInt16(xnl0.Item(2).InnerText);
+                errornoInfo.Remark = xnl0.Item(3).InnerText;
+                errornoInfo.lstInfo = new Dictionary<string, DevExpress.XtraEditors.DXErrorProvider.ErrorInfo>();
+
+                // id="E000001" name="ERR_TEST" chinesename="" loglevel="" remark=""
+                XmlElement zi = xmlDoc.CreateElement("error");
+                //为<Zi>节点的属性
+                zi.SetAttribute("id", IndexNum.ToString());
+                zi.SetAttribute("name", string.Format("E{0}", errornoInfo.Name));
+                zi.SetAttribute("chinesename", errornoInfo.ChineseName);
+                zi.SetAttribute("loglevel", ((short)errornoInfo.LogLevel).ToString());
+                zi.SetAttribute("remark", errornoInfo.Remark);
+                gen.AppendChild(zi);//添加到<Gen>节点中 
+
+                IndexNum++;
+            }
+
+            //保存好创建的XML文档
+            xmlDoc.Save(string.Format("{0}/error.xml", generalPath));
+
+            MessageDxUtil.ShowTips("导出xml成功");
+            Process p = new Process();
+            p.StartInfo.FileName = "explorer.exe";
+            p.StartInfo.Arguments = @" /select, " + generalPath;
+            p.Start();
         }
 
         /// <summary>

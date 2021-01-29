@@ -16,19 +16,37 @@
   </basicinfo>
   <fieldsinfo>
     <item gid="2d40d658-9c9f-4e0c-a48e-36baa29e7e18">
-      <name>Id</name>
+      <name>FangHao</name>
       <isnull>0</isnull>
       <remark>
       </remark>
     </item>
     <item gid="cfe40581-8353-49ae-9248-8cb0db8fd9ce">
-      <name>TestName1</name>
+      <name>Util</name>
       <isnull>0</isnull>
       <remark>
       </remark>
     </item>
     <item gid="4be6a1ba-c79a-4c28-8b16-3db3e53e7ac1">
+      <name>Zhuang</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="6cbd125e-1dd9-4bd3-89aa-a42f4cd766af">
       <name>Name</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="0d441245-cdcf-4551-a965-b9e364c1cf6a">
+      <name>Ceng</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="7c644eed-a439-40f4-82f1-f61f7f2b1ed0">
+      <name>EnableStatus</name>
       <isnull>0</isnull>
       <remark>
       </remark>

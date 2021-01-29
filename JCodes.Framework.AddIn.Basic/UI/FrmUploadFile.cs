@@ -137,7 +137,7 @@ namespace JCodes.Framework.AddIn.Basic
                         info.CreatorId = CreatorId;//所属主表记录ID
                         info.AttachmentGid = AttachmentGid;
 
-                        ReturnResult result = BLLFactory<FileUpload>.Instance.Upload(info);
+                        /*ReturnResult result = BLLFactory<FileUpload>.Instance.Upload(info);
                         if (result.ErrorCode != 0)
                         {
                             sucess = false;
@@ -149,7 +149,7 @@ namespace JCodes.Framework.AddIn.Basic
                         {
                             fileStatus[file] = "成功";
                             state = string.Format("{0}|成功", file);
-                        }
+                        }*/
 
                         i++;
                         step = Convert.ToInt32((100.0 / (fileList.Count * 1.0)) * i);

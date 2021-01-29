@@ -2,74 +2,317 @@
 <datatype>
   <item gid="2cbd37e9-c0ff-4fa1-9735-c30185310214">
     <name>000000</name>
-    <chineseName>OPERATION_OK</chineseName>
+    <chineseName>操作成功</chineseName>
     <errType>7</errType>
-    <remark>操作成功</remark>
+    <remark>
+    </remark>
   </item>
   <item gid="b0dd1066-410b-4794-b3a6-d1d46d7194ec">
     <name>000001</name>
-    <chineseName>OPERATION_ERR</chineseName>
+    <chineseName>操作失败</chineseName>
     <errType>3</errType>
-    <remark>操作失败</remark>
+    <remark>
+    </remark>
   </item>
   <item gid="dcb6edcc-c2be-4a9b-9e41-0afb87ae01c3">
     <name>000002</name>
-    <chineseName>DICTIONARY_QUERY_ERR</chineseName>
+    <chineseName>查询数据字典失败</chineseName>
     <errType>4</errType>
-    <remark>查询数据字典失败</remark>
+    <remark>
+    </remark>
   </item>
   <item gid="b07cfc5b-d4f9-4b1e-87f5-34514be336ec">
     <name>000003</name>
-    <chineseName>DICTIONARY_ADD_ERR</chineseName>
+    <chineseName>新增数据字典失败</chineseName>
     <errType>4</errType>
-    <remark>新增数据字典失败</remark>
+    <remark>
+    </remark>
   </item>
   <item gid="be7f5481-9346-469d-b92f-dc96d41d08bb">
     <name>000004</name>
-    <chineseName>DICTIONARY_MOD_ERR</chineseName>
+    <chineseName>修改数据字典失败</chineseName>
     <errType>4</errType>
-    <remark>修改数据字典失败</remark>
+    <remark>
+    </remark>
   </item>
   <item gid="7660fefd-cbed-4af8-aec2-7b525ea4ec65">
     <name>000005</name>
-    <chineseName>DICTIONARY_DEL_ERR</chineseName>
+    <chineseName>删除数据字典失败</chineseName>
     <errType>4</errType>
-    <remark>删除数据字典失败</remark>
+    <remark>
+    </remark>
   </item>
   <item gid="edfd0fba-2c31-4f10-af27-bcbc079465db">
     <name>000006</name>
-    <chineseName>DICTIONARY_EXISTS_ERR</chineseName>
+    <chineseName>数据字典记录已存在</chineseName>
     <errType>4</errType>
-    <remark>数据字典记录已存在</remark>
+    <remark>
+    </remark>
   </item>
   <item gid="20c61011-c2f5-448e-99e4-0456fb1ff996">
     <name>000007</name>
-    <chineseName>DICTIONARY_NOTEXISTS_ERR</chineseName>
+    <chineseName>数据字典记录不存在</chineseName>
     <errType>4</errType>
-    <remark>数据字典记录不存在</remark>
+    <remark>
+    </remark>
+  </item>
+  <item gid="8474b577-9143-4259-b89c-3ebc82f90eab">
+    <name>000008</name>
+    <chineseName>文件不存在</chineseName>
+    <errType>4</errType>
+    <remark>
+    </remark>
+  </item>
+  <item gid="34344032-1589-4b50-a3e0-e7f4aa496fb1">
+    <name>000009</name>
+    <chineseName>日期格式错误</chineseName>
+    <errType>4</errType>
+    <remark>
+    </remark>
+  </item>
+  <item gid="bba18b47-6463-4e85-9722-53226da5aba0">
+    <name>000010</name>
+    <chineseName>开始日期格式错误</chineseName>
+    <errType>4</errType>
+    <remark>
+    </remark>
+  </item>
+  <item gid="1593720c-0826-4ec0-b8f8-bb744f3eb93e">
+    <name>000011</name>
+    <chineseName>结束日期格式错误</chineseName>
+    <errType>4</errType>
+    <remark>
+    </remark>
+  </item>
+  <item gid="1c51c348-a240-465c-a67c-ecec11ae7eef">
+    <name>000012</name>
+    <chineseName>文件上传失败</chineseName>
+    <errType>4</errType>
+    <remark>
+    </remark>
+  </item>
+  <item gid="a3b3b764-3fcf-4b40-95a7-8b2072150f20">
+    <name>000013</name>
+    <chineseName>上传后缀名不合法</chineseName>
+    <errType>4</errType>
+    <remark>
+    </remark>
+  </item>
+  <item gid="f3ff96f6-d7a9-4a6c-bf28-be222226ce12">
+    <name>000014</name>
+    <chineseName>新增记录失败</chineseName>
+    <errType>4</errType>
+    <remark>
+    </remark>
+  </item>
+  <item gid="b7c5a89e-fcd5-4ba1-9a5f-dbb4f4d485e8">
+    <name>000015</name>
+    <chineseName>新增记录出现异常错误</chineseName>
+    <errType>3</errType>
+    <remark>
+    </remark>
+  </item>
+  <item gid="72461a89-108a-4ab3-ae41-1e45a794b416">
+    <name>000016</name>
+    <chineseName>修改记录失败</chineseName>
+    <errType>4</errType>
+    <remark>
+    </remark>
+  </item>
+  <item gid="3a11c116-43ed-4f07-b3e8-480028b48eaa">
+    <name>000017</name>
+    <chineseName>修改记录出现异常错误</chineseName>
+    <errType>3</errType>
+    <remark>
+    </remark>
+  </item>
+  <item gid="0e4235ed-981e-4893-9244-f4acc1baa75d">
+    <name>000018</name>
+    <chineseName>新增修改记录失败</chineseName>
+    <errType>4</errType>
+    <remark>
+    </remark>
+  </item>
+  <item gid="08737e46-e102-4f1d-8033-702d5ebf6d0e">
+    <name>000019</name>
+    <chineseName>新增修改记录出现异常错误</chineseName>
+    <errType>3</errType>
+    <remark>
+    </remark>
+  </item>
+  <item gid="bd7692b0-2e20-4fad-97f8-2f7fd2eea435">
+    <name>000020</name>
+    <chineseName>查找记录不存在</chineseName>
+    <errType>4</errType>
+    <remark>
+    </remark>
+  </item>
+  <item gid="71b58c8e-74cd-4a4e-93af-41c4dd289cfe">
+    <name>000021</name>
+    <chineseName>查找记录异常错误</chineseName>
+    <errType>3</errType>
+    <remark>
+    </remark>
+  </item>
+  <item gid="6cc3b454-72e1-4a63-951f-73ee43f66be7">
+    <name>000022</name>
+    <chineseName>查找键值不存在</chineseName>
+    <errType>4</errType>
+    <remark>
+    </remark>
+  </item>
+  <item gid="12f7fb54-38f6-479b-bc11-dd4c53db75e0">
+    <name>000023</name>
+    <chineseName>查找键值异常错误</chineseName>
+    <errType>3</errType>
+    <remark>
+    </remark>
+  </item>
+  <item gid="dcfbce11-6b8f-41c4-b2ae-5fd87bb98902">
+    <name>000024</name>
+    <chineseName>根据用户Id删除记录失败</chineseName>
+    <errType>4</errType>
+    <remark>
+    </remark>
+  </item>
+  <item gid="030fa1ef-d34c-4677-8bf5-74ede00a829a">
+    <name>000025</name>
+    <chineseName>根据用户Id删除记录出现异常错误</chineseName>
+    <errType>3</errType>
+    <remark>
+    </remark>
+  </item>
+  <item gid="10f7ccfe-a97a-4280-b03c-ca4a687b7223">
+    <name>000026</name>
+    <chineseName>批量根据用户Id删除记录出现异常错误</chineseName>
+    <errType>3</errType>
+    <remark>
+    </remark>
+  </item>
+  <item gid="91956091-cdf6-4da9-ba05-ea9657129fa8">
+    <name>000027</name>
+    <chineseName>根据条件语句删除记录失败</chineseName>
+    <errType>4</errType>
+    <remark>
+    </remark>
+  </item>
+  <item gid="93884b6f-2b81-43dd-86f7-320f9fbe80e0">
+    <name>000028</name>
+    <chineseName>根据条件语句删除记录出现异常错误</chineseName>
+    <errType>3</errType>
+    <remark>
+    </remark>
+  </item>
+  <item gid="4dc175ff-01f8-46e7-ba55-a585789d545e">
+    <name>000029</name>
+    <chineseName>上传类型未配置或者不支持的配置类型</chineseName>
+    <errType>4</errType>
+    <remark>
+    </remark>
+  </item>
+  <item gid="5cb5c111-4786-4eb7-9309-7f77a07ae349">
+    <name>000030</name>
+    <chineseName>文件上传出现异常错误</chineseName>
+    <errType>3</errType>
+    <remark>
+    </remark>
+  </item>
+  <item gid="8ded6ecb-0784-44be-9f9f-c448b9757a86">
+    <name>000031</name>
+    <chineseName>编码格式转化出现异常错误</chineseName>
+    <errType>3</errType>
+    <remark>
+    </remark>
+  </item>
+  <item gid="a75eb2ba-7787-4a69-ae17-b7657d97ff47">
+    <name>000032</name>
+    <chineseName>超过日期范围，系统可用日期为1970/1/1到2099年12月31日</chineseName>
+    <errType>4</errType>
+    <remark>
+    </remark>
+  </item>
+  <item gid="b2f59b16-a5e4-4a2e-9fe1-952496d9b891">
+    <name>000033</name>
+    <chineseName>无效的URL地址</chineseName>
+    <errType>4</errType>
+    <remark>
+    </remark>
   </item>
   <item gid="d4cabf9e-345d-404c-94a6-cee8509e23b5">
     <name>100000</name>
-    <chineseName>WEB_USER_PWD_REFUSE_ERR</chineseName>
+    <chineseName>用户名或密码错误或被禁止登陆</chineseName>
     <errType>4</errType>
-    <remark>用户名或密码错误或被禁止登陆</remark>
+    <remark>
+    </remark>
   </item>
   <item gid="e689f34c-8f31-4927-9c09-8df588e4d678">
     <name>100001</name>
-    <chineseName>WEB_USER_PWD_ERR</chineseName>
+    <chineseName>用户没有管理员权限</chineseName>
     <errType>4</errType>
-    <remark>用户没有管理员权限</remark>
+    <remark>
+    </remark>
   </item>
   <item gid="5585e765-c134-4e4b-9ac6-53eae4603178">
     <name>100002</name>
-    <chineseName>WEB_USER_PWD_MOD_ERR</chineseName>
+    <chineseName>口令初始化失败</chineseName>
     <errType>7</errType>
-    <remark>口令初始化失败</remark>
+    <remark>
+    </remark>
   </item>
   <item gid="bbbd9140-f4df-461a-9d52-372456b955cf">
     <name>100003</name>
-    <chineseName>WEB_USER_OLDPWD_ERR</chineseName>
+    <chineseName>原口令错误</chineseName>
     <errType>1</errType>
-    <remark>原口令错误</remark>
+    <remark>
+    </remark>
+  </item>
+  <item gid="8f8aa5e7-7817-41cc-9644-4d89038bdfd4">
+    <name>100004</name>
+    <chineseName>数据类型不可以为空</chineseName>
+    <errType>4</errType>
+    <remark>
+    </remark>
+  </item>
+  <item gid="5391caa5-513d-4896-8fff-e23a28e1bb1b">
+    <name>100005</name>
+    <chineseName>输入参数不可以为空</chineseName>
+    <errType>4</errType>
+    <remark>
+    </remark>
+  </item>
+  <item gid="439eb8af-8298-4f8e-b317-508fad1f8336">
+    <name>100006</name>
+    <chineseName>用户名不能为空</chineseName>
+    <errType>4</errType>
+    <remark>
+    </remark>
+  </item>
+  <item gid="f6ddccdc-8fb8-41e1-90c5-9eb4b347fb2c">
+    <name>100007</name>
+    <chineseName>密码不能为空</chineseName>
+    <errType>4</errType>
+    <remark>
+    </remark>
+  </item>
+  <item gid="486de047-44ab-426e-b346-b07d6c8c2bc3">
+    <name>100008</name>
+    <chineseName>验证码不能为空</chineseName>
+    <errType>4</errType>
+    <remark>
+    </remark>
+  </item>
+  <item gid="dcfd4793-36ff-4be6-8564-fe6d4b0eb021">
+    <name>100009</name>
+    <chineseName>用户名不存在</chineseName>
+    <errType>4</errType>
+    <remark>
+    </remark>
+  </item>
+  <item gid="da899a12-30ed-45e3-9f32-16659b06c4ae">
+    <name>100010</name>
+    <chineseName>验证码输入有误</chineseName>
+    <errType>4</errType>
+    <remark>
+    </remark>
   </item>
 </datatype>

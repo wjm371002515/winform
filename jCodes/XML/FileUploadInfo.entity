@@ -78,6 +78,21 @@
       <remark>
       </remark>
     </item>
+    <item gid="59b43d78-3778-4684-8ecc-d3e4b3758b50">
+      <name>FileChunk</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="c207bf9b-6b49-4e0f-a3be-19356dd6e681">
+      <name>FileChunks</name>
+      <remark>
+      </remark>
+    </item>
+    <item gid="6492a4dc-806a-4f1c-8d65-938f1cab862d">
+      <name>Md5Value</name>
+      <remark>
+      </remark>
+    </item>
   </fieldsinfo>
   <diyfieldinfo>
     <item gid="ac2c1542-0a20-49d3-8886-c06b863ad29c">

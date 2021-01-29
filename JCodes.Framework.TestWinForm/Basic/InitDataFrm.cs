@@ -4,22 +4,23 @@ using JCodes.Framework.Common.Files;
 using JCodes.Framework.Common.Office;
 using JCodes.Framework.CommonControl.BaseUI;
 using JCodes.Framework.CommonControl.Other;
-using JCodes.Framework.CommonControl.PlugInInterface;
 using JCodes.Framework.Entity;
-using JCodes.Framework.jCodesenum.BaseEnum;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Linq;
 using System.Text;
 using System.Xml;
 using JCodes.Framework.Common.Extension;
 using JCodes.Framework.jCodesenum;
-using JCodes.Framework.Common.Format;
-using System.Collections;
 using JCodes.Framework.BLL;
 using JCodes.Framework.Common.Framework;
+using System.Drawing;
+using System.Drawing.Text;
+using System.Windows.Media;
+using System.IO;
+using JCodes.Framework.Common.Images;
+using JCodes.Framework.Common.Format;
 
 namespace JCodes.Framework.TestWinForm.Basic
 {
@@ -49,6 +50,18 @@ namespace JCodes.Framework.TestWinForm.Basic
             backgroundWorker1.DoWork += new DoWorkEventHandler(backgroundWorker1_DoWork);
             //注册更新UI方法
             backgroundWorker1.ProgressChanged += new ProgressChangedEventHandler(backgroundWorker1_ProgressChanged);
+
+            IconInfo a = new IconReaderHelper().GetIconFromTTF("pump-soap");
+            if (a == null) { MessageDxUtil.ShowError("字体未安装或者查找不到对应的图标或者xml文件不存在"); }
+            else{
+                //必须是unicode码
+                string d = "";
+                string e = StringUtil.UnicodeToString(d);
+                txtContext.Text = string.Format("{0} jackwangcumt", a.StrValue);
+                txtContext.Font = new Font(a.IconCls, 16);
+                txtContext.ForeColor = System.Drawing.Color.Black;
+            }
+          
         }
 
         private void InitData()
@@ -1992,6 +2005,67 @@ namespace JCodes.Framework.TestWinForm.Basic
             FileUtil.AppendText(filePath, sbcontent.ToString() + "\r\n}", Encoding.UTF8);
 
             MessageDxUtil.ShowTips("生成成功");
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            JCodes.Framework.Entity.ErrornoInfo eee = new JCodes.Framework.Common.ErrorInfo().GetErrorInfo("E100001");
+
+            string fontName = "Font Awesome 5 Free Solid";
+            StringBuilder str = new StringBuilder(2000);
+            InstalledFontCollection fonts = new InstalledFontCollection();
+            foreach (System.Drawing.FontFamily family in fonts.Families)
+            {
+                str.Append(family.Name);
+                str.AppendLine(",");
+
+                if (family.Name.Equals(fontName, StringComparison.CurrentCultureIgnoreCase))
+                {
+                    
+                    MessageDxUtil.ShowTips("找到了" + family.Name);
+                }
+            }
+            
+            labelControl1.Text = str.ToString();
+
+            Int32 startNum = txtTTFStartNum.Text.ToInt32();
+            string path = txtTTFfilePath.Text.Trim();
+            File.WriteAllText(path + ".fontNames", str.ToString());
+
+            Stream fs = FileUtil.FileToStream(path);
+            StreamReader read = new StreamReader(fs, Encoding.UTF8);
+            string strReadline;
+            StringBuilder sb = new StringBuilder();
+            if (startNum != 1) {
+                startNum = startNum * 3 + 1;
+            }
+
+            while ((strReadline = read.ReadLine()) != null)
+            {
+                if (startNum % 3 == 1) {
+                    sb.Append(string.Format("<icon id=\"{0}\" fontfrom=\"{2}\" strValue=\"{1}\"", (startNum + 2) / 3, strReadline, fontName));
+                }
+
+                if (startNum % 3 == 2)
+                {
+                    sb.Append(string.Format(" value=\"{0}\" chinesename=\"\"", strReadline));
+                }
+
+                if (startNum % 3 == 0)
+                {
+                    sb.Append(string.Format(" name=\"{0}\" />\r\n", strReadline));
+                }
+                startNum++;
+            }
+
+            //string[] a = fileContent.Replace("飥?", "\r").Replace("飦?", "\r").Replace("飩?", "\r").Replace("", "").Replace("\r\n", "$").Split('$');
+
+            /*
+            for (Int32 i = 0; i < a.Length / 3; ){
+                sb.Append(string.Format("<icon id=\"{2}\" fontfrom=\"FontAwesome\" value=\"{0}\" name=\"{1}\" chinesename=\"\" />\r\n", a[i], a[i + 1], startNum ++));
+                i = i + 3;
+            }*/
+            FileUtil.AppendText(path+".xml", sb.ToString(), Encoding.UTF8);
         }
     }
 }

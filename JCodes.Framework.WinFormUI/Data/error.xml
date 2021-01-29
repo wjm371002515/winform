@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<errors>
+  <error id="1" name="E000000" chinesename="操作成功" loglevel="7" remark="" />
+  <error id="2" name="E000001" chinesename="操作失败" loglevel="3" remark="" />
+  <error id="3" name="E000002" chinesename="查询数据字典失败" loglevel="4" remark="" />
+  <error id="4" name="E000003" chinesename="新增数据字典失败" loglevel="4" remark="" />
+  <error id="5" name="E000004" chinesename="修改数据字典失败" loglevel="4" remark="" />
+  <error id="6" name="E000005" chinesename="删除数据字典失败" loglevel="4" remark="" />
+  <error id="7" name="E000006" chinesename="数据字典记录已存在" loglevel="4" remark="" />
+  <error id="8" name="E000007" chinesename="数据字典记录不存在" loglevel="4" remark="" />
+  <error id="9" name="E000008" chinesename="文件不存在" loglevel="4" remark="" />
+  <error id="10" name="E000009" chinesename="日期格式错误" loglevel="4" remark="" />
+  <error id="11" name="E000010" chinesename="开始日期格式错误" loglevel="4" remark="" />
+  <error id="12" name="E000011" chinesename="结束日期格式错误" loglevel="4" remark="" />
+  <error id="13" name="E000012" chinesename="文件上传失败" loglevel="4" remark="" />
+  <error id="14" name="E000013" chinesename="上传后缀名不合法" loglevel="4" remark="" />
+  <error id="15" name="E000014" chinesename="新增记录失败" loglevel="4" remark="" />
+  <error id="16" name="E000015" chinesename="新增记录出现异常错误" loglevel="3" remark="" />
+  <error id="17" name="E000016" chinesename="修改记录失败" loglevel="4" remark="" />
+  <error id="18" name="E000017" chinesename="修改记录出现异常错误" loglevel="3" remark="" />
+  <error id="19" name="E000018" chinesename="新增修改记录失败" loglevel="4" remark="" />
+  <error id="20" name="E000019" chinesename="新增修改记录出现异常错误" loglevel="3" remark="" />
+  <error id="21" name="E000020" chinesename="查找记录不存在" loglevel="4" remark="" />
+  <error id="22" name="E000021" chinesename="查找记录异常错误" loglevel="3" remark="" />
+  <error id="23" name="E000022" chinesename="查找键值不存在" loglevel="4" remark="" />
+  <error id="24" name="E000023" chinesename="查找键值异常错误" loglevel="3" remark="" />
+  <error id="25" name="E000024" chinesename="根据用户Id删除记录失败" loglevel="4" remark="" />
+  <error id="26" name="E000025" chinesename="根据用户Id删除记录出现异常错误" loglevel="3" remark="" />
+  <error id="27" name="E000026" chinesename="批量根据用户Id删除记录出现异常错误" loglevel="3" remark="" />
+  <error id="28" name="E000027" chinesename="根据条件语句删除记录失败" loglevel="4" remark="" />
+  <error id="29" name="E000028" chinesename="根据条件语句删除记录出现异常错误" loglevel="3" remark="" />
+  <error id="30" name="E100000" chinesename="用户名或密码错误或被禁止登陆" loglevel="4" remark="" />
+  <error id="31" name="E100001" chinesename="用户没有管理员权限" loglevel="4" remark="" />
+  <error id="32" name="E100002" chinesename="口令初始化失败" loglevel="7" remark="" />
+  <error id="33" name="E100003" chinesename="原口令错误" loglevel="1" remark="" />
+  <error id="34" name="E100004" chinesename="数据类型不可以为空" loglevel="4" remark="" />
+  <error id="35" name="E100005" chinesename="输入参数不可以为空" loglevel="4" remark="" />
+  <error id="36" name="E100006" chinesename="用户名不能为空" loglevel="4" remark="" />
+  <error id="37" name="E100007" chinesename="密码不能为空" loglevel="4" remark="" />
+  <error id="38" name="E100008" chinesename="验证码不能为空" loglevel="4" remark="" />
+  <error id="39" name="E100009" chinesename="用户名不存在" loglevel="4" remark="" />
+  <error id="40" name="E100010" chinesename="验证码输入有误" loglevel="4" remark="" />
+</errors>

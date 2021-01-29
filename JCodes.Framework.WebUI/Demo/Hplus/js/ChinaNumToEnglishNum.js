@@ -1,4 +1,6 @@
-﻿function chineseNumber(dValue) {
+﻿
+
+function chineseNumber(dValue) {
 	var maxDec = 2;
 	// 验证输入金额数值或数值字符串：
 	dValue = dValue.toString().replace(/,/g, "");

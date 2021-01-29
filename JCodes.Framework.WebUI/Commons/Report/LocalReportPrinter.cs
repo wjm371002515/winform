@@ -9,7 +9,6 @@ using System.Reflection;
 using System.Text;
 using Microsoft.Reporting.WebForms;
 using Microsoft.ReportingServices.Interfaces;
-using System.Windows.Forms;
 using JCodes.Framework.jCodesenum;
 
 namespace JCodes.Framework.WebUI.Common
@@ -156,7 +155,7 @@ namespace JCodes.Framework.WebUI.Common
         /// <param name="printerSettings"></param>
         public void Print(PrinterSettings printerSettings)
         {
-            using (PrintDialog dialog = new PrintDialog())
+            /*using (PrintDialog dialog = new PrintDialog())
             {
                 dialog.PrinterSettings = printerSettings;
                 dialog.AllowSelection = false;
@@ -207,7 +206,7 @@ namespace JCodes.Framework.WebUI.Common
                 document.PrinterSettings = dialog.PrinterSettings;
                 document.EndPrint += new PrintEventHandler(document_EndPrint);
                 document.Print();
-            }
+            }*/
         }
 
         void document_EndPrint(object sender, PrintEventArgs e)

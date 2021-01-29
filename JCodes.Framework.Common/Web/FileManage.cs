@@ -191,6 +191,14 @@ namespace JCodes.Framework.Common.Web
         }
 
         /// <summary>
+        /// 上传文件
+        /// </summary>
+        /// <returns></returns>
+        public static string UploadFile() {
+            return string.Empty;
+        }
+
+        /// <summary>
         /// 从HTML内容中寻找图片文件，并下载图片到本地
         /// </summary>
         /// <param name="strHTML">HTML内容</param>

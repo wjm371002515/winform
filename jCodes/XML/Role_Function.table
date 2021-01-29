@@ -31,7 +31,7 @@
     <item gid="4b401762-f0be-4cd8-9bfc-99028d874765">
       <name>pk_role_function</name>
       <indexfieldlst>RoleId, FunctionGid</indexfieldlst>
-      <constraint_type>0</constraint_type>
+      <constraint_type>1</constraint_type>
     </item>
   </indexsinfo>
 </datatype>

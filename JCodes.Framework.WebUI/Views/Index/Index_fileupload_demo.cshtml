@@ -1,0 +1,72 @@
+﻿@{
+    Layout = "~/Views/Shared/_Index.cshtml";
+    ViewBag.SubTitle = "jCodes网站首页";
+}
+<link rel="stylesheet" type="text/css" href="/Demo/Hplus/js/plugins/webuploader/webuploader.css">
+<link rel="stylesheet" type="text/css" href="/Demo/Hplus/css/demo/webuploader-demo.css">
+
+<div id="content" class="site-content site_container container clear">
+    <div class="ibox-content">
+        <div class="page-container">
+
+            <p>您可以尝试文件拖拽，使用QQ截屏工具，然后激活窗口后粘贴，或者点击添加图片按钮，来体验此demo.</p>
+            <!--div id="uploader" class="wu-example">
+                <div class="queueList">
+                    <div id="dndArea" class="placeholder">
+                        <div id="filePicker"></div>
+                        <p>或将照片拖到这里，单次最多可选300张</p>
+                    </div>
+                </div>
+                <div class="statusBar" style="display:none;">
+                    <div class="progress">
+                        <span class="text">0%</span>
+                        <span class="percentage"></span>
+                    </div>
+                    <div class="info"></div>
+                    <div class="btns">
+                        <div id="filePicker2"></div>
+                        <div class="uploadBtn">开始上传</div>
+                    </div>
+                </div>
+            </div-->
+            <!-- Main content -->
+            <section class="content">
+                <div class="container" style="margin-top: 20px">
+                    <div class="alert alert-info">可以一次上传多个大文件</div>
+                </div>
+                <div class="container" style="margin-top: 50px">
+                    <div id="uploader" class="container">
+                        <div class="container">
+                            <div id="fileList" class="uploader-list"></div>
+                            <!--存放文件的容器-->
+                        </div>
+                        <div class="btns container">
+                            <div id="picker" class="webuploader-container"
+                                 style="float: left; margin-right: 10px">
+                                <div>
+                                    选择文件 <input type="file" name="file"
+                                                class="webuploader-element-invisible" multiple="multiple">
+                                </div>
+                            </div>
+
+                            <div id="UploadBtn" class="webuploader-pick"
+                                 style="float: left; margin-right: 10px; pointer-events: none;" >开始上传</div>
+                            <div id="StopBtn" class="webuploader-pick"
+                                 style="float: left; margin-right: 10px" status="suspend">暂停上传</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+ <!-- Web Uploader -->
+<script type="text/javascript">
+    // 添加全局站点信息
+    var BASE_URL = '/Demo/Hplus/js/plugins/webuploader';
+</script>
+<script src="/Demo/Hplus/js/plugins/webuploader/webuploader.min.js"></script>
+
+<script src="/Demo/Hplus/js/demo/webuploader-demo.js"></script>
+

@@ -29,7 +29,7 @@ namespace JCodes.Framework.Entity
 		/// <summary>
 		/// 中文名称
 		/// </summary>
-		private String m_ChineseName = string.Empty;
+        private string m_ChineseName = string.Empty;
 
 		/// <summary>
 		/// 日志级别
@@ -88,7 +88,7 @@ namespace JCodes.Framework.Entity
 		/// </summary>
 		[DataMember]
 		[DisplayName("中文名称")]
-		public virtual String ChineseName
+		public virtual string ChineseName
 		{
 			get
 			{

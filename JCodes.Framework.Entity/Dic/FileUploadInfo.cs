@@ -76,6 +76,21 @@ namespace JCodes.Framework.Entity
 		private Int16 m_IsDelete = 0;
 
 		/// <summary>
+		/// 当前文件块编号
+		/// </summary>
+		private Int32 m_FileChunk = 0;
+
+		/// <summary>
+		/// 文件块总数量
+		/// </summary>
+		private Int32 m_FileChunks = 0;
+
+		/// <summary>
+		/// MD5值
+		/// </summary>
+		private String m_Md5Value = string.Empty;
+
+		/// <summary>
 		/// 数据类型
 		/// </summary>
 		private byte[]  m_FileData;
@@ -292,6 +307,57 @@ namespace JCodes.Framework.Entity
 			set
 			{
 				this.m_IsDelete = value;
+			}
+		}
+
+		/// <summary>
+		/// 当前文件块编号
+		/// </summary>
+		[DataMember]
+		[DisplayName("当前文件块编号")]
+		public virtual Int32 FileChunk
+		{
+			get
+			{
+				return this.m_FileChunk;
+			}
+			set
+			{
+				this.m_FileChunk = value;
+			}
+		}
+
+		/// <summary>
+		/// 文件块总数量
+		/// </summary>
+		[DataMember]
+		[DisplayName("文件块总数量")]
+		public virtual Int32 FileChunks
+		{
+			get
+			{
+				return this.m_FileChunks;
+			}
+			set
+			{
+				this.m_FileChunks = value;
+			}
+		}
+
+		/// <summary>
+		/// MD5值
+		/// </summary>
+		[DataMember]
+		[DisplayName("MD5值")]
+		public virtual String Md5Value
+		{
+			get
+			{
+				return this.m_Md5Value;
+			}
+			set
+			{
+				this.m_Md5Value = value;
 			}
 		}
 

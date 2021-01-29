@@ -96,6 +96,7 @@
     <Reference Include="PdfSharp">
       <HintPath>..\JCodes.Framework.libs\PdfSharp\PdfSharp.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="SevenZipSharp">
       <HintPath>..\JCodes.Framework.libs\SevenZipSharp\SevenZipSharp.dll</HintPath>
     </Reference>
@@ -127,25 +128,14 @@
     <Reference Include="WAPIWrapperCSharp">
       <HintPath>..\JCodes.Framework.libs\Wind\WAPIWrapperCSharp.dll</HintPath>
     </Reference>
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attachment.Test\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Attachment.Test\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Basic\ConvertTextFrm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Basic\ConvertTextFrm.Designer.cs">
       <DependentUpon>ConvertTextFrm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Basic\FrmTestBizControl.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Basic\FrmTestBizControl.Designer.cs">
-      <DependentUpon>FrmTestBizControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Basic\InitDataFrm.cs">
       <SubType>Form</SubType>
@@ -158,12 +148,6 @@
     </Compile>
     <Compile Include="Basic\TestFrm.Designer.cs">
       <DependentUpon>TestFrm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BizControl.Test\BizControlForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BizControl.Test\BizControlForm.Designer.cs">
-      <DependentUpon>BizControlForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Common.Test\Form1.cs">
       <SubType>Form</SubType>
@@ -267,6 +251,12 @@
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form2.Designer.cs">
+      <DependentUpon>Form2.cs</DependentUpon>
     </Compile>
     <Compile Include="Haotian\FrmXlsDataDeal.cs">
       <SubType>Form</SubType>
@@ -410,6 +400,9 @@
     <EmbeddedResource Include="Basic\TestFrm.resx">
       <DependentUpon>TestFrm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form2.resx">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PdfDemo\FrmPdfTools.resx">
       <DependentUpon>FrmPdfTools.cs</DependentUpon>
     </EmbeddedResource>
@@ -439,20 +432,11 @@
       <DependentUpon>TouHangDiGaoFrm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Resources\favicon.ico" />
-    <EmbeddedResource Include="Attachment.Test\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Basic\ConvertTextFrm.resx">
       <DependentUpon>ConvertTextFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Basic\FrmTestBizControl.resx">
-      <DependentUpon>FrmTestBizControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Basic\InitDataFrm.resx">
       <DependentUpon>InitDataFrm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BizControl.Test\BizControlForm.resx">
-      <DependentUpon>BizControlForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Common.Test\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -628,7 +612,10 @@
       <Name>JCodes.Framework.jCodesenum</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Attachment.Test\" />
+    <Folder Include="BizControl.Test\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>echo "编译后处理的事情 JCodes.Framework.TestWinForm"</PostBuildEvent>

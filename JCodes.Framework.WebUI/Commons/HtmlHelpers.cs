@@ -1,4 +1,5 @@
-﻿using JCodes.Framework.Common.Files;
+﻿using JCodes.Framework.Common;
+using JCodes.Framework.Common.Files;
 using JCodes.Framework.Entity;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace JCodes.Framework.WebUI.Common
 
     public class HtmlHelpers
     {
-        public string SYSTEMTYPEID = "071bafed-4634-4083-bb34-86dda58edfc4";    // 系统类型
+        public string SYSTEMTYPEID = Const.SystemTypeId;    // 系统类型
         public string AppUnit = string.Empty;                                   // 单位名称
         public string AppName = string.Empty;                                   // 程序名称
         public string AppWholeName = string.Empty;                              // 单位名称+程序名称

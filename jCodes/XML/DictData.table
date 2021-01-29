@@ -77,7 +77,7 @@
     </item>
     <item gid="746d7aa0-c9fe-4df6-8592-8092c541d636">
       <name>uniq_dicttypeidvalue</name>
-      <indexfieldlst>DicttypeId, Value</indexfieldlst>
+      <indexfieldlst>DicttypeId, DicttypeValue</indexfieldlst>
       <constraint_type>3</constraint_type>
     </item>
   </indexsinfo>

@@ -603,7 +603,7 @@ namespace TestCommons
 
         private void btnWebFile_Click(object sender, EventArgs e)
         {
-            FileServerManage file = new FileServerManage("ftp://codeany:wjm456852@codeany.w253.cndns5.com:21", "", "");
+            FileServerManage file = new FileServerManage("*", "", "");
             try
             {
                 //上传文件

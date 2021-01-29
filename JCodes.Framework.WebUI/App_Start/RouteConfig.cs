@@ -144,6 +144,20 @@ namespace JCodes.Framework.WebUI
                new { controller = "Error", action = "ServerError" }// 参数默认值  
             );
 
+            // 开心一刻 路由
+            /*routes.MapRoute(
+                name: "Joke",
+                url: "{controller}/{action}/joke_{Id}",//带有参数的URL  id num都为参数,
+                defaults: new { controller = "Demo", action = "GetJoke" },
+                constraints: new { Id = @"\d" }
+            );*/
+            routes.MapRoute(
+                name: "Joke",
+                url: "joke_{Id}.html",//带有参数的URL  id num都为参数,
+                defaults: new { controller = "Demo", action = "GetJoke" },
+                constraints: new { Id = @"\d" }
+            );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

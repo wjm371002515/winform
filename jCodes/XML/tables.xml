@@ -3,8 +3,9 @@
   <tabletype>
     <item gid="51b9fae7-aef9-4b1e-a897-08f1eb014315" creatortime="2018-02-08" name="000001(Dic_数据字典)" basicdata="1" />
     <item gid="e469a798-d778-4315-9a09-d614329f0b95" creatortime="2018-02-08" name="000201(Security_用户权限)" basicdata="1" />
-    <item gid="40281933-2af9-4317-b4a1-4bf282fc8aa7" creatortime="2019-09-25" name="000801(Other_其他)" basicdata="0" />
+    <item gid="6b9e50fd-4211-4f53-bc3e-9e7eec0a036b" creatortime="2021-01-22" name="000301(Business_业务表)" basicdata="0" />
     <item gid="8b50ae03-15ad-4b73-bc20-12e5e7ffc000" creatortime="2019-12-02" name="000701(Dongnanhai_东南海)" basicdata="0" />
+    <item gid="40281933-2af9-4317-b4a1-4bf282fc8aa7" creatortime="2019-09-25" name="000801(Other_其他)" basicdata="0" />
   </tabletype>
   <dataitem>
     <item gid="ba5ddb75-4554-4011-b9a2-a32f65cc6240">
@@ -266,7 +267,7 @@
     <item gid="b544d17c-ab1d-4b33-815b-0018c19a7987">
       <name>DongnanhaiVotes</name>
       <chineseName>东南海投票信息</chineseName>
-      <functionId>701</functionId>
+      <functionId>000701</functionId>
       <typegid>8b50ae03-15ad-4b73-bc20-12e5e7ffc000</typegid>
       <path>XML\DongnanhaiVotes.table</path>
       <basicdatapath>
@@ -341,6 +342,33 @@
       <functionId>000013</functionId>
       <typegid>51b9fae7-aef9-4b1e-a897-08f1eb014315</typegid>
       <path>XML\MVCRouteConfig.table</path>
+      <basicdatapath>
+      </basicdatapath>
+    </item>
+    <item gid="9bdad80b-6959-431f-b829-4a22f04d95fa">
+      <name>FrontLog</name>
+      <chineseName>前台日志</chineseName>
+      <functionId>000219</functionId>
+      <typegid>e469a798-d778-4315-9a09-d614329f0b95</typegid>
+      <path>XML\FrontLog.table</path>
+      <basicdatapath>
+      </basicdatapath>
+    </item>
+    <item gid="952f5aa7-a814-49a0-8674-4ba8465ddfa4">
+      <name>SystemTimeLine</name>
+      <chineseName>系统开发时间轴</chineseName>
+      <functionId>000220</functionId>
+      <typegid>e469a798-d778-4315-9a09-d614329f0b95</typegid>
+      <path>XML\SystemTimeLine.table</path>
+      <basicdatapath>
+      </basicdatapath>
+    </item>
+    <item gid="b940cf8f-b6c3-49a5-ad21-3857f0fc554f">
+      <name>Joke</name>
+      <chineseName>段子</chineseName>
+      <functionId>000301</functionId>
+      <typegid>6b9e50fd-4211-4f53-bc3e-9e7eec0a036b</typegid>
+      <path>XML\Joke.table</path>
       <basicdatapath>
       </basicdatapath>
     </item>

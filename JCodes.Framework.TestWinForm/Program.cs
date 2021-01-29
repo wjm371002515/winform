@@ -58,6 +58,7 @@ namespace JCodes.Framework.TestWinForm
                 }).Start();
             }
             //Application.Run(new JCodes.Framework.Test.Form1());
+            // Application.Run(new JCodes.Framework.TestWinForm.Form2());
 
             // 分页控件
             //Application.Run(new TestDictionary.Form1());
@@ -83,14 +84,14 @@ namespace JCodes.Framework.TestWinForm
             // Application.Run(new ZheshangKaoshi());
 
             //Application.Run(new JCodes.Framework.AddIn.Test.MainForm());
-            Application.Run(new JCodes.Framework.TestWinForm.Basic.FrmTestBizControl());
+            //Application.Run(new JCodes.Framework.TestWinForm.Basic.FrmTestBizControl());
             //Application.Run(new JCodes.Framework.TestWinForm.ZSJob.TouHangDiGaoFrm());
             //Application.Run(new JCodes.Framework.TestWinForm.PdfDemo.PdfTestFrm());
             //Application.Run(new JCodes.Framework.TestWinForm.ZsDaixiao.FrmDealConsignment());
 
             //Application.Run(new JCodes.Framework.Test.AMSDownloadForm());
             //Application.Run(new JCodes.Framework.Test.DakaDateSetFrm());
-            // Application.Run(new JCodes.Framework.TestWinForm.Basic.InitDataFrm());
+            Application.Run(new JCodes.Framework.TestWinForm.Basic.InitDataFrm());
             //Application.Run(new JCodes.Framework.Wind.FrmWindDemo());
         }
     }

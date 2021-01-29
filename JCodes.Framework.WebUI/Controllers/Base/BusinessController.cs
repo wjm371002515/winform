@@ -40,13 +40,18 @@ namespace JCodes.Framework.WebUI.Controllers
         protected BaseBLL<T> baseBLL = null;
 
         /// <summary>
+        /// 错误号缓存
+        /// </summary>
+        protected Dictionary<String, ErrornoInfo> dicErrInfo = (new JCodes.Framework.Common.ErrorInfo()).GetAllErrorInfo();
+
+        /// <summary>
         /// 默认构造函数
         /// </summary>
         public BusinessController()
         {
             this.bllAssemblyName = System.Reflection.Assembly.GetAssembly(typeof(B)).GetName().Name;
             this.baseBLL = Reflect<BaseBLL<T>>.Create(typeof(B).FullName, bllAssemblyName);//构造对应的 BaseBLL<T> 业务访问层的对象类
-            
+
             //调用前检查baseBLL是否为空引用
             if (baseBLL == null)
             {
@@ -78,7 +83,7 @@ namespace JCodes.Framework.WebUI.Controllers
         }
 
         #endregion
-        
+
         #region 对象添加、修改、查询接口
 
         /// <summary>
@@ -111,21 +116,38 @@ namespace JCodes.Framework.WebUI.Controllers
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
             base.CheckAuthorized(authorizeKeyInfo.InsertKey);
 
-            ReturnResult result = new ReturnResult();
+            ReturnResult rr = new ReturnResult();
             if (info != null)
             {
                 try
                 {
                     OnBeforeInsert(info);
-                    result.ErrorCode = baseBLL.Insert(info)?0:1;
+                    if (baseBLL.Insert(info))
+                    {
+                        rr.ErrorCode = 0;
+                        rr.ErrorMessage = "新增记录成功";
+                        rr.ErrorPath = "BusinessController->Insert(T info)";
+                        rr.LogLevel = (short)LogLevel.LOG_LEVEL_INFO;
+                    }
+                    else
+                    {
+                        rr.ErrorCode = 000014;
+                        rr.ErrorMessage = dicErrInfo["E000014"].ChineseName;
+                        rr.ErrorPath = "BusinessController->Insert(T info)";
+                        rr.LogLevel = dicErrInfo["E000014"].LogLevel;
+                    }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(BusinessController<B, T>));
-                    result.ErrorMessage = ex.Message;
+
+                    rr.ErrorCode = 000015;
+                    rr.ErrorMessage = dicErrInfo["E000015"].ChineseName;
+                    rr.ErrorPath = "BusinessController->Insert(T info)";
+                    rr.LogLevel = dicErrInfo["E000015"].LogLevel;
                 }
             }
-            return ToJsonContent(result);
+            return ToJsonContent(rr);
         }
 
         /// <summary>
@@ -135,8 +157,8 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns>执行成功返回新增记录的自增长ID。</returns>
         public virtual ActionResult Insert2(T info)
         {
-            ReturnResult result = new ReturnResult();
-            result.Data1 = "-1";
+            ReturnResult rr = new ReturnResult();
+            rr.Data1 = "-1";
 
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
             base.CheckAuthorized(authorizeKeyInfo.InsertKey);
@@ -144,11 +166,15 @@ namespace JCodes.Framework.WebUI.Controllers
             if (info != null)
             {
                 OnBeforeInsert(info);
-                result.ErrorCode = 0;
-                result.Data1 = baseBLL.Insert2(info).ToString();
+
+                rr.ErrorCode = 0;
+                rr.ErrorMessage = "新增记录成功";
+                rr.ErrorPath = "BusinessController->Insert2(T info)";
+                rr.LogLevel = (short)LogLevel.LOG_LEVEL_INFO;
+                rr.Data1 = baseBLL.Insert2(info).ToString();
             }
 
-            return ToJsonContent(result);
+            return ToJsonContent(rr);
         }
 
         /// <summary>
@@ -157,12 +183,12 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <param name="info">指定的对象</param>
         /// <param name="id">主键ID的值</param>
         /// <returns>执行成功返回<c>true</c>，否则为<c>false</c>。</returns>
-        public virtual ActionResult Update(string id, FormCollection formValues)
+        public virtual ActionResult Update(string Id, FormCollection formValues)
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
             base.CheckAuthorized(authorizeKeyInfo.UpdateKey);
 
-            T obj = baseBLL.FindById(id);
+            T obj = baseBLL.FindById(Id);
             if (obj != null)
             {
                 //遍历提交过来的数据（可能是实体类的部分属性更新）
@@ -183,18 +209,35 @@ namespace JCodes.Framework.WebUI.Controllers
                 }
             }
 
-            ReturnResult result = new ReturnResult();
+            ReturnResult rr = new ReturnResult();
             try
             {
-                result.ErrorCode = Update(id, obj)?0:1;
+                if (Update(Id, obj))
+                {
+                    rr.ErrorCode = 0;
+                    rr.ErrorMessage = "修改记录成功";
+                    rr.ErrorPath = "BusinessController->Update(string Id, FormCollection formValues)";
+                    rr.LogLevel = (short)LogLevel.LOG_LEVEL_INFO;
+                }
+                else
+                {
+                    rr.ErrorCode = 000016;
+                    rr.ErrorMessage = dicErrInfo["E000016"].ChineseName;
+                    rr.ErrorPath = "BusinessController->Update(string Id, FormCollection formValues)";
+                    rr.LogLevel = dicErrInfo["E000016"].LogLevel;
+                }
             }
             catch (Exception ex)
             {
                 LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(BusinessController<B, T>));
-                result.ErrorMessage = ex.Message;
+
+                rr.ErrorCode = 000017;
+                rr.ErrorMessage = dicErrInfo["E000017"].ChineseName;
+                rr.ErrorPath = "BusinessController->Update(string Id, FormCollection formValues)";
+                rr.LogLevel = dicErrInfo["E000017"].LogLevel;
             }
 
-            return ToJsonContent(result);
+            return ToJsonContent(rr);
         }
 
         /// <summary>
@@ -203,10 +246,10 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <param name="id">主键ID的值</param>
         /// <param name="info">指定的对象</param>
         /// <returns>执行成功返回<c>true</c>，否则为<c>false</c>。</returns>
-        protected virtual bool Update(string id, T info)
-        {            
+        protected virtual bool Update(string Id, T info)
+        {
             OnBeforeUpdate(info);
-            return baseBLL.Update(info, id);
+            return baseBLL.Update(info, Id);
         }
 
         /// <summary>
@@ -215,27 +258,44 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <param name="info">指定的对象</param>
         /// <param name="id">主键的值</param>
         /// <returns>执行成功返回<c>true</c>，否则为<c>false</c>。</returns>
-        public virtual ActionResult InsertUpdate(T info, string id)
+        public virtual ActionResult InsertUpdate(T info, string Id)
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
             base.CheckAuthorized(authorizeKeyInfo.InsertKey);
 
-            ReturnResult result = new ReturnResult();
+            ReturnResult rr = new ReturnResult();
             try
             {
                 //同时对写入、更新进行处理
                 OnBeforeInsert(info);
                 OnBeforeUpdate(info);
 
-                result.ErrorCode = baseBLL.InsertUpdate(info, id)?0:1;
+                if (baseBLL.InsertUpdate(info, Id))
+                {
+                    rr.ErrorCode = 0;
+                    rr.ErrorMessage = "新增修改记录成功";
+                    rr.ErrorPath = "BusinessController->InsertUpdate(T info, string Id)";
+                    rr.LogLevel = (short)LogLevel.LOG_LEVEL_INFO;
+                }
+                else
+                {
+                    rr.ErrorCode = 000018;
+                    rr.ErrorMessage = dicErrInfo["E000018"].ChineseName;
+                    rr.ErrorPath = "BusinessController->InsertUpdate(T info, string Id)";
+                    rr.LogLevel = dicErrInfo["E000018"].LogLevel;
+                }
             }
             catch (Exception ex)
             {
                 LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(BusinessController<B, T>));
-                result.ErrorMessage = ex.Message;
+
+                rr.ErrorCode = 000019;
+                rr.ErrorMessage = dicErrInfo["E000019"].ChineseName;
+                rr.ErrorPath = "BusinessController->InsertUpdate(T info, string Id)";
+                rr.LogLevel = dicErrInfo["E000019"].LogLevel;
             }
 
-            return ToJsonContent(result);
+            return ToJsonContent(rr);
         }
 
         /// <summary>
@@ -244,23 +304,41 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <param name="info">指定的对象</param>
         /// <param name="id">主键的值</param>
         /// <returns>执行插入成功返回<c>true</c>，否则为<c>false</c>。</returns>
-        public virtual ActionResult InsertIfNew(T info, string id)
+        public virtual ActionResult InsertIfNew(T info, string Id)
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
             base.CheckAuthorized(authorizeKeyInfo.InsertKey);
 
-            ReturnResult result = new ReturnResult();
+            ReturnResult rr = new ReturnResult();
             try
             {
                 OnBeforeInsert(info);
-                result.ErrorCode = baseBLL.InsertIfNew(info, id)?0:1;
+
+                if (baseBLL.InsertIfNew(info, Id))
+                {
+                    rr.ErrorCode = 0;
+                    rr.ErrorMessage = "新增记录成功";
+                    rr.ErrorPath = "BusinessController->InsertIfNew(T info, string Id)";
+                    rr.LogLevel = (short)LogLevel.LOG_LEVEL_INFO;
+                }
+                else
+                {
+                    rr.ErrorCode = 000014;
+                    rr.ErrorMessage = dicErrInfo["E000014"].ChineseName;
+                    rr.ErrorPath = "BusinessController->InsertIfNew(T info, string Id)";
+                    rr.LogLevel = dicErrInfo["E000014"].LogLevel;
+                }
             }
             catch (Exception ex)
             {
                 LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(BusinessController<B, T>));
-                result.ErrorMessage = ex.Message;
+
+                rr.ErrorCode = 000015;
+                rr.ErrorMessage = dicErrInfo["E000015"].ChineseName;
+                rr.ErrorPath = "BusinessController->InsertIfNew(T info, string Id)";
+                rr.LogLevel = dicErrInfo["E000015"].LogLevel;
             }
-            return ToJsonContent(result);
+            return ToJsonContent(rr);
         }
 
         /// <summary>
@@ -268,19 +346,19 @@ namespace JCodes.Framework.WebUI.Controllers
         /// </summary>
         /// <param name="id">对象的ID值</param>
         /// <returns>存在则返回指定的对象,否则返回Null</returns>
-        public virtual ActionResult FindByID(string id)
+        public virtual ActionResult FindById(string Id)
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
             base.CheckAuthorized(authorizeKeyInfo.ViewKey);
 
-            ActionResult result = Content("");
-            T info = baseBLL.FindById(id);
+            ActionResult rr = Content("");
+            T info = baseBLL.FindById(Id);
             if (info != null)
             {
-                result = ToJsonContentDate(info);
+                rr = ToJsonContentDate(info);
             }
 
-            return result;
+            return rr;
         }
 
         /// <summary>
@@ -367,15 +445,15 @@ namespace JCodes.Framework.WebUI.Controllers
         /// </summary>
         /// <param name="ids">ID字符串(逗号分隔)</param>
         /// <returns>符合条件的对象列表</returns>
-        public virtual ActionResult FindByIDs(string ids)
+        public virtual ActionResult FindByIds(string Ids)
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
             base.CheckAuthorized(authorizeKeyInfo.ListKey);
 
             ActionResult result = Content("");
-            if (!string.IsNullOrEmpty(ids))
+            if (!string.IsNullOrEmpty(Ids))
             {
-                List<T> list = baseBLL.FindByIds(ids);
+                List<T> list = baseBLL.FindByIds(Ids);
                 result = ToJsonContentDate(list);
             }
             return result;
@@ -443,7 +521,7 @@ namespace JCodes.Framework.WebUI.Controllers
         protected virtual string GetPagerCondition()
         {
             string where = "";
-            
+
             //增加一个CustomedCondition条件，根据客户这个条件进行查询
             string CustomedCondition = Request["CustomedCondition"] ?? "";
             if (!string.IsNullOrWhiteSpace(CustomedCondition))
@@ -478,7 +556,7 @@ namespace JCodes.Framework.WebUI.Controllers
                         {
                             condition.AddCondition(columnName, boolValue ? 1 : 0, SqlOperator.Equal);
                         }
-                        else if(hasEqualValue)
+                        else if (hasEqualValue)
                         {
                             columnValue = columnValue.Substring(columnValue.IndexOf("=") + 1);
                             condition.AddCondition(columnName, columnValue, SqlOperator.Equal);
@@ -522,7 +600,7 @@ namespace JCodes.Framework.WebUI.Controllers
                 //condition.AddDateCondition("LastUpdated", LastUpdated); 
                 #endregion
 
-                where = condition.BuildConditionSql().Replace("Where", "");                
+                where = condition.BuildConditionSql().Replace("Where", "");
             }
 
             return where;
@@ -540,9 +618,8 @@ namespace JCodes.Framework.WebUI.Controllers
             {
                 dataType = dataType.ToLower();
                 if (dataType.Contains("int") || dataType.Contains("decimal") || dataType.Contains("double") ||
-                    dataType.Contains("single") || dataType.Contains("byte") || dataType.Contains("short") || 
+                    dataType.Contains("single") || dataType.Contains("byte") || dataType.Contains("short") ||
                     dataType.Contains("float"))
-
                 {
                     result = true;
                 }
@@ -586,7 +663,7 @@ namespace JCodes.Framework.WebUI.Controllers
             //构造成Json的格式传递
             var result = new { total = pagerInfo.RecordCount, rows = list };
             return ToJsonContentDate(result);
-        }  
+        }
 
         /// <summary>
         /// 返回数据库所有的对象集合
@@ -712,20 +789,38 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns>如果存在返回True，否则False</returns>
         public virtual ActionResult IsExistRecord(string condition)
         {
-            ReturnResult result = new ReturnResult();
+            ReturnResult rr = new ReturnResult();
             try
             {
                 if (!string.IsNullOrEmpty(condition))
                 {
-                    result.ErrorCode = baseBLL.IsExistRecord(condition)?0:1;
+                    if (baseBLL.IsExistRecord(condition))
+                    {
+                        rr.ErrorCode = 000000;
+                        rr.ErrorMessage = "找到记录";
+                        rr.ErrorPath = "BusinessController->IsExistRecord(string condition)";
+                        rr.LogLevel = (short)LogLevel.LOG_LEVEL_INFO;
+                    }
+                    else
+                    {
+                        rr.ErrorCode = 000020;
+                        rr.ErrorMessage = dicErrInfo["E000020"].ChineseName;
+                        rr.ErrorPath = "BusinessController->IsExistRecord(string condition)";
+                        rr.LogLevel = dicErrInfo["E000020"].LogLevel;
+                    }
                 }
             }
             catch (Exception ex)
             {
                 LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(BusinessController<B, T>));
-                result.ErrorMessage = ex.Message;
+
+                rr.ErrorCode = 000021;
+                rr.ErrorMessage = dicErrInfo["E000021"].ChineseName;
+                rr.ErrorPath = "BusinessController->IsExistRecord(string condition)";
+                rr.LogLevel = dicErrInfo["E000021"].LogLevel;
             }
-            return ToJsonContent(result);
+
+            return ToJsonContent(rr);
         }
 
         /// <summary>
@@ -736,20 +831,38 @@ namespace JCodes.Framework.WebUI.Controllers
         /// <returns>存在则返回<c>true</c>，否则为<c>false</c>。</returns>
         public virtual ActionResult IsExistKey(string fieldName, string key)
         {
-            ReturnResult result = new ReturnResult();
+            ReturnResult rr = new ReturnResult();
             try
             {
                 if (!string.IsNullOrEmpty(fieldName) && !string.IsNullOrEmpty(key))
                 {
-                    result.ErrorCode = baseBLL.IsExistKey(fieldName, key)?0:1;
+                    if (baseBLL.IsExistKey(fieldName, key))
+                    {
+                        rr.ErrorCode = 000000;
+                        rr.ErrorMessage = "找到键值";
+                        rr.ErrorPath = "BusinessController->IsExistKey(string fieldName, string key)";
+                        rr.LogLevel = (short)LogLevel.LOG_LEVEL_INFO;
+                    }
+                    else
+                    {
+                        rr.ErrorCode = 000022;
+                        rr.ErrorMessage = dicErrInfo["E000022"].ChineseName;
+                        rr.ErrorPath = "BusinessController->IsExistKey(string fieldName, string key)";
+                        rr.LogLevel = dicErrInfo["E000022"].LogLevel;
+                    }
                 }
             }
             catch (Exception ex)
             {
                 LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(BusinessController<B, T>));
-                result.ErrorMessage = ex.Message;
+
+                rr.ErrorCode = 000023;
+                rr.ErrorMessage = dicErrInfo["E000023"].ChineseName;
+                rr.ErrorPath = "BusinessController->IsExistKey(string fieldName, string key)";
+                rr.LogLevel = dicErrInfo["E000023"].LogLevel;
             }
-            return ToJsonContent(result);
+
+            return ToJsonContent(rr);
         }
 
         /// <summary>
@@ -757,25 +870,43 @@ namespace JCodes.Framework.WebUI.Controllers
         /// </summary>
         /// <param name="id">指定对象的ID</param>
         /// <returns>执行成功返回<c>true</c>，否则为<c>false</c>。</returns>
-        public virtual ActionResult Delete(string id)
+        public virtual ActionResult Delete(string Id)
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
             base.CheckAuthorized(authorizeKeyInfo.DeleteKey);
 
-            ReturnResult result = new ReturnResult();
+            ReturnResult rr = new ReturnResult();
             try
             {
-                if (!string.IsNullOrEmpty(id))
+                if (!string.IsNullOrEmpty(Id))
                 {
-                    result.ErrorCode = baseBLL.DeleteByUser(id, CurrentUser.Id)?0:1;
+                    if (baseBLL.DeleteByUser(Id, CurrentUser.Id))
+                    {
+                        rr.ErrorCode = 000000;
+                        rr.ErrorMessage = "根据用户Id删除记录成功";
+                        rr.ErrorPath = "BusinessController->Delete(string Id)";
+                        rr.LogLevel = (short)LogLevel.LOG_LEVEL_INFO;
+                    }
+                    else
+                    {
+                        rr.ErrorCode = 000024;
+                        rr.ErrorMessage = dicErrInfo["E000024"].ChineseName;
+                        rr.ErrorPath = "BusinessController->Delete(string Id)";
+                        rr.LogLevel = dicErrInfo["E000024"].LogLevel;
+                    }
                 }
             }
             catch (Exception ex)
             {
                 LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(BusinessController<B, T>));
-                result.ErrorMessage = ex.Message;
+
+                rr.ErrorCode = 000025;
+                rr.ErrorMessage = dicErrInfo["E000025"].ChineseName;
+                rr.ErrorPath = "BusinessController->Delete(string Id)";
+                rr.LogLevel = dicErrInfo["E000025"].LogLevel;
             }
-            return ToJsonContent(result);
+
+            return ToJsonContent(rr);
         }
 
         /// <summary>
@@ -783,17 +914,17 @@ namespace JCodes.Framework.WebUI.Controllers
         /// </summary>
         /// <param name="ids">多个id组合，逗号分开（1,2,3,4,5）</param>
         /// <returns></returns>
-        public virtual ActionResult DeleteByIds(string ids)
+        public virtual ActionResult DeleteByIds(string Ids)
         {
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
             base.CheckAuthorized(authorizeKeyInfo.DeleteKey);
 
-            ReturnResult result = new ReturnResult();
+            ReturnResult rr = new ReturnResult();
             try
             {
-                if (!string.IsNullOrEmpty(ids))
+                if (!string.IsNullOrEmpty(Ids))
                 {
-                    List<string> idArray = ids.ToDelimitedList<string>(",");
+                    List<string> idArray = Ids.ToDelimitedList<string>(",");
                     foreach (string strId in idArray)
                     {
                         if (!string.IsNullOrEmpty(strId))
@@ -801,16 +932,25 @@ namespace JCodes.Framework.WebUI.Controllers
                             baseBLL.DeleteByUser(strId, CurrentUser.Id);
                         }
                     }
-                    result.ErrorCode = 0;
+
+                    rr.ErrorCode = 000000;
+                    rr.ErrorMessage = "批量根据用户Id删除记录成功";
+                    rr.ErrorPath = "BusinessController->DeleteByIds(string Ids)";
+                    rr.LogLevel = (short)LogLevel.LOG_LEVEL_INFO;
                 }
             }
             catch (Exception ex)
             {
                 LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(BusinessController<B, T>));
-                result.ErrorMessage = ex.Message;
+
+                rr.ErrorCode = 000026;
+                rr.ErrorMessage = dicErrInfo["E000026"].ChineseName;
+                rr.ErrorPath = "BusinessController->DeleteByIds(string Ids)";
+                rr.LogLevel = dicErrInfo["E000026"].LogLevel;
             }
-            return ToJsonContent(result);
-        } 
+
+            return ToJsonContent(rr);
+        }
 
         /// <summary>
         /// 根据指定条件,从数据库中删除指定对象
@@ -822,20 +962,38 @@ namespace JCodes.Framework.WebUI.Controllers
             //检查用户是否有权限，否则抛出MyDenyAccessException异常
             base.CheckAuthorized(authorizeKeyInfo.DeleteKey);
 
-            ReturnResult result = new ReturnResult();
+            ReturnResult rr = new ReturnResult();
             try
             {
                 if (!string.IsNullOrEmpty(condition))
                 {
-                    result.ErrorCode = baseBLL.DeleteByCondition(condition)?0:1;
+                    if (baseBLL.DeleteByCondition(condition))
+                    {
+                        rr.ErrorCode = 000000;
+                        rr.ErrorMessage = "根据条件语句删除记录成功";
+                        rr.ErrorPath = "BusinessController->DeleteByCondition(string condition)";
+                        rr.LogLevel = (short)LogLevel.LOG_LEVEL_INFO;
+                    }
+                    else
+                    {
+                        rr.ErrorCode = 000027;
+                        rr.ErrorMessage = dicErrInfo["E000027"].ChineseName;
+                        rr.ErrorPath = "BusinessController->DeleteByCondition(string condition)";
+                        rr.LogLevel = dicErrInfo["E000027"].LogLevel;
+                    }
+
                 }
             }
             catch (Exception ex)
             {
                 LogHelper.WriteLog(LogLevel.LOG_LEVEL_CRIT, ex, typeof(BusinessController<B, T>));
-                result.ErrorMessage = ex.Message;
+
+                rr.ErrorCode = 000028;
+                rr.ErrorMessage = dicErrInfo["E000028"].ChineseName;
+                rr.ErrorPath = "BusinessController->DeleteByCondition(string condition)";
+                rr.LogLevel = dicErrInfo["E000028"].LogLevel;
             }
-            return ToJsonContent(result);
+            return ToJsonContent(rr);
         }
 
         #endregion
@@ -902,15 +1060,16 @@ namespace JCodes.Framework.WebUI.Controllers
             DataTable dt = null;
             if (!string.IsNullOrEmpty(guid))
             {
+                // TODO 20210106 
                 //获取上传附件的路径
-                string serverRealPath = BLLFactory<FileUpload>.Instance.GetFirstFilePath(guid);
-                if (!string.IsNullOrEmpty(serverRealPath))
-                {
-                    //转换Excel文件到DatTable里面
-                    string error = "";
-                    dt = new DataTable();
-                    AsposeExcelTools.ExcelFileToDataTable(serverRealPath, out dt, out error);
-                }
+                //string serverRealPath = BLLFactory<FileUpload>.Instance.GetFirstFilePath(guid);
+                //if (!string.IsNullOrEmpty(serverRealPath))
+                //{
+                //    //转换Excel文件到DatTable里面
+                //    string error = "";
+                //    dt = new DataTable();
+                //    AsposeExcelTools.ExcelFileToDataTable(serverRealPath, out dt, out error);
+                //}
             }
             return dt;
         }

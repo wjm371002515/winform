@@ -87,6 +87,24 @@
       <remark>
       </remark>
     </item>
+    <item gid="7cc00587-c053-4a31-99b6-91b0de6ef555">
+      <name>FileChunk</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="8e4d9eba-6c3e-4b29-b382-4f0a0eda6db1">
+      <name>FileChunks</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
+    <item gid="7235de03-0fb8-45bd-8d34-922c408d4f3b">
+      <name>Md5Value</name>
+      <isnull>0</isnull>
+      <remark>
+      </remark>
+    </item>
   </fieldsinfo>
   <indexsinfo>
     <item gid="e9a18fb5-f54f-4803-9306-61cccffb17e5">

@@ -184,23 +184,14 @@ namespace JCodes.Framework.Test
                 request.Method = "GET";
                 request.Host = renLiUrl.ToLower().Replace("http://", "").Replace("/zshris/", "");
                 //request.Headers.Add("Connection", "keep-alive");
+                request.Headers.Add("Cache-Control", "max-age=0");
                 request.Headers.Add("Upgrade-Insecure-Requests", "1");
                 request.UserAgent = "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Mobile Safari/537.36";
                 request.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9";
                 request.Headers.Add("Accept-Encoding", "gzip, deflate");
                 request.Headers.Add("Accept-Language", "zh-CN,zh;q=0.9"); 
                 request.AllowAutoRedirect = false;   // 不用需自动跳转
-                //必须设置CookieContainer存储请求返回的Cookies
-                if (CookieContainer != null)
-                {
-                    request.CookieContainer = CookieContainer;
-                }
-                else
-                {
-                    request.CookieContainer = new CookieContainer();
-                    CookieContainer = request.CookieContainer;
-                }
-                request.KeepAlive = true;
+               
 
                 //接收响应  
                 response = (HttpWebResponse)request.GetResponse();

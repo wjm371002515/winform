@@ -1,11 +1,16 @@
 ﻿using DevExpress.Utils;
 using JCodes.Framework.BLL;
+using JCodes.Framework.Common;
 using JCodes.Framework.Common.Files;
+using JCodes.Framework.Common.Format;
 using JCodes.Framework.Common.Framework;
 using JCodes.Framework.CommonControl.Other;
 using JCodes.Framework.Entity;
+using JCodes.Framework.jCodesenum;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using Microsoft.Practices.EnterpriseLibrary.Data.Configuration;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,8 +20,10 @@ using System.Data.Common;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Speech.Synthesis;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -108,6 +115,13 @@ namespace JCodes.Framework.Test
             DatabaseSettings setting = ConfigurationManager.GetSection("dataConfiguration") as DatabaseSettings;
 
 
+        }
+
+       
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
         }
 
 
